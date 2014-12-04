@@ -812,13 +812,13 @@ function osha_views_default_views() {
   $handler->display->display_options['filters']['field_thesaurus_tid']['vocabulary'] = 'thesaurus';
 
   /* Display: Media browser */
-  $handler = $view->new_display('media_browser', 'Media browser', 'media_browser_2');
+  $handler = $view->new_display('media_browser', 'Media browser', 'media_browser_osha');
   $handler->display->display_options['defaults']['title'] = FALSE;
   $handler->display->display_options['title'] = 'OSHA Library ';
   $handler->display->display_options['defaults']['hide_admin_links'] = FALSE;
 
   /* Display: My files */
-  $handler = $view->new_display('media_browser', 'My files', 'media_browser_3');
+  $handler = $view->new_display('media_browser', 'My files', 'media_browser_osha_my_files');
   $handler->display->display_options['defaults']['title'] = FALSE;
   $handler->display->display_options['title'] = 'My files (OSHA)';
   $handler->display->display_options['defaults']['hide_admin_links'] = FALSE;

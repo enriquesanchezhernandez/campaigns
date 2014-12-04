@@ -52,8 +52,7 @@ function osha_tmgmt_user_can_edit_job_item($job_item) {
       break;
 
     case TMGMT_JOB_ITEM_STATE_ACTIVE:
-      if (user_access('set job item to translated state')
-      && user_access('abort job item')) {
+      if (user_access('set job item to translated state')) {
         return TRUE;
       }
       break;

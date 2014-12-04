@@ -18,6 +18,50 @@ function osha_search_menu() {
 }
 
 /**
+ * Implements hook_block_info().
+ */
+function osha_search_block_info() {
+  // Block with clear filter link.
+  $blocks['osha_search_clear_filters'] = array(
+    'info' => t('Search filters header with clear filter'),
+    'status' => 1,
+    'region' => 'sidebar_first',
+    'visibility' => BLOCK_VISIBILITY_LISTED,
+    'pages' => 'search/*',
+    'cache' => DRUPAL_NO_CACHE,
+    'weight' => 0,
+  );
+  return $blocks;
+}
+
+/**
+ * Implements hook_block_view().
+ */
+function osha_search_block_view($delta = '') {
+  if ($delta != 'osha_search_clear_filters') {
+    return;
+  }
+  // Add header as in template.
+  $content['header'] = array(
+    '#type' => 'markup',
+    '#markup' => '<h3>' . t('Filter results') . '</h3>',
+  );
+  $query_params = drupal_get_query_parameters();
+  if (!empty($query_params)) {
+    // Clear filter link
+    // it's really just a link to current url without params.
+    $content['link'] = array(
+      '#type' => 'markup',
+      '#markup' => l(t('Clear filter'), current_path()),
+    );
+  }
+  return array(
+    'subject' => '<none>',
+    'content' => drupal_render($content),
+  );
+}
+
+/**
  * Implements hook_form_alter().
  */
 function osha_search_form_alter(&$form, &$form_state, $form_id) {

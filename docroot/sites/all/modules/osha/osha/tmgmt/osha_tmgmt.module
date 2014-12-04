@@ -1316,15 +1316,21 @@ function osha_tmgmt_form_tmgmt_job_form_alter(&$form, &$form_state) {
     );
     if (!empty($group_id)) {
       $group = osha_tmgmt_get_job_translation_validators_group($group_id);
-      $form['translation_validators']['existing_group']['#markup'] =
-        t(
-          'Group <b>@name</b> is currently assigned for this job. Use this form to <i>override and reset current validation status!</i>.',
-          array('@name' => $group->name)
+      if (empty($group)) {
+        drupal_set_message(t('Content validators group id @id could not be found',
+          array('@id' => $group_id)), 'error');
+      }
+      else {
+        $form['translation_validators']['existing_group']['#markup'] =
+          t(
+            'Group <b>@name</b> is currently assigned for this job. Use this form to <i>override and reset current validation status!</i>.',
+            array('@name' => $group->name)
+          );
+        $form['translation_validators']['submit']['#attributes'] = array(
+          'onclick' => sprintf("return confirm('%s');", t('This will reset current status for all job items. Are you sure?'))
         );
-      $form['translation_validators']['submit']['#attributes'] = array(
-        'onclick' => sprintf("return confirm('%s');", t('This will reset current status for all job items. Are you sure?'))
-      );
-      $form['translation_validators']['submit']['#value'] = t('Change');
+        $form['translation_validators']['submit']['#value'] = t('Change');
+      }
     }
   }
 }

@@ -82,8 +82,8 @@ class OshaTMGMTJobItem extends TMGMTJobItem {
         entity_save('translation_validator', $validator);
         $index++;
       }
-      $this->state = TMGMT_JOB_ITEM_STATE_ACTIVE;
     }
+    $this->state = TMGMT_JOB_ITEM_STATE_ACTIVE;
     // Save job.
     global $user;
     $this->save();
@@ -162,7 +162,13 @@ class OshaTMGMTJobItem extends TMGMTJobItem {
         '@message' => $message,
       ));
     OshaWorkflowNotifications::notifyTranslationProjectManager($this);
-    drupal_set_message(t('You have set Translation as Ready to Publish.'));
+    drupal_set_message(
+      t('You have set Translation as @state.',
+        array(
+          '@state' => osha_tmgmt_get_job_item_state_label(OSHA_TMGMT_JOB_ITEM_STATE_TranslatedReadyToPublish),
+        )
+      )
+    );
   }
 
   public function acceptTranslationIntoEntity($message = '') {
@@ -233,10 +239,13 @@ class OshaTMGMTJobItem extends TMGMTJobItem {
             '#origin' => $translation['#origin'],
             '#timestamp' => $translation['#timestamp'],
           );
+          // Removed as asked in CW-791.
+          /*
           $this->addMessage('Translation for customized @key received. Revert your changes if you wish to use it.', array('@key' => tmgmt_ensure_keys_string($key)));
           // Unset text and origin so that the current translation does not
           // get overridden.
           unset($translation['#text'], $translation['#origin'], $translation['#timestamp']);
+          */
         }
         // Do the same if the translation was already reviewed and origin is
         // remote.

@@ -96,20 +96,27 @@ function osha_workflow_workbench_project_managers($access_type = NULL, $access_t
         }
       }
       if (!isset($roles[DRUPAL_AUTHENTICATED_RID])) {
-        $count = db_query("SELECT COUNT(wau.uid) FROM {osha_workflow_access_pm} wau
+        $pms = db_query("SELECT wau.uid as uid, us.name as name FROM {osha_workflow_access_pm} wau
             INNER JOIN {users_roles} ur ON wau.uid = ur.uid
+            INNER JOIN {users} us ON wau.uid = us.uid
             WHERE wau.access_scheme = :access_scheme AND wau.access_id = :access_id
             AND ur.rid IN (:rids)",
           array(':access_scheme' => $active['access_scheme']['access_type'], ':access_id' => $access_id, ':rids' => array_keys($roles))
         )->fetchField();
       }
       else {
-        $count = db_query("SELECT COUNT(wau.uid) FROM {osha_workflow_access_pm} wau
+        $pms = db_query("SELECT wau.uid as uid, us.name as name FROM {osha_workflow_access_pm} wau
+            INNER JOIN {users} us ON wau.uid = us.uid
             WHERE wau.access_scheme = :access_scheme AND wau.access_id = :access_id",
           array(':access_scheme' => $active['access_scheme']['access_type'], ':access_id' => $access_id)
-        )->fetchField();
+        )->fetchAllKeyed();
       }
-      $row[] = l(format_plural($count, '1 Project Manager', '@count Project Managers'), 'admin/config/workbench/access/managers/' . $active['access_scheme']['access_type'] . '/' . $access_id);
+      $count = count($pms);
+      $new_row = l(format_plural($count, '1 Project Manager', '@count Project Managers'), 'admin/config/workbench/access/managers/' . $active['access_scheme']['access_type'] . '/' . $access_id);
+      if (!empty($pms)) {
+        $new_row .= ' (' . implode(', ',$pms ) . ') ';
+      }
+      $row[] = $new_row;
 
       $review = osha_workflow_get_section_reviews($access_id);
 
@@ -133,10 +140,15 @@ function osha_workflow_workbench_project_managers($access_type = NULL, $access_t
           'admin/config/workbench/access/managers/review/' . $active['access_scheme']['access_type'] . '/' . $access_id);
       }
 
+      $row[] = l(t('See the borken links'),
+        'admin/content/linkchecker-broken-links',
+        array('query' => array('access_id[]' => $access_id))
+      );
+
       $rows[] = $row;
     }
     $header = array(t('Section'), t('@types', array('@type' => 'Managers')),
-      t('Review'));
+      t('Review'), t('Broken Links'));
     $output .= theme('table', array('header' => $header, 'rows' => $rows));
     $build['content']['#markup'] = $output;
     return $build;
@@ -587,7 +599,7 @@ function osha_workflow_node_approval_form_submit($form, $form_state) {
 function osha_workflow_access_section_review_form($form, &$form_state, $access_type, $access_type_id) {
   $access_info = workbench_access_load($access_type, $access_type_id);
   $output = '<h2>' . t('%name PM section review', array('%name' => $access_info['name'])) . '</h2>';
-
+  drupal_set_message(t("The children sections that does not have a PM assigned will be marked as reviewed!"), 'warning');
   $form_state['access_id'] = $access_type_id;
   $form_state['access_scheme'] = $access_type;
   $form['title'] = array(
