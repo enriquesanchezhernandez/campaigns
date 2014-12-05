@@ -338,6 +338,7 @@ function osha_resources_views_default_views() {
     'external_url' => 'external_url',
     'file' => 'file',
     'flickr' => 'flickr',
+    'infographic' => 'infographic',
     'slideshare' => 'slideshare',
     'youtube' => 'youtube',
   );
@@ -498,10 +499,11 @@ function osha_resources_views_default_views() {
   $handler->display->display_options['filters']['type']['table'] = 'node';
   $handler->display->display_options['filters']['type']['field'] = 'type';
   $handler->display->display_options['filters']['type']['value'] = array(
-    'external_url' => 'external_url',
     'events' => 'events',
+    'external_url' => 'external_url',
     'file' => 'file',
     'flickr' => 'flickr',
+    'infographic' => 'infographic',
     'news' => 'news',
     'publication' => 'publication',
     'slideshare' => 'slideshare',
@@ -525,6 +527,7 @@ function osha_resources_views_default_views() {
     9 => 0,
     10 => 0,
     11 => 0,
+    12 => 0,
   );
   $handler->display->display_options['filters']['type']['expose']['reduce'] = TRUE;
   /* Filter criterion: Content: Title */

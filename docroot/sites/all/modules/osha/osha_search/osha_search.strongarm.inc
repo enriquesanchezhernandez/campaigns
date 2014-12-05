@@ -13,41 +13,47 @@ function osha_search_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
-  $strongarm->name = 'apachesolr_default_environment';
-  $strongarm->value = 'solr';
-  $export['apachesolr_default_environment'] = $strongarm;
+  $strongarm->name = 'osha_search_ac_categ_limit';
+  $strongarm->value = '3';
+  $export['osha_search_ac_categ_limit'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
-  $strongarm->name = 'apachesolr_search_default_search_page';
-  $strongarm->value = 'core_search';
-  $export['apachesolr_search_default_search_page'] = $strongarm;
+  $strongarm->name = 'osha_search_ac_items_limit';
+  $strongarm->value = '3';
+  $export['osha_search_ac_items_limit'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
-  $strongarm->name = 'apachesolr_search_mlt_blocks';
+  $strongarm->name = 'osha_search_bundles';
   $strongarm->value = array(
-    'mlt-001' => array(
-      'name' => 'More like this',
-      'num_results' => '5',
-      'mlt_fl' => array(
-        'label' => 'label',
-        'taxonomy_names' => 'taxonomy_names',
-      ),
-      'mlt_env_id' => 'solr',
-      'mlt_mintf' => '1',
-      'mlt_mindf' => '1',
-      'mlt_minwl' => '3',
-      'mlt_maxwl' => '15',
-      'mlt_maxqt' => '20',
-      'mlt_type_filters' => array(),
-      'mlt_custom_filters' => '',
-      'delta' => 'mlt-001',
-    ),
+    'article' => 'article',
+    'blog' => 'blog',
+    'calls' => 'calls',
+    'directive' => 'directive',
+    'events' => 'events',
+    'guideline' => 'guideline',
+    'highlight' => 'highlight',
+    'news' => 'news',
+    'press_release' => 'press_release',
+    'publication' => 'publication',
+    'seminar' => 'seminar',
+    'wiki_page' => 'wiki_page',
+    'banner' => 0,
+    'page' => 0,
+    'external_url' => 0,
+    'file' => 0,
+    'flickr' => 0,
+    'job_vacancies' => 0,
+    'newsletter_article' => 0,
+    'note_to_editor' => 0,
+    'press_contact' => 0,
+    'slideshare' => 0,
+    'youtube' => 0,
   );
-  $export['apachesolr_search_mlt_blocks'] = $strongarm;
+  $export['osha_search_bundles'] = $strongarm;
 
   return $export;
 }

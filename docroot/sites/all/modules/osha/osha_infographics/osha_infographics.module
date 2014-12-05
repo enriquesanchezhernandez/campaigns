@@ -5,3 +5,16 @@
  */
 
 include_once 'osha_infographics.features.inc';
+
+function osha_infographics_workbench_access_node_element_alter(&$element, $form_state, $active) {
+  if (isset($form_state['build_info']['form_id']) && $form_state['build_info']['form_id'] == 'infographic_node_form' ) {
+    // CW-800 default value for Section
+    $element['#required'] = FALSE;
+    foreach ($element['#options'] as $key=>$option) {
+      if (preg_match('/^[-\\s]*Infographic/', $option)) {
+        $element['#default_value'] = $key;
+        break;
+      }
+    }
+  }
+}

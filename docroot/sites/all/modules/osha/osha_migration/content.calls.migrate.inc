@@ -84,15 +84,9 @@ class MigrateOshaCalls extends OSHADynamicMigration {
       'field_author',
       'field_author:language',
       'comment',
-      'field_calls_info',
-      'field_calls_info:format',
-      'field_calls_info:language',
       'field_related_resources:language',
       'field_related_resources:destination_dir',
       'field_related_resources:description',
-      'field_summary',
-      'field_summary:format',
-      'field_summary:language',
       'title_field',
       'title_field:language',
       'path',
@@ -161,19 +155,9 @@ class MigrateOshaCalls extends OSHADynamicMigration {
         $entity->field_author[$language][0]['value'] = MigrationUtil::decodeHTMLText($row->author[$language]);
         $has_translation = TRUE;
       }
-      if (!empty($row->description[$language])) {
-        $entity->field_summary[$language][0]['value'] = MigrationUtil::decodeHTMLText($row->description[$language]);
-        $entity->field_summary[$language][0]['format'] = 'full_html';
-        $has_translation = TRUE;
-      }
       if (!empty($row->text[$language])) {
         $entity->body[$language][0]['value'] = MigrationUtil::decodeHTMLText($row->text[$language]);
         $entity->body[$language][0]['format'] = 'full_html';
-        $has_translation = TRUE;
-      }
-      if (!empty($row->info[$language])) {
-        $entity->field_calls_info[$language][0]['value'] = MigrationUtil::decodeHTMLText($row->info[$language]);
-        $entity->field_calls_info[$language][0]['format'] = 'full_html';
         $has_translation = TRUE;
       }
 
@@ -310,10 +294,8 @@ class CallsMigrateList extends MigrateList {
             break;
 
           case 'aliases':
-          case 'info':
           case 'author':
           case 'text':
-          case 'description':
             self::$data[$path][$field][$language] = $raw_data[$key];
             break;
 

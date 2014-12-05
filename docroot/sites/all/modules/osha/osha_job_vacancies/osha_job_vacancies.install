@@ -1,0 +1,8 @@
+<?php
+
+// CW-988 delete field_summary
+function osha_job_vacancies_update_7001() {
+  if ($instance = field_info_instance('node', 'field_summary', 'job-vacancies')) {
+    field_delete_instance($instance);
+  }
+}

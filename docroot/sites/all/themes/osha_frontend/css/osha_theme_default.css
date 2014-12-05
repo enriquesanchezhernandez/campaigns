@@ -119,7 +119,38 @@ header{
     text-decoration: none;
 }
 
+
+
 .sidebars_first  .region-sidebar-first #block-menu-block-2 .menu-block-2 ul li ul li a.active{
+	color: #003399;
+    font-family: Arial;
+    font-size: 0.8em;
+	font-weight: bold;
+    text-decoration: none;
+	background: url("../images/flecha.png") no-repeat scroll right center transparent;
+	padding-right:2em;
+}
+
+
+.sidebars_first  .region-sidebar-first #block-menu-block-2 .menu-block-2 ul li ul li ul li a{
+	color: #57575a;
+    font-family: Arial;
+    font-size: 0.8em;
+	font-weight: bold;
+    text-decoration: none;
+	padding-left:1em;
+}
+
+.sidebars_first  .region-sidebar-first #block-menu-block-2 .menu-block-2 ul li ul li ul li span{
+	color: #57575a;
+    font-family: Arial;
+    font-size: 0.8em;
+	font-weight: bold;
+    text-decoration: none;
+	padding-left:1em;
+}
+
+.sidebars_first  .region-sidebar-first #block-menu-block-2 .menu-block-2 ul li ul li ul li a.active{
 	color: #003399;
     font-family: Arial;
     font-size: 0.8em;
@@ -461,7 +492,6 @@ padding-left: 1em;
 #agencyLogo {
 	float:left;
 	margin-left: 1em;
-	position:relative;
 	z-index:9999999999;
 }
 
@@ -485,7 +515,6 @@ padding-left: 1em;
 	 float: left;
 	 margin: 2em 2em 1em 2.7em;
 	 z-index:999999;
-	 position:relative;
 }
 
 #europeLogoBlog {
@@ -493,6 +522,10 @@ padding-left: 1em;
 	 margin: -4em 2.3em 1em 2.7em;
 	 z-index:999999;
 	 position:relative;
+}
+
+.contextual-links-region{
+	position:initial;
 }
 
 .breadcrumb
@@ -571,18 +604,11 @@ span.date-display-single{
     margin-bottom: 0.5em;
 }
 
-.node-publication.node-teaser .field-name-title-field{
-    font-family: 'Oswald',sans-serif;
-    font-size: 1.4em;
-    font-weight: 300;
-    letter-spacing: -0.75px;
-	padding-bottom:0.5em;
-}
-
 .node-publication.node-teaser .field-name-title-field a{
-    color:#000000!important;
-	font-family: 'Oswald',sans-serif!important;
-	border-bottom:0px!important
+    border-bottom: 0 none !important;
+    color: #003399 !important;
+    font-family: "Oswald",sans-serif !important;
+    font-size: 1.5em;
 }
 
 .node-publication.node-teaser .field-name-field-file a{
@@ -938,10 +964,9 @@ span.date-display-single{
 }
 
 .node-wiki-page .field-name-title-field{
-    color: #000;
+    color: #003399;
     font-family: Oswald;
-    font-size: 1.4em;
-    font-weight: lighter;
+    font-size: 1.5em;
     height: 2em;
     margin: 0 0 0 0.5em;
     padding: 0;
@@ -1108,6 +1133,7 @@ span.date-display-single{
 	border-bottom: 10px solid #d2dced;
 	height: 47px;
 	line-height: 1.2em;
+	padding-top: 1em;
 	padding-bottom: 0.2em;
 	width: 216px;
 	position:relative;
@@ -1196,7 +1222,7 @@ span.date-display-single{
 
 .ui-accordion-content{
 	font-family: Arial;
-	font-size: 0.8em;
+	font-size: 0.9em;
 	color: #000;
 	line-height: 1.7em;
 	margin-right: 0.5em;
@@ -2210,6 +2236,17 @@ font-weight: normal;
 	color: #003399;
 }
 
+		@media screen and (min-width: 971px) and (max-width: 1224px){
+			#recommended_resources {
+				width:930px!important;
+			}
+			
+			#num_slides {
+				width:804px!important;
+			}
+			
+		}
+
 .text_white{
 	color: #FFFFFF!important;
 }
@@ -2241,52 +2278,64 @@ font-weight: normal;
 }
 
 .jssora03l{
-	background: url("../images/slideshow-left.png") no-repeat scroll 0 0 rgba(0, 0, 0, 0) !important;
+	background: url("../images/slideshow-left.png") no-repeat scroll 0 50% rgba(0, 0, 0, 0) !important;
     color: #cbd9ec !important;
     display: block !important;
-    height: 181px !important;
+    height: 138px !important;
+    left: -20px !important;
     position: absolute !important;
-    top: -4.8em !important;
+    top: -2.3em !important;
     width: 60px !important;
     z-index: 999999999 !important;
-	left:-20px!important;
 }
 
 .jssora03ldn{
-	background: url("../images/slideshow-left.png") no-repeat scroll 0 0 rgba(0, 0, 0, 0) !important;
+	background: url("../images/slideshow-left.png") no-repeat scroll 0 50% rgba(0, 0, 0, 0) !important;
     color: #cbd9ec !important;
     display: block !important;
-    height: 181px !important;
+    height: 138px !important;
+    left: -20px !important;
     position: absolute !important;
-    top: -4.8em !important;
+    top: -2.3em !important;
     width: 60px !important;
     z-index: 999999999 !important;
-	left:-20px!important;
 }
 
 .jssora03r{
-	background: url("../images/slideshow-right.png") no-repeat scroll 0 0 rgba(0, 0, 0, 0) !important;
+	background: url("../images/slideshow-right.png") no-repeat scroll 0 50% rgba(0, 0, 0, 0) !important;
     color: #cbd9ec !important;
     display: block !important;
-    height: 181px !important;
+    height: 138px !important;
     position: absolute !important;
-    top: -4.8em !important;
+    top: -2.3em  !important;
     width: 60px !important;
     z-index: 999999999 !important;
 	left:60.4em!important;
 }
 
+		@media screen and (min-width: 971px) and (max-width: 1224px){
+			.jssora03r {
+				left:835px !important;
+			}
+		}
+
 .jssora03rdn{
-	background: url("../images/slideshow-right.png") no-repeat scroll 0 0 rgba(0, 0, 0, 0) !important;
+	background: url("../images/slideshow-right.png") no-repeat scroll 0 50% rgba(0, 0, 0, 0) !important;
     color: #cbd9ec !important;
     display: block !important;
-    height: 181px !important;
+    height: 138px !important;
     position: absolute !important;
-    top: -4.8em !important;
+    top: -2.3em  !important;
     width: 60px !important;
     z-index: 999999999 !important;
 	left:60.4em!important;
 }
+
+		@media screen and (min-width: 971px) and (max-width: 1224px){
+			.jssora03rdn {
+				left:835px !important;
+			}
+		}
 
 .left_column{
 	float:left;
@@ -2500,15 +2549,12 @@ font-weight: normal;
 }
 
 .node-news .field-name-title-field a{
-	color: #003399;
-	font-family: Arial!important; 
-	font-size: 1em;
-	line-height: 1.1em;
-	margin: 0 0 0.7em;
-	background: url("../images/li_arrow.png") no-repeat scroll left center transparent;
-	padding-left:1em;
-	font-weight:bold;
-	border-bottom: 0px!important;
+    border-bottom: 0 none !important;
+    color: #003399;
+    font-family: oswald !important;
+    font-size: 1.5em;
+    line-height: 1.1em;
+    margin: 0 0 0.7em;
 }
 
 .node-news .field-name-field-summary {
@@ -2936,7 +2982,7 @@ font-weight: normal;
 
 #block-views-seminars-block .view-seminars ul li .views-field-field-seminar-start-date span.date-display-single{
 	float: left;
-    font-size: 1em;
+    font-size: 0.9em;
     padding-right: 0.5em;
 	padding-bottom:0.5em;
 	
@@ -2952,7 +2998,7 @@ font-weight: normal;
 }
 
 #block-views-seminars-block .view-seminars ul li  .views-field-title span a{
-	font-size:1.6em;
+	font-size:1.5em;
 	 font-family: "Oswald",sans-serif!important;
 	 border-bottom:0px!important
 }
@@ -3086,12 +3132,9 @@ font-weight: normal;
 /*End Publication tein detail OSHWiki featured articles*/
 
 /*CAPTCHA */
+
 .captcha{
 	display:none;
-}
-
-#block-osha-alert-service-osha-alert-service-subscribe .captcha {
-    display: block !important;
 }
 
 .recaptcha_only_if_image{
@@ -3289,17 +3332,18 @@ font-weight: normal;
 }
 
 .view-vacancies.view-id-vacancies .view-header a{
-  background: url("../images/flecha-izq.png") no-repeat scroll 21% center transparent;
+	background: url("../images/flecha-izq.png") no-repeat scroll 0 center transparent;
+    border-bottom: 0 none !important;
     color: #003399;
     float: right;
-    font-family: "Oswald",sans-serif!important;
+    font-family: "Oswald",sans-serif !important;
     font-size: 1.1em;
     margin: 0;
     padding-bottom: 0.3em;
+    padding-left: 0.9em;
     padding-right: 0;
     text-align: right;
     width: 100%;
-	border-bottom:0px!important;
 }
 /*END VACANCIES - CAREES*/
 
@@ -3332,16 +3376,19 @@ font-weight: normal;
 	
 }
 
+.view-highlight h1{
+	margin: 0!important;
+	padding:0 0 0.5em 0!important;
+}
+
 .view-highlight .field-name-title-field a{
-	color: #003399;
-	font-family: Arial!important;
-	font-size: 0.5em!important;
-	line-height: 1.1em;
-	margin: 0 0 0.7em;
-	background: url("../images/li_arrow.png") no-repeat scroll left center transparent;
-	padding-left: 1em;
-	font-weight: bold;
-	border-bottom:0px!important;
+	border-bottom: 0 none !important;
+    color: #003399;
+    font-family: oswald !important;
+    font-size: 0.8em;
+    font-weight: normal;
+    line-height: 1.1em;
+    margin: 0 0 0em;
 }
 
 .view-highlight .field-name-field-image{
@@ -3916,7 +3963,7 @@ article.node-press-release .press-release-date {
 }
 
 .view-legislation-guidelines table tr td{
-	padding:0.5em 0.5em 1em 0.5em;
+	padding:0.5em 0.5em 1em 1.5em;
 	width:780px;
 
 }
@@ -4194,17 +4241,20 @@ a.tabs-primary__tab-link{
 }
 
 .view-search .views-row {
-	margin-top:1em;
+	background: url("../images/separator_search.png") repeat-x scroll 0 100% rgba(0, 0, 0, 0);
+    margin-right: 2em;
+    margin-top: 1em;
+    padding-bottom: 2em;
 }
 
 .view-search .views-row  .views-field-title-field a{
-	border-bottom:1px solid #003399 !important;
 	color:#003399;
-	font-family:arial;
-	font-size:1em;
 	float:left;
 	margin-right:1em;
-	font-weight:bold;
+	border-bottom: 0 none !important;
+    font-family: "Oswald",sans-serif !important;
+    font-size: 1.5em;
+	
 }
 
 .view-search .views-row  .views-field-type{
@@ -4428,7 +4478,7 @@ a.tabs-primary__tab-link{
 	clear:both;
 	border-bottom: 0 none !important;
     font-family: "Oswald",sans-serif !important;
-    font-size: 1.4em;
+    font-size: 1.5em;
 	color: #003399;
 	padding-top:0.5em;
 	padding-bottom:0.5em;
@@ -4901,7 +4951,7 @@ a.tabs-primary__tab-link{
 .view-blog  .views-field.views-field-title a{
 	border-bottom: 0 none !important;
 	font-family: "Oswald",sans-serif !important;
-	font-size: 1.4em;
+	font-size: 1.5em;
 	color: #003399;
 	padding-top: 0.5em;
 	padding-bottom: 0.5em;
@@ -5229,3 +5279,12 @@ article.comment p {
 }
 
 /* END ALERTS */
+
+/*	NEWS AND EVENTS*/
+
+.news_and_events_text{
+	width:20em;
+	font-size:0.8em;
+}
+
+/*	END NEWS AND EVENTS*/

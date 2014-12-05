@@ -64,7 +64,6 @@ class OshaMigrateJobVacancies extends OSHADynamicMigration {
     $this->addFieldMapping('title', 'title');
     $this->addFieldMapping('body', 'text');
     $this->addFieldMapping('body:format')->defaultValue('full_html');
-    $this->addFieldMapping('field_summary', 'description');
     $this->addFieldMapping('field_author', 'author');
     $this->addFieldMapping('field_job_vacancies_deadline', 'deadline');
     $this->addFieldMapping('field_job_vacancies_shortlisted', 'shortlisted');
@@ -84,7 +83,8 @@ class OshaMigrateJobVacancies extends OSHADynamicMigration {
     $this->addFieldMapping('uid')->defaultValue(1);
 
     $this->addUnmigratedSources(array(
-      'author'
+      'author',
+      'description'
     ));
 
     $this->addUnmigratedDestinations(array(
@@ -183,11 +183,6 @@ class OshaMigrateJobVacancies extends OSHADynamicMigration {
         $entity->title_field[$language][0]['value'] = MigrationUtil::decodeHTMLText($row->title_field[$language]);
         $has_translation = TRUE;
       }
-      if (!empty($row->description[$language])) {
-        $entity->field_summary[$language][0]['value'] = MigrationUtil::decodeHTMLText($row->description[$language]);
-        $entity->field_summary[$language][0]['format'] = 'full_html';
-        $has_translation = TRUE;
-      }
       if (!empty($row->text[$language])) {
         $entity->body[$language][0]['value'] = MigrationUtil::decodeHTMLText($row->text[$language]);
         $entity->body[$language][0]['format'] = 'full_html';
@@ -257,7 +252,6 @@ class JobVacanciesMigrateList extends MigrateList {
             continue;
 
           case 'aliases':
-          case 'description':
           case 'text':
             self::$data[$path][$field][$language] = $raw_data[$key];
             break;
