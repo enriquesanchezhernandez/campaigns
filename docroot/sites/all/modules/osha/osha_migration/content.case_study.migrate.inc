@@ -129,6 +129,10 @@ class MigrateOshaCaseStudy extends OSHADynamicMigration {
       return FALSE;
     }
 
+    //format date according to UTC timezone
+    $row->publication_date = MigrationUtil::getUTCTimestamp($row->publication_date);
+    $row->expiration_date = MigrationUtil::getUTCTimestamp($row->expiration_date);
+
     $row->language = 'en';
     $row->publication_type = 'Case studies';
     $tags = $row->subject . ',' . $row->subcategory;

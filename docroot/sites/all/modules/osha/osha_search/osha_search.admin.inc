@@ -26,5 +26,23 @@ function osha_search_admin_form($form, &$form_state) {
     '#type' => 'textfield',
     '#default_value' => variable_get('osha_search_ac_items_limit', 3),
   );
+  $index_id = variable_get('osha_search_ac_index', 'default_multilingual_node_index');
+  $form['osha_search_autocomplete']['osha_search_ac_index'] = array(
+    '#title' => 'Search AC index',
+    '#description' => 'Number of items per category to show in Search Autocomplete',
+    '#type' => 'select',
+    '#options' => search_api_index_options_list(),
+    '#default_value' => $index_id,
+  );
+  $index = search_api_index_load($index_id);
+  $search_fields = $index->getFulltextFields();
+  $form['osha_search_autocomplete']['osha_search_ac_fields'] = array(
+    '#title' => 'Search AC index',
+    '#description' => 'Number of items per category to show in Search Autocomplete',
+    '#type' => 'select',
+    '#options' => drupal_map_assoc($search_fields),
+    '#default_value' => variable_get('osha_search_ac_fields', array()),
+    '#multiple' => TRUE,
+  );
   return system_settings_form($form);
 }

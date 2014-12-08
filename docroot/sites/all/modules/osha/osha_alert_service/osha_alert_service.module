@@ -82,23 +82,22 @@ function osha_alert_service_block_info() {
   if ($node = menu_get_object('node', 1, $path)) {
     $pages .= "\r\nnode/" . $node->nid;
   }
-  return array(
-    'osha_alert_service_subscribe' => array(
-      'info' => 'Alert Service Subscription',
-      'cache' => DRUPAL_CACHE_GLOBAL,
-      'status' => 1,
-      'region' => 'content',
-      'visibility' => BLOCK_VISIBILITY_LISTED,
-      'pages' => $pages,
-    ),
-    'osha_alert_block_front_view' => array(
-      'info' => 'Block with link to alerts page',
-      'cache' => DRUPAL_CACHE_GLOBAL,
-      'status' => 1,
-      'region' => 'sidebar_second',
-      'weight' => -28,
-      'visibility' => BLOCK_VISIBILITY_LISTED,
-      'pages' => '<front>
+  $blocks['osha_alert_service_subscribe'] = array(
+    'info' => 'Alert Service Subscription',
+    'cache' => DRUPAL_CACHE_GLOBAL,
+    'status' => 1,
+    'region' => 'content',
+    'visibility' => BLOCK_VISIBILITY_LISTED,
+    'pages' => $pages,
+  );
+  $blocks['osha_alert_block_front_view'] = array(
+    'info' => 'Block with link to alerts page',
+    'cache' => DRUPAL_CACHE_GLOBAL,
+    'status' => 1,
+    'region' => 'sidebar_second',
+    'weight' => -28,
+    'visibility' => BLOCK_VISIBILITY_LISTED,
+    'pages' => '<front>
 oshnews
 highlights
 highlight/*
@@ -120,8 +119,64 @@ articles/procurement
 articles/blog
 blog/*
 */blog/*',
-    ),
   );
+  $blocks['osha_calls_rss'] = array(
+    'info' => t('Calls feed'),
+    'visibility' => BLOCK_VISIBILITY_LISTED,
+    'pages' => 'node/1472',
+    'cache' => DRUPAL_CACHE_GLOBAL,
+    'weight' => -5
+  );
+  $blocks['osha_news_rss'] = array(
+    'info' => t('News feed'),
+    'visibility' => BLOCK_VISIBILITY_LISTED,
+    'pages' => 'oshnews',
+    'cache' => DRUPAL_CACHE_GLOBAL,
+    'weight' => -5
+  );
+  $blocks['osha_seminar_rss'] = array(
+    'info' => t('Seminar feed'),
+    'visibility' => BLOCK_VISIBILITY_LISTED,
+    'pages' => 'node/2427',
+    'cache' => DRUPAL_CACHE_GLOBAL,
+    'weight' => 1
+  );
+  $blocks['osha_job_vacancies_rss'] = array(
+    'info' => t('Job vacancies feed'),
+    'visibility' => BLOCK_VISIBILITY_LISTED,
+    'pages' => 'node/21',
+    'cache' => DRUPAL_CACHE_GLOBAL,
+    'weight' => 1
+  );
+  $blocks['osha_publication_rss'] = array(
+    'info' => t('Publication feed'),
+    'visibility' => BLOCK_VISIBILITY_LISTED,
+    'pages' => 'search/publications',
+    'cache' => DRUPAL_CACHE_GLOBAL,
+    'weight' => 0
+  );
+  $blocks['osha_events_rss'] = array(
+    'info' => t('Events feed'),
+    'visibility' => BLOCK_VISIBILITY_LISTED,
+    'pages' => 'events',
+    'cache' => DRUPAL_CACHE_GLOBAL,
+    'weight' => 1
+  );
+  $blocks['osha_directives_rss'] = array(
+    'info' => t('Directives feed'),
+    'visibility' => BLOCK_VISIBILITY_LISTED,
+    'pages' => 'node/11',
+    'cache' => DRUPAL_CACHE_GLOBAL,
+    'weight' => -5
+  );
+  $blocks['osha_guidelines_rss'] = array(
+    'info' => t('Guidelines feed'),
+    'visibility' => BLOCK_VISIBILITY_LISTED,
+    'pages' => 'node/2544',
+    'cache' => DRUPAL_CACHE_GLOBAL,
+    'weight' => -5
+  );
+  return $blocks;
 }
 
 /**
@@ -147,6 +202,39 @@ function osha_alert_service_block_view($delta = '') {
         '#type' => 'item',
         '#markup' => drupal_render($form),
       );
+      break;
+    // Links to RSS feeds below (CW-743).
+    case 'osha_news_rss':
+      $ret['content'] = l(t('Click here for the RSS Feed'), 'rss-feeds/latest/news.xml',
+        array('attributes' => array('class' => array('rss-feed'))));
+      break;
+    case 'osha_calls_rss':
+      $ret['content'] = l(t('Click here for the RSS Feed'), 'rss-feeds/latest/calls.xml',
+        array('attributes' => array('class' => array('rss-feed'))));
+      break;
+    case 'osha_seminar_rss':
+      $ret['content'] = l(t('Click here for the RSS Feed'), 'rss-feeds/latest/seminars.xml',
+        array('attributes' => array('class' => array('rss-feed'))));
+      break;
+    case 'osha_job_vacancies_rss':
+      $ret['content'] = l(t('Click here for the RSS Feed'), 'rss-feeds/latest/vacancies.xml',
+        array('attributes' => array('class' => array('rss-feed'))));
+      break;
+    case 'osha_publication_rss':
+      $ret['content'] = l(t('Click here for the RSS Feed'), 'rss-feeds/latest/publications.xml',
+        array('attributes' => array('class' => array('rss-feed'))));
+      break;
+    case 'osha_events_rss':
+      $ret['content'] = l(t('Click here for the RSS Feed'), 'rss-feeds/latest/events.xml',
+        array('attributes' => array('class' => array('rss-feed'))));
+      break;
+    case 'osha_directives_rss':
+      $ret['content'] = l(t('Click here for the RSS Feed'), 'rss-feeds/latest/directives.xml',
+        array('attributes' => array('class' => array('rss-feed'))));
+      break;
+    case 'osha_guidelines_rss':
+      $ret['content'] = l(t('Click here for the RSS Feed'), 'rss-feeds/latest/guidelines.xml',
+        array('attributes' => array('class' => array('rss-feed'))));
       break;
   }
   return $ret;

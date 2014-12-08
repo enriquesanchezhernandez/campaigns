@@ -243,7 +243,11 @@ function osha_calls_field_default_field_instances() {
   // Exported field_instance: 'node-calls-field_author'
   $field_instances['node-calls-field_author'] = array(
     'bundle' => 'calls',
-    'default_value' => NULL,
+    'default_value' => array(
+      0 => array(
+        'value' => 'EU-OSHA',
+      ),
+    ),
     'deleted' => 0,
     'description' => '',
     'display' => array(
@@ -302,6 +306,11 @@ function osha_calls_field_default_field_instances() {
     'required' => 0,
     'settings' => array(
       'entity_translation_sync' => FALSE,
+      'linkit' => array(
+        'button_text' => 'Search',
+        'enable' => 0,
+        'profile' => '',
+      ),
       'text_processing' => 0,
       'user_register_form' => FALSE,
     ),

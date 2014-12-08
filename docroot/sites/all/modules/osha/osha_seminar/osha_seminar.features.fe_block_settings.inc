@@ -20,7 +20,7 @@ function osha_seminar_default_fe_block_settings() {
     'i18n_mode' => 0,
     'module' => 'views',
     'node_types' => array(),
-    'pages' => 'articles/seminars',
+    'pages' => 'node/2427',
     'roles' => array(),
     'themes' => array(
       'bartik' => array(
@@ -60,7 +60,7 @@ function osha_seminar_default_fe_block_settings() {
     'i18n_mode' => 0,
     'module' => 'views',
     'node_types' => array(),
-    'pages' => 'articles/seminars',
+    'pages' => 'node/2427',
     'roles' => array(),
     'themes' => array(
       'bartik' => array(

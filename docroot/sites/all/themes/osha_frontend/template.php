@@ -385,41 +385,6 @@ function osha_frontend_aggregator_block_item($variables) {
   return $element;
 }
 
-function osha_frontend_views_pre_render(&$view) {
-  switch($view->name) {
-    case 'publications_index':
-      if ($view->current_display == 'page') {
-        $view->attachment_after = l(t('Click here for the RSS Feed'), 'rss-feeds/latest/publications.xml',
-          array('attributes' => array('class' => array('rss-feed'))));
-      }
-      break;
-    case 'news':
-      if ($view->current_display == 'oshnews_list') {
-        $view->attachment_after = l(t('Click here for the RSS Feed'), 'rss-feeds/latest/news.xml',
-          array('attributes' => array('class' => array('rss-feed'))));
-      }
-      break;
-    case 'calls':
-      if ($view->current_display == 'block_open_calls' || $view->current_display == 'block_ongoing_calls' ) {
-        $view->attachment_after = l(t('Click here for the RSS Feed'), 'rss-feeds/latest/calls.xml',
-          array('attributes' => array('class' => array('rss-feed'))));
-      }
-      break;
-    case 'seminars':
-      if ($view->current_display == 'block' ) {
-        $view->attachment_after = l(t('Click here for the RSS Feed'), 'rss-feeds/latest/seminars.xml',
-          array('attributes' => array('class' => array('rss-feed'))));
-      }
-      break;
-    case 'events_index':
-      if ($view->current_display == 'page' ) {
-        $view->attachment_after = l(t('Click here for the RSS Feed'), 'rss-feeds/latest/events.xml',
-          array('attributes' => array('class' => array('rss-feed'))));
-      }
-      break;
-  }
-}
-
 /**
  * @todo @Ivan: Edit only below
  */

@@ -176,11 +176,11 @@ function osha_alert_service_views_default_views() {
   $handler->display->display_options['fields']['title']['label'] = '';
   $handler->display->display_options['fields']['title']['alter']['word_boundary'] = FALSE;
   $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
-  /* Sort criterion: Content: Post date */
-  $handler->display->display_options['sorts']['created']['id'] = 'created';
-  $handler->display->display_options['sorts']['created']['table'] = 'node';
-  $handler->display->display_options['sorts']['created']['field'] = 'created';
-  $handler->display->display_options['sorts']['created']['order'] = 'DESC';
+  /* Sort criterion: Field: Publication Date (field_publication_date) */
+  $handler->display->display_options['sorts']['field_publication_date_value']['id'] = 'field_publication_date_value';
+  $handler->display->display_options['sorts']['field_publication_date_value']['table'] = 'field_data_field_publication_date';
+  $handler->display->display_options['sorts']['field_publication_date_value']['field'] = 'field_publication_date_value';
+  $handler->display->display_options['sorts']['field_publication_date_value']['order'] = 'DESC';
   /* Filter criterion: Content: Published */
   $handler->display->display_options['filters']['status']['id'] = 'status';
   $handler->display->display_options['filters']['status']['table'] = 'node';
@@ -205,7 +205,8 @@ function osha_alert_service_views_default_views() {
 
   /* Display: Latest publications */
   $handler = $view->new_display('feed', 'Latest publications', 'feed_1');
-  $handler->display->display_options['pager']['type'] = 'none';
+  $handler->display->display_options['pager']['type'] = 'some';
+  $handler->display->display_options['pager']['options']['items_per_page'] = '30';
   $handler->display->display_options['pager']['options']['offset'] = '0';
   $handler->display->display_options['style_plugin'] = 'rss';
   $handler->display->display_options['style_options']['description'] = 'EU-OSHA latest publications';
@@ -219,13 +220,6 @@ function osha_alert_service_views_default_views() {
   $handler->display->display_options['filters']['status']['value'] = 1;
   $handler->display->display_options['filters']['status']['group'] = 1;
   $handler->display->display_options['filters']['status']['expose']['operator'] = FALSE;
-  /* Filter criterion: Content: Post date */
-  $handler->display->display_options['filters']['created']['id'] = 'created';
-  $handler->display->display_options['filters']['created']['table'] = 'node';
-  $handler->display->display_options['filters']['created']['field'] = 'created';
-  $handler->display->display_options['filters']['created']['operator'] = '>=';
-  $handler->display->display_options['filters']['created']['value']['value'] = '-2 month';
-  $handler->display->display_options['filters']['created']['value']['type'] = 'offset';
   /* Filter criterion: Content: Type */
   $handler->display->display_options['filters']['type']['id'] = 'type';
   $handler->display->display_options['filters']['type']['table'] = 'node';
@@ -233,13 +227,20 @@ function osha_alert_service_views_default_views() {
   $handler->display->display_options['filters']['type']['value'] = array(
     'publication' => 'publication',
   );
+  /* Filter criterion: Field: Publication Date (field_publication_date) */
+  $handler->display->display_options['filters']['field_publication_date_value']['id'] = 'field_publication_date_value';
+  $handler->display->display_options['filters']['field_publication_date_value']['table'] = 'field_data_field_publication_date';
+  $handler->display->display_options['filters']['field_publication_date_value']['field'] = 'field_publication_date_value';
+  $handler->display->display_options['filters']['field_publication_date_value']['operator'] = '<=';
+  $handler->display->display_options['filters']['field_publication_date_value']['default_date'] = 'now';
   $handler->display->display_options['path'] = 'rss-feeds/latest/publications.xml';
 
   /* Display: Latest news */
   $handler = $view->new_display('feed', 'Latest news', 'feed_2');
   $handler->display->display_options['defaults']['link_display'] = FALSE;
   $handler->display->display_options['link_display'] = 'feed_2';
-  $handler->display->display_options['pager']['type'] = 'none';
+  $handler->display->display_options['pager']['type'] = 'some';
+  $handler->display->display_options['pager']['options']['items_per_page'] = '30';
   $handler->display->display_options['pager']['options']['offset'] = '0';
   $handler->display->display_options['style_plugin'] = 'rss';
   $handler->display->display_options['style_options']['description'] = 'EU-OSHA latest news';
@@ -253,13 +254,6 @@ function osha_alert_service_views_default_views() {
   $handler->display->display_options['filters']['status']['value'] = 1;
   $handler->display->display_options['filters']['status']['group'] = 1;
   $handler->display->display_options['filters']['status']['expose']['operator'] = FALSE;
-  /* Filter criterion: Content: Post date */
-  $handler->display->display_options['filters']['created']['id'] = 'created';
-  $handler->display->display_options['filters']['created']['table'] = 'node';
-  $handler->display->display_options['filters']['created']['field'] = 'created';
-  $handler->display->display_options['filters']['created']['operator'] = '>=';
-  $handler->display->display_options['filters']['created']['value']['value'] = '-2 month';
-  $handler->display->display_options['filters']['created']['value']['type'] = 'offset';
   /* Filter criterion: Content: Type */
   $handler->display->display_options['filters']['type']['id'] = 'type';
   $handler->display->display_options['filters']['type']['table'] = 'node';
@@ -267,6 +261,12 @@ function osha_alert_service_views_default_views() {
   $handler->display->display_options['filters']['type']['value'] = array(
     'news' => 'news',
   );
+  /* Filter criterion: Field: Publication Date (field_publication_date) */
+  $handler->display->display_options['filters']['field_publication_date_value']['id'] = 'field_publication_date_value';
+  $handler->display->display_options['filters']['field_publication_date_value']['table'] = 'field_data_field_publication_date';
+  $handler->display->display_options['filters']['field_publication_date_value']['field'] = 'field_publication_date_value';
+  $handler->display->display_options['filters']['field_publication_date_value']['operator'] = '<=';
+  $handler->display->display_options['filters']['field_publication_date_value']['default_date'] = 'now';
   $handler->display->display_options['path'] = 'rss-feeds/latest/news.xml';
 
   /* Display: Latest events */
@@ -279,6 +279,10 @@ function osha_alert_service_views_default_views() {
   $handler->display->display_options['style_options']['description'] = 'EU-OSHA latest events';
   $handler->display->display_options['row_plugin'] = 'node_rss';
   $handler->display->display_options['defaults']['filter_groups'] = FALSE;
+  $handler->display->display_options['filter_groups']['groups'] = array(
+    1 => 'AND',
+    2 => 'OR',
+  );
   $handler->display->display_options['defaults']['filters'] = FALSE;
   /* Filter criterion: Content: Published */
   $handler->display->display_options['filters']['status']['id'] = 'status';
@@ -287,13 +291,6 @@ function osha_alert_service_views_default_views() {
   $handler->display->display_options['filters']['status']['value'] = 1;
   $handler->display->display_options['filters']['status']['group'] = 1;
   $handler->display->display_options['filters']['status']['expose']['operator'] = FALSE;
-  /* Filter criterion: Content: Post date */
-  $handler->display->display_options['filters']['created']['id'] = 'created';
-  $handler->display->display_options['filters']['created']['table'] = 'node';
-  $handler->display->display_options['filters']['created']['field'] = 'created';
-  $handler->display->display_options['filters']['created']['operator'] = '>=';
-  $handler->display->display_options['filters']['created']['value']['value'] = '-2 month';
-  $handler->display->display_options['filters']['created']['value']['type'] = 'offset';
   /* Filter criterion: Content: Type */
   $handler->display->display_options['filters']['type']['id'] = 'type';
   $handler->display->display_options['filters']['type']['table'] = 'node';
@@ -301,6 +298,20 @@ function osha_alert_service_views_default_views() {
   $handler->display->display_options['filters']['type']['value'] = array(
     'events' => 'events',
   );
+  $handler->display->display_options['filters']['type']['group'] = 1;
+  /* Filter criterion: Content: End date (field_end_date) */
+  $handler->display->display_options['filters']['field_end_date_value']['id'] = 'field_end_date_value';
+  $handler->display->display_options['filters']['field_end_date_value']['table'] = 'field_data_field_end_date';
+  $handler->display->display_options['filters']['field_end_date_value']['field'] = 'field_end_date_value';
+  $handler->display->display_options['filters']['field_end_date_value']['operator'] = '>=';
+  $handler->display->display_options['filters']['field_end_date_value']['group'] = 2;
+  $handler->display->display_options['filters']['field_end_date_value']['default_date'] = 'now';
+  /* Filter criterion: Content: End date (field_end_date) */
+  $handler->display->display_options['filters']['field_end_date_value_1']['id'] = 'field_end_date_value_1';
+  $handler->display->display_options['filters']['field_end_date_value_1']['table'] = 'field_data_field_end_date';
+  $handler->display->display_options['filters']['field_end_date_value_1']['field'] = 'field_end_date_value';
+  $handler->display->display_options['filters']['field_end_date_value_1']['operator'] = 'empty';
+  $handler->display->display_options['filters']['field_end_date_value_1']['group'] = 2;
   $handler->display->display_options['path'] = 'rss-feeds/latest/events.xml';
 
   /* Display: Latest blog */
@@ -347,6 +358,10 @@ function osha_alert_service_views_default_views() {
   $handler->display->display_options['style_options']['description'] = 'EU-OSHA latest calls';
   $handler->display->display_options['row_plugin'] = 'node_rss';
   $handler->display->display_options['defaults']['filter_groups'] = FALSE;
+  $handler->display->display_options['filter_groups']['groups'] = array(
+    1 => 'AND',
+    2 => 'OR',
+  );
   $handler->display->display_options['defaults']['filters'] = FALSE;
   /* Filter criterion: Content: Published */
   $handler->display->display_options['filters']['status']['id'] = 'status';
@@ -355,13 +370,6 @@ function osha_alert_service_views_default_views() {
   $handler->display->display_options['filters']['status']['value'] = 1;
   $handler->display->display_options['filters']['status']['group'] = 1;
   $handler->display->display_options['filters']['status']['expose']['operator'] = FALSE;
-  /* Filter criterion: Content: Post date */
-  $handler->display->display_options['filters']['created']['id'] = 'created';
-  $handler->display->display_options['filters']['created']['table'] = 'node';
-  $handler->display->display_options['filters']['created']['field'] = 'created';
-  $handler->display->display_options['filters']['created']['operator'] = '>=';
-  $handler->display->display_options['filters']['created']['value']['value'] = '-2 month';
-  $handler->display->display_options['filters']['created']['value']['type'] = 'offset';
   /* Filter criterion: Content: Type */
   $handler->display->display_options['filters']['type']['id'] = 'type';
   $handler->display->display_options['filters']['type']['table'] = 'node';
@@ -369,6 +377,27 @@ function osha_alert_service_views_default_views() {
   $handler->display->display_options['filters']['type']['value'] = array(
     'calls' => 'calls',
   );
+  $handler->display->display_options['filters']['type']['group'] = 1;
+  /* Filter criterion: Field: Publication Date (field_publication_date) */
+  $handler->display->display_options['filters']['field_publication_date_value']['id'] = 'field_publication_date_value';
+  $handler->display->display_options['filters']['field_publication_date_value']['table'] = 'field_data_field_publication_date';
+  $handler->display->display_options['filters']['field_publication_date_value']['field'] = 'field_publication_date_value';
+  $handler->display->display_options['filters']['field_publication_date_value']['operator'] = '<=';
+  $handler->display->display_options['filters']['field_publication_date_value']['group'] = 1;
+  $handler->display->display_options['filters']['field_publication_date_value']['default_date'] = 'now';
+  /* Filter criterion: Content: Deadline (field_calls_deadline) */
+  $handler->display->display_options['filters']['field_calls_deadline_value']['id'] = 'field_calls_deadline_value';
+  $handler->display->display_options['filters']['field_calls_deadline_value']['table'] = 'field_data_field_calls_deadline';
+  $handler->display->display_options['filters']['field_calls_deadline_value']['field'] = 'field_calls_deadline_value';
+  $handler->display->display_options['filters']['field_calls_deadline_value']['operator'] = '>';
+  $handler->display->display_options['filters']['field_calls_deadline_value']['group'] = 2;
+  $handler->display->display_options['filters']['field_calls_deadline_value']['default_date'] = 'now';
+  /* Filter criterion: Content: Deadline (field_calls_deadline) */
+  $handler->display->display_options['filters']['field_calls_deadline_value_1']['id'] = 'field_calls_deadline_value_1';
+  $handler->display->display_options['filters']['field_calls_deadline_value_1']['table'] = 'field_data_field_calls_deadline';
+  $handler->display->display_options['filters']['field_calls_deadline_value_1']['field'] = 'field_calls_deadline_value';
+  $handler->display->display_options['filters']['field_calls_deadline_value_1']['operator'] = 'empty';
+  $handler->display->display_options['filters']['field_calls_deadline_value_1']['group'] = 2;
   $handler->display->display_options['path'] = 'rss-feeds/latest/calls.xml';
 
   /* Display: Latest vacancies */
@@ -381,6 +410,10 @@ function osha_alert_service_views_default_views() {
   $handler->display->display_options['style_options']['description'] = 'EU-OSHA latest vacancies';
   $handler->display->display_options['row_plugin'] = 'node_rss';
   $handler->display->display_options['defaults']['filter_groups'] = FALSE;
+  $handler->display->display_options['filter_groups']['groups'] = array(
+    1 => 'AND',
+    2 => 'OR',
+  );
   $handler->display->display_options['defaults']['filters'] = FALSE;
   /* Filter criterion: Content: Published */
   $handler->display->display_options['filters']['status']['id'] = 'status';
@@ -389,13 +422,6 @@ function osha_alert_service_views_default_views() {
   $handler->display->display_options['filters']['status']['value'] = 1;
   $handler->display->display_options['filters']['status']['group'] = 1;
   $handler->display->display_options['filters']['status']['expose']['operator'] = FALSE;
-  /* Filter criterion: Content: Post date */
-  $handler->display->display_options['filters']['created']['id'] = 'created';
-  $handler->display->display_options['filters']['created']['table'] = 'node';
-  $handler->display->display_options['filters']['created']['field'] = 'created';
-  $handler->display->display_options['filters']['created']['operator'] = '>=';
-  $handler->display->display_options['filters']['created']['value']['value'] = '-2 month';
-  $handler->display->display_options['filters']['created']['value']['type'] = 'offset';
   /* Filter criterion: Content: Type */
   $handler->display->display_options['filters']['type']['id'] = 'type';
   $handler->display->display_options['filters']['type']['table'] = 'node';
@@ -403,6 +429,27 @@ function osha_alert_service_views_default_views() {
   $handler->display->display_options['filters']['type']['value'] = array(
     'job_vacancies' => 'job_vacancies',
   );
+  $handler->display->display_options['filters']['type']['group'] = 1;
+  /* Filter criterion: Field: Publication Date (field_publication_date) */
+  $handler->display->display_options['filters']['field_publication_date_value']['id'] = 'field_publication_date_value';
+  $handler->display->display_options['filters']['field_publication_date_value']['table'] = 'field_data_field_publication_date';
+  $handler->display->display_options['filters']['field_publication_date_value']['field'] = 'field_publication_date_value';
+  $handler->display->display_options['filters']['field_publication_date_value']['operator'] = '<=';
+  $handler->display->display_options['filters']['field_publication_date_value']['group'] = 1;
+  $handler->display->display_options['filters']['field_publication_date_value']['default_date'] = 'now';
+  /* Filter criterion: Content: Deadline (field_job_vacancies_deadline) */
+  $handler->display->display_options['filters']['field_job_vacancies_deadline_value']['id'] = 'field_job_vacancies_deadline_value';
+  $handler->display->display_options['filters']['field_job_vacancies_deadline_value']['table'] = 'field_data_field_job_vacancies_deadline';
+  $handler->display->display_options['filters']['field_job_vacancies_deadline_value']['field'] = 'field_job_vacancies_deadline_value';
+  $handler->display->display_options['filters']['field_job_vacancies_deadline_value']['operator'] = '>';
+  $handler->display->display_options['filters']['field_job_vacancies_deadline_value']['group'] = 2;
+  $handler->display->display_options['filters']['field_job_vacancies_deadline_value']['default_date'] = 'now';
+  /* Filter criterion: Content: Deadline (field_job_vacancies_deadline) */
+  $handler->display->display_options['filters']['field_job_vacancies_deadline_value_1']['id'] = 'field_job_vacancies_deadline_value_1';
+  $handler->display->display_options['filters']['field_job_vacancies_deadline_value_1']['table'] = 'field_data_field_job_vacancies_deadline';
+  $handler->display->display_options['filters']['field_job_vacancies_deadline_value_1']['field'] = 'field_job_vacancies_deadline_value';
+  $handler->display->display_options['filters']['field_job_vacancies_deadline_value_1']['operator'] = 'empty';
+  $handler->display->display_options['filters']['field_job_vacancies_deadline_value_1']['group'] = 2;
   $handler->display->display_options['path'] = 'rss-feeds/latest/vacancies.xml';
 
   /* Display: Latest directives */
@@ -423,13 +470,6 @@ function osha_alert_service_views_default_views() {
   $handler->display->display_options['filters']['status']['value'] = 1;
   $handler->display->display_options['filters']['status']['group'] = 1;
   $handler->display->display_options['filters']['status']['expose']['operator'] = FALSE;
-  /* Filter criterion: Content: Post date */
-  $handler->display->display_options['filters']['created']['id'] = 'created';
-  $handler->display->display_options['filters']['created']['table'] = 'node';
-  $handler->display->display_options['filters']['created']['field'] = 'created';
-  $handler->display->display_options['filters']['created']['operator'] = '>=';
-  $handler->display->display_options['filters']['created']['value']['value'] = '-2 month';
-  $handler->display->display_options['filters']['created']['value']['type'] = 'offset';
   /* Filter criterion: Content: Type */
   $handler->display->display_options['filters']['type']['id'] = 'type';
   $handler->display->display_options['filters']['type']['table'] = 'node';
@@ -437,18 +477,29 @@ function osha_alert_service_views_default_views() {
   $handler->display->display_options['filters']['type']['value'] = array(
     'directive' => 'directive',
   );
+  /* Filter criterion: Field: Publication Date (field_publication_date) */
+  $handler->display->display_options['filters']['field_publication_date_value']['id'] = 'field_publication_date_value';
+  $handler->display->display_options['filters']['field_publication_date_value']['table'] = 'field_data_field_publication_date';
+  $handler->display->display_options['filters']['field_publication_date_value']['field'] = 'field_publication_date_value';
+  $handler->display->display_options['filters']['field_publication_date_value']['operator'] = '<=';
+  $handler->display->display_options['filters']['field_publication_date_value']['default_date'] = 'now';
   $handler->display->display_options['path'] = 'rss-feeds/latest/directives.xml';
 
   /* Display: Latest seminars */
   $handler = $view->new_display('feed', 'Latest seminars', 'feed_8');
   $handler->display->display_options['defaults']['link_display'] = FALSE;
   $handler->display->display_options['link_display'] = 'feed_8';
-  $handler->display->display_options['pager']['type'] = 'none';
+  $handler->display->display_options['pager']['type'] = 'some';
+  $handler->display->display_options['pager']['options']['items_per_page'] = '30';
   $handler->display->display_options['pager']['options']['offset'] = '0';
   $handler->display->display_options['style_plugin'] = 'rss';
   $handler->display->display_options['style_options']['description'] = 'EU-OSHA latest seminars';
   $handler->display->display_options['row_plugin'] = 'node_rss';
   $handler->display->display_options['defaults']['filter_groups'] = FALSE;
+  $handler->display->display_options['filter_groups']['groups'] = array(
+    1 => 'AND',
+    2 => 'OR',
+  );
   $handler->display->display_options['defaults']['filters'] = FALSE;
   /* Filter criterion: Content: Published */
   $handler->display->display_options['filters']['status']['id'] = 'status';
@@ -457,13 +508,6 @@ function osha_alert_service_views_default_views() {
   $handler->display->display_options['filters']['status']['value'] = 1;
   $handler->display->display_options['filters']['status']['group'] = 1;
   $handler->display->display_options['filters']['status']['expose']['operator'] = FALSE;
-  /* Filter criterion: Content: Post date */
-  $handler->display->display_options['filters']['created']['id'] = 'created';
-  $handler->display->display_options['filters']['created']['table'] = 'node';
-  $handler->display->display_options['filters']['created']['field'] = 'created';
-  $handler->display->display_options['filters']['created']['operator'] = '>=';
-  $handler->display->display_options['filters']['created']['value']['value'] = '-2 month';
-  $handler->display->display_options['filters']['created']['value']['type'] = 'offset';
   /* Filter criterion: Content: Type */
   $handler->display->display_options['filters']['type']['id'] = 'type';
   $handler->display->display_options['filters']['type']['table'] = 'node';
@@ -471,16 +515,37 @@ function osha_alert_service_views_default_views() {
   $handler->display->display_options['filters']['type']['value'] = array(
     'seminar' => 'seminar',
   );
+  $handler->display->display_options['filters']['type']['group'] = 1;
+  /* Filter criterion: Field: Publication Date (field_publication_date) */
+  $handler->display->display_options['filters']['field_publication_date_value']['id'] = 'field_publication_date_value';
+  $handler->display->display_options['filters']['field_publication_date_value']['table'] = 'field_data_field_publication_date';
+  $handler->display->display_options['filters']['field_publication_date_value']['field'] = 'field_publication_date_value';
+  $handler->display->display_options['filters']['field_publication_date_value']['operator'] = '<=';
+  $handler->display->display_options['filters']['field_publication_date_value']['group'] = 1;
+  $handler->display->display_options['filters']['field_publication_date_value']['default_date'] = 'now';
+  /* Filter criterion: Content: End date (field_seminar_end_date) */
+  $handler->display->display_options['filters']['field_seminar_end_date_value']['id'] = 'field_seminar_end_date_value';
+  $handler->display->display_options['filters']['field_seminar_end_date_value']['table'] = 'field_data_field_seminar_end_date';
+  $handler->display->display_options['filters']['field_seminar_end_date_value']['field'] = 'field_seminar_end_date_value';
+  $handler->display->display_options['filters']['field_seminar_end_date_value']['operator'] = '>=';
+  $handler->display->display_options['filters']['field_seminar_end_date_value']['group'] = 2;
+  $handler->display->display_options['filters']['field_seminar_end_date_value']['default_date'] = 'now';
+  /* Filter criterion: Content: End date (field_seminar_end_date) */
+  $handler->display->display_options['filters']['field_seminar_end_date_value_1']['id'] = 'field_seminar_end_date_value_1';
+  $handler->display->display_options['filters']['field_seminar_end_date_value_1']['table'] = 'field_data_field_seminar_end_date';
+  $handler->display->display_options['filters']['field_seminar_end_date_value_1']['field'] = 'field_seminar_end_date_value';
+  $handler->display->display_options['filters']['field_seminar_end_date_value_1']['operator'] = 'empty';
+  $handler->display->display_options['filters']['field_seminar_end_date_value_1']['group'] = 2;
   $handler->display->display_options['path'] = 'rss-feeds/latest/seminars.xml';
 
   /* Display: Latest guidelines */
-  $handler = $view->new_display('feed', 'Latest guidelines', 'feed_9');
+  $handler = $view->new_display('feed', 'Latest guidelines', 'feed_10');
   $handler->display->display_options['defaults']['link_display'] = FALSE;
-  $handler->display->display_options['link_display'] = 'feed_7';
+  $handler->display->display_options['link_display'] = 'feed_10';
   $handler->display->display_options['pager']['type'] = 'none';
   $handler->display->display_options['pager']['options']['offset'] = '0';
   $handler->display->display_options['style_plugin'] = 'rss';
-  $handler->display->display_options['style_options']['description'] = 'EU-OSHA latest directives';
+  $handler->display->display_options['style_options']['description'] = 'EU-OSHA latest guidelines';
   $handler->display->display_options['row_plugin'] = 'node_rss';
   $handler->display->display_options['defaults']['filter_groups'] = FALSE;
   $handler->display->display_options['defaults']['filters'] = FALSE;
@@ -491,13 +556,6 @@ function osha_alert_service_views_default_views() {
   $handler->display->display_options['filters']['status']['value'] = 1;
   $handler->display->display_options['filters']['status']['group'] = 1;
   $handler->display->display_options['filters']['status']['expose']['operator'] = FALSE;
-  /* Filter criterion: Content: Post date */
-  $handler->display->display_options['filters']['created']['id'] = 'created';
-  $handler->display->display_options['filters']['created']['table'] = 'node';
-  $handler->display->display_options['filters']['created']['field'] = 'created';
-  $handler->display->display_options['filters']['created']['operator'] = '>=';
-  $handler->display->display_options['filters']['created']['value']['value'] = '-2 month';
-  $handler->display->display_options['filters']['created']['value']['type'] = 'offset';
   /* Filter criterion: Content: Type */
   $handler->display->display_options['filters']['type']['id'] = 'type';
   $handler->display->display_options['filters']['type']['table'] = 'node';
@@ -505,7 +563,13 @@ function osha_alert_service_views_default_views() {
   $handler->display->display_options['filters']['type']['value'] = array(
     'guideline' => 'guideline',
   );
-  $handler->display->display_options['path'] = 'rss-feeds/latest/directives.xml';
+  /* Filter criterion: Field: Publication Date (field_publication_date) */
+  $handler->display->display_options['filters']['field_publication_date_value']['id'] = 'field_publication_date_value';
+  $handler->display->display_options['filters']['field_publication_date_value']['table'] = 'field_data_field_publication_date';
+  $handler->display->display_options['filters']['field_publication_date_value']['field'] = 'field_publication_date_value';
+  $handler->display->display_options['filters']['field_publication_date_value']['operator'] = '<=';
+  $handler->display->display_options['filters']['field_publication_date_value']['default_date'] = 'now';
+  $handler->display->display_options['path'] = 'rss-feeds/latest/guidelines.xml';
   $translatables['latest_items_rss_'] = array(
     t('Master'),
     t('more'),

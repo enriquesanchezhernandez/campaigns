@@ -93,5 +93,325 @@ node/5326',
     'visibility' => 1,
   );
 
+  $export['osha_alert_service-osha_calls_rss'] = array(
+    'cache' => 8,
+    'custom' => 0,
+    'delta' => 'osha_calls_rss',
+    'i18n_block_language' => array(),
+    'i18n_mode' => 0,
+    'module' => 'osha_alert_service',
+    'node_types' => array(),
+    'pages' => 'node/1472',
+    'roles' => array(),
+    'themes' => array(
+      'bartik' => array(
+        'region' => '',
+        'status' => 0,
+        'theme' => 'bartik',
+        'weight' => -5,
+      ),
+      'osha_admin' => array(
+        'region' => '',
+        'status' => 0,
+        'theme' => 'osha_admin',
+        'weight' => -5,
+      ),
+      'osha_frontend' => array(
+        'region' => 'sidebar_second',
+        'status' => 1,
+        'theme' => 'osha_frontend',
+        'weight' => -5,
+      ),
+      'seven' => array(
+        'region' => '',
+        'status' => 0,
+        'theme' => 'seven',
+        'weight' => -5,
+      ),
+    ),
+    'title' => '',
+    'visibility' => 1,
+  );
+
+  $export['osha_alert_service-osha_directives_rss'] = array(
+    'cache' => 8,
+    'custom' => 0,
+    'delta' => 'osha_directives_rss',
+    'i18n_block_language' => array(),
+    'i18n_mode' => 0,
+    'module' => 'osha_alert_service',
+    'node_types' => array(),
+    'pages' => 'node/11',
+    'roles' => array(),
+    'themes' => array(
+      'bartik' => array(
+        'region' => '',
+        'status' => 0,
+        'theme' => 'bartik',
+        'weight' => -5,
+      ),
+      'osha_admin' => array(
+        'region' => '',
+        'status' => 0,
+        'theme' => 'osha_admin',
+        'weight' => -5,
+      ),
+      'osha_frontend' => array(
+        'region' => 'sidebar_second',
+        'status' => 1,
+        'theme' => 'osha_frontend',
+        'weight' => -5,
+      ),
+      'seven' => array(
+        'region' => '',
+        'status' => 0,
+        'theme' => 'seven',
+        'weight' => -5,
+      ),
+    ),
+    'title' => '',
+    'visibility' => 1,
+  );
+
+  $export['osha_alert_service-osha_events_rss'] = array(
+    'cache' => 8,
+    'custom' => 0,
+    'delta' => 'osha_events_rss',
+    'i18n_block_language' => array(),
+    'i18n_mode' => 0,
+    'module' => 'osha_alert_service',
+    'node_types' => array(),
+    'pages' => 'events',
+    'roles' => array(),
+    'themes' => array(
+      'bartik' => array(
+        'region' => '',
+        'status' => 0,
+        'theme' => 'bartik',
+        'weight' => 1,
+      ),
+      'osha_admin' => array(
+        'region' => '',
+        'status' => 0,
+        'theme' => 'osha_admin',
+        'weight' => 1,
+      ),
+      'osha_frontend' => array(
+        'region' => 'content',
+        'status' => 1,
+        'theme' => 'osha_frontend',
+        'weight' => 0,
+      ),
+      'seven' => array(
+        'region' => '',
+        'status' => 0,
+        'theme' => 'seven',
+        'weight' => 1,
+      ),
+    ),
+    'title' => '',
+    'visibility' => 1,
+  );
+
+  $export['osha_alert_service-osha_guidelines_rss'] = array(
+    'cache' => 8,
+    'custom' => 0,
+    'delta' => 'osha_guidelines_rss',
+    'i18n_block_language' => array(),
+    'i18n_mode' => 0,
+    'module' => 'osha_alert_service',
+    'node_types' => array(),
+    'pages' => 'node/2544',
+    'roles' => array(),
+    'themes' => array(
+      'bartik' => array(
+        'region' => '',
+        'status' => 0,
+        'theme' => 'bartik',
+        'weight' => -5,
+      ),
+      'osha_admin' => array(
+        'region' => '',
+        'status' => 0,
+        'theme' => 'osha_admin',
+        'weight' => -5,
+      ),
+      'osha_frontend' => array(
+        'region' => 'sidebar_second',
+        'status' => 1,
+        'theme' => 'osha_frontend',
+        'weight' => -5,
+      ),
+      'seven' => array(
+        'region' => '',
+        'status' => 0,
+        'theme' => 'seven',
+        'weight' => -5,
+      ),
+    ),
+    'title' => '',
+    'visibility' => 1,
+  );
+
+  $export['osha_alert_service-osha_job_vacancies_rss'] = array(
+    'cache' => 8,
+    'custom' => 0,
+    'delta' => 'osha_job_vacancies_rss',
+    'i18n_block_language' => array(),
+    'i18n_mode' => 0,
+    'module' => 'osha_alert_service',
+    'node_types' => array(),
+    'pages' => 'node/21',
+    'roles' => array(),
+    'themes' => array(
+      'bartik' => array(
+        'region' => '',
+        'status' => 0,
+        'theme' => 'bartik',
+        'weight' => 1,
+      ),
+      'osha_admin' => array(
+        'region' => '',
+        'status' => 0,
+        'theme' => 'osha_admin',
+        'weight' => 1,
+      ),
+      'osha_frontend' => array(
+        'region' => 'sidebar_second',
+        'status' => 1,
+        'theme' => 'osha_frontend',
+        'weight' => -5,
+      ),
+      'seven' => array(
+        'region' => '',
+        'status' => 0,
+        'theme' => 'seven',
+        'weight' => 1,
+      ),
+    ),
+    'title' => '',
+    'visibility' => 1,
+  );
+
+  $export['osha_alert_service-osha_news_rss'] = array(
+    'cache' => 8,
+    'custom' => 0,
+    'delta' => 'osha_news_rss',
+    'i18n_block_language' => array(),
+    'i18n_mode' => 0,
+    'module' => 'osha_alert_service',
+    'node_types' => array(),
+    'pages' => 'oshnews',
+    'roles' => array(),
+    'themes' => array(
+      'bartik' => array(
+        'region' => '',
+        'status' => 0,
+        'theme' => 'bartik',
+        'weight' => -5,
+      ),
+      'osha_admin' => array(
+        'region' => '',
+        'status' => 0,
+        'theme' => 'osha_admin',
+        'weight' => -5,
+      ),
+      'osha_frontend' => array(
+        'region' => 'sidebar_second',
+        'status' => 1,
+        'theme' => 'osha_frontend',
+        'weight' => -5,
+      ),
+      'seven' => array(
+        'region' => '',
+        'status' => 0,
+        'theme' => 'seven',
+        'weight' => -5,
+      ),
+    ),
+    'title' => '',
+    'visibility' => 1,
+  );
+
+  $export['osha_alert_service-osha_publication_rss'] = array(
+    'cache' => 8,
+    'custom' => 0,
+    'delta' => 'osha_publication_rss',
+    'i18n_block_language' => array(),
+    'i18n_mode' => 0,
+    'module' => 'osha_alert_service',
+    'node_types' => array(),
+    'pages' => 'search/publications',
+    'roles' => array(),
+    'themes' => array(
+      'bartik' => array(
+        'region' => '',
+        'status' => 0,
+        'theme' => 'bartik',
+        'weight' => 1,
+      ),
+      'osha_admin' => array(
+        'region' => '',
+        'status' => 0,
+        'theme' => 'osha_admin',
+        'weight' => 1,
+      ),
+      'osha_frontend' => array(
+        'region' => 'content',
+        'status' => 1,
+        'theme' => 'osha_frontend',
+        'weight' => 0,
+      ),
+      'seven' => array(
+        'region' => '',
+        'status' => 0,
+        'theme' => 'seven',
+        'weight' => 1,
+      ),
+    ),
+    'title' => '',
+    'visibility' => 1,
+  );
+
+  $export['osha_alert_service-osha_seminar_rss'] = array(
+    'cache' => 8,
+    'custom' => 0,
+    'delta' => 'osha_seminar_rss',
+    'i18n_block_language' => array(),
+    'i18n_mode' => 0,
+    'module' => 'osha_alert_service',
+    'node_types' => array(),
+    'pages' => 'node/2427',
+    'roles' => array(),
+    'themes' => array(
+      'bartik' => array(
+        'region' => '',
+        'status' => 0,
+        'theme' => 'bartik',
+        'weight' => -5,
+      ),
+      'osha_admin' => array(
+        'region' => '',
+        'status' => 0,
+        'theme' => 'osha_admin',
+        'weight' => -5,
+      ),
+      'osha_frontend' => array(
+        'region' => 'content',
+        'status' => 1,
+        'theme' => 'osha_frontend',
+        'weight' => 1,
+      ),
+      'seven' => array(
+        'region' => '',
+        'status' => 0,
+        'theme' => 'seven',
+        'weight' => -5,
+      ),
+    ),
+    'title' => '',
+    'visibility' => 1,
+  );
+
   return $export;
 }

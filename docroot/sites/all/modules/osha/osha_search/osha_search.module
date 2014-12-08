@@ -118,7 +118,8 @@ function osha_search_autocomplete_callback($search = '*') {
   }
   // Add searchable fields.
   $fields = $index->getFields();
-  $search_fields = $index->getFulltextFields();
+//  $search_fields = $index->getFulltextFields();
+  $search_fields = variable_get('osha_search_ac_fields', array());
   foreach ($search_fields as $field) {
     $params['qf'][] = 'tm_' . $field . '^' . $fields[$field]['boost'];
     $params['qf'][] = 'tm_und' . $field . '^' . $fields[$field]['boost'];
@@ -137,6 +138,7 @@ function osha_search_autocomplete_callback($search = '*') {
   $count_categ = 0;
   $showed_items = 0;
   $showed_categ = 0;
+  $total_on_showed_categ = 0;
   $wiki_result = array();
   $total_wiki_results = 0;
 
@@ -161,19 +163,20 @@ function osha_search_autocomplete_callback($search = '*') {
     $ret = osha_search_autocomplete_add_group($group, $lang, $showing_items, $search);
     $showed_items += $ret['count'];
     $showed_categ += ($ret['count']) ? 1 : 0;
+    $total_on_showed_categ += $group->doclist->numFound;
     $return = array_merge($return, $ret['results']);
   }
 
   // Add extra link with search summery (see CW-220).
   if (!empty($total_items) && $total_items - $total_wiki_results > $showed_items) {
     $text = t('@search_result more in @categories categories', array(
-      '@search_result' => $total_items - $total_wiki_results - $showed_items,
+      '@search_result' => $total_items - $total_wiki_results - $total_on_showed_categ,
       '@categories' => $total_groups - $showed_categ,
     ));
     $ac_item = array(
       "link" => url('search/site', array(
         'query' => array(
-          'search' => $search,
+          'search_block_form' => $search,
         ),
       )),
       "value" => $text,
@@ -232,7 +235,7 @@ function osha_search_autocomplete_add_group($group, $lang, $showing_items, $sear
           array(
             'query' => array(
               'f' => array('type:' . $group->groupValue),
-              'search' => $search,
+              'search_block_form' => $search,
             ),
           )
         ),

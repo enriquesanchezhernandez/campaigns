@@ -113,8 +113,10 @@ class MigrateOshaCalls extends OSHADynamicMigration {
       return FALSE;
     }
 
-    //format publication date according to UTC timezone
+    //format date according to UTC timezone
     $row->publication_date = MigrationUtil::getUTCTimestamp($row->publication_date);
+    $row->expiration_date = MigrationUtil::getUTCTimestamp($row->expiration_date);
+    $row->deadline = MigrationUtil::getUTCTimestamp($row->deadline);
 
     MigrationUtil::cleanMigratedFileField($row, 'files', 'public://calls/documents');
     return TRUE;

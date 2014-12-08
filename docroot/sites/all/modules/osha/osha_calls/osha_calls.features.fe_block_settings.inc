@@ -20,7 +20,7 @@ function osha_calls_default_fe_block_settings() {
     'i18n_mode' => 0,
     'module' => 'quicktabs',
     'node_types' => array(),
-    'pages' => 'articles/procurement',
+    'pages' => 'node/1472',
     'roles' => array(),
     'themes' => array(
       'bartik' => array(
@@ -60,7 +60,7 @@ function osha_calls_default_fe_block_settings() {
     'i18n_mode' => 0,
     'module' => 'views',
     'node_types' => array(),
-    'pages' => 'articles/procurement',
+    'pages' => 'node/1472',
     'roles' => array(),
     'themes' => array(
       'bartik' => array(
@@ -140,7 +140,7 @@ function osha_calls_default_fe_block_settings() {
     'i18n_mode' => 0,
     'module' => 'views',
     'node_types' => array(),
-    'pages' => 'articles/procurement',
+    'pages' => 'node/1472',
     'roles' => array(),
     'themes' => array(
       'bartik' => array(

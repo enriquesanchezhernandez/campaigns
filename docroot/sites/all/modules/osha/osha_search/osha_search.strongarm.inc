@@ -20,6 +20,25 @@ function osha_search_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'osha_search_ac_fields';
+  $strongarm->value = array(
+    'body:summary' => 'body:summary',
+    'body:value' => 'body:value',
+    'field_summary' => 'field_summary',
+    'title_field' => 'title_field',
+  );
+  $export['osha_search_ac_fields'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'osha_search_ac_index';
+  $strongarm->value = 'default_multilingual_node_index';
+  $export['osha_search_ac_index'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'osha_search_ac_items_limit';
   $strongarm->value = '3';
   $export['osha_search_ac_items_limit'] = $strongarm;
@@ -46,6 +65,7 @@ function osha_search_strongarm() {
     'external_url' => 0,
     'file' => 0,
     'flickr' => 0,
+    'infographic' => 0,
     'job_vacancies' => 0,
     'newsletter_article' => 0,
     'note_to_editor' => 0,

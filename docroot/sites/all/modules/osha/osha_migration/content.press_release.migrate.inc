@@ -155,6 +155,11 @@ class MigrateOshaPressRelease extends OSHADynamicMigration {
       return FALSE;
     }
 
+    //format date according to UTC timezone
+    $row->publication_date = MigrationUtil::getUTCTimestamp($row->publication_date);
+    $row->expiration_date = MigrationUtil::getUTCTimestamp($row->expiration_date);
+    $row->releaseDate = MigrationUtil::getUTCTimestamp($row->releaseDate);
+
     $row->subject = MigrationUtil::decodeTagsTerms($row->subject);
 
     $row->notesToEditors = array();
