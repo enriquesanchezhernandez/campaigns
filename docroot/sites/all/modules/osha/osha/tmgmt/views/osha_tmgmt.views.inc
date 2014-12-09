@@ -312,6 +312,15 @@ class OshaTMGMTJobViewsController extends TMGMTJobViewsController {
       ),
     );
 
+    $data['tmgmt_job']['progress_job_items'] = array(
+      'title' => t('Progress items'),
+      'help' => t("Displays the progress of a job job's items"),
+      'real field' => 'tjid',
+      'field' => array(
+        'handler' => 'osha_tmgmt_handler_field_tmgmt_progress_items',
+      ),
+    );
+
     return $data;
   }
 }

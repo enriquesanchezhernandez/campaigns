@@ -229,6 +229,12 @@ $handler->display->display_options['fields']['operations']['id'] = 'operations';
 $handler->display->display_options['fields']['operations']['table'] = 'tmgmt_job';
 $handler->display->display_options['fields']['operations']['field'] = 'operations';
 $handler->display->display_options['fields']['operations']['ui_name'] = 'Operations';
+/* Field: Translation Management Job: Progress items */
+$handler->display->display_options['fields']['progress_job_items']['id'] = 'progress_job_items';
+$handler->display->display_options['fields']['progress_job_items']['table'] = 'tmgmt_job';
+$handler->display->display_options['fields']['progress_job_items']['field'] = 'progress_job_items';
+$handler->display->display_options['fields']['progress_job_items']['label'] = 'Progress';
+$handler->display->display_options['fields']['progress_job_items']['element_label_colon'] = FALSE;
 /* Sort criterion: Changed */
 $handler->display->display_options['sorts']['changed']['id'] = 'changed';
 $handler->display->display_options['sorts']['changed']['table'] = 'tmgmt_job';

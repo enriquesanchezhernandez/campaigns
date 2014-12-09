@@ -387,13 +387,28 @@ function osha_alert_service_render_alert($entity) {
  *   osha_alert_service entity ID.
  */
 function osha_alert_service_send_alert($item_id) {
+  global $base_url;
+  $keys = array();
   // User still holds a valid subscription from last check.
   if ($entity = entity_load_single('osha_alert_service', $item_id)) {
     $html = osha_alert_service_render_alert($entity);
     $params = array(
       'entity' => $entity,
       'body' => $html,
+      'base_url' => $base_url,
+      'language' => 'en',
+      'token' => $entity->token,
     );
+    $keys = array();
+    $params['base_url'] = $base_url;
+    foreach ($params as $k => $v) {
+      $keys[] = '[' . $k . ']';
+    }
+    $unsubscribe = <<<EOT
+
+If you wish to unsubscribe this alert, please click here: [base_url]/[language]/alertservice/remove_alert?token=[token]
+EOT;
+    $params['body'] .= str_replace($keys, array_values($params), $unsubscribe);
     drupal_mail('osha_alert_service', 'alert', $entity->email, 'en', $params);
     $entity->last_alert = time();
     entity_save('osha_alert_service', $entity);

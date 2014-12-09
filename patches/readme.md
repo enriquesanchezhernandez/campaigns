@@ -7,6 +7,10 @@ When patching a contrib module, the following steps should be followed:
 
 List of patches (most recent first)
 
+* tmgmt
+  * Menu link source search is not case sensitive
+  * patches/tmgmt/i18n_string-search-case-insensitive.patch
+
 * drupal (core)
   * Node preview removes file values from node edit form for non-displayed items
   * drupal/1289336-112.patch

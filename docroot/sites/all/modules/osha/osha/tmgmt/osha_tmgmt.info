@@ -26,6 +26,7 @@ files[] = views/handlers/osha_tmgmt_handler_fields_tmgmt_job_item.inc
 files[] = views/handlers/osha_tmgmt_handler_fields_tmgmt_job.inc
 files[] = views/handlers/tmgmt_i18n_string.plugin.inc
 files[] = views/handlers/osha_workbench_moderation_handler_filter_state.inc
+files[] = views/handlers/osha_tmgmt_handler_field_tmgmt_progress_items.inc
 files[] = sources/entity/osha_tmgmt_entity.plugin.inc
 files[] = sources/entity/osha_tmgmt.entity.job.inc
 files[] = sources/entity/osha_tmgmt.entity.job_item.inc
