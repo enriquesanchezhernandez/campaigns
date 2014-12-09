@@ -38,8 +38,8 @@ blog/*
         'weight' => 0,
       ),
       'osha_frontend' => array(
-        'region' => 'sidebar_second',
-        'status' => 1,
+        'region' => '',
+        'status' => 0,
         'theme' => 'osha_frontend',
         'weight' => -32,
       ),
@@ -126,7 +126,7 @@ blog/*
         'region' => 'sidebar_second',
         'status' => 1,
         'theme' => 'osha_frontend',
-        'weight' => -33,
+        'weight' => -6,
       ),
       'seven' => array(
         'region' => '',
@@ -208,7 +208,7 @@ blog/*
         'region' => 'sidebar_second',
         'status' => 1,
         'theme' => 'osha_frontend',
-        'weight' => -31,
+        'weight' => -4,
       ),
       'seven' => array(
         'region' => '',

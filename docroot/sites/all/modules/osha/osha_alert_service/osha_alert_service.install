@@ -122,3 +122,13 @@ function osha_alert_service_schema() {
   );
   return $schema;
 }
+
+function osha_alert_service_update_7001() {
+  // set block visibility for blog rss
+  db_insert('context_visibility_context')
+    ->fields(array(
+      'module' => 'osha_alert_service',
+      'delta' => 'osha_blog_rss',
+      'context' => 'context_blog',
+    ))->execute();
+}

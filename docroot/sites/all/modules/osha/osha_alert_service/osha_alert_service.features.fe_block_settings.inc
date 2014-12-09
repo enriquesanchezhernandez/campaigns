@@ -93,6 +93,46 @@ node/5326',
     'visibility' => 1,
   );
 
+  $export['osha_alert_service-osha_blog_rss'] = array(
+    'cache' => 8,
+    'custom' => 0,
+    'delta' => 'osha_blog_rss',
+    'i18n_block_language' => array(),
+    'i18n_mode' => 0,
+    'module' => 'osha_alert_service',
+    'node_types' => array(),
+    'pages' => '',
+    'roles' => array(),
+    'themes' => array(
+      'bartik' => array(
+        'region' => '',
+        'status' => 0,
+        'theme' => 'bartik',
+        'weight' => -5,
+      ),
+      'osha_admin' => array(
+        'region' => '',
+        'status' => 0,
+        'theme' => 'osha_admin',
+        'weight' => -5,
+      ),
+      'osha_frontend' => array(
+        'region' => 'sidebar_second',
+        'status' => 1,
+        'theme' => 'osha_frontend',
+        'weight' => -5,
+      ),
+      'seven' => array(
+        'region' => '',
+        'status' => 0,
+        'theme' => 'seven',
+        'weight' => -5,
+      ),
+    ),
+    'title' => '',
+    'visibility' => 0,
+  );
+
   $export['osha_alert_service-osha_calls_rss'] = array(
     'cache' => 8,
     'custom' => 0,
