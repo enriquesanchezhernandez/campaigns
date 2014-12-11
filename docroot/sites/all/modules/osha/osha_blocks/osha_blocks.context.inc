@@ -31,7 +31,6 @@ function osha_blocks_context_default_contexts() {
       'values' => array(
         '<front>' => '<front>',
         'articles/blog' => 'articles/blog',
-        'events' => 'events',
       ),
     ),
     'views' => array(
@@ -82,9 +81,6 @@ function osha_blocks_context_default_contexts() {
         'blog' => 'blog',
         'calls' => 'calls',
         'calls:page_1' => 'calls:page_1',
-        'events' => 'events',
-        'events:page' => 'events:page',
-        'events_index' => 'events_index',
         'highlight' => 'highlight',
         'highlight:page' => 'highlight:page',
         'news' => 'news',
