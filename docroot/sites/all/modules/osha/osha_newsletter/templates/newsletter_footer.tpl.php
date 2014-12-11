@@ -19,8 +19,8 @@
     <tr>
       <td style="padding-top: 15px; padding-bottom: 15px; text-align: center; font-family: Arial,sans-serif; font-size: 12px; color: #333333;">
         <span><?php print t('Occupational Safety and Health News &ndash; Europe'); ?></span>
-        <?php print t('Brought to you by EU-OSHA. Visit us at: <a href="@url" style="@style">http://osha.europa.eu</a>',
-                    array('@style' => 'color: #003399; border-bottom-color: #DC2F82; border-bottom-style: solid; border-bottom-width: 1px; text-decoration: none;', '@url' => 'https://osha.europa.eu/en')); ?>
+        <?php global $base_url; print t('Brought to you by EU-OSHA. Visit us at: <a href="@base_url" style="@style">@base_url</a>',
+                    array('@style' => 'color: #003399; border-bottom-color: #DC2F82; border-bottom-style: solid; border-bottom-width: 1px; text-decoration: none;', '@base_url' => $base_url)); ?>
       </td>
     </tr>
   </tbody>
@@ -35,7 +35,7 @@
             <tr>
               <td style="padding-top: 10px; padding-bottom: 10px; color: #FFFFFF; font-family: Arial, sans-serif; font-size: 13px; ">
                 <?php print t('Subscribe to our <a href="@url" style="@style">Alert service</a> for <br/> customised content delivery',
-                            array('@style' => 'color: #FFFFFF;', '@url' => url('https://osha.europa.eu/en/alertservice'))); ?>
+                            array('@style' => 'color: #FFFFFF;', '@url' => url($base_url.'/en/alertservice'))); ?>
               </td>
               <td class="social" style="padding-top: 10px; padding-bottom: 10px;">
                 <?php
@@ -69,9 +69,9 @@
                       'width' => 'auto',
                       'height' => 26,
                       'alt' => $options['alt'],
-                      'attributes' => array('style' => 'border: 0px; padding-right: 24px; vertical-align: middle;')
+                      'attributes' => array('style' => 'border:0px;padding-right:24px;vertical-align:middle;')
                     )), $options['path'], array(
-                      'attributes' => array('style' => 'color: #144989; text-decoration: none;'),
+                      'attributes' => array('style' => 'color:#144989;text-decoration:none;'),
                       'html' => TRUE,
                       'external' => TRUE
                     ));
@@ -92,7 +92,7 @@
           <tbody>
             <tr>
               <td style="text-align: center; font-family: Arial, sans-serif; font-size: 13px;">
-                <?php print t('No longer wish to receive OSHmail? <a href="@url" style="@style">Unsubscribe here.</a>', array('@style' => 'color: #003399; text-decoration: none;', '@url' => '[simplenews-subscriber:unsubscribe-url]')); ?>
+                <?php print t('No longer wish to receive OSHmail? <a href="@url" style="@style">Unsubscribe here.</a>', array('@style' => 'color: #003399; text-decoration: none;', '@url' => url($base_url.'/en/pages/oshmail-newsletter'))); ?>
               </td>
             </tr>
           </tbody>
