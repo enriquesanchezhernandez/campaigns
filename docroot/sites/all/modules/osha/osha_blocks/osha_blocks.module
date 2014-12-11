@@ -5,3 +5,127 @@
  */
 
 include_once 'osha_blocks.features.inc';
+
+/**
+ * Implements hook_block_info().
+ */
+function osha_blocks_block_info() {
+  $blocks = array();
+  $blocks['oshwiki_featured_articles'] = array(
+    'info' => t('OSHwiki Featured Articles custom block')
+  );
+
+  return $blocks;
+}
+
+/**
+ * Implements hook_block_view().
+ */
+function osha_blocks_block_view($delta='') {
+  $block = array();
+
+  switch($delta) {
+    case 'oshwiki_featured_articles' :
+      $block['subject'] = t('OSHwiki Featured Articles');
+      $block['content'] = oshwiki_featured_articles_block_view();
+      break;
+  }
+
+  return $block;
+}
+
+function oshwiki_featured_articles_block_view() {
+  $node = menu_get_object();
+
+  if (isset($node)) {
+    if ($node->type == 'article' || $node->type == 'publication') {
+      $tagged_wikis = get_related_wiki($node);
+      return theme('oshwiki_featured_articles', array('tagged_wikis' => $tagged_wikis));
+    }
+  }
+  return theme('oshwiki_featured_articles', array('tagged_wikis' => array()));
+}
+
+/**
+ * Called from hook_block_view
+ */
+function get_related_wiki($node) {
+  $wiki_articles_no = 0;
+  $tagged_wikis = array();
+  if (!empty($node->field_related_oshwiki_articles)) {
+    $manual_wiki_articles = $node->field_related_oshwiki_articles[LANGUAGE_NONE];
+    $wiki_articles_no = sizeof($manual_wiki_articles);
+    // add manually tagged wiki articles (hidden in display mode)
+    foreach ($manual_wiki_articles as $related_wiki) {
+      $tmp_node = node_load($related_wiki['target_id']);
+      $tagged_wikis[] = node_view($tmp_node,'osha_wiki');
+    }
+  }
+
+  if ($wiki_articles_no < 2) {
+    $limit = 2 - $wiki_articles_no;
+    // get 2-$wiki_articles_no tagged wiki
+    $wiki_categories_tids = array();
+    if (!empty($node->field_wiki_categories)) {
+      $wiki_categories_tids = $node->field_wiki_categories[LANGUAGE_NONE];
+    }
+
+    if (!empty($wiki_categories_tids)) {
+      // query all wiki articles in the same category or its children
+      $tids = array();
+      $voc = taxonomy_vocabulary_machine_name_load('wiki_categories');
+      foreach ($wiki_categories_tids as $tid) {
+        // normally only one $tid, but just in case
+        array_push($tids, $tid['tid']);
+        // load and push also children
+        $terms = taxonomy_get_tree($voc->vid, $tid['tid']);
+        foreach ($terms as $term) {
+          array_push($tids, $term->tid);
+        }
+      }
+
+      // exclude manually related
+      $excluded_nids = array();
+      array_push($excluded_nids, 0); // avoid empty NOT IN clause
+      if (!empty($node->field_related_oshwiki_articles)) {
+        foreach ($node->field_related_oshwiki_articles as $related_wiki) {
+          array_push($excluded_nids, $related_wiki[0]['target_id']);
+        }
+      }
+      $query = new EntityFieldQuery();
+      $result = $query->entityCondition('entity_type', 'node')
+        ->entityCondition('bundle', 'wiki_page')
+        ->entityCondition('entity_id', $excluded_nids, 'NOT IN')
+        ->fieldCondition('field_wiki_categories', 'tid', $tids, 'IN')
+        ->fieldOrderBy('field_updated', 'value', 'DESC')
+        ->pager($limit)
+        ->execute();
+      if (!empty($result)) {
+        foreach ($result['node'] as $n) {
+          $tmp_node = node_load($n->nid);
+          $tagged_wikis[] = node_view($tmp_node,'osha_wiki');
+        }
+      }
+    }
+  }
+
+  return $tagged_wikis;
+}
+
+/**
+ * Implements hook_theme().
+ */
+function osha_blocks_theme() {
+  $theme = array();
+  $path = drupal_get_path('module', 'osha_blocks');
+
+  $theme['oshwiki_featured_articles'] = array(
+    'template' => 'oshwiki_featured_articles',
+    'variables' => array(
+      'tagged_wikis' => NULL
+    ),
+    'path' => $path . '/templates'
+  );
+
+  return $theme;
+}
