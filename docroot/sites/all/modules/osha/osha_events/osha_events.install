@@ -1,0 +1,14 @@
+<?php
+
+/**
+ * Drop event content type and re-create on feature revert.
+ */
+function osha_events_update_7001() {
+  node_type_delete('events');
+  features_revert_module('osha_events');
+  // Populate the taxonomy with terms.
+  if ($voc = taxonomy_vocabulary_machine_name_load('organised_by')) {
+      $v = (object) array('name' => 'EU-OSHA', 'vid' => $voc->vid);
+      taxonomy_term_save($v);
+  }
+}

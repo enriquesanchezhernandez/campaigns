@@ -392,19 +392,12 @@ function osha_alert_service_views_default_views() {
     'events' => 'events',
   );
   $handler->display->display_options['filters']['type']['group'] = 1;
-  /* Filter criterion: Content: End date (field_end_date) */
-  $handler->display->display_options['filters']['field_end_date_value']['id'] = 'field_end_date_value';
-  $handler->display->display_options['filters']['field_end_date_value']['table'] = 'field_data_field_end_date';
-  $handler->display->display_options['filters']['field_end_date_value']['field'] = 'field_end_date_value';
-  $handler->display->display_options['filters']['field_end_date_value']['operator'] = '>=';
-  $handler->display->display_options['filters']['field_end_date_value']['group'] = 2;
-  $handler->display->display_options['filters']['field_end_date_value']['default_date'] = 'now';
-  /* Filter criterion: Content: End date (field_end_date) */
-  $handler->display->display_options['filters']['field_end_date_value_1']['id'] = 'field_end_date_value_1';
-  $handler->display->display_options['filters']['field_end_date_value_1']['table'] = 'field_data_field_end_date';
-  $handler->display->display_options['filters']['field_end_date_value_1']['field'] = 'field_end_date_value';
-  $handler->display->display_options['filters']['field_end_date_value_1']['operator'] = 'empty';
-  $handler->display->display_options['filters']['field_end_date_value_1']['group'] = 2;
+  /* Filter criterion: Content: Start date - end date (field_start_date:value2) */
+  $handler->display->display_options['filters']['field_start_date_value2']['id'] = 'field_start_date_value2';
+  $handler->display->display_options['filters']['field_start_date_value2']['table'] = 'field_data_field_start_date';
+  $handler->display->display_options['filters']['field_start_date_value2']['field'] = 'field_start_date_value2';
+  $handler->display->display_options['filters']['field_start_date_value2']['operator'] = '>=';
+  $handler->display->display_options['filters']['field_start_date_value2']['default_date'] = 'now';
   $handler->display->display_options['path'] = 'rss-feeds/latest/events.xml';
 
   /* Display: Latest blog */
