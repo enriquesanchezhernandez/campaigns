@@ -5,3 +5,45 @@
  */
 
 include_once 'osha_events.features.inc';
+
+/**
+ * Implements hook_form_alter.
+ */
+
+function osha_events_form_alter(&$form, &$form_state, $form_id) {
+  if ($form_id == 'events_node_form') {
+    $form['#validate'][] = 'osha_events_form_validate';
+  }
+}
+
+function osha_events_form_validate($form, &$form_state) {
+  if ($form_state['values']['status'] == 1) {
+    if (empty($form_state['values']['body']['und']['0']['value'])) {
+      form_set_error('body', t('You have to added a Description.'));
+    }
+    if (empty($form_state['values']['field_start_date']['und']['0']['value'])) {
+      form_set_error('field_start_date', t('You have to added a Start Date.'));
+    }
+    if (empty($form_state['values']['field_start_date']['und']['0']['value2'])) {
+      form_set_error('field_start_date', t('You have to added an End Date .'));
+    }
+    if (empty($form_state['values']['field_website_of_event']['und']['0']['title'])) {
+      form_set_error('field_website_of_event', t('You have to added a Web site title.'));
+    }
+    if (empty($form_state['values']['field_website_of_event']['und']['0']['url'])) {
+      form_set_error('field_website_of_event', t('You have to added a Web site url.'));
+    }
+    if (empty($form_state['values']['field_organization']['und']['0']['value'])) {
+      form_set_error('field_organization', t('You have to added an Organization.'));
+    }
+    if (empty($form_state['values']['field_country_code']['und']['0']['value'])) {
+      form_set_error('field_country_code', t('You have to added a Country Code.'));
+    }
+    if (empty($form_state['values']['field_city']['und']['0']['value'])) {
+      form_set_error('field_city', t('You have to added a City.'));
+    }
+    if (($form_state['values']['field_theme']['und']['0']['tid']) == NULL) {
+      form_set_error('field_theme', t('You have to added a Theme.'));
+    }
+  }
+}

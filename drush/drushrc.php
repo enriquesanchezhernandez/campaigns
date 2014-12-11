@@ -365,6 +365,7 @@ $options['init-modules'] = array(
   'smart_trim',
   'menu_attributes',
   'menu_item_visibility',
+  'shs',
 
   // Enable last (conflict with rules)
   'uuid',

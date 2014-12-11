@@ -208,10 +208,12 @@ function osha_events_field_default_field_bases() {
     'module' => 'list',
     'settings' => array(
       'allowed_values' => array(
+        'Red' => 'Red',
+        'Grey' => 'Grey',
+        'Black' => 'Black',
+        'Yellow' => 'Yellow',
         'Green' => 'Green',
         'Blue' => 'Blue',
-        'Red' => 'Red',
-        'Yellow' => 'Yellow',
       ),
       'allowed_values_function' => '',
       'entity_translation_sync' => FALSE,
@@ -257,58 +259,54 @@ function osha_events_field_default_field_bases() {
     'deleted' => 0,
     'entity_types' => array(),
     'field_name' => 'field_country_code',
-    'foreign keys' => array(
-      'format' => array(
-        'columns' => array(
-          'format' => 'format',
-        ),
-        'table' => 'filter_format',
-      ),
-    ),
-    'indexes' => array(
-      'format' => array(
-        0 => 'format',
-      ),
-    ),
-    'locked' => 0,
-    'module' => 'text',
-    'settings' => array(
-      'entity_translation_sync' => FALSE,
-      'max_length' => 255,
-    ),
-    'translatable' => 1,
-    'type' => 'text',
-  );
-
-  // Exported field_base: 'field_end_date'
-  $field_bases['field_end_date'] = array(
-    'active' => 1,
-    'cardinality' => 1,
-    'deleted' => 0,
-    'entity_types' => array(),
-    'field_name' => 'field_end_date',
     'foreign keys' => array(),
-    'indexes' => array(),
-    'locked' => 0,
-    'module' => 'date',
-    'settings' => array(
-      'cache_count' => 4,
-      'cache_enabled' => 0,
-      'entity_translation_sync' => FALSE,
-      'granularity' => array(
-        'day' => 'day',
-        'hour' => 0,
-        'minute' => 0,
-        'month' => 'month',
-        'second' => 0,
-        'year' => 'year',
+    'indexes' => array(
+      'value' => array(
+        0 => 'value',
       ),
-      'timezone_db' => '',
-      'todate' => '',
-      'tz_handling' => 'none',
+    ),
+    'locked' => 0,
+    'module' => 'list',
+    'settings' => array(
+      'allowed_values' => array(
+        'AT' => 'AUSTRIA',
+        'AU' => 'AUSTRALIA',
+        'BE' => 'BELGIUM',
+        'CH' => 'SWITZERLAND',
+        'CN' => 'CHINA',
+        'DE' => 'GERMANY',
+        'DK' => 'DENMARK',
+        'EL' => 'EL',
+        'ES' => 'SPAIN',
+        'FI' => 'FINLAND',
+        'FR' => 'FRANCE',
+        'HU' => 'HUNGARY',
+        'IR' => 'IRAN',
+        'IS' => 'ICELAND',
+        'IT' => 'ITALY',
+        'KR' => 'REPUBLIC OF KOREA',
+        'KZ' => 'KAZAKHSTAN',
+        'LU' => 'LUXEMBOURG',
+        'MT' => 'MALTA',
+        'NA' => 'NAMIBIA',
+        'NL' => 'NETHERLANDS',
+        'PL' => 'POLAND',
+        'PT' => 'PORTUGAL',
+        'RKS' => 'RKS',
+        'RO' => 'ROMANIA',
+        'SE' => 'SWEDEN',
+        'SG' => 'SINGAPORE',
+        'SI' => 'SLOVENIA',
+        'TBD' => 'TBD',
+        'TR' => 'TURKEY',
+        'UK' => 'UK',
+        'USA' => 'UNITED STATES',
+      ),
+      'allowed_values_function' => '',
+      'entity_translation_sync' => FALSE,
     ),
     'translatable' => 0,
-    'type' => 'datetime',
+    'type' => 'list_text',
   );
 
   // Exported field_base: 'field_event_in_amp'
@@ -386,27 +384,37 @@ function osha_events_field_default_field_bases() {
   // Exported field_base: 'field_organised_by'
   $field_bases['field_organised_by'] = array(
     'active' => 1,
-    'cardinality' => 1,
+    'cardinality' => -1,
     'deleted' => 0,
     'entity_types' => array(),
     'field_name' => 'field_organised_by',
-    'foreign keys' => array(),
+    'foreign keys' => array(
+      'tid' => array(
+        'columns' => array(
+          'tid' => 'tid',
+        ),
+        'table' => 'taxonomy_term_data',
+      ),
+    ),
     'indexes' => array(
-      'value' => array(
-        0 => 'value',
+      'tid' => array(
+        0 => 'tid',
       ),
     ),
     'locked' => 0,
-    'module' => 'list',
+    'module' => 'taxonomy',
     'settings' => array(
       'allowed_values' => array(
-        'EU-OSHA' => 'EU-OSHA',
+        0 => array(
+          'vocabulary' => 'organised_by',
+          'parent' => 0,
+        ),
       ),
-      'allowed_values_function' => '',
       'entity_translation_sync' => FALSE,
+      'options_list_callback' => 'i18n_taxonomy_allowed_values',
     ),
     'translatable' => 1,
-    'type' => 'list_text',
+    'type' => 'taxonomy_term_reference',
   );
 
   // Exported field_base: 'field_organization'
@@ -433,10 +441,9 @@ function osha_events_field_default_field_bases() {
     'module' => 'text',
     'settings' => array(
       'entity_translation_sync' => FALSE,
-      'max_length' => 255,
     ),
-    'translatable' => 1,
-    'type' => 'text',
+    'translatable' => 0,
+    'type' => 'text_long',
   );
 
   // Exported field_base: 'field_related_documents'
@@ -515,10 +522,10 @@ function osha_events_field_default_field_bases() {
         'year' => 'year',
       ),
       'timezone_db' => '',
-      'todate' => '',
+      'todate' => 'required',
       'tz_handling' => 'none',
     ),
-    'translatable' => 0,
+    'translatable' => 1,
     'type' => 'datetime',
   );
 
@@ -561,7 +568,7 @@ function osha_events_field_default_field_bases() {
   // Exported field_base: 'field_unit_ref'
   $field_bases['field_unit_ref'] = array(
     'active' => 1,
-    'cardinality' => 1,
+    'cardinality' => 4,
     'deleted' => 0,
     'entity_types' => array(),
     'field_name' => 'field_unit_ref',
@@ -590,7 +597,7 @@ function osha_events_field_default_field_bases() {
   // Exported field_base: 'field_website_of_event'
   $field_bases['field_website_of_event'] = array(
     'active' => 1,
-    'cardinality' => 1,
+    'cardinality' => -1,
     'deleted' => 0,
     'entity_types' => array(),
     'field_name' => 'field_website_of_event',
