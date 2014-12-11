@@ -31,6 +31,10 @@
       </aside>
     <?php endif; ?>
   </div>
+   <?php if (isset($page['triptych_first'])) : ?>
+    <?php print render($page['triptych_first']); ?>
+  <?php endif; ?>
+  
   <?php if (isset($page['footer'])) : ?>
     <?php print render($page['footer']); ?>
   <?php endif; ?>

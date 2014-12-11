@@ -616,7 +616,7 @@ span.date-display-single{
 .node-publication h1{
 	color: #003399;
     font-family: Oswald;
-    font-size: 1.45em !important;
+    font-size: 1.5em !important;
     font-weight: 400;
     padding-top: 0.5em;
 }
@@ -718,7 +718,6 @@ span.date-display-single{
 }
 
 .pager li a{
-	font-size:0.8em!important;
 	font-weight:bold;
 	border-bottom:0px!important
 }
@@ -2174,9 +2173,10 @@ font-weight: normal;
 
 .separator_recomended_resources_home{
 	border-top:5px solid #003399;
-	width:143%;
+	width:100%;
 	height:5px;
 	margin-top:2em;
+	clear:both;
 }
 
 .title_recomended_resources_home{
@@ -2186,7 +2186,7 @@ font-weight: normal;
     font-size: 1.4em;
     font-weight: lighter;
     width: 20em;
-	width:135%;
+	width:92%;
 	padding:0.5em 1em 1em 0em;
 	margin-left:0.8em;
 	margin-right:1em;
@@ -2262,11 +2262,9 @@ font-weight: normal;
 			#recommended_resources {
 				width:930px!important;
 			}
-
 			#num_slides {
 				width:804px!important;
 			}
-
 		}
 
 .text_white{
@@ -2385,6 +2383,7 @@ font-weight: normal;
 
 #block-views-highlight-block-2{
 	margin-left:1em;
+	background: url("../images/separator_home.jpg") repeat-x scroll 0% 6% rgba(0, 0, 0, 0);
 }
 
 #block-views-highlight-block-2 h2{
@@ -2525,6 +2524,10 @@ font-weight: normal;
 	border-bottom:0px!important
 }
 
+.view-id-highlight .view-content  .views-field-body p{
+	height:6.5em;
+}
+
 .highlights_body{
 	color: #000;
 	font-size: 0.9em;
@@ -2568,6 +2571,7 @@ font-weight: normal;
 	float:left;
 	padding-right:0em;
 	padding-bottom:0em;
+	min-width:8.2em;
 }
 
 .node-news .field-name-title-field a{
@@ -2632,11 +2636,12 @@ font-weight: normal;
 }
 
 .node-news.view-mode-full .field-name-title-field{
-	 color: #000000 !important;
-    font-family: "Oswald",sans-serif !important;
-    font-size: 1.7em;
-    font-weight: lighter;
-	padding-bottom:0.5em;
+	border-bottom: 0 none !important;
+	color: #003399;
+	font-family: oswald !important;
+	font-size: 1.5em;
+	line-height: 1.1em;
+	margin: 0 0 0.7em;
 }
 
 
@@ -3073,13 +3078,19 @@ font-weight: normal;
 }
 
 .node-highlight.view-mode-full .field-name-field-publication-date span{
-		display: block;
-		 padding-top: 1em;
+	display: block;
+	padding-top: 1em;
 }
 
 .node-highlight.view-mode-full .field-name-title-field h1 {
-	margin:0;
-	padding:0;
+	border-bottom: 0 none !important;
+	color: #003399;
+	font-family: oswald !important;
+	font-size: 1.5em;
+	line-height: 1.1em;
+	margin: 0 0 0.7em;
+	font-weight: normal!important;
+	letter-spacing: 0px!important;
 }
 
 .node-highlight.view-mode-full .field-name-field-summary p{
@@ -3259,13 +3270,12 @@ font-weight: normal;
 }
 
 .view-calls.view-id-calls .views-field-title-field a{
-	color: #003399!important;
-	font-family: 'Oswald',sans-serif!important;
-	font-size: 1.4em;
-	font-weight: 300;
-	letter-spacing: -0.75px;
-	margin-bottom:1em;
-	border-bottom:0px!important;
+	border-bottom: 0 none !important;
+	color: #003399;
+	font-family: oswald !important;
+	font-size: 1.2em;
+	line-height: 1.1em;
+	margin: 0 0 0.7em;
 }
 
 .view-calls.view-id-calls .view-footer a{
@@ -3316,13 +3326,13 @@ font-weight: normal;
 }
 
 .view-vacancies .views-field-title a{
-	color: #003399!important;
+	color: #003399;
 	font-family: 'Oswald',sans-serif!important;
-	font-size: 1.4em;
-	font-weight: 300;
-	letter-spacing: -0.75px;
-	margin-bottom:1em;
-	border-bottom:0px!important
+	font-size: 1.35em;
+	line-height: 1.1em;
+	text-decoration: none;
+	padding: 0;
+	border-bottom: 0px!important;
 }
 
 #block-block-7 {
@@ -3401,6 +3411,11 @@ font-weight: normal;
 	margin:0em;
 	line-height:0em;
 
+}
+
+.view-highlight h1{
+	margin: 0!important;
+	padding:0 0 0.5em 0!important;
 }
 
 .view-highlight h1{
@@ -3888,19 +3903,17 @@ article.node-press-release{
 	background: url("../images/separator_home.jpg") repeat-x scroll 0% 100% rgba(0, 0, 0, 0);
 	padding-bottom:1em;
 	padding-top:0.5em;
+	padding-left:0.8em;
 }
 
 article.node-press-release .field-name-title-field {
-	font-family: 'Oswald';
-	font-style: normal;
-	font-weight: 300;
-	font-size: 1.6em;
+	border-bottom: 0 none !important;
 	color: #003399;
-	letter-spacing: -0.75px;
-	margin-bottom: 4px;
-	padding: 0;
-	margin: 0;
-	line-height: 1.2em;
+	font-family: oswald !important;
+	font-size: 1.6em;
+	font-weight: normal;
+	line-height: 1.1em;
+	margin: 0 0 0em;
 }
 
 article.node-press-release .press-release-date {
@@ -3917,9 +3930,13 @@ article.node-press-release .press-release-date {
 }
 
 .view-press-releases .field-name-title-field a{
-	color: #000000!important;
-	font-family: 'Oswald',sans-serif!important;
-	border-bottom: 0px!important;
+	border-bottom: 0 none !important;
+	color: #003399;
+	font-family: oswald !important;
+	font-size: 0.9em;
+	font-weight: normal;
+	line-height: 1.1em;
+	margin: 0 0 0em;
 }
 
 #block-views-press-releases-block{
@@ -3932,7 +3949,7 @@ article.node-press-release .press-release-date {
 }
 
 .view-press-releases .field-name-field-summary p{
-	padding:1em 0 0 0;
+	padding:0 0 0 0;
 	margin:0;
 	color:#000000;
 }
@@ -4170,6 +4187,14 @@ div.contextual-links-wrapper a{
 	border:0px;
 }
 
+
+
+#ui-theme-basic-blue.ui-menu{
+	/*Search box*/
+	width:350px!important;
+	left:940px!important;
+}
+
 #ui-theme-basic-blue.ui-menu .ui-menu-item a{
 	background: url("../images/li_arrow.png") no-repeat scroll 5% 54% transparent;
     color: #003399;
@@ -4219,6 +4244,7 @@ a.tabs-primary__tab-link{
 	background-color:#FFFFFF;
 	border-top:1px solid #FFFFFF;
 	border-left:1px solid #FFFFFF;
+	border-bottom: 1px solid #bbbbbb!important;
 }
 
 .tabs-primary, .tabs-secondary{
@@ -4281,7 +4307,38 @@ a.tabs-primary__tab-link{
 	border-bottom: 0 none !important;
     font-family: "Oswald",sans-serif !important;
     font-size: 1.5em;
+}
 
+#block-views-exp-search-site #edit-search-wrapper {
+	float:left;
+	padding-top:1em;
+}
+
+#block-views-exp-search-site #edit-search{
+	margin-top: 0.3em;
+	height: 19px;
+}
+
+#block-views-exp-search-site #edit-search-api-language-wrapper{
+	width:auto;
+}
+
+#block-views-exp-search-wiki .views-exposed-form .views-exposed-widget{
+	padding-top:1em;
+}
+
+#block-views-exp-search-wiki .views-exposed-form {
+	padding-bottom:2em;
+}
+
+.view-display-id-wiki  .views-row  .views-field-title-field  span{
+	color:#003399;
+	float:left;
+	margin-right:1em;
+	border-bottom: 0 none !important;
+    font-family: "Oswald",sans-serif !important;
+    font-size: 1.5em;
+	padding-bottom:0.5em;
 }
 
 .view-search .views-row  .views-field-type{
@@ -4299,6 +4356,13 @@ a.tabs-primary__tab-link{
 }
 
 .view-search .views-row .views-field.views-field-url a{
+	border-bottom: 0 solid #dc2f82 !important;
+    color: #dc2f82 !important;
+    display: block;
+    margin-top: 0.2em;
+}
+
+.view-display-id-wiki  .views-row  .views-field-field-wiki-page-url a{
 	border-bottom: 0 solid #dc2f82 !important;
     color: #dc2f82 !important;
     display: block;
@@ -5122,7 +5186,7 @@ a.tabs-primary__tab-link{
 .node-blog .field-name-title-field{
 	color: #003399;
 	font-family: 'Oswald',sans-serif;
-	font-size: 1.35em;
+	font-size: 1.5em;
 	line-height: 1.1em;
 	text-decoration: none;
 	padding: 0;
@@ -5253,6 +5317,19 @@ article.comment p {
 	text-decoration: none;
 	display: block;
 	padding-left: 1em;
+	margin-bottom:1em;
+}
+
+.privacy-policy-oshmail{
+	font-size: 1em;
+	font-weight: lighter;
+	font-family: arial;
+	color: #003399;
+	margin: 0;
+	text-decoration: none;
+	border-bottom: 1px solid #dc2f82;
+	font-weight: bold;
+	padding-top:0.5em;
 }
 
 /* END BLOCK HOME TRY ALERT SERVICE */
@@ -5315,3 +5392,250 @@ article.comment p {
 }
 
 /*	END NEWS AND EVENTS*/
+
+/* PRESS ROOM BLOCKS */
+
+#block-osha-press-release-osha-press-rel-join-list {
+	clear:both;
+	border-top: 5px solid #003399;
+}	
+
+#block-osha-press-release-osha-press-rel-join-list h2{
+	padding-left: 1.2em;
+	padding-right: 2em;
+}
+
+#join-list{
+	background: none repeat scroll 0 0 #e8eef7;
+	padding: 0em 1.6em 4em 1.7em;
+}
+
+#join-list-link a{
+	background: url("../images/flecha.png") no-repeat scroll 100% 29% transparent!important;
+	color: #003399;
+	float: right;
+	font-family: "Oswald",sans-serif!important;
+	font-size: 1.1em!important;
+	padding-bottom: 1em;
+	padding-right: 1.5em;
+	border-bottom: 0px!important;
+	text-decoration: none;
+	margin-top: 1em;
+	font-weight: bold;
+}
+
+#block-osha-press-release-osha-press-rel-become-partner{
+	clear:both;
+	border-top: 5px solid #003399;
+}
+
+#block-osha-press-release-osha-press-rel-become-partner h2{
+	padding-left: 1.2em;
+	padding-right: 2em;
+}
+
+#become-partner {
+	background: none repeat scroll 0 0 #e8eef7;
+	padding: 0em 1.6em 4em 1.7em;
+}
+
+#become-partner a{
+	background: url("../images/flecha.png") no-repeat scroll 100% 29% transparent!important;
+	color: #003399;
+	float: right;
+	font-family: "Oswald",sans-serif!important;
+	font-size: 1.1em!important;
+	padding-bottom: 1em;
+	padding-right: 1.5em;
+	border-bottom: 0px!important;
+	text-decoration: none;
+	margin-top: 1em;
+	font-weight: bold;
+}
+
+/* END PRESS ROOM BLOCKS */
+
+/*STYLE TO CONFIGURE ADMIN*/
+
+div.contextual-links-wrapper{
+	top:initial!important;
+	right:initial!important;
+}
+
+/*END STYLE TO CONFIGURE ADMIN*/
+
+/*RSS*/
+
+#block-osha-alert-service-osha-events-rss {
+	background:transparent!important;
+}
+
+#block-osha-alert-service-osha-events-rss a{
+	border: 0px!important;
+	background: url("../images/rss.png") no-repeat scroll 0% 86% transparent!important;
+	padding-left: 2em;
+	padding-top: 1em;
+	font-weight:bold;
+	display:block;
+}
+
+#block-osha-alert-service-osha-publication-rss{
+	background:transparent!important;
+}
+
+#block-osha-alert-service-osha-publication-rss a{
+	border: 0px!important;
+	background: url("../images/rss.png") no-repeat scroll 0% 86% transparent!important;
+	padding-left: 2em;
+	padding-top: 1em;
+	font-weight:bold;
+	display:block;
+}
+
+
+#block-osha-alert-service-osha-seminar-rss{
+	background:transparent!important;
+}
+
+#block-osha-alert-service-osha-seminar-rss a{
+	border: 0px!important;
+	background: url("../images/rss.png") no-repeat scroll 0% 86% transparent!important;
+	padding-left: 2em;
+	padding-top: 1em;
+	font-weight:bold;
+	display:block;
+}
+
+#block-osha-alert-service-osha-news-rss{
+	background:transparent!important;
+	padding-left: 0em;
+}
+
+#block-osha-alert-service-osha-news-rss a{
+	border: 0px!important;
+	background: url("../images/rss.png") no-repeat scroll 0% 86% transparent!important;
+	padding-left: 2em;
+	padding-top: 1em;
+	font-weight:bold;
+	display:block;
+	font-family: Arial;
+	text-decoration: none;
+	color: #003399!important;
+	font-size:0.9em;
+}
+
+#block-osha-alert-service-osha-calls-rss{
+	background:transparent!important;
+	padding-left: 0em;
+}
+
+#block-osha-alert-service-osha-calls-rss a{
+	border: 0px!important;
+	background: url("../images/rss.png") no-repeat scroll 0% 86% transparent!important;
+	padding-left: 2em;
+	padding-top: 1em;
+	font-weight:bold;
+	display:block;
+	font-family: Arial;
+	text-decoration: none;
+	color: #003399!important;
+	font-size:0.9em;
+}
+
+#block-osha-alert-service-osha-job-vacancies-rss{
+	background:transparent!important;
+	padding-left: 0em;
+}
+
+#block-osha-alert-service-osha-job-vacancies-rss a{
+	border: 0px!important;
+	background: url("../images/rss.png") no-repeat scroll 0% 86% transparent!important;
+	padding-left: 2em;
+	padding-top: 1em;
+	font-weight:bold;
+	display:block;
+	font-family: Arial;
+	text-decoration: none;
+	color: #003399!important;
+	font-size:0.9em;
+}
+
+#block-osha-alert-service-osha-blog-rss{
+	background:transparent!important;
+	padding-left: 0em;
+}
+
+#block-osha-alert-service-osha-blog-rss a{
+	border: 0px!important;
+	background: url("../images/rss.png") no-repeat scroll 0% 86% transparent!important;
+	padding-left: 2em;
+	padding-top: 1em;
+	font-weight:bold;
+	display:block;
+	font-family: Arial;
+	text-decoration: none;
+	color: #003399!important;
+	font-size:0.9em;
+}
+
+#block-osha-alert-service-osha-directives-rss{
+	background:transparent!important;
+	padding-left: 0em;
+	clear:both;
+}
+
+#block-osha-alert-service-osha-directives-rss a{
+	border: 0px!important;
+	background: url("../images/rss.png") no-repeat scroll 0% 86% transparent!important;
+	padding-left: 2em;
+	padding-top: 1em;
+	font-weight:bold;
+	display:block;
+	font-family: Arial;
+	text-decoration: none;
+	color: #003399!important;
+	font-size:0.9em;
+}
+
+#block-osha-alert-service-osha-guidelines-rss{
+	background:transparent!important;
+	padding-left: 0em;
+	clear:both;
+}
+
+#block-osha-alert-service-osha-guidelines-rss a{
+	border: 0px!important;
+	background: url("../images/rss.png") no-repeat scroll 0% 86% transparent!important;
+	padding-left: 2em;
+	padding-top: 1em;
+	font-weight:bold;
+	display:block;
+	font-family: Arial;
+	text-decoration: none;
+	color: #003399!important;
+	font-size:0.9em;
+
+}
+
+/*end RSS*/
+
+
+/*PAGINATION*/
+
+.pager-first a{
+	font-size:1.2em!important;
+}
+
+.pager-previous a{
+	font-size:1.2em!important;
+}
+
+.pager-next a{
+	font-size:1.2em!important;
+}
+
+.pager-last  a{
+	font-size:1.2em!important;
+}
+
+/*END PAGINATION*/
