@@ -335,6 +335,80 @@ function osha_infographics_field_default_field_instances() {
         'apply_chosen' => 1,
       ),
       'type' => 'options_select',
+      'weight' => 47,
+    ),
+  );
+
+  // Exported field_instance: 'node-infographic-field_twin_infographics'
+  $field_instances['node-infographic-field_twin_infographics'] = array(
+    'bundle' => 'infographic',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'entityreference',
+        'settings' => array(
+          'link' => 1,
+        ),
+        'type' => 'entityreference_label',
+        'weight' => 5,
+      ),
+      'highlights_item' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'newsletter_item' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'osha_resources' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'osha_slideshow' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'osha_wiki' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_twin_infographics',
+    'label' => 'Twin infographics',
+    'required' => 0,
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'entityreference',
+      'settings' => array(
+        'match_operator' => 'CONTAINS',
+        'path' => '',
+        'size' => 100,
+      ),
+      'type' => 'entityreference_autocomplete',
       'weight' => 46,
     ),
   );
@@ -429,6 +503,7 @@ function osha_infographics_field_default_field_instances() {
   t('Image');
   t('Tag');
   t('Title');
+  t('Twin infographics');
 
   return $field_instances;
 }
