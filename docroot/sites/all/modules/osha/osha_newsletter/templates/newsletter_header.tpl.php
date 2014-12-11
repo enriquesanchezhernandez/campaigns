@@ -12,14 +12,14 @@
       <td>
         <?php
           $directory = drupal_get_path('module','osha_newsletter');
-          $site_url = variable_get('site_base_url', 'http://osha.europa.eu');
+          global $base_url;
           print l(theme('image', array(
           'path' => $directory . '/images/Osha-EU-logos.png',
           'width' => 256,
           'height' => 60,
           'alt' => 'Osha logo',
           'attributes' => array('style' => 'border: 0px;')
-          )), $site_url, array(
+          )), $base_url, array(
           'html' => TRUE,
           'external' => TRUE
         ));
