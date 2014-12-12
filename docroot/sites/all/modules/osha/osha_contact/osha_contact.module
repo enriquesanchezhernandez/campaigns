@@ -1,0 +1,156 @@
+<?php
+
+/**
+ * Implements hook_form_alter
+ */
+function osha_contact_form_contact_site_form_alter(&$form, &$form_state){
+
+  //disable fields
+  $form['subject']['#default_value'] = FALSE;
+  $form['subject']['#access'] = FALSE;
+  $form['copy']['#default_value'] = FALSE;
+  $form['copy']['#access'] = FALSE;
+
+  $form['contact_type_of_sender'] = array(
+    '#type' => 'select',
+    '#title' => t('Type of sender'),
+    '#options' => osha_contact_get_taxonomy_term_options('contact_type_of_sender'),
+    '#empty_option' => t('Please select one'),
+    '#empty_value' => 0,
+    '#required' => TRUE,
+  );
+
+  $form['contact_topic'] = array(
+    '#type' => 'select',
+    '#title' => t('Topic'),
+    '#options' => osha_contact_get_taxonomy_term_options('contact_topic'),
+    '#empty_option' => t('Please select one'),
+    '#empty_value' => 0,
+    '#required' => TRUE,
+  );
+
+  $form['country'] = array(
+    '#type' => 'textfield',
+    '#rows' => '10',
+    '#maxlength' => 255,
+    '#title' => t('Country'),
+  );
+
+  $form['contact_type_of_sender']['#weight'] = 0;
+  $form['contact_topic']['#weight'] = 1;
+  $form['name']['#weight'] = 2;
+  $form['mail']['#weight'] = 3;
+  $form['country']['#weight'] = 4;
+  $form['message']['#weight'] = 5;
+
+  $form['#submit'][] = 'contact_form_send';
+}
+
+/**
+ * Get taxonomy terms in form of dropdown options
+ * @param $machine_name
+ * @return array
+ */
+function osha_contact_get_taxonomy_term_options($machine_name){
+  global $language;
+  $options = array();
+
+  $vid = taxonomy_vocabulary_machine_name_load($machine_name)->vid;
+  $options_source = taxonomy_get_tree($vid);
+
+  foreach($options_source as $item ) {
+    $term = entity_load_single('taxonomy_term', $item->tid);
+    $key = $term->tid;
+    $value = $term->name;
+    $options[$key] = $value;
+  }
+
+  return $options;
+}
+
+/**
+ * Submit callback function
+ */
+function contact_form_send($form, &$form_state){
+  //remove default status message
+  if (!empty($_SESSION['messages']['status'])) {
+    $message_text_to_remove = t('Your message has been sent.');
+    $key = array_search($message_text_to_remove, $_SESSION['messages']['status']);
+    if ($key !== FALSE) {
+      unset($_SESSION['messages']['status'][$key]);
+      // Remove the empty status message wrapper if no other messages have been set.
+      if (empty($_SESSION['messages']['status'])) {
+        unset($_SESSION['messages']['status']);
+      }
+    }
+  }
+
+  //set new status message
+  drupal_set_message(t('mesaj trimis'));
+}
+
+/**
+ * Implements hook_mail_alter(&$message).
+ */
+function osha_contact_mail_alter(&$message) {
+  $message['body'] = array();
+  if ($message['id'] == 'contact_page_mail') {
+    $sender = entity_load_single('taxonomy_term', $message['params']['contact_type_of_sender']);
+    $topic = entity_load_single('taxonomy_term', $message['params']['contact_topic']);
+    $message['subject'] .= t('Mail Subject');
+    $message['body'][] = str_replace(
+      array(
+        '[sender]' ,
+        '[topic]',
+        '[name]',
+        '[email]',
+        '[country]',
+        '[message]',
+      ),
+      array(
+        $sender->name,
+        $topic->name,
+        $message['params']['name'],
+        $message['params']['mail'],
+        $message['params']['country'],
+        $message['params']['message'],
+      ),
+      $message['params']['category']['body']);
+
+  }
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter
+ */
+function osha_contact_form_contact_category_edit_form_alter(&$form, &$form_state){
+  $form['body'] = array(
+    '#type' => 'textarea',
+    '#rows' => '10',
+    '#default_value' => isset($form_state['build_info']['args'][0]['body'])? $form_state['build_info']['args'][0]['body']:'',
+    '#title' => t('Message body'),
+  );
+
+  $form['weight']['#weight'] = 9;
+  $form['selected']['#weight'] = 10;
+
+}
+
+/**
+ * Implements hook_i18n_object_info().
+ */
+function osha_contact_i18n_object_info(){
+  $info = array();
+
+  $info = array('contact_category' => array(
+    // Properties for string translation.
+    'string translation' => array(
+      // Translatable properties of these objects.
+      'properties' => array(
+        'body' => t('Message Body'),
+      ),
+    )
+  )) + $info;
+
+  return $info;
+}
