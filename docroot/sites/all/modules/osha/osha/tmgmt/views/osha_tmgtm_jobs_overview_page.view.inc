@@ -207,11 +207,12 @@ $handler->display->display_options['fields']['page_count']['field'] = 'page_coun
 $handler->display->display_options['fields']['character_count']['id'] = 'character_count';
 $handler->display->display_options['fields']['character_count']['table'] = 'tmgmt_job';
 $handler->display->display_options['fields']['character_count']['field'] = 'character_count';
-/* Field: Progress */
-$handler->display->display_options['fields']['progress']['id'] = 'progress';
-$handler->display->display_options['fields']['progress']['table'] = 'tmgmt_job';
-$handler->display->display_options['fields']['progress']['field'] = 'progress';
-$handler->display->display_options['fields']['progress']['ui_name'] = 'Progress';
+/* Field: Translation Management Job: Progress items */
+$handler->display->display_options['fields']['progress_job_items']['id'] = 'progress_job_items';
+$handler->display->display_options['fields']['progress_job_items']['table'] = 'tmgmt_job';
+$handler->display->display_options['fields']['progress_job_items']['field'] = 'progress_job_items';
+$handler->display->display_options['fields']['progress_job_items']['label'] = 'Progress';
+$handler->display->display_options['fields']['progress_job_items']['element_label_colon'] = FALSE;
 /* Field: Changed */
 $handler->display->display_options['fields']['changed']['id'] = 'changed';
 $handler->display->display_options['fields']['changed']['table'] = 'tmgmt_job';
@@ -229,12 +230,6 @@ $handler->display->display_options['fields']['operations']['id'] = 'operations';
 $handler->display->display_options['fields']['operations']['table'] = 'tmgmt_job';
 $handler->display->display_options['fields']['operations']['field'] = 'operations';
 $handler->display->display_options['fields']['operations']['ui_name'] = 'Operations';
-/* Field: Translation Management Job: Progress items */
-$handler->display->display_options['fields']['progress_job_items']['id'] = 'progress_job_items';
-$handler->display->display_options['fields']['progress_job_items']['table'] = 'tmgmt_job';
-$handler->display->display_options['fields']['progress_job_items']['field'] = 'progress_job_items';
-$handler->display->display_options['fields']['progress_job_items']['label'] = 'Progress';
-$handler->display->display_options['fields']['progress_job_items']['element_label_colon'] = FALSE;
 /* Sort criterion: Changed */
 $handler->display->display_options['sorts']['changed']['id'] = 'changed';
 $handler->display->display_options['sorts']['changed']['table'] = 'tmgmt_job';
