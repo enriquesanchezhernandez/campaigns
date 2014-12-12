@@ -18,3 +18,13 @@ function osha_infographics_workbench_access_node_element_alter(&$element, $form_
     }
   }
 }
+
+/**
+ * Implements hook_views_pre_render().
+ * @param $view
+ */
+function osha_infographics_views_pre_render(&$view){
+  if ($view->name == 'infographic' && $view->current_display == 'block_2') {
+    $view->attachment_before = "<a href='/infographics'>All topics</a>";
+  }
+}

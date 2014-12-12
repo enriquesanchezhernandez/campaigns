@@ -183,7 +183,8 @@ legislation/directive/*',
     'i18n_mode' => 0,
     'module' => 'menu',
     'node_types' => array(),
-    'pages' => 'search/*',
+    'pages' => 'search/site
+search/wiki',
     'roles' => array(),
     'themes' => array(
       'bartik' => array(

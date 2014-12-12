@@ -341,7 +341,8 @@ node/5326',
     'i18n_mode' => 0,
     'module' => 'osha_alert_service',
     'node_types' => array(),
-    'pages' => 'oshnews',
+    'pages' => 'oshnews
+highlights',
     'roles' => array(),
     'themes' => array(
       'bartik' => array(

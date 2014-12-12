@@ -12,14 +12,14 @@
       <td>
         <?php
           $directory = drupal_get_path('module','osha_newsletter');
-          $site_url = variable_get('site_base_url', 'http://osha.europa.eu');
+          global $base_url;
           print l(theme('image', array(
           'path' => $directory . '/images/Osha-EU-logos.png',
           'width' => 256,
           'height' => 60,
           'alt' => 'Osha logo',
           'attributes' => array('style' => 'border: 0px;')
-          )), $site_url, array(
+          )), $base_url, array(
           'html' => TRUE,
           'external' => TRUE
         ));
@@ -66,7 +66,9 @@
                            }
                            $last_lang = array_pop($newsletter_languages);
                            foreach ($newsletter_languages as $language):?>
-                             <a href="<?php echo url('entity-collection/' . $newsletter_id, array('absolute' => TRUE, 'language' => $language));?>" style="text-decoration: none; color: #003399;"><?php print $language->native . ' | ';?></a><?php  endforeach; ?> <a href="<?php echo url('entity-collection/' . $newsletter_id, array('absolute' => TRUE, 'language' => $last_lang));?>" style="text-decoration: none; color: #003399;"><?php print $last_lang->native;?></a>
+                             <a href="<?php echo url('entity-collection/' . $newsletter_id, array('absolute' => TRUE, 'language' => $language));?>" style="text-decoration: none; color: #003399;"><?php print $language->native . ' | ';?></a>
+                           <?php endforeach; ?>
+                           <a href="<?php echo url('entity-collection/' . $newsletter_id, array('absolute' => TRUE, 'language' => $last_lang));?>" style="text-decoration: none; color: #003399;"><?php print $last_lang->native;?></a>
                          <?php
                          }
                         ?>

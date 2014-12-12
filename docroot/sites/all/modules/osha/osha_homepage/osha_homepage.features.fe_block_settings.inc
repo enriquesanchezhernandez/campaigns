@@ -36,7 +36,7 @@ function osha_homepage_default_fe_block_settings() {
         'weight' => 0,
       ),
       'osha_frontend' => array(
-        'region' => 'content',
+        'region' => 'triptych_first',
         'status' => 1,
         'theme' => 'osha_frontend',
         'weight' => 30,

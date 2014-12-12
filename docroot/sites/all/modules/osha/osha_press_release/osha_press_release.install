@@ -54,12 +54,12 @@ function osha_press_release_add_menu_position_rules() {
 }
 
 function osha_press_release_update_7002() {
-  // CW-1060 press room context
+  // CW-1060 and CW-1077 press room context
   db_insert('context_visibility_context')
     ->fields(array(
       'module' => 'aggregator',
       'delta' => 'feed-1',
-      'context' => 'context_press_room',
+      'context' => 'context_osha_in_the_media',
     ))->execute();
   db_insert('context_visibility_context')
     ->fields(array(

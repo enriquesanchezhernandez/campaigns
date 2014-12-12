@@ -20,6 +20,7 @@ function osha_blocks_context_default_contexts() {
     'node' => array(
       'values' => array(
         'blog' => 'blog',
+        'events' => 'events',
         'seminar' => 'seminar',
       ),
       'options' => array(
@@ -58,6 +59,7 @@ function osha_blocks_context_default_contexts() {
       'values' => array(
         'blog' => 'blog',
         'calls' => 'calls',
+        'events' => 'events',
         'highlight' => 'highlight',
         'news' => 'news',
         'seminar' => 'seminar',

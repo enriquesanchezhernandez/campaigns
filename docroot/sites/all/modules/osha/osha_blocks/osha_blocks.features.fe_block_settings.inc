@@ -243,7 +243,7 @@ function osha_blocks_default_fe_block_settings() {
         'region' => 'sidebar_second',
         'status' => 1,
         'theme' => 'osha_frontend',
-        'weight' => -24,
+        'weight' => -1,
       ),
       'seven' => array(
         'region' => '',
@@ -253,6 +253,91 @@ function osha_blocks_default_fe_block_settings() {
       ),
     ),
     'title' => 'Related',
+    'visibility' => 0,
+  );
+
+  $export['osha_blocks-oshwiki_featured_articles'] = array(
+    'cache' => 1,
+    'custom' => 0,
+    'delta' => 'oshwiki_featured_articles',
+    'i18n_block_language' => array(),
+    'i18n_mode' => 0,
+    'module' => 'osha_blocks',
+    'node_types' => array(
+      0 => 'article',
+      1 => 'publication',
+    ),
+    'pages' => '',
+    'roles' => array(),
+    'themes' => array(
+      'bartik' => array(
+        'region' => '',
+        'status' => 0,
+        'theme' => 'bartik',
+        'weight' => 0,
+      ),
+      'osha_admin' => array(
+        'region' => '',
+        'status' => 0,
+        'theme' => 'osha_admin',
+        'weight' => 0,
+      ),
+      'osha_frontend' => array(
+        'region' => 'content',
+        'status' => 1,
+        'theme' => 'osha_frontend',
+        'weight' => 40,
+      ),
+      'seven' => array(
+        'region' => '',
+        'status' => 0,
+        'theme' => 'seven',
+        'weight' => 0,
+      ),
+    ),
+    'title' => '',
+    'visibility' => 0,
+  );
+
+  $export['osha_wiki-osha_wiki_related_content'] = array(
+    'cache' => 1,
+    'custom' => 0,
+    'delta' => 'osha_wiki_related_content',
+    'i18n_block_language' => array(),
+    'i18n_mode' => 0,
+    'module' => 'osha_wiki',
+    'node_types' => array(
+      0 => 'article',
+    ),
+    'pages' => '',
+    'roles' => array(),
+    'themes' => array(
+      'bartik' => array(
+        'region' => 'sidebar_second',
+        'status' => 1,
+        'theme' => 'bartik',
+        'weight' => -30,
+      ),
+      'osha_admin' => array(
+        'region' => 'sidebar_second',
+        'status' => 1,
+        'theme' => 'osha_admin',
+        'weight' => -30,
+      ),
+      'osha_frontend' => array(
+        'region' => 'sidebar_second',
+        'status' => 1,
+        'theme' => 'osha_frontend',
+        'weight' => -3,
+      ),
+      'seven' => array(
+        'region' => '',
+        'status' => 0,
+        'theme' => 'seven',
+        'weight' => -30,
+      ),
+    ),
+    'title' => '',
     'visibility' => 0,
   );
 

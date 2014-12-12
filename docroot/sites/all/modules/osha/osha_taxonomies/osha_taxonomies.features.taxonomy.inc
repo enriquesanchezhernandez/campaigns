@@ -13,7 +13,7 @@ function osha_taxonomies_taxonomy_default_vocabularies() {
       'name' => 'Activity',
       'machine_name' => 'activity',
       'description' => 'Activities and sub-activities will be used to classify all the content, but only for internal use',
-      'hierarchy' => 0,
+      'hierarchy' => 1,
       'module' => 'taxonomy',
       'weight' => -10,
       'language' => 'und',

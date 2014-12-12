@@ -51,20 +51,8 @@
       foreach ($tagged_related_publications as $related_pub) {
         print render($related_pub);
       }
-    }?>
-
-  <?php
-  // render related wiki articles (both manual + dynamic from template preprocess_node
-    if ( !empty($tagged_wiki) ) { ?>
-      <div id="related-wiki-publications">
-        <div class="related_wiki_head"><span><?php print t('OSHWiki featured articles');?><span></div>
-      <div>
-    <?php
-      foreach ($tagged_wiki as $wiki) {
-        print render($wiki);
-      }
     }
-  } ?>
+  }?>
 
   <?php print render($content['links']); ?>
 

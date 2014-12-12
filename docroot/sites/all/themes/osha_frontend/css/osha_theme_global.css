@@ -2,7 +2,7 @@
  * Use 3 grid columns for smaller screens.
  */
  
-@media all and (max-width: 768px) {
+@media all and (max-width: 970px) {
 
 body {
     background: none repeat scroll 0 0 #FFFFFF!important;
@@ -10,6 +10,7 @@ body {
 
 #page{
 	clear:both;
+	max-width: 100%;
 }
 
 
@@ -43,14 +44,14 @@ body {
     margin-top: -1em !important;
 }
 
-#block-search-form{
+#block-search-form {
 	clear: both;
     float: left !important;
     margin-left: 1em;
     margin-top: -0.5em !important;
 }
 
-.form-item.form-type-select.form-item-lang-dropdown-select{
+.form-item.form-type-select.form-item-lang-dropdown-select {
 	margin-top: 2em!important;
 }
 
@@ -64,106 +65,707 @@ body {
 /* END HEADER */
 
 
-/* MENU RESPONSIVE */
-.mean-container .mean-bar{
+/* ---------------  */
+/* RESPONSIVE MENU  */
+/* ---------------  */
+.mean-container .mean-bar {
 	float:none;
-	background: url("../images/agencyLogoMobile.png") no-repeat scroll 50% 20% #fff;
-	padding:1em;
+	background: url("../images/agencyLogoMobile.png") no-repeat scroll 97% 30% #fff;
+	padding: 1em 0 1em 0;
 	margin-top: 0.5em;
-	border-bottom: 3px solid #003399;
+	/*border-bottom: 3px solid #003399;*/
+	width: auto;
 }
 
-.mean-container a.meanmenu-reveal{
+.mean-container a.meanmenu-reveal {
 	width:30px;
 	left:0em!important;
 }
 
-.mean-container a.meanmenu-reveal span{
+.mean-container a.meanmenu-reveal span {
 	background:#003399;
 	margin-bottom: 5px;
 }
 
-.meanmenu-reveal.meanclose{
+.meanmenu-reveal.meanclose {
 	color:#003399!important;
 }
 
-.mean-container .mean-nav{
-	margin-top:4.1em;
-	margin-left: -1em;
-	background: none repeat scroll 0 0 #edf1f8;
-	color:#57575a;
+.mean-container .mean-nav  {	
+	color:#57575A;
+	background: #FFF;
+	font-size: 150%;
+}
+.mean-container .mean-nav ul:first-child {
+	background-color: #EDF1F8;
+	border-top: 7px solid #039;
+	color: #CCC;
+	margin-top: .7em;
+	margin-left: 0px;
+	margin-bottom: 1em;	
+	padding-bottom: 1.2em;	
 }
 
-.mean-container .mean-nav a{ 
+.mean-container .mean-nav a { 
 	color:#57575a!important;
-	padding:0!important;
-	text-transform:none!important;
+	padding:0!important;	
+	text-transform: none!important;
 }
 
-.mean-container .mean-nav ul li a{
-	border-top:0px!important;
+.mean-container .mean-nav ul li a {
+	border-top: 0px!important;
+}
+/* 1st level options */
+.mean-container .mean-nav ul li {	
+	clear: both;
+	float: none;
+	padding: 1em;
+	width: auto;
 }
 
-.mean-container .mean-nav ul li a.mean-expand{
+/* Expand icon */
+.mean-container .mean-nav ul li a.mean-expand {
 	color:#dc2f82!important;
 	border:0px!important;
-	left:14em;
+	left: inherit;
+	right: 1em;
+	height: 26px;
+	font-size: 1.2em!important;
+	margin-top: 0.2em;
 }
-
-.mean-container .mean-nav ul li{
-	padding:1em;
+/* Expand icon Over */
+.mean-container .mean-nav ul li a.mean-expand:hover {
+	 background: none repeat scroll 0 0 transparent;
+	 border:0px!important;
 }
-
+/* 2nd level options */
 .mean-container .mean-nav ul li ul li {
-	padding:1em;
+	background: url("../images/li_arrow.png") no-repeat 1em 1.25em;
+	font-size: 95%;
+	padding: 1em 1em 1em 2em;
 }
 
-.mean-container .mean-nav ul li ul li  ul li {
-	padding:0em 0em 0em 1em;
-}
-
-
+/* Expand icon */
 .mean-container .mean-nav ul li ul a.mean-expand {
 	margin-top:0em;
 	color: #dc2f82 !important;
+	top: 0.25em!important;
 }
-
-.mean-container .mean-nav ul li a.mean-expand:hover{
-	 background: none repeat scroll 0 0 #edf1f8 ;
-	 border:0px!important;
-	 border-width: 0 0 0px 0px;
+/* 3th level options */
+.mean-container .mean-nav ul li ul li  ul li {
+	background: url("../images/li_arrow.png") no-repeat 0% 0.35em;
+	display: inline-block;
+	font-size: 90%;
+	margin-left: 1.5em;
+	padding: 0em 1em 1em 1em;
+	width: 90%;
 }
-
-
-.mean-container .mean-nav ul li li a{
-    color: #003399 !important;
-    font-weight: bold;
+/* First option takes different position */
+.mean-container .mean-nav ul li ul li  ul li:first-child {
+	padding-top: 1em!important;
+	background-position: 0% 1.3em;
+}
+.mean-container .mean-nav ul li li a {
+    color: #003399 !important;    
     padding:0;
     width: 80%;
-	border:0px;
-	font-size:0.8em;
+	border:0px;	
 	text-transform: none;
 }
+/* END RESPONSIVE MENU */
 
-/* END MENU RESPONSIVE */
+/* ------------- */
+/* CUSTOM STYLES */
+/* ------------- */
+
+/* ---- */
+/* HOME */
+/* ---- */
+
+/* Left column */
+.mean-container .left_column {
+	float: none;
+	width: 100%;
+	font-size: 125%;
+}
+
+/* Language & Search form */
+.mean-container #block-search-form , 
+.mean-container #block-lang-dropdown-language-content, 
+.mean-container #languagesAndSearch  {
+	display: none;
+}
+
+/* -------- */
+/* CAROUSEL */
+/* -------- */
+
+/* Container */
+.mean-container  .view-content  table {
+	width: 100%;
+}
+.mean-container  .view-content  table  a {
+	text-decoration: none;
+}
+/* Titles */
+.mean-container  .view-osha-home-banner-top .views-field-title {
+	background-color: #039;
+	background-image: url('../images/flecha.png');
+	background-position: 95% 75%;
+	background-repeat: no-repeat;
+	margin-top: 0em;
+	margin-bottom: 0.5em;
+	max-width: 100%;
+	min-height: 2em;
+	position: inherit;
+}
+/* Text checker, remove before publish on the Web */
+.mean-container  .view-osha-home-banner-top .views-field-title span:before {	
+	content:"Read this on mobile experience.";	
+}
+/* Image */
+.mean-container  .view-content  table img {
+	width: 100%;
+	height: auto;
+}
+
+/* Remove link */
+.view-osha-home-banner-top .views-field-field-banner-link {
+	display: none;
+}
+
+/* Margins */
+.highlights_row div {
+	margin-bottom: 0px;
+}
+.view-osha-home-banner-top.view-display-id-home_page_banner_top {
+	padding-bottom: 0.5em;
+	border: none;
+}
+/* END CAROUSEL */
+
+/* -------------- */
+/* HIGLIGHTS List */
+/* -------------- */
+
+/* Containers */
+#block-views-highlight-block-2 {
+	margin-left: 0;
+}
+.view-id-highlight .view-content {
+	padding-left: 1em;
+	padding-right: 1em;
+}
+/* H2 */
+#block-views-highlight-block-2 h2 {
+	background-color: #039;
+	background-image: none; /*url('../images/flecha.png');*/
+	background-position: 97% 75%;
+	background-repeat: no-repeat;
+	color: #FFF;
+	float: none;
+	font-size: 2em;
+	font-weight: normal;	
+	margin-top: 0em;
+	margin-bottom: 0em;	
+	padding-left: 0.5em;
+	position: relative;
+	width: auto;
+}
+#block-views-highlight-block-2  table {
+	margin-bottom: 0em;
+}
+/* One column */
+.view-id-highlight .view-content table tbody tr td {
+	display: block;
+	padding-bottom: 1.5em;
+	padding-top: 0;
+	padding-right: 0;
+	width: 100%;
+}
+/* Date of the news */
+.views-field.views-field-field-publication-date {
+	color: #039;
+}
+/* Title of the news */
+.view-id-highlight .view-content table tbody tr td .views-field-title {
+	height: auto;
+}
+/* Summary of the news */
+.view-id-highlight .view-content table tbody tr td .views-field-field-summary {
+	height: auto;
+	padding-top: 0.2em;
+}
+/* Remove 'See more' link and so on */
+.view-id-highlight .view-content table tbody tr td .views-field-view-node a , 
+.separator_recomended_resources_home, .title_recomended_resources_home , 
+#recommended_resources, #block-views-events-index-block-1 , #block-views-news-oshnews-latest, 
+#related-wiki, #block-osha-wiki-osha-wiki-related-content,
+#block-views-related-content-block-2, #block-views-related-content-block-1 , .region-sidebar-second h4 {
+	display: none;
+}
+
+/* View All link */
+.more-link {
+	background-color: #039;	
+	min-height: 1em;
+	font-size: 125%;
+	padding-top: .5em;
+	padding-bottom: .5em;
+}
+.more-link a {
+	color: #FFF;
+	float: none;
+	padding-right: 2.1em;
+	background: url("../images/flecha.png") no-repeat scroll 80% 29% rgba(0, 0, 0, 0)!important;    
+}
+/* END HIGHLIGHTS List */
+
+/* ------------------ */
+/* OSHMail Newsletter */
+/* ------------------ */
+#block-osha-newsletter-osha-newsletter-subscribe h2 {
+	font-weight: bold;
+}
+.sidebars_second {
+	float: none;	
+	margin-left: 0em;
+	margin-top: 1em;
+	width: 100%;
+}
+#block-osha-newsletter-osha-newsletter-subscribe {
+	margin-bottom: 0em;	
+}
+#block-osha-newsletter-osha-newsletter-subscribe  a {
+	font-weight: normal;
+}
+#block-osha-newsletter-osha-newsletter-subscribe input[type="submit"] {
+	padding-right: 2.1em;
+	margin-top: .2em;
+	font-size: 1.4em;
+	background-position: 97% center;	
+}
+#block-osha-alert-service-osha-alert-block-front-view .form-item {
+	border-top: 1px dashed #B7C6E3;
+	padding-top: 0.8em;
+}
+#block-osha-alert-service-osha-alert-block-front-view  {
+	background-color: #E9EDF6;
+	padding: 0em 1em 1em 1em;
+}
+#block-osha-alert-service-osha-alert-block-front-view  .link span {
+	color: #333;
+	font-family: 'Oswald', sans-serif;	
+	/*font-size: 1.5em;*/
+	font-weight: lighter;
+	padding-bottom: 0.2em;
+}
+/* Try all link */
+#block-osha-alert-service-osha-alert-block-front-view  .link  a {	
+	background: url("../images/flecha.png") no-repeat scroll 97% center #B7C6E3;
+	border: 0 none;
+	color: #039;
+	display: block;
+	font-family: "Oswald",sans-serif;
+	font-size: 1.25em;
+	font-weight: bold;
+	margin-top: 0.2em;
+	padding-bottom: 0.5em;
+	padding-right: 2.1em;
+	padding-top: 0.5em;
+	text-align: right;
+	text-decoration: none;
+	width: auto;
+}
+/* END OSHMail Newsletter */
+
+/* ------ */
+/* FOOTER */
+/* ------ */
+
+footer {
+	padding-bottom: 0px;
+	border-bottom: 8px solid #333;
+}
+
+/* Policy footer */
+#footerMenu {	
+	display: block;
+	float: none;
+	font-size: 140%;
+	font-weight: lighter;
+	margin: 1em 0 .5em 0;
+	padding: 0 .5em 0 .5em;
+	text-align: center;
+	width: auto;
+}
+
+/* Social networks footer */
+#socialNetworksFooter {
+	border-top: 8px solid #FFF;
+	float: none;
+	margin: 0;
+	margin-top: 1.4em;
+	padding-bottom: 1.2em;
+	padding-top: 1.2em;
+	text-align: center;
+	width: auto;	
+}
+/* Remove the padding of the first link, to keep the same gap */
+#socialNetworksFooter a:first-child {
+	padding-left: 0px;
+}
+/* END FOOTER */
+/* END HOME */
+
+/* --------------- */
+/* HIGHLIGHTS List */
+/* --------------- */
+
+/* Remove all not for responsive version items */
+.sidebars_first, .breadcrumb, .introduction-image {
+	display: none!important;
+}
+
+#main {
+	padding: 0;
+	font-size: 120%;
+}
+#content {
+	float: none;
+	border-top: none;	
+	padding-top: 0em;
+	padding-bottom: 0em;
+}
+#content a {
+	-webkit-hyphens: auto;
+	-moz-hyphens: auto;
+    -ms-hyphens: auto;
+	hyphens: auto;
+	word-break: break-all
+	word-wrap: break-word;	
+}
+.two_column, .three_column {
+	margin: 0!important;	
+	padding: 1em;
+	width: auto!important;
+}
+.field-name-field-summary {
+	padding: 0.5em 1em 0 1em!important;
+}
+
+/* Set all h1 */
+h1, .field-name-title-field h1  {
+	background: url('') #039!important;
+	color: #FFF;
+	padding: 0 0.35em 0.1em 0.35em!important;	
+}
+/* Main container submenu */
+#block-menu-block-3 {
+	margin: 0 1em 0 1em;
+}
+/* Submenu */
+.menu-block-3 ul {
+	margin: 1em 0 1em 0;
+}
+.menu-block-3 ul li {
+	border-bottom: 1px dashed #039;
+	float: none;
+	padding: 0.7em 0em 0.7em 0em;
+}
+.menu-block-3 ul li:first-child {
+	border-top: 1px dashed #039;
+}
+#main-menu-links .introduction-title a {	
+	position: relative;
+	bottom: inherit;
+}
+.introduction-title {
+	border-bottom: none!important;
+	display: block;
+	height: auto;
+	letter-spacing: normal;
+	margin-bottom: 0em;
+	padding-bottom: 0;	
+	width: auto;
+}
+#main-menu-links li.menu__item {	
+	margin: 0;
+}
+/* End submenu */
+
+/* End Highlights List */
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+/* ----------------- */
+/* HIGHLIGHTS Detail */
+/* ----------------- */
+.node-highlight.view-mode-full .field-name-field-publication-date, 
+.node-news.view-mode-full .field-name-field-publication-date {
+	padding-left: 1em;
+	padding-right: 1em;
+}
+.node-highlight.view-mode-full .field-name-title-field h1 {
+	background-color: #FFF!important;
+	color: #000;
+	line-height: 1.15;
 	
+}
+/* Top image field */
+.field-name-field-image {
+	margin-top: 3px;
+}
+/* Image container */
+.node-highlight.view-mode-full .field-name-field-image {
+	padding-left: 1em;
+	padding-right: 1em;
+}
+.node-highlight.view-mode-full .field-name-field-image img {
+	margin-top: 1em;
+}
+.ui-accordion .ui-accordion-header {
+	width: auto!important;
+}
+.ui-accordion .ui-accordion-header .ui-accordion-header-icon {
+	left: 0;
+}
+/* Same space within contents */
+.field-name-body  {
+	padding: 0 1em 0 1em!important;
+}
+/* End Highlights Detail */
+
+
+/* --------- */
+/* News List */
+/* --------- */
+.node-news.node-teaser .field-name-field-image {
+	display: none;
+}
+.views-row {
+	margin: 0 1em 0 1em!important;
+}
+.node-news .field-name-title-field  {
+	line-height: 1.25;
+}
+.node-news.view-mode-full .field-name-title-field {
+	padding-left: 0.5em!important;
+	padding-right: 0.5em!important;
+}
+.node-news .field-name-title-field a {
+	background: none;
+	padding-left: 0em;
+	
+}
+.field-name-field-publication-date, .node-news.view-mode-full .field-name-field-publication-date  {
+	line-height: 1.15;
+}
+.node-news.node-teaser .field-name-field-summary {
+	padding-left: 0!important;
+	padding-right: 0!important;
+}
+.node-news .field-name-field-summary p , 
+.node-news .field-type-text-with-summary p {
+	font-size: inherit;
+}
+/* Pager */
+.item-list ul.pager {
+	display: flex;
+	justify-content: center;
+}
+ul.links.inline {
+	float: none!important;
+	display: block!important;
+	text-align: left!important;
+	padding: 1em 1em 1em 1em!important;
+	background: url("")!important;
+	border-top: 5px solid #AAB7D9!important;
+	border-bottom: 1px dashed #AAB7D9!important;
+	margin-top: 0!important;
+	margin-bottom: 0!important;
+}
+.addtoany {
+	float: none;
+}
+.addtoany_list > a {
+	color: #AAB7D9!important;
+	display: inline;
+	font-weight: bold;
+}
+/* End Share this */
+/* End News List */
+
+
+/* News Detail */
+/* ----------- */
+/* Image container */
+.node-news.view-mode-full .field-name-field-image {
+	float: none;
+	padding-left: 1em;
+	padding-right: 1em;
+	margin-bottom: 1em;
+	text-align: center;
+}
+.node-news img  {
+	margin-right: 0;
+	margin-top: 0;
+}
+/* End News Detail  */
+
+
+/* ----------- */
+/* Legislation */
+/* ----------- */
+.view-legislation-guidelines table caption {
+	line-height: normal;
+}
+/* External URL */
+.field-name-field-external-url, .field-name-field-available-in-languages {
+	padding-left: 1em;
+	padding-right: 1em;
+}
+.field-name-field-available-in-languages {
+	margin-bottom: 1em;
+}
+/* End Legislation */
+
+
+/* -------- */
+/* Seminars */
+/* -------- */
+#block-views-seminars-block .view-seminars ul li .views-field-field-seminar-start-date span.date-display-single {
+	padding-bottom: 0em;
+}
+#block-views-seminars-block .view-seminars ul li .views-field-title span a {
+	padding-top: 1em!important;
+}
+
+/* ------------- */
+/* News & Events */
+/* ------------- */
+.field-name-body #block-menu-block-3 {
+	margin: 0em;
+}
+.field-name-body #block-menu-block-3 .introduction-image {
+	display: block!important;
+}
+.field-name-body #block-menu-block-3 .introduction-title {
+	background-color: #D2DCED;
+	margin-bottom: 0.2em;
+	padding: 0.2em;	
+}
+
+.field-name-body #block-menu-block-3 .menu-block-3 ul li:first-child {
+	border-top: none;
+}
+/* End News & Events */
+
+
+/* ---------- */
+/* Press room */
+/* ---------- */
+
+
+.view-press-releases .field-name-field-summary {
+	padding-left: 0em!important;
+	padding-right: 0em!important;
+}
+.view-press-releases ul.links.inline {
+	background: url("../images/flecha.png") no-repeat scroll right center rgba(0, 0, 0, 0)!important;
+	border-top: none!important;
+	border-bottom: none!important;	
+	text-align: right!important;	
+	width: inherit!important;
+}
+/*
+.view-press-releases  article {
+	background: url("../images/separator_home.jpg") repeat-x scroll 0% 97% rgba(0, 0, 0, 0);
+}*/
+.view-press-releases ul.links.inline a {
+	padding-right: 0em;
+}
+.view-press-releases .more-link {
+	background-color: #d2dced;
+}
+.view-press-contacts {
+	padding: 0em 1em;
+}
+/* Remove Social network block */
+#block-on-the-web-0 {
+	display: none;
+}
+#block-views-press-contacts-block h2 {
+	padding: 0.3em 1em 0.3em 0.6em;
+}
+/* Contacts block & EU-OSHA in the media */
+#block-aggregator-feed-1 h2 {
+	padding: 0 1em 0.3em 0.6em;
+}
+#block-aggregator-feed-1 ul {
+	padding: 0em 1em 1em 1em;
+}
+#block-aggregator-feed-1 ul li {
+	padding-top: .5em;
+}
+#block-aggregator-feed-1 ul li .feed-item-date {
+	font-size: 90%;
+}
+#block-aggregator-feed-1 ul li a {	
+	background-position: left center;
+}
+/* Press Detail */
+
+/* Publication Date */
+/*.node-press-release .field-name-field-publication-date, */.node-press-release .field-label {
+	padding: 0 1em;
+}
+/* Title */
+/*
+#block-views-press-releases-block .node-press-release .field-name-title-field {
+	padding: 0 0.6em 0 0.6em!important;
+}*/
+.node-press-release .field-label {
+	margin-bottom: 1em;
+}
+/*
+article.node-press-release {
+	background-image: none;
+	padding-bottom: 0px!important;
+}
+*/
+.node-press-release ul.links.inline {
+	border-bottom: none!important;
+	padding-bottom: 0px!important;
+}
+/* End Press room */
+
+
+/* ------------- */
+/* Shared styles */
+/* ------------- */
+.node-highlight.view-mode-full .field-name-field-image img , .node-news img, .node-article  img {
+	float: none;
+	height: 100%;	
+	max-height: 300px;
+	max-width: 960px;
+	width: 100%;
 }
 
 
 
-	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+}
