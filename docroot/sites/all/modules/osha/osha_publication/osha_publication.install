@@ -20,3 +20,13 @@ function osha_publication_add_menu_position_rules() {
     osha_add_menu_position_rule('Publications Menu Rule', '------ Publications', $condition);
   }
 }
+
+/**
+ * Removes the redirects ending in /view for nodes.
+ */
+function osha_publication_update_7002() {
+  db_delete('redirect')
+    ->condition('source', db_like('%/view'), 'LIKE')
+    ->condition('redirect', db_like('node/%'), 'LIKE')
+    ->execute();
+}

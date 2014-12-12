@@ -9,6 +9,96 @@ include_once 'osha_publication.features.inc';
 define('OSHA_PUBLICATION_CONTENT_TYPE_PUBLICATION', 'publication');
 
 /**
+ * Implements hook_url_inbound_alter().
+ */
+function osha_publication_url_inbound_alter(&$path, $original_path, $path_language) {
+  // For publications, the default url should serve the file.
+  // if the path ends with /view than should serve the node.
+  // see CW-1072
+  $args = arg();
+  $orig_path_alias = drupal_lookup_path('alias', $original_path);
+  $orig_path_source = drupal_lookup_path('source', $original_path);
+  if (end($args) == 'view') {
+    // If path exists, don't do anything.
+    if (empty($orig_path_alias) && empty($orig_path_source)) {
+      $url = preg_replace('/\/view$/', '', $original_path);
+      // If alias, get source.
+      $path_source = drupal_lookup_path('source', $url);
+      // If source empty, the url might be the system path, not alias.
+      if (empty($path_source) && drupal_valid_path($url)) {
+        $path_source = $url;
+      }
+      $path_alias = path_load($path_source);
+      if (!empty($path_alias)) {
+        if (preg_match("/node\/[\d]{1,99}$/", $path_alias['source'])) {
+          $node = menu_get_object('node', 1, $path_alias['source']);
+          if ($node->type == 'publication') {
+            $path = $path_alias['source'];
+          }
+        }
+      }
+    }
+  }
+  else {
+    // If source empty, the url might be the system path, not alias.
+    if (empty($orig_path_source)) {
+      $path_source = drupal_lookup_path('source', $orig_path_alias);
+    }
+    else {
+      $path_source = $orig_path_source;
+    }
+    $path_alias = path_load($path_source);
+    if (!empty($path_alias)) {
+      if (preg_match("/node\/[\d]{1,99}$/", $path_alias['source'])) {
+        $node = menu_get_object('node', 1, $path_alias['source']);
+        if ($node->type == 'publication') {
+          global $language;
+          $lang = $language->language;
+          if (!empty($node->field_file[$lang][0])
+            && !empty($node->field_file['en'][0])) {
+            // Append the file_view identifier to be used in hook_node_view().
+            $path .= '/file_view';
+          }
+        }
+      }
+    }
+  }
+}
+
+/**
+ * Implements hook_file_view().
+ */
+function osha_publication_node_view($node, $view_mode, $langcode) {
+  // For publications, the default url should serve the file.
+  // if the path ends with /view than should serve the node.
+  // see CW-1072
+  if ($node->type != 'publication') {
+    return;
+  }
+  $args = arg();
+  if (end($args) == 'file_view' && $view_mode == 'full') {
+    $show_lang = $langcode;
+    if (empty($node->field_file[$langcode][0]) && $langcode != 'en') {
+      $show_lang = 'en';
+    }
+    if (!empty($node->field_file[$show_lang][0])) {
+      $file = (object) $node->field_file[$show_lang][0];
+      $headers = array(
+        'Content-Type'              => $file->filemime,
+        'Content-Disposition'       => 'filename="' . $file->filename . '"',
+        'Content-Length'            => $file->filesize,
+        'Content-Transfer-Encoding' => 'binary',
+        'Pragma'                    => 'no-cache',
+        'Cache-Control'             => 'must-revalidate, post-check=0, pre-check=0',
+        'Expires'                   => '0',
+        'Accept-Ranges'             => 'bytes',
+      );
+      file_transfer($file->uri, $headers);
+    }
+  }
+}
+
+/**
  * Implements hook_views_pre_render().
  */
 function osha_publication_views_pre_render(&$view) {
