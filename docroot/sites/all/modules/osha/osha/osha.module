@@ -580,6 +580,22 @@ function osha_file_view($file, $view_mode, $langcode) {
 }
 
 /**
+ * Implements hook_url_inbound_alter().
+ */
+function osha_url_inbound_alter(&$path, $original_path, $path_language) {
+  // CW-271 - pages with english alias that are requested in other languages
+  // should point to english version, not to 404.
+  $orig_path_source = drupal_lookup_path('source', $original_path);
+  $orig_path_alias = drupal_lookup_path('alias', $original_path);
+  if (empty($orig_path_source) && empty($orig_path_alias)) {
+    $source_en = drupal_lookup_path('source', $original_path, 'en');
+    if (!empty($source_en)) {
+      drupal_goto($source_en, array(), 301);
+    }
+  }
+}
+
+/**
  * Implements hook_date_formatter_dates_alter().
  */
 function osha_date_formatter_dates_alter(&$dates, $context) {
