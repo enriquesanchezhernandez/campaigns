@@ -20,10 +20,7 @@ function osha_press_release_default_fe_block_settings() {
     'i18n_mode' => 0,
     'module' => 'aggregator',
     'node_types' => array(),
-    'pages' => 'press-releases
-press-release/*
-press/press-releases/*
-press-room',
+    'pages' => '',
     'roles' => array(),
     'themes' => array(
       'bartik' => array(
@@ -42,7 +39,7 @@ press-room',
         'region' => 'sidebar_second',
         'status' => 1,
         'theme' => 'osha_frontend',
-        'weight' => 4,
+        'weight' => 5,
       ),
       'seven' => array(
         'region' => '',
@@ -52,7 +49,7 @@ press-room',
       ),
     ),
     'title' => 'EU-OSHA in the media',
-    'visibility' => 1,
+    'visibility' => 0,
   );
 
   $export['on_the_web-0'] = array(
@@ -63,10 +60,7 @@ press-room',
     'i18n_mode' => 0,
     'module' => 'on_the_web',
     'node_types' => array(),
-    'pages' => 'press-releases
-press-release/*
-press/press-releases/*
-press-room',
+    'pages' => '',
     'roles' => array(),
     'themes' => array(
       'bartik' => array(
@@ -95,7 +89,87 @@ press-room',
       ),
     ),
     'title' => 'Follow us on:',
-    'visibility' => 1,
+    'visibility' => 0,
+  );
+
+  $export['osha_press_release-osha_press_rel_become_partner'] = array(
+    'cache' => -1,
+    'custom' => 0,
+    'delta' => 'osha_press_rel_become_partner',
+    'i18n_block_language' => array(),
+    'i18n_mode' => 0,
+    'module' => 'osha_press_release',
+    'node_types' => array(),
+    'pages' => '',
+    'roles' => array(),
+    'themes' => array(
+      'bartik' => array(
+        'region' => 'sidebar_second',
+        'status' => 1,
+        'theme' => 'bartik',
+        'weight' => 4,
+      ),
+      'osha_admin' => array(
+        'region' => 'sidebar_second',
+        'status' => 1,
+        'theme' => 'osha_admin',
+        'weight' => 4,
+      ),
+      'osha_frontend' => array(
+        'region' => 'sidebar_second',
+        'status' => 1,
+        'theme' => 'osha_frontend',
+        'weight' => 4,
+      ),
+      'seven' => array(
+        'region' => '',
+        'status' => 0,
+        'theme' => 'seven',
+        'weight' => 4,
+      ),
+    ),
+    'title' => '',
+    'visibility' => 0,
+  );
+
+  $export['osha_press_release-osha_press_rel_join_list'] = array(
+    'cache' => -1,
+    'custom' => 0,
+    'delta' => 'osha_press_rel_join_list',
+    'i18n_block_language' => array(),
+    'i18n_mode' => 0,
+    'module' => 'osha_press_release',
+    'node_types' => array(),
+    'pages' => '',
+    'roles' => array(),
+    'themes' => array(
+      'bartik' => array(
+        'region' => 'sidebar_second',
+        'status' => 1,
+        'theme' => 'bartik',
+        'weight' => 3,
+      ),
+      'osha_admin' => array(
+        'region' => 'sidebar_second',
+        'status' => 1,
+        'theme' => 'osha_admin',
+        'weight' => 3,
+      ),
+      'osha_frontend' => array(
+        'region' => 'sidebar_second',
+        'status' => 1,
+        'theme' => 'osha_frontend',
+        'weight' => 3,
+      ),
+      'seven' => array(
+        'region' => '',
+        'status' => 0,
+        'theme' => 'seven',
+        'weight' => 3,
+      ),
+    ),
+    'title' => '',
+    'visibility' => 0,
   );
 
   $export['views-press_releases-block'] = array(

@@ -84,15 +84,9 @@ class MigrateOshaCalls extends OSHADynamicMigration {
       'field_author',
       'field_author:language',
       'comment',
-      'field_calls_info',
-      'field_calls_info:format',
-      'field_calls_info:language',
       'field_related_resources:language',
       'field_related_resources:destination_dir',
       'field_related_resources:description',
-      'field_summary',
-      'field_summary:format',
-      'field_summary:language',
       'title_field',
       'title_field:language',
       'path',
@@ -118,6 +112,12 @@ class MigrateOshaCalls extends OSHADynamicMigration {
     if (MigrationUtil::entityRowValidator($row, $this) === FALSE) {
       return FALSE;
     }
+
+    //format date according to UTC timezone
+    $row->publication_date = MigrationUtil::getUTCTimestamp($row->publication_date);
+    $row->expiration_date = MigrationUtil::getUTCTimestamp($row->expiration_date);
+    $row->deadline = MigrationUtil::getUTCTimestamp($row->deadline);
+
     MigrationUtil::cleanMigratedFileField($row, 'files', 'public://calls/documents');
     return TRUE;
   }
@@ -157,19 +157,9 @@ class MigrateOshaCalls extends OSHADynamicMigration {
         $entity->field_author[$language][0]['value'] = MigrationUtil::decodeHTMLText($row->author[$language]);
         $has_translation = TRUE;
       }
-      if (!empty($row->description[$language])) {
-        $entity->field_summary[$language][0]['value'] = MigrationUtil::decodeHTMLText($row->description[$language]);
-        $entity->field_summary[$language][0]['format'] = 'full_html';
-        $has_translation = TRUE;
-      }
       if (!empty($row->text[$language])) {
         $entity->body[$language][0]['value'] = MigrationUtil::decodeHTMLText($row->text[$language]);
         $entity->body[$language][0]['format'] = 'full_html';
-        $has_translation = TRUE;
-      }
-      if (!empty($row->info[$language])) {
-        $entity->field_calls_info[$language][0]['value'] = MigrationUtil::decodeHTMLText($row->info[$language]);
-        $entity->field_calls_info[$language][0]['format'] = 'full_html';
         $has_translation = TRUE;
       }
 
@@ -305,10 +295,9 @@ class CallsMigrateList extends MigrateList {
             self::$data[$path]['file_description'][$language] = empty($term) ? 'Award Notice Corrigendum' : current(array_keys($term));
             break;
 
-          case 'info':
+          case 'aliases':
           case 'author':
           case 'text':
-          case 'description':
             self::$data[$path][$field][$language] = $raw_data[$key];
             break;
 

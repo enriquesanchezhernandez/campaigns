@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Go to docroot/
+cd docroot/
+
 pre_update=  post_update=
 while getopts b:a: opt; do
   case $opt in
@@ -11,9 +14,6 @@ while getopts b:a: opt; do
       ;;
   esac
 done
-
-# Go to docroot/
-cd docroot/
 
 # Sync from edw staging
 drush downsync_sql @osha.staging.sync @osha.local -y
@@ -28,6 +28,7 @@ drush osha_build -y
 
 # Devify - development settings
 drush devify --yes
+drush devify_solr
 
 drush cc all
 
@@ -35,3 +36,5 @@ if [ ! -z "$post_update" ]; then
 echo "Run post update"
 ../$post_update
 fi
+
+drush cc all

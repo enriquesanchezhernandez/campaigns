@@ -214,7 +214,7 @@ function osha_configure_addtoany_social_share() {
   variable_set('addtoany_display_in_nodecont', '0');
   variable_set('addtoany_display_in_nodelink', '1');
   variable_set('addtoany_display_in_teasers', '0');
-  variable_set('addtoany_link_text', 'Share this news on:');
+  variable_set('addtoany_link_text', 'Share this on:');
   variable_set('addtoany_image', 'text');
   variable_set('addtoany_custom_image', '');
   variable_set('addtoany_image_attributes', 'Share');
@@ -223,7 +223,7 @@ function osha_configure_addtoany_social_share() {
     'news' => 'news',
     'article' => 0,
     'page' => 0,
-    'blog' => 0,
+    'blog' => 'blog',
     'calls' => 0,
     'highlight' => 'highlight',
     'job_vacancies' => 0,

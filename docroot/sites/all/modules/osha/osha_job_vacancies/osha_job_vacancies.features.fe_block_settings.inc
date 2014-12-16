@@ -20,7 +20,7 @@ function osha_job_vacancies_default_fe_block_settings() {
     'i18n_mode' => 0,
     'module' => 'views',
     'node_types' => array(),
-    'pages' => 'articles/careers',
+    'pages' => 'node/21',
     'roles' => array(),
     'themes' => array(
       'bartik' => array(
@@ -60,7 +60,7 @@ function osha_job_vacancies_default_fe_block_settings() {
     'i18n_mode' => 0,
     'module' => 'views',
     'node_types' => array(),
-    'pages' => 'articles/careers',
+    'pages' => 'node/21',
     'roles' => array(),
     'themes' => array(
       'bartik' => array(
@@ -100,7 +100,7 @@ function osha_job_vacancies_default_fe_block_settings() {
     'i18n_mode' => 0,
     'module' => 'views',
     'node_types' => array(),
-    'pages' => 'articles/careers',
+    'pages' => 'node/21',
     'roles' => array(),
     'themes' => array(
       'bartik' => array(

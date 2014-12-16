@@ -57,6 +57,19 @@ function osha_frontend_menu_link__menu_block($variables) {
   $element = &$variables['element'];
   $delta = $element['#bid']['delta'];
 
+  // Add homepage Icon.
+  $element = $variables['element'];
+  $attr = drupal_attributes($element['#attributes']);
+  if (isset($variables['element']['#title']) &&
+    $variables['element']['#title'] == 'Home' &&
+    isset($element['#localized_options']['content']['image'])
+  ) {
+    $path = file_create_url($element['#localized_options']['content']['image']);
+    $link = l('<img src="' . $path . '" />', $element['#href'], array('html' => TRUE));
+    return sprintf("\n<li %s>%s</li>", $attr, $link);
+  }
+
+  // Render or not the Menu Image.
   // Get the variable provided by osha_menu module.
   $render_img = variable_get('menu_block_' . $delta . '_' . OSHA_MENU_RENDER_IMG_VAR_NAME, 0);
   if (!$render_img) {
@@ -76,6 +89,27 @@ function osha_frontend_menu_link__menu_block($variables) {
     <div class="introduction-title">' . $output_link . '</div>
     <div class="introduction-image">' . $output_image . '</div>
     </li>';
+}
+
+function osha_frontend_menu_link__menu_block__menu_footer_menu($variables) {
+  $element = &$variables['element'];
+  $delta = $element['#bid']['delta'];
+  // Render or not the Menu Image.
+  // Get the variable provided by osha_menu module.
+  $render_img = variable_get('menu_block_' . $delta . '_' . OSHA_MENU_RENDER_IMG_VAR_NAME, 0);
+  if (!$render_img) {
+    return theme_menu_link($variables);
+  }
+
+  if (!empty($element['#localized_options']['content']['image'])
+    && $image_url = file_create_url($element['#localized_options']['content']['image'])) {
+    $image = '<img src="' . $image_url . '"/>';
+    $output_image = l($image, $element['#href'], array('html' => TRUE));
+    return '<li' . drupal_attributes($element['#attributes']) . '>' . $output_image . '</li>';
+  } else {
+    $output_link = l($element['#title'], $element['#href'], $element['#localized_options']);
+    return '<li' . drupal_attributes($element['#attributes']) . '>' . $output_link . '</li>';
+  }
 }
 
 /**
@@ -179,70 +213,6 @@ function fill_related_publications(&$vars) {
 }
 
 /**
- * Called from hook_preprocess_node
- */
-function fill_related_wiki(&$vars) {
-  $wiki_articles_no = 0;
-  $vars['tagged_wiki'] = array();
-  if (!empty($vars['field_related_oshwiki_articles'])) {
-    $manual_wiki_articles = $vars['field_related_oshwiki_articles'][LANGUAGE_NONE];
-    $wiki_articles_no = sizeof($manual_wiki_articles);
-    // add manually tagged wiki articles (hidden in display mode)
-    foreach ($manual_wiki_articles as $related_wiki) {
-      $node = node_load($related_wiki['target_id']);
-      $vars['tagged_wiki'][] = node_view($node,'osha_wiki');
-    }
-  }
-
-  if ($wiki_articles_no < 2) {
-    $limit = 2 - $wiki_articles_no;
-    // get 2-$wiki_articles_no tagged wiki
-    $wiki_categories_tids = array();
-    if (!empty($vars['field_wiki_categories'])) {
-      $wiki_categories_tids = $vars['field_wiki_categories'][LANGUAGE_NONE];
-    }
-
-    if (!empty($wiki_categories_tids)) {
-      // query all wiki articles in the same category or its children
-      $tids = array();
-      $voc = taxonomy_vocabulary_machine_name_load('wiki_categories');
-      foreach ($wiki_categories_tids as $tid) {
-        // normally only one $tid, but just in case
-        array_push($tids, $tid['tid']);
-        // load and push also children
-        $terms = taxonomy_get_tree($voc->vid, $tid['tid']);
-        foreach ($terms as $term) {
-          array_push($tids, $term->tid);
-        }
-      }
-
-      // exclude manually related
-      $excluded_nids = array();
-      array_push($excluded_nids, 0); // avoid empty NOT IN clause
-      if (!empty($vars['field_related_oshwiki_articles'])) {
-        foreach ($vars['field_related_oshwiki_articles'] as $related_wiki) {
-          array_push($excluded_nids, $related_wiki[0]['target_id']);
-        }
-      }
-      $query = new EntityFieldQuery();
-      $result = $query->entityCondition('entity_type', 'node')
-        ->entityCondition('bundle', 'wiki_page')
-        ->entityCondition('entity_id', $excluded_nids, 'NOT IN')
-        ->fieldCondition('field_wiki_categories', 'tid', $tids, 'IN')
-        ->fieldOrderBy('field_updated', 'value', 'DESC')
-        ->pager($limit)
-        ->execute();
-      if (!empty($result)) {
-        foreach ($result['node'] as $n) {
-          $node = node_load($n->nid);
-          $vars['tagged_wiki'][] = node_view($node,'osha_wiki');
-        }
-      }
-    }
-  }
-}
-
-/**
  * Implements hook_preprocess_node().
  */
 function osha_frontend_process_node(&$vars) {
@@ -255,9 +225,6 @@ function osha_frontend_process_node(&$vars) {
   }
   if ($vars['type'] == 'publication' && $vars['view_mode'] == 'full' ) {
     fill_related_publications($vars);
-  }
-  if ($vars['type'] == 'article' || $vars['type'] == 'publication' && $vars['view_mode'] == 'full') {
-    fill_related_wiki($vars);
   }
   if (isset($vars['content']['links']['node']['#links']['node-readmore'])) {
     $vars['content']['links']['node']['#links']['node-readmore']['title'] = t('Show details');
@@ -372,21 +339,15 @@ function osha_frontend_aggregator_block_item($variables) {
   return $element;
 }
 
-function osha_frontend_menu_link__menu_block__main_menu($data) {
-  $el = $data['element'];
-  $attr = drupal_attributes($el['#attributes']);
-  if (isset($data['element']['#title']) &&
-    $data['element']['#title'] == 'Home' &&
-    isset($el['#localized_options']['content']['image'])
-  ) {
-    $path = file_create_url($el['#localized_options']['content']['image']);
-    $link = l('<img src="' . $path . '" />', $el['#href'], array('html' => TRUE));
-    return sprintf("\n<li %s>%s</li>", $attr, $link);
-  }
-  else {
-    $link = l($el['#title'], $el['#href'], $el['#localized_options']);
-    $sub_menu = drupal_render($el['#below']);
-    return sprintf("\n<li %s>%s %s</li>", $attr, $link, $sub_menu);
+/**
+ * Override or insert variables into the block template
+ */
+function osha_frontend_preprocess_block(&$vars) {
+  $block = $vars['block'];
+
+  if ($block->delta == 'oshwiki_featured_articles') {
+    $vars['block_html_id'] = 'related-wiki';
+    $vars['title_attributes_array']['class'][] = 'related_wiki_head';
   }
 }
 

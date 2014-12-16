@@ -52,3 +52,37 @@ function osha_press_release_add_menu_position_rules() {
     osha_add_menu_position_rule('See all Press Releases Menu Rule', $parent_menu, $condition);
   }
 }
+
+function osha_press_release_update_7002() {
+  // CW-1060 and CW-1077 press room context
+  db_insert('context_visibility_context')
+    ->fields(array(
+      'module' => 'aggregator',
+      'delta' => 'feed-1',
+      'context' => 'context_osha_in_the_media',
+    ))->execute();
+  db_insert('context_visibility_context')
+    ->fields(array(
+      'module' => 'osha_press_release',
+      'delta' => 'osha_press_rel_become_partner',
+      'context' => 'context_press_room',
+    ))->execute();
+  db_insert('context_visibility_context')
+    ->fields(array(
+      'module' => 'osha_press_release',
+      'delta' => 'osha_press_rel_join_list',
+      'context' => 'context_press_room',
+    ))->execute();
+  db_insert('context_visibility_context')
+    ->fields(array(
+      'module' => 'views',
+      'delta' => 'press_contacts-block',
+      'context' => 'context_press_room',
+    ))->execute();
+  db_insert('context_visibility_context')
+    ->fields(array(
+      'module' => 'on_the_web',
+      'delta' => '0',
+      'context' => 'context_press_room',
+    ))->execute();
+}

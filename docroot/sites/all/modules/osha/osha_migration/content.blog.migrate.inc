@@ -64,6 +64,7 @@ class MigrateOshaBlog extends OSHADynamicMigration {
     $this->addFieldMapping('field_nace_codes:source_type')->defaultValue('tid');
     $this->addFieldMapping('field_publication_date', 'publication_date');
 
+    $this->addFieldMapping('field_author', 'creator');
     $this->addFieldMapping('created', 'creation_date');
     $this->addFieldMapping('changed', 'modification_date');
     $this->addFieldMapping('uid')->defaultValue(1);
@@ -72,7 +73,6 @@ class MigrateOshaBlog extends OSHADynamicMigration {
       'path',
       'language',
       'workflow_state',
-      'creator',
       'country',
     ));
 
@@ -125,6 +125,10 @@ class MigrateOshaBlog extends OSHADynamicMigration {
     if(MigrationUtil::entityRowValidator($row, $this) === FALSE) {
       return FALSE;
     }
+
+    //format date according to UTC timezone
+    $row->publication_date = MigrationUtil::getUTCTimestamp($row->publication_date);
+    $row->expiration_date = MigrationUtil::getUTCTimestamp($row->expiration_date);
 
     $row->language = 'en';
     $tags = $row->subject . ',' . $row->subcategory;
@@ -275,6 +279,7 @@ class BlogContentListCSV extends MigrateList {
             self::$data[$path]['title_field'][$language] = $raw_data[$key];
             break;
 
+          case 'aliases':
           case 'description':
           case 'image':
           case 'imageCaption':

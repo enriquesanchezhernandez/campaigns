@@ -7,6 +7,15 @@ When patching a contrib module, the following steps should be followed:
 
 List of patches (most recent first)
 
+* menu_item_visibility
+  * Avoid db hit on menu links without menu_item_visibility enabled
+  * https://www.drupal.org/node/1848724
+  * https://www.drupal.org/files/issues/menu_item_visibility-performance-issues-1848724-1_0.patch
+
+* tmgmt
+  * Menu link source search is not case sensitive
+  * patches/tmgmt/i18n_string-search-case-insensitive.patch
+
 * drupal (core)
   * Node preview removes file values from node edit form for non-displayed items
   * drupal/1289336-112.patch
@@ -165,6 +174,11 @@ List of patches (most recent first)
   * Generated image is saved on the revision and not for the published version
   * pdf_to_imagefield_save_to_revision.patch
 
+* link
+  * Duplicate fragment/query saved to database - https://www.drupal.org/node/1646360
+  * duplicate-fragment-query-1646360-1.patch
+  * Display url - ":" is converted to "%3A" and "?" to "&"
+  * link-character_conversion-1984398.patch
 
 Patch documentation should be in the following format:
 

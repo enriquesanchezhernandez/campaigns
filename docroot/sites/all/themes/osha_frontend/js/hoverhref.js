@@ -134,8 +134,3 @@ function displayCaptcha() {
 		jQuery("body").removeClass("bodysmall");
 		jQuery("body").removeClass("bodymedium");
 	}
-		
-		
-
-
-

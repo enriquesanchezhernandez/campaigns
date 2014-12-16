@@ -637,9 +637,10 @@ function osha_field_default_field_instances() {
         'weight' => 0,
       ),
       'osha_wiki' => array(
-        'label' => 'above',
+        'label' => 'hidden',
+        'module' => 'text',
         'settings' => array(),
-        'type' => 'hidden',
+        'type' => 'text_default',
         'weight' => 0,
       ),
       'scs' => array(

@@ -30,6 +30,13 @@ function osha_blog_views_default_views() {
   $handler->display->display_options['exposed_form']['type'] = 'basic';
   $handler->display->display_options['pager']['type'] = 'full';
   $handler->display->display_options['pager']['options']['items_per_page'] = '10';
+  $handler->display->display_options['pager']['options']['offset'] = '0';
+  $handler->display->display_options['pager']['options']['id'] = '0';
+  $handler->display->display_options['pager']['options']['quantity'] = '9';
+  $handler->display->display_options['pager']['options']['tags']['first'] = '«';
+  $handler->display->display_options['pager']['options']['tags']['previous'] = '‹';
+  $handler->display->display_options['pager']['options']['tags']['next'] = '›';
+  $handler->display->display_options['pager']['options']['tags']['last'] = '»';
   $handler->display->display_options['style_plugin'] = 'default';
   $handler->display->display_options['row_plugin'] = 'fields';
   /* Field: Content: Title */
@@ -39,7 +46,7 @@ function osha_blog_views_default_views() {
   $handler->display->display_options['fields']['title']['label'] = '';
   $handler->display->display_options['fields']['title']['alter']['word_boundary'] = FALSE;
   $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
-  /* Field: Content: Publication Date */
+  /* Field: Field: Publication Date */
   $handler->display->display_options['fields']['field_publication_date']['id'] = 'field_publication_date';
   $handler->display->display_options['fields']['field_publication_date']['table'] = 'field_data_field_publication_date';
   $handler->display->display_options['fields']['field_publication_date']['field'] = 'field_publication_date';
@@ -81,7 +88,7 @@ function osha_blog_views_default_views() {
   $handler->display->display_options['fields']['view_node']['label'] = '';
   $handler->display->display_options['fields']['view_node']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['view_node']['text'] = 'Read more';
-  /* Sort criterion: Content: Publication Date (field_publication_date) */
+  /* Sort criterion: Field: Publication Date (field_publication_date) */
   $handler->display->display_options['sorts']['field_publication_date_value']['id'] = 'field_publication_date_value';
   $handler->display->display_options['sorts']['field_publication_date_value']['table'] = 'field_data_field_publication_date';
   $handler->display->display_options['sorts']['field_publication_date_value']['field'] = 'field_publication_date_value';
@@ -122,7 +129,7 @@ function osha_blog_views_default_views() {
   $handler->display->display_options['fields']['title']['label'] = '';
   $handler->display->display_options['fields']['title']['alter']['word_boundary'] = FALSE;
   $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
-  /* Field: Content: Publication Date */
+  /* Field: Field: Publication Date */
   $handler->display->display_options['fields']['field_publication_date']['id'] = 'field_publication_date';
   $handler->display->display_options['fields']['field_publication_date']['table'] = 'field_data_field_publication_date';
   $handler->display->display_options['fields']['field_publication_date']['field'] = 'field_publication_date';
@@ -180,7 +187,7 @@ function osha_blog_views_default_views() {
   $handler->display->display_options['row_plugin'] = 'fields';
   $handler->display->display_options['defaults']['row_options'] = FALSE;
   $handler->display->display_options['defaults']['fields'] = FALSE;
-  /* Field: Content: Publication Date */
+  /* Field: Field: Publication Date */
   $handler->display->display_options['fields']['field_publication_date_1']['id'] = 'field_publication_date_1';
   $handler->display->display_options['fields']['field_publication_date_1']['table'] = 'field_data_field_publication_date';
   $handler->display->display_options['fields']['field_publication_date_1']['field'] = 'field_publication_date';
@@ -198,7 +205,7 @@ function osha_blog_views_default_views() {
     'osha_date_theme' => '',
   );
   $handler->display->display_options['fields']['field_publication_date_1']['group_column'] = 'entity_id';
-  /* Field: Content: Publication Date */
+  /* Field: Field: Publication Date */
   $handler->display->display_options['fields']['field_publication_date']['id'] = 'field_publication_date';
   $handler->display->display_options['fields']['field_publication_date']['table'] = 'field_data_field_publication_date';
   $handler->display->display_options['fields']['field_publication_date']['field'] = 'field_publication_date';
@@ -216,7 +223,7 @@ function osha_blog_views_default_views() {
   );
   $handler->display->display_options['fields']['field_publication_date']['group_column'] = 'entity_id';
   $handler->display->display_options['defaults']['sorts'] = FALSE;
-  /* Sort criterion: Content: Publication Date (field_publication_date) */
+  /* Sort criterion: Field: Publication Date (field_publication_date) */
   $handler->display->display_options['sorts']['field_publication_date_value']['id'] = 'field_publication_date_value';
   $handler->display->display_options['sorts']['field_publication_date_value']['table'] = 'field_data_field_publication_date';
   $handler->display->display_options['sorts']['field_publication_date_value']['field'] = 'field_publication_date_value';
@@ -262,7 +269,7 @@ function osha_blog_views_default_views() {
   $handler->display->display_options['fields']['title']['label'] = '';
   $handler->display->display_options['fields']['title']['alter']['word_boundary'] = FALSE;
   $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
-  /* Field: Content: Publication Date */
+  /* Field: Field: Publication Date */
   $handler->display->display_options['fields']['field_publication_date']['id'] = 'field_publication_date';
   $handler->display->display_options['fields']['field_publication_date']['table'] = 'field_data_field_publication_date';
   $handler->display->display_options['fields']['field_publication_date']['field'] = 'field_publication_date';
@@ -294,7 +301,7 @@ function osha_blog_views_default_views() {
   $handler->display->display_options['fields']['view_node']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['view_node']['text'] = 'Read more';
   $handler->display->display_options['defaults']['arguments'] = FALSE;
-  /* Contextual filter: Content: Publication Date (field_publication_date) */
+  /* Contextual filter: Field: Publication Date (field_publication_date) */
   $handler->display->display_options['arguments']['field_publication_date_value']['id'] = 'field_publication_date_value';
   $handler->display->display_options['arguments']['field_publication_date_value']['table'] = 'field_data_field_publication_date';
   $handler->display->display_options['arguments']['field_publication_date_value']['field'] = 'field_publication_date_value';
@@ -329,6 +336,23 @@ function osha_blog_views_default_views() {
   $handler->display->display_options['style_plugin'] = 'rss';
   $handler->display->display_options['row_plugin'] = 'node_rss';
   $handler->display->display_options['path'] = 'blog/feed';
+
+  /* Display: Tags Posts */
+  $handler = $view->new_display('page', 'Tags Posts', 'page_2');
+  $handler->display->display_options['defaults']['title'] = FALSE;
+  $handler->display->display_options['title'] = 'Tags posts';
+  $handler->display->display_options['defaults']['arguments'] = FALSE;
+  /* Contextual filter: Field: Tags (field_tags) */
+  $handler->display->display_options['arguments']['field_tags_tid']['id'] = 'field_tags_tid';
+  $handler->display->display_options['arguments']['field_tags_tid']['table'] = 'field_data_field_tags';
+  $handler->display->display_options['arguments']['field_tags_tid']['field'] = 'field_tags_tid';
+  $handler->display->display_options['arguments']['field_tags_tid']['title_enable'] = TRUE;
+  $handler->display->display_options['arguments']['field_tags_tid']['title'] = '%1';
+  $handler->display->display_options['arguments']['field_tags_tid']['default_argument_type'] = 'fixed';
+  $handler->display->display_options['arguments']['field_tags_tid']['summary']['number_of_records'] = '0';
+  $handler->display->display_options['arguments']['field_tags_tid']['summary']['format'] = 'default_summary';
+  $handler->display->display_options['arguments']['field_tags_tid']['summary_options']['items_per_page'] = '25';
+  $handler->display->display_options['path'] = 'blog/tag/%';
   $translatables['blog'] = array(
     t('Master'),
     t('Latest posts'),
@@ -341,10 +365,10 @@ function osha_blog_views_default_views() {
     t('Items per page'),
     t('- All -'),
     t('Offset'),
-    t('« first'),
-    t('‹ previous'),
-    t('next ›'),
-    t('last »'),
+    t('«'),
+    t('‹'),
+    t('›'),
+    t('»'),
     t('Read more'),
     t('Post by date'),
     t('Posts by date'),
@@ -354,8 +378,132 @@ function osha_blog_views_default_views() {
     t('All'),
     t('%1'),
     t('Feed'),
+    t('Tags Posts'),
+    t('Tags posts'),
   );
   $export['blog'] = $view;
+
+  $view = new view();
+  $view->name = 'search_blog';
+  $view->description = '';
+  $view->tag = 'default';
+  $view->base_table = 'search_api_index_default_multilingual_node_index';
+  $view->human_name = 'Search Blog';
+  $view->core = 7;
+  $view->api_version = '3.0';
+  $view->disabled = FALSE; /* Edit this to true to make a default view disabled initially */
+
+  /* Display: Master */
+  $handler = $view->new_display('default', 'Master', 'default');
+  $handler->display->display_options['title'] = 'Search Blog';
+  $handler->display->display_options['use_more_always'] = FALSE;
+  $handler->display->display_options['access']['type'] = 'none';
+  $handler->display->display_options['cache']['type'] = 'none';
+  $handler->display->display_options['query']['type'] = 'views_query';
+  $handler->display->display_options['exposed_form']['type'] = 'basic';
+  $handler->display->display_options['exposed_form']['options']['submit_button'] = 'Search';
+  $handler->display->display_options['pager']['type'] = 'full';
+  $handler->display->display_options['pager']['options']['items_per_page'] = '10';
+  $handler->display->display_options['pager']['options']['offset'] = '0';
+  $handler->display->display_options['pager']['options']['id'] = '0';
+  $handler->display->display_options['pager']['options']['quantity'] = '9';
+  $handler->display->display_options['pager']['options']['tags']['first'] = '«';
+  $handler->display->display_options['pager']['options']['tags']['previous'] = '‹';
+  $handler->display->display_options['pager']['options']['tags']['next'] = '›';
+  $handler->display->display_options['pager']['options']['tags']['last'] = '»';
+  $handler->display->display_options['style_plugin'] = 'default';
+  $handler->display->display_options['row_plugin'] = 'entity';
+  $handler->display->display_options['row_options']['view_mode'] = 'teaser';
+  /* Header: Global: Unfiltered text */
+  $handler->display->display_options['header']['area_text_custom']['id'] = 'area_text_custom';
+  $handler->display->display_options['header']['area_text_custom']['table'] = 'views';
+  $handler->display->display_options['header']['area_text_custom']['field'] = 'area_text_custom';
+  /* No results behavior: Global: Unfiltered text */
+  $handler->display->display_options['empty']['area_text_custom']['id'] = 'area_text_custom';
+  $handler->display->display_options['empty']['area_text_custom']['table'] = 'views';
+  $handler->display->display_options['empty']['area_text_custom']['field'] = 'area_text_custom';
+  $handler->display->display_options['empty']['area_text_custom']['empty'] = TRUE;
+  $handler->display->display_options['empty']['area_text_custom']['content'] = 'No results';
+  /* Field: Indexed Multilingual Node: Multilingual ID */
+  $handler->display->display_options['fields']['search_api_et_id']['id'] = 'search_api_et_id';
+  $handler->display->display_options['fields']['search_api_et_id']['table'] = 'search_api_index_default_multilingual_node_index';
+  $handler->display->display_options['fields']['search_api_et_id']['field'] = 'search_api_et_id';
+  /* Sort criterion: Search: Relevance */
+  $handler->display->display_options['sorts']['search_api_relevance']['id'] = 'search_api_relevance';
+  $handler->display->display_options['sorts']['search_api_relevance']['table'] = 'search_api_index_default_multilingual_node_index';
+  $handler->display->display_options['sorts']['search_api_relevance']['field'] = 'search_api_relevance';
+  $handler->display->display_options['sorts']['search_api_relevance']['order'] = 'DESC';
+  /* Sort criterion: Indexed Multilingual Node: Publication date */
+  $handler->display->display_options['sorts']['field_publication_date']['id'] = 'field_publication_date';
+  $handler->display->display_options['sorts']['field_publication_date']['table'] = 'search_api_index_default_multilingual_node_index';
+  $handler->display->display_options['sorts']['field_publication_date']['field'] = 'field_publication_date';
+  $handler->display->display_options['sorts']['field_publication_date']['order'] = 'DESC';
+  /* Filter criterion: Indexed Multilingual Node: Status */
+  $handler->display->display_options['filters']['status']['id'] = 'status';
+  $handler->display->display_options['filters']['status']['table'] = 'search_api_index_default_multilingual_node_index';
+  $handler->display->display_options['filters']['status']['field'] = 'status';
+  $handler->display->display_options['filters']['status']['value'] = array(
+    1 => '1',
+  );
+  /* Filter criterion: Indexed Multilingual Node: Content type */
+  $handler->display->display_options['filters']['type']['id'] = 'type';
+  $handler->display->display_options['filters']['type']['table'] = 'search_api_index_default_multilingual_node_index';
+  $handler->display->display_options['filters']['type']['field'] = 'type';
+  $handler->display->display_options['filters']['type']['value'] = array(
+    'blog' => 'blog',
+  );
+  /* Filter criterion: Search: Fulltext search */
+  $handler->display->display_options['filters']['search_api_views_fulltext']['id'] = 'search_api_views_fulltext';
+  $handler->display->display_options['filters']['search_api_views_fulltext']['table'] = 'search_api_index_default_multilingual_node_index';
+  $handler->display->display_options['filters']['search_api_views_fulltext']['field'] = 'search_api_views_fulltext';
+  $handler->display->display_options['filters']['search_api_views_fulltext']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['search_api_views_fulltext']['expose']['operator_id'] = 'search_api_views_fulltext_op';
+  $handler->display->display_options['filters']['search_api_views_fulltext']['expose']['label'] = 'Free text search';
+  $handler->display->display_options['filters']['search_api_views_fulltext']['expose']['operator'] = 'search_api_views_fulltext_op';
+  $handler->display->display_options['filters']['search_api_views_fulltext']['expose']['identifier'] = 'filter';
+  $handler->display->display_options['filters']['search_api_views_fulltext']['expose']['remember_roles'] = array(
+    2 => '2',
+    1 => 0,
+    3 => 0,
+  );
+  $handler->display->display_options['filters']['search_api_views_fulltext']['fields'] = array(
+    'body:summary' => 'body:summary',
+    'body:value' => 'body:value',
+    'title_field' => 'title_field',
+  );
+  /* Filter criterion: Indexed Multilingual Node: Publication date */
+  $handler->display->display_options['filters']['field_publication_date']['id'] = 'field_publication_date';
+  $handler->display->display_options['filters']['field_publication_date']['table'] = 'search_api_index_default_multilingual_node_index';
+  $handler->display->display_options['filters']['field_publication_date']['field'] = 'field_publication_date';
+  $handler->display->display_options['filters']['field_publication_date']['operator'] = '<=';
+  $handler->display->display_options['filters']['field_publication_date']['value'] = 'now';
+
+  /* Display: Page */
+  $handler = $view->new_display('page', 'Page', 'page');
+  $handler->display->display_options['exposed_block'] = TRUE;
+  $handler->display->display_options['path'] = 'search/blog';
+  $translatables['search_blog'] = array(
+    t('Master'),
+    t('Search Blog'),
+    t('more'),
+    t('Search'),
+    t('Reset'),
+    t('Sort by'),
+    t('Asc'),
+    t('Desc'),
+    t('Items per page'),
+    t('- All -'),
+    t('Offset'),
+    t('«'),
+    t('‹'),
+    t('›'),
+    t('»'),
+    t('No results'),
+    t('Multilingual ID'),
+    t('Free text search'),
+    t('Page'),
+  );
+  $export['search_blog'] = $view;
 
   return $export;
 }

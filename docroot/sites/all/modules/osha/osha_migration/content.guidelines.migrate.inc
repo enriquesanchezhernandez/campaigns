@@ -118,6 +118,10 @@ class OshaMigrateGuidelines extends OSHADynamicMigration {
       return FALSE;
     }
 
+    //format publication date according to UTC timezone
+    $row->publication_date = MigrationUtil::getUTCTimestamp($row->publication_date);
+    $row->expiration_date = MigrationUtil::getUTCTimestamp($row->expiration_date);
+
     $row->language = 'en';
     $tags = $row->subject . ', ' . $row->subcategory;
     $row->subject = MigrationUtil::decodeTagsTerms($tags);
@@ -203,15 +207,17 @@ class OshaMigrateGuidelines extends OSHADynamicMigration {
    */
   public function complete($entity, $row) {
     //extract directive title from path
-    if(preg_match(self::PATH_PATTERN, $row->path, $matches)){
+    if (preg_match(self::PATH_PATTERN, $row->path, $matches)) {
       //create alias
       $args = array(
-        'source' => 'node/'.$entity->nid,
-        'alias' => 'legislation/guidelines/'.$matches[3],
+        'source' => 'node/' . $entity->nid,
+        'alias' => 'legislation/guidelines/' . $matches[3],
         'language' => 'en'
       );
       path_save($args);
-    }else{
+      parent::createRedirectsFromAliases($entity, $row);
+    }
+    else {
       // call MigrationUtil::createAliases
       parent::complete($entity, $row);
     }
@@ -309,6 +315,7 @@ class GuidelineContentListCSV extends MigrateList {
             self::$data[$path]['title_field'][$language] = $raw_data[$key];
             break;
 
+          case 'aliases':
           case 'description':
           case 'text':
             self::$data[$path][$field][$language] = $raw_data[$key];

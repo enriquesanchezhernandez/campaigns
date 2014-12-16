@@ -63,6 +63,41 @@ class OshaTMGMTJobItem extends TMGMTJobItem {
   }
 
   /**
+   * Move the Job Item to On Translation state.
+   *
+   * When re-enabled the translation by t manager.
+   */
+  public function toOnTranslation($message = '') {
+    // Reset validators.
+    $validators = osha_tmgmt_load_validators_by_job_item($this);
+    if (!empty($validators)) {
+      $index = 0;
+      foreach ($validators as $validator) {
+        $validator->message = '';
+        $validator->approved = NULL;
+        $validator->next = 0;
+        if ($index == 0) {
+          $validator->next = 1;
+        }
+        entity_save('translation_validator', $validator);
+        $index++;
+      }
+    }
+    $this->state = TMGMT_JOB_ITEM_STATE_ACTIVE;
+    // Save job.
+    global $user;
+    $this->save();
+    $this->addMessage('@name re-enabled the translation. Job item is now "@state". Message: @message',
+      array(
+        '@name' => $user->name,
+        '@state' => osha_tmgmt_get_job_item_state_label(TMGMT_JOB_ITEM_STATE_ACTIVE),
+        '@message' => $message,
+      ));
+    OshaWorkflowNotifications::notifyTranslationLayoutApprovers($this);
+    drupal_set_message(t('You have Enabled the Translation'));
+  }
+
+  /**
    * Move the Job Item to Translation Validated state.
    */
   public function toTranslationValidated($message = '') {
@@ -106,10 +141,10 @@ class OshaTMGMTJobItem extends TMGMTJobItem {
     $this->addMessage('@name: Translation Rejected. Job item is now "@state". Message: @message',
       array(
         '@name' => $user->name,
-        '@state' => osha_tmgmt_get_job_item_state_label(OSHA_TMGMT_JOB_ITEM_STATE_TranslationValidationRequired),
+        '@state' => osha_tmgmt_get_job_item_state_label(TMGMT_JOB_ITEM_STATE_ABORTED),
         '@message' => $message,
       ));
-    OshaWorkflowNotifications::notifyTranslationValidators($this);
+    OshaWorkflowNotifications::notifyTranslationRejected($this);
     drupal_set_message(t('You have Rejected this translation'));
   }
 
@@ -127,7 +162,13 @@ class OshaTMGMTJobItem extends TMGMTJobItem {
         '@message' => $message,
       ));
     OshaWorkflowNotifications::notifyTranslationProjectManager($this);
-    drupal_set_message(t('You have set Translation as Ready to Publish.'));
+    drupal_set_message(
+      t('You have set Translation as @state.',
+        array(
+          '@state' => osha_tmgmt_get_job_item_state_label(OSHA_TMGMT_JOB_ITEM_STATE_TranslatedReadyToPublish),
+        )
+      )
+    );
   }
 
   public function acceptTranslationIntoEntity($message = '') {
@@ -198,10 +239,13 @@ class OshaTMGMTJobItem extends TMGMTJobItem {
             '#origin' => $translation['#origin'],
             '#timestamp' => $translation['#timestamp'],
           );
+          // Removed as asked in CW-791.
+          /*
           $this->addMessage('Translation for customized @key received. Revert your changes if you wish to use it.', array('@key' => tmgmt_ensure_keys_string($key)));
           // Unset text and origin so that the current translation does not
           // get overridden.
           unset($translation['#text'], $translation['#origin'], $translation['#timestamp']);
+          */
         }
         // Do the same if the translation was already reviewed and origin is
         // remote.

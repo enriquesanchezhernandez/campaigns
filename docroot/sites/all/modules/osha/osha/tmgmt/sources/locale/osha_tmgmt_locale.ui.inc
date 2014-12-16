@@ -42,7 +42,8 @@ class OSHATMGMTLocaleSourceUIController extends TMGMTLocaleSourceUIController {
       ->condition('ls.lid', $osha, 'in')
       ->orderBy('source');
     if (!empty($search_label)) {
-      $select->condition('ls.source', "%$search_label%", 'LIKE');
+      $select->where('LOWER(CAST(ls.source AS CHAR)) LIKE :search',
+        array(':search' => "%" . db_like(strtolower($search_label)) . "%"));
     }
     if (!empty($missing_target_language) && in_array($missing_target_language, $languages)) {
       $select->isNull("lt_$missing_target_language.language");

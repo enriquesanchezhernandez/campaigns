@@ -16,7 +16,7 @@ class OshaTMGMTJob extends TMGMTJob {
         $job_item = $items[$item_id];
         $job_item->addTranslatedData($data, $key);
         if ($job_item->isAborted()) {
-          $job_item->setState(TMGMT_JOB_ITEM_STATE_ACTIVE);
+          $job_item->toOnTranslation();
         }
       }
     }
@@ -27,7 +27,7 @@ class OshaTMGMTJob extends TMGMTJob {
           $job_item = $items[$key];
           $job_item->addTranslatedData($value);
           if ($job_item->isAborted()) {
-            $job_item->setState(TMGMT_JOB_ITEM_STATE_ACTIVE);
+            $job_item->toOnTranslation();
           }
         }
       }
@@ -47,6 +47,13 @@ class OshaTMGMTJob extends TMGMTJob {
           array('@job_item' => $job_item->label())));
       return FALSE;
     }
+  }
+
+  /**
+   * Get the number of job items in a state.
+   */
+  public function getCountofState($state) {
+    return osha_tmgmt_job_statistic_items($this, $state);
   }
 
 

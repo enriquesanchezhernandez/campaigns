@@ -61,3 +61,195 @@ function osha_press_release_node_view($node, $view_mode, $langcode) {
     $node->content['field_publication_date'][0]['#markup'] = '<span class="press-release-date">'.$message.'</span>';
   }
 }
+
+/**
+ * Implements hook_block_info().
+ */
+function osha_press_release_block_info() {
+  $blocks['osha_press_rel_join_list'] = array(
+    'info' => t('Join our News Distribution List'),
+    'status' => 1,
+    'region' => 'sidebar_second',
+    'visibility' => BLOCK_VISIBILITY_LISTED,
+    'pages' => 'press-room',
+    'cache' => DRUPAL_NO_CACHE,
+    'weight' => 3
+  );
+  $blocks['osha_press_rel_become_partner'] = array(
+    'info' => t('Become a media partner'),
+    'status' => 1,
+    'region' => 'sidebar_second',
+    'visibility' => BLOCK_VISIBILITY_LISTED,
+    'pages' => 'press-room',
+    'cache' => DRUPAL_NO_CACHE,
+    'weight' => 4
+  );
+
+  return $blocks;
+}
+
+/**
+ * Implements hook_block_configure().
+ *
+ * This hook declares configuration options for blocks provided by this module.
+ */
+function osha_press_release_block_configure($delta = '') {
+  $form = array();
+
+  switch($delta) {
+    case 'osha_press_rel_join_list':
+      $form['join_dist_list_block_intro_text'] = array(
+        '#type' => 'textarea',
+        '#title' => t('Block intro text'),
+        '#size' => 60,
+        '#description' => t('This text will appear in the Join our News Distribution List block.'),
+        '#default_value' => variable_get('join_dist_list_block_intro_text',
+          t('Register here to receive our news releases.')),
+      );
+      $form['join_dist_list_link_label'] = array(
+        '#type' => 'textfield',
+        '#title' => t('Subscription link label'),
+        '#size' => 60,
+        '#description' => t('This text will appear as link label in the Join our News Distribution List block after intro text.'),
+        '#default_value' => variable_get('join_dist_list_link_label', t('Register')),
+      );
+      $form['join_dist_list_link_url'] = array(
+        '#type' => 'textfield',
+        '#title' => t('Subscription mailto email'),
+        '#size' => 60,
+        '#description' => t('This text will appear as mailto link in the Join our News Distribution List block after intro text.'),
+        '#default_value' => variable_get('join_dist_list_link_url', 'news@osha.europa.eu'),
+      );
+      $form['join_dist_list_email_text'] = array(
+        '#type' => 'textarea',
+        '#title' => t('Registration email body'),
+        '#description' => t('Subscription email text.'),
+        '#default_value' => variable_get('join_dist_list_email_text',
+          "----------
+Dear Sir or Madam,
+
+To receive EU-OSHA's news releases by email, please send us full contact details. We will then include you in our news distribution list. You have the option to unsubscribe at any point.
+----------"),
+      );
+
+      break;
+    case 'osha_press_rel_become_partner':
+      $form['become_partner_block_intro_text'] = array(
+        '#type' => 'textfield',
+        '#title' => t('Block intro text'),
+        '#size' => 60,
+        '#description' => t('This text will appear in the Become a media partner block.'),
+        '#default_value' => variable_get('become_partner_block_intro_text',
+          t('For more information on the partnership and how to apply, see the campaign media partnership offer.')),
+      );
+      $form['become_partner_link_label'] = array(
+        '#type' => 'textfield',
+        '#title' => t('Link label'),
+        '#size' => 60,
+        '#description' => t('This text will appear as link label in the Become a media partner block.'),
+        '#default_value' => variable_get('become_partner_link_label', t('See more')),
+      );
+      $form['become_partner_link_url'] = array(
+        '#type' => 'textfield',
+        '#title' => t('Link URL'),
+        '#size' => 60,
+        '#description' => t('This text will appear as link url in the Become a media partner block.'),
+        '#default_value' => variable_get('become_partner_link_url', 'https://www.healthy-workplaces.eu/en/campaign-partners/media-partners'),
+      );
+      break;
+  }
+  return $form;
+}
+
+/**
+ * Implements hook_block_save().
+ */
+function osha_press_release_block_save($delta = '', $edit = array()) {
+  // We need to save settings from the configuration form.
+  switch ($delta) {
+    case 'osha_press_rel_join_list':
+      variable_set('join_dist_list_block_intro_text', $edit['join_dist_list_block_intro_text']);
+      variable_set('join_dist_list_link_label', $edit['join_dist_list_link_label']);
+      variable_set('join_dist_list_link_url', $edit['join_dist_list_link_url']);
+      variable_set('join_dist_list_email_text', $edit['join_dist_list_email_text']);
+      break;
+    case 'osha_press_rel_become_partner':
+      variable_set('become_partner_block_intro_text', $edit['become_partner_block_intro_text']);
+      variable_set('become_partner_link_label', $edit['become_partner_link_label']);
+      variable_set('become_partner_link_url', $edit['become_partner_link_url']);
+      break;
+  }
+}
+
+/**
+ * Implements hook_block_view()
+ *
+ * @param string $delta Block delta (block identifier)
+ * @return array
+ */
+function osha_press_release_block_view($delta = '') {
+  switch($delta) {
+    case 'osha_press_rel_join_list':
+      if(user_access('access content')) {
+        $block['subject'] = t('Join our News Distribution List');
+        $block['content'] = theme('join_dist_list_block', array(
+          'join_dist_list_block_intro_text' => variable_get('join_dist_list_block_intro_text',
+            t('Register here to receive our news releases.')),
+          'join_dist_list_link_label' => variable_get('join_dist_list_link_label', t('Register')),
+          'join_dist_list_link_url' => variable_get('join_dist_list_link_url', 'news@osha.europa.eu'),
+          'join_dist_list_email_text' =>  variable_get('join_dist_list_email_text',
+            "----------
+Dear Sir or Madam,
+
+To receive EU-OSHA’s news releases by email, please send us full contact details. We will then include you in our news distribution list. You have the option to unsubscribe at any point.
+----------")
+        ));
+        return $block;
+      }
+      break;
+    case 'osha_press_rel_become_partner':
+      if(user_access('access content')) {
+        $block['subject'] = t('Become a media partner');
+        $block['content'] = theme('become_partner_block', array(
+          'become_partner_block_intro_text' => variable_get('become_partner_block_intro_text',
+            t('For more information on the partnership and how to apply, see the campaign media partnership offer.')),
+          'become_partner_link_label' => variable_get('become_partner_link_label', t('See more')),
+          'become_partner_link_url' => variable_get('become_partner_link_url',
+            'https://www.healthy-workplaces.eu/en/campaign-partners/media-partners')
+        ));
+        return $block;
+      }
+      break;
+  }
+  return array();
+}
+
+/**
+ * Implements hook_theme().
+ */
+function osha_press_release_theme() {
+  $theme = array();
+  $path = drupal_get_path('module', 'osha_press_release');
+
+  $theme['join_dist_list_block'] = array(
+    'template' => 'join_dist_list_block',
+    'variables' => array(
+      'join_dist_list_block_intro_text' => NULL,
+      'join_dist_list_link_label' => NULL,
+      'join_dist_list_link_url' => NULL,
+      'join_dist_list_email_text' => NULL
+    ),
+    'path' => $path . '/templates'
+  );
+  $theme['become_partner_block'] = array(
+    'template' => 'become_partner_block',
+    'variables' => array(
+      'become_partner_block_intro_text' => NULL,
+      'become_partner_link_label' => NULL,
+      'become_partner_link_url' => NULL
+    ),
+    'path' => $path . '/templates'
+  );
+
+  return $theme;
+}

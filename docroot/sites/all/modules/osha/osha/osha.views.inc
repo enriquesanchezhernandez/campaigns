@@ -13,7 +13,10 @@ function osha_views_query_alter(&$view, &$query) {
     if (isset($query->table_queue['workbench_moderation_node_history']['join']->type)) {
       $query->table_queue['workbench_moderation_node_history']['join']->type = 'LEFT';
     }
-
+    if (isset($query->table_queue['node_revision'])) {
+      $query->table_queue['node_revision']['join']->field = 'nid';
+      $query->table_queue['node_revision']['join']->left_field = 'nid';
+    }
     // Overwrite the view.
     if (in_array('views', arg())) {
       drupal_set_message('Be careful! Overwriting query in osha.views.inc. Changing filters order may affect the view.', 'warning');

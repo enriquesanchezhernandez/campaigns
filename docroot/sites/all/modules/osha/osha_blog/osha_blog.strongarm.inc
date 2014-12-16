@@ -83,6 +83,35 @@ function osha_blog_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'exclude_node_title_content_type_modes_blog';
+  $strongarm->value = array(
+    'full' => 'full',
+    'teaser' => 'teaser',
+    'highlights_item' => 'highlights_item',
+    'newsletter_item' => 'newsletter_item',
+    'osha_resources' => 'osha_resources',
+    'osha_wiki' => 'osha_wiki',
+    'rss' => 0,
+    'search_index' => 0,
+    'search_result' => 0,
+    'diff_standard' => 0,
+    'osha_slideshow' => 0,
+    'print' => 0,
+    'token' => 0,
+    'nodeform' => 0,
+  );
+  $export['exclude_node_title_content_type_modes_blog'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'exclude_node_title_content_type_value_blog';
+  $strongarm->value = 'all';
+  $export['exclude_node_title_content_type_value_blog'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'field_bundle_settings_node__blog';
   $strongarm->value = array(
     'view_modes' => array(

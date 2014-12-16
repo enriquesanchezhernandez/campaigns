@@ -11,14 +11,6 @@ function osha_blocks_default_fe_block_boxes() {
   $export = array();
 
   $fe_block_boxes = new stdClass();
-  $fe_block_boxes->info = 'Join OSHMail subscribers';
-  $fe_block_boxes->format = 'full_html';
-  $fe_block_boxes->machine_name = 'join_oshmail_subscribers';
-  $fe_block_boxes->body = '<div id="join_subscribers"><img src="/sites/all/themes/osha_frontend/images/content/blocks/join_65000_subscribers.png" alt="Join OSHMail Subscribers" /></div>';
-
-  $export['join_oshmail_subscribers'] = $fe_block_boxes;
-
-  $fe_block_boxes = new stdClass();
   $fe_block_boxes->info = 'Job Vacancies Reserve List';
   $fe_block_boxes->format = 'full_html';
   $fe_block_boxes->machine_name = 'osha_job_vacancies_reserve_block';

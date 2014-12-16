@@ -14,3 +14,28 @@ function osha_search_update_7001() {
     drupal_set_message('Failed to find search page menu link Site', 'error');
   }
 }
+
+/**
+ * Configure new search autocomplete callback
+ */
+function osha_search_update_7002() {
+  // Configure the search form.
+  $fid = db_select('search_autocomplete_forms', 'f')
+    ->fields('f', array('fid'))
+    ->condition('selector', '#edit-search-block-form--2')
+    ->execute()->fetchField(0);
+  if ($fid) {
+    db_update('search_autocomplete_forms')
+      ->fields(array(
+        'theme' => 'basic-blue.css',
+        'data_callback' => 'search-autocomplete/',
+        'data_source' => 'callback',
+        'max_sug' => 25,
+      ))
+      ->condition('selector', '#edit-search-block-form--2')
+      ->execute();
+  }
+  else {
+    drupal_set_message('Failed to configure search_autocomplete form', 'error');
+  }
+}

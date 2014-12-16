@@ -462,23 +462,6 @@ $handler->display->display_options['filters']['nid']['expose']['remember_roles']
   1 => 0,
   3 => 0,
 );
-/* Filter criterion: Content: Updated date */
-$handler->display->display_options['filters']['changed']['id'] = 'changed';
-$handler->display->display_options['filters']['changed']['table'] = 'node';
-$handler->display->display_options['filters']['changed']['field'] = 'changed';
-$handler->display->display_options['filters']['changed']['operator'] = 'between';
-$handler->display->display_options['filters']['changed']['group'] = 1;
-$handler->display->display_options['filters']['changed']['exposed'] = TRUE;
-$handler->display->display_options['filters']['changed']['expose']['operator_id'] = 'changed_op';
-$handler->display->display_options['filters']['changed']['expose']['label'] = 'Updated';
-$handler->display->display_options['filters']['changed']['expose']['description'] = 'Select an interval for filtering';
-$handler->display->display_options['filters']['changed']['expose']['operator'] = 'changed_op';
-$handler->display->display_options['filters']['changed']['expose']['identifier'] = 'changed';
-$handler->display->display_options['filters']['changed']['expose']['remember_roles'] = array(
-  2 => '2',
-  1 => 0,
-  3 => 0,
-);
 /* Filter criterion: Entity translation: Translation exists */
 $handler->display->display_options['filters']['translation_exists']['id'] = 'translation_exists';
 $handler->display->display_options['filters']['translation_exists']['table'] = 'entity_translation';
@@ -703,6 +686,29 @@ $handler->display->display_options['filters']['state']['group_info']['group_item
     ),
   ),
 );
+/* Filter criterion: Content revision: Updated date */
+$handler->display->display_options['filters']['timestamp_1']['id'] = 'timestamp_1';
+$handler->display->display_options['filters']['timestamp_1']['table'] = 'node_revision';
+$handler->display->display_options['filters']['timestamp_1']['field'] = 'timestamp';
+$handler->display->display_options['filters']['timestamp_1']['operator'] = '>=';
+$handler->display->display_options['filters']['timestamp_1']['group'] = 1;
+$handler->display->display_options['filters']['timestamp_1']['exposed'] = TRUE;
+$handler->display->display_options['filters']['timestamp_1']['expose']['operator_id'] = 'timestamp_1_op';
+$handler->display->display_options['filters']['timestamp_1']['expose']['label'] = 'Updated after';
+$handler->display->display_options['filters']['timestamp_1']['expose']['operator'] = 'timestamp_1_op';
+$handler->display->display_options['filters']['timestamp_1']['expose']['identifier'] = 'from_date';
+
+/* Filter criterion: Content revision: Updated date */
+$handler->display->display_options['filters']['timestamp']['id'] = 'timestamp';
+$handler->display->display_options['filters']['timestamp']['table'] = 'node_revision';
+$handler->display->display_options['filters']['timestamp']['field'] = 'timestamp';
+$handler->display->display_options['filters']['timestamp']['operator'] = '<=';
+$handler->display->display_options['filters']['timestamp']['group'] = 1;
+$handler->display->display_options['filters']['timestamp']['exposed'] = TRUE;
+$handler->display->display_options['filters']['timestamp']['expose']['operator_id'] = 'timestamp_op';
+$handler->display->display_options['filters']['timestamp']['expose']['label'] = 'Updated before';
+$handler->display->display_options['filters']['timestamp']['expose']['operator'] = 'timestamp_op';
+$handler->display->display_options['filters']['timestamp']['expose']['identifier'] = 'to_date';
 
 /* Display: OSHA content selection */
 $handler = $view->new_display('page', 'OSHA content selection', 'tmgmt_node_selection_view_page');
@@ -746,9 +752,10 @@ $translatables['tmgmt_node_selection_view'] = array(
   t('Use CTRL to select multiple items'),
   t('Free text'),
   t('Node ID'),
-  t('Select an interval for filtering'),
   t('Not translated in'),
   t('Activity'),
   t('Section'),
   t('Published includes also items without publishing workflow. Use CTRL to select multiple items'),
+  t('Updated after'),
+  t('Updated before'),
 );

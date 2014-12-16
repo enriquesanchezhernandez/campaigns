@@ -358,6 +358,14 @@ $options['init-modules'] = array(
   'search_and_replace',
   'nodeblock',
   'quicktabs',
+  'context',
+  'context_ui',
+  'context_block_visibility',
+  'site_map',
+  'smart_trim',
+  'menu_attributes',
+  'menu_item_visibility',
+  'shs',
 
   // Enable last (conflict with rules)
   'uuid',
@@ -388,11 +396,13 @@ $options['init-modules'] = array(
   'chosen',
 
   'calendar',
+  'date_popup',
   'feeds',
   'feeds_import',
   'feeds_ui',
   'feeds_tamper',
   'feeds_tamper_ui',
+  'views_php',
 
   //Allow anonymous comments per node type
   'comment_allow_anonymous',
@@ -408,6 +418,7 @@ $options['init-modules'] = array(
   'osha_publication',
   'osha_calls',
   'osha_blog',
+  'osha_infographics',
   'osha_tmgmt',
   'osha_highlight',
   'osha_press_contact',
@@ -424,6 +435,7 @@ $options['init-modules'] = array(
   'osha_resources',
   'osha_slideshare',
   'osha_events',
+  'osha_alert_service',
 
   'linkchecker',
   'osha_linkchecker',

@@ -32,3 +32,11 @@ function osha_calls_update_7001() {
     }
   }
 }
+
+// CW-988 delete field_summary and field_calls_info
+function osha_calls_update_7002() {
+  field_delete_field('field_calls_info');
+  if ($instance = field_info_instance('node', 'field_summary', 'calls')) {
+    field_delete_instance($instance);
+  }
+}

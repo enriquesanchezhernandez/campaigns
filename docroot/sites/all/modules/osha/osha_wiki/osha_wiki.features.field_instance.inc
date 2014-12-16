@@ -553,6 +553,7 @@ function osha_wiki_field_default_field_instances() {
     'label' => 'URL',
     'required' => 0,
     'settings' => array(
+      'absolute_url' => 1,
       'attributes' => array(
         'class' => '',
         'configurable_title' => 0,
@@ -572,6 +573,7 @@ function osha_wiki_field_default_field_instances() {
       ),
       'rel_remove' => 'default',
       'title' => 'value',
+      'title_label_use_field_label' => FALSE,
       'title_maxlength' => 255,
       'title_value' => 'Read full OSHWiki article',
       'url' => 0,

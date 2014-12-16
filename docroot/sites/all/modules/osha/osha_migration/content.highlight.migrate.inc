@@ -122,6 +122,10 @@ class MigrateOshaHighlight extends OSHADynamicMigration {
       return FALSE;
     }
 
+    //format date according to UTC timezone
+    $row->publication_date = MigrationUtil::getUTCTimestamp($row->publication_date);
+    $row->expiration_date = MigrationUtil::getUTCTimestamp($row->expiration_date);
+
     $type = strstr($row->id, '/', TRUE);
     if ($type !== 'teaser') {
       return FALSE;
@@ -169,12 +173,8 @@ class MigrateOshaHighlight extends OSHADynamicMigration {
         $has_translation = TRUE;
       }
       if (!empty($row->description[$language])) {
-        $entity->field_summary[$language][0]['value'] = MigrationUtil::decodeHTMLText($row->description[$language]);
-        $entity->field_summary[$language][0]['format'] = 'full_html';
-        $has_translation = TRUE;
-      }
-      if (!empty($row->text[$language])) {
-        $entity->body[$language][0]['value'] = MigrationUtil::decodeHTMLText($row->text[$language]);
+        // CW-988 Copy row->description into body instead of summary
+        $entity->body[$language][0]['value'] = MigrationUtil::decodeHTMLText($row->description[$language]);
         $entity->body[$language][0]['format'] = 'full_html';
         $has_translation = TRUE;
       }
@@ -268,10 +268,9 @@ class HighlightContentListCSV extends MigrateList {
             }
             self::$data[$path]['title_field'][$language] = $raw_data[$key];
             break;
-
+          case 'aliases':
           case 'image':
           case 'description':
-          case 'text':
             self::$data[$path][$field][$language] = $raw_data[$key];
             break;
 

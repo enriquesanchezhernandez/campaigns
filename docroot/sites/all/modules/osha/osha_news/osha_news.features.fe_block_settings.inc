@@ -20,12 +20,7 @@ function osha_news_default_fe_block_settings() {
     'i18n_mode' => 0,
     'module' => 'views',
     'node_types' => array(),
-    'pages' => '<front>
-seminars/*
-seminar/*
-articles/blog
-blog/*
-*/blog/*',
+    'pages' => '',
     'roles' => array(),
     'themes' => array(
       'bartik' => array(
@@ -54,7 +49,7 @@ blog/*
       ),
     ),
     'title' => '',
-    'visibility' => 1,
+    'visibility' => 0,
   );
 
   return $export;

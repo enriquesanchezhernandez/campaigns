@@ -179,6 +179,11 @@ class OshaMigratePublications extends OSHADynamicMigration {
     if (MigrationUtil::entityRowValidator($row, $this) === FALSE) {
       return FALSE;
     }
+
+    //format date according to UTC timezone
+    $row->publication_date = MigrationUtil::getUTCTimestamp($row->publication_date);
+    $row->expiration_date = MigrationUtil::getUTCTimestamp($row->expiration_date);
+
     $row->language = 'en';
     $tags = $row->subject . ',' . $row->subcategory;
     $row->subject = MigrationUtil::decodeTagsTerms($tags, 'field_tags_code', TRUE);
@@ -456,6 +461,7 @@ class PublicationMigrateList extends MigrateList {
             break;
 
           case 'description':
+          case 'aliases':
           case 'order_id':
           case 'file':
           case 'cover_image':

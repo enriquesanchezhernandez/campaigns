@@ -52,8 +52,7 @@ function osha_tmgmt_user_can_edit_job_item($job_item) {
       break;
 
     case TMGMT_JOB_ITEM_STATE_ACTIVE:
-      if (user_access('set job item to translated state')
-      && user_access('abort job item')) {
+      if (user_access('set job item to translated state')) {
         return TRUE;
       }
       break;
@@ -351,9 +350,14 @@ function osha_tmgmt_get_job_translation_validators_group($eid) {
  * @return array
  *   Array of users with the required skills.
  */
-function osha_tmgmt_get_content_validators_by_skill($target_language, $source_language = 'en') {
+function osha_tmgmt_get_content_validators_by_skill($target_language, $source_language = 'en', $group_id = NULL) {
   $ret = array();
-  $users = osha_workflow_users_get_users_from_role(OSHA_WORKFLOW_ROLE_CONTENT_VALIDATOR);
+  if ($group_id) {
+    $users = osha_tmgmt_get_users_from_collection($group_id);
+  }
+  else {
+    $users = osha_workflow_users_get_users_from_role(OSHA_WORKFLOW_ROLE_CONTENT_VALIDATOR);
+  }
   foreach ($users as $user) {
     if (!empty($user->tmgmt_translation_skills[LANGUAGE_NONE])) {
       foreach ($user->tmgmt_translation_skills[LANGUAGE_NONE] as $skill) {
@@ -374,9 +378,9 @@ function osha_tmgmt_get_content_validators_by_skill($target_language, $source_la
  * @return array
  *   Array rendered as options
  */
-function osha_tmgmt_get_content_validators_by_skill_as_options($target_language, $source_language = 'en') {
+function osha_tmgmt_get_content_validators_by_skill_as_options($target_language, $source_language = 'en', $group = NULL) {
   $ret = array();
-  $users = osha_tmgmt_get_content_validators_by_skill($target_language, $source_language);
+  $users = osha_tmgmt_get_content_validators_by_skill($target_language, $source_language, $group);
   foreach ($users as $user) {
     $ret[$user->uid] = $user->name;
   }
@@ -424,6 +428,21 @@ function osha_tmgmt_layout_validator_approve_submit($form, &$form_state) {
 function osha_tmgmt_job_item_validators_form($form, &$form_state, $job_item) {
   module_load_include('inc', 'osha_workflow', 'osha_workflow.api');
   module_load_include('inc', 'osha_workflow', 'osha_workflow.admin');
+  if (empty($job_item->eid)) {
+    drupal_set_message('Please set a content validators group to the job!', 'warning');
+    return;
+  }
+  $cvalidators = osha_tmgmt_get_content_validators_by_skill_as_options($job_item->target_language, $job_item->source_language, $job_item->eid);
+  if (empty($cvalidators)) {
+    $group = entity_collection_load($job_item->eid);
+    drupal_set_message(t('There are no users in group @group having @from to @to translation skill!',
+      array(
+        '@group' => $group->name,
+        '@from' => locale_language_name($job_item->source_language),
+        '@to' => locale_language_name($job_item->target_language),
+      )), 'warning');
+    return;
+  }
   $form_state['jobItem'] = $job_item;
   $can_edit = user_access('edit translation content validators');
   $form['#can_edit']  = $can_edit;
@@ -463,7 +482,6 @@ function osha_tmgmt_job_item_validators_form($form, &$form_state, $job_item) {
     );
     $weight++;
   }
-  $cvalidators = osha_tmgmt_get_content_validators_by_skill_as_options($job_item->target_language, $job_item->source_language);
   $form['add']['uid'] = array(
     '#type' => 'select',
     '#title' => t('Add validator'),
@@ -776,10 +794,61 @@ function osha_tmgmt_job_item_accept_submit($form, &$form_state) {
 }
 
 /**
+ * Callback for Enable Translation
+ */
+function osha_tmgmt_job_item_translation_enable($form, &$form_state) {
+  $job_item = $form_state['item'];
+  $message = '';
+  if (!empty($form_state['values']['action_message'])) {
+    $message = $form_state['values']['action_message'];
+  }
+  $job_item->toOnTranslation($message);
+}
+
+/**
  * Extra callback for Uploading XML file on a job.
  */
 function osha_tmgmt_file_translation_upload_submit($form, &$form_state) {
-  OshaWorkflowNotifications::notifyTranslationUploadedFile($form_state['tmgmt_job']);
+  // Ensure we have the file uploaded.
+  $job = $form_state['tmgmt_job'];
+  $supported_formats = array_keys(tmgmt_file_format_plugin_info());
+  if ($file = file_save_upload('file', array('file_validate_extensions' => array(implode(' ', $supported_formats))))) {
+    $extension = pathinfo($file->uri, PATHINFO_EXTENSION);
+    $controller = tmgmt_file_format_controller($extension);
+    if ($controller) {
+      // Validate the file.
+      $validated_job = $controller->validateImport($file->uri);
+      if (!$validated_job) {
+        $job->addMessage('Failed to validate file, import aborted.', array(), 'error');
+      }
+      elseif ($validated_job->tjid != $job->tjid) {
+        $uri = $validated_job->uri();
+        $label = $validated_job->label();
+        $job->addMessage('Import file is from job <a href="@url">@label</a>, import aborted.', array('@url' => url($uri['path']), '@label' => $label));
+      }
+      else {
+        try {
+          // Validation successful, start import.
+          $job->addTranslatedData($controller->import($file->uri));
+          $job->addMessage('Successfully imported file.');
+          OshaWorkflowNotifications::notifyTranslationUploadedFile($form_state['tmgmt_job']);
+          $job->has_file_uploaded = 1;
+          $job->save();
+        } catch (Exception $e) {
+          $job->addMessage('File import failed with the following message: @message', array('@message' => $e->getMessage()), 'error');
+        }
+      }
+    }
+  }
+  foreach ($job->getMessagesSince() as $message) {
+    // Ignore debug messages.
+    if ($message->type == 'debug') {
+      continue;
+    }
+    if ($text = $message->getMessage()) {
+      drupal_set_message(filter_xss($text), $message->type);
+    }
+  }
 }
 
   /**

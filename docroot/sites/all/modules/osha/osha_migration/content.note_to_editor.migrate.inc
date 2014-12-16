@@ -204,6 +204,7 @@ class NoteToEditorMigrateList extends MigrateList {
             self::$data[$path][$field][$language] = $path_language[2];
             continue;
           case 'text':
+          case 'aliases':
           case 'description':
             self::$data[$path][$field][$language] = $raw_data[$key];
             continue;

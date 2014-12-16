@@ -14,5 +14,9 @@ function osha_newsletter_enable() {
 
   $site_default_theme = variable_get('theme_default', 'bartik');
   variable_set('htmlmail_theme', $site_default_theme);
-  variable_set('htmlmail_postfilter', 'full_html');
+  variable_set('htmlmail_postfilter', '0');
+}
+
+function osha_newsletter_update_7001() {
+  variable_set('htmlmail_postfilter', '0');
 }

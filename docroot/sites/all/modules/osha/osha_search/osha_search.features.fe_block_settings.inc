@@ -63,7 +63,7 @@ legislation/directive/*',
     'i18n_mode' => 0,
     'module' => 'facetapi',
     'node_types' => array(),
-    'pages' => 'publications',
+    'pages' => 'search/publications',
     'roles' => array(),
     'themes' => array(
       'bartik' => array(
@@ -103,8 +103,7 @@ legislation/directive/*',
     'i18n_mode' => 0,
     'module' => 'facetapi',
     'node_types' => array(),
-    'pages' => 'publications
-search/*',
+    'pages' => 'search/*',
     'roles' => array(),
     'themes' => array(
       'bartik' => array(
@@ -184,7 +183,8 @@ search/*',
     'i18n_mode' => 0,
     'module' => 'menu',
     'node_types' => array(),
-    'pages' => 'search/*',
+    'pages' => 'search/site
+search/wiki',
     'roles' => array(),
     'themes' => array(
       'bartik' => array(
@@ -213,6 +213,46 @@ search/*',
       ),
     ),
     'title' => '<none>',
+    'visibility' => 1,
+  );
+
+  $export['osha_search-osha_search_clear_filters'] = array(
+    'cache' => -1,
+    'custom' => 0,
+    'delta' => 'osha_search_clear_filters',
+    'i18n_block_language' => array(),
+    'i18n_mode' => 0,
+    'module' => 'osha_search',
+    'node_types' => array(),
+    'pages' => 'search/*',
+    'roles' => array(),
+    'themes' => array(
+      'bartik' => array(
+        'region' => 'content',
+        'status' => 1,
+        'theme' => 'bartik',
+        'weight' => 0,
+      ),
+      'osha_admin' => array(
+        'region' => 'content',
+        'status' => 1,
+        'theme' => 'osha_admin',
+        'weight' => 0,
+      ),
+      'osha_frontend' => array(
+        'region' => 'sidebar_first',
+        'status' => 1,
+        'theme' => 'osha_frontend',
+        'weight' => -66,
+      ),
+      'seven' => array(
+        'region' => 'content',
+        'status' => 1,
+        'theme' => 'seven',
+        'weight' => 0,
+      ),
+    ),
+    'title' => '',
     'visibility' => 1,
   );
 
@@ -264,7 +304,7 @@ search/*',
     'i18n_mode' => 0,
     'module' => 'views',
     'node_types' => array(),
-    'pages' => 'publications',
+    'pages' => 'search/publications',
     'roles' => array(),
     'themes' => array(
       'bartik' => array(

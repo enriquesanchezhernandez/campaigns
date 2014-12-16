@@ -16,7 +16,7 @@ function osha_newsletter_permission() {
   return array(
     'administer osha newsletter' => array(
       'title' => t('Administer OSHA newsletter'),
-      'description' => t('Configure OSHA newsletter module'),
+      'description' => t('Configure OSHA newsubscribe_block_intro_textsletter module'),
     ),
   );
 }
@@ -128,18 +128,7 @@ function osha_newsletter_block_info() {
     'status' => 1,
     'region' => 'sidebar_second',
     'visibility' => BLOCK_VISIBILITY_LISTED,
-    'pages' => '<front>
-oshnews
-highlights
-highlight/*
-teaser/*
-news/*
-seminar/*
-seminars/*
-about/calls/*
-calls/*
-about/jobs/*
-job-vacancies/*',
+    'pages' => '<front>',
     'cache' => DRUPAL_NO_CACHE,
     'weight' => -30
   );
@@ -149,10 +138,6 @@ job-vacancies/*',
     'region' => 'content',
     'visibility' => BLOCK_VISIBILITY_LISTED,
     'pages' => OSHA_NEWSLETTER_PAGE_URL,
-    'cache' => DRUPAL_NO_CACHE,
-  );
-  $blocks['osha_newsletter_unsubscribe'] = array(
-    'info' => t('Unsubscribe from OSHA Newsletter'),
     'cache' => DRUPAL_NO_CACHE,
   );
   $blocks['osha_newsletter_latest'] = array(
@@ -182,21 +167,29 @@ function osha_newsletter_block_configure($delta = '') {
         '#title' => t('Block intro text'),
         '#size' => 60,
         '#description' => t('This text will appear in the Subscription block before the e-mail field.'),
-        '#default_value' => variable_get('subscribe_block_intro_text', t('Once a monthly update on safety and health at work. <a href="@newsletter_page_url">See more info</a><br/><p style="color : #dc2f82;">Join 65.000 subscribers!</p>', array('@newsletter_page_url' => url(OSHA_NEWSLETTER_PAGE_URL)))),
+        '#default_value' => variable_get('subscribe_block_intro_text',
+          t('Once a monthly update on safety and health at work. <a href="@newsletter_page_url">See more info</a><br/><p style="color : #dc2f82;">Join 65.000 subscribers!</p>')),
+      );
+      $form['subscribe_block_newsletter_page_url'] = array(
+        '#type' => 'textfield',
+        '#title' => t('Newsletter page URL'),
+        '#size' => 60,
+        '#description' => t('This is the link url for @newsletter_page_url.'),
+        '#default_value' => variable_get('subscribe_block_newsletter_page_url', OSHA_NEWSLETTER_PAGE_URL),
       );
       $form['subscribe_block_details_link_label'] = array(
         '#type' => 'textfield',
-        '#title' => t('Link label'),
+        '#title' => t('Privacy policy label'),
         '#size' => 60,
         '#description' => t('This text will appear as link label in the Subscription block after the e-mail field.'),
         '#default_value' => variable_get('subscribe_block_details_link_label', t('Privacy policy')),
       );
       $form['subscribe_block_details_link_url'] = array(
         '#type' => 'textfield',
-        '#title' => t('Link URL'),
+        '#title' => t('Privacy policy URL'),
         '#size' => 60,
         '#description' => t('This text will appear as link url in the Subscription block after the e-mail field.'),
-        '#default_value' => variable_get('subscribe_block_details_link_url', url(OSHA_NEWSLETTER_PAGE_URL)),
+        '#default_value' => variable_get('subscribe_block_details_link_url', OSHA_PRIVACY_PAGE_URL),
       );
 
       break;
@@ -220,14 +213,7 @@ function osha_newsletter_block_configure($delta = '') {
         '#title' => t('Link URL'),
         '#size' => 60,
         '#description' => t('This text will appear as link url in the Subscription block after the e-mail field.'),
-        '#default_value' => variable_get('subscribe_extra_block_details_link_url', 'https://osha.europa.eu/en/news/oshmail/'),
-      );
-      $form['subscribe_extra_block_unsubscribe_link_url'] = array(
-        '#type' => 'textfield',
-        '#title' => t('Unsubscribe page URL'),
-        '#size' => 60,
-        '#description' => t('This text will appear as link url to the unsubscribe page.'),
-        '#default_value' => variable_get('subscribe_extra_block_unsubscribe_link_url', 'https://osha.europa.eu/en/news/oshmail/'),
+        '#default_value' => variable_get('subscribe_extra_block_details_link_url', OSHA_PRIVACY_PAGE_URL),
       );
 
       break;
@@ -266,6 +252,7 @@ function osha_newsletter_block_save($delta = '', $edit = array()) {
   switch ($delta) {
     case 'osha_newsletter_subscribe':
       variable_set('subscribe_block_intro_text', $edit['subscribe_block_intro_text']);
+      variable_set('subscribe_block_newsletter_page_url', $edit['subscribe_block_newsletter_page_url']);
       variable_set('subscribe_block_details_link_label', $edit['subscribe_block_details_link_label']);
       variable_set('subscribe_block_details_link_url', $edit['subscribe_block_details_link_url']);
       break;
@@ -273,7 +260,6 @@ function osha_newsletter_block_save($delta = '', $edit = array()) {
       variable_set('subscribe_extra_block_intro_text', $edit['subscribe_extra_block_intro_text']);
       variable_set('subscribe_extra_block_details_link_label', $edit['subscribe_extra_block_details_link_label']);
       variable_set('subscribe_extra_block_details_link_url', $edit['subscribe_extra_block_details_link_url']);
-      variable_set('subscribe_extra_block_unsubscribe_link_url', $edit['subscribe_extra_block_unsubscribe_link_url']);
       break;
     case 'osha_newsletter_latest':
       variable_set('newsletters_no', $edit['newsletters_no']);
@@ -305,17 +291,8 @@ function osha_newsletter_block_view($delta = '') {
         $subscribe_form = drupal_get_form('osha_newsletter_subscribe_extra_form');
 
         $block['content'] = theme('subscribe_extra_block', array(
-          'subscribe_form' => drupal_render($subscribe_form),
-          'unsubscribe_page_url' =>  variable_get('subscribe_extra_block_unsubscribe_link_url', 'https://osha.europa.eu/en/news/oshmail/')
+          'subscribe_form' => drupal_render($subscribe_form)
         ));
-        return $block;
-      }
-      break;
-    case 'osha_newsletter_unsubscribe':
-      if(user_access('access content')) {
-        $block['subject'] = t('Unsubscribe from OSHMail Newsletter');
-        // unsubscribe form
-        $block['content'] = drupal_get_form('osha_newsletter_unsubscribe_form');
         return $block;
       }
       break;
@@ -407,9 +384,9 @@ function osha_newsletter_subscribe_extra_form() {
     '#captcha_type' => 'image_captcha/Image',
   );
   $link_label = variable_get('subscribe_extra_block_details_link_label', t('How will EU-OSHA use my details?'));
-  $link_url = variable_get('subscribe_extra_block_details_link_url', url(OSHA_NEWSLETTER_PAGE_URL));
+  $link_url = variable_get('subscribe_extra_block_details_link_url', OSHA_PRIVACY_PAGE_URL);
   $form['details_link'] = array(
-    '#markup' => '<a href='.$link_url.'>'.$link_label.'</a><br/>',
+    '#markup' => '<a class="privacy-policy-oshmail" href='.url($link_url).'>'.$link_label.'</a><br/>',
   );
   $form['submit'] = array(
     '#type' => 'submit',
@@ -432,8 +409,13 @@ function osha_newsletter_subscribe_extra_form() {
  * The subscribe form.
  */
 function osha_newsletter_subscribe_form() {
+  $markup = variable_get('subscribe_block_intro_text',
+    t('Once a monthly update on safety and health at work. <a href="@newsletter_page_url">See more info</a><br/><p style="color : #dc2f82;">Join 65.000 subscribers!</p>')
+  );
+  $link_url = variable_get('subscribe_block_newsletter_page_url', OSHA_NEWSLETTER_PAGE_URL);
+
   $form['intro'] = array(
-    '#markup' => variable_get('subscribe_block_intro_text', t('Once a monthly update on safety and health at work. <a href="@newsletter_page_url">See more info</a><br/><p style="color : #dc2f82;">Join 65.000 subscribers!</p>', array('@newsletter_page_url' => url(OSHA_NEWSLETTER_PAGE_URL)))),
+    '#markup' => t($markup, array('@newsletter_page_url' => url($link_url)))
   );
   $form['email'] = array(
     '#type' => 'textfield',
@@ -446,38 +428,13 @@ function osha_newsletter_subscribe_form() {
     //'#captcha_type' => 'recaptcha/reCAPTCHA',
   );
   $link_label = variable_get('subscribe_block_details_link_label', t('Privacy policy'));
-  $link_url = variable_get('subscribe_block_details_link_url', url(OSHA_PRIVACY_PAGE_URL));
+  $link_url = variable_get('subscribe_block_details_link_url', OSHA_PRIVACY_PAGE_URL);
   $form['details_link'] = array(
-    '#markup' => '<a href='.$link_url.'>'.$link_label.'</a><br/>',
+    '#markup' => '<a class="privacy-policy-oshmail" href='.url($link_url).'>'.$link_label.'</a><br/>',
   );
   $form['submit'] = array(
     '#type' => 'submit',
     '#value' => t('Subscribe')
-  );
-
-  return $form;
-}
-
-/**
- * The unsubscribe form.
- */
-function osha_newsletter_unsubscribe_form() {
-  $form['intro'] = array(
-    '#markup' => t('Not interested any more?<br/> You can unsubscribe below:'),
-  );
-  $form['email'] = array(
-    '#type' => 'textfield',
-    '#size' => 30,
-    '#attributes' => array('placeholder' => t('E-mail address'))
-  );
-  $form['captcha'] = array(
-    '#type' => 'captcha',
-    '#captcha_type' => 'image_captcha/Image',
-    //'#captcha_type' => 'recaptcha/reCAPTCHA',
-  );
-  $form['submit'] = array(
-    '#type' => 'submit',
-    '#value' => t('Unsubscribe')
   );
 
   return $form;
@@ -501,20 +458,6 @@ function osha_newsletter_subscribe_form_validate($form, &$form_state) {
  * Extra Subscribe form validation.
  */
 function osha_newsletter_subscribe_extra_form_validate($form, &$form_state) {
-  $email = trim($form_state['values']['email']);
-  if (strlen($email) != 0) {
-    if (!valid_email_address($form_state['values']['email'])) {
-      form_set_error('email', t('The e-mail address is not valid.'));
-    }
-  } else {
-    form_set_error('email', t('Please enter the e-mail address.'));
-  }
-}
-
-/**
- * Unsubscribe form validation.
- */
-function osha_newsletter_unsubscribe_form_validate($form, &$form_state) {
   $email = trim($form_state['values']['email']);
   if (strlen($email) != 0) {
     if (!valid_email_address($form_state['values']['email'])) {
@@ -1158,8 +1101,7 @@ function osha_newsletter_theme() {
   $theme['subscribe_extra_block'] = array(
     'template' => 'subscribe_extra_block',
     'variables' => array(
-      'subscribe_form' => NULL,
-      'unsubscribe_page_url' =>  NULL
+      'subscribe_form' => NULL
     ),
     'path' => $path . '/templates'
   );

@@ -145,6 +145,10 @@ class OshaMigrateArticles extends OSHADynamicMigration {
       return FALSE;
     }
 
+    //format date according to UTC timezone
+    $row->publication_date = MigrationUtil::getUTCTimestamp($row->publication_date);
+    $row->expiration_date = MigrationUtil::getUTCTimestamp($row->expiration_date);
+
     $row->language = 'en';
     $tags = $row->subject . ',' . $row->subcategory;
     $row->subject = MigrationUtil::decodeTagsTerms($tags);
@@ -293,6 +297,7 @@ class ArticleMigrateList extends MigrateList {
             break;
 
           case 'relatedItems':
+          case 'aliases':
           case 'description':
           case 'text':
             $this->data[$path][$field][$language] = $raw_data[$key];

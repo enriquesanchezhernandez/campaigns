@@ -122,6 +122,10 @@ class MigrateOshaNews extends OSHADynamicMigration {
       return FALSE;
     }
 
+    //format date according to UTC timezone
+    $row->publication_date = MigrationUtil::getUTCTimestamp($row->publication_date);
+    $row->expiration_date = MigrationUtil::getUTCTimestamp($row->expiration_date);
+
     $type = strstr($row->id, '/', TRUE);
     if ($type === 'teaser') {
       return FALSE;
@@ -270,6 +274,7 @@ class NewsContentListCSV extends MigrateList {
             break;
 
           case 'image':
+          case 'aliases':
           case 'description':
           case 'text':
             self::$data[$path][$field][$language] = $raw_data[$key];

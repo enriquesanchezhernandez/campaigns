@@ -50,16 +50,9 @@
  *  - $theme_url: The absolute url to the Email theme directory.
  */
 ?>
-
-<footer>
-	<div id="footerMenu">
-	(C) EU-OSHA 2014 | <a onclick="notImplemented()">Site Map</a> | <a onclick="notImplemented()">Contact Us</a> | <a onclick="notImplemented()">Press</a> | <a onclick="notImplemented()">Accessibility</a> | <a onclick="notImplemented()">Privacy Policy</a>
-	</div>
-	<div id="socialNetworksFooter">
-		<a href="https://twitter.com/eu_osha"><img src="/sites/all/themes/osha_frontend/images/footer-tw.png" alt="Twitter"></a>
-		<a href="https://www.facebook.com/EuropeanAgencyforSafetyandHealthatWork"><img src="/sites/all/themes/osha_frontend/images/footer-fb.png" alt="Facebook"></a>
-		<a href="http://www.linkedin.com/company/european-agency-for-safety-and-health-at-work"><img src="/sites/all/themes/osha_frontend/images/footer-in.png" alt="LinkedIn"></a>
-		<a href="https://www.youtube.com/user/EUOSHA"><img src="/sites/all/themes/osha_frontend/images/footer-ytb.png" alt="YouTube"></a>
-		<a href="https://osha.europa.eu/en/about/director_corner/blog"><img src="/sites/all/themes/osha_frontend/images/footer-b.png" alt="Blogger"></a>
-	</div>
-</footer>
+<?php if ($content): ?>
+  <footer id="footer" class="<?php print $classes; ?>">
+    <div id="footer-first-line" class="footer footer-line"><?php print t("&copy; 2014 EU-OSHA | an agency of the European Union"); ?></div>
+    <div id="footer-second-line" class="footer footer-line"><?php print $content; ?></div>
+  </footer>
+<?php endif; ?>

@@ -34,7 +34,6 @@
 
   <?php print render($content); ?>
   <?php print render($content['links']); ?>
-  <?php print t('Author: ').$name; ?>
   <?php print render($content['comments']); ?>
 
 </article>

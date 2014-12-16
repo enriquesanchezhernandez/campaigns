@@ -1,0 +1,23 @@
+<?php
+
+function osha_infographics_install() {
+  osha_infographics_add_menu_position_rules();
+}
+
+/**
+ * Add Infographics menu position rules
+ */
+function osha_infographics_update_7001() {
+  osha_infographics_add_menu_position_rules();
+}
+
+/**
+ * Add menu position rules for Infographics content type.
+ */
+function osha_infographics_add_menu_position_rules() {
+  if (module_exists('osha') && module_load_include('inc', 'osha', 'osha.utils')) {
+    $parent_menu = array('------ Infographics');
+    $condition = array('pages' => 'infographic-topic/*'.PHP_EOL.'infographic/*');
+    osha_add_menu_position_rule('Infographics Menu Rule', $parent_menu, $condition);
+  }
+}

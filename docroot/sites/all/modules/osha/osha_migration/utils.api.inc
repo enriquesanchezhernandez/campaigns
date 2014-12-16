@@ -582,30 +582,22 @@ class MigrationUtil {
    *   Create redirects /<language>/$base_path for all languages
    */
   public static function createRedirects($entity, $base_path) {
-    $languages = array_keys($entity->translations->data);
-    // add original language if not already there
-    if (!in_array($entity->language, $languages)) {
-      $languages[] = $entity->language;
-    }
+    // Always create redirects for all languages.
+    //check if source redirect exists
+    $source = $base_path;
+    $source_redirects = redirect_load_by_source($source, LANGUAGE_NONE);
 
-    foreach ($languages as $language) {
-      //check if source redirect exists
-      $source = $base_path;
-      $source_redirects = redirect_load_by_source($source,$language);
-
-      if ($source_redirects == FALSE) {
-        $redirect = new stdClass();
-        $redirect->source = $source;
-        $redirect->source_options = array();
-        $redirect->redirect = 'node/'.$entity->nid;
-        $redirect->redirect_options = array();
-        $redirect->status_code = 0;
-        $redirect->type = 'redirect';
-        $redirect->language = $language;
-
-        // Create the redirect
-        redirect_save($redirect);
-      }
+    if ($source_redirects == FALSE) {
+      $redirect = new stdClass();
+      $redirect->source = $source;
+      $redirect->source_options = array();
+      $redirect->redirect = 'node/' . $entity->nid;
+      $redirect->redirect_options = array();
+      $redirect->status_code = 0;
+      $redirect->type = 'redirect';
+      $redirect->language = LANGUAGE_NONE;
+      // Create the redirect
+      redirect_save($redirect);
     }
   }
 
@@ -630,6 +622,19 @@ class MigrationUtil {
     }
 
     return $tid;
+  }
+
+  /**
+   * @param string $date
+   * @return timestamp
+   */
+  public static function getUTCTimestamp($date){
+    $default_tz = date_default_timezone_get();
+    date_default_timezone_set('UTC');
+    $date = strtotime($date);
+    date_default_timezone_set($default_tz);
+
+    return $date;
   }
 }
 
@@ -746,6 +751,32 @@ class OSHADynamicMigration extends DynamicMigration {
     $entity->workbench_access = array('main-menu', 'main-menu');
   }
 
+  public function createRedirectsFromAliases($entity, $row) {
+    // Create redirects for additional aliases
+    $languages = array_keys($entity->translations->data);
+    if (!in_array($row->language, $languages)) {
+      $languages[] = $row->language;
+    }
+    foreach ($languages as $language) {
+      // Create redirect for all languages, duplicates are handled in createRedirects.
+      if (!empty($row->aliases[$language])) {
+        $aliases = explode(',', $row->aliases[$language]);
+        $aliases = array_map('trim', $aliases);
+        foreach ($aliases as $alias) {
+          if (preg_match('/^\/..\//', $alias)) {
+            // Remove /lg/ and create redirect.
+            MigrationUtil::createRedirects($entity, substr($alias, 4));
+          } else if (substr($alias, 0, 1) == '/') {
+            // Language is not included, remove / and create redirect.
+            MigrationUtil::createRedirects($entity, substr($alias, 1));
+          } else {
+            // Create redirect as it is.
+            MigrationUtil::createRedirects($entity, $alias);
+          }
+        }
+      }
+    }
+  }
   /**
    * Sets the node aliases after the migration, nid is available.
    *
@@ -756,5 +787,6 @@ class OSHADynamicMigration extends DynamicMigration {
    */
   public function complete($entity, $row) {
     MigrationUtil::createAliases($entity, $row, 'node', 'nid');
+    self::createRedirectsFromAliases($entity, $row);
   }
 }

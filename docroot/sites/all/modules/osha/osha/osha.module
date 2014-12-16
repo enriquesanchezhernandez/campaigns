@@ -119,6 +119,7 @@ function osha_osha_tmgmt_i18n_string_list() {
     'Use count',
     'User who uploaded',
     'Year',
+    'Year and month',
     "Use <em>basic pages</em> for your static content, such as an 'About us' page.",
   );
 }
@@ -192,6 +193,7 @@ function osha_date_format_types() {
     'short_date_eu'  => t('EU short date'),
     'osha_day_only'  => t('Day only'),
     'month' => t('Month: F'),
+    'year_and_month'  => t('Year and Month'),
   );
 }
 
@@ -211,6 +213,9 @@ function osha_date_formats() {
     ),
     array(
       'type' => 'month', 'format' => 'F', 'locales' => array(),
+    ),
+    array(
+      'type' => 'year_and_month', 'format' => 'F Y', 'locales' => array(),
     ),
   );
   foreach ($formats as $format) {
@@ -481,6 +486,14 @@ function osha_form_node_form_alter(&$form, &$form_state, $form_id) {
       }
     }
   }
+  // CW-931 Hide character count and page count
+  if (isset($form_state['field']['field_page_count'])) {
+    $form['field_page_count']['#access'] = FALSE;
+  }
+  if (isset($form_state['field']['field_character_count'])) {
+    $form['field_character_count']['#access'] = FALSE;
+  }
+
 }
 
 /**

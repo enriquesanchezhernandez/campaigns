@@ -118,6 +118,10 @@ class OshaMigrateDirectives extends OSHADynamicMigration {
       return FALSE;
     }
 
+    //format date according to UTC timezone
+    $row->publication_date = MigrationUtil::getUTCTimestamp($row->publication_date);
+    $row->expiration_date = MigrationUtil::getUTCTimestamp($row->expiration_date);
+
     $row->language = 'en';
     $tags = $row->subject . ', ' . $row->subcategory;
     $row->subject = MigrationUtil::decodeTagsTerms($tags);
@@ -209,11 +213,11 @@ class OshaMigrateDirectives extends OSHADynamicMigration {
    *   Source row
    */
   public function complete($entity, $row) {
-    if(preg_match(self::PATH_PATTERN, $row->path, $matches)){
+    if (preg_match(self::PATH_PATTERN, $row->path, $matches)) {
       //create alias
       $args = array(
-        'source' => 'node/'.$entity->nid,
-        'alias' => 'legislation/directives/'.$matches[4],
+        'source' => 'node/' . $entity->nid,
+        'alias' => 'legislation/directives/' . $matches[4],
         'language' => 'en'
       );
       path_save($args);
@@ -221,7 +225,9 @@ class OshaMigrateDirectives extends OSHADynamicMigration {
       // create redirect
       $path = substr($row->path, 4);
       MigrationUtil::createRedirects($entity, $path);
-    }else{
+      parent::createRedirectsFromAliases($entity, $row);
+    }
+    else {
       // call MigrationUtil::createAliases
       parent::complete($entity, $row);
     }
@@ -319,6 +325,7 @@ class DirectiveContentListCSV extends MigrateList {
             if (preg_match('/of ([\d]+ [\w]+ [\d]+) /', $raw_data[$key], $matches)) {
               self::$data[$path]['directive_date'] = $matches[1];
             }
+          case 'aliases':
           case 'text':
             self::$data[$path][$field][$language] = $raw_data[$key];
             break;

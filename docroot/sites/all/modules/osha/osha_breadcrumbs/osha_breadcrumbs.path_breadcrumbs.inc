@@ -421,7 +421,7 @@ function osha_breadcrumbs_path_breadcrumbs_settings_info() {
   $path_breadcrumb->api_version = 1;
   $path_breadcrumb->machine_name = 'osh_publications';
   $path_breadcrumb->name = 'Publications list';
-  $path_breadcrumb->path = 'publications';
+  $path_breadcrumb->path = 'search/publications';
   $path_breadcrumb->data = array(
     'titles' => array(
       0 => 'Tools and resources',

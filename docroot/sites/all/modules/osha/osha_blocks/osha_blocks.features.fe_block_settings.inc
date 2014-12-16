@@ -12,46 +12,6 @@ function osha_blocks_default_fe_block_settings() {
 
   $export['version'] = '2.0';
 
-  $export['block-join_oshmail_subscribers'] = array(
-    'cache' => -1,
-    'custom' => 0,
-    'i18n_block_language' => array(),
-    'i18n_mode' => 0,
-    'machine_name' => 'join_oshmail_subscribers',
-    'module' => 'block',
-    'node_types' => array(),
-    'pages' => 'pages/oshmail-newsletter',
-    'roles' => array(),
-    'themes' => array(
-      'bartik' => array(
-        'region' => '',
-        'status' => 0,
-        'theme' => 'bartik',
-        'weight' => 0,
-      ),
-      'osha_admin' => array(
-        'region' => '',
-        'status' => 0,
-        'theme' => 'osha_admin',
-        'weight' => 0,
-      ),
-      'osha_frontend' => array(
-        'region' => 'content',
-        'status' => 1,
-        'theme' => 'osha_frontend',
-        'weight' => -26,
-      ),
-      'seven' => array(
-        'region' => '',
-        'status' => 0,
-        'theme' => 'seven',
-        'weight' => 0,
-      ),
-    ),
-    'title' => '<none>',
-    'visibility' => 1,
-  );
-
   $export['block-osha_job_vacancies_reserve_block'] = array(
     'cache' => -1,
     'custom' => 0,
@@ -140,7 +100,7 @@ function osha_blocks_default_fe_block_settings() {
     'machine_name' => 'publications_header',
     'module' => 'block',
     'node_types' => array(),
-    'pages' => 'publications',
+    'pages' => 'search/publications',
     'roles' => array(),
     'themes' => array(
       'bartik' => array(
@@ -293,6 +253,49 @@ function osha_blocks_default_fe_block_settings() {
       ),
     ),
     'title' => 'Related',
+    'visibility' => 0,
+  );
+
+  $export['osha_blocks-oshwiki_featured_articles'] = array(
+    'cache' => 1,
+    'custom' => 0,
+    'delta' => 'oshwiki_featured_articles',
+    'i18n_block_language' => array(),
+    'i18n_mode' => 0,
+    'module' => 'osha_blocks',
+    'node_types' => array(
+      0 => 'article',
+      1 => 'publication',
+    ),
+    'pages' => '',
+    'roles' => array(),
+    'themes' => array(
+      'bartik' => array(
+        'region' => '',
+        'status' => 0,
+        'theme' => 'bartik',
+        'weight' => 0,
+      ),
+      'osha_admin' => array(
+        'region' => '',
+        'status' => 0,
+        'theme' => 'osha_admin',
+        'weight' => 0,
+      ),
+      'osha_frontend' => array(
+        'region' => 'content',
+        'status' => 1,
+        'theme' => 'osha_frontend',
+        'weight' => 40,
+      ),
+      'seven' => array(
+        'region' => '',
+        'status' => 0,
+        'theme' => 'seven',
+        'weight' => 0,
+      ),
+    ),
+    'title' => '',
     'visibility' => 0,
   );
 

@@ -64,7 +64,6 @@ class OshaMigrateJobVacancies extends OSHADynamicMigration {
     $this->addFieldMapping('title', 'title');
     $this->addFieldMapping('body', 'text');
     $this->addFieldMapping('body:format')->defaultValue('full_html');
-    $this->addFieldMapping('field_summary', 'description');
     $this->addFieldMapping('field_author', 'author');
     $this->addFieldMapping('field_job_vacancies_deadline', 'deadline');
     $this->addFieldMapping('field_job_vacancies_shortlisted', 'shortlisted');
@@ -84,7 +83,8 @@ class OshaMigrateJobVacancies extends OSHADynamicMigration {
     $this->addFieldMapping('uid')->defaultValue(1);
 
     $this->addUnmigratedSources(array(
-      'author'
+      'author',
+      'description'
     ));
 
     $this->addUnmigratedDestinations(array(
@@ -136,6 +136,11 @@ class OshaMigrateJobVacancies extends OSHADynamicMigration {
       return FALSE;
     }
 
+    //format date according to UTC timezone
+    $row->publication_date = MigrationUtil::getUTCTimestamp($row->publication_date);
+    $row->expiration_date = MigrationUtil::getUTCTimestamp($row->expiration_date);
+    $row->deadline = MigrationUtil::getUTCTimestamp($row->deadline);
+
     $row->language = 'en';
     $tags = $row->subject . ',' . $row->subcategory;
     $row->subject = MigrationUtil::decodeTagsTerms($tags);
@@ -178,11 +183,6 @@ class OshaMigrateJobVacancies extends OSHADynamicMigration {
       $has_translation = FALSE;
       if (!empty($row->title_field[$language])) {
         $entity->title_field[$language][0]['value'] = MigrationUtil::decodeHTMLText($row->title_field[$language]);
-        $has_translation = TRUE;
-      }
-      if (!empty($row->description[$language])) {
-        $entity->field_summary[$language][0]['value'] = MigrationUtil::decodeHTMLText($row->description[$language]);
-        $entity->field_summary[$language][0]['format'] = 'full_html';
         $has_translation = TRUE;
       }
       if (!empty($row->text[$language])) {
@@ -253,7 +253,7 @@ class JobVacanciesMigrateList extends MigrateList {
             self::$data[$path][$field][$language] = $path_language[2];
             continue;
 
-          case 'description':
+          case 'aliases':
           case 'text':
             self::$data[$path][$field][$language] = $raw_data[$key];
             break;

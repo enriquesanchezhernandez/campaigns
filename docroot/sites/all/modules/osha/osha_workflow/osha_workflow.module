@@ -522,18 +522,33 @@ function osha_workflow_form_alter(&$form, &$form_state, $form_id) {
     $state = $node->workbench_moderation['current']->state;
     $form['#validate'][] = 'osha_workflow_workbench_moderation_approval_form_validate';
     if ($state == OSHA_WORKFLOW_STATE_TO_BE_APPROVED) {
-      if (!osha_workflow_is_last_approver($node)) {
-        global $user;
-        if ($next = osha_workflow_get_next_approver($node->nid)) {
-          if ($user->uid == $next->uid) {
+      $is_workflow_admin = user_access('moderate content from ready_to_publish to published');
+      $next = osha_workflow_get_next_approver($node->nid);
+      global $user;
+      if (!osha_workflow_needs_last_approver($node)) {
+        // If next approver or administrator.
+        if ($next || $is_workflow_admin) {
+          if ($user->uid == $next->uid
+            || $is_workflow_admin) {
             // Hijack the form & add Done button.
-            hide($form['state']);
             $form['submit'] = array(
               '#type' => 'submit',
-              '#value' => t('Done'),
+              '#value' => t('Approve'),
               '#submit' => array('osha_workflow_form_moderate_approve_submit'),
             );
+            if ($is_workflow_admin && $next->uid != $user->uid) {
+              $form['submit']['#prefix'] = t('Approve instead of @user',
+                array('@user' => $next->name));
+            }
+            hide($form['state']);
           }
+        }
+      }
+      else {
+        // If last approver.
+        if ($is_workflow_admin && $next->uid != $user->uid) {
+          $form['state']['#prefix'] = t('Approve instead of @user',
+            array('@user' => $next->name));
         }
       }
     }

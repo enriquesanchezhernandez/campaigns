@@ -15,3 +15,18 @@ function osha_resources_entity_info_alter(&$entity_info) {
     'custom settings' => TRUE,
   );
 }
+
+/**
+ * Implements hook_node_view
+ * @param $node
+ * @param $view_mode
+ * @param $langcode
+ */
+function osha_resources_node_view_alter(&$build){
+  if($build['#bundle'] == 'youtube' && $build['field_youtube']['#formatter'] == 'youtube_thumbnail'){
+    foreach($build['field_youtube'] as $key => $youtube){
+      if(is_array($youtube) && isset($youtube['#image_link']['options']))
+        $build['field_youtube'][$key]['#image_link']['options']['attributes']['target'] = '_blank';
+    }
+  }
+}

@@ -51,11 +51,16 @@ function osha_short_messages_form($form, &$form_state){
 
   $languages = $languages[1];
 
-  //hide some languages
+  // Get available languages.
+  $available_lang = array_keys($node->translations->data);
+  // Hide some languages.
   $hided_lng = array('ru', 'tr');
-  foreach($languages as $key => $language){
-    if(in_array($language->language, $hided_lng))
+  $available_lang = array_diff($available_lang, $hided_lng);
+
+  foreach ($languages as $key => $language) {
+    if (!in_array($language->language, $available_lang)) {
       unset($languages[$key]);
+    }
   }
 
   //compose header, content and footer
@@ -80,7 +85,7 @@ function osha_short_messages_form($form, &$form_state){
 
   //remove some fields from default view
   $display['title_field'] = FALSE;
-  
+
   $body = theme('short_messages_body', array(
     'body_content' => drupal_render($display),
   ));

@@ -20,10 +20,7 @@ function osha_press_contact_default_fe_block_settings() {
     'i18n_mode' => 0,
     'module' => 'views',
     'node_types' => array(),
-    'pages' => 'press-releases
-press-release/*
-press/press-releases/*
-press-room',
+    'pages' => '',
     'roles' => array(),
     'themes' => array(
       'bartik' => array(
@@ -52,7 +49,7 @@ press-room',
       ),
     ),
     'title' => '',
-    'visibility' => 1,
+    'visibility' => 0,
   );
 
   return $export;

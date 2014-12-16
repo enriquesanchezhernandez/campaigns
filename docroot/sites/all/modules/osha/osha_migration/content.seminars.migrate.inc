@@ -128,6 +128,13 @@ class OshaMigrateSeminars extends OSHADynamicMigration {
       return FALSE;
     }
 
+    //format date according to UTC timezone
+    $row->publication_date = MigrationUtil::getUTCTimestamp($row->publication_date);
+    $row->expiration_date = MigrationUtil::getUTCTimestamp($row->expiration_date);
+    $row->startDate = MigrationUtil::getUTCTimestamp($row->startDate);
+    $row->endDate = MigrationUtil::getUTCTimestamp($row->endDate);
+
+
     $row->language = 'en';
     $tags = $row->subject . ', ' . $row->subcategory;
     $row->subject = MigrationUtil::decodeTagsTerms($tags);
@@ -317,6 +324,7 @@ class SeminarsListCSV extends MigrateList {
             self::$data[$path]['title_field'][$language] = $raw_data[$key];
             break;
 
+          case 'aliases':
           case 'description':
             self::$data[$path][$field][$language] = $raw_data[$key];
             break;

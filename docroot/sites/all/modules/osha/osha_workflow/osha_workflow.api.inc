@@ -396,6 +396,22 @@ function osha_workflow_is_last_approver($node, $user = NULL) {
   return $ret;
 }
 
+function osha_workflow_needs_last_approver($node, $user = NULL) {
+  $ret = FALSE;
+  $query = new EntityFieldQuery();
+  $miids = $query->entityCondition('entity_type', 'node_approval')
+    ->propertyCondition('nid', $node->nid)
+    ->propertyOrderBy('weight')
+    ->execute();
+  if (isset($miids['node_approval'])) {
+    $rows = osha_workflow_node_approval_load_multiple(array_keys($miids['node_approval']));
+    reset($rows);
+    $last = array_pop($rows);
+    $ret = $last->next == 1;
+  }
+  return $ret;
+}
+
 /**
  * Verifies if user has approved the workflow.
  * @param $nid
@@ -425,7 +441,7 @@ function osha_workflow_has_approved($nid, $uid) {
  * @param object $voter
  *   User who vote, if NULL assuming current user.
  */
-function osha_workflow_approve($node, $vote, $message = NULL, $voter = NULL) {
+function osha_workflow_approve($node, $vote, $message = '', $voter = NULL) {
   if (empty($voter)) {
     global $user;
     $voter = $user;
@@ -442,10 +458,14 @@ function osha_workflow_approve($node, $vote, $message = NULL, $voter = NULL) {
       reset($rows);
       $mark_next = FALSE;
       foreach ($rows as $row) {
-        if ($row->uid == $voter->uid && $row->next == 1) {
+        if (($row->uid == $voter->uid || user_access('moderate content from ready_to_publish to published'))
+          && $row->next == 1) {
           $mark_next = TRUE;
           $row->next = 0;
           $row->approved = $vote;
+          if ($row->uid != $voter->uid) {
+            $message .= $voter->name . 'approved the content.';
+          }
           $row->mesage = $message;
           entity_save('node_approval', $row);
           continue;
@@ -817,6 +837,14 @@ class OshaWorkflowNotifications {
     // See CW-696 (Notification not needed)
     // $users = OshaWorkflowPermissions::getUsersByRole(OSHA_WORKFLOW_ROLE_TRANSLATION_MANAGER);
     // OshaWorkflowNotifications::sendEmail($users, array('tmgmt_job' => $tmgmt_job), 'osha_tmgmt');
+  }
+
+  /**
+   * Notify Layout Approvers.
+   */
+  public static function notifyTranslationLayoutApprovers($tmgmt_job) {
+    $users = OshaWorkflowPermissions::getUsersByRole(OSHA_WORKFLOW_ROLE_LAYOUT_VALIDATOR);
+    OshaWorkflowNotifications::sendEmail($users, array('tmgmt_job' => $tmgmt_job), 'osha_tmgmt');
   }
 
   /**

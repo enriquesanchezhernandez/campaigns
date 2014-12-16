@@ -60,10 +60,17 @@ function osha_blog_views_pre_render(&$view) {
     drupal_add_js(drupal_get_path('module', 'osha_blog') .'/includes/js/collapse_block.js');
 
     $month = '';
+    $current_year = date('Y', time());
+
     foreach($view->result as $key => $result){
       $row_month = date('F', strtotime($result->field_field_publication_date[0]['raw']['value']));
       $row_month_raw = date('m', strtotime($result->field_field_publication_date[0]['raw']['value']));
       $row_year = date('Y', strtotime($result->field_field_publication_date_1[0]['raw']['value']));
+
+      //remove current year
+      if($current_year == $row_year){
+        unset($result->field_field_publication_date_1[0]);
+      }
 
       //remove from display if publication date is in the same month
       if($month == $row_month){
@@ -76,8 +83,29 @@ function osha_blog_views_pre_render(&$view) {
     }
   }
 
+  //Breadcrumb and title for Montly Posts
   if ($view->name == 'blog' && $view->current_display == 'page_1') {
     $title = isset($view->args[0])? get_view_title($view->args[0]): '';
+    //set view title
+    $view->build_info['title'] = $title;
+    //set view breadcrumb
+    drupal_set_breadcrumb(
+      array(
+        l(t('Home'), NULL),
+        l('Blog', 'articles/blog'),
+        $title,
+      )
+    );
+  }
+
+  //Breadcrumb and title for Tags Posts
+  if ($view->name == 'blog' && $view->current_display == 'page_2') {
+    $title = '';
+    if(isset($view->args[0])){
+      $term = taxonomy_term_load($view->args[0]);
+      $title = $term? $term->name : '';
+    }
+
     //set view title
     $view->build_info['title'] = $title;
     //set view breadcrumb
@@ -119,6 +147,36 @@ function osha_blog_node_view($node, $view_mode, $langcode){
   //hide title for intro article Blog
   if($node->type == 'article' && $node->path['alias'] == 'articles/blog')
     hide($node->content['title_field']);
+}
+
+/**
+ * Implements hook_process_field
+ * @param $vars
+ */
+function osha_blog_process_field(&$vars){
+  if ($vars['element']['#field_name'] == 'field_tags' && $vars['element']['#bundle'] == 'blog') {
+    foreach($vars['element']['#object']->field_tags[LANGUAGE_NONE] as $key => $item){
+      $vars['items'][$key]['#markup'] = '<a href="/blog/tag/'.$item['tid'].'">'.$vars['items'][$key]['#markup'].'</a>';
+    }
+  }
+}
+
+/**
+ * Implements hook_workbench_access_node_element_alter
+ * @param $element
+ * @param $form_state
+ * @param $active
+ */
+function osha_blog_workbench_access_node_element_alter(&$element, $form_state, $active) {
+  if (isset($form_state['build_info']['form_id']) && $form_state['build_info']['form_id'] == 'blog_node_form' ) {
+    $element['#required'] = FALSE;
+    foreach ($element['#options'] as $key=>$option) {
+      if (preg_match('/^[-\\s]*Blog/', $option)) {
+        $element['#default_value'] = $key;
+        break;
+      }
+    }
+  }
 }
 
 /**

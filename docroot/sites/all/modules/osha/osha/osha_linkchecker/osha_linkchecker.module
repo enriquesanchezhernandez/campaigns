@@ -107,6 +107,23 @@ function osha_linkchecker_views_query_alter(&$view, &$query) {
 }
 
 /**
+ * Implements hook_views_pre_render().
+ */
+function osha_linkchecker_views_pre_render(&$view) {
+  if ($view->name == 'broken_links') {
+    // Show statistics message.
+    $links_unchecked = db_query('SELECT COUNT(1) FROM {linkchecker_link} WHERE last_checked = :last_checked AND status = :status', array(':last_checked' => 0, ':status' => 1))->fetchField();
+    if ($links_unchecked > 0) {
+      $links_all = db_query('SELECT COUNT(1) FROM {linkchecker_link} WHERE status = :status', array(':status' => 1))->fetchField();
+      drupal_set_message(format_plural($links_unchecked,
+        'There is 1 unchecked link of about @links_all links in the database. Please be patient until all links have been checked via cron.',
+        'There are @count unchecked links of about @links_all links in the database. Please be patient until all links have been checked via cron.',
+        array('@links_all' => $links_all)), 'warning');
+    }
+  }
+}
+
+/**
  * Scan for links. To be used when in console.
  */
 function osha_linkchecker_scan_for_links() {

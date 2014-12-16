@@ -6,7 +6,7 @@
 ?>
 <?php if($page): ?>
   <h1 id="page-title" class="page__title title"><?php print t('Publications');?></h1>
-  <div class="view-header back"><?php print l(t('Back to publications and filter'), 'publications'); ?></div>
+  <div class="view-header back"><?php print l(t('Back to publications and filter'), 'search/publications'); ?></div>
 <?php endif; ?>
 
 <article class="node-<?php print $node->nid; ?> <?php print $classes; ?> clearfix"<?php print $attributes; ?>>
@@ -51,20 +51,8 @@
       foreach ($tagged_related_publications as $related_pub) {
         print render($related_pub);
       }
-    }?>
-
-  <?php
-  // render related wiki articles (both manual + dynamic from template preprocess_node
-    if ( !empty($tagged_wiki) ) { ?>
-      <div id="related-wiki-publications">
-        <div class="related_wiki_head"><span><?php print t('OSHWiki featured articles');?><span></div>
-      <div>
-    <?php
-      foreach ($tagged_wiki as $wiki) {
-        print render($wiki);
-      }
     }
-  } ?>
+  }?>
 
   <?php print render($content['links']); ?>
 

@@ -244,6 +244,7 @@ function osha_taxonomies_field_default_field_bases() {
         'news' => 'News',
         'press_release' => 'Press release',
         'publication' => 'Publication',
+        'infographic' => 'Infographic',
       ),
       'allowed_values_function' => '',
       'entity_translation_sync' => FALSE,

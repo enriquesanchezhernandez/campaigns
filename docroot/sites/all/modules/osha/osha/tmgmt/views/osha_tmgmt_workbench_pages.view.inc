@@ -80,6 +80,11 @@ $handler->display->display_options['style_options']['info'] = array(
 $handler->display->display_options['relationships']['job_item_to_node_revision']['id'] = 'job_item_to_node_revision';
 $handler->display->display_options['relationships']['job_item_to_node_revision']['table'] = 'tmgmt_job_item';
 $handler->display->display_options['relationships']['job_item_to_node_revision']['field'] = 'job_item_to_node_revision';
+/* Relationship: Translation Management Job Item: Tjid */
+$handler->display->display_options['relationships']['tjid']['id'] = 'tjid';
+$handler->display->display_options['relationships']['tjid']['table'] = 'tmgmt_job_item';
+$handler->display->display_options['relationships']['tjid']['field'] = 'tjid';
+$handler->display->display_options['relationships']['tjid']['required'] = TRUE;
 /* Field: Content (historical data): Title */
 $handler->display->display_options['fields']['title_field-revision_id']['id'] = 'title_field-revision_id';
 $handler->display->display_options['fields']['title_field-revision_id']['table'] = 'field_revision_title_field';
@@ -115,6 +120,13 @@ $handler->display->display_options['fields']['source_language']['field'] = 'sour
 $handler->display->display_options['fields']['target_language']['id'] = 'target_language';
 $handler->display->display_options['fields']['target_language']['table'] = 'tmgmt_job_item';
 $handler->display->display_options['fields']['target_language']['field'] = 'target_language';
+/* Field: Translation Management Job: Has File uploaded */
+$handler->display->display_options['fields']['has_file_uploaded']['id'] = 'has_file_uploaded';
+$handler->display->display_options['fields']['has_file_uploaded']['table'] = 'tmgmt_job';
+$handler->display->display_options['fields']['has_file_uploaded']['field'] = 'has_file_uploaded';
+$handler->display->display_options['fields']['has_file_uploaded']['relationship'] = 'tjid';
+$handler->display->display_options['fields']['has_file_uploaded']['label'] = 'File uploaded';
+$handler->display->display_options['fields']['has_file_uploaded']['not'] = 0;
 /* Field: Translation Management Job Item: URL */
 $handler->display->display_options['fields']['url']['id'] = 'url';
 $handler->display->display_options['fields']['url']['table'] = 'views_entity_tmgmt_job_item';
@@ -150,6 +162,14 @@ $handler->display->display_options['filters']['state']['field'] = 'state';
 $handler->display->display_options['filters']['state']['value'] = array(
   1 => '1',
 );
+/* Filter criterion: Translation Management Job: State */
+$handler->display->display_options['filters']['state_1']['id'] = 'state_1';
+$handler->display->display_options['filters']['state_1']['table'] = 'tmgmt_job';
+$handler->display->display_options['filters']['state_1']['field'] = 'state';
+$handler->display->display_options['filters']['state_1']['relationship'] = 'tjid';
+$handler->display->display_options['filters']['state_1']['value'] = array(
+  1 => '1',
+);
 $handler->display->display_options['path'] = 'admin/workbench/on-translation';
 $handler->display->display_options['menu']['type'] = 'tab';
 $handler->display->display_options['menu']['title'] = 'On Translation';
@@ -174,6 +194,11 @@ $handler->display->display_options['relationships']['osha_tmgmt_job_trans_valida
 $handler->display->display_options['relationships']['job_item_to_node_revision']['id'] = 'job_item_to_node_revision';
 $handler->display->display_options['relationships']['job_item_to_node_revision']['table'] = 'tmgmt_job_item';
 $handler->display->display_options['relationships']['job_item_to_node_revision']['field'] = 'job_item_to_node_revision';
+/* Relationship: Translation Management Job Item: Tjid */
+$handler->display->display_options['relationships']['tjid']['id'] = 'tjid';
+$handler->display->display_options['relationships']['tjid']['table'] = 'tmgmt_job_item';
+$handler->display->display_options['relationships']['tjid']['field'] = 'tjid';
+$handler->display->display_options['relationships']['tjid']['required'] = TRUE;
 $handler->display->display_options['defaults']['arguments'] = FALSE;
 /* Contextual filter: Translation Validators: User uid */
 $handler->display->display_options['arguments']['user']['id'] = 'user';
@@ -206,6 +231,15 @@ $handler->display->display_options['filters']['deleted']['table'] = 'osha_tmgmt_
 $handler->display->display_options['filters']['deleted']['field'] = 'deleted';
 $handler->display->display_options['filters']['deleted']['relationship'] = 'osha_tmgmt_job_trans_validators';
 $handler->display->display_options['filters']['deleted']['value']['value'] = '0';
+/* Filter criterion: Translation Management Job: State */
+$handler->display->display_options['filters']['state_1']['id'] = 'state_1';
+$handler->display->display_options['filters']['state_1']['table'] = 'tmgmt_job';
+$handler->display->display_options['filters']['state_1']['field'] = 'state';
+$handler->display->display_options['filters']['state_1']['relationship'] = 'tjid';
+$handler->display->display_options['filters']['state_1']['value'] = array(
+  0 => '0',
+  1 => '1',
+);
 $handler->display->display_options['path'] = 'admin/workbench/needs-content-validation';
 $handler->display->display_options['menu']['type'] = 'tab';
 $handler->display->display_options['menu']['title'] = 'Needs Content Validation';
@@ -230,6 +264,15 @@ $handler->display->display_options['filters']['state']['value'] = array(
   2 => '2',
   6 => '6',
 );
+/* Filter criterion: Translation Management Job: State */
+$handler->display->display_options['filters']['state_1']['id'] = 'state_1';
+$handler->display->display_options['filters']['state_1']['table'] = 'tmgmt_job';
+$handler->display->display_options['filters']['state_1']['field'] = 'state';
+$handler->display->display_options['filters']['state_1']['relationship'] = 'tjid';
+$handler->display->display_options['filters']['state_1']['value'] = array(
+  0 => '0',
+  1 => '1',
+);
 $handler->display->display_options['path'] = 'admin/workbench/needs-review-tm';
 $handler->display->display_options['menu']['type'] = 'tab';
 $handler->display->display_options['menu']['title'] = 'Needs Review TM';
@@ -252,6 +295,15 @@ $handler->display->display_options['filters']['state']['table'] = 'tmgmt_job_ite
 $handler->display->display_options['filters']['state']['field'] = 'state';
 $handler->display->display_options['filters']['state']['value'] = array(
   7 => '7',
+);
+/* Filter criterion: Translation Management Job: State */
+$handler->display->display_options['filters']['state_1']['id'] = 'state_1';
+$handler->display->display_options['filters']['state_1']['table'] = 'tmgmt_job';
+$handler->display->display_options['filters']['state_1']['field'] = 'state';
+$handler->display->display_options['filters']['state_1']['relationship'] = 'tjid';
+$handler->display->display_options['filters']['state_1']['value'] = array(
+  0 => '0',
+  1 => '1',
 );
 $handler->display->display_options['path'] = 'admin/workbench/translation-ready-to-publish';
 $handler->display->display_options['menu']['type'] = 'tab';
@@ -311,6 +363,10 @@ $handler->display->display_options['fields']['label_1']['label'] = 'Job';
 $handler->display->display_options['fields']['item_type']['id'] = 'item_type';
 $handler->display->display_options['fields']['item_type']['table'] = 'tmgmt_job_item';
 $handler->display->display_options['fields']['item_type']['field'] = 'item_type';
+/* Field: Translation Management Job Item: State */
+$handler->display->display_options['fields']['state']['id'] = 'state';
+$handler->display->display_options['fields']['state']['table'] = 'tmgmt_job_item';
+$handler->display->display_options['fields']['state']['field'] = 'state';
 /* Field: Translation Management Job Item: Source language */
 $handler->display->display_options['fields']['source_language']['id'] = 'source_language';
 $handler->display->display_options['fields']['source_language']['table'] = 'tmgmt_job_item';
@@ -319,6 +375,13 @@ $handler->display->display_options['fields']['source_language']['field'] = 'sour
 $handler->display->display_options['fields']['target_language']['id'] = 'target_language';
 $handler->display->display_options['fields']['target_language']['table'] = 'tmgmt_job_item';
 $handler->display->display_options['fields']['target_language']['field'] = 'target_language';
+/* Field: Translation Management Job: Has File uploaded */
+$handler->display->display_options['fields']['has_file_uploaded']['id'] = 'has_file_uploaded';
+$handler->display->display_options['fields']['has_file_uploaded']['table'] = 'views_entity_tmgmt_job';
+$handler->display->display_options['fields']['has_file_uploaded']['field'] = 'has_file_uploaded';
+$handler->display->display_options['fields']['has_file_uploaded']['relationship'] = 'tjid';
+$handler->display->display_options['fields']['has_file_uploaded']['not'] = 0;
+$handler->display->display_options['fields']['has_file_uploaded']['link_to_entity'] = 0;
 /* Field: Translation Management Job Item: URL */
 $handler->display->display_options['fields']['url']['id'] = 'url';
 $handler->display->display_options['fields']['url']['table'] = 'views_entity_tmgmt_job_item';
@@ -363,6 +426,7 @@ $translatables['osha_translation_workbench'] = array(
   t('next ›'),
   t('last »'),
   t('Content Revision'),
+  t('Translation Management Job'),
   t('Title'),
   t('Job Item ID'),
   t('.'),
@@ -372,6 +436,7 @@ $translatables['osha_translation_workbench'] = array(
   t('Item type'),
   t('Source language'),
   t('Target language'),
+  t('File uploaded'),
   t('URL'),
   t('View'),
   t('Content Validation'),
@@ -382,6 +447,7 @@ $translatables['osha_translation_workbench'] = array(
   t('Needs Review PM'),
   t('Translations Needs Review PM'),
   t('Translation Overview'),
-  t('Translation Management Job'),
   t('Job'),
+  t('State'),
+  t('Has File uploaded'),
 );
