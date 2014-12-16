@@ -88,13 +88,12 @@ function osha_events_views_default_views() {
   $handler->display->display_options['fields']['field_website_of_event']['field'] = 'field_website_of_event';
   $handler->display->display_options['fields']['field_website_of_event']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['field_website_of_event']['click_sort_column'] = 'url';
-  /* Field: Content: Category */
+  /* Field: Broken/missing handler */
   $handler->display->display_options['fields']['field_theme']['id'] = 'field_theme';
   $handler->display->display_options['fields']['field_theme']['table'] = 'field_data_field_theme';
   $handler->display->display_options['fields']['field_theme']['field'] = 'field_theme';
   $handler->display->display_options['fields']['field_theme']['label'] = 'Theme';
   $handler->display->display_options['fields']['field_theme']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['field_theme']['delta_offset'] = '0';
   /* Field: Content: Adonis */
   $handler->display->display_options['fields']['field_adonis']['id'] = 'field_adonis';
   $handler->display->display_options['fields']['field_adonis']['table'] = 'field_data_field_adonis';
@@ -467,13 +466,12 @@ function osha_events_views_default_views() {
   $handler->display->display_options['fields']['field_website_of_event']['field'] = 'field_website_of_event';
   $handler->display->display_options['fields']['field_website_of_event']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['field_website_of_event']['click_sort_column'] = 'url';
-  /* Field: Content: Category */
+  /* Field: Broken/missing handler */
   $handler->display->display_options['fields']['field_theme']['id'] = 'field_theme';
   $handler->display->display_options['fields']['field_theme']['table'] = 'field_data_field_theme';
   $handler->display->display_options['fields']['field_theme']['field'] = 'field_theme';
   $handler->display->display_options['fields']['field_theme']['label'] = 'Theme';
   $handler->display->display_options['fields']['field_theme']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['field_theme']['delta_offset'] = '0';
   /* Field: Content: Adonis */
   $handler->display->display_options['fields']['field_adonis']['id'] = 'field_adonis';
   $handler->display->display_options['fields']['field_adonis']['table'] = 'field_data_field_adonis';
@@ -715,7 +713,7 @@ function osha_events_views_default_views() {
     10 => 0,
     11 => 0,
   );
-  /* Filter criterion: Content: Category (field_theme) */
+  /* Filter criterion: Broken/missing handler */
   $handler->display->display_options['filters']['field_theme_tid']['id'] = 'field_theme_tid';
   $handler->display->display_options['filters']['field_theme_tid']['table'] = 'field_data_field_theme';
   $handler->display->display_options['filters']['field_theme_tid']['field'] = 'field_theme_tid';
@@ -739,9 +737,6 @@ function osha_events_views_default_views() {
     10 => 0,
     11 => 0,
   );
-  $handler->display->display_options['filters']['field_theme_tid']['type'] = 'select';
-  $handler->display->display_options['filters']['field_theme_tid']['vocabulary'] = 'tags';
-  $handler->display->display_options['filters']['field_theme_tid']['hierarchy'] = 1;
   /* Filter criterion: Content: Event in AMP (field_event_in_amp) */
   $handler->display->display_options['filters']['field_event_in_amp_value']['id'] = 'field_event_in_amp_value';
   $handler->display->display_options['filters']['field_event_in_amp_value']['table'] = 'field_data_field_event_in_amp';
