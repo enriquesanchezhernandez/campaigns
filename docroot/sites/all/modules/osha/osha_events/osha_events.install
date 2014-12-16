@@ -24,3 +24,10 @@ function osha_events_update_7001() {
       'context' => 'context_events',
     ))->execute();
 }
+
+/**
+ * Delete events field_theme.
+ */
+function osha_events_update_7002() {
+  field_delete_field('field_theme');
+}

@@ -17,7 +17,7 @@ function osha_events_form_alter(&$form, &$form_state, $form_id) {
 }
 
 function osha_events_form_validate($form, &$form_state) {
-  if ($form_state['values']['status'] == 1) {
+  /*if ($form_state['values']['status'] == 1) {
     if (empty($form_state['values']['body']['und']['0']['value'])) {
       form_set_error('body', t('You have to added a Description.'));
     }
@@ -45,5 +45,5 @@ function osha_events_form_validate($form, &$form_state) {
     if (($form_state['values']['field_theme']['und']['0']['tid']) == NULL) {
       form_set_error('field_theme', t('You have to added a Theme.'));
     }
-  }
+  }*/
 }
