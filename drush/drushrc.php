@@ -404,6 +404,8 @@ $options['init-modules'] = array(
   'feeds_tamper_ui',
   'views_php',
 
+  'views_datasource',
+
   //Allow anonymous comments per node type
   'comment_allow_anonymous',
 
