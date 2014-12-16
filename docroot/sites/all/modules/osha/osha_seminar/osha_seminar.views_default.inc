@@ -28,7 +28,7 @@ function osha_seminar_views_default_views() {
   $handler->display->display_options['cache']['type'] = 'none';
   $handler->display->display_options['query']['type'] = 'views_query';
   $handler->display->display_options['exposed_form']['type'] = 'basic';
-  $handler->display->display_options['exposed_form']['options']['autosubmit'] = TRUE;
+  $handler->display->display_options['exposed_form']['options']['submit_button'] = 'Search';
   $handler->display->display_options['pager']['type'] = 'full';
   $handler->display->display_options['pager']['options']['items_per_page'] = '10';
   $handler->display->display_options['pager']['options']['offset'] = '0';
@@ -139,7 +139,7 @@ function osha_seminar_views_default_views() {
     t('Master'),
     t('Search Seminars'),
     t('more'),
-    t('Apply'),
+    t('Search'),
     t('Reset'),
     t('Sort by'),
     t('Asc'),
@@ -284,7 +284,7 @@ function osha_seminar_views_default_views() {
   $handler->display->display_options['fields']['field_seminar_start_date']['label'] = '';
   $handler->display->display_options['fields']['field_seminar_start_date']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['field_seminar_start_date']['settings'] = array(
-    'format_type' => 'short',
+    'format_type' => 'osha_day_only',
     'fromto' => 'both',
     'multiple_number' => '',
     'multiple_from' => '',
