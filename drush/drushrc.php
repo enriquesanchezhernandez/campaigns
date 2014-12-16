@@ -474,6 +474,7 @@ $options['init-modules'] = array(
   'devel',
   'devel_node_access',
   'diff',
+  'update'
 );
 
 

@@ -1078,17 +1078,6 @@ function osha_views_default_views() {
   $handler->display->display_options['sorts']['field_start_date_value']['field'] = 'field_start_date_value';
   $handler->display->display_options['sorts']['field_start_date_value']['order'] = 'DESC';
   $handler->display->display_options['defaults']['arguments'] = FALSE;
-  /* Contextual filter: Content: Start date -  start date (field_start_date) */
-  $handler->display->display_options['arguments']['field_start_date_value']['id'] = 'field_start_date_value';
-  $handler->display->display_options['arguments']['field_start_date_value']['table'] = 'field_data_field_start_date';
-  $handler->display->display_options['arguments']['field_start_date_value']['field'] = 'field_start_date_value';
-  $handler->display->display_options['arguments']['field_start_date_value']['default_argument_type'] = 'date';
-  $handler->display->display_options['arguments']['field_start_date_value']['summary']['number_of_records'] = '0';
-  $handler->display->display_options['arguments']['field_start_date_value']['summary']['format'] = 'default_summary';
-  $handler->display->display_options['arguments']['field_start_date_value']['summary_options']['items_per_page'] = '25';
-  $handler->display->display_options['arguments']['field_start_date_value']['year_range'] = '1900:+3';
-  $handler->display->display_options['arguments']['field_start_date_value']['granularity'] = 'day';
-  $handler->display->display_options['arguments']['field_start_date_value']['use_fromto'] = 'no';
   /* Contextual filter: Taxonomy term: Code (field_tags_code) */
   $handler->display->display_options['arguments']['field_tags_code_value']['id'] = 'field_tags_code_value';
   $handler->display->display_options['arguments']['field_tags_code_value']['table'] = 'field_data_field_tags_code';
@@ -1117,6 +1106,32 @@ function osha_views_default_views() {
   $handler->display->display_options['filters']['type']['value'] = array(
     'events' => 'events',
   );
+  /* Filter criterion: Content: Start date -  start date (field_start_date) */
+  $handler->display->display_options['filters']['field_start_date_value']['id'] = 'field_start_date_value';
+  $handler->display->display_options['filters']['field_start_date_value']['table'] = 'field_data_field_start_date';
+  $handler->display->display_options['filters']['field_start_date_value']['field'] = 'field_start_date_value';
+  $handler->display->display_options['filters']['field_start_date_value']['operator'] = '>=';
+  $handler->display->display_options['filters']['field_start_date_value']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['field_start_date_value']['expose']['operator_id'] = 'field_start_date_value_op';
+  $handler->display->display_options['filters']['field_start_date_value']['expose']['label'] = 'start_date';
+  $handler->display->display_options['filters']['field_start_date_value']['expose']['operator'] = 'field_start_date_value_op';
+  $handler->display->display_options['filters']['field_start_date_value']['expose']['identifier'] = 'start_date';
+  $handler->display->display_options['filters']['field_start_date_value']['expose']['remember_roles'] = array(
+    2 => '2',
+    1 => 0,
+    3 => 0,
+    4 => 0,
+    5 => 0,
+    6 => 0,
+    7 => 0,
+    8 => 0,
+    9 => 0,
+    10 => 0,
+    11 => 0,
+    12 => 0,
+  );
+  $handler->display->display_options['filters']['field_start_date_value']['form_type'] = 'date_text';
+  $handler->display->display_options['filters']['field_start_date_value']['year_range'] = '1900:+3';
   $handler->display->display_options['path'] = 'services/hw/events';
 
   /* Display: Press releases */
