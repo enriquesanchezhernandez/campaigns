@@ -5,6 +5,9 @@
  */
 function osha_contact_form_contact_site_form_alter(&$form, &$form_state){
 
+  //change default title
+  drupal_set_title(t('Contact us'));
+
   //disable fields
   $form['subject']['#default_value'] = FALSE;
   $form['subject']['#access'] = FALSE;
@@ -70,6 +73,7 @@ function osha_contact_get_taxonomy_term_options($machine_name){
 
 /**
  * Submit callback function
+ * Delete default confirmation message and set a new one
  */
 function contact_form_send($form, &$form_state){
   //remove default status message
@@ -86,18 +90,20 @@ function contact_form_send($form, &$form_state){
   }
 
   //set new status message
-  drupal_set_message(t('mesaj trimis'));
+  drupal_set_message(t('Your message has been sent.'));
 }
 
 /**
  * Implements hook_mail_alter(&$message).
  */
 function osha_contact_mail_alter(&$message) {
+  global $language;
+
   $message['body'] = array();
   if ($message['id'] == 'contact_page_mail') {
     $sender = entity_load_single('taxonomy_term', $message['params']['contact_type_of_sender']);
     $topic = entity_load_single('taxonomy_term', $message['params']['contact_topic']);
-    $message['subject'] .= t('Mail Subject');
+    $message['subject'] .= t('Contact us Form Message');
     $message['body'][] = str_replace(
       array(
         '[sender]' ,
@@ -106,6 +112,7 @@ function osha_contact_mail_alter(&$message) {
         '[email]',
         '[country]',
         '[message]',
+        '[language]',
       ),
       array(
         $sender->name,
@@ -114,6 +121,7 @@ function osha_contact_mail_alter(&$message) {
         $message['params']['mail'],
         $message['params']['country'],
         $message['params']['message'],
+        $language->language
       ),
       $message['params']['category']['body']);
 
@@ -124,16 +132,34 @@ function osha_contact_mail_alter(&$message) {
  * Implements hook_form_FORM_ID_alter
  */
 function osha_contact_form_contact_category_edit_form_alter(&$form, &$form_state){
+  $form['reply']['#default_value'] = FALSE;
+  $form['reply']['#access'] = FALSE;
+
   $form['body'] = array(
-    '#type' => 'textarea',
+    '#type' => 'text_format',
+    '#format' => 'full_html',
+    '#element_validate' => array('osha_contact_message_validate'),
     '#rows' => '10',
     '#default_value' => isset($form_state['build_info']['args'][0]['body'])? $form_state['build_info']['args'][0]['body']:'',
-    '#title' => t('Message body'),
+    '#title' => t('EU-OSHA message body'),
   );
 
   $form['weight']['#weight'] = 9;
   $form['selected']['#weight'] = 10;
 
+}
+
+/**
+ * Split text_format field from array in value and format values
+ * otherwise will generate an error when try to save in database
+ */
+function osha_contact_message_validate($element, &$form_state) {
+  if($form_state['complete form']['#id'] == 'contact-category-edit-form'){
+    if (is_array($form_state['values']['body'])) {
+      $value = $form_state['values']['body']['value'];
+      $form_state['values']['body'] = $value;
+    }
+  }
 }
 
 /**

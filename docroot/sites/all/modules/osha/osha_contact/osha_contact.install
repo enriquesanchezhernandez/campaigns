@@ -73,8 +73,8 @@ function remove_fields(){
 function osha_contact_schema_alter(&$schema){
   // Add field to existing schema.
   $schema['contact']['fields']['body'] = array(
-    'type' => 'text',
+    'type' => 'longtext',
     'not null' => FALSE,
-    'description' => 'Message body.',
+    'description' => 'EU-OSHA message body.',
   );
 }
