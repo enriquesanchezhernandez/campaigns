@@ -366,6 +366,7 @@ $options['init-modules'] = array(
   'menu_attributes',
   'menu_item_visibility',
   'shs',
+  'smtp',
 
   // Enable last (conflict with rules)
   'uuid',
@@ -498,6 +499,8 @@ $command_specific['devify'] = array(
       'stage_file_proxy_use_imagecache_root' => TRUE,
       'stage_file_proxy_hotlink' => TRUE,
       'reroute_email_address' => $cfg->variables->site_mail,
+      'smtp_from' => $cfg->variables->site_mail,
+      'smtp_fromname' => $cfg->variables->site_name,
     )
     , (array) $cfg->variables),
 );
