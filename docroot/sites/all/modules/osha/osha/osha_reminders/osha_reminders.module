@@ -115,7 +115,7 @@ function osha_reminders_mail($key, &$message, $params) {
           Thank you,'
       );
       $message['subject'] = token_replace($subject, $params);
-      $message['body'] = token_replace($body, $params);
+      $message['body'][] = token_replace($body, $params);
       break;
 
     case 'osha_reminders_head_section':
@@ -129,7 +129,7 @@ function osha_reminders_mail($key, &$message, $params) {
          Thank you,'
       );
       $message['subject'] = token_replace($subject, $params);
-      $message['body'] = token_replace($body, $params);
+      $message['body'][] = token_replace($body, $params);
       break;
   }
 }
