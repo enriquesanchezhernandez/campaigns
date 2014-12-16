@@ -1790,7 +1790,7 @@ function osha_tmgmt_mail($key, &$message, $params) {
     );
   }
   $message['subject'] = token_replace($subject, $params);
-  $message['body'] = token_replace($body, $params);
+  $message['body'][] = token_replace($body, $params);
 }
 
 
