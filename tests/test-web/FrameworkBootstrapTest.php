@@ -9,7 +9,7 @@
  * Created: 201412151936
  */
 
-class TestFrameworkBootstrapTest extends OshaWebTestCase {
+class FrameworkBootstrapTest extends OshaWebTestCase {
 
   /**
    * Test Drupal API availability.
@@ -19,14 +19,10 @@ class TestFrameworkBootstrapTest extends OshaWebTestCase {
   }
 
   public function testLogin() {
-    global $language, $language_url;
-    $language_url = $language = i18n_language_load('en');
-
     $admin = (object) array('name' => 'admin', 'pass_raw' => 'password');
     $this->drupalLogin($admin);
 
-    $data = $this->drupalGet('admin/config');
-    $this->assertText('AddToAny');
+    $this->drupalGet('admin/config');
+    $this->assertText('Multilingual settings');
   }
 }
-
