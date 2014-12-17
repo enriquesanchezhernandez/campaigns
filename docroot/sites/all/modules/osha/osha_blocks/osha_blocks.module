@@ -58,7 +58,7 @@ function get_related_wiki($node) {
     // add manually tagged wiki articles (hidden in display mode)
     foreach ($manual_wiki_articles as $related_wiki) {
       $tmp_node = node_load($related_wiki['target_id']);
-      $tagged_wikis[] = node_view($tmp_node,'osha_wiki');
+      $tagged_wikis[$tmp_node->nid] = node_view($tmp_node,'osha_wiki');
     }
   }
 
@@ -70,6 +70,7 @@ function get_related_wiki($node) {
       $wiki_categories_tids = $node->field_wiki_categories[LANGUAGE_NONE];
     }
 
+    $result = array();
     if (!empty($wiki_categories_tids)) {
       // query all wiki articles in the same category or its children
       $tids = array();
@@ -103,13 +104,98 @@ function get_related_wiki($node) {
       if (!empty($result)) {
         foreach ($result['node'] as $n) {
           $tmp_node = node_load($n->nid);
-          $tagged_wikis[] = node_view($tmp_node,'osha_wiki');
+          $tagged_wikis[$tmp_node->nid] = node_view($tmp_node, 'osha_wiki');
+        }
+      }
+    }
+
+    // Search for wikies by nace and thesaurus (see CW-916).
+    if ($count = count($tagged_wikis) < 2) {
+      $limit = 3 - $count;
+      $taxon_fields = array('field_thesaurus', 'field_nace_codes');
+      $solr_taxon_fields = array();
+      foreach ($taxon_fields as $field) {
+        if (!empty($node->{$field}[LANGUAGE_NONE])) {
+          foreach ($node->{$field}[LANGUAGE_NONE] as $term) {
+            $solr_taxon_fields[$field][] = $term['tid'];
+          }
+        }
+      }
+      if (!empty($solr_taxon_fields)) {
+        // Get nids of wiki form solr.
+        $exclude = array_keys($tagged_wikis);
+        $solr_wiki_nids = osha_blocks_related_wiki_solr_query($solr_taxon_fields, $exclude, $limit);
+        $solr_wiki = node_load_multiple($solr_wiki_nids);
+        if (!empty($solr_wiki)) {
+          foreach ($solr_wiki as $wiki_node) {
+            if (empty($tagged_wikis[$wiki_node->nid])) {
+              $tagged_wikis[$wiki_node->nid] = node_view($wiki_node, 'osha_wiki');
+            }
+          }
         }
       }
     }
   }
 
   return $tagged_wikis;
+}
+
+/**
+ * Search in solr for wikies with some taxonomy terms.
+ *
+ * @param array $taxon_fields
+ *   Taxonomy term ids grouped by field name (as key)
+ * @param array $exclude
+ *   Node ids to exclude in the search.
+ * @param int $limit
+ *   Number of results to return.
+ *
+ * @return array
+ *   Resulted Node ids.
+ */
+function osha_blocks_related_wiki_solr_query($taxon_fields, $exclude = array(), $limit = 3) {
+  $server = search_api_server_load('solr_server');
+  $index = search_api_index_load('default_multilingual_node_index');
+  $fields = $index->getFields();
+  $connection = new SearchApiSolrConnection($server->options);
+  $bundles = array('wiki_page');
+  $params['rows'] = $limit;
+  $params['fq'][] = 'ss_search_api_language:"en"';
+  $params['fq'][] = 'is_status:"1"';
+  // Add condition for wiki bundle..
+  foreach ($bundles as $bundle) {
+    $params['fq'][] = '{!tag=ss_type}ss_type:"' . $bundle . '"';
+  }
+  // Add condition to exclude some nodes.
+  if (!empty($exclude)) {
+    foreach ($exclude as $nid) {
+      $params['fq'][] = '{!tag=is_nid}*:* AND -(is_nid:"' . $nid . '")';
+    }
+  }
+  // Add conditions for requested search terms.
+  foreach ($taxon_fields as $field_name => $tids) {
+    if (!empty($tids)) {
+      $taxon_param = array();
+      foreach ($tids as $tid) {
+        $taxon_param[] = '(im_' . $field_name . ':' . $tid . ')';
+      }
+      $params['fq'][] = '{!tag=im_' . $field_name . '}(' . implode(' OR ', $taxon_param) . ')';
+      $params['qf'][] = 'im_' . $field_name . '^' . $fields[$field_name]['boost'];
+    }
+  }
+
+  // Make the search.
+  $request = $connection->search(NULL, $params);
+  $data = json_decode($request->data);
+
+  // Extract nids.
+  $nids = array();
+  if (!empty($data->response->docs)) {
+    foreach ($data->response->docs as $solr_node) {
+      $nids[] = $solr_node->is_nid;
+    }
+  }
+  return $nids;
 }
 
 /**

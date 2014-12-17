@@ -599,7 +599,9 @@ function osha_url_inbound_alter(&$path, $original_path, $path_language) {
  * Implements hook_date_formatter_dates_alter().
  */
 function osha_date_formatter_dates_alter(&$dates, $context) {
-  $dates['value']['osha_date_theme'] = $context['display']['settings']['osha_date_theme'];
+  if (!empty($dates['value'])) {
+    $dates['value']['osha_date_theme'] = $context['display']['settings']['osha_date_theme'];
+  }
 }
 
 /**

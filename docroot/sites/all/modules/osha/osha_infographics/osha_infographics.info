@@ -1,7 +1,7 @@
 name = Infographics
 core = 7.x
 package = OSHA
-version = 7.x-0.4
+version = 7.x-0.6
 project = osha_infographics
 dependencies[] = ctools
 dependencies[] = custom_formatters
@@ -52,4 +52,4 @@ features[variable][] = node_submitted_infographic
 features[views_view][] = infographic
 features_exclude[taxonomy][infographic_topic] = infographic_topic
 features_exclude[dependencies][osha_legislation] = osha_legislation
-mtime = 1418303810
+mtime = 1418812902

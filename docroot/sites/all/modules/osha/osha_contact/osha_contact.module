@@ -101,9 +101,12 @@ function osha_contact_mail_alter(&$message) {
 
   $message['body'] = array();
   if ($message['id'] == 'contact_page_mail') {
-    $sender = entity_load_single('taxonomy_term', $message['params']['contact_type_of_sender']);
-    $topic = entity_load_single('taxonomy_term', $message['params']['contact_topic']);
-    $message['subject'] .= t('Contact us Form Message');
+    //translated taxonomy terms
+    //$sender = entity_load_single('taxonomy_term', $message['params']['contact_type_of_sender']);
+    //$topic = entity_load_single('taxonomy_term', $message['params']['contact_topic']);
+    $sender = taxonomy_term_load($message['params']['contact_type_of_sender']);
+    $topic = taxonomy_term_load($message['params']['contact_topic']);
+    $message['subject'] .= $topic->name;
     $message['body'][] = str_replace(
       array(
         '[sender]' ,
@@ -165,18 +168,16 @@ function osha_contact_message_validate($element, &$form_state) {
 /**
  * Implements hook_i18n_object_info().
  */
-function osha_contact_i18n_object_info(){
-  $info = array();
-
-  $info = array('contact_category' => array(
+function osha_contact_i18n_object_info() {
+  $info['contact_category'] = array(
+    'title' => t('Contact category'),
     // Properties for string translation.
     'string translation' => array(
       // Translatable properties of these objects.
       'properties' => array(
         'body' => t('Message Body'),
       ),
-    )
-  )) + $info;
-
+    ),
+  );
   return $info;
 }
