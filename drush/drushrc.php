@@ -366,6 +366,7 @@ $options['init-modules'] = array(
   'menu_attributes',
   'menu_item_visibility',
   'shs',
+  'smtp',
 
   // Enable last (conflict with rules)
   'uuid',
@@ -403,6 +404,8 @@ $options['init-modules'] = array(
   'feeds_tamper',
   'feeds_tamper_ui',
   'views_php',
+
+  'views_datasource',
 
   //Allow anonymous comments per node type
   'comment_allow_anonymous',
@@ -474,6 +477,7 @@ $options['init-modules'] = array(
   'devel',
   'devel_node_access',
   'diff',
+  'update'
 );
 
 
@@ -501,6 +505,8 @@ $command_specific['devify'] = array(
       'stage_file_proxy_use_imagecache_root' => TRUE,
       'stage_file_proxy_hotlink' => TRUE,
       'reroute_email_address' => $cfg->variables->site_mail,
+      'smtp_from' => $cfg->variables->site_mail,
+      'smtp_fromname' => $cfg->variables->site_name,
     )
     , (array) $cfg->variables),
 );

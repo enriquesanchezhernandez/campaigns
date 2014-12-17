@@ -216,7 +216,6 @@ function osha_legislation_views_default_views() {
   $handler->display->display_options['pager']['type'] = 'none';
   $handler->display->display_options['style_plugin'] = 'default';
   $handler->display->display_options['row_plugin'] = 'node';
-  $handler->display->display_options['row_options']['links'] = FALSE;
   /* Relationship: Content: Legislation category (field_legislation_category) */
   $handler->display->display_options['relationships']['field_legislation_category_tid']['id'] = 'field_legislation_category_tid';
   $handler->display->display_options['relationships']['field_legislation_category_tid']['table'] = 'field_data_field_legislation_category';
@@ -355,6 +354,13 @@ function osha_legislation_views_default_views() {
   $handler->display->display_options['fields']['field_legislation_category']['alter']['path'] = 'legislation/guidelines/[field_guideline_category_code]';
   $handler->display->display_options['fields']['field_legislation_category']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['field_legislation_category']['type'] = 'taxonomy_term_reference_plain';
+  /* Field: Content: Link */
+  $handler->display->display_options['fields']['view_node']['id'] = 'view_node';
+  $handler->display->display_options['fields']['view_node']['table'] = 'views_entity_node';
+  $handler->display->display_options['fields']['view_node']['field'] = 'view_node';
+  $handler->display->display_options['fields']['view_node']['label'] = '';
+  $handler->display->display_options['fields']['view_node']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['view_node']['text'] = 'Show details';
   $handler->display->display_options['defaults']['sorts'] = FALSE;
   /* Sort criterion: Taxonomy term: Weight */
   $handler->display->display_options['sorts']['weight']['id'] = 'weight';
@@ -381,6 +387,7 @@ function osha_legislation_views_default_views() {
     t('All'),
     t('Page'),
     t('Guidelines by topics'),
+    t('Show details'),
   );
   $export['legislation_guidelines'] = $view;
 
@@ -494,6 +501,13 @@ function osha_legislation_views_default_views() {
   );
   $handler->display->display_options['filters']['search_api_views_fulltext_1']['fields'] = array(
     'title_field' => 'title_field',
+  );
+  /* Filter criterion: Indexed Multilingual Node: Item language */
+  $handler->display->display_options['filters']['search_api_language']['id'] = 'search_api_language';
+  $handler->display->display_options['filters']['search_api_language']['table'] = 'search_api_index_default_multilingual_node_index';
+  $handler->display->display_options['filters']['search_api_language']['field'] = 'search_api_language';
+  $handler->display->display_options['filters']['search_api_language']['value'] = array(
+    'en' => 'en',
   );
 
   /* Display: Page */

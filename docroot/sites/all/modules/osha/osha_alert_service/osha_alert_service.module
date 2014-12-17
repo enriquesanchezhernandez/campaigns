@@ -299,7 +299,7 @@ EOT;
       break;
   }
   $message['subject'] = token_replace($message['subject'], $params);
-  $message['body'] = token_replace($message['body'], $params);
+  $message['body'][] = token_replace($message['body'], $params);
 }
 
 /**

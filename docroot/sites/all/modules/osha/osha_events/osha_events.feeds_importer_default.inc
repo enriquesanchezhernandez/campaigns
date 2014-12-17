@@ -43,85 +43,94 @@ function osha_events_feeds_importer_default() {
         'authorize' => 1,
         'mappings' => array(
           0 => array(
-            'source' => 'Organization',
-            'target' => 'field_organization',
-            'unique' => FALSE,
-          ),
-          1 => array(
             'source' => 'Title of the event',
             'target' => 'title_field',
             'unique' => FALSE,
           ),
+          1 => array(
+            'source' => 'Title of the event',
+            'target' => 'title',
+            'unique' => FALSE,
+          ),
           2 => array(
+            'source' => 'Organization',
+            'target' => 'field_organization',
+            'unique' => FALSE,
+          ),
+          3 => array(
             'source' => 'Country code',
             'target' => 'field_country_code',
             'unique' => FALSE,
           ),
-          3 => array(
+          4 => array(
             'source' => 'City',
             'target' => 'field_city',
             'unique' => FALSE,
           ),
-          4 => array(
+          5 => array(
             'source' => 'Start date',
             'target' => 'field_start_date:start',
             'unique' => FALSE,
           ),
-          5 => array(
-            'source' => 'End date',
-            'target' => 'field_end_date:start',
-            'unique' => FALSE,
-          ),
           6 => array(
-            'source' => 'Website of event',
-            'target' => 'field_website_of_event:url',
+            'source' => 'End date',
+            'target' => 'field_start_date:end',
             'unique' => FALSE,
           ),
           7 => array(
             'source' => 'Theme',
-            'target' => 'field_theme',
-            'term_search' => '0',
-            'autocreate' => 0,
+            'target' => 'field_tags',
+            'unique' => FALSE,
           ),
           8 => array(
+            'source' => 'Website of event',
+            'target' => 'field_website_of_event:url',
+            'unique' => FALSE,
+          ),
+          9 => array(
             'source' => 'Adonis',
             'target' => 'field_adonis',
             'unique' => FALSE,
           ),
-          9 => array(
+          10 => array(
             'source' => 'Unit ref',
             'target' => 'field_unit_ref',
             'unique' => FALSE,
           ),
-          10 => array(
+          11 => array(
             'source' => 'Activity',
             'target' => 'field_activity',
             'term_search' => '0',
             'autocreate' => 0,
           ),
-          11 => array(
+          12 => array(
             'source' => 'Agency role',
             'target' => 'field_agency_role',
             'unique' => FALSE,
           ),
-          12 => array(
+          13 => array(
             'source' => 'Agency initial contact',
             'target' => 'field_agency_initial_contact',
             'unique' => FALSE,
           ),
-          13 => array(
+          14 => array(
             'source' => 'Agency rep confirmed',
             'target' => 'field_agency_rep_confirmed',
             'unique' => FALSE,
           ),
-          14 => array(
+          15 => array(
             'source' => 'Agency contact',
             'target' => 'field_agency_contact_reply',
             'unique' => FALSE,
           ),
-          15 => array(
+          16 => array(
             'source' => 'Comments',
             'target' => 'field_comments_summary_after_eve',
+            'unique' => FALSE,
+          ),
+          17 => array(
+            'source' => 'Language',
+            'target' => 'language',
             'unique' => FALSE,
           ),
         ),
