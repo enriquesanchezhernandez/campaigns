@@ -892,10 +892,8 @@ function osha_events_views_default_views() {
     t('City'),
     t('Start date'),
     t('Website of event'),
-    t('Theme'),
     t('Adonis'),
     t('Unit Ref'),
-    t('Activity '),
     t('Agency role'),
     t('Agency initial contact'),
     t('Agency rep confirmed'),
@@ -1209,6 +1207,13 @@ function osha_events_views_default_views() {
   $handler->display->display_options['filters']['field_publication_date_1']['field'] = 'field_publication_date';
   $handler->display->display_options['filters']['field_publication_date_1']['operator'] = 'empty';
   $handler->display->display_options['filters']['field_publication_date_1']['group'] = 2;
+  /* Filter criterion: Indexed Multilingual Node: Item language */
+  $handler->display->display_options['filters']['search_api_language']['id'] = 'search_api_language';
+  $handler->display->display_options['filters']['search_api_language']['table'] = 'search_api_index_default_multilingual_node_index';
+  $handler->display->display_options['filters']['search_api_language']['field'] = 'search_api_language';
+  $handler->display->display_options['filters']['search_api_language']['value'] = array(
+    'en' => 'en',
+  );
   $handler->display->display_options['path'] = 'events';
 
   /* Display: Block */
@@ -1643,7 +1648,6 @@ $average_attend = round($average_attend, 2);
     t('Total: @end
 '),
     t('Start date:'),
-    t('End date:'),
     t('In the AMP: '),
     t('Number of attendees'),
     t('Satisfaction rate'),

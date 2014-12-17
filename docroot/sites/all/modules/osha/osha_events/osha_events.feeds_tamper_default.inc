@@ -49,6 +49,20 @@ function osha_events_feeds_tamper_default() {
   $feeds_tamper = new stdClass();
   $feeds_tamper->disabled = FALSE; /* Edit this to true to make a default feeds_tamper disabled initially */
   $feeds_tamper->api_version = 2;
+  $feeds_tamper->id = 'import_events-language-default_value';
+  $feeds_tamper->importer = 'import_events';
+  $feeds_tamper->source = 'Language';
+  $feeds_tamper->plugin_id = 'default_value';
+  $feeds_tamper->settings = array(
+    'default_value' => 'en',
+  );
+  $feeds_tamper->weight = 0;
+  $feeds_tamper->description = 'Set default value';
+  $export['import_events-language-default_value'] = $feeds_tamper;
+
+  $feeds_tamper = new stdClass();
+  $feeds_tamper->disabled = FALSE; /* Edit this to true to make a default feeds_tamper disabled initially */
+  $feeds_tamper->api_version = 2;
   $feeds_tamper->id = 'import_events-start_date-find_replace';
   $feeds_tamper->importer = 'import_events';
   $feeds_tamper->source = 'Start date';
