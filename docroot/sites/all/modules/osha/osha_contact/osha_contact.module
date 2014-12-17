@@ -168,18 +168,16 @@ function osha_contact_message_validate($element, &$form_state) {
 /**
  * Implements hook_i18n_object_info().
  */
-function osha_contact_i18n_object_info(){
-  $info = array();
-
-  $info = array('contact_category' => array(
+function osha_contact_i18n_object_info() {
+  $info['contact_category'] = array(
+    'title' => t('Contact category'),
     // Properties for string translation.
     'string translation' => array(
       // Translatable properties of these objects.
       'properties' => array(
         'body' => t('Message Body'),
       ),
-    )
-  )) + $info;
-
+    ),
+  );
   return $info;
 }
