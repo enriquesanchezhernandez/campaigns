@@ -9,16 +9,7 @@
  * Created: 201412151936
  */
 
-class TestFrameworkBootstrapTest extends DrupalWebTestCase {
-
-  public function setUp() {
-    global $base_url;
-    $base_url = UPAL_WEB_URL;
-    $base_url = 'http://osha.localhost:8000';
-    $this->cookieFile = '/tmp/cookie.txt';
-    $this->cookies = array();
-    parent::setUp();
-  }
+class TestFrameworkBootstrapTest extends OshaWebTestCase {
 
   /**
    * Test Drupal API availability.

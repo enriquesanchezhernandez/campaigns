@@ -51,6 +51,8 @@ function upal_init() {
 
   // Set the env vars that Drupal expects. Largely copied from drush.
   $url = parse_url(UPAL_WEB_URL);
+  global $base_url;
+  $base_url = UPAL_WEB_URL;
 
   if (array_key_exists('path', $url)) {
     $_SERVER['PHP_SELF'] = $url['path'] . '/index.php';
