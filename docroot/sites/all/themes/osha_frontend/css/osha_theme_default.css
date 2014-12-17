@@ -4911,10 +4911,13 @@ a.tabs-primary__tab-link{
 }
 
 .additional_resource_group.youtube{
-	border:1px dotted #CCCCCC;
-	padding:1em;
-	margin-top:0.5em;
-	margin-bottom:0.5em;
+	border: 1px dotted #cccccc;
+    clear: both;
+    height: 1%;
+    margin-bottom: 0.5em;
+    margin-top: 0.5em;
+    overflow: hidden;
+    padding: 1em;
 }
 
 .additional_resource_group.youtube span.additional_resource_title{
@@ -5135,6 +5138,11 @@ a.tabs-primary__tab-link{
 }
 
 .field-name-field-youtube img {
+	float:left;
+	margin-right:0.3em;
+}
+
+.additional_resource_group.youtube .field-item {
 	float:left;
 	margin-right:0.3em;
 }
@@ -5944,3 +5952,24 @@ div.contextual-links-wrapper{
 }
 
 /*END DETAIL INFOGRAPHICS*/
+
+
+.sidebars_second .block-nodeblock article .field-name-title-field h1{
+	background: url("../images/separator_home.jpg") repeat-x scroll 0 100% rgba(0, 0, 0, 0);
+    color: #000;
+    font-family: "Oswald",sans-serif;
+    font-size: 1.55em;
+    font-weight: lighter;
+    margin: 0;
+    padding: 0.3em 0.5em;
+	border-top: 5px solid #003399;
+}
+
+.sidebars_second .block-nodeblock article .field-name-body a{
+    border-bottom: 0 none !important;
+    color: #003399;
+    font-size: 0.8em;
+    font-weight: bold;
+    padding-left: 1em;
+    text-decoration: none;
+}
