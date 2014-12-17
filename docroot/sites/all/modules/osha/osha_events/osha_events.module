@@ -62,7 +62,7 @@ function osha_events_form_validate($form, &$form_state) {
       form_set_error('field_city', t('You have to add a City.'));
     }
     if (empty($values['field_tags']['und']['0']['tid'])) {
-      form_set_error('field_theme', t('You have to add a Theme.'));
+      form_set_error('field_tags', t('You have to add a Category.'));
     }
   }
 }
