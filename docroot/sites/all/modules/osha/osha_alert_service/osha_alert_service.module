@@ -299,7 +299,7 @@ EOT;
       break;
   }
   $message['subject'] = token_replace($message['subject'], $params);
-  $message['body'] = token_replace($message['body'], $params);
+  $message['body'][] = token_replace($message['body'], $params);
 }
 
 /**
@@ -481,6 +481,10 @@ function osha_alert_service_token_info() {
     'name' => t('Content of the alert'),
     'description' => t('The html list of content.'),
   );
+  $alert['privacy_policy_url'] = array(
+    'name' => t('URL to Privacy Policy Page'),
+    'description' => t('URL to Privacy Policy Page'),
+  );
   $info['tokens']['osha_alert_service'] = $alert;
   return $info;
 }
@@ -508,6 +512,11 @@ function osha_alert_service_tokens($type, $tokens, array $data = array(), array 
 
         case 'alert_content':
           $replacements[$original] = $data['view'];
+          break;
+
+        case 'privacy_policy_url':
+          $privacy_link = variable_get('subscribe_block_details_link_url', OSHA_PRIVACY_PAGE_URL);
+          $replacements[$original] = url($privacy_link, array('absolute' => TRUE));
           break;
       }
     }

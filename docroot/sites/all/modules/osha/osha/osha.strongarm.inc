@@ -648,6 +648,13 @@ function osha_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'htmlmail_postfilter';
+  $strongarm->value = 'full_html';
+  $export['htmlmail_postfilter'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'i18n_string_allowed_formats';
   $strongarm->value = array(
     'full_html' => 'full_html',
@@ -1080,6 +1087,13 @@ function osha_strongarm() {
   $strongarm->name = 'site_map_show_titles';
   $strongarm->value = 0;
   $export['site_map_show_titles'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'smtp_allowhtml';
+  $strongarm->value = 1;
+  $export['smtp_allowhtml'] = $strongarm;
 
   return $export;
 }

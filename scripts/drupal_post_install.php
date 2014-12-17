@@ -209,7 +209,7 @@ function osha_configure_addtoany_social_share() {
   drupal_set_message('Configuring Addtoany contrib module ...');
 
   variable_set('addtoany_buttons_size', 16);
-  variable_set('addtoany_additional_html', '<a class="a2a_button_twitter"></a><a class="a2a_button_facebook"></a><a class="a2a_button_linkedin"></a><a class="a2a_button_google_plus"></a>');
+  variable_set('addtoany_additional_html', '<a class="a2a_button_twitter"></a><a class="a2a_button_facebook"></a><a class="a2a_button_linkedin"></a><a class="a2a_button_print"></a>');
   variable_set('addtoany_additional_html_placement', 'after');
   variable_set('addtoany_display_in_nodecont', '0');
   variable_set('addtoany_display_in_nodelink', '1');

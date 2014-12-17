@@ -382,7 +382,8 @@ class OshaMigratePublications extends OSHADynamicMigration {
           $redirect->language = $language;
 
           // Create the redirect
-          redirect_save($redirect);
+          // todo Commented this -  in conflict with CW-1072.
+//          redirect_save($redirect);
         }
       }
     }

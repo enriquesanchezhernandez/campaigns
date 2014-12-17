@@ -77,24 +77,12 @@ function osha_events_views_default_views() {
     'multiple_to' => '',
     'osha_date_theme' => '',
   );
-  /* Field: Broken/missing handler */
-  $handler->display->display_options['fields']['field_end_date']['id'] = 'field_end_date';
-  $handler->display->display_options['fields']['field_end_date']['table'] = 'field_data_field_end_date';
-  $handler->display->display_options['fields']['field_end_date']['field'] = 'field_end_date';
-  $handler->display->display_options['fields']['field_end_date']['element_label_colon'] = FALSE;
   /* Field: Content: Website of event */
   $handler->display->display_options['fields']['field_website_of_event']['id'] = 'field_website_of_event';
   $handler->display->display_options['fields']['field_website_of_event']['table'] = 'field_data_field_website_of_event';
   $handler->display->display_options['fields']['field_website_of_event']['field'] = 'field_website_of_event';
   $handler->display->display_options['fields']['field_website_of_event']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['field_website_of_event']['click_sort_column'] = 'url';
-  /* Field: Content: Category */
-  $handler->display->display_options['fields']['field_theme']['id'] = 'field_theme';
-  $handler->display->display_options['fields']['field_theme']['table'] = 'field_data_field_theme';
-  $handler->display->display_options['fields']['field_theme']['field'] = 'field_theme';
-  $handler->display->display_options['fields']['field_theme']['label'] = 'Theme';
-  $handler->display->display_options['fields']['field_theme']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['field_theme']['delta_offset'] = '0';
   /* Field: Content: Adonis */
   $handler->display->display_options['fields']['field_adonis']['id'] = 'field_adonis';
   $handler->display->display_options['fields']['field_adonis']['table'] = 'field_data_field_adonis';
@@ -105,12 +93,6 @@ function osha_events_views_default_views() {
   $handler->display->display_options['fields']['field_unit_ref']['table'] = 'field_data_field_unit_ref';
   $handler->display->display_options['fields']['field_unit_ref']['field'] = 'field_unit_ref';
   $handler->display->display_options['fields']['field_unit_ref']['element_label_colon'] = FALSE;
-  /* Field: Broken/missing handler */
-  $handler->display->display_options['fields']['field_activity_']['id'] = 'field_activity_';
-  $handler->display->display_options['fields']['field_activity_']['table'] = 'field_data_field_activity_';
-  $handler->display->display_options['fields']['field_activity_']['field'] = 'field_activity_';
-  $handler->display->display_options['fields']['field_activity_']['label'] = 'Activity ';
-  $handler->display->display_options['fields']['field_activity_']['element_label_colon'] = FALSE;
   /* Field: Content: Agency role */
   $handler->display->display_options['fields']['field_agency_role']['id'] = 'field_agency_role';
   $handler->display->display_options['fields']['field_agency_role']['table'] = 'field_data_field_agency_role';
@@ -467,13 +449,6 @@ function osha_events_views_default_views() {
   $handler->display->display_options['fields']['field_website_of_event']['field'] = 'field_website_of_event';
   $handler->display->display_options['fields']['field_website_of_event']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['field_website_of_event']['click_sort_column'] = 'url';
-  /* Field: Content: Category */
-  $handler->display->display_options['fields']['field_theme']['id'] = 'field_theme';
-  $handler->display->display_options['fields']['field_theme']['table'] = 'field_data_field_theme';
-  $handler->display->display_options['fields']['field_theme']['field'] = 'field_theme';
-  $handler->display->display_options['fields']['field_theme']['label'] = 'Theme';
-  $handler->display->display_options['fields']['field_theme']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['field_theme']['delta_offset'] = '0';
   /* Field: Content: Adonis */
   $handler->display->display_options['fields']['field_adonis']['id'] = 'field_adonis';
   $handler->display->display_options['fields']['field_adonis']['table'] = 'field_data_field_adonis';
@@ -715,33 +690,6 @@ function osha_events_views_default_views() {
     10 => 0,
     11 => 0,
   );
-  /* Filter criterion: Content: Category (field_theme) */
-  $handler->display->display_options['filters']['field_theme_tid']['id'] = 'field_theme_tid';
-  $handler->display->display_options['filters']['field_theme_tid']['table'] = 'field_data_field_theme';
-  $handler->display->display_options['filters']['field_theme_tid']['field'] = 'field_theme_tid';
-  $handler->display->display_options['filters']['field_theme_tid']['group'] = 1;
-  $handler->display->display_options['filters']['field_theme_tid']['exposed'] = TRUE;
-  $handler->display->display_options['filters']['field_theme_tid']['expose']['operator_id'] = 'field_theme_tid_op';
-  $handler->display->display_options['filters']['field_theme_tid']['expose']['label'] = 'Theme';
-  $handler->display->display_options['filters']['field_theme_tid']['expose']['operator'] = 'field_theme_tid_op';
-  $handler->display->display_options['filters']['field_theme_tid']['expose']['identifier'] = 'field_theme_tid';
-  $handler->display->display_options['filters']['field_theme_tid']['expose']['multiple'] = TRUE;
-  $handler->display->display_options['filters']['field_theme_tid']['expose']['remember_roles'] = array(
-    2 => '2',
-    1 => 0,
-    3 => 0,
-    4 => 0,
-    5 => 0,
-    6 => 0,
-    7 => 0,
-    8 => 0,
-    9 => 0,
-    10 => 0,
-    11 => 0,
-  );
-  $handler->display->display_options['filters']['field_theme_tid']['type'] = 'select';
-  $handler->display->display_options['filters']['field_theme_tid']['vocabulary'] = 'tags';
-  $handler->display->display_options['filters']['field_theme_tid']['hierarchy'] = 1;
   /* Filter criterion: Content: Event in AMP (field_event_in_amp) */
   $handler->display->display_options['filters']['field_event_in_amp_value']['id'] = 'field_event_in_amp_value';
   $handler->display->display_options['filters']['field_event_in_amp_value']['table'] = 'field_data_field_event_in_amp';
@@ -943,7 +891,6 @@ function osha_events_views_default_views() {
     t('Country code'),
     t('City'),
     t('Start date'),
-    t('Broken handler field_data_field_end_date.field_end_date'),
     t('Website of event'),
     t('Theme'),
     t('Adonis'),
@@ -1286,6 +1233,13 @@ function osha_events_views_default_views() {
   $handler->display->display_options['row_plugin'] = 'fields';
   $handler->display->display_options['row_options']['default_field_elements'] = FALSE;
   $handler->display->display_options['defaults']['row_options'] = FALSE;
+  $handler->display->display_options['defaults']['empty'] = FALSE;
+  /* No results behavior: Global: Unfiltered text */
+  $handler->display->display_options['empty']['area_text_custom']['id'] = 'area_text_custom';
+  $handler->display->display_options['empty']['area_text_custom']['table'] = 'views';
+  $handler->display->display_options['empty']['area_text_custom']['field'] = 'area_text_custom';
+  $handler->display->display_options['empty']['area_text_custom']['empty'] = TRUE;
+  $handler->display->display_options['empty']['area_text_custom']['content'] = 'No results';
   $handler->display->display_options['defaults']['fields'] = FALSE;
   /* Field: Indexed Multilingual Node: Start date */
   $handler->display->display_options['fields']['field_start_date']['id'] = 'field_start_date';
@@ -1352,11 +1306,10 @@ function osha_events_views_default_views() {
     'trim_length' => '150',
   );
   $handler->display->display_options['defaults']['sorts'] = FALSE;
-  /* Sort criterion: Broken/missing handler */
-  $handler->display->display_options['sorts']['field_start_date']['id'] = 'field_start_date';
-  $handler->display->display_options['sorts']['field_start_date']['table'] = 'search_api_index_default_multilingual_node_index';
-  $handler->display->display_options['sorts']['field_start_date']['field'] = 'field_start_date';
-  $handler->display->display_options['sorts']['field_start_date']['order'] = 'DESC';
+  /* Sort criterion: Start date: Start date (indexed) */
+  $handler->display->display_options['sorts']['field_start_date_value']['id'] = 'field_start_date_value';
+  $handler->display->display_options['sorts']['field_start_date_value']['table'] = 'search_api_index_default_multilingual_node_index';
+  $handler->display->display_options['sorts']['field_start_date_value']['field'] = 'field_start_date_value';
   $handler->display->display_options['defaults']['filter_groups'] = FALSE;
   $handler->display->display_options['defaults']['filters'] = FALSE;
   /* Filter criterion: Indexed Multilingual Node: Content type */
@@ -1373,6 +1326,12 @@ function osha_events_views_default_views() {
   $handler->display->display_options['filters']['status']['value'] = array(
     1 => '1',
   );
+  /* Filter criterion: Start date: End date (indexed) */
+  $handler->display->display_options['filters']['field_start_date_value2']['id'] = 'field_start_date_value2';
+  $handler->display->display_options['filters']['field_start_date_value2']['table'] = 'search_api_index_default_multilingual_node_index';
+  $handler->display->display_options['filters']['field_start_date_value2']['field'] = 'field_start_date_value2';
+  $handler->display->display_options['filters']['field_start_date_value2']['operator'] = '>=';
+  $handler->display->display_options['filters']['field_start_date_value2']['value'] = 'now';
   $handler->display->display_options['block_description'] = 'Upcoming events';
   $translatables['events_index'] = array(
     t('Master'),
@@ -1448,7 +1407,7 @@ $rate_satisfaction = 0;
 $average_attend = 0;
 $tot_results = count($results);
 
-for ($i=0; $i < $tot_results; $i++) { 
+for ($i=0; $i < $tot_results; $i++) {
 	if(isset($results[$i]->field_field_number_of_attendees[0][\'raw\'][\'value\'])){
 		$tot_attend +=  $results[$i]->field_field_number_of_attendees[0][\'raw\'][\'value\'];
 	}
@@ -1527,12 +1486,6 @@ $average_attend = round($average_attend, 2);
     'multiple_to' => '',
     'osha_date_theme' => '',
   );
-  /* Field: Broken/missing handler */
-  $handler->display->display_options['fields']['field_end_date']['id'] = 'field_end_date';
-  $handler->display->display_options['fields']['field_end_date']['table'] = 'field_data_field_end_date';
-  $handler->display->display_options['fields']['field_end_date']['field'] = 'field_end_date';
-  $handler->display->display_options['fields']['field_end_date']['label'] = 'End date:';
-  $handler->display->display_options['fields']['field_end_date']['element_label_colon'] = FALSE;
   /* Field: Content: Event in AMP */
   $handler->display->display_options['fields']['field_event_in_amp']['id'] = 'field_event_in_amp';
   $handler->display->display_options['fields']['field_event_in_amp']['table'] = 'field_data_field_event_in_amp';

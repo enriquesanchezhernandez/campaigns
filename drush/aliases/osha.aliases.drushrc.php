@@ -9,6 +9,11 @@ $aliases['osha.staging'] = array(
   'path-aliases' => array(
     '%files' => 'sites/default/files',
   ),
+  'command-specific' => array(
+    'sql-sync' => array(
+      'simulate' => '1',
+    ),
+  ),
 );
 
 $aliases['osha.staging.edw'] = array(

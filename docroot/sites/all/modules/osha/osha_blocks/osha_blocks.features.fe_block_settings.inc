@@ -243,7 +243,7 @@ function osha_blocks_default_fe_block_settings() {
         'region' => 'sidebar_second',
         'status' => 1,
         'theme' => 'osha_frontend',
-        'weight' => -24,
+        'weight' => -1,
       ),
       'seven' => array(
         'region' => '',
@@ -293,6 +293,48 @@ function osha_blocks_default_fe_block_settings() {
         'status' => 0,
         'theme' => 'seven',
         'weight' => 0,
+      ),
+    ),
+    'title' => '',
+    'visibility' => 0,
+  );
+
+  $export['osha_wiki-osha_wiki_related_content'] = array(
+    'cache' => 1,
+    'custom' => 0,
+    'delta' => 'osha_wiki_related_content',
+    'i18n_block_language' => array(),
+    'i18n_mode' => 0,
+    'module' => 'osha_wiki',
+    'node_types' => array(
+      0 => 'article',
+    ),
+    'pages' => '',
+    'roles' => array(),
+    'themes' => array(
+      'bartik' => array(
+        'region' => 'sidebar_second',
+        'status' => 1,
+        'theme' => 'bartik',
+        'weight' => -30,
+      ),
+      'osha_admin' => array(
+        'region' => 'sidebar_second',
+        'status' => 1,
+        'theme' => 'osha_admin',
+        'weight' => -30,
+      ),
+      'osha_frontend' => array(
+        'region' => 'sidebar_second',
+        'status' => 1,
+        'theme' => 'osha_frontend',
+        'weight' => -3,
+      ),
+      'seven' => array(
+        'region' => '',
+        'status' => 0,
+        'theme' => 'seven',
+        'weight' => -30,
       ),
     ),
     'title' => '',
