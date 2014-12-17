@@ -226,6 +226,19 @@ function osha_frontend_process_node(&$vars) {
   if ($vars['type'] == 'publication' && $vars['view_mode'] == 'full' ) {
     fill_related_publications($vars);
   }
+  // CW-1087 - publications opens at alias/view link.
+  if ($vars['type'] == 'publication'
+    && !empty($vars['content']['links']['node']['#links']['node-readmore'])) {
+    $url = &$vars['content']['links']['node']['#links']['node-readmore']['href'];
+    $path = path_load($url);
+    if (!empty($path)) {
+      $url = $path['alias'] . '/view';
+    }
+    else {
+      $url .= '/view';
+    }
+  }
+
   if (isset($vars['content']['links']['node']['#links']['node-readmore'])) {
     $vars['content']['links']['node']['#links']['node-readmore']['title'] = t('Show details');
   }
