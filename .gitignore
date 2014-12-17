@@ -8,6 +8,7 @@ conf/apache.conf
 conf/config.json
 .idea
 phpunit.xml
+results/*
 
 
 # User Generated Content #
