@@ -477,6 +477,13 @@ function osha_blog_views_default_views() {
   $handler->display->display_options['filters']['field_publication_date']['field'] = 'field_publication_date';
   $handler->display->display_options['filters']['field_publication_date']['operator'] = '<=';
   $handler->display->display_options['filters']['field_publication_date']['value'] = 'now';
+  /* Filter criterion: Indexed Multilingual Node: Item language */
+  $handler->display->display_options['filters']['search_api_language']['id'] = 'search_api_language';
+  $handler->display->display_options['filters']['search_api_language']['table'] = 'search_api_index_default_multilingual_node_index';
+  $handler->display->display_options['filters']['search_api_language']['field'] = 'search_api_language';
+  $handler->display->display_options['filters']['search_api_language']['value'] = array(
+    'en' => 'en',
+  );
 
   /* Display: Page */
   $handler = $view->new_display('page', 'Page', 'page');

@@ -413,6 +413,8 @@ $options['init-modules'] = array(
   //create blocks which display embedded tweets
   'twitter_block',
 
+  'contact',
+
   'osha_taxonomies',
   'osha',
   'osha_migration',
@@ -439,6 +441,7 @@ $options['init-modules'] = array(
   'osha_slideshare',
   'osha_events',
   'osha_alert_service',
+  'osha_contact',
 
   'linkchecker',
   'osha_linkchecker',
