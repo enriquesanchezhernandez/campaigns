@@ -1659,13 +1659,13 @@ function osha_publication_field_default_field_instances() {
     'display' => array(
       'default' => array(
         'label' => 'hidden',
-        'module' => 'title',
+        'module' => 'osha_publication',
         'settings' => array(
           'title_class' => '',
-          'title_link' => '',
+          'title_link' => 'content',
           'title_style' => 'h1',
         ),
-        'type' => 'title_linked',
+        'type' => 'publication_title_linked',
         'weight' => 0,
       ),
       'highlights_item' => array(
@@ -1703,13 +1703,13 @@ function osha_publication_field_default_field_instances() {
       ),
       'osha_slideshow' => array(
         'label' => 'hidden',
-        'module' => 'title',
+        'module' => 'osha_publication',
         'settings' => array(
           'title_class' => '',
           'title_link' => 'content',
           'title_style' => '_none',
         ),
-        'type' => 'title_linked',
+        'type' => 'publication_title_linked',
         'weight' => 2,
       ),
       'osha_wiki' => array(
@@ -1731,13 +1731,13 @@ function osha_publication_field_default_field_instances() {
       ),
       'teaser' => array(
         'label' => 'hidden',
-        'module' => 'title',
+        'module' => 'osha_publication',
         'settings' => array(
           'title_class' => '',
           'title_link' => 'content',
           'title_style' => '_none',
         ),
-        'type' => 'title_linked',
+        'type' => 'publication_title_linked',
         'weight' => 1,
       ),
     ),
