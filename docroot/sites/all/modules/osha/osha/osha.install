@@ -120,7 +120,7 @@ function osha_update_7002() {
  * Activate module view_datasource and feature-revert the views.
  */
 function osha_update_7003() {
-  module_enable(array('views_datasource'));
+  module_enable(array('views_json'));
   features_revert(array('osha' => 'views_view'));
   cache_clear_all();
 }

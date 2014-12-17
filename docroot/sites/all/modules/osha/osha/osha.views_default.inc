@@ -831,11 +831,6 @@ function osha_views_default_views() {
   $handler->display->display_options['fields']['field_nace_codes']['field'] = 'field_nace_codes';
   $handler->display->display_options['fields']['field_nace_codes']['label'] = 'nace_codes';
   $handler->display->display_options['fields']['field_nace_codes']['delta_offset'] = '0';
-  /* Sort criterion: Content: Post date */
-  $handler->display->display_options['sorts']['created']['id'] = 'created';
-  $handler->display->display_options['sorts']['created']['table'] = 'node';
-  $handler->display->display_options['sorts']['created']['field'] = 'created';
-  $handler->display->display_options['sorts']['created']['order'] = 'DESC';
   /* Contextual filter: Taxonomy term: Code (field_tags_code) */
   $handler->display->display_options['arguments']['field_tags_code_value']['id'] = 'field_tags_code_value';
   $handler->display->display_options['arguments']['field_tags_code_value']['table'] = 'field_data_field_tags_code';
@@ -866,6 +861,108 @@ function osha_views_default_views() {
 
   /* Display: News */
   $handler = $view->new_display('page', 'News', 'page_news');
+  $handler->display->display_options['defaults']['fields'] = FALSE;
+  /* Field: Content: Path */
+  $handler->display->display_options['fields']['path']['id'] = 'path';
+  $handler->display->display_options['fields']['path']['table'] = 'node';
+  $handler->display->display_options['fields']['path']['field'] = 'path';
+  $handler->display->display_options['fields']['path']['label'] = 'path';
+  $handler->display->display_options['fields']['path']['alter']['make_link'] = TRUE;
+  $handler->display->display_options['fields']['path']['alter']['path'] = 'node/[nid]';
+  $handler->display->display_options['fields']['path']['absolute'] = TRUE;
+  /* Field: Content: Nid */
+  $handler->display->display_options['fields']['nid']['id'] = 'nid';
+  $handler->display->display_options['fields']['nid']['table'] = 'node';
+  $handler->display->display_options['fields']['nid']['field'] = 'nid';
+  $handler->display->display_options['fields']['nid']['label'] = 'nid';
+  /* Field: Content: Title */
+  $handler->display->display_options['fields']['title_field']['id'] = 'title_field';
+  $handler->display->display_options['fields']['title_field']['table'] = 'field_data_title_field';
+  $handler->display->display_options['fields']['title_field']['field'] = 'title_field';
+  $handler->display->display_options['fields']['title_field']['label'] = 'title';
+  $handler->display->display_options['fields']['title_field']['link_to_entity'] = 0;
+  /* Field: Content: Summary */
+  $handler->display->display_options['fields']['field_summary']['id'] = 'field_summary';
+  $handler->display->display_options['fields']['field_summary']['table'] = 'field_data_field_summary';
+  $handler->display->display_options['fields']['field_summary']['field'] = 'field_summary';
+  $handler->display->display_options['fields']['field_summary']['label'] = 'summary';
+  $handler->display->display_options['fields']['field_summary']['type'] = 'text_plain';
+  /* Field: Content: Image */
+  $handler->display->display_options['fields']['field_image']['id'] = 'field_image';
+  $handler->display->display_options['fields']['field_image']['table'] = 'field_data_field_image';
+  $handler->display->display_options['fields']['field_image']['field'] = 'field_image';
+  $handler->display->display_options['fields']['field_image']['label'] = 'image';
+  $handler->display->display_options['fields']['field_image']['click_sort_column'] = 'fid';
+  $handler->display->display_options['fields']['field_image']['settings'] = array(
+    'image_style' => '',
+    'image_link' => '',
+  );
+  /* Field: Field: Publication Date */
+  $handler->display->display_options['fields']['field_publication_date']['id'] = 'field_publication_date';
+  $handler->display->display_options['fields']['field_publication_date']['table'] = 'field_data_field_publication_date';
+  $handler->display->display_options['fields']['field_publication_date']['field'] = 'field_publication_date';
+  $handler->display->display_options['fields']['field_publication_date']['label'] = 'publication_date';
+  $handler->display->display_options['fields']['field_publication_date']['settings'] = array(
+    'format_type' => 'long',
+    'fromto' => 'both',
+    'multiple_number' => '',
+    'multiple_from' => '',
+    'multiple_to' => '',
+    'osha_date_theme' => '',
+  );
+  /* Field: Content: Expiration Date */
+  $handler->display->display_options['fields']['field_expiration_date']['id'] = 'field_expiration_date';
+  $handler->display->display_options['fields']['field_expiration_date']['table'] = 'field_data_field_expiration_date';
+  $handler->display->display_options['fields']['field_expiration_date']['field'] = 'field_expiration_date';
+  $handler->display->display_options['fields']['field_expiration_date']['label'] = 'expiration_date';
+  $handler->display->display_options['fields']['field_expiration_date']['settings'] = array(
+    'format_type' => 'long',
+    'fromto' => 'both',
+    'multiple_number' => '',
+    'multiple_from' => '',
+    'multiple_to' => '',
+    'osha_date_theme' => '',
+  );
+  /* Field: Content: Body */
+  $handler->display->display_options['fields']['body']['id'] = 'body';
+  $handler->display->display_options['fields']['body']['table'] = 'field_data_body';
+  $handler->display->display_options['fields']['body']['field'] = 'body';
+  $handler->display->display_options['fields']['body']['label'] = 'body';
+  /* Field: Field: Tags */
+  $handler->display->display_options['fields']['field_tags']['id'] = 'field_tags';
+  $handler->display->display_options['fields']['field_tags']['table'] = 'field_data_field_tags';
+  $handler->display->display_options['fields']['field_tags']['field'] = 'field_tags';
+  $handler->display->display_options['fields']['field_tags']['label'] = 'tags';
+  $handler->display->display_options['fields']['field_tags']['type'] = 'i18n_taxonomy_term_reference_plain';
+  $handler->display->display_options['fields']['field_tags']['delta_offset'] = '0';
+  $handler->display->display_options['fields']['field_tags']['multi_type'] = 'ul';
+  /* Field: Field: Thesaurus */
+  $handler->display->display_options['fields']['field_thesaurus']['id'] = 'field_thesaurus';
+  $handler->display->display_options['fields']['field_thesaurus']['table'] = 'field_data_field_thesaurus';
+  $handler->display->display_options['fields']['field_thesaurus']['field'] = 'field_thesaurus';
+  $handler->display->display_options['fields']['field_thesaurus']['label'] = 'thesaurus';
+  $handler->display->display_options['fields']['field_thesaurus']['delta_offset'] = '0';
+  $handler->display->display_options['fields']['field_thesaurus']['multi_type'] = 'ol';
+  /* Field: Content: Activity */
+  $handler->display->display_options['fields']['field_activity']['id'] = 'field_activity';
+  $handler->display->display_options['fields']['field_activity']['table'] = 'field_data_field_activity';
+  $handler->display->display_options['fields']['field_activity']['field'] = 'field_activity';
+  $handler->display->display_options['fields']['field_activity']['label'] = 'activity';
+  $handler->display->display_options['fields']['field_activity']['type'] = 'i18n_taxonomy_term_reference_plain';
+  $handler->display->display_options['fields']['field_activity']['delta_offset'] = '0';
+  $handler->display->display_options['fields']['field_activity']['multi_type'] = 'ol';
+  /* Field: Field: Nace */
+  $handler->display->display_options['fields']['field_nace_codes']['id'] = 'field_nace_codes';
+  $handler->display->display_options['fields']['field_nace_codes']['table'] = 'field_data_field_nace_codes';
+  $handler->display->display_options['fields']['field_nace_codes']['field'] = 'field_nace_codes';
+  $handler->display->display_options['fields']['field_nace_codes']['label'] = 'nace_codes';
+  $handler->display->display_options['fields']['field_nace_codes']['delta_offset'] = '0';
+  $handler->display->display_options['defaults']['sorts'] = FALSE;
+  /* Sort criterion: Field: Publication Date (field_publication_date) */
+  $handler->display->display_options['sorts']['field_publication_date_value']['id'] = 'field_publication_date_value';
+  $handler->display->display_options['sorts']['field_publication_date_value']['table'] = 'field_data_field_publication_date';
+  $handler->display->display_options['sorts']['field_publication_date_value']['field'] = 'field_publication_date_value';
+  $handler->display->display_options['sorts']['field_publication_date_value']['order'] = 'DESC';
   $handler->display->display_options['defaults']['filter_groups'] = FALSE;
   $handler->display->display_options['defaults']['filters'] = FALSE;
   /* Filter criterion: Content: Published */
@@ -882,6 +979,12 @@ function osha_views_default_views() {
   $handler->display->display_options['filters']['type']['value'] = array(
     'news' => 'news',
   );
+  /* Filter criterion: Field: Publication Date (field_publication_date) */
+  $handler->display->display_options['filters']['field_publication_date_value']['id'] = 'field_publication_date_value';
+  $handler->display->display_options['filters']['field_publication_date_value']['table'] = 'field_data_field_publication_date';
+  $handler->display->display_options['filters']['field_publication_date_value']['field'] = 'field_publication_date_value';
+  $handler->display->display_options['filters']['field_publication_date_value']['operator'] = '<=';
+  $handler->display->display_options['filters']['field_publication_date_value']['default_date'] = 'now';
   $handler->display->display_options['path'] = 'services/hw/news';
 
   /* Display: Events */
@@ -1064,13 +1167,6 @@ function osha_views_default_views() {
   $handler->display->display_options['fields']['field_color']['table'] = 'field_data_field_color';
   $handler->display->display_options['fields']['field_color']['field'] = 'field_color';
   $handler->display->display_options['fields']['field_color']['label'] = 'color';
-  /* Field: Content: Post date */
-  $handler->display->display_options['fields']['created']['id'] = 'created';
-  $handler->display->display_options['fields']['created']['table'] = 'node';
-  $handler->display->display_options['fields']['created']['field'] = 'created';
-  $handler->display->display_options['fields']['created']['label'] = 'post_date';
-  $handler->display->display_options['fields']['created']['date_format'] = 'long';
-  $handler->display->display_options['fields']['created']['second_date_format'] = 'year';
   $handler->display->display_options['defaults']['sorts'] = FALSE;
   /* Sort criterion: Content: Start date -  start date (field_start_date) */
   $handler->display->display_options['sorts']['field_start_date_value']['id'] = 'field_start_date_value';
@@ -1245,13 +1341,12 @@ function osha_views_default_views() {
   $handler->display->display_options['fields']['field_activity']['type'] = 'i18n_taxonomy_term_reference_plain';
   $handler->display->display_options['fields']['field_activity']['delta_offset'] = '0';
   $handler->display->display_options['fields']['field_activity']['multi_type'] = 'ol';
-  /* Field: Content: Post date */
-  $handler->display->display_options['fields']['created']['id'] = 'created';
-  $handler->display->display_options['fields']['created']['table'] = 'node';
-  $handler->display->display_options['fields']['created']['field'] = 'created';
-  $handler->display->display_options['fields']['created']['label'] = 'post_date';
-  $handler->display->display_options['fields']['created']['date_format'] = 'long';
-  $handler->display->display_options['fields']['created']['second_date_format'] = 'year';
+  $handler->display->display_options['defaults']['sorts'] = FALSE;
+  /* Sort criterion: Field: Publication Date (field_publication_date) */
+  $handler->display->display_options['sorts']['field_publication_date_value']['id'] = 'field_publication_date_value';
+  $handler->display->display_options['sorts']['field_publication_date_value']['table'] = 'field_data_field_publication_date';
+  $handler->display->display_options['sorts']['field_publication_date_value']['field'] = 'field_publication_date_value';
+  $handler->display->display_options['sorts']['field_publication_date_value']['order'] = 'DESC';
   $handler->display->display_options['defaults']['filter_groups'] = FALSE;
   $handler->display->display_options['defaults']['filters'] = FALSE;
   /* Filter criterion: Content: Published */
@@ -1268,6 +1363,12 @@ function osha_views_default_views() {
   $handler->display->display_options['filters']['type']['value'] = array(
     'press_release' => 'press_release',
   );
+  /* Filter criterion: Field: Publication Date (field_publication_date) */
+  $handler->display->display_options['filters']['field_publication_date_value']['id'] = 'field_publication_date_value';
+  $handler->display->display_options['filters']['field_publication_date_value']['table'] = 'field_data_field_publication_date';
+  $handler->display->display_options['filters']['field_publication_date_value']['field'] = 'field_publication_date_value';
+  $handler->display->display_options['filters']['field_publication_date_value']['operator'] = '<=';
+  $handler->display->display_options['filters']['field_publication_date_value']['default_date'] = 'now';
   $handler->display->display_options['path'] = 'services/hw/pr';
 
   /* Display: Publications */
@@ -1402,13 +1503,12 @@ function osha_views_default_views() {
   $handler->display->display_options['fields']['field_activity']['type'] = 'i18n_taxonomy_term_reference_plain';
   $handler->display->display_options['fields']['field_activity']['delta_offset'] = '0';
   $handler->display->display_options['fields']['field_activity']['multi_type'] = 'ol';
-  /* Field: Content: Post date */
-  $handler->display->display_options['fields']['created']['id'] = 'created';
-  $handler->display->display_options['fields']['created']['table'] = 'node';
-  $handler->display->display_options['fields']['created']['field'] = 'created';
-  $handler->display->display_options['fields']['created']['label'] = 'post_date';
-  $handler->display->display_options['fields']['created']['date_format'] = 'long';
-  $handler->display->display_options['fields']['created']['second_date_format'] = 'year';
+  $handler->display->display_options['defaults']['sorts'] = FALSE;
+  /* Sort criterion: Field: Publication Date (field_publication_date) */
+  $handler->display->display_options['sorts']['field_publication_date_value']['id'] = 'field_publication_date_value';
+  $handler->display->display_options['sorts']['field_publication_date_value']['table'] = 'field_data_field_publication_date';
+  $handler->display->display_options['sorts']['field_publication_date_value']['field'] = 'field_publication_date_value';
+  $handler->display->display_options['sorts']['field_publication_date_value']['order'] = 'DESC';
   $handler->display->display_options['defaults']['filter_groups'] = FALSE;
   $handler->display->display_options['defaults']['filters'] = FALSE;
   /* Filter criterion: Content: Published */
@@ -1425,6 +1525,12 @@ function osha_views_default_views() {
   $handler->display->display_options['filters']['type']['value'] = array(
     'publication' => 'publication',
   );
+  /* Filter criterion: Field: Publication Date (field_publication_date) */
+  $handler->display->display_options['filters']['field_publication_date_value']['id'] = 'field_publication_date_value';
+  $handler->display->display_options['filters']['field_publication_date_value']['table'] = 'field_data_field_publication_date';
+  $handler->display->display_options['filters']['field_publication_date_value']['field'] = 'field_publication_date_value';
+  $handler->display->display_options['filters']['field_publication_date_value']['operator'] = '<=';
+  $handler->display->display_options['filters']['field_publication_date_value']['default_date'] = 'now';
   $handler->display->display_options['path'] = 'services/hw/publications';
   $translatables['data_export'] = array(
     t('Master'),
