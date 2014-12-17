@@ -48,6 +48,7 @@ function osha_publication_field_default_field_bases() {
           'external_url' => 'external_url',
           'file' => 'file',
           'flickr' => 'flickr',
+          'infographic' => 'infographic',
           'news' => 'news',
           'press_release' => 'press_release',
           'publication' => 'publication',

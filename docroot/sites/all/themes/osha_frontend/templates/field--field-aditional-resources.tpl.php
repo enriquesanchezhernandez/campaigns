@@ -8,6 +8,7 @@
       'youtube' => 'YouTube',
       'slideshare' => 'SlideShare',
       'flickr' => 'Flickr',
+      'infographic' => 'Infographics',
       'external_url' => t('External resources'),
       'file' => t('Files'),
       'publication' => t('Publications'),
@@ -18,7 +19,7 @@
     $node_type = '';
     print '<div class="additional_resource_group '.$node_type.'">';
     foreach ($items as $delta => $item): ?>
-      <?php 
+      <?php
         if (isset($item['node'])) {
           $value = reset($item['node']);
           if ($node_type != $value['#bundle']) {
