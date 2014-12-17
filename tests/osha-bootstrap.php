@@ -16,4 +16,12 @@ class OshaWebTestCase extends DrupalWebTestCase {
     global $language, $language_url;
     $language_url = $language = i18n_language_load('en');
   }
+
+  /**
+   * Login with admin account.
+   */
+  public function loginAsAdmin() {
+    $admin = (object) array('name' => 'admin', 'pass_raw' => 'password');
+    $this->drupalLogin($admin);
+  }
 }

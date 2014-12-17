@@ -18,10 +18,11 @@ class FrameworkBootstrapTest extends OshaWebTestCase {
     $this->assertNotNull(user_load(1));
   }
 
+  /**
+   * Test administrator login.
+   */
   public function testLogin() {
-    $admin = (object) array('name' => 'admin', 'pass_raw' => 'password');
-    $this->drupalLogin($admin);
-
+    $this->loginAsAdmin();
     $this->drupalGet('admin/config');
     $this->assertText('Multilingual settings');
   }
