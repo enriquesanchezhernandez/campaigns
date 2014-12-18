@@ -25,4 +25,19 @@ class OshaWebTestCase extends DrupalWebTestCase {
     $admin = (object) array('name' => 'admin', 'pass_raw' => 'password');
     $this->drupalLogin($admin);
   }
+
+  /**
+   * Login as custom account.
+   *
+   * @param string $username
+   *   Username to login with
+   * @param string $password
+   *   Password. By default all dev instance are set to 'password'.
+   */
+  public function loginAs($username, $password = 'password') {
+    $admin = (object) array('name' => $username, 'pass_raw' => $password);
+    $this->drupalLogin($admin);
+  }
+
+
 }
