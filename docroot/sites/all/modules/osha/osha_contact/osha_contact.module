@@ -167,6 +167,7 @@ function osha_contact_message_validate($element, &$form_state) {
 
 /**
  * Implements hook_i18n_object_info().
+ * Add properties (e.g. body) that may need translation
  */
 function osha_contact_i18n_object_info() {
   $info['contact_category'] = array(
