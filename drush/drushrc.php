@@ -455,6 +455,7 @@ $options['init-modules'] = array(
   'search_api_views',
   'osha_search',
   'osha_content',
+  'osha_lingua_tools',
 
   // Newsletter modules.
   'entity_collection',
