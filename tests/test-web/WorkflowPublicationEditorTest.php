@@ -18,7 +18,7 @@ class WorkflowPublicationEditorTest extends OshaWebTestCase {
   /**
    * Test editor cannot access administrative menu items.
    */
-  public function testEditorAccountSecurity() {
+  public function testAccountSecurity() {
     $this->drupalGet('admin/structure');
     $this->assertText('You do not have any administrative items.');
     $this->assertNoText('Site information');
@@ -26,6 +26,10 @@ class WorkflowPublicationEditorTest extends OshaWebTestCase {
 
   /**
    * Test node creation by editor.
+   *
+   * 1. Editor creates Draft node
+   * 2. Editor set status from Draft to Final Draft
+   * 3. The node appears in the users's overview screen.
    */
   public function testCreateNode() {
     $this->drupalGet('node/add/news');
