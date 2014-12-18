@@ -1619,6 +1619,7 @@ abstract class DrupalTestCase extends PHPUnit_Framework_TestCase {
    * @see drupalCreateUser()
    */
   protected function drupalLogin(stdClass $user) {
+    $_GET['q'] = 'user';
     if ($this->loggedInUser) {
       $this->drupalLogout();
     }
