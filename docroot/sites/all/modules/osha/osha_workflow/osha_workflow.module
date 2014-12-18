@@ -32,6 +32,8 @@ define('OSHA_WORKFLOW_STATE_PUBLISHED', 'published');
 
 /**
  * Implements hook_menu().
+ *
+ * @codeCoverageIgnore
  */
 function osha_workflow_menu() {
   $items = array();
@@ -103,6 +105,7 @@ function osha_workflow_menu() {
 
 /**
  * Implements hook_menu_alter().
+ * @codeCoverageIgnore
  */
 function osha_workflow_menu_alter(&$items) {
   unseT($items['admin/config/workbench/access']['access callback']);
@@ -155,6 +158,8 @@ function osha_workflow_node_review_access($node) {
 
 /**
  * Implements hook_entity_info().
+ *
+ * @codeCoverageIgnore
  */
 function osha_workflow_entity_info() {
   return array(
@@ -180,6 +185,11 @@ function osha_workflow_entity_info() {
   );
 }
 
+/**
+ * Implements hook_entity_property_info().
+ *
+ * @codeCoverageIgnore
+ */
 function osha_workflow_entity_property_info() {
   $info = array();
 
@@ -339,6 +349,8 @@ function osha_workflow_get_node_owner($nid, $uid = NULL) {
 
 /**
  * Implements hook_theme().
+ *
+ * @codeCoverageIgnore
  */
 function osha_workflow_theme() {
   return array(

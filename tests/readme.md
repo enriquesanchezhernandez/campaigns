@@ -8,3 +8,8 @@ Note: These tests are run against a functional Drupal website. The database may 
 4. Run phpunit inside this directory
 
 Coverage output is (over)written inside ../results directory
+
+PHPUnit specific instructions:
+
+[@codeCoverageIgnore](https://phpunit.de/manual/current/en/appendixes.annotations.html#appendixes.annotations.codeCoverageIgnore) - to ignore current function.
+
