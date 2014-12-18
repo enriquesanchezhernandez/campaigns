@@ -1,9 +1,9 @@
 <?php
 
 /**
- * Class WorkflowTranslationEditorTest tests editor account workflow.
+ * Class WorkflowPublicationEditorTest tests editor account workflow.
  */
-class WorkflowTranslationEditorTest extends OshaWebTestCase {
+class WorkflowPublicationEditorTest extends OshaWebTestCase {
 
   public $nodeTitle1 = 'PHPUnit news item #1';
 
