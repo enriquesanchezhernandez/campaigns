@@ -40,4 +40,15 @@ class OshaWebTestCase extends DrupalWebTestCase {
   }
 
 
+  public function tearDown() {
+    $this->cleanup();
+  }
+
+
+  /**
+   * This function is called in setUp and tearDown to ensure clean environment.
+   *
+   * Use this function to delete any content created by this test.
+   */
+  public function cleanup() {}
 }
