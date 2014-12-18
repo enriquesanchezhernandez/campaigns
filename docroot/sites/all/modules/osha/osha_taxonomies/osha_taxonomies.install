@@ -4,6 +4,7 @@
  * Inserts contact taxonomies terms.
  */
 function osha_taxonomies_update_7001() {
+  features_revert_module('osha_taxonomies');
   $file = sprintf('%s/contact_taxonomies.json', dirname(__FILE__));
   if (!is_readable($file)) {
     drupal_set_message("Cannot read taxonomy file! ($file).", 'warning');
