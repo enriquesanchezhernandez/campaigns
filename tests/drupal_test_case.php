@@ -1685,8 +1685,9 @@ abstract class DrupalTestCase extends PHPUnit_Framework_TestCase {
    */
   protected function drupalCreateNode($settings = array()) {
     // Populate defaults array.
+    $language = isset($settings['language']) ? $settings['language'] : LANGUAGE_NONE;
     $settings += array(
-      'body'      => array(LANGUAGE_NONE => array(array())),
+      'body'      => array($language => array(array())),
       'title'     => $this->randomName(8),
       'comment'   => 2,
       'changed'   => REQUEST_TIME,
@@ -1723,7 +1724,7 @@ abstract class DrupalTestCase extends PHPUnit_Framework_TestCase {
       'value' => $this->randomName(32),
       'format' => filter_default_format(),
     );
-    $settings['body'][$settings['language']][0] += $body;
+    $settings['body'][$language][0] += $body;
 
     $node = (object) $settings;
     node_save($node);
