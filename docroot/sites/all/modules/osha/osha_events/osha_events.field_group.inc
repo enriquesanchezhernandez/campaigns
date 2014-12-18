@@ -56,10 +56,10 @@ function osha_events_field_group_info() {
     'weight' => '0',
     'children' => array(
       0 => 'field_city',
-      1 => 'field_organization',
-      2 => 'field_theme',
-      3 => 'field_country_code',
-      4 => 'field_start_date',
+      1 => 'field_country_code',
+      2 => 'field_organization',
+      3 => 'field_start_date',
+      4 => 'field_tags',
     ),
     'format_type' => 'div',
     'format_settings' => array(
