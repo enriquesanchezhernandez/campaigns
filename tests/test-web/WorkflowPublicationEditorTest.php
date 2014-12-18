@@ -21,6 +21,8 @@ class WorkflowPublicationEditorTest extends OshaWebTestCase {
   public function testAccountSecurity() {
     $this->drupalGet('admin/structure');
     $this->assertText('You do not have any administrative items.');
+
+    $this->drupalGet('admin/config');
     $this->assertNoText('Site information');
   }
 
