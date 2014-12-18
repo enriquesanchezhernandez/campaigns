@@ -66,8 +66,7 @@ class WorkflowPublicationEditorTest extends OshaWebTestCase {
    * {@inheritdoc}
    */
   public function cleanup() {
-    $node = $this->drupalGetNodeByTitle($this->nodeTitle1);
-    if (!empty($node)) {
+    if ($node = $this->drupalGetNodeByTitle($this->nodeTitle1)) {
       node_delete($node->nid);
     }
   }
