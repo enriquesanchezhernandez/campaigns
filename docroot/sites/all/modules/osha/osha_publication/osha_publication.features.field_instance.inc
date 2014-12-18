@@ -1659,13 +1659,13 @@ function osha_publication_field_default_field_instances() {
     'display' => array(
       'default' => array(
         'label' => 'hidden',
-        'module' => 'osha_publication',
+        'module' => 'title',
         'settings' => array(
           'title_class' => '',
-          'title_link' => 'content',
+          'title_link' => '',
           'title_style' => 'h1',
         ),
-        'type' => 'publication_title_linked',
+        'type' => 'title_linked',
         'weight' => 0,
       ),
       'highlights_item' => array(

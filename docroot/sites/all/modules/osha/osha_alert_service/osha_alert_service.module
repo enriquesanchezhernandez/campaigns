@@ -262,10 +262,11 @@ function osha_alert_block_front_view() {
  * {@inheritdoc}
  */
 function osha_alert_service_mail($key, &$message, $params) {
+  $body = '';
   switch ($key) {
     case 'subscribe':
       $message['subject'] = variable_get('osha_alert_service_subscribe_subject', 'Your subscription to OSHA Alert Service');
-      $message['body'] = variable_get('osha_alert_service_subscribe_body',
+      $body = variable_get('osha_alert_service_subscribe_body',
 <<<EOT
 <p>EU-OSHA received a request to start sending alerts to <strong>[osha_alert_service:email]</strong>.</p>
 
@@ -285,7 +286,7 @@ EOT
 
     case 'broken_subscription':
       $message['subject'] = 'Your subscription page is broken';
-      $message['body'] = <<<EOT
+      $body = <<<EOT
         Please visit the subscription page ([site:url]/alertservice) and fix it. Taxonomy Tags is empty!
 
         Thank you,
@@ -295,11 +296,11 @@ EOT;
 
     case 'alert':
       $message['subject'] = variable_get('osha_alert_service_alert_subject', 'EU-OSHA Alert');
-      $message['body'] = variable_get('osha_alert_service_alert_body', 'EU-OSHA Alert');
+      $body = variable_get('osha_alert_service_alert_body', 'EU-OSHA Alert');
       break;
   }
   $message['subject'] = token_replace($message['subject'], $params);
-  $message['body'][] = token_replace($message['body'], $params);
+  $message['body'][] = token_replace($body, $params);
 }
 
 /**
