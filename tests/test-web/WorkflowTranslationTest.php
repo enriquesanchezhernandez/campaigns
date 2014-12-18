@@ -10,7 +10,6 @@ class WorkflowTranslationTest extends OshaWebTestCase {
 
     $this->drupalGet('admin/tmgmt/sources');
     $this->assertRaw('Add to cart');
-    $this->assertRaw('Contact category');
     $this->assertRaw('Menu link');
     $this->assertRaw('Taxonomy term');
     $this->assertRaw('Literals');
