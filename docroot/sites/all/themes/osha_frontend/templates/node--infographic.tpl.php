@@ -39,7 +39,7 @@
 
   if($view_mode == 'full'){
     print render($content['title_field']);
-    print render($content['body']);
+    
 
     //display thumbnail
     if(isset($content['field_image'])){
@@ -52,6 +52,7 @@
     }
 
     print render($content['field_image']);
+	print render($content['body']);
     print render($content['field_file']);
     print render($content['field_twin_infographics']);
   }elseif($view_mode == 'teaser' || $view_mode == 'osha_resources'){

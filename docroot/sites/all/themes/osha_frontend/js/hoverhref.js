@@ -134,3 +134,29 @@ function displayCaptcha() {
 		jQuery("body").removeClass("bodysmall");
 		jQuery("body").removeClass("bodymedium");
 	}
+	
+	
+// Tools & Publications filters
+jQuery(document).ready(function() {
+    // Init: collapse all filters
+    jQuery(".sidebars_first .block-facetapi .item-list ul").each(function(i) {
+		jQuery(this).hide();
+	});
+    // Click event: toggle visibility of group clicked (and update icon)
+	jQuery(".block-facetapi h2").click(function() {		
+		jQuery(this).parent().find("div.item-list ul").slideToggle();
+		jQuery(this).toggleClass("expand");
+    });
+});
+
+/* Show searcher in responsive menu */
+jQuery(document).ready(function() {
+    // Click event: show language and search box
+	jQuery("a[href$='#nav']").click(function() {
+		showSearcher();
+    });	
+});
+function showSearcher() {
+	jQuery(".mean-container #block-lang-dropdown-language-content").toggle();
+	jQuery(".mean-container #block-search-form").toggle();
+}

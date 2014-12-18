@@ -1,8 +1,8 @@
-/**
+/*
  * Use 3 grid columns for smaller screens.
  */
- 
-@media all and (max-width: 970px) {
+
+@media all and (max-width: 987px) {
 
 body {
     background: none repeat scroll 0 0 #FFFFFF!important;
@@ -377,6 +377,33 @@ body {
 	text-decoration: none;
 	width: auto;
 }
+
+/* Subscription */
+#block-osha-newsletter-osha-newsletter-subscribe-extra {
+	background-color: #E9EDF6;	
+	height: auto;
+	margin-right: 0;
+	margin-top: 1em;
+	padding: 0em;
+	width: 100%;	
+}
+#block-osha-newsletter-osha-newsletter-subscribe-extra h2 {
+	padding: 0.7em;
+}
+#join_subscribers img {
+	height: auto;
+	width: 100%;
+}
+#block-osha-newsletter-osha-newsletter-subscribe-extra #subscribe-extra {
+	padding: 1em;
+	padding-top: 0;
+}
+#block-osha-newsletter-osha-newsletter-latest {
+	padding: 1em;
+}
+#block-osha-newsletter-osha-newsletter-latest h2 {
+	padding: 0em;
+}
 /* END OSHMail Newsletter */
 
 /* ------ */
@@ -422,11 +449,6 @@ footer {
 /* HIGHLIGHTS List */
 /* --------------- */
 
-/* Remove all not for responsive version items */
-.sidebars_first, .breadcrumb, .introduction-image {
-	display: none!important;
-}
-
 #main {
 	padding: 0;
 	font-size: 120%;
@@ -436,6 +458,7 @@ footer {
 	border-top: none;	
 	padding-top: 0em;
 	padding-bottom: 0em;
+	clear: both;
 }
 #content a {
 	-webkit-hyphens: auto;
@@ -486,7 +509,8 @@ h1, .field-name-title-field h1  {
 	height: auto;
 	letter-spacing: normal;
 	margin-bottom: 0em;
-	padding-bottom: 0;	
+	padding-bottom: 0;
+	padding-top: 0;
 	width: auto;
 }
 #main-menu-links li.menu__item {	
@@ -530,7 +554,7 @@ h1, .field-name-title-field h1  {
 	left: 0;
 }
 /* Same space within contents */
-.field-name-body  {
+article.node-article .field-name-body  {
 	padding: 0 1em 0 1em!important;
 }
 /* End Highlights Detail */
@@ -572,6 +596,9 @@ h1, .field-name-title-field h1  {
 .item-list ul.pager {
 	display: flex;
 	justify-content: center;
+	word-wrap: normal;
+	padding-left: 1em;
+	padding-right: 1em;
 }
 ul.links.inline {
 	float: none!important;
@@ -658,6 +685,62 @@ ul.links.inline {
 .field-name-body #block-menu-block-3 .menu-block-3 ul li:first-child {
 	border-top: none;
 }
+.view-events-index h3 {
+	padding-left: 0.7em;
+	padding-right: 0.7em;
+}
+.view-events-index .views-row {
+	padding-left: 0em!important;
+	padding-right: 0em;
+}
+/* Form */
+/* Search */
+.views-exposed-form .views-exposed-widget  {
+	float: none;
+	padding: 0em;
+}
+.views-exposed-form .views-exposed-widget label {
+	padding-bottom: 0em!important;
+}
+.views-exposed-form .views-exposed-widget input {
+	background-color: #00319E;
+	border: none;
+	color: #FFF;
+	padding: 0.25em;
+	width: 100%;	
+}
+/* Search by country */
+.view-events-index #edit-field-country-code {
+	background-color: #FF2B84;
+	color: #FFF;
+	padding: 0.25em;
+	width: 100%;
+	margin-top: 0;
+}
+.view-events-index #edit-field-country-code option {
+	background-color: #D2DCED;
+	color: #00319E;	
+}
+#edit-field-start-date-value-wrapper, #edit-field-start-date-value2-wrapper {
+	float: left;
+	width: 50%;
+	margin-top: 1.5em;
+}
+article.node-events.view-mode-full {
+	padding-right: 1em;
+	padding-left: 1em;
+}
+#block-block-10 {
+	padding-right: 1em;
+	padding-left: 1em;
+}
+#block-block-10 a {
+	background-position: right center;
+	padding-right: 2em;
+}
+.group-events-description p {
+	margin-top: 0;
+}
 /* End News & Events */
 
 
@@ -665,22 +748,21 @@ ul.links.inline {
 /* Press room */
 /* ---------- */
 
-
+.views-row article.node-press-release {
+	padding-left: 0px!important;
+	padding-right: 0px!important;
+}
 .view-press-releases .field-name-field-summary {
 	padding-left: 0em!important;
 	padding-right: 0em!important;
 }
 .view-press-releases ul.links.inline {
-	background: url("../images/flecha.png") no-repeat scroll right center rgba(0, 0, 0, 0)!important;
+	background: url("../images/flecha.png") no-repeat scroll right 75% rgba(0, 0, 0, 0)!important;
 	border-top: none!important;
 	border-bottom: none!important;	
 	text-align: right!important;	
 	width: inherit!important;
 }
-/*
-.view-press-releases  article {
-	background: url("../images/separator_home.jpg") repeat-x scroll 0% 97% rgba(0, 0, 0, 0);
-}*/
 .view-press-releases ul.links.inline a {
 	padding-right: 0em;
 }
@@ -715,39 +797,214 @@ ul.links.inline {
 }
 /* Press Detail */
 
-/* Publication Date */
-/*.node-press-release .field-name-field-publication-date, */.node-press-release .field-label {
-	padding: 0 1em;
+/* H2 */
+#block-views-press-releases-block h2 {
+	padding: 0 0.5em;
 }
-/* Title */
-/*
-#block-views-press-releases-block .node-press-release .field-name-title-field {
-	padding: 0 0.6em 0 0.6em!important;
-}*/
+/* Article block */
+article.node-press-release {
+	padding-left: 1em!important;
+	padding-right: 1em!important;
+}
+article .field-name-body {
+	padding: 0em!important;	
+}
 .node-press-release .field-label {
 	margin-bottom: 1em;
 }
-/*
-article.node-press-release {
-	background-image: none;
-	padding-bottom: 0px!important;
-}
-*/
 .node-press-release ul.links.inline {
 	border-bottom: none!important;
 	padding-bottom: 0px!important;
 }
+/* EU-OSHA in the MEDIA */
+#aggregator {	
+	padding: 1em;
+	padding-bottom: 0em;
+	word-wrap: break-word;
+}
 /* End Press room */
 
+
+/* ------------ */
+/* PUBLICATIONS */
+/* ------------ */
+#block-block-3 {
+	padding: 0em 1em;
+}
+.node-publication.node-teaser ul.links {
+	border-top: none!important;
+	border-bottom: none!important;
+	padding: 0em!important;
+	padding-top: 0.5em!important;
+	padding-bottom: 0.5em!important;
+	background: url("../images/flecha.png") no-repeat scroll right center rgba(0, 0, 0, 0)!important;
+	width: auto;
+}
+.node-publication.node-teaser ul.links  li {
+	display: block;
+	text-align: right;
+}
+.view-publications-index .views-row {
+	margin-top: 1.5em!important;
+}
+.node-publication .field-name-title-field {
+	padding: 0em;
+}
+.node-publication .field-name-title-field h1 {
+	margin-top: 0.5em;
+	padding-left: 0.6em!important;
+	padding-right: 0.6em!important;
+}
+.node-publication .field-name-field-publication-date, .node-publication .field-name-body {
+	/*padding-left: 1em!important;*/
+	padding-right: 1em!important;
+	padding-top: .5em!important;
+}
+#related-wiki-publications article.node-wiki-page {
+	margin-left: 1em;
+	margin-right: 1em;	
+}
+#related-wiki-publications .related_wiki_head  {
+	padding: 0.2em 1em;
+}
+#related-wiki-publications .field-name-title-field {
+	padding: 0.5em 0em 0em 0em;	
+}
+#related-wiki-publications .field-name-field-summary, #related-wiki-publications .field-name-field-summary p {
+	padding-left: 0!important;
+	padding-right: 0!important;
+}
+
+#related-wiki-publications .field-name-field-wiki-page-url {
+	margin-top: 1em;
+}
+/* Pubs Searcher */
+#block-views-exp-search-site, #block-views-exp-search-wiki, .view-search.view-id-search {
+	padding: 1em;
+}
+/* Publication Image */
+.node-publication.view-mode-full .field-name-field-cover-image {
+	padding-left: 1em;
+}
+body.page-search-publications aside.sidebars_first {
+	border-top: 5px solid #039;
+	display: block!important;
+	float: none;
+	margin-left: 1em;
+	margin-top: 0em;
+	margin-right: 1em;
+	width: auto;
+}
+.block-facetapi h2 {
+	background: url("../images/triangle-collapsed.png") no-repeat scroll 96% center #E8EEF7 !important;
+	border: 0 none;	
+	color: #039;
+	cursor: pointer;
+	display: block;
+	font-family: "Oswald";
+	font-size: 1.35em;
+	font-weight: 400;
+	height: auto;
+	margin-bottom: 0.5em;
+	margin-top: 0.5em;
+	padding-top: 2px;
+	padding-bottom: 2px;
+	padding-left: 10px;
+}
+.block-facetapi h2.expand {
+	background: url("../images/triangle-expanded.png") no-repeat scroll 96% center #E8EEF7 !important;
+}
+.block-facetapi .facetapi-facetapi-checkbox-links {
+	padding-left: 1.5em;	
+}
+/* Filter */
+#block-views-exp-publications-index-page {
+	border-top: none;
+	margin-top: 0em;
+	margin-bottom: 0em;
+	
+}
+/* End Publications */
+
+
+/* ------------ */
+/* Infographics */
+/* ------------ */
+#block-views-infographic-block-2 h2 {
+	padding-left: 1em;
+	padding-right: 1em;
+	margin-top: 1em;
+	margin-bottom: 0em;
+	display: block;
+	float: none;
+}
+#block-views-infographic-block-2 .attachment-before {
+	padding-left: .8em;
+	padding-right: 1em;
+}
+#block-views-infographic-block-1 .view-infographic .views-row {
+	float: none;	
+	padding: 0em;
+	width: auto;
+}
+#block-views-infographic-block-1 .view-infographic .views-row .views-field-title {
+	padding-top: 0em;
+	width: auto;
+}
+#block-views-infographic-block-1  .field-content p {
+	margin-top: .5em;
+	margin-bottom: 1.5em;
+}
+#block-views-related-content-block-6 .view-related-content {
+	padding: 0em;
+}
+/* End Infographics */
+
+
+/* ------------- */
+/*  Blog styles  */
+/* ------------- */
+/* Header */
+.header__secondary-menu {
+	float: none;
+	padding-right: 0em;
+	padding-top: 0em;	
+	text-align: center;
+}
+.header__secondary-menu  a {	
+	background-position: left center;
+	display: inline-block;
+	padding-top: 1em;
+	padding-bottom: 0.6em;
+}
+#blogLogo {
+	border-top: 5px solid #039;
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+	margin-right: 0em;
+	margin-left: 0em;
+	border-bottom: 5px solid #039;
+	padding-bottom: 2em;
+}
+#agencyLogoBlog {
+	
+}
+/* End Blog styles */
 
 /* ------------- */
 /* Shared styles */
 /* ------------- */
+
+/* Remove all not for responsive version items */
+.sidebars_first, .breadcrumb, .introduction-image, #block-views-publications-slidehow, #block-osha-alert-service-osha-publication-rss, #block-menu-block-2 {
+	display: none!important;
+}
+/* All Images same style */
 .node-highlight.view-mode-full .field-name-field-image img , .node-news img, .node-article  img {
 	float: none;
 	height: 100%;	
 	max-height: 300px;
-	max-width: 960px;
+	max-width: 987px;
 	width: 100%;
 }
 
