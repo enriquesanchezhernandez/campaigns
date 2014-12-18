@@ -106,7 +106,15 @@ function osha_contact_mail_alter(&$message) {
     //$topic = entity_load_single('taxonomy_term', $message['params']['contact_topic']);
     $sender = taxonomy_term_load($message['params']['contact_type_of_sender']);
     $topic = taxonomy_term_load($message['params']['contact_topic']);
-    $message['subject'] .= $topic->name;
+    //message subject
+    $message['subject'] = $topic->name;
+    //message from
+    $from = $message['params']['category']['from_email'];
+    $message['from'] = $from;
+    $message['headers']['From'] = $from;
+    $message['headers']['Sender'] = $from;
+    $message['headers']['Return-Path'] = $from;
+    //mesage body
     $message['body'][] = str_replace(
       array(
         '[sender]' ,
@@ -127,7 +135,6 @@ function osha_contact_mail_alter(&$message) {
         $language->language
       ),
       $message['params']['category']['body']);
-
   }
 }
 
@@ -137,6 +144,16 @@ function osha_contact_mail_alter(&$message) {
 function osha_contact_form_contact_category_edit_form_alter(&$form, &$form_state){
   $form['reply']['#default_value'] = FALSE;
   $form['reply']['#access'] = FALSE;
+
+  $form['from_email'] = array(
+    '#type' => 'textfield',
+    '#required' => TRUE,
+    '#size' => 40,
+    '#maxlength' => 50,
+    '#element_validate' => array('osha_contact_email_validate'),
+    '#default_value' => isset($form_state['build_info']['args'][0]['from_email'])? $form_state['build_info']['args'][0]['from_email']:'',
+    '#title' => t('From email address'),
+  );
 
   $form['body'] = array(
     '#type' => 'text_format',
@@ -153,6 +170,16 @@ function osha_contact_form_contact_category_edit_form_alter(&$form, &$form_state
 }
 
 /**
+ * Validate email address
+ */
+function osha_contact_email_validate($form, &$form_state){
+  $mail = $form_state['values']['from_email'];
+  if (!valid_email_address($mail)) {
+    form_set_error('email', t('Please Enter a valid email address.'));
+  }
+}
+
+/**
  * Split text_format field from array in value and format values
  * otherwise will generate an error when try to save in database
  */
@@ -163,21 +190,4 @@ function osha_contact_message_validate($element, &$form_state) {
       $form_state['values']['body'] = $value;
     }
   }
-}
-
-/**
- * Implements hook_i18n_object_info().
- */
-function osha_contact_i18n_object_info() {
-  $info['contact_category'] = array(
-    'title' => t('Contact category'),
-    // Properties for string translation.
-    'string translation' => array(
-      // Translatable properties of these objects.
-      'properties' => array(
-        'body' => t('Message Body'),
-      ),
-    ),
-  );
-  return $info;
 }
