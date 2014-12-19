@@ -1096,10 +1096,21 @@ abstract class DrupalTestCase extends PHPUnit_Framework_TestCase {
     return $all_permutations;
   }
 
-  function verbose($message) {
-    if (strlen($message) < 500) {
-      // $this->log($message, 'verbose');
+  function verbose($message, $extra) {
+    static $i = 0;
+    $i++;
+    $files = DRUPAL_ROOT . '/' . variable_get('file_public_path', conf_path() . '/files');
+    $output_dir = $files . '/simpletest/verbose';
+    // mkdir seem to raise always error - probably changing permissions.
+    mkdir($output_dir, 0777, TRUE);
+    $filename = sprintf('%s/%s-%02d.html', $output_dir, get_class($this), $i);
+    if (strstr($message, '</body>')) {
+      str_replace('</body>', '', $message);
+      $message = $message . '<div>' . $extra . '</div></body>';
+    } else {
+      $message .= '<div>' . $extra . '</div>';
     }
+    file_put_contents($filename, $message);
   }
 
   /**
@@ -1202,9 +1213,9 @@ abstract class DrupalTestCase extends PHPUnit_Framework_TestCase {
     if ($new = $this->checkForMetaRefresh()) {
       $out = $new;
     }
-    $this->verbose('GET request to: ' . $path .
-                   '<hr />Ending URL: ' . $this->getUrl() .
-                   '<hr />' . $out);
+    $this->verbose($out, '<div>GET request to: ' . $path .
+                         '<hr />Ending URL: ' . $this->getUrl() .
+                         '<hr /></div>');
     return $out;
   }
 
@@ -1546,10 +1557,10 @@ abstract class DrupalTestCase extends PHPUnit_Framework_TestCase {
           if ($new = $this->checkForMetaRefresh()) {
             $out = $new;
           }
-          $this->verbose('POST request to: ' . $path .
-                         '<hr />Ending URL: ' . $this->getUrl() .
-                         '<hr />Fields: ' . highlight_string('<?php ' . var_export($post_array, TRUE), TRUE) .
-                         '<hr />' . $out);
+          $this->verbose($out,
+            'POST request to: ' . $path .
+            '<hr />Ending URL: ' . $this->getUrl() .
+            '<hr />Fields: ' . highlight_string('<?php ' . var_export($post_array, TRUE), TRUE));
           return $out;
         }
       }
@@ -1685,10 +1696,12 @@ abstract class DrupalTestCase extends PHPUnit_Framework_TestCase {
    *   Created node object.
    */
   protected function drupalCreateNode($settings = array()) {
+    if (!isset($settings['language'])) {
+      $this->fail('drupalCreateNode: Refusing to create node, please specifiy language');
+    }
     // Populate defaults array.
-    $language = isset($settings['language']) ? $settings['language'] : LANGUAGE_NONE;
+    $language = $settings['language'];
     $settings += array(
-      'body'      => array($language => array(array())),
       'title'     => $this->randomName(8),
       'comment'   => 2,
       'changed'   => REQUEST_TIME,
@@ -1720,13 +1733,14 @@ abstract class DrupalTestCase extends PHPUnit_Framework_TestCase {
       }
     }
 
-    // Merge body field value and format separately.
-    $body = array(
-      'value' => $this->randomName(32),
-      'format' => filter_default_format(),
-    );
-    $settings['body'][$language][0] += $body;
-
+    if (!isset($settings['body'])) {
+      $settings['body'] = array($language => array(
+        0 => array(
+          'value' => $this->randomName(32),
+          'format' => filter_default_format()
+        )
+      ));
+    }
     $node = (object) $settings;
     node_save($node);
 
