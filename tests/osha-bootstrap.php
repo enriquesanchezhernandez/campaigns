@@ -1,6 +1,7 @@
 <?php
 
 require_once 'bootstrap.php';
+require_once 'oshaTestingMailSystem.php';
 
 // We set global language variables to avoid error:
 // <h1>Uncaught exception thrown in shutdown function.</h1>
@@ -16,6 +17,8 @@ $language_content = $language_url = $language = (object) array(
 
 class OshaWebTestCase extends DrupalWebTestCase {
 
+  public $mail_system;
+
   /**
    * {@inheritdoc}
    */
@@ -23,6 +26,10 @@ class OshaWebTestCase extends DrupalWebTestCase {
     $this->cookieFile = '/tmp/cookie.txt';
     $this->cookies = array();
     parent::setUp();
+
+    // Overwrite mailing system settings (See Drupal issue 2279851).
+    $this->mail_system = variable_get('mail_system');
+    variable_set('mail_system', array('default-system' => 'oshaTestingMailSystem'));
   }
 
   public function setupLanguage($language = 'en', $name = 'English') {
@@ -32,6 +39,9 @@ class OshaWebTestCase extends DrupalWebTestCase {
       'direction' => 0, 'enabled' => 1, 'plurals' => 0, 'formula' => '',
       'domain' => '', 'prefix' => 'en', 'weight' => 1, 'javascript' => '',
     );
+    $language_content = $language_url = $language = i18n_language_load('en');
+
+    $this->cleanup();
   }
 
   /**
@@ -65,6 +75,9 @@ class OshaWebTestCase extends DrupalWebTestCase {
    * Executed when a single test is over.
    */
   public function tearDown() {
+    // Restore mailing system settings.
+    variable_set('mail_system', $this->mail_system);
+
     $this->cleanup();
   }
 
