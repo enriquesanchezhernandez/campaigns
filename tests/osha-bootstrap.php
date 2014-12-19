@@ -37,10 +37,11 @@ class OshaWebTestCase extends DrupalWebTestCase {
   /**
    * Login with admin account.
    */
-  public function loginAsAdmin() {
+  public function loginAsAdmin($password = 'password') {
     global $user;
     $user = user_load(1);
     $this->assertNotNull($user, "Could not login admin");
+    $user->pass_raw = $password;
     $this->drupalLogin($user);
   }
 
@@ -56,6 +57,7 @@ class OshaWebTestCase extends DrupalWebTestCase {
     global $user;
     $user = user_load_by_name($username);
     $this->assertNotNull($user, "Could not login $username");
+    $user->pass_raw = $password;
     $this->drupalLogin($user);
   }
 
