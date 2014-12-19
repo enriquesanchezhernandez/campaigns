@@ -121,12 +121,6 @@ function osha_workflow_menu_alter(&$items) {
   $items['admin/workbench']['page arguments'] = array('osh_workflow_admin', 'my_content');
 }
 
-function osha_workflow_editor_page() {
-  $output = array(
-    '#markup' => 'Workflow Administration',
-  );
-  return drupal_render($output);
-}
 /**
  * Permission access to approval local task.
  *
