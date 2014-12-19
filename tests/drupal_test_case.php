@@ -1102,7 +1102,9 @@ abstract class DrupalTestCase extends PHPUnit_Framework_TestCase {
     $files = DRUPAL_ROOT . '/' . variable_get('file_public_path', conf_path() . '/files');
     $output_dir = $files . '/simpletest/verbose';
     // mkdir seem to raise always error - probably changing permissions.
-    mkdir($output_dir, 0777, TRUE);
+    if (!is_writable($output_dir)) {
+      mkdir($output_dir, 0777, TRUE);
+    }
     $filename = sprintf('%s/%s-%02d.html', $output_dir, get_class($this), $i);
     if (strstr($message, '</body>')) {
       str_replace('</body>', '', $message);
