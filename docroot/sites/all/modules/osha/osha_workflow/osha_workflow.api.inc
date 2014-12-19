@@ -176,6 +176,7 @@ function osha_workflow_is_assigned_project_manager($nid) {
 
 /**
  * This method creates the user roles required by the workflow.
+ * @codeCoverageIgnore
  */
 function osha_workflow_create_roles() {
   module_load_include('inc', 'osha_workflow', 'osha_workflow.permissions');
@@ -631,7 +632,10 @@ class OshaWorkflowPermissions {
    *   TRUE if user has role
    */
   public static function userHasRole($role, $user) {
-    return in_array($role, $user->roles);
+    if (isset($user->roles)) {
+      return in_array($role, $user->roles);
+    }
+    return FALSE;
   }
 
   /**
@@ -644,7 +648,12 @@ class OshaWorkflowPermissions {
    *   TRUE if user is admin or Administrator role.
    */
   public static function userIsAdministrator($user) {
-    return self::userHasRole(OSHA_WORKFLOW_ROLE_ADMINISTRATOR, $user) || $user->uid == 1;
+    if (isset($user->uid) && $user->uid == 1) {
+      return TRUE;
+    }
+    else {
+      return self::userHasRole(OSHA_WORKFLOW_ROLE_ADMINISTRATOR, $user);
+    }
   }
 
   /**
@@ -677,6 +686,7 @@ class OshaWorkflowPermissions {
 
 /**
  * Class OshaWorkflowNotifications sends notifications for workflow transitions.
+ * @codeCoverageIgnore
  */
 class OshaWorkflowNotifications {
 
