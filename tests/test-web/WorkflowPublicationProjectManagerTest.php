@@ -77,7 +77,7 @@ class WorkflowPublicationProjectManagerTest extends OshaWebTestCase {
       ),
     );
     module_load_include('inc', 'osha_workflow', 'osha_workflow.admin');
-    drupal_form_submit('osha_workflow_node_approval_form', $form_state);
+    drupal_form_submit('osha_workflow_node_approval_form', $form_state, $node);
 
     $this->drupalGet("node/{$node->nid}/approve");
     $this->assertText($ap1->name);
