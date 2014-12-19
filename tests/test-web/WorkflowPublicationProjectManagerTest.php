@@ -38,6 +38,8 @@ class WorkflowPublicationProjectManagerTest extends OshaWebTestCase {
     $node = $this->drupalCreateNode(array(
       'language' => 'en',
       'title' => $this->nodeTitle1, 'type' => 'news',
+      // Vacancies
+      'workbench_access' => 1007,
     ));
     workbench_moderation_moderate($node, 'final_draft');
 
@@ -74,6 +76,7 @@ class WorkflowPublicationProjectManagerTest extends OshaWebTestCase {
         ),
       ),
     );
+    module_load_include('inc', 'osha_workflow', 'osha_workflow.admin');
     drupal_form_submit('osha_workflow_node_approval_form', $form_state);
 
     $this->drupalGet("node/{$node->nid}/approve");
