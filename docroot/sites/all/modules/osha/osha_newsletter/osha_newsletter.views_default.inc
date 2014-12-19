@@ -30,10 +30,13 @@ function osha_newsletter_views_default_views() {
   $handler->display->display_options['access']['perm'] = 'manage content in newsletter_content_collection entity collections';
   $handler->display->display_options['cache']['type'] = 'none';
   $handler->display->display_options['query']['type'] = 'views_query';
+  $handler->display->display_options['query']['options']['distinct'] = TRUE;
+  $handler->display->display_options['query']['options']['pure_distinct'] = TRUE;
   $handler->display->display_options['exposed_form']['type'] = 'basic';
   $handler->display->display_options['exposed_form']['options']['submit_button'] = 'Filter';
   $handler->display->display_options['exposed_form']['options']['sort_asc_label'] = 'Ascending';
   $handler->display->display_options['exposed_form']['options']['sort_desc_label'] = 'Descending';
+  $handler->display->display_options['exposed_form']['options']['autosubmit'] = TRUE;
   $handler->display->display_options['pager']['type'] = 'full';
   $handler->display->display_options['pager']['options']['items_per_page'] = '10';
   $handler->display->display_options['pager']['options']['offset'] = '0';
@@ -324,6 +327,7 @@ function osha_newsletter_views_default_views() {
   $handler->display->display_options['sorts']['type']['field'] = 'type';
   $handler->display->display_options['sorts']['type']['exposed'] = TRUE;
   $handler->display->display_options['sorts']['type']['expose']['label'] = 'Type';
+  $handler->display->display_options['filter_groups']['operator'] = 'OR';
   /* Filter criterion: Content: Title (title_field) */
   $handler->display->display_options['filters']['title_field_value']['id'] = 'title_field_value';
   $handler->display->display_options['filters']['title_field_value']['table'] = 'field_data_title_field';
@@ -347,6 +351,8 @@ function osha_newsletter_views_default_views() {
   $handler->display->display_options['filters']['type']['field'] = 'type';
   $handler->display->display_options['filters']['type']['value'] = array(
     'blog' => 'blog',
+    'events' => 'events',
+    'highlight' => 'highlight',
     'news' => 'news',
     'press_release' => 'press_release',
     'publication' => 'publication',
@@ -362,6 +368,15 @@ function osha_newsletter_views_default_views() {
     2 => '2',
     1 => 0,
     3 => 0,
+    4 => 0,
+    5 => 0,
+    6 => 0,
+    7 => 0,
+    8 => 0,
+    9 => 0,
+    10 => 0,
+    11 => 0,
+    12 => 0,
   );
   $handler->display->display_options['filters']['type']['expose']['reduce'] = TRUE;
   /* Filter criterion: Content: Nid */
@@ -476,17 +491,11 @@ function osha_newsletter_views_default_views() {
     1 => 0,
     3 => 0,
   );
-  /* Filter criterion: Workbench Moderation: State */
-  $handler->display->display_options['filters']['state']['id'] = 'state';
-  $handler->display->display_options['filters']['state']['table'] = 'workbench_moderation_node_history';
-  $handler->display->display_options['filters']['state']['field'] = 'state';
-  $handler->display->display_options['filters']['state']['value'] = array(
-    'published' => 'published',
-  );
   /* Filter criterion: Workbench Access: Access filter */
   $handler->display->display_options['filters']['access_id']['id'] = 'access_id';
   $handler->display->display_options['filters']['access_id']['table'] = 'workbench_access';
   $handler->display->display_options['filters']['access_id']['field'] = 'access_id';
+  $handler->display->display_options['filters']['access_id']['group'] = 1;
   $handler->display->display_options['filters']['access_id']['exposed'] = TRUE;
   $handler->display->display_options['filters']['access_id']['expose']['operator_id'] = 'access_id_op';
   $handler->display->display_options['filters']['access_id']['expose']['label'] = 'Section';
@@ -507,6 +516,14 @@ function osha_newsletter_views_default_views() {
   );
   $handler->display->display_options['filters']['access_id']['access_id'] = array();
   $handler->display->display_options['filters']['access_id']['size'] = '5';
+  /* Filter criterion: Workbench Moderation: State */
+  $handler->display->display_options['filters']['state']['id'] = 'state';
+  $handler->display->display_options['filters']['state']['table'] = 'workbench_moderation_node_history';
+  $handler->display->display_options['filters']['state']['field'] = 'state';
+  $handler->display->display_options['filters']['state']['value'] = array(
+    'published' => 'published',
+  );
+  $handler->display->display_options['filters']['state']['group'] = 1;
 
   /* Display: Newsletter content selection */
   $handler = $view->new_display('page', 'Newsletter content selection', 'newsletter_selection_view_page');
