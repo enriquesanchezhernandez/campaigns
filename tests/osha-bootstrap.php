@@ -38,10 +38,10 @@ class OshaWebTestCase extends DrupalWebTestCase {
    * Login with admin account.
    */
   public function loginAsAdmin() {
-    $admin = (object) array('name' => 'admin', 'pass_raw' => 'password');
-    $this->drupalLogin($admin);
     global $user;
     $user = user_load(1);
+    $this->assertNotNull($user, "Could not login admin");
+    $this->drupalLogin($user);
   }
 
   /**
@@ -53,8 +53,10 @@ class OshaWebTestCase extends DrupalWebTestCase {
    *   Password. By default all dev instance are set to 'password'.
    */
   public function loginAs($username, $password = 'password') {
-    $admin = (object) array('name' => $username, 'pass_raw' => $password);
-    $this->drupalLogin($admin);
+    global $user;
+    $user = user_load_by_name($username);
+    $this->assertNotNull($user, "Could not login $username");
+    $this->drupalLogin($user);
   }
 
   /**
