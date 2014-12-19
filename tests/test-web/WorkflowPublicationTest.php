@@ -45,18 +45,42 @@ class WorkflowPublicationTest extends OshaWebTestCase {
     $this->assertNotNull($form);
   }
 
-  public function test_osha_workflow_get_set_node_approvers() {
+  public function test_osha_workflow_node_approvers() {
     $node = $this->createNodeNews();
 
-    $approvers = osha_workflow_get_node_approvers($node->nid, FALSE);
-    $this->assertEmpty($approvers);
+    osha_workflow_set_node_approvers($node->nid, array());
+    $this->assertEmpty(osha_workflow_get_node_approvers($node->nid, FALSE));
 
-    $ap1 = user_load_by_name('approver1');
-    $ap2 = user_load_by_name('approver2');
-    $moderators = array(-10 => $ap1->uid, -11 => $ap2->uid);
+    $ap3 = user_load_by_name('approver3');
+    $moderators = array(-10 => $ap3->uid);
     osha_workflow_set_node_approvers($node->nid, $moderators);
+    $this->assertEquals(1, count(osha_workflow_get_node_approvers($node->nid)));
 
-    $approvers = osha_workflow_get_node_approvers($node->nid, FALSE);
-    $this->assertEquals(2, count($approvers));
+    $this->assertTrue(osha_workflow_is_next_approver($node->nid, $ap3));
+    $this->assertTrue(osha_workflow_is_last_approver($node, $ap3));
+
+    node_delete($node->nid);
+  }
+
+  public function test_osha_workflow_get_default_project_manager() {
+    $this->assertNotEmpty(osha_workflow_get_default_project_manager('main-menu'));
+  }
+
+  public function test_osha_workflow_get_set_project_manager() {
+    $this->assertNull(osha_workflow_get_project_manager(-1));
+
+    $node = $this->createNodeNews();
+    $pm3 = user_load_by_name('project_manager3');
+    osha_workflow_set_project_manager($node->nid, $pm3->uid);
+
+    $pm = osha_workflow_get_project_manager($node->nid);
+    $this->assertEquals($pm3->uid, $pm->uid);
+
+    $this->assertFalse(osha_workflow_is_assigned_project_manager($node->nid));
+
+    $this->loginAs('project_manager3');
+    $this->assertTrue(osha_workflow_is_assigned_project_manager($node->nid));
+
+    node_delete($node->nid);
   }
 }
