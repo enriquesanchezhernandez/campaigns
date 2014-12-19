@@ -77,6 +77,7 @@
  * @see template_process()
  */
 ?>
+<?php if($node->title != NULL) {?>
 <table id="node-<?php print $node->nid; ?>" border="0" cellpadding="0" cellspacing="0" width="100%">
   <tbody>
     <?php
@@ -86,6 +87,17 @@
       <tr>
         <td colspan="2" style="font-family: Arial, sans-serif; font-size: 14px; padding-left: 14px;">
           <span class="item-date"><?php print date('M d, Y',$date);?></span>
+        </td>
+      </tr>
+    <?php
+    } if ($node->type == 'events') {
+      $date = (isset($field_start_date) && !empty($field_start_date)) ? strtotime($field_start_date[0]['value']) : '';
+      $country_location = (isset($field_country_code) && !empty($field_country_code)) ? $field_country_code[0]['value'] : '';
+      $city_location = (isset($field_city) && !empty($field_city)) ? $field_city[0]['safe_value'] : '';
+      ?>
+      <tr>
+        <td colspan="2" style="font-family: Arial, sans-serif; font-size: 14px; padding-left: 14px;">
+          <span class="item-date"><?php if (trim($country_location) != '' && trim($city_location) != '') { echo $country_location . ' ' . $city_location . ', ';} if (trim($date) != '') { print date('M d, Y',$date);}?></span>
         </td>
       </tr>
     <?php
@@ -125,3 +137,4 @@
     </tr>
   </tbody>
 </table>
+<?php } ?>
