@@ -2,12 +2,16 @@
 
 class WorkflowPublicationTest extends OshaWebTestCase {
 
+
+  public function setUp() {
+    parent::setUp();
+    $this->loginAsAdmin();
+  }
+
   /**
    * Test access to the project managers configuration per section.
    */
   public function testProjectManagersScreen() {
-    $this->loginAsAdmin();
-
     $pms = osha_workflow_access_pm_get_pm('main-menu', 'menu');
     if (!empty($pms)) {
       reset($pms);
@@ -25,5 +29,34 @@ class WorkflowPublicationTest extends OshaWebTestCase {
 
     $this->drupalGet('admin/config/workbench/access/managers/menu/main-menu');
     $this->assertText('project_manager2');
+  }
+
+  public function test_osha_workflow_workbench_project_managers_form() {
+    $_GET['q'] = 'admin/config/workbench/access/managers';
+    module_load_include('inc', 'osha_workflow', 'osha_workflow.admin');
+    $form = drupal_get_form('osha_workflow_workbench_project_managers_form');
+    $this->assertNotNull($form);
+    $this->assertArrayHasKey('main-menu', $form['rows']);
+  }
+
+
+  public function test_osha_workflow_workbench_project_managers() {
+    $form = osha_workflow_workbench_project_managers();
+    $this->assertNotNull($form);
+  }
+
+  public function test_osha_workflow_get_set_node_approvers() {
+    $node = $this->createNodeNews();
+
+    $approvers = osha_workflow_get_node_approvers($node->nid, FALSE);
+    $this->assertEmpty($approvers);
+
+    $ap1 = user_load_by_name('approver1');
+    $ap2 = user_load_by_name('approver2');
+    $moderators = array(-10 => $ap1->uid, -11 => $ap2->uid);
+    osha_workflow_set_node_approvers($node->nid, $moderators);
+
+    $approvers = osha_workflow_get_node_approvers($node->nid, FALSE);
+    $this->assertEquals(2, count($approvers));
   }
 }
