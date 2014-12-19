@@ -1,9 +1,15 @@
-#Test
-----
+## Functional tests ##
 
+Note: These tests are run against a functional Drupal website. The database may be altered by these tests and the content is left in there.
 
-The test directory is used for external test. This is great for [selenium](http://seleniumhq.org/) or [CasperJS](http://casperjs.org/) test.
+1. Make sure you have PHPUnit 4.x installed (use pear, package manager, composer etc.)
+2. Copy phpunit.xml.dist into phpunit.xml
+3. Edit phpunit.xml to match your Drupal configuration
+4. Run phpunit inside this directory
 
-There's two default directory. The selenium directory and the casperjs directory. Feel free to add or remove your own.
+Coverage output is (over)written inside ../results directory
 
-Note: This is not a directory for simpletest.
+PHPUnit specific instructions:
+
+[@codeCoverageIgnore](https://phpunit.de/manual/current/en/appendixes.annotations.html#appendixes.annotations.codeCoverageIgnore) - to ignore current function.
+

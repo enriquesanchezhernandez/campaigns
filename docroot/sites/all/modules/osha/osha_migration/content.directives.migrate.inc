@@ -325,6 +325,8 @@ class DirectiveContentListCSV extends MigrateList {
             if (preg_match('/of ([\d]+ [\w]+ [\d]+) /', $raw_data[$key], $matches)) {
               self::$data[$path]['directive_date'] = $matches[1];
             }
+            self::$data[$path][$field][$language] = $raw_data[$key];
+            break;
           case 'aliases':
           case 'text':
             self::$data[$path][$field][$language] = $raw_data[$key];

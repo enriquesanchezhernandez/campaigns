@@ -76,6 +76,8 @@ function osha_contact_get_taxonomy_term_options($machine_name){
  * Delete default confirmation message and set a new one
  */
 function contact_form_send($form, &$form_state){
+  global $base_url;
+
   //remove default status message
   if (!empty($_SESSION['messages']['status'])) {
     $message_text_to_remove = t('Your message has been sent.');
@@ -90,7 +92,18 @@ function contact_form_send($form, &$form_state){
   }
 
   //set new status message
-  drupal_set_message(t('Your message has been sent.'));
+  drupal_set_message(t('Thank you for your feedback. We appreciate your comments about the
+  European Agency for Safety and Health at Work and we try, wherever possible, to answer your emails.
+  Unfortunately, due to the large volume of correspondence we receive, we are unable to offer a personal reply
+  in each case. However, we read all your comments, and we use your feedback to improve our websites and services.
+  <br /><br />
+  You can stay up to date with new developments to our website by visiting our “What’s New” pages
+  <a href="@link1">@link1</a>
+  and subscribing to our electronic newsletter OSHmail
+  <a href="@link2">@link2</a>.',
+    array(
+      '@link1' => $base_url.'/articles/news-events',
+      '@link2' => $base_url.'/pages/oshmail-newsletter')));
 }
 
 /**

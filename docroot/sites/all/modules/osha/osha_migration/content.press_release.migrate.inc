@@ -298,12 +298,13 @@ class PressReleaseMigrateList extends MigrateList {
             self::$data[$path]['title_field'][$language] = $raw_data[$key];
             break;
 
-          case 'aliases':
-          case 'description':
-          case 'text':
           case 'notesToEditors':
             $items = $this->parseRelatedNotesString($raw_data[$key]);
             self::$data[$path]['note_to_editor_path'] = $items;
+            break;
+          case 'aliases':
+          case 'description':
+          case 'text':
           case 'relatedLinks':
             self::$data[$path][$field][$language] = $raw_data[$key];
             break;
