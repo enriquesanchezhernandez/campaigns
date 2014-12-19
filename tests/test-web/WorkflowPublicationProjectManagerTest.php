@@ -17,7 +17,7 @@ class WorkflowPublicationProjectManagerTest extends OshaWebTestCase {
   /**
    * Test editor cannot access administrative menu items.
    */
-  public function xtestAccountSecurity() {
+  public function testAccountSecurity() {
     $this->loginAs('project_manager1');
     $this->drupalGet('admin/structure');
     $this->assertText('You do not have any administrative items.');
