@@ -111,6 +111,38 @@ function osha_newsletter_views_default_views() {
   $handler->display->display_options['relationships']['uid']['id'] = 'uid';
   $handler->display->display_options['relationships']['uid']['table'] = 'node';
   $handler->display->display_options['relationships']['uid']['field'] = 'uid';
+  /* Relationship: Workbench Moderation: Node */
+  $handler->display->display_options['relationships']['nid']['id'] = 'nid';
+  $handler->display->display_options['relationships']['nid']['table'] = 'workbench_moderation_node_history';
+  $handler->display->display_options['relationships']['nid']['field'] = 'nid';
+  /* Relationship: Content: Taxonomy terms on node */
+  $handler->display->display_options['relationships']['term_node_tid']['id'] = 'term_node_tid';
+  $handler->display->display_options['relationships']['term_node_tid']['table'] = 'node';
+  $handler->display->display_options['relationships']['term_node_tid']['field'] = 'term_node_tid';
+  $handler->display->display_options['relationships']['term_node_tid']['vocabularies'] = array(
+    'activity' => 0,
+    'article_types' => 0,
+    'directive_type' => 0,
+    'legislation_category' => 0,
+    'esener' => 0,
+    'nace_codes' => 0,
+    'section' => 0,
+    'attachment_file_type' => 0,
+    'contact_topic' => 0,
+    'contact_type_of_sender' => 0,
+    'flickr_tags' => 0,
+    'newsletter_sections' => 0,
+    'organised_by' => 0,
+    'publication_types' => 0,
+    'tags' => 0,
+    'thesaurus' => 0,
+    'wiki_categories' => 0,
+    'workflow_status' => 0,
+  );
+  /* Relationship: Content: Entity translation: translations */
+  $handler->display->display_options['relationships']['entity_translations']['id'] = 'entity_translations';
+  $handler->display->display_options['relationships']['entity_translations']['table'] = 'node';
+  $handler->display->display_options['relationships']['entity_translations']['field'] = 'entity_translations';
   /* Field: Bulk operations: Content */
   $handler->display->display_options['fields']['views_bulk_operations']['id'] = 'views_bulk_operations';
   $handler->display->display_options['fields']['views_bulk_operations']['table'] = 'node';
@@ -327,7 +359,10 @@ function osha_newsletter_views_default_views() {
   $handler->display->display_options['sorts']['type']['field'] = 'type';
   $handler->display->display_options['sorts']['type']['exposed'] = TRUE;
   $handler->display->display_options['sorts']['type']['expose']['label'] = 'Type';
-  $handler->display->display_options['filter_groups']['operator'] = 'OR';
+  $handler->display->display_options['filter_groups']['groups'] = array(
+    1 => 'AND',
+    2 => 'OR',
+  );
   /* Filter criterion: Content: Title (title_field) */
   $handler->display->display_options['filters']['title_field_value']['id'] = 'title_field_value';
   $handler->display->display_options['filters']['title_field_value']['table'] = 'field_data_title_field';
@@ -524,6 +559,43 @@ function osha_newsletter_views_default_views() {
     'published' => 'published',
   );
   $handler->display->display_options['filters']['state']['group'] = 1;
+  /* Filter criterion: Taxonomy term: Vocabulary */
+  $handler->display->display_options['filters']['vid']['id'] = 'vid';
+  $handler->display->display_options['filters']['vid']['table'] = 'taxonomy_term_data';
+  $handler->display->display_options['filters']['vid']['field'] = 'vid';
+  $handler->display->display_options['filters']['vid']['relationship'] = 'term_node_tid';
+  $handler->display->display_options['filters']['vid']['group'] = 1;
+  $handler->display->display_options['filters']['vid']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['vid']['expose']['operator_id'] = 'vid_op';
+  $handler->display->display_options['filters']['vid']['expose']['label'] = 'Vocabulary';
+  $handler->display->display_options['filters']['vid']['expose']['operator'] = 'vid_op';
+  $handler->display->display_options['filters']['vid']['expose']['identifier'] = 'vid';
+  $handler->display->display_options['filters']['vid']['expose']['remember_roles'] = array(
+    2 => '2',
+    1 => 0,
+    3 => 0,
+    4 => 0,
+    5 => 0,
+    6 => 0,
+    7 => 0,
+    8 => 0,
+    9 => 0,
+    10 => 0,
+    11 => 0,
+    12 => 0,
+  );
+  /* Filter criterion: Workbench Moderation: Type is moderated */
+  $handler->display->display_options['filters']['workbench_moderation_moderated_type']['id'] = 'workbench_moderation_moderated_type';
+  $handler->display->display_options['filters']['workbench_moderation_moderated_type']['table'] = 'node';
+  $handler->display->display_options['filters']['workbench_moderation_moderated_type']['field'] = 'workbench_moderation_moderated_type';
+  $handler->display->display_options['filters']['workbench_moderation_moderated_type']['value'] = '0';
+  $handler->display->display_options['filters']['workbench_moderation_moderated_type']['group'] = 2;
+  /* Filter criterion: Workbench Moderation: Current */
+  $handler->display->display_options['filters']['current']['id'] = 'current';
+  $handler->display->display_options['filters']['current']['table'] = 'workbench_moderation_node_history';
+  $handler->display->display_options['filters']['current']['field'] = 'current';
+  $handler->display->display_options['filters']['current']['value'] = '1';
+  $handler->display->display_options['filters']['current']['group'] = 2;
 
   /* Display: Newsletter content selection */
   $handler = $view->new_display('page', 'Newsletter content selection', 'newsletter_selection_view_page');
@@ -551,6 +623,9 @@ function osha_newsletter_views_default_views() {
     t('<a class="form-submit" href="/admin/structure/entity_collection/add/newsletter_content_collection">Create another newsletter</a>'),
     t('There are no results. Please broaden your filters above.'),
     t('author'),
+    t('Node'),
+    t('term'),
+    t('Translations'),
     t('- Choose an operation -'),
     t('Title'),
     t('Type of content'),
@@ -569,6 +644,7 @@ function osha_newsletter_views_default_views() {
     t('Enter name or part of author\'s name'),
     t('Select an interval for filtering'),
     t('Section'),
+    t('Vocabulary'),
   );
   $export['newsletter_node_selection'] = $view;
 
