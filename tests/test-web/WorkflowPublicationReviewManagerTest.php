@@ -98,11 +98,10 @@ class WorkflowPublicationReviewManagerTest extends OshaWebTestCase {
    * {@inheritdoc}
    */
   public function cleanup() {
-    if ($node = $this->drupalGetNodeByTitle($this->nodeTitle1)) {
-      node_delete($node->nid);
-    }
-    if ($node = $this->drupalGetNodeByTitle($this->nodeTitle2)) {
-      node_delete($node->nid);
-    }
+    $nodes = node_load_multiple(array(), array('title' => $this->nodeTitle1), TRUE);
+    node_delete_multiple(array_keys($nodes));
+
+    $nodes = node_load_multiple(array(), array('title' => $this->nodeTitle2), TRUE);
+    node_delete_multiple(array_keys($nodes));
   }
 }
