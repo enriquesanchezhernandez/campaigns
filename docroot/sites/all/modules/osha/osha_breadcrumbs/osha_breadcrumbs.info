@@ -28,4 +28,5 @@ features[path_breadcrumbs][] = press_room_view
 features[path_breadcrumbs][] = publications
 features[path_breadcrumbs][] = seminars_search_view
 features[path_breadcrumbs][] = shortlisted_job_vacancies
+features[path_breadcrumbs][] = blog_search
 mtime = 1416825605
