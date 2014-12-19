@@ -87,4 +87,15 @@ class OshaWebTestCase extends DrupalWebTestCase {
    * Use this function to delete any content created by this test.
    */
   public function cleanup() {}
+
+
+  public function createNodeNews() {
+    $title = $this->randomString(32);
+    $options = array(
+      'title_field[und][0][value]' => $title,
+      'workbench_moderation_state_new' => 'final_draft',
+    );
+    $this->drupalPost('node/add/news', $options, t('Save'));
+    return $this->drupalGetNodeByTitle($title);
+  }
 }
