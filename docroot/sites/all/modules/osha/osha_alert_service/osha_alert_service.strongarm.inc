@@ -33,6 +33,13 @@ function osha_alert_service_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'osha_alert_service_privacy_policy_url';
+  $strongarm->value = 'articles/privacy-policy-alerts-form';
+  $export['osha_alert_service_privacy_policy_url'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'osha_alert_service_subscribe_body';
   $strongarm->value = '<p>EU-OSHA received a request to start sending alerts to <strong>[osha_alert_service:email]</strong>.</p>
 

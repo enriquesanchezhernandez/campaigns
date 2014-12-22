@@ -7,6 +7,8 @@
 include_once 'osha_alert_service.features.inc';
 module_load_include('inc', 'osha_alert_service', 'osha_alert_service.admin');
 
+define('OSHA_ALERT_SERVICE_PRIVACY_PAGE_URL', 'articles/privacy-policy-alerts-form');
+
 /**
  * Implements hook_entity_info().
  */
@@ -248,7 +250,7 @@ function osha_alert_block_front_view() {
   );
   // These variables are defined in osha_newsletter.module
   $link_label = variable_get('subscribe_block_details_link_label', t('Privacy policy'));
-  $link_url = variable_get('subscribe_block_details_link_url', OSHA_PRIVACY_PAGE_URL);
+  $link_url = variable_get('osha_alert_service_privacy_policy_url', OSHA_ALERT_SERVICE_PRIVACY_PAGE_URL);
   $form['details_link'] = array(
     '#markup' => '<a class="privacy-policy-oshmail" href='.url($link_url).'>'.$link_label.'</a><br/>',
   );
