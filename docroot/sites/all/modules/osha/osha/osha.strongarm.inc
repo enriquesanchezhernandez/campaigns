@@ -649,7 +649,7 @@ function osha_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'htmlmail_postfilter';
-  $strongarm->value = 'full_html';
+  $strongarm->value = '0';
   $export['htmlmail_postfilter'] = $strongarm;
 
   $strongarm = new stdClass();
