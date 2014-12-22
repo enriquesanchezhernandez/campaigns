@@ -77,4 +77,39 @@
     visibility: hidden;
     display: none;
   }
+  
+  
+  #header{
+	display:none;
+  }
+  
+  #block-lang-dropdown-language-content{
+	display:none;
+  }
+  
+  #languagesAndSearch{
+	display:none;
+  }
+  
+  #main-menu-links{
+	display:none;
+  }
+  
+  img{
+	display:none;
+  }
+  
+  .view-header.back{
+	display:none;
+  }
+  
+  .node-highlight.view-mode-full .field-name-field-image img{
+	max-width:100px!important;
+	max-height:100px!important;
+  }
+  
+   a[href]:after {
+    content: none !important;
+  }
+  
 }

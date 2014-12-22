@@ -56,8 +56,7 @@ function form_lingua_form($form, &$form_state) {
 			'#markup' => '<p class="linguaheader">Please, select the fields to spread and press the <strong>spread data</strong> button.</p>',
 			'#fieldintname' => '0'
 		);
-		
-		if ($transfield == 1 && $field['widget']['module'] != 'media' && $field['widget']['module'] != 'pdf_to_image' && $numdatosfield > 0){
+		if ($transfield == 1 && $field['widget']['module'] != 'media' && $field['widget']['module'] != 'file'&& $field['widget']['module'] != 'pdf_to_image' && $numdatosfield > 0){
 			$contfields ++;
 			$form[$fieldname] = array(
 				'#title' => $fieldname,
