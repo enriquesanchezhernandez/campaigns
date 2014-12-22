@@ -114,7 +114,7 @@
           <tbody>
             <tr>
               <td style="width: 100%; font-size: 13px; font-family: Arial, sans-serif; color: #777777;">
-                <?php print($field_summary[0]['safe_value']); ?>
+                <?php print($body[0]['safe_value']); ?>
               </td>
             </tr>
           </tbody>
