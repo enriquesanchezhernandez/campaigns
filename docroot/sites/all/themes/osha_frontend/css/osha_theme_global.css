@@ -855,8 +855,10 @@ article .field-name-body {
 	padding-left: 0.6em!important;
 	padding-right: 0.6em!important;
 }
-.node-publication .field-name-field-publication-date, .node-publication .field-name-body {
-	/*padding-left: 1em!important;*/
+article.node-publication.view-mode-full .field-name-field-publication-date {
+	padding-left: 1em!important;
+}
+.node-publication .field-name-field-publication-date, .node-publication .field-name-body {	
 	padding-right: 1em!important;
 	padding-top: .5em!important;
 }
@@ -874,7 +876,6 @@ article .field-name-body {
 	padding-left: 0!important;
 	padding-right: 0!important;
 }
-
 #related-wiki-publications .field-name-field-wiki-page-url {
 	margin-top: 1em;
 }
@@ -884,7 +885,44 @@ article .field-name-body {
 }
 /* Publication Image */
 .node-publication.view-mode-full .field-name-field-cover-image {
+	float: none;
 	padding-left: 1em;
+}
+.node-publication .field-name-body.field-type-text-with-summary  {
+	padding-left: 1em!important;
+}
+.field-name-field-publication-bookshop-id {
+	display: none;
+}
+.node-publication.view-mode-full .field-name-field-file {
+	margin-right: 1em;
+	margin-left: 1em;
+	padding: 0.5em;
+	width: auto;
+}
+.node-publication .group-summary-resources {
+	margin-top: 1em;
+	margin-right: 1em;
+	margin-left: 1em!important;
+	width: auto!important;
+}
+.node-publication .group-summary-resources .field-items div {
+	margin: 1em 0em;
+}
+/* Related Publications */
+#related-publications .related_publications_head {
+	padding-right: .7em;
+	padding-left: .7em;
+}
+#related-publications div article {
+	margin: 0em 1em 0.5em 1em;
+	padding: 0;
+}
+#related-publications article .field.field-name-field-publication-date.field-type-datetime.field-label-hidden {
+	padding-left: 0em!important;
+}
+iframe {
+	width: 100%;
 }
 body.page-search-publications aside.sidebars_first {
 	border-top: 5px solid #039;
@@ -979,16 +1017,78 @@ body.page-search-publications aside.sidebars_first {
 }
 #blogLogo {
 	border-top: 5px solid #039;
-	margin-top: 0.5em;
-	margin-bottom: 0.5em;
+	height: 5em;
+	margin-top: 0.5em;	
 	margin-right: 0em;
 	margin-left: 0em;
 	border-bottom: 5px solid #039;
-	padding-bottom: 2em;
+	/*padding-top: 1.5em;*/
+	padding-left: 1em;
+}
+#blogLogo  img {
+	padding-top: 1.5em;
 }
 #agencyLogoBlog {
-	
+	margin-top: -5.8em
 }
+#europeLogoBlog {
+	margin: -4.3em 1em 1em 1.5em;
+}
+
+/*Latest posts*/
+#block-views-blog-block-1 h2 {
+	background: url("");
+	background-color: #039;
+	border: none;
+	color: #FFF;
+	font-size: 1.6em;
+	padding: 0 0.6em 0 0.6em;
+}
+#block-views-blog-block-1 .views-field-field-image {
+	float: none;
+	margin-right: 0em;
+	margin-bottom: 0.5em;
+}
+#block-views-blog-block-1 .views-field-field-image img {	
+	max-width: 970px;
+	width: auto;
+}
+#block-views-blog-block-1  .view-blog .views-row {
+	padding-bottom: 1em;
+}
+#block-views-blog-block-1 .views-field-view-node {
+	text-align: right;
+}
+#block-views-blog-block-1 .view-blog .views-field-view-node a {
+	background-position: right center;
+	float: none;
+	padding-right: 1.5em;
+	padding-bottom: 0em;
+}
+/* Free text search */
+#block-views-exp-search-blog-page {
+	margin-bottom: 0em;
+	padding: 1em;
+}
+#block-views-exp-search-blog-page #edit-filter, #block-views-exp-search-blog-page .views-exposed-form .views-exposed-widget input {
+	width: 50%;
+}
+/* Posts by date */
+#block-views-blog-block-2 h2 {
+	margin: 0 0.7em 0.2em 0.7em;
+}
+#block-views-blog-block-2  .view-display-id-block_2 {
+	padding: 0 1em;
+}
+/* Recent Tweets */
+#block-twitter-block-1 {
+	padding: 0 1em;
+}
+#block-twitter-block-1 #twitter-widget-0 {	
+	width: 100%!important;
+}
+
+
 /* End Blog styles */
 
 /* ------------- */
@@ -1009,11 +1109,25 @@ body.page-search-publications aside.sidebars_first {
 }
 
 
+.contact_us_box{
+	clear:both;
+}
 
 
+.block-nodeblock{
+	display:none;
+}
 
+#block-views-related-content-block-6{
+	display:none;
 
+}
 
+.sidebars_first #block-views-exp-search-directives-page, .sidebars_first {
+	display:block!important;
+	border:0px!important;
+	width: 90%;
+}
 
 
 
