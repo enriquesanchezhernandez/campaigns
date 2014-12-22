@@ -36,6 +36,7 @@ function osha_blocks_context_default_contexts() {
     'views' => array(
       'values' => array(
         'blog' => 'blog',
+        'search_blog' => 'search_blog',
         'seminars' => 'seminars',
       ),
     ),
@@ -85,6 +86,7 @@ function osha_blocks_context_default_contexts() {
         'highlight:page' => 'highlight:page',
         'news' => 'news',
         'news:oshnews_list' => 'news:oshnews_list',
+        'search_blog' => 'search_blog',
         'vacancies' => 'vacancies',
         'vacancies:page_1' => 'vacancies:page_1',
         'vacancies:page_2' => 'vacancies:page_2',

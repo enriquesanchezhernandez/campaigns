@@ -40,6 +40,7 @@ function osha_events_context_default_contexts() {
         'events' => 'events',
         'highlight' => 'highlight',
         'news' => 'news',
+        'search_blog' => 'search_blog',
         'seminars' => 'seminars',
       ),
     ),

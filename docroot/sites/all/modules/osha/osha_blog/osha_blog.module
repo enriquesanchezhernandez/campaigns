@@ -57,8 +57,6 @@ function osha_blog_post_features_revert($component){
  */
 function osha_blog_views_pre_render(&$view) {
   if ($view->name == 'blog' && $view->current_display == 'block_2') {
-    drupal_add_js(drupal_get_path('module', 'osha_blog') .'/includes/js/collapse_block.js');
-
     $month = '';
     $current_year = date('Y', time());
 
