@@ -256,6 +256,56 @@ function osha_blocks_default_fe_block_settings() {
     'visibility' => 0,
   );
 
+  $export['osha_blocks-osha_archived_content'] = array(
+    'cache' => 1,
+    'custom' => 0,
+    'delta' => 'osha_archived_content',
+    'i18n_block_language' => array(),
+    'i18n_mode' => 0,
+    'module' => 'osha_blocks',
+    'node_types' => array(
+      0 => 'article',
+      1 => 'calls',
+      2 => 'directive',
+      3 => 'highlight',
+      4 => 'job_vacancies',
+      5 => 'news',
+      6 => 'press_release',
+      7 => 'publication',
+      8 => 'seminar',
+    ),
+    'pages' => '',
+    'roles' => array(),
+    'themes' => array(
+      'bartik' => array(
+        'region' => '',
+        'status' => 0,
+        'theme' => 'bartik',
+        'weight' => 0,
+      ),
+      'osha_admin' => array(
+        'region' => '',
+        'status' => 0,
+        'theme' => 'osha_admin',
+        'weight' => 0,
+      ),
+      'osha_frontend' => array(
+        'region' => 'content',
+        'status' => 1,
+        'theme' => 'osha_frontend',
+        'weight' => -50,
+      ),
+      'seven' => array(
+        'region' => '',
+        'status' => 0,
+        'theme' => 'seven',
+        'weight' => 0,
+      ),
+    ),
+    'title' => '<none>',
+    'visibility' => 0,
+  );
+
   $export['osha_blocks-oshwiki_featured_articles'] = array(
     'cache' => 1,
     'custom' => 0,

@@ -215,6 +215,19 @@ function fill_related_publications(&$vars) {
 /**
  * Implements hook_preprocess_node().
  */
+function osha_frontend_preprocess_node(&$vars) {
+  $node = $vars['node'];
+  if ( isset($node->field_archived[LANGUAGE_NONE][0]['value']) && $node->field_archived[LANGUAGE_NONE][0]['value'] == 1 ) {
+    global $user;
+    if (in_array('administrator', $user->roles)) {
+      $vars['classes_array'][] = 'osha-archived-content-node';
+    }
+  }
+}
+
+/**
+ * Implements hook_process_node().
+ */
 function osha_frontend_process_node(&$vars) {
   // Change default text of the read more link.
   if ($vars['type'] != 'press_release' && $vars['view_mode'] == 'full') {
