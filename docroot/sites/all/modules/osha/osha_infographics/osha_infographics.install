@@ -21,3 +21,30 @@ function osha_infographics_add_menu_position_rules() {
     osha_add_menu_position_rule('Infographics Menu Rule', $parent_menu, $condition);
   }
 }
+
+/**
+ * CW-614 Add publication_date for infographics
+ */
+function osha_infographics_update_7002() {
+  // revert to create the new field
+  features_revert_module('osha_infographics');
+  // update existing data
+  $query = new EntityFieldQuery;
+  $result = $query
+    ->entityCondition('entity_type', 'node')
+    ->propertyCondition('type', 'infographic')
+    ->execute();
+
+  if (!empty($result['node'])) {
+    $nodes = entity_load('node', array_keys($result['node']));
+    foreach ($nodes as $node) {
+      $node->field_publication_date[LANGUAGE_NONE][0] = array(
+        'value' => date('Y-m-d H:i:s', strtotime('now')),
+        'timezone' => 'UTC',
+        'timezone_db' => 'UTC',
+      );
+      field_attach_presave('node', $node);
+      field_attach_update('node', $node);
+    }
+  }
+}
