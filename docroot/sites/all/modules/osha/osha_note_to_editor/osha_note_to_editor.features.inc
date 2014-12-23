@@ -28,7 +28,7 @@ function osha_note_to_editor_node_info() {
     'note_to_editor' => array(
       'name' => t('Note to editor'),
       'base' => 'node_content',
-      'description' => t('Notes to the editor'),
+      'description' => t('Notes to the editor (used by press releases)'),
       'has_title' => '1',
       'title_label' => t('Title'),
       'help' => '',

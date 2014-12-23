@@ -63,7 +63,7 @@ function osha_publication_node_info() {
     'publication' => array(
       'name' => t('Publication'),
       'base' => 'node_content',
-      'description' => t('Publication content type'),
+      'description' => t('Publications'),
       'has_title' => '1',
       'title_label' => t('Title'),
       'help' => '',

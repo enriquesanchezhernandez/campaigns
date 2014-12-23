@@ -28,7 +28,7 @@ function osha_blog_node_info() {
     'blog' => array(
       'name' => t('Blog'),
       'base' => 'node_content',
-      'description' => t('Blog content type'),
+      'description' => t('Blog articles'),
       'has_title' => '1',
       'title_label' => t('Title'),
       'help' => '',

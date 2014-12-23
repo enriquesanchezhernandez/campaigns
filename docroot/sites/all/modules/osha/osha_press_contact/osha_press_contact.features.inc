@@ -60,7 +60,7 @@ function osha_press_contact_node_info() {
     'press_contact' => array(
       'name' => t('Press contact'),
       'base' => 'node_content',
-      'description' => t('Press contact for press releases'),
+      'description' => t('Press contacts (used by press releases)'),
       'has_title' => '1',
       'title_label' => t('Title'),
       'help' => '',

@@ -63,7 +63,7 @@ function osha_press_release_node_info() {
     'press_release' => array(
       'name' => t('Press release'),
       'base' => 'node_content',
-      'description' => t('Press release content type - OSHA Project'),
+      'description' => t('Press releases'),
       'has_title' => '1',
       'title_label' => t('Title'),
       'help' => '',
