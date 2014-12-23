@@ -5935,8 +5935,14 @@ div.contextual-links-wrapper{
 
 #block-views-infographic-block-1 .view-infographic  .views-row{
 	float:left;
-	width:11.2em;
+	width:16.2em;
 	padding-right:1em;
+}
+
+#block-views-infographic-block-1 .view-content{
+	display: flex;
+	align-items: flex-end;
+   
 }
 
 #block-views-infographic-block-1 .view-infographic  .views-row .views-field-title{
@@ -5951,7 +5957,6 @@ div.contextual-links-wrapper{
 	letter-spacing: -0.5px;
 	margin-bottom: 0.2em;
 	border-bottom: 10px solid #d2dced;
-	height: 47px;
 	line-height: 1.2em;
 	padding-top: 1em;
 	padding-bottom: 0.2em;
@@ -5961,8 +5966,6 @@ div.contextual-links-wrapper{
 
 
 #block-views-infographic-block-1 .view-infographic  .views-row .views-field-title a {
-	position: absolute;
-	bottom: 5px;
 	font-family: 'Oswald', sans-serif!important;
 	text-decoration: none;
 	color: #003399;
@@ -5980,11 +5983,12 @@ div.contextual-links-wrapper{
 
 
 #block-views-infographic-block .view-infographic  .views-row{
-	float:left;
-	width:11.5em;
-	padding-right:1em;
-	height:28em;
-	padding-bottom:3em;
+	float: left;
+	width: 16.5em;
+	padding-right: 1em;
+	height: 28em;
+	padding-bottom: 3em;
+	padding-top: 1em;
 }
 
 #block-views-infographic-block .view-infographic  .views-row .views-field-title{
