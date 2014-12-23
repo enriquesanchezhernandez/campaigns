@@ -518,7 +518,7 @@ function osha_alert_service_tokens($type, $tokens, array $data = array(), array 
           break;
 
         case 'privacy_policy_url':
-          $privacy_link = variable_get('subscribe_block_details_link_url', OSHA_PRIVACY_PAGE_URL);
+          $privacy_link = variable_get('osha_alert_service_privacy_policy_url', OSHA_PRIVACY_PAGE_URL);
           $replacements[$original] = url($privacy_link, array('absolute' => TRUE));
           break;
       }
