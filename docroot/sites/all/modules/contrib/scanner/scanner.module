@@ -107,6 +107,18 @@ function scanner_menu() {
     'page arguments' => array('scanner_admin_form'),
     'access arguments' => array('administer scanner settings'),
   );
+
+  $items['admin/content/scanner'] = array(
+    'title' => 'Search and Replace',
+    'description' => 'Find (and replace) keywords in all your content.',
+    'page callback' => 'scanner_view',
+    'access callback' => 'scanner_access',
+	'weight' => 70,
+    'type' => MENU_LOCAL_TASK
+  );
+  
+
+
   return $items;
 }
 
@@ -251,7 +263,9 @@ function scanner_view() {
     return $output;
   }
    
-  $output .= drupal_render(drupal_get_form('scanner_form'));
+  //$output .= drupal_render(drupal_get_form('scanner_form'));
+  $scanner_form = drupal_get_form('scanner_form');
+  $output = drupal_render($scanner_form);
   
   return $output;
 }
@@ -1405,4 +1419,18 @@ function theme_scanner_replace_item($variables) {
   $output .= '</li>';
 
   return $output;
+}
+
+function scanner_access() {
+	global $user;
+	$useradmin = 0;
+	
+	foreach ($user->roles as $userrol){
+		if ($userrol=='administrator'){
+			return true;
+		}
+	}	
+	
+	return false;
+
 }
