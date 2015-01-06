@@ -98,5 +98,40 @@ function osha_tmgmt_field_get_source_data($job_item, $entity, $only_translatable
 
     }
   }
+  // Add node metatags to the translation job.
+  if (isset($entity->metatags['en'])) {
+    $configs = ctools_export_crud_load_all('metatag_config');
+    $global = $configs['global'];
+
+    $meta = $entity->metatags['en'];
+    $data_metatags = array();
+    $translatable = array('title', 'description', 'abstract', 'rights');
+    foreach ($translatable as $metatag) {
+      if (!empty($meta[$metatag]['value'])) {
+        $default_value = $global->config[$metatag]['value'];
+        if ($meta[$metatag]['value'] != $default_value) {
+          $info = metatag_get_info('tags', 'title');
+          $description = $info['label'];
+          $data_metatags[$metatag] = array(
+            '#label' => 'DELTA #0',
+            'value' => array(
+              '#label' => $description,
+              '#text' => $meta[$metatag]['value'],
+              '#translate' => TRUE,
+            ),
+          );
+        }
+      }
+    }
+    if (!empty($data_metatags)) {
+      $data_metatags['format'] = array(
+        '#label' => '',
+        '#text' => 'plain_text',
+        '#translate' => FALSE,
+      );
+      $data_metatags['#label'] = 'Metatags';
+      $fields['metatags'] = $data_metatags;
+    }
+  }
   return $fields;
 }
