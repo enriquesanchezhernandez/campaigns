@@ -73,8 +73,15 @@ function osha_search_views_default_views() {
     5 => 0,
     6 => 0,
     7 => 0,
+    8 => 0,
+    9 => 0,
+    10 => 0,
+    11 => 0,
+    12 => 0,
   );
   $handler->display->display_options['filters']['search_api_views_fulltext']['fields'] = array(
+    'attachments_field_file' => 'attachments_field_file',
+    'attachments_field_publication_related_res' => 'attachments_field_publication_related_res',
     'body:summary' => 'body:summary',
     'body:value' => 'body:value',
     'field_summary' => 'field_summary',
