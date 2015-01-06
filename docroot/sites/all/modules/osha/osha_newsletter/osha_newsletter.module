@@ -956,9 +956,12 @@ function osha_newsletter_send_email($key, $to, $from, $form_values) {
 }
 
 function osha_newsletter_mail_alter(&$message) {
-    $sender = $message['headers']['From'];
-    $message['headers']['Sender'] = $sender;
-    $message['headers']['Return-Path'] = $sender;
+    if ($message['id'] == 'osha_newsletter_subscribe_email' ||
+      $message['id'] == 'osha_newsletter_unsubscribe_email') {
+        $sender = $message['headers']['From'];
+        $message['headers']['Sender'] = $sender;
+        $message['headers']['Return-Path'] = $sender;
+    }
 }
 
 /**

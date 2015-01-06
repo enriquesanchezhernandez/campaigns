@@ -43,6 +43,7 @@
                 <directory suffix=".inc">../docroot/sites/all/modules/osha/osha_migration</directory>
 
                 <!-- Per module exclusions -->
+                <file>../docroot/sites/all/modules/osha/osha/osha_tmgmt.drush.inc</file>
                 <file>../docroot/sites/all/modules/osha/osha/osha.features.filter.inc</file>
                 <file>../docroot/sites/all/modules/osha/osha/osha.features.language.inc</file>
                 <file>../docroot/sites/all/modules/osha/osha/osha.features.user_permission.inc</file>
@@ -94,6 +95,7 @@
 
                 <file>../docroot/sites/all/modules/osha/osha_taxonomies_uuid/*</file>
 
+                <file>../docroot/sites/all/modules/osha/osha_workflow/osha_workflow.drush.inc</file>
                 <file>../docroot/sites/all/modules/osha/osha_workflow/osha_workflow.entity_collection_bundles_default.inc</file>
                 <file>../docroot/sites/all/modules/osha/osha_workflow/osha_workflow.features.workbench_moderation_states.inc</file>
                 <file>../docroot/sites/all/modules/osha/osha_workflow/osha_workflow.features.workbench_moderation_transitions.inc</file>
@@ -122,6 +124,11 @@
                 <file>../docroot/sites/all/modules/osha/osha_search/osha_search.features.fe_block_settings.inc</file>
                 <file>../docroot/sites/all/modules/osha/osha_seminar/osha_seminar.features.fe_block_settings.inc</file>
 
+                <!-- osha_content_edw -->
+                <file>../docroot/sites/all/modules/osha/osha_content_edw/osha_content_edw.features.inc</file>
+                <file>../docroot/sites/all/modules/osha/osha_content_edw/osha_content_edw.features.uuid_file_entity.inc</file>
+                <file>../docroot/sites/all/modules/osha/osha_content_edw/osha_content_edw.features.uuid_node.inc</file>
+                <file>../docroot/sites/all/modules/osha/osha_content_edw/osha_content_edw.module</file>
 
                 <!-- osha.features.inc -->
                 <file>../docroot/sites/all/modules/osha/osha/osha.features.inc</file>
@@ -132,7 +139,6 @@
                 <file>../docroot/sites/all/modules/osha/osha_breadcrumbs/osha_breadcrumbs.features.inc</file>
                 <file>../docroot/sites/all/modules/osha/osha_calls/osha_calls.features.inc</file>
                 <file>../docroot/sites/all/modules/osha/osha_content/osha_content.features.inc</file>
-                <file>../docroot/sites/all/modules/osha/osha_content_edw/osha_content_edw.features.inc</file>
                 <file>../docroot/sites/all/modules/osha/osha_events/osha_events.features.inc</file>
                 <file>../docroot/sites/all/modules/osha/osha_highlight/osha_highlight.features.inc</file>
                 <file>../docroot/sites/all/modules/osha/osha_homepage/osha_homepage.features.inc</file>

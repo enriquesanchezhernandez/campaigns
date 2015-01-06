@@ -26,4 +26,14 @@ class FrameworkBootstrapTest extends OshaWebTestCase {
     $this->drupalGet('admin/config');
     $this->assertText('Multilingual settings');
   }
+
+  public function testCreateNode() {
+    $this->loginAsAdmin();
+    $node = $this->drupalCreateNode(
+      array('uid' => 1, 'language' => 'en')
+    );
+    $this->assertNotNull($node);
+    $this->assertTrue($node->nid > 0);
+    node_delete($node->nid);
+  }
 }

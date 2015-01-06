@@ -64,7 +64,8 @@ blog/*
     'node_types' => array(),
     'pages' => 'articles/blog
 blog/*
-*/blog/*',
+*/blog/*
+search/blog*',
     'roles' => array(),
     'themes' => array(
       'bartik' => array(
@@ -189,7 +190,8 @@ blog/*
     'node_types' => array(),
     'pages' => 'articles/blog
 blog/*
-*/blog/*',
+*/blog/*
+search/blog*',
     'roles' => array(),
     'themes' => array(
       'bartik' => array(

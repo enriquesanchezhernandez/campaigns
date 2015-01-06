@@ -7,6 +7,9 @@ When patching a contrib module, the following steps should be followed:
 
 List of patches (most recent first)
 
+* scanner
+  * patches by Ruben@BBM - disable Undo and avoid to creating a new revision; permissions for S&R tab
+
 * menu_item_visibility
   * Avoid db hit on menu links without menu_item_visibility enabled
   * https://www.drupal.org/node/1848724

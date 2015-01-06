@@ -9,7 +9,7 @@ class FrontPageTest extends OshaWebTestCase {
    * Test JS/CSS inclusion.
    */
   public function testPreprocessNodeHook() {
-    $this->drupalGet('/');
+    $this->drupalGet('');
     $this->assertRaw('jssor.slider.mini.js');
     $this->assertRaw('jssor.css');
   }

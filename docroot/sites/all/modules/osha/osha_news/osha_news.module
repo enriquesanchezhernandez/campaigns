@@ -12,6 +12,7 @@ define('OSHA_NEWS_CONTENT_TYPE_NEWS', 'news');
  * Implements hook_post_features_enable_feature().
  *
  * {@inheritdoc}
+ * {@codeCoverageIgnore}
  */
 function osha_news_post_features_enable_feature($component) {
   // After the field_instance ...

@@ -621,5 +621,27 @@ function osha_breadcrumbs_path_breadcrumbs_settings_info() {
   $path_breadcrumb->weight = 0;
   $export['shortlisted_job_vacancies'] = $path_breadcrumb;
 
+  $path_breadcrumb = new stdClass();
+  $path_breadcrumb->api_version = 1;
+  $path_breadcrumb->machine_name = 'blog_search';
+  $path_breadcrumb->name = 'Blog search';
+  $path_breadcrumb->path = 'search/blog';
+  $path_breadcrumb->data = array(
+    'titles' => array(
+      0 => 'Tools & Publications',
+      1 => 'EU-OSHA Blog',
+    ),
+    'paths' => array(
+      0 => 'articles/tools-and-publications',
+      1 => 'articles/blog',
+    ),
+    'home' => 1,
+    'translatable' => 0,
+    'arguments' => array(),
+    'access' => array(),
+  );
+  $path_breadcrumb->weight = 0;
+  $export['blog_search'] = $path_breadcrumb;
+
   return $export;
 }

@@ -61,7 +61,7 @@
                       <tr>
                         <td style="font-family: Oswald, Arial, sans-serif; font-size: 18px; color: #003399; text-align: right;">
                         <span>
-                          <?php print l(t('View the blog'), 'https://osha.europa.eu/en/about/director_corner/blog', array('attributes' => array('style' => 'color: #144989; text-decoration: none;'), 'external' => TRUE)); ?>
+                          <?php print l(t('View the blog'), url('node/5445', array('absolute' => TRUE)), array('attributes' => array('style' => 'color: #144989; text-decoration: none;'), 'external' => TRUE)); ?>
                           <?php
                           $directory = drupal_get_path('module','osha_newsletter');
                           $site_url = variable_get('site_base_url', 'http://osha.europa.eu');
@@ -84,8 +84,6 @@
                   <?php
                   }
                 ?>
-
-
                 <?php
                   if (!empty($news) && sizeof($news) > 1) {?>
                     <table border="0" cellpadding="0" cellspacing="0" class="blue-line" width="100%">
@@ -107,7 +105,7 @@
                       <tr>
                         <td style="font-family: Oswald, Arial, sans-serif; font-size: 18px; color: #003399; text-align: right;">
                         <span>
-                          <?php print l(t('More news'), 'https://osha.europa.eu/en/news', array('attributes' => array('style' => 'color: #144989; text-decoration: none;'), 'external' => TRUE)); ?>
+                          <?php print l(t('More news'), url('oshnews', array('absolute' => TRUE)), array('attributes' => array('style' => 'color: #144989; text-decoration: none;'), 'external' => TRUE)); ?>
                           <?php
                           $directory = drupal_get_path('module','osha_newsletter');
                           $site_url = variable_get('site_base_url', 'http://osha.europa.eu');
@@ -129,8 +127,6 @@
                   <?php
                   }
                 ?>
-
-
                 <?php
                   if (!empty($events) && sizeof($events) > 1) {?>
                     <table border="0" cellpadding="0" cellspacing="0" class="blue-line" width="100%">
@@ -152,7 +148,7 @@
                       <tr>
                         <td style="font-family: Oswald, Arial, sans-serif; font-size: 18px; color: #003399; text-align: right;">
                         <span>
-                          <?php print l(t('More events'), 'https://osha.europa.eu/en/news', array('attributes' => array('style' => 'color: #144989; text-decoration: none;'), 'external' => TRUE)); ?>
+                          <?php print l(t('More events'), url('events', array('absolute' => TRUE)), array('attributes' => array('style' => 'color: #144989; text-decoration: none;'), 'external' => TRUE)); ?>
                           <?php
                           $directory = drupal_get_path('module','osha_newsletter');
                           $site_url = variable_get('site_base_url', 'http://osha.europa.eu');

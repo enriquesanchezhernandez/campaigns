@@ -1634,6 +1634,37 @@ function osha_tmgmt_is_duplicate_job_item($nid, $target_language, $bundle) {
 }
 
 /**
+ * Loads latest job created.
+ */
+function osha_tmgmt_job_load_latest() {
+  $query = db_select('tmgmt_job', 'tj')
+  ->fields('tj', array('tjid'))
+  ->orderBy('tjid', 'DESC')
+  ->range(0,1);
+  $result = $query->execute()->fetchField(0);
+  if (!empty($result)) {
+    return tmgmt_job_load($result);
+  }
+  else {
+    return FALSE;
+  }
+}
+
+/**
+ * Loads latest job created.
+ */
+function osha_tmgmt_get_cart_job_item_id($entity_type, $entity_id) {
+  $query = db_select('tmgmt_job_item', 'tji')
+    ->fields('tji', array('tjiid'))
+    ->condition('tjid', 0)
+    ->condition('item_type', $entity_type)
+    ->condition('item_id', $entity_id)
+    ->orderBy('tjiid', 'DESC')
+    ->range(0,1);
+  $result = $query->execute()->fetchField(0);
+  return $result;
+}
+/**
  * Implements hook_form_views_exposed_form_alter().
  */
 function osha_tmgmt_form_views_exposed_form_alter(&$form, &$form_state) {

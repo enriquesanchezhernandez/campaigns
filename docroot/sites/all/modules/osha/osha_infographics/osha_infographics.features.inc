@@ -28,7 +28,7 @@ function osha_infographics_node_info() {
     'infographic' => array(
       'name' => t('Infographic'),
       'base' => 'node_content',
-      'description' => t('Infographic content type'),
+      'description' => t('Infographics'),
       'has_title' => '1',
       'title_label' => t('Title'),
       'help' => '',

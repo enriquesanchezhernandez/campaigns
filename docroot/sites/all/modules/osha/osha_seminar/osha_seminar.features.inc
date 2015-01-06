@@ -31,7 +31,7 @@ function osha_seminar_node_info() {
     'seminar' => array(
       'name' => t('Seminar'),
       'base' => 'node_content',
-      'description' => t('Seminar content type'),
+      'description' => t('Seminars'),
       'has_title' => '1',
       'title_label' => t('Title'),
       'help' => '',

@@ -655,10 +655,16 @@ span.date-display-single{
 
 .node-publication h1{
 	color: #003399;
-    font-family: Oswald;
+    font-family: Oswald!important;
     font-size: 1.5em !important;
     font-weight: 400;
     padding-top: 0.5em;
+}
+
+.node-publication h1 a{
+	border:0px!important;
+	font-family: Oswald!important;
+	letter-spacing: 0px;
 }
 
 .node-publication.node-teaser {
@@ -776,10 +782,6 @@ span.date-display-single{
 .node-publication.view-mode-full .field-name-field-cover-image{
 	float:left;
 	padding-right:1em;
-}
-
-.node-publication.view-mode-full .field-name-field-cover-image img{
-	max-width:160px;
 }
 
 .node-publication.view-mode-full  .field-name-body p{
@@ -949,9 +951,9 @@ span.date-display-single{
     color: #7c7d81;
     font-weight: bold;
     height: auto;
-    margin-left: 12em;
+    margin-left: 16.3em;
     padding: 0.5em;
-    width: 76.5%;
+    width: 68.5%;
 }
 
 .node-publication.view-mode-full #related-publications{
@@ -1028,10 +1030,11 @@ span.date-display-single{
     color: #003399;
     font-family: Oswald;
     font-size: 1.5em;
-    height: 2em;
+    height: auto;
     margin: 0 0 0 0.5em;
     padding: 0;
 	padding-top:0.5em;
+	padding-bottom:0.5em;
 }
 
 #related-publications .related_publications_head{ /*Twin publication use this*/
@@ -1673,6 +1676,7 @@ font-weight: normal;
 	/*-- News */
 	#block-views-related-content-block-1{
 		background-color:#FFFFFF;
+		margin-bottom:0em;
 	}
 
 	#block-views-related-content-block-1 h2{
@@ -1688,6 +1692,8 @@ font-weight: normal;
 
 	#block-views-related-content-block-1 .view-related-content{
 		background: url("../images/separator_home.jpg") repeat-x scroll 0% -7px rgba(0, 0, 0, 0);
+		height:1%;
+		overflow:hidden;
 	}
 
 	#block-views-related-content-block-1 .views-field-title-field{
@@ -3791,6 +3797,14 @@ font-weight: normal;
 
 }
 
+#block-views-exp-search-directives-page #edit-filter{
+	width:100%;
+}
+
+#block-views-exp-search-directives-page #edit-filter-title{
+	width:100%;
+}
+
 .view-search-seminars .view-header{
 	margin-top:-7em;
 }
@@ -4360,7 +4374,7 @@ div.contextual-links-wrapper a{
 #ui-theme-basic-blue.ui-menu{
 	/*Search box*/
 	width:350px!important;
-	left:940px!important;
+	left:60%!important;
 }
 
 #ui-theme-basic-blue.ui-menu .ui-menu-item a{
@@ -4676,7 +4690,7 @@ a.tabs-primary__tab-link{
 
 
 .view-events-index #edit-search-api-views-fulltext-wrapper label {
-	margin-top: -0.5em;
+	margin-top: 0.5em;
 	padding-bottom: 0.7em;
 }
 
@@ -4704,9 +4718,17 @@ a.tabs-primary__tab-link{
 	display:none;
 }
 
+.view-events-index #edit-search-api-views-fulltext{
+	margin-top:.3em;
+}
+
 .view-events-index #edit-field-country-code{
-	margin-top:0.5em;
+	margin-top:1em;
 	width:12em;
+}
+
+.view-events-index  #edit-field-country-code-wrapper label{
+	padding-top:1em;
 }
 
 .view-events-index h3{
@@ -4782,6 +4804,13 @@ a.tabs-primary__tab-link{
 	color:#FFFFFF;
 }
 
+.view-id-events_index #edit-field-start-date-value-datepicker-popup-0{
+	width:6em;
+}
+
+.view-id-events_index #edit-field-start-date-value2-datepicker-popup-0{
+	width:6em;
+}
 
 /* END EVENTS LIST */
 
@@ -4831,6 +4860,13 @@ a.tabs-primary__tab-link{
 	float:left;
 	padding-right:1em;
 
+}
+
+.node-events .field-name-field-tags .field-label{
+	font-weight: lighter;
+	font-family: arial!important;
+	font-size: 1em;
+	text-transform: uppercase;
 }
 
 .node-events .field-name-field-start-date .field-label{
@@ -5372,6 +5408,11 @@ a.tabs-primary__tab-link{
 	border-bottom: 0px!important;
 }
 
+
+.node-blog  .field-name-field-tags .field-label{
+	float:none;
+}
+
 #comments h2{
 	color: #000000;
 	font-family: "Oswald",sans-serif;
@@ -5894,8 +5935,14 @@ div.contextual-links-wrapper{
 
 #block-views-infographic-block-1 .view-infographic  .views-row{
 	float:left;
-	width:11.2em;
+	width:16.2em;
 	padding-right:1em;
+}
+
+#block-views-infographic-block-1 .view-content{
+	display: flex;
+	align-items: flex-end;
+   
 }
 
 #block-views-infographic-block-1 .view-infographic  .views-row .views-field-title{
@@ -5910,7 +5957,6 @@ div.contextual-links-wrapper{
 	letter-spacing: -0.5px;
 	margin-bottom: 0.2em;
 	border-bottom: 10px solid #d2dced;
-	height: 47px;
 	line-height: 1.2em;
 	padding-top: 1em;
 	padding-bottom: 0.2em;
@@ -5920,8 +5966,6 @@ div.contextual-links-wrapper{
 
 
 #block-views-infographic-block-1 .view-infographic  .views-row .views-field-title a {
-	position: absolute;
-	bottom: 5px;
 	font-family: 'Oswald', sans-serif!important;
 	text-decoration: none;
 	color: #003399;
@@ -5939,11 +5983,12 @@ div.contextual-links-wrapper{
 
 
 #block-views-infographic-block .view-infographic  .views-row{
-	float:left;
-	width:11.5em;
-	padding-right:1em;
-	height:28em;
-	padding-bottom:3em;
+	float: left;
+	width: 16.5em;
+	padding-right: 1em;
+	height: 28em;
+	padding-bottom: 3em;
+	padding-top: 1em;
 }
 
 #block-views-infographic-block .view-infographic  .views-row .views-field-title{
@@ -6133,3 +6178,45 @@ div.contextual-links-wrapper{
 }
 
 /*END EVENTS PORLET*/
+
+
+/*CONTACT US*/
+
+.contact-form  fieldset{
+	margin-top:1em;
+	margin-bottom:1em;
+}
+
+.contact-form  fieldset.captcha{
+	display:block;
+}
+
+.contact-form  fieldset.captcha legend span{
+	padding:1em;
+}
+
+
+.contact_us_box{
+	float:left;
+	width:30%;
+	padding-right:1em;
+	min-height:11em;
+}
+
+
+.contact_us_box.clear{
+	clear:both;
+}
+
+
+.contact_us_title{
+	color: #003399;
+    font-family: Oswald !important;
+    font-size: 1.2em !important;
+    font-weight: 400;
+    padding-top: 0.5em;
+	border-bottom:0px!important;
+}
+
+/*CONTACT US*/
+

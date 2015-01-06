@@ -18,14 +18,20 @@ class WorkflowPublicationEditorTest extends OshaWebTestCase {
   /**
    * Test editor cannot access administrative menu items.
    */
-  public function testEditorAccountSecurity() {
+  public function testAccountSecurity() {
     $this->drupalGet('admin/structure');
     $this->assertText('You do not have any administrative items.');
+
+    $this->drupalGet('admin/config');
     $this->assertNoText('Site information');
   }
 
   /**
    * Test node creation by editor.
+   *
+   * 1. Editor creates Draft node
+   * 2. Editor set status from Draft to Final Draft
+   * 3. The node appears in the users's overview screen.
    */
   public function testCreateNode() {
     $this->drupalGet('node/add/news');
@@ -66,8 +72,7 @@ class WorkflowPublicationEditorTest extends OshaWebTestCase {
    * {@inheritdoc}
    */
   public function cleanup() {
-    if ($node = $this->drupalGetNodeByTitle($this->nodeTitle1)) {
-      node_delete($node->nid);
-    }
+    $nodes = node_load_multiple(array(), array('title' => $this->nodeTitle1), TRUE);
+    node_delete_multiple(array_keys($nodes));
   }
 }

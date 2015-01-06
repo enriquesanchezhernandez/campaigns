@@ -31,7 +31,7 @@ function osha_job_vacancies_node_info() {
     'job_vacancies' => array(
       'name' => t('Job vacancies'),
       'base' => 'node_content',
-      'description' => t('Job vacancies content-type'),
+      'description' => t('Job vacancies'),
       'has_title' => '1',
       'title_label' => t('Title'),
       'help' => '',
