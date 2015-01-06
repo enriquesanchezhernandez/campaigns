@@ -46,15 +46,23 @@ function osha_search_default_search_api_index() {
         },
         "search_api_alter_node_access" : { "status" : 1, "weight" : "0", "settings" : [] },
         "search_api_alter_node_status" : { "status" : 0, "weight" : "0", "settings" : [] },
+        "search_api_attachments_alter_settings" : {
+          "status" : 1,
+          "weight" : "0",
+          "settings" : {
+            "excluded_extensions" : "aif art avi bmp gif ico mov oga ogv png psd ra ram rgb flv",
+            "number_indexed" : "0"
+          }
+        },
         "search_api_alter_language_control" : {
           "status" : 1,
           "weight" : "0",
           "settings" : { "lang_field" : "", "languages" : [] }
         },
-        "search_api_alter_add_viewed_entity" : { "status" : 0, "weight" : "0", "settings" : { "mode" : "full" } },
+        "search_api_alter_add_hierarchy" : { "status" : 0, "weight" : "0", "settings" : { "fields" : [] } },
         "search_api_alter_add_url" : { "status" : 1, "weight" : "0", "settings" : [] },
         "search_api_alter_add_aggregation" : { "status" : 0, "weight" : "0", "settings" : [] },
-        "search_api_alter_add_hierarchy" : { "status" : 0, "weight" : "0", "settings" : { "fields" : [] } }
+        "search_api_alter_add_viewed_entity" : { "status" : 0, "weight" : "0", "settings" : { "mode" : "full" } }
       },
       "processors" : {
         "search_api_et_remove_language" : { "status" : 0, "weight" : "0", "settings" : [] },
@@ -145,6 +153,10 @@ function osha_search_default_search_api_index() {
         }
       },
       "fields" : {
+        "attachments_field_file" : { "type" : "text" },
+        "attachments_field_publication_related_res" : { "type" : "text" },
+        "attachments_field_related_documents" : { "type" : "text" },
+        "attachments_field_related_resources" : { "type" : "text" },
         "author" : { "type" : "integer", "entity_type" : "user" },
         "body:summary" : { "type" : "text" },
         "body:value" : { "type" : "text" },
