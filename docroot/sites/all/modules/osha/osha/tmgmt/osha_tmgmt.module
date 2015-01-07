@@ -1929,14 +1929,30 @@ class OshaTMGMTStatistics {
    * The Whitespaces/tabs/newlines are ignored.
    * The &nbsp; are ignored.
    *
-   * @param TMGMTJobItem $item
-   *   Job item
+   * @param array $item
+   *   Array with field data - prepared by tmgmt.
    * @param int $count
    *   Number of characters from all structures (ie. fields)
    */
-  protected static function count($item, &$count) {
+  public static function count($item, &$count) {
     if (!empty($item['#text'])) {
       if (_tmgmt_filter_data($item)) {
+        // Before stripping tags, get the count of title/alt attributes.
+        $doc = new DOMDocument();
+        if($doc->loadHTML($item['#text'])) {
+          $selectors = array(
+            'title' => "//*[@title]", 'alt' => "//img[@alt]"
+          );
+          $sxml = simplexml_import_dom($doc);
+          foreach ($selectors as $attribute => $expr) {
+            $tags = $sxml->xpath($expr);
+            foreach ($tags as $tag) {
+              $attributes = $tag->attributes();
+              $value = $attributes[$attribute];
+              $count += mb_strlen((string) $value);
+            }
+          }
+        }
         $text = strip_tags(html_entity_decode($item['#text']));
         // C2A0 is unicode nbsp.
         $text = preg_replace("/\x{00A0}|&nbsp;|\s/", '', $text);
