@@ -1938,8 +1938,7 @@ class OshaTMGMTStatistics {
     if (!empty($item['#text'])) {
       if (_tmgmt_filter_data($item)) {
         // Before stripping tags, get the count of title/alt attributes.
-        $doc = new DOMDocument();
-        if($doc->loadHTML($item['#text'])) {
+        if($doc = OshaTMGMTRetranslate::getDOMDocument($item['#text'])) {
           $selectors = array(
             'title' => "//*[@title]", 'alt' => "//img[@alt]"
           );
@@ -1949,7 +1948,7 @@ class OshaTMGMTStatistics {
             foreach ($tags as $tag) {
               $attributes = $tag->attributes();
               $value = $attributes[$attribute];
-              $count += mb_strlen((string) $value);
+              $count += mb_strlen((string) $value, 'utf-8');
             }
           }
         }

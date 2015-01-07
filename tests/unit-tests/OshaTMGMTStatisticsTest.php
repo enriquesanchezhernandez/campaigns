@@ -10,7 +10,7 @@ class OshaTMGMTStatisticsTest extends OshaWebTestCase {
           '#label' => 'Delta #0',
           'value' => array(
             '#label' => 'Body',
-            '#text' => '<p id="tmgmt-1"> <table title="1234567890"><tr><td><img title="1234567890" src="/sites/default/files/media-icons/default/video-x-generic.png" alt="0987654321" width="180" height="180"></td></tr></table> This is a sample text</p>',
+            '#text' => '<p id="tmgmt-1"> <table title="123456789ø"><tr><td><img title="1234567890" src="/sites/default/files/media-icons/default/video-x-generic.png" alt="0987654321" width="180" height="180"></td></tr></table> This is a sample text</p>',
             '#translate' => TRUE,
           ),
           'format' => array(
