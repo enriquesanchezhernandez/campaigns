@@ -574,7 +574,11 @@ class MigrationUtil {
         'alias' => $path,
         'language' => $language,
       );
-      path_save($args);
+      // Check if path already exists.
+      $existing_path = path_load(array($args));
+      if (empty($existing_path)) {
+        path_save($args);
+      }
     }
   }
 
@@ -586,8 +590,10 @@ class MigrationUtil {
     //check if source redirect exists
     $source = $base_path;
     $source_redirects = redirect_load_by_source($source, LANGUAGE_NONE);
+    // Also check if path already exists - prevent redirect loops.
+    $path = path_load($source);
 
-    if ($source_redirects == FALSE) {
+    if ($source_redirects == FALSE && empty($path)) {
       $redirect = new stdClass();
       $redirect->source = $source;
       $redirect->source_options = array();

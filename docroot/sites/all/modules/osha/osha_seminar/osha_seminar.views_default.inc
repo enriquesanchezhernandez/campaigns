@@ -88,8 +88,18 @@ function osha_seminar_views_default_views() {
     2 => '2',
     1 => 0,
     3 => 0,
+    4 => 0,
+    5 => 0,
+    6 => 0,
+    7 => 0,
+    8 => 0,
+    9 => 0,
+    10 => 0,
+    11 => 0,
+    12 => 0,
   );
   $handler->display->display_options['filters']['search_api_views_fulltext']['fields'] = array(
+    'attachments_field_related_resources' => 'attachments_field_related_resources',
     'body:summary' => 'body:summary',
     'body:value' => 'body:value',
     'title_field' => 'title_field',

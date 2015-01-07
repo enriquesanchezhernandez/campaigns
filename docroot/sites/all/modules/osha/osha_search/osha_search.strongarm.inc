@@ -22,6 +22,10 @@ function osha_search_strongarm() {
   $strongarm->api_version = 1;
   $strongarm->name = 'osha_search_ac_fields';
   $strongarm->value = array(
+    'attachments_field_file' => 'attachments_field_file',
+    'attachments_field_publication_related_res' => 'attachments_field_publication_related_res',
+    'attachments_field_related_documents' => 'attachments_field_related_documents',
+    'attachments_field_related_resources' => 'attachments_field_related_resources',
     'body:summary' => 'body:summary',
     'body:value' => 'body:value',
     'field_summary' => 'field_summary',
@@ -74,6 +78,13 @@ function osha_search_strongarm() {
     'youtube' => 0,
   );
   $export['osha_search_bundles'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'search_api_attachments_extract_using';
+  $strongarm->value = 'solr';
+  $export['search_api_attachments_extract_using'] = $strongarm;
 
   return $export;
 }

@@ -124,3 +124,18 @@ function osha_update_7003() {
   features_revert(array('osha' => 'views_view'));
   cache_clear_all();
 }
+
+/**
+ * Removes redirects that are also aliases.
+ */
+function osha_update_7004() {
+  $query = db_select('redirect', 'r');
+  $query->join('url_alias', 'a', 'r.source=a.alias');
+  $query->fields('r', array('rid'));
+  $rids = $query->execute()
+    ->fetchCol();
+
+  db_delete('redirect')
+    ->condition('rid', $rids, 'IN')
+    ->execute();
+}
