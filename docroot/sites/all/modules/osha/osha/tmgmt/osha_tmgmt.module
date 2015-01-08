@@ -337,7 +337,6 @@ function osha_tmgmt_tmgmt_translator_plugin_info_alter(&$info) {
  */
 function osha_tmgmt_tmgmt_source_plugin_info_alter(&$info) {
   $info['entity']['plugin controller class'] = 'OSHATMGMTEntitySourcePluginController';
-  // $info['node']['plugin controller class'] = 'OSHATMGMTNodeSourcePluginController';
   $info['i18n_string']['plugin controller class'] = 'OSHATMGMTI18nStringSourcePluginController';
   $info['locale']['plugin controller class'] = 'OSHATMGMTLocaleSourcePluginController';
   $info['locale']['ui controller class'] = 'OSHATMGMTLocaleSourceUIController';
@@ -1338,12 +1337,12 @@ function osha_tmgmt_form_tmgmt_job_form_alter(&$form, &$form_state) {
 function osha_tmgmt_get_job_item_states() {
   return array(
     TMGMT_JOB_ITEM_STATE_ACTIVE => t('On Translation'),
-    TMGMT_JOB_ITEM_STATE_REVIEW => t('Layout Validated'),
+    TMGMT_JOB_ITEM_STATE_REVIEW => t('Translated'), // was: Layout Validated
     OSHA_TMGMT_JOB_ITEM_STATE_TranslationValidated => t('Translation Validated'),
     OSHA_TMGMT_JOB_ITEM_STATE_TranslationValidationRequired => t('Content Validation Required'),
     OSHA_TMGMT_JOB_ITEM_STATE_TranslatedReadyToPublish => t('Translated Ready to Publish'),
     TMGMT_JOB_ITEM_STATE_ABORTED => t('Translation Rejected'),
-    TMGMT_JOB_ITEM_STATE_ACCEPTED => t('Translated'),
+    TMGMT_JOB_ITEM_STATE_ACCEPTED => t('Translation Published'),
   );
 }
 /**
@@ -1930,14 +1929,29 @@ class OshaTMGMTStatistics {
    * The Whitespaces/tabs/newlines are ignored.
    * The &nbsp; are ignored.
    *
-   * @param TMGMTJobItem $item
-   *   Job item
+   * @param array $item
+   *   Array with field data - prepared by tmgmt.
    * @param int $count
    *   Number of characters from all structures (ie. fields)
    */
-  protected static function count($item, &$count) {
+  public static function count($item, &$count) {
     if (!empty($item['#text'])) {
       if (_tmgmt_filter_data($item)) {
+        // Before stripping tags, get the count of title/alt attributes.
+        if($doc = OshaTMGMTRetranslate::getDOMDocument($item['#text'])) {
+          $selectors = array(
+            'title' => "//*[@title]", 'alt' => "//img[@alt]"
+          );
+          $sxml = simplexml_import_dom($doc);
+          foreach ($selectors as $attribute => $expr) {
+            $tags = $sxml->xpath($expr);
+            foreach ($tags as $tag) {
+              $attributes = $tag->attributes();
+              $value = $attributes[$attribute];
+              $count += mb_strlen((string) $value, 'utf-8');
+            }
+          }
+        }
         $text = strip_tags(html_entity_decode($item['#text']));
         // C2A0 is unicode nbsp.
         $text = preg_replace("/\x{00A0}|&nbsp;|\s/", '', $text);

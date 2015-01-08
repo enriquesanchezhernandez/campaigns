@@ -38,10 +38,10 @@ class OSHATMGMTEntitySourcePluginController extends TMGMTEntitySourcePluginContr
       // apply re-translation
       $new_job_data = OshaTMGMTRetranslate::apply_partial_translation(
         $entity, $job_item->getData(), $job_item->source_language, $job_item->target_language);
-      tmgmt_field_populate_entity($job_item->item_type, $entity, $job_item->target_language, $new_job_data);
+      self::osha_tmgmt_field_populate_entity($job_item->item_type, $entity, $job_item->target_language, $new_job_data);
       //$entity->field_needs_retranslation[LANGUAGE_NONE][0]['value'] = 0;
     } else {
-      tmgmt_field_populate_entity($job_item->item_type, $entity, $job_item->target_language, $job_item->getData());
+      self::osha_tmgmt_field_populate_entity($job_item->item_type, $entity, $job_item->target_language, $job_item->getData());
     }
 
     // Change the active language of the entity to the target language.
@@ -65,6 +65,49 @@ class OSHATMGMTEntitySourcePluginController extends TMGMTEntitySourcePluginContr
     $handler->setTranslation($translation);
     $handler->saveTranslations();
     $job_item->accepted();
+  }
+
+  /**
+   * Populate entity fields with translated data coming from translation (XML).
+   * Overriden in order to provide support for metatags.
+   *
+   * @param string $entity_type
+   *   Entity type like node, menu_link etc.
+   * @param object $entity
+   *   Actual entity
+   * @param string $langcode
+   *   Target language - translation language for $data
+   * @param $data
+   *   Translation data
+   * @param bool $use_field_translation
+   *   TRUE if field translation is being used.
+   * @throws EntityMalformedException
+   * @see tmgmt_field_populate_entity
+   */
+  public static function osha_tmgmt_field_populate_entity($entity_type, $entity, $langcode, $data, $use_field_translation = TRUE) {
+    tmgmt_field_populate_entity($entity_type, $entity, $langcode, $data, $use_field_translation);
+    foreach(element_children($data) as $field_name) {
+      if ($field_name == 'metatags') {
+        foreach (element_children($data[$field_name]) as $delta) {
+          $columns = array();
+          foreach (element_children($data[$field_name][$delta]) as $column) {
+            if (isset($data[$field_name][$delta][$column]['#translation']['#text'])) {
+              $columns[$column] = $data[$field_name][$delta][$column]['#translation']['#text'];
+            }
+            // For elements which are not translatable, keep using the original
+            // value.
+            elseif (isset($data[$field_name][$delta][$column]['#translate']) && $data[$field_name][$delta][$column]['#translate'] == FALSE) {
+              $columns[$column] = $data[$field_name][$delta][$column]['#text'];
+            }
+          }
+          // Make sure the array_merge() gets an array as a first parameter.
+          if (!isset($entity->{$field_name}[$delta])) {
+            $entity->{$field_name}[$delta] = array();
+          }
+          $entity->{$field_name}[$delta] = $columns;
+        }
+      }
+    }
   }
 }
 
@@ -96,6 +139,41 @@ function osha_tmgmt_field_get_source_data($job_item, $entity, $only_translatable
         $fields[$field_name] = $data;
       }
 
+    }
+  }
+  // Add node metatags to the translation job.
+  if (isset($entity->metatags['en'])) {
+    $configs = ctools_export_crud_load_all('metatag_config');
+    $global = $configs['global'];
+
+    $meta = $entity->metatags['en'];
+    $data_metatags = array();
+    $translatable = array('title', 'description', 'abstract', 'rights');
+    foreach ($translatable as $metatag) {
+      if (!empty($meta[$metatag]['value'])) {
+        $default_value = $global->config[$metatag]['value'];
+        if ($meta[$metatag]['value'] != $default_value) {
+          $info = metatag_get_info('tags', 'title');
+          $description = $info['label'];
+          $data_metatags[$metatag] = array(
+            '#label' => 'DELTA #0',
+            'value' => array(
+              '#label' => $description,
+              '#text' => $meta[$metatag]['value'],
+              '#translate' => TRUE,
+            ),
+          );
+        }
+      }
+    }
+    if (!empty($data_metatags)) {
+      $data_metatags['format'] = array(
+        '#label' => '',
+        '#text' => 'plain_text',
+        '#translate' => FALSE,
+      );
+      $data_metatags['#label'] = 'Metatags';
+      $fields['metatags'] = $data_metatags;
     }
   }
   return $fields;

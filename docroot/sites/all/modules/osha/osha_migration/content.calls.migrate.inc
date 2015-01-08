@@ -132,6 +132,10 @@ class MigrateOshaCalls extends OSHADynamicMigration {
    */
   public function prepare($entity, $row) {
     parent::prepare($entity, $row);
+    $mlid = db_query("SELECT mlid FROM {menu_links} WHERE menu_name = 'main-menu' AND link_title = 'Procurement'")->fetchField();
+    if (!empty($mlid)) {
+        $entity->workbench_access = array($mlid, $mlid);
+    }
 
     $migration = Migration::currentMigration();
     $languages = array_keys(language_list());

@@ -10,6 +10,7 @@ define('OSHA_MIGRATION_TAXONOMY_THESAURUS', 'TaxonomyThesaurus');
 define('OSHA_MIGRATION_CONTENT_TYPE_ARTICLE', 'Article');
 define('OSHA_MIGRATION_CONTENT_TYPE_JOB_VACANCIES', 'JobVacancies');
 define('OSHA_MIGRATION_CONTENT_TYPE_BLOG', 'Blog');
+define('OSHA_MIGRATION_COMMENTS_BLOG', 'BlogComments');
 define('OSHA_MIGRATION_CONTENT_TYPE_CALLS', 'Calls');
 define('OSHA_MIGRATION_CONTENT_TYPE_CASE_STUDY', 'CaseStudy');
 define('OSHA_MIGRATION_CONTENT_TYPE_DIRECTIVE', 'Directive');
@@ -84,6 +85,13 @@ function osha_migration_migrate_api() {
     $migrations[OSHA_MIGRATION_CONTENT_TYPE_BLOG] = array(
       'class_name' => 'MigrateOshaBlog',
       'file_name' => $external_data_dir . '/export/blog.txt',
+    );
+  }
+
+  if (is_readable($external_data_dir . '/export/blog_comments.txt')) {
+    $migrations[OSHA_MIGRATION_COMMENTS_BLOG] = array(
+      'class_name' => 'MigrateOshaBlogComments',
+      'file_name' => $external_data_dir . '/export/blog_comments.txt',
     );
   }
 
