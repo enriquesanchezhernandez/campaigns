@@ -537,7 +537,13 @@ class MigrationUtil {
     }
   }
 
-  public static function setTranslation(&$translation_handler, $entity, $row, $language) {
+  public static function setTranslation(EntityTranslationHandlerInterface &$translation_handler, $entity, $row, $language) {
+    // Init Translation to set original value.
+    if (empty($entity->translations->original)) {
+      $translation_handler->initTranslations();
+      $translation_handler->saveTranslations();
+    }
+
     /* Don't translate en (default) */
     if ($language != $row->language
         && !isset($entity->translations->data[$language])) {
