@@ -109,6 +109,7 @@ function osha_linkchecker_views_default_views() {
   $handler->display->display_options['filters']['code']['table'] = 'linkchecker_link';
   $handler->display->display_options['filters']['code']['field'] = 'code';
   $handler->display->display_options['filters']['code']['value'] = array(
+    0 => '0',
     -101 => '-101',
     400 => '400',
     401 => '401',
@@ -140,6 +141,11 @@ function osha_linkchecker_views_default_views() {
   );
   $handler->display->display_options['filters']['access_id']['access_id'] = array();
   $handler->display->display_options['filters']['access_id']['size'] = '5';
+  /* Filter criterion: Linkchecker Links: Error */
+  $handler->display->display_options['filters']['error']['id'] = 'error';
+  $handler->display->display_options['filters']['error']['table'] = 'linkchecker_link';
+  $handler->display->display_options['filters']['error']['field'] = 'error';
+  $handler->display->display_options['filters']['error']['operator'] = '!=';
 
   /* Display: Page */
   $handler = $view->new_display('page', 'Page', 'page');

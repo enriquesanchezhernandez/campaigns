@@ -64,6 +64,14 @@ function osha_linkchecker_entity_property_info() {
     'entity views field' => TRUE,
     'schema field' => 'code',
   );
+  $properties['error'] = array(
+    'label' => t("Error"),
+    'type' => 'text',
+    'description' => t("The response error."),
+    'entity views field' => TRUE,
+    'getter callback' => 'entity_property_verbatim_get',
+    'schema field' => 'error',
+  );
   $properties['lid'] = array(
     'label' => t("Link ID"),
     'type' => 'linkchecker_node',
@@ -176,6 +184,7 @@ function osha_linkchecker_scan_for_links() {
  */
 function osha_linkchecker_get_http_statuses() {
   return array(
+    0 => 'Other',
     -101 => 'Connection Timed Out',
     100 => 'Continue',
     101 => 'Switching Protocols',
