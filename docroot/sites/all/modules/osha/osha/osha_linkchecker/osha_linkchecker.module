@@ -186,6 +186,7 @@ function osha_linkchecker_get_http_statuses() {
   return array(
     0 => 'Other',
     -101 => 'Connection Timed Out',
+    -111 => 'Connection refused',
     100 => 'Continue',
     101 => 'Switching Protocols',
     200 => 'OK',

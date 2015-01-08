@@ -111,6 +111,7 @@ function osha_linkchecker_views_default_views() {
   $handler->display->display_options['filters']['code']['value'] = array(
     0 => '0',
     -101 => '-101',
+    -111 => '-111',
     400 => '400',
     401 => '401',
     403 => '403',
