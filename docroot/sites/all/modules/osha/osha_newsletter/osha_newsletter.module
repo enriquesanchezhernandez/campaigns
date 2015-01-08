@@ -765,8 +765,7 @@ function osha_newsletter_entity_insert($entity_collection, $type) {
     $settings = unserialize($entity_collection->settings);
     if (!empty($settings['allowed_bundles']['node'])) {
       $allowed_bundles = $settings['allowed_bundles']['node'];
-    }
-    else {
+    } else {
       $allowed_bundles = variable_get('osha_newsletter_allowed_bundles',
         array(
           'publication', 'article', 'blog', 'news', 'press_release', 'highlight', 'newsletter_article'
@@ -774,7 +773,7 @@ function osha_newsletter_entity_insert($entity_collection, $type) {
       );
     }
 
-    // Select latest content and attach it to the newsletter.
+    // Select latest published content and attach it to the newsletter.
     if (!empty($entity_collection->field_newsletter_content_after[LANGUAGE_NONE][0]['value'])) {
       $after = $entity_collection->field_newsletter_content_after[LANGUAGE_NONE][0]['value'];
       $after = strtotime($after);
@@ -783,6 +782,7 @@ function osha_newsletter_entity_insert($entity_collection, $type) {
         ->entityCondition('bundle', $allowed_bundles, 'IN')
         ->entityCondition('bundle', array('article','newsletter_article'), 'NOT IN')
         ->propertyCondition('created', $after, '>=')
+        ->propertyCondition('status', NODE_PUBLISHED)
         ->execute();
       if (isset($rows['node'])) {
         $nodes = node_load_multiple(array_keys($rows['node']));
@@ -873,6 +873,7 @@ function osha_newsletter_mail($key, &$message, $params) {
       break;
     case 'send_newsletter':
       $source = entity_collection_load($params['#style']->entity_collection->name);
+//      $source->field_newsletter_sent[LANGUAGE_NONE][0]['value'] = 1;
       osha_newsletter_build_mail($message, $source);
       break;
     case 'subscribe_email':
