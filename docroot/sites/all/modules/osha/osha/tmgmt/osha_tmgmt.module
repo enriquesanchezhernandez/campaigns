@@ -1347,7 +1347,7 @@ function osha_tmgmt_get_job_item_states() {
     OSHA_TMGMT_JOB_ITEM_STATE_TranslationValidationRequired => t('Content Validation Required'),
     OSHA_TMGMT_JOB_ITEM_STATE_TranslatedReadyToPublish => t('Translated Ready to Publish'),
     TMGMT_JOB_ITEM_STATE_ABORTED => t('Translation Rejected'),
-    TMGMT_JOB_ITEM_STATE_ACCEPTED => t('Translation Published'),
+    TMGMT_JOB_ITEM_STATE_ACCEPTED => t('Published'),
   );
 }
 /**
