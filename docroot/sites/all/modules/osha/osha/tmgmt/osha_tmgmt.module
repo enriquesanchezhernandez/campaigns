@@ -1674,14 +1674,16 @@ function osha_tmgmt_get_cart_job_item_id($entity_type, $entity_id) {
 function osha_tmgmt_form_views_exposed_form_alter(&$form, &$form_state) {
   // Add date pop up to update date filter in Node Source TMGTM view.
   if ($form['#id'] == 'views-exposed-form-tmgmt-node-selection-view-tmgmt-node-selection-view-page') {
+    $format = 'd/m/Y';
+    $months_ago = date('Y-m-d', strtotime("-8 months"));
     $form['from_date'] = array(
     '#type' => 'date_popup',
-    '#date_format' => 'Y/m/d',
-    '#default_value' => '2014-01-01 00:00:00',
+    '#date_format' => $format,
+    '#default_value' => $months_ago . ' 00:00:00',
     );
     $form['to_date'] = array(
       '#type' => 'date_popup',
-      '#date_format' => 'Y/m/d',
+      '#date_format' => $format,
       '#default_value' => date('Y-m-d 23:59:59'),
     );
     // Attach custom callback to append time before query executes.
