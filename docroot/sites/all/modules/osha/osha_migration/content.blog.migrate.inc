@@ -87,7 +87,7 @@ class MigrateOshaBlog extends OSHADynamicMigration {
       'translate',
       'revision_uid',
       'is_new',
-      'body:summary',
+      //'body:summary',
       'field_image:language',
       'field_image:destination_dir',
       'field_image:title',
@@ -180,8 +180,8 @@ class MigrateOshaBlog extends OSHADynamicMigration {
         $has_translation = TRUE;
       }
       if (!empty($row->description[$language])) {
-        $entity->field_blog_summary[$language][0]['value'] = MigrationUtil::decodeHTMLText($row->description[$language]);
-        $entity->field_blog_summary[$language][0]['format'] = 'full_html';
+        $entity->field_summary[$language][0]['value'] = MigrationUtil::decodeHTMLText($row->description[$language]);
+        $entity->field_summary[$language][0]['format'] = 'full_html';
         $has_translation = TRUE;
       }
       if (!empty($row->text[$language])) {
@@ -285,6 +285,8 @@ class BlogContentListCSV extends MigrateList {
 
           case 'aliases':
           case 'description':
+            self::$data[$path][$field][$language] = $raw_data[$key];
+            break;
           case 'image':
           case 'imageCaption':
           case 'text':
