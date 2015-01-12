@@ -1337,6 +1337,95 @@ function osha_tmgmt_form_tmgmt_job_form_alter(&$form, &$form_state) {
       }
     }
   }
+  // CW-1133: Add a checkbox for each content into a separate fieldset
+  if ($job->has_file_uploaded == 1 && user_access('accept job item translation')) {
+    $rows = array();
+    $form['nodes'] = array(
+      '#description' => t('Manage multiple nodes at a time. All job items from this translation job - associated to a node - will be set ready to publish.'),
+      '#type' => 'fieldset',
+      '#title' => 'Content',
+      '#collapsible' => TRUE,
+      '#collapsed' => FALSE,
+      '#tree' => TRUE,
+      '#weight' => 12,
+    );
+    $url_opt = array('absolute' => TRUE);
+    $states = osha_tmgmt_get_job_item_states();
+    foreach ($job->getItems() as $job_item) {
+      if ($job_item->item_type == 'node') {
+        $entities = entity_load($job_item->item_type, array($job_item->item_id));
+        $id = key($entities);
+        $value = current($entities);
+        $wrapper = entity_metadata_wrapper($job_item->item_type, $value);
+        $url = url('node/' . $id, $url_opt);
+        $statistics = !empty($rows[$id][1]) ? $rows[$id][1] : array();
+        foreach ($states as $state_id => $label) {
+          if ($job_item->state == $state_id) {
+            if (isset($statistics[$label])) {
+              $statistics[$label] += 1;
+            }
+            else {
+              $statistics[$label] = 1;
+            }
+          }
+        }
+        $rows[$id] = array(l($wrapper->label(), $url), $statistics);
+      }
+    }
+    foreach($rows as &$row) {
+      $title = array();
+      foreach($row[1] as $k => $v) {
+        $title[] = sprintf('%s:%s', $k, $v);
+      }
+      $row[1] = sprintf('<span title="%s">%s</span>', implode(', ', $title), implode('/', $row[1]));
+    }
+    $form['nodes']['table'] = array(
+      '#type' => 'tableselect',
+      '#header' => array(t('Title'), t('Progress')),
+      '#options' => $rows,
+    );
+    $form['nodes']['action'] = array(
+      '#type' => 'submit',
+      '#value' => t('Ready to Publish'),
+      '#validate' => array('osha_tmgmt_job_items_mass_ready_to_publish_validate'),
+      '#submit' => array('osha_tmgmt_job_items_mass_ready_to_publish_submit'),
+    );
+  }
+}
+
+/**
+ * Validation handler for publish multiple job items at once form.
+ */
+function osha_tmgmt_job_items_mass_ready_to_publish_validate($form, $form_state) {
+  if (!user_access('accept job item translation')) {
+    form_set_error('nodes][table', t('Insufficient privileges'));
+  }
+  if (!empty($form_state['values']['nodes']['table'])) {
+    $values = array_filter(array_values($form_state['values']['nodes']['table']));
+    if (empty($values)) {
+      form_set_error('nodes][table', t('Please select at least one row to mark it ready for publish'));
+    }
+  }
+}
+
+/**
+ * Submit handler for publish multiple job items at once form.
+ */
+function osha_tmgmt_job_items_mass_ready_to_publish_submit($form, $form_state) {
+  global $user;
+  $job = $form_state['tmgmt_job'];
+  $publish = array();
+  foreach ($form_state['values']['nodes']['table'] as $nid) {
+    if (!empty($nid)) {
+      $publish[] = $nid;
+    }
+  }
+  $items = $job->getItems();
+  foreach($items as $job_item) {
+    if ($job_item->state != TMGMT_JOB_ITEM_STATE_ACCEPTED && $job_item->item_type == 'node' && in_array($job_item->item_id, $publish)) {
+      $job_item->acceptTranslationIntoEntity('Mass published by ' . $user->name);
+    }
+  }
 }
 
 function osha_tmgmt_get_job_item_states() {
@@ -1350,6 +1439,7 @@ function osha_tmgmt_get_job_item_states() {
     TMGMT_JOB_ITEM_STATE_ACCEPTED => t('Published'),
   );
 }
+
 /**
  * Returns osha state label of a job item state.
  */
