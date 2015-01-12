@@ -82,7 +82,7 @@ class osha_tmgmt_handler_field_tmgmt_job_item_operations extends tmgmt_handler_f
       );
     }
     // Do not display view on unprocessed jobs.
-    elseif (!$item->getJob()->isUnprocessed() && user_access('view translation job item')) {
+    elseif ($item->getJob() && !$item->getJob()->isUnprocessed() && user_access('view translation job item')) {
       $element['#links']['view'] = array(
         'href' => $uri['path'],
         'query' => array('destination' => current_path()),
