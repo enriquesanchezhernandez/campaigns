@@ -22,7 +22,7 @@ function osha_calls_field_default_field_instances() {
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
-        'weight' => 0,
+        'weight' => 1,
       ),
       'highlights_item' => array(
         'label' => 'above',
@@ -103,7 +103,7 @@ function osha_calls_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 16,
+        'weight' => 8,
       ),
       'highlights_item' => array(
         'label' => 'above',
@@ -182,7 +182,7 @@ function osha_calls_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 10,
+        'weight' => 5,
       ),
       'highlights_item' => array(
         'label' => 'above',
@@ -255,7 +255,7 @@ function osha_calls_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 14,
+        'weight' => 7,
       ),
       'highlights_item' => array(
         'label' => 'above',
@@ -343,7 +343,7 @@ function osha_calls_field_default_field_instances() {
           'osha_date_theme' => '',
         ),
         'type' => 'date_default',
-        'weight' => 1,
+        'weight' => 2,
       ),
       'highlights_item' => array(
         'label' => 'above',
@@ -427,7 +427,7 @@ function osha_calls_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 18,
+        'weight' => 9,
       ),
       'highlights_item' => array(
         'label' => 'above',
@@ -497,7 +497,7 @@ function osha_calls_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 11,
+        'weight' => 6,
       ),
       'highlights_item' => array(
         'label' => 'above',
@@ -575,7 +575,7 @@ function osha_calls_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 19,
+        'weight' => 10,
       ),
       'highlights_item' => array(
         'label' => 'above',
@@ -645,7 +645,7 @@ function osha_calls_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 9,
+        'weight' => 4,
       ),
       'highlights_item' => array(
         'label' => 'above',
@@ -737,7 +737,7 @@ function osha_calls_field_default_field_instances() {
         'module' => 'osha_calls',
         'settings' => array(),
         'type' => 'file_taxonomy_description',
-        'weight' => 20,
+        'weight' => 3,
       ),
       'highlights_item' => array(
         'label' => 'above',
@@ -807,10 +807,15 @@ function osha_calls_field_default_field_instances() {
     'description' => '',
     'display' => array(
       'default' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 15,
+        'label' => 'hidden',
+        'module' => 'title',
+        'settings' => array(
+          'title_class' => '',
+          'title_link' => '',
+          'title_style' => 'h1',
+        ),
+        'type' => 'title_linked',
+        'weight' => 0,
       ),
       'highlights_item' => array(
         'label' => 'hidden',
