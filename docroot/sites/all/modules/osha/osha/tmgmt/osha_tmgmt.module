@@ -1077,11 +1077,14 @@ function osha_tmgmt_form_tmgmt_ui_entity_translation_review_form_alter(&$form, &
             '#type' => 'submit',
             '#submit' => array('osha_tmgmt_translation_validators_accept'),
             '#validate' => array('osha_tmgmt_translation_validators_accept_validate'),
-            '#value' => 'Approve',
+            '#value' => t('Approve'),
           );
           $last = osha_tmgmt_load_validators_last($validators);
           $can_reject = ($last->uid == $user->uid);
           $form['actions']['reject']['#access'] = $can_reject;
+          if ($last->uid != $user->uid) {
+            $form['actions']['cvalidator_approve']['#value'] = t('Done');
+          }
         }
         break;
 
