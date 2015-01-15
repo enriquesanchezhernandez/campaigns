@@ -106,7 +106,7 @@ return $output;';
 $curr_lang = $language->language ;
 $node = $variables[\'#object\'];
 $file = isset($node->field_image[$curr_lang][0]) ? $node->field_image[$curr_lang][0] : $node->field_image[\'en\'][0];
-$output = "<span class=\'label_multilang_file\'>Download</span>";
+$output = "<span class=\'label_multilang_file\'>Open</span>";
 $output .= theme_file_icon(
   array(
     "file" => file_load($file[\'fid\']),
