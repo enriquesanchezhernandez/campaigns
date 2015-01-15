@@ -92,6 +92,18 @@ function osha_workflow_access_pm_get_pm_uid($access_id, $access_scheme) {
 }
 
 /**
+ * Get sections ids of a pm.
+ */
+function osha_workflow_access_get_pm_sections($uid) {
+  $sections = db_select('osha_workflow_access_pm', 'owa')
+    ->fields('owa', array('access_id'))
+    ->condition('uid', $uid)
+    ->execute()
+    ->fetchAllAssoc('access_id');
+  return array_keys($sections);
+}
+
+/**
  * Checks for PM to be assigned to root Section.
  *
  * @return bool
