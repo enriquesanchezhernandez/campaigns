@@ -770,6 +770,7 @@ function osha_tmgmt_form_alter(&$form, &$form_state, $form_id) {
       $form['request_translation']['#weight']['#weight'] = 4;
 
       $form['request_translation']['#submit'] = array('osha_tmgmt_tmgmt_ui_cart_content_submit');
+      $form['request_translation']['#value'] = t('Request re-translation');
       $form['priority'] = array(
         '#title' => t('Job priority'),
         '#type' => 'select',
