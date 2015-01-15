@@ -178,10 +178,10 @@ function osha_migration_migrate_api() {
     );
   }
 
-  if (is_readable($external_data_dir . '/export/infographics.txt')) {
+  if (is_readable($external_data_dir . '/export-local/infographics.txt')) {
     $migrations[OSHA_MIGRATION_CONTENT_TYPE_INFOGRAPHICS] = array(
       'class_name' => 'MigrateOshaInfographics',
-      'file_name' => $external_data_dir . '/export/infographics.txt',
+      'file_name' => $external_data_dir . '/export-local/infographics.txt',
     );
   }
 

@@ -45,7 +45,7 @@ class MigrateOshaInfographics extends OSHADynamicMigration {
     $this->addFieldMapping('field_image:file_replace')->defaultValue(FILE_EXISTS_REPLACE);
     $this->addFieldMapping('field_image:file_class')->defaultValue('OSHAMigrateFileUri');
     $this->addFieldmapping('field_image:preserve_files')->defaultValue(TRUE);
-    $this->addFieldMapping('field_image:source_dir')->defaultValue($data_path . '/export/data/infographics');
+    $this->addFieldMapping('field_image:source_dir')->defaultValue($data_path . '/export-local/infographics');
     $this->addFieldMapping('field_image:destination_file', 'image');
     $this->addFieldMapping('field_image:multilingual')->defaultValue(TRUE);
 
@@ -53,7 +53,7 @@ class MigrateOshaInfographics extends OSHADynamicMigration {
     $this->addFieldMapping('field_file:file_replace')->defaultValue(FILE_EXISTS_REPLACE);
     $this->addFieldMapping('field_file:file_class')->defaultValue('OSHAMigrateFileUri');
     $this->addFieldmapping('field_file:preserve_files')->defaultValue(TRUE);
-    $this->addFieldMapping('field_file:source_dir')->defaultValue($data_path . '/export/data/infographics');
+    $this->addFieldMapping('field_file:source_dir')->defaultValue($data_path . '/export-local/infographics');
     $this->addFieldMapping('field_file:destination_file', 'file');
     $this->addFieldMapping('field_file:multilingual')->defaultValue(TRUE);
 
