@@ -318,7 +318,7 @@ function osha_search_views_default_views() {
   $handler->display->display_options['fields']['title_field']['field'] = 'title_field';
   $handler->display->display_options['fields']['title_field']['label'] = '';
   $handler->display->display_options['fields']['title_field']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['title_field']['type'] = 'title_linked';
+  $handler->display->display_options['fields']['title_field']['type'] = 'publication_title_linked';
   $handler->display->display_options['fields']['title_field']['settings'] = array(
     'title_style' => 'div',
     'title_link' => 'content',
