@@ -28,7 +28,7 @@ function osha_tmgmt_extra_permissions() {
       'title' => t('Edit the job item Content Validators'),
     ),
     'set job item to translated state' => array(
-      'title' => t('View the job to Translated state'),
+      'title' => t('Can set the job to Translated state'),
     ),
     'set job item to require content validation state' => array(
       'title' => t('Can set the job item to Require Content Validation'),

@@ -1342,7 +1342,8 @@ function osha_tmgmt_form_tmgmt_job_form_alter(&$form, &$form_state) {
     }
   }
   // CW-1133: Add a checkbox for each content into a separate fieldset
-  if ($job->has_file_uploaded == 1 && user_access('accept job item translation')) {
+  if ($job->has_file_uploaded == 1 &&
+      (user_access('set job item to translated state') || user_access('edit translation content validators'))) {
     $rows = array();
     $form['nodes'] = array(
       '#description' => t('Manage multiple nodes at a time. All job items from this translation job - associated to a node - will be set ready to publish.'),
@@ -1388,24 +1389,58 @@ function osha_tmgmt_form_tmgmt_job_form_alter(&$form, &$form_state) {
       '#header' => array(t('Title'), t('Progress')),
       '#options' => $rows,
     );
-    $form['nodes']['action'] = array(
-      '#type' => 'submit',
-      '#value' => t('Ready to Publish'),
-      '#validate' => array('osha_tmgmt_job_items_mass_ready_to_publish_validate'),
-      '#submit' => array('osha_tmgmt_job_items_mass_ready_to_publish_submit'),
-    );
+    $all_options = osha_tmgmt_get_job_item_states();
+    $options = array('' => t('-- Please select --'));
+    if (user_access('edit translation content validators')) {
+      $options = $all_options;
+    }
+    else if (user_access('set job item to translated state')) {
+      $options[TMGMT_JOB_ITEM_STATE_REVIEW] = $all_options[TMGMT_JOB_ITEM_STATE_REVIEW];
+    }
+    if (count($options) > 1) {
+      $form['nodes']['new_state'] = array(
+        '#type' => 'select',
+        '#options' => $options,
+        '#title' => t('Select new state'),
+      );
+
+      $form['nodes']['new_state_apply'] = array(
+        '#type' => 'submit',
+        '#value' => t('Apply'),
+        '#validate' => array('osha_tmgmt_job_items_mass_change_validate'),
+        '#submit' => array('osha_tmgmt_job_items_mass_change_submit'),
+      );
+    }
   }
 }
 
 /**
  * Validation handler for publish multiple job items at once form.
  */
-function osha_tmgmt_job_items_mass_ready_to_publish_validate($form, $form_state) {
-  if (!user_access('accept job item translation')) {
+function osha_tmgmt_job_items_mass_change_validate($form, $form_state) {
+  $values = $form_state['values']['nodes'];
+  // Only translation manager or layout validator can access this screen
+  if (!user_access('set job item to translated state') && !user_access('edit translation content validators')) {
     form_set_error('nodes][table', t('Insufficient privileges'));
   }
-  if (!empty($form_state['values']['nodes']['table'])) {
-    $values = array_filter(array_values($form_state['values']['nodes']['table']));
+
+  $states = osha_tmgmt_get_job_item_states();
+  if (!array_key_exists($values['new_state'], $states)) {
+    form_set_error('new_state', t('Please select valid new state'));
+  }
+  else {
+    $new_state = $values['new_state'];
+    if ($new_state != TMGMT_JOB_ITEM_STATE_REVIEW && !user_access('edit translation content validators')) {
+      form_set_error('new_state', t('You are not allowed to assign this state'));
+    }
+    if ($new_state == TMGMT_JOB_ITEM_STATE_REVIEW
+        && (!user_access('set job item to translated state') && !user_access('edit translation content validators'))) {
+      form_set_error('new_state', t('You are not allowed to assign this state'));
+    }
+  }
+
+  if (!empty($values['table'])) {
+    $values = array_filter(array_values($values['table']));
     if (empty($values)) {
       form_set_error('nodes][table', t('Please select at least one row to mark it ready for publish'));
     }
@@ -1415,19 +1450,50 @@ function osha_tmgmt_job_items_mass_ready_to_publish_validate($form, $form_state)
 /**
  * Submit handler for publish multiple job items at once form.
  */
-function osha_tmgmt_job_items_mass_ready_to_publish_submit($form, $form_state) {
+function osha_tmgmt_job_items_mass_change_submit($form, $form_state) {
   global $user;
+  $values = $form_state['values']['nodes'];
   $job = $form_state['tmgmt_job'];
   $publish = array();
-  foreach ($form_state['values']['nodes']['table'] as $nid) {
+  foreach ($values['table'] as $nid) {
     if (!empty($nid)) {
       $publish[] = $nid;
     }
   }
   $items = $job->getItems();
-  foreach($items as $job_item) {
-    if ($job_item->state != TMGMT_JOB_ITEM_STATE_ACCEPTED && $job_item->item_type == 'node' && in_array($job_item->item_id, $publish)) {
-      $job_item->acceptTranslationIntoEntity('Mass published by ' . $user->name);
+  $new_state = $values['new_state'];
+  foreach ($items as $job_item) {
+    if ($job_item->item_type == 'node' && in_array($job_item->item_id, $publish) && $job_item->state != $new_state) {
+      // Change the state
+      switch ($new_state) {
+        case TMGMT_JOB_ITEM_STATE_ACTIVE:
+          $job_item->toOnTranslation('Mass updated by ' . $user->name);
+          break;
+
+        case TMGMT_JOB_ITEM_STATE_REVIEW:
+          $job_item->toTranslated('Mass updated by ' . $user->name);
+          break;
+
+        case OSHA_TMGMT_JOB_ITEM_STATE_TranslationValidationRequired:
+          $job_item->toTranslationValidationRequired('Mass updated by ' . $user->name);
+          break;
+
+        case TMGMT_JOB_ITEM_STATE_ABORTED:
+          $job_item->toTranslationRejected('Mass updated by ' . $user->name);
+          break;
+
+        case OSHA_TMGMT_JOB_ITEM_STATE_TranslationValidated:
+          $job_item->toTranslationValidated('Mass updated by ' . $user->name);
+          break;
+
+        case OSHA_TMGMT_JOB_ITEM_STATE_TranslatedReadyToPublish:
+          $job_item->toTranslationReadyToPublish('Mass updated by ' . $user->name);
+          break;
+
+        case TMGMT_JOB_ITEM_STATE_ACCEPTED:
+          $job_item->acceptTranslationIntoEntity('Mass updated by ' . $user->name);
+          break;
+      }
     }
   }
 }
