@@ -324,7 +324,10 @@ function osha_publication_field_formatter_view($entity_type, $entity, $field, $i
 
       if (!empty($output) && $settings['title_link'] == 'content') {
         $uri = entity_uri($entity_type, $entity);
-        $path = url($uri['path']) . '/view';
+        $path = url($uri['path']);
+        if ($entity->type == 'publication') {
+          $path .= '/view';
+        }
         $output = '<a href="' . check_plain($path) . '">' . $output . '</a>';
       }
 

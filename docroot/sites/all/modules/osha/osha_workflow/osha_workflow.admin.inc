@@ -140,15 +140,14 @@ function osha_workflow_workbench_project_managers($access_type = NULL, $access_t
           'admin/config/workbench/access/managers/review/' . $active['access_scheme']['access_type'] . '/' . $access_id);
       }
 
-      $row[] = l(t('See the borken links'),
+      $row[] = l(t('See the broken links'),
         'admin/content/linkchecker-broken-links',
         array('query' => array('access_id[]' => $access_id))
       );
 
       $rows[] = $row;
     }
-    $header = array(t('Section'), t('@types', array('@type' => 'Managers')),
-      t('Review'), t('Broken Links'));
+    $header = array(t('Section'), t('Managers'), t('Review'), t('Broken Links'));
     $output .= theme('table', array('header' => $header, 'rows' => $rows));
     $build['content']['#markup'] = $output;
     return $build;

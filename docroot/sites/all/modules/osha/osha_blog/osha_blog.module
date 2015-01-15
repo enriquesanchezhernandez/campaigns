@@ -44,8 +44,8 @@ function osha_blog_post_features_revert($component){
 
   $data = array(
     'form_id' => 'comment_node_blog_form',
-    'module' => 'recaptcha',
-    'captcha_type' => 'reCAPTCHA',
+    'module' => 'image_captcha',
+    'captcha_type' => 'Image',
   );
   if ($query) {
     drupal_write_record('captcha_points', $data, 'form_id');

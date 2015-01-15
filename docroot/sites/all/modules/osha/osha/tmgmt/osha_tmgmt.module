@@ -770,6 +770,7 @@ function osha_tmgmt_form_alter(&$form, &$form_state, $form_id) {
       $form['request_translation']['#weight']['#weight'] = 4;
 
       $form['request_translation']['#submit'] = array('osha_tmgmt_tmgmt_ui_cart_content_submit');
+      $form['request_translation']['#value'] = t('Request re-translation');
       $form['priority'] = array(
         '#title' => t('Job priority'),
         '#type' => 'select',
@@ -1076,11 +1077,14 @@ function osha_tmgmt_form_tmgmt_ui_entity_translation_review_form_alter(&$form, &
             '#type' => 'submit',
             '#submit' => array('osha_tmgmt_translation_validators_accept'),
             '#validate' => array('osha_tmgmt_translation_validators_accept_validate'),
-            '#value' => 'Approve',
+            '#value' => t('Approve'),
           );
           $last = osha_tmgmt_load_validators_last($validators);
           $can_reject = ($last->uid == $user->uid);
           $form['actions']['reject']['#access'] = $can_reject;
+          if ($last->uid != $user->uid) {
+            $form['actions']['cvalidator_approve']['#value'] = t('Done');
+          }
         }
         break;
 
@@ -1432,10 +1436,10 @@ function osha_tmgmt_get_job_item_states() {
   return array(
     TMGMT_JOB_ITEM_STATE_ACTIVE => t('On Translation'),
     TMGMT_JOB_ITEM_STATE_REVIEW => t('Translated'), // was: Layout Validated
-    OSHA_TMGMT_JOB_ITEM_STATE_TranslationValidated => t('Translation Validated'),
     OSHA_TMGMT_JOB_ITEM_STATE_TranslationValidationRequired => t('Content Validation Required'),
-    OSHA_TMGMT_JOB_ITEM_STATE_TranslatedReadyToPublish => t('Translated Ready to Publish'),
     TMGMT_JOB_ITEM_STATE_ABORTED => t('Translation Rejected'),
+    OSHA_TMGMT_JOB_ITEM_STATE_TranslationValidated => t('Translation Validated'),
+    OSHA_TMGMT_JOB_ITEM_STATE_TranslatedReadyToPublish => t('Translated Ready to Publish'),
     TMGMT_JOB_ITEM_STATE_ACCEPTED => t('Published'),
   );
 }

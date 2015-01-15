@@ -41,8 +41,11 @@
     print render($content['title_field']);
     
 
-    //display thumbnail
-    if(isset($content['field_image'])){
+    // Display thumbnail
+    if (isset($content['field_thumbnail'])) {
+      print render($content['field_thumbnail']);
+    }
+    elseif (isset($content['field_image'])) {
       print theme_image_style(array(
         'style_name' => 'medium',
         'path' => $content['field_image']['#items'][0]['uri'],
@@ -51,8 +54,8 @@
       ));
     }
 
-    print render($content['field_image']);
     print render($content['body']);
+    print render($content['field_image']);
     print render($content['field_file']);
     print render($content['field_twin_infographics']);
   }elseif($view_mode == 'teaser' || $view_mode == 'osha_resources'){
