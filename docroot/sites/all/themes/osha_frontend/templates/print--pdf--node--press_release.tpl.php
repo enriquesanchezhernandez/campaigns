@@ -194,7 +194,7 @@
                     'alt' => t('Facebook')
                   ),
                   'blog' => array(
-                    'path' => 'https://osha.europa.eu/en/about/director_corner/blog',
+                    'path' => url('articles/blog', array('alias' => TRUE)),
                     'alt' => t('blog')
                   ),
                   'youtube' => array(
