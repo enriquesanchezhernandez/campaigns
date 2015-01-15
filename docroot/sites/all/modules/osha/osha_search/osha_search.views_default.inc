@@ -28,7 +28,7 @@ function osha_search_views_default_views() {
   $handler->display->display_options['cache']['type'] = 'none';
   $handler->display->display_options['query']['type'] = 'views_query';
   $handler->display->display_options['exposed_form']['type'] = 'basic';
-  $handler->display->display_options['exposed_form']['options']['autosubmit'] = TRUE;
+  $handler->display->display_options['exposed_form']['options']['submit_button'] = 'Search';
   $handler->display->display_options['pager']['type'] = 'full';
   $handler->display->display_options['pager']['options']['items_per_page'] = '10';
   $handler->display->display_options['pager']['options']['offset'] = '0';
@@ -168,7 +168,7 @@ function osha_search_views_default_views() {
     t('Master'),
     t('Publications'),
     t('more'),
-    t('Apply'),
+    t('Search'),
     t('Reset'),
     t('Sort by'),
     t('Asc'),
@@ -182,7 +182,6 @@ function osha_search_views_default_views() {
     t('»'),
     t('No results'),
     t('Multilingual ID'),
-    t('Search'),
     t('Available in languages'),
     t('Item language'),
     t('Page'),
