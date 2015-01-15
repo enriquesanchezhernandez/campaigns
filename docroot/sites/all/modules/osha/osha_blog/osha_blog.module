@@ -208,7 +208,6 @@ function osha_blog_get_view_title($title) {
  * {@inheritdoc}
  */
 function osha_blog_form_comment_node_blog_form_alter(&$form, &$form_state) {
-  //dpm($form);
   // Change Author title name
   $form['author']['_author']['#title'] = t('Name');
   $form['author']['name']['#title'] = t('Name');
