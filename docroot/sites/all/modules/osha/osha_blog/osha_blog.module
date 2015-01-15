@@ -201,3 +201,20 @@ function osha_blog_get_view_title($title) {
   }
   return $title;
 }
+
+/**
+ * Implements hook_form_FORM_ID_alter
+ *
+ * {@inheritdoc}
+ */
+function osha_blog_form_comment_node_blog_form_alter(&$form, &$form_state) {
+  // Change Author title name
+  $form['author']['_author']['#title'] = t('Name');
+  $form['author']['name']['#title'] = t('Name');
+  $form['author']['name']['#required'] = FALSE;
+
+  // Remove mail field from comment form
+  $form['author']['mail']['#default_value'] = FALSE;
+  $form['author']['mail']['#access'] = FALSE;
+}
+
