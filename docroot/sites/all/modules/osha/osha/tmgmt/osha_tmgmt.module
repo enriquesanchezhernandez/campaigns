@@ -169,6 +169,13 @@ function osha_tmgmt_schema_alter(&$schema) {
       'not null' => TRUE,
       'description' => 'If job item has file uploaded.',
     );
+    $schema['tmgmt_job']['fields']['file_sent'] = array(
+      'type' => 'int',
+      'unsigned' => FALSE,
+      'default' => 0,
+      'not null' => TRUE,
+      'description' => 'If job item translation file was sent to CDT.',
+    );
   }
 }
 
@@ -276,6 +283,14 @@ function osha_tmgmt_entity_property_info_alter(&$info) {
     'getter callback' => 'entity_property_verbatim_get',
     'entity views field' => TRUE,
     'schema field' => 'has_file_uploaded',
+  );
+  $info['tmgmt_job']['properties']['file_sent'] = array(
+    'label' => t("Has File Sent to CDT"),
+    'type' => 'boolean',
+    'description' => t("If job's file is sent to CDT."),
+    'getter callback' => 'entity_property_verbatim_get',
+    'entity views field' => TRUE,
+    'schema field' => 'file_sent',
   );
 }
 
@@ -1294,6 +1309,24 @@ function osha_tmgmt_form_tmgmt_job_form_alter(&$form, &$form_state) {
     $form['info']['created'] = $created;
   }
 
+  $form['info']['file_sent'] = array(
+    '#type' => 'item',
+    '#title' => t('File sent'),
+    '#markup' => t('Yes'),
+    '#prefix' => '<div class="tmgmt-ui-info-item">',
+    '#suffix' => '</div>',
+  );
+  // Button to mark the job when file was sent to CDT.
+  if (empty($job->file_sent)) {
+    $form['actions']['file_sent'] = array(
+      '#type' => 'submit',
+      '#value' => 'File Sent to CDT',
+      '#submit' => array('osha_tmgmt_job_file_sent_cdt_submit'),
+      '#access' => user_access('view translation job'),
+    );
+    $form['info']['file_sent']['#markup'] = t('No');
+  }
+
   // Allow Translation Managers to assign content validators to all job items.
   if(user_access('edit translation content validators')) {
     $form['translation_validators'] = array(
@@ -1516,6 +1549,12 @@ function osha_tmgmt_get_job_item_states() {
 function osha_tmgmt_get_job_item_state_label($state) {
   $states = osha_tmgmt_get_job_item_states();
   return $states[$state];
+}
+
+function osha_tmgmt_job_file_sent_cdt_submit($form, &$form_state) {
+  $job = $form_state['tmgmt_job'];
+  $job->file_sent = 1;
+  $job->save();
 }
 
 /**

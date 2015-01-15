@@ -225,6 +225,13 @@ $handler->display->display_options['fields']['has_file_uploaded']['field'] = 'ha
 $handler->display->display_options['fields']['has_file_uploaded']['label'] = 'File uploaded';
 $handler->display->display_options['fields']['has_file_uploaded']['not'] = 0;
 $handler->display->display_options['fields']['has_file_uploaded']['link_to_entity'] = 0;
+/* Field: Translation Management Job: Has File Sent to CDT */
+$handler->display->display_options['fields']['file_sent']['id'] = 'file_sent';
+$handler->display->display_options['fields']['file_sent']['table'] = 'views_entity_tmgmt_job';
+$handler->display->display_options['fields']['file_sent']['field'] = 'file_sent';
+$handler->display->display_options['fields']['file_sent']['label'] = 'File Sent to CDT';
+$handler->display->display_options['fields']['file_sent']['not'] = 0;
+$handler->display->display_options['fields']['file_sent']['link_to_entity'] = 0;
 /* Field: Operations */
 $handler->display->display_options['fields']['operations']['id'] = 'operations';
 $handler->display->display_options['fields']['operations']['table'] = 'tmgmt_job';
@@ -326,6 +333,29 @@ $handler->display->display_options['filters']['has_file_uploaded']['expose']['re
   11 => 0,
   12 => 0,
 );
+/* Filter criterion: Translation Management Job: Has File Sent to CDT */
+$handler->display->display_options['filters']['file_sent']['id'] = 'file_sent';
+$handler->display->display_options['filters']['file_sent']['table'] = 'tmgmt_job';
+$handler->display->display_options['filters']['file_sent']['field'] = 'file_sent';
+$handler->display->display_options['filters']['file_sent']['exposed'] = TRUE;
+$handler->display->display_options['filters']['file_sent']['expose']['operator_id'] = '';
+$handler->display->display_options['filters']['file_sent']['expose']['label'] = 'File Sent to CDT';
+$handler->display->display_options['filters']['file_sent']['expose']['operator'] = 'file_sent_op';
+$handler->display->display_options['filters']['file_sent']['expose']['identifier'] = 'file_sent';
+$handler->display->display_options['filters']['file_sent']['expose']['remember_roles'] = array(
+  2 => '2',
+  1 => 0,
+  3 => 0,
+  4 => 0,
+  5 => 0,
+  6 => 0,
+  7 => 0,
+  8 => 0,
+  9 => 0,
+  10 => 0,
+  11 => 0,
+  12 => 0,
+);
 
 /* Display: Page */
 $handler = $view->new_display('page', 'Page', 'page');
@@ -369,6 +399,7 @@ $translatables['osha_translation_job_overview'] = array(
   t('Progress'),
   t('Changed'),
   t('File uploaded'),
+  t('File Sent to CDT'),
   t('Operations'),
   t('File Uploaded'),
   t('Page'),
