@@ -54,8 +54,8 @@
       ));
     }
 
-    print render($content['field_image']);
     print render($content['body']);
+    print render($content['field_image']);
     print render($content['field_file']);
     print render($content['field_twin_infographics']);
   }elseif($view_mode == 'teaser' || $view_mode == 'osha_resources'){

@@ -254,11 +254,11 @@ function osha_infographics_views_default_views() {
     'trim_length' => '200',
     'trim_type' => 'chars',
     'trim_suffix' => '...',
-    'more_link' => '0',
+    'more_link' => '1',
     'more_text' => 'Read more',
     'summary_handler' => 'full',
     'trim_options' => array(
-      'text' => 0,
+      'text' => 'text',
     ),
   );
   $handler->display->display_options['defaults']['arguments'] = FALSE;
