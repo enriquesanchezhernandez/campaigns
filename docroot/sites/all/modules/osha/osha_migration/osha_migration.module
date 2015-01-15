@@ -20,6 +20,7 @@ define('OSHA_MIGRATION_CONTENT_TYPE_PUBLICATION', 'Publication');
 define('OSHA_MIGRATION_CONTENT_TYPE_SEMINAR', 'Seminar');
 define('OSHA_MIGRATION_CONTENT_TYPE_WIKI', 'Wiki');
 define('OSHA_MIGRATION_CONTENT_TYPE_LEGISLATION', 'Legislation');
+define('OSHA_MIGRATION_CONTENT_TYPE_INFOGRAPHICS', 'Infographics');
 define('OSHA_MIGRATION_FILES', 'Files');
 define('OSHA_MIGRATION_IMAGES', 'Images');
 define('OSHA_MIGRATION_CONTENT_TYPE_PRESS_RELEASE', 'PressRelease');
@@ -174,6 +175,13 @@ function osha_migration_migrate_api() {
     $migrations[OSHA_MIGRATION_CONTENT_TYPE_NOTE_TO_EDITOR] = array(
       'class_name' => 'MigrateOshaNoteToEditor',
       'file_name' => $external_data_dir . '/export/notes_to_editors.txt',
+    );
+  }
+
+  if (is_readable($external_data_dir . '/export/infographics.txt')) {
+    $migrations[OSHA_MIGRATION_CONTENT_TYPE_INFOGRAPHICS] = array(
+      'class_name' => 'MigrateOshaInfographics',
+      'file_name' => $external_data_dir . '/export/infographics.txt',
     );
   }
 

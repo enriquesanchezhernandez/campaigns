@@ -6,6 +6,8 @@
 
 include_once 'osha_infographics.features.inc';
 
+define('OSHA_INFOGRAPHIC_CONTENT_TYPE_INFOGRAPHIC', 'infographic');
+
 function osha_infographics_workbench_access_node_element_alter(&$element, $form_state, $active) {
   if (isset($form_state['build_info']['form_id']) && $form_state['build_info']['form_id'] == 'infographic_node_form' ) {
     // CW-800 default value for Section
