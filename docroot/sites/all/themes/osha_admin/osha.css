@@ -101,3 +101,7 @@ tr.osha_newsletter_section_admin_content {
   text-align: center;
   font-size: 1.2em;
 }
+
+ul.primary {
+  height: auto;
+}
