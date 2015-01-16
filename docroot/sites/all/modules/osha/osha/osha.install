@@ -139,3 +139,11 @@ function osha_update_7004() {
     ->condition('rid', $rids, 'IN')
     ->execute();
 }
+
+/**
+ * Give all permissions to administrators.
+ */
+function osha_update_7005() {
+  $role = user_role_load(3);
+  user_role_grant_permissions($role->rid, array_keys(module_invoke_all('permission')));
+}
