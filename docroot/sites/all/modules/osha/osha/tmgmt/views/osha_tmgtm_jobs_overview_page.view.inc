@@ -337,6 +337,7 @@ $handler->display->display_options['filters']['has_file_uploaded']['expose']['re
 $handler->display->display_options['filters']['file_sent']['id'] = 'file_sent';
 $handler->display->display_options['filters']['file_sent']['table'] = 'tmgmt_job';
 $handler->display->display_options['filters']['file_sent']['field'] = 'file_sent';
+$handler->display->display_options['filters']['file_sent']['value'] = 'All';
 $handler->display->display_options['filters']['file_sent']['exposed'] = TRUE;
 $handler->display->display_options['filters']['file_sent']['expose']['operator_id'] = '';
 $handler->display->display_options['filters']['file_sent']['expose']['label'] = 'File Sent to CDT';
