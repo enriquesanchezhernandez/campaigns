@@ -1890,6 +1890,14 @@ function osha_tmgmt_form_views_exposed_form_alter(&$form, &$form_state) {
       array('osha_tmgmt_node_source_form_exposed_submit'),
       $form['#submit']
     );
+    // Add select all link for some multiselects.
+    $form['type']['#prefix'] = '<a href="javascript:void(0)"
+        class="osha-select-all-link">Select All</a>';
+    $form['translation_exists']['#prefix'] = '<a href="javascript:void(0)"
+        class="osha-select-all-link">Select All</a>';
+    $form['#attached']['js'] = array(
+      drupal_get_path('theme', 'osha_admin') . '/js/theme.js',
+    );
   }
 }
 
