@@ -366,6 +366,19 @@ function osha_breadcrumbs_path_breadcrumbs_settings_info() {
           'context' => 'node',
           'not' => TRUE,
         ),
+        1 => array(
+          'name' => 'path_visibility',
+          'settings' => array(
+            'visibility_setting' => '1',
+            'paths' => 'articles/contact-us
+sitemap
+accessibility-info
+articles/privacy-policy-logged-users
+articles/legal-notice',
+          ),
+          'context' => 'empty',
+          'not' => TRUE,
+        ),
       ),
       'logic' => 'and',
     ),
@@ -642,6 +655,75 @@ function osha_breadcrumbs_path_breadcrumbs_settings_info() {
   );
   $path_breadcrumb->weight = 0;
   $export['blog_search'] = $path_breadcrumb;
+
+  // Footer links
+  $path_breadcrumb = new stdClass();
+  $path_breadcrumb->api_version = 1;
+  $path_breadcrumb->machine_name = 'footer_links';
+  $path_breadcrumb->name = 'Footer links';
+  $path_breadcrumb->path = 'node/%node';
+  $path_breadcrumb->data = array(
+    'titles' => array(
+      0 => '!page_title',
+    ),
+    'paths' => array(
+      0 => '<none>',
+    ),
+    'home' => 1,
+    'translatable' => 0,
+    'arguments' => array(
+      'node' => array(
+        'position' => 1,
+        'argument' => 'entity_id:node',
+        'settings' => array(
+          'identifier' => 'Node: ID',
+        ),
+      ),
+    ),
+    'access' => array(
+      'plugins' => array(
+        1 => array(
+          'name' => 'path_visibility',
+          'settings' => array(
+            'visibility_setting' => '1',
+            'paths' => 'articles/contact-us
+sitemap
+accessibility-info
+articles/privacy-policy-logged-users
+articles/legal-notice',
+          ),
+          'context' => 'empty',
+          'not' => FALSE,
+        ),
+      ),
+      'logic' => 'and',
+    ),
+  );
+  $path_breadcrumb->weight = 0;
+  $export['footer_links'] = $path_breadcrumb;
+
+  // Contact form page
+  $path_breadcrumb = new stdClass();
+  $path_breadcrumb->api_version = 1;
+  $path_breadcrumb->machine_name = 'contact_form';
+  $path_breadcrumb->name = 'Contact form';
+  $path_breadcrumb->path = 'contact';
+  $path_breadcrumb->data = array(
+    'titles' => array(
+      0 => 'Contact us',
+      1 => 'Contact form',
+    ),
+    'paths' => array(
+      0 => 'articles/contact-us',
+      1 => '<none>',
+    ),
+    'home' => 1,
+    'translatable' => 0,
+    'arguments' => array(),
+    'access' => array(),
+  );
+  $path_breadcrumb->weight = 0;
+  $export['contact_form'] = $path_breadcrumb;
 
   return $export;
 }
