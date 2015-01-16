@@ -118,7 +118,7 @@ function osha_alert_service_subscribe_form() {
 
   $form['unsubscribe'] = array(
     '#type' => 'item',
-    '#markup' => t('If you would like to un-subscribe, please use the un-subscribe link from the footer of an alert sent to you.'),
+    '#markup' => t('If you would like to unsubscribe, please use the unsubscribe link from the footer of an alert sent to you.'),
   );
   return $form;
 }
