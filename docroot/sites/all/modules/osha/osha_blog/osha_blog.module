@@ -96,7 +96,7 @@ function osha_blog_views_pre_render(&$view) {
     drupal_set_breadcrumb(
       array(
         l(t('Home'), NULL),
-        l(t('Blog'), 'articles/blog'),
+        l(t('Blog'), 'tools-and-publications/blog'),
         $title,
       )
     );
@@ -116,7 +116,7 @@ function osha_blog_views_pre_render(&$view) {
     drupal_set_breadcrumb(
       array(
         l(t('Home'), NULL),
-        l(t('Blog'), 'articles/blog'),
+        l(t('Blog'), 'tools-and-publications/blog'),
         $title,
       )
     );
@@ -135,7 +135,7 @@ function osha_blog_node_view_alter(&$build) {
   if ($build['#view_mode'] == 'full' && $node->type == 'blog') {
     $date = strtotime($node->field_publication_date[LANGUAGE_NONE][0]['value']);
     $breadcrumb[] = l(t('Home'), NULL);
-    $breadcrumb[] = l(t('Blog'), 'articles/blog');
+    $breadcrumb[] = l(t('Blog'), 'tools-and-publications/blog');
     $breadcrumb[] = l(date('F Y', $date), 'blog/' . date('Y-m', $date));
     $breadcrumb[] = drupal_get_title();
     drupal_set_breadcrumb($breadcrumb);
@@ -149,7 +149,7 @@ function osha_blog_node_view_alter(&$build) {
  */
 function osha_blog_node_view($node, $view_mode, $langcode) {
   // Hide title for intro article Blog.
-  if ($node->type == 'article' && $node->path['alias'] == 'articles/blog') {
+  if ($node->type == 'article' && $node->path['alias'] == 'tools-and-publications/blog') {
     hide($node->content['title_field']);
   }
 }

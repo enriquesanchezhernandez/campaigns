@@ -236,7 +236,7 @@ function osha_calls_views_default_views() {
   $handler->display->display_options['header']['area_text_custom']['id'] = 'area_text_custom';
   $handler->display->display_options['header']['area_text_custom']['table'] = 'views';
   $handler->display->display_options['header']['area_text_custom']['field'] = 'area_text_custom';
-  $handler->display->display_options['header']['area_text_custom']['content'] = '<a href="/articles/procurement">Back to calls</a>
+  $handler->display->display_options['header']['area_text_custom']['content'] = '<a href="/inside-eu-osha/procurement">Back to calls</a>
 ';
   $handler->display->display_options['defaults']['filter_groups'] = FALSE;
   $handler->display->display_options['defaults']['filters'] = FALSE;
@@ -347,7 +347,7 @@ function osha_calls_views_default_views() {
     t('Ongoing block'),
     t('Ongoing calls for contractors'),
     t('Archived calls page'),
-    t('<a href="/articles/procurement">Back to calls</a>
+    t('<a href="/inside-eu-osha/procurement">Back to calls</a>
 '),
     t('Archived calls block'),
     t('View all'),

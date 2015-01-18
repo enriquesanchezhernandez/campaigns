@@ -20,7 +20,7 @@ function osha_blog_default_fe_block_settings() {
     'machine_name' => 'blog_feed',
     'module' => 'block',
     'node_types' => array(),
-    'pages' => 'articles/blog
+    'pages' => 'node/5445
 blog/*
 */blog/*',
     'roles' => array(),
@@ -62,7 +62,7 @@ blog/*
     'i18n_mode' => 0,
     'module' => 'twitter_block',
     'node_types' => array(),
-    'pages' => 'articles/blog
+    'pages' => 'node/5445
 blog/*
 */blog/*
 search/blog*',
@@ -106,7 +106,7 @@ search/blog*',
     'module' => 'views',
     'node_types' => array(),
     'pages' => 'search/blog
-articles/blog
+node/5445
 blog/*
 */blog/*',
     'roles' => array(),
@@ -148,7 +148,7 @@ blog/*
     'i18n_mode' => 0,
     'module' => 'views',
     'node_types' => array(),
-    'pages' => 'articles/blog',
+    'pages' => 'node/5445',
     'roles' => array(),
     'themes' => array(
       'bartik' => array(
@@ -188,7 +188,7 @@ blog/*
     'i18n_mode' => 0,
     'module' => 'views',
     'node_types' => array(),
-    'pages' => 'articles/blog
+    'pages' => 'node/5445
 blog/*
 */blog/*
 search/blog*',

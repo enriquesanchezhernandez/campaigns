@@ -20,7 +20,8 @@ function osha_blocks_default_fe_block_settings() {
     'machine_name' => 'osha_job_vacancies_reserve_block',
     'module' => 'block',
     'node_types' => array(),
-    'pages' => 'articles/careers',
+    'pages' => 'node/21
+inside-eu-osha/careers',
     'roles' => array(),
     'themes' => array(
       'bartik' => array(
@@ -182,7 +183,8 @@ function osha_blocks_default_fe_block_settings() {
     'machine_name' => 'vacancies_link_to_closed',
     'module' => 'block',
     'node_types' => array(),
-    'pages' => 'articles/careers',
+    'pages' => 'node/21
+inside-eu-osha/careers',
     'roles' => array(),
     'themes' => array(
       'bartik' => array(

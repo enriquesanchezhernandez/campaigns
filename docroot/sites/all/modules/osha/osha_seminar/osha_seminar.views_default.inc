@@ -45,7 +45,7 @@ function osha_seminar_views_default_views() {
   $handler->display->display_options['header']['area_text_custom']['id'] = 'area_text_custom';
   $handler->display->display_options['header']['area_text_custom']['table'] = 'views';
   $handler->display->display_options['header']['area_text_custom']['field'] = 'area_text_custom';
-  $handler->display->display_options['header']['area_text_custom']['content'] = '<a class="seminar_back-to-seminars back-to-link" href="/articles/seminars">Back to seminars</a>';
+  $handler->display->display_options['header']['area_text_custom']['content'] = '<a class="seminar_back-to-seminars back-to-link" href="/tools-and-publications/seminars">Back to seminars</a>';
   /* No results behavior: Global: Unfiltered text */
   $handler->display->display_options['empty']['area_text_custom']['id'] = 'area_text_custom';
   $handler->display->display_options['empty']['area_text_custom']['table'] = 'views';
@@ -187,7 +187,7 @@ function osha_seminar_views_default_views() {
     t('‹'),
     t('›'),
     t('»'),
-    t('<a class="seminar_back-to-seminars back-to-link" href="/articles/seminars">Back to seminars</a>'),
+    t('<a class="seminar_back-to-seminars back-to-link" href="/tools-and-publications/seminars">Back to seminars</a>'),
     t('No results'),
     t('Multilingual ID'),
     t('Free text search'),

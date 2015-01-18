@@ -57,11 +57,11 @@
 		<a href="https://www.facebook.com/EuropeanAgencyforSafetyandHealthatWork"><img src="/sites/all/themes/osha_frontend/images/facebookTop.png" alt="Facebook"></a>
 		<a href="http://www.linkedin.com/company/european-agency-for-safety-and-health-at-work"><img src="/sites/all/themes/osha_frontend/images/inTop.png" alt="In"></a>
 		<a href="https://www.youtube.com/user/EUOSHA"><img src="/sites/all/themes/osha_frontend/images/youTubeTop.png" alt="YouTube"></a>
-		<a href="<?php echo url('articles/blog', array('alias' => TRUE)); ?>"><img src="/sites/all/themes/osha_frontend/images/bloggerTop.png" alt="Blogger"></a>
+		<a href="<?php echo url('tools-and-publications/blog', array('alias' => TRUE)); ?>"><img src="/sites/all/themes/osha_frontend/images/bloggerTop.png" alt="Blogger"></a>
 	</div>
 </div>
 <div id="languagesAndSearch">
-	<div id="contact"><a href="/articles/news-events"><?php print l(t('News & Events'), 'articles/news-events') ?> | <?php print l(t('Press'), 'press-room') ?> |  <?php print l(t('Contact Us'), 'articles/contact-us') ?> <span class="a_small"><a  onclick="zoomSmall()">a</a></span><span class="a_medium"><a onclick="zoomMedium()">a</a></span><span class="a_big"><a  onclick="zoomBig()">a</a></span></div>
+	<div id="contact"><a href="/articles/news-events"><?php print l(t('News & Events'), 'articles/news-events') ?> | <?php print l(t('Press'), 'press-room') ?> |  <?php print l(t('Contact Us'), 'contact-us') ?> <span class="a_small"><a  onclick="zoomSmall()">a</a></span><span class="a_medium"><a onclick="zoomMedium()">a</a></span><span class="a_big"><a  onclick="zoomBig()">a</a></span></div>
 	<div>
 		<img src="/sites/all/themes/osha_frontend/images/languageico.png" alt="Select language">
 	</div>

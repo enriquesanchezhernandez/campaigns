@@ -428,7 +428,8 @@ search/wiki',
 legislation/directives
 legislation/directives/*
 legislation/directive/*
-articles/european-directives',
+node/11
+safety-and-health-legislation/european-directives',
     'roles' => array(),
     'themes' => array(
       'bartik' => array(

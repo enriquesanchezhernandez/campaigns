@@ -381,7 +381,7 @@ function osha_job_vacancies_views_default_views() {
   $handler->display->display_options['header']['area_text_custom']['id'] = 'area_text_custom';
   $handler->display->display_options['header']['area_text_custom']['table'] = 'views';
   $handler->display->display_options['header']['area_text_custom']['field'] = 'area_text_custom';
-  $handler->display->display_options['header']['area_text_custom']['content'] = '<a href="articles/careers">Careers</a>';
+  $handler->display->display_options['header']['area_text_custom']['content'] = '<a href="inside-eu-osha/careers">Careers</a>';
   $handler->display->display_options['defaults']['empty'] = FALSE;
   /* No results behavior: Global: Text area */
   $handler->display->display_options['empty']['area']['id'] = 'area';
@@ -681,7 +681,7 @@ function osha_job_vacancies_views_default_views() {
     t('Currently, there are no vacancies available in this section.'),
     t('Ongoing job vacancies'),
     t('Shortlisted job vacancies'),
-    t('<a href="articles/careers">Careers</a>'),
+    t('<a href="inside-eu-osha/careers">Careers</a>'),
     t('No Results Messege'),
     t('Published'),
     t('Open Vacancies block'),
