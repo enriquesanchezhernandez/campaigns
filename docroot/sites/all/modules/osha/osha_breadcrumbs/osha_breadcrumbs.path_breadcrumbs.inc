@@ -500,7 +500,7 @@ legal-notice',
   $path_breadcrumb->api_version = 1;
   $path_breadcrumb->machine_name = 'press_releases_view';
   $path_breadcrumb->name = 'Press Releases view';
-  $path_breadcrumb->path = 'press-releases';
+  $path_breadcrumb->path = 'inside-eu-osha/press-releases';
   $path_breadcrumb->data = array(
     'titles' => array(
       0 => 'Inside EU-OSHA',
@@ -509,7 +509,7 @@ legal-notice',
     ),
     'paths' => array(
       0 => 'inside-eu-osha',
-      1 => 'press-room',
+      1 => 'inside-eu-osha/press-room',
       2 => '<none>',
     ),
     'home' => 1,
@@ -524,7 +524,7 @@ legal-notice',
   $path_breadcrumb->api_version = 1;
   $path_breadcrumb->machine_name = 'press_room_view';
   $path_breadcrumb->name = 'Press Room view';
-  $path_breadcrumb->path = 'press-room';
+  $path_breadcrumb->path = 'inside-eu-osha/press-room';
   $path_breadcrumb->data = array(
     'titles' => array(
       0 => 'Inside EU-OSHA',
