@@ -29,6 +29,7 @@ files[] = content.press_release.migrate.inc
 files[] = content.publications.migrate.inc
 files[] = content.seminars.migrate.inc
 files[] = content.wiki.migrate.inc
+files[] = content.infographics.migrate.inc
 files[] = files.migrate.inc
 files[] = images.migrate.inc
 files[] = utils.api.inc
