@@ -462,7 +462,7 @@ tools-and-publications/blog',
   $path_breadcrumb->path = 'search/publications';
   $path_breadcrumb->data = array(
     'titles' => array(
-      0 => 'Tools and resources',
+      0 => 'Tools and publications',
       1 => 'Publications',
     ),
     'paths' => array(
@@ -550,7 +550,7 @@ tools-and-publications/blog',
   $path_breadcrumb->path = 'node/%node';
   $path_breadcrumb->data = array(
     'titles' => array(
-      0 => 'Tools and Resources',
+      0 => 'Tools and publications',
       1 => '!page_title',
     ),
     'paths' => array(
@@ -594,7 +594,7 @@ tools-and-publications/blog',
   $path_breadcrumb->path = 'search/seminars';
   $path_breadcrumb->data = array(
     'titles' => array(
-      0 => 'Tools & Publications ',
+      0 => 'Tools and publications ',
       1 => 'EU-OSHA seminars',
       2 => '!page_title',
     ),
@@ -642,7 +642,7 @@ tools-and-publications/blog',
   $path_breadcrumb->path = 'search/blog';
   $path_breadcrumb->data = array(
     'titles' => array(
-      0 => 'Tools & Publications',
+      0 => 'Tools and publications',
       1 => 'EU-OSHA Blog',
     ),
     'paths' => array(
