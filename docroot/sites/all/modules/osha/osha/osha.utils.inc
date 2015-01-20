@@ -51,43 +51,44 @@ function osha_add_menu_position_rule($rule_name, $parent_menu, $condition) {
  * @return array ('lang code' => 'lang native name')
  */
 
-function sort_language_list($languages) {
+function osha_sort_language_list($languages) {
   $lang_order = array(
-    'bg' => '',
-    'cs' => '',
-    'da' => '',
-    'de' => '',
-    'et' => '',
-    'el' => '',
-    'en' => '',
-    'es' => '',
-    'fr' => '',
-    'hr' => '',
-    'is' => '',
-    'it' => '',
-    'lv' => '',
-    'lt' => '',
-    'hu' => '',
-    'mt' => '',
-    'nl' => '',
-    'no' => '',
-    'pl' => '',
-    'pt' => '',
-    'ro' => '',
-    'sk' => '',
-    'sl' => '',
-    'fi' => '',
-    'sv' => ''
+    'bg',
+    'cs',
+    'da',
+    'de',
+    'et',
+    'el',
+    'en',
+    'es',
+    'fr',
+    'hr',
+    'is',
+    'it',
+    'lv',
+    'lt',
+    'hu',
+    'mt',
+    'nl',
+    'no',
+    'pl',
+    'pt',
+    'ro',
+    'sk',
+    'sl',
+    'fi',
+    'sv'
   );
 
+  $result = array();
+
   if (!empty($languages)) {
-    foreach ($lang_order as $key => $value) {
+    foreach ($lang_order as $key) {
       if (isset($languages[$key])) {
-        $lang_order[$key] = $languages[$key];
+        $result[$key] = $languages[$key];
       }
     }
-    return $lang_order;
-  } else {
-    return array();
   }
+
+  return $result;
 }
