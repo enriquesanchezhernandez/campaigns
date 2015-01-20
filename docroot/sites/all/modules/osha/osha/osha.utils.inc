@@ -8,10 +8,10 @@
  */
 function osha_add_menu_position_rule($rule_name, $parent_menu, $condition) {
   if (module_exists('menu_position') && module_load_include('inc', 'menu_position', 'menu_position.admin')) {
-    $query = db_query('SELECT * FROM {menu_position_rules} where admin_title = :rule_name', 
+    $query = db_query('SELECT * FROM {menu_position_rules} where admin_title = :rule_name',
       array(':rule_name' => $rule_name))->rowCount();
     if (!$query) {
-      drupal_set_message('Create menu position rule '.$rule_name, 'status');
+      drupal_set_message('Create menu position rule ' . $rule_name, 'status');
       $options = menu_parent_options(menu_get_menus(), array('mlid' => 0));
       if (!is_array($parent_menu)) {
         $parent_menu = array($parent_menu);
@@ -24,22 +24,70 @@ function osha_add_menu_position_rule($rule_name, $parent_menu, $condition) {
         }
       }
       if ($menu_entry === FALSE) {
-        drupal_set_message('Cannot find menu link for '.$rule_name.
+        drupal_set_message('Cannot find menu link for ' . $rule_name .
           ', using the main menu instead.', 'error');
         $menu_entry = 'main-menu:0';
       }
       $values = array(
-          'admin_title' => $rule_name,
-          'plid' => $menu_entry,
-          'op' => 'Save',
+        'admin_title' => $rule_name,
+        'plid' => $menu_entry,
+        'op' => 'Save',
       );
       $values = array_merge($values, $condition);
       $form_state = array(
         'values' => $values
       );
       drupal_form_submit('menu_position_add_rule_form', $form_state);
-    } else {
-      drupal_set_message('Menu position rule '.$rule_name.' already exists.', 'status');
     }
+    else {
+      drupal_set_message('Menu position rule ' . $rule_name . ' already exists.', 'status');
+    }
+  }
+}
+
+/**
+ * Function to sort options of language dropdown
+ * @param array languages ('lang code' => 'lang native name'), e.g. 'en' => 'English'
+ * @return array ('lang code' => 'lang native name')
+ */
+
+function sort_language_list($languages) {
+  $lang_order = array(
+    'bg' => '',
+    'cs' => '',
+    'da' => '',
+    'de' => '',
+    'et' => '',
+    'el' => '',
+    'en' => '',
+    'es' => '',
+    'fr' => '',
+    'hr' => '',
+    'is' => '',
+    'it' => '',
+    'lv' => '',
+    'lt' => '',
+    'hu' => '',
+    'mt' => '',
+    'nl' => '',
+    'no' => '',
+    'pl' => '',
+    'pt' => '',
+    'ro' => '',
+    'sk' => '',
+    'sl' => '',
+    'fi' => '',
+    'sv' => ''
+  );
+
+  if (!empty($languages)) {
+    foreach ($lang_order as $key => $value) {
+      if (isset($languages[$key])) {
+        $lang_order[$key] = $languages[$key];
+      }
+    }
+    return $lang_order;
+  } else {
+    return array();
   }
 }
