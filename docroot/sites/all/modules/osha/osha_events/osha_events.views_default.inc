@@ -1234,7 +1234,7 @@ function osha_events_views_default_views() {
   $handler->display->display_options['filters']['search_api_language']['value'] = array(
     'en' => 'en',
   );
-  $handler->display->display_options['path'] = 'events';
+  $handler->display->display_options['path'] = 'tools-and-publications/events';
 
   /* Display: Block */
   $handler = $view->new_display('block', 'Block', 'block_1');

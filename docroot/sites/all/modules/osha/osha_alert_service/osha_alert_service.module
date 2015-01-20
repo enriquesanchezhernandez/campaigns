@@ -139,7 +139,7 @@ function osha_alert_service_block_info() {
   $blocks['osha_publication_rss'] = array(
     'info' => t('Publication feed'),
     'visibility' => BLOCK_VISIBILITY_LISTED,
-    'pages' => 'search/publications',
+    'pages' => 'tools-and-publications/publications',
     'cache' => DRUPAL_CACHE_GLOBAL,
     'weight' => 0
   );

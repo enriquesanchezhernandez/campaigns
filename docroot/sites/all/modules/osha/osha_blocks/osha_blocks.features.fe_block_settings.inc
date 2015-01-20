@@ -101,7 +101,7 @@ inside-eu-osha/careers',
     'machine_name' => 'publications_header',
     'module' => 'block',
     'node_types' => array(),
-    'pages' => 'search/publications',
+    'pages' => 'tools-and-publications/publications',
     'roles' => array(),
     'themes' => array(
       'bartik' => array(
