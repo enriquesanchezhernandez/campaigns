@@ -102,7 +102,7 @@ function osha_events_default_fe_block_settings() {
     'i18n_mode' => 0,
     'module' => 'views',
     'node_types' => array(),
-    'pages' => 'events
+    'pages' => 'tools-and-publications/events
 copia_events',
     'roles' => array(),
     'themes' => array(

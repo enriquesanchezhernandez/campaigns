@@ -726,5 +726,75 @@ legal-notice',
   $path_breadcrumb->weight = 0;
   $export['contact_form'] = $path_breadcrumb;
 
+  // Events
+  $path_breadcrumb = new stdClass();
+  $path_breadcrumb->api_version = 1;
+  $path_breadcrumb->machine_name = 'events';
+  $path_breadcrumb->name = 'Events';
+  $path_breadcrumb->path = 'node/%node';
+  $path_breadcrumb->data = array(
+    'titles' => array(
+      0 => 'Tools and publications',
+      1 => 'Events',
+      2 => '!page_title',
+    ),
+    'paths' => array(
+      0 => 'tools-and-publications',
+      1 => 'tools-and-publications/events',
+      2 => '<none>',
+    ),
+    'home' => 1,
+    'translatable' => 0,
+    'arguments' => array(
+      'node' => array(
+        'position' => 1,
+        'argument' => 'entity_id:node',
+        'settings' => array(
+          'identifier' => 'Node: ID',
+        ),
+      ),
+    ),
+    'access' => array(
+      'plugins' => array(
+        0 => array(
+          'name' => 'node_type',
+          'settings' => array(
+            'type' => array(
+              'events' => 'events',
+            ),
+          ),
+          'context' => 'node',
+          'not' => FALSE,
+        ),
+      ),
+      'logic' => 'and',
+    ),
+  );
+  $path_breadcrumb->weight = 0;
+  $export['events'] = $path_breadcrumb;
+
+  // Events list
+  $path_breadcrumb = new stdClass();
+  $path_breadcrumb->api_version = 1;
+  $path_breadcrumb->machine_name = 'events_list';
+  $path_breadcrumb->name = 'Events list';
+  $path_breadcrumb->path = 'tools-and-publications/events';
+  $path_breadcrumb->data = array(
+    'titles' => array(
+      0 => 'Tools and publications',
+      1 => 'Events',
+    ),
+    'paths' => array(
+      0 => 'tools-and-publications',
+      1 => '<none>',
+    ),
+    'home' => 1,
+    'translatable' => 1,
+    'arguments' => array(),
+    'access' => array(),
+  );
+  $path_breadcrumb->weight = 0;
+  $export['events_list'] = $path_breadcrumb;
+
   return $export;
 }
