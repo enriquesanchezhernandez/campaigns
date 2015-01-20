@@ -7,6 +7,9 @@ When patching a contrib module, the following steps should be followed:
 
 List of patches (most recent first)
 
+* ldap
+  * ldap-property_of_non_object_in_ldap_authentication_init-2182413-3.patch
+
 * scanner
   * patches by Ruben@BBM - disable Undo and avoid to creating a new revision; permissions for S&R tab
 
