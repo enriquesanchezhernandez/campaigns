@@ -1,6 +1,7 @@
 <?php
 
 include_once 'osha.features.inc';
+include_once 'osha.utils.inc';
 
 define('OSHA_ARTICLE_CONTENT_TYPE_ARTICLE', 'article');
 define('OSHA', 'OSHA');
@@ -494,6 +495,16 @@ function osha_form_node_form_alter(&$form, &$form_state, $form_id) {
     $form['field_character_count']['#access'] = FALSE;
   }
 
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ *
+ * Order the dropdown options for language list
+ */
+function osha_form_lang_dropdown_form_alter(&$form, &$form_state, $form_id){
+  $options_lang = $form['lang_dropdown_select']['#options'];
+  $form['lang_dropdown_select']['#options'] = sort_language_list($options_lang);
 }
 
 /**
