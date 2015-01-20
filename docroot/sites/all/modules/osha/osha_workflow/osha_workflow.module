@@ -539,7 +539,7 @@ function osha_workflow_form_alter(&$form, &$form_state, $form_id) {
             // Hijack the form & add Done button.
             $form['submit'] = array(
               '#type' => 'submit',
-              '#value' => t('Approve'),
+              '#value' => t('Done'),
               '#submit' => array('osha_workflow_form_moderate_approve_submit'),
             );
             if ($is_workflow_admin && $next->uid != $user->uid) {
