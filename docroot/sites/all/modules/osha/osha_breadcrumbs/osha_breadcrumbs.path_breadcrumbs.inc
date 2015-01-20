@@ -551,11 +551,13 @@ tools-and-publications/blog',
   $path_breadcrumb->data = array(
     'titles' => array(
       0 => 'Tools and publications',
-      1 => '!page_title',
+      1 => 'Publications',
+      2 => '!page_title',
     ),
     'paths' => array(
       0 => 'tools-and-publications',
-      1 => '<none>',
+      1 => 'tools-and-publications/publications',
+      2 => '<none>',
     ),
     'home' => 1,
     'translatable' => 0,
@@ -795,6 +797,53 @@ legal-notice',
   );
   $path_breadcrumb->weight = 0;
   $export['events_list'] = $path_breadcrumb;
+
+  //  Top level nodes
+  $path_breadcrumb = new stdClass();
+  $path_breadcrumb->api_version = 1;
+  $path_breadcrumb->machine_name = 'top_level_nodes';
+  $path_breadcrumb->name = 'Top level nodes';
+  $path_breadcrumb->path = 'node/%node';
+  $path_breadcrumb->data = array(
+    'titles' => array(
+      0 => '!page_title',
+    ),
+    'paths' => array(
+      0 => '<none>',
+    ),
+    'home' => 1,
+    'translatable' => 0,
+    'arguments' => array(
+      'node' => array(
+        'position' => 1,
+        'argument' => 'entity_id:node',
+        'settings' => array(
+          'identifier' => 'Node: ID',
+        ),
+      ),
+    ),
+    'access' => array(
+      'plugins' => array(
+        1 => array(
+          'name' => 'path_visibility',
+          'settings' => array(
+            'visibility_setting' => '1',
+            'paths' => 'themes
+emerging-risks
+surveys-and-statistics-osh
+safety-and-health-legislation
+tools-and-publications
+inside-eu-osha',
+          ),
+          'context' => 'empty',
+          'not' => FALSE,
+        ),
+      ),
+      'logic' => 'and',
+    ),
+  );
+  $path_breadcrumb->weight = 0;
+  $export['top_level_nodes'] = $path_breadcrumb;
 
   return $export;
 }
