@@ -31,7 +31,7 @@ function osha_press_contact_fe_nodequeue_export_fields() {
     'name' => 'press_contacts_queue',
     'title' => 'Press Contacts',
     'subqueue_title' => '',
-    'size' => 3,
+    'size' => 0,
     'link' => '',
     'link_remove' => '',
     'owner' => 'nodequeue',
