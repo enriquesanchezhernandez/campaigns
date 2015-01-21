@@ -14,7 +14,7 @@ function osha_press_contact_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'comment_anonymous_press_contact';
-  $strongarm->value = 0;
+  $strongarm->value = '0';
   $export['comment_anonymous_press_contact'] = $strongarm;
 
   $strongarm = new stdClass();
@@ -131,16 +131,16 @@ function osha_press_contact_strongarm() {
     'extra_fields' => array(
       'form' => array(
         'metatags' => array(
-          'weight' => '8',
+          'weight' => '13',
         ),
         'title' => array(
           'weight' => '0',
         ),
         'path' => array(
-          'weight' => '7',
+          'weight' => '12',
         ),
         'redirect' => array(
-          'weight' => '6',
+          'weight' => '11',
         ),
         'language' => array(
           'weight' => '2',
