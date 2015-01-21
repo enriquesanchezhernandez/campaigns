@@ -33,6 +33,24 @@ class MigrationUtil {
     return $file;
   }
 
+  public static function getSourceFileByKey($arguments, $key) {
+    $file = NULL;
+    if (isset($arguments[$key])) {
+      $file = $arguments[$key];
+      if (!file_exists($file) || !is_readable($file)) {
+        throw new Exception(
+          t('Cannot read migration file @file', array('@file' => $file))
+        );
+      }
+    }
+    else {
+      throw new Exception(
+        t('Invalid migration setup: missing `'. $key. '` parameter (source)')
+      );
+    }
+    return $file;
+  }
+
 
   /**
    * Find terms in the given vocabulary by matching on its fields (i.e. name).
@@ -647,6 +665,35 @@ class MigrationUtil {
     date_default_timezone_set($default_tz);
 
     return $date;
+  }
+
+  /**
+   * Get iso2 code of a Country name (from standard Drupal list)
+   */
+  public static function getCountryIso2ByName($name) {
+    $countries = country_get_list();
+    foreach($countries as $iso2 => $country) {
+      if (strtoupper($country) == strtoupper($name)) {
+        return $iso2;
+      }
+    }
+    return NULL;
+  }
+
+  /**
+   * Get iso2 code for Country names that are not in the standard list.
+   */
+  public static function getNonStandardCountry($name) {
+    $countries = array(
+      'MK' => 'THE FORMER YUGOSLAV REPUBLIC OF MACEDONIA',
+      'XK' => 'KOSOVO UNDER UNSCR 1244',
+    );
+    foreach($countries as $iso2 => $country) {
+      if (strtoupper($country) == strtoupper($name)) {
+        return $iso2;
+      }
+    }
+    return NULL;
   }
 }
 

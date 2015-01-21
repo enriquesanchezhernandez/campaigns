@@ -22,6 +22,9 @@ define('OSHA_MIGRATION_CONTENT_TYPE_SEMINAR', 'Seminar');
 define('OSHA_MIGRATION_CONTENT_TYPE_WIKI', 'Wiki');
 define('OSHA_MIGRATION_CONTENT_TYPE_LEGISLATION', 'Legislation');
 define('OSHA_MIGRATION_CONTENT_TYPE_INFOGRAPHICS', 'Infographics');
+define('OSHA_MIGRATION_CONTENT_TYPE_FOCAL_POINT', 'FocalPoint');
+define('OSHA_MIGRATION_CONTENT_TYPE_BOARD', 'BoardMembers');
+define('OSHA_MIGRATION_CONTENT_TYPE_BUREAU', 'BureauMembers');
 define('OSHA_MIGRATION_FILES', 'Files');
 define('OSHA_MIGRATION_IMAGES', 'Images');
 define('OSHA_MIGRATION_CONTENT_TYPE_PRESS_RELEASE', 'PressRelease');
@@ -190,6 +193,15 @@ function osha_migration_migrate_api() {
     $migrations[OSHA_MIGRATION_CONTENT_TYPE_INFOGRAPHICS] = array(
       'class_name' => 'MigrateOshaInfographics',
       'file_name' => $external_data_dir . '/export-local/infographics.txt',
+    );
+  }
+
+  if (is_readable($external_data_dir . '/export-local/focal_points.xml')) {
+    $migrations[OSHA_MIGRATION_CONTENT_TYPE_FOCAL_POINT] = array(
+      'class_name' => 'MigrateOshaFocalPoints',
+      'file_name' => $external_data_dir . '/export-local/focal_points.xml',
+      'file_name_board' => $external_data_dir . '/export-local/board_members.xml',
+      'file_name_bureau' => $external_data_dir . '/export-local/bureau_members.xml',
     );
   }
 
