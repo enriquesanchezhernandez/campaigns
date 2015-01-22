@@ -5,6 +5,9 @@
  */
 class OshaMigrateJobVacancies extends OSHADynamicMigration {
 
+  /*path pattern*/
+  const PATH_PATTERN = '/([\w\d-_\/]+)\/jobs\/([\w\d-_]+)/';
+
   /**
    * {@inheritdoc}
    */
@@ -76,13 +79,13 @@ class OshaMigrateJobVacancies extends OSHADynamicMigration {
     $this->addFieldMapping('field_publication_date', 'publication_date');
     $this->addFieldMapping('field_archived', 'archived');
     $this->addFieldMapping('field_expiration_date', 'expiration_date');
-
-    $this->addFieldMapping('path', 'id');
+    
     $this->addFieldMapping('created', 'creation_date');
     $this->addFieldMapping('changed', 'modification_date');
     $this->addFieldMapping('uid')->defaultValue(1);
 
     $this->addUnmigratedSources(array(
+      'path',
       'author',
       'description'
     ));
@@ -197,6 +200,31 @@ class OshaMigrateJobVacancies extends OSHADynamicMigration {
       if ($has_translation) {
         MigrationUtil::setTranslation($translation_handler, $entity, $row, $language);
       }
+    }
+  }
+
+  /**
+   * Sets the node aliases and redirects after the migration, nid is available.
+   *
+   * @param object $entity
+   *   Entity to be saved
+   * @param object $row
+   *   Source row
+   */
+  public function complete($entity, $row) {
+    if (preg_match(self::PATH_PATTERN, $row->path[$row->language], $matches)) {
+      $tmp_path = $row->path;
+      $row->path[$row->language] = 'inside-eu-osha/careers/' . $matches[2];
+      MigrationUtil::createAliases($entity, $row, 'node', 'nid');
+      $row->path = $tmp_path;
+
+      // create redirect
+      MigrationUtil::createRedirects($entity, $row->path[$row->language]);
+      parent::createRedirectsFromAliases($entity, $row);
+    }
+    else {
+      // Call MigrationUtil::createAliases
+      parent::complete($entity, $row);
     }
   }
 }
