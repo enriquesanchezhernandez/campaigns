@@ -6,6 +6,9 @@
  */
 class MigrateOshaCaseStudy extends OSHADynamicMigration {
 
+  /*path pattern*/
+  const PATH_PATTERN = '/data\/case-studies\/([\w\d-_]+)/';
+
   /**
    * {@inheritdoc}
    */
@@ -206,6 +209,34 @@ class MigrateOshaCaseStudy extends OSHADynamicMigration {
       if ($has_translation) {
         MigrationUtil::setTranslation($translation_handler, $entity, $row, $language);
       }
+    }
+  }
+
+  /**
+   * Sets the node aliases and redirects after the migration, nid is available.
+   *
+   * @param object $entity
+   *   Entity to be saved
+   * @param object $row
+   *   Source row
+   */
+  public function complete($entity, $row) {
+    if (preg_match(self::PATH_PATTERN, $row->path, $matches)) {
+      //create alias
+      $args = array(
+        'source' => 'node/' . $entity->nid,
+        'alias' => 'tools-and-publications/case-studies/' . $matches[1],
+        'language' => 'en'
+      );
+      path_save($args);
+
+      // create redirect
+      MigrationUtil::createRedirects($entity, $row->id);
+      parent::createRedirectsFromAliases($entity, $row);
+    }
+    else {
+      // call MigrationUtil::createAliases
+      parent::complete($entity, $row);
     }
   }
 
