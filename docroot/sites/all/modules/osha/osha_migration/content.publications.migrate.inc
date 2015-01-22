@@ -5,6 +5,9 @@
  */
 class OshaMigratePublications extends OSHADynamicMigration {
 
+  /*path pattern*/
+  const PATH_PATTERN = '/publications\/([\w\d-_\/]+)/';
+
   public $migrateMapFiles;
 
   /**
@@ -370,6 +373,11 @@ class OshaMigratePublications extends OSHADynamicMigration {
     foreach ($languages as $language) {
       if (isset($row->path[$language])) {
 
+        // Create alias
+        if (preg_match(self::PATH_PATTERN, $row->id, $matches)) {
+          $row->path[$language] = 'tools-and-publications/publications/' . $matches[1];
+        }
+
         //check if source redirect exists
         $source = $row->path[$language] . '/view';
         $source_redirects = redirect_load_by_source($source,$language);
@@ -391,6 +399,10 @@ class OshaMigratePublications extends OSHADynamicMigration {
         }
       }
     }
+    MigrationUtil::createAliases($entity, $row, 'node', 'nid');
+    // create redirect
+    MigrationUtil::createRedirects($entity, $row->id);
+    self::createRedirectsFromAliases($entity, $row);
   }
 }
 
