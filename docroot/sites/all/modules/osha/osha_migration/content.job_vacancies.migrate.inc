@@ -79,7 +79,7 @@ class OshaMigrateJobVacancies extends OSHADynamicMigration {
     $this->addFieldMapping('field_publication_date', 'publication_date');
     $this->addFieldMapping('field_archived', 'archived');
     $this->addFieldMapping('field_expiration_date', 'expiration_date');
-    
+
     $this->addFieldMapping('created', 'creation_date');
     $this->addFieldMapping('changed', 'modification_date');
     $this->addFieldMapping('uid')->defaultValue(1);
