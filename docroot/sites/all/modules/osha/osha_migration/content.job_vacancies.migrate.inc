@@ -212,14 +212,14 @@ class OshaMigrateJobVacancies extends OSHADynamicMigration {
    *   Source row
    */
   public function complete($entity, $row) {
-    if (preg_match(self::PATH_PATTERN, $row->path[$row->language], $matches)) {
+    if (preg_match(self::PATH_PATTERN, $row->id, $matches)) {
       $tmp_path = $row->path;
       $row->path[$row->language] = 'inside-eu-osha/careers/' . $matches[2];
       MigrationUtil::createAliases($entity, $row, 'node', 'nid');
       $row->path = $tmp_path;
 
       // create redirect
-      MigrationUtil::createRedirects($entity, $row->path[$row->language]);
+      MigrationUtil::createRedirects($entity, $row->id);
       parent::createRedirectsFromAliases($entity, $row);
     }
     else {
