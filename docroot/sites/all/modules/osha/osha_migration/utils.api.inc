@@ -582,7 +582,7 @@ class MigrationUtil {
         'language' => $language,
       );
       // Check if path already exists.
-      $existing_path = path_load(array($args));
+      $existing_path = path_load($args);
       if (empty($existing_path)) {
         path_save($args);
       }
