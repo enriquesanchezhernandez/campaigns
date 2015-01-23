@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the OSHA FOP Page feature.
+ */
+
+include_once 'osha_fop_page.features.inc';
