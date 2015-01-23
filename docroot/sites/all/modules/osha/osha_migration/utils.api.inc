@@ -557,7 +557,8 @@ class MigrationUtil {
 
   public static function setTranslation(EntityTranslationHandlerInterface &$translation_handler, $entity, $row, $language) {
     // Init Translation to set original value.
-    if (empty($entity->translations->original)) {
+    $is_new = (empty($entity->tid) && empty($entity->nid));
+    if (!$is_new && empty($entity->translations->original)) {
       $translation_handler->initTranslations();
       $translation_handler->saveTranslations();
     }
@@ -599,7 +600,7 @@ class MigrationUtil {
         'language' => $language,
       );
       // Check if path already exists.
-      $existing_path = path_load(array($args));
+      $existing_path = path_load($args);
       if (empty($existing_path)) {
         path_save($args);
       }
@@ -692,6 +693,23 @@ class MigrationUtil {
       if (strtoupper($country) == strtoupper($name)) {
         return $iso2;
       }
+    }
+    return NULL;
+  }
+
+  /**
+   * Get tids of the Term Countries with a specified iso2.
+   */
+  public function getCountryTermByISO2($iso2) {
+    $voc = taxonomy_vocabulary_machine_name_load('country');
+    $query = new EntityFieldQuery();
+    $query->entityCondition('entity_type', 'taxonomy_term')
+      ->propertyCondition('vid', $voc->vid)
+      ->fieldCondition('field_iso2', 'value', strtoupper($iso2));
+    $result = $query->execute();
+    if (isset($result['taxonomy_term'])) {
+      $tids = array_keys($result['taxonomy_term']);
+      return current($tids);
     }
     return NULL;
   }

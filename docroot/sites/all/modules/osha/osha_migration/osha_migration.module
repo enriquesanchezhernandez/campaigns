@@ -25,6 +25,7 @@ define('OSHA_MIGRATION_CONTENT_TYPE_INFOGRAPHICS', 'Infographics');
 define('OSHA_MIGRATION_CONTENT_TYPE_FOCAL_POINT', 'FocalPoint');
 define('OSHA_MIGRATION_CONTENT_TYPE_BOARD', 'BoardMembers');
 define('OSHA_MIGRATION_CONTENT_TYPE_BUREAU', 'BureauMembers');
+define('OSHA_MIGRATION_CONTENT_TYPE_FOP_PAGES', 'FocalPointPages');
 define('OSHA_MIGRATION_FILES', 'Files');
 define('OSHA_MIGRATION_IMAGES', 'Images');
 define('OSHA_MIGRATION_CONTENT_TYPE_PRESS_RELEASE', 'PressRelease');
@@ -205,6 +206,14 @@ function osha_migration_migrate_api() {
     );
   }
 
+  if (is_readable($external_data_dir . '/export/focal_point_pages.txt')) {
+    $migrations[OSHA_MIGRATION_CONTENT_TYPE_FOP_PAGES] = array(
+      'class_name' => 'MigrateOshaFOPPages',
+      'file_name' => $external_data_dir . '/export/focal_point_pages.txt',
+      'file_name_links' => $external_data_dir . '/export/focal_point_links.txt',
+    );
+  }
+
   $api = array(
     'api' => 2,
     'migrations' => $migrations,
@@ -237,6 +246,13 @@ function osha_migration_get_data_dir($subdirectory = '') {
     }
   }
   return $ret;
+}
+
+/**
+ * Implements hook_countries_alter().
+ */
+function osha_migration_countries_alter(&$countries) {
+  $countries['UK'] = 'United Kingdom';
 }
 
 /**

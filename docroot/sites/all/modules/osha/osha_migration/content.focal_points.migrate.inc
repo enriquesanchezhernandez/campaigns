@@ -46,7 +46,7 @@ class MigrateOshaFocalPoints extends OSHADynamicMigration {
     $this->addFieldMapping('title_field', 'title_field');
     $this->addFieldMapping('field_press_contact_phone', 'field_press_contact_phone');
     $this->addFieldMapping('field_press_contact_location', 'field_press_contact_location');
-    $this->addFieldMapping('field_country_iso2', 'field_country_iso2');
+//    $this->addFieldMapping('field_country', 'field_country');
     $this->addFieldMapping('field_zip_code', 'field_zip_code');
     $this->addFieldMapping('field_city', 'field_city');
     $this->addFieldMapping('field_contact_type', 'field_contact_type');
@@ -86,6 +86,7 @@ class MigrateOshaFocalPoints extends OSHADynamicMigration {
       'field_tags:ignore_case',
       'field_thesaurus:create_term',
       'field_thesaurus:ignore_case',
+      'field_country',
       'comment',
     ));
   }
@@ -105,17 +106,6 @@ class MigrateOshaFocalPoints extends OSHADynamicMigration {
    * {@inheritdoc}
    */
   public function prepareRow($row) {
-    $country = MigrationUtil::getCountryIso2ByName($row->field_country_iso2);
-    if ($country == NULL) {
-      $country = MigrationUtil::getNonStandardCountry($row->field_country_iso2);
-      if ($country == NULL) {
-        $this->displayMessage('Focal Points Country '
-          . $row->field_country_iso2 . ' not found', 'warning');
-      }
-    }
-    $row->field_country_iso2 = $country;
-
-
     return TRUE;
   }
 
@@ -128,7 +118,28 @@ class MigrateOshaFocalPoints extends OSHADynamicMigration {
    *   Source row
    */
   public function prepare($entity, $row) {
-
+    $country = MigrationUtil::getCountryIso2ByName($row->field_country_iso2);
+    if ($country == NULL) {
+      $country = MigrationUtil::getNonStandardCountry($row->field_country_iso2);
+      if ($country == NULL) {
+        $this->displayMessage('Focal Points Country '
+          . $row->field_country_iso2 . ' not found', 'warning');
+        $row->field_country_iso2 = NULL;
+      }
+    }
+    else {
+      $tid = MigrationUtil::getCountryTermByISO2($country);
+      if (empty($tid)) {
+        $voc = taxonomy_vocabulary_machine_name_load('country');
+        $term = new stdClass();
+        $term->vid = $voc->vid;
+        $term->name = ucwords($row->field_country_iso2);
+        $term->field_iso2[LANGUAGE_NONE][0]['value'] = $country;
+        taxonomy_term_save($term);
+        $tid = $term->tid;
+      }
+      $entity->field_country[LANGUAGE_NONE][0] = array('tid' => $tid);
+    }
   }
 
   /**
