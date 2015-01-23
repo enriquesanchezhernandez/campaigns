@@ -2,7 +2,8 @@
  * Use 3 grid columns for smaller screens.
  */
 
-@media all and (max-width: 320px) {
+@media screen
+and (max-width: 1006px) {
 
 body {
     background: none repeat scroll 0 0 #FFFFFF!important;

@@ -6408,7 +6408,7 @@ div.contextual-links-wrapper{
 /*EVENTS PORLET*/
 
 #block-views-related-content-block-6{
-	background: url("../images/separator_home.jpg") repeat-x scroll 0% 7.5% rgba(0, 0, 0, 0);
+	background: url("../images/separator_home.jpg") repeat-x scroll 0% 13% rgba(0, 0, 0, 0);
 }
 
 #block-views-related-content-block-6 h2{
@@ -6440,6 +6440,7 @@ div.contextual-links-wrapper{
 
 #block-views-related-content-block-6  .view-related-content{
 	padding-left:0.8em;
+	padding-top: 1em;
 }
 
 
