@@ -6,7 +6,7 @@ pos = nav.offset();
 	jQuery(window).scroll(function(){
 		// Anclamos el menú si el scroll es
 		// mayor a la posición superior del tag
-		if ( (jQuery(this).scrollTop() >= 122)){
+		if ( (jQuery(this).scrollTop() >= 110)){
 		// Añadimos la clase fixes al menú y la clase stickey a breadcrumb para que se siga viendo
 			jQuery('#block-menu-block-1').addClass('fixed');
 			var text = '/blog';
@@ -18,7 +18,7 @@ pos = nav.offset();
 				jQuery('.breadcrumb').addClass('stickey');
 			}			
 		// Eliminamos las clases para volver a la posición original
-		} else if ( (jQuery(this).scrollTop() <= 122)){
+		} else if ( (jQuery(this).scrollTop() <= 110)){
 		// Elimina clase fixes y stickey
 			jQuery('#block-menu-block-1').removeClass('fixed');
 			jQuery('.breadcrumb').removeClass('stickey');

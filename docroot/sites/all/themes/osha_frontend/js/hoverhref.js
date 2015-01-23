@@ -44,7 +44,7 @@ function hoverThemes() {
 	
 	jQuery(".view-infographic div div").each(function() {
 		var obj=jQuery(this);
-		jQuery(".views-field-field-image img",this).mouseover(function() {
+		jQuery(".views-field-field-thumbnail img",this).mouseover(function() {
 		obj.find(".views-field-title").css("border-bottom", "10px solid #DC2E81");
 		obj.find(".views-field-title a").css("background","url('/sites/all/themes/osha_frontend/images/flecha.png') 100% 25% no-repeat").css("padding-right", "1.5em");
 		});
@@ -52,7 +52,7 @@ function hoverThemes() {
 	
 	jQuery(".view-infographic div div").each(function() {
 		var obj=jQuery(this);
-		jQuery(".views-field-field-image img",this).mouseout(function() {
+		jQuery(".views-field-field-thumbnail img",this).mouseout(function() {
 		obj.find(".views-field-title").css("border-bottom", "10px solid #D2DCED");
 		obj.find(".views-field-title a").css("background","none");
 		});

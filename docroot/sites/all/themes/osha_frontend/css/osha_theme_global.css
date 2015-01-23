@@ -2,7 +2,7 @@
  * Use 3 grid columns for smaller screens.
  */
 
-@media all and (max-width: 987px) {
+@media all and (max-width: 320px) {
 
 body {
     background: none repeat scroll 0 0 #FFFFFF!important;
@@ -1102,7 +1102,7 @@ body.page-search-publications aside.sidebars_first {
 /* All Images same style */
 .node-highlight.view-mode-full .field-name-field-image img , .node-news img, .node-article  img {
 	float: none;
-	height: 100%;	
+	height: auto;	
 	max-height: 300px;
 	max-width: 987px;
 	width: 100%;
