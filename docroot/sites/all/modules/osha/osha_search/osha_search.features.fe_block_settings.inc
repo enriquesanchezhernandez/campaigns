@@ -103,7 +103,8 @@ legislation/directive/*',
     'i18n_mode' => 0,
     'module' => 'facetapi',
     'node_types' => array(),
-    'pages' => 'search/*',
+    'pages' => 'search/*
+tools-and-publications/publications',
     'roles' => array(),
     'themes' => array(
       'bartik' => array(
@@ -224,7 +225,8 @@ search/wiki',
     'i18n_mode' => 0,
     'module' => 'osha_search',
     'node_types' => array(),
-    'pages' => 'search/*',
+    'pages' => 'search/*
+tools-and-publications/publications',
     'roles' => array(),
     'themes' => array(
       'bartik' => array(
@@ -243,7 +245,7 @@ search/wiki',
         'region' => 'sidebar_first',
         'status' => 1,
         'theme' => 'osha_frontend',
-        'weight' => -66,
+        'weight' => 1,
       ),
       'seven' => array(
         'region' => 'content',
