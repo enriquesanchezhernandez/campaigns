@@ -414,6 +414,7 @@ $options['init-modules'] = array(
   'twitter_block',
 
   'contact',
+  'field_collection'.
 
   'osha_taxonomies',
   'osha',
