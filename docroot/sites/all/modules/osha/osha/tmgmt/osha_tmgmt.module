@@ -1254,9 +1254,12 @@ function osha_tmgmt_form_tmgmt_job_form_alter(&$form, &$form_state) {
     '#attributes' => array('class' => array('container-inline')),
   );
 
+  unset($languages['tr']);
+  unset($languages['ru']);
+  $untranslated = drupal_map_assoc(array_diff($languages, $target_languages));
   $form['language_info']['target_languages_not'] = array(
     '#type' => 'checkboxes',
-    '#options' => drupal_map_assoc(array_diff($languages, $target_languages)),
+    '#options' => $untranslated,
     '#disabled' => TRUE,
     '#weight' => 2,
     '#attributes' => array('class' => array('container-inline')),
