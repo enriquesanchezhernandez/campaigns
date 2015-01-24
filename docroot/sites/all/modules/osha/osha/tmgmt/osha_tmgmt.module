@@ -2289,5 +2289,6 @@ function osha_tmgmt_osha_tmgmt_i18n_string_list() {
     'You have Rejected this translation',
     'You have Required Translation Validation for this translation',
     'You have set Translation as Ready to Publish.',
-    'You have Validated the translation!',  );
+    'You have Validated the translation!',
+  );
 }

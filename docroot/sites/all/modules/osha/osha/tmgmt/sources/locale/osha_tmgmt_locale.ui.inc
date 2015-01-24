@@ -16,31 +16,16 @@ class OSHATMGMTLocaleSourceUIController extends TMGMTLocaleSourceUIController {
    *   List of i18n strings data.
    */
   function getStrings($textgroup, $search_label = NULL, $missing_target_language = NULL) {
-    $osha = cache_get('osha:osha_tmgmt_i18n_string_list');
-    if (empty($osha)) {
-      $strings = module_invoke_all('osha_tmgmt_i18n_string_list');
-      $strings = array_unique($strings);
-      $osha = array();
-      $all = db_select('locales_source', 'ls')
-        ->fields('ls', array('lid', 'source'))
-        ->condition('ls.textgroup', $textgroup)
-        ->execute()->fetchAllAssoc('lid');
-      foreach ($all as $id => $ob) {
-        if (in_array($ob->source, $strings)) {
-          $osha[] = $id;
-        }
-      }
-      cache_set('osha:osha_tmgmt_i18n_string_list', $osha, 'cache', CACHE_TEMPORARY);
-    }
-    else {
-      $osha = $osha->data;
-    }
     $languages = drupal_map_assoc(array_keys(language_list()));
     $select = db_select('locales_source', 'ls')
       ->fields('ls', array('lid', 'source'))
       ->condition('ls.textgroup', $textgroup)
-      ->condition('ls.lid', $osha, 'in')
       ->orderBy('source');
+    $strings = module_invoke_all('osha_tmgmt_i18n_string_list');
+    if (!empty($strings)) {
+      $select->condition('ls.source', $strings, 'in');
+    }
+
     if (!empty($search_label)) {
       $select->where('LOWER(CAST(ls.source AS CHAR)) LIKE :search',
         array(':search' => "%" . db_like(strtolower($search_label)) . "%"));
