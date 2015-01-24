@@ -837,6 +837,7 @@ function osha_tmgmt_form_alter(&$form, &$form_state, $form_id) {
           ),
         );
       }
+      $form['actions']['accept']['#value'] = 'Publish';
       break;
 
     case 'tmgmt_ui_locale_translation_review_form':
