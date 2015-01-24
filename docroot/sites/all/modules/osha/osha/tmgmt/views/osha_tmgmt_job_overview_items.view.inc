@@ -175,6 +175,10 @@ $handler->display->display_options['fields']['target_language']['format_name'] =
 $handler->display->display_options['fields']['page_count']['id'] = 'page_count';
 $handler->display->display_options['fields']['page_count']['table'] = 'tmgmt_job_item';
 $handler->display->display_options['fields']['page_count']['field'] = 'page_count';
+$handler->display->display_options['fields']['page_count']['set_precision'] = TRUE;
+$handler->display->display_options['fields']['page_count']['precision'] = '2';
+$handler->display->display_options['fields']['page_count']['decimal'] = ',';
+$handler->display->display_options['fields']['page_count']['separator'] = '';
 /* Field: Translation Management Job Item: Character count */
 $handler->display->display_options['fields']['character_count']['id'] = 'character_count';
 $handler->display->display_options['fields']['character_count']['table'] = 'tmgmt_job_item';
@@ -287,6 +291,7 @@ $translatables['osha_job_overview_job_items'] = array(
   t('Source language'),
   t('Target Language'),
   t('Page count'),
+  t(','),
   t('Character count'),
   t('Type'),
   t('Section'),
