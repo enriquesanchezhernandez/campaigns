@@ -7,7 +7,7 @@
 class MigrateOshaNews extends OSHADynamicMigration {
 
   /*path pattern*/
-  const PATH_PATTERN = '/\/([a-z]{2})\/news\/([\w\d-_]+)/';
+  const PATH_PATTERN = '/\/([a-z]{2})\/news\/([\w\d\.\-_]+)/';
 
   /**
    * {@inheritdoc}

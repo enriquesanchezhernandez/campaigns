@@ -7,7 +7,7 @@
 class MigrateOshaBlog extends OSHADynamicMigration {
 
   /*path pattern*/
-  const PATH_PATTERN = '/\/([a-z]{2})\/([\w\d-_\/]+)\/blog\/([\w\d-_]+)/';
+  const PATH_PATTERN = '/\/([a-z]{2})\/([\w\d-_\/]+)\/blog\/([\w\d\.\-_]+)/';
 
   /**
    * {@inheritdoc}

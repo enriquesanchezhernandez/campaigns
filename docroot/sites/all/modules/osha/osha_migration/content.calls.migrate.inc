@@ -7,7 +7,7 @@
 class MigrateOshaCalls extends OSHADynamicMigration {
 
   /*path pattern*/
-  const PATH_PATTERN = '/([\w\d-_]+)\/calls\/([\w\d-_]+)/';
+  const PATH_PATTERN = '/([\w\d-_]+)\/calls\/([\w\d\.\-_]+)/';
 
   /**
    * {@inheritdoc}

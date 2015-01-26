@@ -6,7 +6,7 @@
 class OshaMigrateJobVacancies extends OSHADynamicMigration {
 
   /*path pattern*/
-  const PATH_PATTERN = '/([\w\d-_\/]+)\/jobs\/([\w\d-_]+)/';
+  const PATH_PATTERN = '/([\w\d-_\/]+)\/jobs\/([\w\d\.\-_]+)/';
 
   /**
    * {@inheritdoc}

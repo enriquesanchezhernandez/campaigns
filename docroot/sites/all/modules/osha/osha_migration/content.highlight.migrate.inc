@@ -7,7 +7,7 @@
 class MigrateOshaHighlight extends OSHADynamicMigration {
 
   /*path pattern*/
-  const PATH_PATTERN = '/\/([a-z]{2})\/teaser\/([\w\d-_]+)/';
+  const PATH_PATTERN = '/\/([a-z]{2})\/teaser\/([\w\d\.\-_]+)/';
 
   /**
    * {@inheritdoc}

@@ -7,7 +7,7 @@
 class MigrateOshaPressRelease extends OSHADynamicMigration {
 
   /*path pattern*/
-  const PATH_PATTERN = '/press\/press-releases\/([\w\d-_]+)/';
+  const PATH_PATTERN = '/press\/press-releases\/([\w\d\.\-_]+)/';
 
   /**
    * {@inheritdoc}

@@ -7,7 +7,7 @@
 class MigrateOshaCaseStudy extends OSHADynamicMigration {
 
   /*path pattern*/
-  const PATH_PATTERN = '/data\/case-studies\/([\w\d-_]+)/';
+  const PATH_PATTERN = '/data\/case-studies\/([\w\d\.\-_]+)/';
 
   /**
    * {@inheritdoc}
