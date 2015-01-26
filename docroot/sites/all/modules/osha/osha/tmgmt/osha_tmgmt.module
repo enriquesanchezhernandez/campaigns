@@ -1421,19 +1421,24 @@ function osha_tmgmt_form_tmgmt_job_form_alter(&$form, &$form_state) {
             }
           }
         }
-        $rows[$id] = array(l($wrapper->label(), $url), $statistics);
+        $rows[$job_item->item_type . '-' . $job_item->item_id] = array(l($wrapper->label(), $url), $job_item->item_type, $statistics);
+      }
+      else {
+        $rows[$job_item->item_type . '-' . $job_item->item_id] = array($job_item->label(), $job_item->item_type, '-');
       }
     }
     foreach($rows as &$row) {
-      $title = array();
-      foreach($row[1] as $k => $v) {
-        $title[] = sprintf('%s:%s', $k, $v);
+      if (is_array($row[2])) {
+        $title = array();
+        foreach ($row[2] as $k => $v) {
+          $title[] = sprintf('%s:%s', $k, $v);
+        }
+        $row[2] = sprintf('<span title="%s">%s</span>', implode(', ', $title), implode('/', $row[2]));
       }
-      $row[1] = sprintf('<span title="%s">%s</span>', implode(', ', $title), implode('/', $row[1]));
     }
     $form['nodes']['table'] = array(
       '#type' => 'tableselect',
-      '#header' => array(t('Title'), t('Progress')),
+      '#header' => array('Title', 'Type', 'Progress'),
       '#options' => $rows,
     );
     $all_options = osha_tmgmt_get_job_item_states();
@@ -1510,7 +1515,8 @@ function osha_tmgmt_job_items_mass_change_submit($form, $form_state) {
   $items = $job->getItems();
   $new_state = $values['new_state'];
   foreach ($items as $job_item) {
-    if ($job_item->item_type == 'node' && in_array($job_item->item_id, $publish) && $job_item->state != $new_state) {
+    $id = $job_item->item_type . '-' . $job_item->item_id;
+    if ($job_item->item_type == 'node' && in_array($id , $publish) && $job_item->state != $new_state) {
       // Change the state
       switch ($new_state) {
         case TMGMT_JOB_ITEM_STATE_ACTIVE:
