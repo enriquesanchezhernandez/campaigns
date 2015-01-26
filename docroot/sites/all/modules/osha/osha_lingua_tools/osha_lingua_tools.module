@@ -23,64 +23,76 @@ function osha_lingua_tools_form_alter(&$form, &$form_state, $form_id){
 }
 
 function form_lingua_form($form, &$form_state) {
-	//Get the node id, what we want translate.
 	$struri = $_SERVER['REQUEST_URI'];
 	$strurisplit = explode("/",$struri);
 	$lenuri = count($strurisplit) -2;
 	$idnode = $strurisplit[$lenuri];
+	
 	$node = node_load($idnode);
+	$numlen  =count($node->translations->data);
 	
-	$type = $node->type;
-	$disabled = "";
-
-	$fields = field_info_instances("node", $type);
-	
-    $disabled = '';
-	$contfields = 1;
-	$ispublished = $node->workbench_moderation['current']->published;
-	$idrev = $node->workbench_moderation['current']->vid;
-	
-	
-	foreach ($fields as $field) {
-		$fieldname = $field['label'];
-		$fieldname = str_replace(' ','_', $fieldname);
-		$fieldintname = $field['field_name'];
-		$arrayfield = $node->$fieldintname;
-		
-		//TODO Check that the field has data
-		$numdatosfield = count($arrayfield) +1;
-		$fieldid = $field['field_id'];
-		$transfield = istranslatable ($fieldid);
-				
+	if ($numlen == 1){
+		//echo ("There are no translations for this node");
 		$form['header_text'] = array(
-			'#markup' => '<p class="linguaheader">Please, select the fields to spread and press the <strong>spread data</strong> button.</p>',
-			'#fieldintname' => '0'
-		);
-		if ($transfield == 1 && $field['widget']['module'] != 'media' && $field['widget']['module'] != 'file'&& $field['widget']['module'] != 'pdf_to_image' && $numdatosfield > 0){
-			$contfields ++;
-			$form[$fieldname] = array(
-				'#title' => $fieldname,
-				'#type' => 'checkbox',
-				'#fieldintname' => $fieldintname ,
+				'#markup' => '<p class="linguaheader">There are no translations for this node.</p>',
+				'#fieldintname' => '0'
+			);	
+		return $form;
+	}	
+	else
+	{
+		//Get the node id, what we want translate.
+		
+		$type = $node->type;
+		$disabled = "";
+		$fields = field_info_instances("node", $type);
+	    $disabled = '';
+		$contfields = 1;
+		$ispublished = $node->workbench_moderation['current']->published;
+		$idrev = $node->workbench_moderation['current']->vid;
+	
+		
+		foreach ($fields as $field) {
+			$fieldname = $field['label'];
+			$fieldname = str_replace(' ','_', $fieldname);
+			$fieldintname = $field['field_name'];
+			$arrayfield = $node->$fieldintname;
+			
+			//TODO Check that the field has data
+			$numdatosfield = count($arrayfield) +1;
+			$fieldid = $field['field_id'];
+			$transfield = istranslatable ($fieldid);
+					
+			$form['header_text'] = array(
+				'#markup' => '<p class="linguaheader">Please, select the fields to spread and press the <strong>spread data</strong> button.</p>',
+				'#fieldintname' => '0'
 			);
+			if ($transfield == 1 && $field['widget']['module'] != 'media' && $field['widget']['module'] != 'file'&& $field['widget']['module'] != 'pdf_to_image' && $numdatosfield > 0){
+				$contfields ++;
+				$form[$fieldname] = array(
+					'#title' => $fieldname,
+					'#type' => 'checkbox',
+					'#fieldintname' => $fieldintname ,
+				);
+			}
 		}
-	}
+		
+		$form['url'] = array(
+			'#title' => 'URL',
+			'#type' => 'checkbox',
+		);
 	
-	$form['url'] = array(
-		'#title' => 'URL',
-		'#type' => 'checkbox',
-	);
-	
-   $form['submit_button'] = array(
-    '#type' => 'submit',
-    '#value' => t('Spread data'),
-	'#numfields' => $contfields ,
-	'#nodeid' => $idnode ,
-	'#noderevid' => $idrev ,
-	'#ispublished' => $ispublished ,
-  );
-  return $form;
+	   $form['submit_button'] = array(
+		'#type' => 'submit',
+		'#value' => t('Spread data'),
+		'#numfields' => $contfields ,
+		'#nodeid' => $idnode ,
+		'#noderevid' => $idrev ,
+		'#ispublished' => $ispublished ,
+	  );
+	return $form;
   
+	}
 }
 
 
