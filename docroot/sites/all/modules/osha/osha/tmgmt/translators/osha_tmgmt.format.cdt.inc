@@ -309,18 +309,6 @@ class OSHATranslatorFileformatCDT extends XMLWriter {
       drupal_set_message('No translations processed (missing <Translation> sections?)', 'error');
       return FALSE;
     }
-    $reader = new XMLReader();
-    foreach ($targets as $target) {
-      $count = 0;
-      $encoded_value = htmlentities($target['#text'], ENT_COMPAT | ENT_XML1);
-      $reader->XML('<Translation>' . $encoded_value . '</Translation>', 'UTF-8');
-      while ($reader->read()) {
-        if (in_array($reader->name, array('Translation', '#text'))) {
-          continue;
-        }
-        $count++;
-      }
-    }
     return $job;
   }
 
