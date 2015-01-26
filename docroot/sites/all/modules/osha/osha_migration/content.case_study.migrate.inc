@@ -225,7 +225,7 @@ class MigrateOshaCaseStudy extends OSHADynamicMigration {
       //create alias
       $args = array(
         'source' => 'node/' . $entity->nid,
-        'alias' => 'tools-and-publications/case-studies/' . $matches[1],
+        'alias' => 'tools-and-publications/publications/' . $matches[1],
         'language' => 'en'
       );
       path_save($args);
