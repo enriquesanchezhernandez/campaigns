@@ -22,6 +22,10 @@ function osha_tmgmt_drush_command()
     'options' => array('nids' => 'List of nids separated by comma'),
     'sections' => array(),
   );
+  $items['osha-tmgmt-refresh-literals'] = array(
+    'description' => 'Feed the list of string literals into the locale system to make it available for translation',
+    'aliases' => array('oshrl'),
+  );
   return $items;
 }
 
@@ -112,4 +116,12 @@ function drush_osha_tmgmt_retranslate_validate($bundle)
       drush_log($info, 'warning');
     }
   }
+}
+
+function drush_osha_tmgmt_refresh_literals() {
+  $strings = module_invoke_all('osha_tmgmt_i18n_string_list');
+  foreach ($strings as $string) {
+    locale($string);
+  }
+  drush_log(sprintf('Registered %d strings into the locale system...', count($strings)), 'success');
 }
