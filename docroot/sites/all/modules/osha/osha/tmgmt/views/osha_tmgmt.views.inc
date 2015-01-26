@@ -122,8 +122,9 @@ class OshaTMGMTJobItemViewsController extends TMGMTJobItemViewsController {
       'title' => t('Page count'),
       'help' => t('Number of pages for translation'),
       'field' => array(
+        'float' => TRUE,
         'real field' => 'page_count',
-        'handler' => 'views_handler_field',
+        'handler' => 'views_handler_field_numeric',
         'click sortable' => TRUE,
       ),
     );
@@ -297,6 +298,7 @@ class OshaTMGMTJobViewsController extends TMGMTJobViewsController {
       'help' => t('Number of pages for translation'),
       'real field' => 'page_count',
       'field' => array(
+        'float' => TRUE,
         'handler' => 'views_handler_field_numeric',
         'click sortable' => TRUE,
       ),
