@@ -183,6 +183,10 @@ class OshaTMGMTJobItem extends TMGMTJobItem {
         '@message' => $message,
       ));
     $this->save();
+
+    // Mark the translation dirty to reindex
+    $item_id = $this->target_language  . '_' . $this->item_id;
+    search_api_track_item_change('search_api_et_node', array($item_id));
   }
 
   /**
