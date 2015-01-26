@@ -1193,7 +1193,7 @@ function osha_tmgmt_form_tmgmt_job_form_alter(&$form, &$form_state) {
     '#title' => t('Target language'),
     '#title_display' => 'before',
     '#weight' => -4,
-    '#options' => array('any' => '- Any -') + $languages,
+    '#options' => array('any' => '- Any -') + osha_tmgmt_get_translation_languages_options(),
     '#default_value' => $filter_target_lang,
   );
 
@@ -1254,9 +1254,7 @@ function osha_tmgmt_form_tmgmt_job_form_alter(&$form, &$form_state) {
     '#attributes' => array('class' => array('container-inline')),
   );
 
-  unset($languages['tr']);
-  unset($languages['ru']);
-  $untranslated = drupal_map_assoc(array_diff($languages, $target_languages));
+  $untranslated = drupal_map_assoc(osha_tmgmt_get_translation_languages_options($target_languages));
   $form['language_info']['target_languages_not'] = array(
     '#type' => 'checkboxes',
     '#options' => $untranslated,
@@ -2202,6 +2200,21 @@ class OshaTMGMTStatistics {
 
     return array_unique($target_languages);
   }
+}
+
+/**
+ * Retrieve the list of target translation languages. This excludes Russian and Turkish - see CW-1285.
+ *
+ * @param array $filter
+ *   Additional filter containing languages code (i.e. fr, de)
+ * @return array
+ *   Array with language names as values and codes as keys.
+ */
+function osha_tmgmt_get_translation_languages_options($filter = array()) {
+  $languages = tmgmt_available_languages();
+  unset($languages['ru']);
+  unset($languages['tr']);
+  return array_diff($languages, $filter);
 }
 
 /**
