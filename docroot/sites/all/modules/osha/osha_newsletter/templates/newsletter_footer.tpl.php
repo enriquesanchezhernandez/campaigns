@@ -92,7 +92,7 @@
           <tbody>
             <tr>
               <td style="text-align: center; font-family: Arial, sans-serif; font-size: 13px;">
-                <?php print t('No longer wish to receive OSHmail? <a href="@url" style="@style">Unsubscribe here.</a>', array('@style' => 'color: #003399; text-decoration: none;', '@url' => url($base_url.'/en/pages/oshmail-newsletter'))); ?>
+                <?php print t('No longer wish to receive OSHmail? <a href="@url" style="@style">Unsubscribe here.</a>', array('@style' => 'color: #003399; text-decoration: none;', '@url' => url($base_url.'/en/oshmail-newsletter'))); ?>
               </td>
             </tr>
           </tbody>

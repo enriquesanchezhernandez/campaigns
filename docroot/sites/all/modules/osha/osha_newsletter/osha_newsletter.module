@@ -6,7 +6,7 @@
 
 include_once 'osha_newsletter.features.inc';
 
-define('OSHA_NEWSLETTER_PAGE_URL', 'pages/oshmail-newsletter');
+define('OSHA_NEWSLETTER_PAGE_URL', 'oshmail-newsletter');
 define('OSHA_PRIVACY_PAGE_URL', 'articles/privacy-statement-oshmail');
 
 /**
