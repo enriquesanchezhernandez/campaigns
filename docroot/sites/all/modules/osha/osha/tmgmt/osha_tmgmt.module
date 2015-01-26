@@ -1516,7 +1516,7 @@ function osha_tmgmt_job_items_mass_change_submit($form, $form_state) {
   $new_state = $values['new_state'];
   foreach ($items as $job_item) {
     $id = $job_item->item_type . '-' . $job_item->item_id;
-    if ($job_item->item_type == 'node' && in_array($id , $publish) && $job_item->state != $new_state) {
+    if (in_array($id , $publish) && $job_item->state != $new_state) {
       // Change the state
       switch ($new_state) {
         case TMGMT_JOB_ITEM_STATE_ACTIVE:
