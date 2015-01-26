@@ -1,0 +1,37 @@
+<?php
+
+function osha_blog_get_translatable_strings() {
+  return array(
+    '<p><a href="/blog/feed">Click here for the RSS Feed</a></p>',
+    'Activity',
+    'Archived',
+    'Author(s)',
+    'Blog',
+    'Blog articles',
+    'Home',
+    '@data posts',
+    'Name',
+    'Latest posts',
+    'Monthly posts',
+    'Feed',
+    'Tags Posts',
+    'Tags posts',
+    'Free text search',
+    'Page',
+    'Search Blog',
+    'Sort by',
+    'more',
+    'Search',
+    'Reset',
+    'Asc',
+    'Desc',
+    'Offset',
+    '- All -',
+    'No results',
+    '!name field is required.',
+    'Permalink',
+    'What code is in the image?',
+    'Enter the characters shown in the image.',
+    'Image CAPTCHA',
+  );
+}
