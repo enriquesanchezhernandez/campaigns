@@ -379,3 +379,11 @@ class OshaSearchWidgetDropdown extends FacetapiWidgetLinks {
     return array('facetapi-dropdown');
   }
 }
+
+/**
+ * Implements hook_osha_tmgmt_i18n_string_list().
+ */
+function osha_search_osha_tmgmt_i18n_string_list() {
+  module_load_include('inc', 'osha_search', 'osha_search.translations');
+  return osha_search_get_translatable_strings();
+}

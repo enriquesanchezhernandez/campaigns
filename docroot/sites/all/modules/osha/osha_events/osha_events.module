@@ -68,3 +68,12 @@ function osha_events_form_validate($form, &$form_state) {
     }
   }
 }
+
+
+/**
+ * Implements hook_osha_tmgmt_i18n_string_list().
+ */
+function osha_events_osha_tmgmt_i18n_string_list() {
+  module_load_include('inc', 'osha_events', 'osha_events.translations');
+  return osha_events_get_translatable_strings();
+}

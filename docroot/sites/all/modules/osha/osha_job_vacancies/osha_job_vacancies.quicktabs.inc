@@ -96,7 +96,7 @@ function osha_job_vacancies_quicktabs_default_quicktabs() {
 
   // Translatables
   // Included for use with string extractors like potx.
-  t(' Careers accordion');
+  t('Careers accordion');
   t('Closed vacancies');
   t('Enquiries');
   t('Ongoing vacancies');
