@@ -83,7 +83,7 @@ function osha_search_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'search_api_attachments_extract_using';
-  $strongarm->value = 'solr';
+  $strongarm->value = 'tika';
   $export['search_api_attachments_extract_using'] = $strongarm;
 
   return $export;
