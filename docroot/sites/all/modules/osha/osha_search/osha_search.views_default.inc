@@ -510,9 +510,9 @@ function osha_search_views_default_views() {
   $handler->display->display_options['tab_options']['weight'] = '1';
 
   /* Display: OSHWiki Search */
-  $handler = $view->new_display('page', 'OSHWiki Search', 'wiki');
+  $handler = $view->new_display('page', 'OSHwiki Search', 'wiki');
   $handler->display->display_options['defaults']['title'] = FALSE;
-  $handler->display->display_options['title'] = 'OSHWiki Search';
+  $handler->display->display_options['title'] = 'OSHwiki Search';
   $handler->display->display_options['exposed_block'] = TRUE;
   $handler->display->display_options['defaults']['fields'] = FALSE;
   /* Field: Indexed Multilingual Node: Title */
@@ -644,7 +644,7 @@ function osha_search_views_default_views() {
     t('Site Search'),
     t('Publication date'),
     t('Language'),
-    t('OSHWiki Search'),
+    t('OSHwiki Search'),
     t('Date'),
   );
   $export['search'] = $view;

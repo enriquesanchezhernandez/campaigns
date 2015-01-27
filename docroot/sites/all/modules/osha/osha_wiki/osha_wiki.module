@@ -41,7 +41,7 @@ function osha_wiki_block_list_alter(&$blocks) {
 function osha_wiki_block_info() {
   $blocks = array();
   $blocks['osha_wiki_related_content'] = array(
-    'info' => t('OSHWiki related content'),
+    'info' => t('OSHwiki related content'),
     'status' => 1,
     'region' => 'sidebar_second',
     'visibility' => BLOCK_VISIBILITY_NOTLISTED,
@@ -83,7 +83,7 @@ function osha_wiki_block_content() {
   $category_en_name = $category->name_original;
   $wiki_page_url = 'http://oshwiki.eu/wiki/Category:' . str_replace(' ', '_', $category_en_name);
   $find_more = t('Find OSHwiki articles on this theme');
-  $content = t('<div class="OSHWiki"><div class="separatorOsHWiki">&nbsp;</div><div id="OSHWikiDivTit"><div class="imgOSHWiki"><img src="/sites/all/themes/osha_frontend/images/OSHwiki.png" alt="" width="26" height="26" /></div><div class="OSHWikiTitle">OSHWiki</div></div><div class="p2">!find_more<span><br /></span></div><div class="p3"><a href="!wiki_page_url" target="_blank">Go to OSHWiki <img src="/sites/all/themes/osha_frontend/images/flecha.png" alt="Go to OSHWiki" width="19" height="11" /></a></div></div>',
+  $content = t('<div class="OSHWiki"><div class="separatorOsHWiki">&nbsp;</div><div id="OSHWikiDivTit"><div class="imgOSHWiki"><img src="/sites/all/themes/osha_frontend/images/OSHwiki.png" alt="" width="26" height="26" /></div><div class="OSHWikiTitle">OSHwiki</div></div><div class="p2">!find_more<span><br /></span></div><div class="p3"><a href="!wiki_page_url" target="_blank">Go to OSHwiki <img src="/sites/all/themes/osha_frontend/images/flecha.png" alt="Go to OSHwiki" width="19" height="11" /></a></div></div>',
     array(
       '!wiki_page_url' => $wiki_page_url,
       '!find_more' => $find_more,
@@ -125,7 +125,15 @@ function osha_wiki_node_validate($node, $form, &$form_state) {
          !empty($node->field_related_oshwiki_articles[LANGUAGE_NONE][0]['target_id']) ||
          !empty($node->field_related_oshwiki_articles[LANGUAGE_NONE][1]['target_id']) 
         )) {
-        form_set_error('field_wiki_categories', t('OSHWiki category is mandatory'));
+        form_set_error('field_wiki_categories', t('OSHwiki category is mandatory'));
     }
   }
+}
+
+/**
+ * Implements hook_osha_tmgmt_i18n_string_list().
+ */
+function osha_wiki_osha_tmgmt_i18n_string_list() {
+  module_load_include('inc', 'osha_wiki', 'osha_wiki.translations');
+  return osha_wiki_get_translatable_strings();
 }
