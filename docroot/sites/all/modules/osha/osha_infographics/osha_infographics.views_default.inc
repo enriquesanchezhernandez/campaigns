@@ -166,7 +166,7 @@ function osha_infographics_views_default_views() {
   $handler->display->display_options['fields']['body']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['body']['type'] = 'smart_trim_format';
   $handler->display->display_options['fields']['body']['settings'] = array(
-    'trim_length' => '200',
+    'trim_length' => '80',
     'trim_type' => 'chars',
     'trim_suffix' => '...',
     'more_link' => '0',
@@ -260,7 +260,7 @@ function osha_infographics_views_default_views() {
   $handler->display->display_options['fields']['body']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['body']['type'] = 'smart_trim_format';
   $handler->display->display_options['fields']['body']['settings'] = array(
-    'trim_length' => '200',
+    'trim_length' => '80',
     'trim_type' => 'chars',
     'trim_suffix' => '...',
     'more_link' => '1',
