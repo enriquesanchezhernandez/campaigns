@@ -404,6 +404,7 @@ function osha_views_default_views() {
     'flickr' => 'flickr',
     'guideline' => 'guideline',
     'highlight' => 'highlight',
+    'infographic' => 'infographic',
     'job_vacancies' => 'job_vacancies',
     'news' => 'news',
     'newsletter_article' => 'newsletter_article',
