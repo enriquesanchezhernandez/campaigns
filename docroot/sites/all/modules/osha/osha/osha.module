@@ -604,6 +604,57 @@ function osha_url_inbound_alter(&$path, $original_path, $path_language) {
       drupal_goto($source_en, array(), 301);
     }
   }
+  // For images, in migrated content there are images with alias appended
+  // with /image_preview - for those, system should serve the image directly.
+  $args = arg();
+  $orig_path_alias = drupal_lookup_path('alias', $original_path);
+  $orig_path_source = drupal_lookup_path('source', $original_path);
+  if (end($args) == 'image_preview') {
+    // If path exists, don't do anything.
+    if (empty($orig_path_alias) && empty($orig_path_source)) {
+      $url = preg_replace('/\/image_preview/', '', $original_path);
+      // If alias, get source.
+      $path_source = drupal_lookup_path('source', $url);
+      // If source empty, the url might be the system path, not alias.
+      if (empty($path_source) && drupal_valid_path($url)) {
+        $path_source = $url;
+      }
+      $path_alias = path_load($path_source);
+      if (!empty($path_alias)) {
+        if (preg_match("/file\/[\d]{1,99}$/", $path_alias['source'])) {
+          $file = menu_get_object('file', 1, $path_alias['source']);
+          if ($file->type == 'image') {
+            $path = $path_alias['source'];
+          }
+        }
+      }
+    }
+  }
+  else {
+    // If the args ends with /view, system should display the File Entity.
+    if (end($args) == 'view') {
+      // If path exists, don't do anything.
+      if (empty($orig_path_alias) && empty($orig_path_source)) {
+        $url = preg_replace('/\/view/', '', $original_path);
+        // If alias, get source.
+        $path_source = drupal_lookup_path('source', $url);
+        // If source empty, the url might be the system path, not alias.
+        if (empty($path_source) && drupal_valid_path($url)) {
+          $path_source = $url;
+        }
+        $path_alias = path_load($path_source);
+        if (!empty($path_alias)) {
+          if (preg_match("/file\/[\d]{1,99}$/", $path_alias['source'])) {
+            $file = menu_get_object('file', 1, $path_alias['source']);
+            if ($file->type == 'image') {
+              // Append /view to be used in hook_file_view.
+              $path = $path_alias['source'] . '/view';
+            }
+          }
+        }
+      }
+    }
+  }
 }
 
 /**
