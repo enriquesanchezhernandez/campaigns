@@ -13,5 +13,7 @@ function osha_calls_get_translatable_strings() {
     '<a href="/inside-eu-osha/procurement">Back to calls</a>',
     'View all',
     '-- Please select type --',
+    'Back to calls',
+    'Calls',
   );
 }
