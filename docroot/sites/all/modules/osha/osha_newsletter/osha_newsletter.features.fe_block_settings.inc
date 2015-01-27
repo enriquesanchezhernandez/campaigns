@@ -20,7 +20,8 @@ function osha_newsletter_default_fe_block_settings() {
     'machine_name' => 'join_oshmail_subscribers',
     'module' => 'block',
     'node_types' => array(),
-    'pages' => 'pages/oshmail-newsletter',
+    'pages' => 'oshmail-newsletter
+node/9',
     'roles' => array(),
     'themes' => array(
       'bartik' => array(
@@ -60,7 +61,8 @@ function osha_newsletter_default_fe_block_settings() {
     'i18n_mode' => 0,
     'module' => 'osha_newsletter',
     'node_types' => array(),
-    'pages' => 'pages/oshmail-newsletter',
+    'pages' => 'oshmail-newsletter
+node/9',
     'roles' => array(),
     'themes' => array(
       'bartik' => array(
@@ -140,7 +142,8 @@ function osha_newsletter_default_fe_block_settings() {
     'i18n_mode' => 0,
     'module' => 'osha_newsletter',
     'node_types' => array(),
-    'pages' => 'pages/oshmail-newsletter',
+    'pages' => 'oshmail-newsletter
+node/9',
     'roles' => array(),
     'themes' => array(
       'bartik' => array(

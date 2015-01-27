@@ -102,8 +102,8 @@ function contact_form_send($form, &$form_state){
   and subscribing to our electronic newsletter
   <a href="@link2">OSHmail</a>.',
     array(
-      '@link1' => $base_url.'/articles/news-events',
-      '@link2' => $base_url.'/pages/oshmail-newsletter')));
+      '@link1' => $base_url.'/news-events',
+      '@link2' => $base_url.'/oshmail-newsletter')));
 }
 
 /**

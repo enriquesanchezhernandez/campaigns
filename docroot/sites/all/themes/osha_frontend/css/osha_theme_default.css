@@ -7,7 +7,7 @@ body {
 
 h1#page-title{
 	background: url("../images/separator_home.jpg") repeat-x scroll 100% 110% rgba(0, 0, 0, 0);
-	padding-top:0;
+	padding-top:0.1em;
 	padding-bottom:0.3em;
 }
 
@@ -20,8 +20,11 @@ h1{
 	color: #003399;
 	letter-spacing: -0.75px;
 	margin-bottom: 4px;
-	padding:0;
-	margin:0;
+	padding: 0;
+	margin: 0;
+	padding-bottom: 0.2em;
+	line-height: 1.2em;
+	padding-top: 0.2em;
 }
 
 h2{
@@ -100,7 +103,7 @@ header{
 .sidebars_first  .region-sidebar-first #block-menu-block-2 .menu-block-2 ul li {
 	list-style-image:none;
 	list-style:none;
-	padding-top:0.4em;
+	padding-top:0.5em;
 }
 
 .sidebars_first .region-sidebar-first #block-menu-block-2 .menu-block-2 ul li a{
@@ -192,16 +195,16 @@ header{
 }
 
 .three_column{
-	width: 47.5%!important;
+	width: 47%!important;
 }
 
 
 .sidebars_second{
-	border-top: 0px solid #003399;
-	margin-top: 0em;
-	margin-left: 3em;
-	width: 22%;
-	float:left;
+	border-top: 0 solid #003399;
+    float: left;
+    margin-left: 2.2em;
+    margin-top: 0;
+    width: 23.5%;
 }
 
 .messages--status{
@@ -220,7 +223,11 @@ header{
 	padding-left:0px;
 	height:39px;
 	margin-right:1px;
-
+}
+#block-menu-block-1 .menu-block-1 .menu:first-child {
+	align-items: stretch;
+	display: flex;
+	height:auto;
 }
 
 #block-menu-block-1 .menu li span {
@@ -283,8 +290,11 @@ color: #003399;
 	padding: .8em 0;
 	width: 13.6%;
 }
+#block-menu-block-1 .menu li {	
+	/*align-self: flex-end;*/
+}
 
-#block-menu-block-1 .menu li:hover  ul{
+#block-menu-block-1 .menu li:hover  ul {
 	background-color: #ffffff;
     border-bottom: 5px solid #002f9d;
     border-top: 5px solid #a6b8db;
@@ -294,6 +304,10 @@ color: #003399;
     position: absolute;
     width: 20.6em;
 	z-index: 9999999999;
+	padding-bottom:1em;
+}
+#block-menu-block-1 .menu li:hover ul {
+	position: fixed;
 }
 
 #block-menu-block-1 .menu li .menu  li .menu {
@@ -301,7 +315,8 @@ color: #003399;
 	border-bottom: 0px solid #002f9d;
 	background-color:#FFFFFF;
 	position:relative;
-	margin-bottom:-1em:
+	margin-bottom:-1em;
+	margin-top:0px!important;
 }
 
 #block-menu-block-1 .menu li ul  {
@@ -534,10 +549,11 @@ padding-left: 1em;
 	font-weight:lighter;
 	font-size : 0.875em;
 	color : #003399;
-	margin: 1em 0 1em 3.2em;
+	margin: 1em 0 0.5em 3.2em;
 	background-color:#FFFFFF;
 	border:0px;
 	clear:both;
+	padding-right:2em;
 
 }
 
@@ -552,7 +568,7 @@ padding-left: 1em;
 }
 
 footer {
-	background:#b2b5b6;
+	background:#575958;
 	color:#FFF;
 	margin:0 auto;
 	width:100%;
@@ -609,19 +625,19 @@ footer {
 }
 
 #socialNetworksFooter  a{
-padding: 0em 0em 0em 1.8em;;
+	padding: 0em 0em 0em 1.8em;;
 }
 
 #socialNetworksFooter {
- float:right;
- width:30%;
- text-align:right;
- margin: 5px 1.5em 0 0;
+	float:right;
+	width:30%;
+	text-align:right;
+	margin: 5px 1.5em 0 0;
 }
 
 
 #socialNetworksFooter img {
- vertical-align:middle;
+	vertical-align:middle;
 }
 
 #footer div.block {
@@ -649,7 +665,6 @@ padding: 0em 0em 0em 1.8em;;
 /*PUBLICATIONS*/
 
 span.date-display-single{
-	font-size:0.8em;
 	font-weight:bold;
 }
 
@@ -658,13 +673,17 @@ span.date-display-single{
     font-family: Oswald!important;
     font-size: 1.5em !important;
     font-weight: 400;
-    padding-top: 0.5em;
+    padding-bottom: 0.5em;
 }
 
 .node-publication h1 a{
 	border:0px!important;
 	font-family: Oswald!important;
 	letter-spacing: 0px;
+}
+
+.node-publication .field-name-field-publication-date{
+	font-size:0.8em;
 }
 
 .node-publication.node-teaser {
@@ -715,6 +734,19 @@ span.date-display-single{
     width: 100%;
 }
 
+
+.node.node-article.node-teaser .links {
+	background: url("../images/flecha.png") no-repeat scroll right center transparent;
+    color: #003399;
+    float: right;
+    font-family: "Oswald",sans-serif;
+    font-size: 1.1em;
+    margin: 0;
+    padding-bottom: 0.3em;
+    text-align: right;
+    width: 100%;
+}
+
 .node-publication .field-name-field-wiki-page-url a {
 	background: url("../images/flecha.png") no-repeat scroll right 24% transparent;
     color: #003399;
@@ -729,6 +761,12 @@ span.date-display-single{
 	border-bottom:0px!important;
 }
 .node-publication.node-teaser .links  a{
+	padding-right:0.5em;
+	font-family: "Oswald",sans-serif!important;
+	border-bottom:0px!important
+}
+
+.node.node-article.node-teaser  .links  a{
 	padding-right:0.5em;
 	font-family: "Oswald",sans-serif!important;
 	border-bottom:0px!important
@@ -760,7 +798,7 @@ span.date-display-single{
 
 .pager .pager-current{
 	font-size:0.8em;
-	color:#9eb9dd;
+	color:#ca2273;
 }
 
 .pager li a{
@@ -824,6 +862,10 @@ span.date-display-single{
 
 }
 
+.view-publications-index .date-display-single{
+	 /*font-size: 0.8em;*/
+}
+
 .view-publications  .view-content .views-row .views-field-title-field {
 	padding-top:0.5em;
 	padding-bottom:0.5em;
@@ -869,31 +911,21 @@ span.date-display-single{
 	font-family:arial!important;
     font-weight: bold;
 	font-size:0.8em!important;
-	border-bottom:0px!important
-}
-
-#block-views-publications-slidehow .node-publication  a{
-	font-family:arial!important;
-    font-weight: bold;
-	font-size:0.8em!important;
-	border-bottom:0px!important
+	border-bottom:0px!important;
+	padding-left:0.5em;
 }
 
 
 #block-views-publications-slidehow .node-publication  a{
-	font-family:arial!important;
-    font-weight: bold;
-	font-size:0.8em!important;
-	border-bottom:0px!important
+	color: #003399;
+	font-family: 'Oswald',sans-serif!important;
+	font-size: 1.3em;
+	font-weight: lighter;
+	margin: 0;
+	padding: 0 0 0.3em;
+	border:0px!important;
 }
 
-
-#block-views-publications-slidehow .node-publication  a{
-	font-family:arial!important;
-    font-weight: bold;
-	font-size:0.8em!important;
-	border-bottom:0px!important
-}
 
 #block-views-publications-slidehow .node-publication .img_no_opac{
 	opacity: 1!important;
@@ -948,17 +980,21 @@ span.date-display-single{
 
 .node-publication.view-mode-full .field-name-field-file{
 	background-color: #e9edf6;
-    color: #7c7d81;
-    font-weight: bold;
-    height: auto;
-    margin-left: 16.3em;
-    padding: 0.5em;
-    width: 68.5%;
+	color: #7c7d81;
+	font-weight: bold;
+	height: auto;
+	margin-left: 11.8em;
+	padding: 0.5em;
+	width: 76.9%;
 }
 
 .node-publication.view-mode-full #related-publications{
 	clear:both;
 	padding-top:0.5em;
+}
+
+.node-publication.view-mode-full #related-publications .field-name-field-publication-date{
+	font-size:0.8em;
 }
 
 .node-publication.view-mode-full #publication_related_res img{
@@ -1022,8 +1058,8 @@ span.date-display-single{
 }
 
 .node-wiki-page {
-  background: url("../images/separator_home.jpg") repeat-x;
-  background-position: bottom,left;
+	background: url("../images/separator_home.jpg") repeat-x;
+	background-position: bottom,left;
 }
 
 .node-wiki-page .field-name-title-field{
@@ -1162,7 +1198,7 @@ span.date-display-single{
 
 .field-name-field-summary{
 	padding-top:1em;
-	padding-bottom:1em;
+	padding-bottom:0em;
 	line-height: 1.7em;
 }
 
@@ -1238,8 +1274,12 @@ span.date-display-single{
 .ui-accordion .ui-accordion-header{
 	width:92%;
 	padding-right:1em;
-	padding-left:1em;
+	padding-left:0.5em;
+	padding-top:0.2em;
+	padding-bottom:0.2em;
 }
+
+
 
 .ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default{
 	height:auto;
@@ -1269,6 +1309,14 @@ span.date-display-single{
 
 #block-quicktabs-calls-quicktab .ui-accordion-content{
 	font-size:1em!important;
+}
+
+#block-quicktabs-calls-quicktab .date-display-single{
+	font-size:0.8em;
+}
+
+#block-quicktabs-careers-accordion .date-display-single{
+	font-size:0.9em;
 }
 
 .ui-state-default .ui-icon{
@@ -1615,6 +1663,7 @@ font-weight: normal;
 		background-color:#FFFFFF;
 		border-top: 5px solid #003399;
 		padding-bottom:1.5em;
+		padding-top: 0.5em;
 	}
 
 	#block-views-related-content-block-2 h2{
@@ -1624,12 +1673,15 @@ font-weight: normal;
 		font-family: 'Oswald', sans-serif;
 		font-size: 1.4em;
 		font-weight: lighter;
+		padding-left:2.4em;
 
 	}
 
 	#block-views-related-content-block-2 .views-field-title-field{
 		padding-left:1em;
-		padding-bottom:0.5em;
+		padding-bottom:1.5em;
+		padding-top:0.5em;
+		line-height:1.5em;
 	}
 
 	#block-views-related-content-block-2 a{
@@ -1642,6 +1694,11 @@ font-weight: normal;
 		border-bottom:0px!important
 	}
 
+	
+	
+	#block-views-related-content-block-2 .view-related-content .views-row {
+    background: url("../images/separator_home.jpg") repeat-x scroll 0 100% rgba(0, 0, 0, 0);
+}
 
 
 	#block-views-related-content-block-2 .more-link a{
@@ -1665,10 +1722,10 @@ font-weight: normal;
 		font-family: "Oswald",sans-serif;
 		font-size: 1.4em;
 		font-weight: lighter;
-		padding-left: 2em;
+		padding-left: 2.4em;
 		padding-top: 0.5em;
 		padding-bottom:0px;
-		margin-bottom:1em;
+		margin-bottom:0em;
 		margin-top:0px;
 	}
 
@@ -1688,16 +1745,22 @@ font-weight: normal;
 		margin-bottom: 0;
 		padding-bottom: 0;
 		padding-left: 0.5em;
+		font-weight:400;
 	}
 
 	#block-views-related-content-block-1 .view-related-content{
 		background: url("../images/separator_home.jpg") repeat-x scroll 0% -7px rgba(0, 0, 0, 0);
 		height:1%;
 		overflow:hidden;
+		padding-left:0.8em;
 	}
 
+	
+	#block-views-related-content-block-1 .view-related-content .views-row{
+		background: url("../images/separator_home.jpg") repeat-x scroll 0% -7px rgba(0, 0, 0, 0);
+	}
+	
 	#block-views-related-content-block-1 .views-field-title-field{
-		padding-left:1em;
 		padding-bottom:0.5em;
 	}
 
@@ -1712,9 +1775,9 @@ font-weight: normal;
 	}
 	
 	#block-views-related-content-block-1 .date-display-single{
-		padding-left: 1em;
 		display: block;
 		padding-top: 1em;
+		font-size:0.8em;
 	}
 
 /*END SIDEBAR SECOND*/
@@ -1723,27 +1786,28 @@ font-weight: normal;
 
 #related-wiki{
 	background-color:#e8ecf5;
-	margin-top:1em;
+	margin-top:0.5em;
 	margin-bottom:1em;
 }
 
 #related-wiki .related_wiki_head{
-	width:100%;
-	height:80px;
-	background: url("../images/related_wiki_head_big.jpg") no-repeat scroll 0% 100% #003399;
+	width: 100%;
+	height: 56px;
+	background: url("../images/related_wiki_head_big.jpg") no-repeat scroll 0% 53% #003399;
 }
 
 #related-wiki div article{
 	padding-left:0em;
+	padding-bottom: 0.5em;
 }
 
 #related-wiki .related_wiki_head span{
 	color: #FFFFFF;
-	padding-top: 28px;
+	padding-top: 17px;
 	padding-left: 1.5em;
 	font-family: "Oswald",sans-serif;
 	font-size: 2em;
-	margin-top: 1em;
+	margin-top: 0em;
 	display: block;
 }
 
@@ -1794,8 +1858,16 @@ font-weight: normal;
 }
 
 #edit-search-api-views-fulltext-wrapper{
-	background: url("../images/separator_home.jpg") repeat-x scroll 0% 100% rgba(0, 0, 0, 0);
-	padding-top:1em;
+	background: none;
+	padding-top:0em;
+}
+
+#block-views-exp-publications-index-page .views-exposed-form .views-exposed-widget{
+	padding:0px!important;
+}
+
+#block-views-exp-publications-index-page input{
+	margin-top:0em;
 }
 
 .views-widget-sort-by{
@@ -1827,7 +1899,7 @@ font-weight: normal;
 }
 
 #edit-search-api-views-fulltext-wrapper input{
-	margin-bottom:2em;
+	margin-bottom:0.5em;
 
 }
 
@@ -1841,13 +1913,14 @@ font-weight: normal;
 
 
 #edit-search-api-language-wrapper{
-	background: url("../images/separator_home.jpg") repeat-x scroll 0% 100% rgba(0, 0, 0, 0);
+	background: none;
 	padding-top:1em;
 	width:100%;
 }
 
 #edit-search-api-language-wrapper select{
-	margin-bottom:2em;
+	margin-bottom:0em;
+	width: 10.2em;
 }
 .block-facetapi h2{
 	color: #003399!important;
@@ -1858,8 +1931,9 @@ font-weight: normal;
 }
 
 #block-views-exp-publications-index-page{
-	border-top:5px solid #aab7d9;
-	margin-top:3em;
+	border-top:0px solid #aab7d9;
+	margin-top:0em;
+	margin-bottom:0em;
 }
 
 
@@ -2144,6 +2218,10 @@ font-weight: normal;
 	margin-bottom: 0.5em;
 }
 
+#block-osha-search-osha-search-clear-filters h2{
+	background: none;
+}
+
 #block-osha-search-osha-search-clear-filters h3{
 	color: #000;
 	font-family: 'Oswald',sans-serif;
@@ -2153,6 +2231,8 @@ font-weight: normal;
 	padding: 1em 0 1em;
 	background: none repeat scroll 0 0 #FFFFFF;
 	background: url("../images/separator_home.jpg") repeat-x scroll 0% 100% rgba(0, 0, 0, 0);
+	border-top: 5px solid #aab7d9;
+	margin-top: 0.7em;
 }
 
 #block-osha-search-osha-search-clear-filters a{
@@ -2160,7 +2240,7 @@ font-weight: normal;
     color: #003399;
     font-size: 0.8em;
     font-weight: bold;
-    padding-left: 1em;
+    padding-left: 0em;
     text-decoration: none;
 
 }
@@ -2233,12 +2313,13 @@ font-weight: normal;
 	padding: 0 0 0.3em;
 	background: none repeat scroll 0 0 #FFFFFF;
 	background: url("../images/separator_home.jpg") repeat-x scroll 0% 100% rgba(0, 0, 0, 0);
+	font-weight:400;
 }
 
 .view-display-id-oshnews_latest a {
 	color:#003399;
 	text-decoration:none;
-	background: url("../images/li_arrow.png") no-repeat scroll 0 100% transparent;
+	background: url("../images/li_arrow.png") no-repeat scroll 0 60% transparent;
 	font-weight:bold;
 	padding-left:1em;
 	font-size:0.8em;
@@ -2263,7 +2344,7 @@ font-weight: normal;
     padding-right: 1.5em;
 	border-bottom:0px!important;
 	text-decoration:none;
-	margin-top:1em;
+	margin-top:0.5em;
 	font-weight:bold;
 }
 
@@ -2303,6 +2384,10 @@ font-weight: normal;
 
 .view-osha-home-banner-top.view-display-id-home_page_banner_top{
 	border-bottom:5px solid #003399;
+}
+
+.view-osha-home-banner-top .view-osha-home-banner-top img{
+	width:100%!important;
 }
 
 .view-osha-home-banner-top .views-field-title{
@@ -2406,10 +2491,10 @@ font-weight: normal;
 	background: url("../images/slideshow-left.png") no-repeat scroll 0 50% rgba(0, 0, 0, 0) !important;
     color: #cbd9ec !important;
     display: block !important;
-    height: 138px !important;
+    height: 156px !important;
     left: -20px !important;
     position: absolute !important;
-    top: -2.3em !important;
+    top: -3.3em !important;
     width: 60px !important;
     z-index: 999999999 !important;
 }
@@ -2418,10 +2503,10 @@ font-weight: normal;
 	background: url("../images/slideshow-left.png") no-repeat scroll 0 50% rgba(0, 0, 0, 0) !important;
     color: #cbd9ec !important;
     display: block !important;
-    height: 138px !important;
+    height: 156px !important;
     left: -20px !important;
     position: absolute !important;
-    top: -2.3em !important;
+    top: -3.3em !important;
     width: 60px !important;
     z-index: 999999999 !important;
 }
@@ -2430,9 +2515,9 @@ font-weight: normal;
 	background: url("../images/slideshow-right.png") no-repeat scroll 0 50% rgba(0, 0, 0, 0) !important;
     color: #cbd9ec !important;
     display: block !important;
-    height: 138px !important;
+    height: 156px !important;
     position: absolute !important;
-    top: -2.3em  !important;
+    top: -3.3em  !important;
     width: 60px !important;
     z-index: 999999999 !important;
 	left:60.4em!important;
@@ -2448,9 +2533,9 @@ font-weight: normal;
 	background: url("../images/slideshow-right.png") no-repeat scroll 0 50% rgba(0, 0, 0, 0) !important;
     color: #cbd9ec !important;
     display: block !important;
-    height: 138px !important;
+    height: 156px !important;
     position: absolute !important;
-    top: -2.3em  !important;
+    top: -3.3em  !important;
     width: 60px !important;
     z-index: 999999999 !important;
 	left:60.4em!important;
@@ -2464,7 +2549,7 @@ font-weight: normal;
 
 .left_column{
 	float:left;
-	width:70%;
+	width:71%;
 	background:#FFFFFF;
 }
 
@@ -2667,11 +2752,11 @@ font-weight: normal;
 .view-news .views-row{
 	background: url("../images/separator_home.jpg") repeat-x scroll 0% 100% rgba(0, 0, 0, 0);
 	padding-bottom:1em;
-	padding-top:1em;
+	padding-top:0em;
 }
 
 .view-news span.date-display-single{
-	font-size:0.9em;
+	font-size:0.8em;
 	font-weight:normal;
 	font-weight:bold;
 }
@@ -2697,11 +2782,16 @@ font-weight: normal;
 	padding:0;
 }
 
+.view-news .views-row article{
+	padding-top:1em;
+	padding-bottom:1em;
+}
+
 .node-news .field-name-field-summary p{
 	margin:0;
 	padding:0;
 	font-family: Arial!important;
-	font-size: 0.9em;
+	font-size: 1em;
 	color:#000000;
 	font-weight:normal;
 	padding: 0 0 12px;
@@ -2722,7 +2812,7 @@ font-weight: normal;
 	margin:0;
 	padding:0;
 	font-family: Arial!important;
-	font-size: 0.9em;
+	font-size: 1em;
 	color:#000000;
 	font-weight:normal;
 }
@@ -2765,7 +2855,7 @@ font-weight: normal;
 
 #block-osha-newsletter-osha-newsletter-subscribe{
 	background-color: #e9edf6;
-	padding: 0em 1em 1em 1em;
+	padding: 0 1em 0.5em;
 	margin-bottom:1em;
 }
 
@@ -2784,6 +2874,11 @@ font-weight: normal;
 	font-size: 0.9em;
 	margin: 0 0 .5em 0;
 	line-height:1.5em;
+}
+
+#block-osha-newsletter-osha-newsletter-subscribe #edit-captcha-response{
+	margin-bottom: 0.4em;
+    margin-top: 0.2em;
 }
 
 #block-osha-newsletter-osha-newsletter-subscribe #edit-submit--2{
@@ -2825,7 +2920,7 @@ font-weight: normal;
     font-family: "Oswald",sans-serif;
     font-size: 1.2em;
     font-weight: bold;
-    margin-top: 1em;
+    margin-top: 0.5em;
     padding-bottom: 0.2em;
     padding-right: 2.3em;
     padding-top: 0.2em;
@@ -3012,6 +3107,10 @@ font-weight: normal;
 	text-transform:uppercase;
 }
 
+.node-seminar .field-type-text-with-summary p {
+	 margin: 0.5em 0 2em 0;
+}
+
 .node-seminar .field-name-field-seminar-end-date .field-label {
 	font-weight: lighter;
 	font-family: arial!important;
@@ -3054,6 +3153,22 @@ font-weight: normal;
     padding-left:0.3em;
 	border-bottom:0px!important;
 }
+
+.view-header .back-to-link{
+	background: url("../images/flecha-izq.png") no-repeat scroll 6% center transparent!important;
+    color: #003399;
+    float: right;
+    font-family: "Oswald",sans-serif!important;
+    font-size: 1.1em;
+    margin: 0;
+    padding-bottom: 0.3em;
+    padding-right: 0em!important;
+    text-align: right;
+    width: 100%;
+	border-bottom:0px!important;
+	padding-left:1em;
+}
+
 
 .back-to-link{
 	background: url("../images/flecha-izq.png") no-repeat scroll 78% center transparent;
@@ -3536,7 +3651,7 @@ font-weight: normal;
 	border-bottom: 0 none !important;
     color: #003399;
     font-family: oswald !important;
-    font-size: 0.8em;
+    font-size: 0.7em;
     font-weight: normal;
     line-height: 1.1em;
     margin: 0 0 0em;
@@ -3584,6 +3699,14 @@ font-weight: normal;
     width: 100%;
 }
 
+.view-highlight .views-field-field-publication-date .date-display-single{
+	font-size:0.8em;
+}
+
+.view-highlight .field-name-field-publication-date  .date-display-single{
+	font-size:0.8em;
+}
+
 /*END HIGHLIGHT LIST*/
 
 /*BANNER PUBLICATION*/
@@ -3607,15 +3730,16 @@ font-weight: normal;
 
 .view-mode-osha_slideshow{
 	background-color: #e4eaf4;
-    height: 220px;
-    margin-left: 3.2em;
-    width: 84%;
-	padding-left:1em;
+	background: url("../images/separator.jpg") repeat-x scroll 75% 86% rgba(0, 0, 0, 0);
+	height: 220px;
+	margin-left: 4.2em;
+	width: 81%;
+	padding-left:0em;
 }
 
 .view-mode-osha_slideshow .field-name-field-cover-image{
 	float:left;
-	padding:1em 3em 1em 1em;
+	padding:2.5em 1em 1em 0em;
 	height:100%;
 
 
@@ -3633,8 +3757,9 @@ font-weight: normal;
 }
 
 .view-mode-osha_slideshow .field-name-field-publication-date{
-	padding-top:0.5em;
+	padding-top:2.5em;
 	width:88%;
+	font-size:0.8em;
 }
 
 .view-mode-osha_slideshow .field-name-body p{
@@ -3805,10 +3930,6 @@ font-weight: normal;
 	width:100%;
 }
 
-.view-search-seminars .view-header{
-	margin-top:-7em;
-}
-
 .node-seminar header h2 {
 	background: none repeat scroll 0 0 #FFFFFF!important;
 	padding-left:0;
@@ -3822,6 +3943,19 @@ font-weight: normal;
     font-weight: 300;
     letter-spacing: -0.75px;
 	background: none repeat scroll 0 0 #FFFFFF!important;
+}
+
+.node-seminar .date-display-single{
+	font-size:0.8em;
+}
+
+.node-seminar h1 a{
+	border-bottom: 0 none !important;
+	color: #003399 !important;
+	font-family: "Oswald",sans-serif !important;
+	font-size: 0.7em;
+	font-weight:normal;
+	letter-spacing:0px;
 }
 
 .view-search-seminars .view-content .views-row{
@@ -4047,6 +4181,14 @@ article.node-press-release .press-release-date {
 	font-size:0.8em;
 }
 
+article.node-press-release .field-name-field-summary p {
+	margin:0em
+}
+
+article.node-press-release .field-name-body.field-type-text-with-summary p{
+	margin:0em
+}
+
 .view-press-releases .field-name-title-field {
 	font-family: 'Oswald',sans-serif;
 	font-size: 1.4em;
@@ -4078,6 +4220,10 @@ article.node-press-release .press-release-date {
 	padding:0 0 0 0;
 	margin:0;
 	color:#000000;
+}
+
+.view-press-releases .date-display-single{
+	font-size: 0.8em;
 }
 
 /*END PRESS ROOM CONTENT*/
@@ -4237,13 +4383,10 @@ article.node-guideline ul li a{
 /* SEARCH DIRECTIVES*/
 
 .view-search-directives .field-name-title-field a{
-	color: #000000!important;
-	font-family: 'Oswald',sans-serif!important;
-	border-bottom: 0px!important;
-	font-size: 1.4em;
-	font-weight: 300;
-	letter-spacing: -0.75px;
-	padding-bottom: 0.5em;
+	border-bottom: 0 none !important;
+    color: #003399 !important;
+    font-family: "Oswald",sans-serif !important;
+    font-size: 1.5em;
 
 }
 
@@ -4269,11 +4412,33 @@ article.node-guideline ul li a{
 	padding:0;
 }
 
+.view-search-directives  .field-name-field-summary .field-items{
+	padding-top:0.5em;
+	padding-bottom:0.5em;
+}
+
 .view-search-directives  .view-content .views-row{
 	background: url("../images/separator_home.jpg") repeat-x scroll 0% 100% rgba(0, 0, 0, 0);
 	padding-bottom:1em;
 	padding-top:1em;
 
+}
+
+.facetapi-facet-field-date-of-directive {
+	list-style: outside none none;
+	margin: 0 !important;
+	padding-left: 0.7em;
+}
+
+.facetapi-facet-field-date-of-directive a{
+	background: url("../images/li_arrow.png") no-repeat scroll 0 100% transparent;
+	color: #003399;
+	font-size: 0.8em;
+	font-weight: bold;
+	padding-left: 1em;
+	text-decoration: none;
+	padding-top: 0em;
+	margin: 0em;
 }
 
 
@@ -4319,6 +4484,7 @@ div.contextual-links-wrapper a{
 
 .addtoany{
 	float:right;
+	padding-top: 1em!important;
 }
 
 .addtoany_list > a{
@@ -4449,6 +4615,25 @@ a.tabs-primary__tab-link{
     padding-top: 0.5em;
 }
 
+.view-search.view-id-search .views-row .views-field-field-image{
+	float:left;
+	padding-right:1em;
+}
+
+.view-search.view-id-search .views-row  .views-field-field-publication-date{
+	font-size:0.8em;
+}
+
+.view-search.view-id-search .views-row .views-field-field-updated{
+	font-size:0.8em;
+}	
+
+.view-search.view-id-search .views-row .views-field-field-cover-image{
+	float:left;
+	padding-right:1em;
+}
+
+
 #block-views-exp-search-site #edit-search-api-language-wrapper{
 	background:none;
 }
@@ -4480,7 +4665,10 @@ a.tabs-primary__tab-link{
 	background: url("../images/separator_search.png") repeat-x scroll 0 100% rgba(0, 0, 0, 0);
     margin-right: 2em;
     margin-top: 1em;
-    padding-bottom: 2em;
+    padding-bottom: 1em;
+	clear:both;
+	height:1%;
+	overflow:hidden;
 }
 
 .view-search .views-row  .views-field-title-field a{
@@ -4547,7 +4735,7 @@ a.tabs-primary__tab-link{
 
 .view-display-id-wiki  .views-row  .views-field-field-wiki-page-url a{
 	border-bottom: 0 solid #dc2f82 !important;
-    color: #dc2f82 !important;
+    color: #ca2273 !important;
     display: block;
     margin-top: 0.2em;
 	clear:both;
@@ -4577,6 +4765,21 @@ a.tabs-primary__tab-link{
 	padding: 0 0 0.3em;
 	background: none repeat scroll 0 0 #FFFFFF;
 	background: url("../images/separator_home.jpg") repeat-x scroll 0% 100% rgba(0, 0, 0, 0);
+	font-weight:400;
+}
+
+#block-views-events-index-block-1 .views-row{
+	font-weight:bold;
+}
+
+#block-views-events-index-block-1 .date-display-start{
+	font-size:0.8em;
+	font-weight:bold;
+}
+
+#block-views-events-index-block-1 .date-display-end{
+	font-size:0.8em;
+	font-weight:bold;
 }
 
 .view-events-index ul{
@@ -4611,7 +4814,7 @@ a.tabs-primary__tab-link{
 .view-events-index.view-display-id-block_1 a {
 	color:#003399;
 	text-decoration:none;
-	background: url("../images/li_arrow.png") no-repeat scroll 0 100% transparent;
+	background: url("../images/li_arrow.png") no-repeat scroll 0 50% transparent;
 	font-weight:bold;
 	padding-left:1em;
 	font-size:0.8em;
@@ -4636,7 +4839,7 @@ a.tabs-primary__tab-link{
 
 #block-nodeblock-5322 .field-name-field-image{
 	float:right;
-	margin-top:1.9em;
+	margin-top:0.2em;
 }
 
 #block-nodeblock-5322 .field-type-text-with-summary{
@@ -4676,13 +4879,30 @@ a.tabs-primary__tab-link{
 	background-image: url("../images/separator_home.jpg"), url("../images/separator_home.jpg");
 	background-position: left top, left bottom;
 	background-repeat: repeat-x;
-	padding:1em;
+	padding: 1em 0;
 }
 
 .view-events-index .views-exposed-form #edit-field-start-date{
 	margin-top:0.6em;
 }
 
+.view-events-index .views-exposed-form #edit-submit-events-index{
+	margin-top:2em;
+}
+
+.view-events-index .views-exposed-form #edit-reset{
+	background: none repeat scroll 0 0 rgba(0, 0, 0, 0);
+    border: 0 none;
+    clear: both;
+    color: #003399;
+    float: left;
+    font-family: arial;
+    font-size: 0.8em;
+    font-weight: bold;
+    margin-left: 0em;
+    text-decoration: underline;
+	margin-top:5.1em;
+}
 
 .view-events-index #edit-search-api-views-fulltext-wrapper{
 	background:none;
@@ -4690,12 +4910,24 @@ a.tabs-primary__tab-link{
 
 
 .view-events-index #edit-search-api-views-fulltext-wrapper label {
-	margin-top: 0.5em;
+	margin-top: 1.5em;
 	padding-bottom: 0.7em;
 }
 
 .view-events-index .form-item-search-api-views-fulltext input{
 	width:12em;
+}
+
+.view-events-index .views-field-field-start-date-value{
+	float:left;
+	padding-right:0.1em;
+	font-weight:bold;
+	font-size:0.8em;
+}
+
+.view-events-index  .views-field-field-start-date-value2{
+	font-size:0.8em;
+	font-weight:bold;
 }
 
 .view-events-index .form-item-field-start-date-date input{
@@ -4719,7 +4951,7 @@ a.tabs-primary__tab-link{
 }
 
 .view-events-index #edit-search-api-views-fulltext{
-	margin-top:.3em;
+	margin-top:.4em;
 }
 
 .view-events-index #edit-field-country-code{
@@ -4757,7 +4989,7 @@ a.tabs-primary__tab-link{
 	font-weight:normal;
 }
 
-#content .view-events-index .views-row  .views-field-title-field{
+#content .view-events-index .views-row  .views-field-title-field a{
 	clear:both;
 	border-bottom: 0 none !important;
     font-family: "Oswald",sans-serif !important;
@@ -4844,6 +5076,13 @@ a.tabs-primary__tab-link{
 	text-transform: uppercase;
 }
 
+.node-events .field-name-field-city  .field-label{
+	font-weight: lighter;
+	font-family: arial!important;
+	font-size: 1em;
+	text-transform: uppercase;
+}
+
 .node-events .field-name-field-country-code .field-label{
 	font-weight: lighter;
 	font-family: arial!important;
@@ -4852,7 +5091,7 @@ a.tabs-primary__tab-link{
 }
 
 .node-events .field-name-field-country-code{
-	float:left;
+	float:none;
 	padding-right:0.3em;
 }
 
@@ -4867,6 +5106,10 @@ a.tabs-primary__tab-link{
 	font-family: arial!important;
 	font-size: 1em;
 	text-transform: uppercase;
+}
+
+.node-events .group-events-description p{
+	margin:0.5em 0em;
 }
 
 .node-events .field-name-field-start-date .field-label{
@@ -5275,6 +5518,14 @@ a.tabs-primary__tab-link{
 	border-bottom:0px!important
 }
 
+.view-blog  .date-display-single{
+	font-size:0.8em;
+}
+
+.view-blog  .views-field-field-summary p{
+	margin-top:0em;
+}
+
 #block-views-blog-block-2{
 	background-color:#FFFFFF;
 	border-top: 5px solid #003399;
@@ -5423,7 +5674,8 @@ a.tabs-primary__tab-link{
 	background: url("../images/separator_home.jpg") repeat-x scroll 0 100% rgba(0, 0, 0, 0);
 	padding-left:0em;
 	border-top:5px solid #003399;
-	margin-top:1em;
+	margin-top:2em;
+	clear:both;
 }
 
 #comments a{
@@ -5508,7 +5760,7 @@ article.comment p {
 
 .block-osha-alert-service {
 	background-color: #e9edf6;
-	padding: 0em 1em 1em 1em;
+	padding: 0em 1em 0.5em 1em;
 	margin-bottom: 1em;
 }
 
@@ -5528,7 +5780,8 @@ article.comment p {
 	font-family: "Oswald",sans-serif;
 	font-size: 1.2em;
 	font-weight: bold;
-	margin-top: 1em;
+	margin-top: 0.5em;
+	margin-bottom:0.5em;
 	padding-bottom: 0.2em;
 	padding-right: 0em;
 	padding-top: 0.2em;
@@ -5537,11 +5790,10 @@ article.comment p {
 	text-decoration: none;
 	display: block;
 	padding-left: 1em;
-	margin-bottom:1em;
 }
 
 .privacy-policy-oshmail{
-	font-size: 1em;
+	font-size: 0.9em;
 	font-weight: lighter;
 	font-family: arial;
 	color: #003399;
@@ -5621,8 +5873,11 @@ article.comment p {
 }	
 
 #block-osha-press-release-osha-press-rel-join-list h2{
-	padding-left: 1.2em;
-	padding-right: 2em;
+	line-height: 1.3em;
+    padding-left: 1.2em;
+    padding-right: 2em;
+    padding-top: 0.5em;
+	padding-bottom:0.5em;
 }
 
 #join-list{
@@ -5650,8 +5905,11 @@ article.comment p {
 }
 
 #block-osha-press-release-osha-press-rel-become-partner h2{
-	padding-left: 1.2em;
-	padding-right: 2em;
+	line-height: 1.3em;
+    padding-left: 1.2em;
+    padding-right: 2em;
+    padding-top: 0.5em;
+	padding-bottom:0.5em;
 }
 
 #become-partner {
@@ -5910,7 +6168,7 @@ div.contextual-links-wrapper{
     font-family: arial;
     font-size: 1em;
     font-weight: normal;
-	float:left;
+	float:none;
 	padding-right:1em;
 	padding-left:0em;
 }
@@ -5926,8 +6184,6 @@ div.contextual-links-wrapper{
 
 
 #block-views-infographic-block-1{
-	height:1%;
-	overflow:hidden;
 	clear:both;
 	background: url("../images/separator_home.jpg") repeat-x scroll 0 0 rgba(0, 0, 0, 0);
 	padding-top:2em;
@@ -5939,41 +6195,46 @@ div.contextual-links-wrapper{
 	padding-right:1em;
 }
 
-#block-views-infographic-block-1 .view-content{
-	display: flex;
-	align-items: flex-end;
-   
+
+#block-views-infographic-block-1 .view-infographic .view-content .views-row:nth-child(odd){
+	clear:both;
 }
 
 #block-views-infographic-block-1 .view-infographic  .views-row .views-field-title{
-	text-decoration: none;
-	color: #001791!important;
-	padding-right: 1.3em!important;
-	font-family: 'Oswald', sans-serif;
-	font-size: 1.35em;
-	font-style: normal;
-	font-weight: 400;
-	color: #001791;
-	letter-spacing: -0.5px;
-	margin-bottom: 0.2em;
 	border-bottom: 10px solid #d2dced;
-	line-height: 1.2em;
-	padding-top: 1em;
-	padding-bottom: 0.2em;
-	width: 86%;
-	position: relative;
+    color: #001791 !important;
+    font-family: "Oswald",sans-serif;
+    font-size: 1.35em;
+    font-style: normal;
+    font-weight: 400;
+    height: 47px;
+    letter-spacing: -0.5px;
+    line-height: 1.2em;
+    margin-bottom: 0.2em;
+    padding-bottom: 0.2em;
+    padding-right: 1.3em !important;
+    padding-top: 1em;
+    position: relative;
+    text-decoration: none;
+    width: 216px;
 }
 
 
 #block-views-infographic-block-1 .view-infographic  .views-row .views-field-title a {
-	font-family: 'Oswald', sans-serif!important;
-	text-decoration: none;
-	color: #003399;
+	border: 0 none !important;
+    bottom: 5px;
+    color: #003399;
+    font-family: "Oswald",sans-serif !important;
+    position: absolute;
+    text-decoration: none;
+}
+
+#block-views-infographic-block-1 .view-infographic  .views-row .views-field-field-thumbnail a{
 	border: 0px!important;
 }
 
-#block-views-infographic-block-1 .view-infographic  .views-row .views-field-field-image a{
-	border: 0px!important;
+.view.view-infographic.view-id-infographic.view-display-id-block_2{
+	margin-left:-0.5em;
 }
 
 /*END INFOGRAPHICS*/
@@ -6148,14 +6409,15 @@ div.contextual-links-wrapper{
 /*EVENTS PORLET*/
 
 #block-views-related-content-block-6 h2{
-	background: url("../images/separator_home.jpg") repeat-x scroll 0 100% rgba(0, 0, 0, 0);
-    color: #000;
-    font-family: "Oswald",sans-serif;
-    font-size: 1.55em;
-    font-weight: lighter;
-    margin: 0;
-    padding: 0.3em 0.5em;
-	border-top: 5px solid #003399;
+	background: url("../images/ico_events.png") no-repeat scroll 100% 30% transparent;
+	color: #000000;
+	font-family: "Oswald",sans-serif;
+	font-size: 1.2em;
+	font-weight: lighter;
+	margin-bottom: 0;
+	padding-bottom: 0;
+	padding-left: 0.5em;
+	font-weight: 400;
 }
 
 #block-views-related-content-block-6  a{
@@ -6170,11 +6432,19 @@ div.contextual-links-wrapper{
 
 #block-views-related-content-block-6 .views-field-field-start-date{
 	font-weight:bold;
-	font-size:0.8em;
+	font-size: 0.8em;
 }
 
 #block-views-related-content-block-6  .view-related-content{
 	padding-left:0.8em;
+	padding-top: 1em;
+	background: url("../images/separator_home.jpg") repeat-x scroll 0% -7px rgba(0, 0, 0, 0);
+}
+
+
+#block-views-related-content-block-6  .view-related-content .views-row{
+	padding-bottom:1em;
+	background: url("../images/separator_home.jpg") repeat-x scroll 0% 50px rgba(0, 0, 0, 0);
 }
 
 /*END EVENTS PORLET*/
@@ -6220,3 +6490,107 @@ div.contextual-links-wrapper{
 
 /*CONTACT US*/
 
+.node-article .field-name-body p{ 
+	margin: 0.2em 0 0.5em;
+}
+
+.node-article .field-name-body ul{ 
+	margin: 0em;
+}
+
+#block-osha-newsletter-osha-newsletter-subscribe p{ 
+	margin: 0.5em 0;
+}
+
+
+.osha-archived-content{
+	padding:1em;
+	background-color:#ECF1FB;
+	color:#003399;
+	text-align:center;
+	font-weight:bold;
+}
+
+
+.node-article.view-mode-full iframe {
+	width: 100%;
+}
+
+.node.node-article.view-mode-full .field.field-name-field-image.field-type-image.field-label-hidden .field-items .field-item  img {
+	width:100%;
+}
+
+#edit-submit-publications-index{
+	background: url("../images/flecha.png") no-repeat scroll 96% center #e8eef7;
+	border: 0 none;
+	color: #003399;
+	float: none;
+	font-family: "Oswald",sans-serif;
+	font-size: 1.2em;
+	font-weight: bold;
+	margin-top: 0.7em!important;
+	padding-bottom: 0.2em;
+	padding-right: 2.3em;
+	padding-top: 0.2em;
+	text-align: right;
+	width: 46%;
+}
+
+.view-events-index .views-exposed-widget.views-submit-button{
+	width: 10%;
+}
+
+#edit-submit-events-index{
+	background: url("../images/flecha.png") no-repeat scroll 96% center #e8eef7;
+	border: 0 none;
+	color: #003399;
+	float: none;
+	font-family: "Oswald",sans-serif;
+	font-size: 1.2em;
+	font-weight: bold;
+	margin-top: 0.5em;
+	padding: 0.2em 2.3em 0.2em 0.4em;
+	text-align: right;
+	width: 100%;
+}
+
+#edit-submit-search-seminars{
+	background: url("../images/flecha.png") no-repeat scroll 96% center #e8eef7;
+	border: 0 none;
+	color: #003399;
+	float: none;
+	font-family: "Oswald",sans-serif;
+	font-size: 1.2em;
+	font-weight: bold;
+	margin-top: 0.5em;
+	padding-bottom: 0.2em;
+	padding-right: 4.3em;
+	padding-top: 0.2em;
+	text-align: right;
+	width: 100%;
+	margin-top:1em;
+}
+
+
+#edit-submit-search-directives{
+	background: url("../images/flecha.png") no-repeat scroll 96% center #e8eef7;
+	border: 0 none;
+	color: #003399;
+	float: none;
+	font-family: "Oswald",sans-serif;
+	font-size: 1.2em;
+	font-weight: bold;
+	margin-top: 0.5em;
+	padding-bottom: 0.2em;
+	padding-right: 4.3em;
+	padding-top: 0.2em;
+	text-align: right;
+	width: 100%;
+	margin-top:1em;
+}
+
+.views-exposed-widget.views-submit-button{
+	background: url("../images/separator_home.jpg") repeat-x scroll 100% 117% rgba(0, 0, 0, 0);
+	height: 4em;
+	width: 100%;
+}

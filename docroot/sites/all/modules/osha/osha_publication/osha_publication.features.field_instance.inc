@@ -990,7 +990,7 @@ function osha_publication_field_default_field_instances() {
           'osha_date_theme' => '',
         ),
         'type' => 'date_default',
-        'weight' => 1,
+        'weight' => 0,
       ),
       'highlights_item' => array(
         'label' => 'above',
@@ -1666,7 +1666,7 @@ function osha_publication_field_default_field_instances() {
           'title_style' => 'h1',
         ),
         'type' => 'title_linked',
-        'weight' => 0,
+        'weight' => 1,
       ),
       'highlights_item' => array(
         'label' => 'hidden',

@@ -354,6 +354,7 @@ $options['init-modules'] = array(
   'node_export',
   'mpac',
   'linkit',
+  'pathologic',
   'scanner',
   'search_and_replace',
   'nodeblock',

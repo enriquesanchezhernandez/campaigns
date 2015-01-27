@@ -168,6 +168,27 @@ class osha_tmgmt_handler_field_tmgmt_job_item_section extends views_handler_fiel
 /**
  * Class osha_tmgmt_handler_field_tmgmt_job_item_activity handles node activity
  */
+class osha_tmgmt_handler_field_tmgmt_job_item_type extends tmgmt_handler_field_tmgmt_job_item_type {
+
+  /**
+   * {@inheritdoc}
+   */
+  public function render($row) {
+    $job = tmgmt_job_item_load($row->tjiid);
+    switch ($job->item_type) {
+      case 'node':
+        return parent::render($row);
+
+      case 'default':
+        return 'String literal';
+    }
+    return ucfirst(str_replace('_', ' ', $job->item_type));
+  }
+}
+
+/**
+ * Class osha_tmgmt_handler_field_tmgmt_job_item_activity handles node activity
+ */
 class osha_tmgmt_handler_field_tmgmt_job_item_creator extends views_handler_field {
 
   /**
