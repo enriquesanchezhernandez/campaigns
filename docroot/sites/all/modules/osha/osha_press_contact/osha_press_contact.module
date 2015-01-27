@@ -5,3 +5,11 @@
  */
 
 include_once 'osha_press_contact.features.inc';
+
+/**
+ * Implements hook_osha_tmgmt_i18n_string_list().
+ */
+function osha_press_contact_osha_tmgmt_i18n_string_list() {
+  module_load_include('inc', 'osha_press_contact', 'osha_press_contact.translations');
+  return osha_press_contact_get_translatable_strings();
+}

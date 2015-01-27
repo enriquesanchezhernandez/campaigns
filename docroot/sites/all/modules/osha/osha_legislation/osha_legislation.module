@@ -79,3 +79,11 @@ function osha_legislation_form_node_form_alter(&$form, $form_state) {
     }
   }
 }
+
+/**
+ * Implements hook_osha_tmgmt_i18n_string_list().
+ */
+function osha_legislation_osha_tmgmt_i18n_string_list() {
+  module_load_include('inc', 'osha_legislation', 'osha_legislation.translations');
+  return osha_legislation_get_translatable_strings();
+}

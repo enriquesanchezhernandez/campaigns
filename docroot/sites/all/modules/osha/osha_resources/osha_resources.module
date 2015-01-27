@@ -32,3 +32,11 @@ function osha_resources_node_view_alter(&$build){
     }
   }
 }
+
+/**
+ * Implements hook_osha_tmgmt_i18n_string_list().
+ */
+function osha_resources_osha_tmgmt_i18n_string_list() {
+  module_load_include('inc', 'osha_resources', 'osha_resources.translations');
+  return osha_resources_get_translatable_strings();
+}

@@ -10,7 +10,7 @@
 <div id="<?php print $block_html_id; ?>" class="<?php print $classes; ?>"<?php print $attributes; ?>>
   <?php print render($title_prefix); ?>
   <?php if ($title): ?>
-    <div class="related_wiki_head"><span><?php print t('OSHWiki featured articles');?><span></div>
+    <div class="related_wiki_head"><span><?php print t('OSHwiki featured articles');?><span></div>
   <?php endif; ?>
   <?php print render($title_suffix); ?>
   <?php print $content; ?>

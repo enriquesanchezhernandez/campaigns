@@ -1,0 +1,35 @@
+<?php
+
+function osha_press_release_get_translatable_strings() {
+  return array(
+    'Press room',
+    'Activity',
+    'Additional Resources',
+    'Archived',
+    'Embargo Date',
+    'Expiration Date',
+    'Publication Date',
+    'Press release',
+    'Press releases',
+    'Become a media partner',
+    'For more information on the partnership and how to apply, see the campaign media partnership offer.',
+    'See more',
+    'Join our News Distribution List',
+    'Register here to receive our news releases.',
+    'Register',
+    'HOLD ON FOR PRESS RELEASE UNTIL',
+    'FOR IMMEDIATE RELEASE',
+    'See all',
+    'more',
+    'Apply',
+    'Reset',
+    'Sort by',
+    'Asc',
+    'Desc',
+    'Items per page',
+    '- All -',
+    'What\'s new',
+    'Links',
+    'Notes to editor',
+  );
+}

@@ -22,3 +22,11 @@ function osha_content_uuid_node_features_rebuild_alter(&$node, $module) {
   unset($node->path['pid']);
 }
 */
+
+/**
+ * Implements hook_osha_tmgmt_i18n_string_list().
+ */
+function osha_content_osha_tmgmt_i18n_string_list() {
+  module_load_include('inc', 'osha_content', 'osha_content.translations');
+  return osha_content_get_translatable_strings();
+}

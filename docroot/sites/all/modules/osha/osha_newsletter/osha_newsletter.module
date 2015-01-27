@@ -1157,3 +1157,11 @@ function osha_newsletter_preprocess_node(&$vars) {
     $vars['theme_hook_suggestions'][] = 'node__' . $vars['node']->nid . '__newsletter_item';
   }
 }
+
+/**
+ * Implements hook_osha_tmgmt_i18n_string_list().
+ */
+function osha_newsletter_osha_tmgmt_i18n_string_list() {
+  module_load_include('inc', 'osha_newsletter', 'osha_newsletter.translations');
+  return osha_newsletter_get_translatable_strings();
+}
