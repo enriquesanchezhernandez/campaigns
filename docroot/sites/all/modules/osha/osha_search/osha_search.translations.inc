@@ -8,7 +8,7 @@ function osha_search_get_translatable_strings() {
     'Site Search',
     'Publication date',
     'Language',
-    'OSHWiki Search',
+    'OSHwiki Search',
     'Date',
     'Sort by',
     'Items per page',

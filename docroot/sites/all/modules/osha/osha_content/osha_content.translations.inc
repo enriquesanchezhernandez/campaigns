@@ -13,8 +13,8 @@ function osha_content_get_translatable_strings() {
     'News',
     'Publications',
     'Related publications',
-    'OSHWiki',
-    'Related OSHWiki articles',
+    'OSHwiki',
+    'Related OSHwiki articles',
     'Events',
   );
 }
