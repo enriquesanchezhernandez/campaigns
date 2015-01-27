@@ -183,11 +183,10 @@ $handler->display->display_options['fields']['page_count']['separator'] = '';
 $handler->display->display_options['fields']['character_count']['id'] = 'character_count';
 $handler->display->display_options['fields']['character_count']['table'] = 'tmgmt_job_item';
 $handler->display->display_options['fields']['character_count']['field'] = 'character_count';
-/* Field: Content: Type */
-$handler->display->display_options['fields']['type']['id'] = 'type';
-$handler->display->display_options['fields']['type']['table'] = 'node';
-$handler->display->display_options['fields']['type']['field'] = 'type';
-$handler->display->display_options['fields']['type']['relationship'] = 'job_item_to_node';
+/* Field: Translation Management Job Item: Type */
+$handler->display->display_options['fields']['type_1']['id'] = 'type_1';
+$handler->display->display_options['fields']['type_1']['table'] = 'tmgmt_job_item';
+$handler->display->display_options['fields']['type_1']['field'] = 'type';
 /* Field: Workbench Access: Section */
 $handler->display->display_options['fields']['section']['id'] = 'section';
 $handler->display->display_options['fields']['section']['table'] = 'workbench_access';

@@ -34,7 +34,7 @@ function osha_alert_service_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'osha_alert_service_privacy_policy_url';
-  $strongarm->value = 'articles/privacy-policy-alerts-form';
+  $strongarm->value = 'alertservice/privacy-statement-alerts';
   $export['osha_alert_service_privacy_policy_url'] = $strongarm;
 
   $strongarm = new stdClass();

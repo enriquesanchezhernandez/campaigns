@@ -7,7 +7,7 @@
 include_once 'osha_alert_service.features.inc';
 module_load_include('inc', 'osha_alert_service', 'osha_alert_service.admin');
 
-define('OSHA_ALERT_SERVICE_PRIVACY_PAGE_URL', 'articles/privacy-policy-alerts-form');
+define('OSHA_ALERT_SERVICE_PRIVACY_PAGE_URL', 'alertservice/privacy-statement-alerts');
 
 /**
  * Implements hook_entity_info().

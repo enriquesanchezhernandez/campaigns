@@ -6,6 +6,9 @@
  */
 class MigrateOshaPressRelease extends OSHADynamicMigration {
 
+  /*path pattern*/
+  const PATH_PATTERN = '/press\/press-releases\/([\w\d\.\-_]+)/';
+
   /**
    * {@inheritdoc}
    */
@@ -253,6 +256,34 @@ class MigrateOshaPressRelease extends OSHADynamicMigration {
       if ($has_translation) {
         MigrationUtil::setTranslation($translation_handler, $entity, $row, $language);
       }
+    }
+  }
+
+  /**
+   * Sets the node aliases and redirects after the migration, nid is available.
+   *
+   * @param object $entity
+   *   Entity to be saved
+   * @param object $row
+   *   Source row
+   */
+  public function complete($entity, $row) {
+    if (preg_match(self::PATH_PATTERN, $row->id, $matches)) {
+      $tmp_path = $row->path;
+      $languages = array_keys($entity->translations->data);
+      foreach($languages as $language){
+        $row->path[$language] = 'inside-eu-osha/press-room/' . $matches[1];
+      }
+      MigrationUtil::createAliases($entity, $row, 'node', 'nid');
+      $row->path = $tmp_path;
+
+      // create redirect
+      MigrationUtil::createRedirects($entity, $row->id);
+      parent::createRedirectsFromAliases($entity, $row);
+    }
+    else {
+      // Call MigrationUtil::createAliases
+      parent::complete($entity, $row);
     }
   }
 }

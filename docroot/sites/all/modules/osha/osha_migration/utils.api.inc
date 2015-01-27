@@ -539,7 +539,8 @@ class MigrationUtil {
 
   public static function setTranslation(EntityTranslationHandlerInterface &$translation_handler, $entity, $row, $language) {
     // Init Translation to set original value.
-    if (empty($entity->translations->original)) {
+    $is_new = (empty($entity->tid) && empty($entity->nid));
+    if (!$is_new && empty($entity->translations->original)) {
       $translation_handler->initTranslations();
       $translation_handler->saveTranslations();
     }
@@ -581,7 +582,7 @@ class MigrationUtil {
         'language' => $language,
       );
       // Check if path already exists.
-      $existing_path = path_load(array($args));
+      $existing_path = path_load($args);
       if (empty($existing_path)) {
         path_save($args);
       }

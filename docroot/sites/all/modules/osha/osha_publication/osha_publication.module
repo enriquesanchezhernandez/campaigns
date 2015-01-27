@@ -16,6 +16,7 @@ function osha_publication_url_inbound_alter(&$path, $original_path, $path_langua
   // if the path ends with /view than should serve the node.
   // see CW-1072
   $args = arg();
+
   $orig_path_alias = drupal_lookup_path('alias', $original_path);
   $orig_path_source = drupal_lookup_path('source', $original_path);
   if (end($args) == 'view') {
@@ -29,6 +30,13 @@ function osha_publication_url_inbound_alter(&$path, $original_path, $path_langua
         $path_source = $url;
       }
       $path_alias = path_load($path_source);
+      if (empty($path_alias)) {
+        // It may be a redirect with /view appended.
+        $redirect = redirect_load_by_source($url);
+        if (!empty($redirect->redirect)) {
+          $path_alias = path_load(array('source' => $redirect->redirect));
+        }
+      }
       if (!empty($path_alias)) {
         if (preg_match("/node\/[\d]{1,99}$/", $path_alias['source'])) {
           $node = menu_get_object('node', 1, $path_alias['source']);

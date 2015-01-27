@@ -61,7 +61,8 @@ inside-eu-osha/careers',
     'machine_name' => 'oshmail_subscribe_categories',
     'module' => 'block',
     'node_types' => array(),
-    'pages' => 'pages/oshmail-newsletter',
+    'pages' => 'oshmail-newsletter
+node/9',
     'roles' => array(),
     'themes' => array(
       'bartik' => array(

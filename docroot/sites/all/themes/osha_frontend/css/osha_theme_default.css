@@ -1275,8 +1275,8 @@ span.date-display-single{
 	width:92%;
 	padding-right:1em;
 	padding-left:0.5em;
-	padding-top:0em;
-	padding-bottom:0em;
+	padding-top:0.2em;
+	padding-bottom:0.2em;
 }
 
 
@@ -4901,7 +4901,7 @@ a.tabs-primary__tab-link{
     font-weight: bold;
     margin-left: 0em;
     text-decoration: underline;
-	margin-top:4.7em;
+	margin-top:5.1em;
 }
 
 .view-events-index #edit-search-api-views-fulltext-wrapper{
@@ -5674,7 +5674,8 @@ a.tabs-primary__tab-link{
 	background: url("../images/separator_home.jpg") repeat-x scroll 0 100% rgba(0, 0, 0, 0);
 	padding-left:0em;
 	border-top:5px solid #003399;
-	margin-top:1em;
+	margin-top:2em;
+	clear:both;
 }
 
 #comments a{
@@ -6407,10 +6408,6 @@ div.contextual-links-wrapper{
 
 /*EVENTS PORLET*/
 
-#block-views-related-content-block-6{
-	background: url("../images/separator_home.jpg") repeat-x scroll 0% 13% rgba(0, 0, 0, 0);
-}
-
 #block-views-related-content-block-6 h2{
 	background: url("../images/ico_events.png") no-repeat scroll 100% 30% transparent;
 	color: #000000;
@@ -6441,6 +6438,7 @@ div.contextual-links-wrapper{
 #block-views-related-content-block-6  .view-related-content{
 	padding-left:0.8em;
 	padding-top: 1em;
+	background: url("../images/separator_home.jpg") repeat-x scroll 0% -7px rgba(0, 0, 0, 0);
 }
 
 
@@ -6538,6 +6536,10 @@ div.contextual-links-wrapper{
 	width: 46%;
 }
 
+.view-events-index .views-exposed-widget.views-submit-button{
+	width: 10%;
+}
+
 #edit-submit-events-index{
 	background: url("../images/flecha.png") no-repeat scroll 96% center #e8eef7;
 	border: 0 none;
@@ -6547,9 +6549,7 @@ div.contextual-links-wrapper{
 	font-size: 1.2em;
 	font-weight: bold;
 	margin-top: 0.5em;
-	padding-bottom: 0.2em;
-	padding-right: 2.3em;
-	padding-top: 0.2em;
+	padding: 0.2em 2.3em 0.2em 0.4em;
 	text-align: right;
 	width: 100%;
 }
