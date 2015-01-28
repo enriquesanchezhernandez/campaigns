@@ -53,6 +53,46 @@ inside-eu-osha/careers',
     'visibility' => 1,
   );
 
+  $export['block-osha_wiki_link'] = array(
+    'cache' => -1,
+    'custom' => 0,
+    'i18n_block_language' => array(),
+    'i18n_mode' => 1,
+    'machine_name' => 'osha_wiki_link',
+    'module' => 'block',
+    'node_types' => array(),
+    'pages' => 'node/875',
+    'roles' => array(),
+    'themes' => array(
+      'bartik' => array(
+        'region' => '',
+        'status' => 0,
+        'theme' => 'bartik',
+        'weight' => 0,
+      ),
+      'osha_admin' => array(
+        'region' => '',
+        'status' => 0,
+        'theme' => 'osha_admin',
+        'weight' => 0,
+      ),
+      'osha_frontend' => array(
+        'region' => 'sidebar_second',
+        'status' => 1,
+        'theme' => 'osha_frontend',
+        'weight' => -92,
+      ),
+      'seven' => array(
+        'region' => '',
+        'status' => 0,
+        'theme' => 'seven',
+        'weight' => 0,
+      ),
+    ),
+    'title' => '<none>',
+    'visibility' => 1,
+  );
+
   $export['block-oshmail_subscribe_categories'] = array(
     'cache' => -1,
     'custom' => 0,
@@ -246,7 +286,7 @@ inside-eu-osha/careers',
         'region' => 'sidebar_second',
         'status' => 1,
         'theme' => 'osha_frontend',
-        'weight' => -1,
+        'weight' => -79,
       ),
       'seven' => array(
         'region' => '',
@@ -381,7 +421,7 @@ inside-eu-osha/careers',
         'region' => 'sidebar_second',
         'status' => 1,
         'theme' => 'osha_frontend',
-        'weight' => -3,
+        'weight' => -81,
       ),
       'seven' => array(
         'region' => '',
