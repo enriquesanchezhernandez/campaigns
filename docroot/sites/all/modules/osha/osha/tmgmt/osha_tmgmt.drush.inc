@@ -121,7 +121,7 @@ function drush_osha_tmgmt_retranslate_validate($bundle)
 function drush_osha_tmgmt_refresh_literals() {
   $strings = module_invoke_all('osha_tmgmt_i18n_string_list');
   foreach ($strings as $string) {
-    locale($string);
+    locale(trim($string));
   }
   drush_log(sprintf('Registered %d strings into the locale system...', count($strings)), 'success');
 }

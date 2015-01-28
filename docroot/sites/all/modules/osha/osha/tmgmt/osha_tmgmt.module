@@ -2238,3 +2238,11 @@ function osha_tmgmt_get_translation_languages_options($filter = array()) {
   unset($languages['tr']);
   return array_diff($languages, $filter);
 }
+
+function osha_tmgmt_get_osha_tmgmt_i18n_string_list() {
+  $strings = module_invoke_all('osha_tmgmt_i18n_string_list');
+  foreach ($strings as &$string) {
+    $string = trim($string);
+  }
+  return $strings;
+}
