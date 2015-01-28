@@ -847,6 +847,7 @@ function osha_tmgmt_form_alter(&$form, &$form_state, $form_id) {
       foreach (element_children($form['review']) as $field_name) {
         $form['review'][$field_name]['#theme'] = 'osha_tmgmt_ui_translator_review_form';
       }
+      $form['actions']['accept']['#value'] = 'Publish';
       osha_tmgmt_form_alter_add_source_target_info($form, $form_state);
       break;
 
@@ -861,6 +862,7 @@ function osha_tmgmt_form_alter(&$form, &$form_state, $form_id) {
         // Happens when user clicks the Ajax checkmark button on review form.
         drupal_set_message('Value was saved');
       }
+      $form['actions']['accept']['#value'] = 'Publish';
   }
 }
 
