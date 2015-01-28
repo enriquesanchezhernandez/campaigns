@@ -1425,7 +1425,12 @@ function osha_tmgmt_form_tmgmt_job_form_alter(&$form, &$form_state) {
           }
           $rows[$job_item->item_type . '-' . $job_item->item_id] = array(l($wrapper->label(), $url), $job_item->getSourceType(), $statistics);
         } else {
-          $type = ucfirst(str_replace('_', ' ', $job_item->item_type));
+          if ($job_item->item_type == 'default') {
+            $type = 'String literal';
+          }
+          else {
+            $type = ucfirst(str_replace('_', ' ', $job_item->item_type));
+          }
           $rows[$job_item->item_type . '-' . $job_item->item_id] = array($job_item->label(), $type, '-');
         }
       }
