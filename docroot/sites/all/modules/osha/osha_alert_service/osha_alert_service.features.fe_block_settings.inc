@@ -61,7 +61,7 @@ function osha_alert_service_default_fe_block_settings() {
     'module' => 'osha_alert_service',
     'node_types' => array(),
     'pages' => 'alertservice
-node/5326',
+node/5432',
     'roles' => array(),
     'themes' => array(
       'bartik' => array(
