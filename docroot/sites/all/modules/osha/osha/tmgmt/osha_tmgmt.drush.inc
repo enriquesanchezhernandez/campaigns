@@ -129,7 +129,7 @@ function drush_osha_tmgmt_test_osha_tmgmt_literals() {
   module_load_include('inc', 'i18n_string', 'i18n_string.pages');
   $strings = osha_tmgmt_get_osha_tmgmt_i18n_string_list();
 
-  $lids = db_query("SELECT lid, source FROM {locales_source} WHERE textgroup NOT IN ('default', 'menu')")->fetchAllKeyed();
+  $lids = db_query("SELECT lid, source FROM {locales_source} WHERE textgroup NOT IN ('default', 'menu', 'taxonomy')")->fetchAllKeyed();
   foreach($lids as $lid => $source) {
     $form_state = array(
       'values' => array(
