@@ -136,6 +136,17 @@ function osha_highlight_views_default_views() {
   $handler->display->display_options['fields']['title_field']['element_type'] = 'span';
   $handler->display->display_options['fields']['title_field']['element_class'] = 'views-field-title';
   $handler->display->display_options['fields']['title_field']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['title_field']['type'] = 'smart_trim_format';
+  $handler->display->display_options['fields']['title_field']['settings'] = array(
+    'trim_length' => '120',
+    'trim_type' => 'chars',
+    'trim_suffix' => '...',
+    'more_link' => '0',
+    'more_text' => 'Read more',
+    'trim_options' => array(
+      'text' => 0,
+    ),
+  );
   $handler->display->display_options['fields']['title_field']['link_to_entity'] = 1;
   /* Field: Content: Body */
   $handler->display->display_options['fields']['body']['id'] = 'body';
