@@ -87,11 +87,11 @@ class OshaMigratePublications extends OSHADynamicMigration {
     $this->addFieldMapping('field_archived', 'archived');
     $this->addFieldMapping('field_expiration_date', 'expiration_date');
 
-    $this->addFieldMapping('field_cover_image', 'cover_image');
-    $this->addFieldMapping('field_cover_image:source_dir')->defaultValue($data_export_path . DIRECTORY_SEPARATOR);
-    $this->addFieldMapping('field_cover_image:destination_file', 'cover_image');
-    $this->addFieldMapping('field_cover_image:file_replace')->defaultValue(FILE_EXISTS_REPLACE);
-    $this->addFieldMapping('field_cover_image:multilingual')->defaultValue(TRUE);
+//    $this->addFieldMapping('field_cover_image', 'cover_image');
+//    $this->addFieldMapping('field_cover_image:source_dir')->defaultValue($data_export_path . DIRECTORY_SEPARATOR);
+//    $this->addFieldMapping('field_cover_image:destination_file', 'cover_image');
+//    $this->addFieldMapping('field_cover_image:file_replace')->defaultValue(FILE_EXISTS_REPLACE);
+//    $this->addFieldMapping('field_cover_image:multilingual')->defaultValue(TRUE);
 
     $this->addFieldMapping('field_file', 'file');
     $this->addFieldMapping('field_file:source_dir')->defaultValue($data_export_path . DIRECTORY_SEPARATOR);
@@ -118,6 +118,7 @@ class OshaMigratePublications extends OSHADynamicMigration {
       'revision_uid',
       'is_new',
       'body:summary',
+      'field_cover_image',
       'field_nace_codes:create_term',
       'field_nace_codes:ignore_case',
       'field_tags:create_term',
@@ -245,7 +246,7 @@ class OshaMigratePublications extends OSHADynamicMigration {
     }
 
     MigrationUtil::cleanMigratedFileField($row, 'file', 'public://publications/documents');
-    MigrationUtil::cleanMigratedFileField($row, 'cover_image', 'public://publications/cover_images');
+//    MigrationUtil::cleanMigratedFileField($row, 'cover_image', 'public://publications/cover_images');
     //MigrationUtil::cleanMigratedFileField($row, 'related_resources', 'public://publications/related_resources');
     return TRUE;
   }
