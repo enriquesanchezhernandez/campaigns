@@ -2320,3 +2320,22 @@ function osha_tmgmt_preprocess_block(&$vars) {
     $vars['content'] = t($content);
   }
 }
+
+function osha_tmgmt_locale_add_translation($string, $language, $translation) {
+  if ($lids = db_query("SELECT lid FROM {locales_source} WHERE source = :source", array('source' => $string))->fetchCol()) {
+    module_load_include('inc', 'i18n_string', 'i18n_string.pages');
+    foreach($lids as $lid) {
+      $form_state = array(
+        'values' => array(
+          'lid' => $lid,
+          'textgroup' => 'default',
+          'location' => '/index.php',
+          'translations' => array(
+            $language => $translation,
+          )
+        )
+      );
+      i18n_string_locale_translate_edit_form_submit(array(), $form_state);
+    }
+  }
+}

@@ -29,6 +29,12 @@ function osha_tmgmt_drush_command()
   $items['test-osha-tmgmt-literals'] = array(
     'description' => 'Add translation X23456789X to all OSHA translatable strings in romanian language',
   );
+  $items['osha-migrate-literals'] = array(
+    'description' => 'Migrate old literals from Plone',
+    'arguments' => array(
+      'locales_dir' => 'Directory of Plone translations (i.e $gitroot/src/osha/translations/locales)',
+    ),
+  );
   return $items;
 }
 
@@ -145,27 +151,68 @@ function drush_osha_tmgmt_test_osha_tmgmt_literals() {
   }
   drush_log('Found ' . count($lids) . ' non built-in interace translated', 'success');
 
-  $i = 0;
   drush_log('Found ' . count($strings) . ' OSHA strings registereed in hook_osha_tmgmt_i18n_string_list', 'success');
   foreach ($strings as $string) {
-    if ($lid = db_query("SELECT lid FROM {locales_source} WHERE source = :source AND textgroup = 'default' AND context=''", array(':source' => $string))->fetchCol()) {
-      $lid = $lid[0];
-      $form_state = array(
-        'values' => array(
-          'lid' => $lid,
-          'textgroup' => 'default',
-          'location' => '/index.php',
-          'translations' => array(
-            'ro' => '#ro#' . $string . '#/ro#',
-          )
-        )
-      );
-      i18n_string_locale_translate_edit_form_submit(array(), $form_state);
-      $i++;
+    osha_tmgmt_locale_add_translation($string, 'ro', '#ro#' . $string . '#/ro#');
+  }
+}
+
+function drush_osha_tmgmt_osha_migrate_literals($locales_dir) {
+  // $directory = drush_get_option('directory', '/Users/cristiroma/Work/osha/translations/src/osha/translations/locales');
+  $directory = $locales_dir;
+
+  // Load the POT file and extract all strings
+  $msgids = array();
+  $handle = fopen($directory . '/osha.pot', "r");
+  if ($handle) {
+    while (($line = fgets($handle)) !== false) {
+      if(preg_match('/^msgid/', $line)) {
+        $line = str_replace(array('msgid', '"', "\n"), '', $line);
+        $line = trim($line);
+        if(strlen($line)) {
+          $msgids[] = $line;
+        }
+      }
+    }
+    fclose($handle);
+  } else {
+    // error opening the file.
+  }
+  $english = array();
+  foreach($msgids as $msgid) {
+    $en = osha_tmgmt_gettext_get_translation($msgid, 'en', $directory);
+    $english[$msgid] = $en;
+  }
+  $strings = osha_tmgmt_get_osha_tmgmt_i18n_string_list();
+  $common = array();
+  foreach($english as $msgid => $msg) {
+    if(in_array($msg, $strings)) {
+      $common[$msgid] = $msg;
     }
   }
-  drush_log("Translated $i strings", 'success');
-  if($i != count($strings)) {
-    drush_log('String count not matched - some strings remain untranslated!', 'warning');
+
+
+  $languages = language_list();
+  echo "Common strings: " . count($common) . "\n";
+  foreach($common as $msgid => $en) {
+    // echo "en: $en\n";
+    foreach ($languages as $id => $language) {
+      if ($id == 'en') {
+        continue;
+      }
+      $string = osha_tmgmt_gettext_get_translation($msgid, $id, $directory);
+      if ($string != $en) {
+        // echo "$id: $string\n";
+        osha_tmgmt_locale_add_translation($msgid, $id, $string);
+      }
+    }
   }
+}
+
+function osha_tmgmt_gettext_get_translation($string, $language, $directory, $domain = 'osha') {
+  setlocale(LC_ALL, $language);
+  putenv('LC_ALL=' . $language);
+  bindtextdomain($domain, $directory);
+  textdomain($domain);
+  return gettext($string);
 }
