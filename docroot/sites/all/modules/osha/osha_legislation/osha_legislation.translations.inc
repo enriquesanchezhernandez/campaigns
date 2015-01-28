@@ -23,5 +23,6 @@ function osha_legislation_get_translatable_strings() {
     'Directive number',
     'Show details',
     'Guidelines by topics',
+    'Date of directive',
   );
 }

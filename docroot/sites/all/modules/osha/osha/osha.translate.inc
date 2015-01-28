@@ -2,6 +2,7 @@
 
 function osha_get_translatable_strings() {
   return array(
+    'Related',
     'Section',
     'Article',
     'Activity',

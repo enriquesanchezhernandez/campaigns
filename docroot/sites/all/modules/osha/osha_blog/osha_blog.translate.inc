@@ -32,5 +32,7 @@ function osha_blog_get_translatable_strings() {
     'What code is in the image?',
     'Enter the characters shown in the image.',
     'Image CAPTCHA',
+    'Read more',
+    'Back to latest posts',
   );
 }

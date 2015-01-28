@@ -21,5 +21,6 @@ function osha_publication_get_translatable_strings() {
     'Publication Date',
     'Related publications',
     'Unpublished',
+    'Filter results',
   );
 }
