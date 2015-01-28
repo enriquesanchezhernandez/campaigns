@@ -2,7 +2,6 @@
 
 function osha_blog_get_translatable_strings() {
   return array(
-    '<p><a href="/blog/feed">Click here for the RSS Feed</a></p>',
     'Activity',
     'Archived',
     'Author(s)',

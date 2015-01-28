@@ -2,6 +2,7 @@
 
 function osha_alert_service_get_translatable_strings() {
   return array(
+    'Click here for the RSS Feed',
     'E-mail',
     'Subjects of interest',
     'Item type',
