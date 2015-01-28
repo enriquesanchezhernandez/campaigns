@@ -40,5 +40,9 @@ function osha_get_translatable_strings() {
 
     // Core strings
     'Unable to send e-mail. Contact the site administrator if the problem persists.',
+
+     // Other strings
+    'Share this on:',
+    'Share',
   );
 }
