@@ -204,3 +204,11 @@ function osha_contact_message_validate($element, &$form_state) {
     }
   }
 }
+
+/**
+ * Implements hook_osha_tmgmt_i18n_string_list().
+ */
+function osha_contact_osha_tmgmt_i18n_string_list() {
+  module_load_include('inc', 'osha_contact', 'osha_contact.translations');
+  return osha_contact_get_translatable_strings();
+}

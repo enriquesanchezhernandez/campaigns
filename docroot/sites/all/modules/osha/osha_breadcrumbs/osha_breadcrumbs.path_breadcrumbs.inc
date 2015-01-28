@@ -23,7 +23,7 @@ function osha_breadcrumbs_path_breadcrumbs_settings_info() {
       0 => '<none>',
     ),
     'home' => 1,
-    'translatable' => 0,
+    'translatable' => 1,
     'arguments' => array(),
     'access' => array(),
   );
@@ -47,7 +47,7 @@ function osha_breadcrumbs_path_breadcrumbs_settings_info() {
       2 => '<none>',
     ),
     'home' => 1,
-    'translatable' => 0,
+    'translatable' => 1,
     'arguments' => array(),
     'access' => array(),
   );
@@ -69,7 +69,7 @@ function osha_breadcrumbs_path_breadcrumbs_settings_info() {
       1 => '<none>',
     ),
     'home' => 1,
-    'translatable' => 0,
+    'translatable' => 1,
     'arguments' => array(),
     'access' => array(),
   );
@@ -95,7 +95,7 @@ function osha_breadcrumbs_path_breadcrumbs_settings_info() {
       3 => '<none>',
     ),
     'home' => 1,
-    'translatable' => 0,
+    'translatable' => 1,
     'arguments' => array(
       'node' => array(
         'position' => 1,
@@ -139,7 +139,7 @@ function osha_breadcrumbs_path_breadcrumbs_settings_info() {
       1 => 'safety-and-health-legislation/european-directives',
     ),
     'home' => 1,
-    'translatable' => 0,
+    'translatable' => 1,
     'arguments' => array(),
     'access' => array(),
   );
@@ -163,7 +163,7 @@ function osha_breadcrumbs_path_breadcrumbs_settings_info() {
       2 => '<none>',
     ),
     'home' => 1,
-    'translatable' => 0,
+    'translatable' => 1,
     'arguments' => array(
       'string' => array(
         'position' => 2,
@@ -195,7 +195,7 @@ function osha_breadcrumbs_path_breadcrumbs_settings_info() {
       2 => '<none>',
     ),
     'home' => 1,
-    'translatable' => 0,
+    'translatable' => 1,
     'arguments' => array(
       'node' => array(
         'position' => 1,
@@ -265,7 +265,7 @@ function osha_breadcrumbs_path_breadcrumbs_settings_info() {
       3 => '<none>',
     ),
     'home' => 1,
-    'translatable' => 0,
+    'translatable' => 1,
     'arguments' => array(
       'node' => array(
         'position' => 1,
@@ -311,7 +311,7 @@ function osha_breadcrumbs_path_breadcrumbs_settings_info() {
       2 => '<none>',
     ),
     'home' => 1,
-    'translatable' => 0,
+    'translatable' => 1,
     'arguments' => array(
       'string' => array(
         'position' => 2,
@@ -341,7 +341,7 @@ function osha_breadcrumbs_path_breadcrumbs_settings_info() {
       1 => '<none>',
     ),
     'home' => 1,
-    'translatable' => 0,
+    'translatable' => 1,
     'arguments' => array(
       'node' => array(
         'position' => 1,
@@ -383,7 +383,7 @@ function osha_breadcrumbs_path_breadcrumbs_settings_info() {
       0 => '<none>',
     ),
     'home' => 1,
-    'translatable' => 0,
+    'translatable' => 1,
     'arguments' => array(),
     'access' => array(),
   );
@@ -405,7 +405,7 @@ function osha_breadcrumbs_path_breadcrumbs_settings_info() {
       1 => '<none>',
     ),
     'home' => 1,
-    'translatable' => 0,
+    'translatable' => 1,
     'arguments' => array(
       'node' => array(
         'position' => 1,
@@ -449,7 +449,7 @@ function osha_breadcrumbs_path_breadcrumbs_settings_info() {
       1 => '<none>',
     ),
     'home' => 1,
-    'translatable' => 0,
+    'translatable' => 1,
     'arguments' => array(
       'node' => array(
         'position' => 1,
@@ -619,7 +619,7 @@ function osha_breadcrumbs_path_breadcrumbs_settings_info() {
       2 => '<none>',
     ),
     'home' => 1,
-    'translatable' => 0,
+    'translatable' => 1,
     'arguments' => array(),
     'access' => array(),
   );
@@ -641,7 +641,7 @@ function osha_breadcrumbs_path_breadcrumbs_settings_info() {
       1 => '<none>',
     ),
     'home' => 1,
-    'translatable' => 0,
+    'translatable' => 1,
     'arguments' => array(),
     'access' => array(),
   );
@@ -751,7 +751,7 @@ function osha_breadcrumbs_path_breadcrumbs_settings_info() {
       2 => '<none>',
     ),
     'home' => 1,
-    'translatable' => 0,
+    'translatable' => 1,
     'arguments' => array(
       'node' => array(
         'position' => 1,
@@ -797,7 +797,7 @@ function osha_breadcrumbs_path_breadcrumbs_settings_info() {
       2 => '<none>',
     ),
     'home' => 1,
-    'translatable' => 0,
+    'translatable' => 1,
     'arguments' => array(),
     'access' => array(),
   );
@@ -861,7 +861,7 @@ function osha_breadcrumbs_path_breadcrumbs_settings_info() {
       0 => '<none>',
     ),
     'home' => 1,
-    'translatable' => 0,
+    'translatable' => 1,
     'arguments' => array(
       'node' => array(
         'position' => 1,
@@ -907,7 +907,7 @@ inside-eu-osha',
       0 => '<none>',
     ),
     'home' => 1,
-    'translatable' => 0,
+    'translatable' => 1,
     'arguments' => array(
       'node' => array(
         'position' => 1,

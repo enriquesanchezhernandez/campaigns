@@ -7,6 +7,10 @@ When patching a contrib module, the following steps should be followed:
 
 List of patches (most recent first)
 
+* i18n_string
+    * Fixes undefined method strings_remove and strings_update
+    * File: strings_remove_update_undefined_method.patch
+
 * scanner
   * patches by Ruben@BBM - disable Undo and avoid to creating a new revision; permissions for S&R tab
 

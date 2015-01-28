@@ -393,3 +393,11 @@ function osha_tmgmt_update_7006() {
     }
   }
 }
+
+/**
+ * Merge OSHA specific strings into locale system
+ */
+function osha_tmgmt_update_7007() {
+  module_load_include('module', 'osha_tmgmt');
+  osha_tmgmt_refresh_string_list();
+}

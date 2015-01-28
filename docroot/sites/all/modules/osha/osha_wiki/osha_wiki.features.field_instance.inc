@@ -575,7 +575,7 @@ function osha_wiki_field_default_field_instances() {
       'title' => 'value',
       'title_label_use_field_label' => FALSE,
       'title_maxlength' => 255,
-      'title_value' => 'Read full OSHWiki article',
+      'title_value' => 'Read full OSHwiki article',
       'url' => 0,
       'user_register_form' => FALSE,
       'validate_url' => 0,

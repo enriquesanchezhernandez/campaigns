@@ -847,6 +847,7 @@ function osha_tmgmt_form_alter(&$form, &$form_state, $form_id) {
       foreach (element_children($form['review']) as $field_name) {
         $form['review'][$field_name]['#theme'] = 'osha_tmgmt_ui_translator_review_form';
       }
+      $form['actions']['accept']['#value'] = 'Publish';
       osha_tmgmt_form_alter_add_source_target_info($form, $form_state);
       break;
 
@@ -861,6 +862,7 @@ function osha_tmgmt_form_alter(&$form, &$form_state, $form_id) {
         // Happens when user clicks the Ajax checkmark button on review form.
         drupal_set_message('Value was saved');
       }
+      $form['actions']['accept']['#value'] = 'Publish';
   }
 }
 
@@ -2238,79 +2240,58 @@ function osha_tmgmt_get_translation_languages_options($filter = array()) {
 }
 
 /**
- * Implements hook_osha_tmgmt_i18n_string_list().
+ * Implements hook_form_FORM_ID_alter().
+ *
+ * {@inheritdoc}
  */
-function osha_tmgmt_osha_tmgmt_i18n_string_list() {
-  return array(
-    'Translation was accepted',
-    '- All -',
-    '- Choose an operation -',
-    ',',
-    '.',
-    '‹ previous',
-    '« first',
-    'Apply',
-    'Apply',
-    'Asc',
-    'Asc',
-    'Changed date',
-    'Changed',
-    'Character count',
-    'Content revision that is associated with this job item.',
-    'Content Revision',
-    'Content that is associated with this job item.',
-    'Content validators group',
-    'Content',
-    'Delete Job',
-    'delete',
-    'Desc',
-    'High',
-    'Item type',
-    'Items per page',
-    'Job overview',
-    'Label',
-    'Language to translate to.',
-    'last »',
-    'List of content validators groups',
-    'Low',
-    'Master',
-    'more',
-    'next ›',
-    'Node activity',
-    'Node author',
-    'Node section',
-    'Normal',
-    'Number of characters for translation',
-    'Number of pages for translation',
-    'Offset',
-    'Operations',
-    'Page count',
-    'Page',
-    'Plugin',
-    'Priority',
-    'Priority',
-    'Progress',
-    'Reset',
-    'Reset',
-    'review',
-    'Sort by',
-    'Sort by',
-    'Source plugin',
-    'State',
-    'Target language',
-    'The date job item was last changed.',
-    'The translation of @job_item was skipped.',
-    'The type of entity in the job item',
-    'There are no translation jobs that match the specified filter criteria.',
-    'Translator',
-    'Unable to load entity %type with id %id',
-    'Urgency of translation',
-    'Value of activity field',
-    'Value of section field',
-    'view',
-    'You have Approved the Layout',
-    'You have Rejected this translation',
-    'You have Required Translation Validation for this translation',
-    'You have set Translation as Ready to Publish.',
-    'You have Validated the translation!',  );
+function osha_tmgmt_form_i18n_string_locale_translate_edit_form_alter(&$form, &$form_state) {
+  $form['#validate'] = array('osha_tmgmt_i18n_string_locale_translate_edit_form_validate');
+}
+
+function osha_tmgmt_i18n_string_locale_translate_edit_form_validate($form, &$form_state) {
+  if (empty($form_state['values']['i18n_string'])) {
+    // If not i18n string use regular locale validation.
+    $strings = module_invoke_all('osha_tmgmt_i18n_string_list');
+    if ($source = db_query('SELECT source, context, textgroup, location FROM {locales_source} WHERE lid = :lid', array(':lid' => $form_state['values']['lid']))->fetchObject()) {
+      if (in_array($source->source, $strings)) {
+        // Do nothing, one of our strings
+      }
+    }
+    else {
+      $copy_state = $form_state;
+      locale_translate_edit_form_validate($form, $copy_state);
+    }
+  }
+}
+
+function osha_tmgmt_get_osha_tmgmt_i18n_string_list() {
+  $strings = module_invoke_all('osha_tmgmt_i18n_string_list');
+  foreach ($strings as &$string) {
+    $string = trim($string);
+  }
+  $strings = array_unique($strings);
+  sort($strings);
+  return $strings;
+}
+
+function osha_tmgmt_refresh_string_list() {
+  $strings = module_invoke_all('osha_tmgmt_i18n_string_list');
+  foreach ($strings as $string) {
+    locale(trim($string));
+  }
+  drupal_set_message(sprintf('Refreshed %d strings into the locale system...', count($strings)));
+}
+
+/**
+ * @param $vars
+ */
+function osha_tmgmt_preprocess_block(&$vars) {
+  $strings = drupal_static(__FUNCTION__);
+  if (!isset($strings)) {
+    $strings = osha_tmgmt_get_osha_tmgmt_i18n_string_list();
+  }
+  $content = trim($vars['content']);
+  if (in_array($content, $strings)) {
+    $vars['content'] = t($content);
+  }
 }

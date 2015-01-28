@@ -2100,7 +2100,7 @@ function osha_content_edw_uuid_features_default_content() {
   'user_uuid' => 'b3a049cb-4498-4417-8418-6b5ceab0fa57',
 );
   $nodes[] = array(
-  'title' => 'OSHWiki',
+  'title' => 'OSHwiki',
   'log' => '',
   'status' => 1,
   'comment' => 1,
@@ -2149,7 +2149,7 @@ function osha_content_edw_uuid_features_default_content() {
   'title_field' => array(
     'en' => array(
       0 => array(
-        'value' => 'OSHWiki',
+        'value' => 'OSHwiki',
         'format' => NULL,
       ),
     ),

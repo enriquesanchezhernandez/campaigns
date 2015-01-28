@@ -450,3 +450,11 @@ function theme_osha_publication_twin_publications_format($element) {
   $output .= '</ul>';
   return $output;
 }
+
+/**
+ * Implements hook_osha_tmgmt_i18n_string_list().
+ */
+function osha_publication_osha_tmgmt_i18n_string_list() {
+  module_load_include('inc', 'osha_publication', 'osha_publication.translations');
+  return osha_publication_get_translatable_strings();
+}
