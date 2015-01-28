@@ -15,7 +15,6 @@ function osha_newsletter_get_translatable_strings() {
     'Privacy policy',
     'Subscribe',
     'The e-mail address is not valid.',
-    'Please enter the e-mail address.',
     'No newsletters available.',
     'More news',
     'View the blog',
@@ -27,7 +26,5 @@ function osha_newsletter_get_translatable_strings() {
     'Brought to you by EU-OSHA. Visit us at: <a href="@base_url" style="@style">@base_url</a>',
     'There was a problem sending your message and it was not sent.',
     'Your message has been sent to @emails.',
-    'Please enter the e-mail address.',
-    'The e-mail address is not valid.'
   );
 }

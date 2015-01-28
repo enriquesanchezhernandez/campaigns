@@ -2269,6 +2269,8 @@ function osha_tmgmt_get_osha_tmgmt_i18n_string_list() {
   foreach ($strings as &$string) {
     $string = trim($string);
   }
+  $strings = array_unique($strings);
+  sort($strings);
   return $strings;
 }
 
