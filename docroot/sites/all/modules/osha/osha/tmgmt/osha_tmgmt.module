@@ -2272,6 +2272,14 @@ function osha_tmgmt_get_osha_tmgmt_i18n_string_list() {
   return $strings;
 }
 
+function osha_tmgmt_refresh_string_list() {
+  $strings = module_invoke_all('osha_tmgmt_i18n_string_list');
+  foreach ($strings as $string) {
+    locale(trim($string));
+  }
+  drupal_set_message(sprintf('Refreshed %d strings into the locale system...', count($strings)));
+}
+
 /**
  * @param $vars
  */
