@@ -19,7 +19,7 @@ class OSHATMGMTLocaleSourceUIController extends TMGMTLocaleSourceUIController {
     $languages = drupal_map_assoc(array_keys(language_list()));
     $select = db_select('locales_source', 'ls')
       ->fields('ls', array('lid', 'source'))
-      ->condition('ls.textgroup', $textgroup)
+      // ->condition('ls.textgroup', $textgroup)
       ->orderBy('source');
 
     // Hide Drupal internal strings and show only the OSHA strings
