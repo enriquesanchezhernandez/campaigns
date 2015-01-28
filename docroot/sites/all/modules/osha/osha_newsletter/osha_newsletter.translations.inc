@@ -25,5 +25,9 @@ function osha_newsletter_get_translatable_strings() {
     'No longer wish to receive OSHmail? <a href="@url" style="@style">Unsubscribe here.</a>',
     'Subscribe to our <a href="@url" style="@style">Alert service</a> for <br/> customised content delivery',
     'Brought to you by EU-OSHA. Visit us at: <a href="@base_url" style="@style">@base_url</a>',
+    'There was a problem sending your message and it was not sent.',
+    'Your message has been sent to @emails.',
+    'Please enter the e-mail address.',
+    'The e-mail address is not valid.'
   );
 }

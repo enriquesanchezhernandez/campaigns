@@ -35,5 +35,8 @@ function osha_get_translatable_strings() {
     '<p><a href="/jobs_archive">Closed vacancies</a></p>',
     'OSHwiki Featured Articles',
     'OSHA archived content',
+
+    // Core strings
+    'Unable to send e-mail. Contact the site administrator if the problem persists.',
   );
 }
