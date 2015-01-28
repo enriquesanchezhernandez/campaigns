@@ -652,10 +652,8 @@ function osha_field_default_field_instances() {
       'teaser' => array(
         'label' => 'hidden',
         'module' => 'text',
-        'settings' => array(
-          'trim_length' => 600,
-        ),
-        'type' => 'text_summary_or_trimmed',
+        'settings' => array(),
+        'type' => 'text_default',
         'weight' => 2,
       ),
     ),
@@ -1182,12 +1180,8 @@ function osha_field_default_field_instances() {
       ),
       'teaser' => array(
         'label' => 'hidden',
-        'module' => 'image',
-        'settings' => array(
-          'image_link' => 'content',
-          'image_style' => 'medium',
-        ),
-        'type' => 'image',
+        'settings' => array(),
+        'type' => 'hidden',
         'weight' => 1,
       ),
     ),
@@ -1521,7 +1515,7 @@ function osha_field_default_field_instances() {
     ),
     'entity_type' => 'node',
     'field_name' => 'field_related_oshwiki_articles',
-    'label' => 'OSHWiki featured articles',
+    'label' => 'OSHwiki featured articles',
     'required' => 0,
     'settings' => array(
       'entity_translation_sync' => FALSE,
@@ -1669,9 +1663,8 @@ function osha_field_default_field_instances() {
       ),
       'teaser' => array(
         'label' => 'above',
-        'module' => 'taxonomy',
         'settings' => array(),
-        'type' => 'taxonomy_term_reference_link',
+        'type' => 'hidden',
         'weight' => 3,
       ),
     ),
@@ -1822,7 +1815,7 @@ function osha_field_default_field_instances() {
     ),
     'entity_type' => 'node',
     'field_name' => 'field_wiki_categories',
-    'label' => 'OSHWiki Category',
+    'label' => 'OSHwiki Category',
     'required' => 0,
     'settings' => array(
       'entity_translation_sync' => FALSE,
@@ -1910,13 +1903,8 @@ function osha_field_default_field_instances() {
       ),
       'teaser' => array(
         'label' => 'hidden',
-        'module' => 'title',
-        'settings' => array(
-          'title_class' => '',
-          'title_link' => '',
-          'title_style' => '',
-        ),
-        'type' => 'title_linked',
+        'settings' => array(),
+        'type' => 'hidden',
         'weight' => 0,
       ),
     ),
@@ -2350,8 +2338,8 @@ function osha_field_default_field_instances() {
   t('Image');
   t('Language');
   t('Nace');
-  t('OSHWiki Category');
-  t('OSHWiki featured articles');
+  t('OSHwiki Category');
+  t('OSHwiki featured articles');
   t('Page count');
   t('Publication date');
   t('Summary');

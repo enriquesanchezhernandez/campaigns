@@ -848,6 +848,14 @@ function osha_tmgmt_form_alter(&$form, &$form_state, $form_id) {
         $form['review'][$field_name]['#theme'] = 'osha_tmgmt_ui_translator_review_form';
       }
       osha_tmgmt_form_alter_add_source_target_info($form, $form_state);
+      $form['actions']['accept']['#value'] = 'Publish';
+      $job_item = $form_state['item'];
+      global $user;
+      $form['actions']['accept']['#access'] =
+        $job_item->state != TMGMT_JOB_ITEM_STATE_ABORTED
+        && $job_item->state != TMGMT_JOB_ITEM_STATE_ACCEPTED
+        && (user_access('accept job item translation') || in_array('Layout Validator', $user->roles));
+
       break;
 
     case 'tmgmt_ui_i18n_string_translation_review_form':
@@ -861,6 +869,13 @@ function osha_tmgmt_form_alter(&$form, &$form_state, $form_id) {
         // Happens when user clicks the Ajax checkmark button on review form.
         drupal_set_message('Value was saved');
       }
+      $form['actions']['accept']['#value'] = 'Publish';
+      global $user;
+      $job_item = $form_state['item'];
+      $form['actions']['accept']['#access'] =
+        $job_item->state != TMGMT_JOB_ITEM_STATE_ABORTED
+        && $job_item->state != TMGMT_JOB_ITEM_STATE_ACCEPTED
+        && (user_access('accept job item translation') || in_array('Layout Validator', $user->roles));
   }
 }
 
@@ -995,6 +1010,13 @@ function osha_tmgmt_retranslate_validate_ui($form, &$form_state) {
  */
 function osha_tmgmt_form_tmgmt_ui_entity_translation_review_form_alter(&$form, &$form_state) {
   $job_item = $form_state['item'];
+  if ($job_item->item_type = 'taxonomy_term') {
+    $can_accept = user_access('accept job item translation')
+      && $job_item->state != TMGMT_JOB_ITEM_STATE_ACCEPTED
+      && $job_item->state != TMGMT_JOB_ITEM_STATE_ABORTED;
+    $form['actions']['accept']['#access'] = $can_accept;
+  }
+
   if ($job_item->item_type != 'node') {
     return;
   }
@@ -1423,7 +1445,12 @@ function osha_tmgmt_form_tmgmt_job_form_alter(&$form, &$form_state) {
           }
           $rows[$job_item->item_type . '-' . $job_item->item_id] = array(l($wrapper->label(), $url), $job_item->getSourceType(), $statistics);
         } else {
-          $type = ucfirst(str_replace('_', ' ', $job_item->item_type));
+          if ($job_item->item_type == 'default') {
+            $type = 'String literal';
+          }
+          else {
+            $type = ucfirst(str_replace('_', ' ', $job_item->item_type));
+          }
           $rows[$job_item->item_type . '-' . $job_item->item_id] = array($job_item->label(), $type, '-');
         }
       }

@@ -101,11 +101,19 @@ function osha_tmgmt_layout_validation_node_preview($nid, $job_item) {
   tmgmt_field_populate_entity($node->type, $node, $target_language, $new_job_data);
   if (isset($node->body[$target_language][0])) {
     $body = $node->body[$target_language][0];
+    if (empty($body['value'])) {
+      drupal_set_message(t('There is no translated text for Body'), 'warning');
+      $body['value'] = '';
+    }
     // Re-sanitize text after tmgmt_field_populate_entity
     // ['safe_value'] is rendered instead if different than ['value']
     // This can happen when node had a translation (re-translation)
     $node->body[$target_language][0]['safe_value'] =
       check_markup($body['value'], $body['format'], $target_language);
+  }
+  if (empty($node->title_field[$target_language][0]['value'])) {
+    drupal_set_message(t('There is no translated text for Title'), 'warning');
+    $node->title_field[$target_language][0]['value'] = '';
   }
   // set also the title safe_value (causes warning on preview)
   if (isset($node->title_field[$target_language][0])) {
