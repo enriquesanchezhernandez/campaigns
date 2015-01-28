@@ -139,7 +139,7 @@ function drush_osha_tmgmt_test_osha_tmgmt_literals() {
           'textgroup' => 'default',
           'location' => '/index.php',
           'translations' => array(
-            'ro' => 'X123456789X',
+            'ro' => '#ro#' . $string . '#/ro#',
           )
         )
       );
