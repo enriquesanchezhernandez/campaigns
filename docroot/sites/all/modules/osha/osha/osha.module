@@ -613,18 +613,12 @@ function osha_url_inbound_alter(&$path, $original_path, $path_language) {
     // If path exists, don't do anything.
     if (empty($orig_path_alias) && empty($orig_path_source)) {
       $url = preg_replace('/\/image_preview/', '', $original_path);
-      // If alias, get source.
-      $path_source = drupal_lookup_path('source', $url);
-      // If source empty, the url might be the system path, not alias.
-      if (empty($path_source) && drupal_valid_path($url)) {
-        $path_source = $url;
-      }
-      $path_alias = path_load($path_source);
-      if (!empty($path_alias)) {
-        if (preg_match("/file\/[\d]{1,99}$/", $path_alias['source'])) {
-          $file = menu_get_object('file', 1, $path_alias['source']);
+      $path_source = osha_look_for_path_source($url);
+      if (!empty($path_source)) {
+        if (preg_match("/file\/[\d]{1,99}$/", $path_source)) {
+          $file = menu_get_object('file', 1, $path_source);
           if ($file->type == 'image') {
-            $path = $path_alias['source'];
+            $path = $path_source;
           }
         }
       }
@@ -636,25 +630,42 @@ function osha_url_inbound_alter(&$path, $original_path, $path_language) {
       // If path exists, don't do anything.
       if (empty($orig_path_alias) && empty($orig_path_source)) {
         $url = preg_replace('/\/view/', '', $original_path);
-        // If alias, get source.
-        $path_source = drupal_lookup_path('source', $url);
-        // If source empty, the url might be the system path, not alias.
-        if (empty($path_source) && drupal_valid_path($url)) {
-          $path_source = $url;
-        }
-        $path_alias = path_load($path_source);
-        if (!empty($path_alias)) {
-          if (preg_match("/file\/[\d]{1,99}$/", $path_alias['source'])) {
-            $file = menu_get_object('file', 1, $path_alias['source']);
-            if ($file->type == 'image') {
-              // Append /view to be used in hook_file_view.
-              $path = $path_alias['source'] . '/view';
-            }
+        $path_source = osha_look_for_path_source($url);
+        if (!empty($path_source)) {
+          if (preg_match("/file\/[\d]{1,99}$/", $path_source)) {
+            $file = menu_get_object('file', 1, $path_source);
+            // Append /view to be used in hook_file_view.
+            $path = $path_source . '/view';
           }
         }
       }
     }
   }
+}
+
+/**
+ * Returns the system path of an url (if path or redirect or system path).
+ */
+function osha_look_for_path_source($url) {
+  $path_source = drupal_lookup_path('source', $url);
+  // If source empty, the url might be the system path, not alias.
+  if (empty($path_source) && drupal_valid_path($url)) {
+    $path_source = $url;
+    $path_alias = path_load($path_source);
+    // If not alias and not system path, might be a redirect.
+    if (empty($path_alias)) {
+      $redirects = redirect_load_by_source($url, LANGUAGE_NONE);
+      if (!empty($redirects)) {
+        $redirect = is_array($redirects) ? current($redirects) : $redirects;
+        $path_alias = array('source' => $redirect->redirect);
+      }
+    }
+    // If alias or redirect, get the source path.
+    if (!empty($path_alias)) {
+      $path_source = $path_alias['source'];
+    }
+  }
+  return $path_source;
 }
 
 /**
