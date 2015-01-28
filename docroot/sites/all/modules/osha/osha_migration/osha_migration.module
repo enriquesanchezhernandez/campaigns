@@ -340,16 +340,47 @@ class OSHAMigrateFileFieldHandler extends MigrateFileFieldHandler {
       if (substr($path, 3, 1) == '/') {
         // Assume path starts with /LL/, so remove language.
         $path = substr($path, strlen('/en/'));
-      } else {
+      }
+      else {
         // Remove only first /
         $path = substr($path, 1);
       }
+      // Existing Path.
+      $conditions = array(
+        'source' => 'file/' . $file->fid,
+        'language' => $language,
+      );
+      $existing_path = path_load($conditions);
+      // New Path.
       $args = array(
         'source' => 'file/' . $file->fid,
         'alias' => $path,
-        'language' => LANGUAGE_NONE,
+        'language' => $language,
       );
-      path_save($args);
+      if (empty($existing_path)) {
+        // Save the path.
+        path_save($args);
+      }
+      elseif (!empty($existing_path) && $existing_path['alias'] != $path) {
+        // If path is changed, move existing to redirect and save the new one.
+        path_delete($conditions);
+        while (path_load($conditions)) {
+          path_delete($conditions);
+        }
+        $source_redirects = redirect_load_by_source($existing_path['alias'], LANGUAGE_NONE);
+        if ($source_redirects == FALSE) {
+          $redirect = new stdClass();
+          $redirect->source = $existing_path['alias'];
+          $redirect->source_options = array();
+          $redirect->redirect = 'file/' . $file->fid;
+          $redirect->redirect_options = array();
+          $redirect->status_code = 0;
+          $redirect->type = 'redirect';
+          $redirect->language = LANGUAGE_NONE;
+          redirect_save($redirect);
+        }
+        path_save($args);
+      }
     }
   }
 }
