@@ -128,6 +128,23 @@ function drush_osha_tmgmt_refresh_literals() {
 function drush_osha_tmgmt_test_osha_tmgmt_literals() {
   module_load_include('inc', 'i18n_string', 'i18n_string.pages');
   $strings = osha_tmgmt_get_osha_tmgmt_i18n_string_list();
+
+  $lids = db_query("SELECT lid, source FROM {locales_source} WHERE textgroup NOT IN ('default', 'menu')")->fetchAllKeyed();
+  foreach($lids as $lid => $source) {
+    $form_state = array(
+      'values' => array(
+        'lid' => $lid,
+        'textgroup' => 'default',
+        'location' => '/index.php',
+        'translations' => array(
+          'ro' => '#ro#' . $source . '#/ro#',
+        )
+      )
+    );
+    i18n_string_locale_translate_edit_form_submit(array(), $form_state);
+  }
+  drush_log('Found ' . count($lids) . ' non built-in interace translated', 'success');
+
   $i = 0;
   drush_log('Found ' . count($strings) . ' OSHA strings registereed in hook_osha_tmgmt_i18n_string_list', 'success');
   foreach ($strings as $string) {
