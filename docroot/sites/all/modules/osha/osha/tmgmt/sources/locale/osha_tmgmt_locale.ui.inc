@@ -21,11 +21,24 @@ class OSHATMGMTLocaleSourceUIController extends TMGMTLocaleSourceUIController {
       ->fields('ls', array('lid', 'source'))
       ->condition('ls.textgroup', $textgroup)
       ->orderBy('source');
+
+    // Hide Drupal internal strings and show only the OSHA strings
     $strings = module_invoke_all('osha_tmgmt_i18n_string_list');
     if (!empty($strings)) {
       $select->condition('ls.source', $strings, 'in');
     }
-
+    // Intersect with the cart and remove items already added to the cart
+    $cart = tmgmt_ui_cart_get();
+    $job_items = $cart->getJobItemsFromCart();
+    $cart_strings = array();
+    foreach ($job_items as $job_item) {
+      if ($job_item->item_type == 'default') {
+        $cart_strings[] = $job_item->item_id;
+      }
+    }
+    if (!empty($cart_strings)) {
+      $select->condition('ls.lid', $cart_strings, 'not in');
+    }
     if (!empty($search_label)) {
       $select->where('LOWER(CAST(ls.source AS CHAR)) LIKE :search',
         array(':search' => "%" . db_like(strtolower($search_label)) . "%"));
