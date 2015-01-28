@@ -2263,10 +2263,25 @@ function osha_tmgmt_i18n_string_locale_translate_edit_form_validate($form, &$for
     }
   }
 }
+
 function osha_tmgmt_get_osha_tmgmt_i18n_string_list() {
   $strings = module_invoke_all('osha_tmgmt_i18n_string_list');
   foreach ($strings as &$string) {
     $string = trim($string);
   }
   return $strings;
+}
+
+/**
+ * @param $vars
+ */
+function osha_tmgmt_preprocess_block(&$vars) {
+  $strings = drupal_static(__FUNCTION__);
+  if (!isset($strings)) {
+    $strings = osha_tmgmt_get_osha_tmgmt_i18n_string_list();
+  }
+  $content = trim($vars['content']);
+  if (in_array($content, $strings)) {
+    $vars['content'] = t($content);
+  }
 }
