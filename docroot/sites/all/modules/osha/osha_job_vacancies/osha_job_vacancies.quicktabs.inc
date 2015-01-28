@@ -21,7 +21,7 @@ function osha_job_vacancies_quicktabs_default_quicktabs() {
   $quicktabs->tabs = array(
     0 => array(
       'nid' => '5330',
-      'view_mode' => 'osha_wiki',
+      'view_mode' => 'teaser',
       'hide_title' => 1,
       'title' => 'Who we employ',
       'weight' => '-100',
@@ -29,7 +29,7 @@ function osha_job_vacancies_quicktabs_default_quicktabs() {
     ),
     1 => array(
       'nid' => '5331',
-      'view_mode' => 'osha_wiki',
+      'view_mode' => 'teaser',
       'hide_title' => 1,
       'title' => 'Reserve lists',
       'weight' => '-99',
@@ -69,7 +69,7 @@ function osha_job_vacancies_quicktabs_default_quicktabs() {
     ),
     6 => array(
       'nid' => '5332',
-      'view_mode' => 'osha_wiki',
+      'view_mode' => 'teaser',
       'hide_title' => 1,
       'title' => 'Spontaneous applications',
       'weight' => '-94',
@@ -77,7 +77,7 @@ function osha_job_vacancies_quicktabs_default_quicktabs() {
     ),
     7 => array(
       'nid' => '5333',
-      'view_mode' => 'osha_wiki',
+      'view_mode' => 'teaser',
       'hide_title' => 1,
       'title' => 'Enquiries',
       'weight' => '-93',
