@@ -17,12 +17,10 @@ function osha_breadcrumbs_path_breadcrumbs_settings_info() {
   $path_breadcrumb->path = 'search/blog';
   $path_breadcrumb->data = array(
     'titles' => array(
-      0 => 'Tools and publications',
-      1 => 'EU-OSHA Blog',
+      0 => 'Search Results',
     ),
     'paths' => array(
-      0 => 'tools-and-publications',
-      1 => 'tools-and-publications/blog',
+      0 => '<none>',
     ),
     'home' => 1,
     'translatable' => 1,
@@ -247,51 +245,6 @@ function osha_breadcrumbs_path_breadcrumbs_settings_info() {
   );
   $path_breadcrumb->weight = 0;
   $export['events_list'] = $path_breadcrumb;
-
-  $path_breadcrumb = new stdClass();
-  $path_breadcrumb->api_version = 1;
-  $path_breadcrumb->machine_name = 'footer_links';
-  $path_breadcrumb->name = 'Footer links';
-  $path_breadcrumb->path = 'node/%node';
-  $path_breadcrumb->data = array(
-    'titles' => array(
-      0 => '!page_title',
-    ),
-    'paths' => array(
-      0 => '<none>',
-    ),
-    'home' => 1,
-    'translatable' => 1,
-    'arguments' => array(
-      'node' => array(
-        'position' => 1,
-        'argument' => 'entity_id:node',
-        'settings' => array(
-          'identifier' => 'Node: ID',
-        ),
-      ),
-    ),
-    'access' => array(
-      'plugins' => array(
-        1 => array(
-          'name' => 'path_visibility',
-          'settings' => array(
-            'visibility_setting' => '1',
-            'paths' => 'contact-us
-sitemap
-accessibility-info
-privacy-policy-logged-users
-legal-notice',
-          ),
-          'context' => 'empty',
-          'not' => FALSE,
-        ),
-      ),
-      'logic' => 'and',
-    ),
-  );
-  $path_breadcrumb->weight = 0;
-  $export['footer_links'] = $path_breadcrumb;
 
   $path_breadcrumb = new stdClass();
   $path_breadcrumb->api_version = 1;
@@ -527,12 +480,7 @@ legal-notice',
           'name' => 'path_visibility',
           'settings' => array(
             'visibility_setting' => '1',
-            'paths' => 'contact-us
-sitemap
-accessibility-info
-privacy-policy-logged-users
-legal-notice
-tools-and-publications/blog',
+            'paths' => 'tools-and-publications/blog',
           ),
           'context' => 'empty',
           'not' => TRUE,
@@ -541,7 +489,7 @@ tools-and-publications/blog',
       'logic' => 'and',
     ),
   );
-  $path_breadcrumb->weight = 0;
+  $path_breadcrumb->weight = 100;
   $export['node_breadcrumbs'] = $path_breadcrumb;
 
   $path_breadcrumb = new stdClass();
@@ -702,6 +650,92 @@ tools-and-publications/blog',
 
   $path_breadcrumb = new stdClass();
   $path_breadcrumb->api_version = 1;
+  $path_breadcrumb->machine_name = 'privacy_statement_alerts';
+  $path_breadcrumb->name = 'Alerts - Privacy policy';
+  $path_breadcrumb->path = 'node/%node';
+  $path_breadcrumb->data = array(
+    'titles' => array(
+      0 => 'Alert Service',
+      1 => 'PRIVACY POLICY FOR THE ALERTS FORM',
+    ),
+    'paths' => array(
+      0 => 'alertservice',
+      1 => '<none>',
+    ),
+    'home' => 1,
+    'translatable' => 1,
+    'arguments' => array(
+      'node' => array(
+        'position' => 1,
+        'argument' => 'entity_id:node',
+        'settings' => array(
+          'identifier' => 'Node: ID',
+        ),
+      ),
+    ),
+    'access' => array(
+      'plugins' => array(
+        1 => array(
+          'name' => 'path_visibility',
+          'settings' => array(
+            'visibility_setting' => '1',
+            'paths' => 'alertservice/privacy-statement-alerts',
+          ),
+          'context' => 'empty',
+          'not' => FALSE,
+        ),
+      ),
+      'logic' => 'and',
+    ),
+  );
+  $path_breadcrumb->weight = 0;
+  $export['privacy_statement_alerts'] = $path_breadcrumb;
+
+  $path_breadcrumb = new stdClass();
+  $path_breadcrumb->api_version = 1;
+  $path_breadcrumb->machine_name = 'privacy_statement_oshmail';
+  $path_breadcrumb->name = 'Newsletter - Privacy policy';
+  $path_breadcrumb->path = 'node/%node';
+  $path_breadcrumb->data = array(
+    'titles' => array(
+      0 => 'OSHMail newsletter',
+      1 => 'PRIVACY STATEMENT FOR THE OSHMAIL FORM',
+    ),
+    'paths' => array(
+      0 => 'oshmail-newsletter',
+      1 => '<none>',
+    ),
+    'home' => 1,
+    'translatable' => 1,
+    'arguments' => array(
+      'node' => array(
+        'position' => 1,
+        'argument' => 'entity_id:node',
+        'settings' => array(
+          'identifier' => 'Node: ID',
+        ),
+      ),
+    ),
+    'access' => array(
+      'plugins' => array(
+        1 => array(
+          'name' => 'path_visibility',
+          'settings' => array(
+            'visibility_setting' => '1',
+            'paths' => 'oshmail-newsletter/privacy-statement-oshmail',
+          ),
+          'context' => 'empty',
+          'not' => FALSE,
+        ),
+      ),
+      'logic' => 'and',
+    ),
+  );
+  $path_breadcrumb->weight = 0;
+  $export['privacy_statement_oshmail'] = $path_breadcrumb;
+
+  $path_breadcrumb = new stdClass();
+  $path_breadcrumb->api_version = 1;
   $path_breadcrumb->machine_name = 'publications';
   $path_breadcrumb->name = 'Publications';
   $path_breadcrumb->path = 'node/%node';
@@ -796,6 +830,26 @@ tools-and-publications/blog',
 
   $path_breadcrumb = new stdClass();
   $path_breadcrumb->api_version = 1;
+  $path_breadcrumb->machine_name = 'sitemap';
+  $path_breadcrumb->name = 'Sitemap page';
+  $path_breadcrumb->path = 'sitemap';
+  $path_breadcrumb->data = array(
+    'titles' => array(
+      0 => 'Sitemap',
+    ),
+    'paths' => array(
+      0 => '<none>',
+    ),
+    'home' => 1,
+    'translatable' => 1,
+    'arguments' => array(),
+    'access' => array(),
+  );
+  $path_breadcrumb->weight = 0;
+  $export['sitemap'] = $path_breadcrumb;
+
+  $path_breadcrumb = new stdClass();
+  $path_breadcrumb->api_version = 1;
   $path_breadcrumb->machine_name = 'top_level_nodes';
   $path_breadcrumb->name = 'Top level nodes';
   $path_breadcrumb->path = 'node/%node';
@@ -839,6 +893,52 @@ inside-eu-osha',
   );
   $path_breadcrumb->weight = 0;
   $export['top_level_nodes'] = $path_breadcrumb;
+
+  $path_breadcrumb = new stdClass();
+  $path_breadcrumb->api_version = 1;
+  $path_breadcrumb->machine_name = 'footer_links';
+  $path_breadcrumb->name = 'Footer links';
+  $path_breadcrumb->path = 'node/%node';
+  $path_breadcrumb->data = array(
+    'titles' => array(
+      0 => '!page_title',
+    ),
+    'paths' => array(
+      0 => '<none>',
+    ),
+    'home' => 1,
+    'translatable' => 1,
+    'arguments' => array(
+      'node' => array(
+        'position' => 1,
+        'argument' => 'entity_id:node',
+        'settings' => array(
+          'identifier' => 'Node: ID',
+        ),
+      ),
+    ),
+    'access' => array(
+      'plugins' => array(
+        1 => array(
+          'name' => 'path_visibility',
+          'settings' => array(
+            'visibility_setting' => '1',
+            'paths' => 'contact-us
+sitemap
+accessibility-info
+privacy-notice-logged-users
+privacy-notice
+legal-notice',
+          ),
+          'context' => 'empty',
+          'not' => FALSE,
+        ),
+      ),
+      'logic' => 'and',
+    ),
+  );
+  $path_breadcrumb->weight = 0;
+  $export['footer_links'] = $path_breadcrumb;
 
   return $export;
 }
