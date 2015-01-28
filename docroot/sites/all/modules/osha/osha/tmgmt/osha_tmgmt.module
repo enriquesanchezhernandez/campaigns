@@ -2239,6 +2239,30 @@ function osha_tmgmt_get_translation_languages_options($filter = array()) {
   return array_diff($languages, $filter);
 }
 
+/**
+ * Implements hook_form_FORM_ID_alter().
+ *
+ * {@inheritdoc}
+ */
+function osha_tmgmt_form_i18n_string_locale_translate_edit_form_alter(&$form, &$form_state) {
+  $form['#validate'] = array('osha_tmgmt_i18n_string_locale_translate_edit_form_validate');
+}
+
+function osha_tmgmt_i18n_string_locale_translate_edit_form_validate($form, &$form_state) {
+  if (empty($form_state['values']['i18n_string'])) {
+    // If not i18n string use regular locale validation.
+    $strings = module_invoke_all('osha_tmgmt_i18n_string_list');
+    if ($source = db_query('SELECT source, context, textgroup, location FROM {locales_source} WHERE lid = :lid', array(':lid' => $form_state['values']['lid']))->fetchObject()) {
+      if (in_array($source->source, $strings)) {
+        // Do nothing, one of our strings
+      }
+    }
+    else {
+      $copy_state = $form_state;
+      locale_translate_edit_form_validate($form, $copy_state);
+    }
+  }
+}
 function osha_tmgmt_get_osha_tmgmt_i18n_string_list() {
   $strings = module_invoke_all('osha_tmgmt_i18n_string_list');
   foreach ($strings as &$string) {
