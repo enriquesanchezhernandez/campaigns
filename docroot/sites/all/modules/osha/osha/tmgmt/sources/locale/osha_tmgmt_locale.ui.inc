@@ -15,7 +15,7 @@ class OSHATMGMTLocaleSourceUIController extends TMGMTLocaleSourceUIController {
    * @return array
    *   List of i18n strings data.
    */
-  function getStrings($textgroup, $search_label = NULL, $missing_target_language = NULL) {
+  function getStrings($textgroup, $search_label = NULL, $missing_target_language = NULL, $page_size = 50) {
     $languages = drupal_map_assoc(array_keys(language_list()));
     $select = db_select('locales_source', 'ls')
       ->fields('ls', array('lid', 'source'))
@@ -51,7 +51,9 @@ class OSHATMGMTLocaleSourceUIController extends TMGMTLocaleSourceUIController {
       $select->leftJoin('locales_target', "lt_$langcode", "ls.lid = %alias.lid AND %alias.language = '$langcode'");
       $select->addField("lt_$langcode", 'language', "lang_$langcode");
     }
-    $select = $select->extend('PagerDefault')->limit(variable_get('tmgmt_source_list_limit', 20));
+    if ($page_size) {
+      $select = $select->extend('PagerDefault')->limit(variable_get('tmgmt_source_list_limit', $page_size));
+    }
     return $select->execute()->fetchAll();
   }
 
@@ -98,5 +100,73 @@ class OSHATMGMTLocaleSourceUIController extends TMGMTLocaleSourceUIController {
       }
     }
     return $objects;
+  }
+
+  /**
+   * Gets submitted search params.
+   *
+   * @return array
+   */
+  public function getSearchFormSubmittedParams() {
+    $params = array(
+      'label' => NULL,
+      'missing_target_language' => NULL,
+      'page_size' => 50,
+    );
+
+    if (isset($_GET['label'])) {
+      $params['label'] = $_GET['label'];
+    }
+    if (isset($_GET['missing_target_language'])) {
+      $params['missing_target_language'] = $_GET['missing_target_language'];
+    }
+    if (isset($_GET['page_size'])) {
+      $params['page_size'] = $_GET['page_size'];
+    }
+
+    return $params;
+  }
+
+  public function overviewSearchFormPart($form, &$form_state, $type) {
+    $ret = parent::overviewSearchFormPart($form, $form_state, $type);
+    $default_values = $this->getSearchFormSubmittedParams();
+
+    $form['search_wrapper']['search']['label']['#weight'] = 0;
+    $form['search_wrapper']['search']['missing_target_language'] = 5;
+    $form['search_wrapper']['search_submit'] = 10;
+    $ret['search_wrapper']['search']['page_size'] = array(
+      '#type' => 'select',
+      '#title' => t('Items per page'),
+      '#options' => array('' => '-- All --', 50 => '50', '100' => 100),
+      '#empty_option' => '- All -',
+      '#default_value' => isset($default_values['page_size']) ? $default_values['page_size'] : 50,
+      '#weight' => 8,
+    );
+    return $ret;
+  }
+
+  /**
+   * Implements TMGMTSourceUIControllerInterface::overviewForm().
+   */
+  public function overviewForm($form, &$form_state, $type) {
+    $form += $this->overviewSearchFormPart($form, $form_state, $type);
+
+    $form['items'] = array(
+      '#type' => 'tableselect',
+      '#header' => $this->overviewFormHeader($type),
+      '#empty' => t('No strings matching given criteria have been found.')
+    );
+
+    $search_data = $this->getSearchFormSubmittedParams();
+
+    $strings = $this->getStrings($type, $search_data['label'], $search_data['missing_target_language'], $search_data['page_size']);
+
+    foreach ($this->getTranslationData($strings, $type) as $id => $data) {
+      $form['items']['#options'][$id] = $this->overviewRow($type, $data);
+    }
+
+    $form['pager'] = array('#markup' => theme('pager', array('tags' => NULL)));
+
+    return $form;
   }
 }
