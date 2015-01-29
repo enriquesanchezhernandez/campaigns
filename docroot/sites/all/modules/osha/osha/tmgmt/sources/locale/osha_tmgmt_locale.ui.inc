@@ -38,14 +38,20 @@ class OSHATMGMTLocaleSourceUIController extends TMGMTLocaleSourceUIController {
     // Intersect with the cart and remove items already added to the cart
     $cart = tmgmt_ui_cart_get();
     $job_items = $cart->getJobItemsFromCart();
+    $cart_ids = array();
     $cart_strings = array();
     foreach ($job_items as $job_item) {
       if ($job_item->item_type == 'default') {
-        $cart_strings[] = $job_item->item_id;
+        $cart_ids[] = $job_item->item_id;
+        $string = $job_item->getSourceData();
+        $cart_strings[] = $string['singular']['#text'];
       }
     }
+    if (!empty($cart_ids)) {
+      $select->condition('ls.lid', $cart_ids, 'not in');
+    }
     if (!empty($cart_strings)) {
-      $select->condition('ls.lid', $cart_strings, 'not in');
+      $select->condition('ls.source', $cart_strings, 'not in');
     }
     if (!empty($search_label)) {
       $select->where('LOWER(CAST(ls.source AS CHAR)) LIKE :search',
