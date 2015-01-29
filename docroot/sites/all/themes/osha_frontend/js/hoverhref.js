@@ -138,13 +138,17 @@ function displayCaptcha() {
 	
 // Tools & Publications filters
 jQuery(document).ready(function() {
-    // Init: collapse all filters
-    jQuery(".sidebars_first .block-facetapi .item-list ul").each(function(i) {
-		jQuery(this).hide();
-	});
-    // Click event: toggle visibility of group clicked (and update icon)
-	jQuery(".block-facetapi h2").click(function() {		
-		jQuery(this).parent().find("div.item-list ul").slideToggle();
+	// Toggle event for facetapi filters blocks.
+    jQuery(".block-facetapi .item-list").has('ul, select').each(function() {
+		// If no active filters, hide the filtering on init.
+		if (jQuery(this).find('a.facetapi-active, option[value]:selected, input:checked').length == 0) {
+			jQuery(this).hide();
+		}
+		else {
+			jQuery(this).closest('.block-facetapi').find('h2.block-title').addClass('expand');
+		}
+	}).closest('.block-facetapi').find('h2.block-title').click(function() {
+		jQuery(this).closest('.block-facetapi').find("div.item-list").slideToggle();
 		jQuery(this).toggleClass("expand");
     });
 });
