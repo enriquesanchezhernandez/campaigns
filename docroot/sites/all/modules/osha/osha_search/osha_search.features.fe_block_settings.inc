@@ -226,7 +226,10 @@ search/wiki',
     'module' => 'osha_search',
     'node_types' => array(),
     'pages' => 'search/*
-tools-and-publications/publications',
+tools-and-publications/publications
+tools-and-publications/seminars
+legislation/directives/*
+safety-and-health-legislation/european-directives',
     'roles' => array(),
     'themes' => array(
       'bartik' => array(
