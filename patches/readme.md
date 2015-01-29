@@ -187,6 +187,10 @@ List of patches (most recent first)
   * Display url - ":" is converted to "%3A" and "?" to "&"
   * link-character_conversion-1984398.patch
 
+* addtoany
+  * make text of link translatable
+  * translatable_link_text.patch
+
 Patch documentation should be in the following format:
 
 * module name

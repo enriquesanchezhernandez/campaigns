@@ -27,6 +27,16 @@ function osha_get_translatable_strings() {
     'Title',
     'Title Text',
 
+    // Strings form header
+    'News & Events',
+    'Press',
+    'Contact Us',
+
+    // String from footer
+    '&copy; 2015 EU-OSHA | an agency of the European Union',
+    'Legal notice',
+    'Site Map',
+
     // Content from osha_blocks
     'Job Vacancies Reserve List',
     '<p class="Textfo" style="text-align: justify;">Reserve lists are composed of the candidates who came for an interview at the time of the recruitment procedure for the posts listed and who obtained the best overall marks.</p><p class="Textfo" style="text-align: justify;">Candidates in the reserve list may be offered contracts at a later date without subsequent selection procedure.</p><p class="Textfo" style="text-align: justify;">For some Contract Agent positions, EU-OSHA may use the EPSO database.</p>',
@@ -45,5 +55,11 @@ function osha_get_translatable_strings() {
      // Other strings
     'Share this on:',
     'Share',
+    'Recent Tweets',
+    'Clear filter',
+    '- Any -',
+    'More',
+    'Press contacts',
+    'EU-OSHA in the media'
   );
 }

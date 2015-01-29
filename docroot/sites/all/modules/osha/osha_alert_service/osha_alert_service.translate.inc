@@ -41,6 +41,6 @@ function osha_alert_service_get_translatable_strings() {
     'Latest directives',
     'Latest seminars',
     'Latest guidelines',
-
+    'Privacy policy',
   );
 }
