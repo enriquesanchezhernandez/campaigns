@@ -23,6 +23,7 @@ class OSHATMGMTLocaleSourceUIController extends TMGMTLocaleSourceUIController {
       ->condition('ls.location', db_like('field:field_page_count:') . '%' . db_like(':description'), 'NOT LIKE')
       ->condition('ls.location', db_like('field:comment_body:comment_') . '%', 'NOT LIKE')
       ->condition('ls.location', '%' . db_like(':image:description'), 'NOT LIKE')
+      ->groupBy('ls.source')
       ->orderBy('ls.source');
 
     // Hide Drupal internal strings and show only the OSHA strings
