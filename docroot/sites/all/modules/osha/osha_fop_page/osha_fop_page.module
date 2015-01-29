@@ -5,3 +5,38 @@
  */
 
 include_once 'osha_fop_page.features.inc';
+
+/**
+ * Implements hook_taxonomy_term_presave().
+ */
+function osha_fop_page_taxonomy_term_presave($term) {
+  // When saving a country term, attach the flag on field_flag.
+  $voc = taxonomy_vocabulary_machine_name_load('country');
+  if ($term->vid == $voc->vid) {
+    $path = drupal_get_path('theme', 'osha_frontend');
+    $images_dir = $path . '/images/iso2_flags';
+    if (!is_dir($images_dir)) {
+      drupal_set_message('Could not find the flags images source directory', 'warning');
+      return;
+    }
+    if (!empty($term->field_iso2[LANGUAGE_NONE][0])
+        && empty($term->field_flag[LANGUAGE_NONE][0]['fid'])) {
+
+      $iso2 = strtoupper($term->field_iso2[LANGUAGE_NONE][0]['value']);
+      $image_dest_dir = 'public://flags';
+      $image_filename = $iso2 . '.gif';
+      $image_path = $images_dir . '/' . $image_filename;
+      $filepath = drupal_realpath($image_path);
+      // Create managed File object and associate with Image field.
+      $file = (object) array(
+        'uid' => 1,
+        'uri' => $filepath,
+        'filemime' => file_get_mimetype($filepath),
+        'status' => 1,
+      );
+      if ($file = file_copy($file, $image_dest_dir)) {
+        $term->field_flag[LANGUAGE_NONE][0] = (array) $file;
+      }
+    }
+  }
+}
