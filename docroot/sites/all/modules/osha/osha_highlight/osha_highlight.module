@@ -30,3 +30,11 @@ function osha_highlight_post_features_enable_feature($component) {
     }
   }
 }
+
+/**
+ * Implements hook_osha_tmgmt_i18n_string_list().
+ */
+function osha_highlight_osha_tmgmt_i18n_string_list() {
+  module_load_include('inc', 'osha_highlight', 'osha_highlight.translations');
+  return osha_highlight_get_translatable_strings();
+}

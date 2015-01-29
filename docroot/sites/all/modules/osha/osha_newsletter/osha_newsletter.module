@@ -167,8 +167,8 @@ function osha_newsletter_block_configure($delta = '') {
         '#title' => t('Block intro text'),
         '#size' => 60,
         '#description' => t('This text will appear in the Subscription block before the e-mail field.'),
-        '#default_value' => variable_get('subscribe_block_intro_text',
-          t('Once a monthly update on safety and health at work. <a href="@newsletter_page_url">See more info</a><br/><p style="color : #dc2f82;">Join 65.000 subscribers!</p>')),
+        '#default_value' => t(variable_get('subscribe_block_intro_text',
+          'Once our monthly update on safety and health at work. <a href="@newsletter_page_url">See more info</a><br/><p style="color : #dc2f82;">Join 65.000 subscribers!</p>')),
       );
       $form['subscribe_block_newsletter_page_url'] = array(
         '#type' => 'textfield',
@@ -182,7 +182,7 @@ function osha_newsletter_block_configure($delta = '') {
         '#title' => t('Privacy policy label'),
         '#size' => 60,
         '#description' => t('This text will appear as link label in the Subscription block after the e-mail field.'),
-        '#default_value' => variable_get('subscribe_block_details_link_label', t('Privacy policy')),
+        '#default_value' => t(variable_get('subscribe_block_details_link_label', 'Privacy policy')),
       );
       $form['subscribe_block_details_link_url'] = array(
         '#type' => 'textfield',
@@ -199,14 +199,14 @@ function osha_newsletter_block_configure($delta = '') {
         '#title' => t('Block intro text'),
         '#size' => 60,
         '#description' => t('This text will appear in the Subscription block before the e-mail field.'),
-        '#default_value' => variable_get('subscribe_extra_block_intro_text', t('Once a month, OSHmail keeps you updated on ocupational safety and health.<br/> You can sign up below:')),
+        '#default_value' => t(variable_get('subscribe_extra_block_intro_text', 'Once a month, OSHmail keeps you updated on ocupational safety and health.<br/> You can sign up below:')),
       );
       $form['subscribe_extra_block_details_link_label'] = array(
         '#type' => 'textfield',
         '#title' => t('Link label'),
         '#size' => 60,
         '#description' => t('This text will appear as link label in the Subscription block after the e-mail field.'),
-        '#default_value' => variable_get('subscribe_extra_block_details_link_label', t('How will EU-OSHA use my details?')),
+        '#default_value' => t(variable_get('subscribe_extra_block_details_link_label', 'How will EU-OSHA use my details?')),
       );
       $form['subscribe_extra_block_details_link_url'] = array(
         '#type' => 'textfield',
@@ -371,7 +371,7 @@ function _osha_newsletter_latest_block_content(){
  */
 function osha_newsletter_subscribe_extra_form() {
   $form['intro'] = array(
-    '#markup' => variable_get('subscribe_extra_block_intro_text', t('Once a month, OSHmail keeps you updated on ocupational safety and health.<br/> You can sign up below:')),
+    '#markup' => t(variable_get('subscribe_extra_block_intro_text', 'Once a month, OSHmail keeps you updated on ocupational safety and health.<br/> You can sign up below:')),
   );
   $form['email'] = array(
     '#type' => 'textfield',
@@ -409,9 +409,8 @@ function osha_newsletter_subscribe_extra_form() {
  * The subscribe form.
  */
 function osha_newsletter_subscribe_form() {
-  $markup = variable_get('subscribe_block_intro_text',
-    t('Once a monthly update on safety and health at work. <a href="@newsletter_page_url">See more info</a><br/><p style="color : #dc2f82;">Join 65.000 subscribers!</p>')
-  );
+  $markup = t(variable_get('subscribe_block_intro_text',
+    'Once our monthly update on safety and health at work. <a href="@newsletter_page_url">See more info</a><br/><p style="color : #dc2f82;">Join 65.000 subscribers!</p>'));
   $link_url = variable_get('subscribe_block_newsletter_page_url', OSHA_NEWSLETTER_PAGE_URL);
 
   $form['intro'] = array(
@@ -427,7 +426,7 @@ function osha_newsletter_subscribe_form() {
     '#captcha_type' => 'image_captcha/Image',
     //'#captcha_type' => 'recaptcha/reCAPTCHA',
   );
-  $link_label = variable_get('subscribe_block_details_link_label', t('Privacy policy'));
+  $link_label = t(variable_get('subscribe_block_details_link_label', 'Privacy policy'));
   $link_url = variable_get('subscribe_block_details_link_url', OSHA_PRIVACY_PAGE_URL);
   $form['details_link'] = array(
     '#markup' => '<a class="privacy-policy-oshmail" href='.url($link_url).'>'.$link_label.'</a><br/>',
@@ -1156,4 +1155,12 @@ function osha_newsletter_preprocess_node(&$vars) {
     $vars['theme_hook_suggestions'][] = 'node__' . $vars['node']->type . '__newsletter_item';
     $vars['theme_hook_suggestions'][] = 'node__' . $vars['node']->nid . '__newsletter_item';
   }
+}
+
+/**
+ * Implements hook_osha_tmgmt_i18n_string_list().
+ */
+function osha_newsletter_osha_tmgmt_i18n_string_list() {
+  module_load_include('inc', 'osha_newsletter', 'osha_newsletter.translations');
+  return osha_newsletter_get_translatable_strings();
 }

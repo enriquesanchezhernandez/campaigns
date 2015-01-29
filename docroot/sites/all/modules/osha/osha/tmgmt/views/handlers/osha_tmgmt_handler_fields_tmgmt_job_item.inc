@@ -96,7 +96,7 @@ class osha_tmgmt_handler_field_tmgmt_job_item_operations extends tmgmt_handler_f
         'title' => t('delete'),
       );
     }
-    if ($item->getCountTranslated() > 0 && user_access('preview layout validation')) {
+    if ($item->getCountTranslated() > 0 && user_access('preview layout validation') && $item->item_type == 'node') {
       $element['#links']['preview'] = array(
         'href' => sprintf('node/%s/layout-validation/%s', $item->item_id, $item->tjiid),
         'title' => t('preview layout'),

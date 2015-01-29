@@ -113,3 +113,11 @@ function osha_job_vacancies_form_job_vacancies_node_form_alter(&$form) {
     $form['body']['#access'] = FALSE;
   }
 }
+
+/**
+ * Implements hook_osha_tmgmt_i18n_string_list().
+ */
+function osha_job_vacancies_osha_tmgmt_i18n_string_list() {
+  module_load_include('inc', 'osha_job_vacancies', 'osha_job_vacancies.translations');
+  return osha_job_vacancies_get_translatable_strings();
+}

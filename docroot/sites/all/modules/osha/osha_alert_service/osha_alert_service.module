@@ -526,3 +526,13 @@ function osha_alert_service_tokens($type, $tokens, array $data = array(), array 
   }
   return $replacements;
 }
+
+/**
+ * Implements hook_osha_tmgmt_i18n_string_list().
+ *
+ * {@inheritdoc}
+ */
+function osha_alert_service_osha_tmgmt_i18n_string_list() {
+  module_load_include('inc', 'osha_alert_service', 'osha_alert_service.translate');
+  return osha_alert_service_get_translatable_strings();
+}

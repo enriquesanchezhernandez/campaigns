@@ -1,0 +1,36 @@
+<?php
+
+function osha_job_vacancies_get_translatable_strings() {
+  return array(
+    'Activity',
+    'Archived',
+    'Expiration Date',
+    'Publication Date',
+    'Related resources',
+    'Shortlisted',
+    'Job vacancies',
+    'Careers accordion',
+    'Closed vacancies',
+    'Enquiries',
+    'Ongoing vacancies',
+    'Open vacancies',
+    'Reserve lists',
+    'Shortlisted vacancies',
+    'Spontaneous applications',
+    'Who we employ',
+    'Closed job vacancies',
+    'more',
+    'Apply',
+    'Reset',
+    'Sort by',
+    'Asc',
+    'Desc',
+    'Open job vacancies',
+    'Currently, there are no vacancies available in this section.',
+    'Ongoing job vacancies',
+    'Shortlisted job vacancies',
+    '<a href="inside-eu-osha/careers">Careers</a>',
+    'Job Vacancies',
+    'Back to vacancies',
+  );
+}

@@ -15,32 +15,38 @@ class OSHATMGMTLocaleSourceUIController extends TMGMTLocaleSourceUIController {
    * @return array
    *   List of i18n strings data.
    */
-  function getStrings($textgroup, $search_label = NULL, $missing_target_language = NULL) {
-    $osha = cache_get('osha:osha_tmgmt_i18n_string_list');
-    if (empty($osha)) {
-      $strings = module_invoke_all('osha_tmgmt_i18n_string_list');
-      $strings = array_unique($strings);
-      $osha = array();
-      $all = db_select('locales_source', 'ls')
-        ->fields('ls', array('lid', 'source'))
-        ->condition('ls.textgroup', $textgroup)
-        ->execute()->fetchAllAssoc('lid');
-      foreach ($all as $id => $ob) {
-        if (in_array($ob->source, $strings)) {
-          $osha[] = $id;
-        }
-      }
-      cache_set('osha:osha_tmgmt_i18n_string_list', $osha, 'cache', CACHE_TEMPORARY);
-    }
-    else {
-      $osha = $osha->data;
-    }
+  function getStrings($textgroup, $search_label = NULL, $missing_target_language = NULL, $page_size = 50) {
     $languages = drupal_map_assoc(array_keys(language_list()));
     $select = db_select('locales_source', 'ls')
       ->fields('ls', array('lid', 'source'))
-      ->condition('ls.textgroup', $textgroup)
-      ->condition('ls.lid', $osha, 'in')
-      ->orderBy('source');
+      ->condition('ls.location', db_like('field:field_character_count:') . '%' . db_like(':description'), 'NOT LIKE')
+      ->condition('ls.location', db_like('field:field_page_count:') . '%' . db_like(':description'), 'NOT LIKE')
+      ->condition('ls.location', db_like('field:comment_body:comment_') . '%', 'NOT LIKE')
+      ->condition('ls.location', '%' . db_like(':image:description'), 'NOT LIKE')
+      ->groupBy('ls.source')
+      ->orderBy('ls.source');
+
+    // Hide Drupal internal strings and show only the OSHA strings
+    $strings = module_invoke_all('osha_tmgmt_i18n_string_list');
+    if (!empty($strings)) {
+      //$or = db_or()->condition('ls.textgroup', array('menu', 'taxonomy'), 'not in');
+      //$or->condition('ls.source', $strings, 'in');
+      // $select->condition($or);
+      $select->condition('ls.source', $strings, 'in');
+
+    }
+    // Intersect with the cart and remove items already added to the cart
+    $cart = tmgmt_ui_cart_get();
+    $job_items = $cart->getJobItemsFromCart();
+    $cart_strings = array();
+    foreach ($job_items as $job_item) {
+      if ($job_item->item_type == 'default') {
+        $cart_strings[] = $job_item->item_id;
+      }
+    }
+    if (!empty($cart_strings)) {
+      $select->condition('ls.lid', $cart_strings, 'not in');
+    }
     if (!empty($search_label)) {
       $select->where('LOWER(CAST(ls.source AS CHAR)) LIKE :search',
         array(':search' => "%" . db_like(strtolower($search_label)) . "%"));
@@ -53,7 +59,9 @@ class OSHATMGMTLocaleSourceUIController extends TMGMTLocaleSourceUIController {
       $select->leftJoin('locales_target', "lt_$langcode", "ls.lid = %alias.lid AND %alias.language = '$langcode'");
       $select->addField("lt_$langcode", 'language', "lang_$langcode");
     }
-    $select = $select->extend('PagerDefault')->limit(variable_get('tmgmt_source_list_limit', 20));
+    if ($page_size) {
+      $select = $select->extend('PagerDefault')->limit(variable_get('tmgmt_source_list_limit', $page_size));
+    }
     return $select->execute()->fetchAll();
   }
 
@@ -100,5 +108,73 @@ class OSHATMGMTLocaleSourceUIController extends TMGMTLocaleSourceUIController {
       }
     }
     return $objects;
+  }
+
+  /**
+   * Gets submitted search params.
+   *
+   * @return array
+   */
+  public function getSearchFormSubmittedParams() {
+    $params = array(
+      'label' => NULL,
+      'missing_target_language' => NULL,
+      'page_size' => 50,
+    );
+
+    if (isset($_GET['label'])) {
+      $params['label'] = $_GET['label'];
+    }
+    if (isset($_GET['missing_target_language'])) {
+      $params['missing_target_language'] = $_GET['missing_target_language'];
+    }
+    if (isset($_GET['page_size'])) {
+      $params['page_size'] = $_GET['page_size'];
+    }
+
+    return $params;
+  }
+
+  public function overviewSearchFormPart($form, &$form_state, $type) {
+    $ret = parent::overviewSearchFormPart($form, $form_state, $type);
+    $default_values = $this->getSearchFormSubmittedParams();
+
+    $form['search_wrapper']['search']['label']['#weight'] = 0;
+    $form['search_wrapper']['search']['missing_target_language'] = 5;
+    $form['search_wrapper']['search_submit'] = 10;
+    $ret['search_wrapper']['search']['page_size'] = array(
+      '#type' => 'select',
+      '#title' => t('Items per page'),
+      '#options' => array('' => '-- All --', 50 => '50', '100' => 100),
+      '#empty_option' => '- All -',
+      '#default_value' => isset($default_values['page_size']) ? $default_values['page_size'] : 50,
+      '#weight' => 8,
+    );
+    return $ret;
+  }
+
+  /**
+   * Implements TMGMTSourceUIControllerInterface::overviewForm().
+   */
+  public function overviewForm($form, &$form_state, $type) {
+    $form += $this->overviewSearchFormPart($form, $form_state, $type);
+
+    $form['items'] = array(
+      '#type' => 'tableselect',
+      '#header' => $this->overviewFormHeader($type),
+      '#empty' => t('No strings matching given criteria have been found.')
+    );
+
+    $search_data = $this->getSearchFormSubmittedParams();
+
+    $strings = $this->getStrings($type, $search_data['label'], $search_data['missing_target_language'], $search_data['page_size']);
+
+    foreach ($this->getTranslationData($strings, $type) as $id => $data) {
+      $form['items']['#options'][$id] = $this->overviewRow($type, $data);
+    }
+
+    $form['pager'] = array('#markup' => theme('pager', array('tags' => NULL)));
+
+    return $form;
   }
 }

@@ -45,3 +45,11 @@ function osha_news_workbench_access_node_element_alter(&$element, $form_state, $
     }
   }
 }
+
+/**
+ * Implements hook_osha_tmgmt_i18n_string_list().
+ */
+function osha_news_osha_tmgmt_i18n_string_list() {
+  module_load_include('inc', 'osha_news', 'osha_news.translations');
+  return osha_news_get_translatable_strings();
+}

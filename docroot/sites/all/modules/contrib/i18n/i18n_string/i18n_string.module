@@ -840,7 +840,6 @@ function i18n_string_object_remove($type, $object, $options = array()) {
   if (in_array('strings_remove', get_class_methods(get_class($ob)))) {
     return i18n_object($type, $object)->strings_remove($options);
   }
-  return array();
 }
 
 /**
@@ -852,12 +851,10 @@ function i18n_string_object_remove($type, $object, $options = array()) {
  *   Object or array
  */
 function i18n_string_object_update($type, $object, $options = array()) {
-
   $ob = i18n_object($type, $object);
   if (in_array('strings_remove', get_class_methods(get_class($ob)))) {
     return i18n_object($type, $object)->strings_update($options);
   }
-  return array();
 }
 
 /**
