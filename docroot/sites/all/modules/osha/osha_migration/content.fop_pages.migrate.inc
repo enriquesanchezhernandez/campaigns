@@ -183,7 +183,7 @@ class MigrateOshaFOPPages extends OSHADynamicMigration {
             if (empty($country)) {
               $country = $countries[$iso2];
             }
-            $term->name = ucwords($country);
+            $term->name = ucwords(strtolower($country));
             $term->field_iso2[LANGUAGE_NONE][0]['value'] = $iso2;
             taxonomy_term_save($term);
             $tid = $term->tid;

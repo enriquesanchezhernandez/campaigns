@@ -249,13 +249,6 @@ function osha_migration_get_data_dir($subdirectory = '') {
 }
 
 /**
- * Implements hook_countries_alter().
- */
-function osha_migration_countries_alter(&$countries) {
-  $countries['UK'] = 'United Kingdom';
-}
-
-/**
  * Class OSHAMigrateFileFieldHandler
  * Extend MigrateFileFieldHandler from migrate module to add extra functionality
  * Applies to field type file
