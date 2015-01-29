@@ -89,7 +89,7 @@ function theme_osha_calls_file_taxonomy_description($element) {
   }
   $link_text .= ' <span class="file-icon">' . $icon . '</span>';
   if ($size = filesize($file->uri)) {
-    $link_text .= '<span class="file-size">' . format_size($size) . '</span>';
+    $link_text .= '<span class="related_size">(' . format_size($size) . ')</span>';
   }
   return '<span class="file">' . l($link_text, $url, $options) . '</span>';
 }
