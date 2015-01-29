@@ -40,3 +40,19 @@ function osha_fop_page_taxonomy_term_presave($term) {
     }
   }
 }
+
+/**
+ * Implements hook_node_presave().
+ */
+function osha_fop_page_node_presave($node) {
+  // Attach the country's flag to image field for fop_page.
+  if ($node->type == 'fop_page') {
+    if (empty($node->field_image[$node->language][0]['fid'])
+      && !empty($node->field_country[LANGUAGE_NONE][0]['tid'])) {
+      $term = taxonomy_term_load($node->field_country[LANGUAGE_NONE][0]['tid']);
+      if (!empty($term->field_flag[LANGUAGE_NONE][0])) {
+        $node->field_image[$node->language][0] = $term->field_flag[LANGUAGE_NONE][0];
+      }
+    }
+  }
+}

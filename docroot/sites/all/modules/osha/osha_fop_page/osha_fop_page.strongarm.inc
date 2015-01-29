@@ -151,7 +151,7 @@ function osha_fop_page_strongarm() {
           'weight' => '5',
         ),
         'workbench_access' => array(
-          'weight' => '3',
+          'weight' => '4',
         ),
         'language' => array(
           'weight' => '4',
