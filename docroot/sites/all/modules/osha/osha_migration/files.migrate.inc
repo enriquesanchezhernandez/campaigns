@@ -127,6 +127,7 @@ class OshaMigrateFiles extends DynamicMigration {
   }
 
   public function prepare($entity, $row) {
+    $entity->path['pathauto'] = 0;
     $file_language = (!empty($row->language)) ? $row->language : 'en';
     $entity->field_language[LANGUAGE_NONE][0]['value'] = $file_language;
     if (!empty($row->title)) {
@@ -145,34 +146,76 @@ class OshaMigrateFiles extends DynamicMigration {
   public function complete($entity, $row) {
     $language = $entity->field_language[LANGUAGE_NONE][0]['value'];
     $path = $row->path;
-    if (substr($row->path, 1, 2) == $language) {
-      $path = substr($row->path, 4);
+    if (substr($path, 2, 1) == '/') {
+      // Assume path starts with /LL/, so remove language.
+      $path = substr($path, 1, 3);
     }
-    $alias = array(
+    else {
+      // Remove only first /
+      $path = substr($path, 1);
+    }
+    // Existing Path.
+    $conditions = array(
+      'source' => 'file/' . $entity->fid,
+      'language' => $language,
+    );
+    $existing_path = path_load($conditions);
+    // New Path.
+    $args = array(
       'source' => 'file/' . $entity->fid,
       'alias' => $path,
       'language' => $language,
     );
-    path_save($alias);
-
-    //check if source redirect exists
-    $source = $path . '/view';
-    $source_redirects = redirect_load_by_source($source,$language);
-
-    if ($source_redirects == FALSE) {
-      // create redirect from file's/view path to file's path
-      $redirect = new stdClass();
-      $redirect->source = $source;                                   // From URL
-      $redirect->source_options = array();
-      $redirect->redirect = 'file/'.$entity->fid;                    // To URL
-      $redirect->redirect_options = array();
-      $redirect->status_code = 0;                                    // Redirect Status
-      $redirect->type = 'redirect';
-      $redirect->language = $language;
-
-      // Create the redirect
-      redirect_save($redirect);
+    if (empty($existing_path)) {
+      // Save the path.
+      path_save($args);
     }
+    elseif (!empty($existing_path) && $existing_path['alias'] != $path) {
+      // If path is changed, move existing to redirect and save the new one.
+      path_delete($conditions);
+      while (path_load($conditions)) {
+        path_delete($conditions);
+      }
+      $source_redirects = redirect_load_by_source($existing_path['alias'], $language);
+      if ($source_redirects == FALSE) {
+        $redirect = new stdClass();
+        $redirect->source = $existing_path['alias'];
+        $redirect->source_options = array();
+        $redirect->redirect = 'file/' . $entity->fid;
+        $redirect->redirect_options = array();
+        $redirect->status_code = 0;
+        $redirect->type = 'redirect';
+        $redirect->language = $language;
+        redirect_save($redirect);
+      }
+      path_save($args);
+    }
+
+    // Add usage to prevent file removal when revert Publication migration.
+    file_usage_add($entity, 'osha_migration_file', 'file_entity', $entity->fid);
+
+//    //check if source redirect exists
+//    $source = $path . '/view';
+//    $source_redirects = redirect_load_by_source($source,$language);
+//
+//    if ($source_redirects == FALSE) {
+//      // create redirect from file's/view path to file's path
+//      $redirect = new stdClass();
+//      $redirect->source = $source;                                   // From URL
+//      $redirect->source_options = array();
+//      $redirect->redirect = 'file/'.$entity->fid;                    // To URL
+//      $redirect->redirect_options = array();
+//      $redirect->status_code = 0;                                    // Redirect Status
+//      $redirect->type = 'redirect';
+//      $redirect->language = $language;
+//
+//      // Create the redirect
+//      redirect_save($redirect);
+//    }
+  }
+  protected function postRollback() {
+    parent::postRollback();
+    db_delete('file_usage')->condition('module', 'osha_migration_file');
   }
 }
 
