@@ -576,7 +576,7 @@ class MigrationUtil {
 
   public static function createAliases($entity, $row, $entity_type, $id_key) {
     $languages = array_keys($entity->translations->data);
-    if (!in_array($row->language, $languages)) {
+    if (isset($row->language) && !in_array($row->language, $languages)) {
       $languages[] = $row->language;
     }
     foreach ($languages as $language) {
@@ -831,7 +831,7 @@ class OSHADynamicMigration extends DynamicMigration {
   public function createRedirectsFromAliases($entity, $row) {
     // Create redirects for additional aliases
     $languages = array_keys($entity->translations->data);
-    if (!in_array($row->language, $languages)) {
+    if (isset($row->language) && !in_array($row->language, $languages)) {
       $languages[] = $row->language;
     }
     foreach ($languages as $language) {
