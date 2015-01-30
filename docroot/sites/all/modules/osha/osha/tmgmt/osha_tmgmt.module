@@ -1010,13 +1010,6 @@ function osha_tmgmt_retranslate_validate_ui($form, &$form_state) {
  */
 function osha_tmgmt_form_tmgmt_ui_entity_translation_review_form_alter(&$form, &$form_state) {
   $job_item = $form_state['item'];
-  if ($job_item->item_type = 'taxonomy_term') {
-    $can_accept = user_access('accept job item translation')
-      && $job_item->state != TMGMT_JOB_ITEM_STATE_ACCEPTED
-      && $job_item->state != TMGMT_JOB_ITEM_STATE_ABORTED;
-    $form['actions']['accept']['#access'] = $can_accept;
-  }
-
   if ($job_item->item_type != 'node') {
     return;
   }
