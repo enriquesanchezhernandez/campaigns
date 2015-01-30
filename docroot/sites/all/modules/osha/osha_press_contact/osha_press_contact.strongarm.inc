@@ -14,7 +14,7 @@ function osha_press_contact_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'comment_anonymous_press_contact';
-  $strongarm->value = 0;
+  $strongarm->value = '0';
   $export['comment_anonymous_press_contact'] = $strongarm;
 
   $strongarm = new stdClass();
@@ -58,6 +58,19 @@ function osha_press_contact_strongarm() {
   $strongarm->name = 'comment_subject_field_press_contact';
   $strongarm->value = 1;
   $export['comment_subject_field_press_contact'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'entity_translation_settings_taxonomy_term__country';
+  $strongarm->value = array(
+    'default_language' => 'en',
+    'hide_language_selector' => 0,
+    'exclude_language_none' => 1,
+    'lock_language' => 1,
+    'shared_fields_original_only' => 0,
+  );
+  $export['entity_translation_settings_taxonomy_term__country'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
@@ -127,20 +140,26 @@ function osha_press_contact_strongarm() {
       'token' => array(
         'custom_settings' => FALSE,
       ),
+      'osha_resources' => array(
+        'custom_settings' => TRUE,
+      ),
+      'print' => array(
+        'custom_settings' => FALSE,
+      ),
     ),
     'extra_fields' => array(
       'form' => array(
         'metatags' => array(
-          'weight' => '8',
+          'weight' => '14',
         ),
         'title' => array(
           'weight' => '0',
         ),
         'path' => array(
-          'weight' => '7',
+          'weight' => '13',
         ),
         'redirect' => array(
-          'weight' => '6',
+          'weight' => '12',
         ),
         'language' => array(
           'weight' => '2',

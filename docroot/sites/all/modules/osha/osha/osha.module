@@ -600,6 +600,15 @@ function osha_look_for_path_source($url) {
 }
 
 /**
+ * Implements hook_countries_alter().
+ */
+function osha_countries_alter(&$countries) {
+  // EU accepts UK instead of GB.
+  $countries['UK'] = 'United Kingdom';
+  unset($countries['GB']);
+}
+
+/**
  * Implements hook_date_formatter_dates_alter().
  */
 function osha_date_formatter_dates_alter(&$dates, $context) {
