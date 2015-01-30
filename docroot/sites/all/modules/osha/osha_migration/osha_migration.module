@@ -206,11 +206,11 @@ function osha_migration_migrate_api() {
     );
   }
 
-  if (is_readable($external_data_dir . '/export/focal_point_pages.txt')) {
+  if (is_readable($external_data_dir . '/export/focalpoints.txt')) {
     $migrations[OSHA_MIGRATION_CONTENT_TYPE_FOP_PAGES] = array(
       'class_name' => 'MigrateOshaFOPPages',
-      'file_name' => $external_data_dir . '/export/focal_point_pages.txt',
-      'file_name_links' => $external_data_dir . '/export/focal_point_links.txt',
+      'file_name' => $external_data_dir . '/export/focalpoints.txt',
+      'file_name_links' => $external_data_dir . '/export/focalpoints_linklist.txt',
     );
   }
 
