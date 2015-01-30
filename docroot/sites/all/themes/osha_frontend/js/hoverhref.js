@@ -3,6 +3,7 @@ jQuery(document).ready(function () {
 	zoomMedium();
 	hoverSlideHome();
 	displayCaptcha();
+	displayMenuThirdLevel();
 });
 
 
@@ -117,6 +118,30 @@ function displayCaptcha() {
 	
 }
 
+function displayMenuThirdLevel() {
+
+	
+	
+ // init: collapse all groups except for the first one
+    jQuery("#block-menu-block-2 #main-menu-links #main-menu-links #main-menu-links").each(function(i)
+    {
+        
+		jQuery(this).hide();
+       
+    });
+
+	
+	jQuery('#block-menu-block-2 #main-menu-links #main-menu-links .expanded').each(function () {
+    jQuery(this).css("cursor","pointer");
+    jQuery(this).click(function () {
+      jQuery("ul",this).slideToggle();
+	  jQuery(this).toggleClass("expand");
+	  });
+	});
+
+	
+	
+}
         
 	function zoomSmall() {
 		jQuery("body").addClass("bodysmall");
