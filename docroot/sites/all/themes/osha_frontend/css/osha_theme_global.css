@@ -332,6 +332,7 @@ body {
 	float: none;	
 	margin-left: 0em;
 	margin-top: 1em;
+	padding-left: 1em;
 	width: 100%;
 }
 #block-osha-newsletter-osha-newsletter-subscribe {
@@ -341,7 +342,7 @@ body {
 	font-weight: normal;
 }
 #block-osha-newsletter-osha-newsletter-subscribe input[type="submit"] {
-	padding-right: 2.1em;
+	padding-right: 3em;
 	margin-top: .2em;
 	font-size: 1.4em;
 	background-position: 97% center;	
@@ -356,7 +357,7 @@ body {
 }
 #block-osha-alert-service-osha-alert-block-front-view  .link span {
 	color: #333;
-	font-family: 'Oswald', sans-serif;	
+	font-family: "Open Sans Condensed";
 	/*font-size: 1.5em;*/
 	font-weight: lighter;
 	padding-bottom: 0.2em;
@@ -367,12 +368,12 @@ body {
 	border: 0 none;
 	color: #039;
 	display: block;
-	font-family: "Oswald",sans-serif;
+	font-family: "Open Sans Condensed";
 	font-size: 1.25em;
 	font-weight: bold;
 	margin-top: 0.2em;
 	padding-bottom: 0.5em;
-	padding-right: 2.1em;
+	padding-right: 3em;
 	padding-top: 0.5em;
 	text-align: right;
 	text-decoration: none;
@@ -497,9 +498,11 @@ h1, .field-name-title-field h1  {
 	float: none;
 	padding: 0.7em 0em 0.7em 0em;
 }
+/*
 .menu-block-3 ul li:first-child {
 	border-top: 1px dashed #039;
 }
+*/
 #main-menu-links .introduction-title a {	
 	position: relative;
 	bottom: inherit;
@@ -609,7 +612,7 @@ ul.links.inline {
 	background: url("")!important;
 	border-top: 5px solid #AAB7D9!important;
 	border-bottom: 1px dashed #AAB7D9!important;
-	margin-top: 0!important;
+	margin-top: 2em!important;
 	margin-bottom: 0!important;
 }
 .addtoany {
@@ -699,8 +702,10 @@ ul.links.inline {
 .views-exposed-form .views-exposed-widget  {
 	float: none;
 	padding: 0em;
+	height: auto;
 }
 .views-exposed-form .views-exposed-widget label {
+	margin-top: 1em;
 	padding-bottom: 0em!important;
 }
 .views-exposed-form .views-exposed-widget input {
@@ -940,7 +945,7 @@ body.page-search-publications aside.sidebars_first {
 	color: #039;
 	cursor: pointer;
 	display: block;
-	font-family: "Oswald";
+	font-family: "Open Sans Condensed";
 	font-size: 1.35em;
 	font-weight: 400;
 	height: auto;
@@ -963,6 +968,13 @@ body.page-search-publications aside.sidebars_first {
 	margin-bottom: 0em;
 	
 }
+.views-exposed-widget.views-submit-button {
+	background: none;
+}
+#edit-submit-publications-index {
+	width: auto;
+	margin-bottom: 1em;
+}
 /* End Publications */
 
 
@@ -981,6 +993,7 @@ body.page-search-publications aside.sidebars_first {
 	padding-left: .8em;
 	padding-right: 1em;
 }
+
 #block-views-infographic-block-1 .view-infographic .views-row {
 	float: none;	
 	padding: 0em;
@@ -993,6 +1006,13 @@ body.page-search-publications aside.sidebars_first {
 #block-views-infographic-block-1  .field-content p {
 	margin-top: .5em;
 	margin-bottom: 1.5em;
+}
+#block-views-infographic-block-1  .views-field.views-field-body a.more-link {
+	background-color: inherit;
+	min-height: inherit;
+	font-size: inherit;
+	padding-top: inherit;
+	padding-bottom: inherit;
 }
 #block-views-related-content-block-6 .view-related-content {
 	padding: 0em;
@@ -1125,13 +1145,23 @@ body.page-search-publications aside.sidebars_first {
 }
 
 .sidebars_first #block-views-exp-search-directives-page, .sidebars_first {
-	display:block!important;
-	border:0px!important;
-	width: 90%;
+	display:block !important;
+	border:0px !important;
+	float: none !important;
+	margin: 0 !important;
+	padding: 0 !important;
+	width: 100% !important;
+}
+.sidebars_first .region-sidebar-first {
+	clear: both;
+	float: none;
+	width: auto;
+	margin: 1em 1em 1em 1em;
 }
 
-
-
+.view.view-search.view-id-search.view .views-row {
+	padding-top: 0.5em;
+}
 
 
 
