@@ -356,6 +356,10 @@ class FOPPagesContentListCSV extends MigrateList {
     while (($raw_data = fgetcsv($handle, 100000, ';')) !== FALSE) {
       $language = !empty($raw_data[1]) ? $raw_data[1] : 'en';
       $path = MigrationUtil::getIDFromSourceRow($raw_data);
+      // Ignore this page, it's migrated from pages.
+      if ($path == 'oshnetwork/focal-points/index_html') {
+        continue;
+      }
       self::$data[$path]['id'] = $path;
       // Assign the workflow state of the row from english entry.
       if ($language == 'en') {

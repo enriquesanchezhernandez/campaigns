@@ -29,10 +29,11 @@ function osha_press_contact_cron() {
   else {
     $last_modification = variable_get('osha_focal_point_import_file_modify_time', 0);
     if ($filemtime > $last_modification) {
-      drush_invoke('migrate-auto-register');
-      drush_set_option('update', TRUE);
-      drush_invoke('migrate-import', array('FocalPoint'));
-      variable_set('osha_focal_point_import_file_modify_time', $filemtime);
+      migrate_autoregister();
+      // TODO: Use migration function not drush functions.
+//      drush_set_option('update', TRUE);
+//      drush_invoke('migrate-import', array('FocalPoint'));
+//      variable_set('osha_focal_point_import_file_modify_time', $filemtime);
     }
   }
 }
