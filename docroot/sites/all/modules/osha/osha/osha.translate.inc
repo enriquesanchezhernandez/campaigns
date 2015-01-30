@@ -51,6 +51,21 @@ function osha_get_translatable_strings() {
 
     // Core strings
     'Unable to send e-mail. Contact the site administrator if the problem persists.',
+    'Sorry, unrecognized username or password. Have you forgotten your password?',
+    'Cancel user account',
+    'User account',
+    'Create new account',
+    'Log in',
+    'Request new password',
+    'The e-mail address %mail is not valid.',
+    'Enter your @s username.',
+    'Enter the password that accompanies your username.',
+    'Username or e-mail address',
+    'Password reset instructions will be mailed to %email. You must log out to use the password reset link in the e-mail.',
+    'Sorry, %name is not recognized as a user name or an e-mail address.',
+    'Spaces are allowed; punctuation is not allowed except for periods, hyphens, apostrophes, and underscores.',
+    'E-mail address',
+    'A valid e-mail address. All e-mails from the system will be sent to this address. The e-mail address is not made public and will only be used if you wish to receive a new password or wish to receive certain news or notifications by e-mail.',
 
      // Other strings
     'Share this on:',
