@@ -43,7 +43,6 @@ function osha_get_translatable_strings() {
     '<div class="link"><span>Interested in specific topics?</span><a href="!url">Try Alert Service</a></div>',
     'OSHwiki Featured Articles',
     'OSHA archived content',
-    '<div class="OSHWiki"><div class="separatorOsHWiki">&nbsp;</div><div id="OSHWikiDivTit"><div class="imgOSHWiki"><img src="/sites/all/themes/osha_frontend/images/OSHwiki.png" alt="" width="26" height="26"></div><div class="OSHWikiTitle">OSHwiki</div></div><div class="p2">Find OSHwiki articles<span><br></span></div><div class="p3"><a href="http://oshwiki.eu/wiki/Main_Page" target="_blank">Go to OSHwiki <img src="/sites/all/themes/osha_frontend/images/flecha.png" alt="Go to OSHwiki" width="19" height="11"></a></div></div>',
 
     // Core strings
     'Unable to send e-mail. Contact the site administrator if the problem persists.',
