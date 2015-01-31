@@ -96,6 +96,35 @@ function osha_fop_page_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'exclude_node_title_content_type_modes_fop_page';
+  $strongarm->value = array(
+    'full' => 'full',
+    'teaser' => 'teaser',
+    'rss' => 0,
+    'search_index' => 0,
+    'search_result' => 0,
+    'diff_standard' => 0,
+    'osha_slideshow' => 0,
+    'highlights_item' => 0,
+    'newsletter_item' => 0,
+    'osha_resources' => 0,
+    'osha_wiki' => 0,
+    'print' => 0,
+    'token' => 0,
+    'nodeform' => 0,
+  );
+  $export['exclude_node_title_content_type_modes_fop_page'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'exclude_node_title_content_type_value_fop_page';
+  $strongarm->value = 'all';
+  $export['exclude_node_title_content_type_value_fop_page'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'field_bundle_settings_node__fop_page';
   $strongarm->value = array(
     'view_modes' => array(
@@ -142,16 +171,16 @@ function osha_fop_page_strongarm() {
     'extra_fields' => array(
       'form' => array(
         'metatags' => array(
-          'weight' => '7',
+          'weight' => '10',
         ),
         'path' => array(
-          'weight' => '6',
+          'weight' => '9',
         ),
         'redirect' => array(
-          'weight' => '5',
+          'weight' => '8',
         ),
         'workbench_access' => array(
-          'weight' => '4',
+          'weight' => '0',
         ),
         'language' => array(
           'weight' => '4',
