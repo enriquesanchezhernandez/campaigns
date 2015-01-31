@@ -41,7 +41,6 @@ function osha_get_translatable_strings() {
     '<div><ul><li>Latest <strong>news</strong> from <br>around the world</li><li>Forthcoming <br><strong>events</strong></li><li>Latest Agency <br><strong>publications</strong></li><li>Updates on EU <br><strong>legislation</strong></li><li>In 24 <br><strong>languages</strong></li><li><strong>Free</strong><br> subscriptions</li></ul></div>',
     '<p>Our publications range from in-depth research reports to topical e-facts, designed for use in the workplace. All are free to download. You can search the library by publication type or keyword. You might also like to subscribe to our free monthly newsletter — it makes keeping up to date with OSH easy.</p>',
     '<div><a class="seminar_back-to-seminars back-to-link" href="/tools-and-publications/seminars">Back to seminars</a></div>',
-    '<p><a href="/jobs_archive">Closed vacancies</a></p>',
     '<div class="link"><span>Interested in specific topics?</span><a href="!url">Try Alert Service</a></div>',
     'OSHwiki Featured Articles',
     'OSHA archived content',
