@@ -19,7 +19,7 @@ function osha_blog_get_translatable_strings() {
     'Page',
     'Posts by date',
     'Monthly posts',
-    'Feed'
+    'Feed',
     'Search Blog',
     'Sort by',
     'more',
