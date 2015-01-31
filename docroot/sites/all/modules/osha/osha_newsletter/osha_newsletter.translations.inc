@@ -19,11 +19,10 @@ function osha_newsletter_get_translatable_strings() {
     'View the blog',
     'More events',
     'Occupational Safety and Health News &ndash; Europe',
-    'Like what you&apos;re reading? <br/><a href="@url" style="@style">Tell a colleague</a>',
     'No longer wish to receive OSHmail? <a href="@url" style="@style">Unsubscribe here.</a>',
     'Subscribe to our <a href="@url" style="@style">Alert service</a> for <br/> customised content delivery',
     'Brought to you by EU-OSHA. Visit us at: <a href="@base_url" style="@style">@base_url</a>',
-    'There was a problem sending your message and it was not sent.',
-    'Your message has been sent to @emails.',
+    'Your subscription has not been submitted because of a technical error.',
+    'Your subscription has been submitted succesfully.',
   );
 }
