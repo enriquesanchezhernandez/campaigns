@@ -12,47 +12,6 @@ function osha_blocks_default_fe_block_settings() {
 
   $export['version'] = '2.0';
 
-  $export['block-osha_job_vacancies_reserve_block'] = array(
-    'cache' => -1,
-    'custom' => 0,
-    'i18n_block_language' => array(),
-    'i18n_mode' => 1,
-    'machine_name' => 'osha_job_vacancies_reserve_block',
-    'module' => 'block',
-    'node_types' => array(),
-    'pages' => 'node/21
-inside-eu-osha/careers',
-    'roles' => array(),
-    'themes' => array(
-      'bartik' => array(
-        'region' => '',
-        'status' => 0,
-        'theme' => 'bartik',
-        'weight' => 0,
-      ),
-      'osha_admin' => array(
-        'region' => '',
-        'status' => 0,
-        'theme' => 'osha_admin',
-        'weight' => 0,
-      ),
-      'osha_frontend' => array(
-        'region' => '',
-        'status' => 0,
-        'theme' => 'osha_frontend',
-        'weight' => 5,
-      ),
-      'seven' => array(
-        'region' => '',
-        'status' => 0,
-        'theme' => 'seven',
-        'weight' => 0,
-      ),
-    ),
-    'title' => 'Reserve lists',
-    'visibility' => 1,
-  );
-
   $export['block-osha_wiki_link'] = array(
     'cache' => -1,
     'custom' => 0,

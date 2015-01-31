@@ -281,7 +281,7 @@ function osha_calls_views_default_views() {
   $handler->display->display_options['filters']['field_expiration_date_value']['field'] = 'field_expiration_date_value';
   $handler->display->display_options['filters']['field_expiration_date_value']['operator'] = '<';
   $handler->display->display_options['filters']['field_expiration_date_value']['default_date'] = 'now';
-  $handler->display->display_options['path'] = 'calls_archive';
+  $handler->display->display_options['path'] = 'inside-eu-osha/procurement/calls_archive';
 
   /* Display: Archived calls block */
   $handler = $view->new_display('block', 'Archived calls block', 'block_archived_calls');

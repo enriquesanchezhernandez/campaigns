@@ -11,14 +11,6 @@ function osha_blocks_default_fe_block_boxes() {
   $export = array();
 
   $fe_block_boxes = new stdClass();
-  $fe_block_boxes->info = 'Job Vacancies Reserve List';
-  $fe_block_boxes->format = 'full_html';
-  $fe_block_boxes->machine_name = 'osha_job_vacancies_reserve_block';
-  $fe_block_boxes->body = '<p class="Textfo" style="text-align: justify;">Reserve lists are composed of the candidates who came for an interview at the time of the recruitment procedure for the posts listed and who obtained the best overall marks.</p><p class="Textfo" style="text-align: justify;">Candidates in the reserve list may be offered contracts at a later date without subsequent selection procedure.</p><p class="Textfo" style="text-align: justify;">For some Contract Agent positions, EU-OSHA may use the EPSO database.</p>';
-
-  $export['osha_job_vacancies_reserve_block'] = $fe_block_boxes;
-
-  $fe_block_boxes = new stdClass();
   $fe_block_boxes->info = 'OSHWiki static block - link to OSHwiki';
   $fe_block_boxes->format = 'full_html';
   $fe_block_boxes->machine_name = 'osha_wiki_link';
