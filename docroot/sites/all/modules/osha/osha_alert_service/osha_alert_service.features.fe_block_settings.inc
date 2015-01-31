@@ -221,7 +221,8 @@ node/5432',
     'i18n_mode' => 0,
     'module' => 'osha_alert_service',
     'node_types' => array(),
-    'pages' => 'tools-and-publications/events',
+    'pages' => 'tools-and-publications/events
+node/5322',
     'roles' => array(),
     'themes' => array(
       'bartik' => array(
