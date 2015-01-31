@@ -51,7 +51,7 @@ legislation/directive/*',
         'weight' => 0,
       ),
     ),
-    'title' => '',
+    'title' => 'Date of directive',
     'visibility' => 1,
   );
 
@@ -257,7 +257,7 @@ safety-and-health-legislation/european-directives',
         'weight' => 0,
       ),
     ),
-    'title' => '',
+    'title' => '<none>',
     'visibility' => 1,
   );
 
@@ -377,7 +377,7 @@ safety-and-health-legislation/european-directives',
         'weight' => 0,
       ),
     ),
-    'title' => '',
+    'title' => '<none>',
     'visibility' => 1,
   );
 
@@ -417,7 +417,7 @@ safety-and-health-legislation/european-directives',
         'weight' => 0,
       ),
     ),
-    'title' => '',
+    'title' => '<none>',
     'visibility' => 1,
   );
 

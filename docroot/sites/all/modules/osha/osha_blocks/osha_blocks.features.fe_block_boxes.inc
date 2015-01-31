@@ -19,14 +19,6 @@ function osha_blocks_default_fe_block_boxes() {
   $export['osha_wiki_link'] = $fe_block_boxes;
 
   $fe_block_boxes = new stdClass();
-  $fe_block_boxes->info = 'Subscribe categories - static block';
-  $fe_block_boxes->format = 'full_html';
-  $fe_block_boxes->machine_name = 'oshmail_subscribe_categories';
-  $fe_block_boxes->body = '<div><ul><li>Latest <strong>news</strong> from <br>around the world</li><li>Forthcoming <br><strong>events</strong></li><li>Latest Agency <br><strong>publications</strong></li><li>Updates on EU <br><strong>legislation</strong></li><li>In 24 <br><strong>languages</strong></li><li><strong>Free</strong><br> subscriptions</li></ul></div>';
-
-  $export['oshmail_subscribe_categories'] = $fe_block_boxes;
-
-  $fe_block_boxes = new stdClass();
   $fe_block_boxes->info = 'Header for Publications page';
   $fe_block_boxes->format = 'full_html';
   $fe_block_boxes->machine_name = 'publications_header';

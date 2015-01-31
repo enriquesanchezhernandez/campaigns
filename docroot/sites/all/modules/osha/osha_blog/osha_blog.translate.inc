@@ -17,6 +17,9 @@ function osha_blog_get_translatable_strings() {
     'Tags posts',
     'Free text search',
     'Page',
+    'Posts by date',
+    'Monthly posts',
+    'Feed'
     'Search Blog',
     'Sort by',
     'more',

@@ -385,7 +385,6 @@ function osha_tmgmt_menu_local_tasks_alter(&$items) {
     'admin/tmgmt/sources/i18n_string_taxonomy_vocabulary',
 
     //'admin/tmgmt/sources/entity_node',
-    //'admin/tmgmt/sources/i18n_string_block',
     'admin/tmgmt/sources/i18n_string_field_instance',
     'admin/tmgmt/sources/i18n_string_field',
     'admin/tmgmt/sources/i18n_string_path_breadcrumbs',

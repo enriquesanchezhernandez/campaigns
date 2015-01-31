@@ -17,7 +17,7 @@ function osha_blog_default_fe_block_settings() {
     'custom' => 0,
     'delta' => 1,
     'i18n_block_language' => array(),
-    'i18n_mode' => 0,
+    'i18n_mode' => 1,
     'module' => 'twitter_block',
     'node_types' => array(),
     'pages' => 'node/5445
@@ -51,7 +51,7 @@ search/blog*',
         'weight' => 0,
       ),
     ),
-    'title' => '',
+    'title' => 'Recent Tweets',
     'visibility' => 1,
   );
 
@@ -94,7 +94,7 @@ blog/*
         'weight' => 0,
       ),
     ),
-    'title' => '',
+    'title' => '<none>',
     'visibility' => 1,
   );
 
