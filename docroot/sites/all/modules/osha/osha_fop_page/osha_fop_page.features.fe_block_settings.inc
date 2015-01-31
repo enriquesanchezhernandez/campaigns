@@ -20,7 +20,8 @@ function osha_fop_page_default_fe_block_settings() {
     'i18n_mode' => 0,
     'module' => 'views',
     'node_types' => array(),
-    'pages' => 'oshnetwork/focal-points/index_html',
+    'pages' => 'oshnetwork/focal-points/index_html
+node/7116',
     'roles' => array(),
     'themes' => array(
       'bartik' => array(
