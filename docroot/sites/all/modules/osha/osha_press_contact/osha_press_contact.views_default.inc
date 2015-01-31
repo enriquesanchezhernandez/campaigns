@@ -11,6 +11,152 @@ function osha_press_contact_views_default_views() {
   $export = array();
 
   $view = new view();
+  $view->name = 'fop_contacts';
+  $view->description = '';
+  $view->tag = 'default';
+  $view->base_table = 'node';
+  $view->human_name = 'FOP Contacts';
+  $view->core = 7;
+  $view->api_version = '3.0';
+  $view->disabled = FALSE; /* Edit this to true to make a default view disabled initially */
+
+  /* Display: Master */
+  $handler = $view->new_display('default', 'Master', 'default');
+  $handler->display->display_options['title'] = 'FOP Contacts';
+  $handler->display->display_options['use_more_always'] = FALSE;
+  $handler->display->display_options['access']['type'] = 'perm';
+  $handler->display->display_options['cache']['type'] = 'none';
+  $handler->display->display_options['query']['type'] = 'views_query';
+  $handler->display->display_options['query']['options']['distinct'] = TRUE;
+  $handler->display->display_options['exposed_form']['type'] = 'basic';
+  $handler->display->display_options['pager']['type'] = 'some';
+  $handler->display->display_options['pager']['options']['items_per_page'] = '5';
+  $handler->display->display_options['style_plugin'] = 'default';
+  $handler->display->display_options['row_plugin'] = 'fields';
+  /* Relationship: Content: Country (field_country) */
+  $handler->display->display_options['relationships']['field_country_tid']['id'] = 'field_country_tid';
+  $handler->display->display_options['relationships']['field_country_tid']['table'] = 'field_data_field_country';
+  $handler->display->display_options['relationships']['field_country_tid']['field'] = 'field_country_tid';
+  $handler->display->display_options['relationships']['field_country_tid']['required'] = TRUE;
+  /* Relationship: Taxonomy term: Content using Country */
+  $handler->display->display_options['relationships']['reverse_field_country_node']['id'] = 'reverse_field_country_node';
+  $handler->display->display_options['relationships']['reverse_field_country_node']['table'] = 'taxonomy_term_data';
+  $handler->display->display_options['relationships']['reverse_field_country_node']['field'] = 'reverse_field_country_node';
+  $handler->display->display_options['relationships']['reverse_field_country_node']['relationship'] = 'field_country_tid';
+  $handler->display->display_options['relationships']['reverse_field_country_node']['required'] = TRUE;
+  /* Field: Content: Organization */
+  $handler->display->display_options['fields']['field_press_contact_organization']['id'] = 'field_press_contact_organization';
+  $handler->display->display_options['fields']['field_press_contact_organization']['table'] = 'field_data_field_press_contact_organization';
+  $handler->display->display_options['fields']['field_press_contact_organization']['field'] = 'field_press_contact_organization';
+  $handler->display->display_options['fields']['field_press_contact_organization']['label'] = '';
+  $handler->display->display_options['fields']['field_press_contact_organization']['element_label_colon'] = FALSE;
+  /* Field: Content: Location */
+  $handler->display->display_options['fields']['field_press_contact_location']['id'] = 'field_press_contact_location';
+  $handler->display->display_options['fields']['field_press_contact_location']['table'] = 'field_data_field_press_contact_location';
+  $handler->display->display_options['fields']['field_press_contact_location']['field'] = 'field_press_contact_location';
+  $handler->display->display_options['fields']['field_press_contact_location']['label'] = '';
+  $handler->display->display_options['fields']['field_press_contact_location']['element_label_colon'] = FALSE;
+  /* Field: Content: City */
+  $handler->display->display_options['fields']['field_city']['id'] = 'field_city';
+  $handler->display->display_options['fields']['field_city']['table'] = 'field_data_field_city';
+  $handler->display->display_options['fields']['field_city']['field'] = 'field_city';
+  $handler->display->display_options['fields']['field_city']['label'] = '';
+  $handler->display->display_options['fields']['field_city']['element_label_colon'] = FALSE;
+  /* Field: Content: Country */
+  $handler->display->display_options['fields']['field_country']['id'] = 'field_country';
+  $handler->display->display_options['fields']['field_country']['table'] = 'field_data_field_country';
+  $handler->display->display_options['fields']['field_country']['field'] = 'field_country';
+  $handler->display->display_options['fields']['field_country']['label'] = '';
+  $handler->display->display_options['fields']['field_country']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_country']['type'] = 'i18n_taxonomy_term_reference_plain';
+  /* Field: Content: Personal Title */
+  $handler->display->display_options['fields']['field_personal_title']['id'] = 'field_personal_title';
+  $handler->display->display_options['fields']['field_personal_title']['table'] = 'field_data_field_personal_title';
+  $handler->display->display_options['fields']['field_personal_title']['field'] = 'field_personal_title';
+  $handler->display->display_options['fields']['field_personal_title']['label'] = '';
+  $handler->display->display_options['fields']['field_personal_title']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['field_personal_title']['element_label_colon'] = FALSE;
+  /* Field: Content: Title */
+  $handler->display->display_options['fields']['title_field']['id'] = 'title_field';
+  $handler->display->display_options['fields']['title_field']['table'] = 'field_data_title_field';
+  $handler->display->display_options['fields']['title_field']['field'] = 'title_field';
+  $handler->display->display_options['fields']['title_field']['label'] = '';
+  $handler->display->display_options['fields']['title_field']['alter']['alter_text'] = TRUE;
+  $handler->display->display_options['fields']['title_field']['alter']['text'] = '[field_personal_title] [title_field]';
+  $handler->display->display_options['fields']['title_field']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['title_field']['link_to_entity'] = 0;
+  /* Field: Content: Job Title */
+  $handler->display->display_options['fields']['field_press_contact_job_title']['id'] = 'field_press_contact_job_title';
+  $handler->display->display_options['fields']['field_press_contact_job_title']['table'] = 'field_data_field_press_contact_job_title';
+  $handler->display->display_options['fields']['field_press_contact_job_title']['field'] = 'field_press_contact_job_title';
+  $handler->display->display_options['fields']['field_press_contact_job_title']['label'] = '';
+  $handler->display->display_options['fields']['field_press_contact_job_title']['element_label_colon'] = FALSE;
+  /* Sort criterion: Content: Post date */
+  $handler->display->display_options['sorts']['created']['id'] = 'created';
+  $handler->display->display_options['sorts']['created']['table'] = 'node';
+  $handler->display->display_options['sorts']['created']['field'] = 'created';
+  $handler->display->display_options['sorts']['created']['order'] = 'DESC';
+  /* Contextual filter: Content: Country (field_country) */
+  $handler->display->display_options['arguments']['field_country_tid']['id'] = 'field_country_tid';
+  $handler->display->display_options['arguments']['field_country_tid']['table'] = 'field_data_field_country';
+  $handler->display->display_options['arguments']['field_country_tid']['field'] = 'field_country_tid';
+  $handler->display->display_options['arguments']['field_country_tid']['default_action'] = 'default';
+  $handler->display->display_options['arguments']['field_country_tid']['default_argument_type'] = 'taxonomy_tid';
+  $handler->display->display_options['arguments']['field_country_tid']['default_argument_options']['term_page'] = FALSE;
+  $handler->display->display_options['arguments']['field_country_tid']['default_argument_options']['node'] = TRUE;
+  $handler->display->display_options['arguments']['field_country_tid']['default_argument_options']['anyall'] = '+';
+  $handler->display->display_options['arguments']['field_country_tid']['default_argument_options']['limit'] = TRUE;
+  $handler->display->display_options['arguments']['field_country_tid']['default_argument_options']['vocabularies'] = array(
+    'country' => 'country',
+  );
+  $handler->display->display_options['arguments']['field_country_tid']['summary']['number_of_records'] = '0';
+  $handler->display->display_options['arguments']['field_country_tid']['summary']['format'] = 'default_summary';
+  $handler->display->display_options['arguments']['field_country_tid']['summary_options']['items_per_page'] = '25';
+  /* Filter criterion: Content: Published */
+  $handler->display->display_options['filters']['status']['id'] = 'status';
+  $handler->display->display_options['filters']['status']['table'] = 'node';
+  $handler->display->display_options['filters']['status']['field'] = 'status';
+  $handler->display->display_options['filters']['status']['value'] = 1;
+  $handler->display->display_options['filters']['status']['group'] = 1;
+  $handler->display->display_options['filters']['status']['expose']['operator'] = FALSE;
+  /* Filter criterion: Content: Type */
+  $handler->display->display_options['filters']['type']['id'] = 'type';
+  $handler->display->display_options['filters']['type']['table'] = 'node';
+  $handler->display->display_options['filters']['type']['field'] = 'type';
+  $handler->display->display_options['filters']['type']['value'] = array(
+    'press_contact' => 'press_contact',
+  );
+  $handler->display->display_options['filters']['type']['group'] = 1;
+  /* Filter criterion: Content: Type (field_contact_type) */
+  $handler->display->display_options['filters']['field_contact_type_tid']['id'] = 'field_contact_type_tid';
+  $handler->display->display_options['filters']['field_contact_type_tid']['table'] = 'field_data_field_contact_type';
+  $handler->display->display_options['filters']['field_contact_type_tid']['field'] = 'field_contact_type_tid';
+  $handler->display->display_options['filters']['field_contact_type_tid']['value'] = array(
+    2970 => '2970',
+  );
+  $handler->display->display_options['filters']['field_contact_type_tid']['type'] = 'select';
+  $handler->display->display_options['filters']['field_contact_type_tid']['vocabulary'] = 'contact_type';
+
+  /* Display: Block */
+  $handler = $view->new_display('block', 'Block', 'block');
+  $translatables['fop_contacts'] = array(
+    t('Master'),
+    t('FOP Contacts'),
+    t('more'),
+    t('Apply'),
+    t('Reset'),
+    t('Sort by'),
+    t('Asc'),
+    t('Desc'),
+    t('term from field_country'),
+    t('field_country'),
+    t('[field_personal_title] [title_field]'),
+    t('All'),
+    t('Block'),
+  );
+  $export['fop_contacts'] = $view;
+
+  $view = new view();
   $view->name = 'press_contacts';
   $view->description = '';
   $view->tag = 'default';

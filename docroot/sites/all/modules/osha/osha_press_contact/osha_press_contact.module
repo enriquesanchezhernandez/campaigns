@@ -13,3 +13,27 @@ function osha_press_contact_osha_tmgmt_i18n_string_list() {
   module_load_include('inc', 'osha_press_contact', 'osha_press_contact.translations');
   return osha_press_contact_get_translatable_strings();
 }
+
+/**
+ * Implements hook_cron().
+ */
+function osha_press_contact_cron() {
+  // Update Focal Point Migration.
+  $migrate = osha_migration_migrate_api();
+  $file = $migrate['migrations'][OSHA_MIGRATION_CONTENT_TYPE_FOCAL_POINT]['file_name'];
+  $filemtime = filemtime($file);
+  if ($filemtime === FALSE) {
+    watchdog('FocalPointImport', 'File @file not found!', array('@file' => $file), WATCHDOG_WARNING);
+    return;
+  }
+  else {
+    $last_modification = variable_get('osha_focal_point_import_file_modify_time', 0);
+    if ($filemtime > $last_modification) {
+      migrate_autoregister();
+      // TODO: Use migration function not drush functions.
+//      drush_set_option('update', TRUE);
+//      drush_invoke('migrate-import', array('FocalPoint'));
+//      variable_set('osha_focal_point_import_file_modify_time', $filemtime);
+    }
+  }
+}
