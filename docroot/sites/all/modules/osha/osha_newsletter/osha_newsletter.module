@@ -948,10 +948,11 @@ function osha_newsletter_send_email($key, $to, $from, $form_values) {
   // while sending.
   $result = drupal_mail($module, $key, $to, $language, $params, $from, $send);
   if ($result['result'] == TRUE) {
-    drupal_set_message(t('Your message has been sent to @emails.', array('@emails' => $to)));
+    //drupal_set_message(t('Your message has been sent to @emails.', array('@emails' => $to)));
+    drupal_set_message(t('Your subscription has been submitted succesfully.'));
   }
   else {
-    drupal_set_message(t('There was a problem sending your message and it was not sent.'), 'error');
+    drupal_set_message(t('Your subscription has not been submitted because of a technical error.'), 'error');
   }
 }
 
