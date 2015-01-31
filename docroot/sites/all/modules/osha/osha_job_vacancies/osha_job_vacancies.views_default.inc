@@ -198,11 +198,6 @@ function osha_job_vacancies_views_default_views() {
     0 => '0',
   );
   $handler->display->display_options['path'] = 'open_job_vacancies';
-  $handler->display->display_options['menu']['title'] = 'Open job vacancies';
-  $handler->display->display_options['menu']['weight'] = '1';
-  $handler->display->display_options['menu']['name'] = 'main-menu';
-  $handler->display->display_options['menu']['context'] = 0;
-  $handler->display->display_options['menu']['context_only_inline'] = 0;
 
   /* Display: Ongoing job vacancies */
   $handler = $view->new_display('page', 'Ongoing job vacancies', 'page_3');
@@ -289,11 +284,6 @@ function osha_job_vacancies_views_default_views() {
     0 => '0',
   );
   $handler->display->display_options['path'] = 'ongoing_job_vacancies';
-  $handler->display->display_options['menu']['title'] = 'Ongoing job vacancies';
-  $handler->display->display_options['menu']['weight'] = '2';
-  $handler->display->display_options['menu']['name'] = 'main-menu';
-  $handler->display->display_options['menu']['context'] = 0;
-  $handler->display->display_options['menu']['context_only_inline'] = 0;
 
   /* Display: Shortlisted job vacancies */
   $handler = $view->new_display('page', 'Shortlisted job vacancies', 'page_4');
@@ -372,11 +362,6 @@ function osha_job_vacancies_views_default_views() {
     1 => '1',
   );
   $handler->display->display_options['path'] = 'shortlisted_job_vacancies';
-  $handler->display->display_options['menu']['title'] = 'Shortlisted job vacancies';
-  $handler->display->display_options['menu']['weight'] = '3';
-  $handler->display->display_options['menu']['name'] = 'main-menu';
-  $handler->display->display_options['menu']['context'] = 0;
-  $handler->display->display_options['menu']['context_only_inline'] = 0;
 
   /* Display: Closed job vacancies */
   $handler = $view->new_display('page', 'Closed job vacancies', 'page_1');
@@ -461,11 +446,6 @@ function osha_job_vacancies_views_default_views() {
   $handler->display->display_options['filters']['field_expiration_date_value']['group'] = 2;
   $handler->display->display_options['filters']['field_expiration_date_value']['default_date'] = 'now';
   $handler->display->display_options['path'] = 'jobs_archive';
-  $handler->display->display_options['menu']['title'] = 'Closed job vacancies';
-  $handler->display->display_options['menu']['weight'] = '4';
-  $handler->display->display_options['menu']['name'] = 'main-menu';
-  $handler->display->display_options['menu']['context'] = 0;
-  $handler->display->display_options['menu']['context_only_inline'] = 0;
   $translatables['vacancies'] = array(
     t('Master'),
     t('Closed job vacancies'),
