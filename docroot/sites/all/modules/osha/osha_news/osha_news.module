@@ -12,6 +12,7 @@ define('OSHA_NEWS_CONTENT_TYPE_NEWS', 'news');
  * Implements hook_post_features_enable_feature().
  *
  * {@inheritdoc}
+ * {@codeCoverageIgnore}
  */
 function osha_news_post_features_enable_feature($component) {
   // After the field_instance ...
@@ -43,4 +44,12 @@ function osha_news_workbench_access_node_element_alter(&$element, $form_state, $
       }
     }
   }
+}
+
+/**
+ * Implements hook_osha_tmgmt_i18n_string_list().
+ */
+function osha_news_osha_tmgmt_i18n_string_list() {
+  module_load_include('inc', 'osha_news', 'osha_news.translations');
+  return osha_news_get_translatable_strings();
 }

@@ -2,6 +2,9 @@
 
 class OshaMigrateSeminars extends OSHADynamicMigration {
 
+  /*path pattern*/
+  const PATH_PATTERN = '/seminars\/([\w\d-_]+)/';
+
   /**
    * {@inheritdoc}
    */
@@ -165,6 +168,10 @@ class OshaMigrateSeminars extends OSHADynamicMigration {
    */
   public function prepare($entity, $row) {
     parent::prepare($entity, $row);
+    $mlid = db_query("SELECT mlid FROM {menu_links} WHERE menu_name = 'main-menu' AND link_title = 'Seminar reports'")->fetchField();
+    if (!empty($mlid)) {
+        $entity->workbench_access = array($mlid, $mlid);
+    }
 
     $migration = Migration::currentMigration();
     $languages = array_keys(language_list());
@@ -221,6 +228,34 @@ class OshaMigrateSeminars extends OSHADynamicMigration {
       if ($has_translation) {
         MigrationUtil::setTranslation($translation_handler, $entity, $row, $language);
       }
+    }
+  }
+
+  /**
+   * Sets the node aliases and redirects after the migration, nid is available.
+   *
+   * @param object $entity
+   *   Entity to be saved
+   * @param object $row
+   *   Source row
+   */
+  public function complete($entity, $row) {
+    if (preg_match(self::PATH_PATTERN, $row->id, $matches)) {
+      $tmp_path = $row->path;
+      $languages = array_keys($entity->translations->data);
+      foreach($languages as $language){
+        $row->path[$language] = 'tools-and-publications/seminars/' . $matches[1];
+      }
+      MigrationUtil::createAliases($entity, $row, 'node', 'nid');
+      $row->path = $tmp_path;
+
+      // create redirect
+      MigrationUtil::createRedirects($entity, $row->id);
+      parent::createRedirectsFromAliases($entity, $row);
+    }
+    else {
+      // Call MigrationUtil::createAliases
+      parent::complete($entity, $row);
     }
   }
 

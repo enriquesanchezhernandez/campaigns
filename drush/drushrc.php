@@ -354,6 +354,7 @@ $options['init-modules'] = array(
   'node_export',
   'mpac',
   'linkit',
+  'pathologic',
   'scanner',
   'search_and_replace',
   'nodeblock',
@@ -414,6 +415,7 @@ $options['init-modules'] = array(
   'twitter_block',
 
   'contact',
+  'field_collection',
 
   'osha_taxonomies',
   'osha',
@@ -442,6 +444,7 @@ $options['init-modules'] = array(
   'osha_events',
   'osha_alert_service',
   'osha_contact',
+  'osha_fop_page',
 
   'linkchecker',
   'osha_linkchecker',
@@ -453,6 +456,8 @@ $options['init-modules'] = array(
   'search_api_et',
   'search_api_et_solr',
   'search_api_views',
+  'search_api_attachments',
+
   'osha_search',
   'osha_content',
   'osha_lingua_tools',

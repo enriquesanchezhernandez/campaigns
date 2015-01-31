@@ -40,7 +40,7 @@ function osha_events_node_info() {
     'events' => array(
       'name' => t('Events'),
       'base' => 'node_content',
-      'description' => t('Events content type - OSHA Project'),
+      'description' => t('Events'),
       'has_title' => '1',
       'title_label' => t('Title'),
       'help' => '',

@@ -21,7 +21,7 @@ function osha_wiki_node_info() {
     'wiki_page' => array(
       'name' => t('Wiki Page'),
       'base' => 'node_content',
-      'description' => t('Selected Wiki page'),
+      'description' => t('Wiki articles'),
       'has_title' => '1',
       'title_label' => t('Title'),
       'help' => '',

@@ -6,6 +6,9 @@
  */
 class MigrateOshaNews extends OSHADynamicMigration {
 
+  /*path pattern*/
+  const PATH_PATTERN = '/\/([a-z]{2})\/news\/([\w\d\.\-_]+)/';
+
   /**
    * {@inheritdoc}
    */
@@ -158,6 +161,10 @@ class MigrateOshaNews extends OSHADynamicMigration {
    */
   public function prepare($entity, $row) {
     parent::prepare($entity, $row);
+    $mlid = db_query("SELECT mlid FROM {menu_links} WHERE menu_name = 'main-menu' AND link_title = 'Home'")->fetchField();
+    if (!empty($mlid)) {
+        $entity->workbench_access = array($mlid, $mlid);
+    }
 
     $migration = Migration::currentMigration();
     $languages = array_keys(language_list());
@@ -185,6 +192,32 @@ class MigrateOshaNews extends OSHADynamicMigration {
       if ($has_translation) {
         MigrationUtil::setTranslation($translation_handler, $entity, $row, $language);
       }
+    }
+  }
+
+  /**
+   * Sets the node aliases and redirects after the migration, nid is available.
+   *
+   * @param object $entity
+   *   Entity to be saved
+   * @param object $row
+   *   Source row
+   */
+  public function complete($entity, $row) {
+    if (preg_match(self::PATH_PATTERN, $row->path, $matches)) {
+      $tmp_id = $row->id;
+      $row->id = 'oshnews/' . $matches[2];
+      MigrationUtil::createAliases($entity, $row, 'node', 'nid');
+      $row->id = $tmp_id;
+
+      // create redirect
+      $path = substr($row->path, 4);
+      MigrationUtil::createRedirects($entity, $path);
+      parent::createRedirectsFromAliases($entity, $row);
+    }
+    else {
+      // Call MigrationUtil::createAliases
+      parent::complete($entity, $row);
     }
   }
 

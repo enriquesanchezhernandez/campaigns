@@ -6,6 +6,9 @@
  */
 class MigrateOshaBlog extends OSHADynamicMigration {
 
+  /*path pattern*/
+  const PATH_PATTERN = '/\/([a-z]{2})\/([\w\d-_\/]+)\/blog\/([\w\d\.\-_]+)/';
+
   /**
    * {@inheritdoc}
    */
@@ -87,7 +90,7 @@ class MigrateOshaBlog extends OSHADynamicMigration {
       'translate',
       'revision_uid',
       'is_new',
-      'body:summary',
+      //'body:summary',
       'field_image:language',
       'field_image:destination_dir',
       'field_image:title',
@@ -161,6 +164,10 @@ class MigrateOshaBlog extends OSHADynamicMigration {
    */
   public function prepare($entity, $row) {
     parent::prepare($entity, $row);
+    $mlid = db_query("SELECT mlid FROM {menu_links} WHERE menu_name = 'main-menu' AND link_title = 'Blog'")->fetchField();
+    if (!empty($mlid)) {
+        $entity->workbench_access = array($mlid, $mlid);
+    }
 
     $migration = Migration::currentMigration();
     $languages = array_keys(language_list());
@@ -176,8 +183,8 @@ class MigrateOshaBlog extends OSHADynamicMigration {
         $has_translation = TRUE;
       }
       if (!empty($row->description[$language])) {
-        $entity->field_blog_summary[$language][0]['value'] = MigrationUtil::decodeHTMLText($row->description[$language]);
-        $entity->field_blog_summary[$language][0]['format'] = 'full_html';
+        $entity->field_summary[$language][0]['value'] = MigrationUtil::decodeHTMLText($row->description[$language]);
+        $entity->field_summary[$language][0]['format'] = 'full_html';
         $has_translation = TRUE;
       }
       if (!empty($row->text[$language])) {
@@ -194,6 +201,35 @@ class MigrateOshaBlog extends OSHADynamicMigration {
       if ($has_translation) {
         MigrationUtil::setTranslation($translation_handler, $entity, $row, $language);
       }
+    }
+  }
+
+  /**
+   * Sets the node aliases and redirects after the migration, nid is available.
+   *
+   * @param object $entity
+   *   Entity to be saved
+   * @param object $row
+   *   Source row
+   */
+  public function complete($entity, $row) {
+    if (preg_match(self::PATH_PATTERN, $row->path, $matches)) {
+      //create alias
+      $args = array(
+        'source' => 'node/' . $entity->nid,
+        'alias' => 'blog/' . $matches[3],
+        'language' => 'en'
+      );
+      path_save($args);
+
+      // create redirect
+      $path = substr($row->path, 4);
+      MigrationUtil::createRedirects($entity, $path);
+      parent::createRedirectsFromAliases($entity, $row);
+    }
+    else {
+      // call MigrationUtil::createAliases
+      parent::complete($entity, $row);
     }
   }
 
@@ -281,6 +317,8 @@ class BlogContentListCSV extends MigrateList {
 
           case 'aliases':
           case 'description':
+            self::$data[$path][$field][$language] = $raw_data[$key];
+            break;
           case 'image':
           case 'imageCaption':
           case 'text':

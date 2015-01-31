@@ -3,6 +3,7 @@ jQuery(document).ready(function () {
 	zoomMedium();
 	hoverSlideHome();
 	displayCaptcha();
+	displayMenuThirdLevel();
 });
 
 
@@ -44,7 +45,7 @@ function hoverThemes() {
 	
 	jQuery(".view-infographic div div").each(function() {
 		var obj=jQuery(this);
-		jQuery(".views-field-field-image img",this).mouseover(function() {
+		jQuery(".views-field-field-thumbnail img",this).mouseover(function() {
 		obj.find(".views-field-title").css("border-bottom", "10px solid #DC2E81");
 		obj.find(".views-field-title a").css("background","url('/sites/all/themes/osha_frontend/images/flecha.png') 100% 25% no-repeat").css("padding-right", "1.5em");
 		});
@@ -52,7 +53,7 @@ function hoverThemes() {
 	
 	jQuery(".view-infographic div div").each(function() {
 		var obj=jQuery(this);
-		jQuery(".views-field-field-image img",this).mouseout(function() {
+		jQuery(".views-field-field-thumbnail img",this).mouseout(function() {
 		obj.find(".views-field-title").css("border-bottom", "10px solid #D2DCED");
 		obj.find(".views-field-title a").css("background","none");
 		});
@@ -117,6 +118,30 @@ function displayCaptcha() {
 	
 }
 
+function displayMenuThirdLevel() {
+
+	
+	
+ // init: collapse all groups except for the first one
+    jQuery("#block-menu-block-2 #main-menu-links #main-menu-links #main-menu-links").each(function(i)
+    {
+        
+		jQuery(this).hide();
+       
+    });
+
+	
+	jQuery('#block-menu-block-2 #main-menu-links #main-menu-links .expanded').each(function () {
+    jQuery(this).css("cursor","pointer");
+    jQuery(this).click(function () {
+      jQuery("ul",this).slideToggle();
+	  jQuery(this).toggleClass("expand");
+	  });
+	});
+
+	
+	
+}
         
 	function zoomSmall() {
 		jQuery("body").addClass("bodysmall");
@@ -138,13 +163,17 @@ function displayCaptcha() {
 	
 // Tools & Publications filters
 jQuery(document).ready(function() {
-    // Init: collapse all filters
-    jQuery(".sidebars_first .block-facetapi .item-list ul").each(function(i) {
-		jQuery(this).hide();
-	});
-    // Click event: toggle visibility of group clicked (and update icon)
-	jQuery(".block-facetapi h2").click(function() {		
-		jQuery(this).parent().find("div.item-list ul").slideToggle();
+	// Toggle event for facetapi filters blocks.
+    jQuery(".block-facetapi .item-list").has('ul, select').each(function() {
+		// If no active filters, hide the filtering on init.
+		if (jQuery(this).find('a.facetapi-active, option[value]:selected, input:checked').length == 0) {
+			jQuery(this).hide();
+		}
+		else {
+			jQuery(this).closest('.block-facetapi').find('h2.block-title').addClass('expand');
+		}
+	}).closest('.block-facetapi').find('h2.block-title').click(function() {
+		jQuery(this).closest('.block-facetapi').find("div.item-list").slideToggle();
 		jQuery(this).toggleClass("expand");
     });
 });

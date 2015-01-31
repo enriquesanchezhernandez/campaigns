@@ -77,7 +77,7 @@ class OshaTmgmtTest extends OshaWebTestCase {
         'priority' => OSHA_TMGMT_JOB_PRIORITY_HIGH,
         'target_language[]' => array('de'),
       ),
-      t('Request translation')
+      t('Request re-translation')
     );
 
     // Check the jobs overview screen.

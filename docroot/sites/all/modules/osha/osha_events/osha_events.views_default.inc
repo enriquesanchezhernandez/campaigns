@@ -384,6 +384,21 @@ function osha_events_views_default_views() {
   $handler->display->display_options['header']['result']['table'] = 'views';
   $handler->display->display_options['header']['result']['field'] = 'result';
   $handler->display->display_options['header']['result']['content'] = 'Total: @total';
+  /* Header: Global: Text area */
+  $handler->display->display_options['header']['area_1']['id'] = 'area_1';
+  $handler->display->display_options['header']['area_1']['table'] = 'views';
+  $handler->display->display_options['header']['area_1']['field'] = 'area';
+  $handler->display->display_options['header']['area_1']['label'] = 'Colours';
+  $handler->display->display_options['header']['area_1']['empty'] = TRUE;
+  $handler->display->display_options['header']['area_1']['content'] = '<div class="colours">
+<div class="red"></div><p">(...)<p>
+<div class="grey"></div><p>Attendance as speaker is refused<p>
+<div class="black"></div><p>Attendance as speaker has been agreed<p>
+<div class="blue"></div><p>Cancellations<p>
+<div class="yellow"></div><p>(...)<p>
+<div class="green"></div><p>(...)<p>
+</div>';
+  $handler->display->display_options['header']['area_1']['format'] = 'full_html';
   $handler->display->display_options['defaults']['footer'] = FALSE;
   $handler->display->display_options['defaults']['relationships'] = FALSE;
   /* Relationship: Content: Author */
@@ -557,7 +572,26 @@ function osha_events_views_default_views() {
   $handler->display->display_options['filters']['status']['field'] = 'status';
   $handler->display->display_options['filters']['status']['value'] = 1;
   $handler->display->display_options['filters']['status']['group'] = 1;
-  $handler->display->display_options['filters']['status']['expose']['operator'] = FALSE;
+  $handler->display->display_options['filters']['status']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['status']['expose']['operator_id'] = '';
+  $handler->display->display_options['filters']['status']['expose']['label'] = 'Published';
+  $handler->display->display_options['filters']['status']['expose']['operator'] = 'status_op';
+  $handler->display->display_options['filters']['status']['expose']['identifier'] = 'status';
+  $handler->display->display_options['filters']['status']['expose']['required'] = TRUE;
+  $handler->display->display_options['filters']['status']['expose']['remember_roles'] = array(
+    2 => '2',
+    1 => 0,
+    3 => 0,
+    4 => 0,
+    5 => 0,
+    6 => 0,
+    7 => 0,
+    8 => 0,
+    9 => 0,
+    10 => 0,
+    11 => 0,
+    12 => 0,
+  );
   /* Filter criterion: Content: Type */
   $handler->display->display_options['filters']['type']['id'] = 'type';
   $handler->display->display_options['filters']['type']['table'] = 'node';
@@ -907,6 +941,15 @@ function osha_events_views_default_views() {
 <a href="/en/node/add/events">Add event</a>
 </p>'),
     t('Total: @total'),
+    t('Colours'),
+    t('<div class="colours">
+<div class="red"></div><p">(...)<p>
+<div class="grey"></div><p>Attendance as speaker is refused<p>
+<div class="black"></div><p>Attendance as speaker has been agreed<p>
+<div class="blue"></div><p>Cancellations<p>
+<div class="yellow"></div><p>(...)<p>
+<div class="green"></div><p>(...)<p>
+</div>'),
     t('Color'),
     t('[field_color]'),
     t('Title'),
@@ -917,6 +960,7 @@ function osha_events_views_default_views() {
 <li>[delete_node]</li>
 </ul>'),
     t('Name'),
+    t('Published'),
     t('End date'),
     t('Block'),
     t('LOCATION'),
@@ -965,7 +1009,10 @@ function osha_events_views_default_views() {
   $handler->display->display_options['defaults']['title'] = FALSE;
   $handler->display->display_options['defaults']['exposed_form'] = FALSE;
   $handler->display->display_options['exposed_form']['type'] = 'basic';
-  $handler->display->display_options['exposed_form']['options']['autosubmit'] = TRUE;
+  $handler->display->display_options['exposed_form']['options']['submit_button'] = 'Search';
+  $handler->display->display_options['exposed_form']['options']['reset_button'] = TRUE;
+  $handler->display->display_options['exposed_form']['options']['reset_button_label'] = 'Clear filter';
+  $handler->display->display_options['exposed_form']['options']['autosubmit_hide'] = FALSE;
   $handler->display->display_options['defaults']['pager'] = FALSE;
   $handler->display->display_options['pager']['type'] = 'full';
   $handler->display->display_options['pager']['options']['items_per_page'] = '10';
@@ -1020,6 +1067,12 @@ function osha_events_views_default_views() {
   $handler->display->display_options['fields']['title_field']['field'] = 'title_field';
   $handler->display->display_options['fields']['title_field']['label'] = '';
   $handler->display->display_options['fields']['title_field']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['title_field']['type'] = 'title_linked';
+  $handler->display->display_options['fields']['title_field']['settings'] = array(
+    'title_style' => '_none',
+    'title_link' => 'content',
+    'title_class' => '',
+  );
   /* Field: Indexed Multilingual Node: Country */
   $handler->display->display_options['fields']['field_country_code']['id'] = 'field_country_code';
   $handler->display->display_options['fields']['field_country_code']['table'] = 'search_api_index_default_multilingual_node_index';
@@ -1214,7 +1267,7 @@ function osha_events_views_default_views() {
   $handler->display->display_options['filters']['search_api_language']['value'] = array(
     'en' => 'en',
   );
-  $handler->display->display_options['path'] = 'events';
+  $handler->display->display_options['path'] = 'tools-and-publications/events';
 
   /* Display: Block */
   $handler = $view->new_display('block', 'Block', 'block_1');
@@ -1254,7 +1307,7 @@ function osha_events_views_default_views() {
   $handler->display->display_options['fields']['field_start_date']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['field_start_date']['settings'] = array(
     'format_type' => 'long',
-    'fromto' => 'both',
+    'fromto' => 'value',
     'multiple_number' => '',
     'multiple_from' => '',
     'multiple_to' => '',
@@ -1356,13 +1409,14 @@ function osha_events_views_default_views() {
     t('last »'),
     t('Multilingual ID'),
     t('Page'),
+    t('Search'),
+    t('Clear filter'),
     t('No results'),
     t('[field_start_date_value] - '),
     t('LOCATION'),
     t('ORGANIZER'),
     t('[field_start_date_1] - Events'),
     t('See details'),
-    t('Search'),
     t('Search by country'),
     t('From'),
     t('To'),

@@ -42,7 +42,7 @@ legislation/directive/*',
         'region' => 'sidebar_first',
         'status' => 1,
         'theme' => 'osha_frontend',
-        'weight' => 2,
+        'weight' => 4,
       ),
       'seven' => array(
         'region' => '',
@@ -51,7 +51,7 @@ legislation/directive/*',
         'weight' => 0,
       ),
     ),
-    'title' => '',
+    'title' => 'Date of directive',
     'visibility' => 1,
   );
 
@@ -63,7 +63,7 @@ legislation/directive/*',
     'i18n_mode' => 0,
     'module' => 'facetapi',
     'node_types' => array(),
-    'pages' => 'search/publications',
+    'pages' => 'tools-and-publications/publications',
     'roles' => array(),
     'themes' => array(
       'bartik' => array(
@@ -82,7 +82,7 @@ legislation/directive/*',
         'region' => 'sidebar_first',
         'status' => 1,
         'theme' => 'osha_frontend',
-        'weight' => 3,
+        'weight' => 5,
       ),
       'seven' => array(
         'region' => '',
@@ -103,7 +103,8 @@ legislation/directive/*',
     'i18n_mode' => 0,
     'module' => 'facetapi',
     'node_types' => array(),
-    'pages' => 'search/*',
+    'pages' => 'search/*
+tools-and-publications/publications',
     'roles' => array(),
     'themes' => array(
       'bartik' => array(
@@ -122,7 +123,7 @@ legislation/directive/*',
         'region' => 'sidebar_first',
         'status' => 1,
         'theme' => 'osha_frontend',
-        'weight' => 4,
+        'weight' => 6,
       ),
       'seven' => array(
         'region' => '',
@@ -162,7 +163,7 @@ legislation/directive/*',
         'region' => 'sidebar_first',
         'status' => 1,
         'theme' => 'osha_frontend',
-        'weight' => 2,
+        'weight' => 3,
       ),
       'seven' => array(
         'region' => '',
@@ -224,7 +225,11 @@ search/wiki',
     'i18n_mode' => 0,
     'module' => 'osha_search',
     'node_types' => array(),
-    'pages' => 'search/*',
+    'pages' => 'search/*
+tools-and-publications/publications
+tools-and-publications/seminars
+legislation/directives/*
+safety-and-health-legislation/european-directives',
     'roles' => array(),
     'themes' => array(
       'bartik' => array(
@@ -243,7 +248,7 @@ search/wiki',
         'region' => 'sidebar_first',
         'status' => 1,
         'theme' => 'osha_frontend',
-        'weight' => -66,
+        'weight' => 1,
       ),
       'seven' => array(
         'region' => 'content',
@@ -252,7 +257,7 @@ search/wiki',
         'weight' => 0,
       ),
     ),
-    'title' => '',
+    'title' => '<none>',
     'visibility' => 1,
   );
 
@@ -304,7 +309,7 @@ search/wiki',
     'i18n_mode' => 0,
     'module' => 'views',
     'node_types' => array(),
-    'pages' => 'search/publications',
+    'pages' => 'tools-and-publications/publications',
     'roles' => array(),
     'themes' => array(
       'bartik' => array(
@@ -323,7 +328,7 @@ search/wiki',
         'region' => 'sidebar_first',
         'status' => 1,
         'theme' => 'osha_frontend',
-        'weight' => 1,
+        'weight' => 2,
       ),
       'seven' => array(
         'region' => '',
@@ -372,7 +377,7 @@ search/wiki',
         'weight' => 0,
       ),
     ),
-    'title' => '',
+    'title' => '<none>',
     'visibility' => 1,
   );
 
@@ -412,7 +417,7 @@ search/wiki',
         'weight' => 0,
       ),
     ),
-    'title' => '',
+    'title' => '<none>',
     'visibility' => 1,
   );
 
@@ -428,7 +433,8 @@ search/wiki',
 legislation/directives
 legislation/directives/*
 legislation/directive/*
-articles/european-directives',
+node/11
+safety-and-health-legislation/european-directives',
     'roles' => array(),
     'themes' => array(
       'bartik' => array(
@@ -447,7 +453,7 @@ articles/european-directives',
         'region' => 'sidebar_first',
         'status' => 1,
         'theme' => 'osha_frontend',
-        'weight' => 1,
+        'weight' => 2,
       ),
       'seven' => array(
         'region' => '',
@@ -488,7 +494,7 @@ search/seminars',
         'region' => 'sidebar_first',
         'status' => 1,
         'theme' => 'osha_frontend',
-        'weight' => 1,
+        'weight' => 2,
       ),
       'seven' => array(
         'region' => '',

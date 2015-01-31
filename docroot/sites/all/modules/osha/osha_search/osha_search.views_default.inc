@@ -28,7 +28,7 @@ function osha_search_views_default_views() {
   $handler->display->display_options['cache']['type'] = 'none';
   $handler->display->display_options['query']['type'] = 'views_query';
   $handler->display->display_options['exposed_form']['type'] = 'basic';
-  $handler->display->display_options['exposed_form']['options']['autosubmit'] = TRUE;
+  $handler->display->display_options['exposed_form']['options']['submit_button'] = 'Search';
   $handler->display->display_options['pager']['type'] = 'full';
   $handler->display->display_options['pager']['options']['items_per_page'] = '10';
   $handler->display->display_options['pager']['options']['offset'] = '0';
@@ -56,6 +56,14 @@ function osha_search_views_default_views() {
   $handler->display->display_options['sorts']['field_publication_date']['table'] = 'search_api_index_default_multilingual_node_index';
   $handler->display->display_options['sorts']['field_publication_date']['field'] = 'field_publication_date';
   $handler->display->display_options['sorts']['field_publication_date']['order'] = 'DESC';
+  $handler->display->display_options['sorts']['field_publication_date']['exposed'] = TRUE;
+  $handler->display->display_options['sorts']['field_publication_date']['expose']['label'] = 'Publication date';
+  /* Sort criterion: Search: Relevance */
+  $handler->display->display_options['sorts']['search_api_relevance']['id'] = 'search_api_relevance';
+  $handler->display->display_options['sorts']['search_api_relevance']['table'] = 'search_api_index_default_multilingual_node_index';
+  $handler->display->display_options['sorts']['search_api_relevance']['field'] = 'search_api_relevance';
+  $handler->display->display_options['sorts']['search_api_relevance']['exposed'] = TRUE;
+  $handler->display->display_options['sorts']['search_api_relevance']['expose']['label'] = 'Relevance';
   /* Filter criterion: Search: Fulltext search */
   $handler->display->display_options['filters']['search_api_views_fulltext']['id'] = 'search_api_views_fulltext';
   $handler->display->display_options['filters']['search_api_views_fulltext']['table'] = 'search_api_index_default_multilingual_node_index';
@@ -73,8 +81,15 @@ function osha_search_views_default_views() {
     5 => 0,
     6 => 0,
     7 => 0,
+    8 => 0,
+    9 => 0,
+    10 => 0,
+    11 => 0,
+    12 => 0,
   );
   $handler->display->display_options['filters']['search_api_views_fulltext']['fields'] = array(
+    'attachments_field_file' => 'attachments_field_file',
+    'attachments_field_publication_related_res' => 'attachments_field_publication_related_res',
     'body:summary' => 'body:summary',
     'body:value' => 'body:value',
     'field_summary' => 'field_summary',
@@ -156,12 +171,12 @@ function osha_search_views_default_views() {
   /* Display: Page */
   $handler = $view->new_display('page', 'Page', 'page');
   $handler->display->display_options['exposed_block'] = TRUE;
-  $handler->display->display_options['path'] = 'search/publications';
+  $handler->display->display_options['path'] = 'tools-and-publications/publications';
   $translatables['publications_index'] = array(
     t('Master'),
     t('Publications'),
     t('more'),
-    t('Apply'),
+    t('Search'),
     t('Reset'),
     t('Sort by'),
     t('Asc'),
@@ -175,7 +190,8 @@ function osha_search_views_default_views() {
     t('»'),
     t('No results'),
     t('Multilingual ID'),
-    t('Search'),
+    t('Publication date'),
+    t('Relevance'),
     t('Available in languages'),
     t('Item language'),
     t('Page'),
@@ -311,7 +327,7 @@ function osha_search_views_default_views() {
   $handler->display->display_options['fields']['title_field']['field'] = 'title_field';
   $handler->display->display_options['fields']['title_field']['label'] = '';
   $handler->display->display_options['fields']['title_field']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['title_field']['type'] = 'title_linked';
+  $handler->display->display_options['fields']['title_field']['type'] = 'publication_title_linked';
   $handler->display->display_options['fields']['title_field']['settings'] = array(
     'title_style' => 'div',
     'title_link' => 'content',
@@ -416,6 +432,10 @@ function osha_search_views_default_views() {
     12 => 0,
   );
   $handler->display->display_options['filters']['search_api_views_fulltext']['fields'] = array(
+    'attachments_field_file' => 'attachments_field_file',
+    'attachments_field_publication_related_res' => 'attachments_field_publication_related_res',
+    'attachments_field_related_documents' => 'attachments_field_related_documents',
+    'attachments_field_related_resources' => 'attachments_field_related_resources',
     'body:summary' => 'body:summary',
     'body:value' => 'body:value',
     'field_summary' => 'field_summary',
@@ -499,10 +519,10 @@ function osha_search_views_default_views() {
   $handler->display->display_options['tab_options']['title'] = 'Site';
   $handler->display->display_options['tab_options']['weight'] = '1';
 
-  /* Display: OSHWiki Search */
-  $handler = $view->new_display('page', 'OSHWiki Search', 'wiki');
+  /* Display: OSHwiki Search */
+  $handler = $view->new_display('page', 'OSHwiki Search', 'wiki');
   $handler->display->display_options['defaults']['title'] = FALSE;
-  $handler->display->display_options['title'] = 'OSHWiki Search';
+  $handler->display->display_options['title'] = 'OSHwiki Search';
   $handler->display->display_options['exposed_block'] = TRUE;
   $handler->display->display_options['defaults']['fields'] = FALSE;
   /* Field: Indexed Multilingual Node: Title */
@@ -634,7 +654,7 @@ function osha_search_views_default_views() {
     t('Site Search'),
     t('Publication date'),
     t('Language'),
-    t('OSHWiki Search'),
+    t('OSHwiki Search'),
     t('Date'),
   );
   $export['search'] = $view;
@@ -755,8 +775,21 @@ function osha_search_views_default_views() {
     2 => '2',
     1 => 0,
     3 => 0,
+    4 => 0,
+    5 => 0,
+    6 => 0,
+    7 => 0,
+    8 => 0,
+    9 => 0,
+    10 => 0,
+    11 => 0,
+    12 => 0,
   );
   $handler->display->display_options['filters']['search_api_views_fulltext']['fields'] = array(
+    'attachments_field_file' => 'attachments_field_file',
+    'attachments_field_publication_related_res' => 'attachments_field_publication_related_res',
+    'attachments_field_related_documents' => 'attachments_field_related_documents',
+    'attachments_field_related_resources' => 'attachments_field_related_resources',
     'body:summary' => 'body:summary',
     'body:value' => 'body:value',
     'field_summary' => 'field_summary',

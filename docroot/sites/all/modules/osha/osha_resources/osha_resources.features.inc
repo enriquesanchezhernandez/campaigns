@@ -61,7 +61,7 @@ function osha_resources_node_info() {
     'external_url' => array(
       'name' => t('External URL'),
       'base' => 'node_content',
-      'description' => t('Resources External URL Field'),
+      'description' => t('Additional resources - external URL'),
       'has_title' => '1',
       'title_label' => t('Title'),
       'help' => '',
@@ -69,7 +69,7 @@ function osha_resources_node_info() {
     'file' => array(
       'name' => t('File'),
       'base' => 'node_content',
-      'description' => t('Resources File Field'),
+      'description' => t('Additional resources - internal files'),
       'has_title' => '1',
       'title_label' => t('Title'),
       'help' => '',
@@ -77,7 +77,7 @@ function osha_resources_node_info() {
     'flickr' => array(
       'name' => t('Flickr'),
       'base' => 'node_content',
-      'description' => t('Resources Flickr Photos'),
+      'description' => t('Additional resources - Flickr photos'),
       'has_title' => '1',
       'title_label' => t('Title'),
       'help' => '',
@@ -85,7 +85,7 @@ function osha_resources_node_info() {
     'slideshare' => array(
       'name' => t('Slideshare'),
       'base' => 'node_content',
-      'description' => t('Resources Slideshare Field'),
+      'description' => t('Additional resources - Slideshare presentations'),
       'has_title' => '1',
       'title_label' => t('Title'),
       'help' => '',
@@ -93,7 +93,7 @@ function osha_resources_node_info() {
     'youtube' => array(
       'name' => t('Youtube'),
       'base' => 'node_content',
-      'description' => t('Resources Youtube Field'),
+      'description' => t('Additional resources - Youtube videos'),
       'has_title' => '1',
       'title_label' => t('Title'),
       'help' => '',

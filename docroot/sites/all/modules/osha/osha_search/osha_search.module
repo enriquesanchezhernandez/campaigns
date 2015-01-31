@@ -245,6 +245,10 @@ function osha_search_autocomplete_add_group($group, $lang, $showing_items, $sear
     if (!empty($item->{'ss_field_wiki_page_url:url'})) {
       $ac_item["link"] = $item->{'ss_field_wiki_page_url:url'};
     }
+    // For publications the default link opens the file | /view opens node.
+    if ($item->ss_type == 'publication') {
+      $ac_item["link"] .= '/view';
+    }
     if ($count_items == 1) {
       $ac_item["group"] = array(
         "group_id" => $item->ss_type,
@@ -374,4 +378,12 @@ class OshaSearchWidgetDropdown extends FacetapiWidgetLinks {
   public function getItemClasses() {
     return array('facetapi-dropdown');
   }
+}
+
+/**
+ * Implements hook_osha_tmgmt_i18n_string_list().
+ */
+function osha_search_osha_tmgmt_i18n_string_list() {
+  module_load_include('inc', 'osha_search', 'osha_search.translations');
+  return osha_search_get_translatable_strings();
 }

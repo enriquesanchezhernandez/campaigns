@@ -60,7 +60,8 @@ function osha_infographics_default_fe_block_settings() {
     'i18n_mode' => 0,
     'module' => 'views',
     'node_types' => array(),
-    'pages' => 'infographics',
+    'pages' => 'node/5429
+tools-and-publications/infographics',
     'roles' => array(),
     'themes' => array(
       'bartik' => array(
@@ -100,7 +101,8 @@ function osha_infographics_default_fe_block_settings() {
     'i18n_mode' => 0,
     'module' => 'views',
     'node_types' => array(),
-    'pages' => 'infographics',
+    'pages' => 'node/5429
+tools-and-publications/infographics',
     'roles' => array(),
     'themes' => array(
       'bartik' => array(

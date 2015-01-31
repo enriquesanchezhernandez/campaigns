@@ -193,6 +193,7 @@ example.org';
     'slideshare' => 'slideshare',
     'wiki_page' => 'wiki_page',
     'youtube' => 'youtube',
+    'infographic' => 0,
   );
   $export['linkchecker_scan_nodetypes'] = $strongarm;
 

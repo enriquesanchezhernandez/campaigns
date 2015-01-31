@@ -30,7 +30,8 @@ function osha_blocks_context_default_contexts() {
     'path' => array(
       'values' => array(
         '<front>' => '<front>',
-        'articles/blog' => 'articles/blog',
+        'tools-and-publications/blog' => 'tools-and-publications/blog',
+        'node/5445' => 'node/5445',
       ),
     ),
     'views' => array(
@@ -72,9 +73,12 @@ function osha_blocks_context_default_contexts() {
     'path' => array(
       'values' => array(
         '<front>' => '<front>',
-        'articles/careers' => 'articles/careers',
-        'articles/procurement' => 'articles/procurement',
-        'articles/blog' => 'articles/blog',
+        'inside-eu-osha/careers' => 'inside-eu-osha/careers',
+        'node/21' => 'node/21',
+        'inside-eu-osha/procurement' => 'inside-eu-osha/procurement',
+        'node/1472' => 'node/1472',
+        'tools-and-publications/blog' => 'tools-and-publications/blog',
+        'node/5445' => 'node/5445',
       ),
     ),
     'views' => array(

@@ -18,19 +18,19 @@ while getopts b:a: opt; do
 done
 
 # Sync from edw staging
-drush downsync_sql @osha.staging.sync @osha.local -y
+drush downsync_sql @osha.staging.sync @osha.local -y -v
 
 if [ ! -z "$pre_update" ]; then
 echo "Run pre update"
 ../$pre_update
 fi
 
-# Build the site
-drush osha_build -y
-
 # Devify - development settings
 drush devify --yes
 drush devify_solr
+
+# Build the site
+drush osha_build -y
 
 drush cc all
 

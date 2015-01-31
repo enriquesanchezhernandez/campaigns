@@ -58,7 +58,7 @@ function osha_infographics_views_default_views() {
   $handler->display->display_options['fields']['body']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['body']['type'] = 'smart_trim_format';
   $handler->display->display_options['fields']['body']['settings'] = array(
-    'trim_length' => '200',
+    'trim_length' => '80',
     'trim_type' => 'chars',
     'trim_suffix' => '...',
     'more_link' => '0',
@@ -68,11 +68,11 @@ function osha_infographics_views_default_views() {
       'text' => 0,
     ),
   );
-  /* Sort criterion: Content: Post date */
-  $handler->display->display_options['sorts']['created']['id'] = 'created';
-  $handler->display->display_options['sorts']['created']['table'] = 'node';
-  $handler->display->display_options['sorts']['created']['field'] = 'created';
-  $handler->display->display_options['sorts']['created']['order'] = 'DESC';
+  /* Sort criterion: Field: Publication Date (field_publication_date) */
+  $handler->display->display_options['sorts']['field_publication_date_value']['id'] = 'field_publication_date_value';
+  $handler->display->display_options['sorts']['field_publication_date_value']['table'] = 'field_data_field_publication_date';
+  $handler->display->display_options['sorts']['field_publication_date_value']['field'] = 'field_publication_date_value';
+  $handler->display->display_options['sorts']['field_publication_date_value']['order'] = 'DESC';
   /* Contextual filter: Content: Nid */
   $handler->display->display_options['arguments']['nid']['id'] = 'nid';
   $handler->display->display_options['arguments']['nid']['table'] = 'node';
@@ -117,9 +117,65 @@ function osha_infographics_views_default_views() {
   $handler->display->display_options['filters']['type']['value'] = array(
     'infographic' => 'infographic',
   );
+  /* Filter criterion: Field: Publication Date (field_publication_date) */
+  $handler->display->display_options['filters']['field_publication_date_value']['id'] = 'field_publication_date_value';
+  $handler->display->display_options['filters']['field_publication_date_value']['table'] = 'field_data_field_publication_date';
+  $handler->display->display_options['filters']['field_publication_date_value']['field'] = 'field_publication_date_value';
+  $handler->display->display_options['filters']['field_publication_date_value']['operator'] = '<=';
+  $handler->display->display_options['filters']['field_publication_date_value']['default_date'] = 'now';
 
   /* Display: Related Infographics */
   $handler = $view->new_display('block', 'Related Infographics', 'block');
+  $handler->display->display_options['defaults']['fields'] = FALSE;
+  /* Field: Content: Title */
+  $handler->display->display_options['fields']['title']['id'] = 'title';
+  $handler->display->display_options['fields']['title']['table'] = 'node';
+  $handler->display->display_options['fields']['title']['field'] = 'title';
+  $handler->display->display_options['fields']['title']['label'] = '';
+  $handler->display->display_options['fields']['title']['alter']['word_boundary'] = FALSE;
+  $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
+  /* Field: Content: Image */
+  $handler->display->display_options['fields']['field_image']['id'] = 'field_image';
+  $handler->display->display_options['fields']['field_image']['table'] = 'field_data_field_image';
+  $handler->display->display_options['fields']['field_image']['field'] = 'field_image';
+  $handler->display->display_options['fields']['field_image']['label'] = '';
+  $handler->display->display_options['fields']['field_image']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['field_image']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_image']['click_sort_column'] = 'fid';
+  $handler->display->display_options['fields']['field_image']['settings'] = array(
+    'image_style' => 'medium',
+    'image_link' => 'content',
+  );
+  /* Field: Content: Thumbnail */
+  $handler->display->display_options['fields']['field_thumbnail']['id'] = 'field_thumbnail';
+  $handler->display->display_options['fields']['field_thumbnail']['table'] = 'field_data_field_thumbnail';
+  $handler->display->display_options['fields']['field_thumbnail']['field'] = 'field_thumbnail';
+  $handler->display->display_options['fields']['field_thumbnail']['label'] = '';
+  $handler->display->display_options['fields']['field_thumbnail']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_thumbnail']['empty'] = '[field_image]';
+  $handler->display->display_options['fields']['field_thumbnail']['click_sort_column'] = 'fid';
+  $handler->display->display_options['fields']['field_thumbnail']['settings'] = array(
+    'image_style' => 'medium',
+    'image_link' => 'content',
+  );
+  /* Field: Content: Body */
+  $handler->display->display_options['fields']['body']['id'] = 'body';
+  $handler->display->display_options['fields']['body']['table'] = 'field_data_body';
+  $handler->display->display_options['fields']['body']['field'] = 'body';
+  $handler->display->display_options['fields']['body']['label'] = '';
+  $handler->display->display_options['fields']['body']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['body']['type'] = 'smart_trim_format';
+  $handler->display->display_options['fields']['body']['settings'] = array(
+    'trim_length' => '80',
+    'trim_type' => 'chars',
+    'trim_suffix' => '...',
+    'more_link' => '0',
+    'more_text' => 'Read more',
+    'summary_handler' => 'full',
+    'trim_options' => array(
+      'text' => 0,
+    ),
+  );
   $handler->display->display_options['defaults']['arguments'] = FALSE;
   /* Contextual filter: Content: Nid */
   $handler->display->display_options['arguments']['nid']['id'] = 'nid';
@@ -160,6 +216,9 @@ function osha_infographics_views_default_views() {
   $handler->display->display_options['use_ajax'] = TRUE;
   $handler->display->display_options['defaults']['exposed_form'] = FALSE;
   $handler->display->display_options['exposed_form']['type'] = 'basic';
+  $handler->display->display_options['defaults']['pager'] = FALSE;
+  $handler->display->display_options['pager']['type'] = 'none';
+  $handler->display->display_options['pager']['options']['offset'] = '0';
   $handler->display->display_options['defaults']['relationships'] = FALSE;
   $handler->display->display_options['defaults']['fields'] = FALSE;
   /* Field: Content: Title */
@@ -174,9 +233,22 @@ function osha_infographics_views_default_views() {
   $handler->display->display_options['fields']['field_image']['table'] = 'field_data_field_image';
   $handler->display->display_options['fields']['field_image']['field'] = 'field_image';
   $handler->display->display_options['fields']['field_image']['label'] = '';
+  $handler->display->display_options['fields']['field_image']['exclude'] = TRUE;
   $handler->display->display_options['fields']['field_image']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['field_image']['click_sort_column'] = 'fid';
   $handler->display->display_options['fields']['field_image']['settings'] = array(
+    'image_style' => 'large',
+    'image_link' => 'content',
+  );
+  /* Field: Content: Thumbnail */
+  $handler->display->display_options['fields']['field_thumbnail']['id'] = 'field_thumbnail';
+  $handler->display->display_options['fields']['field_thumbnail']['table'] = 'field_data_field_thumbnail';
+  $handler->display->display_options['fields']['field_thumbnail']['field'] = 'field_thumbnail';
+  $handler->display->display_options['fields']['field_thumbnail']['label'] = '';
+  $handler->display->display_options['fields']['field_thumbnail']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_thumbnail']['empty'] = '[field_image]';
+  $handler->display->display_options['fields']['field_thumbnail']['click_sort_column'] = 'fid';
+  $handler->display->display_options['fields']['field_thumbnail']['settings'] = array(
     'image_style' => 'medium',
     'image_link' => 'content',
   );
@@ -188,14 +260,14 @@ function osha_infographics_views_default_views() {
   $handler->display->display_options['fields']['body']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['body']['type'] = 'smart_trim_format';
   $handler->display->display_options['fields']['body']['settings'] = array(
-    'trim_length' => '200',
+    'trim_length' => '80',
     'trim_type' => 'chars',
     'trim_suffix' => '...',
-    'more_link' => '0',
+    'more_link' => '1',
     'more_text' => 'Read more',
     'summary_handler' => 'full',
     'trim_options' => array(
-      'text' => 0,
+      'text' => 'text',
     ),
   );
   $handler->display->display_options['defaults']['arguments'] = FALSE;
@@ -248,6 +320,12 @@ function osha_infographics_views_default_views() {
     11 => 0,
     12 => 0,
   );
+  /* Filter criterion: Field: Publication Date (field_publication_date) */
+  $handler->display->display_options['filters']['field_publication_date_value']['id'] = 'field_publication_date_value';
+  $handler->display->display_options['filters']['field_publication_date_value']['table'] = 'field_data_field_publication_date';
+  $handler->display->display_options['filters']['field_publication_date_value']['field'] = 'field_publication_date_value';
+  $handler->display->display_options['filters']['field_publication_date_value']['operator'] = '<=';
+  $handler->display->display_options['filters']['field_publication_date_value']['default_date'] = 'now';
 
   /* Display: Tags Filter */
   $handler = $view->new_display('block', 'Tags Filter', 'block_2');
@@ -274,7 +352,7 @@ function osha_infographics_views_default_views() {
   $handler->display->display_options['fields']['field_tags']['field'] = 'field_tags';
   $handler->display->display_options['fields']['field_tags']['label'] = '';
   $handler->display->display_options['fields']['field_tags']['alter']['make_link'] = TRUE;
-  $handler->display->display_options['fields']['field_tags']['alter']['path'] = 'infographics?tid=[field_tags-tid]';
+  $handler->display->display_options['fields']['field_tags']['alter']['path'] = 'tools-and-publications/infographics?tid=[field_tags-tid]';
   $handler->display->display_options['fields']['field_tags']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['field_tags']['type'] = 'taxonomy_term_reference_plain';
   $handler->display->display_options['fields']['field_tags']['delta_offset'] = '0';
@@ -290,6 +368,7 @@ function osha_infographics_views_default_views() {
     t('Asc'),
     t('Desc'),
     t('All'),
+    t('[field_image]'),
     t('Infographics'),
     t('Type'),
     t('Tags Filter'),

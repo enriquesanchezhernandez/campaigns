@@ -71,7 +71,7 @@ function osha_press_release_block_info() {
     'status' => 1,
     'region' => 'sidebar_second',
     'visibility' => BLOCK_VISIBILITY_LISTED,
-    'pages' => 'press-room',
+    'pages' => 'inside-eu-osha/press-room',
     'cache' => DRUPAL_NO_CACHE,
     'weight' => 3
   );
@@ -80,7 +80,7 @@ function osha_press_release_block_info() {
     'status' => 1,
     'region' => 'sidebar_second',
     'visibility' => BLOCK_VISIBILITY_LISTED,
-    'pages' => 'press-room',
+    'pages' => 'inside-eu-osha/press-room',
     'cache' => DRUPAL_NO_CACHE,
     'weight' => 4
   );
@@ -252,4 +252,12 @@ function osha_press_release_theme() {
   );
 
   return $theme;
+}
+
+/**
+ * Implements hook_osha_tmgmt_i18n_string_list().
+ */
+function osha_press_release_osha_tmgmt_i18n_string_list() {
+  module_load_include('inc', 'osha_press_release', 'osha_press_release.translations');
+  return osha_press_release_get_translatable_strings();
 }

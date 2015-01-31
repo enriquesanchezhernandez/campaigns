@@ -29,11 +29,10 @@
             var $facet = $('#' + facet_id),
                 $links = $('a.facetapi-dropdown', $facet);
 
-            var $container = $facet.hide().closest('.block-facetapi');
+            var $container = $facet.hide().closest('.block-facetapi .item-list');
 
             var $active = $('a.facetapi-dropdown.facetapi-active', $facet);
 
-            console.log(Drupal.settings);
             // If active exists don't attach the select widget.
             if ($active.length == 0) {
                 var $select = $('<select id="select_' + facet_id + '">' +
@@ -49,8 +48,7 @@
                 $select.change(function () {
                     window.location.href = $(this).find(':checked').data('href');
                 });
-
-                $container.find('.facetapi-limit-link').hide();
+                $container.find('.facetapi-limit-link').remove();
             }
             else {
                 $active.once('facetapi-makeDropdownRL').each(function(){

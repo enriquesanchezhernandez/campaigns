@@ -31,7 +31,7 @@ function osha_calls_node_info() {
     'calls' => array(
       'name' => t('Calls'),
       'base' => 'node_content',
-      'description' => t('Calls content type - OSHA Project'),
+      'description' => t('Calls for proposals'),
       'has_title' => '1',
       'title_label' => t('Title'),
       'help' => '',

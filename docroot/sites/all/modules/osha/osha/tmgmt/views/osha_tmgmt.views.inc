@@ -122,8 +122,9 @@ class OshaTMGMTJobItemViewsController extends TMGMTJobItemViewsController {
       'title' => t('Page count'),
       'help' => t('Number of pages for translation'),
       'field' => array(
+        'float' => TRUE,
         'real field' => 'page_count',
-        'handler' => 'views_handler_field',
+        'handler' => 'views_handler_field_numeric',
         'click sortable' => TRUE,
       ),
     );
@@ -262,6 +263,7 @@ class OshaTMGMTJobItemViewsController extends TMGMTJobItemViewsController {
         ),
       ),
     );
+    $data['tmgmt_job_item']['type']['field']['handler'] = 'osha_tmgmt_handler_field_tmgmt_job_item_type';
 
     return $data;
   }
@@ -297,6 +299,7 @@ class OshaTMGMTJobViewsController extends TMGMTJobViewsController {
       'help' => t('Number of pages for translation'),
       'real field' => 'page_count',
       'field' => array(
+        'float' => TRUE,
         'handler' => 'views_handler_field_numeric',
         'click sortable' => TRUE,
       ),

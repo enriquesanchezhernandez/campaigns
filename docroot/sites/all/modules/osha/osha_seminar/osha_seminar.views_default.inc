@@ -45,7 +45,7 @@ function osha_seminar_views_default_views() {
   $handler->display->display_options['header']['area_text_custom']['id'] = 'area_text_custom';
   $handler->display->display_options['header']['area_text_custom']['table'] = 'views';
   $handler->display->display_options['header']['area_text_custom']['field'] = 'area_text_custom';
-  $handler->display->display_options['header']['area_text_custom']['content'] = '<a class="seminar_back-to-seminars back-to-link" href="/articles/seminars">Back to seminars</a>';
+  $handler->display->display_options['header']['area_text_custom']['content'] = '<a class="seminar_back-to-seminars back-to-link" href="/tools-and-publications/seminars">Back to seminars</a>';
   /* No results behavior: Global: Unfiltered text */
   $handler->display->display_options['empty']['area_text_custom']['id'] = 'area_text_custom';
   $handler->display->display_options['empty']['area_text_custom']['table'] = 'views';
@@ -88,8 +88,18 @@ function osha_seminar_views_default_views() {
     2 => '2',
     1 => 0,
     3 => 0,
+    4 => 0,
+    5 => 0,
+    6 => 0,
+    7 => 0,
+    8 => 0,
+    9 => 0,
+    10 => 0,
+    11 => 0,
+    12 => 0,
   );
   $handler->display->display_options['filters']['search_api_views_fulltext']['fields'] = array(
+    'attachments_field_related_resources' => 'attachments_field_related_resources',
     'body:summary' => 'body:summary',
     'body:value' => 'body:value',
     'title_field' => 'title_field',
@@ -177,7 +187,7 @@ function osha_seminar_views_default_views() {
     t('‹'),
     t('›'),
     t('»'),
-    t('<a class="seminar_back-to-seminars back-to-link" href="/articles/seminars">Back to seminars</a>'),
+    t('<a class="seminar_back-to-seminars back-to-link" href="/tools-and-publications/seminars">Back to seminars</a>'),
     t('No results'),
     t('Multilingual ID'),
     t('Free text search'),

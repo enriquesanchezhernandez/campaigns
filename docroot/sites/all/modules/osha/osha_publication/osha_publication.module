@@ -16,6 +16,7 @@ function osha_publication_url_inbound_alter(&$path, $original_path, $path_langua
   // if the path ends with /view than should serve the node.
   // see CW-1072
   $args = arg();
+
   $orig_path_alias = drupal_lookup_path('alias', $original_path);
   $orig_path_source = drupal_lookup_path('source', $original_path);
   if (end($args) == 'view') {
@@ -29,6 +30,13 @@ function osha_publication_url_inbound_alter(&$path, $original_path, $path_langua
         $path_source = $url;
       }
       $path_alias = path_load($path_source);
+      if (empty($path_alias)) {
+        // It may be a redirect with /view appended.
+        $redirect = redirect_load_by_source($url);
+        if (!empty($redirect->redirect)) {
+          $path_alias = path_load(array('source' => $redirect->redirect));
+        }
+      }
       if (!empty($path_alias)) {
         if (preg_match("/node\/[\d]{1,99}$/", $path_alias['source'])) {
           $node = menu_get_object('node', 1, $path_alias['source']);
@@ -324,7 +332,10 @@ function osha_publication_field_formatter_view($entity_type, $entity, $field, $i
 
       if (!empty($output) && $settings['title_link'] == 'content') {
         $uri = entity_uri($entity_type, $entity);
-        $path = url($uri['path']) . '/view';
+        $path = url($uri['path']);
+        if ($entity->type == 'publication') {
+          $path .= '/view';
+        }
         $output = '<a href="' . check_plain($path) . '">' . $output . '</a>';
       }
 
@@ -438,4 +449,12 @@ function theme_osha_publication_twin_publications_format($element) {
   }
   $output .= '</ul>';
   return $output;
+}
+
+/**
+ * Implements hook_osha_tmgmt_i18n_string_list().
+ */
+function osha_publication_osha_tmgmt_i18n_string_list() {
+  module_load_include('inc', 'osha_publication', 'osha_publication.translations');
+  return osha_publication_get_translatable_strings();
 }

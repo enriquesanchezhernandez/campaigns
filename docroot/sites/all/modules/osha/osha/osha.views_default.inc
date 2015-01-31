@@ -398,17 +398,19 @@ function osha_views_default_views() {
     'page' => 'page',
     'blog' => 'blog',
     'calls' => 'calls',
+    'press_contact' => 'press_contact',
     'directive' => 'directive',
     'external_url' => 'external_url',
     'file' => 'file',
     'flickr' => 'flickr',
+    'fop_page' => 'fop_page',
     'guideline' => 'guideline',
     'highlight' => 'highlight',
+    'infographic' => 'infographic',
     'job_vacancies' => 'job_vacancies',
     'news' => 'news',
     'newsletter_article' => 'newsletter_article',
     'note_to_editor' => 'note_to_editor',
-    'press_contact' => 'press_contact',
     'press_release' => 'press_release',
     'publication' => 'publication',
     'seminar' => 'seminar',
@@ -435,7 +437,9 @@ function osha_views_default_views() {
     9 => 0,
     10 => 0,
     11 => 0,
+    12 => 0,
   );
+  $handler->display->display_options['filters']['type']['expose']['reduce'] = TRUE;
   /* Filter criterion: User: Name */
   $handler->display->display_options['filters']['uid']['id'] = 'uid';
   $handler->display->display_options['filters']['uid']['table'] = 'users';
@@ -1373,6 +1377,15 @@ function osha_views_default_views() {
 
   /* Display: Publications */
   $handler = $view->new_display('page', 'Publications', 'page_publication');
+  $handler->display->display_options['defaults']['relationships'] = FALSE;
+  /* Relationship: Field: Tags (field_tags) */
+  $handler->display->display_options['relationships']['field_tags_tid']['id'] = 'field_tags_tid';
+  $handler->display->display_options['relationships']['field_tags_tid']['table'] = 'field_data_field_tags';
+  $handler->display->display_options['relationships']['field_tags_tid']['field'] = 'field_tags_tid';
+  /* Relationship: File Usage: File */
+  $handler->display->display_options['relationships']['node_to_file']['id'] = 'node_to_file';
+  $handler->display->display_options['relationships']['node_to_file']['table'] = 'file_usage';
+  $handler->display->display_options['relationships']['node_to_file']['field'] = 'node_to_file';
   $handler->display->display_options['defaults']['fields'] = FALSE;
   /* Field: Content: Publication Type */
   $handler->display->display_options['fields']['field_publication_type']['id'] = 'field_publication_type';
@@ -1487,6 +1500,12 @@ function osha_views_default_views() {
   $handler->display->display_options['fields']['field_file']['label'] = 'file';
   $handler->display->display_options['fields']['field_file']['click_sort_column'] = 'fid';
   $handler->display->display_options['fields']['field_file']['type'] = 'file_url_plain';
+  /* Field: File: Size */
+  $handler->display->display_options['fields']['filesize']['id'] = 'filesize';
+  $handler->display->display_options['fields']['filesize']['table'] = 'file_managed';
+  $handler->display->display_options['fields']['filesize']['field'] = 'filesize';
+  $handler->display->display_options['fields']['filesize']['relationship'] = 'node_to_file';
+  $handler->display->display_options['fields']['filesize']['label'] = 'file_size';
   /* Field: Content: Resources (files) */
   $handler->display->display_options['fields']['field_publication_related_res']['id'] = 'field_publication_related_res';
   $handler->display->display_options['fields']['field_publication_related_res']['table'] = 'field_data_field_publication_related_res';
@@ -1582,12 +1601,14 @@ function osha_views_default_views() {
     t('color'),
     t('Press releases'),
     t('Publications'),
+    t('File'),
     t('publication_type'),
     t('cover_image'),
     t('cover_image_thumbnail'),
     t('author'),
     t('Bookshop ID'),
     t('file'),
+    t('file_size'),
     t('resources'),
   );
   $export['data_export'] = $view;

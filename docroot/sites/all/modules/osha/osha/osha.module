@@ -1,6 +1,7 @@
 <?php
 
 include_once 'osha.features.inc';
+include_once 'osha.utils.inc';
 
 define('OSHA_ARTICLE_CONTENT_TYPE_ARTICLE', 'article');
 define('OSHA', 'OSHA');
@@ -49,79 +50,8 @@ function osha_users_autocomplete($role_name, $name) {
  * Implements hook_osha_tmgmt_i18n_string_list().
  */
 function osha_osha_tmgmt_i18n_string_list() {
-  return array(
-    '- All -',
-    '‹ previous',
-    '« first',
-    'Activity',
-    'Alt Text',
-    'Alternative text is used by screen readers, search engines, and when the image cannot be loaded. By adding alt text you improve accessibility and search engine optimization.',
-    'Apply',
-    'Approved',
-    'Archived',
-    'Article type',
-    'Asc',
-    'Automatically calculated when saving. The count of characters found in the default language text (English).',
-    'Automatically calculated when saving. The count of pages of text in the default language (English).',
-    'Basic page setup error: !error',
-    'Body',
-    'Calendar page',
-    'Character count',
-    'Day only',
-    'Default',
-    'Desc',
-    'Description',
-    'Draft',
-    'EU short date',
-    'Expiration Date',
-    'File name',
-    'Image',
-    'Items per page',
-    'Language',
-    'last »',
-    'Master',
-    'Media browser',
-    'more',
-    'My files (OSHA)',
-    'My files',
-    'Nace',
-    'Needs Retranslation',
-    'next ›',
-    'No files available.',
-    'Offset',
-    'OSHA Library ',
-    'Osha Slideshow',
-    'OSHWiki Category',
-    'OSHWiki featured articles',
-    'Page count',
-    'Publication date',
-    'Published',
-    'Ready To Publish',
-    'Rejected',
-    'Replacing title_field for !bundle',
-    'Reset',
-    'Save',
-    'Show using theme @theme',
-    'Sort by',
-    'Summary',
-    'Tags setup error: !error',
-    'Tags',
-    'Theme:',
-    'Thesaurus',
-    'This node is in the translation cart!',
-    'Title text is used in the tool tip when a user hovers their mouse over the image. Adding title text makes it easier to understand the context of an image and improves usability.',
-    'Title Text',
-    'Title',
-    'To Be Approved',
-    'To Be Reviewed',
-    'Type',
-    'Upload date',
-    'Use count',
-    'User who uploaded',
-    'Year',
-    'Year and month',
-    "Use <em>basic pages</em> for your static content, such as an 'About us' page.",
-  );
+  module_load_include('inc', 'osha', 'osha.translate');
+  return osha_get_translatable_strings();
 }
 
 
@@ -494,6 +424,18 @@ function osha_form_node_form_alter(&$form, &$form_state, $form_id) {
     $form['field_character_count']['#access'] = FALSE;
   }
 
+  // Hide Delete button
+  unset($form['actions']['delete']);
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ *
+ * Order the dropdown options for language list
+ */
+function osha_form_lang_dropdown_form_alter(&$form, &$form_state, $form_id){
+  $options_lang = $form['lang_dropdown_select']['#options'];
+  $form['lang_dropdown_select']['#options'] = osha_sort_language_list($options_lang);
 }
 
 /**
@@ -593,6 +535,77 @@ function osha_url_inbound_alter(&$path, $original_path, $path_language) {
       drupal_goto($source_en, array(), 301);
     }
   }
+  // For images, in migrated content there are images with alias appended
+  // with /image_preview - for those, system should serve the image directly.
+  $args = arg();
+  $orig_path_alias = drupal_lookup_path('alias', $original_path);
+  $orig_path_source = drupal_lookup_path('source', $original_path);
+  if (end($args) == 'image_preview') {
+    // If path exists, don't do anything.
+    if (empty($orig_path_alias) && empty($orig_path_source)) {
+      $url = preg_replace('/\/image_preview/', '', $original_path);
+      $path_source = osha_look_for_path_source($url);
+      if (!empty($path_source)) {
+        if (preg_match("/file\/[\d]{1,99}$/", $path_source)) {
+          $file = menu_get_object('file', 1, $path_source);
+          if ($file->type == 'image') {
+            $path = $path_source;
+          }
+        }
+      }
+    }
+  }
+  else {
+    // If the args ends with /view, system should display the File Entity.
+    if (end($args) == 'view') {
+      // If path exists, don't do anything.
+      if (empty($orig_path_alias) && empty($orig_path_source)) {
+        $url = preg_replace('/\/view/', '', $original_path);
+        $path_source = osha_look_for_path_source($url);
+        if (!empty($path_source)) {
+          if (preg_match("/file\/[\d]{1,99}$/", $path_source)) {
+            $file = menu_get_object('file', 1, $path_source);
+            // Append /view to be used in hook_file_view.
+            $path = $path_source . '/view';
+          }
+        }
+      }
+    }
+  }
+}
+
+/**
+ * Returns the system path of an url (if path or redirect or system path).
+ */
+function osha_look_for_path_source($url) {
+  $path_source = drupal_lookup_path('source', $url);
+  // If source empty, the url might be the system path, not alias.
+  if (empty($path_source) && drupal_valid_path($url)) {
+    $path_source = $url;
+    $path_alias = path_load($path_source);
+    // If not alias and not system path, might be a redirect.
+    if (empty($path_alias)) {
+      $redirects = redirect_load_by_source($url, LANGUAGE_NONE);
+      if (!empty($redirects)) {
+        $redirect = is_array($redirects) ? current($redirects) : $redirects;
+        $path_alias = array('source' => $redirect->redirect);
+      }
+    }
+    // If alias or redirect, get the source path.
+    if (!empty($path_alias)) {
+      $path_source = $path_alias['source'];
+    }
+  }
+  return $path_source;
+}
+
+/**
+ * Implements hook_countries_alter().
+ */
+function osha_countries_alter(&$countries) {
+  // EU accepts UK instead of GB.
+  $countries['UK'] = 'United Kingdom';
+  unset($countries['GB']);
 }
 
 /**

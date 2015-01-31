@@ -29,7 +29,10 @@
 ?>
 <script>
 
-jQuery(document).ready(function ($) {
+jQuery(document).ready(function ($) {	
+	var disp = 0;	
+	if (window.innerWidth < 1220)  var numPieces = 4; else 	var numPieces = 5;
+	
 	var options = {
         $AutoPlay: false,
         $AutoPlaySteps: 1,
@@ -37,7 +40,7 @@ jQuery(document).ready(function ($) {
         $SlideWidth: 200,
         $SlideHeight: 150,
         $SlideSpacing: 3,
-        $DisplayPieces: 5,
+        $DisplayPieces: numPieces,
 		$HWA: false,
         $BulletNavigatorOptions: {
             $Class: $JssorBulletNavigator$,
@@ -52,20 +55,32 @@ jQuery(document).ready(function ($) {
             $Steps: 1
         }
     };
-    var jssor_slider1 = new $JssorSlider$("recommended_resources", options);
+    var jssor_slider1 = new $JssorSlider$("recommended_resources", options);	
 });
+
 </script>
 <div class="separator_recomended_resources_home">&nbsp;</div>
 <?php 
-$intNumberOfItems = substr_count($rows ,'<img typeof=');
+	$intNumberOfItems = substr_count($rows ,'<img typeof=');	
+	setcookie('numberOfItems', $intNumberOfItems, time() + 3600);
 ?>
 <div class="title_recomended_resources_home"><?php print t('Recommended resources'); ?></div>
 <div id="recommended_resources" style="position: relative; top: 0px; left: 0px; width: 1138px; height: 160px; overflow: hidden;">
     <div id="num_slides" u="slides" style="cursor: move; position: absolute; left: 5em; top: 0px; width: 1138px; height: 160px; overflow: hidden;">
-        <?php print $rows ?>
+		<?php print $rows ?>		
     </div>
-	<?php if ($intNumberOfItems > 5): ?>
-	<span u="arrowleft" class="jssora03l" style="width: 55px; height: 55px; top: 115px; left: 8px;"></span>
-	<span u="arrowright" class="jssora03r" style="width: 55px; height: 55px; top: 115px; right: 8px"></span>
-	<?php endif; ?>
+	
+	
+	<script>
+		var numberOfItems = jQuery.cookie("numberOfItems");		
+		var numPieces = 5;
+		
+		if (window.innerWidth < 1220) numPieces = 4;
+
+		if (numberOfItems > numPieces) {			
+			document.write("<span u='arrowleft' class='jssora03l\' style='width: 55px; height: 55px; top: 115px; left: 8px;\'></span>");
+			
+			document.write("<span u='arrowright' class='jssora03r' style='width: 55px; height: 55px; top: 115px; right: 8px'></span>");
+		}
+	</script>
 </div>

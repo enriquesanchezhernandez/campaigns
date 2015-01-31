@@ -115,6 +115,11 @@ function osha_alert_service_subscribe_form() {
     '#value' => t('Subscribe'),
     '#attributes' => array('class' => array('container-inline')),
   );
+
+  $form['unsubscribe'] = array(
+    '#type' => 'item',
+    '#markup' => t('If you would like to unsubscribe, please use the unsubscribe link from the footer of an alert sent to you.'),
+  );
   return $form;
 }
 
@@ -125,7 +130,7 @@ function osha_alert_service_subscribe_form() {
  */
 function osha_alert_service_subscribe_form_validate($form, $form_state) {
   if (empty($form_state['values']['email']) || !valid_email_address($form_state['values']['email'])) {
-    form_set_error('email', t('Please input an valid email address'));
+    form_set_error('email', t('Please input a valid email address'));
   };
 }
 
@@ -208,7 +213,7 @@ function osha_alert_service_remove_alert_form_submit($form, $form_state) {
     $entity = $form_state['entity'];
     $entity->confirmed = 1;
     entity_delete('osha_alert_service', $form_state['entity']->id);
-    drupal_set_message(t('You have been successfully unsubscribed from alert'));
+    drupal_set_message(t('You have been successfully un-subscribed from alert'));
     drupal_goto('<front>');
   }
 }
@@ -222,11 +227,11 @@ function osha_alert_service_verify_alert_form() {
     if ($entity->confirmed <> 1) {
       $entity->confirmed = 1;
       if (entity_save('osha_alert_service', $entity)) {
-        drupal_set_message(t("You subscription has been confirmed, thank you"));
+        drupal_set_message(t('You subscription has been confirmed, thank you'));
       }
     }
     else {
-      drupal_set_message(t("You subscription is already confirmed, there's nothing you need to do"), 'warning');
+      drupal_set_message(t("Your subscription is already confirmed, there's nothing you need to do"), 'warning');
     }
   }
   else {
@@ -234,4 +239,3 @@ function osha_alert_service_verify_alert_form() {
   }
   drupal_goto('<front>');
 }
-

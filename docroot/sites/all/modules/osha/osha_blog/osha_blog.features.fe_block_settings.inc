@@ -12,57 +12,15 @@ function osha_blog_default_fe_block_settings() {
 
   $export['version'] = '2.0';
 
-  $export['block-blog_feed'] = array(
-    'cache' => -1,
-    'custom' => 0,
-    'i18n_block_language' => array(),
-    'i18n_mode' => 0,
-    'machine_name' => 'blog_feed',
-    'module' => 'block',
-    'node_types' => array(),
-    'pages' => 'articles/blog
-blog/*
-*/blog/*',
-    'roles' => array(),
-    'themes' => array(
-      'bartik' => array(
-        'region' => '',
-        'status' => 0,
-        'theme' => 'bartik',
-        'weight' => 0,
-      ),
-      'osha_admin' => array(
-        'region' => '',
-        'status' => 0,
-        'theme' => 'osha_admin',
-        'weight' => 0,
-      ),
-      'osha_frontend' => array(
-        'region' => '',
-        'status' => 0,
-        'theme' => 'osha_frontend',
-        'weight' => -32,
-      ),
-      'seven' => array(
-        'region' => '',
-        'status' => 0,
-        'theme' => 'seven',
-        'weight' => 0,
-      ),
-    ),
-    'title' => '',
-    'visibility' => 1,
-  );
-
   $export['twitter_block-1'] = array(
     'cache' => -1,
     'custom' => 0,
     'delta' => 1,
     'i18n_block_language' => array(),
-    'i18n_mode' => 0,
+    'i18n_mode' => 1,
     'module' => 'twitter_block',
     'node_types' => array(),
-    'pages' => 'articles/blog
+    'pages' => 'node/5445
 blog/*
 */blog/*
 search/blog*',
@@ -93,7 +51,7 @@ search/blog*',
         'weight' => 0,
       ),
     ),
-    'title' => '',
+    'title' => 'Recent Tweets',
     'visibility' => 1,
   );
 
@@ -106,7 +64,7 @@ search/blog*',
     'module' => 'views',
     'node_types' => array(),
     'pages' => 'search/blog
-articles/blog
+node/5445
 blog/*
 */blog/*',
     'roles' => array(),
@@ -136,7 +94,7 @@ blog/*
         'weight' => 0,
       ),
     ),
-    'title' => '',
+    'title' => '<none>',
     'visibility' => 1,
   );
 
@@ -148,7 +106,7 @@ blog/*
     'i18n_mode' => 0,
     'module' => 'views',
     'node_types' => array(),
-    'pages' => 'articles/blog',
+    'pages' => 'node/5445',
     'roles' => array(),
     'themes' => array(
       'bartik' => array(
@@ -188,7 +146,7 @@ blog/*
     'i18n_mode' => 0,
     'module' => 'views',
     'node_types' => array(),
-    'pages' => 'articles/blog
+    'pages' => 'node/5445
 blog/*
 */blog/*
 search/blog*',

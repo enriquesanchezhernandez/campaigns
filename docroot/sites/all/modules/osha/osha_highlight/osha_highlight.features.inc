@@ -28,7 +28,7 @@ function osha_highlight_node_info() {
     'highlight' => array(
       'name' => t('Highlight'),
       'base' => 'node_content',
-      'description' => t('Highlight content type'),
+      'description' => t('OSHA news'),
       'has_title' => '1',
       'title_label' => t('Title'),
       'help' => '',

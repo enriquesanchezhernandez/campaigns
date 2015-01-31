@@ -28,7 +28,7 @@ function osha_news_node_info() {
     'news' => array(
       'name' => t('News'),
       'base' => 'node_content',
-      'description' => t('News content type - OSHA Project'),
+      'description' => t('OSH News'),
       'has_title' => '1',
       'title_label' => t('Title'),
       'help' => '',

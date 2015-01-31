@@ -12,9 +12,29 @@ function osha_breadcrumbs_path_breadcrumbs_settings_info() {
 
   $path_breadcrumb = new stdClass();
   $path_breadcrumb->api_version = 1;
+  $path_breadcrumb->machine_name = 'blog_search';
+  $path_breadcrumb->name = 'Blog search';
+  $path_breadcrumb->path = 'search/blog';
+  $path_breadcrumb->data = array(
+    'titles' => array(
+      0 => 'Search Results',
+    ),
+    'paths' => array(
+      0 => '<none>',
+    ),
+    'home' => 1,
+    'translatable' => 1,
+    'arguments' => array(),
+    'access' => array(),
+  );
+  $path_breadcrumb->weight = 0;
+  $export['blog_search'] = $path_breadcrumb;
+
+  $path_breadcrumb = new stdClass();
+  $path_breadcrumb->api_version = 1;
   $path_breadcrumb->machine_name = 'calls_archive_view';
   $path_breadcrumb->name = 'Calls archive view';
-  $path_breadcrumb->path = 'calls_archive';
+  $path_breadcrumb->path = 'inside-eu-osha/procurement/calls_archive';
   $path_breadcrumb->data = array(
     'titles' => array(
       0 => 'Inside EU-OSHA',
@@ -22,17 +42,39 @@ function osha_breadcrumbs_path_breadcrumbs_settings_info() {
       2 => '!page_title',
     ),
     'paths' => array(
-      0 => 'articles/inside-eu-osha',
-      1 => 'articles/procurement',
+      0 => 'inside-eu-osha',
+      1 => 'inside-eu-osha/procurement',
       2 => '<none>',
     ),
     'home' => 1,
-    'translatable' => 0,
+    'translatable' => 1,
     'arguments' => array(),
     'access' => array(),
   );
   $path_breadcrumb->weight = 0;
   $export['calls_archive_view'] = $path_breadcrumb;
+
+  $path_breadcrumb = new stdClass();
+  $path_breadcrumb->api_version = 1;
+  $path_breadcrumb->machine_name = 'contact_form';
+  $path_breadcrumb->name = 'Contact form';
+  $path_breadcrumb->path = 'contact';
+  $path_breadcrumb->data = array(
+    'titles' => array(
+      0 => 'Contact us',
+      1 => 'Contact form',
+    ),
+    'paths' => array(
+      0 => 'contact-us',
+      1 => '<none>',
+    ),
+    'home' => 1,
+    'translatable' => 1,
+    'arguments' => array(),
+    'access' => array(),
+  );
+  $path_breadcrumb->weight = 0;
+  $export['contact_form'] = $path_breadcrumb;
 
   $path_breadcrumb = new stdClass();
   $path_breadcrumb->api_version = 1;
@@ -47,13 +89,13 @@ function osha_breadcrumbs_path_breadcrumbs_settings_info() {
       3 => '!page_title',
     ),
     'paths' => array(
-      0 => 'articles/safety-and-health-legislation',
-      1 => 'articles/european-directives',
+      0 => 'safety-and-health-legislation',
+      1 => 'safety-and-health-legislation/european-directives',
       2 => 'legislation/directives/%node:field-legislation-category:field-directive-category-code',
       3 => '<none>',
     ),
     'home' => 1,
-    'translatable' => 0,
+    'translatable' => 1,
     'arguments' => array(
       'node' => array(
         'position' => 1,
@@ -93,11 +135,11 @@ function osha_breadcrumbs_path_breadcrumbs_settings_info() {
       1 => 'European Directives',
     ),
     'paths' => array(
-      0 => 'articles/safety-and-health-legislation',
-      1 => 'articles/european-directives',
+      0 => 'safety-and-health-legislation',
+      1 => 'safety-and-health-legislation/european-directives',
     ),
     'home' => 1,
-    'translatable' => 0,
+    'translatable' => 1,
     'arguments' => array(),
     'access' => array(),
   );
@@ -116,12 +158,12 @@ function osha_breadcrumbs_path_breadcrumbs_settings_info() {
       2 => '!page_title',
     ),
     'paths' => array(
-      0 => 'articles/safety-and-health-legislation',
-      1 => 'articles/european-directives',
+      0 => 'safety-and-health-legislation',
+      1 => 'safety-and-health-legislation/european-directives',
       2 => '<none>',
     ),
     'home' => 1,
-    'translatable' => 0,
+    'translatable' => 1,
     'arguments' => array(
       'string' => array(
         'position' => 2,
@@ -138,6 +180,74 @@ function osha_breadcrumbs_path_breadcrumbs_settings_info() {
 
   $path_breadcrumb = new stdClass();
   $path_breadcrumb->api_version = 1;
+  $path_breadcrumb->machine_name = 'events';
+  $path_breadcrumb->name = 'Events';
+  $path_breadcrumb->path = 'node/%node';
+  $path_breadcrumb->data = array(
+    'titles' => array(
+      0 => 'Tools and publications',
+      1 => 'Events',
+      2 => '!page_title',
+    ),
+    'paths' => array(
+      0 => 'tools-and-publications',
+      1 => 'tools-and-publications/events',
+      2 => '<none>',
+    ),
+    'home' => 1,
+    'translatable' => 1,
+    'arguments' => array(
+      'node' => array(
+        'position' => 1,
+        'argument' => 'entity_id:node',
+        'settings' => array(
+          'identifier' => 'Node: ID',
+        ),
+      ),
+    ),
+    'access' => array(
+      'plugins' => array(
+        0 => array(
+          'name' => 'node_type',
+          'settings' => array(
+            'type' => array(
+              'events' => 'events',
+            ),
+          ),
+          'context' => 'node',
+          'not' => FALSE,
+        ),
+      ),
+      'logic' => 'and',
+    ),
+  );
+  $path_breadcrumb->weight = 0;
+  $export['events'] = $path_breadcrumb;
+
+  $path_breadcrumb = new stdClass();
+  $path_breadcrumb->api_version = 1;
+  $path_breadcrumb->machine_name = 'events_list';
+  $path_breadcrumb->name = 'Events list';
+  $path_breadcrumb->path = 'tools-and-publications/events';
+  $path_breadcrumb->data = array(
+    'titles' => array(
+      0 => 'Tools and publications',
+      1 => 'Events',
+    ),
+    'paths' => array(
+      0 => 'tools-and-publications',
+      1 => '<none>',
+    ),
+    'home' => 1,
+    'translatable' => 1,
+    'arguments' => array(),
+    'access' => array(),
+  );
+  $path_breadcrumb->weight = 0;
+  $export['events_list'] = $path_breadcrumb;
+
+  $path_breadcrumb = new stdClass();
+  $path_breadcrumb->api_version = 1;
   $path_breadcrumb->machine_name = 'guideline';
   $path_breadcrumb->name = 'Guideline';
   $path_breadcrumb->path = 'node/%node';
@@ -149,13 +259,13 @@ function osha_breadcrumbs_path_breadcrumbs_settings_info() {
       3 => '!page_title',
     ),
     'paths' => array(
-      0 => 'articles/safety-and-health-legislation',
-      1 => 'articles/european-guidelines',
+      0 => 'safety-and-health-legislation',
+      1 => 'safety-and-health-legislation/european-guidelines',
       2 => 'legislation/guidelines/%node:field-legislation-category:field-guideline-category-code',
       3 => '<none>',
     ),
     'home' => 1,
-    'translatable' => 0,
+    'translatable' => 1,
     'arguments' => array(
       'node' => array(
         'position' => 1,
@@ -196,12 +306,12 @@ function osha_breadcrumbs_path_breadcrumbs_settings_info() {
       2 => '!page_title',
     ),
     'paths' => array(
-      0 => 'articles/safety-and-health-legislation',
-      1 => 'articles/european-guidelines',
+      0 => 'safety-and-health-legislation',
+      1 => 'safety-and-health-legislation/european-guidelines',
       2 => '<none>',
     ),
     'home' => 1,
-    'translatable' => 0,
+    'translatable' => 1,
     'arguments' => array(
       'string' => array(
         'position' => 2,
@@ -231,7 +341,7 @@ function osha_breadcrumbs_path_breadcrumbs_settings_info() {
       1 => '<none>',
     ),
     'home' => 1,
-    'translatable' => 0,
+    'translatable' => 1,
     'arguments' => array(
       'node' => array(
         'position' => 1,
@@ -273,7 +383,7 @@ function osha_breadcrumbs_path_breadcrumbs_settings_info() {
       0 => '<none>',
     ),
     'home' => 1,
-    'translatable' => 0,
+    'translatable' => 1,
     'arguments' => array(),
     'access' => array(),
   );
@@ -295,7 +405,7 @@ function osha_breadcrumbs_path_breadcrumbs_settings_info() {
       1 => '<none>',
     ),
     'home' => 1,
-    'translatable' => 0,
+    'translatable' => 1,
     'arguments' => array(
       'node' => array(
         'position' => 1,
@@ -339,7 +449,7 @@ function osha_breadcrumbs_path_breadcrumbs_settings_info() {
       1 => '<none>',
     ),
     'home' => 1,
-    'translatable' => 0,
+    'translatable' => 1,
     'arguments' => array(
       'node' => array(
         'position' => 1,
@@ -366,11 +476,20 @@ function osha_breadcrumbs_path_breadcrumbs_settings_info() {
           'context' => 'node',
           'not' => TRUE,
         ),
+        1 => array(
+          'name' => 'path_visibility',
+          'settings' => array(
+            'visibility_setting' => '1',
+            'paths' => 'tools-and-publications/blog',
+          ),
+          'context' => 'empty',
+          'not' => TRUE,
+        ),
       ),
       'logic' => 'and',
     ),
   );
-  $path_breadcrumb->weight = 0;
+  $path_breadcrumb->weight = 100;
   $export['node_breadcrumbs'] = $path_breadcrumb;
 
   $path_breadcrumb = new stdClass();
@@ -385,8 +504,8 @@ function osha_breadcrumbs_path_breadcrumbs_settings_info() {
       2 => '!page_title',
     ),
     'paths' => array(
-      0 => 'articles/inside-eu-osha',
-      1 => 'articles/careers',
+      0 => 'inside-eu-osha',
+      1 => 'inside-eu-osha/careers',
       2 => '<none>',
     ),
     'home' => 1,
@@ -409,8 +528,8 @@ function osha_breadcrumbs_path_breadcrumbs_settings_info() {
       2 => '!page_title',
     ),
     'paths' => array(
-      0 => 'articles/inside-eu-osha',
-      1 => 'articles/careers',
+      0 => 'inside-eu-osha',
+      1 => 'inside-eu-osha/careers',
       2 => '<none>',
     ),
     'home' => 1,
@@ -445,14 +564,14 @@ function osha_breadcrumbs_path_breadcrumbs_settings_info() {
   $path_breadcrumb->api_version = 1;
   $path_breadcrumb->machine_name = 'osh_publications';
   $path_breadcrumb->name = 'Publications list';
-  $path_breadcrumb->path = 'search/publications';
+  $path_breadcrumb->path = 'tools-and-publications/publications';
   $path_breadcrumb->data = array(
     'titles' => array(
-      0 => 'Tools and resources',
+      0 => 'Tools and publications',
       1 => 'Publications',
     ),
     'paths' => array(
-      0 => 'articles/tools-and-publications',
+      0 => 'tools-and-publications',
       1 => '<none>',
     ),
     'home' => 1,
@@ -487,7 +606,7 @@ function osha_breadcrumbs_path_breadcrumbs_settings_info() {
   $path_breadcrumb->api_version = 1;
   $path_breadcrumb->machine_name = 'press_releases_view';
   $path_breadcrumb->name = 'Press Releases view';
-  $path_breadcrumb->path = 'press-releases';
+  $path_breadcrumb->path = 'inside-eu-osha/press-releases';
   $path_breadcrumb->data = array(
     'titles' => array(
       0 => 'Inside EU-OSHA',
@@ -495,12 +614,12 @@ function osha_breadcrumbs_path_breadcrumbs_settings_info() {
       2 => '!page_title',
     ),
     'paths' => array(
-      0 => 'articles/inside-eu-osha',
-      1 => 'press-room',
+      0 => 'inside-eu-osha',
+      1 => 'inside-eu-osha/press-room',
       2 => '<none>',
     ),
     'home' => 1,
-    'translatable' => 0,
+    'translatable' => 1,
     'arguments' => array(),
     'access' => array(),
   );
@@ -511,18 +630,18 @@ function osha_breadcrumbs_path_breadcrumbs_settings_info() {
   $path_breadcrumb->api_version = 1;
   $path_breadcrumb->machine_name = 'press_room_view';
   $path_breadcrumb->name = 'Press Room view';
-  $path_breadcrumb->path = 'press-room';
+  $path_breadcrumb->path = 'inside-eu-osha/press-room';
   $path_breadcrumb->data = array(
     'titles' => array(
       0 => 'Inside EU-OSHA',
       1 => '!page_title',
     ),
     'paths' => array(
-      0 => 'articles/inside-eu-osha',
+      0 => 'inside-eu-osha',
       1 => '<none>',
     ),
     'home' => 1,
-    'translatable' => 0,
+    'translatable' => 1,
     'arguments' => array(),
     'access' => array(),
   );
@@ -531,20 +650,108 @@ function osha_breadcrumbs_path_breadcrumbs_settings_info() {
 
   $path_breadcrumb = new stdClass();
   $path_breadcrumb->api_version = 1;
+  $path_breadcrumb->machine_name = 'privacy_statement_alerts';
+  $path_breadcrumb->name = 'Alerts - Privacy policy';
+  $path_breadcrumb->path = 'node/%node';
+  $path_breadcrumb->data = array(
+    'titles' => array(
+      0 => 'Alert Service',
+      1 => 'PRIVACY POLICY FOR THE ALERTS FORM',
+    ),
+    'paths' => array(
+      0 => 'alertservice',
+      1 => '<none>',
+    ),
+    'home' => 1,
+    'translatable' => 1,
+    'arguments' => array(
+      'node' => array(
+        'position' => 1,
+        'argument' => 'entity_id:node',
+        'settings' => array(
+          'identifier' => 'Node: ID',
+        ),
+      ),
+    ),
+    'access' => array(
+      'plugins' => array(
+        1 => array(
+          'name' => 'path_visibility',
+          'settings' => array(
+            'visibility_setting' => '1',
+            'paths' => 'alertservice/privacy-statement-alerts',
+          ),
+          'context' => 'empty',
+          'not' => FALSE,
+        ),
+      ),
+      'logic' => 'and',
+    ),
+  );
+  $path_breadcrumb->weight = 0;
+  $export['privacy_statement_alerts'] = $path_breadcrumb;
+
+  $path_breadcrumb = new stdClass();
+  $path_breadcrumb->api_version = 1;
+  $path_breadcrumb->machine_name = 'privacy_statement_oshmail';
+  $path_breadcrumb->name = 'Newsletter - Privacy policy';
+  $path_breadcrumb->path = 'node/%node';
+  $path_breadcrumb->data = array(
+    'titles' => array(
+      0 => 'OSHMail newsletter',
+      1 => 'PRIVACY STATEMENT FOR THE OSHMAIL FORM',
+    ),
+    'paths' => array(
+      0 => 'oshmail-newsletter',
+      1 => '<none>',
+    ),
+    'home' => 1,
+    'translatable' => 1,
+    'arguments' => array(
+      'node' => array(
+        'position' => 1,
+        'argument' => 'entity_id:node',
+        'settings' => array(
+          'identifier' => 'Node: ID',
+        ),
+      ),
+    ),
+    'access' => array(
+      'plugins' => array(
+        1 => array(
+          'name' => 'path_visibility',
+          'settings' => array(
+            'visibility_setting' => '1',
+            'paths' => 'oshmail-newsletter/privacy-statement-oshmail',
+          ),
+          'context' => 'empty',
+          'not' => FALSE,
+        ),
+      ),
+      'logic' => 'and',
+    ),
+  );
+  $path_breadcrumb->weight = 0;
+  $export['privacy_statement_oshmail'] = $path_breadcrumb;
+
+  $path_breadcrumb = new stdClass();
+  $path_breadcrumb->api_version = 1;
   $path_breadcrumb->machine_name = 'publications';
   $path_breadcrumb->name = 'Publications';
   $path_breadcrumb->path = 'node/%node';
   $path_breadcrumb->data = array(
     'titles' => array(
-      0 => 'Tools and Resources',
-      1 => '!page_title',
+      0 => 'Tools and publications',
+      1 => 'Publications',
+      2 => '!page_title',
     ),
     'paths' => array(
-      0 => 'articles/tools-and-publications',
-      1 => '<none>',
+      0 => 'tools-and-publications',
+      1 => 'tools-and-publications/publications',
+      2 => '<none>',
     ),
     'home' => 1,
-    'translatable' => 0,
+    'translatable' => 1,
     'arguments' => array(
       'node' => array(
         'position' => 1,
@@ -580,17 +787,17 @@ function osha_breadcrumbs_path_breadcrumbs_settings_info() {
   $path_breadcrumb->path = 'search/seminars';
   $path_breadcrumb->data = array(
     'titles' => array(
-      0 => 'Tools & Publications ',
+      0 => 'Tools and publications ',
       1 => 'EU-OSHA seminars',
       2 => '!page_title',
     ),
     'paths' => array(
-      0 => 'articles/tools-and-publications',
-      1 => 'articles/seminars',
+      0 => 'tools-and-publications',
+      1 => 'tools-and-publications/seminars',
       2 => '<none>',
     ),
     'home' => 1,
-    'translatable' => 0,
+    'translatable' => 1,
     'arguments' => array(),
     'access' => array(),
   );
@@ -609,8 +816,8 @@ function osha_breadcrumbs_path_breadcrumbs_settings_info() {
       2 => '!page_title',
     ),
     'paths' => array(
-      0 => 'articles/inside-eu-osha',
-      1 => 'articles/careers',
+      0 => 'inside-eu-osha',
+      1 => 'inside-eu-osha/careers',
       2 => '<none>',
     ),
     'home' => 1,
@@ -623,25 +830,115 @@ function osha_breadcrumbs_path_breadcrumbs_settings_info() {
 
   $path_breadcrumb = new stdClass();
   $path_breadcrumb->api_version = 1;
-  $path_breadcrumb->machine_name = 'blog_search';
-  $path_breadcrumb->name = 'Blog search';
-  $path_breadcrumb->path = 'search/blog';
+  $path_breadcrumb->machine_name = 'sitemap';
+  $path_breadcrumb->name = 'Sitemap page';
+  $path_breadcrumb->path = 'sitemap';
   $path_breadcrumb->data = array(
     'titles' => array(
-      0 => 'Tools & Publications',
-      1 => 'EU-OSHA Blog',
+      0 => 'Sitemap',
     ),
     'paths' => array(
-      0 => 'articles/tools-and-publications',
-      1 => 'articles/blog',
+      0 => '<none>',
     ),
     'home' => 1,
-    'translatable' => 0,
+    'translatable' => 1,
     'arguments' => array(),
     'access' => array(),
   );
   $path_breadcrumb->weight = 0;
-  $export['blog_search'] = $path_breadcrumb;
+  $export['sitemap'] = $path_breadcrumb;
+
+  $path_breadcrumb = new stdClass();
+  $path_breadcrumb->api_version = 1;
+  $path_breadcrumb->machine_name = 'top_level_nodes';
+  $path_breadcrumb->name = 'Top level nodes';
+  $path_breadcrumb->path = 'node/%node';
+  $path_breadcrumb->data = array(
+    'titles' => array(
+      0 => '!page_title',
+    ),
+    'paths' => array(
+      0 => '<none>',
+    ),
+    'home' => 1,
+    'translatable' => 1,
+    'arguments' => array(
+      'node' => array(
+        'position' => 1,
+        'argument' => 'entity_id:node',
+        'settings' => array(
+          'identifier' => 'Node: ID',
+        ),
+      ),
+    ),
+    'access' => array(
+      'plugins' => array(
+        1 => array(
+          'name' => 'path_visibility',
+          'settings' => array(
+            'visibility_setting' => '1',
+            'paths' => 'themes
+emerging-risks
+surveys-and-statistics-osh
+safety-and-health-legislation
+tools-and-publications
+inside-eu-osha',
+          ),
+          'context' => 'empty',
+          'not' => FALSE,
+        ),
+      ),
+      'logic' => 'and',
+    ),
+  );
+  $path_breadcrumb->weight = 0;
+  $export['top_level_nodes'] = $path_breadcrumb;
+
+  $path_breadcrumb = new stdClass();
+  $path_breadcrumb->api_version = 1;
+  $path_breadcrumb->machine_name = 'footer_links';
+  $path_breadcrumb->name = 'Footer links';
+  $path_breadcrumb->path = 'node/%node';
+  $path_breadcrumb->data = array(
+    'titles' => array(
+      0 => '!page_title',
+    ),
+    'paths' => array(
+      0 => '<none>',
+    ),
+    'home' => 1,
+    'translatable' => 1,
+    'arguments' => array(
+      'node' => array(
+        'position' => 1,
+        'argument' => 'entity_id:node',
+        'settings' => array(
+          'identifier' => 'Node: ID',
+        ),
+      ),
+    ),
+    'access' => array(
+      'plugins' => array(
+        1 => array(
+          'name' => 'path_visibility',
+          'settings' => array(
+            'visibility_setting' => '1',
+            'paths' => 'contact-us
+sitemap
+accessibility-info
+privacy-notice-logged-users
+privacy-notice
+legal-notice',
+          ),
+          'context' => 'empty',
+          'not' => FALSE,
+        ),
+      ),
+      'logic' => 'and',
+    ),
+  );
+  $path_breadcrumb->weight = 0;
+  $export['footer_links'] = $path_breadcrumb;
 
   return $export;
 }

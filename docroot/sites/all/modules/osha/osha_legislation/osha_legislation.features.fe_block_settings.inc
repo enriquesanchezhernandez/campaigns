@@ -20,7 +20,8 @@ function osha_legislation_default_fe_block_settings() {
     'i18n_mode' => 0,
     'module' => 'views',
     'node_types' => array(),
-    'pages' => 'articles/european-guidelines',
+    'pages' => 'safety-and-health-legislation/european-guidelines
+node/2544',
     'roles' => array(),
     'themes' => array(
       'bartik' => array(

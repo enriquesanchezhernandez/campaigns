@@ -173,6 +173,56 @@ function osha_legislation_views_default_views() {
 
   /* Display: Page */
   $handler = $view->new_display('page', 'Page', 'page');
+  $handler->display->display_options['defaults']['fields'] = FALSE;
+  /* Field: Content: Title */
+  $handler->display->display_options['fields']['title_field']['id'] = 'title_field';
+  $handler->display->display_options['fields']['title_field']['table'] = 'field_data_title_field';
+  $handler->display->display_options['fields']['title_field']['field'] = 'title_field';
+  $handler->display->display_options['fields']['title_field']['label'] = '';
+  $handler->display->display_options['fields']['title_field']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['title_field']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['title_field']['link_to_entity'] = 1;
+  /* Field: Content: Link */
+  $handler->display->display_options['fields']['view_node']['id'] = 'view_node';
+  $handler->display->display_options['fields']['view_node']['table'] = 'views_entity_node';
+  $handler->display->display_options['fields']['view_node']['field'] = 'view_node';
+  $handler->display->display_options['fields']['view_node']['label'] = '';
+  $handler->display->display_options['fields']['view_node']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['view_node']['element_label_colon'] = FALSE;
+  /* Field: Content: Body */
+  $handler->display->display_options['fields']['body']['id'] = 'body';
+  $handler->display->display_options['fields']['body']['table'] = 'field_data_body';
+  $handler->display->display_options['fields']['body']['field'] = 'body';
+  $handler->display->display_options['fields']['body']['label'] = '';
+  $handler->display->display_options['fields']['body']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['body']['alter']['text'] = '[title_field]
+[body]';
+  $handler->display->display_options['fields']['body']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['body']['type'] = 'text_trimmed';
+  $handler->display->display_options['fields']['body']['settings'] = array(
+    'trim_length' => '200',
+  );
+  /* Field: Content: Summary */
+  $handler->display->display_options['fields']['field_summary']['id'] = 'field_summary';
+  $handler->display->display_options['fields']['field_summary']['table'] = 'field_data_field_summary';
+  $handler->display->display_options['fields']['field_summary']['field'] = 'field_summary';
+  $handler->display->display_options['fields']['field_summary']['label'] = '';
+  $handler->display->display_options['fields']['field_summary']['alter']['alter_text'] = TRUE;
+  $handler->display->display_options['fields']['field_summary']['alter']['text'] = '[title_field]
+[field_summary]';
+  $handler->display->display_options['fields']['field_summary']['alter']['nl2br'] = TRUE;
+  $handler->display->display_options['fields']['field_summary']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_summary']['empty'] = '[title_field]
+[body]';
+  $handler->display->display_options['fields']['field_summary']['type'] = 'text_plain';
+  /* Field: Content: Directive Type */
+  $handler->display->display_options['fields']['field_directive_type']['id'] = 'field_directive_type';
+  $handler->display->display_options['fields']['field_directive_type']['table'] = 'field_data_field_directive_type';
+  $handler->display->display_options['fields']['field_directive_type']['field'] = 'field_directive_type';
+  $handler->display->display_options['fields']['field_directive_type']['label'] = '';
+  $handler->display->display_options['fields']['field_directive_type']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['field_directive_type']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_directive_type']['type'] = 'taxonomy_term_reference_plain';
   $handler->display->display_options['path'] = 'legislation/directives/%';
   $translatables['legislation'] = array(
     t('Master'),
@@ -192,6 +242,8 @@ function osha_legislation_views_default_views() {
 [field_summary]'),
     t('All'),
     t('Page'),
+    t('[title_field]
+[body]'),
   );
   $export['legislation'] = $view;
 

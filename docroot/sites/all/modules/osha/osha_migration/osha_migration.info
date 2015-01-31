@@ -16,6 +16,7 @@ dependencies[] = osha_seminar
 
 files[] = content.articles.migrate.inc
 files[] = content.blog.migrate.inc
+files[] = content.blog_comments.migrate.inc
 files[] = content.calls.migrate.inc
 files[] = content.case_study.migrate.inc
 files[] = content.directives.migrate.inc
@@ -29,6 +30,8 @@ files[] = content.publications.migrate.inc
 files[] = content.seminars.migrate.inc
 files[] = content.wiki.migrate.inc
 files[] = content.infographics.migrate.inc
+files[] = content.focal_points.migrate.inc
+files[] = content.fop_pages.migrate.inc
 files[] = files.migrate.inc
 files[] = images.migrate.inc
 files[] = utils.api.inc

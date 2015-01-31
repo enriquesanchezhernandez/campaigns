@@ -28,8 +28,8 @@ function osha_press_release_context_default_contexts() {
     ),
     'path' => array(
       'values' => array(
-        'press-room' => 'press-room',
-        'press-releases' => 'press-releases',
+        'inside-eu-osha/press-room' => 'inside-eu-osha/press-room',
+        'inside-eu-osha/press-releases' => 'inside-eu-osha/press-releases',
         'highlights' => 'highlights',
       ),
     ),
@@ -55,8 +55,8 @@ function osha_press_release_context_default_contexts() {
     ),
     'path' => array(
       'values' => array(
-        'press-room' => 'press-room',
-        'press-releases' => 'press-releases',
+        'inside-eu-osha/press-room' => 'inside-eu-osha/press-room',
+        'inside-eu-osha/press-releases' => 'inside-eu-osha/press-releases',
       ),
     ),
   );

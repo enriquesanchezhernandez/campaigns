@@ -61,6 +61,13 @@ function osha_calls_views_default_views() {
   $handler->display->display_options['fields']['title_field']['label'] = '';
   $handler->display->display_options['fields']['title_field']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['title_field']['link_to_entity'] = 1;
+  /* Field: Content: Link */
+  $handler->display->display_options['fields']['view_node']['id'] = 'view_node';
+  $handler->display->display_options['fields']['view_node']['table'] = 'views_entity_node';
+  $handler->display->display_options['fields']['view_node']['field'] = 'view_node';
+  $handler->display->display_options['fields']['view_node']['label'] = '';
+  $handler->display->display_options['fields']['view_node']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['view_node']['text'] = 'Show details';
   /* Sort criterion: Field: Publication Date (field_publication_date) */
   $handler->display->display_options['sorts']['field_publication_date_value']['id'] = 'field_publication_date_value';
   $handler->display->display_options['sorts']['field_publication_date_value']['table'] = 'field_data_field_publication_date';
@@ -236,7 +243,7 @@ function osha_calls_views_default_views() {
   $handler->display->display_options['header']['area_text_custom']['id'] = 'area_text_custom';
   $handler->display->display_options['header']['area_text_custom']['table'] = 'views';
   $handler->display->display_options['header']['area_text_custom']['field'] = 'area_text_custom';
-  $handler->display->display_options['header']['area_text_custom']['content'] = '<a href="/articles/procurement">Back to calls</a>
+  $handler->display->display_options['header']['area_text_custom']['content'] = '<a href="/inside-eu-osha/procurement">Back to calls</a>
 ';
   $handler->display->display_options['defaults']['filter_groups'] = FALSE;
   $handler->display->display_options['defaults']['filters'] = FALSE;
@@ -274,7 +281,7 @@ function osha_calls_views_default_views() {
   $handler->display->display_options['filters']['field_expiration_date_value']['field'] = 'field_expiration_date_value';
   $handler->display->display_options['filters']['field_expiration_date_value']['operator'] = '<';
   $handler->display->display_options['filters']['field_expiration_date_value']['default_date'] = 'now';
-  $handler->display->display_options['path'] = 'calls_archive';
+  $handler->display->display_options['path'] = 'inside-eu-osha/procurement/calls_archive';
 
   /* Display: Archived calls block */
   $handler = $view->new_display('block', 'Archived calls block', 'block_archived_calls');
@@ -342,12 +349,13 @@ function osha_calls_views_default_views() {
     t('Asc'),
     t('Desc'),
     t('Currently, there are no calls available in this section.'),
+    t('Show details'),
     t('Open block'),
     t('Open calls for contractors'),
     t('Ongoing block'),
     t('Ongoing calls for contractors'),
     t('Archived calls page'),
-    t('<a href="/articles/procurement">Back to calls</a>
+    t('<a href="/inside-eu-osha/procurement">Back to calls</a>
 '),
     t('Archived calls block'),
     t('View all'),

@@ -102,8 +102,8 @@ function contact_form_send($form, &$form_state){
   and subscribing to our electronic newsletter
   <a href="@link2">OSHmail</a>.',
     array(
-      '@link1' => $base_url.'/articles/news-events',
-      '@link2' => $base_url.'/pages/oshmail-newsletter')));
+      '@link1' => $base_url.'/news-events',
+      '@link2' => $base_url.'/oshmail-newsletter')));
 }
 
 /**
@@ -203,4 +203,12 @@ function osha_contact_message_validate($element, &$form_state) {
       $form_state['values']['body'] = $value;
     }
   }
+}
+
+/**
+ * Implements hook_osha_tmgmt_i18n_string_list().
+ */
+function osha_contact_osha_tmgmt_i18n_string_list() {
+  module_load_include('inc', 'osha_contact', 'osha_contact.translations');
+  return osha_contact_get_translatable_strings();
 }

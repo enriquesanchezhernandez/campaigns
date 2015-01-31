@@ -124,3 +124,37 @@ function osha_update_7003() {
   features_revert(array('osha' => 'views_view'));
   cache_clear_all();
 }
+
+/**
+ * Removes redirects that are also aliases.
+ */
+function osha_update_7004() {
+  $query = db_select('redirect', 'r');
+  $query->join('url_alias', 'a', 'r.source=a.alias');
+  $query->fields('r', array('rid'));
+  $rids = $query->execute()
+    ->fetchCol();
+
+  db_delete('redirect')
+    ->condition('rid', $rids, 'IN')
+    ->execute();
+}
+
+/**
+ * Give all permissions to administrators.
+ */
+function osha_update_7005() {
+  $role = user_role_load(3);
+  user_role_grant_permissions($role->rid, array_keys(module_invoke_all('permission')));
+}
+
+/**
+ * Add menu position rule for articles on inside-eu-osha/governance-eu-osha/internal_documents
+ */
+function osha_update_7006() {
+  if (module_exists('osha') && module_load_include('inc', 'osha', 'osha.utils')) {
+    $parent_menu = array('-------- Request of internal documents');
+    $condition = array('pages' => 'inside-eu-osha/governance-eu-osha/internal_documents/*');
+    osha_add_menu_position_rule('Governance Internal Documents Rule', $parent_menu, $condition);
+  }
+}

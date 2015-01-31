@@ -251,7 +251,7 @@ function osha_blog_field_default_field_instances() {
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
-        'weight' => 2,
+        'weight' => 3,
       ),
       'highlights_item' => array(
         'label' => 'above',
@@ -645,79 +645,6 @@ function osha_blog_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-blog-field_needs_retranslation'
-  $field_instances['node-blog-field_needs_retranslation'] = array(
-    'bundle' => 'blog',
-    'default_value' => array(
-      0 => array(
-        'value' => 1,
-      ),
-    ),
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
-      'default' => array(
-        'label' => 'hidden',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 17,
-      ),
-      'highlights_item' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-      'newsletter_item' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-      'osha_resources' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-      'osha_slideshow' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-      'osha_wiki' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-      'teaser' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-    ),
-    'entity_type' => 'node',
-    'field_name' => 'field_needs_retranslation',
-    'label' => 'Needs Retranslation',
-    'required' => 0,
-    'settings' => array(
-      'entity_translation_sync' => FALSE,
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'active' => 1,
-      'module' => 'options',
-      'settings' => array(
-        'display_label' => 1,
-      ),
-      'type' => 'options_onoff',
-      'weight' => 22,
-    ),
-  );
-
   // Exported field_instance: 'node-blog-field_page_count'
   $field_instances['node-blog-field_page_count'] = array(
     'bundle' => 'blog',
@@ -799,7 +726,7 @@ function osha_blog_field_default_field_instances() {
         'label' => 'hidden',
         'module' => 'date',
         'settings' => array(
-          'format_type' => 'long',
+          'format_type' => 'osha_day_only',
           'fromto' => 'both',
           'multiple_from' => '',
           'multiple_number' => '',
@@ -807,7 +734,7 @@ function osha_blog_field_default_field_instances() {
           'osha_date_theme' => '',
         ),
         'type' => 'date_default',
-        'weight' => 3,
+        'weight' => 1,
       ),
       'highlights_item' => array(
         'label' => 'above',
@@ -1207,7 +1134,7 @@ function osha_blog_field_default_field_instances() {
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
-        'weight' => 1,
+        'weight' => 2,
       ),
       'highlights_item' => array(
         'label' => 'hidden',
@@ -1297,7 +1224,6 @@ function osha_blog_field_default_field_instances() {
   t('Expiration Date');
   t('Image');
   t('Nace');
-  t('Needs Retranslation');
   t('Page count');
   t('Publication date');
   t('Summary');
