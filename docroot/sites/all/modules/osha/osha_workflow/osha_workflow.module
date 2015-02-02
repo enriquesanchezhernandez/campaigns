@@ -561,6 +561,13 @@ function osha_workflow_form_alter(&$form, &$form_state, $form_id) {
 //    $form['access_id']['#multiple'] = TRUE;
 //    $form['access_id']['#size'] = 1;
   }
+  elseif ($form_id == 'workbench_access_settings_form') {
+    $form['osha_workflow_send_mail'] = array(
+      '#type' => 'checkbox',
+      '#title' => 'Send notifications',
+      '#default_value' => variable_get('osha_workflow_send_mail'),
+    );
+  }
 }
 
 /**
