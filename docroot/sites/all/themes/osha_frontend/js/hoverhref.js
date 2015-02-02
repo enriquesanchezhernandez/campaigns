@@ -119,7 +119,7 @@ function displayCaptcha() {
 }
 
 function displayMenuThirdLevel() {
-
+	
 	
 	
  // init: collapse all groups except for the first one
@@ -135,11 +135,24 @@ function displayMenuThirdLevel() {
     jQuery(this).css("cursor","pointer");
     jQuery(this).click(function () {
       jQuery("ul",this).slideToggle();
-	  jQuery(this).toggleClass("expand");
+		if ( jQuery(this).hasClass("expand")) {
+			jQuery(this).removeClass("expand").addClass("is-expanded");
+		} else if (jQuery(this).hasClass("is-expanded")) {
+			jQuery(this).removeClass("is-expanded").addClass("expand");
+		}
 	  });
 	});
-
 	
+	
+	jQuery(document).ready(function () {
+		jQuery( "#block-menu-block-2 #main-menu-links #main-menu-links .is-active" ).parent( "#main-menu-links" ).show();	
+		
+		 jQuery( "#block-menu-block-2 #main-menu-links #main-menu-links .is-active" ).parent( "#main-menu-links" ).parent( ".is-active-trail").removeClass('is-expanded');
+	  
+		jQuery( "#block-menu-block-2 #main-menu-links #main-menu-links .is-active" ).parent( "#main-menu-links" ).parent( ".is-active-trail").addClass('expand');
+		
+		
+	});
 	
 }
         

@@ -749,6 +749,7 @@ span.date-display-single{
     padding-bottom: 0.3em;
     text-align: right;
     width: 100%;
+	font-weight:bold;
 }
 
 .node-publication .field-name-field-wiki-page-url a {
@@ -1983,6 +1984,14 @@ font-weight: normal;
 	border-bottom:0px!important
 }
 
+#block-views-exp-publications-index-page #edit-search-api-views-fulltext-wrapper{
+	width:100%;
+}
+
+#block-views-exp-publications-index-page select{
+	width:100%;
+}
+
 #edit-field-tags-tid-wrapper .bef-checkboxes{
 	background-color: #f3f3f3;
     height: 212px;
@@ -2795,13 +2804,13 @@ font-weight: normal;
 }
 
 .node-news .field-name-field-summary {
-	margin:0;
+	margin: 0.1em 0 0 0;
 	padding:0;
 }
 
 .view-news .views-row article{
 	padding-top:1em;
-	padding-bottom:1em;
+	padding-bottom:0em;
 }
 
 .node-news .field-name-field-summary p{
@@ -2843,7 +2852,7 @@ font-weight: normal;
 	max-height:200px;
 	float:left;
 	margin-right:1em;
-	margin-top:0.2em;
+	margin-top:0.5em;
 }
 
 
@@ -2959,14 +2968,20 @@ font-weight: normal;
 	float: right;
     text-align: right;
     width: 100%;
-	padding-bottom:1.5em;
-	background: url("../images/separator_home.jpg") repeat-x scroll 0% 100% rgba(0, 0, 0, 0);
+	padding-bottom:0em;
+	margin:0;
+	background: url("../images/flecha.png") no-repeat scroll right 50% transparent!important;
+	font-size: 1.1em;
 
 }
 
 .node-news ul.links.inline a{
-	border-bottom:0px!important;;
-
+	border-bottom:0px!important;
+	padding-right: 0.5em;
+	font-family: "Open Sans Condensed",sans-serif!important;
+	color: #003399!important;
+	border-bottom:0px!important;
+	font-weight:bold;
 }
 
 .a2a_img.a2a_i_a2a.a2a_img_text{
@@ -3654,7 +3669,7 @@ font-weight: normal;
     color: #003399;
     float: right;
     font-family: "Open Sans Condensed",sans-serif !important;
-    font-size: 1.1em;
+    font-size: 1.5em;
     margin: 0;
     padding-bottom: 0.3em;
     padding-left: 0.9em;
@@ -3663,11 +3678,21 @@ font-weight: normal;
     width: 100%;
 }
 
+.view-vacancies .views-row  .views-field-title  span a{
+	font-size: 1.5em;
+}
+
+.view-vacancies .views-row  .views-field-view-node span {
+	display:block;
+	text-align:right;
+	
+}
+
 .view-vacancies .views-row  span a{
 	background: url("../images/flecha.png") no-repeat scroll right center transparent;
 	color: #003399;
 	font-family: "Open Sans Condensed",sans-serif!important;
-	font-size: 1.5em;
+	font-size: 1.1em;
 	margin: 1em 0 0 0;
 	padding-bottom: 0.3em;
 	text-align: right;
@@ -3768,6 +3793,8 @@ and (max-width: 1237px) {
 	padding-bottom: 0.3em;
 	text-align: right;
 	width: 100%;
+	font-weight:bold;
+	
 }
 
 .view-highlight ul.links.inline a{
@@ -3775,6 +3802,7 @@ and (max-width: 1237px) {
 	font-family: "Open Sans Condensed",sans-serif!important;
 	color: #003399!important;
 	border-bottom:0px!important;
+	font-weight:bold;
 
 }
 
@@ -4668,6 +4696,7 @@ a.tabs-primary__tab-link, a.tabs-primary__tab-link.is-active{
     border-top-right-radius: 0;
     font-family: "Open Sans Condensed",sans-serif !important;
     padding: 0.5em 1.5em 0.2em;
+	font-weight:bold;
 }
 
 
@@ -6567,7 +6596,7 @@ div.contextual-links-wrapper{
 
 #block-views-related-content-block-6  .view-related-content .views-row{
 	padding-bottom:1em;
-	background: url("../images/separator_home.jpg") repeat-x scroll 0% 50px rgba(0, 0, 0, 0);
+	background: url("../images/separator_home.jpg") repeat-x scroll 0% 95% rgba(0, 0, 0, 0);
 }
 
 /*END EVENTS PORLET*/
@@ -6729,6 +6758,23 @@ div.contextual-links-wrapper{
 	margin-top: 1em;
 }
 
+.user-info-from-cookie.contact-form #edit-submit{
+	background: url("../images/flecha.png") no-repeat scroll 96% center #e8eef7;
+	border: 0 none;
+	color: #003399;
+	float: none;
+	font-family: "Open Sans Condensed",sans-serif;
+	font-size: 1.2em;
+	font-weight: bold;
+	margin-top: 0.5em;
+	padding-bottom: 0.2em;
+	padding-right: 2em;
+	padding-top: 0.2em;
+	text-align: left;
+	width: auto;
+	margin-top: 0em;
+}
+
 .views-exposed-widget.views-submit-button{
 	background: url("../images/separator_home.jpg") repeat-x scroll 100% 117% rgba(0, 0, 0, 0);
 	height: 4em;
@@ -6740,12 +6786,28 @@ div.contextual-links-wrapper{
 	font-size:0.8em;
 }
 
-
 #block-menu-block-2 #main-menu-links #main-menu-links .is-expanded {
-	background: url("../images/ico-plus.png")no-repeat scroll 96% 66%, url("../images/back-tit-blue.png")repeat-x scroll 0 100%;
-}
-    
+	background: url("../images/ico-plus.png")no-repeat scroll 96% 1em, url("../images/back-tit-blue.png")repeat-x scroll 0 100%;
+}   
 
 #block-menu-block-2 #main-menu-links #main-menu-links .expand{
 	background: url("../images/ico_minor.png")no-repeat scroll 96% 1em, url("../images/back-tit-blue.png")repeat-x scroll 0 100%;
+}
+
+
+#block-menu-block-2 #main-menu-links #main-menu-links .active_minor{
+	background: url("../images/ico_minor.png")no-repeat scroll 96% 1em!important;
+}
+
+.related_size{
+	padding-left: 0.5em;
+	font-size: 0.8em;
+}
+
+.contact-form  input, select, textarea{
+	width:40%;
+}
+
+a.contextual-links-trigger{
+	background: transparent url(../images/gear-select.png) no-repeat 2px 0!important;
 }
