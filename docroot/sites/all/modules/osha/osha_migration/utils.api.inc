@@ -33,6 +33,24 @@ class MigrationUtil {
     return $file;
   }
 
+  public static function getSourceFileByKey($arguments, $key) {
+    $file = NULL;
+    if (isset($arguments[$key])) {
+      $file = $arguments[$key];
+      if (!file_exists($file) || !is_readable($file)) {
+        throw new Exception(
+          t('Cannot read migration file @file', array('@file' => $file))
+        );
+      }
+    }
+    else {
+      throw new Exception(
+        t('Invalid migration setup: missing `'. $key. '` parameter (source)')
+      );
+    }
+    return $file;
+  }
+
 
   /**
    * Find terms in the given vocabulary by matching on its fields (i.e. name).
@@ -539,7 +557,8 @@ class MigrationUtil {
 
   public static function setTranslation(EntityTranslationHandlerInterface &$translation_handler, $entity, $row, $language) {
     // Init Translation to set original value.
-    if (empty($entity->translations->original)) {
+    $is_new = (empty($entity->tid) && empty($entity->nid));
+    if (!$is_new && empty($entity->translations->original)) {
       $translation_handler->initTranslations();
       $translation_handler->saveTranslations();
     }
@@ -557,7 +576,7 @@ class MigrationUtil {
 
   public static function createAliases($entity, $row, $entity_type, $id_key) {
     $languages = array_keys($entity->translations->data);
-    if (!in_array($row->language, $languages)) {
+    if (isset($row->language) && !in_array($row->language, $languages)) {
       $languages[] = $row->language;
     }
     foreach ($languages as $language) {
@@ -581,7 +600,7 @@ class MigrationUtil {
         'language' => $language,
       );
       // Check if path already exists.
-      $existing_path = path_load(array($args));
+      $existing_path = path_load($args);
       if (empty($existing_path)) {
         path_save($args);
       }
@@ -647,6 +666,52 @@ class MigrationUtil {
     date_default_timezone_set($default_tz);
 
     return $date;
+  }
+
+  /**
+   * Get iso2 code of a Country name (from standard Drupal list)
+   */
+  public static function getCountryIso2ByName($name) {
+    $countries = country_get_list();
+    foreach($countries as $iso2 => $country) {
+      if (strtoupper($country) == strtoupper($name)) {
+        return $iso2;
+      }
+    }
+    return NULL;
+  }
+
+  /**
+   * Get iso2 code for Country names that are not in the standard list.
+   */
+  public static function getNonStandardCountry($name) {
+    $countries = array(
+      'MK' => 'THE FORMER YUGOSLAV REPUBLIC OF MACEDONIA',
+      'XK' => 'KOSOVO UNDER UNSCR 1244',
+    );
+    foreach($countries as $iso2 => $country) {
+      if (strtoupper($country) == strtoupper($name)) {
+        return $iso2;
+      }
+    }
+    return NULL;
+  }
+
+  /**
+   * Get tids of the Term Countries with a specified iso2.
+   */
+  public function getCountryTermByISO2($iso2) {
+    $voc = taxonomy_vocabulary_machine_name_load('country');
+    $query = new EntityFieldQuery();
+    $query->entityCondition('entity_type', 'taxonomy_term')
+      ->propertyCondition('vid', $voc->vid)
+      ->fieldCondition('field_iso2', 'value', strtoupper($iso2));
+    $result = $query->execute();
+    if (isset($result['taxonomy_term'])) {
+      $tids = array_keys($result['taxonomy_term']);
+      return current($tids);
+    }
+    return NULL;
   }
 }
 
@@ -766,7 +831,7 @@ class OSHADynamicMigration extends DynamicMigration {
   public function createRedirectsFromAliases($entity, $row) {
     // Create redirects for additional aliases
     $languages = array_keys($entity->translations->data);
-    if (!in_array($row->language, $languages)) {
+    if (isset($row->language) && !in_array($row->language, $languages)) {
       $languages[] = $row->language;
     }
     foreach ($languages as $language) {

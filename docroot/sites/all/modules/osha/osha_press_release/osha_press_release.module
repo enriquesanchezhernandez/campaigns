@@ -253,3 +253,11 @@ function osha_press_release_theme() {
 
   return $theme;
 }
+
+/**
+ * Implements hook_osha_tmgmt_i18n_string_list().
+ */
+function osha_press_release_osha_tmgmt_i18n_string_list() {
+  module_load_include('inc', 'osha_press_release', 'osha_press_release.translations');
+  return osha_press_release_get_translatable_strings();
+}

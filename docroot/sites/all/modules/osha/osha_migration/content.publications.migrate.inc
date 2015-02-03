@@ -5,6 +5,9 @@
  */
 class OshaMigratePublications extends OSHADynamicMigration {
 
+  /*path pattern*/
+  const PATH_PATTERN = '/publications\/([\w\d\.\-_\/]+)/';
+
   public $migrateMapFiles;
 
   /**
@@ -33,6 +36,7 @@ class OshaMigratePublications extends OSHADynamicMigration {
       new PublicationMigrateItem(),
       array(
         'id' => 'Unique entity path, language independent',
+        'path' => 'URL pattern without language',
         'creation_date' => 'Node creation date',
         'modification_date' => 'Last modification date',
         'publication_date' => 'Node publication date',
@@ -83,11 +87,11 @@ class OshaMigratePublications extends OSHADynamicMigration {
     $this->addFieldMapping('field_archived', 'archived');
     $this->addFieldMapping('field_expiration_date', 'expiration_date');
 
-    $this->addFieldMapping('field_cover_image', 'cover_image');
-    $this->addFieldMapping('field_cover_image:source_dir')->defaultValue($data_export_path . DIRECTORY_SEPARATOR);
-    $this->addFieldMapping('field_cover_image:destination_file', 'cover_image');
-    $this->addFieldMapping('field_cover_image:file_replace')->defaultValue(FILE_EXISTS_REPLACE);
-    $this->addFieldMapping('field_cover_image:multilingual')->defaultValue(TRUE);
+//    $this->addFieldMapping('field_cover_image', 'cover_image');
+//    $this->addFieldMapping('field_cover_image:source_dir')->defaultValue($data_export_path . DIRECTORY_SEPARATOR);
+//    $this->addFieldMapping('field_cover_image:destination_file', 'cover_image');
+//    $this->addFieldMapping('field_cover_image:file_replace')->defaultValue(FILE_EXISTS_REPLACE);
+//    $this->addFieldMapping('field_cover_image:multilingual')->defaultValue(TRUE);
 
     $this->addFieldMapping('field_file', 'file');
     $this->addFieldMapping('field_file:source_dir')->defaultValue($data_export_path . DIRECTORY_SEPARATOR);
@@ -114,6 +118,7 @@ class OshaMigratePublications extends OSHADynamicMigration {
       'revision_uid',
       'is_new',
       'body:summary',
+      'field_cover_image',
       'field_nace_codes:create_term',
       'field_nace_codes:ignore_case',
       'field_tags:create_term',
@@ -129,6 +134,10 @@ class OshaMigratePublications extends OSHADynamicMigration {
       'field_publication_type:create_term',
       'field_publication_type:ignore_case',
       'comment',
+    ));
+
+    $this->addUnmigratedSources(array(
+      'path'
     ));
 
     $this->migrateMapFiles = db_select('migrate_map_files', 'f')
@@ -237,7 +246,7 @@ class OshaMigratePublications extends OSHADynamicMigration {
     }
 
     MigrationUtil::cleanMigratedFileField($row, 'file', 'public://publications/documents');
-    MigrationUtil::cleanMigratedFileField($row, 'cover_image', 'public://publications/cover_images');
+//    MigrationUtil::cleanMigratedFileField($row, 'cover_image', 'public://publications/cover_images');
     //MigrationUtil::cleanMigratedFileField($row, 'related_resources', 'public://publications/related_resources');
     return TRUE;
   }
@@ -360,36 +369,21 @@ class OshaMigratePublications extends OSHADynamicMigration {
    *   Source row
    */
   public function complete($entity, $row) {
-    parent::complete($entity, $row);
-
-    $languages = array_keys($entity->translations->data);
-    if (!in_array($row->language, $languages)) {
-      $languages[] = $row->language;
-    }
-
-    foreach ($languages as $language) {
-      if (isset($row->path[$language])) {
-
-        //check if source redirect exists
-        $source = $row->path[$language] . '/view';
-        $source_redirects = redirect_load_by_source($source,$language);
-
-        if ($source_redirects == FALSE) {
-          // create redirect from publication's/view path to publication's path
-          $redirect = new stdClass();
-          $redirect->source = $source;                                   // From URL
-          $redirect->source_options = array();
-          $redirect->redirect = 'node/'.$entity->nid;                    // To URL
-          $redirect->redirect_options = array();
-          $redirect->status_code = 0;                                    // Redirect Status
-          $redirect->type = 'redirect';
-          $redirect->language = $language;
-
-          // Create the redirect
-          // todo Commented this -  in conflict with CW-1072.
-//          redirect_save($redirect);
-        }
+    if (preg_match(self::PATH_PATTERN, $row->id, $matches)) {
+      $tmp_path = $row->path;
+      $languages = array_keys($entity->translations->data);
+      foreach($languages as $language){
+        $row->path[$language] = 'tools-and-publications/publications/' . $matches[1];
       }
+      MigrationUtil::createAliases($entity, $row, 'node', 'nid');
+      $row->path = $tmp_path;
+
+      // create redirect
+      MigrationUtil::createRedirects($entity, $row->id);
+      self::createRedirectsFromAliases($entity, $row);
+    }else {
+      // Call MigrationUtil::createAliases
+      parent::complete($entity, $row);
     }
   }
 }

@@ -6,6 +6,9 @@
  */
 class MigrateOshaBlog extends OSHADynamicMigration {
 
+  /*path pattern*/
+  const PATH_PATTERN = '/\/([a-z]{2})\/([\w\d-_\/]+)\/blog\/([\w\d\.\-_]+)/';
+
   /**
    * {@inheritdoc}
    */
@@ -198,6 +201,35 @@ class MigrateOshaBlog extends OSHADynamicMigration {
       if ($has_translation) {
         MigrationUtil::setTranslation($translation_handler, $entity, $row, $language);
       }
+    }
+  }
+
+  /**
+   * Sets the node aliases and redirects after the migration, nid is available.
+   *
+   * @param object $entity
+   *   Entity to be saved
+   * @param object $row
+   *   Source row
+   */
+  public function complete($entity, $row) {
+    if (preg_match(self::PATH_PATTERN, $row->path, $matches)) {
+      //create alias
+      $args = array(
+        'source' => 'node/' . $entity->nid,
+        'alias' => 'blog/' . $matches[3],
+        'language' => 'en'
+      );
+      path_save($args);
+
+      // create redirect
+      $path = substr($row->path, 4);
+      MigrationUtil::createRedirects($entity, $path);
+      parent::createRedirectsFromAliases($entity, $row);
+    }
+    else {
+      // call MigrationUtil::createAliases
+      parent::complete($entity, $row);
     }
   }
 

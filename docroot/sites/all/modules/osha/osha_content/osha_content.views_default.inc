@@ -519,7 +519,7 @@ function osha_content_views_default_views() {
   /* Display: Wiki Block */
   $handler = $view->new_display('block', 'Wiki Block', 'block_4');
   $handler->display->display_options['defaults']['title'] = FALSE;
-  $handler->display->display_options['title'] = 'OSHWiki';
+  $handler->display->display_options['title'] = 'OSHwiki';
   $handler->display->display_options['defaults']['header'] = FALSE;
   $handler->display->display_options['defaults']['relationships'] = FALSE;
   /* Relationship: Field: Tags (field_tags) */
@@ -611,7 +611,7 @@ function osha_content_views_default_views() {
   /* Display: Wiki Block Center */
   $handler = $view->new_display('block', 'Wiki Block Center', 'block_5');
   $handler->display->display_options['defaults']['title'] = FALSE;
-  $handler->display->display_options['title'] = 'Related OSHWiki articles';
+  $handler->display->display_options['title'] = 'Related OSHwiki articles';
   $handler->display->display_options['defaults']['pager'] = FALSE;
   $handler->display->display_options['pager']['type'] = 'some';
   $handler->display->display_options['pager']['options']['items_per_page'] = '2';
@@ -825,9 +825,9 @@ function osha_content_views_default_views() {
     t('Publication Block Center'),
     t('Related publications'),
     t('Wiki Block'),
-    t('OSHWiki'),
+    t('OSHwiki'),
     t('Wiki Block Center'),
-    t('Related OSHWiki articles'),
+    t('Related OSHwiki articles'),
     t('Events Block'),
     t('Events'),
   );

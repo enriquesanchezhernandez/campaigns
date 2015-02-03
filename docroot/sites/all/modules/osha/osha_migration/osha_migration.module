@@ -22,6 +22,10 @@ define('OSHA_MIGRATION_CONTENT_TYPE_SEMINAR', 'Seminar');
 define('OSHA_MIGRATION_CONTENT_TYPE_WIKI', 'Wiki');
 define('OSHA_MIGRATION_CONTENT_TYPE_LEGISLATION', 'Legislation');
 define('OSHA_MIGRATION_CONTENT_TYPE_INFOGRAPHICS', 'Infographics');
+define('OSHA_MIGRATION_CONTENT_TYPE_FOCAL_POINT', 'FocalPoint');
+define('OSHA_MIGRATION_CONTENT_TYPE_BOARD', 'BoardMembers');
+define('OSHA_MIGRATION_CONTENT_TYPE_BUREAU', 'BureauMembers');
+define('OSHA_MIGRATION_CONTENT_TYPE_FOP_PAGES', 'FocalPointPages');
 define('OSHA_MIGRATION_FILES', 'Files');
 define('OSHA_MIGRATION_IMAGES', 'Images');
 define('OSHA_MIGRATION_CONTENT_TYPE_PRESS_RELEASE', 'PressRelease');
@@ -193,6 +197,23 @@ function osha_migration_migrate_api() {
     );
   }
 
+  if (is_readable($external_data_dir . '/export-local/focal_points.xml')) {
+    $migrations[OSHA_MIGRATION_CONTENT_TYPE_FOCAL_POINT] = array(
+      'class_name' => 'MigrateOshaFocalPoints',
+      'file_name' => $external_data_dir . '/export-local/focal_points.xml',
+      'file_name_board' => $external_data_dir . '/export-local/board_members.xml',
+      'file_name_bureau' => $external_data_dir . '/export-local/bureau_members.xml',
+    );
+  }
+
+  if (is_readable($external_data_dir . '/export/focalpoints.txt')) {
+    $migrations[OSHA_MIGRATION_CONTENT_TYPE_FOP_PAGES] = array(
+      'class_name' => 'MigrateOshaFOPPages',
+      'file_name' => $external_data_dir . '/export/focalpoints.txt',
+      'file_name_links' => $external_data_dir . '/export/focalpoints_linklist.txt',
+    );
+  }
+
   $api = array(
     'api' => 2,
     'migrations' => $migrations,
@@ -340,16 +361,47 @@ class OSHAMigrateFileFieldHandler extends MigrateFileFieldHandler {
       if (substr($path, 3, 1) == '/') {
         // Assume path starts with /LL/, so remove language.
         $path = substr($path, strlen('/en/'));
-      } else {
+      }
+      else {
         // Remove only first /
         $path = substr($path, 1);
       }
+      // Existing Path.
+      $conditions = array(
+        'source' => 'file/' . $file->fid,
+        'language' => $language,
+      );
+      $existing_path = path_load($conditions);
+      // New Path.
       $args = array(
         'source' => 'file/' . $file->fid,
         'alias' => $path,
-        'language' => LANGUAGE_NONE,
+        'language' => $language,
       );
-      path_save($args);
+      if (empty($existing_path)) {
+        // Save the path.
+        path_save($args);
+      }
+      elseif (!empty($existing_path) && $existing_path['alias'] != $path) {
+        // If path is changed, move existing to redirect and save the new one.
+        path_delete($conditions);
+        while (path_load($conditions)) {
+          path_delete($conditions);
+        }
+        $source_redirects = redirect_load_by_source($existing_path['alias'], LANGUAGE_NONE);
+        if ($source_redirects == FALSE) {
+          $redirect = new stdClass();
+          $redirect->source = $existing_path['alias'];
+          $redirect->source_options = array();
+          $redirect->redirect = 'file/' . $file->fid;
+          $redirect->redirect_options = array();
+          $redirect->status_code = 0;
+          $redirect->type = 'redirect';
+          $redirect->language = LANGUAGE_NONE;
+          redirect_save($redirect);
+        }
+        path_save($args);
+      }
     }
   }
 }

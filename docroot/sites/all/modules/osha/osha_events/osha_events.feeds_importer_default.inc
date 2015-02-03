@@ -44,42 +44,42 @@ function osha_events_feeds_importer_default() {
         'mappings' => array(
           0 => array(
             'source' => 'Title of the event',
-            'target' => 'title_field',
-            'unique' => FALSE,
-          ),
-          1 => array(
-            'source' => 'Title of the event',
             'target' => 'title',
             'unique' => FALSE,
           ),
-          2 => array(
+          1 => array(
             'source' => 'Organization',
             'target' => 'field_organization',
             'unique' => FALSE,
           ),
-          3 => array(
+          2 => array(
             'source' => 'Country code',
             'target' => 'field_country_code',
             'unique' => FALSE,
           ),
-          4 => array(
+          3 => array(
             'source' => 'City',
             'target' => 'field_city',
             'unique' => FALSE,
           ),
-          5 => array(
+          4 => array(
             'source' => 'Start date',
             'target' => 'field_start_date:start',
             'unique' => FALSE,
           ),
-          6 => array(
+          5 => array(
             'source' => 'End date',
             'target' => 'field_start_date:end',
             'unique' => FALSE,
           ),
-          7 => array(
+          6 => array(
             'source' => 'Theme',
             'target' => 'field_tags',
+            'unique' => FALSE,
+          ),
+          7 => array(
+            'source' => 'Title of website',
+            'target' => 'field_website_of_event:title',
             'unique' => FALSE,
           ),
           8 => array(
@@ -129,6 +129,16 @@ function osha_events_feeds_importer_default() {
             'unique' => FALSE,
           ),
           17 => array(
+            'source' => 'Number of attendees',
+            'target' => 'field_number_of_attendees',
+            'unique' => FALSE,
+          ),
+          18 => array(
+            'source' => 'Description',
+            'target' => 'body',
+            'unique' => FALSE,
+          ),
+          19 => array(
             'source' => 'Language',
             'target' => 'language',
             'unique' => FALSE,

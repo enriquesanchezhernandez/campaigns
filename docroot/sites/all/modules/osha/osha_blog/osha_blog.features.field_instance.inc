@@ -251,7 +251,7 @@ function osha_blog_field_default_field_instances() {
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
-        'weight' => 2,
+        'weight' => 3,
       ),
       'highlights_item' => array(
         'label' => 'above',
@@ -734,7 +734,7 @@ function osha_blog_field_default_field_instances() {
           'osha_date_theme' => '',
         ),
         'type' => 'date_default',
-        'weight' => 3,
+        'weight' => 1,
       ),
       'highlights_item' => array(
         'label' => 'above',
@@ -1134,7 +1134,7 @@ function osha_blog_field_default_field_instances() {
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
-        'weight' => 1,
+        'weight' => 2,
       ),
       'highlights_item' => array(
         'label' => 'hidden',

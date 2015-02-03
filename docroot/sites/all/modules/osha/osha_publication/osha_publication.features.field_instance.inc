@@ -47,11 +47,19 @@ function osha_publication_field_default_field_instances() {
       ),
       'osha_slideshow' => array(
         'label' => 'hidden',
-        'module' => 'text',
+        'module' => 'smart_trim',
         'settings' => array(
-          'trim_length' => 250,
+          'more_link' => 0,
+          'more_text' => 'Read more',
+          'summary_handler' => 'trim',
+          'trim_length' => 150,
+          'trim_options' => array(
+            'text' => 'text',
+          ),
+          'trim_suffix' => '...',
+          'trim_type' => 'chars',
         ),
-        'type' => 'text_trimmed',
+        'type' => 'smart_trim_format',
         'weight' => 3,
       ),
       'osha_wiki' => array(
@@ -990,7 +998,7 @@ function osha_publication_field_default_field_instances() {
           'osha_date_theme' => '',
         ),
         'type' => 'date_default',
-        'weight' => 1,
+        'weight' => 0,
       ),
       'highlights_item' => array(
         'label' => 'above',
@@ -1319,7 +1327,7 @@ function osha_publication_field_default_field_instances() {
     ),
     'entity_type' => 'node',
     'field_name' => 'field_related_oshwiki_articles',
-    'label' => 'OSHWiki featured articles',
+    'label' => 'OSHwiki featured articles',
     'required' => 0,
     'settings' => array(
       'entity_translation_sync' => FALSE,
@@ -1633,7 +1641,7 @@ function osha_publication_field_default_field_instances() {
     ),
     'entity_type' => 'node',
     'field_name' => 'field_wiki_categories',
-    'label' => 'OSHWiki categories',
+    'label' => 'OSHwiki categories',
     'required' => 0,
     'settings' => array(
       'entity_translation_sync' => FALSE,
@@ -1666,7 +1674,7 @@ function osha_publication_field_default_field_instances() {
           'title_style' => 'h1',
         ),
         'type' => 'title_linked',
-        'weight' => 0,
+        'weight' => 1,
       ),
       'highlights_item' => array(
         'label' => 'hidden',
@@ -1779,8 +1787,8 @@ function osha_publication_field_default_field_instances() {
   t('Expiration Date');
   t('File');
   t('Nace');
-  t('OSHWiki categories');
-  t('OSHWiki featured articles');
+  t('OSHwiki categories');
+  t('OSHwiki featured articles');
   t('Page count');
   t('Publication Date');
   t('Publication Type');

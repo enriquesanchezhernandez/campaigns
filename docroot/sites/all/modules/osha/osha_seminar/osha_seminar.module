@@ -36,7 +36,7 @@ function osha_seminar_workbench_access_node_element_alter(&$element, $form_state
     // CW-865 default value for Section
     $element['#required'] = FALSE;
     foreach ($element['#options'] as $key=>$option) {
-      if (preg_match('/^[-\\s]*Our seminars/', $option)) {
+      if (preg_match('/^[-\\s]*Seminar reports/', $option)) {
         $element['#default_value'] = $key;
         break;
       }
@@ -101,9 +101,17 @@ function theme_osha_seminar_file_related_resources_format($element) {
   $output .= '<span>'.$name.'</span>';
   $size = @filesize($file->uri);
   if ($size) {
-    $output .= '<span>' . format_size($size) . '</span>';
+    $output .= '<span class="related_size">(' . format_size($size) . ')</span>';
   }
   $output .= '</a>';
 
   return $output;
+}
+
+/**
+ * Implements hook_osha_tmgmt_i18n_string_list().
+ */
+function osha_seminar_osha_tmgmt_i18n_string_list() {
+  module_load_include('inc', 'osha_seminar', 'osha_seminar.translations');
+  return osha_seminar_get_translatable_strings();
 }

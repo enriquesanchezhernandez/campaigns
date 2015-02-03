@@ -101,15 +101,10 @@ function osha_job_vacancies_workbench_access_node_element_alter(&$element, $form
   }
 }
 
-
 /**
- * Implements hook_form_alter().
+ * Implements hook_osha_tmgmt_i18n_string_list().
  */
-function osha_job_vacancies_form_job_vacancies_node_form_alter(&$form) {
-  if (empty($form['nid']['#value']) ||
-    (isset($form['body']['#language']) &&
-      empty($form['body'][$form['body']['#language']][0]['#default_value']))) {
-    // CW-859 disable body for new vacancies and for existing nodes with empty body
-    $form['body']['#access'] = FALSE;
-  }
+function osha_job_vacancies_osha_tmgmt_i18n_string_list() {
+  module_load_include('inc', 'osha_job_vacancies', 'osha_job_vacancies.translations');
+  return osha_job_vacancies_get_translatable_strings();
 }

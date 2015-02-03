@@ -86,7 +86,7 @@ class MigrateOshaBlogComments extends OSHADynamicMigration {
 
     // Get nid based on node alias
     $alias = substr($row->path, 4);
-    $result = db_query("SELECT DISTINCT {source}  FROM url_alias WHERE alias = :alias AND source LIKE 'node/%'",
+    $result = db_query("SELECT DISTINCT {redirect}  FROM redirect WHERE source = :alias AND redirect LIKE 'node/%'",
       array(':alias' => $alias));
     $nid = $result->fetchField();
 

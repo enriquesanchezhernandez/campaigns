@@ -42,7 +42,6 @@ function osha_news_views_default_views() {
   $handler->display->display_options['style_plugin'] = 'default';
   $handler->display->display_options['row_plugin'] = 'node';
   $handler->display->display_options['row_options']['relationship'] = 'nid';
-  $handler->display->display_options['row_options']['links'] = FALSE;
   /* Relationship: Content revision: Content */
   $handler->display->display_options['relationships']['nid']['id'] = 'nid';
   $handler->display->display_options['relationships']['nid']['table'] = 'node_revision';

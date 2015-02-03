@@ -7,29 +7,34 @@ body {
 
 h1#page-title{
 	background: url("../images/separator_home.jpg") repeat-x scroll 100% 110% rgba(0, 0, 0, 0);
-	padding-top:0;
+	padding-top:0.1em;
 	padding-bottom:0.3em;
+	font-weight:bold;
 }
 
 
 h1{
-	font-family: 'Oswald';
+	font-family: 'Open Sans Condensed';
 	font-style: normal;
 	font-weight: 300;
 	font-size: 2.15em;
 	color: #003399;
 	letter-spacing: -0.75px;
 	margin-bottom: 4px;
-	padding:0;
-	margin:0;
+	padding: 0;
+	margin: 0;
+	padding-bottom: 0.2em;
+	line-height: 1.2em;
+	padding-top: 0.1em;
+	font-weight:bold;
 }
 
 h2{
 	background: none repeat scroll 0 0 #e8eef7;
     color: #003399;
-    font-family: "Oswald";
+    font-family: "Open Sans Condensed";
     font-size: 1.35em;
-    font-weight: 400;
+    font-weight: bold;
     padding-bottom: 2px;
     padding-left: 10px;
 }
@@ -100,11 +105,11 @@ header{
 .sidebars_first  .region-sidebar-first #block-menu-block-2 .menu-block-2 ul li {
 	list-style-image:none;
 	list-style:none;
-	padding-top:0.4em;
+	padding-top:0.5em;
 }
 
 .sidebars_first .region-sidebar-first #block-menu-block-2 .menu-block-2 ul li a{
-	font-family: 'Oswald';
+	font-family: 'Open Sans Condensed';
 	font-weight: 300;
 	font-size: 1.6em;
 	color: #003399;
@@ -192,16 +197,16 @@ header{
 }
 
 .three_column{
-	width: 47.5%!important;
+	width: 47%!important;
 }
 
 
 .sidebars_second{
-	border-top: 0px solid #003399;
-	margin-top: 0em;
-	margin-left: 3em;
-	width: 22%;
-	float:left;
+	border-top: 0 solid #003399;
+    float: left;
+    margin-left: 2.2em;
+    margin-top: 0;
+    width: 23.5%;
 }
 
 .messages--status{
@@ -220,7 +225,11 @@ header{
 	padding-left:0px;
 	height:39px;
 	margin-right:1px;
-
+}
+#block-menu-block-1 .menu-block-1 .menu:first-child {
+	align-items: stretch;
+	display: flex;
+	height:auto;
 }
 
 #block-menu-block-1 .menu li span {
@@ -235,9 +244,9 @@ color: #003399;
 
 #block-menu-block-1 .menu li .menu li  a{
 	margin: 0 0 0 42px !important;
-	font-family: 'Oswald', sans-serif;
+	font-family: 'Open Sans Condensed', sans-serif;
 	color: #003399;
-	font-weight: 400;
+	font-weight: bold;
 	width: 181px;
 	text-align: left;
 	font-size: 1.2em !important;
@@ -283,8 +292,11 @@ color: #003399;
 	padding: .8em 0;
 	width: 13.6%;
 }
+#block-menu-block-1 .menu li {	
+	/*align-self: flex-end;*/
+}
 
-#block-menu-block-1 .menu li:hover  ul{
+#block-menu-block-1 .menu li:hover  ul {
 	background-color: #ffffff;
     border-bottom: 5px solid #002f9d;
     border-top: 5px solid #a6b8db;
@@ -294,6 +306,10 @@ color: #003399;
     position: absolute;
     width: 20.6em;
 	z-index: 9999999999;
+	padding-bottom:1em;
+}
+#block-menu-block-1 .menu li:hover ul {
+	/*position: fixed;*/
 }
 
 #block-menu-block-1 .menu li .menu  li .menu {
@@ -301,7 +317,8 @@ color: #003399;
 	border-bottom: 0px solid #002f9d;
 	background-color:#FFFFFF;
 	position:relative;
-	margin-bottom:-1em:
+	margin-bottom:-1em;
+	margin-top:0px!important;
 }
 
 #block-menu-block-1 .menu li ul  {
@@ -352,7 +369,7 @@ color: #003399;
 
 .field.field-name-field-related-publications.field-type-entityreference.field-label-above .field-label{
 	width: 99%;
-	font-family: 'Oswald', sans-serif;
+	font-family: 'Open Sans Condensed', sans-serif;
 	color: #003399;
 	font-size: 1.4em;
 	font-weight: lighter;
@@ -361,7 +378,7 @@ color: #003399;
 	padding-left: 0.5em;
 	padding-top: 0.2em;
 	padding-bottom: 0.2em;
-	font-weight: 400;
+	font-weight: bold;
 }
 
 #header, #content, #navigation, .region-sidebar-first, .region-sidebar-second, #footer{
@@ -430,7 +447,7 @@ a{
 #lang-dropdown-select-language_content {
 	-moz-appearance: button;
 	-webkit-appearance: button;
-    background: url("../images/icoSelect.png") no-repeat scroll 125px center #dc2f82;
+    background: url("../images/icoSelect.png") no-repeat scroll 125px center #c72272;
     border: 0 none;
     color: #fff;
     display: block;
@@ -534,10 +551,11 @@ padding-left: 1em;
 	font-weight:lighter;
 	font-size : 0.875em;
 	color : #003399;
-	margin: 1em 0 1em 3.2em;
+	margin: 1em 0 0.5em 3.2em;
 	background-color:#FFFFFF;
 	border:0px;
 	clear:both;
+	padding-right:2em;
 
 }
 
@@ -552,7 +570,7 @@ padding-left: 1em;
 }
 
 footer {
-	background:#b2b5b6;
+	background:#575958;
 	color:#FFF;
 	margin:0 auto;
 	width:100%;
@@ -609,19 +627,19 @@ footer {
 }
 
 #socialNetworksFooter  a{
-padding: 0em 0em 0em 1.8em;;
+	padding: 0em 0em 0em 1.8em;;
 }
 
 #socialNetworksFooter {
- float:right;
- width:30%;
- text-align:right;
- margin: 5px 1.5em 0 0;
+	float:right;
+	width:30%;
+	text-align:right;
+	margin: 5px 1.5em 0 0;
 }
 
 
 #socialNetworksFooter img {
- vertical-align:middle;
+	vertical-align:middle;
 }
 
 #footer div.block {
@@ -649,22 +667,25 @@ padding: 0em 0em 0em 1.8em;;
 /*PUBLICATIONS*/
 
 span.date-display-single{
-	font-size:0.8em;
 	font-weight:bold;
 }
 
 .node-publication h1{
 	color: #003399;
-    font-family: Oswald!important;
-    font-size: 1.5em !important;
-    font-weight: 400;
-    padding-top: 0.5em;
+    font-family: Open Sans Condensed!important;
+    font-size: 1.6em !important;
+    font-weight: bold;
+    padding-bottom: 0.5em;
 }
 
 .node-publication h1 a{
 	border:0px!important;
-	font-family: Oswald!important;
+	font-family: Open Sans Condensed!important;
 	letter-spacing: 0px;
+}
+
+.node-publication .field-name-field-publication-date{
+	font-size:0.8em;
 }
 
 .node-publication.node-teaser {
@@ -675,8 +696,9 @@ span.date-display-single{
 .node-publication.node-teaser .field-name-title-field a{
     border-bottom: 0 none !important;
     color: #003399 !important;
-    font-family: "Oswald",sans-serif !important;
+    font-family: "Open Sans Condensed",sans-serif !important;
     font-size: 1.5em;
+	font-weight:bold;
 }
 
 .node-publication.node-teaser .field-name-field-file a{
@@ -707,7 +729,21 @@ span.date-display-single{
 	background: url("../images/flecha.png") no-repeat scroll right center transparent;
     color: #003399;
     float: right;
-    font-family: "Oswald",sans-serif;
+    font-family: "Open Sans Condensed",sans-serif;
+    font-size: 1.1em;
+    margin: 0;
+    padding-bottom: 0.3em;
+    text-align: right;
+    width: 100%;
+	font-weight:bold;
+}
+
+
+.node.node-article.node-teaser .links {
+	background: url("../images/flecha.png") no-repeat scroll right center transparent;
+    color: #003399;
+    float: right;
+    font-family: "Open Sans Condensed",sans-serif;
     font-size: 1.1em;
     margin: 0;
     padding-bottom: 0.3em;
@@ -719,7 +755,7 @@ span.date-display-single{
 	background: url("../images/flecha.png") no-repeat scroll right 24% transparent;
     color: #003399;
     float: right;
-    font-family: "Oswald",sans-serif!important;
+    font-family: "Open Sans Condensed",sans-serif!important;
     font-size: 1.1em;
     margin: 0;
     padding-bottom: 1.3em;
@@ -730,7 +766,13 @@ span.date-display-single{
 }
 .node-publication.node-teaser .links  a{
 	padding-right:0.5em;
-	font-family: "Oswald",sans-serif!important;
+	font-family: "Open Sans Condensed",sans-serif!important;
+	border-bottom:0px!important
+}
+
+.node.node-article.node-teaser  .links  a{
+	padding-right:0.5em;
+	font-family: "Open Sans Condensed",sans-serif!important;
 	border-bottom:0px!important
 }
 
@@ -760,7 +802,7 @@ span.date-display-single{
 
 .pager .pager-current{
 	font-size:0.8em;
-	color:#9eb9dd;
+	color:#ca2273;
 }
 
 .pager li a{
@@ -773,7 +815,7 @@ span.date-display-single{
 /*PUBLICATIONS FULL*/
 .node-publication.view-mode-full .field-name-field-publication-type a{
 	color: #003399;
-    font-family: "Oswald";
+    font-family: "Open Sans Condensed";
     font-size: 1.3em;
 	padding-bottom:1em;
 	border-bottom:0px!important
@@ -824,6 +866,10 @@ span.date-display-single{
 
 }
 
+.view-publications-index .date-display-single{
+	 /*font-size: 0.8em;*/
+}
+
 .view-publications  .view-content .views-row .views-field-title-field {
 	padding-top:0.5em;
 	padding-bottom:0.5em;
@@ -833,8 +879,9 @@ span.date-display-single{
 	color: #000000!important;
     font-size: 1.4em;
     font-weight: lighter;
-	font-family: "Oswald",sans-serif!important;
-	border-bottom:0px!important
+	font-family: "Open Sans Condensed",sans-serif!important;
+	border-bottom:0px!important;
+	font-weight:bold;
 }
 
 
@@ -857,7 +904,7 @@ span.date-display-single{
 	background: url("../images/flecha.png") no-repeat scroll 85% 29% transparent;
 	color: #003399;
 	float: right;
-	font-family: "Oswald",sans-serif!important;
+	font-family: "Open Sans Condensed",sans-serif!important;
 	font-size: 1.2em;
 	padding-bottom: 1em;
 	padding-right: 2.5em;
@@ -869,31 +916,21 @@ span.date-display-single{
 	font-family:arial!important;
     font-weight: bold;
 	font-size:0.8em!important;
-	border-bottom:0px!important
-}
-
-#block-views-publications-slidehow .node-publication  a{
-	font-family:arial!important;
-    font-weight: bold;
-	font-size:0.8em!important;
-	border-bottom:0px!important
+	border-bottom:0px!important;
+	padding-left:0.5em;
 }
 
 
 #block-views-publications-slidehow .node-publication  a{
-	font-family:arial!important;
-    font-weight: bold;
-	font-size:0.8em!important;
-	border-bottom:0px!important
+	color: #003399;
+	font-family: 'Open Sans Condensed',sans-serif!important;
+	font-size: 1.5em;
+	font-weight: bold;
+	margin: 0;
+	padding: 0 0 0.3em;
+	border:0px!important;
 }
 
-
-#block-views-publications-slidehow .node-publication  a{
-	font-family:arial!important;
-    font-weight: bold;
-	font-size:0.8em!important;
-	border-bottom:0px!important
-}
 
 #block-views-publications-slidehow .node-publication .img_no_opac{
 	opacity: 1!important;
@@ -912,7 +949,7 @@ span.date-display-single{
 
 .node-publication.view-mode-full .field-name-field-publication-type a{
 	color: #003399;
-    font-family: "Oswald";
+    font-family: "Open Sans Condensed";
     font-size: 1.3em;
 	padding-bottom:1em;
 	border-bottom:0px!important
@@ -926,7 +963,6 @@ span.date-display-single{
 .node-publication.view-mode-full  .field-name-body p{
 	margin-top:0;
 	font-family:Arial;
-	font-size:0.8em;
 	color:#000000;
 	line-height: 1.5em;
 
@@ -935,7 +971,7 @@ span.date-display-single{
 
 .field-name-field-related-publications h3{
 	color: #000;
-    font-family: Oswald;
+    font-family: Open Sans Condensed;
     font-size: 1.4em;
     font-weight: lighter;
 	height:2em;
@@ -948,17 +984,21 @@ span.date-display-single{
 
 .node-publication.view-mode-full .field-name-field-file{
 	background-color: #e9edf6;
-    color: #7c7d81;
-    font-weight: bold;
-    height: auto;
-    margin-left: 16.3em;
-    padding: 0.5em;
-    width: 68.5%;
+	color: #7c7d81;
+	font-weight: bold;
+	height: auto;
+	margin-left: 11.8em;
+	padding: 0.5em;
+	width: 76.9%;
 }
 
 .node-publication.view-mode-full #related-publications{
 	clear:both;
 	padding-top:0.5em;
+}
+
+.node-publication.view-mode-full #related-publications .field-name-field-publication-date{
+	font-size:0.8em;
 }
 
 .node-publication.view-mode-full #publication_related_res img{
@@ -1022,13 +1062,13 @@ span.date-display-single{
 }
 
 .node-wiki-page {
-  background: url("../images/separator_home.jpg") repeat-x;
-  background-position: bottom,left;
+	background: url("../images/separator_home.jpg") repeat-x;
+	background-position: bottom,left;
 }
 
 .node-wiki-page .field-name-title-field{
     color: #003399;
-    font-family: Oswald;
+    font-family: Open Sans Condensed;
     font-size: 1.5em;
     height: auto;
     margin: 0 0 0 0.5em;
@@ -1039,9 +1079,9 @@ span.date-display-single{
 
 #related-publications .related_publications_head{ /*Twin publication use this*/
 	color: #003399;
-    font-family: Oswald;
+    font-family: Open Sans Condensed;
     font-size: 1.35em;
-    font-weight: 400;
+    font-weight: bold;
 	background-color: #e9edf6;
 	padding-top:0.2em;
 	padding-bottom:0.2em;
@@ -1093,7 +1133,7 @@ span.date-display-single{
 
 .node-publication .group-summary-resources  h3 {
 	color: #000;
-	font-family: Oswald;
+	font-family: Open Sans Condensed;
 	font-size: 1.4em;
 	font-weight: lighter;
 	height: 2em;
@@ -1107,6 +1147,12 @@ span.date-display-single{
 	width: 78% !important;
 	margin-top: 1em;
 }
+
+
+.node-publication .group-summary-resources .field-name-field-file .field-items .field-item {
+	width: 100%;
+}
+
 
 .node-publication  .field-name-field-related-publications article {
 	background-color:#E9EDF6;
@@ -1146,6 +1192,7 @@ span.date-display-single{
 	border-bottom: 0px!important;
 	float: left;
 	padding:0.5em;
+	margin-top:0.4em;
 }
 
 /*END PUBLICATIONS twin_publications*/
@@ -1162,7 +1209,7 @@ span.date-display-single{
 
 .field-name-field-summary{
 	padding-top:1em;
-	padding-bottom:1em;
+	padding-bottom:0em;
 	line-height: 1.7em;
 }
 
@@ -1187,10 +1234,10 @@ span.date-display-single{
 	text-decoration: none;
 	color: #001791!important;
 	padding-right: 1.3em!important;
-	font-family: 'Oswald', sans-serif;
+	font-family: 'Open Sans Condensed', sans-serif;
 	font-size: 1.35em;
 	font-style: normal;
-	font-weight: 400;
+	font-weight: bold;
 	color: #001791;
 	letter-spacing: -0.5px;
 	margin-bottom: 0.2em;
@@ -1212,7 +1259,7 @@ span.date-display-single{
 .introduction-title  a{
 	position:absolute;
 	bottom:5px;
-	font-family: 'Oswald', sans-serif!important;
+	font-family: 'Open Sans Condensed', sans-serif!important;
 	text-decoration: none;
 	color: #003399;
 	border:0px!important;
@@ -1221,7 +1268,7 @@ span.date-display-single{
 .introduction-image  a{
 	/*position:absolute;*/
 	bottom:5px;
-	font-family: 'Oswald', sans-serif!important;
+	font-family: 'Open Sans Condensed', sans-serif!important;
 	text-decoration: none;
 	color: #003399;
 	border:0px!important;
@@ -1238,14 +1285,18 @@ span.date-display-single{
 .ui-accordion .ui-accordion-header{
 	width:92%;
 	padding-right:1em;
-	padding-left:1em;
+	padding-left:0.5em;
+	padding-top:0.2em;
+	padding-bottom:0.2em;
 }
+
+
 
 .ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default{
 	height:auto;
-	font-family: 'Oswald';
+	font-family: 'Open Sans Condensed';
 	font-size: 1.35em;
-	font-weight: 400;
+	font-weight: bold;
 	color: #003399;
 	background:#e8eef7;
 	padding-left: 10px;
@@ -1256,8 +1307,8 @@ span.date-display-single{
 
 .ui-accordion-header a{
 	height:auto;
-	font-family: 'Oswald'!important;
-	font-weight: 400;
+	font-family: 'Open Sans Condensed'!important;
+	font-weight: bold;
 	color: #003399;
 	background:#e8eef7;
 	padding-left: 0px;
@@ -1269,6 +1320,14 @@ span.date-display-single{
 
 #block-quicktabs-calls-quicktab .ui-accordion-content{
 	font-size:1em!important;
+}
+
+#block-quicktabs-calls-quicktab .date-display-single{
+	font-size:0.8em;
+}
+
+#block-quicktabs-careers-accordion .date-display-single{
+	font-size:0.9em;
 }
 
 .ui-state-default .ui-icon{
@@ -1297,9 +1356,9 @@ span.date-display-single{
 
 .ui-state-active, .ui-widget-content .ui-state-active, .ui-widget-header .ui-state-active{
 	height:auto;
-	font-family: 'Oswald';
+	font-family: 'Open Sans Condensed';
 	font-size: 1.35em;
-	font-weight: 400;
+	font-weight: bold;
 	color: #003399;
 	background:#e8eef7;
 	padding-left: 10px;
@@ -1358,7 +1417,7 @@ padding-top: 1em;
 	position:absolute;
 	color: White;
 	font-size: 1.250em;
-	font-family: 'Oswald', sans-serif;
+	font-family: 'Open Sans Condensed', sans-serif;
 	margin: 1em 0 1em 1em;
 }
 
@@ -1380,7 +1439,7 @@ font-family : Arial;
 
 .titWikiZone
 {
-font-family : Oswald;
+font-family : Open Sans Condensed;
   font-size : 1.5em;
   color : #003399;
 
@@ -1405,7 +1464,7 @@ margin: 0.2em 0px 0.2em 0.3em;
 {
 
  float: right;
-  font-family : Oswald;
+  font-family : Open Sans Condensed;
   font-size : 1.188em;
   color : #003399;
 
@@ -1463,20 +1522,20 @@ margin: 0.2em 0px 0.2em 0.3em;
 
 .OSHWiki .p3, .OSHWikiWhite .p3
 {
-	font-family : Oswald;
+	font-family : Open Sans Condensed;
 	font-size : 1.188em;
 	color : #003399!important;
-	font-weight:400;
+	font-weight: bold;
 	text-align: right;
 	width: 95%
 }
 
 .OSHWiki .p3 a
 {
-	font-family : Oswald;
+	font-family : Open Sans Condensed;
 	font-size : 1.188em;
 	color : #003399!important;
-	font-weight:400;
+	font-weight: bold;
 	margin-top: 0.3em;
 	text-align: right;
 	width: 95%;
@@ -1515,7 +1574,7 @@ margin-bottom: 1.5em;
 
 #OSHWikiDivTit
 {
-	font-family : Oswald;
+	font-family : Open Sans Condensed;
 	font-size: 1.4em;
 	color : #000;
 	font-weight:lighter;
@@ -1525,7 +1584,7 @@ margin-bottom: 1.5em;
 
 #OSHWikiDivTitwhite
 {
- font-family : Oswald;
+ font-family : Open Sans Condensed;
  font-size: 1.4em;
  color : #000;
 
@@ -1557,7 +1616,7 @@ font-weight: bold;
 .newsRelated
 {
 float: left;
-font-family : Oswald;
+font-family : Open Sans Condensed;
 font-size : 0.875em;
 color : #000;
 font-weight: normal;
@@ -1615,21 +1674,25 @@ font-weight: normal;
 		background-color:#FFFFFF;
 		border-top: 5px solid #003399;
 		padding-bottom:1.5em;
+		padding-top: 0.5em;
 	}
 
 	#block-views-related-content-block-2 h2{
 		background: url("../images/publications_logo.png") no-repeat scroll 5% 30% transparent;
 		padding-left:2em;
 		color:#000000;
-		font-family: 'Oswald', sans-serif;
+		font-family: 'Open Sans Condensed', sans-serif;
 		font-size: 1.4em;
 		font-weight: lighter;
+		padding-left:2.4em;
 
 	}
 
 	#block-views-related-content-block-2 .views-field-title-field{
 		padding-left:1em;
-		padding-bottom:0.5em;
+		padding-bottom:1.5em;
+		padding-top:0.5em;
+		line-height:1.5em;
 	}
 
 	#block-views-related-content-block-2 a{
@@ -1642,13 +1705,18 @@ font-weight: normal;
 		border-bottom:0px!important
 	}
 
+	
+	
+	#block-views-related-content-block-2 .view-related-content .views-row {
+    background: url("../images/separator_home.jpg") repeat-x scroll 0 100% rgba(0, 0, 0, 0);
+}
 
 
 	#block-views-related-content-block-2 .more-link a{
 		background: url("../images/flecha.png") no-repeat scroll 100% 28% transparent; /*porlet publications*/
 		color: #003399;
 		float: right;
-		font-family: "Oswald",sans-serif;
+		font-family: "Open Sans Condensed",sans-serif;
 		font-size: 1em;
 		padding-right:2em;
 		border-bottom:0px!important
@@ -1662,13 +1730,13 @@ font-weight: normal;
 		background: url("../images/related_logo.png") no-repeat scroll 3% 106% transparent;
 		border-top: 5px solid #003399;
 		color: #000000;
-		font-family: "Oswald",sans-serif;
+		font-family: "Open Sans Condensed",sans-serif;
 		font-size: 1.4em;
 		font-weight: lighter;
-		padding-left: 2em;
+		padding-left: 2.4em;
 		padding-top: 0.5em;
 		padding-bottom:0px;
-		margin-bottom:1em;
+		margin-bottom:0em;
 		margin-top:0px;
 	}
 
@@ -1682,22 +1750,28 @@ font-weight: normal;
 	#block-views-related-content-block-1 h2{
 		background: url("../images/news_logo.png") no-repeat scroll 100% 30% transparent;
 		color: #000000;
-		font-family: "Oswald",sans-serif;
+		font-family: "Open Sans Condensed",sans-serif;
 		font-size: 1.2em;
 		font-weight: lighter;
 		margin-bottom: 0;
 		padding-bottom: 0;
 		padding-left: 0.5em;
+		font-weight: bold;
 	}
 
 	#block-views-related-content-block-1 .view-related-content{
 		background: url("../images/separator_home.jpg") repeat-x scroll 0% -7px rgba(0, 0, 0, 0);
 		height:1%;
 		overflow:hidden;
+		padding-left:0.8em;
 	}
 
+	
+	#block-views-related-content-block-1 .view-related-content .views-row{
+		background: url("../images/separator_home.jpg") repeat-x scroll 0% -7px rgba(0, 0, 0, 0);
+	}
+	
 	#block-views-related-content-block-1 .views-field-title-field{
-		padding-left:1em;
 		padding-bottom:0.5em;
 	}
 
@@ -1712,9 +1786,9 @@ font-weight: normal;
 	}
 	
 	#block-views-related-content-block-1 .date-display-single{
-		padding-left: 1em;
 		display: block;
 		padding-top: 1em;
+		font-size:0.8em;
 	}
 
 /*END SIDEBAR SECOND*/
@@ -1723,27 +1797,28 @@ font-weight: normal;
 
 #related-wiki{
 	background-color:#e8ecf5;
-	margin-top:1em;
+	margin-top:0.5em;
 	margin-bottom:1em;
 }
 
 #related-wiki .related_wiki_head{
-	width:100%;
-	height:80px;
-	background: url("../images/related_wiki_head_big.jpg") no-repeat scroll 0% 100% #003399;
+	width: 100%;
+	height: 56px;
+	background: url("../images/related_wiki_head_big.jpg") no-repeat scroll 0% 53% #003399;
 }
 
 #related-wiki div article{
 	padding-left:0em;
+	padding-bottom: 0.5em;
 }
 
 #related-wiki .related_wiki_head span{
 	color: #FFFFFF;
-	padding-top: 28px;
+	padding-top: 17px;
 	padding-left: 1.5em;
-	font-family: "Oswald",sans-serif;
+	font-family: "Open Sans Condensed",sans-serif;
 	font-size: 2em;
-	margin-top: 1em;
+	margin-top: 0em;
 	display: block;
 }
 
@@ -1762,14 +1837,15 @@ font-weight: normal;
 }
 
 #related-wiki .field-name-field-wiki-page-url a{
-	background: url("../images/flecha.png") no-repeat scroll 97% 30% transparent;
+	background: url("../images/flecha.png") no-repeat scroll 90% 25% transparent;
 	color: #003399;
 	float: right;
-	font-family: "Oswald",sans-serif;
+	font-family: "Open Sans Condensed",sans-serif;
 	font-size: 1.3em!important;
     padding-right: 3em;
 	padding-bottom:1em;
-	border-bottom:0px!important
+	border-bottom:0px!important;
+	font-weight:bold;
 }
 
 .field-name-body #votebox{
@@ -1794,8 +1870,16 @@ font-weight: normal;
 }
 
 #edit-search-api-views-fulltext-wrapper{
-	background: url("../images/separator_home.jpg") repeat-x scroll 0% 100% rgba(0, 0, 0, 0);
-	padding-top:1em;
+	background: none;
+	padding-top:0em;
+}
+
+#block-views-exp-publications-index-page .views-exposed-form .views-exposed-widget{
+	padding:0px!important;
+}
+
+#block-views-exp-publications-index-page input{
+	margin-top:0em;
 }
 
 .views-widget-sort-by{
@@ -1827,7 +1911,7 @@ font-weight: normal;
 }
 
 #edit-search-api-views-fulltext-wrapper input{
-	margin-bottom:2em;
+	margin-bottom:0.5em;
 
 }
 
@@ -1841,13 +1925,14 @@ font-weight: normal;
 
 
 #edit-search-api-language-wrapper{
-	background: url("../images/separator_home.jpg") repeat-x scroll 0% 100% rgba(0, 0, 0, 0);
+	background: none;
 	padding-top:1em;
 	width:100%;
 }
 
 #edit-search-api-language-wrapper select{
-	margin-bottom:2em;
+	margin-bottom:0em;
+	width: 10.2em;
 }
 .block-facetapi h2{
 	color: #003399!important;
@@ -1858,8 +1943,9 @@ font-weight: normal;
 }
 
 #block-views-exp-publications-index-page{
-	border-top:5px solid #aab7d9;
-	margin-top:3em;
+	border-top:0px solid #aab7d9;
+	margin-top:0em;
+	margin-bottom:0em;
 }
 
 
@@ -1867,7 +1953,7 @@ font-weight: normal;
 	display: table-cell;
 	color: #000;
 	font-size: 1.3em;
-	font-family: "Oswald",sans-serif;
+	font-family: "Open Sans Condensed",sans-serif;
 	font-weight: lighter;
 	background: none repeat scroll 0 0 transparent;
 	padding-left:0;
@@ -1875,7 +1961,7 @@ font-weight: normal;
 }
 
 .views-exposed-widget.views-reset-button #edit-reset{
-	background: none;
+/*	background: none;
 	border: 0;
 	color: #003399;
 	font-size: 0.8em;
@@ -1884,8 +1970,9 @@ font-weight: normal;
 	position: absolute;
 	top: 57.6em;
 	margin-left: 12em;
-	text-decoration: underline;
+	text-decoration: underline;*/
 }
+
 
 #block-views-exp-publications-index-page label a{
 	color: #003399;
@@ -1995,7 +2082,7 @@ font-weight: normal;
 #block-osha-newsletter-osha-newsletter-latest h2{
 	background: url("../images/separator_home.jpg") repeat-x scroll left bottom transparent;
     color: #000;
-    font-family: "Oswald",sans-serif;
+    font-family: "Open Sans Condensed",sans-serif;
     font-size: 1.45em;
     font-weight: lighter;
     margin: 0;
@@ -2005,7 +2092,7 @@ font-weight: normal;
 #latest-newsletters-block h2{
 	background: none repeat-x scroll left bottom #e9edf6;
     color: #000;
-    font-family: "Oswald",sans-serif;
+    font-family: "Open Sans Condensed",sans-serif;
     font-size: 1.25em;
     font-weight: lighter;
     margin: 0.5em 0 0;
@@ -2047,7 +2134,7 @@ font-weight: normal;
 		#block-osha-newsletter-osha-newsletter-subscribe-extra h2{
 			background-color: #e9edf6;
 			color: #003399;
-			font-family: "Oswald",sans-serif;
+			font-family: "Open Sans Condensed",sans-serif;
 			font-size: 1.5em;
 			font-weight: lighter;
 			margin: 0;
@@ -2066,7 +2153,7 @@ font-weight: normal;
 
 		#block-osha-newsletter-osha-newsletter-subscribe-extra #edit-submit--2{
 			color: #001791;
-			font-family: 'Oswald',sans-serif;
+			font-family: 'Open Sans Condensed',sans-serif;
 			font-size: 1.6em;
 			text-align: right;
 			background-color: #A6B8DB;
@@ -2090,7 +2177,7 @@ font-weight: normal;
 			border: 0 none;
 			color: #003399;
 			float: none;
-			font-family: 'Oswald',sans-serif;
+			font-family: 'Open Sans Condensed',sans-serif;
 			font-size: 1.2em;
 			font-weight: bold;
 			margin-top: 0em;
@@ -2144,15 +2231,21 @@ font-weight: normal;
 	margin-bottom: 0.5em;
 }
 
+#block-osha-search-osha-search-clear-filters h2{
+	background: none;
+}
+
 #block-osha-search-osha-search-clear-filters h3{
 	color: #000;
-	font-family: 'Oswald',sans-serif;
+	font-family: 'Open Sans Condensed',sans-serif;
 	font-size: 1.25em;
 	font-weight: lighter;
 	margin: 0;
 	padding: 1em 0 1em;
 	background: none repeat scroll 0 0 #FFFFFF;
 	background: url("../images/separator_home.jpg") repeat-x scroll 0% 100% rgba(0, 0, 0, 0);
+	border-top: 5px solid #aab7d9;
+	margin-top: 0.7em;
 }
 
 #block-osha-search-osha-search-clear-filters a{
@@ -2160,7 +2253,7 @@ font-weight: normal;
     color: #003399;
     font-size: 0.8em;
     font-weight: bold;
-    padding-left: 1em;
+    padding-left: 0em;
     text-decoration: none;
 
 }
@@ -2169,7 +2262,7 @@ font-weight: normal;
 	display: table-cell;
 	color: #000;
 	font-size: 1.3em;
-	font-family: "Oswald",sans-serif;
+	font-family: "Open Sans Condensed",sans-serif;
 	font-weight: lighter;
 	background: none repeat scroll 0 0 transparent;
 	padding-left:0;
@@ -2193,9 +2286,9 @@ font-weight: normal;
     color: #039;
     cursor: pointer;
     display: block;
-    font-family: "Oswald";
+    font-family: "Open Sans Condensed";
     font-size: 1.35em;
-    font-weight: 400;
+    font-weight: bold;
     height: auto;
     margin-bottom: 0.5em;
     margin-top: 0.5em;
@@ -2226,19 +2319,20 @@ font-weight: normal;
 
 #block-views-news-oshnews-latest h2{
 	color: #000;
-	font-family: 'Oswald',sans-serif;
+	font-family: 'Open Sans Condensed',sans-serif;
 	font-size: 1.25em;
 	font-weight: lighter;
 	margin: 0;
 	padding: 0 0 0.3em;
 	background: none repeat scroll 0 0 #FFFFFF;
 	background: url("../images/separator_home.jpg") repeat-x scroll 0% 100% rgba(0, 0, 0, 0);
+	font-weight: bold;
 }
 
 .view-display-id-oshnews_latest a {
 	color:#003399;
 	text-decoration:none;
-	background: url("../images/li_arrow.png") no-repeat scroll 0 100% transparent;
+	background: url("../images/li_arrow.png") no-repeat scroll 0 60% transparent;
 	font-weight:bold;
 	padding-left:1em;
 	font-size:0.8em;
@@ -2257,13 +2351,13 @@ font-weight: normal;
 	background: url("../images/flecha.png") no-repeat scroll 100% 29% transparent!important;
     color: #003399;
     float: right;
-    font-family: "Oswald",sans-serif!important;
+    font-family: "Open Sans Condensed",sans-serif!important;
     font-size: 1.1em!important;
     padding-bottom: 1em;
     padding-right: 1.5em;
 	border-bottom:0px!important;
 	text-decoration:none;
-	margin-top:1em;
+	margin-top:0.5em;
 	font-weight:bold;
 }
 
@@ -2287,11 +2381,11 @@ font-weight: normal;
 .title_recomended_resources_home{
 	background: url("../images/separator_home.jpg") repeat-x scroll 0 96% rgba(0, 0, 0, 0);
     color: #000;
-    font-family: "Oswald",sans-serif;
+    font-family: "Open Sans Condensed",sans-serif;
     font-size: 1.4em;
-    font-weight: lighter;
+    font-weight: bold;
     width: 20em;
-	width:92%;
+	width:95%;
 	padding:0.5em 1em 1em 0em;
 	margin-left:0.8em;
 	margin-right:1em;
@@ -2305,6 +2399,10 @@ font-weight: normal;
 	border-bottom:5px solid #003399;
 }
 
+.view-osha-home-banner-top .view-osha-home-banner-top img{
+	width:100%!important;
+}
+
 .view-osha-home-banner-top .views-field-title{
 	background: url("../images/background-banner-home.png") repeat-x scroll 0 110% rgba(0, 0, 0, 0);
     color: #ffffff;
@@ -2313,8 +2411,9 @@ font-weight: normal;
     margin-top: 2em;
     position: absolute;
     width: auto;
-	font-family: "Oswald",sans-serif;
+	font-family: "Open Sans Condensed",sans-serif;
 	max-width:56%;
+	font-weight:bold;
 }
 
 .view-osha-home-banner-top .views-field-title span{
@@ -2330,7 +2429,7 @@ font-weight: normal;
     color: #ffffff;
     display: block;
     float: right;
-    font-family: "Oswald",sans-serif;
+    font-family: "Open Sans Condensed",sans-serif;
     font-size: 1.2em;
     margin-left: 0;
     margin-right: 5em;
@@ -2341,6 +2440,7 @@ font-weight: normal;
     position: relative;
     text-align: right;
     width: auto;
+	font-weight:bold;
 }
 
 .view-osha-home-banner-top table{
@@ -2359,7 +2459,7 @@ font-weight: normal;
     text-align: center;
     width: 62%;
     z-index: 2147483647;
-	font-family: "Oswald",sans-serif;
+	font-family: "Open Sans Condensed",sans-serif;
 	color: #003399;
 }
 
@@ -2406,10 +2506,10 @@ font-weight: normal;
 	background: url("../images/slideshow-left.png") no-repeat scroll 0 50% rgba(0, 0, 0, 0) !important;
     color: #cbd9ec !important;
     display: block !important;
-    height: 138px !important;
+    height: 155px !important;
     left: -20px !important;
     position: absolute !important;
-    top: -2.3em !important;
+    top: -3.3em !important;
     width: 60px !important;
     z-index: 999999999 !important;
 }
@@ -2418,10 +2518,10 @@ font-weight: normal;
 	background: url("../images/slideshow-left.png") no-repeat scroll 0 50% rgba(0, 0, 0, 0) !important;
     color: #cbd9ec !important;
     display: block !important;
-    height: 138px !important;
+    height: 155px !important;
     left: -20px !important;
     position: absolute !important;
-    top: -2.3em !important;
+    top: -3.3em !important;
     width: 60px !important;
     z-index: 999999999 !important;
 }
@@ -2430,9 +2530,9 @@ font-weight: normal;
 	background: url("../images/slideshow-right.png") no-repeat scroll 0 50% rgba(0, 0, 0, 0) !important;
     color: #cbd9ec !important;
     display: block !important;
-    height: 138px !important;
+    height: 155px !important;
     position: absolute !important;
-    top: -2.3em  !important;
+    top: -3.3em  !important;
     width: 60px !important;
     z-index: 999999999 !important;
 	left:60.4em!important;
@@ -2448,9 +2548,9 @@ font-weight: normal;
 	background: url("../images/slideshow-right.png") no-repeat scroll 0 50% rgba(0, 0, 0, 0) !important;
     color: #cbd9ec !important;
     display: block !important;
-    height: 138px !important;
+    height: 155px !important;
     position: absolute !important;
-    top: -2.3em  !important;
+    top: -3.3em  !important;
     width: 60px !important;
     z-index: 999999999 !important;
 	left:60.4em!important;
@@ -2464,7 +2564,7 @@ font-weight: normal;
 
 .left_column{
 	float:left;
-	width:70%;
+	width:71%;
 	background:#FFFFFF;
 }
 
@@ -2493,10 +2593,10 @@ font-weight: normal;
 
 #block-views-highlight-block-2 h2{
 	 width: 20em;
-	 font-family: 'Oswald', sans-serif;
+	 font-family: 'Open Sans Condensed', sans-serif;
 	 color: #000;
 	 font-size: 1.4em;
-	 font-weight: lighter;
+	 font-weight: bold;
 	 float:left;
 	 background: none repeat scroll 0 0 #FFFFFF;
 	 padding-bottom:0px;
@@ -2505,9 +2605,9 @@ font-weight: normal;
 }
 
 .field-name-field-related-oshwiki-articles .field-label {
-	font-family: 'Oswald';
+	font-family: 'Open Sans Condensed';
 	font-size: 1.35em;
-	font-weight: 400;
+	font-weight: bold;
 	color: #003399;
 	background: 0 0 #e8eef7;
 	padding-left: 10px;
@@ -2517,7 +2617,7 @@ font-weight: normal;
 .view-header{
 	 font-size: 1.1em;
 	 float: right;
-	 font-family: 'Oswald', sans-serif;
+	 font-family: 'Open Sans Condensed', sans-serif;
 	 color:#003399;
 	 clear:both;
 	 margin-top: -2.5em;
@@ -2527,7 +2627,7 @@ font-weight: normal;
 	clear: both;
     color: #003399;
     float: right;
-    font-family: "Oswald",sans-serif;
+    font-family: "Open Sans Condensed",sans-serif;
     font-size: 1.1em;
     margin-top: -1.4em;
     width: 90px;
@@ -2572,7 +2672,7 @@ font-weight: normal;
 {
 	background: url("../images/flecha.png") no-repeat scroll 94% 61% transparent;
 	color: #003399;
-	font-family: "Oswald",sans-serif!important;
+	font-family: "Open Sans Condensed",sans-serif!important;
 	font-size: 1em;
 	padding-right:2.1em;
 	text-decoration:none;
@@ -2583,7 +2683,7 @@ font-weight: normal;
 {
 	background: url("../images/flecha.png") no-repeat scroll 85% 61% transparent;
 	color: #003399;
-	font-family: "Oswald",sans-serif;
+	font-family: "Open Sans Condensed",sans-serif;
 	font-size: 1em;
 	padding-right:2.1em;
 	text-decoration:none;
@@ -2625,12 +2725,13 @@ font-weight: normal;
 
 .view-id-highlight .view-content  .views-field-title a{
 	color: #003399;
-	font-family: 'Oswald',sans-serif;
-	font-size: 1.35em;
+	font-family: 'Open Sans Condensed',sans-serif;
+	font-size: 1.5em;
 	line-height: 1.1em;
 	text-decoration:none;
 	padding:0;
-	border-bottom:0px!important
+	border-bottom:0px!important;
+	font-weight:bold;
 }
 
 .view-id-highlight .view-content  .views-field-body p{
@@ -2651,7 +2752,7 @@ font-weight: normal;
 
 .view-id-highlight .view-content table tbody tr td .views-field-view-node a{
 	font-size: 1.063em;
-	font-family: 'Oswald', sans-serif;
+	font-family: 'Open Sans Condensed', sans-serif;
 	color: #003399;
 	background: url("../images/flecha.png") no-repeat scroll right center transparent;
 	padding-right:1.5em;
@@ -2667,11 +2768,11 @@ font-weight: normal;
 .view-news .views-row{
 	background: url("../images/separator_home.jpg") repeat-x scroll 0% 100% rgba(0, 0, 0, 0);
 	padding-bottom:1em;
-	padding-top:1em;
+	padding-top:0em;
 }
 
 .view-news span.date-display-single{
-	font-size:0.9em;
+	font-size:0.8em;
 	font-weight:normal;
 	font-weight:bold;
 }
@@ -2686,10 +2787,11 @@ font-weight: normal;
 .node-news .field-name-title-field a{
     border-bottom: 0 none !important;
     color: #003399;
-    font-family: oswald !important;
+    font-family: Open Sans Condensed !important;
     font-size: 1.5em;
     line-height: 1.1em;
     margin: 0 0 0.7em;
+	font-weight:bold;
 }
 
 .node-news .field-name-field-summary {
@@ -2697,11 +2799,16 @@ font-weight: normal;
 	padding:0;
 }
 
+.view-news .views-row article{
+	padding-top:1em;
+	padding-bottom:1em;
+}
+
 .node-news .field-name-field-summary p{
 	margin:0;
 	padding:0;
 	font-family: Arial!important;
-	font-size: 0.9em;
+	font-size: 1em;
 	color:#000000;
 	font-weight:normal;
 	padding: 0 0 12px;
@@ -2722,7 +2829,7 @@ font-weight: normal;
 	margin:0;
 	padding:0;
 	font-family: Arial!important;
-	font-size: 0.9em;
+	font-size: 1em;
 	color:#000000;
 	font-weight:normal;
 }
@@ -2747,10 +2854,11 @@ font-weight: normal;
 .node-news.view-mode-full .field-name-title-field{
 	border-bottom: 0 none !important;
 	color: #003399;
-	font-family: oswald !important;
+	font-family: Open Sans Condensed !important;
 	font-size: 1.5em;
 	line-height: 1.1em;
 	margin: 0 0 0.7em;
+	font-weight:bold;
 }
 
 
@@ -2765,14 +2873,14 @@ font-weight: normal;
 
 #block-osha-newsletter-osha-newsletter-subscribe{
 	background-color: #e9edf6;
-	padding: 0em 1em 1em 1em;
+	padding: 0 1em 0.5em;
 	margin-bottom:1em;
 }
 
 #block-osha-newsletter-osha-newsletter-subscribe h2{
 	font-size: 1.5em;
 	font-weight: lighter;
-	font-family: 'Oswald', sans-serif;
+	font-family: 'Open Sans Condensed', sans-serif;
 	color: #003399;
 	margin: 0;
 	padding:0;
@@ -2786,9 +2894,14 @@ font-weight: normal;
 	line-height:1.5em;
 }
 
+#block-osha-newsletter-osha-newsletter-subscribe #edit-captcha-response{
+	margin-bottom: 0.4em;
+    margin-top: 0.2em;
+}
+
 #block-osha-newsletter-osha-newsletter-subscribe #edit-submit--2{
 	color: #001791;
-	font-family: 'Oswald',sans-serif;
+	font-family: 'Open Sans Condensed',sans-serif;
 	font-size: 1.6em;
 	text-align: right;
 	background-color: #A6B8DB;
@@ -2799,7 +2912,7 @@ font-weight: normal;
 }
 
 #block-osha-newsletter-osha-newsletter-subscribe h2 a{
-	font-family: 'Oswald', sans-serif;
+	font-family: 'Open Sans Condensed', sans-serif;
 	border-bottom: 0px solid #dc2f82;
 	font-weight: lighter;
 	font-size:1.3em;
@@ -2822,10 +2935,10 @@ font-weight: normal;
     border: 0 none;
     color: #003399;
     float: none;
-    font-family: "Oswald",sans-serif;
+    font-family: "Open Sans Condensed",sans-serif;
     font-size: 1.2em;
     font-weight: bold;
-    margin-top: 1em;
+    margin-top: 0.5em;
     padding-bottom: 0.2em;
     padding-right: 2.3em;
     padding-top: 0.2em;
@@ -2898,7 +3011,7 @@ font-weight: normal;
 #content #related-wiki-get-more span{
 	color: #ffffff;
     display: block;
-    font-family: "Oswald",sans-serif;
+    font-family: "Open Sans Condensed",sans-serif;
     font-size: 1.4em;
     margin-top: 1em;
     padding-left: 2.5em;
@@ -2909,7 +3022,7 @@ font-weight: normal;
 	background: url("../images/flecha.png") no-repeat scroll 85% 30% transparent;
     color: #ffffff;
     float: right;
-    font-family: "Oswald",sans-serif;
+    font-family: "Open Sans Condensed",sans-serif;
     font-size: 1.3em;
     margin-right: 1em;
     margin-top: -1.3em;
@@ -2953,7 +3066,7 @@ font-weight: normal;
 
 .group-seminar-event-details h3{
 	color: #000000;
-    font-family: "Oswald",sans-serif;
+    font-family: "Open Sans Condensed",sans-serif;
     font-size: 1.6em;
     font-weight: lighter;
     margin-bottom: 0;
@@ -2973,7 +3086,7 @@ font-weight: normal;
 
 .node-seminar .field-name-field-related-resources .field-label{
 	color: #000000;
-    font-family: "Oswald",sans-serif;
+    font-family: "Open Sans Condensed",sans-serif;
     font-size: 1.6em;
     font-weight: lighter;
     margin-bottom: 0;
@@ -3010,6 +3123,10 @@ font-weight: normal;
 	font-family: arial!important;
 	font-size: 1em;
 	text-transform:uppercase;
+}
+
+.node-seminar .field-type-text-with-summary p {
+	 margin: 0.5em 0 2em 0;
 }
 
 .node-seminar .field-name-field-seminar-end-date .field-label {
@@ -3055,11 +3172,28 @@ font-weight: normal;
 	border-bottom:0px!important;
 }
 
+.view-header .back-to-link{
+	background: url("../images/flecha-izq.png") no-repeat scroll 6% center transparent!important;
+    color: #003399;
+    float: right;
+    font-family: "Open Sans Condensed",sans-serif!important;
+    font-size: 1.1em;
+    margin: 0;
+    padding-bottom: 0.3em;
+    padding-right: 0em!important;
+    text-align: right;
+    width: 100%;
+	border-bottom:0px!important;
+	padding-left:1em;
+	font-weight:bold;
+}
+
+
 .back-to-link{
 	background: url("../images/flecha-izq.png") no-repeat scroll 78% center transparent;
     color: #003399;
     float: right;
-    font-family: "Oswald",sans-serif!important;
+    font-family: "Open Sans Condensed",sans-serif!important;
     font-size: 1.1em;
     margin: 0;
     padding-bottom: 0.3em;
@@ -3067,6 +3201,7 @@ font-weight: normal;
     text-align: right;
     width: 100%;
 	border-bottom:0px!important;
+	font-weight:bold;
 }
 
 /*SEMINARS*/
@@ -3135,19 +3270,21 @@ font-weight: normal;
 
 #block-views-seminars-block .view-seminars ul li  .views-field-title span a{
 	font-size:1.5em;
-	 font-family: "Oswald",sans-serif!important;
-	 border-bottom:0px!important
+	 font-family: "Open Sans Condensed",sans-serif!important;
+	 border-bottom:0px!important;
+	 font-weight:bold;
 }
 
 #block-views-seminars-block .view-seminars ul li .views-field-view-node span a{
 	background: url("../images/flecha.png") no-repeat scroll 85% 61% transparent;
     color: #003399;
     float: right;
-    font-family: "Oswald",sans-serif;
+    font-family: "Open Sans Condensed",sans-serif;
     font-size: 1.2em;
     padding-right: 2.5em;
     text-decoration: none;
 	border-bottom: 0px!important;
+	font-weight:bold;
 }
 
 /*END SEMINARS LIST*/
@@ -3178,12 +3315,13 @@ font-weight: normal;
 {
 	background: url("../images/flecha-izq.png") no-repeat scroll 0% 61% transparent!important;
 	color: #003399;
-	font-family: "Oswald",sans-serif!important;
+	font-family: "Open Sans Condensed",sans-serif!important;
 	font-size: 1em;
 	padding-left: 1.5em;
 	padding-right: 0em!important;
 	text-decoration: none;
 	border: 0px!important;
+	font-weight:bold;
 }
 
 .node-highlight.view-mode-full .field-name-field-publication-date span{
@@ -3194,11 +3332,11 @@ font-weight: normal;
 .node-highlight.view-mode-full .field-name-title-field h1 {
 	border-bottom: 0 none !important;
 	color: #003399;
-	font-family: oswald !important;
+	font-family: Open Sans Condensed !important;
 	font-size: 1.5em;
 	line-height: 1.1em;
-	margin: 0 0 0.7em;
-	font-weight: normal!important;
+	margin: 0;
+	font-weight: bold!important;
 	letter-spacing: 0px!important;
 }
 
@@ -3209,13 +3347,20 @@ font-weight: normal;
 	margin-top:0em;
 }
 
+.node-highlight.view-mode-full .field-type-text-with-summary p{
+	margin-top:0.2em;
+}
+
+.view-highlight.field-type-text-with-summary p{
+	margin-top:0em;
+}
 
 .node-highlight.view-mode-full  .field-name-field-image img{
 	max-width:300px;
 	max-height:200px;
 	float:left;
 	margin-right:1em;
-	margin-top:1.5em;
+	margin-top:0.7em;
 }
 
 /*END HIGHLIGHS SECTION*/
@@ -3228,7 +3373,7 @@ font-weight: normal;
 #related-wiki-publications .related_wiki_head{
 	background-color: #e9edf6;
     color: #003399;
-    font-family: Oswald;
+    font-family: Open Sans Condensed;
     font-weight: bold;
     margin: 0;
     padding-bottom: 0.2em;
@@ -3238,9 +3383,9 @@ font-weight: normal;
 
 #related-wiki-publications .related_wiki_head span{
 	 color: #003399;
-    font-family: Oswald;
+    font-family: Open Sans Condensed;
     font-size: 1.35em;
-    font-weight: 400;
+    font-weight: bold;
 }
 
 #related-wiki-publications div article{
@@ -3372,6 +3517,8 @@ font-weight: normal;
 	padding-bottom:0.5em;
 	padding-top:0.5em;
 	padding-left: 0.8em;
+	height:1%;
+	overflow:hidden;
 }
 
 .view-calls.view-id-calls .views-field-title-field{
@@ -3381,17 +3528,33 @@ font-weight: normal;
 .view-calls.view-id-calls .views-field-title-field a{
 	border-bottom: 0 none !important;
 	color: #003399;
-	font-family: oswald !important;
-	font-size: 1.2em;
+	font-family: Open Sans Condensed !important;
+	font-size: 1.3em;
 	line-height: 1.1em;
 	margin: 0 0 0.7em;
+	font-weight:bold;
+}
+
+.view-calls .views-row  span a{
+	background: url("../images/flecha.png") no-repeat scroll right center transparent;
+	color: #003399;
+	float: right;
+	font-family: "Open Sans Condensed",sans-serif!important;
+	font-size: 1.1em;
+	margin:0;
+	padding-bottom: 0.3em;
+	text-align: right;
+	width: 100%;
+	border:0px!important;
+	padding-right: 1.5em;
+	font-weight:bold;
 }
 
 .view-calls.view-id-calls .view-footer a{
 	background: url("../images/flecha.png") no-repeat scroll right center transparent;
 	color: #003399;
 	float: right;
-	font-family: "Oswald",sans-serif!important;
+	font-family: "Open Sans Condensed",sans-serif!important;
 	font-size: 1.1em;
 	margin: 0;
 	padding-bottom: 0.3em;
@@ -3406,7 +3569,7 @@ font-weight: normal;
 	background: url("../images/flecha-izq.png") no-repeat scroll left center transparent;
 	color: #003399;
 	float: right;
-	font-family: "Oswald",sans-serif!important;
+	font-family: "Open Sans Condensed",sans-serif!important;
 	font-size: 1.1em;
 	margin: 0;
 	padding-bottom: 0.3em;
@@ -3425,9 +3588,11 @@ font-weight: normal;
 
 .view-vacancies .view-content .views-row{
 	background: url("../images/separator_home.jpg") repeat-x scroll 0% 100% rgba(0, 0, 0, 0);
-	padding-bottom:0.5em;
+	padding-bottom:1.5em;
 	padding-top:0.5em;
 	padding-left: 0.8em;
+	height:1%;
+	overflow:hidden;
 }
 
 .view-vacancies .views-field-title{
@@ -3435,13 +3600,19 @@ font-weight: normal;
 }
 
 .view-vacancies .views-field-title a{
+	background: none!important;
+	padding-right: 0em!important;
+}
+
+.view-vacancies .views-field-title a{
 	color: #003399;
-	font-family: 'Oswald',sans-serif!important;
+	font-family: 'Open Sans Condensed',sans-serif!important;
 	font-size: 1.35em;
 	line-height: 1.1em;
 	text-decoration: none;
 	padding: 0;
 	border-bottom: 0px!important;
+	font-weight:bold;
 }
 
 #block-block-7 {
@@ -3451,7 +3622,7 @@ font-weight: normal;
 
 #block-block-7 a{
 	padding-right: 1.5em;
-	font-family: "Oswald",sans-serif!important;
+	font-family: "Open Sans Condensed",sans-serif!important;
 	background: url("../images/flecha.png") no-repeat scroll right center transparent;
 	color: #003399;
 	font-size: 1.1em;
@@ -3468,7 +3639,7 @@ font-weight: normal;
 
 #block-block-1 a{
 	padding-right: 1.5em;
-	font-family: "Oswald",sans-serif!important;
+	font-family: "Open Sans Condensed",sans-serif!important;
 	background: url("../images/flecha.png") no-repeat scroll right center transparent;
 	color: #003399;
 	font-size: 1.1em;
@@ -3482,7 +3653,7 @@ font-weight: normal;
     border-bottom: 0 none !important;
     color: #003399;
     float: right;
-    font-family: "Oswald",sans-serif !important;
+    font-family: "Open Sans Condensed",sans-serif !important;
     font-size: 1.1em;
     margin: 0;
     padding-bottom: 0.3em;
@@ -3491,10 +3662,26 @@ font-weight: normal;
     text-align: right;
     width: 100%;
 }
+
+.view-vacancies .views-row  span a{
+	background: url("../images/flecha.png") no-repeat scroll right center transparent;
+	color: #003399;
+	font-family: "Open Sans Condensed",sans-serif!important;
+	font-size: 1.5em;
+	margin: 1em 0 0 0;
+	padding-bottom: 0.3em;
+	text-align: right;
+	width: 100%;
+	border:0px!important;
+	padding-right: 1.5em;
+	font-weight:bold;
+	
+}
+
 /*END VACANCIES - CAREES*/
 
 
-/*STICKET MENU*/
+/*STICKY MENU*/
 .fixed {
 	position: fixed;
     top: -24px;
@@ -3503,6 +3690,15 @@ font-weight: normal;
 
 }
 
+@media screen
+and (max-width: 1237px) {
+	.fixed {	
+		position: fixed;
+		top: -24px;
+		width: 100%;
+		z-index: 99;
+	}
+}
 .stickey{
 	margin-top:257px;
 }
@@ -3529,15 +3725,15 @@ font-weight: normal;
 
 .view-highlight h1{
 	margin: 0!important;
-	padding:0 0 0.5em 0!important;
+	padding:0 0 0.2em 0!important;
 }
 
 .view-highlight .field-name-title-field a{
 	border-bottom: 0 none !important;
     color: #003399;
-    font-family: oswald !important;
-    font-size: 0.8em;
-    font-weight: normal;
+    font-family: 'Open Sans Condensed', sans-serif!important;
+    font-size: 0.7em;
+    font-weight: bold;
     line-height: 1.1em;
     margin: 0 0 0em;
 }
@@ -3546,6 +3742,10 @@ font-weight: normal;
 	float:left;
 	padding-right:1em;
 	padding-top:0.5em;
+}
+
+.view-highlight  .field-type-text-with-summary p{
+	margin-top:0em;
 }
 
 .view-highlight .field-name-field-image a{
@@ -3562,7 +3762,7 @@ font-weight: normal;
 	background: url("../images/flecha.png") no-repeat scroll right 18% transparent!important;
 	color: #003399;
 	float: right;
-	font-family: "Oswald",sans-serif;
+	font-family: "Open Sans Condensed",sans-serif;
 	font-size: 1.1em;
 	margin: 0;
 	padding-bottom: 0.3em;
@@ -3572,7 +3772,7 @@ font-weight: normal;
 
 .view-highlight ul.links.inline a{
 	padding-right: 0.5em;
-	font-family: "Oswald",sans-serif!important;
+	font-family: "Open Sans Condensed",sans-serif!important;
 	color: #003399!important;
 	border-bottom:0px!important;
 
@@ -3582,6 +3782,14 @@ font-weight: normal;
 	background: url("../images/separator_home.jpg") repeat-x scroll 0 100% rgba(0, 0, 0, 0);
     padding-bottom: 0em;
     width: 100%;
+}
+
+.view-highlight .views-field-field-publication-date .date-display-single{
+	font-size:0.8em;
+}
+
+.view-highlight .field-name-field-publication-date  .date-display-single{
+	font-size:0.8em;
 }
 
 /*END HIGHLIGHT LIST*/
@@ -3607,22 +3815,23 @@ font-weight: normal;
 
 .view-mode-osha_slideshow{
 	background-color: #e4eaf4;
-    height: 220px;
-    margin-left: 3.2em;
-    width: 84%;
-	padding-left:1em;
+	background: url("../images/separator.jpg") repeat-x scroll 75% 86% rgba(0, 0, 0, 0);
+	height: 220px;
+	margin-left: 4.2em;
+	width: 81%;
+	padding-left:0em;
 }
 
 .view-mode-osha_slideshow .field-name-field-cover-image{
 	float:left;
-	padding:1em 3em 1em 1em;
+	padding:2.5em 1em 1em 0em;
 	height:100%;
 
 
 }
 
 .view-mode-osha_slideshow .field-name-title-field a{
-	font-family: 'Oswald'!important;
+	font-family: 'Open Sans Condensed'!important;
 	font-size: 1.3em;
 	font-weight: 300;
 	color: #003399;
@@ -3633,8 +3842,9 @@ font-weight: normal;
 }
 
 .view-mode-osha_slideshow .field-name-field-publication-date{
-	padding-top:0.5em;
+	padding-top:2.5em;
 	width:88%;
+	font-size:0.8em;
 }
 
 .view-mode-osha_slideshow .field-name-body p{
@@ -3784,8 +3994,9 @@ font-weight: normal;
 }
 
 #block-views-exp-search-seminars-page .views-submit-button{
-	width:30%;
+	width:100%;
 	padding-top:0.7em!important;
+	clear:both;
 }
 
 .views-exposed-widgets .views-exposed-widget label{
@@ -3805,10 +4016,6 @@ font-weight: normal;
 	width:100%;
 }
 
-.view-search-seminars .view-header{
-	margin-top:-7em;
-}
-
 .node-seminar header h2 {
 	background: none repeat scroll 0 0 #FFFFFF!important;
 	padding-left:0;
@@ -3817,11 +4024,24 @@ font-weight: normal;
 .node-seminar header h2 a{
 	border-bottom: 0 none !important;
     color: #000000 !important;
-    font-family: "Oswald",sans-serif !important;
+    font-family: "Open Sans Condensed",sans-serif !important;
 	font-size: 1.2em;
     font-weight: 300;
     letter-spacing: -0.75px;
 	background: none repeat scroll 0 0 #FFFFFF!important;
+}
+
+.node-seminar .date-display-single{
+	font-size:0.8em;
+}
+
+.node-seminar h1 a{
+	border-bottom: 0 none !important;
+	color: #003399 !important;
+	font-family: "Open Sans Condensed",sans-serif !important;
+	font-size: 0.7em;
+	font-weight:bold;
+	letter-spacing:0px;
 }
 
 .view-search-seminars .view-content .views-row{
@@ -3832,7 +4052,7 @@ font-weight: normal;
   clear: both;
     color: #003399;
     float: right;
-    font-family: "Oswald",sans-serif;
+    font-family: "Open Sans Condensed",sans-serif;
     font-size: 1.1em;
     margin-top: -1.5em;
 	padding-bottom:1em;
@@ -3842,10 +4062,11 @@ font-weight: normal;
 	background: url("../images/flecha.png") no-repeat scroll 94% 61% transparent;
     border: 0 none !important;
     color: #003399;
-    font-family: "Oswald",sans-serif !important;
+    font-family: "Open Sans Condensed",sans-serif !important;
     font-size: 1em;
     padding-right: 2.1em;
     text-decoration: none;
+	font-weight:bold;
 }
 
 /* END SEARCH SEMINARS*/
@@ -3859,7 +4080,7 @@ font-weight: normal;
 
 #block-views-press-contacts-block h2{
 	color: #000;
-	font-family: 'Oswald',sans-serif;
+	font-family: 'Open Sans Condensed',sans-serif;
 	font-size: 1.55em;
 	font-weight: lighter;
 	margin: 0;
@@ -3936,7 +4157,7 @@ font-weight: normal;
 	background:none;
 	float:left;
 	color: #000;
-	font-family: 'Oswald',sans-serif;
+	font-family: 'Open Sans Condensed',sans-serif;
 	font-size: 1.55em;
 	font-weight: lighter;
 	margin: 0;
@@ -3964,7 +4185,7 @@ font-weight: normal;
 
 .block-aggregator h2{
 	color: #000;
-	font-family: 'Oswald',sans-serif;
+	font-family: 'Open Sans Condensed',sans-serif;
 	font-size: 1.55em;
 	font-weight: lighter;
 	margin: 0;
@@ -3999,9 +4220,9 @@ font-weight: normal;
 	margin-top:1em;
 	background: none repeat scroll 0 0 #e8eef7;
     color: #003399;
-    font-family: "Oswald";
+    font-family: "Open Sans Condensed";
     font-size: 1.35em;
-    font-weight: 400;
+    font-weight: bold;
     padding-bottom: 2px;
     padding-left: 10px;
 	line-height: 2em;
@@ -4011,17 +4232,18 @@ font-weight: normal;
 	background: url("../images/flecha.png") no-repeat scroll right center transparent;
 	color: #003399;
 	float: right;
-	font-family: "Oswald",sans-serif;
+	font-family: "Open Sans Condensed",sans-serif;
 	font-size: 1.1em;
 	margin: 0;
 	padding-bottom: 0.3em;
 	text-align: right;
 	width: 100%;
+	font-weight:bold;
 }
 
 .view-press-releases  .links.inline  a{
 	padding-right: 0.5em;
-	font-family: "Oswald",sans-serif!important;
+	font-family: "Open Sans Condensed",sans-serif!important;
 	border-bottom: 0px!important;
 }
 
@@ -4035,7 +4257,7 @@ article.node-press-release{
 article.node-press-release .field-name-title-field {
 	border-bottom: 0 none !important;
 	color: #003399;
-	font-family: oswald !important;
+	font-family: Open Sans Condensed !important;
 	font-size: 1.6em;
 	font-weight: normal;
 	line-height: 1.1em;
@@ -4047,8 +4269,16 @@ article.node-press-release .press-release-date {
 	font-size:0.8em;
 }
 
+article.node-press-release .field-name-field-summary p {
+	margin:0em
+}
+
+article.node-press-release .field-name-body.field-type-text-with-summary p{
+	margin:0em
+}
+
 .view-press-releases .field-name-title-field {
-	font-family: 'Oswald',sans-serif;
+	font-family: 'Open Sans Condensed',sans-serif;
 	font-size: 1.4em;
 	font-weight: 300;
 	letter-spacing: -0.75px;
@@ -4058,11 +4288,12 @@ article.node-press-release .press-release-date {
 .view-press-releases .field-name-title-field a{
 	border-bottom: 0 none !important;
 	color: #003399;
-	font-family: oswald !important;
+	font-family: Open Sans Condensed !important;
 	font-size: 0.9em;
 	font-weight: normal;
 	line-height: 1.1em;
 	margin: 0 0 0em;
+	font-weight:bold;
 }
 
 #block-views-press-releases-block{
@@ -4078,6 +4309,10 @@ article.node-press-release .press-release-date {
 	padding:0 0 0 0;
 	margin:0;
 	color:#000000;
+}
+
+.view-press-releases .date-display-single{
+	font-size: 0.8em;
 }
 
 /*END PRESS ROOM CONTENT*/
@@ -4098,9 +4333,9 @@ article.node-press-release .press-release-date {
 
 .view-legislation table caption{
 	color: #003399;
-	font-family: Oswald;
+	font-family: Open Sans Condensed;
 	font-size: 1.35em;
-	font-weight: 400;
+	font-weight: bold;
 	background-color: #e9edf6;
 	padding-top: 0.2em;
 	padding-bottom: 0.2em;
@@ -4112,7 +4347,7 @@ article.node-press-release .press-release-date {
 
 .view-legislation table tr td a{
 	color: #003399!important;
-	font-family: 'Oswald',sans-serif!important;
+	font-family: 'Open Sans Condensed',sans-serif!important;
 	border-bottom: 0px!important;
 	font-size: 1.4em;
 	font-weight: 300;
@@ -4142,14 +4377,14 @@ article.node-press-release .press-release-date {
 	background: url("../images/flecha.png") no-repeat scroll right 26% transparent;
 	color: #003399;
 	float: right;
-	font-family: "Oswald",sans-serif!important;
+	font-family: "Open Sans Condensed",sans-serif!important;
 	font-size: 1.1em;
 	margin: 0;
 	text-align: right;
 	width: 100%;
 	padding-right: 1.5em;
 	padding-bottom: 1em;
-	font-weight:normal;
+	font-weight:bold;
 	letter-spacing: 0.01em;
 	margin-right:1em;
 
@@ -4157,8 +4392,8 @@ article.node-press-release .press-release-date {
 
 .view-legislation-guidelines table caption{
 	color: #003399;
-	font-family: Oswald;
-	font-weight: 400;
+	font-family: Open Sans Condensed;
+	font-weight: bold;
 	background-color: #FFFFFF;
 	padding-top: 0.2em;
 	padding-bottom: 0.2em;
@@ -4172,16 +4407,16 @@ article.node-press-release .press-release-date {
 .view-legislation-guidelines table caption a{
 	background: none repeat scroll 0 0 #FFFFFF;
     color: #003399;
-    font-family: "Oswald"!important;
+    font-family: "Open Sans Condensed"!important;
     font-size: 1.35em;
-    font-weight: 400;
+    font-weight: bold;
     padding-bottom: 2px;
 	border-bottom:0px!important;
 }
 
 .view-legislation-guidelines table tr td a{
 	color: #003399!important;
-	font-family: 'Oswald',sans-serif!important;
+	font-family: 'Open Sans Condensed',sans-serif!important;
 	border-bottom: 0px!important;
 	font-size: 1.4em;
 	font-weight: 300;
@@ -4206,9 +4441,9 @@ article.node-guideline {
 article.node-guideline .field-name-title-field a{
 	background: none repeat scroll 0 0 #FFFFFF;
     color: #003399;
-    font-family: "Oswald"!important;
+    font-family: "Open Sans Condensed"!important;
     font-size: 1.35em;
-    font-weight: 400;
+    font-weight: bold;
 	border-bottom:0px!important;
 }
 
@@ -4220,7 +4455,7 @@ article.node-guideline ul li a{
 	background: url("../images/flecha.png") no-repeat scroll right 50% transparent;
 	color: #003399;
 	float: right;
-	font-family: "Oswald",sans-serif!important;
+	font-family: "Open Sans Condensed",sans-serif!important;
 	font-size: 1.1em;
 	margin: 0;
 	text-align: right;
@@ -4237,13 +4472,11 @@ article.node-guideline ul li a{
 /* SEARCH DIRECTIVES*/
 
 .view-search-directives .field-name-title-field a{
-	color: #000000!important;
-	font-family: 'Oswald',sans-serif!important;
-	border-bottom: 0px!important;
-	font-size: 1.4em;
-	font-weight: 300;
-	letter-spacing: -0.75px;
-	padding-bottom: 0.5em;
+	border-bottom: 0 none !important;
+    color: #003399 !important;
+    font-family: "Open Sans Condensed",sans-serif !important;
+    font-size: 1.5em;
+	font-weight:bold;
 
 }
 
@@ -4251,17 +4484,18 @@ article.node-guideline ul li a{
 	background: url("../images/flecha.png") no-repeat scroll right center transparent;
 	color: #003399;
 	float: right;
-	font-family: "Oswald",sans-serif;
+	font-family: "Open Sans Condensed",sans-serif;
 	font-size: 1.1em;
 	margin: 0;
 	padding-bottom: 0.3em;
 	text-align: right;
 	width: 100%;
+	font-weight:bold;
 }
 
 .view-search-directives  .links a{
 	padding-right: 0.5em;
-	font-family: "Oswald",sans-serif!important;
+	font-family: "Open Sans Condensed",sans-serif!important;
 	border-bottom: 0px!important;
 }
 
@@ -4269,11 +4503,33 @@ article.node-guideline ul li a{
 	padding:0;
 }
 
+.view-search-directives  .field-name-field-summary .field-items{
+	padding-top:0.5em;
+	padding-bottom:0.5em;
+}
+
 .view-search-directives  .view-content .views-row{
 	background: url("../images/separator_home.jpg") repeat-x scroll 0% 100% rgba(0, 0, 0, 0);
 	padding-bottom:1em;
 	padding-top:1em;
 
+}
+
+.facetapi-facet-field-date-of-directive {
+	list-style: outside none none;
+	margin: 0 !important;
+	padding-left: 0.7em;
+}
+
+.block-facetapi #facetapi-link{
+	background: url("../images/li_arrow.png") no-repeat scroll 0 100% transparent;
+	color: #003399;
+	font-size: 0.8em;
+	font-weight: bold;
+	padding-left: 1em;
+	text-decoration: none;
+	padding-top: 0em;
+	margin: 0em;
 }
 
 
@@ -4290,9 +4546,9 @@ article.node-guideline ul li a{
 .node-note-to-editor h2 a {
 	background: none repeat scroll 0 0 #FFFFFF;
     color: #003399;
-    font-family: "Oswald";
+    font-family: "Open Sans Condensed";
     font-size: 1.15em;
-    font-weight: 400;
+    font-weight: bold;
     padding-bottom: 2px;
     padding-left: 0px;
 }
@@ -4319,6 +4575,7 @@ div.contextual-links-wrapper a{
 
 .addtoany{
 	float:right;
+	padding-top: 1em!important;
 }
 
 .addtoany_list > a{
@@ -4328,7 +4585,7 @@ div.contextual-links-wrapper a{
 
 #content h2 a{
 	border-bottom:0px!important;
-	font-family: "Oswald",sans-serif !important;
+	font-family: "Open Sans Condensed",sans-serif !important;
 
 }
 
@@ -4357,7 +4614,7 @@ div.contextual-links-wrapper a{
 	background: url("../images/separator_home.jpg") repeat-x scroll 43% 0 rgba(0, 0, 0, 0);
     color: #000;
     float: left;
-    font-family: "Oswald",sans-serif;
+    font-family: "Open Sans Condensed",sans-serif;
     font-size: 1.15em;
     font-weight: lighter;
     margin: 0.5em 0 0 1em;
@@ -4409,7 +4666,7 @@ a.tabs-primary__tab-link, a.tabs-primary__tab-link.is-active{
 	border-bottom: 1px solid #EBF1F7 !important;
     border-top-left-radius: 0;
     border-top-right-radius: 0;
-    font-family: "Oswald",sans-serif !important;
+    font-family: "Open Sans Condensed",sans-serif !important;
     padding: 0.5em 1.5em 0.2em;
 }
 
@@ -4449,6 +4706,25 @@ a.tabs-primary__tab-link{
     padding-top: 0.5em;
 }
 
+.view-search.view-id-search .views-row .views-field-field-image{
+	float:left;
+	padding-right:1em;
+}
+
+.view-search.view-id-search .views-row  .views-field-field-publication-date{
+	font-size:0.8em;
+}
+
+.view-search.view-id-search .views-row .views-field-field-updated{
+	font-size:0.8em;
+}	
+
+.view-search.view-id-search .views-row .views-field-field-cover-image{
+	float:left;
+	padding-right:1em;
+}
+
+
 #block-views-exp-search-site #edit-search-api-language-wrapper{
 	background:none;
 }
@@ -4480,7 +4756,10 @@ a.tabs-primary__tab-link{
 	background: url("../images/separator_search.png") repeat-x scroll 0 100% rgba(0, 0, 0, 0);
     margin-right: 2em;
     margin-top: 1em;
-    padding-bottom: 2em;
+    padding-bottom: 1em;
+	clear:both;
+	height:1%;
+	overflow:hidden;
 }
 
 .view-search .views-row  .views-field-title-field a{
@@ -4488,8 +4767,9 @@ a.tabs-primary__tab-link{
 	float:left;
 	margin-right:1em;
 	border-bottom: 0 none !important;
-    font-family: "Oswald",sans-serif !important;
+    font-family: "Open Sans Condensed",sans-serif !important;
     font-size: 1.5em;
+	font-weight:bold;
 }
 
 #block-views-exp-search-site #edit-search-wrapper {
@@ -4519,7 +4799,7 @@ a.tabs-primary__tab-link{
 	float:left;
 	margin-right:1em;
 	border-bottom: 0 none !important;
-    font-family: "Oswald",sans-serif !important;
+    font-family: "Open Sans Condensed",sans-serif !important;
     font-size: 1.5em;
 	padding-bottom:0.5em;
 }
@@ -4547,7 +4827,7 @@ a.tabs-primary__tab-link{
 
 .view-display-id-wiki  .views-row  .views-field-field-wiki-page-url a{
 	border-bottom: 0 solid #dc2f82 !important;
-    color: #dc2f82 !important;
+    color: #ca2273 !important;
     display: block;
     margin-top: 0.2em;
 	clear:both;
@@ -4570,13 +4850,33 @@ a.tabs-primary__tab-link{
 
 #block-views-events-index-block-1 h2{
 	color: #000;
-	font-family: 'Oswald',sans-serif!important;
+	font-family: 'Open Sans Condensed',sans-serif!important;
 	font-size: 1.25em;
 	font-weight: lighter;
 	margin: 0;
 	padding: 0 0 0.3em;
 	background: none repeat scroll 0 0 #FFFFFF;
 	background: url("../images/separator_home.jpg") repeat-x scroll 0% 100% rgba(0, 0, 0, 0);
+	font-weight: bold;
+}
+
+#block-views-events-index-block-1 .views-row{
+	font-weight:bold;
+}
+
+#block-views-events-index-block-1 .date-display-single{
+	font-size:0.8em;
+	font-weight:bold;
+}
+
+#block-views-events-index-block-1 .date-display-start{
+	font-size:0.8em;
+	font-weight:bold;
+}
+
+#block-views-events-index-block-1 .date-display-end{
+	font-size:0.8em;
+	font-weight:bold;
 }
 
 .view-events-index ul{
@@ -4611,7 +4911,7 @@ a.tabs-primary__tab-link{
 .view-events-index.view-display-id-block_1 a {
 	color:#003399;
 	text-decoration:none;
-	background: url("../images/li_arrow.png") no-repeat scroll 0 100% transparent;
+	background: url("../images/li_arrow.png") no-repeat scroll 0 50% transparent;
 	font-weight:bold;
 	padding-left:1em;
 	font-size:0.8em;
@@ -4636,7 +4936,7 @@ a.tabs-primary__tab-link{
 
 #block-nodeblock-5322 .field-name-field-image{
 	float:right;
-	margin-top:1.9em;
+	margin-top:0.2em;
 }
 
 #block-nodeblock-5322 .field-type-text-with-summary{
@@ -4676,13 +4976,31 @@ a.tabs-primary__tab-link{
 	background-image: url("../images/separator_home.jpg"), url("../images/separator_home.jpg");
 	background-position: left top, left bottom;
 	background-repeat: repeat-x;
-	padding:1em;
+	padding: 1em 0;
 }
 
 .view-events-index .views-exposed-form #edit-field-start-date{
 	margin-top:0.6em;
 }
 
+.view-events-index .views-exposed-form #edit-submit-events-index{
+	margin-top:2em;
+}
+
+.view-events-index .views-exposed-form #edit-reset{
+	background: none repeat scroll 0 0 rgba(0, 0, 0, 0);
+    border: 0 none;
+    clear: both;
+    color: #003399;
+    float: left;
+    font-family: arial;
+    font-size: 0.8em;
+    font-weight: bold;
+    margin-left: 0em;
+    text-decoration: underline;
+	margin-top:4.5em;
+	position:relative;
+}
 
 .view-events-index #edit-search-api-views-fulltext-wrapper{
 	background:none;
@@ -4690,12 +5008,24 @@ a.tabs-primary__tab-link{
 
 
 .view-events-index #edit-search-api-views-fulltext-wrapper label {
-	margin-top: 0.5em;
+	margin-top: 1.5em;
 	padding-bottom: 0.7em;
 }
 
 .view-events-index .form-item-search-api-views-fulltext input{
 	width:12em;
+}
+
+.view-events-index .views-field-field-start-date-value{
+	float:left;
+	padding-right:0.1em;
+	font-weight:bold;
+	font-size:0.8em;
+}
+
+.view-events-index  .views-field-field-start-date-value2{
+	font-size:0.8em;
+	font-weight:bold;
 }
 
 .view-events-index .form-item-field-start-date-date input{
@@ -4719,7 +5049,8 @@ a.tabs-primary__tab-link{
 }
 
 .view-events-index #edit-search-api-views-fulltext{
-	margin-top:.3em;
+	margin-top:.4em;
+	padding-left:0.2em;
 }
 
 .view-events-index #edit-field-country-code{
@@ -4733,9 +5064,9 @@ a.tabs-primary__tab-link{
 
 .view-events-index h3{
 	height: auto;
-	font-family: 'Oswald';
+	font-family: 'Open Sans Condensed';
 	font-size: 1.35em;
-	font-weight: 400;
+	font-weight: bold;
 	color: #003399;
 	background: #e8eef7;
 	padding-left: 10px;
@@ -4749,22 +5080,23 @@ a.tabs-primary__tab-link{
 	background: url("../images/flecha.png") no-repeat scroll 85% 61% transparent;
 	color: #003399;
 	float: right;
-	font-family: "Oswald",sans-serif!important;
+	font-family: "Open Sans Condensed",sans-serif!important;
 	font-size: 1.1em;
 	padding-right: 2.5em;
 	text-decoration: none;
 	border-bottom: 0px!important;
-	font-weight:normal;
+	font-weight:bold;
 }
 
-#content .view-events-index .views-row  .views-field-title-field{
+#content .view-events-index .views-row  .views-field-title-field a{
 	clear:both;
 	border-bottom: 0 none !important;
-    font-family: "Oswald",sans-serif !important;
+    font-family: "Open Sans Condensed",sans-serif !important;
     font-size: 1.5em;
 	color: #003399;
 	padding-top:0.5em;
 	padding-bottom:0.5em;
+	font-weight:bold;
 }
 
 #content .view-events-index .views-row  .views-field-field-country-code span{
@@ -4806,10 +5138,12 @@ a.tabs-primary__tab-link{
 
 .view-id-events_index #edit-field-start-date-value-datepicker-popup-0{
 	width:6em;
+	padding-left: 0.2em;
 }
 
 .view-id-events_index #edit-field-start-date-value2-datepicker-popup-0{
 	width:6em;
+	padding-left: 0.2em;
 }
 
 /* END EVENTS LIST */
@@ -4818,7 +5152,7 @@ a.tabs-primary__tab-link{
 
 .group-events-event-details  h3 {
 	color: #000000;
-	font-family: "Oswald",sans-serif;
+	font-family: "Open Sans Condensed",sans-serif;
 	font-size: 1.6em;
 	font-weight: lighter;
 	margin-bottom: 0;
@@ -4828,7 +5162,7 @@ a.tabs-primary__tab-link{
 
 .group-events-description h3{
 	color: #000000;
-	font-family: "Oswald",sans-serif;
+	font-family: "Open Sans Condensed",sans-serif;
 	font-size: 1.6em;
 	font-weight: lighter;
 	margin-bottom: 0;
@@ -4844,6 +5178,13 @@ a.tabs-primary__tab-link{
 	text-transform: uppercase;
 }
 
+.node-events .field-name-field-city  .field-label{
+	font-weight: lighter;
+	font-family: arial!important;
+	font-size: 1em;
+	text-transform: uppercase;
+}
+
 .node-events .field-name-field-country-code .field-label{
 	font-weight: lighter;
 	font-family: arial!important;
@@ -4852,7 +5193,7 @@ a.tabs-primary__tab-link{
 }
 
 .node-events .field-name-field-country-code{
-	float:left;
+	float:none;
 	padding-right:0.3em;
 }
 
@@ -4867,6 +5208,10 @@ a.tabs-primary__tab-link{
 	font-family: arial!important;
 	font-size: 1em;
 	text-transform: uppercase;
+}
+
+.node-events .group-events-description p{
+	margin:0.5em 0em;
 }
 
 .node-events .field-name-field-start-date .field-label{
@@ -4907,7 +5252,7 @@ a.tabs-primary__tab-link{
 
 .group-events-links h3{
 	color: #000000;
-	font-family: "Oswald",sans-serif;
+	font-family: "Open Sans Condensed",sans-serif;
 	font-size: 1.6em;
 	font-weight: lighter;
 	margin-bottom: 0;
@@ -4930,7 +5275,7 @@ a.tabs-primary__tab-link{
 
 .group-events-related-documents h3{
 	color: #000000;
-	font-family: "Oswald",sans-serif;
+	font-family: "Open Sans Condensed",sans-serif;
 	font-size: 1.6em;
 	font-weight: lighter;
 	margin-bottom: 0;
@@ -4953,7 +5298,7 @@ a.tabs-primary__tab-link{
 	background: url("../images/flecha-izq.png") no-repeat scroll 87% center transparent;
 	color: #003399;
 	float: right;
-	font-family: "Oswald",sans-serif!important;
+	font-family: "Open Sans Condensed",sans-serif!important;
 	font-size: 1.1em;
 	margin: 0;
 	padding-bottom: 0.3em;
@@ -4961,6 +5306,7 @@ a.tabs-primary__tab-link{
 	text-align: right;
 	width: 100%;
 	border-bottom: 0px!important;
+	font-weight:bold;
 }
 
 
@@ -4975,7 +5321,7 @@ a.tabs-primary__tab-link{
 	background: url("../images/separator_home.jpg") repeat-x scroll 0 100% rgba(0, 0, 0, 0);
     clear: both;
     color: #000000;
-    font-family: "Oswald",sans-serif;
+    font-family: "Open Sans Condensed",sans-serif;
     font-size: 1.6em;
     font-weight: lighter;
     margin-bottom: 0;
@@ -4999,7 +5345,7 @@ a.tabs-primary__tab-link{
 	height: 40px;
 	padding-left: 2em;
 	margin-bottom: 0em;
-	font-family: "Oswald",sans-serif;
+	font-family: "Open Sans Condensed",sans-serif;
 	font-size: 1.6em;
 	font-weight: lighter;
 	padding-top: 0.5em;
@@ -5036,7 +5382,7 @@ a.tabs-primary__tab-link{
 	height: 40px;
 	padding-left: 2em;
 	margin-bottom: 0em;
-	font-family: "Oswald",sans-serif;
+	font-family: "Open Sans Condensed",sans-serif;
 	font-size: 1.6em;
 	font-weight: lighter;
 	padding-top: 0.5em;
@@ -5066,7 +5412,7 @@ a.tabs-primary__tab-link{
 	height: 40px;
 	padding-left: 2em;
 	margin-bottom: 0em;
-	font-family: "Oswald",sans-serif;
+	font-family: "Open Sans Condensed",sans-serif;
 	font-size: 1.6em;
 	font-weight: lighter;
 	padding-top: 0.5em;
@@ -5089,7 +5435,7 @@ a.tabs-primary__tab-link{
 	height: 40px;
 	padding-left: 0em;
 	margin-bottom: 0em;
-	font-family: "Oswald",sans-serif;
+	font-family: "Open Sans Condensed",sans-serif;
 	font-size: 1.6em;
 	font-weight: lighter;
 	padding-top: 0.5em;
@@ -5116,7 +5462,7 @@ a.tabs-primary__tab-link{
 	height: 40px;
 	padding-left: 0em;
 	margin-bottom: 0em;
-	font-family: "Oswald",sans-serif;
+	font-family: "Open Sans Condensed",sans-serif;
 	font-size: 1.6em;
 	font-weight: lighter;
 	padding-top: 0.5em;
@@ -5148,7 +5494,7 @@ a.tabs-primary__tab-link{
 	height: 40px;
 	padding-left: 0em;
 	margin-bottom: 0em;
-	font-family: "Oswald",sans-serif;
+	font-family: "Open Sans Condensed",sans-serif;
 	font-size: 1.6em;
 	font-weight: lighter;
 	padding-top: 0.5em;
@@ -5187,7 +5533,7 @@ a.tabs-primary__tab-link{
 	height: 40px;
 	padding-left: 0em;
 	margin-bottom: 0em;
-	font-family: "Oswald",sans-serif;
+	font-family: "Open Sans Condensed",sans-serif;
 	font-size: 1.6em;
 	font-weight: lighter;
 	padding-top: 0.5em;
@@ -5226,9 +5572,9 @@ a.tabs-primary__tab-link{
 /* BLOG LIST */
 
 #block-views-blog-block-1 h2{
-	font-family: 'Oswald';
+	font-family: 'Open Sans Condensed';
 	font-style: normal;
-	font-weight: 300;
+	font-weight: bold;
 	font-size: 2.15em;
 	color: #003399;
 	letter-spacing: -0.75px;
@@ -5256,23 +5602,33 @@ a.tabs-primary__tab-link{
 
 .view-blog  .views-field.views-field-title a{
 	border-bottom: 0 none !important;
-	font-family: "Oswald",sans-serif !important;
+	font-family: "Open Sans Condensed",sans-serif !important;
 	font-size: 1.5em;
 	color: #003399;
 	padding-top: 0.5em;
 	padding-bottom: 0.5em;
+	font-weight:bold;
 }
 
 .view-blog  .views-field-view-node a{
 	background: url("../images/flecha.png") no-repeat scroll 85% 29% transparent;
 	color: #003399;
 	float: right;
-	font-family: "Oswald",sans-serif!important;
+	font-family: "Open Sans Condensed",sans-serif!important;
 	font-size: 1.2em;
 	padding-bottom: 1em;
 	padding-right: 2.5em;
 	margin-top:0em;
-	border-bottom:0px!important
+	border-bottom:0px!important;
+	font-weight:bold;
+}
+
+.view-blog  .date-display-single{
+	font-size:0.8em;
+}
+
+.view-blog  .views-field-field-summary p{
+	margin-top:0em;
 }
 
 #block-views-blog-block-2{
@@ -5283,7 +5639,7 @@ a.tabs-primary__tab-link{
 
 #block-views-blog-block-2 h2{
 	color: #000;
-	font-family: 'Oswald',sans-serif;
+	font-family: 'Open Sans Condensed',sans-serif;
 	font-size: 1.45em;
 	font-weight: lighter;
 	margin: 0;
@@ -5296,9 +5652,9 @@ a.tabs-primary__tab-link{
 	background: url("../images/triangle-collapsed.png") no-repeat scroll 96% center #e8eef7 !important;
     border: 0 none;
     color: #003399;
-    font-family: "Oswald";
+    font-family: "Open Sans Condensed";
     font-size: 1.35em;
-    font-weight: 400;
+    font-weight: bold;
     height: auto;
     margin-bottom: 0;
     margin-top: 0.5em;
@@ -5362,7 +5718,7 @@ a.tabs-primary__tab-link{
 #block-twitter-block-1 h2 {
 	background: url("../images/separator_home.jpg") repeat-x scroll 0 100% rgba(0, 0, 0, 0);
     color: #000;
-    font-family: "Oswald",sans-serif;
+    font-family: "Open Sans Condensed",sans-serif;
     font-size: 1.45em;
     font-weight: lighter;
     margin: 0;
@@ -5400,12 +5756,13 @@ a.tabs-primary__tab-link{
 
 .node-blog .field-name-title-field{
 	color: #003399;
-	font-family: 'Oswald',sans-serif;
+	font-family: 'Open Sans Condensed',sans-serif;
 	font-size: 1.5em;
 	line-height: 1.1em;
 	text-decoration: none;
 	padding: 0;
 	border-bottom: 0px!important;
+	font-weight:bold;
 }
 
 
@@ -5415,7 +5772,7 @@ a.tabs-primary__tab-link{
 
 #comments h2{
 	color: #000000;
-	font-family: "Oswald",sans-serif;
+	font-family: "Open Sans Condensed",sans-serif;
 	font-size: 1.6em;
 	font-weight: lighter;
 	margin-bottom: 0;
@@ -5423,7 +5780,8 @@ a.tabs-primary__tab-link{
 	background: url("../images/separator_home.jpg") repeat-x scroll 0 100% rgba(0, 0, 0, 0);
 	padding-left:0em;
 	border-top:5px solid #003399;
-	margin-top:1em;
+	margin-top:2em;
+	clear:both;
 }
 
 #comments a{
@@ -5449,11 +5807,12 @@ article.comment p {
     border-bottom: 0 none !important;
     color: #003399;
     float: right;
-    font-family: "Oswald",sans-serif !important;
+    font-family: "Open Sans Condensed",sans-serif !important;
     font-size: 1.2em;
     margin-top: 0;
     padding-bottom: 0;
     padding-right: 2em;
+	font-weight:bold;
 }
 
 #comments #edit-author--2 label{
@@ -5508,13 +5867,13 @@ article.comment p {
 
 .block-osha-alert-service {
 	background-color: #e9edf6;
-	padding: 0em 1em 1em 1em;
+	padding: 0em 1em 0.5em 1em;
 	margin-bottom: 1em;
 }
 
 .block-osha-alert-service span{
 	display: block;
-    font-family: "Oswald",sans-serif !important;
+    font-family: "Open Sans Condensed",sans-serif !important;
     font-size: 1.3em;
     font-weight: lighter;
     padding-top: 0.5em;
@@ -5525,10 +5884,11 @@ article.comment p {
 	border: 0 none;
 	color: #003399;
 	float: none;
-	font-family: "Oswald",sans-serif;
+	font-family: "Open Sans Condensed",sans-serif;
 	font-size: 1.2em;
 	font-weight: bold;
-	margin-top: 1em;
+	margin-top: 0.5em;
+	margin-bottom:0.5em;
 	padding-bottom: 0.2em;
 	padding-right: 0em;
 	padding-top: 0.2em;
@@ -5537,11 +5897,10 @@ article.comment p {
 	text-decoration: none;
 	display: block;
 	padding-left: 1em;
-	margin-bottom:1em;
 }
 
 .privacy-policy-oshmail{
-	font-size: 1em;
+	font-size: 0.9em;
 	font-weight: lighter;
 	font-family: arial;
 	color: #003399;
@@ -5591,7 +5950,7 @@ article.comment p {
     border: 0 none;
     color: #003399;
     float: none;
-    font-family: "Oswald",sans-serif;
+    font-family: "Open Sans Condensed",sans-serif;
     font-size: 1.2em;
     font-weight: bold;
     margin-top: 1em;
@@ -5621,8 +5980,11 @@ article.comment p {
 }	
 
 #block-osha-press-release-osha-press-rel-join-list h2{
-	padding-left: 1.2em;
-	padding-right: 2em;
+	line-height: 1.3em;
+    padding-left: 1.2em;
+    padding-right: 2em;
+    padding-top: 0.5em;
+	padding-bottom:0.5em;
 }
 
 #join-list{
@@ -5634,7 +5996,7 @@ article.comment p {
 	background: url("../images/flecha.png") no-repeat scroll 100% 29% transparent!important;
 	color: #003399;
 	float: right;
-	font-family: "Oswald",sans-serif!important;
+	font-family: "Open Sans Condensed",sans-serif!important;
 	font-size: 1.1em!important;
 	padding-bottom: 1em;
 	padding-right: 1.5em;
@@ -5650,8 +6012,11 @@ article.comment p {
 }
 
 #block-osha-press-release-osha-press-rel-become-partner h2{
-	padding-left: 1.2em;
-	padding-right: 2em;
+	line-height: 1.3em;
+    padding-left: 1.2em;
+    padding-right: 2em;
+    padding-top: 0.5em;
+	padding-bottom:0.5em;
 }
 
 #become-partner {
@@ -5663,7 +6028,7 @@ article.comment p {
 	background: url("../images/flecha.png") no-repeat scroll 100% 29% transparent!important;
 	color: #003399;
 	float: right;
-	font-family: "Oswald",sans-serif!important;
+	font-family: "Open Sans Condensed",sans-serif!important;
 	font-size: 1.1em!important;
 	padding-bottom: 1em;
 	padding-right: 1.5em;
@@ -5876,7 +6241,7 @@ div.contextual-links-wrapper{
 	background: url("../images/flecha.png") no-repeat scroll 100% 29% transparent!important;
 	color: #003399;
 	float: right;
-	font-family: "Oswald",sans-serif!important;
+	font-family: "Open Sans Condensed",sans-serif!important;
 	font-size: 1.1em!important;
 	padding-bottom: 1em;
 	padding-right: 1.5em;
@@ -5910,7 +6275,7 @@ div.contextual-links-wrapper{
     font-family: arial;
     font-size: 1em;
     font-weight: normal;
-	float:left;
+	float:none;
 	padding-right:1em;
 	padding-left:0em;
 }
@@ -5926,8 +6291,6 @@ div.contextual-links-wrapper{
 
 
 #block-views-infographic-block-1{
-	height:1%;
-	overflow:hidden;
 	clear:both;
 	background: url("../images/separator_home.jpg") repeat-x scroll 0 0 rgba(0, 0, 0, 0);
 	padding-top:2em;
@@ -5936,44 +6299,62 @@ div.contextual-links-wrapper{
 #block-views-infographic-block-1 .view-infographic  .views-row{
 	float:left;
 	width:16.2em;
-	padding-right:1em;
+	padding-right:2em;
 }
 
-#block-views-infographic-block-1 .view-content{
-	display: flex;
-	align-items: flex-end;
-   
+#block-views-infographic-block-1 .view-infographic .view-content .views-row img{
+	width:241px!important;
+	height:auto!important;
+	
+}
+
+@media screen and (min-width: 1170px){
+	#block-views-infographic-block-1 .view-infographic .view-content .views-row:nth-child(3n+4){
+		clear:both;
+	}
+}
+
+@media screen and (min-width: 971px) and (max-width: 1170px){
+			#block-views-infographic-block-1 .view-infographic .view-content .views-row:nth-child(odd){
+				clear:both!important;
+			}
 }
 
 #block-views-infographic-block-1 .view-infographic  .views-row .views-field-title{
-	text-decoration: none;
-	color: #001791!important;
-	padding-right: 1.3em!important;
-	font-family: 'Oswald', sans-serif;
-	font-size: 1.35em;
-	font-style: normal;
-	font-weight: 400;
-	color: #001791;
-	letter-spacing: -0.5px;
-	margin-bottom: 0.2em;
 	border-bottom: 10px solid #d2dced;
-	line-height: 1.2em;
-	padding-top: 1em;
-	padding-bottom: 0.2em;
-	width: 86%;
-	position: relative;
+    color: #001791 !important;
+    font-family: "Open Sans Condensed",sans-serif;
+    font-size: 1.35em;
+    font-style: normal;
+    font-weight: bold;
+    height: 47px;
+    letter-spacing: -0.5px;
+    line-height: 1.2em;
+    margin-bottom: 0.2em;
+    padding-bottom: 0.2em;
+    padding-right: 1.3em !important;
+    padding-top: 1em;
+    position: relative;
+    text-decoration: none;
+    width: 216px;
 }
 
 
 #block-views-infographic-block-1 .view-infographic  .views-row .views-field-title a {
-	font-family: 'Oswald', sans-serif!important;
-	text-decoration: none;
-	color: #003399;
+	border: 0 none !important;
+    bottom: 5px;
+    color: #003399;
+    font-family: "Open Sans Condensed",sans-serif !important;
+    position: absolute;
+    text-decoration: none;
+}
+
+#block-views-infographic-block-1 .view-infographic  .views-row .views-field-field-thumbnail a{
 	border: 0px!important;
 }
 
-#block-views-infographic-block-1 .view-infographic  .views-row .views-field-field-image a{
-	border: 0px!important;
+.view.view-infographic.view-id-infographic.view-display-id-block_2{
+	margin-left:-0.5em;
 }
 
 /*END INFOGRAPHICS*/
@@ -5995,10 +6376,10 @@ div.contextual-links-wrapper{
 	text-decoration: none;
 	color: #001791!important;
 	padding-right: 1.3em!important;
-	font-family: 'Oswald', sans-serif;
+	font-family: 'Open Sans Condensed', sans-serif;
 	font-size: 1.35em;
 	font-style: normal;
-	font-weight: 400;
+	font-weight: bold;
 	color: #001791;
 	letter-spacing: -0.5px;
 	margin-bottom: 0.2em;
@@ -6015,10 +6396,11 @@ div.contextual-links-wrapper{
 #block-views-infographic-block .view-infographic  .views-row .views-field-title a {
 	position: absolute;
 	bottom: 5px;
-	font-family: 'Oswald', sans-serif!important;
+	font-family: 'Open Sans Condensed', sans-serif!important;
 	text-decoration: none;
 	color: #003399;
 	border: 0px!important;
+	font-weight:bold;
 }
 
 #block-views-infographic-block .view-infographic  .views-row .views-field-field-image a{
@@ -6034,9 +6416,9 @@ div.contextual-links-wrapper{
 .field-name-field-twin-infographics .field-label{
 	background: none repeat scroll 0 0 #e8eef7;
 	color: #003399;
-	font-family: "Oswald";
+	font-family: "Open Sans Condensed";
 	font-size: 1.35em;
-	font-weight: 400;
+	font-weight: bold;
 	padding-bottom: 2px;
 	padding-left: 10px;
 	line-height: 2em;
@@ -6044,9 +6426,9 @@ div.contextual-links-wrapper{
 
 .node-infographic h1{
 	color: #003399;
-	font-family: Oswald;
+	font-family: Open Sans Condensed;
 	font-size: 1.5em !important;
-	font-weight: 400;
+	font-weight: bold;
 	padding-top: 0.5em;
 }
 
@@ -6072,6 +6454,7 @@ div.contextual-links-wrapper{
 	border-bottom:0px!important;
 	margin-left:0.5em;
 	font-weight:bold;
+	font-size:0.8em;
 }
 
 .node-infographic .label_multilang_file{
@@ -6088,6 +6471,7 @@ div.contextual-links-wrapper{
 	 border-bottom:0px!important;
 	 margin-left:0.5em;
 	 font-weight:bold;
+	 font-size:0.8em;
 }
 
 .node-infographic .field-name-field-file img{
@@ -6128,7 +6512,7 @@ div.contextual-links-wrapper{
 .sidebars_second .block-nodeblock article .field-name-title-field h1{
 	background: url("../images/separator_home.jpg") repeat-x scroll 0 100% rgba(0, 0, 0, 0);
     color: #000;
-    font-family: "Oswald",sans-serif;
+    font-family: "Open Sans Condensed",sans-serif;
     font-size: 1.55em;
     font-weight: lighter;
     margin: 0;
@@ -6148,14 +6532,15 @@ div.contextual-links-wrapper{
 /*EVENTS PORLET*/
 
 #block-views-related-content-block-6 h2{
-	background: url("../images/separator_home.jpg") repeat-x scroll 0 100% rgba(0, 0, 0, 0);
-    color: #000;
-    font-family: "Oswald",sans-serif;
-    font-size: 1.55em;
-    font-weight: lighter;
-    margin: 0;
-    padding: 0.3em 0.5em;
-	border-top: 5px solid #003399;
+	background: url("../images/ico_events.png") no-repeat scroll 100% 30% transparent;
+	color: #000000;
+	font-family: "Open Sans Condensed",sans-serif;
+	font-size: 1.2em;
+	font-weight: lighter;
+	margin-bottom: 0;
+	padding-bottom: 0;
+	padding-left: 0.5em;
+	font-weight: bold;
 }
 
 #block-views-related-content-block-6  a{
@@ -6170,11 +6555,19 @@ div.contextual-links-wrapper{
 
 #block-views-related-content-block-6 .views-field-field-start-date{
 	font-weight:bold;
-	font-size:0.8em;
+	font-size: 0.8em;
 }
 
 #block-views-related-content-block-6  .view-related-content{
 	padding-left:0.8em;
+	padding-top: 1em;
+	background: url("../images/separator_home.jpg") repeat-x scroll 0% -7px rgba(0, 0, 0, 0);
+}
+
+
+#block-views-related-content-block-6  .view-related-content .views-row{
+	padding-bottom:1em;
+	background: url("../images/separator_home.jpg") repeat-x scroll 0% 50px rgba(0, 0, 0, 0);
 }
 
 /*END EVENTS PORLET*/
@@ -6211,12 +6604,148 @@ div.contextual-links-wrapper{
 
 .contact_us_title{
 	color: #003399;
-    font-family: Oswald !important;
+    font-family: Open Sans Condensed !important;
     font-size: 1.2em !important;
-    font-weight: 400;
+    font-weight: bold;
     padding-top: 0.5em;
 	border-bottom:0px!important;
 }
 
 /*CONTACT US*/
 
+.node-article .field-name-body p{ 
+	margin: 0.2em 0 0.5em;
+}
+
+.node-article .field-name-body ul{ 
+	margin: 0em;
+}
+
+#block-osha-newsletter-osha-newsletter-subscribe p{ 
+	margin: 0.5em 0;
+}
+
+
+.osha-archived-content{
+	padding:1em;
+	background-color:#ECF1FB;
+	color:#003399;
+	text-align:center;
+	font-weight:bold;
+}
+
+
+.node-article.view-mode-full iframe {
+	width: 100%;
+}
+
+.node.node-article.view-mode-full .field.field-name-field-image.field-type-image.field-label-hidden .field-items .field-item  img {
+	width:100%;
+}
+
+#edit-submit-publications-index{
+	background: url("../images/flecha.png") no-repeat scroll 96% center #e8eef7;
+	border: 0 none;
+	color: #003399;
+	float: none;
+	font-family: "Open Sans Condensed",sans-serif;
+	font-size: 1.2em;
+	font-weight: bold;
+	margin-top: 0.7em!important;
+	padding-bottom: 0.2em;
+	padding-right: 2.3em;
+	padding-top: 0.2em;
+	text-align: right;
+	width: 46%;
+}
+
+.view-events-index .views-exposed-widget.views-submit-button{
+	width: auto;
+}
+
+#edit-submit-events-index{
+	background: url("../images/flecha.png") no-repeat scroll 96% center #e8eef7;
+	border: 0 none;
+	color: #003399;
+	float: none;
+	font-family: "Open Sans Condensed",sans-serif;
+	font-size: 1.2em;
+	font-weight: bold;
+	margin-top: 0.5em;
+	padding: 0.2em 2.3em 0.2em 0.4em;
+	text-align: right;
+	width: 100%;
+}
+
+#edit-submit-search-seminars{
+	background: url("../images/flecha.png") no-repeat scroll 96% center #e8eef7;
+	border: 0 none;
+	color: #003399;
+	float: none;
+	font-family: "Open Sans Condensed",sans-serif;
+	font-size: 1.2em;
+	font-weight: bold;
+	margin-top: 0.5em;
+	padding-bottom: 0.2em;
+	padding-right: 2em;
+	padding-top: 0.2em;
+	text-align: right;
+	width: auto;
+	margin-top:1em;
+}
+
+
+#edit-submit-search-directives{
+	background: url("../images/flecha.png") no-repeat scroll 96% center #e8eef7;
+	border: 0 none;
+	color: #003399;
+	float: none;
+	font-family: "Open Sans Condensed",sans-serif;
+	font-size: 1.2em;
+	font-weight: bold;
+	margin-top: 0.5em;
+	padding-bottom: 0.2em;
+	padding-right: 2em;
+	padding-top: 0.2em;
+	text-align: left;
+	width: auto;
+	margin-top: 1em;
+}
+
+#edit-submit-search-blog{
+	background: url("../images/flecha.png") no-repeat scroll 96% center #e8eef7;
+	border: 0 none;
+	color: #003399;
+	float: none;
+	font-family: "Open Sans Condensed",sans-serif;
+	font-size: 1.2em;
+	font-weight: bold;
+	margin-top: 0.5em;
+	padding-bottom: 0.2em;
+	padding-right: 2em;
+	padding-top: 0.2em;
+	text-align: left;
+	width: auto;
+	margin-top: 1em;
+}
+
+.views-exposed-widget.views-submit-button{
+	background: url("../images/separator_home.jpg") repeat-x scroll 100% 117% rgba(0, 0, 0, 0);
+	height: 4em;
+	width: 100%;
+}
+
+#block-aggregator-feed-1 .feed-item-date{
+	font-weight:bold;
+	font-size:0.8em;
+}
+
+
+#block-menu-block-2 #main-menu-links #main-menu-links .is-expanded {
+	background: url("../images/ico-plus.png")no-repeat scroll 96% 66%, url("../images/back-tit-blue.png")repeat-x scroll 0 100%;
+}
+    
+
+#block-menu-block-2 #main-menu-links #main-menu-links .expand{
+	background: url("../images/ico_minor.png")no-repeat scroll 96% 1em, url("../images/back-tit-blue.png")repeat-x scroll 0 100%;
+}

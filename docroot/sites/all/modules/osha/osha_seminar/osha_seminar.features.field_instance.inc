@@ -994,7 +994,7 @@ function osha_seminar_field_default_field_instances() {
         'module' => 'title',
         'settings' => array(
           'title_class' => '',
-          'title_link' => '',
+          'title_link' => 'content',
           'title_style' => 'h1',
         ),
         'type' => 'title_linked',

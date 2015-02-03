@@ -10,6 +10,9 @@ List of patches (most recent first)
 * ldap
   * ldap-property_of_non_object_in_ldap_authentication_init-2182413-3.patch
 
+* i18n_string
+    * Fixes undefined method strings_remove and strings_update
+    * File: strings_remove_update_undefined_method.patch
 * scanner
   * patches by Ruben@BBM - disable Undo and avoid to creating a new revision; permissions for S&R tab
 
@@ -185,6 +188,10 @@ List of patches (most recent first)
   * duplicate-fragment-query-1646360-1.patch
   * Display url - ":" is converted to "%3A" and "?" to "&"
   * link-character_conversion-1984398.patch
+
+* addtoany
+  * make text of link translatable
+  * translatable_link_text.patch
 
 Patch documentation should be in the following format:
 

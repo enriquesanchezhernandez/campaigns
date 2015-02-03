@@ -56,6 +56,14 @@ function osha_search_views_default_views() {
   $handler->display->display_options['sorts']['field_publication_date']['table'] = 'search_api_index_default_multilingual_node_index';
   $handler->display->display_options['sorts']['field_publication_date']['field'] = 'field_publication_date';
   $handler->display->display_options['sorts']['field_publication_date']['order'] = 'DESC';
+  $handler->display->display_options['sorts']['field_publication_date']['exposed'] = TRUE;
+  $handler->display->display_options['sorts']['field_publication_date']['expose']['label'] = 'Publication date';
+  /* Sort criterion: Search: Relevance */
+  $handler->display->display_options['sorts']['search_api_relevance']['id'] = 'search_api_relevance';
+  $handler->display->display_options['sorts']['search_api_relevance']['table'] = 'search_api_index_default_multilingual_node_index';
+  $handler->display->display_options['sorts']['search_api_relevance']['field'] = 'search_api_relevance';
+  $handler->display->display_options['sorts']['search_api_relevance']['exposed'] = TRUE;
+  $handler->display->display_options['sorts']['search_api_relevance']['expose']['label'] = 'Relevance';
   /* Filter criterion: Search: Fulltext search */
   $handler->display->display_options['filters']['search_api_views_fulltext']['id'] = 'search_api_views_fulltext';
   $handler->display->display_options['filters']['search_api_views_fulltext']['table'] = 'search_api_index_default_multilingual_node_index';
@@ -163,7 +171,7 @@ function osha_search_views_default_views() {
   /* Display: Page */
   $handler = $view->new_display('page', 'Page', 'page');
   $handler->display->display_options['exposed_block'] = TRUE;
-  $handler->display->display_options['path'] = 'search/publications';
+  $handler->display->display_options['path'] = 'tools-and-publications/publications';
   $translatables['publications_index'] = array(
     t('Master'),
     t('Publications'),
@@ -182,6 +190,8 @@ function osha_search_views_default_views() {
     t('»'),
     t('No results'),
     t('Multilingual ID'),
+    t('Publication date'),
+    t('Relevance'),
     t('Available in languages'),
     t('Item language'),
     t('Page'),
@@ -509,10 +519,10 @@ function osha_search_views_default_views() {
   $handler->display->display_options['tab_options']['title'] = 'Site';
   $handler->display->display_options['tab_options']['weight'] = '1';
 
-  /* Display: OSHWiki Search */
-  $handler = $view->new_display('page', 'OSHWiki Search', 'wiki');
+  /* Display: OSHwiki Search */
+  $handler = $view->new_display('page', 'OSHwiki Search', 'wiki');
   $handler->display->display_options['defaults']['title'] = FALSE;
-  $handler->display->display_options['title'] = 'OSHWiki Search';
+  $handler->display->display_options['title'] = 'OSHwiki Search';
   $handler->display->display_options['exposed_block'] = TRUE;
   $handler->display->display_options['defaults']['fields'] = FALSE;
   /* Field: Indexed Multilingual Node: Title */
@@ -644,7 +654,7 @@ function osha_search_views_default_views() {
     t('Site Search'),
     t('Publication date'),
     t('Language'),
-    t('OSHWiki Search'),
+    t('OSHwiki Search'),
     t('Date'),
   );
   $export['search'] = $view;

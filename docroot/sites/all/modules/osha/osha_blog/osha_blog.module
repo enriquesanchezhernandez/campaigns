@@ -216,5 +216,20 @@ function osha_blog_form_comment_node_blog_form_alter(&$form, &$form_state) {
   // Remove mail field from comment form
   $form['author']['mail']['#default_value'] = FALSE;
   $form['author']['mail']['#access'] = FALSE;
+
+  $form['#validate'] = array('osha_blog_comment_validate');
 }
 
+function osha_blog_comment_validate($form, &$form_state){
+  entity_form_field_validate('comment', $form, $form_state);
+}
+
+/**
+ * Implements hook_osha_tmgmt_i18n_string_list().
+ *
+ * {@inheritdoc}
+ */
+function osha_blog_osha_tmgmt_i18n_string_list() {
+  module_load_include('inc', 'osha_blog', 'osha_blog.translate');
+  return osha_blog_get_translatable_strings();
+}

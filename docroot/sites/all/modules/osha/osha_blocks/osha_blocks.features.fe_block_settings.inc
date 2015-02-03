@@ -12,16 +12,15 @@ function osha_blocks_default_fe_block_settings() {
 
   $export['version'] = '2.0';
 
-  $export['block-osha_job_vacancies_reserve_block'] = array(
+  $export['block-osha_wiki_link'] = array(
     'cache' => -1,
     'custom' => 0,
     'i18n_block_language' => array(),
     'i18n_mode' => 1,
-    'machine_name' => 'osha_job_vacancies_reserve_block',
+    'machine_name' => 'osha_wiki_link',
     'module' => 'block',
     'node_types' => array(),
-    'pages' => 'node/21
-inside-eu-osha/careers',
+    'pages' => 'node/875',
     'roles' => array(),
     'themes' => array(
       'bartik' => array(
@@ -37,50 +36,10 @@ inside-eu-osha/careers',
         'weight' => 0,
       ),
       'osha_frontend' => array(
-        'region' => '',
-        'status' => 0,
+        'region' => 'sidebar_second',
+        'status' => 1,
         'theme' => 'osha_frontend',
-        'weight' => 5,
-      ),
-      'seven' => array(
-        'region' => '',
-        'status' => 0,
-        'theme' => 'seven',
-        'weight' => 0,
-      ),
-    ),
-    'title' => 'Reserve lists',
-    'visibility' => 1,
-  );
-
-  $export['block-oshmail_subscribe_categories'] = array(
-    'cache' => -1,
-    'custom' => 0,
-    'i18n_block_language' => array(),
-    'i18n_mode' => 0,
-    'machine_name' => 'oshmail_subscribe_categories',
-    'module' => 'block',
-    'node_types' => array(),
-    'pages' => 'pages/oshmail-newsletter',
-    'roles' => array(),
-    'themes' => array(
-      'bartik' => array(
-        'region' => '',
-        'status' => 0,
-        'theme' => 'bartik',
-        'weight' => 0,
-      ),
-      'osha_admin' => array(
-        'region' => '',
-        'status' => 0,
-        'theme' => 'osha_admin',
-        'weight' => 0,
-      ),
-      'osha_frontend' => array(
-        'region' => '',
-        'status' => 0,
-        'theme' => 'osha_frontend',
-        'weight' => -26,
+        'weight' => -3,
       ),
       'seven' => array(
         'region' => '',
@@ -101,7 +60,7 @@ inside-eu-osha/careers',
     'machine_name' => 'publications_header',
     'module' => 'block',
     'node_types' => array(),
-    'pages' => 'search/publications',
+    'pages' => 'tools-and-publications/publications',
     'roles' => array(),
     'themes' => array(
       'bartik' => array(
@@ -173,47 +132,6 @@ inside-eu-osha/careers',
     ),
     'title' => '',
     'visibility' => 0,
-  );
-
-  $export['block-vacancies_link_to_closed'] = array(
-    'cache' => -1,
-    'custom' => 0,
-    'i18n_block_language' => array(),
-    'i18n_mode' => 0,
-    'machine_name' => 'vacancies_link_to_closed',
-    'module' => 'block',
-    'node_types' => array(),
-    'pages' => 'node/21
-inside-eu-osha/careers',
-    'roles' => array(),
-    'themes' => array(
-      'bartik' => array(
-        'region' => '',
-        'status' => 0,
-        'theme' => 'bartik',
-        'weight' => 0,
-      ),
-      'osha_admin' => array(
-        'region' => '',
-        'status' => 0,
-        'theme' => 'osha_admin',
-        'weight' => 0,
-      ),
-      'osha_frontend' => array(
-        'region' => '',
-        'status' => 0,
-        'theme' => 'osha_frontend',
-        'weight' => 4,
-      ),
-      'seven' => array(
-        'region' => '',
-        'status' => 0,
-        'theme' => 'seven',
-        'weight' => 0,
-      ),
-    ),
-    'title' => '',
-    'visibility' => 1,
   );
 
   $export['blockgroup-related'] = array(

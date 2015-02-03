@@ -374,3 +374,30 @@ function osha_tmgmt_update_7004() {
     db_add_field('tmgmt_job', 'file_sent', $field);
   }
 }
+
+/**
+ * Revert job translation views
+ */
+function osha_tmgmt_update_7006() {
+  foreach(array('osha_translation_job_overview', 'osha_job_overview_job_items') as $view_name) {
+    $view = views_get_view($view_name);
+    if ($view->type == t('Overridden')) {
+      // Revert the view.
+      $view->delete();
+      // Clear its cache.
+      ctools_include('object-cache');
+      ctools_object_cache_clear('view', $view->name);
+      // Give feedback.
+      $message = dt("Reverted the view '@viewname'", array('@viewname' => $view->name));
+      drupal_set_message($message);
+    }
+  }
+}
+
+/**
+ * Merge OSHA specific strings into locale system
+ */
+function osha_tmgmt_update_7007() {
+  module_load_include('module', 'osha_tmgmt');
+  osha_tmgmt_refresh_string_list();
+}
