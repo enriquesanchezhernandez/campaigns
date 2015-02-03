@@ -18,7 +18,6 @@ function osha_alert_service_get_translatable_strings() {
     'Your request has been registered. Please check your email for further instructions',
     'Unsubscribe !email from receiving EU-OSHA Alert Service notifications?',
     'Unsubscribe',
-    "Invalid request, and I hope it's a test!",
     'You have been successfully un-subscribed from alert',
     'You subscription has been confirmed, thank you',
     "Your subscription is already confirmed, there's nothing you need to do",

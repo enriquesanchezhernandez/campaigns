@@ -37,7 +37,7 @@ class NewsletterTest extends OshaWebTestCase {
     $this->drupalPost('', array('email' => 'invalid'), t('Subscribe'));
     $this->assertText(t('That e-mail address is not valid.'));
     $this->drupalPost('', array('email' => 'test@example.com'), t('Subscribe'));
-    $this->assertText(t('Your message has been sent to listserv@list.osha.europa.eu.'));
+    $this->assertText(t('Your subscription has been submitted succesfully.'));
     $mails = $this->drupalGetMails();
     $this->assertEqual($mails[0]['to'], 'listserv@list.osha.europa.eu');
     $this->assertEqual($mails[0]['from'], 'test@example.com');

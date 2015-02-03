@@ -4,15 +4,4 @@
  * Implements hook_install().
  */
 function osha_wiki_install() {
-  variable_set('workbench_access_node_type_wiki_page', 0);
-
-  // Configure wiki block visibility settings for articles.
-  db_insert('block_node_type')
-    ->fields(array('type', 'module', 'delta'))
-    ->values(array(
-      'type' => 'article',
-      'module' => 'osha_wiki',
-      'delta' => 'osha_wiki_related_content',
-    ))
-    ->execute();
 }

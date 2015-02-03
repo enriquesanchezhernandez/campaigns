@@ -41,11 +41,16 @@ function osha_wiki_block_list_alter(&$blocks) {
 function osha_wiki_block_info() {
   $blocks = array();
   $blocks['osha_wiki_related_content'] = array(
-    'info' => t('OSHwiki related content'),
+    'info' => t('OSHwiki articles (with theme)'),
     'status' => 1,
-    'region' => 'sidebar_second',
     'visibility' => BLOCK_VISIBILITY_NOTLISTED,
-    'weight' => -30,
+    'weight' => -3,
+  );
+  $blocks['osha_wiki_notopic'] = array(
+    'info' => t('OSHwiki articles (no theme)'),
+    'status' => 1,
+    'visibility' => BLOCK_VISIBILITY_NOTLISTED,
+    'weight' => -3,
   );
   return $blocks;
 }
@@ -61,6 +66,10 @@ function osha_wiki_block_view($delta) {
     case 'osha_wiki_related_content':
       $block['subject'] = '';
       $block['content'] = osha_wiki_block_content();
+      break;
+    case 'osha_wiki_notopic':
+      $block['subject'] = '';
+      $block['content'] = osha_wiki_notopic_content();
       break;
   }
   return $block;
@@ -83,12 +92,35 @@ function osha_wiki_block_content() {
   $category_en_name = $category->name_original;
   $wiki_page_url = 'http://oshwiki.eu/wiki/Category:' . str_replace(' ', '_', $category_en_name);
   $find_more = t('Find OSHwiki articles on this theme');
-  $content = t('<div class="OSHWiki"><div class="separatorOsHWiki">&nbsp;</div><div id="OSHWikiDivTit"><div class="imgOSHWiki"><img src="/sites/all/themes/osha_frontend/images/OSHwiki.png" alt="" width="26" height="26" /></div><div class="OSHWikiTitle">OSHwiki</div></div><div class="p2">!find_more<span><br /></span></div><div class="p3"><a href="!wiki_page_url" target="_blank">Go to OSHwiki <img src="/sites/all/themes/osha_frontend/images/flecha.png" alt="Go to OSHwiki" width="19" height="11" /></a></div></div>',
-    array(
-      '!wiki_page_url' => $wiki_page_url,
-      '!find_more' => $find_more,
-    )
-  );
+  return osha_wiki_block_content_template($wiki_page_url, $find_more);
+}
+
+/**
+ * Generates content for the related wiki articles block without a specific wiki category.
+ *
+ * @return string
+ *   Block content
+ */
+function osha_wiki_notopic_content() {
+  $wiki_page_url = 'http://oshwiki.eu/wiki/Main_Page';
+  $find_more = t('Find OSHwiki articles');
+  return osha_wiki_block_content_template($wiki_page_url, $find_more);
+}
+
+function osha_wiki_block_content_template($wiki_page_url, $find_more) {
+  $wiki_name = t('OSHwiki');
+  $goto_wiki = t('Go to OSHwiki');
+  $content = '<div class="OSHWiki"><div class="separatorOsHWiki">&nbsp;</div><div id="OSHWikiDivTit"><div class="imgOSHWiki"><img src="/sites/all/themes/osha_frontend/images/OSHwiki.png" alt="" width="26" height="26" /></div><div class="OSHWikiTitle">'
+    .$wiki_name
+    .'</div></div><div class="p2">'
+    .$find_more
+    .'<span><br /></span></div><div class="p3"><a href="'
+    .$wiki_page_url
+    .'" target="_blank">'
+    .$goto_wiki
+    .' <img src="/sites/all/themes/osha_frontend/images/flecha.png" alt="'
+    .$goto_wiki
+    .'" width="19" height="11" /></a></div></div>';
   return $content;
 }
 
