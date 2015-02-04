@@ -15,7 +15,12 @@
 
 <head>
   <?php print $head; ?>
-  <title><?php print $head_title; ?></title>
+  <?php if (isset($head_title_array['title']) && isset($head_title_array['name']) ) { ?>
+    <title><?php print $head_title_array['title'] . ' | ' . $head_title_array['name']; ?></title>
+  <?php } else { ?>
+    <title><?php print $head_title; ?></title>
+  <?php } ?>
+
 
   <?php if ($default_mobile_metatags): ?>
     <meta name="MobileOptimized" content="width">
