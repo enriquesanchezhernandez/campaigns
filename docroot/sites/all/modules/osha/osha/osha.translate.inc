@@ -13,7 +13,7 @@ function osha_get_translatable_strings() {
     'Body',
     'Character count',
     'Description',
-    'Expiration Date',
+    'Expiration date',
     'Image',
     'Language',
     'Nace',
