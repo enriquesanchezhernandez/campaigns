@@ -72,6 +72,16 @@ function osha_search_block_view($delta = '') {
 }
 
 /**
+ * Implements hook_search_api_solr_query_alter().
+ */
+function osha_search_search_api_solr_query_alter(array &$call_args, SearchApiQueryInterface $query) {
+  // Replace % with * to handle requested widlcard % (non-existing in solr).
+  if (!empty($call_args['query'])) {
+    $call_args['query'] = str_replace('%', '*', $call_args['query']);
+  }
+}
+
+/**
  * Implements hook_form_alter().
  */
 function osha_search_form_alter(&$form, &$form_state, $form_id) {
