@@ -7,6 +7,11 @@ When patching a contrib module, the following steps should be followed:
 
 List of patches (most recent first)
 
+* pathologic
+  * Fixes cache issue wiht lagnuage
+  * https://www.drupal.org/files/issues/348421-129.patch
+  * https://www.drupal.org/node/348421
+  
 * field_collection
     * Fixes error when deleting node.
     * https://www.drupal.org/files/issues/field_collection-error-deleting-node-null-field-collection-2394875-1.module.patch
