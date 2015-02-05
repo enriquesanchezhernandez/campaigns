@@ -14,7 +14,7 @@ function osha_press_release_get_translatable_strings() {
     'Become a media partner',
     'For more information on the partnership and how to apply, see the campaign media partnership offer.',
     'See more',
-    'Join our News Distribution List',
+    'Join our news distribution list',
     'Register here to receive our news releases.',
     'Register',
     'HOLD ON FOR PRESS RELEASE UNTIL',
