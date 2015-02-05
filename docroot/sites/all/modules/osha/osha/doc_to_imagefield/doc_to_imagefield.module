@@ -113,6 +113,7 @@ function doc_to_imagefiled_admin_bulk_form_submit($form, &$form_state) {
   $options = array();
   $options['overwrite_existing'] = $form_state['values']['overwrite_existing'];
 
+  $entities = array_slice($entities, 0, 1001);
   $count = count($entities);
   $operations = array();
   foreach ($entities as $entity) {
@@ -157,6 +158,17 @@ function doc_to_imagefield_entity_save_bulk($entity_type, $entity, $options, &$c
       }
     }
     if ($count) {
+      if (workbench_moderation_node_type_moderated($entity->type)) {
+        $entity = workbench_moderation_node_current_load($entity);
+        // Force the same state in order to avoid creation of new weird transitions.
+        if ($entity->workbench_moderation['current']->state == 'published') {
+          $entity->workbench_moderation['updating_live_revision'] = TRUE;
+          $entity->workbench_moderation_state_new = 'published';
+        }
+        else {
+          $entity->workbench_moderation_state_new = $entity->workbench_moderation['current']->state;
+        }
+      }
       pdf_to_image_entity_save($entity_type, $entity);
       $context['results']['saved'][] = $entity->title;
     }
