@@ -802,7 +802,7 @@ function osha_content_views_default_views() {
   $handler->display->display_options['filters']['field_start_date_value2']['default_date'] = 'now';
   $translatables['related_content'] = array(
     t('Master'),
-    t('Related Content'),
+    t('Related content'),
     t('View all'),
     t('Apply'),
     t('Reset'),

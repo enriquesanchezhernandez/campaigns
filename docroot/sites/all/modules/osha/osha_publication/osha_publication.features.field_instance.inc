@@ -232,7 +232,7 @@ function osha_publication_field_default_field_instances() {
     ),
     'entity_type' => 'node',
     'field_name' => 'field_aditional_resources',
-    'label' => 'Additional Resources',
+    'label' => 'Publication date',
     'required' => 0,
     'settings' => array(
       'entity_translation_sync' => FALSE,
@@ -1077,7 +1077,7 @@ function osha_publication_field_default_field_instances() {
     ),
     'entity_type' => 'node',
     'field_name' => 'field_publication_date',
-    'label' => 'Publication Date',
+    'label' => 'Publication date',
     'required' => 0,
     'settings' => array(
       'default_value' => 'now',
@@ -1775,7 +1775,7 @@ function osha_publication_field_default_field_instances() {
   // Translatables
   // Included for use with string extractors like potx.
   t('Activity');
-  t('Additional Resources');
+  t('Additional resources');
   t('Archived');
   t('Author(s)');
   t('Automatically calculated when saving. The count of characters found in the default language text (English).');
@@ -1790,7 +1790,7 @@ function osha_publication_field_default_field_instances() {
   t('OSHwiki categories');
   t('OSHwiki featured articles');
   t('Page count');
-  t('Publication Date');
+  t('Publication date');
   t('Publication Type');
   t('Resources (files)');
   t('Tags');

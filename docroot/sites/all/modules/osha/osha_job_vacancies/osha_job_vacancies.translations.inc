@@ -4,8 +4,8 @@ function osha_job_vacancies_get_translatable_strings() {
   return array(
     'Activity',
     'Archived',
-    'Expiration Date',
-    'Publication Date',
+    'Expiration date',
+    'Publication date',
     'Related resources',
     'Shortlisted',
     'Job vacancies',

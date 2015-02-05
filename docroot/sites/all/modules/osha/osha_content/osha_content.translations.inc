@@ -2,7 +2,7 @@
 
 function osha_content_get_translatable_strings() {
   return array(
-    'Related Content',
+    'Related content',
     'View all',
     'Apply',
     'Reset',
