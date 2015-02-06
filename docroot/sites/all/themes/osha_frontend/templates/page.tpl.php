@@ -36,9 +36,16 @@
         <?php print $sidebar_first; ?>
       </aside>
     <?php endif; ?>
+	<?php if ((!$sidebar_second) && (!$sidebar_first)): ?>
+		<div id="content" class="one_column">
+	<?php endif; ?>
 	<?php if (($sidebar_second) && ($sidebar_first)): ?>
 		<div id="content" class="three_column">
-	<?php else: ?>
+		<?php endif; ?>
+	<?php if (($sidebar_first) && (!$sidebar_second)): ?>
+		<div id="content" class="two_column">
+	<?php endif; ?>
+	<?php if (($sidebar_second) && (!$sidebar_first)): ?>
 		<div id="content" class="two_column">
 	<?php endif; ?>
 	<?php print render($page['highlighted']); ?>
