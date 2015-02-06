@@ -85,7 +85,7 @@ function osha_press_contact_views_default_views() {
   $handler->display->display_options['fields']['title_field']['alter']['text'] = '[field_personal_title] [title_field]';
   $handler->display->display_options['fields']['title_field']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['title_field']['link_to_entity'] = 0;
-  /* Field: Content: Job Title */
+  /* Field: Content: Job title */
   $handler->display->display_options['fields']['field_press_contact_job_title']['id'] = 'field_press_contact_job_title';
   $handler->display->display_options['fields']['field_press_contact_job_title']['table'] = 'field_data_field_press_contact_job_title';
   $handler->display->display_options['fields']['field_press_contact_job_title']['field'] = 'field_press_contact_job_title';
@@ -560,7 +560,7 @@ function osha_press_contact_views_default_views() {
   $handler->display->display_options['footer']['area_text_custom']['field'] = 'area_text_custom';
   $handler->display->display_options['footer']['area_text_custom']['content'] = '<a class="press-kit-link" href="/node/5428">EU-OSHA Press kit</a>';
   $handler->display->display_options['defaults']['fields'] = FALSE;
-  /* Field: Content: Job Title */
+  /* Field: Content: Job title */
   $handler->display->display_options['fields']['field_press_contact_job_title']['id'] = 'field_press_contact_job_title';
   $handler->display->display_options['fields']['field_press_contact_job_title']['table'] = 'field_data_field_press_contact_job_title';
   $handler->display->display_options['fields']['field_press_contact_job_title']['field'] = 'field_press_contact_job_title';

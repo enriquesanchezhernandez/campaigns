@@ -353,8 +353,8 @@ function osha_blog_views_default_views() {
   $handler->display->display_options['row_plugin'] = 'node_rss';
   $handler->display->display_options['path'] = 'blog/feed';
 
-  /* Display: Tags Posts */
-  $handler = $view->new_display('page', 'Tags Posts', 'page_2');
+  /* Display: Tags posts */
+  $handler = $view->new_display('page', 'Tags posts', 'page_2');
   $handler->display->display_options['defaults']['title'] = FALSE;
   $handler->display->display_options['title'] = 'Tags posts';
   $handler->display->display_options['defaults']['fields'] = FALSE;
@@ -445,7 +445,6 @@ function osha_blog_views_default_views() {
     t('All'),
     t('%1'),
     t('Feed'),
-    t('Tags Posts'),
     t('Tags posts'),
   );
   $export['blog'] = $view;
@@ -455,14 +454,14 @@ function osha_blog_views_default_views() {
   $view->description = '';
   $view->tag = 'default';
   $view->base_table = 'search_api_index_default_multilingual_node_index';
-  $view->human_name = 'Search Blog';
+  $view->human_name = 'Search blog';
   $view->core = 7;
   $view->api_version = '3.0';
   $view->disabled = FALSE; /* Edit this to true to make a default view disabled initially */
 
   /* Display: Master */
   $handler = $view->new_display('default', 'Master', 'default');
-  $handler->display->display_options['title'] = 'Search Blog';
+  $handler->display->display_options['title'] = 'Search blog';
   $handler->display->display_options['use_more_always'] = FALSE;
   $handler->display->display_options['access']['type'] = 'none';
   $handler->display->display_options['cache']['type'] = 'none';
@@ -560,7 +559,7 @@ function osha_blog_views_default_views() {
   $handler->display->display_options['path'] = 'search/blog';
   $translatables['search_blog'] = array(
     t('Master'),
-    t('Search Blog'),
+    t('Search blog'),
     t('more'),
     t('Search'),
     t('Reset'),

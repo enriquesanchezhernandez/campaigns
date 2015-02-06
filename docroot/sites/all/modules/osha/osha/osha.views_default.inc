@@ -755,7 +755,7 @@ function osha_views_default_views() {
     'image_style' => '',
     'image_link' => '',
   );
-  /* Field: Field: Publication Date */
+  /* Field: Field: Publication date */
   $handler->display->display_options['fields']['field_publication_date']['id'] = 'field_publication_date';
   $handler->display->display_options['fields']['field_publication_date']['table'] = 'field_data_field_publication_date';
   $handler->display->display_options['fields']['field_publication_date']['field'] = 'field_publication_date';
@@ -768,7 +768,7 @@ function osha_views_default_views() {
     'multiple_to' => '',
     'osha_date_theme' => '',
   );
-  /* Field: Content: Expiration Date */
+  /* Field: Content: Expiration date */
   $handler->display->display_options['fields']['field_expiration_date']['id'] = 'field_expiration_date';
   $handler->display->display_options['fields']['field_expiration_date']['table'] = 'field_data_field_expiration_date';
   $handler->display->display_options['fields']['field_expiration_date']['field'] = 'field_expiration_date';
@@ -901,7 +901,7 @@ function osha_views_default_views() {
     'image_style' => '',
     'image_link' => '',
   );
-  /* Field: Field: Publication Date */
+  /* Field: Field: Publication date */
   $handler->display->display_options['fields']['field_publication_date']['id'] = 'field_publication_date';
   $handler->display->display_options['fields']['field_publication_date']['table'] = 'field_data_field_publication_date';
   $handler->display->display_options['fields']['field_publication_date']['field'] = 'field_publication_date';
@@ -914,7 +914,7 @@ function osha_views_default_views() {
     'multiple_to' => '',
     'osha_date_theme' => '',
   );
-  /* Field: Content: Expiration Date */
+  /* Field: Content: Expiration date */
   $handler->display->display_options['fields']['field_expiration_date']['id'] = 'field_expiration_date';
   $handler->display->display_options['fields']['field_expiration_date']['table'] = 'field_data_field_expiration_date';
   $handler->display->display_options['fields']['field_expiration_date']['field'] = 'field_expiration_date';
@@ -962,7 +962,7 @@ function osha_views_default_views() {
   $handler->display->display_options['fields']['field_nace_codes']['label'] = 'nace_codes';
   $handler->display->display_options['fields']['field_nace_codes']['delta_offset'] = '0';
   $handler->display->display_options['defaults']['sorts'] = FALSE;
-  /* Sort criterion: Field: Publication Date (field_publication_date) */
+  /* Sort criterion: Field: Publication date (field_publication_date) */
   $handler->display->display_options['sorts']['field_publication_date_value']['id'] = 'field_publication_date_value';
   $handler->display->display_options['sorts']['field_publication_date_value']['table'] = 'field_data_field_publication_date';
   $handler->display->display_options['sorts']['field_publication_date_value']['field'] = 'field_publication_date_value';
@@ -983,7 +983,7 @@ function osha_views_default_views() {
   $handler->display->display_options['filters']['type']['value'] = array(
     'news' => 'news',
   );
-  /* Filter criterion: Field: Publication Date (field_publication_date) */
+  /* Filter criterion: Field: Publication date (field_publication_date) */
   $handler->display->display_options['filters']['field_publication_date_value']['id'] = 'field_publication_date_value';
   $handler->display->display_options['filters']['field_publication_date_value']['table'] = 'field_data_field_publication_date';
   $handler->display->display_options['filters']['field_publication_date_value']['field'] = 'field_publication_date_value';
@@ -1262,7 +1262,7 @@ function osha_views_default_views() {
   $handler->display->display_options['fields']['field_summary']['field'] = 'field_summary';
   $handler->display->display_options['fields']['field_summary']['label'] = 'summary';
   $handler->display->display_options['fields']['field_summary']['type'] = 'text_plain';
-  /* Field: Field: Publication Date */
+  /* Field: Field: Publication date */
   $handler->display->display_options['fields']['field_publication_date']['id'] = 'field_publication_date';
   $handler->display->display_options['fields']['field_publication_date']['table'] = 'field_data_field_publication_date';
   $handler->display->display_options['fields']['field_publication_date']['field'] = 'field_publication_date';
@@ -1288,7 +1288,7 @@ function osha_views_default_views() {
     'multiple_to' => '',
     'osha_date_theme' => '',
   );
-  /* Field: Content: Expiration Date */
+  /* Field: Content: Expiration date */
   $handler->display->display_options['fields']['field_expiration_date']['id'] = 'field_expiration_date';
   $handler->display->display_options['fields']['field_expiration_date']['table'] = 'field_data_field_expiration_date';
   $handler->display->display_options['fields']['field_expiration_date']['field'] = 'field_expiration_date';
@@ -1346,7 +1346,7 @@ function osha_views_default_views() {
   $handler->display->display_options['fields']['field_activity']['delta_offset'] = '0';
   $handler->display->display_options['fields']['field_activity']['multi_type'] = 'ol';
   $handler->display->display_options['defaults']['sorts'] = FALSE;
-  /* Sort criterion: Field: Publication Date (field_publication_date) */
+  /* Sort criterion: Field: Publication date (field_publication_date) */
   $handler->display->display_options['sorts']['field_publication_date_value']['id'] = 'field_publication_date_value';
   $handler->display->display_options['sorts']['field_publication_date_value']['table'] = 'field_data_field_publication_date';
   $handler->display->display_options['sorts']['field_publication_date_value']['field'] = 'field_publication_date_value';
@@ -1367,7 +1367,7 @@ function osha_views_default_views() {
   $handler->display->display_options['filters']['type']['value'] = array(
     'press_release' => 'press_release',
   );
-  /* Filter criterion: Field: Publication Date (field_publication_date) */
+  /* Filter criterion: Field: Publication date (field_publication_date) */
   $handler->display->display_options['filters']['field_publication_date_value']['id'] = 'field_publication_date_value';
   $handler->display->display_options['filters']['field_publication_date_value']['table'] = 'field_data_field_publication_date';
   $handler->display->display_options['filters']['field_publication_date_value']['field'] = 'field_publication_date_value';
@@ -1432,7 +1432,7 @@ function osha_views_default_views() {
     'image_style' => 'medium',
     'image_link' => '',
   );
-  /* Field: Field: Publication Date */
+  /* Field: Field: Publication date */
   $handler->display->display_options['fields']['field_publication_date']['id'] = 'field_publication_date';
   $handler->display->display_options['fields']['field_publication_date']['table'] = 'field_data_field_publication_date';
   $handler->display->display_options['fields']['field_publication_date']['field'] = 'field_publication_date';
@@ -1445,7 +1445,7 @@ function osha_views_default_views() {
     'multiple_to' => '',
     'osha_date_theme' => '',
   );
-  /* Field: Content: Expiration Date */
+  /* Field: Content: Expiration date */
   $handler->display->display_options['fields']['field_expiration_date']['id'] = 'field_expiration_date';
   $handler->display->display_options['fields']['field_expiration_date']['table'] = 'field_data_field_expiration_date';
   $handler->display->display_options['fields']['field_expiration_date']['field'] = 'field_expiration_date';
@@ -1523,7 +1523,7 @@ function osha_views_default_views() {
   $handler->display->display_options['fields']['field_activity']['delta_offset'] = '0';
   $handler->display->display_options['fields']['field_activity']['multi_type'] = 'ol';
   $handler->display->display_options['defaults']['sorts'] = FALSE;
-  /* Sort criterion: Field: Publication Date (field_publication_date) */
+  /* Sort criterion: Field: Publication date (field_publication_date) */
   $handler->display->display_options['sorts']['field_publication_date_value']['id'] = 'field_publication_date_value';
   $handler->display->display_options['sorts']['field_publication_date_value']['table'] = 'field_data_field_publication_date';
   $handler->display->display_options['sorts']['field_publication_date_value']['field'] = 'field_publication_date_value';
@@ -1544,7 +1544,7 @@ function osha_views_default_views() {
   $handler->display->display_options['filters']['type']['value'] = array(
     'publication' => 'publication',
   );
-  /* Filter criterion: Field: Publication Date (field_publication_date) */
+  /* Filter criterion: Field: Publication date (field_publication_date) */
   $handler->display->display_options['filters']['field_publication_date_value']['id'] = 'field_publication_date_value';
   $handler->display->display_options['filters']['field_publication_date_value']['table'] = 'field_data_field_publication_date';
   $handler->display->display_options['filters']['field_publication_date_value']['field'] = 'field_publication_date_value';
