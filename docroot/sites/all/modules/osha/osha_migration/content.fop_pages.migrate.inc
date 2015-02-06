@@ -123,6 +123,10 @@ class MigrateOshaFOPPages extends OSHADynamicMigration {
    */
   public function prepare($entity, $row) {
     parent::prepare($entity, $row);
+    $mlid = db_query("SELECT mlid FROM {menu_links} WHERE menu_name = 'main-menu' AND link_title = 'National focal points'")->fetchField();
+    if (!empty($mlid)) {
+        $entity->workbench_access = array($mlid, $mlid);
+    }
     $migration = Migration::currentMigration();
     $languages = array_keys(language_list());
     $entity_type = $migration->getDestination()->getEntityType();
@@ -143,6 +147,21 @@ class MigrateOshaFOPPages extends OSHADynamicMigration {
       }
       if (!empty($row->text[$language])) {
         $entity->body[$language][0]['value'] = MigrationUtil::decodeHTMLText($row->text[$language]);
+        // Remove the link to old fop pages.
+        $doc = new DOMDocument();
+        $doc->loadHTML($entity->body[$language][0]['value']);
+        $links = $doc->getElementsByTagName('a');
+        if ($links->length > 0) {
+          // We assume that the links is the last.
+          $link = $doc->getElementsByTagName('a')->item($links->length - 1);
+          foreach ($link->attributes as $idx => $attr) {
+            if ($idx == 'href'
+              && strpos($attr->nodeValue, 'about/organisation/focal_points#')) {
+              $link->parentNode->removeChild($link);
+            }
+          }
+        }
+        $entity->body[$language][0]['value'] = $doc->saveHTML();
         $entity->body[$language][0]['format'] = 'full_html';
         $has_translation = TRUE;
       }
@@ -191,6 +210,10 @@ class MigrateOshaFOPPages extends OSHADynamicMigration {
           $entity->field_country[LANGUAGE_NONE][0] = array('tid' => $tid);
         }
       }
+      else {
+        $this->displayMessage('Focal Points Pages - No country assigned to '
+          . $row->title, 'warning');
+      }
 
       $voc = taxonomy_vocabulary_machine_name_load('fop_link_sections');
       $entity->field_fop_link;
@@ -230,7 +253,25 @@ class MigrateOshaFOPPages extends OSHADynamicMigration {
       if ($has_translation) {
         MigrationUtil::setTranslation($translation_handler, $entity, $row, $language);
       }
+      // Remove aliases already imported, let path auto handle aliases.
+      $path = path_load(array('alias' => $row->path));
+      if (!empty($path)) {
+        while ($path = path_load(array('alias' => $row->path))) {
+          path_delete($path);
+        }
+      }
+      $entity->language = 'en';
+      $entity->path['pathauto'] = TRUE;
+
+
     }
+
+  }
+
+  public function complete($entity, $row) {
+    // Create redirect for path; path auto generate handles the path.
+    MigrationUtil::createRedirects($entity, substr($row->path, 4), TRUE);
+    self::createRedirectsFromAliases($entity, $row);
   }
 
   /**
@@ -296,8 +337,8 @@ class MigrateOshaFOPPages extends OSHADynamicMigration {
           if (!$skip) {
             foreach ($this->extractFCIds($destination_key->destid1) as $id) {
               $field_collection_item = field_collection_item_load($id);
-              if ($field_collection_item instanceof FieldCollectionItemEntity) {
-                $field_collection_item->delete();
+              if (!empty($field_collection_item)) {
+                field_collection_item_delete($id);
               }
             }
           }
@@ -356,6 +397,10 @@ class FOPPagesContentListCSV extends MigrateList {
     while (($raw_data = fgetcsv($handle, 100000, ';')) !== FALSE) {
       $language = !empty($raw_data[1]) ? $raw_data[1] : 'en';
       $path = MigrationUtil::getIDFromSourceRow($raw_data);
+      // Ignore this page, it's migrated from pages.
+      if ($path == 'oshnetwork/focal-points/index_html') {
+        continue;
+      }
       self::$data[$path]['id'] = $path;
       // Assign the workflow state of the row from english entry.
       if ($language == 'en') {

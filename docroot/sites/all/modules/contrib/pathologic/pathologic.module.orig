@@ -360,12 +360,6 @@ function _pathologic_replace($matches) {
         $parts['path'] = $path;
         $parts['language_obj'] = $language_obj;
       }
-      else {
-        $languages = language_list();
-        if (isset($languages[$cached_settings['langcode']])) {
-          $parts['language_obj'] = $languages[$cached_settings['langcode']];
-        }
-      }
     }
   }
 

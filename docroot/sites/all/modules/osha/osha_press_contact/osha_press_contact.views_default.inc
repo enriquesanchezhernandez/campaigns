@@ -85,7 +85,7 @@ function osha_press_contact_views_default_views() {
   $handler->display->display_options['fields']['title_field']['alter']['text'] = '[field_personal_title] [title_field]';
   $handler->display->display_options['fields']['title_field']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['title_field']['link_to_entity'] = 0;
-  /* Field: Content: Job Title */
+  /* Field: Content: Job title */
   $handler->display->display_options['fields']['field_press_contact_job_title']['id'] = 'field_press_contact_job_title';
   $handler->display->display_options['fields']['field_press_contact_job_title']['table'] = 'field_data_field_press_contact_job_title';
   $handler->display->display_options['fields']['field_press_contact_job_title']['field'] = 'field_press_contact_job_title';
@@ -126,12 +126,13 @@ function osha_press_contact_views_default_views() {
   $handler->display->display_options['filters']['type']['value'] = array(
     'press_contact' => 'press_contact',
   );
+  $handler->display->display_options['filters']['type']['group'] = 1;
   /* Filter criterion: Content: Type (field_contact_type) */
   $handler->display->display_options['filters']['field_contact_type_tid']['id'] = 'field_contact_type_tid';
   $handler->display->display_options['filters']['field_contact_type_tid']['table'] = 'field_data_field_contact_type';
   $handler->display->display_options['filters']['field_contact_type_tid']['field'] = 'field_contact_type_tid';
   $handler->display->display_options['filters']['field_contact_type_tid']['value'] = array(
-    2968 => '2968',
+    2970 => '2970',
   );
   $handler->display->display_options['filters']['field_contact_type_tid']['type'] = 'select';
   $handler->display->display_options['filters']['field_contact_type_tid']['vocabulary'] = 'contact_type';
@@ -160,14 +161,14 @@ function osha_press_contact_views_default_views() {
   $view->description = '';
   $view->tag = 'default';
   $view->base_table = 'node';
-  $view->human_name = 'Press Contacts';
+  $view->human_name = 'Press contacts';
   $view->core = 7;
   $view->api_version = '3.0';
   $view->disabled = FALSE; /* Edit this to true to make a default view disabled initially */
 
   /* Display: Master */
   $handler = $view->new_display('default', 'Master', 'default');
-  $handler->display->display_options['title'] = 'Press Contacts';
+  $handler->display->display_options['title'] = 'Press contacts';
   $handler->display->display_options['use_more_always'] = FALSE;
   $handler->display->display_options['access']['type'] = 'role';
   $handler->display->display_options['access']['role'] = array(
@@ -529,8 +530,8 @@ function osha_press_contact_views_default_views() {
     3 => array(),
   );
   $handler->display->display_options['path'] = 'admin/content/press-contacts';
-  $handler->display->display_options['menu']['title'] = 'Press Contacts';
-  $handler->display->display_options['menu']['description'] = 'Press Contacts Administration Interface';
+  $handler->display->display_options['menu']['title'] = 'Press contacts';
+  $handler->display->display_options['menu']['description'] = 'Press contacts Administration Interface';
   $handler->display->display_options['menu']['weight'] = '0';
   $handler->display->display_options['menu']['context'] = 0;
   $handler->display->display_options['menu']['context_only_inline'] = 0;
@@ -559,7 +560,7 @@ function osha_press_contact_views_default_views() {
   $handler->display->display_options['footer']['area_text_custom']['field'] = 'area_text_custom';
   $handler->display->display_options['footer']['area_text_custom']['content'] = '<a class="press-kit-link" href="/node/5428">EU-OSHA Press kit</a>';
   $handler->display->display_options['defaults']['fields'] = FALSE;
-  /* Field: Content: Job Title */
+  /* Field: Content: Job title */
   $handler->display->display_options['fields']['field_press_contact_job_title']['id'] = 'field_press_contact_job_title';
   $handler->display->display_options['fields']['field_press_contact_job_title']['table'] = 'field_data_field_press_contact_job_title';
   $handler->display->display_options['fields']['field_press_contact_job_title']['field'] = 'field_press_contact_job_title';
@@ -586,7 +587,7 @@ function osha_press_contact_views_default_views() {
   $handler->display->display_options['fields']['field_press_contact_email']['element_label_colon'] = FALSE;
   $translatables['press_contacts'] = array(
     t('Master'),
-    t('Press Contacts'),
+    t('Press contacts'),
     t('more'),
     t('Apply'),
     t('Reset'),
@@ -614,7 +615,6 @@ function osha_press_contact_views_default_views() {
     t('Contact Name'),
     t('Email (field_press_contact_email)'),
     t('Block'),
-    t('Press contacts'),
     t('<a class="press-kit-link" href="/node/5428">EU-OSHA Press kit</a>'),
   );
   $export['press_contacts'] = $view;

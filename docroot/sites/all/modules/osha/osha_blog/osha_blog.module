@@ -218,6 +218,11 @@ function osha_blog_form_comment_node_blog_form_alter(&$form, &$form_state) {
   $form['author']['mail']['#access'] = FALSE;
 
   $form['#validate'] = array('osha_blog_comment_validate');
+
+  $breadcrumb = array();
+  $breadcrumb[] = l(t('Home'), 'tools-and-publications/blog');
+  $breadcrumb[] = l($form['#node']->title, 'node/'.$form['#node']->nid);
+  drupal_set_breadcrumb($breadcrumb);
 }
 
 function osha_blog_comment_validate($form, &$form_state){

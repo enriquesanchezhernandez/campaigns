@@ -34,7 +34,7 @@ function osha_breadcrumbs_path_breadcrumbs_settings_info() {
   $path_breadcrumb->api_version = 1;
   $path_breadcrumb->machine_name = 'calls_archive_view';
   $path_breadcrumb->name = 'Calls archive view';
-  $path_breadcrumb->path = 'calls_archive';
+  $path_breadcrumb->path = 'inside-eu-osha/procurement/calls_archive';
   $path_breadcrumb->data = array(
     'titles' => array(
       0 => 'Inside EU-OSHA',
