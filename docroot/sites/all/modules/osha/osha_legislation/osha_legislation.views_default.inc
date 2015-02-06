@@ -455,7 +455,7 @@ function osha_legislation_views_default_views() {
 
   /* Display: Master */
   $handler = $view->new_display('default', 'Master', 'default');
-  $handler->display->display_options['title'] = 'Search Directives';
+  $handler->display->display_options['title'] = 'Search directives';
   $handler->display->display_options['use_more_always'] = FALSE;
   $handler->display->display_options['access']['type'] = 'none';
   $handler->display->display_options['cache']['type'] = 'none';
@@ -570,7 +570,7 @@ function osha_legislation_views_default_views() {
   $handler->display->display_options['path'] = 'search/directives';
   $translatables['search_directives'] = array(
     t('Master'),
-    t('Search Directives'),
+    t('Search directives'),
     t('more'),
     t('Search'),
     t('Reset'),

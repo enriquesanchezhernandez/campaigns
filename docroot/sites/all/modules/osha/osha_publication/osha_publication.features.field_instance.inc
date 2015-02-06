@@ -631,7 +631,7 @@ function osha_publication_field_default_field_instances() {
     ),
     'entity_type' => 'node',
     'field_name' => 'field_expiration_date',
-    'label' => 'Expiration Date',
+    'label' => 'Expiration date',
     'required' => 0,
     'settings' => array(
       'default_value' => 'blank',
@@ -1784,7 +1784,7 @@ function osha_publication_field_default_field_instances() {
   t('Bookshop ID');
   t('Character count');
   t('Cover image');
-  t('Expiration Date');
+  t('Expiration date');
   t('File');
   t('Nace');
   t('OSHwiki categories');

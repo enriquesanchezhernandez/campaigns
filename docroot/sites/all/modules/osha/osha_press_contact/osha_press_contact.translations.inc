@@ -3,7 +3,7 @@
 function osha_press_contact_get_translatable_strings() {
   return array(
     'Email',
-    'Job Title',
+    'Job title',
     'Location',
     'Name',
     'Organization',

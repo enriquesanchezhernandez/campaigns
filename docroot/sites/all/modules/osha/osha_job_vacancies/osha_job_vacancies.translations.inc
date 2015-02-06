@@ -30,7 +30,7 @@ function osha_job_vacancies_get_translatable_strings() {
     'Ongoing job vacancies',
     'Shortlisted job vacancies',
     '<a href="inside-eu-osha/careers">Careers</a>',
-    'Job Vacancies',
+    'Job vacancies',
     'Back to vacancies',
   );
 }

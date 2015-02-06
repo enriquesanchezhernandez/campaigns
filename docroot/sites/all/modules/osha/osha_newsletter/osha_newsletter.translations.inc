@@ -7,7 +7,7 @@ function osha_newsletter_get_translatable_strings() {
     'Once our monthly update on safety and health at work. <a href="@newsletter_page_url">See more info</a><br/><p style="color : #dc2f82;">Join 65.000 subscribers!</p>',
     'Once a month, OSHmail keeps you updated on ocupational safety and health.<br/> You can sign up below:',
     'How will EU-OSHA use my details?',
-    'OSHMail Newsletter',
+    'OSHMail newsletter',
     'Our latest newsletters',
     'Not interested anymore?',
     'Unsubscribe',

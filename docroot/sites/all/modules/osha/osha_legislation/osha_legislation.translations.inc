@@ -19,7 +19,7 @@ function osha_legislation_get_translatable_strings() {
     'Desc',
     'No results',
     'Search',
-    'Search Directives',
+    'Search directives',
     'Directive number',
     'Show details',
     'Guidelines by topics',

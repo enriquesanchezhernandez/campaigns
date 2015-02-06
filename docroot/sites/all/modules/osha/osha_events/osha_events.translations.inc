@@ -45,7 +45,7 @@ function osha_events_get_translatable_strings() {
     'Upcoming events',
     'View all',
     'Description',
-    'Event Details',
+    'Event details',
     'Links',
   );
 }

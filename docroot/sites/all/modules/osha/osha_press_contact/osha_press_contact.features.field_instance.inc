@@ -431,7 +431,7 @@ function osha_press_contact_field_default_field_instances() {
     ),
     'entity_type' => 'node',
     'field_name' => 'field_press_contact_job_title',
-    'label' => 'Job Title',
+    'label' => 'Job title',
     'required' => 0,
     'settings' => array(
       'entity_translation_sync' => FALSE,
@@ -1184,7 +1184,7 @@ function osha_press_contact_field_default_field_instances() {
   t('Email');
   t('Flag');
   t('ISO2');
-  t('Job Title');
+  t('Job title');
   t('Location');
   t('Name');
   t('Organization');

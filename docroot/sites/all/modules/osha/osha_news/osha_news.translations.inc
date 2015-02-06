@@ -7,7 +7,7 @@ function osha_news_get_translatable_strings() {
     'External resources',
     'Expiration date',
     'Publication date',
-    'OSH News',
+    'OSH news',
     'News',
     'View all',
     'more',

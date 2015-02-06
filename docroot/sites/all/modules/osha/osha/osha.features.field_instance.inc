@@ -1096,7 +1096,7 @@ function osha_field_default_field_instances() {
     ),
     'entity_type' => 'node',
     'field_name' => 'field_expiration_date',
-    'label' => 'Expiration Date',
+    'label' => 'Expiration date',
     'required' => 0,
     'settings' => array(
       'default_value' => 'blank',
@@ -2334,7 +2334,7 @@ function osha_field_default_field_instances() {
   t('Body');
   t('Character count');
   t('Description');
-  t('Expiration Date');
+  t('Expiration date');
   t('Image');
   t('Language');
   t('Nace');
