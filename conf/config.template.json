@@ -35,15 +35,84 @@
         "apachesolr_soft_commit": 1
     },
     "ldap" : {
-        "sid": "nas",
-        "name": "default",
-        "ldap_type": "openldap",
-        "address": "ldap.ip",
-        "user_dn_expression": "",
-        "basedn": "",
-        "unique_persistent_attr": "dn",
-        "testing_drupal_username": "",
-        "testing_drupal_user_dn": ""
+        "server": {
+            "sid": "osha",
+            "name": "osha-ldap",
+            "ldap_type": "openldap",
+            "address": "",
+            "port": 0,
+            "tls": 0,
+            "bind_method": 1,
+            "user_dn_expression": "",
+            "basedn": "",
+            "binddn": "",
+            "unique_persistent_attr": "",
+            "testing_drupal_username": "",
+            "testing_drupal_user_dn": "",
+            "unique_persistent_attr": "",
+            "grp_unused": null,
+            "grp_object_cat": "",
+            "grp_memb_attr": "",
+            "grp_memb_attr_match_user_attr": "",
+            "grp_test_grp_dn": ""
+        },
+        "authentication": {
+            "authenticationMode": 1,
+            "authenticationServers": ["osha"],
+            "templateUsageResolveConflict": 1,
+            "passwordOption" : 2,
+            "allowOnlyIfTextInDn": "",
+            "excludeIfTextInDn": "",
+            "allowTestPhp": "",
+            "loginUIUsernameTxt": "",
+            "loginUIPasswordTxt": "",
+            "ldapUserHelpLinkUrl": "",
+            "ldapUserHelpLinkText": "",
+            "excludeIfNoAuthorizations": 0,
+            "emailOption": 2,
+            "emailUpdate": 3,
+            "ssoExcludedPaths": "",
+            "ssoExcludedHosts": "",
+            "ssoRemoteUserStripDomainName": "",
+            "seamlessLogin": 0,
+            "ssoNotifyAuthentication": "",
+            "ldapImplementation": "",
+            "cookieExpire": "",
+            "emailTemplateHandling": 1,
+            "emailTemplate": "",
+            "templateUsagePromptUser": 0,
+            "templateUsagePromptRegex": "",
+            "templateUsageRedirectOnLogin": 0,
+            "templateUsageNeverUpdate": 0
+        },
+        "user": {
+            "drupalAcctProvisionServer": "none",
+            "ldapEntryProvisionServer": "none",
+            "drupalAcctProvisionTriggers": "",
+            "ldapEntryProvisionTriggers": "",
+            "orphanedDrupalAcctBehavior": "",
+            "orphanedCheckQty": "",
+            "manualAccountConflict": 1,
+            "userConflictResolve": 0,
+            "acctCreation": 0,
+            "disableAdminPasswordField": ""
+        },
+        "authorization": {
+            "sid": "osha",
+            "consumer_type": "drupal_role",
+            "status": 1,
+            "only_ldap_authenticated": 1,
+            "use_first_attr_as_groupid": 1,
+            "mappings": "PHP|administrator\nAGEING_EDITOR|administrator\nAGEING_PM|administrator",
+            "use_filter": 1,
+            "synchronization_modes": {
+                "user_logon": "user_logon"
+            },
+            "synchronization_actions": {
+                "revoke_ldap_provisioned": "revoke_ldap_provisioned",
+                "regrant_ldap_provisioned": "regrant_ldap_provisioned"
+            }
+        }
     },
     "variables": {
         "environment": "production",
