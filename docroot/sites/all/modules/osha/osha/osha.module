@@ -519,7 +519,7 @@ function osha_file_view($file, $view_mode, $langcode) {
     if ($view_mode == 'full') {
       $headers = array(
         'Content-Type'              => $file->filemime,
-        'Content-Disposition'       => 'filename="' . $file->filename . '"',
+        'Content-Disposition'       => 'filename="' . drupal_basename($file->uri) . '"',
         'Content-Length'            => $file->filesize,
         'Content-Transfer-Encoding' => 'binary',
         'Pragma'                    => 'no-cache',
