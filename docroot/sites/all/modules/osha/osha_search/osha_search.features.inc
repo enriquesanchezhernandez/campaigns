@@ -99,12 +99,13 @@ function osha_search_default_search_api_index() {
           }
         },
         "search_api_tokenizer" : {
-          "status" : 1,
+          "status" : 0,
           "weight" : "20",
           "settings" : {
             "fields" : {
               "title" : true,
               "uuid" : true,
+              "title_field" : true,
               "field_summary" : true,
               "field_author" : true,
               "body:value" : true,

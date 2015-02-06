@@ -423,7 +423,7 @@ function osha_legislation_field_default_field_instances() {
     ),
     'entity_type' => 'node',
     'field_name' => 'field_expiration_date',
-    'label' => 'Expiration Date',
+    'label' => 'Expiration date',
     'required' => 0,
     'settings' => array(
       'default_value' => 'blank',
@@ -710,7 +710,7 @@ function osha_legislation_field_default_field_instances() {
     ),
     'entity_type' => 'node',
     'field_name' => 'field_publication_date',
-    'label' => 'Publication Date',
+    'label' => 'Publication date',
     'required' => 0,
     'settings' => array(
       'default_value' => 'now',
@@ -1385,7 +1385,7 @@ function osha_legislation_field_default_field_instances() {
     ),
     'entity_type' => 'node',
     'field_name' => 'field_expiration_date',
-    'label' => 'Expiration Date',
+    'label' => 'Expiration date',
     'required' => 0,
     'settings' => array(
       'default_value' => 'blank',
@@ -1764,7 +1764,7 @@ function osha_legislation_field_default_field_instances() {
     ),
     'entity_type' => 'node',
     'field_name' => 'field_publication_date',
-    'label' => 'Publication Date',
+    'label' => 'Publication date',
     'required' => 0,
     'settings' => array(
       'default_value' => 'now',
@@ -2223,13 +2223,13 @@ function osha_legislation_field_default_field_instances() {
   t('Directive Category Code');
   t('Directive Type');
   t('Directive_code');
-  t('Expiration Date');
+  t('Expiration date');
   t('External URL');
   t('Guideline Category Code');
   t('Legislation category');
   t('Nace');
   t('Page count');
-  t('Publication Date');
+  t('Publication date');
   t('Summary');
   t('Tag (mapping)');
   t('Thesaurus');

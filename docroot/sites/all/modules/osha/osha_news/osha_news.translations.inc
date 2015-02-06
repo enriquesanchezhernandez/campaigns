@@ -3,10 +3,10 @@
 function osha_news_get_translatable_strings() {
   return array(
     'Activity',
-    'Additional Resources',
+    'Additional resources',
     'External resources',
-    'Expiration Date',
-    'Publication Date',
+    'Expiration date',
+    'Publication date',
     'OSH News',
     'News',
     'View all',

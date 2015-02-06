@@ -72,6 +72,16 @@ function osha_search_block_view($delta = '') {
 }
 
 /**
+ * Implements hook_search_api_solr_query_alter().
+ */
+function osha_search_search_api_solr_query_alter(array &$call_args, SearchApiQueryInterface $query) {
+  // Replace % with * to handle requested widlcard % (non-existing in solr).
+  if (!empty($call_args['query'])) {
+    $call_args['query'] = str_replace('%', '*', $call_args['query']);
+  }
+}
+
+/**
  * Implements hook_form_alter().
  */
 function osha_search_form_alter(&$form, &$form_state, $form_id) {
@@ -111,6 +121,26 @@ function osha_search_form_alter(&$form, &$form_state, $form_id) {
       }
     }
   }
+  if ($form['#id'] == 'views-exposed-form-publications-index-page') {
+    if (empty($form_state['input']['search_api_views_fulltext'])) {
+      // For publication search, when no search term, the form should filter by
+      // publication_date, but showing in the dropdown "Relevance".
+      // see CW-1350
+      $form_state['input']['sort_by'] = 'field_publication_date';
+      if (!isset($form['sort_by']['#pre_render'])) {
+        $form['sort_by']['#pre_render'] = array();
+      }
+      array_unshift($form['sort_by']['#pre_render'], 'osha_search_change_sort_field_empty_query');
+    }
+  }
+}
+
+/**
+ * Callback for pre_render form field sort_by.
+ */
+function osha_search_change_sort_field_empty_query($element) {
+  $element['#value'] = 'search_api_relevance';
+  return $element;
 }
 
 /**

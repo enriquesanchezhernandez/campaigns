@@ -2,7 +2,7 @@
 
 function osha_resources_get_translatable_strings() {
   return array(
-    'Additional Resource',
+    'Additional resource',
     'External resources',
     'Recommended resources',
   );

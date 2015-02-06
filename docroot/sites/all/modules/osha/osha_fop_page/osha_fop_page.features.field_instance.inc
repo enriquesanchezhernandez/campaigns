@@ -485,7 +485,7 @@ function osha_fop_page_field_default_field_instances() {
     'description' => '',
     'display' => array(
       'default' => array(
-        'label' => 'hidden',
+        'label' => 'inline',
         'module' => 'link',
         'settings' => array(),
         'type' => 'link_default',
@@ -530,7 +530,7 @@ function osha_fop_page_field_default_field_instances() {
     ),
     'entity_type' => 'node',
     'field_name' => 'field_main_fop_url',
-    'label' => 'Main FOP URL',
+    'label' => 'Focal Point website',
     'required' => 0,
     'settings' => array(
       'absolute_url' => 1,
@@ -653,9 +653,9 @@ function osha_fop_page_field_default_field_instances() {
   t('Archived');
   t('Body');
   t('Country');
+  t('Focal Point website');
   t('Image');
   t('Link');
-  t('Main FOP URL');
   t('Section');
   t('Title');
 

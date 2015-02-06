@@ -215,6 +215,8 @@ function osha_search_views_default_views() {
   $handler->display->display_options['access']['type'] = 'none';
   $handler->display->display_options['cache']['type'] = 'none';
   $handler->display->display_options['query']['type'] = 'views_query';
+  $handler->display->display_options['query']['options']['search_api_bypass_access'] = 0;
+  $handler->display->display_options['query']['options']['parse_mode'] = 'direct';
   $handler->display->display_options['exposed_form']['type'] = 'basic';
   $handler->display->display_options['exposed_form']['options']['submit_button'] = 'Search';
   $handler->display->display_options['pager']['type'] = 'full';
@@ -317,8 +319,8 @@ function osha_search_views_default_views() {
     'current' => 'current',
   );
 
-  /* Display: Site Search */
-  $handler = $view->new_display('page', 'Site Search', 'site');
+  /* Display: Site search */
+  $handler = $view->new_display('page', 'Site search', 'site');
   $handler->display->display_options['exposed_block'] = TRUE;
   $handler->display->display_options['defaults']['fields'] = FALSE;
   /* Field: Indexed Multilingual Node: Title */
@@ -519,10 +521,10 @@ function osha_search_views_default_views() {
   $handler->display->display_options['tab_options']['title'] = 'Site';
   $handler->display->display_options['tab_options']['weight'] = '1';
 
-  /* Display: OSHwiki Search */
-  $handler = $view->new_display('page', 'OSHwiki Search', 'wiki');
+  /* Display: OSHwiki search */
+  $handler = $view->new_display('page', 'OSHwiki search', 'wiki');
   $handler->display->display_options['defaults']['title'] = FALSE;
-  $handler->display->display_options['title'] = 'OSHwiki Search';
+  $handler->display->display_options['title'] = 'OSHwiki search';
   $handler->display->display_options['exposed_block'] = TRUE;
   $handler->display->display_options['defaults']['fields'] = FALSE;
   /* Field: Indexed Multilingual Node: Title */
@@ -651,10 +653,10 @@ function osha_search_views_default_views() {
     t('»'),
     t('No results'),
     t('Relevance'),
-    t('Site Search'),
+    t('Site search'),
     t('Publication date'),
     t('Language'),
-    t('OSHwiki Search'),
+    t('OSHwiki search'),
     t('Date'),
   );
   $export['search'] = $view;
@@ -676,6 +678,8 @@ function osha_search_views_default_views() {
   $handler->display->display_options['access']['type'] = 'none';
   $handler->display->display_options['cache']['type'] = 'none';
   $handler->display->display_options['query']['type'] = 'views_query';
+  $handler->display->display_options['query']['options']['search_api_bypass_access'] = 0;
+  $handler->display->display_options['query']['options']['parse_mode'] = 'direct';
   $handler->display->display_options['exposed_form']['type'] = 'basic';
   $handler->display->display_options['exposed_form']['options']['submit_button'] = 'Search';
   $handler->display->display_options['pager']['type'] = 'full';

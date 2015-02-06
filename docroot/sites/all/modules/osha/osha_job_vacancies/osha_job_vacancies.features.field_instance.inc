@@ -437,7 +437,7 @@ function osha_job_vacancies_field_default_field_instances() {
     ),
     'entity_type' => 'node',
     'field_name' => 'field_expiration_date',
-    'label' => 'Expiration Date',
+    'label' => 'Expiration date',
     'required' => 0,
     'settings' => array(
       'default_value' => 'blank',
@@ -845,7 +845,7 @@ function osha_job_vacancies_field_default_field_instances() {
     ),
     'entity_type' => 'node',
     'field_name' => 'field_publication_date',
-    'label' => 'Publication Date',
+    'label' => 'Publication date',
     'required' => 1,
     'settings' => array(
       'default_value' => 'now',
@@ -1286,10 +1286,10 @@ function osha_job_vacancies_field_default_field_instances() {
   t('Body');
   t('Character count');
   t('Deadline');
-  t('Expiration Date');
+  t('Expiration date');
   t('Nace');
   t('Page count');
-  t('Publication Date');
+  t('Publication date');
   t('Related resources');
   t('Shortlisted');
   t('Summary');
