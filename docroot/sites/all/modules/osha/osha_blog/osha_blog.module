@@ -101,7 +101,7 @@ function osha_blog_views_pre_render(&$view) {
     );
   }
 
-  // Breadcrumb and title for Tags Posts.
+  // Breadcrumb and title for Tags posts.
   if ($view->name == 'blog' && $view->current_display == 'page_2') {
     $title = '';
     if (isset($view->args[0])) {

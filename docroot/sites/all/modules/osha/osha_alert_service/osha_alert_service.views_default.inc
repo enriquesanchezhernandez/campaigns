@@ -15,7 +15,7 @@ function osha_alert_service_views_default_views() {
   $view->description = '';
   $view->tag = 'default';
   $view->base_table = 'node';
-  $view->human_name = 'Alert Service subscription';
+  $view->human_name = 'Alert service subscription';
   $view->core = 7;
   $view->api_version = '3.0';
   $view->disabled = FALSE; /* Edit this to true to make a default view disabled initially */

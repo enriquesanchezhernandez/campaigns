@@ -30,12 +30,12 @@ function osha_get_translatable_strings() {
     // Strings form header
     'News & Events',
     'Press',
-    'Contact Us',
+    'Contact us',
 
     // String from footer
     '&copy; 2015 EU-OSHA | an agency of the European Union',
     'Legal notice',
-    'Site Map',
+    'Site map',
 
     // Content from osha_blocks
     '<div><a class="seminar_back-to-seminars back-to-link" href="/tools-and-publications/seminars">Back to seminars</a></div>',
@@ -69,7 +69,7 @@ function osha_get_translatable_strings() {
     // Other strings
     'Share this on:',
     'Share',
-    'Recent Tweets',
+    'Recent tweets',
     'Clear filter',
     '- Any -',
     'More',

@@ -51,7 +51,7 @@ search/blog*',
         'weight' => 0,
       ),
     ),
-    'title' => 'Recent Tweets',
+    'title' => 'Recent tweets',
     'visibility' => 1,
   );
 
