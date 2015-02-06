@@ -59,10 +59,7 @@ function osha_archived_content_block_view() {
   $node = menu_get_object();
   if (isset($node) && isset($node->field_archived[LANGUAGE_NONE][0]['value']) &&
     $node->field_archived[LANGUAGE_NONE][0]['value'] == 1) {
-    global $user;
-    if (in_array('administrator', $user->roles)) {
       return theme('osha_archived_content', array());
-    }
   }
   return '';
 }
