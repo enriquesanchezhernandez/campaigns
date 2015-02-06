@@ -17,7 +17,7 @@ function osha_get_translatable_strings() {
     'Image',
     'Language',
     'Nace',
-    'OSHwiki Category',
+    'OSHwiki category',
     'OSHwiki featured articles',
     'Page count',
     'Publication date',
@@ -40,7 +40,7 @@ function osha_get_translatable_strings() {
     // Content from osha_blocks
     '<div><a class="seminar_back-to-seminars back-to-link" href="/tools-and-publications/seminars">Back to seminars</a></div>',
     '<div class="link"><span>Interested in specific topics?</span><a href="!url">Try alert service</a></div>',
-    'OSHwiki Featured Articles',
+    'OSHwiki featured articles',
     'OSHA archived content',
 
     // Core strings
