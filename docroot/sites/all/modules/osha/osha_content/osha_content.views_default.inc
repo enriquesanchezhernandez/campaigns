@@ -74,7 +74,7 @@ function osha_content_views_default_views() {
   $handler->display->display_options['fields']['type']['label'] = '';
   $handler->display->display_options['fields']['type']['exclude'] = TRUE;
   $handler->display->display_options['fields']['type']['element_label_colon'] = FALSE;
-  /* Sort criterion: Field: Publication Date (field_publication_date) */
+  /* Sort criterion: Field: Publication date (field_publication_date) */
   $handler->display->display_options['sorts']['field_publication_date_value']['id'] = 'field_publication_date_value';
   $handler->display->display_options['sorts']['field_publication_date_value']['table'] = 'field_data_field_publication_date';
   $handler->display->display_options['sorts']['field_publication_date_value']['field'] = 'field_publication_date_value';
@@ -126,7 +126,7 @@ function osha_content_views_default_views() {
   $handler->display->display_options['filters']['published']['field'] = 'published';
   $handler->display->display_options['filters']['published']['relationship'] = 'nid';
   $handler->display->display_options['filters']['published']['value'] = '1';
-  /* Filter criterion: Field: Publication Date (field_publication_date) */
+  /* Filter criterion: Field: Publication date (field_publication_date) */
   $handler->display->display_options['filters']['field_publication_date_value']['id'] = 'field_publication_date_value';
   $handler->display->display_options['filters']['field_publication_date_value']['table'] = 'field_data_field_publication_date';
   $handler->display->display_options['filters']['field_publication_date_value']['field'] = 'field_publication_date_value';
@@ -142,7 +142,7 @@ function osha_content_views_default_views() {
   $handler->display->display_options['defaults']['title'] = FALSE;
   $handler->display->display_options['title'] = 'News';
   $handler->display->display_options['defaults']['fields'] = FALSE;
-  /* Field: Field: Publication Date */
+  /* Field: Field: Publication date */
   $handler->display->display_options['fields']['field_publication_date']['id'] = 'field_publication_date';
   $handler->display->display_options['fields']['field_publication_date']['table'] = 'field_data_field_publication_date';
   $handler->display->display_options['fields']['field_publication_date']['field'] = 'field_publication_date';
@@ -238,7 +238,7 @@ function osha_content_views_default_views() {
   $handler->display->display_options['filters']['published']['table'] = 'workbench_moderation_node_history';
   $handler->display->display_options['filters']['published']['field'] = 'published';
   $handler->display->display_options['filters']['published']['value'] = '1';
-  /* Filter criterion: Field: Publication Date (field_publication_date) */
+  /* Filter criterion: Field: Publication date (field_publication_date) */
   $handler->display->display_options['filters']['field_publication_date_value']['id'] = 'field_publication_date_value';
   $handler->display->display_options['filters']['field_publication_date_value']['table'] = 'field_data_field_publication_date';
   $handler->display->display_options['filters']['field_publication_date_value']['field'] = 'field_publication_date_value';
@@ -314,7 +314,7 @@ function osha_content_views_default_views() {
   $handler->display->display_options['filters']['published']['table'] = 'workbench_moderation_node_history';
   $handler->display->display_options['filters']['published']['field'] = 'published';
   $handler->display->display_options['filters']['published']['value'] = '1';
-  /* Filter criterion: Field: Publication Date (field_publication_date) */
+  /* Filter criterion: Field: Publication date (field_publication_date) */
   $handler->display->display_options['filters']['field_publication_date_value']['id'] = 'field_publication_date_value';
   $handler->display->display_options['filters']['field_publication_date_value']['table'] = 'field_data_field_publication_date';
   $handler->display->display_options['filters']['field_publication_date_value']['field'] = 'field_publication_date_value';
@@ -402,7 +402,7 @@ function osha_content_views_default_views() {
   $handler->display->display_options['row_options']['view_mode'] = 'teaser';
   $handler->display->display_options['defaults']['row_options'] = FALSE;
   $handler->display->display_options['defaults']['fields'] = FALSE;
-  /* Field: Field: Publication Date */
+  /* Field: Field: Publication date */
   $handler->display->display_options['fields']['field_publication_date']['id'] = 'field_publication_date';
   $handler->display->display_options['fields']['field_publication_date']['table'] = 'field_data_field_publication_date';
   $handler->display->display_options['fields']['field_publication_date']['field'] = 'field_publication_date';
@@ -508,7 +508,7 @@ function osha_content_views_default_views() {
   $handler->display->display_options['filters']['published']['field'] = 'published';
   $handler->display->display_options['filters']['published']['value'] = '1';
   $handler->display->display_options['filters']['published']['group'] = 1;
-  /* Filter criterion: Field: Publication Date (field_publication_date) */
+  /* Filter criterion: Field: Publication date (field_publication_date) */
   $handler->display->display_options['filters']['field_publication_date_value']['id'] = 'field_publication_date_value';
   $handler->display->display_options['filters']['field_publication_date_value']['table'] = 'field_data_field_publication_date';
   $handler->display->display_options['filters']['field_publication_date_value']['field'] = 'field_publication_date_value';
@@ -802,7 +802,7 @@ function osha_content_views_default_views() {
   $handler->display->display_options['filters']['field_start_date_value2']['default_date'] = 'now';
   $translatables['related_content'] = array(
     t('Master'),
-    t('Related Content'),
+    t('Related content'),
     t('View all'),
     t('Apply'),
     t('Reset'),

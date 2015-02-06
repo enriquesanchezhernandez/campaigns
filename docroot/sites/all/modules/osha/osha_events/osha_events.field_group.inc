@@ -52,7 +52,7 @@ function osha_events_field_group_info() {
   $field_group->mode = 'default';
   $field_group->parent_name = '';
   $field_group->data = array(
-    'label' => 'Event Details',
+    'label' => 'Event details',
     'weight' => '0',
     'children' => array(
       0 => 'field_city',
@@ -63,7 +63,7 @@ function osha_events_field_group_info() {
     ),
     'format_type' => 'div',
     'format_settings' => array(
-      'label' => 'Event Details',
+      'label' => 'Event details',
       'instance_settings' => array(
         'id' => '',
         'classes' => 'group-events-event-details field-group-div',

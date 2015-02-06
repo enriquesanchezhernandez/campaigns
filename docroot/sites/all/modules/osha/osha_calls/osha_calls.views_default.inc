@@ -40,7 +40,7 @@ function osha_calls_views_default_views() {
   $handler->display->display_options['empty']['area']['empty'] = TRUE;
   $handler->display->display_options['empty']['area']['content'] = 'Currently, there are no calls available in this section.';
   $handler->display->display_options['empty']['area']['format'] = 'full_html';
-  /* Field: Field: Publication Date */
+  /* Field: Field: Publication date */
   $handler->display->display_options['fields']['field_publication_date']['id'] = 'field_publication_date';
   $handler->display->display_options['fields']['field_publication_date']['table'] = 'field_data_field_publication_date';
   $handler->display->display_options['fields']['field_publication_date']['field'] = 'field_publication_date';
@@ -68,7 +68,7 @@ function osha_calls_views_default_views() {
   $handler->display->display_options['fields']['view_node']['label'] = '';
   $handler->display->display_options['fields']['view_node']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['view_node']['text'] = 'Show details';
-  /* Sort criterion: Field: Publication Date (field_publication_date) */
+  /* Sort criterion: Field: Publication date (field_publication_date) */
   $handler->display->display_options['sorts']['field_publication_date_value']['id'] = 'field_publication_date_value';
   $handler->display->display_options['sorts']['field_publication_date_value']['table'] = 'field_data_field_publication_date';
   $handler->display->display_options['sorts']['field_publication_date_value']['field'] = 'field_publication_date_value';
@@ -88,7 +88,7 @@ function osha_calls_views_default_views() {
     'calls' => 'calls',
   );
   $handler->display->display_options['filters']['type']['group'] = 1;
-  /* Filter criterion: Field: Publication Date (field_publication_date) */
+  /* Filter criterion: Field: Publication date (field_publication_date) */
   $handler->display->display_options['filters']['field_publication_date_value']['id'] = 'field_publication_date_value';
   $handler->display->display_options['filters']['field_publication_date_value']['table'] = 'field_data_field_publication_date';
   $handler->display->display_options['filters']['field_publication_date_value']['field'] = 'field_publication_date_value';
@@ -136,7 +136,7 @@ function osha_calls_views_default_views() {
     'calls' => 'calls',
   );
   $handler->display->display_options['filters']['type']['group'] = 1;
-  /* Filter criterion: Field: Publication Date (field_publication_date) */
+  /* Filter criterion: Field: Publication date (field_publication_date) */
   $handler->display->display_options['filters']['field_publication_date_value']['id'] = 'field_publication_date_value';
   $handler->display->display_options['filters']['field_publication_date_value']['table'] = 'field_data_field_publication_date';
   $handler->display->display_options['filters']['field_publication_date_value']['field'] = 'field_publication_date_value';
@@ -162,19 +162,19 @@ function osha_calls_views_default_views() {
   $handler->display->display_options['filters']['field_calls_deadline_value_1']['field'] = 'field_calls_deadline_value';
   $handler->display->display_options['filters']['field_calls_deadline_value_1']['operator'] = 'empty';
   $handler->display->display_options['filters']['field_calls_deadline_value_1']['group'] = 2;
-  /* Filter criterion: Field: Publication Date (field_publication_date) */
+  /* Filter criterion: Field: Publication date (field_publication_date) */
   $handler->display->display_options['filters']['field_publication_date_value_1']['id'] = 'field_publication_date_value_1';
   $handler->display->display_options['filters']['field_publication_date_value_1']['table'] = 'field_data_field_publication_date';
   $handler->display->display_options['filters']['field_publication_date_value_1']['field'] = 'field_publication_date_value';
   $handler->display->display_options['filters']['field_publication_date_value_1']['operator'] = 'empty';
   $handler->display->display_options['filters']['field_publication_date_value_1']['group'] = 3;
-  /* Filter criterion: Content: Expiration Date (field_expiration_date) */
+  /* Filter criterion: Content: Expiration date (field_expiration_date) */
   $handler->display->display_options['filters']['field_expiration_date_value']['id'] = 'field_expiration_date_value';
   $handler->display->display_options['filters']['field_expiration_date_value']['table'] = 'field_data_field_expiration_date';
   $handler->display->display_options['filters']['field_expiration_date_value']['field'] = 'field_expiration_date_value';
   $handler->display->display_options['filters']['field_expiration_date_value']['operator'] = 'empty';
   $handler->display->display_options['filters']['field_expiration_date_value']['group'] = 4;
-  /* Filter criterion: Content: Expiration Date (field_expiration_date) */
+  /* Filter criterion: Content: Expiration date (field_expiration_date) */
   $handler->display->display_options['filters']['field_expiration_date_value_1']['id'] = 'field_expiration_date_value_1';
   $handler->display->display_options['filters']['field_expiration_date_value_1']['table'] = 'field_data_field_expiration_date';
   $handler->display->display_options['filters']['field_expiration_date_value_1']['field'] = 'field_expiration_date_value';
@@ -220,13 +220,13 @@ function osha_calls_views_default_views() {
   $handler->display->display_options['filters']['published']['field'] = 'published';
   $handler->display->display_options['filters']['published']['value'] = '1';
   $handler->display->display_options['filters']['published']['group'] = 1;
-  /* Filter criterion: Content: Expiration Date (field_expiration_date) */
+  /* Filter criterion: Content: Expiration date (field_expiration_date) */
   $handler->display->display_options['filters']['field_expiration_date_value']['id'] = 'field_expiration_date_value';
   $handler->display->display_options['filters']['field_expiration_date_value']['table'] = 'field_data_field_expiration_date';
   $handler->display->display_options['filters']['field_expiration_date_value']['field'] = 'field_expiration_date_value';
   $handler->display->display_options['filters']['field_expiration_date_value']['operator'] = 'empty';
   $handler->display->display_options['filters']['field_expiration_date_value']['group'] = 2;
-  /* Filter criterion: Content: Expiration Date (field_expiration_date) */
+  /* Filter criterion: Content: Expiration date (field_expiration_date) */
   $handler->display->display_options['filters']['field_expiration_date_value_1']['id'] = 'field_expiration_date_value_1';
   $handler->display->display_options['filters']['field_expiration_date_value_1']['table'] = 'field_data_field_expiration_date';
   $handler->display->display_options['filters']['field_expiration_date_value_1']['field'] = 'field_expiration_date_value';
@@ -275,7 +275,7 @@ function osha_calls_views_default_views() {
   $handler->display->display_options['filters']['published']['field'] = 'published';
   $handler->display->display_options['filters']['published']['value'] = '1';
   $handler->display->display_options['filters']['published']['group'] = 1;
-  /* Filter criterion: Content: Expiration Date (field_expiration_date) */
+  /* Filter criterion: Content: Expiration date (field_expiration_date) */
   $handler->display->display_options['filters']['field_expiration_date_value']['id'] = 'field_expiration_date_value';
   $handler->display->display_options['filters']['field_expiration_date_value']['table'] = 'field_data_field_expiration_date';
   $handler->display->display_options['filters']['field_expiration_date_value']['field'] = 'field_expiration_date_value';
@@ -313,7 +313,7 @@ function osha_calls_views_default_views() {
     'calls' => 'calls',
   );
   $handler->display->display_options['filters']['type']['group'] = 1;
-  /* Filter criterion: Field: Publication Date (field_publication_date) */
+  /* Filter criterion: Field: Publication date (field_publication_date) */
   $handler->display->display_options['filters']['field_publication_date_value']['id'] = 'field_publication_date_value';
   $handler->display->display_options['filters']['field_publication_date_value']['table'] = 'field_data_field_publication_date';
   $handler->display->display_options['filters']['field_publication_date_value']['field'] = 'field_publication_date_value';
@@ -333,7 +333,7 @@ function osha_calls_views_default_views() {
   $handler->display->display_options['filters']['published']['field'] = 'published';
   $handler->display->display_options['filters']['published']['value'] = '1';
   $handler->display->display_options['filters']['published']['group'] = 1;
-  /* Filter criterion: Content: Expiration Date (field_expiration_date) */
+  /* Filter criterion: Content: Expiration date (field_expiration_date) */
   $handler->display->display_options['filters']['field_expiration_date_value']['id'] = 'field_expiration_date_value';
   $handler->display->display_options['filters']['field_expiration_date_value']['table'] = 'field_data_field_expiration_date';
   $handler->display->display_options['filters']['field_expiration_date_value']['field'] = 'field_expiration_date_value';

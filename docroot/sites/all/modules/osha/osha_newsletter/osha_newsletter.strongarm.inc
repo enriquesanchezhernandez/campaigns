@@ -85,7 +85,20 @@ function osha_newsletter_strongarm() {
   $strongarm->api_version = 1;
   $strongarm->name = 'field_bundle_settings_entity_collection__newsletter_content_collection';
   $strongarm->value = array(
-    'view_modes' => array(),
+    'view_modes' => array(
+      'block' => array(
+        'custom_settings' => FALSE,
+      ),
+      'full' => array(
+        'custom_settings' => FALSE,
+      ),
+      'diff_standard' => array(
+        'custom_settings' => FALSE,
+      ),
+      'token' => array(
+        'custom_settings' => FALSE,
+      ),
+    ),
     'extra_fields' => array(
       'form' => array(),
       'display' => array(),
