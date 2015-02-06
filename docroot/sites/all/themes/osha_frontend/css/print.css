@@ -10,133 +10,180 @@
  * aggregated with other stylesheets, for improved front-end performance.
  */
 @media print {
+	/* Underline all links. */
+	a:link, a:visited {
+		text-decoration: underline !important;
+	}
 
-  /* Underline all links. */
-  a:link,
-  a:visited {
-    text-decoration: underline !important;
-  }
+	/* Don't underline header. */
+	a:link.header__site-link, a:visited.header__site-link {
+		text-decoration: none !important;
+	}
 
-  /* Don't underline header. */
-  a:link.header__site-link,
-  a:visited.header__site-link {
-    text-decoration: none !important;
-  }
 
-  /* Add visible URL after links. */
-  #content a[href]:after {
-    content: " (" attr(href) ")";
-    font-weight: normal;
-    font-size: 16px;
-  }
+	/* Only display useful links. */
+	#content a[href^="javascript:"]:after, #content a[href^="#"]:after {
+		content: "" !important;
+	}
 
-  /* Only display useful links. */
-  #content a[href^="javascript:"]:after,
-  #content a[href^="#"]:after {
-    content: "";
-  }
+	/* Add visible title after abbreviations. */
+	#content abbr[title]:after {
+		content: " (" attr(title) ")" !important;
+	}
 
-  /* Add visible title after abbreviations. */
-  #content abbr[title]:after {
-    content: " (" attr(title) ")";
-  }
 
-  /* Un-float the content. */
-  #content {
-    float: none !important;
-    width: 100% !important;
-    margin: 0 !important;
-    padding: 0 !important;
-  }
+	/* Turn off any background colors or images. */
+	body, #page, #main, 	#content, table, .view-vacancies .views-row span a {		
+		background-color: transparent !important;
+		background-image: none !important;
+		background: none !important;
+		color: #000 !important;
+		float: none !important;
+		font: 100%/150% Verdana, Arial, serif !important;
+		margin: 0 !important;
+		padding: 0 !important;
+		width: auto !important;
+	}
 
-  /* Turn off any background colors or images. */
-  body,
-  #page,
-  #main,
-  #content {
-    color: #000;
-    background-color: transparent !important;
-    background-image: none !important;
-  }
+	/* Hide sidebars and nav elements. */
+	#block-lang-dropdown-language-content, #languagesAndSearch, #main-menu-links, img, .view-header.back, #socialNetworksBlue, #block-search-form , #block-menu-block-1, #block-views-3ff30a881f6eeac3176c8f1ddc871fd2, #block-views-0070c12a2761cd76e16f8eb8fc4e1de6, #skip-link, #toolbar, #navigation, .region-sidebar-first, .region-sidebar-second, #footer, .breadcrumb, .tabs, .action-links, .links, .book-navigation, .forum-topic-navigation, .pager, .feed-icons, .more-link, .views-field.views-field-view-node, aside, iframe, #block-views-legislation-guidelines-block-1, #block-osha-alert-service-osha-publication-rss, #block-views-infographic-block-1 .view-infographic .views-row, #block-osha-alert-service-osha-events-rss, .view-filters, #block-views-exp-search-site, #block-views-exp-search-wiki, .link_news_events, #publication_slideshow , .ui-accordion .ui-accordion-header .ui-accordion-header-icon, .field.field-name-field-wiki-page-url, #block-osha-alert-service-osha-seminar-rss {
+		display: none !important;
+		background: none !important;
+	}
+	
+	
+	a[href]:after {
+		content: none !important;
+	}
 
-  /* Hide sidebars and nav elements. */
-  #skip-link,
-  #toolbar,
-  #navigation,
-  .region-sidebar-first,
-  .region-sidebar-second,
-  #footer,
-  .breadcrumb,
-  .tabs,
-  .action-links,
-  .links,
-  .book-navigation,
-  .forum-topic-navigation,
-  .pager,
-  .feed-icons {
-    visibility: hidden;
-    display: none;
-  }
-  
-  
-  #header{
-	display:none;
-  }
-  
-  #block-lang-dropdown-language-content{
-	display:none;
-  }
-  
-  #languagesAndSearch{
-	display:none;
-  }
-  
-  #main-menu-links{
-	display:none;
-  }
-  
-  img{
-	display:none;
-  }
-  
-  .view-header.back{
-	display:none;
-  }
-  
-  .node-highlight.view-mode-full .field-name-field-image img{
-	max-width:100px!important;
-	max-height:100px!important;
-  }
-  
-   a[href]:after {
-    content: none !important;
-  }
-  
-  #content h3{
-	padding-top:3.5em;
-	height:auto;
-	margin-top:1em;
-	margin-left:0em;
-	padding-left:0em;
-	color:#000000;
-  }
-  
-  .field-name-field-summary .field-items{
-	color:#000000!important;
-  }
-  
-  .ui-accordion .ui-accordion-header .ui-icon{
-	margin-top:1em;
-  }
-  
-  .ui-accordion .ui-accordion-content{
-	display:block!important;
-  }	
-  
-  #content a{
+	.field-name-field-summary .field-items{
+		color:#000000!important;
+	}
+
+	.ui-accordion .ui-accordion-header .ui-icon {
+		margin-top:1em !important;
+	}
+
+	.ui-accordion .ui-accordion-content{
+		display:block!important;
+	}	
+
+	#content a {
+		color:#000000 !important;
+		border-bottom: none !important;
+	}
+	
+	/* --------------- */
+	/* Custom elements */
+	/* --------------- */
+	
+	h1, h2, h3, h4, h5, h6, #content h3, 
+	a, a:link, a:active,
+	p, .view-header, .contact_us_title, .view-display-id-wiki .views-row .views-field-title-field span, .text_news_events, #block-views-highlight-block-2, article, div, span, p, aside, a , .view-publications-index.view-id-publications_index, .introduction-title, #block-views-seminars-block .view-seminars ul li, #related-wiki .related_wiki_head {
+		color: #000 !important;
+		background: none !important;
+		border: none !important;
+		margin: 0 !important;
+		padding: 0 !important;
+	}
+	#content h3, h1, h2, h3, h4, h5, article, #related-wiki .field.field-name-title-field.field-type-text , .contact_us_box, .view-search .views-row, .view-vacancies .view-content .views-row, #related-wiki .related_wiki_head {
+		color:#000000 !important;
+		height:auto !important;		
+		margin-top: 2em !important;
+		margin-bottom: .5em !important;
+	}
+	
+	#agencyLogo img {
+		display: inline-block !important;
+		float: left !important;
+		padding-top: 2em !important;
+		margin-bottom: 2em !important;
+	}
+	
+	#europeLogo {		
+		float: left !important;
+		margin-left: 2em  !important;
+	}
+	#europeLogo img {
+		display: flex !important;
+		margin-top: 2em  !important;
+	}
+	
+	#content h3 {
+		padding-top: 0!important;
+	}
+	
+	.view-id-highlight .view-content table tbody tr td, .left_column, .contact_us_box {
+		background: none !important;
+		display: block !important;
+		min-height: inherit !important;
+		width: 100% !important;
+	}
+	
+	.field-content.views-field-title {
+		height: auto !important;
+	}
+	
+	#tmgmt-1 #main-menu-links {
+		display: block !important;
+	}
+	#tmgmt-1 #main-menu-links li {
+		width: 100% !important;
+	}
+	#related-wiki span, #related-wiki div, #related-wiki p, #main-content h3 {
+		padding: 0 !important;
+		margin: 0 !important;
+	}
+	/*
+	#related-wiki .related_wiki_head {
+		margin-top: 3em !important;
+	}*/
+	#related-wiki .field.field-name-title-field {
+		margin-top: 1.2em !important;
+	}	
+	
+	#content a{
 	color:#000000!important;
 	border-bottom: 1px solid #000000!important;
+	text-decoration:none!important;
   }
   
+  #comments{
+	display:none;
+  }
   
+  .node-blog .field-name-title-field{
+	color:#000000!important;;
+  }
+  
+  #block-workbench-block{
+	display:none;
+  }
+  
+  #blogLogo img{
+	display: block!important;
+	padding-top: 2em;
+	margin-top: 1em;
+	float:left;
+  }
+   
+  #agencyLogoBlog img{
+	display: block!important;
+	padding-top: 3em;
+	margin-top: 1em;
+  }  
+  
+  #europeLogoBlog  img{
+	display: block!important;
+	padding-top: 3em;
+	margin-top: 1em;
+  }
+  
+  .link_web_blog{
+	display:none;
+  }  
+  
+  .view-blog  .views-row{
+	padding-bottom:1em!important;
+  }
 }
