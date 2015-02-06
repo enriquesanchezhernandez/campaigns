@@ -626,15 +626,19 @@ function entity_collection_content_add_form($form, &$form_state, $entity_collect
  */
 function entity_collection_content_add_form_validate($form, &$form_state) {
   $entity_collection = $form_state['entity_collection'];
-  list($type, $value) = explode(':', $form_state['values']['content_select']);
-  $entity = entity_load_single($type, $value);
-  list($entity_id,,$bundle) = entity_extract_ids($type, $entity);
-  if (!in_array($bundle, $entity_collection->settings['allowed_bundles'][$type])) {
-    form_set_error('content_select', t('The selected entitiy is not allowed in this collection'));
-  }
-  $content = EntityCollectionStorage::getBundleStorage($entity_collection->bundle)->retrieve($entity_collection);
-  if ($content->getChild($form_state['values']['content_select'])) {
-    form_set_error('content_select', t('This item already exists in the collection'));
+  if ($form_state['values']['content_select'] === "") {
+    form_set_error('content_select', t('Please select an entity'));
+  } else {
+    list($type, $value) = explode(':', $form_state['values']['content_select']);
+    $entity = entity_load_single($type, $value);
+    list($entity_id,,$bundle) = entity_extract_ids($type, $entity);
+    if (!in_array($bundle, $entity_collection->settings['allowed_bundles'][$type])) {
+      form_set_error('content_select', t('The selected entitiy is not allowed in this collection'));
+    }
+    $content = EntityCollectionStorage::getBundleStorage($entity_collection->bundle)->retrieve($entity_collection);
+    if ($content->getChild($form_state['values']['content_select'])) {
+      form_set_error('content_select', t('This item already exists in the collection'));
+    }
   }
 }
 

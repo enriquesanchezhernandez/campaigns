@@ -7,8 +7,19 @@ When patching a contrib module, the following steps should be followed:
 
 List of patches (most recent first)
 
+
 * ldap
   * ldap-property_of_non_object_in_ldap_authentication_init-2182413-3.patch
+
+* pathologic
+  * Fixes cache issue wiht lagnuage
+  * https://www.drupal.org/files/issues/348421-129.patch
+  * https://www.drupal.org/node/348421
+  
+* field_collection
+    * Fixes error when deleting node.
+    * https://www.drupal.org/files/issues/field_collection-error-deleting-node-null-field-collection-2394875-1.module.patch
+    * https://www.drupal.org/node/2394875
 
 * i18n_string
     * Fixes undefined method strings_remove and strings_update
@@ -122,6 +133,7 @@ List of patches (most recent first)
   * Fixed undefined variable
   * [https://www.drupal.org/node/2330513](https://www.drupal.org/files/issues/entity_collection_undefined_variable.patch)
   * entity_collection/entity_collection_undefined_variable.patch
+  * content_add_form_validation.patch
 
 * menu_block
   * Add hooks for editing, saving, deleting menu block. Useful for modules that want to extend the menu block form.

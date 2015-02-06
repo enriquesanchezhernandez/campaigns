@@ -437,7 +437,7 @@ function osha_blog_field_default_field_instances() {
     ),
     'entity_type' => 'node',
     'field_name' => 'field_expiration_date',
-    'label' => 'Expiration Date',
+    'label' => 'Expiration date',
     'required' => 0,
     'settings' => array(
       'default_value' => 'blank',
@@ -1221,7 +1221,7 @@ function osha_blog_field_default_field_instances() {
   t('Automatically calculated when saving. The count of pages of text in the default language (English).');
   t('Body');
   t('Character count');
-  t('Expiration Date');
+  t('Expiration date');
   t('Image');
   t('Nace');
   t('Page count');

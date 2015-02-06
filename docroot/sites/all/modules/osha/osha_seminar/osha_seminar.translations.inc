@@ -8,7 +8,7 @@ function osha_seminar_get_translatable_strings() {
     'Start date',
     'End date',
     'Location',
-    'Event Details',
+    'Event details',
     'Back to seminars',
     'Topics',
   );

@@ -245,7 +245,7 @@ function osha_alert_block_front_view() {
   $form['block'] = array(
     '#type' => 'item',
     '#markup' => t(
-      '<div class="link"><span>Interested in specific topics?</span><a href="!url">Try Alert Service</a></div>',
+      '<div class="link"><span>Interested in specific topics?</span><a href="!url">Try alert service</a></div>',
       array('!url' => $url)),
   );
   // These variables are defined in osha_newsletter.module

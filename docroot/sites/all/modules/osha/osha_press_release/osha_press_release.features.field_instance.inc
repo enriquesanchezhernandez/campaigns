@@ -219,7 +219,7 @@ function osha_press_release_field_default_field_instances() {
     ),
     'entity_type' => 'node',
     'field_name' => 'field_aditional_resources',
-    'label' => 'Additional Resources',
+    'label' => 'Additional resources',
     'required' => 0,
     'settings' => array(
       'entity_translation_sync' => FALSE,
@@ -434,7 +434,7 @@ function osha_press_release_field_default_field_instances() {
     ),
     'entity_type' => 'node',
     'field_name' => 'field_expiration_date',
-    'label' => 'Expiration Date',
+    'label' => 'Expiration date',
     'required' => 0,
     'settings' => array(
       'default_value' => 'blank',
@@ -751,7 +751,7 @@ function osha_press_release_field_default_field_instances() {
     ),
     'entity_type' => 'node',
     'field_name' => 'field_pr_embargo_date',
-    'label' => 'Embargo Date',
+    'label' => 'Embargo date',
     'required' => 0,
     'settings' => array(
       'default_value' => 'blank',
@@ -933,7 +933,7 @@ function osha_press_release_field_default_field_instances() {
     ),
     'entity_type' => 'node',
     'field_name' => 'field_publication_date',
-    'label' => 'Publication Date',
+    'label' => 'Publication date',
     'required' => 0,
     'settings' => array(
       'default_value' => 'now',
@@ -1299,19 +1299,19 @@ function osha_press_release_field_default_field_instances() {
   // Translatables
   // Included for use with string extractors like potx.
   t('Activity');
-  t('Additional Resources');
+  t('Additional resources');
   t('Archived');
   t('Automatically calculated when saving. The count of characters found in the default language text (English).');
   t('Automatically calculated when saving. The count of pages of text in the default language (English).');
   t('Body');
   t('Character count');
-  t('Embargo Date');
-  t('Expiration Date');
+  t('Embargo date');
+  t('Expiration date');
   t('Image');
   t('Nace');
   t('Notes to editor');
   t('Page count');
-  t('Publication Date');
+  t('Publication date');
   t('Summary');
   t('Tags');
   t('Thesaurus');

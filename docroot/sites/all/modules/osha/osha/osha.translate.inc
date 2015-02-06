@@ -6,14 +6,14 @@ function osha_get_translatable_strings() {
     'Section',
     'Article',
     'Activity',
-    'Additional Resources',
+    'Additional resources',
     'Alt Text',
     'Archived',
     'Article type',
     'Body',
     'Character count',
     'Description',
-    'Expiration Date',
+    'Expiration date',
     'Image',
     'Language',
     'Nace',
@@ -39,7 +39,7 @@ function osha_get_translatable_strings() {
 
     // Content from osha_blocks
     '<div><a class="seminar_back-to-seminars back-to-link" href="/tools-and-publications/seminars">Back to seminars</a></div>',
-    '<div class="link"><span>Interested in specific topics?</span><a href="!url">Try Alert Service</a></div>',
+    '<div class="link"><span>Interested in specific topics?</span><a href="!url">Try alert service</a></div>',
     'OSHwiki Featured Articles',
     'OSHA archived content',
 
