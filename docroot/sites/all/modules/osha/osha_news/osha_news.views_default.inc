@@ -15,14 +15,14 @@ function osha_news_views_default_views() {
   $view->description = '';
   $view->tag = 'default';
   $view->base_table = 'node';
-  $view->human_name = 'OSH News';
+  $view->human_name = 'OSH news';
   $view->core = 7;
   $view->api_version = '3.0';
   $view->disabled = FALSE; /* Edit this to true to make a default view disabled initially */
 
   /* Display: Master */
   $handler = $view->new_display('default', 'Master', 'default');
-  $handler->display->display_options['title'] = 'OSH News';
+  $handler->display->display_options['title'] = 'OSH news';
   $handler->display->display_options['use_ajax'] = TRUE;
   $handler->display->display_options['use_more_always'] = FALSE;
   $handler->display->display_options['access']['type'] = 'perm';
@@ -87,14 +87,14 @@ function osha_news_views_default_views() {
   $handler->display->display_options['filters']['field_publication_date_value']['granularity'] = 'minute';
   $handler->display->display_options['filters']['field_publication_date_value']['default_date'] = 'now';
 
-  /* Display: OSH News list */
-  $handler = $view->new_display('page', 'OSH News list', 'oshnews_list');
+  /* Display: OSH news list */
+  $handler = $view->new_display('page', 'OSH news list', 'oshnews_list');
   $handler->display->display_options['path'] = 'oshnews';
 
-  /* Display: OSH News - latest */
-  $handler = $view->new_display('block', 'OSH News - latest', 'oshnews_latest');
+  /* Display: OSH news - latest */
+  $handler = $view->new_display('block', 'OSH news - latest', 'oshnews_latest');
   $handler->display->display_options['defaults']['title'] = FALSE;
-  $handler->display->display_options['title'] = 'OSH News';
+  $handler->display->display_options['title'] = 'OSH news';
   $handler->display->display_options['defaults']['use_more'] = FALSE;
   $handler->display->display_options['use_more'] = TRUE;
   $handler->display->display_options['defaults']['use_more_always'] = FALSE;
@@ -146,10 +146,10 @@ function osha_news_views_default_views() {
     'title_class' => '',
   );
   $handler->display->display_options['fields']['title_field']['link_to_entity'] = 0;
-  $handler->display->display_options['block_description'] = 'OSH News';
+  $handler->display->display_options['block_description'] = 'OSH news';
   $translatables['news'] = array(
     t('Master'),
-    t('OSH News'),
+    t('OSH news'),
     t('more'),
     t('Apply'),
     t('Reset'),
@@ -164,8 +164,8 @@ function osha_news_views_default_views() {
     t('›'),
     t('»'),
     t('Get the actual content from a content revision.'),
-    t('OSH News list'),
-    t('OSH News - latest'),
+    t('OSH news list'),
+    t('OSH news - latest'),
     t('View all'),
   );
   $export['news'] = $view;

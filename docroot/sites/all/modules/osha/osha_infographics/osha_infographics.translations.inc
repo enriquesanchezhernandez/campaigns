@@ -2,12 +2,12 @@
 
 function osha_infographics_get_translatable_strings() {
   return array(
-    'Back to Infographics',
+    'Back to infographics',
     'Publication date',
     'Infographic',
     'Infographics',
-    'Related Infographics',
-    'Show Infographics for',
+    'Related infographics',
+    'Show infographics for',
     '<a href="/tools-and-publications/infographics">All topics</a>',
   );
 }

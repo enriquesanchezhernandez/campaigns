@@ -11,7 +11,7 @@ function osha_highlight_get_translatable_strings() {
     'Additional resources',
     'View all',
     'See more',
-    'Back to Highlights',
+    'Back to highlights',
     'Show details',
   );
 }
