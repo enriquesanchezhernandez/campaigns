@@ -17,7 +17,7 @@ function osha_breadcrumbs_path_breadcrumbs_settings_info() {
   $path_breadcrumb->path = 'search/blog';
   $path_breadcrumb->data = array(
     'titles' => array(
-      0 => 'Search Results',
+      0 => 'Search results',
     ),
     'paths' => array(
       0 => '<none>',
@@ -655,7 +655,7 @@ function osha_breadcrumbs_path_breadcrumbs_settings_info() {
   $path_breadcrumb->path = 'node/%node';
   $path_breadcrumb->data = array(
     'titles' => array(
-      0 => 'Alert Service',
+      0 => 'Alert service',
       1 => 'PRIVACY POLICY FOR THE ALERTS FORM',
     ),
     'paths' => array(
