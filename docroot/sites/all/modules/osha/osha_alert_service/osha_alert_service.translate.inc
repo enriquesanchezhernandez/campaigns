@@ -14,7 +14,7 @@ function osha_alert_service_get_translatable_strings() {
     '<b>Note</b>: In order to choose more than one item from the list, press the key CTRL on your keyboard (CMD on Mac), and select the item with your mouse.',
     'Subscribe',
     'If you would like to unsubscribe, please use the unsubscribe link from the footer of an alert sent to you.',
-    'Please input a valid email address',
+    'Please enter a valid email address',
     'Your request has been registered. Please check your email for further instructions',
     'Unsubscribe !email from receiving EU-OSHA alert service notifications?',
     'Unsubscribe',

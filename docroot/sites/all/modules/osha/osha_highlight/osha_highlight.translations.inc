@@ -3,7 +3,7 @@
 function osha_highlight_get_translatable_strings() {
   return array(
     'Highlight',
-    'OSHA news',
+    'EU-OSHA news',
     'Publication date',
     'Highlights',
     'Expiration date',

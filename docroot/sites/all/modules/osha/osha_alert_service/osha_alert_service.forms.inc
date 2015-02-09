@@ -130,7 +130,7 @@ function osha_alert_service_subscribe_form() {
  */
 function osha_alert_service_subscribe_form_validate($form, $form_state) {
   if (empty($form_state['values']['email']) || !valid_email_address($form_state['values']['email'])) {
-    form_set_error('email', t('Please input a valid email address'));
+    form_set_error('email', t('Please enter a valid email address'));
   };
 }
 
