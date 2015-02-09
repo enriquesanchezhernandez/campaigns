@@ -7,7 +7,7 @@ function osha_get_translatable_strings() {
     'Article',
     'Activity',
     'Additional resources',
-    'Alt Text',
+    'Alt text',
     'Archived',
     'Article type',
     'Body',
@@ -25,7 +25,7 @@ function osha_get_translatable_strings() {
     'Tags',
     'Thesaurus',
     'Title',
-    'Title Text',
+    'Title text',
 
     // Strings form header
     'News & Events',
