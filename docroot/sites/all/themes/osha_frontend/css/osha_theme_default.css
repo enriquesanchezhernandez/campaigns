@@ -5952,6 +5952,24 @@ article.comment p {
 	font-weight:normal;
 }
 
+.view-search-blog h1{
+	line-height:0.6em;
+}
+
+.view-search-blog h1 a{
+	border-bottom: 0 none !important;
+	color: #003399 !important;
+	font-family: "Open Sans Condensed",sans-serif !important;
+	font-size: 0.6em;
+	font-weight: bold;
+}
+
+.view-search-blog .views-row{
+	background: url("../images/separator_home.jpg") repeat-x scroll 0% 100% rgba(0, 0, 0, 0);
+	padding-bottom: 2.5em;
+	padding-top: 0em;
+}
+
 /* END BLOG DETAIL*/
 
 
