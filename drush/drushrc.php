@@ -417,6 +417,9 @@ $options['init-modules'] = array(
   'contact',
   'field_collection',
 
+  //Automatically add nodes to nodequeue
+  'auto_nodequeue',
+
   'osha_taxonomies',
   'osha',
   'osha_migration',
