@@ -186,7 +186,7 @@ function osha_alert_service_remove_alert_form($form, &$form_state) {
     $form['email'] = array(
       '#type' => 'item',
       '#markup' => t(
-        'Unsubscribe !email from receiving EU-OSHA alert Service notifications?',
+        'Unsubscribe !email from receiving EU-OSHA alert service notifications?',
         array('!email' => $entity->email)
       ),
     );

@@ -267,7 +267,7 @@ function osha_alert_service_mail($key, &$message, $params) {
   $body = '';
   switch ($key) {
     case 'subscribe':
-      $message['subject'] = variable_get('osha_alert_service_subscribe_subject', 'Your subscription to OSHA Alert Service');
+      $message['subject'] = variable_get('osha_alert_service_subscribe_subject', 'Your subscription to EU-OSHA alert service');
       $body = variable_get('osha_alert_service_subscribe_body',
 <<<EOT
 <p>EU-OSHA received a request to start sending alerts to <strong>[osha_alert_service:email]</strong>.</p>
