@@ -19,7 +19,7 @@ function osha_alert_service_get_translatable_strings() {
     'Unsubscribe !email from receiving EU-OSHA alert service notifications?',
     'Unsubscribe',
     'You have been successfully un-subscribed from alert',
-    'You subscription has been confirmed, thank you',
+    'Your subscription has been confirmed, thank you',
     "Your subscription is already confirmed, there's nothing you need to do",
     'EU-OSHA alert',
     'Your subscription to EU-OSHA alert service',
