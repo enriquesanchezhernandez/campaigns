@@ -4157,7 +4157,7 @@ and (max-width: 1237px) {
 	color: #000;
 	font-family: 'Open Sans Condensed',sans-serif;
 	font-size: 1.55em;
-	font-weight: lighter;
+	font-weight: bold;
 	margin: 0;
 	padding: 0.3em 1em 0.3em;
 	background: none repeat scroll 0 0 #FFFFFF;
@@ -4205,19 +4205,25 @@ and (max-width: 1237px) {
 
 }
 
-#block-views-press-contacts-block .view-footer {
-	float:none;
-	width:100%;
-	padding-top:1em;
+#block-views-press-contacts-block .view-press-contacts .view-footer{
+	border-top: 5px solid #003399;
+	width:109%;
+	padding:0.5em 0em;
+	margin-top: 0em;
 }
 
-#block-views-press-contacts-block .view-footer a{
-	float:none;
-	width:100%;
-	font-family:arial!important;
-	background:none!important;
-	font-size:0.8em!important;
+#block-views-press-contacts-block .view-press-contacts .view-footer .press-kit-link{
+	background: none;
+	float: left;
+	color: #000;
+	font-family: 'Open Sans Condensed',sans-serif!important;
+	font-size: 1.3em!important;
+	font-weight: bold;
+	margin: 0;
+	padding: 0em 0em 0 1.1em;
+	background: none repeat scroll 0 0 #FFFFFF;
 }
+
 
 /* END PRESS CONTACTS BLOCK*/
 
@@ -4226,6 +4232,7 @@ and (max-width: 1237px) {
 .block-on-the-web{
   border-top: 5px solid #003399;
    margin: 0;
+   clear:both;
 }
 
 .block-on-the-web h2{
@@ -4234,7 +4241,7 @@ and (max-width: 1237px) {
 	color: #000;
 	font-family: 'Open Sans Condensed',sans-serif;
 	font-size: 1.55em;
-	font-weight: lighter;
+	font-weight: bold;
 	margin: 0;
 	padding: 0em 0em 0 1em;
 	background: none repeat scroll 0 0 #FFFFFF;
@@ -4262,7 +4269,7 @@ and (max-width: 1237px) {
 	color: #000;
 	font-family: 'Open Sans Condensed',sans-serif;
 	font-size: 1.55em;
-	font-weight: lighter;
+	font-weight: bold;
 	margin: 0;
 	padding: 0 1em 0.3em;
 	background: none repeat scroll 0 0 #FFFFFF;
@@ -6895,4 +6902,10 @@ div.contextual-links-wrapper{
 
 a.contextual-links-trigger{
 	background: transparent url(../images/gear-select.png) no-repeat 2px 0!important;
+}
+
+.title-archived{
+	padding-left:1em;
+	color:#c42110;
+	font-weight:bold;
 }

@@ -23,11 +23,12 @@ body {
 
 #languagesAndSearch{
 	display:block;
+	float: none;
+	margin-right: 0;
+	text-align: center;
+	width: auto;
 }
 
-#languagesAndSearch #contact{
-	
-}
 
 #agencyLogo{
 	display:none;
@@ -262,8 +263,13 @@ body {
 	padding-left: 1em;
 	padding-right: 1em;
 }
+.view-header.back {
+	padding-right: 1em;
+	margin-top: -2em;
+}
 .view-header.back a {
-	background: url("../images/flecha-izq.png") no-repeat scroll 0% 125% rgba(0, 0, 0, 0)!important	
+	background: url("../images/flecha-izq.png") no-repeat scroll 0% center% rgba(0, 0, 0, 0)!important;
+	color: #FFF!important;
 }
 /* H1 */
 .view-highlight .field-name-title-field h1 {
@@ -1212,7 +1218,7 @@ body.page-search-publications aside.sidebars_first {
 .node-type-blog .view-header.back a {
 	background-position-y: center!important;
 	color: #039!important;
-	padding-right: 1em!important;
+	/*padding-right: 1em!important;*/
 }
 /* Header */
 .header__secondary-menu {
