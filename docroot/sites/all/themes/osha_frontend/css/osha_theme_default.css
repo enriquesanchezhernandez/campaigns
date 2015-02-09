@@ -5960,7 +5960,7 @@ article.comment p {
 	border-bottom: 0 none !important;
 	color: #003399 !important;
 	font-family: "Open Sans Condensed",sans-serif !important;
-	font-size: 0.6em;
+	font-size: 0.5em;
 	font-weight: bold;
 }
 
@@ -5968,6 +5968,19 @@ article.comment p {
 	background: url("../images/separator_home.jpg") repeat-x scroll 0% 100% rgba(0, 0, 0, 0);
 	padding-bottom: 2.5em;
 	padding-top: 0em;
+}
+
+.view-search-blog .links.inline a{
+	background: url("../images/flecha.png") no-repeat scroll 85% 29% transparent;
+	color: #003399;
+	float: right;
+	font-family: "Open Sans Condensed",sans-serif!important;
+	font-size: 1.2em;
+	padding-bottom: 1em;
+	padding-right: 2.5em;
+	margin-top: 0em;
+	border-bottom: 0px!important;
+	font-weight: bold;
 }
 
 /* END BLOG DETAIL*/
