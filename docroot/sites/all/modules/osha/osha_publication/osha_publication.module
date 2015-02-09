@@ -16,7 +16,7 @@ function osha_publication_url_inbound_alter(&$path, $original_path, $path_langua
   // if the path ends with /view than should serve the node.
   // see CW-1072
   $args = arg();
-
+  global $language_url;
   $orig_path_alias = drupal_lookup_path('alias', $original_path);
   $orig_path_source = drupal_lookup_path('source', $original_path);
   if (end($args) == 'view') {
@@ -25,6 +25,10 @@ function osha_publication_url_inbound_alter(&$path, $original_path, $path_langua
       $url = preg_replace('/\/view$/', '', $original_path);
       // If alias, get source.
       $path_source = drupal_lookup_path('source', $url);
+      if (empty($path_source) && $language_url->language != 'en') {
+        // Alias can be from English but requested in different language.
+        $path_source = drupal_lookup_path('source', $url, 'en');
+      }
       // If source empty, the url might be the system path, not alias.
       if (empty($path_source) && drupal_valid_path($url)) {
         $path_source = $url;
@@ -41,6 +45,7 @@ function osha_publication_url_inbound_alter(&$path, $original_path, $path_langua
         if (preg_match("/node\/[\d]{1,99}$/", $path_alias['source'])) {
           $node = menu_get_object('node', 1, $path_alias['source']);
           if ($node->type == 'publication') {
+            // Set the path as path source to render the entity.
             $path = $path_alias['source'];
           }
         }
@@ -48,25 +53,34 @@ function osha_publication_url_inbound_alter(&$path, $original_path, $path_langua
     }
   }
   else {
-    // If source empty, the url might be the system path, not alias.
     if (empty($orig_path_source)) {
+      // The url might be the system path, not alias.
       $path_source = drupal_lookup_path('source', $orig_path_alias);
     }
     else {
       $path_source = $orig_path_source;
     }
     $path_alias = path_load($path_source);
-    if (!empty($path_alias)) {
-      if (preg_match("/node\/[\d]{1,99}$/", $path_alias['source'])) {
-        $node = menu_get_object('node', 1, $path_alias['source']);
-        if ($node->type == 'publication') {
-          global $language;
-          $lang = $language->language;
-          if (!empty($node->field_file[$lang][0])
-            && !empty($node->field_file['en'][0])) {
-            // Append the file_view identifier to be used in hook_node_view().
-            $path .= '/file_view';
-          }
+    $source = '';
+    if (!empty($path_alias)
+        && preg_match("/node\/[\d]{1,99}$/", $path_alias['source'])) {
+      // Alias with source node/nid
+      $source = $path_alias['source'];
+    }
+    elseif (preg_match("/node\/[\d]{1,99}$/", $original_path)) {
+      // The requested path it is system path
+      // without alias for current language.
+      $source = $original_path;
+    }
+    if (!empty($source)) {
+      $node = menu_get_object('node', 1, $source);
+      if ($node->type == 'publication') {
+        global $language;
+        $lang = $language->language;
+        if (!empty($node->field_file[$lang][0])
+          || !empty($node->field_file['en'][0])) {
+          // Append the file_view identifier to be used in hook_node_view().
+          $path .= '/file_view';
         }
       }
     }

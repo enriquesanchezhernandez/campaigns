@@ -22,7 +22,7 @@ function osha_infographics_views_default_views() {
 
   /* Display: Master */
   $handler = $view->new_display('default', 'Master', 'default');
-  $handler->display->display_options['title'] = 'Related Infographics';
+  $handler->display->display_options['title'] = 'Related infographics';
   $handler->display->display_options['use_more_always'] = FALSE;
   $handler->display->display_options['access']['type'] = 'perm';
   $handler->display->display_options['cache']['type'] = 'none';
@@ -68,7 +68,7 @@ function osha_infographics_views_default_views() {
       'text' => 0,
     ),
   );
-  /* Sort criterion: Field: Publication Date (field_publication_date) */
+  /* Sort criterion: Field: Publication date (field_publication_date) */
   $handler->display->display_options['sorts']['field_publication_date_value']['id'] = 'field_publication_date_value';
   $handler->display->display_options['sorts']['field_publication_date_value']['table'] = 'field_data_field_publication_date';
   $handler->display->display_options['sorts']['field_publication_date_value']['field'] = 'field_publication_date_value';
@@ -117,15 +117,15 @@ function osha_infographics_views_default_views() {
   $handler->display->display_options['filters']['type']['value'] = array(
     'infographic' => 'infographic',
   );
-  /* Filter criterion: Field: Publication Date (field_publication_date) */
+  /* Filter criterion: Field: Publication date (field_publication_date) */
   $handler->display->display_options['filters']['field_publication_date_value']['id'] = 'field_publication_date_value';
   $handler->display->display_options['filters']['field_publication_date_value']['table'] = 'field_data_field_publication_date';
   $handler->display->display_options['filters']['field_publication_date_value']['field'] = 'field_publication_date_value';
   $handler->display->display_options['filters']['field_publication_date_value']['operator'] = '<=';
   $handler->display->display_options['filters']['field_publication_date_value']['default_date'] = 'now';
 
-  /* Display: Related Infographics */
-  $handler = $view->new_display('block', 'Related Infographics', 'block');
+  /* Display: Related infographics */
+  $handler = $view->new_display('block', 'Related infographics', 'block');
   $handler->display->display_options['defaults']['fields'] = FALSE;
   /* Field: Content: Title */
   $handler->display->display_options['fields']['title']['id'] = 'title';
@@ -320,7 +320,7 @@ function osha_infographics_views_default_views() {
     11 => 0,
     12 => 0,
   );
-  /* Filter criterion: Field: Publication Date (field_publication_date) */
+  /* Filter criterion: Field: Publication date (field_publication_date) */
   $handler->display->display_options['filters']['field_publication_date_value']['id'] = 'field_publication_date_value';
   $handler->display->display_options['filters']['field_publication_date_value']['table'] = 'field_data_field_publication_date';
   $handler->display->display_options['filters']['field_publication_date_value']['field'] = 'field_publication_date_value';
@@ -330,7 +330,7 @@ function osha_infographics_views_default_views() {
   /* Display: Tags Filter */
   $handler = $view->new_display('block', 'Tags Filter', 'block_2');
   $handler->display->display_options['defaults']['title'] = FALSE;
-  $handler->display->display_options['title'] = 'Show Infographics for';
+  $handler->display->display_options['title'] = 'Show infographics for';
   $handler->display->display_options['defaults']['group_by'] = FALSE;
   $handler->display->display_options['group_by'] = TRUE;
   $handler->display->display_options['defaults']['exposed_form'] = FALSE;
@@ -360,7 +360,7 @@ function osha_infographics_views_default_views() {
   $handler->display->display_options['defaults']['arguments'] = FALSE;
   $translatables['infographic'] = array(
     t('Master'),
-    t('Related Infographics'),
+    t('Related infographics'),
     t('more'),
     t('Apply'),
     t('Reset'),
@@ -372,7 +372,7 @@ function osha_infographics_views_default_views() {
     t('Infographics'),
     t('Type'),
     t('Tags Filter'),
-    t('Show Infographics for'),
+    t('Show infographics for'),
   );
   $export['infographic'] = $view;
 

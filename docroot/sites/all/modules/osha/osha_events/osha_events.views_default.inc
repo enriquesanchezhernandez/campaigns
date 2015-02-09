@@ -837,7 +837,7 @@ function osha_events_views_default_views() {
   $handler->display->display_options['fields']['field_country_code']['id'] = 'field_country_code';
   $handler->display->display_options['fields']['field_country_code']['table'] = 'field_data_field_country_code';
   $handler->display->display_options['fields']['field_country_code']['field'] = 'field_country_code';
-  $handler->display->display_options['fields']['field_country_code']['label'] = 'LOCATION';
+  $handler->display->display_options['fields']['field_country_code']['label'] = 'Location';
   /* Field: Content: City */
   $handler->display->display_options['fields']['field_city']['id'] = 'field_city';
   $handler->display->display_options['fields']['field_city']['table'] = 'field_data_field_city';
@@ -848,7 +848,7 @@ function osha_events_views_default_views() {
   $handler->display->display_options['fields']['field_organization']['id'] = 'field_organization';
   $handler->display->display_options['fields']['field_organization']['table'] = 'field_data_field_organization';
   $handler->display->display_options['fields']['field_organization']['field'] = 'field_organization';
-  $handler->display->display_options['fields']['field_organization']['label'] = 'ORGANIZATION';
+  $handler->display->display_options['fields']['field_organization']['label'] = 'Organization';
   /* Field: Content: Start date */
   $handler->display->display_options['fields']['field_start_date']['id'] = 'field_start_date';
   $handler->display->display_options['fields']['field_start_date']['table'] = 'field_data_field_start_date';
