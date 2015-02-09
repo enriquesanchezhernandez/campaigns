@@ -227,7 +227,7 @@ function osha_alert_service_verify_alert_form() {
     if ($entity->confirmed <> 1) {
       $entity->confirmed = 1;
       if (entity_save('osha_alert_service', $entity)) {
-        drupal_set_message(t('You subscription has been confirmed, thank you'));
+        drupal_set_message(t('Your subscription has been confirmed, thank you'));
       }
     }
     else {

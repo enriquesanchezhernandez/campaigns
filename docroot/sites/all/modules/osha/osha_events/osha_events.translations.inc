@@ -5,6 +5,8 @@ function osha_events_get_translatable_strings() {
     'Events',
     'Name',
     'Published',
+    'From date',
+    'To date',
     'End date',
     'Location',
     'Organization',
