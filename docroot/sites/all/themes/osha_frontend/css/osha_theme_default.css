@@ -6909,3 +6909,11 @@ a.contextual-links-trigger{
 	color:#c42110;
 	font-weight:bold;
 }
+
+#publication_slideshow .field-name-field-publication-bookshop-id{
+	margin-top:0em;
+}
+
+#publication_slideshow  .field-name-field-publication-bookshop-id span img{
+	background: url("../images/summary_arrow.png") no-repeat scroll 71% 27% rgba(0, 0, 0, 0);
+}
