@@ -105,7 +105,6 @@ function osha_search_default_search_api_index() {
             "fields" : {
               "title" : true,
               "uuid" : true,
-              "title_field" : true,
               "field_summary" : true,
               "field_author" : true,
               "body:value" : true,
@@ -164,6 +163,10 @@ function osha_search_default_search_api_index() {
         "changed" : { "type" : "date" },
         "created" : { "type" : "date" },
         "field_activity" : { "type" : "list\\u003Cinteger\\u003E", "entity_type" : "taxonomy_term" },
+        "field_aditional_resources" : { "type" : "list\\u003Cinteger\\u003E", "entity_type" : "node" },
+        "field_aditional_resources:field_summary" : { "type" : "list\\u003Ctext\\u003E" },
+        "field_aditional_resources:title" : { "type" : "list\\u003Ctext\\u003E" },
+        "field_aditional_resources:title_field" : { "type" : "list\\u003Ctext\\u003E" },
         "field_article_type" : { "type" : "integer", "entity_type" : "taxonomy_term" },
         "field_author" : { "type" : "text" },
         "field_country_code" : { "type" : "string" },
