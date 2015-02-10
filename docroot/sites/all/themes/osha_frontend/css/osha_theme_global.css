@@ -1550,5 +1550,19 @@ a {
 	margin-top:0em;
 }
 
+/*National Focal Points*/
+
+.view-fop-flags table .views-field-field-flag img{
+	height:3em;
+	width:4em;
+	border:1px solid #CCCCCC;
+}
+
+.view-fop-flags table  .views-field-title-field{
+	width: 6em;
+	height: 4em;
+}
+
+/*END National Focal Points*/
 
 }
