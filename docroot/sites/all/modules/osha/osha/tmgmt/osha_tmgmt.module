@@ -1032,6 +1032,22 @@ function osha_tmgmt_retranslate_validate_ui($form, &$form_state) {
  */
 function osha_tmgmt_form_tmgmt_ui_entity_translation_review_form_alter(&$form, &$form_state) {
   $job_item = $form_state['item'];
+  $form['info']['source_type'] = array(
+    '#type' => 'item',
+    '#prefix' => '<div class="tmgmt-ui-source-type tmgmt-ui-info-item">',
+    '#suffix' => '</div>',
+    '#title' => t('Source language'),
+    '#markup' => locale_language_name($job_item->source_language),
+    '#weight' => 10,
+  );
+  $form['info']['target'] = array(
+    '#type' => 'item',
+    '#prefix' => '<div class="tmgmt-ui-source-type tmgmt-ui-info-item">',
+    '#suffix' => '</div>',
+    '#title' => t('Target language'),
+    '#markup' => locale_language_name($job_item->target_language),
+    '#weight' => 11,
+  );
   if ($job_item->item_type != 'node') {
     return;
   }
