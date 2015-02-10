@@ -2370,3 +2370,40 @@ function osha_tmgmt_locale_add_translation($string, $language, $translation) {
     }
   }
 }
+
+function osha_tmgmt_form_i18n_string_translate_page_overview_form_alter(&$form, &$form_state) {
+  $object = $form['object']['#value'];
+
+  // Create the id: textgroup:type:objectid.
+  $id = $object->get_textgroup() . ':' . implode(':', $object->get_string_context());
+  $source_language = variable_get_value('i18n_string_source_language');
+  $existing_items = osha_tmgmt_job_item_load_latest('i18n_string', $object->get_type(), $id, $source_language);
+  foreach ($form['languages']['#options'] as $key => &$row) {
+    $lang = substr($key, strrpos($key, ':') + 1);
+    if (isset($existing_items[$lang])) {
+      $states = osha_tmgmt_get_job_item_states();
+      $row['status'] = $states[$existing_items[$lang]->state];
+    }
+    $row['operations'] = l(t('translate'), $object->get_translate_path($lang), array('query' => drupal_get_destination()));
+    if (isset($existing_items[$lang])) {
+      if ($existing_items[$lang]->isNeedsReview()) {
+        $row['operations'] = ' | ' . l(t('review'), 'admin/tmgmt/items/' . $existing_items[$lang]->tjiid, array('query' => array('destination' => $_GET['q'])));
+      } elseif ($existing_items[$lang]->isActive()) {
+        $row['operations'] .= ' | ' . l(t('in progress'), 'admin/tmgmt/items/' . $existing_items[$lang]->tjiid, array('query' => array('destination' => $_GET['q'])));
+      }
+    }
+    if ($lang == $source_language || isset($existing_items[$lang])) {
+      $form['languages'][$id . ':' . $lang] = array(
+        '#type' => 'checkbox',
+        '#disabled' => TRUE,
+      );
+    }
+  }
+
+  $form['actions']['request_translation'] = array(
+    '#type' => 'submit',
+    '#value' => t('Request translation'),
+    '#submit' => array('tmgmt_i18n_string_translate_form_submit'),
+    '#validate' => array('tmgmt_i18n_string_translate_form_validate'),
+  );
+}
