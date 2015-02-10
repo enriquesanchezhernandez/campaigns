@@ -15,7 +15,7 @@ function osha_alert_service_admin_form($form, &$form_state) {
     '#title' => 'Alert email subject',
     '#type' => 'textfield',
     '#default_value' => variable_get('osha_alert_service_alert_subject',
-      'EU-OSHA Alert'),
+      'EU-OSHA alert'),
   );
   $form['osha_alert_service_mail']['osha_alert_service_alert_body'] = array(
     '#title' => t('Alert email body'),
@@ -47,7 +47,7 @@ EOT
 <p>If you did not initiate this request or believe it was sent in error you can safely ignore this message.</p>
 
 <p>Thanks,</p>
-<p><strong>The EU-OSHA Alerts Team</strong></p>
+<p><strong>The EU-OSHA alerts Team</strong></p>
 EOT
     )
   );

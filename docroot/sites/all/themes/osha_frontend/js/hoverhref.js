@@ -145,11 +145,31 @@ function displayMenuThirdLevel() {
 	
 	
 	jQuery(document).ready(function () {
-		jQuery( "#block-menu-block-2 #main-menu-links #main-menu-links .is-active" ).parent( "#main-menu-links" ).show();	
+		jQuery( "#block-menu-block-2 #main-menu-links #main-menu-links .active #main-menu-links" ).show();
+		//When the children is active, show the ul
+		jQuery( "#block-menu-block-2 #main-menu-links #main-menu-links .is-active" ).parent( "#main-menu-links" ).show();
 		
-		 jQuery( "#block-menu-block-2 #main-menu-links #main-menu-links .is-active" ).parent( "#main-menu-links" ).parent( ".is-active-trail").removeClass('is-expanded');
+		jQuery( "#block-menu-block-2 #main-menu-links #main-menu-links .is-active" ).parent( "#main-menu-links" ).parent( ".is-active-trail").removeClass('is-expanded');
 	  
 		jQuery( "#block-menu-block-2 #main-menu-links #main-menu-links .is-active" ).parent( "#main-menu-links" ).parent( ".is-active-trail").addClass('expand');
+		
+		
+		
+		
+		jQuery( "#block-menu-block-2 #main-menu-links #main-menu-links .active #main-menu-links" ).show();
+		jQuery( "#block-menu-block-2 #main-menu-links #main-menu-links .is-active").removeClass('is-expanded');
+		jQuery( "#block-menu-block-2 #main-menu-links #main-menu-links .is-active").addClass('expand');
+		jQuery( "#block-menu-block-2 #main-menu-links #main-menu-links #main-menu-links .is-active").removeClass('expand');
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 		
 		
 	});

@@ -27,7 +27,7 @@ function osha_alert_service_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'osha_alert_service_alert_subject';
-  $strongarm->value = 'EU-OSHA Alert';
+  $strongarm->value = 'EU-OSHA alert';
   $export['osha_alert_service_alert_subject'] = $strongarm;
 
   $strongarm = new stdClass();
@@ -52,7 +52,7 @@ function osha_alert_service_strongarm() {
 <p>If you did not initiate this request or believe it was sent in error you can safely ignore this message.</p>
 
 <p>Thanks,</p>
-<p><strong>The EU-OSHA Alerts Team</strong></p>
+<p><strong>The EU-OSHA alerts Team</strong></p>
 <p></p>
 <p  style="color:#A9A9A9; font-size:13px;">You can read our here our <strong><a href="[osha_alert_service:privacy_policy_url]"><span style="color:#A9A9A9">Privacy Policy</span></a>.</p>';
   $export['osha_alert_service_subscribe_body'] = $strongarm;

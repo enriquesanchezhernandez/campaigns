@@ -217,11 +217,9 @@ function fill_related_publications(&$vars) {
  */
 function osha_frontend_preprocess_node(&$vars) {
   $node = $vars['node'];
+  // $node is the published node, not the draft
   if ( isset($node->field_archived[LANGUAGE_NONE][0]['value']) && $node->field_archived[LANGUAGE_NONE][0]['value'] == 1 ) {
-    global $user;
-    if (in_array('administrator', $user->roles)) {
-      $vars['classes_array'][] = 'osha-archived-content-node';
-    }
+    $vars['classes_array'][] = 'osha-archived-content-node';
   }
 }
 

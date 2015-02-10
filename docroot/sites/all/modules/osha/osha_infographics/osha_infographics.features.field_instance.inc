@@ -395,7 +395,7 @@ function osha_infographics_field_default_field_instances() {
   $field_instances['node-infographic-field_thumbnail'] = array(
     'bundle' => 'infographic',
     'deleted' => 0,
-    'description' => '',
+    'description' => 'Add an image that should fit a ratio of 1.35 to prevent auto-cropping.',
     'display' => array(
       'default' => array(
         'label' => 'hidden',
@@ -451,7 +451,7 @@ function osha_infographics_field_default_field_instances() {
     'settings' => array(
       'alt_field' => 0,
       'default_image' => 0,
-      'entity_translation_sync' => FALSE,
+      'entity_translation_sync' => 0,
       'file_directory' => '',
       'file_extensions' => 'png gif jpg jpeg',
       'image_field_caption' => 0,
@@ -637,6 +637,7 @@ function osha_infographics_field_default_field_instances() {
 
   // Translatables
   // Included for use with string extractors like potx.
+  t('Add an image that should fit a ratio of 1.35 to prevent auto-cropping.');
   t('Body');
   t('File');
   t('Image');

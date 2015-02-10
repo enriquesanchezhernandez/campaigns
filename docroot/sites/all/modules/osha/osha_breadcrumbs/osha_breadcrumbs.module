@@ -32,3 +32,11 @@ function osha_breadcrumbs_path_breadcrumbs_view_alter(&$breadcrumbs, $path_bread
     $breadcrumbs = array_keys(array_count_values($breadcrumbs));
   }
 }
+
+/**
+ * Implements hook_osha_tmgmt_i18n_string_list().
+ */
+function osha_breadcrumbs_osha_tmgmt_i18n_string_list() {
+  module_load_include('inc', 'osha_breadcrumbs', 'osha_breadcrumbs.translate');
+  return osha_breadcrumbs_get_translatable_strings();
+}

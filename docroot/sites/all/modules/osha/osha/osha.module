@@ -423,6 +423,10 @@ function osha_form_node_form_alter(&$form, &$form_state, $form_id) {
   if (isset($form_state['field']['field_character_count'])) {
     $form['field_character_count']['#access'] = FALSE;
   }
+  global $user;
+  if (!in_array('administrator', $user->roles)) {
+    $form['field_archived']['#access'] = FALSE;
+  }
 
   // Hide Delete button
   unset($form['actions']['delete']);
@@ -496,6 +500,13 @@ function osha_node_view($node, $view_mode, $langcode) {
         $node->article_type_code = $term->field_article_type_code[LANGUAGE_NONE][0]['value'];
       }
     }
+  if ($view_mode != 'full') {
+    if (!empty($node->field_archived[LANGUAGE_NONE][0]['value'])) {
+      if (!empty($node->content['title_field'][0]['#markup'])) {
+        $node->content['title_field'][0]['#markup'] .= '<span class="title-archived">' . t('Archived') . '</span>';
+      }
+    }
+  }
 }
 
 /**
@@ -508,7 +519,7 @@ function osha_file_view($file, $view_mode, $langcode) {
     if ($view_mode == 'full') {
       $headers = array(
         'Content-Type'              => $file->filemime,
-        'Content-Disposition'       => 'filename="' . $file->filename . '"',
+        'Content-Disposition'       => 'filename="' . drupal_basename($file->uri) . '"',
         'Content-Length'            => $file->filesize,
         'Content-Transfer-Encoding' => 'binary',
         'Pragma'                    => 'no-cache',
