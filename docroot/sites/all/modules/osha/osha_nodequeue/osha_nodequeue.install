@@ -8,7 +8,7 @@
 /**
  * Implements hook_schema().
  */
-function auto_nodequeue_schema() {
+function osha_nodequeue_schema() {
   $schema = array();
   $schema['nodequeue_auto'] = array(
     'description' => 'Storage for the Auto Nodequeue module.',
