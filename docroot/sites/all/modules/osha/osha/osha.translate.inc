@@ -33,7 +33,7 @@ function osha_get_translatable_strings() {
     'Contact us',
 
     // String from footer
-    '&copy; 2015 EU-OSHA | an agency of the European Union',
+    'an agency of the European Union',
     'Legal notice',
     'Site map',
 

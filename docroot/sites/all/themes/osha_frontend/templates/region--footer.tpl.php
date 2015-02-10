@@ -52,7 +52,7 @@
 ?>
 <?php if ($content): ?>
   <footer id="footer" class="<?php print $classes; ?>">
-    <div id="footer-first-line" class="footer footer-line"><?php print t("&copy; 2015 EU-OSHA | an agency of the European Union"); ?></div>
+    <div id="footer-first-line" class="footer footer-line"><?php print t("&copy; ");print date("Y");print t(" EU-OSHA | ");print t("an agency of the European Union"); ?></div>
     <div id="footer-second-line" class="footer footer-line"><?php print $content; ?></div>
   </footer>
 <?php endif; ?>
