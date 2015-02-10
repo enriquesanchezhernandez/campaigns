@@ -6963,4 +6963,62 @@ a.contextual-links-trigger{
 	height: 4em;
 }
 
+.view-fop-links h3 {
+	background-color: #FFFFFF;
+	border-top: 5px solid #003399;
+	padding-bottom: 0em;
+	padding-top: 0.5em;
+	color: #000000;
+	font-family: 'Open Sans Condensed', sans-serif;
+	font-size: 1.4em;
+	font-weight: bold;
+	margin-top:0em;
+	margin-bottom:0em;
+}
+
+.view-fop-links  .views-row {
+	background: url("../images/separator_home.jpg") repeat-x scroll 0 100% rgba(0, 0, 0, 0);
+	padding:1em;
+}
+
+.view-fop-links div a{
+	color: #003399;
+	text-decoration: none;
+	background: url("../images/li_arrow.png") no-repeat scroll 0% 100% transparent;
+	padding-left: 1em;
+	font-size: 0.8em;
+	font-weight: bold;
+	border-bottom: 0px!important;
+}
+
+#block-views-fop-flags-block-1 h3{
+	background-color: #FFFFFF;
+	border-top: 5px solid #003399;
+	padding-bottom: 0em;
+	padding-top: 0.5em;
+	color: #000000;
+	font-family: 'Open Sans Condensed', sans-serif;
+	font-size: 1.4em;
+	font-weight: bold;
+	margin-top:0em;
+	margin-bottom:0em;
+}
+
+#block-views-fop-flags-block-1  .views-row {
+	background: url("../images/separator_home.jpg") repeat-x scroll 0 100% rgba(0, 0, 0, 0);
+	padding:1em;
+}
+
+#block-views-fop-flags-block-1  .views-row  a{
+	color: #003399;
+	text-decoration: none;
+	background: url("../images/li_arrow.png") no-repeat scroll 0% 100% transparent;
+	padding-left: 1em;
+	font-size: 0.8em;
+	font-weight: bold;
+	border-bottom: 0px!important;
+}
+
 /*END National Focal Points*/
+
+
