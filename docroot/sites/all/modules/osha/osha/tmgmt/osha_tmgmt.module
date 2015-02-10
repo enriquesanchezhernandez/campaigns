@@ -514,14 +514,20 @@ function osha_tmgmt_preprocess_page(&$variables) {
     $crumbs[] = $l_translation;
     $crumbs[] = l(t('Jobs'), 'admin/tmgmt/jobs');
     drupal_set_breadcrumb($crumbs);
+    return;
   }
-  if (strpos($_GET['q'], 'admin/tmgmt') === 0) {
+  if (strpos($_GET['q'], 'admin/tmgmt/items/') === 0) {
     $crumbs = array();
     $crumbs[] = $l_home;
     $crumbs[] = $l_admin;
     $crumbs[] = $l_translation;
-    $crumbs[] = t('Jobs');
+    $crumbs[] = l(t('Jobs'), 'admin/tmgmt/jobs');
+    if (!empty($variables['page']['content']['system_main']['tmgmt_job_item'])) {
+      $job_item = current($variables['page']['content']['system_main']['tmgmt_job_item']);
+      $crumbs[] = $job_item['info']['job']['#markup'];
+    }
     drupal_set_breadcrumb($crumbs);
+    return;
   }
   if (strpos($_GET['q'], 'admin/tmgmt/sources') === 0) {
     $crumbs = array();
@@ -530,6 +536,7 @@ function osha_tmgmt_preprocess_page(&$variables) {
     $crumbs[] = $l_translation;
     $crumbs[] = t('Sources');
     drupal_set_breadcrumb($crumbs);
+    return;
   }
   if (strpos($_GET['q'], 'admin/tmgmt/cart') === 0) {
     $crumbs = array();
@@ -538,6 +545,7 @@ function osha_tmgmt_preprocess_page(&$variables) {
     $crumbs[] = $l_translation;
     $crumbs[] = t('Cart');
     drupal_set_breadcrumb($crumbs);
+    return;
   }
   if (strpos($_GET['q'], 'admin/tmgmt/content-validators') === 0) {
     $crumbs = array();
@@ -546,6 +554,16 @@ function osha_tmgmt_preprocess_page(&$variables) {
     $crumbs[] = $l_translation;
     $crumbs[] = t('Content validators');
     drupal_set_breadcrumb($crumbs);
+    return;
+  }
+  if (strpos($_GET['q'], 'admin/tmgmt') === 0) {
+    $crumbs = array();
+    $crumbs[] = $l_home;
+    $crumbs[] = $l_admin;
+    $crumbs[] = $l_translation;
+    $crumbs[] = t('Jobs');
+    drupal_set_breadcrumb($crumbs);
+    return;
   }
 }
 
