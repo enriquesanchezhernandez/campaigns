@@ -864,6 +864,23 @@ function osha_tmgmt_form_alter(&$form, &$form_state, $form_id) {
       break;
 
     case 'tmgmt_ui_i18n_string_translation_review_form':
+      $job_item = $form_state['item'];
+      $form['info']['source_type'] = array(
+        '#type' => 'item',
+        '#prefix' => '<div class="tmgmt-ui-source-type tmgmt-ui-info-item">',
+        '#suffix' => '</div>',
+        '#title' => t('Source language'),
+        '#markup' => locale_language_name($job_item->source_language),
+        '#weight' => 10,
+      );
+      $form['info']['target'] = array(
+        '#type' => 'item',
+        '#prefix' => '<div class="tmgmt-ui-source-type tmgmt-ui-info-item">',
+        '#suffix' => '</div>',
+        '#title' => t('Target language'),
+        '#markup' => locale_language_name($job_item->target_language),
+        '#weight' => 11,
+      );
       foreach (element_children($form['review']) as $field_name) {
         $form['review'][$field_name]['#theme'] = 'osha_tmgmt_ui_translator_review_form';
       }
@@ -876,7 +893,7 @@ function osha_tmgmt_form_alter(&$form, &$form_state, $form_id) {
       }
       $form['actions']['accept']['#value'] = 'Publish';
       global $user;
-      $job_item = $form_state['item'];
+
       $form['actions']['accept']['#access'] =
         $job_item->state != TMGMT_JOB_ITEM_STATE_ABORTED
         && $job_item->state != TMGMT_JOB_ITEM_STATE_ACCEPTED
