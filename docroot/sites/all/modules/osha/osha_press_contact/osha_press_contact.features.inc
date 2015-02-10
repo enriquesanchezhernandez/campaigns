@@ -29,7 +29,7 @@ function osha_press_contact_fe_nodequeue_export_fields() {
   // Exported nodequeues: press_contacts_queue
   $nodequeues['press_contacts_queue'] = array(
     'name' => 'press_contacts_queue',
-    'title' => 'Press Contacts',
+    'title' => 'Press contacts',
     'subqueue_title' => '',
     'size' => 0,
     'link' => '',
@@ -60,7 +60,7 @@ function osha_press_contact_node_info() {
     'press_contact' => array(
       'name' => t('Contact'),
       'base' => 'node_content',
-      'description' => t('Contacts (extended old Press contacts)  - used for Press Contacts, Focal Points, Board Members etc.'),
+      'description' => t('Contacts (extended old Press contacts)  - used for Press contacts, Focal Points, Board Members etc.'),
       'has_title' => '1',
       'title_label' => t('Title'),
       'help' => '',

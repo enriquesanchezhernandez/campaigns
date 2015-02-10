@@ -15,14 +15,14 @@ function osha_resources_views_default_views() {
   $view->description = '';
   $view->tag = 'default';
   $view->base_table = 'node';
-  $view->human_name = 'Additional Resources Admin';
+  $view->human_name = 'Additional resources Admin';
   $view->core = 7;
   $view->api_version = '3.0';
   $view->disabled = FALSE; /* Edit this to true to make a default view disabled initially */
 
   /* Display: Master */
   $handler = $view->new_display('default', 'Master', 'default');
-  $handler->display->display_options['title'] = 'Additional Resources Admin View';
+  $handler->display->display_options['title'] = 'Additional resources Admin View';
   $handler->display->display_options['use_more_always'] = FALSE;
   $handler->display->display_options['access']['type'] = 'perm';
   $handler->display->display_options['access']['perm'] = 'view the administration theme';
@@ -63,8 +63,8 @@ function osha_resources_views_default_views() {
     'press_contact' => 'press_contact',
   );
 
-  /* Display: Additional Resources Page */
-  $handler = $view->new_display('page', 'Additional Resources Page', 'additional_resources_page');
+  /* Display: Additional resources Page */
+  $handler = $view->new_display('page', 'Additional resources Page', 'additional_resources_page');
   $handler->display->display_options['defaults']['style_plugin'] = FALSE;
   $handler->display->display_options['style_plugin'] = 'table';
   $handler->display->display_options['style_options']['columns'] = array(
@@ -410,13 +410,13 @@ function osha_resources_views_default_views() {
   $handler->display->display_options['filters']['access_id']['size'] = '5';
   $handler->display->display_options['path'] = 'admin/content/additional-resources';
   $handler->display->display_options['menu']['type'] = 'tab';
-  $handler->display->display_options['menu']['title'] = 'Additional Resources';
+  $handler->display->display_options['menu']['title'] = 'Additional resources';
   $handler->display->display_options['menu']['weight'] = '0';
   $handler->display->display_options['menu']['context'] = 0;
   $handler->display->display_options['menu']['context_only_inline'] = 0;
   $translatables['additional_resources_admin'] = array(
     t('Master'),
-    t('Additional Resources Admin View'),
+    t('Additional resources Admin View'),
     t('more'),
     t('Apply'),
     t('Reset'),
@@ -430,7 +430,7 @@ function osha_resources_views_default_views() {
     t('‹ previous'),
     t('next ›'),
     t('last »'),
-    t('Additional Resources Page'),
+    t('Additional resources Page'),
     t('- Choose an operation -'),
     t('Delete'),
     t('Type'),
@@ -449,7 +449,7 @@ function osha_resources_views_default_views() {
   $view->description = '';
   $view->tag = 'default';
   $view->base_table = 'node';
-  $view->human_name = 'Additional Resources';
+  $view->human_name = 'Additional resources';
   $view->core = 7;
   $view->api_version = '3.0';
   $view->disabled = FALSE; /* Edit this to true to make a default view disabled initially */

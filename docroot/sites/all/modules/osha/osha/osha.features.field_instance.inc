@@ -334,7 +334,7 @@ function osha_field_default_field_instances() {
     ),
     'entity_type' => 'file',
     'field_name' => 'field_file_image_alt_text',
-    'label' => 'Alt Text',
+    'label' => 'Alt text',
     'required' => 0,
     'settings' => array(
       'entity_translation_sync' => FALSE,
@@ -386,7 +386,7 @@ function osha_field_default_field_instances() {
     ),
     'entity_type' => 'file',
     'field_name' => 'field_file_image_title_text',
-    'label' => 'Title Text',
+    'label' => 'Title text',
     'required' => 0,
     'settings' => array(
       'entity_translation_sync' => FALSE,
@@ -808,7 +808,7 @@ function osha_field_default_field_instances() {
     ),
     'entity_type' => 'node',
     'field_name' => 'field_aditional_resources',
-    'label' => 'Additional Resources',
+    'label' => 'Additional resources',
     'required' => 0,
     'settings' => array(
       'entity_translation_sync' => FALSE,
@@ -1096,7 +1096,7 @@ function osha_field_default_field_instances() {
     ),
     'entity_type' => 'node',
     'field_name' => 'field_expiration_date',
-    'label' => 'Expiration Date',
+    'label' => 'Expiration date',
     'required' => 0,
     'settings' => array(
       'default_value' => 'blank',
@@ -1815,7 +1815,7 @@ function osha_field_default_field_instances() {
     ),
     'entity_type' => 'node',
     'field_name' => 'field_wiki_categories',
-    'label' => 'OSHwiki Category',
+    'label' => 'OSHwiki category',
     'required' => 0,
     'settings' => array(
       'entity_translation_sync' => FALSE,
@@ -2324,8 +2324,8 @@ function osha_field_default_field_instances() {
   // Translatables
   // Included for use with string extractors like potx.
   t('Activity');
-  t('Additional Resources');
-  t('Alt Text');
+  t('Additional resources');
+  t('Alt text');
   t('Alternative text is used by screen readers, search engines, and when the image cannot be loaded. By adding alt text you improve accessibility and search engine optimization.');
   t('Archived');
   t('Article type');
@@ -2334,11 +2334,11 @@ function osha_field_default_field_instances() {
   t('Body');
   t('Character count');
   t('Description');
-  t('Expiration Date');
+  t('Expiration date');
   t('Image');
   t('Language');
   t('Nace');
-  t('OSHwiki Category');
+  t('OSHwiki category');
   t('OSHwiki featured articles');
   t('Page count');
   t('Publication date');
@@ -2346,7 +2346,7 @@ function osha_field_default_field_instances() {
   t('Tags');
   t('Thesaurus');
   t('Title');
-  t('Title Text');
+  t('Title text');
   t('Title text is used in the tool tip when a user hovers their mouse over the image. Adding title text makes it easier to understand the context of an image and improves usability.');
 
   return $field_instances;

@@ -31,6 +31,13 @@ function osha_fop_page_views_default_views() {
   $handler->display->display_options['exposed_form']['type'] = 'basic';
   $handler->display->display_options['pager']['type'] = 'none';
   $handler->display->display_options['style_plugin'] = 'grid';
+  $handler->display->display_options['style_options']['grouping'] = array(
+    0 => array(
+      'field' => 'field_country_status',
+      'rendered' => 1,
+      'rendered_strip' => 0,
+    ),
+  );
   $handler->display->display_options['style_options']['columns'] = '6';
   $handler->display->display_options['row_plugin'] = 'fields';
   /* Relationship: Content: Country (field_country) */
@@ -38,6 +45,12 @@ function osha_fop_page_views_default_views() {
   $handler->display->display_options['relationships']['field_country_tid']['table'] = 'field_data_field_country';
   $handler->display->display_options['relationships']['field_country_tid']['field'] = 'field_country_tid';
   $handler->display->display_options['relationships']['field_country_tid']['required'] = TRUE;
+  /* Relationship: Taxonomy term: Country Status (field_country_status) */
+  $handler->display->display_options['relationships']['field_country_status_tid']['id'] = 'field_country_status_tid';
+  $handler->display->display_options['relationships']['field_country_status_tid']['table'] = 'field_data_field_country_status';
+  $handler->display->display_options['relationships']['field_country_status_tid']['field'] = 'field_country_status_tid';
+  $handler->display->display_options['relationships']['field_country_status_tid']['relationship'] = 'field_country_tid';
+  $handler->display->display_options['relationships']['field_country_status_tid']['required'] = TRUE;
   /* Field: Content: Path */
   $handler->display->display_options['fields']['path']['id'] = 'path';
   $handler->display->display_options['fields']['path']['table'] = 'node';
@@ -76,6 +89,20 @@ function osha_fop_page_views_default_views() {
     'title_class' => '',
   );
   $handler->display->display_options['fields']['title_field']['link_to_entity'] = 1;
+  /* Field: Taxonomy term: Country Status */
+  $handler->display->display_options['fields']['field_country_status']['id'] = 'field_country_status';
+  $handler->display->display_options['fields']['field_country_status']['table'] = 'field_data_field_country_status';
+  $handler->display->display_options['fields']['field_country_status']['field'] = 'field_country_status';
+  $handler->display->display_options['fields']['field_country_status']['relationship'] = 'field_country_tid';
+  $handler->display->display_options['fields']['field_country_status']['label'] = '';
+  $handler->display->display_options['fields']['field_country_status']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['field_country_status']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_country_status']['type'] = 'i18n_taxonomy_term_reference_plain';
+  /* Sort criterion: Taxonomy term: Weight */
+  $handler->display->display_options['sorts']['weight']['id'] = 'weight';
+  $handler->display->display_options['sorts']['weight']['table'] = 'taxonomy_term_data';
+  $handler->display->display_options['sorts']['weight']['field'] = 'weight';
+  $handler->display->display_options['sorts']['weight']['relationship'] = 'field_country_status_tid';
   /* Sort criterion: Content: Title */
   $handler->display->display_options['sorts']['title']['id'] = 'title';
   $handler->display->display_options['sorts']['title']['table'] = 'node';
@@ -150,6 +177,13 @@ function osha_fop_page_views_default_views() {
   $handler->display->display_options['title'] = 'FOP Country list';
   $handler->display->display_options['defaults']['style_plugin'] = FALSE;
   $handler->display->display_options['style_plugin'] = 'default';
+  $handler->display->display_options['style_options']['grouping'] = array(
+    0 => array(
+      'field' => 'field_country_status',
+      'rendered' => 1,
+      'rendered_strip' => 0,
+    ),
+  );
   $handler->display->display_options['defaults']['style_options'] = FALSE;
   $handler->display->display_options['defaults']['row_plugin'] = FALSE;
   $handler->display->display_options['row_plugin'] = 'fields';
@@ -176,6 +210,15 @@ function osha_fop_page_views_default_views() {
     'title_class' => '',
   );
   $handler->display->display_options['fields']['title_field']['link_to_entity'] = 1;
+  /* Field: Taxonomy term: Country Status */
+  $handler->display->display_options['fields']['field_country_status']['id'] = 'field_country_status';
+  $handler->display->display_options['fields']['field_country_status']['table'] = 'field_data_field_country_status';
+  $handler->display->display_options['fields']['field_country_status']['field'] = 'field_country_status';
+  $handler->display->display_options['fields']['field_country_status']['relationship'] = 'field_country_tid';
+  $handler->display->display_options['fields']['field_country_status']['label'] = '';
+  $handler->display->display_options['fields']['field_country_status']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['field_country_status']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_country_status']['type'] = 'i18n_taxonomy_term_reference_plain';
   $handler->display->display_options['block_description'] = 'FOP Country List';
   $translatables['fop_flags'] = array(
     t('Master'),
@@ -187,6 +230,7 @@ function osha_fop_page_views_default_views() {
     t('Asc'),
     t('Desc'),
     t('term from field_country'),
+    t('term from field_country_status'),
     t('[field_flag]'),
     t('Block'),
     t('FOP Country Flags'),

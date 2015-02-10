@@ -124,7 +124,7 @@ function osha_newsletter_action_info() {
  */
 function osha_newsletter_block_info() {
   $blocks['osha_newsletter_subscribe'] = array(
-    'info' => t('Subscribe to OSHA Newsletter'),
+    'info' => t('Subscribe to EU-OSHA Newsletter'),
     'status' => 1,
     'region' => 'sidebar_second',
     'visibility' => BLOCK_VISIBILITY_LISTED,
@@ -133,7 +133,7 @@ function osha_newsletter_block_info() {
     'weight' => -30
   );
   $blocks['osha_newsletter_subscribe_extra'] = array(
-    'info' => t('Subscribe to OSHA Newsletter block - with extra link to unsubscribe page'),
+    'info' => t('Subscribe to EU-OSHA Newsletter block - with extra link to unsubscribe page'),
     'status' => 1,
     'region' => 'content',
     'visibility' => BLOCK_VISIBILITY_LISTED,
@@ -278,7 +278,7 @@ function osha_newsletter_block_view($delta = '') {
   switch($delta) {
     case 'osha_newsletter_subscribe':
       if(user_access('access content')) {
-        $block['subject'] = t('OSHMail Newsletter');
+        $block['subject'] = t('OSHMail newsletter');
         // subscribe form
         $block['content'] = drupal_get_form('osha_newsletter_subscribe_form');
         return $block;
@@ -286,7 +286,7 @@ function osha_newsletter_block_view($delta = '') {
       break;
     case 'osha_newsletter_subscribe_extra':
       if(user_access('access content')) {
-        $block['subject'] = t('OSHMail Newsletter');
+        $block['subject'] = t('OSHMail newsletter');
 
         $subscribe_form = drupal_get_form('osha_newsletter_subscribe_extra_form');
 

@@ -610,13 +610,19 @@ class MigrationUtil {
   /**
    *   Create redirects /<language>/$base_path for all languages
    */
-  public static function createRedirects($entity, $base_path) {
+  public static function createRedirects($entity, $base_path, $delete_path = FALSE) {
     // Always create redirects for all languages.
     //check if source redirect exists
     $source = $base_path;
     $source_redirects = redirect_load_by_source($source, LANGUAGE_NONE);
     // Also check if path already exists - prevent redirect loops.
-    $path = path_load($source);
+    $path = path_load(array('alias' => $source));
+    if (!empty($path) && $delete_path) {
+      while ($path = path_load(array('alias' => $source))) {
+        path_delete($path);
+      }
+      $path = array();
+    }
 
     if ($source_redirects == FALSE && empty($path)) {
       $redirect = new stdClass();

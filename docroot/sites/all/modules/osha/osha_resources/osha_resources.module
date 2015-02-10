@@ -11,7 +11,7 @@ include_once 'osha_resources.features.inc';
  */
 function osha_resources_entity_info_alter(&$entity_info) {
   $entity_info['node']['view modes']['osha_resources'] = array(
-    'label' => t('Additional Resource'),
+    'label' => t('Additional resource'),
     'custom settings' => TRUE,
   );
 }

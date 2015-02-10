@@ -631,7 +631,7 @@ function osha_publication_field_default_field_instances() {
     ),
     'entity_type' => 'node',
     'field_name' => 'field_expiration_date',
-    'label' => 'Expiration Date',
+    'label' => 'Expiration date',
     'required' => 0,
     'settings' => array(
       'default_value' => 'blank',
@@ -693,7 +693,7 @@ function osha_publication_field_default_field_instances() {
         'module' => 'osha_publication',
         'settings' => array(),
         'type' => 'file_publication_file',
-        'weight' => 4,
+        'weight' => 5,
       ),
       'osha_wiki' => array(
         'label' => 'hidden',
@@ -935,10 +935,11 @@ function osha_publication_field_default_field_instances() {
         'weight' => 17,
       ),
       'osha_slideshow' => array(
-        'label' => 'above',
+        'label' => 'hidden',
+        'module' => 'osha_publication',
         'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 11,
+        'type' => 'publication_bookshop_id',
+        'weight' => 4,
       ),
       'osha_wiki' => array(
         'label' => 'above',
@@ -1077,7 +1078,7 @@ function osha_publication_field_default_field_instances() {
     ),
     'entity_type' => 'node',
     'field_name' => 'field_publication_date',
-    'label' => 'Publication Date',
+    'label' => 'Publication date',
     'required' => 0,
     'settings' => array(
       'default_value' => 'now',
@@ -1784,14 +1785,14 @@ function osha_publication_field_default_field_instances() {
   t('Bookshop ID');
   t('Character count');
   t('Cover image');
-  t('Expiration Date');
+  t('Expiration date');
   t('File');
   t('Nace');
   t('OSHwiki categories');
   t('OSHwiki featured articles');
   t('Page count');
-  t('Publication Date');
   t('Publication Type');
+  t('Publication date');
   t('Resources (files)');
   t('Tags');
   t('Thesaurus');

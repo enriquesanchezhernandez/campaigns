@@ -431,7 +431,7 @@ function osha_press_contact_field_default_field_instances() {
     ),
     'entity_type' => 'node',
     'field_name' => 'field_press_contact_job_title',
-    'label' => 'Job Title',
+    'label' => 'Job title',
     'required' => 0,
     'settings' => array(
       'entity_translation_sync' => FALSE,
@@ -1053,6 +1053,40 @@ function osha_press_contact_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance: 'taxonomy_term-country-field_country_status'
+  $field_instances['taxonomy_term-country-field_country_status'] = array(
+    'bundle' => 'country',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'i18n_taxonomy',
+        'settings' => array(),
+        'type' => 'i18n_taxonomy_term_reference_link',
+        'weight' => 3,
+      ),
+    ),
+    'entity_type' => 'taxonomy_term',
+    'field_name' => 'field_country_status',
+    'label' => 'Country Status',
+    'required' => 0,
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'options',
+      'settings' => array(
+        'apply_chosen' => '',
+      ),
+      'type' => 'options_select',
+      'weight' => 43,
+    ),
+  );
+
   // Exported field_instance: 'taxonomy_term-country-field_flag'
   $field_instances['taxonomy_term-country-field_flag'] = array(
     'bundle' => 'country',
@@ -1181,10 +1215,11 @@ function osha_press_contact_field_default_field_instances() {
   t('Category');
   t('City');
   t('Country');
+  t('Country Status');
   t('Email');
   t('Flag');
   t('ISO2');
-  t('Job Title');
+  t('Job title');
   t('Location');
   t('Name');
   t('Organization');

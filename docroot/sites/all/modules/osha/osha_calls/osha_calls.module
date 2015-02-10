@@ -74,20 +74,22 @@ function theme_osha_calls_file_taxonomy_description($element) {
     ),
     'html' => TRUE,
   );
+
+  $link_text = ' <span class="file-icon">' . $icon . '</span>';
+
   // Use the description as the link text if available.
   if (empty($file->description)) {
-    $link_text = $file->filename;
+    $link_text .= $file->filename;
   }
   else {
     if ($term = taxonomy_term_load($file->description)) {
-      $link_text = $term->name;
+      $link_text .= $term->name;
     }
     else {
-      $link_text = $file->description;
+      $link_text .= $file->description;
     }
     $options['attributes']['title'] = check_plain($file->filename);
   }
-  $link_text .= ' <span class="file-icon">' . $icon . '</span>';
   if ($size = filesize($file->uri)) {
     $link_text .= '<span class="related_size">(' . format_size($size) . ')</span>';
   }

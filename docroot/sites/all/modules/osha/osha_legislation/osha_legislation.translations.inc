@@ -3,8 +3,8 @@
 function osha_legislation_get_translatable_strings() {
   return array(
     'Available in languages',
-    'Expiration Date',
-    'Publication Date',
+    'Expiration date',
+    'Publication date',
     'Directive',
     'Legislation directives',
     'Guideline',
@@ -19,7 +19,7 @@ function osha_legislation_get_translatable_strings() {
     'Desc',
     'No results',
     'Search',
-    'Search Directives',
+    'Search directives',
     'Directive number',
     'Show details',
     'Guidelines by topics',

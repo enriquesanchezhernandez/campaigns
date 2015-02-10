@@ -12,11 +12,10 @@ function osha_contact_get_translatable_strings() {
   in each case. However, we read all your comments, and we use your feedback to improve our websites and services.
   <br /><br />
   You can stay up to date with new developments to our website by visiting our
-  “<a href="@link1">What’s New</a>” pages
+  “<a href="@link1">What’s new</a>” pages
   and subscribing to our electronic newsletter
   <a href="@link2">OSHmail</a>.',
     'Topic',
-    'Your message has been sent.',
     'Please Enter a valid email address.',
   );
 }
