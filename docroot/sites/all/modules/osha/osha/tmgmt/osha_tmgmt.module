@@ -353,6 +353,7 @@ function osha_tmgmt_tmgmt_translator_plugin_info_alter(&$info) {
 function osha_tmgmt_tmgmt_source_plugin_info_alter(&$info) {
   $info['entity']['plugin controller class'] = 'OSHATMGMTEntitySourcePluginController';
   $info['i18n_string']['plugin controller class'] = 'OSHATMGMTI18nStringSourcePluginController';
+  $info['i18n_string']['ui controller class'] = 'OSHATMGMTI18nStringDefaultSourceUIController';
   $info['locale']['plugin controller class'] = 'OSHATMGMTLocaleSourcePluginController';
   $info['locale']['ui controller class'] = 'OSHATMGMTLocaleSourceUIController';
 }
