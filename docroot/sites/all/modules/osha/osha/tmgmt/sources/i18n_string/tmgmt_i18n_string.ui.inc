@@ -63,6 +63,58 @@ class OSHATMGMTI18nStringDefaultSourceUIController extends TMGMTI18nStringDefaul
 
     return $row;
   }
+
+  /**
+   * Helper function to create translation data list for the sources page list.
+   *
+   * @param array $i18n_strings
+   *   Result of the search query returned by tmgmt_i18n_string_get_strings().
+   * @param string $type
+   *   I18n object type.
+   *
+   * @return array
+   *   Structured array with translation data.
+   */
+  protected function getTranslationData($i18n_strings, $type) {
+    $objects = array();
+    $source_language = variable_get_value('i18n_string_source_language');
+
+    foreach ($i18n_strings as $i18n_string) {
+      $wrapper = tmgmt_i18n_string_get_wrapper($type, $i18n_string);
+
+      if ($wrapper instanceof i18n_string_object_wrapper) {
+        $id = $i18n_string->job_item_id;
+
+        // Get existing translations and current job items for the entity
+        // to determine translation statuses
+        $current_job_items = osha_tmgmt_job_item_load_latest('i18n_string', $wrapper->get_type(), $id, $source_language);
+
+        $objects[$id] = array(
+          'id' => $id,
+          'object' => $wrapper->get_strings(array('empty' => TRUE)),
+          'wrapper' => $wrapper,
+        );
+        // Load entity translation specific data.
+        foreach (language_list() as $langcode => $language) {
+          $langcode = str_replace('-', '', $langcode);
+
+          $translation_status = 'current';
+
+          if ($langcode == $source_language) {
+            $translation_status = 'original';
+          }
+          elseif ($i18n_string->{'lang_' . $langcode} === NULL) {
+            $translation_status = 'missing';
+          }
+
+          $objects[$id]['current_job_items'][$langcode] = isset($current_job_items[$langcode]) ? $current_job_items[$langcode] : NULL;
+          $objects[$id]['translation_statuses'][$langcode] = $translation_status;
+        }
+      }
+    }
+
+    return $objects;
+  }
 }
 
 /**
