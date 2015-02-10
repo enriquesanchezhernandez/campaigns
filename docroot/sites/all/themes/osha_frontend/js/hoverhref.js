@@ -154,23 +154,21 @@ function displayMenuThirdLevel() {
 		jQuery( "#block-menu-block-2 #main-menu-links #main-menu-links .is-active" ).parent( "#main-menu-links" ).parent( ".is-active-trail").addClass('expand');
 		
 		
-		
-		
 		jQuery( "#block-menu-block-2 #main-menu-links #main-menu-links .active #main-menu-links" ).show();
 		jQuery( "#block-menu-block-2 #main-menu-links #main-menu-links .is-active").removeClass('is-expanded');
 		jQuery( "#block-menu-block-2 #main-menu-links #main-menu-links .is-active").addClass('expand');
 		jQuery( "#block-menu-block-2 #main-menu-links #main-menu-links #main-menu-links .is-active").removeClass('expand');
+		jQuery( "#block-menu-block-2 #main-menu-links #main-menu-links #main-menu-links li a").removeClass('expand');
 		
 		
+		jQuery("#block-menu-block-2 #main-menu-links #main-menu-links .active").each(function() {
+			var html=jQuery("#block-menu-block-2 #main-menu-links #main-menu-links .active").html();
+			if(html.indexOf("ul")==-1) {
+				jQuery(this).removeClass('expand');
+			}
+		});
 		
-		
-		
-		
-		
-		
-		
-		
-		
+
 		
 	});
 	
