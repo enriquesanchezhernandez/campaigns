@@ -134,6 +134,11 @@ function doc_to_imagefield_entity_save_bulk($entity_type, $entity, $options, &$c
     $context['results']['saved'] = array();
   }
 
+  if (function_exists('workbench_moderation_node_current_load') && isset($entity->nid)) {
+    $entity = workbench_moderation_node_current_load($entity);
+    // Force the same state in order to avoid creation of new weird transitions.
+    $entity->workbench_moderation_state_new = $entity->workbench_moderation['current']->state;
+  }
   list($id, $vid, $bundle) = entity_extract_ids($entity_type, $entity);
   $pdf_fields = pdf_to_image_source_fields($entity_type, $bundle);
   foreach ($pdf_fields as $field_id => $field_instance) {
@@ -152,6 +157,14 @@ function doc_to_imagefield_entity_save_bulk($entity_type, $entity, $options, &$c
       }
     }
     if ($count) {
+      if (workbench_moderation_node_type_moderated($entity->type)) {
+        $entity = workbench_moderation_node_current_load($entity);
+        // Force the same state in order to avoid creation
+        // of new weird transitions.
+        $entity->workbench_moderation_state_current = $entity->workbench_moderation['current']->state;
+        $entity->workbench_moderation_state_new = $entity->workbench_moderation['current']->state;
+        $entity->workbench_moderation['updating_live_revision'] = TRUE;
+      }
       pdf_to_image_entity_save($entity_type, $entity);
       $context['results']['saved'][] = $entity->title;
     }
@@ -388,7 +401,7 @@ function doc_to_image_generate_process_bulk($entity_type, &$entity, $field_id, $
       array(
         '@file' => $path_parts['basename'],
         '@entity_id' => $entity_id,
-      ), 'error');
+      ), WATCHDOG_ERROR);
     return FALSE;
   }
 

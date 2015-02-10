@@ -971,7 +971,7 @@ class OshaWorkflowNotifications {
       $users = array($users);
     }
     foreach ($users as $user) {
-      if (self::userAllowsEmailNotifications($user)) {
+      if (self::userAllowsEmailNotifications($user) && variable_get('osha_workflow_send_mail')) {
         $params['user'] = $user;
         drupal_mail($module, $key, $user->mail, user_preferred_language($user), $params);
       }
