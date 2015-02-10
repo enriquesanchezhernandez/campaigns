@@ -31,6 +31,38 @@ class OSHATMGMTI18nStringDefaultSourceUIController extends TMGMTI18nStringDefaul
     return $form;
   }
 
+  /**
+   * Builds a table row for overview form.
+   *
+   * @param string $type
+   *   i18n type.
+   * @param array $data
+   *   Data needed to build the list row.
+   *
+   * @return array
+   */
+  public function overviewRow($type, $data) {
+    // Set the default item key, assume it's the first.
+    $item_title = reset($data['object']);
+
+    $type_label = i18n_object_info($type, 'title');
+
+    $row = array(
+      'id' => $data['id'],
+      'title' => $item_title->get_string() ? t('@title (@id)', array('@title' => $item_title->get_string(), '@id' => $data['id'])) : $data['id'],
+      'type' => empty($type_label) ? t('Unknown') : $type_label,
+    );
+
+    foreach (language_list() as $langcode => $language) {
+      $langcode = str_replace('-', '', $langcode);
+      $row['langcode-' . $langcode] = theme('osha_tmgmt_ui_translation_language_status_single', array(
+        'translation_status' => $data['translation_statuses'][$langcode],
+        'job_item' => isset($data['current_job_items'][$langcode]) ? $data['current_job_items'][$langcode] : NULL,
+      ));
+    }
+
+    return $row;
+  }
 }
 
 /**
@@ -120,4 +152,94 @@ function osha_tmgmt_i18n_string_get_strings($type, $search_label = NULL, $target
   $select = $select->extend('PagerDefault')->limit(variable_get('tmgmt_source_list_limit', 20));
 
   return $select->execute()->fetchAll();
+}
+
+/**
+ * Gets translation language status.
+ *
+ * @param array $variables
+ *   - 'translation_status': A flag that determines the status. Possible values:
+ *     original, missing, outofdate.
+ *   - 'job_item': Current job item entity associated with translation.
+ *
+ * @return string
+ *   Icon or a link icon that explains the translation status and possibly
+ *   links to an active translation job.
+ */
+function theme_osha_tmgmt_ui_translation_language_status_single($variables) {
+  switch ($variables['translation_status']) {
+    case 'original':
+      $label = t('Source language');
+      $icon_color = 'tmgmt-ui-icon-white';
+      break;
+
+    case 'missing':
+      $label = t('Not translated');
+      $icon_color = 'tmgmt-ui-icon-grey';
+      break;
+
+    case 'outofdate':
+      $label = t('Translation Outdated');
+      $icon_color = 'tmgmt-ui-icon-orange';
+      break;
+
+    default:
+      $label = t('Translation up to date');
+      $icon_color = 'tmgmt-ui-icon-green';
+  }
+
+  // Add classes to show the correct html icon.
+  $classes = array();
+  $classes[] = 'tmgmt-ui-icon';
+  // Icon size 10px square.
+  $classes[] = 'tmgmt-ui-icon-10';
+  $classes[] = $icon_color;
+
+  // Add necessary css file.
+  drupal_add_css(drupal_get_path('module', 'tmgmt_ui') . '/css/tmgmt_ui.admin.css');
+
+  $status = '';
+  if (empty($variables['job_item'])) {
+    $status = sprintf('<div class="%s" title="%s"><span></span></div>', implode(' ', $classes), $label);
+  }
+
+  // If we have an active job item, wrap it in a link.
+  if (!empty($variables['job_item'])) {
+    $job_item_wrapper = entity_metadata_wrapper('tmgmt_job_item', $variables['job_item']);
+    $label = t('Active job item: @state', array('@state' => $job_item_wrapper->state->label()));
+    $uri = $variables['job_item']->uri();
+    /** @var TMGMTJob $job */
+    $job = $variables['job_item']->getJob();
+    $job_wrapper = entity_metadata_wrapper('tmgmt_job', $job);
+
+    switch ($variables['job_item']->state) {
+      case TMGMT_JOB_ITEM_STATE_ACTIVE:
+        if ($job->isUnprocessed()) {
+          $uri = $job->uri();
+          $label = t('Active job item: @state', array('@state' => $job_wrapper->state->label()));
+        }
+        $icon_color = 'tmgmt-ui-icon-blue';
+        break;
+
+      case TMGMT_JOB_ITEM_STATE_REVIEW:
+        $icon_color = 'tmgmt-ui-icon-yellow';
+        break;
+    }
+
+    // Add classes to show the correct html icon.
+    $classes = array();
+    $classes[] = 'tmgmt-ui-icon';
+    // Icon size 10px square.
+    $classes[] = 'tmgmt-ui-icon-10';
+    $classes[] = $icon_color;
+
+    $job_status = sprintf('<div class="%s" title="%s"><span></span></div>', implode(' ', $classes), $label);
+
+    $status .= l($job_status, $uri['path'], array(
+      'query' => array('destination' => current_path()),
+      'html' => TRUE,
+      'attributes' => array('title' => $label),
+    ));
+  }
+  return $status;
 }

@@ -311,6 +311,10 @@ function osha_tmgmt_theme() {
       'render element' => 'element',
       'file' => 'osha_tmgmt.workflow.inc',
     ),
+    'osha_tmgmt_ui_translation_language_status_single' => array(
+      'file' => 'sources/i18n_string/tmgmt_i18n_string.ui.inc',
+      'variables' => array('translation_status' => NULL, 'job_item' => NULL),
+    )
   );
 }
 
