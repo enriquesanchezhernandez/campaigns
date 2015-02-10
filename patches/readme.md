@@ -7,6 +7,10 @@ When patching a contrib module, the following steps should be followed:
 
 List of patches (most recent first)
 
+* search_autocomplete
+  * Escapes the search term before submit (to accept %)
+  * patches/search_autocomplete/search_autocomplete_escape_search_term.patch
+
 * pathologic
   * Fixes cache issue wiht lagnuage
   * https://www.drupal.org/files/issues/348421-129.patch
