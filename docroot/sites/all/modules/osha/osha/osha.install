@@ -160,17 +160,27 @@ function osha_update_7006() {
 }
 
 /**
- * Enable extra languages: Albanian, Serbian, and Bosnian.
+ * Enable extra languages: Albanian, Serbian, Russian, Turkish and Bosnian.
  */
 function osha_update_7007() {
-  locale_add_language('sq');
-  locale_add_language('bs');
-  locale_add_language('sr');
+  $languages = language_list();
+  $add = array('sq', 'bs', 'sr');
+  foreach ($add as $lang) {
+    if (!isset($languages[$lang])) {
+      locale_add_language($lang);
+    }
+  }
   db_update('languages')
     ->fields(array(
       'weight' => 10,
-      'enabled' => 0,
     ))
     ->condition('language', array('sq', 'bs', 'sr'), 'IN')
+    ->execute();
+  // Enable Russian and Turkish.
+  db_update('languages')
+    ->fields(array(
+      'enabled' => 1,
+    ))
+    ->condition('language', array('ru', 'tr'), 'IN')
     ->execute();
 }
