@@ -158,3 +158,19 @@ function osha_update_7006() {
     osha_add_menu_position_rule('Governance Internal Documents Rule', $parent_menu, $condition);
   }
 }
+
+/**
+ * Enable extra languages: Albanian, Serbian, and Bosnian.
+ */
+function osha_update_7007() {
+  locale_add_language('sq');
+  locale_add_language('bs');
+  locale_add_language('sr');
+  db_update('languages')
+    ->fields(array(
+      'weight' => 10,
+      'enabled' => 0,
+    ))
+    ->condition('language', array('sq', 'bs', 'sr'), 'IN')
+    ->execute();
+}
