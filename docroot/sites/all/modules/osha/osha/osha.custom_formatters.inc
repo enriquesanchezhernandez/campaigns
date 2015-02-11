@@ -13,31 +13,6 @@ function osha_custom_formatters_defaults() {
   $formatter = new stdClass();
   $formatter->disabled = FALSE; /* Edit this to true to make a default formatter disabled initially */
   $formatter->api_version = 2;
-  $formatter->name = 'file_as_title';
-  $formatter->label = 'File as title';
-  $formatter->description = 'Link to file using node title as link title';
-  $formatter->mode = 'php';
-  $formatter->field_types = 'file';
-  $formatter->code = 'global $language ;
-$curr_lang = $language->language ;
-$node = $variables[\'#object\'];
-$title = isset($node->title_field[$curr_lang][0]) ? $node->title_field[$curr_lang][0][\'value\'] : $node->title_field[\'en\'][0][\'value\'];
-$file = isset($node->field_file[$curr_lang][0]) ? $node->field_file[$curr_lang][0] : $node->field_file[\'en\'][0];
-$output = \' <a href = "\' . file_create_url($file[\'uri\']) . \'"><span>\' . $title.\'</span>\';
-$output .= theme_file_icon(
-   array(
-       "file" => file_load($file[\'fid\']),
-       "icon_directory" => drupal_get_path(\'theme\', \'osha_frontend\') . \'/images/file_icons\'
-   ));
-$output .= \'<span>\' . format_size(filesize($file[\'uri\'])). \'</span>\';
-$output .= \'</a>\';
-return $output;';
-  $formatter->fapi = '';
-  $export['file_as_title'] = $formatter;
-
-  $formatter = new stdClass();
-  $formatter->disabled = FALSE; /* Edit this to true to make a default formatter disabled initially */
-  $formatter->api_version = 2;
   $formatter->name = 'multilanguage_file';
   $formatter->label = 'Multilanguage File';
   $formatter->description = 'Download file in: EN, BG ...';
