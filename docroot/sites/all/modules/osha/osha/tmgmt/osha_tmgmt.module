@@ -772,9 +772,12 @@ function osha_tmgmt_form_alter(&$form, &$form_state, $form_id) {
         OshaTMGMTStatistics::computeJobItemStatistics($item);
         // remove original language from list of languages
         unset($form['target_language']['#options'][$item->getSourceLangCode()]);
-        // remove Turkish and Russian
+        // remove Turkish, Russian, Albanian, Bosnian and Serbian
         unset($form['target_language']['#options']['tr']);
         unset($form['target_language']['#options']['ru']);
+        unset($form['target_language']['#options']['sq']);
+        unset($form['target_language']['#options']['bs']);
+        unset($form['target_language']['#options']['sr']);
         if ($item->plugin == 'entity' && $item->item_type == 'node') {
           // check if retranslation is possible
           $node = (object)array('nid' => $item->item_id);
@@ -2336,6 +2339,9 @@ function osha_tmgmt_get_translation_languages_options($filter = array()) {
   $languages = tmgmt_available_languages();
   unset($languages['ru']);
   unset($languages['tr']);
+  unset($languages['sq']);
+  unset($languages['bs']);
+  unset($languages['sr']);
   return array_diff($languages, $filter);
 }
 
