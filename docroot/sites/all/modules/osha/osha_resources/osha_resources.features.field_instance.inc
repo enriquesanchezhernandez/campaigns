@@ -303,9 +303,9 @@ function osha_resources_field_default_field_instances() {
       ),
       'osha_resources' => array(
         'label' => 'hidden',
-        'module' => 'custom_formatters',
+        'module' => 'osha_resources',
         'settings' => array(),
-        'type' => 'custom_formatters_file_as_title',
+        'type' => 'file_as_title',
         'weight' => 1,
       ),
       'osha_slideshow' => array(

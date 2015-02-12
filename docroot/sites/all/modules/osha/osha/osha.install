@@ -158,3 +158,29 @@ function osha_update_7006() {
     osha_add_menu_position_rule('Governance Internal Documents Rule', $parent_menu, $condition);
   }
 }
+
+/**
+ * Enable extra languages: Albanian, Serbian, Russian, Turkish and Bosnian.
+ */
+function osha_update_7007() {
+  $languages = language_list();
+  $add = array('sq', 'bs', 'sr');
+  foreach ($add as $lang) {
+    if (!isset($languages[$lang])) {
+      locale_add_language($lang);
+    }
+  }
+  db_update('languages')
+    ->fields(array(
+      'weight' => 10,
+    ))
+    ->condition('language', array('sq', 'bs', 'sr'), 'IN')
+    ->execute();
+  // Enable Russian and Turkish.
+  db_update('languages')
+    ->fields(array(
+      'enabled' => 1,
+    ))
+    ->condition('language', array('ru', 'tr'), 'IN')
+    ->execute();
+}

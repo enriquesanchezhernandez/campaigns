@@ -357,6 +357,13 @@ function osha_search_views_default_views() {
     'multiple_to' => '',
     'osha_date_theme' => '',
   );
+  /* Field: Indexed Multilingual Node: Archived */
+  $handler->display->display_options['fields']['field_archived']['id'] = 'field_archived';
+  $handler->display->display_options['fields']['field_archived']['table'] = 'search_api_index_default_multilingual_node_index';
+  $handler->display->display_options['fields']['field_archived']['field'] = 'field_archived';
+  $handler->display->display_options['fields']['field_archived']['label'] = '';
+  $handler->display->display_options['fields']['field_archived']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_archived']['type'] = 'i18n_list_default';
   /* Field: Indexed Multilingual Node: URL */
   $handler->display->display_options['fields']['url']['id'] = 'url';
   $handler->display->display_options['fields']['url']['table'] = 'search_api_index_default_multilingual_node_index';
@@ -409,11 +416,16 @@ function osha_search_views_default_views() {
   $handler->display->display_options['sorts']['field_publication_date']['exposed'] = TRUE;
   $handler->display->display_options['sorts']['field_publication_date']['expose']['label'] = 'Publication date';
   $handler->display->display_options['defaults']['filter_groups'] = FALSE;
+  $handler->display->display_options['filter_groups']['groups'] = array(
+    1 => 'AND',
+    2 => 'OR',
+  );
   $handler->display->display_options['defaults']['filters'] = FALSE;
   /* Filter criterion: Search: Fulltext search */
   $handler->display->display_options['filters']['search_api_views_fulltext']['id'] = 'search_api_views_fulltext';
   $handler->display->display_options['filters']['search_api_views_fulltext']['table'] = 'search_api_index_default_multilingual_node_index';
   $handler->display->display_options['filters']['search_api_views_fulltext']['field'] = 'search_api_views_fulltext';
+  $handler->display->display_options['filters']['search_api_views_fulltext']['group'] = 1;
   $handler->display->display_options['filters']['search_api_views_fulltext']['exposed'] = TRUE;
   $handler->display->display_options['filters']['search_api_views_fulltext']['expose']['operator_id'] = 'search_api_views_fulltext_op';
   $handler->display->display_options['filters']['search_api_views_fulltext']['expose']['label'] = 'Search';
@@ -440,6 +452,9 @@ function osha_search_views_default_views() {
     'attachments_field_related_resources' => 'attachments_field_related_resources',
     'body:summary' => 'body:summary',
     'body:value' => 'body:value',
+    'field_aditional_resources:field_summary' => 'field_aditional_resources:field_summary',
+    'field_aditional_resources:title' => 'field_aditional_resources:title',
+    'field_aditional_resources:title_field' => 'field_aditional_resources:title_field',
     'field_summary' => 'field_summary',
     'title_field' => 'title_field',
   );
@@ -476,6 +491,7 @@ function osha_search_views_default_views() {
     'sv' => 'sv',
     'tr' => 'tr',
   );
+  $handler->display->display_options['filters']['search_api_language']['group'] = 1;
   $handler->display->display_options['filters']['search_api_language']['exposed'] = TRUE;
   $handler->display->display_options['filters']['search_api_language']['expose']['operator_id'] = 'search_api_language_op';
   $handler->display->display_options['filters']['search_api_language']['expose']['label'] = 'Language';
@@ -497,12 +513,7 @@ function osha_search_views_default_views() {
     'page' => 'page',
     'wiki_page' => 'wiki_page',
   );
-  /* Filter criterion: Indexed Multilingual Node: Publication date */
-  $handler->display->display_options['filters']['field_publication_date']['id'] = 'field_publication_date';
-  $handler->display->display_options['filters']['field_publication_date']['table'] = 'search_api_index_default_multilingual_node_index';
-  $handler->display->display_options['filters']['field_publication_date']['field'] = 'field_publication_date';
-  $handler->display->display_options['filters']['field_publication_date']['operator'] = '<=';
-  $handler->display->display_options['filters']['field_publication_date']['value'] = 'now';
+  $handler->display->display_options['filters']['type']['group'] = 1;
   /* Filter criterion: Indexed Multilingual Node: Status */
   $handler->display->display_options['filters']['status']['id'] = 'status';
   $handler->display->display_options['filters']['status']['table'] = 'search_api_index_default_multilingual_node_index';
@@ -510,6 +521,20 @@ function osha_search_views_default_views() {
   $handler->display->display_options['filters']['status']['value'] = array(
     1 => '1',
   );
+  $handler->display->display_options['filters']['status']['group'] = 1;
+  /* Filter criterion: Indexed Multilingual Node: Publication date */
+  $handler->display->display_options['filters']['field_publication_date']['id'] = 'field_publication_date';
+  $handler->display->display_options['filters']['field_publication_date']['table'] = 'search_api_index_default_multilingual_node_index';
+  $handler->display->display_options['filters']['field_publication_date']['field'] = 'field_publication_date';
+  $handler->display->display_options['filters']['field_publication_date']['operator'] = '<=';
+  $handler->display->display_options['filters']['field_publication_date']['value'] = 'now';
+  $handler->display->display_options['filters']['field_publication_date']['group'] = 2;
+  /* Filter criterion: Indexed Multilingual Node: Publication date */
+  $handler->display->display_options['filters']['field_publication_date_1']['id'] = 'field_publication_date_1';
+  $handler->display->display_options['filters']['field_publication_date_1']['table'] = 'search_api_index_default_multilingual_node_index';
+  $handler->display->display_options['filters']['field_publication_date_1']['field'] = 'field_publication_date';
+  $handler->display->display_options['filters']['field_publication_date_1']['operator'] = 'empty';
+  $handler->display->display_options['filters']['field_publication_date_1']['group'] = 2;
   $handler->display->display_options['path'] = 'search/site';
   $handler->display->display_options['menu']['type'] = 'normal';
   $handler->display->display_options['menu']['title'] = 'Site';

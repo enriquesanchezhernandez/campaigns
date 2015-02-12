@@ -124,7 +124,7 @@ function osha_newsletter_action_info() {
  */
 function osha_newsletter_block_info() {
   $blocks['osha_newsletter_subscribe'] = array(
-    'info' => t('Subscribe to OSHA Newsletter'),
+    'info' => t('Subscribe to EU-OSHA Newsletter'),
     'status' => 1,
     'region' => 'sidebar_second',
     'visibility' => BLOCK_VISIBILITY_LISTED,
@@ -133,7 +133,7 @@ function osha_newsletter_block_info() {
     'weight' => -30
   );
   $blocks['osha_newsletter_subscribe_extra'] = array(
-    'info' => t('Subscribe to OSHA Newsletter block - with extra link to unsubscribe page'),
+    'info' => t('Subscribe to EU-OSHA Newsletter block - with extra link to unsubscribe page'),
     'status' => 1,
     'region' => 'content',
     'visibility' => BLOCK_VISIBILITY_LISTED,

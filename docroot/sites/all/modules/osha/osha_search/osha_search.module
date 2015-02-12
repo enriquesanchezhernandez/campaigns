@@ -173,6 +173,10 @@ function osha_search_autocomplete_callback($search = '*') {
       $params['fq'][] = '{!tag=ss_type}*:* AND -(ss_type:"' . $key . '")';
     }
   }
+  // Add publication date.
+  $now = new DateTime('now');
+  $now = $now->format('Y-m-d\TH:m:i\Z');
+  $params['fq'][] = '((ds_field_publication_date:[* TO "' . $now . '"]) OR (*:* AND -ds_field_publication_date:[* TO *]))';
   // Add searchable fields.
   $fields = $index->getFields();
 //  $search_fields = $index->getFulltextFields();

@@ -40,3 +40,73 @@ function osha_resources_osha_tmgmt_i18n_string_list() {
   module_load_include('inc', 'osha_resources', 'osha_resources.translations');
   return osha_resources_get_translatable_strings();
 }
+
+/**
+ * Implements hook_field_formatter_info().
+ */
+function osha_resources_field_formatter_info() {
+  $info = array(
+    'file_as_title' => array(
+      'label' => t('Node title as link to file'),
+      'field types' => array('file'),
+      'description' => t('Link to file using node title as link title.'),
+    ),
+  );
+  return $info;
+}
+
+/**
+ * Implements hook_field_formatter_view().
+ */
+function osha_resources_field_formatter_view($entity_type, $entity, $field, $instance, $langcode, $items, $display) {
+  $element = array();
+  switch ($display['type']) {
+    case 'file_as_title':
+      foreach ($items as $delta => $item) {
+        $element[$delta] = array(
+          '#theme' => 'osha_resources_file_as_title_format',
+          '#entity' => $entity,
+          '#file' => $item,
+          '#delta' => $delta,
+        );
+      }
+      break;
+  }
+  return $element;
+}
+
+
+/**
+ * Implements hook_theme().
+ */
+function osha_resources_theme() {
+  return array(
+    'osha_resources_file_as_title_format' => array(
+      'variables' => array('entity' => NULL, 'file' => NULL, 'delta' => NULL),
+    ),
+  );
+}
+
+/*
+ * Formats the file as title
+ */
+function theme_osha_resources_file_as_title_format($element) {
+  $file = (object) $element['file'];
+  $entity = (object) $element['entity'];
+  $icon_directory = drupal_get_path('theme', 'osha_frontend') . '/images/file_icons';
+
+  global $language;
+  $name = isset($entity->title_field[$language->language][0])
+    ? $entity->title_field[$language->language][0]['value']
+    : $entity->title_field['en'][0]['value'];
+  $output = '<a href="' . file_create_url($file->uri) . '">';
+  $output .= theme('file_icon', array('file' => $file, 'icon_directory' => $icon_directory));
+  $output .= '<span>'.$name.'</span>';
+  $size = @filesize($file->uri);
+  if ($size) {
+    $output .= '<span class="related_size">(' . format_size($size) . ')</span>';
+  }
+  $output .= '</a>';
+
+  return $output;
+}

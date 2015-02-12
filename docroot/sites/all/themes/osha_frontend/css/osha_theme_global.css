@@ -23,11 +23,12 @@ body {
 
 #languagesAndSearch{
 	display:block;
+	float: none;
+	margin-right: 0;
+	text-align: center;
+	width: auto;
 }
 
-#languagesAndSearch #contact{
-	
-}
 
 #agencyLogo{
 	display:none;
@@ -262,8 +263,13 @@ body {
 	padding-left: 1em;
 	padding-right: 1em;
 }
+.view-header.back {
+	padding-right: 1em;
+	margin-top: -2em;
+}
 .view-header.back a {
-	background: url("../images/flecha-izq.png") no-repeat scroll 0% 125% rgba(0, 0, 0, 0)!important	
+	background: url("../images/flecha-izq.png") no-repeat scroll 0% center% rgba(0, 0, 0, 0)!important;
+	color: #FFF!important;
 }
 /* H1 */
 .view-highlight .field-name-title-field h1 {
@@ -1212,7 +1218,7 @@ body.page-search-publications aside.sidebars_first {
 .node-type-blog .view-header.back a {
 	background-position-y: center!important;
 	color: #039!important;
-	padding-right: 1em!important;
+	/*padding-right: 1em!important;*/
 }
 /* Header */
 .header__secondary-menu {
@@ -1540,7 +1546,79 @@ a {
 	margin-left: 1em;
 }
 
+#contact{
+	margin-top:0em;
+}
 
+/*National Focal Points*/
 
+.view-fop-flags table .views-field-field-flag img{
+	height:3em;
+	width:4em;
+	border:1px solid #CCCCCC;
+}
+
+.view-fop-flags table  .views-field-title-field{
+	width: 6em;
+	height: 4em;
+}
+
+.view-fop-links h3 {
+	background-color: #FFFFFF;
+	border-top: 5px solid #003399;
+	padding-bottom: 0em;
+	padding-top: 0.5em;
+	color: #000000;
+	font-family: 'Open Sans Condensed', sans-serif;
+	font-size: 1.4em;
+	font-weight: bold;
+	margin-top:0em;
+	margin-bottom:0em;
+}
+
+.view-fop-links  .views-row {
+	background: url("../images/separator_home.jpg") repeat-x scroll 0 100% rgba(0, 0, 0, 0);
+	padding:1em;
+}
+
+.view-fop-links div a{
+	color: #003399;
+	text-decoration: none;
+	background: url("../images/li_arrow.png") no-repeat scroll 0% 100% transparent;
+	padding-left: 1em;
+	font-size: 0.8em;
+	font-weight: bold;
+	border-bottom: 0px!important;
+}
+
+#block-views-fop-flags-block-1 h3{
+	background-color: #FFFFFF;
+	border-top: 5px solid #003399;
+	padding-bottom: 0em;
+	padding-top: 0.5em;
+	color: #000000;
+	font-family: 'Open Sans Condensed', sans-serif;
+	font-size: 1.4em;
+	font-weight: bold;
+	margin-top:0em;
+	margin-bottom:0em;
+}
+
+#block-views-fop-flags-block-1  .views-row {
+	background: url("../images/separator_home.jpg") repeat-x scroll 0 100% rgba(0, 0, 0, 0);
+	padding:1em;
+}
+
+#block-views-fop-flags-block-1  .views-row  a{
+	color: #003399;
+	text-decoration: none;
+	background: url("../images/li_arrow.png") no-repeat scroll 0% 100% transparent;
+	padding-left: 1em;
+	font-size: 0.8em;
+	font-weight: bold;
+	border-bottom: 0px!important;
+}
+
+/*END National Focal Points*/
 
 }

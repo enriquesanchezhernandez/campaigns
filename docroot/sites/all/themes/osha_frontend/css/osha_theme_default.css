@@ -4157,7 +4157,7 @@ and (max-width: 1237px) {
 	color: #000;
 	font-family: 'Open Sans Condensed',sans-serif;
 	font-size: 1.55em;
-	font-weight: lighter;
+	font-weight: bold;
 	margin: 0;
 	padding: 0.3em 1em 0.3em;
 	background: none repeat scroll 0 0 #FFFFFF;
@@ -4205,19 +4205,25 @@ and (max-width: 1237px) {
 
 }
 
-#block-views-press-contacts-block .view-footer {
-	float:none;
-	width:100%;
-	padding-top:1em;
+#block-views-press-contacts-block .view-press-contacts .view-footer{
+	border-top: 5px solid #003399;
+	width:109%;
+	padding:0.5em 0em;
+	margin-top: 0em;
 }
 
-#block-views-press-contacts-block .view-footer a{
-	float:none;
-	width:100%;
-	font-family:arial!important;
-	background:none!important;
-	font-size:0.8em!important;
+#block-views-press-contacts-block .view-press-contacts .view-footer .press-kit-link{
+	background: none;
+	float: left;
+	color: #000;
+	font-family: 'Open Sans Condensed',sans-serif!important;
+	font-size: 1.3em!important;
+	font-weight: bold;
+	margin: 0;
+	padding: 0em 0em 0 1.1em;
+	background: none repeat scroll 0 0 #FFFFFF;
 }
+
 
 /* END PRESS CONTACTS BLOCK*/
 
@@ -4226,6 +4232,7 @@ and (max-width: 1237px) {
 .block-on-the-web{
   border-top: 5px solid #003399;
    margin: 0;
+   clear:both;
 }
 
 .block-on-the-web h2{
@@ -4234,7 +4241,7 @@ and (max-width: 1237px) {
 	color: #000;
 	font-family: 'Open Sans Condensed',sans-serif;
 	font-size: 1.55em;
-	font-weight: lighter;
+	font-weight: bold;
 	margin: 0;
 	padding: 0em 0em 0 1em;
 	background: none repeat scroll 0 0 #FFFFFF;
@@ -4262,7 +4269,7 @@ and (max-width: 1237px) {
 	color: #000;
 	font-family: 'Open Sans Condensed',sans-serif;
 	font-size: 1.55em;
-	font-weight: lighter;
+	font-weight: bold;
 	margin: 0;
 	padding: 0 1em 0.3em;
 	background: none repeat scroll 0 0 #FFFFFF;
@@ -5945,6 +5952,37 @@ article.comment p {
 	font-weight:normal;
 }
 
+.view-search-blog h1{
+	line-height:0.6em;
+}
+
+.view-search-blog h1 a{
+	border-bottom: 0 none !important;
+	color: #003399 !important;
+	font-family: "Open Sans Condensed",sans-serif !important;
+	font-size: 0.5em;
+	font-weight: bold;
+}
+
+.view-search-blog .views-row{
+	background: url("../images/separator_home.jpg") repeat-x scroll 0% 100% rgba(0, 0, 0, 0);
+	padding-bottom: 2.5em;
+	padding-top: 0em;
+}
+
+.view-search-blog .links.inline a{
+	background: url("../images/flecha.png") no-repeat scroll 85% 29% transparent;
+	color: #003399;
+	float: right;
+	font-family: "Open Sans Condensed",sans-serif!important;
+	font-size: 1.2em;
+	padding-bottom: 1em;
+	padding-right: 2.5em;
+	margin-top: 0em;
+	border-bottom: 0px!important;
+	font-weight: bold;
+}
+
 /* END BLOG DETAIL*/
 
 
@@ -6896,3 +6934,91 @@ div.contextual-links-wrapper{
 a.contextual-links-trigger{
 	background: transparent url(../images/gear-select.png) no-repeat 2px 0!important;
 }
+
+.title-archived{
+	padding-left:1em;
+	color:#c42110;
+	font-weight:bold;
+}
+
+#publication_slideshow .field-name-field-publication-bookshop-id{
+	margin-top:0em;
+}
+
+#publication_slideshow  .field-name-field-publication-bookshop-id span img{
+	background: url("../images/summary_arrow.png") no-repeat scroll 71% 27% rgba(0, 0, 0, 0);
+}
+
+
+/*National Focal Points*/
+
+.view-fop-flags table .views-field-field-flag img{
+	height:3em;
+	width:4em;
+	border:1px solid #CCCCCC;
+}
+
+.view-fop-flags table  .views-field-title-field{
+	width: 6em;
+	height: 4em;
+}
+
+.view-fop-links h3 {
+	background-color: #FFFFFF;
+	border-top: 5px solid #003399;
+	padding-bottom: 0em;
+	padding-top: 0.5em;
+	color: #000000;
+	font-family: 'Open Sans Condensed', sans-serif;
+	font-size: 1.4em;
+	font-weight: bold;
+	margin-top:0em;
+	margin-bottom:0em;
+}
+
+.view-fop-links  .views-row {
+	background: url("../images/separator_home.jpg") repeat-x scroll 0 100% rgba(0, 0, 0, 0);
+	padding:1em;
+}
+
+.view-fop-links div a{
+	color: #003399;
+	text-decoration: none;
+	background: url("../images/li_arrow.png") no-repeat scroll 0% 100% transparent;
+	padding-left: 1em;
+	font-size: 0.8em;
+	font-weight: bold;
+	border-bottom: 0px!important;
+}
+
+#block-views-fop-flags-block-1 h3{
+	background-color: #FFFFFF;
+	border-top: 5px solid #003399;
+	padding-bottom: 0em;
+	padding-top: 0.5em;
+	color: #000000;
+	font-family: 'Open Sans Condensed', sans-serif;
+	font-size: 1.4em;
+	font-weight: bold;
+	margin-top:0em;
+	margin-bottom:0em;
+}
+
+#block-views-fop-flags-block-1  .views-row {
+	background: url("../images/separator_home.jpg") repeat-x scroll 0 100% rgba(0, 0, 0, 0);
+	padding:1em;
+}
+
+#block-views-fop-flags-block-1  .views-row  a{
+	color: #003399;
+	text-decoration: none;
+	background: url("../images/li_arrow.png") no-repeat scroll 0% 100% transparent;
+	padding-left: 1em;
+	font-size: 0.8em;
+	font-weight: bold;
+	border-bottom: 0px!important;
+}
+
+/*END National Focal Points*/
+
+

@@ -130,7 +130,7 @@ function osha_alert_service_subscribe_form() {
  */
 function osha_alert_service_subscribe_form_validate($form, $form_state) {
   if (empty($form_state['values']['email']) || !valid_email_address($form_state['values']['email'])) {
-    form_set_error('email', t('Please input a valid email address'));
+    form_set_error('email', t('Please enter a valid email address'));
   };
 }
 
@@ -186,7 +186,7 @@ function osha_alert_service_remove_alert_form($form, &$form_state) {
     $form['email'] = array(
       '#type' => 'item',
       '#markup' => t(
-        'Unsubscribe !email from receiving EU-OSHA alert Service notifications?',
+        'Unsubscribe !email from receiving EU-OSHA alert service notifications?',
         array('!email' => $entity->email)
       ),
     );
@@ -227,7 +227,7 @@ function osha_alert_service_verify_alert_form() {
     if ($entity->confirmed <> 1) {
       $entity->confirmed = 1;
       if (entity_save('osha_alert_service', $entity)) {
-        drupal_set_message(t('You subscription has been confirmed, thank you'));
+        drupal_set_message(t('Your subscription has been confirmed, thank you'));
       }
     }
     else {

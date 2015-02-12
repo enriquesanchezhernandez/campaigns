@@ -12,10 +12,13 @@ include_once 'osha_blocks.features.inc';
 function osha_blocks_block_info() {
   $blocks = array();
   $blocks['oshwiki_featured_articles'] = array(
-    'info' => t('OSHwiki featured articles custom block')
+    'info' => t('OSHwiki featured articles custom block'),
   );
   $blocks['osha_archived_content'] = array(
-    'info' => t('Node archived info block')
+    'info' => t('Node archived info block'),
+  );
+  $blocks['osha_transl_extra_links'] = array(
+    'info' => t('Translations extra links'),
   );
 
   return $blocks;
@@ -27,14 +30,20 @@ function osha_blocks_block_info() {
 function osha_blocks_block_view($delta='') {
   $block = array();
 
-  switch($delta) {
-    case 'oshwiki_featured_articles' :
+  switch ($delta) {
+    case 'oshwiki_featured_articles':
       $block['subject'] = t('OSHwiki featured articles');
       $block['content'] = oshwiki_featured_articles_block_view();
       break;
+
     case 'osha_archived_content':
-      $block['subject'] = t('OSHA archived content');
+      $block['subject'] = t('EU-OSHA archived content');
       $block['content'] = osha_archived_content_block_view();
+      break;
+
+    case 'osha_transl_extra_links':
+      $block['subject'] = t('EU-OSHA Translation message');
+      $block['content'] = osha_translation_alternatives_message_block_view();
       break;
   }
 
@@ -60,6 +69,45 @@ function osha_archived_content_block_view() {
   if (isset($node) && isset($node->field_archived[LANGUAGE_NONE][0]['value']) &&
     $node->field_archived[LANGUAGE_NONE][0]['value'] == 1) {
       return theme('osha_archived_content', array());
+  }
+  return '';
+}
+
+/**
+ * Callback for osha_transl_extra_links block content.
+ *
+ * Displays links to extra languages translations.
+ */
+function osha_translation_alternatives_message_block_view() {
+  $node = menu_get_object();
+  global $language;
+  if (!empty($node)) {
+    $languages = language_list();
+    // The languages that are now shown in switcher, but some pages has
+    // translations in.
+    $extra_languages = array('sq', 'tr', 'ru', 'bs', 'sr');
+    if (!empty($node->translations->data)) {
+      $translations = array();
+      foreach ($extra_languages as $lang) {
+        if (!empty($node->translations->data[$lang])
+          && !empty($languages[$lang])
+          && $language->language != $lang) {
+          $translations[] = l($languages[$lang]->name, 'node/' . $node->nid,
+            array('language' => $languages[$lang])
+          );
+        }
+      }
+      if (!empty($translations)) {
+        $translations = implode(', ', $translations);
+        $message_text = t('This page is also available in:');
+        $message_text .= ' ' . $translations;
+        $message = array(
+          '#type' => 'markup',
+          '#markup' => '<div class="translation-extra-languages-links">' . $message_text . '</div>',
+        );
+        return drupal_render($message);
+      }
+    }
   }
   return '';
 }
@@ -238,4 +286,15 @@ function osha_blocks_theme() {
   );
 
   return $theme;
+}
+
+
+/**
+ * Implements hook_osha_tmgmt_i18n_string_list().
+ *
+ * {@inheritdoc}
+ */
+function osha_blocks_osha_tmgmt_i18n_string_list() {
+  module_load_include('inc', 'osha_blocks', 'osha_blocks.translate');
+  return osha_blocks_get_translatable_strings();
 }

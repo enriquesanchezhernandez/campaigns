@@ -134,6 +134,12 @@ class MigrateOshaFOPPages extends OSHADynamicMigration {
 
     $entity->translations = $translation_handler->getTranslations();
 
+    $row_lang = array_keys($row->languages);
+    $extra_lang = array_diff($row_lang, $languages);
+    if (!empty($extra_lang)) {
+      $this->displayMessage($entity->title . ' has translation in inactive languages ' . implode(', ', $extra_lang), 'warning');
+    }
+
     foreach ($languages as $language) {
       $has_translation = FALSE;
       if (!empty($row->title_field[$language])) {
@@ -402,6 +408,7 @@ class FOPPagesContentListCSV extends MigrateList {
         continue;
       }
       self::$data[$path]['id'] = $path;
+      self::$data[$path]['languages'][$language] = $language;
       // Assign the workflow state of the row from english entry.
       if ($language == 'en') {
         self::$data[$path]['workflow_state'] = $raw_data[$work_flow_key];
