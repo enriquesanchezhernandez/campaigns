@@ -352,7 +352,7 @@ function osha_infographics_views_default_views() {
   $handler->display->display_options['fields']['field_tags']['field'] = 'field_tags';
   $handler->display->display_options['fields']['field_tags']['label'] = '';
   $handler->display->display_options['fields']['field_tags']['alter']['make_link'] = TRUE;
-  $handler->display->display_options['fields']['field_tags']['alter']['path'] = 'tools-and-publications/infographics?tid=[field_tags-tid]';
+  $handler->display->display_options['fields']['field_tags']['alter']['path'] = 'node/5429?tid=[field_tags-tid]';
   $handler->display->display_options['fields']['field_tags']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['field_tags']['type'] = 'taxonomy_term_reference_plain';
   $handler->display->display_options['fields']['field_tags']['delta_offset'] = '0';
