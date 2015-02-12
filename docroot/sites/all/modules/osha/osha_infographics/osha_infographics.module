@@ -133,7 +133,6 @@ function theme_osha_infographics_multilanguage_file_format($element) {
 * Formats multilanguage image
 */
 function theme_osha_infographics_multilanguage_image_format($element) {
-  dpm($element);
   $file = (object) $element['file'];
   $entity = (object) $element['entity'];
   $icon_directory = drupal_get_path('theme', 'osha_frontend') . '/images/file_icons';
