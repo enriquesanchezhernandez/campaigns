@@ -77,7 +77,7 @@ function osha_sort_language_list($languages) {
     'sk',
     'sl',
     'fi',
-    'sv'
+    'sv',
   );
 
   $result = array();
@@ -88,6 +88,10 @@ function osha_sort_language_list($languages) {
         $result[$key] = $languages[$key];
       }
     }
+  }
+  $extra_lang = array_diff(array_keys($languages), $lang_order);
+  foreach ($extra_lang as $lang) {
+    $result[$lang] = $languages[$lang];
   }
 
   return $result;

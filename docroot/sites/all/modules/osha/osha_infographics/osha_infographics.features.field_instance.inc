@@ -395,7 +395,7 @@ function osha_infographics_field_default_field_instances() {
   $field_instances['node-infographic-field_thumbnail'] = array(
     'bundle' => 'infographic',
     'deleted' => 0,
-    'description' => 'Add an image that should fit a ratio of 1.35 to prevent auto-cropping.',
+    'description' => 'Please adapt the thumbnail width to  350px and height to 260px (a ratio of 1.35).',
     'display' => array(
       'default' => array(
         'label' => 'hidden',
@@ -637,10 +637,10 @@ function osha_infographics_field_default_field_instances() {
 
   // Translatables
   // Included for use with string extractors like potx.
-  t('Add an image that should fit a ratio of 1.35 to prevent auto-cropping.');
   t('Body');
   t('File');
   t('Image');
+  t('Please adapt the thumbnail width to  350px and height to 260px (a ratio of 1.35).');
   t('Publication date');
   t('Tag');
   t('Thumbnail');
