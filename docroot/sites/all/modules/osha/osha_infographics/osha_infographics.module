@@ -27,7 +27,7 @@ function osha_infographics_workbench_access_node_element_alter(&$element, $form_
  */
 function osha_infographics_views_pre_render(&$view){
   if ($view->name == 'infographic' && $view->current_display == 'block_2') {
-    $view->attachment_before = t('<a href="/tools-and-publications/infographics">All topics</a>');
+    $view->attachment_before = l(t('All topics'), current_path());
   }
 }
 
