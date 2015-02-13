@@ -311,14 +311,14 @@ class MigrateOshaFOPPages extends OSHADynamicMigration {
     );
   }
 
-  public function rollback(array $key) {
+  public function rollback() {
     $idlist = $this->getOption('idlist');
     if ($idlist) {
       // Make the IDs keys, to more easily identify them
       $idlist = array_flip(explode(',', $idlist));
     }
     foreach ($this->map as $destination_key) {
-      if (($return = $this->checkStatus()) != MigrationBase::RESULT_COMPLETED) {
+      if ($this->checkStatus() != MigrationBase::RESULT_COMPLETED) {
         break;
       }
       if ($this->itemOptionExceeded()) {
