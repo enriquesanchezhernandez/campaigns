@@ -85,7 +85,7 @@ function osha_translation_alternatives_message_block_view() {
     $languages = language_list();
     // The languages that are now shown in switcher, but some pages has
     // translations in.
-    $extra_languages = array('sq', 'tr', 'ru', 'bs', 'sr');
+    $extra_languages = osha_disabled_language_list();
     if (!empty($node->translations->data)) {
       $translations = array();
       foreach ($extra_languages as $lang) {
