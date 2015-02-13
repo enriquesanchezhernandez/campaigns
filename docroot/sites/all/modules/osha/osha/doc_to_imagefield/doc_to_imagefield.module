@@ -161,9 +161,15 @@ function doc_to_imagefield_entity_save_bulk($entity_type, $entity, $options, &$c
         $entity = workbench_moderation_node_current_load($entity);
         // Force the same state in order to avoid creation
         // of new weird transitions.
-        $entity->workbench_moderation_state_current = $entity->workbench_moderation['current']->state;
-        $entity->workbench_moderation_state_new = $entity->workbench_moderation['current']->state;
-        $entity->workbench_moderation['updating_live_revision'] = TRUE;
+        if (!empty($entity->workbench_moderation['current'])) {
+          $state = $entity->workbench_moderation['current']->state;
+          $entity = workbench_moderation_node_current_load($entity);
+          if (isset($entity->workbench_moderation['published'])) {
+            $entity->workbench_moderation_state_current = $entity->workbench_moderation['published']->state;
+          }
+          $entity->workbench_moderation_state_current = $state;
+          $entity->workbench_moderation_state_new = $state;
+        }
       }
       pdf_to_image_entity_save($entity_type, $entity);
       $context['results']['saved'][] = $entity->title;
