@@ -816,7 +816,7 @@ function osha_views_default_views() {
   $handler->display->display_options['fields']['created']['label'] = 'post_date';
   $handler->display->display_options['fields']['created']['date_format'] = 'long';
   $handler->display->display_options['fields']['created']['second_date_format'] = 'year';
-  /* Field: Content: Embargo Date */
+  /* Field: Content: Embargo date */
   $handler->display->display_options['fields']['field_pr_embargo_date']['id'] = 'field_pr_embargo_date';
   $handler->display->display_options['fields']['field_pr_embargo_date']['table'] = 'field_data_field_pr_embargo_date';
   $handler->display->display_options['fields']['field_pr_embargo_date']['field'] = 'field_pr_embargo_date';
@@ -1275,7 +1275,7 @@ function osha_views_default_views() {
     'multiple_to' => '',
     'osha_date_theme' => '',
   );
-  /* Field: Content: Embargo Date */
+  /* Field: Content: Embargo date */
   $handler->display->display_options['fields']['field_pr_embargo_date']['id'] = 'field_pr_embargo_date';
   $handler->display->display_options['fields']['field_pr_embargo_date']['table'] = 'field_data_field_pr_embargo_date';
   $handler->display->display_options['fields']['field_pr_embargo_date']['field'] = 'field_pr_embargo_date';
