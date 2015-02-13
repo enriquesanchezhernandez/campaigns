@@ -401,3 +401,13 @@ function osha_tmgmt_update_7007() {
   module_load_include('module', 'osha_tmgmt');
   osha_tmgmt_refresh_string_list();
 }
+
+/**
+ * Increase module weight to be able to override 'ui controller class' in hook_tmgmt_source_plugin_info_alter().
+ */
+function osha_tmgmt_update_7008() {
+  db_update('system')
+    ->fields(array('weight' => 15))
+    ->condition('name', 'osha_tmgmt', '=')
+    ->execute();
+}

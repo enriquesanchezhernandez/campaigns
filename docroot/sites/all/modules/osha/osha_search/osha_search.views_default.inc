@@ -41,6 +41,10 @@ function osha_search_views_default_views() {
   $handler->display->display_options['style_plugin'] = 'default';
   $handler->display->display_options['row_plugin'] = 'entity';
   $handler->display->display_options['row_options']['view_mode'] = 'teaser';
+  /* Footer: Global: Result summary */
+  $handler->display->display_options['footer']['result']['id'] = 'result';
+  $handler->display->display_options['footer']['result']['table'] = 'views';
+  $handler->display->display_options['footer']['result']['field'] = 'result';
   /* No results behavior: Global: Unfiltered text */
   $handler->display->display_options['empty']['area_text_custom']['id'] = 'area_text_custom';
   $handler->display->display_options['empty']['area_text_custom']['table'] = 'views';
@@ -188,6 +192,7 @@ function osha_search_views_default_views() {
     t('‹'),
     t('›'),
     t('»'),
+    t('Displaying @start - @end of @total'),
     t('No results'),
     t('Multilingual ID'),
     t('Publication date'),
@@ -230,6 +235,10 @@ function osha_search_views_default_views() {
   $handler->display->display_options['pager']['options']['tags']['last'] = '»';
   $handler->display->display_options['style_plugin'] = 'default';
   $handler->display->display_options['row_plugin'] = 'fields';
+  /* Footer: Global: Result summary */
+  $handler->display->display_options['footer']['result']['id'] = 'result';
+  $handler->display->display_options['footer']['result']['table'] = 'views';
+  $handler->display->display_options['footer']['result']['field'] = 'result';
   /* No results behavior: Global: Unfiltered text */
   $handler->display->display_options['empty']['area_text_custom']['id'] = 'area_text_custom';
   $handler->display->display_options['empty']['area_text_custom']['table'] = 'views';
@@ -676,6 +685,7 @@ function osha_search_views_default_views() {
     t('‹'),
     t('›'),
     t('»'),
+    t('Displaying @start - @end of @total'),
     t('No results'),
     t('Relevance'),
     t('Site search'),

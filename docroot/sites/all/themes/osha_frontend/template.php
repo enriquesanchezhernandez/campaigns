@@ -60,8 +60,8 @@ function osha_frontend_menu_link__menu_block($variables) {
   // Add homepage Icon.
   $element = $variables['element'];
   $attr = drupal_attributes($element['#attributes']);
-  if (isset($variables['element']['#title']) &&
-    $variables['element']['#title'] == 'Home' &&
+  if (isset($variables['element']['#href']) &&
+    $variables['element']['#href'] == '<front>' &&
     isset($element['#localized_options']['content']['image'])
   ) {
     $path = file_create_url($element['#localized_options']['content']['image']);

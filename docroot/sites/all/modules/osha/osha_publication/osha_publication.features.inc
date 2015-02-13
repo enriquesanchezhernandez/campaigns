@@ -34,7 +34,7 @@ function osha_publication_fe_nodequeue_export_fields() {
     'name' => 'publication_queue',
     'title' => 'Publication Slideshow',
     'subqueue_title' => '',
-    'size' => 8,
+    'size' => 5,
     'link' => '',
     'link_remove' => '',
     'owner' => 'nodequeue',
@@ -42,7 +42,7 @@ function osha_publication_fe_nodequeue_export_fields() {
     'show_in_tab' => 1,
     'show_in_links' => 0,
     'reference' => 0,
-    'reverse' => 0,
+    'reverse' => 1,
     'i18n' => 1,
     'subqueues' => 1,
     'types' => array(
