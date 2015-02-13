@@ -684,7 +684,7 @@ class MigrationUtil {
         return $iso2;
       }
     }
-    return NULL;
+    return self::getNonStandardCountry($name);
   }
 
   /**

@@ -15,6 +15,9 @@ List of patches (most recent first)
   * Fix saving 2 current statuses for same revision
   * https://www.drupal.org/files/issues/1436260-workbench_moderation-states-node_save-74.patch
   * https://www.drupal.org/node/1436260
+  
+* ldap
+  * ldap-property_of_non_object_in_ldap_authentication_init-2182413-3.patch
 
 * search_autocomplete
   * Escapes the search term before submit (to accept %)
@@ -33,7 +36,6 @@ List of patches (most recent first)
 * i18n_string
     * Fixes undefined method strings_remove and strings_update
     * File: strings_remove_update_undefined_method.patch
-
 * scanner
   * patches by Ruben@BBM - disable Undo and avoid to creating a new revision; permissions for S&R tab
 
