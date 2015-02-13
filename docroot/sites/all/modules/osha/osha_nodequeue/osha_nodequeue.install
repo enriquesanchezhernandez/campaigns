@@ -32,3 +32,16 @@ function osha_nodequeue_schema() {
   );
   return $schema;
 }
+
+/**
+ * Set Publication Nodequeue to Auto add nodes
+ */
+function osha_nodequeue_update_7001() {
+  db_merge('nodequeue_auto')
+    ->key(array('qid' => 3))
+    ->fields(array(
+      'qid' => 3,
+      'auto_add' => 1,
+    ))
+    ->execute();
+}

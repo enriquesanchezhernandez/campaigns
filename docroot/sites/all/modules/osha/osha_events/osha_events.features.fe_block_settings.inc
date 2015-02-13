@@ -103,8 +103,8 @@ function osha_events_default_fe_block_settings() {
     'module' => 'views',
     'node_types' => array(),
     'pages' => 'tools-and-publications/events
-node/5322
-copia_events',
+tools-and-publications/oshevents
+node/5322',
     'roles' => array(),
     'themes' => array(
       'bartik' => array(
