@@ -191,7 +191,7 @@ function osha_breadcrumbs_path_breadcrumbs_settings_info() {
     ),
     'paths' => array(
       0 => 'tools-and-publications',
-      1 => 'tools-and-publications/events',
+      1 => 'tools-and-publications/oshevents',
       2 => '<none>',
     ),
     'home' => 1,
@@ -228,7 +228,7 @@ function osha_breadcrumbs_path_breadcrumbs_settings_info() {
   $path_breadcrumb->api_version = 1;
   $path_breadcrumb->machine_name = 'events_list';
   $path_breadcrumb->name = 'Events list';
-  $path_breadcrumb->path = 'tools-and-publications/events';
+  $path_breadcrumb->path = 'tools-and-publications/oshevents';
   $path_breadcrumb->data = array(
     'titles' => array(
       0 => 'Tools and publications',
