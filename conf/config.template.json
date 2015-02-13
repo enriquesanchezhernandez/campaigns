@@ -40,7 +40,9 @@
             "name": "osha-ldap",
             "ldap_type": "openldap",
             "address": "",
-            "port": 0,
+            "bindpw": "",
+            "clear_bindpw": null,
+            "port": 389,
             "tls": 0,
             "bind_method": 1,
             "user_dn_expression": "",
@@ -103,7 +105,7 @@
             "status": 1,
             "only_ldap_authenticated": 1,
             "use_first_attr_as_groupid": 1,
-            "mappings": "PHP|administrator\nAGEING_EDITOR|administrator\nAGEING_PM|administrator",
+            "mappings": "",
             "use_filter": 1,
             "synchronization_modes": {
                 "user_logon": "user_logon"
