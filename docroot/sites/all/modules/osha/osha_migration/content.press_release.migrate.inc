@@ -180,56 +180,6 @@ class MigrateOshaPressRelease extends OSHADynamicMigration {
     return TRUE;
   }
 
-  /**
-   * Alter Body Content
-   *
-   * @param $text
-   * @return mixed|string
-   */
-  public static function formatBody($text){
-    $text = str_replace('<@#&>','"', $text);
-    if ($dom = OshaTMGMTRetranslate::getDOMDocument($text)) {
-      foreach ($dom->getElementsByTagName('img') as $img) {
-        $imgSrc = str_replace(self::imageReplacePatterns(), '', $img->getAttribute('src'));
-        $img->setAttribute('src', $imgSrc);
-      }
-      $text = $dom->saveHTML();
-    }
-
-    return $text;
-  }
-
-  /**
-   * Patterns that are replaced in image src
-   *
-   * @return array
-   */
-  public static function imageReplacePatterns(){
-    return array(
-      '/image_large',
-      '/image_preview',
-      '/image_mini',
-      '/image_thumb',
-      '/image_tile',
-      '/image_icon',
-      '/image_listing',
-      '/image_small',
-      '/image_hwmini',
-      '/image_hwmedium',
-      '/image_hwlarge',
-      '/image_hwextralarge',
-      '/image_hwsmall',
-      '/image_gallerythumb',
-      '/image_gallerymini',
-      '/image_hwc',
-      '/image_hwc',
-      '/image_hwbackground',
-      '/view',
-      '/image',
-    );
-  }
-
-
   private static function getNoteToEditorNid($path) {
     $lang = substr($path, 1, 2);
     $alias = substr($path, 4);
@@ -284,13 +234,16 @@ class MigrateOshaPressRelease extends OSHADynamicMigration {
         $has_translation = TRUE;
       }
       if (!empty($row->description[$language])) {
-        $entity->field_summary[$language][0]['value'] = MigrationUtil::decodeHTMLText($row->description[$language]);
+        $row->description[$language] = MigrationUtil::decodeHTMLText($row->description[$language]);
+        $row->description[$language] = MigrationUtil::formatBody($row->description[$language]);
+        $entity->field_summary[$language][0]['value'] = $row->description[$language];
         $entity->field_summary[$language][0]['format'] = 'full_html';
         $has_translation = TRUE;
       }
       if (!empty($row->text[$language])) {
-        $row->text[$language] = self::formatBody($row->text[$language]);
-        $entity->body[$language][0]['value'] = MigrationUtil::decodeHTMLText($row->text[$language]);
+        $row->text[$language] = MigrationUtil::decodeHTMLText($row->text[$language]);
+        $row->text[$language] = MigrationUtil::formatBody($row->text[$language]);
+        $entity->body[$language][0]['value'] = $row->text[$language];
         $entity->body[$language][0]['format'] = 'full_html';
         $has_translation = TRUE;
       }
