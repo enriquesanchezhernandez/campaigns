@@ -155,8 +155,10 @@ class MigrateOshaFOPPages extends OSHADynamicMigration {
         $entity->body[$language][0]['value'] = MigrationUtil::decodeHTMLText($row->text[$language]);
         // Remove the link to old fop pages.
         $doc = new DOMDocument();
-        $doc->loadHTML($entity->body[$language][0]['value']);
+        $body_html = mb_convert_encoding($entity->body[$language][0]['value'], 'HTML-ENTITIES', "UTF-8");
+        $doc->loadHTML($body_html);
         $links = $doc->getElementsByTagName('a');
+        $body_changed = FALSE;
         if ($links->length > 0) {
           // We assume that the links is the last.
           $link = $doc->getElementsByTagName('a')->item($links->length - 1);
@@ -164,10 +166,13 @@ class MigrateOshaFOPPages extends OSHADynamicMigration {
             if ($idx == 'href'
               && strpos($attr->nodeValue, 'about/organisation/focal_points#')) {
               $link->parentNode->removeChild($link);
+              $body_changed = TRUE;
             }
           }
+          if ($body_changed) {
+            $entity->body[$language][0]['value'] = $doc->saveHTML();
+          }
         }
-        $entity->body[$language][0]['value'] = $doc->saveHTML();
         $entity->body[$language][0]['format'] = 'full_html';
         $has_translation = TRUE;
       }
