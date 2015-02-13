@@ -9,5 +9,6 @@ function osha_wiki_get_translatable_strings() {
     'Find OSHwiki articles',
     'OSHwiki featured articles',
     'Go to OSHwiki',
+    'Read full OSHwiki article'
   );
 }
