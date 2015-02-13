@@ -397,6 +397,9 @@ $options['init-modules'] = array(
   'flickrfield',
   'chosen',
 
+  // cookie privacy
+  'eu_cookie_compliance',
+
   'calendar',
   'date_popup',
   'feeds',
