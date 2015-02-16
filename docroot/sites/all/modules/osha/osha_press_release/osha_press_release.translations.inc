@@ -31,5 +31,6 @@ function osha_press_release_get_translatable_strings() {
     'What\'s new',
     'Links',
     'Notes to editor',
+    'Follow us on:',
   );
 }

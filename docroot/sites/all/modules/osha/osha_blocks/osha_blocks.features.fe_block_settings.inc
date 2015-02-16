@@ -232,7 +232,7 @@ function osha_blocks_default_fe_block_settings() {
         'weight' => 0,
       ),
     ),
-    'title' => '',
+    'title' => 'OSHwiki featured articles',
     'visibility' => 0,
   );
 
