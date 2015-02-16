@@ -56,3 +56,12 @@ function osha_fop_page_node_presave($node) {
     }
   }
 }
+
+
+/**
+ * Implements hook_osha_tmgmt_i18n_string_list().
+ */
+function osha_fop_page_osha_tmgmt_i18n_string_list() {
+  module_load_include('inc', 'osha_fop_page', 'osha_fop_page.translations');
+  return osha_fop_page_get_translatable_strings();
+}
