@@ -48,7 +48,7 @@ function osha_alert_service_default_fe_block_settings() {
         'weight' => -28,
       ),
     ),
-    'title' => '',
+    'title' => '<none>',
     'visibility' => 0,
   );
 
@@ -251,7 +251,7 @@ node/5322',
         'weight' => 1,
       ),
     ),
-    'title' => 'Events feed',
+    'title' => '<none>',
     'visibility' => 1,
   );
 
@@ -331,7 +331,7 @@ node/5322',
         'weight' => 1,
       ),
     ),
-    'title' => 'Job vacancies feed',
+    'title' => '<none>',
     'visibility' => 1,
   );
 
@@ -412,7 +412,7 @@ highlights',
         'weight' => 1,
       ),
     ),
-    'title' => 'Publication feed',
+    'title' => '<none>',
     'visibility' => 1,
   );
 
@@ -452,7 +452,7 @@ highlights',
         'weight' => -5,
       ),
     ),
-    'title' => 'Seminar feed',
+    'title' => '<none>',
     'visibility' => 1,
   );
 
