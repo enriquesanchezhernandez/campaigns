@@ -113,7 +113,7 @@ function theme_osha_infographics_multilanguage_file_format($element) {
   global $language;
   $file = isset($entity->field_file[$language->language][0])
     ? $entity->field_file[$language->language][0]
-    : $entity->field_file[en][0];
+    : $entity->field_file['en'][0];
   $output = "<span class='label_multilang_file'>Download</span>";
   $output .= theme_file_icon(
     array(
@@ -140,7 +140,7 @@ function theme_osha_infographics_multilanguage_image_format($element) {
   global $language;
   $file = isset($entity->field_image[$language->language][0])
     ? $entity->field_image[$language->language][0]
-    : $entity->field_image[en][0];
+    : $entity->field_image['en'][0];
   $output = "<span class='label_multilang_file'>Open</span>";
   $output .= theme_file_icon(
     array(
