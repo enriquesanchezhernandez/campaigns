@@ -118,7 +118,7 @@ class osha_tmgmt_handler_field_tmgmt_job_item_operations extends tmgmt_handler_f
       );
     }
     if ($item->state == TMGMT_JOB_ITEM_STATE_ACCEPTED
-        && $item->item_type == 'default'
+        && $item->item_type == 'menu_link'
         && user_access('preview layout validation')) {
 
       $url = url(
