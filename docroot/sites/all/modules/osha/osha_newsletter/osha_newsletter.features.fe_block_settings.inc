@@ -90,7 +90,7 @@ node/9',
         'weight' => 0,
       ),
     ),
-    'title' => '',
+    'title' => 'Display the latest newsletters',
     'visibility' => 1,
   );
 
@@ -130,7 +130,7 @@ node/9',
         'weight' => -30,
       ),
     ),
-    'title' => '',
+    'title' => 'Subscribe to EU-OSHA Newsletter',
     'visibility' => 0,
   );
 
@@ -171,7 +171,7 @@ node/9',
         'weight' => 0,
       ),
     ),
-    'title' => '',
+    'title' => '<none>',
     'visibility' => 1,
   );
 
