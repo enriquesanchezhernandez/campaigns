@@ -1619,6 +1619,19 @@ a {
 	border-bottom: 0px!important;
 }
 
+#contact-site-form{
+	padding:1em;
+}
+
+.contact-form  input, select, textarea{
+	width:70%!important;
+}
+
+.contact-form  .grippie{
+	width:70%!important;
+	margin-bottom:1em;
+}
+
 /*END National Focal Points*/
 
 }
