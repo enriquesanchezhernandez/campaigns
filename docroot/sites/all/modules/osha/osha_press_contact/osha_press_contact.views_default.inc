@@ -22,7 +22,7 @@ function osha_press_contact_views_default_views() {
 
   /* Display: Master */
   $handler = $view->new_display('default', 'Master', 'default');
-  $handler->display->display_options['title'] = 'FOP Contacts';
+  $handler->display->display_options['title'] = 'Focal points\' contact details';
   $handler->display->display_options['use_more_always'] = FALSE;
   $handler->display->display_options['access']['type'] = 'perm';
   $handler->display->display_options['cache']['type'] = 'none';
@@ -141,7 +141,7 @@ function osha_press_contact_views_default_views() {
   $handler = $view->new_display('block', 'Block', 'block');
   $translatables['fop_contacts'] = array(
     t('Master'),
-    t('FOP Contacts'),
+    t('Focal points\' contact details'),
     t('more'),
     t('Apply'),
     t('Reset'),
