@@ -17,7 +17,7 @@ function osha_breadcrumbs_path_breadcrumbs_settings_info() {
   $path_breadcrumb->path = 'search/blog';
   $path_breadcrumb->data = array(
     'titles' => array(
-      0 => 'Search results',
+      0 => '!page_title',
     ),
     'paths' => array(
       0 => '<none>',
@@ -232,7 +232,7 @@ function osha_breadcrumbs_path_breadcrumbs_settings_info() {
   $path_breadcrumb->data = array(
     'titles' => array(
       0 => 'Tools and publications',
-      1 => 'Events',
+      1 => 'OSH related events',
     ),
     'paths' => array(
       0 => 'tools-and-publications',
@@ -656,7 +656,7 @@ function osha_breadcrumbs_path_breadcrumbs_settings_info() {
   $path_breadcrumb->data = array(
     'titles' => array(
       0 => 'Alert service',
-      1 => 'PRIVACY POLICY FOR THE ALERTS FORM',
+      1 => '!page_title',
     ),
     'paths' => array(
       0 => 'alertservice',
@@ -699,7 +699,7 @@ function osha_breadcrumbs_path_breadcrumbs_settings_info() {
   $path_breadcrumb->data = array(
     'titles' => array(
       0 => 'OSHMail newsletter',
-      1 => 'PRIVACY STATEMENT FOR THE OSHMAIL FORM',
+      1 => '!page_title',
     ),
     'paths' => array(
       0 => 'oshmail-newsletter',
@@ -835,7 +835,7 @@ function osha_breadcrumbs_path_breadcrumbs_settings_info() {
   $path_breadcrumb->path = 'sitemap';
   $path_breadcrumb->data = array(
     'titles' => array(
-      0 => 'Sitemap',
+      0 => '!page_title',
     ),
     'paths' => array(
       0 => '<none>',
