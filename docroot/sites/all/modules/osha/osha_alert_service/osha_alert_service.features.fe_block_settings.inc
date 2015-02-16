@@ -251,7 +251,7 @@ node/5322',
         'weight' => 1,
       ),
     ),
-    'title' => '',
+    'title' => 'Events feed',
     'visibility' => 1,
   );
 
@@ -331,7 +331,7 @@ node/5322',
         'weight' => 1,
       ),
     ),
-    'title' => '',
+    'title' => 'Job vacancies feed',
     'visibility' => 1,
   );
 
@@ -412,7 +412,7 @@ highlights',
         'weight' => 1,
       ),
     ),
-    'title' => '',
+    'title' => 'Publication feed',
     'visibility' => 1,
   );
 
@@ -452,7 +452,7 @@ highlights',
         'weight' => -5,
       ),
     ),
-    'title' => '',
+    'title' => 'Seminar feed',
     'visibility' => 1,
   );
 

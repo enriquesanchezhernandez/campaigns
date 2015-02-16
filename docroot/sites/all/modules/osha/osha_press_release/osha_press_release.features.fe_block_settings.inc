@@ -128,7 +128,7 @@ function osha_press_release_default_fe_block_settings() {
         'weight' => 4,
       ),
     ),
-    'title' => '',
+    'title' => 'Become a media partner',
     'visibility' => 0,
   );
 
@@ -168,7 +168,7 @@ function osha_press_release_default_fe_block_settings() {
         'weight' => 3,
       ),
     ),
-    'title' => '',
+    'title' => 'Join our news distribution list',
     'visibility' => 0,
   );
 

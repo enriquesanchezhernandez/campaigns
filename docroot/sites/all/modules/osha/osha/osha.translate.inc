@@ -74,6 +74,6 @@ function osha_get_translatable_strings() {
     '- Any -',
     'More',
     'Press contacts',
-    'EU-OSHA in the media'
+    'EU-OSHA in the media',
   );
 }
