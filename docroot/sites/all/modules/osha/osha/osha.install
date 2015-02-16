@@ -163,7 +163,7 @@ function osha_update_7006() {
  * Enable extra languages: Albanian, Serbian, Russian, Turkish, Macedonian
  * and Bosnian.
  */
-function osha_update_7008() {
+function osha_update_7007() {
   $languages = language_list();
   $add = array('sq', 'bs', 'sr', 'mk');
   foreach ($add as $lang) {
