@@ -131,6 +131,20 @@ class osha_tmgmt_handler_field_tmgmt_job_item_operations extends tmgmt_handler_f
         'title' => t('edit'),
       );
     }
+    if ($item->state == TMGMT_JOB_ITEM_STATE_ACCEPTED
+        && $item->item_type == 'taxonomy_term'
+        && user_access('preview layout validation')) {
+
+      $url = url(
+        sprintf('taxonomy/term/%s/edit/%s', $item->item_id, $item->target_language),
+        array('absolute' => TRUE)
+      );
+      $url = $url . '?destination=admin/tmgmt/jobs/' . $item->tjid;
+      $element['#links']['edit'] = array(
+        'href' => $url,
+        'title' => t('edit'),
+      );
+    }
     return drupal_render($element);
   }
 }
