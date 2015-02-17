@@ -33,6 +33,7 @@ class OshaMigrateImages extends DynamicMigration {
         'modification_date' => '',
         'publication_date' => '',
         'creator' => 'Author user id from the old website',
+        'aliases' => 'Image redirects',
         'title' => '',
         'description' => '',
         'subject' => 'Categories/Tags',
@@ -184,6 +185,9 @@ class OshaMigrateImages extends DynamicMigration {
       'language' => $language,
     );
     path_save($alias);
+
+    // create redirect
+    MigrationUtil::createRedirects($entity, $row->aliases);
   }
 }
 

@@ -628,7 +628,12 @@ class MigrationUtil {
       $redirect = new stdClass();
       $redirect->source = $source;
       $redirect->source_options = array();
-      $redirect->redirect = 'node/' . $entity->nid;
+
+      if(property_exists($entity, 'fid')) { // file redirect
+        $redirect->redirect = 'file/' . $entity->fid;
+      }else { // node redirect
+        $redirect->redirect = 'node/' . $entity->nid;
+      }
       $redirect->redirect_options = array();
       $redirect->status_code = 0;
       $redirect->type = 'redirect';
