@@ -17,8 +17,6 @@ class MigrateOshaFocalPoints extends OSHADynamicMigration {
     $this->memoryLimit = PHP_INT_MAX;
 
     $source_file = MigrationUtil::getSourceFile($arguments);
-//    $source_file_bureau = MigrationUtil::getSourceFileByKey($arguments, 'file_name_bureau');
-//    $source_file_board = MigrationUtil::getSourceFileByKey($arguments, 'file_name_board');
     $this->source = new MigrateSourceList(
       new FocalPointsContentListXML($source_file),
       new FocalPointsContentItemXML(),
@@ -178,11 +176,9 @@ class FocalPointsContentListXML extends MigrateList {
   /**
    * {@inheritdoc}
    */
-  public function __construct($file, $file_board = "", $file_bureau = "") {
+  public function __construct($file) {
     parent::__construct($file);
     $this->file = $file;
-//    $this->file_board = $file_board;
-//    $this->file_bureau = $file_bureau;
     $this->parseSourceFile();
   }
 
@@ -198,9 +194,6 @@ class FocalPointsContentListXML extends MigrateList {
    */
   protected function parseSourceFile() {
     if ($xml = simplexml_load_file($this->file)) {
-      // To be used for board and bureau memebers, to merge the details.
-//    $xml_board = simplexml_load_file($this->file_board);
-//    $xml_bureau = simplexml_load_file($this->file_bureau);
       self::$data = array();
       foreach ($xml->getDocNamespaces() as $str_prefix => $str_namespace) {
         if (strlen($str_prefix) == 0) {
