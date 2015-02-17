@@ -673,6 +673,21 @@ function osha_countries_alter(&$countries) {
 }
 
 /**
+ * Implements hook_library_alter().
+ */
+function osha_library_alter(&$libraries, $module) {
+  if ($module == 'chosen') {
+    if (!empty($libraries['drupal.chosen']['js'][0]['data']['chosen']['options'])) {
+      $options = &$libraries['drupal.chosen']['js'][0]['data']['chosen']['options'];
+      // Pass trough t() the palceholders.
+      $options['placeholder_text_multiple'] = t($options['placeholder_text_multiple']);
+      $options['placeholder_text_single'] = t($options['placeholder_text_single']);
+      $options['no_results_text'] = t($options['no_results_text']);
+    }
+  }
+}
+
+/**
  * Implements hook_date_formatter_dates_alter().
  */
 function osha_date_formatter_dates_alter(&$dates, $context) {
