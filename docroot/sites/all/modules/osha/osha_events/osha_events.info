@@ -24,7 +24,6 @@ features[ctools][] = strongarm:strongarm:1
 features[ctools][] = views:views_default:3.0
 features[fe_block_settings][] = views-events-block_1
 features[fe_block_settings][] = views-events_index-block_1
-features[fe_block_settings][] = block-events_back_to_events_link
 features[features_api][] = api:2
 features[feeds_importer][] = import_events
 features[feeds_tamper][] = import_events-agency_role-explode
