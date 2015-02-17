@@ -396,6 +396,7 @@ function osha_disabled_language_list() {
     'bs',
     'sr',
     'mk',
+    'sh',
   );
   return drupal_map_assoc($disabled);
 }
