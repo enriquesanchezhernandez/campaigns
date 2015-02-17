@@ -12,13 +12,13 @@ function osha_newsletter_default_fe_block_settings() {
 
   $export['version'] = '2.0';
 
-  $export['block-join_oshmail_subscribers'] = array(
+  $export['osha_newsletter-osha_newsletter_image'] = array(
     'cache' => -1,
     'custom' => 0,
+    'delta' => 'osha_newsletter_image',
     'i18n_block_language' => array(),
     'i18n_mode' => 0,
-    'machine_name' => 'join_oshmail_subscribers',
-    'module' => 'block',
+    'module' => 'osha_newsletter',
     'node_types' => array(),
     'pages' => 'oshmail-newsletter
 node/9',
@@ -66,20 +66,20 @@ node/9',
     'roles' => array(),
     'themes' => array(
       'bartik' => array(
-        'region' => 'sidebar_second',
-        'status' => 1,
+        'region' => '',
+        'status' => 0,
         'theme' => 'bartik',
         'weight' => 0,
       ),
       'osha_admin' => array(
-        'region' => 'sidebar_second',
-        'status' => 1,
+        'region' => '',
+        'status' => 0,
         'theme' => 'osha_admin',
         'weight' => 0,
       ),
       'osha_frontend' => array(
-        'region' => 'sidebar_second',
-        'status' => 1,
+        'region' => '',
+        'status' => 0,
         'theme' => 'osha_frontend',
         'weight' => 0,
       ),
