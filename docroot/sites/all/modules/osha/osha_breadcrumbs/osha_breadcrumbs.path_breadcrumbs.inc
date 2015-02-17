@@ -181,12 +181,12 @@ function osha_breadcrumbs_path_breadcrumbs_settings_info() {
   $path_breadcrumb = new stdClass();
   $path_breadcrumb->api_version = 1;
   $path_breadcrumb->machine_name = 'events';
-  $path_breadcrumb->name = 'Events';
+  $path_breadcrumb->name = 'OSH events';
   $path_breadcrumb->path = 'node/%node';
   $path_breadcrumb->data = array(
     'titles' => array(
       0 => 'Tools and publications',
-      1 => 'Events',
+      1 => 'OSH events',
       2 => '!page_title',
     ),
     'paths' => array(
