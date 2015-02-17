@@ -49,7 +49,7 @@ function osha_press_contact_default_fe_block_settings() {
       ),
     ),
     'title' => '<none>',
-    'visibility' => 0,
+    'visibility' => 1,
   );
 
   $export['views-fop_contacts-block'] = array(
