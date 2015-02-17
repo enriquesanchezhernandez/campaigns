@@ -18,22 +18,45 @@ function osha_press_contact_osha_tmgmt_i18n_string_list() {
  * Implements hook_cron().
  */
 function osha_press_contact_cron() {
+  module_load_include('inc', 'migrate_ui', 'migrate_ui.pages');
+  migrate_autoregister();
   // Update Focal Point Migration.
   $migrate = osha_migration_migrate_api();
-  $file = $migrate['migrations'][OSHA_MIGRATION_CONTENT_TYPE_FOCAL_POINT]['file_name'];
-  $filemtime = filemtime($file);
-  if ($filemtime === FALSE) {
-    watchdog('FocalPointImport', 'File @file not found!', array('@file' => $file), WATCHDOG_WARNING);
-    return;
-  }
-  else {
-    $last_modification = variable_get('osha_focal_point_import_file_modify_time', 0);
-    if ($filemtime > $last_modification) {
-      migrate_autoregister();
-      // TODO: Use migration function not drush functions.
-//      drush_set_option('update', TRUE);
-//      drush_invoke('migrate-import', array('FocalPoint'));
-//      variable_set('osha_focal_point_import_file_modify_time', $filemtime);
+  $migrations = array(OSHA_MIGRATION_CONTENT_TYPE_FOCAL_POINT, OSHA_MIGRATION_CONTENT_TYPE_BOARD_BUREAU);
+  foreach ($migrations as $migration) {
+    $file = $migrate['migrations'][$migration]['file_name'];
+    $filemtime = filemtime($file);
+    if ($filemtime === FALSE) {
+      watchdog('osha_press_contact', 'File @file not found!', array('@file' => $file), WATCHDOG_WARNING);
+      return;
+    }
+    else {
+      $var_name = 'osha_press_contact_import_file_modify_time_' . $migration;
+      $last_modification = variable_get($var_name, 0);
+      if ($filemtime > $last_modification) {
+        osha_press_contact_migrate($migration);
+        variable_set($var_name, $filemtime);
+      }
     }
   }
+}
+
+/**
+ * Triggers Import of a migration by name.
+ */
+function osha_press_contact_migrate($machine_name) {
+  $migration = Migration::getInstance($machine_name);
+  $migration->prepareUpdate();
+  $total = $migration->sourceCount();
+  watchdog('osha_press_contact', 'Starting Rollback @migration',
+    array('@migration' => $machine_name), WATCHDOG_INFO);
+  $result = $migration->processRollback(array('limit' => $total, 'force' => FALSE));
+  watchdog('osha_press_contact', 'Rolled back @migration with result: @result',
+    array('@migration' => $machine_name, '@result' => $result), WATCHDOG_INFO);
+
+  watchdog('osha_press_contact', 'Starting Import @migration',
+    array('@migration' => $machine_name), WATCHDOG_INFO);
+  $migration->processImport(array('limit' => $total, 'force' => FALSE));
+  watchdog('osha_press_contact', 'Imported @migration with result: @result',
+    array('@migration' => $machine_name, '@result' => $result), WATCHDOG_INFO);
 }
