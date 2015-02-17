@@ -771,6 +771,23 @@ class MigrationUtil {
       '/\/image$/',
     );
   }
+
+  public static function getOrCreateTaxonomyTerm($voc_name, $term_name, $extra_fields = array()) {
+    $voc = taxonomy_vocabulary_machine_name_load($voc_name);
+    $terms = taxonomy_get_term_by_name($term_name, $voc_name);
+    if (!empty($terms)) {
+      return current($terms);
+    }
+    else {
+
+      $term = $extra_fields;
+      $term['name'] = $term_name;
+      $term['vid'] = $voc->vid;
+      $term = (object) $term;
+      taxonomy_term_save($term);
+      return $term;
+    }
+  }
 }
 
 class OSHAMigrationListJSON extends MigrateListJSON {
