@@ -84,7 +84,7 @@ function osha_breadcrumbs_path_breadcrumbs_settings_info() {
   $path_breadcrumb->data = array(
     'titles' => array(
       0 => 'Legislation',
-      1 => 'European Directives',
+      1 => 'EU directives',
       2 => '%node:field-legislation-category:name',
       3 => '!page_title',
     ),
@@ -132,7 +132,7 @@ function osha_breadcrumbs_path_breadcrumbs_settings_info() {
   $path_breadcrumb->data = array(
     'titles' => array(
       0 => 'Legislation',
-      1 => 'European Directives',
+      1 => 'EU directives',
     ),
     'paths' => array(
       0 => 'safety-and-health-legislation',
@@ -154,7 +154,7 @@ function osha_breadcrumbs_path_breadcrumbs_settings_info() {
   $path_breadcrumb->data = array(
     'titles' => array(
       0 => 'Legislation',
-      1 => 'European Directives',
+      1 => 'EU directives',
       2 => '!page_title',
     ),
     'paths' => array(
@@ -185,7 +185,7 @@ function osha_breadcrumbs_path_breadcrumbs_settings_info() {
   $path_breadcrumb->path = 'node/%node';
   $path_breadcrumb->data = array(
     'titles' => array(
-      0 => 'Tools and publications',
+      0 => 'Tools & Publications',
       1 => 'OSH events',
       2 => '!page_title',
     ),
@@ -231,8 +231,8 @@ function osha_breadcrumbs_path_breadcrumbs_settings_info() {
   $path_breadcrumb->path = 'tools-and-publications/oshevents';
   $path_breadcrumb->data = array(
     'titles' => array(
-      0 => 'Tools and publications',
-      1 => 'OSH related events',
+      0 => 'Tools & Publications',
+      1 => 'OSH events',
     ),
     'paths' => array(
       0 => 'tools-and-publications',
@@ -254,7 +254,7 @@ function osha_breadcrumbs_path_breadcrumbs_settings_info() {
   $path_breadcrumb->data = array(
     'titles' => array(
       0 => 'Legislation',
-      1 => 'European Guidelines',
+      1 => 'EU guidelines',
       2 => '%node:field-legislation-category:name',
       3 => '!page_title',
     ),
@@ -302,7 +302,7 @@ function osha_breadcrumbs_path_breadcrumbs_settings_info() {
   $path_breadcrumb->data = array(
     'titles' => array(
       0 => 'Legislation',
-      1 => 'European Guidelines',
+      1 => 'EU guidelines',
       2 => '!page_title',
     ),
     'paths' => array(
@@ -389,6 +389,50 @@ function osha_breadcrumbs_path_breadcrumbs_settings_info() {
   );
   $path_breadcrumb->weight = 0;
   $export['highlights_view'] = $path_breadcrumb;
+
+  $path_breadcrumb = new stdClass();
+  $path_breadcrumb->api_version = 1;
+  $path_breadcrumb->machine_name = 'legislation';
+  $path_breadcrumb->name = 'Legislation intro pages';
+  $path_breadcrumb->path = 'node/%node';
+  $path_breadcrumb->data = array(
+    'titles' => array(
+      0 => '%site:current-page:menu-link:pb-join:name',
+      1 => '%site:current-page:menu-link:title',
+    ),
+    'paths' => array(
+      0 => '%site:current-page:menu-link:pb-join:url',
+      1 => '<none>',
+    ),
+    'home' => 1,
+    'translatable' => 1,
+    'arguments' => array(
+      'node' => array(
+        'position' => 1,
+        'argument' => 'entity_id:node',
+        'settings' => array(
+          'identifier' => 'Node: ID',
+        ),
+      ),
+    ),
+    'access' => array(
+      'plugins' => array(
+        1 => array(
+          'name' => 'path_visibility',
+          'settings' => array(
+            'visibility_setting' => '1',
+            'paths' => 'safety-and-health-legislation/european-directives
+safety-and-health-legislation/european-guidelines',
+          ),
+          'context' => 'empty',
+          'not' => FALSE,
+        ),
+      ),
+      'logic' => 'and',
+    ),
+  );
+  $path_breadcrumb->weight = 0;
+  $export['legislation'] = $path_breadcrumb;
 
   $path_breadcrumb = new stdClass();
   $path_breadcrumb->api_version = 1;
@@ -567,7 +611,7 @@ function osha_breadcrumbs_path_breadcrumbs_settings_info() {
   $path_breadcrumb->path = 'tools-and-publications/publications';
   $path_breadcrumb->data = array(
     'titles' => array(
-      0 => 'Tools and publications',
+      0 => 'Tools & Publications',
       1 => 'Publications',
     ),
     'paths' => array(
@@ -741,7 +785,7 @@ function osha_breadcrumbs_path_breadcrumbs_settings_info() {
   $path_breadcrumb->path = 'node/%node';
   $path_breadcrumb->data = array(
     'titles' => array(
-      0 => 'Tools and publications',
+      0 => 'Tools & Publications',
       1 => 'Publications',
       2 => '!page_title',
     ),
@@ -787,8 +831,8 @@ function osha_breadcrumbs_path_breadcrumbs_settings_info() {
   $path_breadcrumb->path = 'search/seminars';
   $path_breadcrumb->data = array(
     'titles' => array(
-      0 => 'Tools and publications ',
-      1 => 'EU-OSHA seminars',
+      0 => 'Tools & Publications',
+      1 => 'Seminar reports',
       2 => '!page_title',
     ),
     'paths' => array(
@@ -855,7 +899,7 @@ function osha_breadcrumbs_path_breadcrumbs_settings_info() {
   $path_breadcrumb->path = 'node/%node';
   $path_breadcrumb->data = array(
     'titles' => array(
-      0 => '!page_title',
+      0 => '%site:current-page:menu-link:title',
     ),
     'paths' => array(
       0 => '<none>',
