@@ -1,17 +1,13 @@
 name = reCAPTCHA
-description = "Uses the reCAPTCHA web service to improve the CAPTCHA system."
-dependencies[] = captcha
-package = "Spam control"
+description = Verifies if user is a human without necessity to solve a captcha
 core = 7.x
+package = Spam control
+dependencies[] = captcha
 configure = admin/config/people/captcha/recaptcha
 
-files[] = recaptcha.admin.inc
-files[] = recaptcha.module
-files[] = recaptcha.install
-
-; Information added by Drupal.org packaging script on 2014-02-06
-version = "7.x-1.11"
+; Information added by Drupal.org packaging script on 2015-02-15
+version = "7.x-2.0-alpha1+3-dev"
 core = "7.x"
 project = "recaptcha"
-datestamp = "1391701492"
+datestamp = "1424034783"
 
