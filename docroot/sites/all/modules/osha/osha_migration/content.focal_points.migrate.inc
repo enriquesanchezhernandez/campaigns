@@ -120,12 +120,9 @@ class MigrateOshaFocalPoints extends OSHADynamicMigration {
   public function prepare($entity, $row) {
     $country = MigrationUtil::getCountryIso2ByName($row->field_country_iso2);
     if ($country == NULL) {
-      $country = MigrationUtil::getNonStandardCountry($row->field_country_iso2);
-      if ($country == NULL) {
-        $this->displayMessage('Focal Points Country '
-          . $row->field_country_iso2 . ' not found', 'warning');
-        $row->field_country_iso2 = NULL;
-      }
+      $this->displayMessage('Focal Points Country '
+        . $row->field_country_iso2 . ' not found', 'warning');
+      $row->field_country_iso2 = NULL;
     }
     else {
       $tid = MigrationUtil::getCountryTermByISO2($country);
@@ -200,34 +197,35 @@ class FocalPointsContentListXML extends MigrateList {
    * Parse the XML file and populate the local cache.
    */
   protected function parseSourceFile() {
-    $xml = simplexml_load_file($this->file);
-    // To be used for board and bureau memebers, to merge the details.
+    if ($xml = simplexml_load_file($this->file)) {
+      // To be used for board and bureau memebers, to merge the details.
 //    $xml_board = simplexml_load_file($this->file_board);
 //    $xml_bureau = simplexml_load_file($this->file_bureau);
-    self::$data = array();
-    foreach ($xml->getDocNamespaces() as $str_prefix => $str_namespace) {
-      if (strlen($str_prefix) == 0) {
-        // Assign an namespace prefix.
-        $str_prefix = "fp";
+      self::$data = array();
+      foreach ($xml->getDocNamespaces() as $str_prefix => $str_namespace) {
+        if (strlen($str_prefix) == 0) {
+          // Assign an namespace prefix.
+          $str_prefix = "fp";
+        }
+        $xml->registerXPathNamespace($str_prefix, $str_namespace);
       }
-      $xml->registerXPathNamespace($str_prefix, $str_namespace);
-    }
-    // Contact fields are attributes of Detail.
-    foreach ($xml->xpath('//fp:Detail') as $focalpoint) {
-      $data = new stdClass();
-      $attributes = $focalpoint->attributes();
-      $data->title = (string) $attributes['Table0_Details5'];
-      $data->title_field = (string) $attributes['Table0_Details5'];
-      $data->field_press_contact_organization = (string) $attributes['Table0_Details1'];
-      $data->field_personal_title = (string) $attributes['Table0_Details3'];
-      $data->field_press_contact_phone = (string) $attributes['Table0_Details6'];
-      $data->field_press_contact_location = (string) $attributes['a_osh_phaddress'];
-      $data->field_country_iso2 = (string) $attributes['a_osh_phcountryid'];
-      $data->field_zip_code = (string) $attributes['a_osh_phcp'];
-      $data->field_city = (string) $attributes['a_osh_phtown'];
-      $data->field_contact_type = 'Focal Point';
-      $id = $this->idFromName((string) $data->title);
-      self::$data[$id] = $data;
+      // Contact fields are attributes of Detail.
+      foreach ($xml->xpath('//fp:Detail') as $focalpoint) {
+        $data = new stdClass();
+        $attributes = $focalpoint->attributes();
+        $data->title = (string) $attributes['Table0_Details5'];
+        $data->title_field = (string) $attributes['Table0_Details5'];
+        $data->field_press_contact_organization = (string) $attributes['Table0_Details1'];
+        $data->field_personal_title = (string) $attributes['Table0_Details3'];
+        $data->field_press_contact_phone = (string) $attributes['Table0_Details6'];
+        $data->field_press_contact_location = (string) $attributes['a_osh_phaddress'];
+        $data->field_country_iso2 = (string) $attributes['a_osh_phcountryid'];
+        $data->field_zip_code = (string) $attributes['a_osh_phcp'];
+        $data->field_city = (string) $attributes['a_osh_phtown'];
+        $data->field_contact_type = 'Focal Point';
+        $id = $this->idFromName((string) $data->title);
+        self::$data[$id] = $data;
+      }
     }
   }
 

@@ -18,7 +18,7 @@ while getopts b:a: opt; do
 done
 
 # Sync from edw staging
-drush downsync_sql @osha.staging.sync @osha.local -y -v
+drush downsync_sql @osha.staging @osha.local -y -v
 
 if [ ! -z "$pre_update" ]; then
 echo "Run pre update"

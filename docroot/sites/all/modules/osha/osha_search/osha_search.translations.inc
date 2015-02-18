@@ -5,10 +5,10 @@ function osha_search_get_translatable_strings() {
     'Search',
     'No results',
     'Relevance',
-    'Site Search',
+    'Site search',
     'Publication date',
     'Language',
-    'OSHwiki Search',
+    'OSHwiki search',
     'Date',
     'Sort by',
     'Items per page',
@@ -20,5 +20,6 @@ function osha_search_get_translatable_strings() {
     'Asc',
     'Desc',
     'Order',
+    'Displaying @start - @end of @total',
   );
 }

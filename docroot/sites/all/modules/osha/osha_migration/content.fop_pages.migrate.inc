@@ -134,6 +134,12 @@ class MigrateOshaFOPPages extends OSHADynamicMigration {
 
     $entity->translations = $translation_handler->getTranslations();
 
+    $row_lang = array_keys($row->languages);
+    $extra_lang = array_diff($row_lang, $languages);
+    if (!empty($extra_lang)) {
+      $this->displayMessage($entity->title . ' has translation in inactive languages ' . implode(', ', $extra_lang), 'warning');
+    }
+
     foreach ($languages as $language) {
       $has_translation = FALSE;
       if (!empty($row->title_field[$language])) {
@@ -147,6 +153,26 @@ class MigrateOshaFOPPages extends OSHADynamicMigration {
       }
       if (!empty($row->text[$language])) {
         $entity->body[$language][0]['value'] = MigrationUtil::decodeHTMLText($row->text[$language]);
+        // Remove the link to old fop pages.
+        $doc = new DOMDocument();
+        $body_html = mb_convert_encoding($entity->body[$language][0]['value'], 'HTML-ENTITIES', "UTF-8");
+        $doc->loadHTML($body_html);
+        $links = $doc->getElementsByTagName('a');
+        $body_changed = FALSE;
+        if ($links->length > 0) {
+          // We assume that the links is the last.
+          $link = $doc->getElementsByTagName('a')->item($links->length - 1);
+          foreach ($link->attributes as $idx => $attr) {
+            if ($idx == 'href'
+              && strpos($attr->nodeValue, 'about/organisation/focal_points#')) {
+              $link->parentNode->removeChild($link);
+              $body_changed = TRUE;
+            }
+          }
+          if ($body_changed) {
+            $entity->body[$language][0]['value'] = $doc->saveHTML();
+          }
+        }
         $entity->body[$language][0]['format'] = 'full_html';
         $has_translation = TRUE;
       }
@@ -195,6 +221,10 @@ class MigrateOshaFOPPages extends OSHADynamicMigration {
           $entity->field_country[LANGUAGE_NONE][0] = array('tid' => $tid);
         }
       }
+      else {
+        $this->displayMessage('Focal Points Pages - No country assigned to '
+          . $row->title, 'warning');
+      }
 
       $voc = taxonomy_vocabulary_machine_name_load('fop_link_sections');
       $entity->field_fop_link;
@@ -234,7 +264,25 @@ class MigrateOshaFOPPages extends OSHADynamicMigration {
       if ($has_translation) {
         MigrationUtil::setTranslation($translation_handler, $entity, $row, $language);
       }
+      // Remove aliases already imported, let path auto handle aliases.
+      $path = path_load(array('alias' => $row->path));
+      if (!empty($path)) {
+        while ($path = path_load(array('alias' => $row->path))) {
+          path_delete($path);
+        }
+      }
+      $entity->language = 'en';
+      $entity->path['pathauto'] = TRUE;
+
+
     }
+
+  }
+
+  public function complete($entity, $row) {
+    // Create redirect for path; path auto generate handles the path.
+    MigrationUtil::createRedirects($entity, substr($row->path, 4), TRUE);
+    self::createRedirectsFromAliases($entity, $row);
   }
 
   /**
@@ -268,14 +316,14 @@ class MigrateOshaFOPPages extends OSHADynamicMigration {
     );
   }
 
-  public function rollback(array $key) {
+  public function rollback() {
     $idlist = $this->getOption('idlist');
     if ($idlist) {
       // Make the IDs keys, to more easily identify them
       $idlist = array_flip(explode(',', $idlist));
     }
     foreach ($this->map as $destination_key) {
-      if (($return = $this->checkStatus()) != MigrationBase::RESULT_COMPLETED) {
+      if ($this->checkStatus() != MigrationBase::RESULT_COMPLETED) {
         break;
       }
       if ($this->itemOptionExceeded()) {
@@ -300,8 +348,8 @@ class MigrateOshaFOPPages extends OSHADynamicMigration {
           if (!$skip) {
             foreach ($this->extractFCIds($destination_key->destid1) as $id) {
               $field_collection_item = field_collection_item_load($id);
-              if ($field_collection_item instanceof FieldCollectionItemEntity) {
-                $field_collection_item->delete();
+              if (!empty($field_collection_item)) {
+                field_collection_item_delete($id);
               }
             }
           }
@@ -365,6 +413,7 @@ class FOPPagesContentListCSV extends MigrateList {
         continue;
       }
       self::$data[$path]['id'] = $path;
+      self::$data[$path]['languages'][$language] = $language;
       // Assign the workflow state of the row from english entry.
       if ($language == 'en') {
         self::$data[$path]['workflow_state'] = $raw_data[$work_flow_key];

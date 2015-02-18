@@ -60,8 +60,8 @@ function osha_frontend_menu_link__menu_block($variables) {
   // Add homepage Icon.
   $element = $variables['element'];
   $attr = drupal_attributes($element['#attributes']);
-  if (isset($variables['element']['#title']) &&
-    $variables['element']['#title'] == 'Home' &&
+  if (isset($variables['element']['#href']) &&
+    $variables['element']['#href'] == '<front>' &&
     isset($element['#localized_options']['content']['image'])
   ) {
     $path = file_create_url($element['#localized_options']['content']['image']);
@@ -217,11 +217,9 @@ function fill_related_publications(&$vars) {
  */
 function osha_frontend_preprocess_node(&$vars) {
   $node = $vars['node'];
+  // $node is the published node, not the draft
   if ( isset($node->field_archived[LANGUAGE_NONE][0]['value']) && $node->field_archived[LANGUAGE_NONE][0]['value'] == 1 ) {
-    global $user;
-    if (in_array('administrator', $user->roles)) {
-      $vars['classes_array'][] = 'osha-archived-content-node';
-    }
+    $vars['classes_array'][] = 'osha-archived-content-node';
   }
 }
 
@@ -265,7 +263,13 @@ function osha_frontend_process_node(&$vars) {
  */
 function osha_frontend_preprocess_page(&$variables){
   $variables['blog'] = FALSE;
-  if(preg_match('/(.)*(blog)(.)*/', $_SERVER['REQUEST_URI'])){
+  $bundle = '';
+
+  if(isset($variables['page']['content']['system_main']['comment_form']['#bundle'])) {
+    $bundle = $variables['page']['content']['system_main']['comment_form']['#bundle'];
+  }
+
+  if(preg_match('/(.)*(blog)(.)*/', $_SERVER['REQUEST_URI']) || $bundle == 'comment_node_blog'){
     $variables['blog'] = TRUE;
   }
 }

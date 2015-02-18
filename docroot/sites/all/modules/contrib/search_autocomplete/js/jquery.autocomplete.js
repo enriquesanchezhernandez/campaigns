@@ -66,7 +66,7 @@
               }
               // Internal URL:
               else if (Drupal.settings.search_autocomplete[key].type == 'internal' || Drupal.settings.search_autocomplete[key].type == 'view') {
-                $.getJSON(Drupal.settings.search_autocomplete[key].datas + request.term, { }, function (results) {
+                $.getJSON(Drupal.settings.search_autocomplete[key].datas + encodeURI(request.term), { }, function (results) {
                   // Only return the number of values set in the settings.
                   if (!results.length && NoResultsLabel) {
                       results = [NoResultsLabel];

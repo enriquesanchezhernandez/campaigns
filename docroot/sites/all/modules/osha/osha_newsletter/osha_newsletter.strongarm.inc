@@ -85,7 +85,20 @@ function osha_newsletter_strongarm() {
   $strongarm->api_version = 1;
   $strongarm->name = 'field_bundle_settings_entity_collection__newsletter_content_collection';
   $strongarm->value = array(
-    'view_modes' => array(),
+    'view_modes' => array(
+      'block' => array(
+        'custom_settings' => FALSE,
+      ),
+      'full' => array(
+        'custom_settings' => FALSE,
+      ),
+      'diff_standard' => array(
+        'custom_settings' => FALSE,
+      ),
+      'token' => array(
+        'custom_settings' => FALSE,
+      ),
+    ),
     'extra_fields' => array(
       'form' => array(),
       'display' => array(),
@@ -249,6 +262,34 @@ function osha_newsletter_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'osha_newsletter_image_block_background_img';
+  $strongarm->value = '';
+  $export['osha_newsletter_image_block_background_img'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'osha_newsletter_image_block_subscribers_no';
+  $strongarm->value = '65.000';
+  $export['osha_newsletter_image_block_subscribers_no'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'osha_newsletter_image_block_text_end';
+  $strongarm->value = 'subscribers';
+  $export['osha_newsletter_image_block_text_end'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'osha_newsletter_image_block_text_start';
+  $strongarm->value = 'Join';
+  $export['osha_newsletter_image_block_text_start'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'osha_newsletter_listserv';
   $strongarm->value = 'listserv@list.osha.europa.eu';
   $export['osha_newsletter_listserv'] = $strongarm;
@@ -348,8 +389,22 @@ function osha_newsletter_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'subscribe_block_intro_text';
-  $strongarm->value = 'Once our monthly update on safety and health at work. <a href="@newsletter_page_url">See more info</a><br/><p style="color : #dc2f82;">Join 65.000 subscribers!</p>';
+  $strongarm->value = 'Once our monthly update on safety and health at work. <a href="@newsletter_page_url">See more info</a><br/>';
   $export['subscribe_block_intro_text'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'subscribe_block_intro_text_second_line_end';
+  $strongarm->value = 'subscribers';
+  $export['subscribe_block_intro_text_second_line_end'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'subscribe_block_intro_text_second_line_start';
+  $strongarm->value = 'Join';
+  $export['subscribe_block_intro_text_second_line_start'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
@@ -357,6 +412,13 @@ function osha_newsletter_strongarm() {
   $strongarm->name = 'subscribe_block_newsletter_page_url';
   $strongarm->value = 'oshmail-newsletter';
   $export['subscribe_block_newsletter_page_url'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'subscribe_block_subscribers_no';
+  $strongarm->value = '65.000';
+  $export['subscribe_block_subscribers_no'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */

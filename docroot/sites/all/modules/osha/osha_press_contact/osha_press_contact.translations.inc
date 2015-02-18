@@ -3,14 +3,14 @@
 function osha_press_contact_get_translatable_strings() {
   return array(
     'Email',
-    'Job Title',
+    'Job title',
     'Location',
     'Name',
     'Organization',
     'Phone',
     'Press contact',
-    'Press Contacts',
     'Press contacts',
-    '<a class="press-kit-link" href="/node/5428">EU-OSHA Press kit</a>'
+    '<a class="press-kit-link" href="/node/5428">EU-OSHA Press kit</a>',
+    'Focal points\' contact details',
   );
 }

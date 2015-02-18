@@ -15,6 +15,14 @@ function osha_menu() {
     'access arguments' => array('access user profiles'),
     'type' => MENU_CALLBACK,
   );
+
+//  $items['admin/config/regional/osha_language'] = array(
+//    'title' => 'EU-OSHA Languages',
+//    'page callback' => 'drupal_get_form',
+//    'page arguments' => array('osha_admin_languages_form'),
+//    'access arguments' => array('administer site configuration'),
+//    'type' => MENU_CALLBACK,
+//  );
   return $items;
 }
 
@@ -380,6 +388,48 @@ function osha_entity_info_alter(&$entity_info) {
   );
 }
 
+function osha_disabled_language_list() {
+  $disabled = array(
+    'ru',
+    'tr',
+    'sq',
+    'bs',
+    'sr',
+    'mk',
+    'sh',
+  );
+  return drupal_map_assoc($disabled);
+}
+
+function osha_langauge_list() {
+  $languages = language_list();
+  $disabled_lang = osha_disabled_language_list();
+  foreach ($languages as $lang => $language) {
+    if (in_array($lang, $disabled_lang)) {
+      unset($languages[$lang]);
+    }
+  }
+  return $languages;
+}
+
+function osha_langauge_list_options() {
+  $languages = osha_langauge_list();
+  $return = array();
+  foreach ($languages as $lang => $language) {
+    $return[$lang] = $language->name;
+  }
+  return $return;
+}
+
+//function osha_admin_languages_form($form, &$form_state) {
+//  $languages = language_list();
+//  module_load_include('inc', 'ctools', 'includes/language');
+//  $languages_options = array();
+//  foreach ($languages as $lang => $language) {
+//    $languages_options[$lang] = $language->name;
+//  }
+//}
+
 /**
  * Implements hook_form_alter().
  */
@@ -423,6 +473,10 @@ function osha_form_node_form_alter(&$form, &$form_state, $form_id) {
   if (isset($form_state['field']['field_character_count'])) {
     $form['field_character_count']['#access'] = FALSE;
   }
+  global $user;
+  if (!in_array('administrator', $user->roles)) {
+    $form['field_archived']['#access'] = FALSE;
+  }
 
   // Hide Delete button
   unset($form['actions']['delete']);
@@ -435,7 +489,8 @@ function osha_form_node_form_alter(&$form, &$form_state, $form_id) {
  */
 function osha_form_lang_dropdown_form_alter(&$form, &$form_state, $form_id){
   $options_lang = $form['lang_dropdown_select']['#options'];
-  $form['lang_dropdown_select']['#options'] = osha_sort_language_list($options_lang);
+  $form['lang_dropdown_select']['#options'] = array_intersect_key(
+    osha_sort_language_list($options_lang), osha_langauge_list_options());
 }
 
 /**
@@ -496,6 +551,13 @@ function osha_node_view($node, $view_mode, $langcode) {
         $node->article_type_code = $term->field_article_type_code[LANGUAGE_NONE][0]['value'];
       }
     }
+  if ($view_mode != 'full') {
+    if (!empty($node->field_archived[LANGUAGE_NONE][0]['value'])) {
+      if (!empty($node->content['title_field'][0]['#markup'])) {
+        $node->content['title_field'][0]['#markup'] .= '<span class="title-archived">' . t('Archived') . '</span>';
+      }
+    }
+  }
 }
 
 /**
@@ -508,7 +570,7 @@ function osha_file_view($file, $view_mode, $langcode) {
     if ($view_mode == 'full') {
       $headers = array(
         'Content-Type'              => $file->filemime,
-        'Content-Disposition'       => 'filename="' . $file->filename . '"',
+        'Content-Disposition'       => 'filename="' . drupal_basename($file->uri) . '"',
         'Content-Length'            => $file->filesize,
         'Content-Transfer-Encoding' => 'binary',
         'Pragma'                    => 'no-cache',
@@ -532,7 +594,9 @@ function osha_url_inbound_alter(&$path, $original_path, $path_language) {
   if (empty($orig_path_source) && empty($orig_path_alias)) {
     $source_en = drupal_lookup_path('source', $original_path, 'en');
     if (!empty($source_en)) {
-      drupal_goto($source_en, array(), 301);
+      // Pass the current query params to the redirect.
+      $query = drupal_get_query_parameters();
+      drupal_goto($source_en, array('query' => $query), 301);
     }
   }
   // For images, in migrated content there are images with alias appended

@@ -281,7 +281,7 @@ function osha_seminar_field_default_field_instances() {
     ),
     'entity_type' => 'node',
     'field_name' => 'field_expiration_date',
-    'label' => 'Expiration Date',
+    'label' => 'Expiration date',
     'required' => 0,
     'settings' => array(
       'default_value' => 'blank',
@@ -429,7 +429,7 @@ function osha_seminar_field_default_field_instances() {
     ),
     'entity_type' => 'node',
     'field_name' => 'field_publication_date',
-    'label' => 'Publication Date',
+    'label' => 'Publication date',
     'required' => 0,
     'settings' => array(
       'default_value' => 'now',
@@ -756,7 +756,7 @@ function osha_seminar_field_default_field_instances() {
           'osha_date_theme' => '',
         ),
         'type' => 'date_default',
-        'weight' => 1,
+        'weight' => 0,
       ),
     ),
     'entity_type' => 'node',
@@ -998,7 +998,7 @@ function osha_seminar_field_default_field_instances() {
           'title_style' => 'h1',
         ),
         'type' => 'title_linked',
-        'weight' => 0,
+        'weight' => 1,
       ),
     ),
     'entity_type' => 'node',
@@ -1038,10 +1038,10 @@ function osha_seminar_field_default_field_instances() {
   t('Body');
   t('Character count');
   t('End date');
-  t('Expiration Date');
+  t('Expiration date');
   t('Location');
   t('Page count');
-  t('Publication Date');
+  t('Publication date');
   t('Related resources');
   t('Start date');
   t('Tags');

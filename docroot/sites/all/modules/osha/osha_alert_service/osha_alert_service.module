@@ -245,7 +245,7 @@ function osha_alert_block_front_view() {
   $form['block'] = array(
     '#type' => 'item',
     '#markup' => t(
-      '<div class="link"><span>Interested in specific topics?</span><a href="!url">Try Alert Service</a></div>',
+      '<div class="link"><span>Interested in specific topics?</span><a href="!url">Try alert service</a></div>',
       array('!url' => $url)),
   );
   // These variables are defined in osha_newsletter.module
@@ -267,7 +267,7 @@ function osha_alert_service_mail($key, &$message, $params) {
   $body = '';
   switch ($key) {
     case 'subscribe':
-      $message['subject'] = variable_get('osha_alert_service_subscribe_subject', 'Your subscription to OSHA Alert Service');
+      $message['subject'] = variable_get('osha_alert_service_subscribe_subject', 'Your subscription to EU-OSHA alert service');
       $body = variable_get('osha_alert_service_subscribe_body',
 <<<EOT
 <p>EU-OSHA received a request to start sending alerts to <strong>[osha_alert_service:email]</strong>.</p>
@@ -281,7 +281,7 @@ function osha_alert_service_mail($key, &$message, $params) {
 <p>If you did not initiate this request or believe it was sent in error you can safely ignore this message.</p>
 
 <p>Thanks,</p>
-<p><strong>The EU-OSHA Alerts Team</strong></p>
+<p><strong>The EU-OSHA alerts Team</strong></p>
 EOT
       );
       break;
@@ -297,8 +297,8 @@ EOT;
       break;
 
     case 'alert':
-      $message['subject'] = variable_get('osha_alert_service_alert_subject', 'EU-OSHA Alert');
-      $body = variable_get('osha_alert_service_alert_body', 'EU-OSHA Alert');
+      $message['subject'] = variable_get('osha_alert_service_alert_subject', 'EU-OSHA alert');
+      $body = variable_get('osha_alert_service_alert_body', 'EU-OSHA alert');
       break;
   }
   $message['subject'] = token_replace($message['subject'], $params);

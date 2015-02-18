@@ -77,7 +77,7 @@ function osha_menu_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'menu_block_2_depth';
-  $strongarm->value = '3';
+  $strongarm->value = '4';
   $export['menu_block_2_depth'] = $strongarm;
 
   $strongarm = new stdClass();

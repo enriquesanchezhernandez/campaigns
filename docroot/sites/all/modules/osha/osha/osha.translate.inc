@@ -6,18 +6,18 @@ function osha_get_translatable_strings() {
     'Section',
     'Article',
     'Activity',
-    'Additional Resources',
-    'Alt Text',
+    'Additional resources',
+    'Alt text',
     'Archived',
     'Article type',
     'Body',
     'Character count',
     'Description',
-    'Expiration Date',
+    'Expiration date',
     'Image',
     'Language',
     'Nace',
-    'OSHwiki Category',
+    'OSHwiki category',
     'OSHwiki featured articles',
     'Page count',
     'Publication date',
@@ -25,23 +25,23 @@ function osha_get_translatable_strings() {
     'Tags',
     'Thesaurus',
     'Title',
-    'Title Text',
+    'Title text',
 
     // Strings form header
     'News & Events',
     'Press',
-    'Contact Us',
+    'Contact us',
 
     // String from footer
-    '&copy; 2015 EU-OSHA | an agency of the European Union',
+    'an agency of the European Union',
     'Legal notice',
-    'Site Map',
+    'Site map',
 
     // Content from osha_blocks
     '<div><a class="seminar_back-to-seminars back-to-link" href="/tools-and-publications/seminars">Back to seminars</a></div>',
-    '<div class="link"><span>Interested in specific topics?</span><a href="!url">Try Alert Service</a></div>',
-    'OSHwiki Featured Articles',
-    'OSHA archived content',
+    '<div class="link"><span>Interested in specific topics?</span><a href="!url">Try alert service</a></div>',
+    'OSHwiki featured articles',
+    'We are no longer actively maintaining this information, so don\'t be surprised if you find some broken links or if some of the information is out of date.',
 
     // Core strings
     'Unable to send e-mail. Contact the site administrator if the problem persists.',
@@ -69,11 +69,11 @@ function osha_get_translatable_strings() {
     // Other strings
     'Share this on:',
     'Share',
-    'Recent Tweets',
+    'Recent tweets',
     'Clear filter',
     '- Any -',
     'More',
     'Press contacts',
-    'EU-OSHA in the media'
+    'EU-OSHA in the media',
   );
 }

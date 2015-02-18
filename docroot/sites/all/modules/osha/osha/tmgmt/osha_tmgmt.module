@@ -311,6 +311,10 @@ function osha_tmgmt_theme() {
       'render element' => 'element',
       'file' => 'osha_tmgmt.workflow.inc',
     ),
+    'osha_tmgmt_ui_translation_language_status_single' => array(
+      'file' => 'sources/i18n_string/tmgmt_i18n_string.ui.inc',
+      'variables' => array('translation_status' => NULL, 'job_item' => NULL),
+    )
   );
 }
 
@@ -352,7 +356,9 @@ function osha_tmgmt_tmgmt_translator_plugin_info_alter(&$info) {
  */
 function osha_tmgmt_tmgmt_source_plugin_info_alter(&$info) {
   $info['entity']['plugin controller class'] = 'OSHATMGMTEntitySourcePluginController';
+  $info['entity']['ui controller class'] = 'OSHATMGMTEntitySourceUIController';
   $info['i18n_string']['plugin controller class'] = 'OSHATMGMTI18nStringSourcePluginController';
+  $info['i18n_string']['ui controller class'] = 'OSHATMGMTI18nStringDefaultSourceUIController';
   $info['locale']['plugin controller class'] = 'OSHATMGMTLocaleSourcePluginController';
   $info['locale']['ui controller class'] = 'OSHATMGMTLocaleSourceUIController';
 }
@@ -496,6 +502,68 @@ function osha_tmgmt_preprocess_page(&$variables) {
     if (isset($variables['page']['help']['system_help']['#markup'])) {
       $variables['page']['help']['system_help']['#markup'] = '';
     };
+  }
+
+  $l_home = l(t('Home'), '<front>');
+  $l_admin = l(t('Administration'), 'admin');
+  $l_translation = l(t('Translation'), 'admin/tmgmt');
+  if (strpos($_GET['q'], 'admin/tmgmt/jobs/') === 0) {
+    $crumbs = array();
+    $crumbs[] = $l_home;
+    $crumbs[] = $l_admin;
+    $crumbs[] = $l_translation;
+    $crumbs[] = l(t('Jobs'), 'admin/tmgmt/jobs');
+    drupal_set_breadcrumb($crumbs);
+    return;
+  }
+  if (strpos($_GET['q'], 'admin/tmgmt/items/') === 0) {
+    $crumbs = array();
+    $crumbs[] = $l_home;
+    $crumbs[] = $l_admin;
+    $crumbs[] = $l_translation;
+    $crumbs[] = l(t('Jobs'), 'admin/tmgmt/jobs');
+    if (!empty($variables['page']['content']['system_main']['tmgmt_job_item'])) {
+      $job_item = current($variables['page']['content']['system_main']['tmgmt_job_item']);
+      $crumbs[] = $job_item['info']['job']['#markup'];
+    }
+    drupal_set_breadcrumb($crumbs);
+    return;
+  }
+  if (strpos($_GET['q'], 'admin/tmgmt/sources') === 0) {
+    $crumbs = array();
+    $crumbs[] = $l_home;
+    $crumbs[] = $l_admin;
+    $crumbs[] = $l_translation;
+    $crumbs[] = t('Sources');
+    drupal_set_breadcrumb($crumbs);
+    return;
+  }
+  if (strpos($_GET['q'], 'admin/tmgmt/cart') === 0) {
+    $crumbs = array();
+    $crumbs[] = $l_home;
+    $crumbs[] = $l_admin;
+    $crumbs[] = $l_translation;
+    $crumbs[] = t('Cart');
+    drupal_set_breadcrumb($crumbs);
+    return;
+  }
+  if (strpos($_GET['q'], 'admin/tmgmt/content-validators') === 0) {
+    $crumbs = array();
+    $crumbs[] = $l_home;
+    $crumbs[] = $l_admin;
+    $crumbs[] = $l_translation;
+    $crumbs[] = t('Content validators');
+    drupal_set_breadcrumb($crumbs);
+    return;
+  }
+  if (strpos($_GET['q'], 'admin/tmgmt') === 0) {
+    $crumbs = array();
+    $crumbs[] = $l_home;
+    $crumbs[] = $l_admin;
+    $crumbs[] = $l_translation;
+    $crumbs[] = t('Jobs');
+    drupal_set_breadcrumb($crumbs);
+    return;
   }
 }
 
@@ -722,9 +790,9 @@ function osha_tmgmt_form_alter(&$form, &$form_state, $form_id) {
         OshaTMGMTStatistics::computeJobItemStatistics($item);
         // remove original language from list of languages
         unset($form['target_language']['#options'][$item->getSourceLangCode()]);
-        // remove Turkish and Russian
-        unset($form['target_language']['#options']['tr']);
-        unset($form['target_language']['#options']['ru']);
+        // Remove disabled languages.
+        $form['target_language']['#options'] = array_diff_key(
+          $form['target_language']['#options'], osha_disabled_language_list());
         if ($item->plugin == 'entity' && $item->item_type == 'node') {
           // check if retranslation is possible
           $node = (object)array('nid' => $item->item_id);
@@ -858,6 +926,23 @@ function osha_tmgmt_form_alter(&$form, &$form_state, $form_id) {
       break;
 
     case 'tmgmt_ui_i18n_string_translation_review_form':
+      $job_item = $form_state['item'];
+      $form['info']['source_type'] = array(
+        '#type' => 'item',
+        '#prefix' => '<div class="tmgmt-ui-source-type tmgmt-ui-info-item">',
+        '#suffix' => '</div>',
+        '#title' => t('Source language'),
+        '#markup' => locale_language_name($job_item->source_language),
+        '#weight' => 10,
+      );
+      $form['info']['target'] = array(
+        '#type' => 'item',
+        '#prefix' => '<div class="tmgmt-ui-source-type tmgmt-ui-info-item">',
+        '#suffix' => '</div>',
+        '#title' => t('Target language'),
+        '#markup' => locale_language_name($job_item->target_language),
+        '#weight' => 11,
+      );
       foreach (element_children($form['review']) as $field_name) {
         $form['review'][$field_name]['#theme'] = 'osha_tmgmt_ui_translator_review_form';
       }
@@ -870,7 +955,7 @@ function osha_tmgmt_form_alter(&$form, &$form_state, $form_id) {
       }
       $form['actions']['accept']['#value'] = 'Publish';
       global $user;
-      $job_item = $form_state['item'];
+
       $form['actions']['accept']['#access'] =
         $job_item->state != TMGMT_JOB_ITEM_STATE_ABORTED
         && $job_item->state != TMGMT_JOB_ITEM_STATE_ACCEPTED
@@ -1009,6 +1094,22 @@ function osha_tmgmt_retranslate_validate_ui($form, &$form_state) {
  */
 function osha_tmgmt_form_tmgmt_ui_entity_translation_review_form_alter(&$form, &$form_state) {
   $job_item = $form_state['item'];
+  $form['info']['source_type'] = array(
+    '#type' => 'item',
+    '#prefix' => '<div class="tmgmt-ui-source-type tmgmt-ui-info-item">',
+    '#suffix' => '</div>',
+    '#title' => t('Source language'),
+    '#markup' => locale_language_name($job_item->source_language),
+    '#weight' => 10,
+  );
+  $form['info']['target'] = array(
+    '#type' => 'item',
+    '#prefix' => '<div class="tmgmt-ui-source-type tmgmt-ui-info-item">',
+    '#suffix' => '</div>',
+    '#title' => t('Target language'),
+    '#markup' => locale_language_name($job_item->target_language),
+    '#weight' => 11,
+  );
   if ($job_item->item_type != 'node') {
     return;
   }
@@ -1280,11 +1381,11 @@ function osha_tmgmt_form_tmgmt_job_form_alter(&$form, &$form_state) {
     '#weight' => 1,
     '#attributes' => array('class' => array('container-inline')),
   );
-
-  $untranslated = drupal_map_assoc(osha_tmgmt_get_translation_languages_options($target_languages));
+  $untranslated = osha_tmgmt_get_translation_languages_options($target_languages);
+  unset($untranslated[$job->source_language]);
   $form['language_info']['target_languages_not'] = array(
     '#type' => 'checkboxes',
-    '#options' => $untranslated,
+    '#options' => drupal_map_assoc($untranslated),
     '#disabled' => TRUE,
     '#weight' => 2,
     '#attributes' => array('class' => array('container-inline')),
@@ -2251,8 +2352,7 @@ class OshaTMGMTStatistics {
  */
 function osha_tmgmt_get_translation_languages_options($filter = array()) {
   $languages = tmgmt_available_languages();
-  unset($languages['ru']);
-  unset($languages['tr']);
+  $languages = array_intersect_key($languages, osha_langauge_list_options());
   return array_diff($languages, $filter);
 }
 
@@ -2330,4 +2430,41 @@ function osha_tmgmt_locale_add_translation($string, $language, $translation) {
       i18n_string_locale_translate_edit_form_submit(array(), $form_state);
     }
   }
+}
+
+function osha_tmgmt_form_i18n_string_translate_page_overview_form_alter(&$form, &$form_state) {
+  $object = $form['object']['#value'];
+
+  // Create the id: textgroup:type:objectid.
+  $id = $object->get_textgroup() . ':' . implode(':', $object->get_string_context());
+  $source_language = variable_get_value('i18n_string_source_language');
+  $existing_items = osha_tmgmt_job_item_load_latest('i18n_string', $object->get_type(), $id, $source_language);
+  foreach ($form['languages']['#options'] as $key => &$row) {
+    $lang = substr($key, strrpos($key, ':') + 1);
+    if (isset($existing_items[$lang])) {
+      $states = osha_tmgmt_get_job_item_states();
+      $row['status'] = $states[$existing_items[$lang]->state];
+    }
+    $row['operations'] = l(t('translate'), $object->get_translate_path($lang), array('query' => drupal_get_destination()));
+    if (isset($existing_items[$lang])) {
+      if ($existing_items[$lang]->isNeedsReview()) {
+        $row['operations'] = ' | ' . l(t('review'), 'admin/tmgmt/items/' . $existing_items[$lang]->tjiid, array('query' => array('destination' => $_GET['q'])));
+      } elseif ($existing_items[$lang]->isActive()) {
+        $row['operations'] .= ' | ' . l(t('in progress'), 'admin/tmgmt/items/' . $existing_items[$lang]->tjiid, array('query' => array('destination' => $_GET['q'])));
+      }
+    }
+    if ($lang == $source_language || isset($existing_items[$lang])) {
+      $form['languages'][$id . ':' . $lang] = array(
+        '#type' => 'checkbox',
+        '#disabled' => TRUE,
+      );
+    }
+  }
+
+  $form['actions']['request_translation'] = array(
+    '#type' => 'submit',
+    '#value' => t('Request translation'),
+    '#submit' => array('tmgmt_i18n_string_translate_form_submit'),
+    '#validate' => array('tmgmt_i18n_string_translate_form_validate'),
+  );
 }

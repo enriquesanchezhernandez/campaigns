@@ -5,9 +5,11 @@ function osha_events_get_translatable_strings() {
     'Events',
     'Name',
     'Published',
+    'From date',
+    'To date',
     'End date',
-    'LOCATION',
-    'ORGANIZATION',
+    'Location',
+    'Organization',
     '[field_start_date_1] - Events',
     'Apply',
     'Reset',
@@ -18,7 +20,6 @@ function osha_events_get_translatable_strings() {
     '- All -',
     'author',
     'For the web',
-    'Organization',
     'Country code',
     'City',
     'Start date',
@@ -46,7 +47,9 @@ function osha_events_get_translatable_strings() {
     'Upcoming events',
     'View all',
     'Description',
-    'Event Details',
+    'Event details',
     'Links',
+    'Back to events',
+    'OSH events'
   );
 }

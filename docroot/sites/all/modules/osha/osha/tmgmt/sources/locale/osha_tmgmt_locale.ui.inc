@@ -183,4 +183,34 @@ class OSHATMGMTLocaleSourceUIController extends TMGMTLocaleSourceUIController {
 
     return $form;
   }
+
+  /**
+   * Builds a table row for overview form.
+   *
+   * @param string $type
+   *   i18n type.
+   * @param array $data
+   *   Data needed to build the list row.
+   *
+   * @return array
+   */
+  public function overviewRow($type, $data) {
+    // Set the default item key, assume it's the first.
+    $source = $data['object'];
+
+    $row = array(
+      'id' => $data['id'],
+      'source' => check_plain($source->source),
+    );
+
+    foreach (language_list() as $langcode => $language) {
+      $langcode = str_replace('-', '', $langcode);
+      $row['langcode-' . $langcode] = theme('osha_tmgmt_ui_translation_language_status_single', array(
+        'translation_status' => $data['translation_statuses'][$langcode],
+        'job_item' => isset($data['current_job_items'][$langcode]) ? $data['current_job_items'][$langcode] : NULL,
+      ));
+    }
+
+    return $row;
+  }
 }

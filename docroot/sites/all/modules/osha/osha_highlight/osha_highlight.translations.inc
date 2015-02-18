@@ -3,15 +3,15 @@
 function osha_highlight_get_translatable_strings() {
   return array(
     'Highlight',
-    'OSHA news',
+    'EU-OSHA news',
     'Publication date',
     'Highlights',
-    'Expiration Date',
+    'Expiration date',
     'Activity',
-    'Additional Resources',
+    'Additional resources',
     'View all',
     'See more',
-    'Back to Highlights',
+    'Back to highlights',
     'Show details',
   );
 }

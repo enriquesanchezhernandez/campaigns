@@ -24,17 +24,14 @@ function osha_contact_form_contact_site_form_alter(&$form, &$form_state){
   );
 
   $form['contact_topic'] = array(
-    '#type' => 'select',
+    '#type' => 'textfield',
     '#title' => t('Topic'),
-    '#options' => osha_contact_get_taxonomy_term_options('contact_topic'),
-    '#empty_option' => t('Please select one'),
-    '#empty_value' => 0,
+    '#maxlength' => 76,
     '#required' => TRUE,
   );
 
   $form['country'] = array(
     '#type' => 'textfield',
-    '#rows' => '10',
     '#maxlength' => 255,
     '#title' => t('Country'),
   );
@@ -98,7 +95,7 @@ function contact_form_send($form, &$form_state){
   in each case. However, we read all your comments, and we use your feedback to improve our websites and services.
   <br /><br />
   You can stay up to date with new developments to our website by visiting our
-  “<a href="@link1">What’s New</a>” pages
+  “<a href="@link1">What’s new</a>” pages
   and subscribing to our electronic newsletter
   <a href="@link2">OSHmail</a>.',
     array(
@@ -118,9 +115,8 @@ function osha_contact_mail_alter(&$message) {
     //$sender = entity_load_single('taxonomy_term', $message['params']['contact_type_of_sender']);
     //$topic = entity_load_single('taxonomy_term', $message['params']['contact_topic']);
     $sender = taxonomy_term_load($message['params']['contact_type_of_sender']);
-    $topic = taxonomy_term_load($message['params']['contact_topic']);
     //message subject
-    $message['subject'] = $topic->name;
+    $message['subject'] = $message['params']['contact_topic'];
     //message from
     $from = $message['params']['category']['from_email'];
     $message['from'] = $from;
@@ -140,7 +136,7 @@ function osha_contact_mail_alter(&$message) {
       ),
       array(
         $sender->name,
-        $topic->name,
+        $message['params']['contact_topic'],
         $message['params']['name'],
         $message['params']['mail'],
         $message['params']['country'],
