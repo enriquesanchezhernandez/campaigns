@@ -18,8 +18,8 @@ function osha_alert_service_strongarm() {
 <p></p>
 <p>This is the content for the alert that you\'ve created:</p>
 [osha_alert_service:alert_content]
-<p><a href="[osha_alert_service:privacy_policy_url]">Privacy Policy</a></p>
-<p  style="color:#A9A9A9; font-size:13px;">You can read our here our <strong><a href="[osha_alert_service:privacy_policy_url]"><span style="color:#A9A9A9">Privacy Policy</span></a>.</p>
+<p><a href="[osha_alert_service:privacy_policy_url]">Privacy notice</a></p>
+<p  style="color:#A9A9A9; font-size:13px;">You can read our here our <strong><a href="[osha_alert_service:privacy_policy_url]"><span style="color:#A9A9A9">Privacy notice</span></a>.</p>
 <p><span style="font-size:11px"><span style="color:#A9A9A9">If you don&#39;t want to receive this alert, you can&nbsp;</span><strong><a href="[osha_alert_service:unsubscribe_link]"><span style="color:#A9A9A9">usubscribe</span></a><span style="color:#A9A9A9">.</span></strong></span></p>';
   $export['osha_alert_service_alert_body'] = $strongarm;
 
@@ -54,7 +54,7 @@ function osha_alert_service_strongarm() {
 <p>Thanks,</p>
 <p><strong>The EU-OSHA alerts Team</strong></p>
 <p></p>
-<p  style="color:#A9A9A9; font-size:13px;">You can read our here our <strong><a href="[osha_alert_service:privacy_policy_url]"><span style="color:#A9A9A9">Privacy Policy</span></a>.</p>';
+<p  style="color:#A9A9A9; font-size:13px;">You can read our here our <strong><a href="[osha_alert_service:privacy_policy_url]"><span style="color:#A9A9A9">Privacy notice</span></a>.</p>';
   $export['osha_alert_service_subscribe_body'] = $strongarm;
 
   $strongarm = new stdClass();

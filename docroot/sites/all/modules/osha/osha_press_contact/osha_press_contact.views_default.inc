@@ -22,7 +22,7 @@ function osha_press_contact_views_default_views() {
 
   /* Display: Master */
   $handler = $view->new_display('default', 'Master', 'default');
-  $handler->display->display_options['title'] = 'FOP Contacts';
+  $handler->display->display_options['title'] = 'Focal points\' contact details';
   $handler->display->display_options['use_more_always'] = FALSE;
   $handler->display->display_options['access']['type'] = 'perm';
   $handler->display->display_options['cache']['type'] = 'none';
@@ -50,17 +50,35 @@ function osha_press_contact_views_default_views() {
   $handler->display->display_options['fields']['field_press_contact_organization']['field'] = 'field_press_contact_organization';
   $handler->display->display_options['fields']['field_press_contact_organization']['label'] = '';
   $handler->display->display_options['fields']['field_press_contact_organization']['element_label_colon'] = FALSE;
+  /* Field: Content: Job title */
+  $handler->display->display_options['fields']['field_press_contact_job_title']['id'] = 'field_press_contact_job_title';
+  $handler->display->display_options['fields']['field_press_contact_job_title']['table'] = 'field_data_field_press_contact_job_title';
+  $handler->display->display_options['fields']['field_press_contact_job_title']['field'] = 'field_press_contact_job_title';
+  $handler->display->display_options['fields']['field_press_contact_job_title']['label'] = '';
+  $handler->display->display_options['fields']['field_press_contact_job_title']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_press_contact_job_title']['hide_empty'] = TRUE;
   /* Field: Content: Location */
   $handler->display->display_options['fields']['field_press_contact_location']['id'] = 'field_press_contact_location';
   $handler->display->display_options['fields']['field_press_contact_location']['table'] = 'field_data_field_press_contact_location';
   $handler->display->display_options['fields']['field_press_contact_location']['field'] = 'field_press_contact_location';
   $handler->display->display_options['fields']['field_press_contact_location']['label'] = '';
   $handler->display->display_options['fields']['field_press_contact_location']['element_label_colon'] = FALSE;
+  /* Field: Content: Zip Code */
+  $handler->display->display_options['fields']['field_zip_code']['id'] = 'field_zip_code';
+  $handler->display->display_options['fields']['field_zip_code']['table'] = 'field_data_field_zip_code';
+  $handler->display->display_options['fields']['field_zip_code']['field'] = 'field_zip_code';
+  $handler->display->display_options['fields']['field_zip_code']['label'] = '';
+  $handler->display->display_options['fields']['field_zip_code']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['field_zip_code']['alter']['alter_text'] = TRUE;
+  $handler->display->display_options['fields']['field_zip_code']['alter']['text'] = '[field_zip_code] ';
+  $handler->display->display_options['fields']['field_zip_code']['element_label_colon'] = FALSE;
   /* Field: Content: City */
   $handler->display->display_options['fields']['field_city']['id'] = 'field_city';
   $handler->display->display_options['fields']['field_city']['table'] = 'field_data_field_city';
   $handler->display->display_options['fields']['field_city']['field'] = 'field_city';
   $handler->display->display_options['fields']['field_city']['label'] = '';
+  $handler->display->display_options['fields']['field_city']['alter']['alter_text'] = TRUE;
+  $handler->display->display_options['fields']['field_city']['alter']['text'] = '[field_zip_code][field_city]';
   $handler->display->display_options['fields']['field_city']['element_label_colon'] = FALSE;
   /* Field: Content: Country */
   $handler->display->display_options['fields']['field_country']['id'] = 'field_country';
@@ -80,22 +98,39 @@ function osha_press_contact_views_default_views() {
   $handler->display->display_options['fields']['title_field']['id'] = 'title_field';
   $handler->display->display_options['fields']['title_field']['table'] = 'field_data_title_field';
   $handler->display->display_options['fields']['title_field']['field'] = 'title_field';
-  $handler->display->display_options['fields']['title_field']['label'] = '';
+  $handler->display->display_options['fields']['title_field']['label'] = 'Contact person';
   $handler->display->display_options['fields']['title_field']['alter']['alter_text'] = TRUE;
   $handler->display->display_options['fields']['title_field']['alter']['text'] = '[field_personal_title] [title_field]';
-  $handler->display->display_options['fields']['title_field']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['title_field']['element_type'] = 'strong';
+  $handler->display->display_options['fields']['title_field']['element_label_type'] = 'div';
   $handler->display->display_options['fields']['title_field']['link_to_entity'] = 0;
-  /* Field: Content: Job title */
-  $handler->display->display_options['fields']['field_press_contact_job_title']['id'] = 'field_press_contact_job_title';
-  $handler->display->display_options['fields']['field_press_contact_job_title']['table'] = 'field_data_field_press_contact_job_title';
-  $handler->display->display_options['fields']['field_press_contact_job_title']['field'] = 'field_press_contact_job_title';
-  $handler->display->display_options['fields']['field_press_contact_job_title']['label'] = '';
-  $handler->display->display_options['fields']['field_press_contact_job_title']['element_label_colon'] = FALSE;
-  /* Sort criterion: Content: Post date */
-  $handler->display->display_options['sorts']['created']['id'] = 'created';
-  $handler->display->display_options['sorts']['created']['table'] = 'node';
-  $handler->display->display_options['sorts']['created']['field'] = 'created';
-  $handler->display->display_options['sorts']['created']['order'] = 'DESC';
+  /* Field: Content: Phone */
+  $handler->display->display_options['fields']['field_press_contact_phone']['id'] = 'field_press_contact_phone';
+  $handler->display->display_options['fields']['field_press_contact_phone']['table'] = 'field_data_field_press_contact_phone';
+  $handler->display->display_options['fields']['field_press_contact_phone']['field'] = 'field_press_contact_phone';
+  $handler->display->display_options['fields']['field_press_contact_phone']['label'] = 'Tel';
+  $handler->display->display_options['fields']['field_press_contact_phone']['element_type'] = 'span';
+  $handler->display->display_options['fields']['field_press_contact_phone']['element_label_type'] = 'span';
+  $handler->display->display_options['fields']['field_press_contact_phone']['hide_empty'] = TRUE;
+  $handler->display->display_options['fields']['field_press_contact_phone']['delta_offset'] = '0';
+  /* Field: Content: Email */
+  $handler->display->display_options['fields']['field_press_contact_email']['id'] = 'field_press_contact_email';
+  $handler->display->display_options['fields']['field_press_contact_email']['table'] = 'field_data_field_press_contact_email';
+  $handler->display->display_options['fields']['field_press_contact_email']['field'] = 'field_press_contact_email';
+  $handler->display->display_options['fields']['field_press_contact_email']['element_type'] = 'span';
+  $handler->display->display_options['fields']['field_press_contact_email']['element_label_type'] = 'span';
+  $handler->display->display_options['fields']['field_press_contact_email']['hide_empty'] = TRUE;
+  $handler->display->display_options['fields']['field_press_contact_email']['type'] = 'email_spamspan';
+  /* Field: Content: Web Site */
+  $handler->display->display_options['fields']['field_website']['id'] = 'field_website';
+  $handler->display->display_options['fields']['field_website']['table'] = 'field_data_field_website';
+  $handler->display->display_options['fields']['field_website']['field'] = 'field_website';
+  $handler->display->display_options['fields']['field_website']['label'] = 'Web';
+  $handler->display->display_options['fields']['field_website']['element_type'] = 'span';
+  $handler->display->display_options['fields']['field_website']['element_label_type'] = 'span';
+  $handler->display->display_options['fields']['field_website']['hide_empty'] = TRUE;
+  $handler->display->display_options['fields']['field_website']['click_sort_column'] = 'url';
+  $handler->display->display_options['fields']['field_website']['type'] = 'link_url';
   /* Contextual filter: Content: Country (field_country) */
   $handler->display->display_options['arguments']['field_country_tid']['id'] = 'field_country_tid';
   $handler->display->display_options['arguments']['field_country_tid']['table'] = 'field_data_field_country';
@@ -141,7 +176,7 @@ function osha_press_contact_views_default_views() {
   $handler = $view->new_display('block', 'Block', 'block');
   $translatables['fop_contacts'] = array(
     t('Master'),
-    t('FOP Contacts'),
+    t('Focal points\' contact details'),
     t('more'),
     t('Apply'),
     t('Reset'),
@@ -150,7 +185,13 @@ function osha_press_contact_views_default_views() {
     t('Desc'),
     t('term from field_country'),
     t('field_country'),
+    t('[field_zip_code] '),
+    t('[field_zip_code][field_city]'),
+    t('Contact person'),
     t('[field_personal_title] [title_field]'),
+    t('Tel'),
+    t('Email'),
+    t('Web'),
     t('All'),
     t('Block'),
   );

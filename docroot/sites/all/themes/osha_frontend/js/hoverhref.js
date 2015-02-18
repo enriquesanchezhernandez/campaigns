@@ -3,7 +3,7 @@ jQuery(document).ready(function () {
 	zoomMedium();
 	hoverSlideHome();
 	displayCaptcha();
-	displayMenuThirdLevel();
+	
 });
 
 

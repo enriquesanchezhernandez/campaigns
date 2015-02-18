@@ -183,12 +183,16 @@ class MigrateOshaBlog extends OSHADynamicMigration {
         $has_translation = TRUE;
       }
       if (!empty($row->description[$language])) {
-        $entity->field_summary[$language][0]['value'] = MigrationUtil::decodeHTMLText($row->description[$language]);
+        $row->description[$language] = MigrationUtil::decodeHTMLText($row->description[$language]);
+        $row->description[$language] = MigrationUtil::formatBody($row->description[$language]);
+        $entity->field_summary[$language][0]['value'] = $row->description[$language];
         $entity->field_summary[$language][0]['format'] = 'full_html';
         $has_translation = TRUE;
       }
       if (!empty($row->text[$language])) {
-        $entity->body[$language][0]['value'] = MigrationUtil::decodeHTMLText($row->text[$language]);
+        $row->text[$language] = MigrationUtil::decodeHTMLText($row->text[$language]);
+        $row->text[$language] = MigrationUtil::formatBody($row->text[$language]);
+        $entity->body[$language][0]['value'] = $row->text[$language];
         $entity->body[$language][0]['format'] = 'full_html';
         $has_translation = TRUE;
       }

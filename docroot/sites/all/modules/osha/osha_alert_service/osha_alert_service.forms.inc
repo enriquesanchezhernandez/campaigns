@@ -23,7 +23,8 @@ function osha_alert_service_subscribe_form() {
   if ($voc = taxonomy_vocabulary_machine_name_load('tags')) {
     $terms = taxonomy_get_tree($voc->vid);
     foreach ($terms as $tid => $term) {
-      $sections[$term->tid] = $term->name;
+      $w = entity_metadata_wrapper('taxonomy_term', $tid);
+      $sections[$term->tid] = $w->label();
     }
   }
   if (empty($sections)) {

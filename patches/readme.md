@@ -16,6 +16,9 @@ List of patches (most recent first)
   * https://www.drupal.org/files/issues/1436260-workbench_moderation-states-node_save-74.patch
   * https://www.drupal.org/node/1436260
   
+* shs
+  * Fixes undefined property when no parent is present (undefined_property.patch)
+
 * ldap
   * ldap-property_of_non_object_in_ldap_authentication_init-2182413-3.patch
 

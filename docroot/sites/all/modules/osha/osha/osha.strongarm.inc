@@ -488,7 +488,7 @@ function osha_strongarm() {
     'popup_agree_button_message' => 'OK, I agree',
     'popup_disagree_button_message' => 'No, give me more info',
     'popup_info' => array(
-      'value' => '<p><span style="font-size: small;"><strong>The EU-OSHA website uses cookies to gather information necessary for browsing the website, in accordance with the Eurofound Privacy Policy.</strong></span></p><p>By clicking on any link in the EU-OSHA web pages you are giving your consent for the use of cookies.</p>',
+      'value' => '<p><span style="font-size: small;"><strong>The EU-OSHA website uses cookies to gather information necessary for browsing the website, in accordance with the EU-OSHA privacy notice.</strong></span></p><p>By clicking on any link in the EU-OSHA web pages you are giving your consent for the use of cookies.</p>',
       'format' => 'full_html',
     ),
     'popup_agreed_enabled' => 1,
@@ -1076,7 +1076,7 @@ function osha_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'pathauto_node_events_pattern';
-  $strongarm->value = 'tools-and-publications/oshevents/[node:title]';
+  $strongarm->value = 'oshevents/[node:title]';
   $export['pathauto_node_events_pattern'] = $strongarm;
 
   $strongarm = new stdClass();
