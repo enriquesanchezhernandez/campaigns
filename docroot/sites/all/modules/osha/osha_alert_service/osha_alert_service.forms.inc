@@ -104,10 +104,12 @@ function osha_alert_service_subscribe_form() {
     '#markup' => t('<b>Note</b>: In order to choose more than one item from the list, press the key CTRL on your keyboard (CMD on Mac), and select the item with your mouse.'),
   );
 
-  $form['captcha'] = array(
-    '#type' => 'captcha',
-    '#captcha_type' => 'image_captcha/Image'
-  );
+  if (user_is_anonymous()) {
+    $form['captcha'] = array(
+      '#type' => 'captcha',
+      '#captcha_type' => 'default',
+    );
+  }
 
   $form['actions']['submit'] = array(
     '#type' => 'submit',
