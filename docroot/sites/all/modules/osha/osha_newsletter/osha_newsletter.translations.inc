@@ -12,6 +12,7 @@ function osha_newsletter_get_translatable_strings() {
     'Not interested anymore?',
     'Unsubscribe',
     'Privacy policy',
+    'Privacy notice',
     'Subscribe',
     'The e-mail address is not valid.',
     'No newsletters available.',

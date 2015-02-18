@@ -488,7 +488,7 @@ function osha_strongarm() {
     'popup_agree_button_message' => 'OK, I agree',
     'popup_disagree_button_message' => 'No, give me more info',
     'popup_info' => array(
-      'value' => '<p><span style="font-size: small;"><strong>The EU-OSHA website uses cookies to gather information necessary for browsing the website, in accordance with the Eurofound Privacy Policy.</strong></span></p><p>By clicking on any link in the EU-OSHA web pages you are giving your consent for the use of cookies.</p>',
+      'value' => '<p><span style="font-size: small;"><strong>The EU-OSHA website uses cookies to gather information necessary for browsing the website, in accordance with the EU-OSHA privacy notice.</strong></span></p><p>By clicking on any link in the EU-OSHA web pages you are giving your consent for the use of cookies.</p>',
       'format' => 'full_html',
     ),
     'popup_agreed_enabled' => 1,

@@ -375,7 +375,7 @@ function osha_newsletter_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'subscribe_block_details_link_label';
-  $strongarm->value = 'Privacy policy';
+  $strongarm->value = 'Privacy notice';
   $export['subscribe_block_details_link_label'] = $strongarm;
 
   $strongarm = new stdClass();
