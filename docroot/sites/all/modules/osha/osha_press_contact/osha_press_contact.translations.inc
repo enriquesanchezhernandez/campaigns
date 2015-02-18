@@ -12,5 +12,6 @@ function osha_press_contact_get_translatable_strings() {
     'Press contacts',
     '<a class="press-kit-link" href="/node/5428">EU-OSHA Press kit</a>',
     'Focal points\' contact details',
+    'Contact person',
   );
 }
