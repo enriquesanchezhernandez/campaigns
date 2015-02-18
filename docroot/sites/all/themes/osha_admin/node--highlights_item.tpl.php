@@ -101,10 +101,17 @@
               </td>
               <td width="67%" valign="top" style="color: #003399; padding-bottom: 10px; padding-left: 0px; padding-right: 0px; font-family: Oswald, Arial, sans-serif; font-size: 18px; vertical-align: top;">
                 <?php
+                if ($node->type == 'publication') {
+                  print l($title, url('node/' . $node->nid . '/view', array('absolute' => TRUE)), array(
+                    'attributes' => array('style' => 'color: #003399; text-decoration: none;'),
+                    'external' => TRUE
+                  ));
+                } else {
                   print l($title, url('node/' . $node->nid, array('absolute' => TRUE)), array(
                     'attributes' => array('style' => 'color: #003399; text-decoration: none;'),
                     'external' => TRUE
                   ));
+                }
                 ?>
               </td>
             </tr>
