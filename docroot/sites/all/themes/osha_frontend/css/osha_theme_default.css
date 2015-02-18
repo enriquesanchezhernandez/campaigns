@@ -940,7 +940,7 @@ span.date-display-single{
 #block-views-publications-slidehow .node-publication  a{
 	color: #003399;
 	font-family: 'Open Sans Condensed',sans-serif!important;
-	font-size: 1.5em;
+	font-size: 1.2em;
 	font-weight: bold;
 	margin: 0;
 	padding: 0 0 0.3em;
@@ -3907,7 +3907,7 @@ and (max-width: 1237px) {
 
 .view-mode-osha_slideshow .field-name-field-cover-image{
 	float:left;
-	padding:2.5em 1em 1em 0em;
+	padding:.5em 1em 1em 0em;
 	height:100%;
 
 
@@ -3925,7 +3925,7 @@ and (max-width: 1237px) {
 }
 
 .view-mode-osha_slideshow .field-name-field-publication-date{
-	padding-top:2.5em;
+	padding-top:.5em;
 	width:88%;
 	font-size:0.8em;
 }
@@ -3939,7 +3939,7 @@ and (max-width: 1237px) {
 
 .view-mode-osha_slideshow .field-name-field-file{
 	height: 33px;
-	padding-top: 1em;
+	padding-top: 0.2em;
 	width:88%;
 }
 
