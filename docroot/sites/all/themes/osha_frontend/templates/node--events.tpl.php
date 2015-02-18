@@ -10,7 +10,7 @@
 
 <?php if($page): ?>
   <h1 id="page-title" class="page__title title"><?php print t('OSH related events');?></h1>
-  <div class="view-header back"><?php print l(t('Back to events'), 'tools-and-publications/oshevents'); ?></div>
+  <div class="view-header back"><?php print l(t('Back to events'), 'oshevents'); ?></div>
 <?php endif; ?>
 
 <article class="node-<?php print $node->nid; ?> <?php print $classes; ?> clearfix"<?php print $attributes; ?>>

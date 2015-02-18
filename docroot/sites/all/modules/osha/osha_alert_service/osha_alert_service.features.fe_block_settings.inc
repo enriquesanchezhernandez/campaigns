@@ -221,8 +221,7 @@ node/5432',
     'i18n_mode' => 0,
     'module' => 'osha_alert_service',
     'node_types' => array(),
-    'pages' => 'tools-and-publications/events
-tools-and-publications/oshevents
+    'pages' => 'oshevents
 node/5322',
     'roles' => array(),
     'themes' => array(
