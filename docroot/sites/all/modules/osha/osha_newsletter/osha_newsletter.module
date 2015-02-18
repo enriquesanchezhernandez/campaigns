@@ -201,7 +201,7 @@ function osha_newsletter_block_configure($delta = '') {
         '#size' => 60,
         '#description' => t('This text will appear in the Subscription block before the e-mail field (second line of intro text).'),
         '#default_value' => t(variable_get('subscribe_block_intro_text_second_line_end',
-          'subscribers!')),
+          'subscribers')),
       );
       $form['subscribe_block_newsletter_page_url'] = array(
         '#type' => 'textfield',
@@ -510,8 +510,8 @@ function osha_newsletter_subscribe_form() {
   $markup .= ' ';
   $markup .= t(variable_get('subscribe_block_subscribers_no', '65.000'));
   $markup .= ' ';
-  $markup .= t(variable_get('subscribe_block_intro_text_second_line_end', 'subscribers!'));
-  $markup .= '</p>';
+  $markup .= t(variable_get('subscribe_block_intro_text_second_line_end', 'subscribers'));
+  $markup .= '!</p>';
   $link_url = variable_get('subscribe_block_newsletter_page_url', OSHA_NEWSLETTER_PAGE_URL);
 
   $form['intro'] = array(
