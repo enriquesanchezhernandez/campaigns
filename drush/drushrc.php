@@ -476,6 +476,7 @@ $options['init-modules'] = array(
   'captcha',
   'recaptcha',
   'image_captcha',
+  'spamspan',
 
   // Social share
   'addtoany',
