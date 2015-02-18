@@ -742,6 +742,7 @@ class MigrationUtil {
         $img->setAttribute('src', $imgSrc);
       }
       $text = $dom->saveHTML();
+      $text = preg_replace('~<(?:!DOCTYPE|/?(?:html|head|body))[^>]*>\s*~i', '', $text);
     }
 
     return $text;
