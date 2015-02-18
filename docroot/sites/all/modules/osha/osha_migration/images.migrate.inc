@@ -186,14 +186,17 @@ class OshaMigrateImages extends DynamicMigration {
     );
     path_save($alias);
 
+    // create redirects
     $languages = array_keys(language_list());
-    $redirect = substr($row->aliases, 1);
-    if(in_array(substr($redirect, 0, 2), $languages)) {
-      $redirect = substr($row->aliases, 4);
+    $aliases = explode(',', $row->aliases);
+    foreach($aliases as $alias) {
+      $alias = trim($alias);
+      $redirect = substr($alias, 1);
+      if(in_array(substr($redirect, 0, 2), $languages)) {
+        $redirect = substr($alias, 4);
+      }
+      MigrationUtil::createRedirects($entity, $redirect);
     }
-
-    // create redirect
-    MigrationUtil::createRedirects($entity, $redirect);
   }
 }
 
