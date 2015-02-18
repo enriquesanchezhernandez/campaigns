@@ -48,7 +48,7 @@ function osha_alert_service_default_fe_block_settings() {
         'weight' => -28,
       ),
     ),
-    'title' => '',
+    'title' => '<none>',
     'visibility' => 0,
   );
 
@@ -221,7 +221,7 @@ node/5432',
     'i18n_mode' => 0,
     'module' => 'osha_alert_service',
     'node_types' => array(),
-    'pages' => 'tools-and-publications/events
+    'pages' => 'oshevents
 node/5322',
     'roles' => array(),
     'themes' => array(
@@ -250,7 +250,7 @@ node/5322',
         'weight' => 1,
       ),
     ),
-    'title' => '',
+    'title' => '<none>',
     'visibility' => 1,
   );
 
@@ -330,7 +330,7 @@ node/5322',
         'weight' => 1,
       ),
     ),
-    'title' => '',
+    'title' => '<none>',
     'visibility' => 1,
   );
 
@@ -411,7 +411,7 @@ highlights',
         'weight' => 1,
       ),
     ),
-    'title' => '',
+    'title' => '<none>',
     'visibility' => 1,
   );
 
@@ -451,7 +451,7 @@ highlights',
         'weight' => -5,
       ),
     ),
-    'title' => '',
+    'title' => '<none>',
     'visibility' => 1,
   );
 

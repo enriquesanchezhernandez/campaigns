@@ -397,6 +397,9 @@ $options['init-modules'] = array(
   'flickrfield',
   'chosen',
 
+  // cookie privacy
+  'eu_cookie_compliance',
+
   'calendar',
   'date_popup',
   'feeds',
@@ -422,6 +425,7 @@ $options['init-modules'] = array(
   'osha_migration',
   'osha_news',
   'osha_note_to_editor',
+  'osha_nodequeue',
   'osha_publication',
   'osha_calls',
   'osha_blog',
@@ -445,6 +449,7 @@ $options['init-modules'] = array(
   'osha_alert_service',
   'osha_contact',
   'osha_fop_page',
+  'osha_authentication',
 
   'linkchecker',
   'osha_linkchecker',

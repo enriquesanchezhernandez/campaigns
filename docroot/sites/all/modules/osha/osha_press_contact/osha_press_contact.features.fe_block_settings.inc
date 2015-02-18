@@ -50,7 +50,7 @@ function osha_press_contact_default_fe_block_settings() {
         'weight' => 0,
       ),
     ),
-    'title' => 'Focal Points',
+    'title' => '',
     'visibility' => 0,
   );
 

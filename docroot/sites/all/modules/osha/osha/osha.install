@@ -158,3 +158,57 @@ function osha_update_7006() {
     osha_add_menu_position_rule('Governance Internal Documents Rule', $parent_menu, $condition);
   }
 }
+
+/**
+ * Enable extra languages: Albanian, Serbian, Russian, Turkish, Macedonian
+ * and Bosnian.
+ */
+function osha_update_7007() {
+  $languages = language_list();
+  $add = array('sq', 'bs', 'sr', 'mk');
+  foreach ($add as $lang) {
+    if (!isset($languages[$lang])) {
+      locale_add_language($lang);
+    }
+  }
+  db_update('languages')
+    ->fields(array(
+      'weight' => 10,
+    ))
+    ->condition('language', $add, 'IN')
+    ->execute();
+  // Enable Russian and Turkish.
+  db_update('languages')
+    ->fields(array(
+      'enabled' => 1,
+    ))
+    ->condition('language', array('ru', 'tr'), 'IN')
+    ->execute();
+}
+
+/**
+ * Give display permissions - for cookie privacy module.
+ */
+function osha_update_7008() {
+  user_role_grant_permissions(DRUPAL_ANONYMOUS_RID, array('display EU Cookie Compliance popup'));
+  user_role_grant_permissions(DRUPAL_AUTHENTICATED_RID, array('display EU Cookie Compliance popup'));
+}
+
+/**
+ * Enable extra languages: Serbo-Croatian.
+ */
+function osha_update_7009() {
+  $languages = language_list();
+  $add = array('sh');
+  foreach ($add as $lang) {
+    if (!isset($languages[$lang])) {
+      locale_add_language($lang);
+    }
+  }
+  db_update('languages')
+    ->fields(array(
+      'weight' => 10,
+    ))
+    ->condition('language', $add, 'IN')
+    ->execute();
+}

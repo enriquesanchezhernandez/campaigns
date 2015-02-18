@@ -23,6 +23,7 @@ features[path_breadcrumbs][] = guideline
 features[path_breadcrumbs][] = guideline_view
 features[path_breadcrumbs][] = highlights
 features[path_breadcrumbs][] = highlights_view
+features[path_breadcrumbs][] = legislation
 features[path_breadcrumbs][] = news
 features[path_breadcrumbs][] = node_breadcrumbs
 features[path_breadcrumbs][] = ongoing_job_vacancies_view

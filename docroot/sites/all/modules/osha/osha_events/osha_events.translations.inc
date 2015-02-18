@@ -49,5 +49,7 @@ function osha_events_get_translatable_strings() {
     'Description',
     'Event details',
     'Links',
+    'Back to events',
+    'OSH events'
   );
 }

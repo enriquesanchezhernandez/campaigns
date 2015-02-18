@@ -95,10 +95,10 @@ node/7116',
     'visibility' => 0,
   );
 
-  $export['views-fop_links-block'] = array(
+  $export['views-fop_page_links-block'] = array(
     'cache' => -1,
     'custom' => 0,
-    'delta' => 'fop_links-block',
+    'delta' => 'fop_page_links-block',
     'i18n_block_language' => array(),
     'i18n_mode' => 0,
     'module' => 'views',

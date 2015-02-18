@@ -7,6 +7,9 @@ When patching a contrib module, the following steps should be followed:
 
 List of patches (most recent first)
 
+* ldap
+  * ldap-property_of_non_object_in_ldap_authentication_init-2182413-3.patch
+
 * search_autocomplete
   * Escapes the search term before submit (to accept %)
   * patches/search_autocomplete/search_autocomplete_escape_search_term.patch
@@ -24,7 +27,6 @@ List of patches (most recent first)
 * i18n_string
     * Fixes undefined method strings_remove and strings_update
     * File: strings_remove_update_undefined_method.patch
-
 * scanner
   * patches by Ruben@BBM - disable Undo and avoid to creating a new revision; permissions for S&R tab
 

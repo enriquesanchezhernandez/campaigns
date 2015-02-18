@@ -628,7 +628,12 @@ class MigrationUtil {
       $redirect = new stdClass();
       $redirect->source = $source;
       $redirect->source_options = array();
-      $redirect->redirect = 'node/' . $entity->nid;
+
+      if(property_exists($entity, 'fid')) { // file redirect
+        $redirect->redirect = 'file/' . $entity->fid;
+      }else { // node redirect
+        $redirect->redirect = 'node/' . $entity->nid;
+      }
       $redirect->redirect_options = array();
       $redirect->status_code = 0;
       $redirect->type = 'redirect';
@@ -684,7 +689,7 @@ class MigrationUtil {
         return $iso2;
       }
     }
-    return NULL;
+    return self::getNonStandardCountry($name);
   }
 
   /**
@@ -718,6 +723,58 @@ class MigrationUtil {
       return current($tids);
     }
     return NULL;
+  }
+
+  /**
+   * Alter Body Content
+   *
+   * @param $text
+   * @return mixed|string
+   */
+  public static function formatBody($text){
+    if ($dom = OshaTMGMTRetranslate::getDOMDocument($text)) {
+      foreach ($dom->getElementsByTagName('img') as $img) {
+        $imgSrc = $img->getAttribute('src');
+        foreach (self::imageReplacePatterns() as $pattern) {
+          $imgSrc = preg_replace($pattern, '', $imgSrc); 
+        }
+        $imgSrc = str_replace('//', '/', $imgSrc);
+        $img->setAttribute('src', $imgSrc);
+      }
+      $text = $dom->saveHTML();
+    }
+
+    return $text;
+  }
+
+  /**
+   * Patterns that are replaced in image src
+   *
+   * @return array
+   */
+  public static function imageReplacePatterns(){
+    return array(
+      '/\/image_large$/',
+      '/\/image_preview$/',
+      '/\/image_mini$/',
+      '/\/image_thumb$/',
+      '/\/image_tile$/',
+      '/\/image_icon$/',
+      '/\/image_listing$/',
+      '/\/image_small$/',
+      '/\/image_hwmini$/',
+      '/\/image_hwmedium$/',
+      '/\/image_hwlarge$/',
+      '/\/image_hwextralarge$/',
+      '/\/image_hwsmall$/',
+      '/\/image_gallerythumb$/',
+      '/\/image_gallerymini$/',
+      '/\/image_hwc$/',
+      '/\/image_hwc$/',
+      '/\/image_hwbackground$/',
+      '/\/view$/',
+      '/\/image$/',
+    );
   }
 }
 

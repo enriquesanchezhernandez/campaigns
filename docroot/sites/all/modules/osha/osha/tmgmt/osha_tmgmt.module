@@ -790,9 +790,9 @@ function osha_tmgmt_form_alter(&$form, &$form_state, $form_id) {
         OshaTMGMTStatistics::computeJobItemStatistics($item);
         // remove original language from list of languages
         unset($form['target_language']['#options'][$item->getSourceLangCode()]);
-        // remove Turkish and Russian
-        unset($form['target_language']['#options']['tr']);
-        unset($form['target_language']['#options']['ru']);
+        // Remove disabled languages.
+        $form['target_language']['#options'] = array_diff_key(
+          $form['target_language']['#options'], osha_disabled_language_list());
         if ($item->plugin == 'entity' && $item->item_type == 'node') {
           // check if retranslation is possible
           $node = (object)array('nid' => $item->item_id);
@@ -1381,11 +1381,11 @@ function osha_tmgmt_form_tmgmt_job_form_alter(&$form, &$form_state) {
     '#weight' => 1,
     '#attributes' => array('class' => array('container-inline')),
   );
-
-  $untranslated = drupal_map_assoc(osha_tmgmt_get_translation_languages_options($target_languages));
+  $untranslated = osha_tmgmt_get_translation_languages_options($target_languages);
+  unset($untranslated[$job->source_language]);
   $form['language_info']['target_languages_not'] = array(
     '#type' => 'checkboxes',
-    '#options' => $untranslated,
+    '#options' => drupal_map_assoc($untranslated),
     '#disabled' => TRUE,
     '#weight' => 2,
     '#attributes' => array('class' => array('container-inline')),
@@ -2352,8 +2352,7 @@ class OshaTMGMTStatistics {
  */
 function osha_tmgmt_get_translation_languages_options($filter = array()) {
   $languages = tmgmt_available_languages();
-  unset($languages['ru']);
-  unset($languages['tr']);
+  $languages = array_intersect_key($languages, osha_langauge_list_options());
   return array_diff($languages, $filter);
 }
 
