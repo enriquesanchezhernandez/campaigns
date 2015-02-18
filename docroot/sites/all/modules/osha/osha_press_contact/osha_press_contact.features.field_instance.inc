@@ -313,7 +313,7 @@ function osha_press_contact_field_default_field_instances() {
         'label' => 'inline',
         'module' => 'email',
         'settings' => array(),
-        'type' => 'email_default',
+        'type' => 'email_spamspan',
         'weight' => 3,
       ),
       'highlights_item' => array(
@@ -350,7 +350,7 @@ function osha_press_contact_field_default_field_instances() {
         'label' => 'hidden',
         'module' => 'email',
         'settings' => array(),
-        'type' => 'email_default',
+        'type' => 'email_spamspan',
         'weight' => 3,
       ),
     ),

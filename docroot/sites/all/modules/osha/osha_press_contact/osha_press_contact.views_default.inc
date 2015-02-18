@@ -103,12 +103,6 @@ function osha_press_contact_views_default_views() {
   $handler->display->display_options['fields']['title_field']['element_type'] = 'strong';
   $handler->display->display_options['fields']['title_field']['element_label_type'] = 'div';
   $handler->display->display_options['fields']['title_field']['link_to_entity'] = 0;
-  /* Field: Content: Email */
-  $handler->display->display_options['fields']['field_press_contact_email']['id'] = 'field_press_contact_email';
-  $handler->display->display_options['fields']['field_press_contact_email']['table'] = 'field_data_field_press_contact_email';
-  $handler->display->display_options['fields']['field_press_contact_email']['field'] = 'field_press_contact_email';
-  $handler->display->display_options['fields']['field_press_contact_email']['element_type'] = 'span';
-  $handler->display->display_options['fields']['field_press_contact_email']['element_label_type'] = 'span';
   /* Field: Content: Phone */
   $handler->display->display_options['fields']['field_press_contact_phone']['id'] = 'field_press_contact_phone';
   $handler->display->display_options['fields']['field_press_contact_phone']['table'] = 'field_data_field_press_contact_phone';
@@ -117,11 +111,22 @@ function osha_press_contact_views_default_views() {
   $handler->display->display_options['fields']['field_press_contact_phone']['element_type'] = 'span';
   $handler->display->display_options['fields']['field_press_contact_phone']['element_label_type'] = 'span';
   $handler->display->display_options['fields']['field_press_contact_phone']['delta_offset'] = '0';
-  /* Sort criterion: Content: Post date */
-  $handler->display->display_options['sorts']['created']['id'] = 'created';
-  $handler->display->display_options['sorts']['created']['table'] = 'node';
-  $handler->display->display_options['sorts']['created']['field'] = 'created';
-  $handler->display->display_options['sorts']['created']['order'] = 'DESC';
+  /* Field: Content: Email */
+  $handler->display->display_options['fields']['field_press_contact_email']['id'] = 'field_press_contact_email';
+  $handler->display->display_options['fields']['field_press_contact_email']['table'] = 'field_data_field_press_contact_email';
+  $handler->display->display_options['fields']['field_press_contact_email']['field'] = 'field_press_contact_email';
+  $handler->display->display_options['fields']['field_press_contact_email']['element_type'] = 'span';
+  $handler->display->display_options['fields']['field_press_contact_email']['element_label_type'] = 'span';
+  $handler->display->display_options['fields']['field_press_contact_email']['type'] = 'email_spamspan';
+  /* Field: Content: Web Site */
+  $handler->display->display_options['fields']['field_website']['id'] = 'field_website';
+  $handler->display->display_options['fields']['field_website']['table'] = 'field_data_field_website';
+  $handler->display->display_options['fields']['field_website']['field'] = 'field_website';
+  $handler->display->display_options['fields']['field_website']['label'] = 'Web';
+  $handler->display->display_options['fields']['field_website']['element_type'] = 'span';
+  $handler->display->display_options['fields']['field_website']['element_label_type'] = 'span';
+  $handler->display->display_options['fields']['field_website']['click_sort_column'] = 'url';
+  $handler->display->display_options['fields']['field_website']['type'] = 'link_url';
   /* Contextual filter: Content: Country (field_country) */
   $handler->display->display_options['arguments']['field_country_tid']['id'] = 'field_country_tid';
   $handler->display->display_options['arguments']['field_country_tid']['table'] = 'field_data_field_country';
@@ -180,8 +185,9 @@ function osha_press_contact_views_default_views() {
     t('[field_zip_code][field_city]'),
     t('Contact person'),
     t('[field_personal_title] [title_field]'),
-    t('Email'),
     t('Tel'),
+    t('Email'),
+    t('Web'),
     t('All'),
     t('Block'),
   );
