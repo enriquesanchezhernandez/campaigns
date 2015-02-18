@@ -1014,6 +1014,15 @@ function osha_views_default_views() {
 
   /* Display: Events */
   $handler = $view->new_display('page', 'Events', 'page_events');
+  $handler->display->display_options['defaults']['relationships'] = FALSE;
+  /* Relationship: Field: Tags (field_tags) */
+  $handler->display->display_options['relationships']['field_tags_tid']['id'] = 'field_tags_tid';
+  $handler->display->display_options['relationships']['field_tags_tid']['table'] = 'field_data_field_tags';
+  $handler->display->display_options['relationships']['field_tags_tid']['field'] = 'field_tags_tid';
+  /* Relationship: Content: Related documents (field_related_documents:fid) */
+  $handler->display->display_options['relationships']['field_related_documents_fid']['id'] = 'field_related_documents_fid';
+  $handler->display->display_options['relationships']['field_related_documents_fid']['table'] = 'field_data_field_related_documents';
+  $handler->display->display_options['relationships']['field_related_documents_fid']['field'] = 'field_related_documents_fid';
   $handler->display->display_options['defaults']['fields'] = FALSE;
   /* Field: Content: Path */
   $handler->display->display_options['fields']['path']['id'] = 'path';
@@ -1187,6 +1196,12 @@ function osha_views_default_views() {
   $handler->display->display_options['fields']['field_related_documents']['click_sort_column'] = 'fid';
   $handler->display->display_options['fields']['field_related_documents']['type'] = 'file_url_plain';
   $handler->display->display_options['fields']['field_related_documents']['delta_offset'] = '0';
+  /* Field: File: Mime type */
+  $handler->display->display_options['fields']['filemime']['id'] = 'filemime';
+  $handler->display->display_options['fields']['filemime']['table'] = 'file_managed';
+  $handler->display->display_options['fields']['filemime']['field'] = 'filemime';
+  $handler->display->display_options['fields']['filemime']['relationship'] = 'field_related_documents_fid';
+  $handler->display->display_options['fields']['filemime']['label'] = 'mime_type';
   /* Field: Content: Color */
   $handler->display->display_options['fields']['field_color']['id'] = 'field_color';
   $handler->display->display_options['fields']['field_color']['table'] = 'field_data_field_color';
@@ -1408,6 +1423,10 @@ function osha_views_default_views() {
   $handler->display->display_options['relationships']['field_file_fid']['id'] = 'field_file_fid';
   $handler->display->display_options['relationships']['field_file_fid']['table'] = 'field_data_field_file';
   $handler->display->display_options['relationships']['field_file_fid']['field'] = 'field_file_fid';
+  /* Relationship: Content: Resources (files) (field_publication_related_res:fid) */
+  $handler->display->display_options['relationships']['field_publication_related_res_fid']['id'] = 'field_publication_related_res_fid';
+  $handler->display->display_options['relationships']['field_publication_related_res_fid']['table'] = 'field_data_field_publication_related_res';
+  $handler->display->display_options['relationships']['field_publication_related_res_fid']['field'] = 'field_publication_related_res_fid';
   $handler->display->display_options['defaults']['fields'] = FALSE;
   /* Field: Content: Publication Type */
   $handler->display->display_options['fields']['field_publication_type']['id'] = 'field_publication_type';
@@ -1530,6 +1549,12 @@ function osha_views_default_views() {
   $handler->display->display_options['fields']['field_publication_related_res']['click_sort_column'] = 'fid';
   $handler->display->display_options['fields']['field_publication_related_res']['type'] = 'file_url_plain';
   $handler->display->display_options['fields']['field_publication_related_res']['delta_offset'] = '0';
+  /* Field: File: Mime type */
+  $handler->display->display_options['fields']['filemime_1']['id'] = 'filemime_1';
+  $handler->display->display_options['fields']['filemime_1']['table'] = 'file_managed';
+  $handler->display->display_options['fields']['filemime_1']['field'] = 'filemime';
+  $handler->display->display_options['fields']['filemime_1']['relationship'] = 'field_publication_related_res_fid';
+  $handler->display->display_options['fields']['filemime_1']['label'] = 'resources_mime_type';
   /* Field: Content: Activity */
   $handler->display->display_options['fields']['field_activity']['id'] = 'field_activity';
   $handler->display->display_options['fields']['field_activity']['table'] = 'field_data_field_activity';
@@ -1544,6 +1569,12 @@ function osha_views_default_views() {
   $handler->display->display_options['fields']['filesize']['field'] = 'filesize';
   $handler->display->display_options['fields']['filesize']['relationship'] = 'field_file_fid';
   $handler->display->display_options['fields']['filesize']['label'] = 'file_size';
+  /* Field: File: Mime type */
+  $handler->display->display_options['fields']['filemime']['id'] = 'filemime';
+  $handler->display->display_options['fields']['filemime']['table'] = 'file_managed';
+  $handler->display->display_options['fields']['filemime']['field'] = 'filemime';
+  $handler->display->display_options['fields']['filemime']['relationship'] = 'field_file_fid';
+  $handler->display->display_options['fields']['filemime']['label'] = 'file_mime_type';
   $handler->display->display_options['defaults']['sorts'] = FALSE;
   /* Sort criterion: Field: Publication date (field_publication_date) */
   $handler->display->display_options['sorts']['field_publication_date_value']['id'] = 'field_publication_date_value';
@@ -1721,6 +1752,15 @@ function osha_views_default_views() {
   $handler->display->display_options['defaults']['query'] = FALSE;
   $handler->display->display_options['query']['type'] = 'views_query';
   $handler->display->display_options['query']['options']['distinct'] = TRUE;
+  $handler->display->display_options['defaults']['relationships'] = FALSE;
+  /* Relationship: Field: Tags (field_tags) */
+  $handler->display->display_options['relationships']['field_tags_tid']['id'] = 'field_tags_tid';
+  $handler->display->display_options['relationships']['field_tags_tid']['table'] = 'field_data_field_tags';
+  $handler->display->display_options['relationships']['field_tags_tid']['field'] = 'field_tags_tid';
+  /* Relationship: Content: Related documents (field_related_documents:fid) */
+  $handler->display->display_options['relationships']['field_related_documents_fid']['id'] = 'field_related_documents_fid';
+  $handler->display->display_options['relationships']['field_related_documents_fid']['table'] = 'field_data_field_related_documents';
+  $handler->display->display_options['relationships']['field_related_documents_fid']['field'] = 'field_related_documents_fid';
   $handler->display->display_options['defaults']['fields'] = FALSE;
   /* Field: Content: Path */
   $handler->display->display_options['fields']['path']['id'] = 'path';
@@ -1894,6 +1934,12 @@ function osha_views_default_views() {
   $handler->display->display_options['fields']['field_related_documents']['click_sort_column'] = 'fid';
   $handler->display->display_options['fields']['field_related_documents']['type'] = 'file_url_plain';
   $handler->display->display_options['fields']['field_related_documents']['delta_offset'] = '0';
+  /* Field: File: Mime type */
+  $handler->display->display_options['fields']['filemime']['id'] = 'filemime';
+  $handler->display->display_options['fields']['filemime']['table'] = 'file_managed';
+  $handler->display->display_options['fields']['filemime']['field'] = 'filemime';
+  $handler->display->display_options['fields']['filemime']['relationship'] = 'field_related_documents_fid';
+  $handler->display->display_options['fields']['filemime']['label'] = 'mime_type';
   /* Field: Content: Color */
   $handler->display->display_options['fields']['field_color']['id'] = 'field_color';
   $handler->display->display_options['fields']['field_color']['table'] = 'field_data_field_color';
@@ -2127,6 +2173,10 @@ function osha_views_default_views() {
   $handler->display->display_options['relationships']['field_file_fid']['id'] = 'field_file_fid';
   $handler->display->display_options['relationships']['field_file_fid']['table'] = 'field_data_field_file';
   $handler->display->display_options['relationships']['field_file_fid']['field'] = 'field_file_fid';
+  /* Relationship: Content: Resources (files) (field_publication_related_res:fid) */
+  $handler->display->display_options['relationships']['field_publication_related_res_fid']['id'] = 'field_publication_related_res_fid';
+  $handler->display->display_options['relationships']['field_publication_related_res_fid']['table'] = 'field_data_field_publication_related_res';
+  $handler->display->display_options['relationships']['field_publication_related_res_fid']['field'] = 'field_publication_related_res_fid';
   $handler->display->display_options['defaults']['fields'] = FALSE;
   /* Field: Content: Publication Type */
   $handler->display->display_options['fields']['field_publication_type']['id'] = 'field_publication_type';
@@ -2249,6 +2299,12 @@ function osha_views_default_views() {
   $handler->display->display_options['fields']['field_publication_related_res']['click_sort_column'] = 'fid';
   $handler->display->display_options['fields']['field_publication_related_res']['type'] = 'file_url_plain';
   $handler->display->display_options['fields']['field_publication_related_res']['delta_offset'] = '0';
+  /* Field: File: Mime type */
+  $handler->display->display_options['fields']['filemime']['id'] = 'filemime';
+  $handler->display->display_options['fields']['filemime']['table'] = 'file_managed';
+  $handler->display->display_options['fields']['filemime']['field'] = 'filemime';
+  $handler->display->display_options['fields']['filemime']['relationship'] = 'field_publication_related_res_fid';
+  $handler->display->display_options['fields']['filemime']['label'] = 'resources_mime_type';
   /* Field: Content: Activity */
   $handler->display->display_options['fields']['field_activity']['id'] = 'field_activity';
   $handler->display->display_options['fields']['field_activity']['table'] = 'field_data_field_activity';
@@ -2263,6 +2319,12 @@ function osha_views_default_views() {
   $handler->display->display_options['fields']['filesize']['field'] = 'filesize';
   $handler->display->display_options['fields']['filesize']['relationship'] = 'field_file_fid';
   $handler->display->display_options['fields']['filesize']['label'] = 'file_size';
+  /* Field: File: Mime type */
+  $handler->display->display_options['fields']['filemime_1']['id'] = 'filemime_1';
+  $handler->display->display_options['fields']['filemime_1']['table'] = 'file_managed';
+  $handler->display->display_options['fields']['filemime_1']['field'] = 'filemime';
+  $handler->display->display_options['fields']['filemime_1']['relationship'] = 'field_file_fid';
+  $handler->display->display_options['fields']['filemime_1']['label'] = 'mime_type';
   $handler->display->display_options['defaults']['sorts'] = FALSE;
   /* Sort criterion: Field: Publication date (field_publication_date) */
   $handler->display->display_options['sorts']['field_publication_date_value']['id'] = 'field_publication_date_value';
@@ -2328,6 +2390,7 @@ function osha_views_default_views() {
     t('All'),
     t('News'),
     t('Events'),
+    t('file from field_related_documents'),
     t('organization'),
     t('country'),
     t('country_code'),
@@ -2349,10 +2412,12 @@ function osha_views_default_views() {
     t('comments_summary_after_eve'),
     t('number_of_attendees'),
     t('related_documents'),
+    t('mime_type'),
     t('color'),
     t('Press releases'),
     t('Publications'),
     t('file from field_file'),
+    t('file from field_publication_related_res'),
     t('publication_type'),
     t('cover_image'),
     t('cover_image_thumbnail'),
@@ -2360,7 +2425,9 @@ function osha_views_default_views() {
     t('Bookshop ID'),
     t('file'),
     t('resources'),
+    t('resources_mime_type'),
     t('file_size'),
+    t('file_mime_type'),
     t('News - single item'),
     t('Events - single item'),
     t('Press releases - single item'),
