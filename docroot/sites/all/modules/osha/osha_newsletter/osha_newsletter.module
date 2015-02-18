@@ -177,7 +177,7 @@ function osha_newsletter_block_configure($delta = '') {
         '#size' => 60,
         '#description' => t('This text will appear in the Subscription block before the e-mail field.'),
         '#default_value' => t(variable_get('subscribe_block_intro_text',
-          'Once our monthly update on safety and health at work. <a href="@newsletter_page_url">See more info</a><br/>')),
+          'Get our monthly update on safety and health at work. <a href="@newsletter_page_url">See more info</a><br/>')),
       );
       $form['subscribe_block_intro_text_second_line_start'] = array(
         '#type' => 'textarea',
@@ -504,7 +504,7 @@ function osha_newsletter_subscribe_extra_form() {
  */
 function osha_newsletter_subscribe_form() {
   $markup = t(variable_get('subscribe_block_intro_text',
-    'Once our monthly update on safety and health at work. <a href="@newsletter_page_url">See more info</a><br/>'));
+    'Get our monthly update on safety and health at work. <a href="@newsletter_page_url">See more info</a><br/>'));
   $markup .= '<p style="color : #dc2f82;">';
   $markup .= t(variable_get('subscribe_block_intro_text_second_line_start', 'Join'));
   $markup .= ' ';
