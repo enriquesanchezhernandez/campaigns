@@ -46,7 +46,8 @@ class MigrateOshaFocalPoints extends OSHADynamicMigration {
     $this->addFieldMapping('title_field', 'title_field');
     $this->addFieldMapping('field_press_contact_phone', 'field_press_contact_phone');
     $this->addFieldMapping('field_press_contact_location', 'field_press_contact_location');
-//    $this->addFieldMapping('field_country', 'field_country');
+    $this->addFieldMapping('field_press_contact_email', 'field_press_contact_email');
+    $this->addFieldMapping('field_website', 'field_website');
     $this->addFieldMapping('field_zip_code', 'field_zip_code');
     $this->addFieldMapping('field_city', 'field_city');
     $this->addFieldMapping('field_contact_type', 'field_contact_type');
@@ -219,6 +220,8 @@ class FocalPointsContentListXML extends MigrateList {
         $data->field_personal_title = (string) $attributes['Table0_Details3'];
         $data->field_press_contact_phone = (string) $attributes['Table0_Details6'];
         $data->field_press_contact_location = (string) $attributes['a_osh_phaddress'];
+        $data->field_press_contact_email = (string) $attributes['Table0_Details7'];
+        $data->field_website = (string) $attributes['Table0_Details8'];
         $data->field_country_iso2 = (string) $attributes['a_osh_phcountryid'];
         $data->field_zip_code = (string) $attributes['a_osh_phcp'];
         $data->field_city = (string) $attributes['a_osh_phtown'];
