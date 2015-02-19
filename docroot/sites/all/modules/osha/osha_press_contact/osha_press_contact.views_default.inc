@@ -92,7 +92,7 @@ function osha_press_contact_views_default_views() {
   $handler->display->display_options['fields']['title']['field'] = 'title';
   $handler->display->display_options['fields']['title']['label'] = '';
   $handler->display->display_options['fields']['title']['alter']['alter_text'] = TRUE;
-  $handler->display->display_options['fields']['title']['alter']['text'] = '[field_personal_title] [title] ([field_wg_category])[field_wg_role_2]';
+  $handler->display->display_options['fields']['title']['alter']['text'] = '<strong>[field_personal_title] [title]</strong> ([field_wg_category])[field_wg_role_2]';
   $handler->display->display_options['fields']['title']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['title']['link_to_node'] = FALSE;
   /* Sort criterion: Taxonomy term: Weight */
@@ -130,7 +130,7 @@ function osha_press_contact_views_default_views() {
   $handler->display->display_options['filters']['field_contact_type_tid']['table'] = 'field_data_field_contact_type';
   $handler->display->display_options['filters']['field_contact_type_tid']['field'] = 'field_contact_type_tid';
   $handler->display->display_options['filters']['field_contact_type_tid']['value'] = array(
-    3035 => '3035',
+    3024 => '3024',
   );
   $handler->display->display_options['filters']['field_contact_type_tid']['type'] = 'select';
   $handler->display->display_options['filters']['field_contact_type_tid']['vocabulary'] = 'contact_type';
@@ -150,7 +150,7 @@ function osha_press_contact_views_default_views() {
     t('term from field_wg_category'),
     t('term from field_wg_role_2'),
     t(', [field_wg_role_2]'),
-    t('[field_personal_title] [title] ([field_wg_category])[field_wg_role_2]'),
+    t('<strong>[field_personal_title] [title]</strong> ([field_wg_category])[field_wg_role_2]'),
     t('Block'),
   );
   $export['bureau_members'] = $view;
