@@ -111,6 +111,10 @@ function osha_press_contact_views_default_views() {
   $handler->display->display_options['sorts']['weight_1']['table'] = 'taxonomy_term_data';
   $handler->display->display_options['sorts']['weight_1']['field'] = 'weight';
   $handler->display->display_options['sorts']['weight_1']['relationship'] = 'field_wg_category_tid';
+  /* Sort criterion: Content: Title */
+  $handler->display->display_options['sorts']['title']['id'] = 'title';
+  $handler->display->display_options['sorts']['title']['table'] = 'node';
+  $handler->display->display_options['sorts']['title']['field'] = 'title';
   /* Filter criterion: Content: Published */
   $handler->display->display_options['filters']['status']['id'] = 'status';
   $handler->display->display_options['filters']['status']['table'] = 'node';
