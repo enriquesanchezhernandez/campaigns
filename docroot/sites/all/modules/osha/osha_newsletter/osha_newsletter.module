@@ -474,8 +474,7 @@ function osha_newsletter_subscribe_extra_form() {
   );
   $form['captcha'] = array(
     '#type' => 'captcha',
-    //'#captcha_type' => 'recaptcha/reCAPTCHA',
-    '#captcha_type' => 'image_captcha/Image',
+    '#captcha_type' => 'default',
   );
   $link_label = variable_get('subscribe_extra_block_details_link_label', t('How will EU-OSHA use my details?'));
   $link_url = variable_get('subscribe_extra_block_details_link_url', OSHA_PRIVACY_PAGE_URL);
@@ -522,11 +521,12 @@ function osha_newsletter_subscribe_form() {
     '#size' => 30,
     '#attributes' => array('placeholder' => t('E-mail address'))
   );
-  $form['captcha'] = array(
-    '#type' => 'captcha',
-    '#captcha_type' => 'image_captcha/Image',
-    //'#captcha_type' => 'recaptcha/reCAPTCHA',
-  );
+  if (user_is_anonymous()) {
+    $form['captcha'] = array(
+      '#type' => 'captcha',
+      '#captcha_type' => 'default',
+    );
+  }
   $link_label = t(variable_get('subscribe_block_details_link_label', 'Privacy notice'));
   $link_url = variable_get('subscribe_block_details_link_url', OSHA_PRIVACY_PAGE_URL);
   $form['details_link'] = array(
