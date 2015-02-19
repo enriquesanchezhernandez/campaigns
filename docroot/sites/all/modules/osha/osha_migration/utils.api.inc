@@ -741,7 +741,8 @@ class MigrationUtil {
         $imgSrc = str_replace('//', '/', $imgSrc);
         $img->setAttribute('src', $imgSrc);
       }
-      $text = $dom->saveHTML();
+      $html = OshaTMGMTRetranslate::getDOMNodeList($dom->saveHTML());
+      $text = OshaTMGMTRetranslate::getHTML($html);
     }
 
     return $text;
