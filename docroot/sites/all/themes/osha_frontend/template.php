@@ -288,6 +288,8 @@ function osha_frontend_page_alter(&$page) {
       unset($node['links']['#links']['addtoany']);
       $page['content']['addtoany'] = array(
         '#markup' => $links['title'],
+        '#prefix' => '<div id="addtoany_bottom_container">',
+        '#suffix' => '</div>',
       );
     }
   }
