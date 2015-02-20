@@ -410,7 +410,7 @@ function osha_disabled_language_list() {
  * @return array
  *   of language objects.
  */
-function osha_langauge_list($osha_sorted = FALSE) {
+function osha_language_list($osha_sorted = FALSE) {
   $languages = language_list();
   $disabled_lang = osha_disabled_language_list();
   foreach ($languages as $lang => $language) {
@@ -425,7 +425,7 @@ function osha_langauge_list($osha_sorted = FALSE) {
 }
 
 function osha_langauge_list_options() {
-  $languages = osha_langauge_list();
+  $languages = osha_language_list();
   $return = array();
   foreach ($languages as $lang => $language) {
     $return[$lang] = $language->name;

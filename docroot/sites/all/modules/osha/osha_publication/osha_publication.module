@@ -151,7 +151,7 @@ function osha_publication_form_lang_dropdown_form_alter(&$form, &$form_state, $f
   // For publications, the language switcher should get to '/view' (CW-1413)
   $node = menu_get_object();
   if (!empty($node) && $node->type == 'publication') {
-    $languages = osha_langauge_list();
+    $languages = osha_language_list();
     foreach (array_keys($languages) as $lang) {
       if (isset($form[$lang])) {
         $form[$lang]['#default_value'] .= '/view';
