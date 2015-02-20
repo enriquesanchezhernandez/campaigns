@@ -51,7 +51,6 @@ class MigrateOshaBoardBureauMembers extends OSHADynamicMigration {
     $node_options = MigrateDestinationNode::options('en', 'full_html');
     $this->destination = new MigrateDestinationNode('press_contact', $node_options);
 
-//    $wg_category = taxonomy_vocabulary_machine_name_load('wg_category');
     $this->addFieldMapping('title', 'title');
     $this->addFieldMapping('field_personal_title', 'field_personal_title');
     $this->addFieldMapping('title_field', 'title_field');
@@ -128,14 +127,14 @@ class MigrateOshaBoardBureauMembers extends OSHADynamicMigration {
     // Create the terms if not exists.
     // Migration will set terms if name found.
     if (!empty($row->field_wg_category)) {
-      MigrationUtil::getOrCreateTaxonomyTerm('wg_category', $row->field_wg_category);
+      MigrationUtil::getOrCreateTaxonomyTerm('wg_category', $row->field_wg_category, array('language' => 'en'));
     }
     if (!empty($row->field_wg_role_1)) {
       $roles = explode('.', $row->field_wg_role_1);
-      MigrationUtil::getOrCreateTaxonomyTerm('wg_role_1', $roles[0]);
+      MigrationUtil::getOrCreateTaxonomyTerm('wg_role_1', $roles[0], array('language' => 'en'));
       if (!empty($roles[1])) {
         $row->field_wg_role_1 = trim($roles[0]);
-        MigrationUtil::getOrCreateTaxonomyTerm('wg_role_2', $roles[1]);
+        MigrationUtil::getOrCreateTaxonomyTerm('wg_role_2', $roles[1], array('language' => 'en'));
         $row->field_wg_role_2 = trim($roles[1]);
       }
     }

@@ -131,6 +131,7 @@ class MigrateOshaFocalPoints extends OSHADynamicMigration {
         $term->vid = $voc->vid;
         $term->name = ucwords(strtolower($row->field_country_iso2));
         $term->field_iso2[LANGUAGE_NONE][0]['value'] = $country;
+        $term->language = 'en';
         taxonomy_term_save($term);
         $tid = $term->tid;
       }
