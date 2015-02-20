@@ -7,6 +7,11 @@ When patching a contrib module, the following steps should be followed:
 
 List of patches (most recent first)
 
+* spamspan
+  * Get default settings from variables
+  * https://www.drupal.org/files/issues/spamspan-default-settings-from-variables-2430079_1.patch
+  * https://www.drupal.org/node/2430079
+
 * shs
   * Fixes undefined property when no parent is present (undefined_property.patch)
 
