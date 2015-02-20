@@ -145,6 +145,22 @@ function osha_publication_menu_local_tasks_alter(&$data, $router_item, $root_pat
 }
 
 /**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function osha_publication_form_lang_dropdown_form_alter(&$form, &$form_state, $form_id){
+  // For publications, the language switcher should get to '/view' (CW-1413)
+  $node = menu_get_object();
+  if (!empty($node) && $node->type == 'publication') {
+    $languages = osha_langauge_list();
+    foreach (array_keys($languages) as $lang) {
+      if (isset($form[$lang])) {
+        $form[$lang]['#default_value'] .= '/view';
+      }
+    }
+  }
+}
+
+/**
  * Implements hook_views_pre_render().
  */
 function osha_publication_views_pre_render(&$view) {
