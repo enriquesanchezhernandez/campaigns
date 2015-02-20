@@ -41,23 +41,3 @@ function osha_press_contact_update_7001() {
   // Auto Register to get the FocalPoint migraton.
   drush_invoke('migrate-auto-register');
 }
-
-/**
- * Add taxonomy term type Bureau of the Governing Board
- */
-function osha_press_contact_update_7002() {
-  // Add contact type terms.
-  $voc = taxonomy_vocabulary_machine_name_load('contact_type');
-  $types = array('Bureau of the Governing Board');
-  foreach ($types as $type) {
-    $term = taxonomy_get_term_by_name($type, 'contact_type');
-    if (empty($term)) {
-      $term = new stdClass();
-      $term->vid = $voc->vid;
-      $term->name = $type;
-      taxonomy_term_save($term);
-    }
-  }
-  // Auto Register to get the Board and Bureau migraton.
-  drush_invoke('migrate-auto-register');
-}

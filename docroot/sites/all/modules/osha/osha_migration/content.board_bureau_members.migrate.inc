@@ -36,6 +36,18 @@ class MigrateOshaBoardBureauMembers extends OSHADynamicMigration {
       MigrateDestinationNode::getKeySchema()
     );
 
+    $voc = taxonomy_vocabulary_machine_name_load('contact_type');
+    $types = array('Bureau of the Governing Board');
+    foreach ($types as $type) {
+      $term = taxonomy_get_term_by_name($type, 'contact_type');
+      if (empty($term)) {
+        $term = new stdClass();
+        $term->vid = $voc->vid;
+        $term->name = $type;
+        taxonomy_term_save($term);
+      }
+    }
+
     $node_options = MigrateDestinationNode::options('en', 'full_html');
     $this->destination = new MigrateDestinationNode('press_contact', $node_options);
 
@@ -44,6 +56,7 @@ class MigrateOshaBoardBureauMembers extends OSHADynamicMigration {
     $this->addFieldMapping('field_personal_title', 'field_personal_title');
     $this->addFieldMapping('title_field', 'title_field');
     $this->addFieldMapping('field_wg_role_1', 'field_wg_role_1');
+    $this->addFieldMapping('field_wg_role_2', 'field_wg_role_2');
     $this->addFieldMapping('field_wg_category', 'field_wg_category');
     $this->addFieldMapping('field_contact_type', 'field_contact_type');
     $this->addFieldMapping('uid')->defaultValue(1);
@@ -118,7 +131,13 @@ class MigrateOshaBoardBureauMembers extends OSHADynamicMigration {
       MigrationUtil::getOrCreateTaxonomyTerm('wg_category', $row->field_wg_category);
     }
     if (!empty($row->field_wg_role_1)) {
-      MigrationUtil::getOrCreateTaxonomyTerm('wg_role_1', $row->field_wg_role_1);
+      $roles = explode('.', $row->field_wg_role_1);
+      MigrationUtil::getOrCreateTaxonomyTerm('wg_role_1', $roles[0]);
+      if (!empty($roles[1])) {
+        $row->field_wg_role_1 = trim($roles[0]);
+        MigrationUtil::getOrCreateTaxonomyTerm('wg_role_2', $roles[1]);
+        $row->field_wg_role_2 = trim($roles[1]);
+      }
     }
     return TRUE;
   }
