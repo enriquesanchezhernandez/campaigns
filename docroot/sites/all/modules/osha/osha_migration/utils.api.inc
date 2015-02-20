@@ -20,15 +20,11 @@ class MigrationUtil {
     if (isset($arguments['file_name'])) {
       $file = $arguments['file_name'];
       if (!file_exists($file) || !is_readable($file)) {
-        throw new Exception(
-          t('Cannot read migration file @file', array('@file' => $file))
-        );
+        Migration::displayMessage(t('Cannot read migration file @file', array('@file' => $file)), 'error');
       }
     }
     else {
-      throw new Exception(
-        t('Invalid migration setup: missing `file_name` parameter (source)')
-      );
+      Migration::displayMessage(t('Invalid migration setup: missing `file_name` parameter (source)'));
     }
     return $file;
   }
@@ -38,15 +34,13 @@ class MigrationUtil {
     if (isset($arguments[$key])) {
       $file = $arguments[$key];
       if (!file_exists($file) || !is_readable($file)) {
-        throw new Exception(
-          t('Cannot read migration file @file', array('@file' => $file))
-        );
+        if (!file_exists($file) || !is_readable($file)) {
+          Migration::displayMessage(t('Cannot read migration file @file', array('@file' => $file)), 'error');
+        }
       }
     }
     else {
-      throw new Exception(
-        t('Invalid migration setup: missing `'. $key. '` parameter (source)')
-      );
+      Migration::displayMessage(t('Invalid migration setup: missing `'. $key. '` parameter (source)'));
     }
     return $file;
   }

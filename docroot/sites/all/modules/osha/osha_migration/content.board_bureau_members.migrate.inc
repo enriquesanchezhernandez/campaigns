@@ -210,10 +210,13 @@ class BoardBureauMembersListXML extends MigrateList {
    * Parse the XML file and populate the local cache.
    */
   protected function parseSourceFile() {
+    self::$data = array();
+    if (!is_readable($this->file)) {
+      return;
+    }
     if ($xml = simplexml_load_file($this->file)) {
       // To be used for board and bureau memebers, to merge the details.
 //    $xml_board = simplexml_load_file($this->file_board);
-      self::$data = array();
       foreach ($xml->getDocNamespaces() as $str_prefix => $str_namespace) {
         if (strlen($str_prefix) == 0) {
           // Assign an namespace prefix.
