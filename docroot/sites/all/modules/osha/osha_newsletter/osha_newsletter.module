@@ -1119,28 +1119,38 @@ function osha_newsletter_build_mail(&$message, EntityCollection $source) {
     }
   }
 
-  $languages = language_list('enabled');
-  usort($languages[1], function ($a, $b) {
-    return strcmp($a->name, $b->name);
-  });
-
-  $languages = $languages[1];
-
-  //hide some languages
-  $hided_lng = array('ru', 'tr');
-  foreach($languages as $key => $language){
-    if(in_array($language->language, $hided_lng))
-      unset($languages[$key]);
-  }
+  $languages = osha_langauge_list(TRUE);
 
   // Get message data from source.
   $message['subject'] = $source->title;
   $message['body']['header'] = theme('newsletter_header', array('languages' => $languages, 'newsletter_title' => $newsletter_title, 'newsletter_id' => $newsletter_id, 'newsletter_date' => $newsletter_date));
   $message['body']['body'] = theme('newsletter_body', array('items' => $elements, 'blogs' => $blogs, 'news' => $news, 'events' => $events));
+
+  //add css styles to href in body
+  $message['body']['body'] = osha_newsletter_format_body($message['body']['body']);
+
   $message['body']['footer'] = theme('newsletter_footer');
 
   // Optional params for HTML mails.
   $message['params']['plain'] = NULL;
+}
+
+/**
+ * Format message body
+ */
+function osha_newsletter_format_body($text) {
+  if ($dom = OshaTMGMTRetranslate::getDOMDocument($text)) {
+    foreach ($dom->getElementsByTagName('a') as $href) {
+      $style = $href->getAttribute('style');
+      if(empty($style)) {
+        $href->setAttribute('style', 'color:#003399;text-decoration:none;font-family:Arial,sans-serif;font-size:12px;font-weight:bold');
+      }
+    }
+    $html = OshaTMGMTRetranslate::getDOMNodeList($dom->saveHTML());
+    $text = OshaTMGMTRetranslate::getHTML($html);
+  }
+
+  return $text;
 }
 
 /**

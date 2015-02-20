@@ -401,13 +401,25 @@ function osha_disabled_language_list() {
   return drupal_map_assoc($disabled);
 }
 
-function osha_langauge_list() {
+/**
+ * Get OSHA official language list.
+ *
+ * @param bool $osha_sorted
+ *   if sorted by EU-OSHA specifications.
+ *
+ * @return array
+ *   of language objects.
+ */
+function osha_langauge_list($osha_sorted = FALSE) {
   $languages = language_list();
   $disabled_lang = osha_disabled_language_list();
   foreach ($languages as $lang => $language) {
     if (in_array($lang, $disabled_lang)) {
       unset($languages[$lang]);
     }
+  }
+  if ($osha_sorted) {
+    $languages = osha_sort_language_list($languages);
   }
   return $languages;
 }
