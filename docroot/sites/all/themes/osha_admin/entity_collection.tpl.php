@@ -50,10 +50,7 @@ if (module_exists('osha_newsletter') && isset($variables['element'])) {
       }
     }
 
-    $languages = osha_langauge_list();
-    usort($languages, function ($a, $b) {
-      return strcmp($a->name, $b->name);
-    });
+    $languages = osha_langauge_list(TRUE);
     ?>
     <div class="newsletter-wrapper" style="width: 800px;">
       <?php

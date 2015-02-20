@@ -1119,7 +1119,7 @@ function osha_newsletter_build_mail(&$message, EntityCollection $source) {
     }
   }
 
-  $languages = osha_langauge_list();
+  $languages = osha_langauge_list(TRUE);
 
   // Get message data from source.
   $message['subject'] = $source->title;
