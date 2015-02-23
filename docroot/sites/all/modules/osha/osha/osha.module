@@ -491,7 +491,9 @@ function osha_form_node_form_alter(&$form, &$form_state, $form_id) {
   }
 
   // Hide Delete button
-  unset($form['actions']['delete']);
+  if(!in_array('administrator', $user->roles)) {
+    unset($form['actions']['delete']);
+  }
 }
 
 /**
