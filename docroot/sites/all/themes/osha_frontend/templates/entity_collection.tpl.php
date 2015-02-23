@@ -50,7 +50,7 @@ if (module_exists('osha_newsletter') && isset($variables['element'])) {
       }
     }
 
-    $languages = language_list();
+    $languages = osha_language_list();
     usort($languages, function ($a, $b) {
       return strcmp($a->name, $b->name);
     });

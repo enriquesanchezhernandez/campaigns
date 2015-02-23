@@ -90,7 +90,7 @@ function entity_collection_menu() {
       'title' => 'Add ' . drupal_strtolower($info->label),
       'page callback' => 'drupal_get_form',
       'page arguments' => array('entity_collection_add_form', 4),
-      'access arguments' => array("create {$info->name} entity blocks"),
+      'access arguments' => array("create {$info->name} entity collections"),
       'file' => 'entity_collection.admin.inc',
       'type' => MENU_LOCAL_ACTION,
     );
@@ -545,6 +545,10 @@ function entity_collection_permission() {
     'administer entity_collection types' =>  array(
       'title' => t('Administer entity_collection types'),
       'description' => t('Create and delete fields on entity_collections, and set their permissions.'),
+    ),
+    'administer entity_collections' => array(
+      'title' => t('Administer entity_collections'),
+      'description' => t('Access the entity_collection administer interface.'),
     ),
   );
   // Generate per entity colletion type permissions.

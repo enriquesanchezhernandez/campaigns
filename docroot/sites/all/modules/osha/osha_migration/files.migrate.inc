@@ -261,6 +261,9 @@ class OshaMigrateFilesListCSV extends MigrateList {
    *   array[id][field] -- row
    */
   protected function parseMultilingualCSV($file) {
+    if (!is_readable($this->file)) {
+      return array();
+    }
     $handle = fopen($file, 'r');
     $fields = $data = fgetcsv($handle, 1000, ';');
     $final = array();

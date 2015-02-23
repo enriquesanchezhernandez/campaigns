@@ -180,6 +180,9 @@ class NoteToEditorMigrateList extends MigrateList {
    * Parse the CSV file and populate the local cache.
    */
   protected function parseSourceFile() {
+    if (!is_readable($this->file)) {
+      return array();
+    }
     $handle = fopen($this->file, 'r');
     $fields = $raw_data = fgetcsv($handle, NULL, ';');
 

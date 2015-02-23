@@ -401,7 +401,16 @@ function osha_disabled_language_list() {
   return drupal_map_assoc($disabled);
 }
 
-function osha_langauge_list() {
+/**
+ * Get OSHA official language list.
+ *
+ * @param bool $osha_sorted
+ *   if sorted by EU-OSHA specifications.
+ *
+ * @return array
+ *   of language objects.
+ */
+function osha_language_list($osha_sorted = FALSE) {
   $languages = language_list();
   $disabled_lang = osha_disabled_language_list();
   foreach ($languages as $lang => $language) {
@@ -409,11 +418,14 @@ function osha_langauge_list() {
       unset($languages[$lang]);
     }
   }
+  if ($osha_sorted) {
+    $languages = osha_sort_language_list($languages);
+  }
   return $languages;
 }
 
 function osha_langauge_list_options() {
-  $languages = osha_langauge_list();
+  $languages = osha_language_list();
   $return = array();
   foreach ($languages as $lang => $language) {
     $return[$lang] = $language->name;
@@ -670,6 +682,21 @@ function osha_countries_alter(&$countries) {
   // EU accepts UK instead of GB.
   $countries['UK'] = 'United Kingdom';
   unset($countries['GB']);
+}
+
+/**
+ * Implements hook_library_alter().
+ */
+function osha_library_alter(&$libraries, $module) {
+  if ($module == 'chosen') {
+    if (!empty($libraries['drupal.chosen']['js'][0]['data']['chosen']['options'])) {
+      $options = &$libraries['drupal.chosen']['js'][0]['data']['chosen']['options'];
+      // Pass trough t() the palceholders.
+      $options['placeholder_text_multiple'] = t($options['placeholder_text_multiple']);
+      $options['placeholder_text_single'] = t($options['placeholder_text_single']);
+      $options['no_results_text'] = t($options['no_results_text']);
+    }
+  }
 }
 
 /**

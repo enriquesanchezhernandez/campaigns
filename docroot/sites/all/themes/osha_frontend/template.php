@@ -275,6 +275,27 @@ function osha_frontend_preprocess_page(&$variables){
 }
 
 /**
+ * Implements hook_page_alter().
+ */
+function osha_frontend_page_alter(&$page) {
+  // Move addtoany links to bottom of the page.
+  if (!empty($page['content']['system_main']['nodes'])
+    && count(element_children($page['content']['system_main']['nodes']) == 1)) {
+    $keys = element_children($page['content']['system_main']['nodes']);
+    $node = &$page['content']['system_main']['nodes'][current($keys)];
+    if (!empty($node['links']['#links']['addtoany'])) {
+      $links = $node['links']['#links']['addtoany'];
+      unset($node['links']['#links']['addtoany']);
+      $page['content']['addtoany'] = array(
+        '#markup' => $links['title'],
+        '#prefix' => '<div id="addtoany_bottom_container">',
+        '#suffix' => '</div>',
+      );
+    }
+  }
+}
+
+/**
  * Called from hook_preprocess_node()
  * Insert view or custom blocks in node when meet a specific markup
  * The markup is like <!--[name-of-the-block]-->

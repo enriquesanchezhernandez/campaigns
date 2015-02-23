@@ -125,8 +125,9 @@ function osha_publication_node_view($node, $view_mode, $langcode) {
  */
 function osha_publication_menu_local_tasks_alter(&$data, $router_item, $root_path) {
   // For publications, the "View" tab should point to alias/view.
-  $is_publication = !empty($router_item['page_arguments'][0]->type)
-    && $router_item['page_arguments'][0]->type == 'publication';
+  $is_node = !empty($router_item['map'][0]) && $router_item['map'][0] == 'node'
+    && !empty($router_item['map'][1]) && is_object($router_item['map'][1]);
+  $is_publication = $is_node && $router_item['map'][1]->type == 'publication';
   if ($is_publication && !empty($data['tabs'][0])) {
     $tabs = $data['tabs'][0];
     if (!empty($tabs['output'])) {
@@ -138,6 +139,22 @@ function osha_publication_menu_local_tasks_alter(&$data, $router_item, $root_pat
           }
           $data['tabs'][0]['output'][$key]['#link']['href'] .= '/view';
         }
+      }
+    }
+  }
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function osha_publication_form_lang_dropdown_form_alter(&$form, &$form_state, $form_id){
+  // For publications, the language switcher should get to '/view' (CW-1413)
+  $node = menu_get_object();
+  if (!empty($node) && $node->type == 'publication') {
+    $languages = osha_language_list();
+    foreach (array_keys($languages) as $lang) {
+      if (isset($form[$lang])) {
+        $form[$lang]['#default_value'] .= '/view';
       }
     }
   }

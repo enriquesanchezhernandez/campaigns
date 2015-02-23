@@ -3365,6 +3365,7 @@ font-weight: normal;
     width: 100%;
 	padding-bottom:1.5em;
 	background: url("../images/separator_home.jpg") repeat-x scroll 0% 100% rgba(0, 0, 0, 0);
+	margin-top:-1.5em;
 }
 
 .node-highlight ul.links.inline a{
@@ -3413,7 +3414,8 @@ font-weight: normal;
 }
 
 .node-highlight.view-mode-full .field-type-text-with-summary p{
-	margin-top:0.2em;
+	margin:0;
+	padding: 0 0 12px;
 }
 
 .view-highlight.field-type-text-with-summary p{
@@ -4663,6 +4665,10 @@ div.contextual-links-wrapper a{
 	border:0px!important;
 }
 
+#addtoany_bottom_container {
+	clear: both;
+}
+
 .addtoany{
 	float:right;
 	padding-top: 1em!important;
@@ -4986,8 +4992,10 @@ a.tabs-primary__tab-link{
 }
 
 #block-views-events-index-block-1 .date-display-single{
-	font-size:0.8em;
-	font-weight:bold;
+	font-size: 0.8em;
+	font-weight: bold;
+	float: left;
+	padding-right: 0.5em;
 }
 
 #block-views-events-index-block-1 .date-display-start{

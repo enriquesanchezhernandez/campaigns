@@ -152,3 +152,11 @@ function entity_collection_schema() {
   $schema['cache_entity_entity_collection']['description'] = "Cache table used to store entity_collection entity records.";
   return $schema;
 }
+
+/**
+ * Add to administrators administer entity_collections permission.
+ */
+function entity_collection_update_7001() {
+  $role = user_role_load_by_name('administrator');
+  user_role_grant_permissions($role->rid, array('administer entity_collections'));
+}
