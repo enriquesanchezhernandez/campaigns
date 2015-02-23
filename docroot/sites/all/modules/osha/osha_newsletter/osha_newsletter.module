@@ -974,8 +974,9 @@ function osha_newsletter_mail($key, &$message, $params) {
       break;
     case 'send_newsletter':
       $source = entity_collection_load($params['#style']->entity_collection->name);
-//      $source->field_newsletter_sent[LANGUAGE_NONE][0]['value'] = 1;
       osha_newsletter_build_mail($message, $source);
+      $source->field_newsletter_sent[LANGUAGE_NONE][0]['value'] = 1;
+      entity_save('entity_collection', $source);
       break;
     case 'subscribe_email':
       osha_newsletter_build_subscribe_mail($message);
