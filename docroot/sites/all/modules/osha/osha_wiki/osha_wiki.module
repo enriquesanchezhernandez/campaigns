@@ -169,3 +169,12 @@ function osha_wiki_osha_tmgmt_i18n_string_list() {
   module_load_include('inc', 'osha_wiki', 'osha_wiki.translations');
   return osha_wiki_get_translatable_strings();
 }
+
+/**
+ * Implements hook_cron().
+ */
+function osha_wiki_cron() {
+  watchdog('osha_wiki', "Running Wiki synchronisation cron job", array(), WATCHDOG_INFO);
+  $migration = new OshaMigrateWiki(array());
+  $migration->processImport();
+}
