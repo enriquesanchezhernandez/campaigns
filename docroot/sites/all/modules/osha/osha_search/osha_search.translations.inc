@@ -20,6 +20,6 @@ function osha_search_get_translatable_strings() {
     'Asc',
     'Desc',
     'Order',
-    'Displaying @start - @end of @total',
+    '<span class="result_summary">Displaying @start - @end of @total</span>',
   );
 }
