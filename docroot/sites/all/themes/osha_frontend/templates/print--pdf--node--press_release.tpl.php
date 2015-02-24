@@ -178,7 +178,7 @@
               <td style="padding-top: 10px; padding-bottom: 10px; color: #FFFFFF; font-family: Arial, sans-serif; font-size: 8px; "><?php print t('Subscribe to our <a href="@url" style="@style">Alert service</a> for <br/> customised content delivery',
                   array('@style' => 'color: #FFFFFF;', '@url' => url('https://osha.europa.eu/en/alertservice'))); ?>
               </td>
-              <td class="social" style="padding-top: 10px; padding-bottom: 10px;">
+              <td class="social" style="padding-top: 10px; padding-bottom: 10px; float: right;">
                 <?php
                 $social = array(
                   'twitter' => array(
@@ -218,9 +218,6 @@
                   ));
                 }
                 ?>
-              </td>
-              <td style="padding-top: 10px; padding-bottom: 10px; color: #FFFFFF; font-family: Arial, sans-serif; font-size: 8px; text-align: center;">
-                <?php print t('Like what you\'re reading? <br/><a href="@url" style="@style">Tell a colleague</a>', array('@style' => 'color: #FFFFFF;', '@url' => 'https://osha.europa.eu/en/news/oshmail/sendto_form')); ?>
               </td>
             </tr>
             </tbody>

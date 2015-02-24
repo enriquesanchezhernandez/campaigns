@@ -3,23 +3,24 @@
  * Class MigrateOshaBlog migrates blog.txt contents. The data
  * is stored inside the <em>Blog</em> content type.
  */
-class MigrateOshaFocalPoints extends OSHADynamicMigration {
+class MigrateOshaBoardBureauMembers extends OSHADynamicMigration {
 
   /**
    * {@inheritdoc}
    */
   public function __construct($arguments) {
     parent::__construct(MigrateGroup::getInstance('OSHA Content types'));
-    $this->description = 'Import "Focal Points" contents from CSV file';
+    $this->description = 'Import "Board and Bureau" contents from CSV file';
 
     /* Remove limits on time/memory, slower machines will fail */
     $this->timeLimit = 0;
     $this->memoryLimit = PHP_INT_MAX;
 
-    $source_file = MigrationUtil::getSourceFile($arguments);
+    $source_file_bureau = MigrationUtil::getSourceFileByKey($arguments, 'file_name');
+//    $source_file_board = MigrationUtil::getSourceFileByKey($arguments, 'file_name_board');
     $this->source = new MigrateSourceList(
-      new FocalPointsContentListXML($source_file),
-      new FocalPointsContentItemXML(),
+      new BoardBureauMembersListXML($source_file_bureau),
+      new BoardBureauMembersItemXML(),
       $this->fields()
     );
 
@@ -35,19 +36,27 @@ class MigrateOshaFocalPoints extends OSHADynamicMigration {
       MigrateDestinationNode::getKeySchema()
     );
 
+    $voc = taxonomy_vocabulary_machine_name_load('contact_type');
+    $types = array('Bureau of the Governing Board');
+    foreach ($types as $type) {
+      $term = taxonomy_get_term_by_name($type, 'contact_type');
+      if (empty($term)) {
+        $term = new stdClass();
+        $term->vid = $voc->vid;
+        $term->name = $type;
+        taxonomy_term_save($term);
+      }
+    }
+
     $node_options = MigrateDestinationNode::options('en', 'full_html');
     $this->destination = new MigrateDestinationNode('press_contact', $node_options);
 
     $this->addFieldMapping('title', 'title');
-    $this->addFieldMapping('field_press_contact_organization', 'field_press_contact_organization');
     $this->addFieldMapping('field_personal_title', 'field_personal_title');
     $this->addFieldMapping('title_field', 'title_field');
-    $this->addFieldMapping('field_press_contact_phone', 'field_press_contact_phone');
-    $this->addFieldMapping('field_press_contact_location', 'field_press_contact_location');
-    $this->addFieldMapping('field_press_contact_email', 'field_press_contact_email');
-    $this->addFieldMapping('field_website', 'field_website');
-    $this->addFieldMapping('field_zip_code', 'field_zip_code');
-    $this->addFieldMapping('field_city', 'field_city');
+    $this->addFieldMapping('field_wg_role_1', 'field_wg_role_1');
+    $this->addFieldMapping('field_wg_role_2', 'field_wg_role_2');
+    $this->addFieldMapping('field_wg_category', 'field_wg_category');
     $this->addFieldMapping('field_contact_type', 'field_contact_type');
     $this->addFieldMapping('uid')->defaultValue(1);
 
@@ -86,6 +95,11 @@ class MigrateOshaFocalPoints extends OSHADynamicMigration {
       'field_thesaurus:create_term',
       'field_thesaurus:ignore_case',
       'field_country',
+      'field_zip_code',
+      'field_city',
+      'field_press_contact_phone',
+      'field_press_contact_location',
+      'field_press_contact_organization',
       'comment',
     ));
   }
@@ -96,7 +110,7 @@ class MigrateOshaFocalPoints extends OSHADynamicMigration {
    * {@inheritdoc}
    */
   protected function generateMachineName() {
-    return OSHA_MIGRATION_CONTENT_TYPE_FOCAL_POINT;
+    return OSHA_MIGRATION_CONTENT_TYPE_BOARD_BUREAU;
   }
 
   /**
@@ -105,6 +119,25 @@ class MigrateOshaFocalPoints extends OSHADynamicMigration {
    * {@inheritdoc}
    */
   public function prepareRow($row) {
+    if (empty($row->title)) {
+      $this->saveMessage('Skipping contact without name',
+        MigrationBase::MESSAGE_WARNING);
+      return FALSE;
+    }
+    // Create the terms if not exists.
+    // Migration will set terms if name found.
+    if (!empty($row->field_wg_category)) {
+      MigrationUtil::getOrCreateTaxonomyTerm('wg_category', $row->field_wg_category, array('language' => 'en'));
+    }
+    if (!empty($row->field_wg_role_1)) {
+      $roles = explode('.', $row->field_wg_role_1);
+      MigrationUtil::getOrCreateTaxonomyTerm('wg_role_1', $roles[0], array('language' => 'en'));
+      if (!empty($roles[1])) {
+        $row->field_wg_role_1 = trim($roles[0]);
+        MigrationUtil::getOrCreateTaxonomyTerm('wg_role_2', $roles[1], array('language' => 'en'));
+        $row->field_wg_role_2 = trim($roles[1]);
+      }
+    }
     return TRUE;
   }
 
@@ -117,26 +150,6 @@ class MigrateOshaFocalPoints extends OSHADynamicMigration {
    *   Source row
    */
   public function prepare($entity, $row) {
-    $country = MigrationUtil::getCountryIso2ByName($row->field_country_iso2);
-    if ($country == NULL) {
-      $this->displayMessage('Focal Points Country '
-        . $row->field_country_iso2 . ' not found', 'warning');
-      $row->field_country_iso2 = NULL;
-    }
-    else {
-      $tid = MigrationUtil::getCountryTermByISO2($country);
-      if (empty($tid)) {
-        $voc = taxonomy_vocabulary_machine_name_load('country');
-        $term = new stdClass();
-        $term->vid = $voc->vid;
-        $term->name = ucwords(strtolower($row->field_country_iso2));
-        $term->field_iso2[LANGUAGE_NONE][0]['value'] = $country;
-        $term->language = 'en';
-        taxonomy_term_save($term);
-        $tid = $term->tid;
-      }
-      $entity->field_country[LANGUAGE_NONE][0] = array('tid' => $tid);
-    }
   }
 
   /**
@@ -171,16 +184,17 @@ class MigrateOshaFocalPoints extends OSHADynamicMigration {
   }
 }
 
-class FocalPointsContentListXML extends MigrateList {
+class BoardBureauMembersListXML extends MigrateList {
   protected $file = '';
   public static $data = array();
 
   /**
    * {@inheritdoc}
    */
-  public function __construct($file) {
+  public function __construct($file, $file_board = "") {
     parent::__construct($file);
     $this->file = $file;
+    $this->file_board = $file_board;
     $this->parseSourceFile();
   }
 
@@ -200,6 +214,8 @@ class FocalPointsContentListXML extends MigrateList {
       return;
     }
     if ($xml = simplexml_load_file($this->file)) {
+      // To be used for board and bureau memebers, to merge the details.
+//    $xml_board = simplexml_load_file($this->file_board);
       foreach ($xml->getDocNamespaces() as $str_prefix => $str_namespace) {
         if (strlen($str_prefix) == 0) {
           // Assign an namespace prefix.
@@ -208,21 +224,15 @@ class FocalPointsContentListXML extends MigrateList {
         $xml->registerXPathNamespace($str_prefix, $str_namespace);
       }
       // Contact fields are attributes of Detail.
-      foreach ($xml->xpath('//fp:Detail') as $focalpoint) {
+      foreach ($xml->xpath('//fp:Detail') as $member) {
         $data = new stdClass();
-        $attributes = $focalpoint->attributes();
-        $data->title = (string) $attributes['Table0_Details5'];
-        $data->title_field = (string) $attributes['Table0_Details5'];
-        $data->field_press_contact_organization = (string) $attributes['Table0_Details1'];
-        $data->field_personal_title = (string) $attributes['Table0_Details3'];
-        $data->field_press_contact_phone = (string) $attributes['Table0_Details6'];
-        $data->field_press_contact_location = (string) $attributes['a_osh_phaddress'];
-        $data->field_press_contact_email = (string) $attributes['Table0_Details7'];
-        $data->field_website = (string) $attributes['Table0_Details8'];
-        $data->field_country_iso2 = (string) $attributes['a_osh_phcountryid'];
-        $data->field_zip_code = (string) $attributes['a_osh_phcp'];
-        $data->field_city = (string) $attributes['a_osh_phtown'];
-        $data->field_contact_type = 'Focal Point';
+        $attributes = $member->attributes();
+        $data->title = (string) $attributes['Table0_Details2'];
+        $data->title_field = (string) $attributes['Table0_Details2'];
+        $data->field_personal_title = (string) $attributes['Table0_Details1'];
+        $data->field_wg_role_1 = (string) $attributes['Table0_Details3'];
+        $data->field_wg_category = (string) $attributes['Table0_Details4'];
+        $data->field_contact_type = 'Bureau of the Governing Board';
         $id = $this->idFromName((string) $data->title);
         self::$data[$id] = $data;
       }
@@ -255,14 +265,14 @@ class FocalPointsContentListXML extends MigrateList {
   }
 }
 
-class FocalPointsContentItemXML extends MigrateItem {
+class BoardBureauMembersItemXML extends MigrateItem {
 
   /**
    * {@inheritdoc}
    */
   public function getItem($item_id) {
-    if (array_key_exists($item_id, FocalPointsContentListXML::$data)) {
-      return (object) FocalPointsContentListXML::$data[$item_id];
+    if (array_key_exists($item_id, BoardBureauMembersListXML::$data)) {
+      return (object) BoardBureauMembersListXML::$data[$item_id];
     }
     return NULL;
   }

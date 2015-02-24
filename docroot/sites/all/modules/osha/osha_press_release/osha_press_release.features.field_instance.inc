@@ -148,7 +148,7 @@ function osha_press_release_field_default_field_instances() {
     'entity_type' => 'node',
     'field_name' => 'field_activity',
     'label' => 'Activity',
-    'required' => 0,
+    'required' => 1,
     'settings' => array(
       'entity_translation_sync' => FALSE,
       'user_register_form' => FALSE,

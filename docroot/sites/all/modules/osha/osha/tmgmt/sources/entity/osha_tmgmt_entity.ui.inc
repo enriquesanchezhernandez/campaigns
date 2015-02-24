@@ -107,6 +107,40 @@ class OSHATMGMTEntitySourceUIController extends TMGMTEntitySourceUIController {
 
     return $return_value;
   }
+
+
+  /**
+   * Builds a table row for overview form.
+   *
+   * @param array $data
+   *   Data needed to build the list row.
+   *
+   * @return array
+   */
+  public function overviewRow($data) {
+    $label = $data['entity_label'] ? $data['entity_label'] : t('@type: @id', array('@type' => $data['entity_type'], '@id' => $data['entity_id']));
+
+    $row = array(
+      'id' => $data['entity_id'],
+      'title' => l($label, $data['entity_uri']),
+    );
+
+    if (isset($data['bundle'])) {
+      $row['bundle'] = $data['bundle'];
+    }
+
+    foreach (language_list() as $langcode => $language) {
+      $row['langcode-' . $langcode] = array(
+        'data' => theme('osha_tmgmt_ui_translation_language_status_single', array(
+          'translation_status' => $data['translation_statuses'][$langcode],
+          'job_item' => isset($data['current_job_items'][$langcode]) ? $data['current_job_items'][$langcode] : NULL,
+        )),
+        'class' => array('langstatus-' . $langcode),
+      );
+    }
+
+    return $row;
+  }
 }
 
 /**
