@@ -422,3 +422,11 @@ function osha_workflow_update_7003() {
   $role = user_role_load_by_name(OSHA_WORKFLOW_ROLE_PROJECT_MANAGER);
   user_role_grant_permissions($role->rid, osha_workflow_permissions_role_project_manager());
 }
+
+/**
+ * Add 'assign workbench access' permission to Review manager role
+ */
+function osha_workflow_update_7004() {
+  $role = user_role_load_by_name(OSHA_WORKFLOW_ROLE_REVIEW_MANAGER);
+  user_role_grant_permissions($role->rid, array('assign workbench access'));
+}

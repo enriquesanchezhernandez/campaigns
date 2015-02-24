@@ -42,7 +42,7 @@ function osha_workflow_menu() {
     'description' => 'Assignment of project managers for each website section.',
     'page callback' => 'osha_workflow_workbench_project_managers',
     'page arguments' => array(),
-    'access arguments' => array('view workbench access information'),
+    'access arguments' => array('assign workbench access'),
     'type' => MENU_LOCAL_TASK,
     'weight' => -12,
     'file' => 'osha_workflow.admin.inc',
@@ -53,7 +53,7 @@ function osha_workflow_menu() {
     'description' => 'Assignment of project managers for each website section.',
     'page callback' => 'drupal_goto',
     'page arguments' => array('admin/config/workbench/access/managers'),
-    'access arguments' => array('view workbench access information'),
+    'access arguments' => array('assign workbench access'),
     'type' => MENU_LOCAL_TASK,
     'weight' => -12,
     'file' => 'osha_workflow.admin.inc',
@@ -61,7 +61,7 @@ function osha_workflow_menu() {
 
   $items['admin/config/workbench/access/managers/review'] = array(
     'title' => 'Section Review',
-    'description' => 'Mark section as Reviewd.',
+    'description' => 'Mark section as Reviewed.',
     'page callback' => 'drupal_get_form',
     'page arguments' => array('osha_workflow_access_section_review_form'),
     'access arguments' => array('view workbench access information'),
