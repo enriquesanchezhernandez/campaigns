@@ -175,6 +175,7 @@ function osha_search_default_search_api_index() {
         "field_publication_date" : { "type" : "date" },
         "field_publication_type" : { "type" : "integer", "entity_type" : "taxonomy_term" },
         "field_satisfaction_rate" : { "type" : "integer" },
+        "field_seminar_end_date" : { "type" : "date" },
         "field_seminar_start_date" : { "type" : "date" },
         "field_start_date:value" : { "type" : "date" },
         "field_start_date:value2" : { "type" : "date" },
