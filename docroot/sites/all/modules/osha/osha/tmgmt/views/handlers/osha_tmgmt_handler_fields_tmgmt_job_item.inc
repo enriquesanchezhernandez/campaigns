@@ -122,7 +122,7 @@ class osha_tmgmt_handler_field_tmgmt_job_item_operations extends tmgmt_handler_f
         && user_access('preview layout validation')) {
 
       $url = url(
-        sprintf('admin/config/regional/translate/edit/%s', $item->item_id),
+        sprintf('admin/config/regional/translate/edit/%s/%s', $item->item_id, $item->target_language),
         array('absolute' => TRUE)
       );
       $url = $url . '?destination=admin/tmgmt/jobs/' . $item->tjid;

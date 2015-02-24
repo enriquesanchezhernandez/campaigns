@@ -47,6 +47,16 @@ function osha_tmgmt_menu() {
     'file' => 'osha_tmgmt.workflow.inc',
   );
 
+  $items['admin/config/regional/translate/edit/%/%'] = array(
+    'title' => 'Edit string',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('osha_tmgmt_i18n_string_locale_translate_edit_form', 5, 6),
+    'access arguments' => array('translate interface'),
+    'file' => 'i18n_string.pages.inc',
+    'file path' => drupal_get_path('module', 'i18n_string'),
+  );
+
+
   return $items;
 }
 
@@ -2467,4 +2477,20 @@ function osha_tmgmt_form_i18n_string_translate_page_overview_form_alter(&$form, 
     '#submit' => array('tmgmt_i18n_string_translate_form_submit'),
     '#validate' => array('tmgmt_i18n_string_translate_form_validate'),
   );
+}
+
+function osha_tmgmt_i18n_string_locale_translate_edit_form($form, &$form_state, $lid, $language) {
+  $form = i18n_string_locale_translate_edit_form($form, $form_state, $lid);
+  if(!empty($form['translations'])) {
+    foreach($form['translations'] as $lang => &$item) {
+      if (is_array($item) && $lang != $language) {
+        $item['#access'] = FALSE;
+      }
+    }
+  }
+  return $form;
+}
+
+function osha_tmgmt_i18n_string_locale_translate_edit_form_submit($form, &$form_state) {
+  i18n_string_locale_translate_edit_form_submit($form, $form_state);
 }
