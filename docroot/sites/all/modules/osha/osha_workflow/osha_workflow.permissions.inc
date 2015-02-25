@@ -150,6 +150,7 @@ function osha_workflow_permissions_role_review_manager() {
     array(
       'view osh review manager needs review tab',
       'access content overview',
+      'assign workbench access',
 
       'edit any content in draft',
       'edit any content in final_draft',

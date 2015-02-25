@@ -490,6 +490,7 @@ function osha_blog_views_default_views() {
   $handler->display->display_options['footer']['result']['id'] = 'result';
   $handler->display->display_options['footer']['result']['table'] = 'views';
   $handler->display->display_options['footer']['result']['field'] = 'result';
+  $handler->display->display_options['footer']['result']['content'] = '<span class="result_summary">Displaying @start - @end of @total</span>';
   /* No results behavior: Global: Unfiltered text */
   $handler->display->display_options['empty']['area_text_custom']['id'] = 'area_text_custom';
   $handler->display->display_options['empty']['area_text_custom']['table'] = 'views';
@@ -577,7 +578,7 @@ function osha_blog_views_default_views() {
     t('‹'),
     t('›'),
     t('»'),
-    t('Displaying @start - @end of @total'),
+    t('<span class="result_summary">Displaying @start - @end of @total</span>'),
     t('No results'),
     t('Multilingual ID'),
     t('Free text search'),

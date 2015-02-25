@@ -45,6 +45,7 @@ function osha_search_views_default_views() {
   $handler->display->display_options['footer']['result']['id'] = 'result';
   $handler->display->display_options['footer']['result']['table'] = 'views';
   $handler->display->display_options['footer']['result']['field'] = 'result';
+  $handler->display->display_options['footer']['result']['content'] = '<span class="result_summary">Displaying @start - @end of @total</span>';
   /* No results behavior: Global: Unfiltered text */
   $handler->display->display_options['empty']['area_text_custom']['id'] = 'area_text_custom';
   $handler->display->display_options['empty']['area_text_custom']['table'] = 'views';
@@ -192,7 +193,7 @@ function osha_search_views_default_views() {
     t('‹'),
     t('›'),
     t('»'),
-    t('Displaying @start - @end of @total'),
+    t('<span class="result_summary">Displaying @start - @end of @total</span>'),
     t('No results'),
     t('Multilingual ID'),
     t('Publication date'),
@@ -239,6 +240,7 @@ function osha_search_views_default_views() {
   $handler->display->display_options['footer']['result']['id'] = 'result';
   $handler->display->display_options['footer']['result']['table'] = 'views';
   $handler->display->display_options['footer']['result']['field'] = 'result';
+  $handler->display->display_options['footer']['result']['content'] = '<span class="result_summary">Displaying @start - @end of @total</span>';
   /* No results behavior: Global: Unfiltered text */
   $handler->display->display_options['empty']['area_text_custom']['id'] = 'area_text_custom';
   $handler->display->display_options['empty']['area_text_custom']['table'] = 'views';
@@ -561,11 +563,22 @@ function osha_search_views_default_views() {
   $handler->display->display_options['title'] = 'OSHwiki search';
   $handler->display->display_options['exposed_block'] = TRUE;
   $handler->display->display_options['defaults']['fields'] = FALSE;
+  /* Field: Indexed Multilingual Node: URL */
+  $handler->display->display_options['fields']['field_wiki_page_url']['id'] = 'field_wiki_page_url';
+  $handler->display->display_options['fields']['field_wiki_page_url']['table'] = 'search_api_index_default_multilingual_node_index';
+  $handler->display->display_options['fields']['field_wiki_page_url']['field'] = 'field_wiki_page_url';
+  $handler->display->display_options['fields']['field_wiki_page_url']['label'] = '';
+  $handler->display->display_options['fields']['field_wiki_page_url']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['field_wiki_page_url']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_wiki_page_url']['click_sort_column'] = 'url';
+  $handler->display->display_options['fields']['field_wiki_page_url']['type'] = 'link_plain';
   /* Field: Indexed Multilingual Node: Title */
   $handler->display->display_options['fields']['title_field']['id'] = 'title_field';
   $handler->display->display_options['fields']['title_field']['table'] = 'search_api_index_default_multilingual_node_index';
   $handler->display->display_options['fields']['title_field']['field'] = 'title_field';
   $handler->display->display_options['fields']['title_field']['label'] = '';
+  $handler->display->display_options['fields']['title_field']['alter']['make_link'] = TRUE;
+  $handler->display->display_options['fields']['title_field']['alter']['path'] = '[field_wiki_page_url]';
   $handler->display->display_options['fields']['title_field']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['title_field']['type'] = 'text_plain';
   $handler->display->display_options['fields']['title_field']['settings'] = array(
@@ -574,13 +587,13 @@ function osha_search_views_default_views() {
     'title_class' => '',
   );
   /* Field: Indexed Multilingual Node: URL */
-  $handler->display->display_options['fields']['field_wiki_page_url']['id'] = 'field_wiki_page_url';
-  $handler->display->display_options['fields']['field_wiki_page_url']['table'] = 'search_api_index_default_multilingual_node_index';
-  $handler->display->display_options['fields']['field_wiki_page_url']['field'] = 'field_wiki_page_url';
-  $handler->display->display_options['fields']['field_wiki_page_url']['label'] = '';
-  $handler->display->display_options['fields']['field_wiki_page_url']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['field_wiki_page_url']['click_sort_column'] = 'url';
-  $handler->display->display_options['fields']['field_wiki_page_url']['type'] = 'link_url';
+  $handler->display->display_options['fields']['field_wiki_page_url_1']['id'] = 'field_wiki_page_url_1';
+  $handler->display->display_options['fields']['field_wiki_page_url_1']['table'] = 'search_api_index_default_multilingual_node_index';
+  $handler->display->display_options['fields']['field_wiki_page_url_1']['field'] = 'field_wiki_page_url';
+  $handler->display->display_options['fields']['field_wiki_page_url_1']['label'] = '';
+  $handler->display->display_options['fields']['field_wiki_page_url_1']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_wiki_page_url_1']['click_sort_column'] = 'url';
+  $handler->display->display_options['fields']['field_wiki_page_url_1']['type'] = 'link_url';
   /* Field: Search: Excerpt */
   $handler->display->display_options['fields']['search_api_excerpt']['id'] = 'search_api_excerpt';
   $handler->display->display_options['fields']['search_api_excerpt']['table'] = 'search_api_index_default_multilingual_node_index';
@@ -685,7 +698,7 @@ function osha_search_views_default_views() {
     t('‹'),
     t('›'),
     t('»'),
-    t('Displaying @start - @end of @total'),
+    t('<span class="result_summary">Displaying @start - @end of @total</span>'),
     t('No results'),
     t('Relevance'),
     t('Site search'),

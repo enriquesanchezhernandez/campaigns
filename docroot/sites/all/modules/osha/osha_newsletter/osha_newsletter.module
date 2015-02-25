@@ -628,7 +628,6 @@ function osha_newsletter_add_to_newsletter_action($node, $context) {
  * Implements hook_form_alter().
  */
 function osha_newsletter_form_alter(&$form, &$form_state, $form_id) {
-
   switch ($form_id) {
     case 'entity_collection_edit_form':
       if (isset($form['#bundle']) && $form['#bundle'] == 'newsletter_content_collection') {
@@ -652,6 +651,25 @@ function osha_newsletter_form_alter(&$form, &$form_state, $form_id) {
       $form['#action'] = '/' . $_GET['q'];
       if (!empty($form['actions']['submit']['#submit'])) {
         $form['actions']['submit']['#submit'][] = 'osha_newsletter_entity_collection_newsletter_add_form_submit';
+      }
+      break;
+
+    case 'entity_collection_content_add_form':
+      if(isset($form_state['build_info'])){
+        if (isset($form_state['build_info']['args']) && !empty($form_state['build_info']['args'])) {
+          if ($form_state['build_info']['args'][0]->bundle == 'newsletter_content_collection') {
+            $form['add_content']['entity_type'] = array(
+              '#type' => 'select',
+              '#options' => array(
+                'node' => 'Node'
+              ),
+              '#default_value' => 'node',
+              '#attributes' => array(
+                'style' => 'display: none;'
+              )
+            );
+          }
+        }
       }
       break;
 
@@ -974,8 +992,9 @@ function osha_newsletter_mail($key, &$message, $params) {
       break;
     case 'send_newsletter':
       $source = entity_collection_load($params['#style']->entity_collection->name);
-//      $source->field_newsletter_sent[LANGUAGE_NONE][0]['value'] = 1;
       osha_newsletter_build_mail($message, $source);
+      $source->field_newsletter_sent[LANGUAGE_NONE][0]['value'] = 1;
+      entity_save('entity_collection', $source);
       break;
     case 'subscribe_email':
       osha_newsletter_build_subscribe_mail($message);
