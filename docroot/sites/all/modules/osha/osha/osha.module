@@ -446,6 +446,8 @@ function osha_langauge_list_options() {
  * Implements hook_form_alter().
  */
 function osha_form_node_form_alter(&$form, &$form_state, $form_id) {
+  global $user;
+
   if (isset($form['#node'])) {
     $node = $form['#node'];
     if (isset($node->nid)) {
@@ -485,13 +487,27 @@ function osha_form_node_form_alter(&$form, &$form_state, $form_id) {
   if (isset($form_state['field']['field_character_count'])) {
     $form['field_character_count']['#access'] = FALSE;
   }
-  global $user;
+
   if (!in_array('administrator', $user->roles)) {
     $form['field_archived']['#access'] = FALSE;
   }
-
-  // Hide Delete button
+  // Hide Delete button for all roles
   unset($form['actions']['delete']);
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ *
+ * Hide Delete button for non-admin users
+ */
+function osha_form_alter(&$form, &$form_state, $form_id){
+  global $user;
+
+  if($form['#form_id'] == 'views_form_administration_content_main_page' &&
+    !in_array('administrator', $user->roles)){
+    $form_state['build_info']['args'][0]->field = array();
+    $form['views_bulk_operations'] = FALSE;
+  }
 }
 
 /**
