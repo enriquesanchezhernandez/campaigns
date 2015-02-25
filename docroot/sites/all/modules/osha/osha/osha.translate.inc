@@ -31,6 +31,7 @@ function osha_get_translatable_strings() {
     'News & Events',
     'Press',
     'Contact us',
+    'European Agency for Safety and Health at Work',
 
     // String from footer
     'an agency of the European Union',
