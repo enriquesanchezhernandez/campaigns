@@ -114,6 +114,16 @@ function osha_tmgmt_install() {
     db_add_field('tmgmt_job_item', 'vid', $field);
   }
 
+  if (!db_field_exists('tmgmt_job_item', 'merged')) {
+    $field = array(
+      'description' => 'If the translation was merged to entity',
+      'type' => 'int',
+      'default' => NULL,
+      'not null' => FALSE,
+    );
+    db_add_field('tmgmt_job_item', 'merged', $field);
+  }
+
 
   // tmgmt_job alteration.
   if (!db_field_exists('tmgmt_job', 'character_count')) {
@@ -424,12 +434,24 @@ function osha_tmgmt_update_7009() {
     'translate taxonomy_term entities',
     'translate interface',
     'translate user-defined strings',
-    'translate admin strings'
+    'translate admin strings',
   );
   foreach($vocabularies as $vid => $voc) {
     $permissions[] = 'edit terms in ' . $vid;
   }
   if ($role = user_role_load_by_name('Layout Validator')) {
     user_role_grant_permissions($role->rid, $permissions);
+  }
+}
+
+function osha_tmgmt_update_7010() {
+  if (!db_field_exists('tmgmt_job_item', 'merged')) {
+    $field = array(
+      'description' => 'If the translation was merged to entity',
+      'type' => 'int',
+      'default' => NULL,
+      'not null' => FALSE,
+    );
+    db_add_field('tmgmt_job_item', 'merged', $field);
   }
 }
