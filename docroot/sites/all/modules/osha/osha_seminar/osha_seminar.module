@@ -115,3 +115,13 @@ function osha_seminar_osha_tmgmt_i18n_string_list() {
   module_load_include('inc', 'osha_seminar', 'osha_seminar.translations');
   return osha_seminar_get_translatable_strings();
 }
+
+/**
+ * Altering Date Popup to remove labels and description for specific field
+ */
+function osha_seminar_date_popup_process_alter(&$element, &$form_state, $context) {
+  if ($element['#name'] == 'field_seminar_start_date' || $element['#name'] == 'field_seminar_end_date') {
+    unset($element['date']['#description']);
+    unset($element['date']['#title']);
+  }
+}
