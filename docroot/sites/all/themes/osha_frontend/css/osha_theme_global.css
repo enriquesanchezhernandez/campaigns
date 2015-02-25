@@ -31,11 +31,28 @@ body {
 
 
 #agencyLogo{
-	display:none;
+	/* display: none; */
+	position: absolute;
+	top: 27px;
+	float: right;
+	left: 4em;
+}
+
+#agencyLogo img{
+	height:51px;
+	width:auto;
 }
 
 #europeLogo{
-	display:none;
+	display: block;
+	position: absolute;
+	top: 4px;
+	float: right;
+	left: 14em;
+}
+
+#europeLogo img{
+	height: 29px;
 }
 
 #lang-dropdown-select-language_content {
@@ -72,11 +89,12 @@ body {
 /* ---------------  */
 .mean-container .mean-bar {
 	float:none;
-	background: url("../images/agencyLogoMobile.png") no-repeat scroll 97% 30% #fff;
+	background: #fff;
 	padding: 1em 0 1em 0;
 	margin-top: 0.5em;
 	/*border-bottom: 3px solid #003399;*/
 	width: auto;
+	background-size: 234px 51px;
 }
 
 .mean-container a.meanmenu-reveal {
@@ -265,7 +283,12 @@ body {
 }
 .view-header.back {
 	padding-right: 1em;
-	margin-top: -2em;
+	margin-top: 0em;
+	clear: both;
+	float: none;
+	background: #003399;
+	padding-left: 1em;
+	padding-bottom: 0.5em;
 }
 .view-header.back a {
 	background: url("../images/flecha-izq.png") no-repeat scroll 0% center% rgba(0, 0, 0, 0)!important;
@@ -893,7 +916,7 @@ article.node-events.view-mode-full {
 	background-color: #d2dced;
 }
 .view-press-contacts {
-	padding: 0em 1em;
+	padding: 0em 0em 0em 1em;
 }
 /* Remove Social network block */
 /*
@@ -1013,6 +1036,7 @@ article.node-publication.view-mode-full .field-name-field-publication-date {
 .node-publication.view-mode-full .field-name-field-cover-image {
 	float: none;
 	padding-left: 1em;
+	padding-top:1em;
 }
 .node-publication .field-name-body.field-type-text-with-summary  {
 	padding-left: 1em!important;
@@ -1633,5 +1657,25 @@ a {
 }
 
 /*END National Focal Points*/
+
+.block-on-the-web h2{
+	padding-left:0.8em;
+}
+
+#block-views-press-contacts-block .view-press-contacts .view-footer .press-kit-link{
+	padding-left:1.6em;
+}
+
+.sliding-popup-top{
+	height:auto!important;
+	z-index:99999!important;
+	float:none;
+	background: #575958!important;
+}
+
+#sliding-popup .popup-content #popup-buttons{
+	margin-bottom:2em;
+}
+
 
 }

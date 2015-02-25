@@ -85,7 +85,7 @@
         <table border="0" cellpadding="0" cellspacing="0" class="item-thumbnail-and-title" width="100%">
           <tbody>
             <tr>
-              <td width="33%" style="padding-bottom: 10px;">
+              <td width="29%" style="padding-bottom:0px;vertical-align: top;padding-top:0px;">
                 <?php
                   print l(theme('image_style', array(
                     'style_name' => 'thumbnail',
@@ -120,7 +120,7 @@
         <table border="0" cellpadding="0" cellspacing="0" class="item-summary" width="100%" style="padding-bottom: 10px;">
           <tbody>
             <tr>
-              <td style="width: 100%; font-size: 13px; font-family: Arial, sans-serif; color: #777777;">
+              <td style="width: 100%; font-size: 13px; font-family: Arial, sans-serif; color: #000000;">
                 <?php print($body[0]['safe_value']); ?>
               </td>
             </tr>
