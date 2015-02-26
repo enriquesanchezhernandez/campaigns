@@ -146,9 +146,9 @@ class OshaMigrateFiles extends DynamicMigration {
   public function complete($entity, $row) {
     $language = $entity->field_language[LANGUAGE_NONE][0]['value'];
     $path = $row->path;
-    if (substr($path, 2, 1) == '/') {
+    if (preg_match('/^\/[A-Za-z]{2}\/.*/', $path)) {
       // Assume path starts with /LL/, so remove language.
-      $path = substr($path, 1, 3);
+      $path = substr($path, 4);
     }
     else {
       // Remove only first /
@@ -164,7 +164,7 @@ class OshaMigrateFiles extends DynamicMigration {
     $args = array(
       'source' => 'file/' . $entity->fid,
       'alias' => $path,
-      'language' => $language,
+      'language' => LANGUAGE_NONE,
     );
     if (empty($existing_path)) {
       // Save the path.
@@ -185,10 +185,33 @@ class OshaMigrateFiles extends DynamicMigration {
         $redirect->redirect_options = array();
         $redirect->status_code = 0;
         $redirect->type = 'redirect';
-        $redirect->language = $language;
-        redirect_save($redirect);
+        $redirect->language = LANGUAGE_NONE;
+        // Temporary fix for a bug. Aliases were created with /LL/LL/
+        // so this path should not be redirected.
+        if ($language . '/' . $path != $existing_path['alias']) {
+          redirect_save($redirect);
+        }
       }
+      // Removes redirect if new alias is redirect.
+      $new_path_is_redirect = redirect_load_by_source($path, $language);
+      if (empty($new_path_is_redirect)) {
+        $new_path_is_redirect = redirect_load_by_source($path, LANGUAGE_NONE);
+      }
+      if (!empty($new_path_is_redirect)) {
+        redirect_delete($new_path_is_redirect->rid);
+      }
+      // Save the new path.
       path_save($args);
+    }
+    elseif ($existing_path['language'] != LANGUAGE_NONE) {
+      // Change the path to und.
+      $existing_path['language'] = LANGUAGE_NONE;
+      path_save($existing_path);
+    }
+    // Remove redirects with /view.
+    $redirect_view = redirect_load_by_source($path . '/view', $language);
+    if (!empty($redirect_view)) {
+      redirect_delete($redirect_view->rid);
     }
 
     // Add usage to prevent file removal when revert Publication migration.
