@@ -183,7 +183,7 @@ function fill_related_publications(&$vars) {
       ->entityCondition('bundle', 'publication')
       ->entityCondition('entity_id', $excluded_nids, 'NOT IN')
       ->fieldCondition('field_tags', 'tid', $tids, 'IN')
-      ->propertyOrderBy('changed', 'DESC');
+      ->fieldOrderBy('field_publication_date', 'value', 'DESC');
 
     $result = $query->execute();
     $limit = 3;
