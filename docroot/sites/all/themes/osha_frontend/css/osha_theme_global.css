@@ -1663,7 +1663,7 @@ a {
 }
 
 #block-views-press-contacts-block .view-press-contacts .view-footer .press-kit-link{
-	padding-left:1.6em;
+	padding-left:0.9em;
 }
 
 .sliding-popup-top{
@@ -1677,5 +1677,6 @@ a {
 	margin-bottom:2em;
 }
 
-
+.view-footer .result_summary {
+	margin-right: 1em;
 }
