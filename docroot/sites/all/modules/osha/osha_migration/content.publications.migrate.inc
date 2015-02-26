@@ -428,7 +428,7 @@ class PublicationMigrateList extends MigrateList {
    * Parse the source file and populate the local cache.
    */
   protected function parseSourceFile() {
-    if (!is_readable($this->file)) {
+    if (!is_readable($this->fileURL)) {
       return array();
     }
     $handle = fopen($this->fileURL, 'r');
