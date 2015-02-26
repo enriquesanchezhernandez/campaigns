@@ -16,6 +16,10 @@ function osha_contact_get_translatable_strings() {
   and subscribing to our electronic newsletter
   <a href="@link2">OSHmail</a>.',
     'Topic',
+    'Your name',
+    'Your e-mail address',
+    'Send message',
+    'Message',
     'Please Enter a valid email address.',
   );
 }
