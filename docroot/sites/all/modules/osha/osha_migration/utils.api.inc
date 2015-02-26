@@ -605,6 +605,9 @@ class MigrationUtil {
    *   Create redirects /<language>/$base_path for all languages
    */
   public static function createRedirects($entity, $base_path, $delete_path = FALSE) {
+    if (empty($base_path)) {
+      return;
+    }
     // Always create redirects for all languages.
     //check if source redirect exists
     $source = $base_path;
