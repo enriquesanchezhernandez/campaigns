@@ -408,6 +408,12 @@ function osha_publication_field_formatter_view($entity_type, $entity, $field, $i
         }
 
         $output = theme('html_tag', $element);
+        // If the content is archived, add a label for it.
+        if (!empty($output) && $settings['title_link'] == 'content') {
+          if (!empty($entity->field_archived[LANGUAGE_NONE][0]['value'])) {
+            $output .= '<span class="title-archived">' . t('Archived') . '</span>';
+          }
+        }
       }
 
       $element = array(
