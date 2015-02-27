@@ -173,7 +173,18 @@ class OSHATMGMTLocaleSourceUIController extends TMGMTLocaleSourceUIController {
     }
 
     $form['pager'] = array('#markup' => theme('pager', array('tags' => NULL)));
-
+    $form['actions']['blacklist'] = array(
+      '#type' => 'submit',
+      '#value' => 'Hide selected',
+      '#submit' => array('osha_tmgmt_ui_source_blacklist_strings_submit'),
+      '#attributes' => array(
+        'title' => 'Hide selected strings from this translation interface',
+      ),
+    );
+    $form['actions']['hint'] = array(
+      '#type' => 'item',
+      '#markup' => 'Hint: Use the <strong>Hide selected</strong> button to permanently disable the selected strings from appearing on this screen',
+    );
     return $form;
   }
 
@@ -205,5 +216,17 @@ class OSHATMGMTLocaleSourceUIController extends TMGMTLocaleSourceUIController {
     }
 
     return $row;
+  }
+}
+
+function osha_tmgmt_ui_source_blacklist_strings_submit($form, $form_state) {
+  if (!empty($form_state['values']['items'])) {
+    $insert = db_insert('osha_locales_source_blacklist')->fields(array('lid'));
+    foreach($form_state['values']['items'] as $lid) {
+      if ($lid) {
+        $insert->values(array($lid));
+      }
+    }
+    $insert->execute();
   }
 }
