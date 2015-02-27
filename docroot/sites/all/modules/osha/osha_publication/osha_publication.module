@@ -208,6 +208,20 @@ function osha_publication_workbench_access_node_element_alter(&$element, $form_s
 }
 
 /**
+ * Implements hook_workbench_moderation_transition().
+ */
+function osha_publication_workbench_moderation_transition($node, $old, $new) {
+  if ($node->type == 'publication' && $new == 'published') {
+    $destination = 'node/' . $node->nid;
+    $path = path_load(array('source' => $destination));
+    if (!empty($path)) {
+      $destination = $path['alias'];
+    }
+    $_GET['destination'] = $destination . '/view';
+  }
+}
+
+/**
  * Implements hook_field_formatter_info().
  */
 function osha_publication_field_formatter_info() {
