@@ -466,20 +466,6 @@ function osha_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
-  $strongarm->name = 'eu_cookie_compliance_cookie_lifetime';
-  $strongarm->value = '100';
-  $export['eu_cookie_compliance_cookie_lifetime'] = $strongarm;
-
-  $strongarm = new stdClass();
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
-  $strongarm->name = 'eu_cookie_compliance_domain';
-  $strongarm->value = '';
-  $export['eu_cookie_compliance_domain'] = $strongarm;
-
-  $strongarm = new stdClass();
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
   $strongarm->name = 'eu_cookie_compliance_bg';
   $strongarm->value = array(
     'popup_enabled' => 1,
@@ -511,6 +497,13 @@ function osha_strongarm() {
     'exclude_paths' => '',
   );
   $export['eu_cookie_compliance_bg'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'eu_cookie_compliance_cookie_lifetime';
+  $strongarm->value = '100';
+  $export['eu_cookie_compliance_cookie_lifetime'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
@@ -616,6 +609,13 @@ function osha_strongarm() {
     'exclude_paths' => '',
   );
   $export['eu_cookie_compliance_de'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'eu_cookie_compliance_domain';
+  $strongarm->value = '';
+  $export['eu_cookie_compliance_domain'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
