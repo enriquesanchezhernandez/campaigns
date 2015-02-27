@@ -2490,7 +2490,7 @@ class OshaTMGMTStatistics {
  */
 function osha_tmgmt_get_translation_languages_options($filter = array()) {
   $languages = tmgmt_available_languages();
-  $languages = array_intersect_key($languages, osha_langauge_list_options());
+  $languages = array_intersect_key($languages, osha_language_list_options());
   return array_diff($languages, $filter);
 }
 
