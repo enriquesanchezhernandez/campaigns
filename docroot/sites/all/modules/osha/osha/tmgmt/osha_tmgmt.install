@@ -281,6 +281,19 @@ function osha_tmgmt_schema() {
     ),
   );
 
+  $schema['osha_locales_source_blacklist'] = array(
+    'description' => 'List of strings excluded from translation',
+    'fields' => array(
+      'lid' => array(
+        'type' => 'int',
+        'not null' => TRUE,
+        'default' => 0,
+        'description' => 'Source string ID. References {locales_source}.lid.',
+      ),
+    ),
+    'primary key' => array('lid'),
+  );
+
   return $schema;
 }
 
@@ -454,4 +467,14 @@ function osha_tmgmt_update_7010() {
     );
     db_add_field('tmgmt_job_item', 'merged', $field);
   }
+}
+
+/**
+ * Create the osha_locales_source_blacklist table.
+ */
+function osha_tmgmt_update_7011() {
+  db_create_table(
+    'osha_locales_source_blacklist',
+    drupal_get_schema_unprocessed('osha_tmgmt', 'osha_locales_source_blacklist')
+  );
 }
