@@ -424,7 +424,7 @@ function osha_language_list($osha_sorted = FALSE) {
   return $languages;
 }
 
-function osha_langauge_list_options() {
+function osha_language_list_options() {
   $languages = osha_language_list();
   $return = array();
   foreach ($languages as $lang => $language) {
@@ -518,7 +518,7 @@ function osha_form_alter(&$form, &$form_state, $form_id){
 function osha_form_lang_dropdown_form_alter(&$form, &$form_state, $form_id){
   $options_lang = $form['lang_dropdown_select']['#options'];
   $form['lang_dropdown_select']['#options'] = array_intersect_key(
-    osha_sort_language_list($options_lang), osha_langauge_list_options());
+    osha_sort_language_list($options_lang), osha_language_list_options());
 }
 
 /**
