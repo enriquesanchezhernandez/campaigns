@@ -1231,7 +1231,7 @@ function osha_tmgmt_form_tmgmt_ui_entity_translation_review_form_alter(&$form, &
 
     // Append the submit function for Publish button for nodes.
     if ($job_item->state != TMGMT_JOB_ITEM_STATE_ACCEPTED) {
-      $form['actions']['accept']['#submit'] = array('osha_tmgtm_job_item_node_accept');
+      $form['actions']['accept']['#submit'] = array('osha_tmgtm_job_item_node_accept_submit');
       $form['#submit'] = array();
     }
 
@@ -1298,8 +1298,12 @@ function osha_tmgmt_form_tmgmt_ui_entity_translation_review_form_alter(&$form, &
 /**
  * Callback for Publish button from job item of a node.
  */
-function osha_tmgtm_job_item_node_accept($form, &$form_state) {
+function osha_tmgtm_job_item_node_accept_submit($form, &$form_state) {
   $job_item = $form_state['item'];
+  osha_tmgtm_job_item_node_accept($job_item);
+}
+
+function osha_tmgtm_job_item_node_accept($job_item) {
   $node = node_load($job_item->item_id);
   if (!empty($node)) {
     $job_item->state = TMGMT_JOB_ITEM_STATE_ACCEPTED;
@@ -1307,8 +1311,8 @@ function osha_tmgtm_job_item_node_accept($form, &$form_state) {
     // If translation is for a draft, just mark the job item as accepted
     // and it will be merged when publishing that revision.
     if ((!empty($node->workbench_moderation['published'])
-      && $job_item->vid == $node->workbench_moderation['published']->vid)
-    || !isset($node->workbench_moderation['published'])) {
+        && $job_item->vid == $node->workbench_moderation['published']->vid)
+      || !isset($node->workbench_moderation['published'])) {
       $job_item->merged = 1;
       $job_item->acceptTranslationIntoEntity();
     }
@@ -1798,7 +1802,12 @@ function osha_tmgmt_job_items_mass_change_submit($form, $form_state) {
           break;
 
         case TMGMT_JOB_ITEM_STATE_ACCEPTED:
-          $job_item->acceptTranslationIntoEntity('Mass updated by ' . $user->name);
+          if ($job_item->item_type == 'node') {
+            osha_tmgtm_job_item_node_accept($job_item);
+          }
+          else {
+            $job_item->acceptTranslationIntoEntity('Mass updated by ' . $user->name);
+          }
           break;
       }
     }
