@@ -19,6 +19,27 @@ function osha_infographics_update_7003() {
 }
 
 /**
+ * Change files (pdf and png) aliases and set corresponding language
+ * O/png/infographic_5_NO_v1.0.png => png/infographic_5_NO_v1.0.png
+ */
+function osha_infographics_update_7004() {
+  $results = db_query("SELECT pid, alias FROM url_alias WHERE alias REGEXP (:regexp)",
+    array(':regexp' => '^./.{3}/infographic_._.{2}_v1\\.0\\..{3}$'));
+
+  foreach ($results as $result) {
+    $language = strtolower(substr($result->alias, -11, 2));
+    $alias = substr($result->alias, 2);
+    db_update('url_alias')
+      ->fields(array(
+        'alias' => $alias,
+        'language' => $language,
+      ))
+      ->condition('pid', $result->pid, '=')
+      ->execute();
+  }
+}
+
+/**
  * CW-614 Add publication_date for infographics
  */
 function osha_infographics_update_7002() {
