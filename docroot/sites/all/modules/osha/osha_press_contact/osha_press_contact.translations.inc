@@ -10,7 +10,7 @@ function osha_press_contact_get_translatable_strings() {
     'Phone',
     'Press contact',
     'Press contacts',
-    '<a class="press-kit-link" href="/node/5428">EU-OSHA Press kit</a>',
+    '<a class="press-kit-link" href="/inside-eu-osha/press-room/press-kit">EU-OSHA Press kit</a>',
     'Focal points\' contact details',
   );
 }
