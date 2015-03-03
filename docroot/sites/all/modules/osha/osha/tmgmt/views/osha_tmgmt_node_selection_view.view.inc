@@ -309,7 +309,18 @@ $handler->display->display_options['fields']['body']['element_label_colon'] = FA
 $handler->display->display_options['fields']['title_1']['id'] = 'title_1';
 $handler->display->display_options['fields']['title_1']['table'] = 'node_revision';
 $handler->display->display_options['fields']['title_1']['field'] = 'title';
-$handler->display->display_options['fields']['title_1']['link_to_node'] = TRUE;
+$handler->display->display_options['fields']['title_1']['exclude'] = TRUE;
+/* Field: Content: Title */
+$handler->display->display_options['fields']['title_field']['id'] = 'title_field';
+$handler->display->display_options['fields']['title_field']['table'] = 'field_data_title_field';
+$handler->display->display_options['fields']['title_field']['field'] = 'title_field';
+$handler->display->display_options['fields']['title_field']['type'] = 'publication_title_linked';
+$handler->display->display_options['fields']['title_field']['settings'] = array(
+  'title_style' => '_none',
+  'title_link' => 'content',
+  'title_class' => '',
+);
+$handler->display->display_options['fields']['title_field']['link_to_entity'] = 0;
 /* Field: Content: Type */
 $handler->display->display_options['fields']['type']['id'] = 'type';
 $handler->display->display_options['fields']['type']['table'] = 'node';
@@ -697,7 +708,6 @@ $handler->display->display_options['filters']['timestamp_1']['expose']['operator
 $handler->display->display_options['filters']['timestamp_1']['expose']['label'] = 'Updated after';
 $handler->display->display_options['filters']['timestamp_1']['expose']['operator'] = 'timestamp_1_op';
 $handler->display->display_options['filters']['timestamp_1']['expose']['identifier'] = 'from_date';
-
 /* Filter criterion: Content revision: Updated date */
 $handler->display->display_options['filters']['timestamp']['id'] = 'timestamp';
 $handler->display->display_options['filters']['timestamp']['table'] = 'node_revision';
