@@ -33,6 +33,73 @@ function osha_breadcrumbs_path_breadcrumbs_view_alter(&$breadcrumbs, $path_bread
   }
 }
 
+function osha_breadcrumbs_menu_breadcrumb_alter(&$active_trail, $item) {
+  //STORE THE FIRST AND THE LAST ITEM
+  $start = reset($active_trail);
+  $end = end($active_trail);
+
+  if (isset($item['page_arguments'])) {
+    if (!empty($item['page_arguments'])) {
+      $is_newsletter = false;
+      $key = 0;
+
+      if (count($item['page_arguments'])==1 && ($item['page_arguments'][0] instanceof EntityCollection) && ($item['page_arguments'][0]->bundle == 'newsletter_content_collection')) {
+        $is_newsletter = true;
+      }
+      if (count($item['page_arguments'])==2 && ($item['page_arguments'][1] instanceof EntityCollection) && ($item['page_arguments'][1]->bundle == 'newsletter_content_collection')) {
+        $is_newsletter = true;
+        $key = 1;
+      }
+      if ($is_newsletter) {
+        $custom_active_trail = array();
+        $custom_active_trail[] = $start;
+        $custom_active_trail[] = array(
+          'title' => t('Administration'),
+          'href' => 'admin',
+          'link_path' => 'admin',
+          'localized_options' => array(),
+          'type' => 0
+        );
+        $custom_active_trail[] = array(
+          'title' => t('Content'),
+          'href' => 'admin/content',
+          'link_path' => 'admin/content',
+          'localized_options' => array(),
+          'type' => 0
+        );
+        $custom_active_trail[] = array(
+          'title' => t('Newsletter'),
+          'href' => 'admin/content/newsletter',
+          'link_path' => 'admin/content/newsletter',
+          'localized_options' => array(),
+          'type' => 0
+        );
+        $custom_active_trail[] = array(
+          'title' => $item['page_arguments'][$key]->title,
+          'href' => 'entity-collection/'.$item['page_arguments'][$key]->name,
+          'link_path' => 'entity-collection/'.$item['page_arguments'][$key]->name,
+          'localized_options' => array(),
+          'type' => 0
+        );
+        if ($item['href'] == $end['href']) {
+          $custom_active_trail[] = $end;
+        }
+
+        $active_trail = $custom_active_trail;
+        return;
+      }
+    }
+  }
+
+  //SHOW CURRENT PAGE IN BREADCRUMB BY DUPLICATING THE LAST ARRAY ITEM IN ACTIVE_TRAIL
+
+  if (!drupal_is_front_page()) {
+    if ($item['href'] == $end['href']) {
+      $active_trail[] = $end;
+    }
+  }
+}
+
 /**
  * Implements hook_osha_tmgmt_i18n_string_list().
  */
