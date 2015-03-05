@@ -271,6 +271,7 @@ $options['init-modules'] = array(
   'ctools',
   'entity',
   'aggregator',
+  'memcache_storage',
 
   'locale',
   'entity_translation',
