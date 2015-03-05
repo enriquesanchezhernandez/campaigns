@@ -8,3 +8,21 @@ function osha_blog_update_7001() {
     field_delete_instance($instance);
   }
 }
+
+/**
+ * Update blog comment captcha to default.
+ */
+function osha_blog_update_7002() {
+  $query = db_query("SELECT * FROM captcha_points WHERE form_id = 'comment_node_blog_form' ")->fetchField();
+  $data = array(
+    'form_id' => 'comment_node_blog_form',
+    'module' => NULL,
+    'captcha_type' => 'default',
+  );
+  if ($query) {
+    drupal_write_record('captcha_points', $data, 'form_id');
+  }
+  else {
+    drupal_write_record('captcha_points', $data);
+  }
+}

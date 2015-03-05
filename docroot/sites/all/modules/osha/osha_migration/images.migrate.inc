@@ -33,6 +33,7 @@ class OshaMigrateImages extends DynamicMigration {
         'modification_date' => '',
         'publication_date' => '',
         'creator' => 'Author user id from the old website',
+        'aliases' => 'Image redirects',
         'title' => '',
         'description' => '',
         'subject' => 'Categories/Tags',
@@ -184,6 +185,18 @@ class OshaMigrateImages extends DynamicMigration {
       'language' => $language,
     );
     path_save($alias);
+
+    // create redirects
+    $languages = array_keys(language_list());
+    $aliases = explode(',', $row->aliases);
+    foreach($aliases as $alias) {
+      $alias = trim($alias);
+      $redirect = substr($alias, 1);
+      if(in_array(substr($redirect, 0, 2), $languages)) {
+        $redirect = substr($alias, 4);
+      }
+      MigrationUtil::createRedirects($entity, $redirect);
+    }
   }
 }
 
@@ -229,6 +242,9 @@ class OshaMigrateImagesListCSV extends MigrateList {
    *   array[id][field] -- row
    */
   protected function parseMultilingualCSV($file) {
+    if (!is_readable($file)) {
+      return array();
+    }
     $handle = fopen($file, 'r');
     $fields = $data = fgetcsv($handle, NULL, ';');
     $final = array();

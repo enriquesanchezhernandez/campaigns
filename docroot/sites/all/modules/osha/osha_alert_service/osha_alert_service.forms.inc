@@ -23,7 +23,8 @@ function osha_alert_service_subscribe_form() {
   if ($voc = taxonomy_vocabulary_machine_name_load('tags')) {
     $terms = taxonomy_get_tree($voc->vid);
     foreach ($terms as $tid => $term) {
-      $sections[$term->tid] = $term->name;
+      $w = entity_metadata_wrapper('taxonomy_term', $tid);
+      $sections[$term->tid] = $w->label();
     }
   }
   if (empty($sections)) {
@@ -104,10 +105,12 @@ function osha_alert_service_subscribe_form() {
     '#markup' => t('<b>Note</b>: In order to choose more than one item from the list, press the key CTRL on your keyboard (CMD on Mac), and select the item with your mouse.'),
   );
 
-  $form['captcha'] = array(
-    '#type' => 'captcha',
-    '#captcha_type' => 'image_captcha/Image'
-  );
+  if (user_is_anonymous()) {
+    $form['captcha'] = array(
+      '#type' => 'captcha',
+      '#captcha_type' => 'default',
+    );
+  }
 
   $form['actions']['submit'] = array(
     '#type' => 'submit',

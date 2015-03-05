@@ -122,10 +122,17 @@
       </td>
       <td align="right" width="95%" style="text-align: left; padding-top: 5px; padding-bottom: 5px;">
         <?php
+        if ($node->type == 'publication') {
+          print l($node->title, url('node/' . $node->nid . '/view', array('absolute' => TRUE)), array(
+            'attributes' => array('style' => 'color: #003399; text-decoration: none; font-family:Arial, sans-serif; font-size: 12px; font-weight: bold;'),
+            'external' => TRUE
+          ));
+        } else {
           print l($node->title, url('node/' . $node->nid, array('absolute' => TRUE)), array(
             'attributes' => array('style' => 'color: #003399; text-decoration: none; font-family:Arial, sans-serif; font-size: 12px; font-weight: bold;'),
             'external' => TRUE
           ));
+        }
         ?>
       </td>
     </tr>

@@ -248,7 +248,6 @@ function osha_fop_page_views_default_views() {
   $handler->display->display_options['access']['type'] = 'perm';
   $handler->display->display_options['cache']['type'] = 'none';
   $handler->display->display_options['query']['type'] = 'views_query';
-  $handler->display->display_options['query']['options']['distinct'] = TRUE;
   $handler->display->display_options['exposed_form']['type'] = 'basic';
   $handler->display->display_options['pager']['type'] = 'some';
   $handler->display->display_options['pager']['options']['items_per_page'] = '0';
@@ -294,6 +293,7 @@ function osha_fop_page_views_default_views() {
   $handler->display->display_options['arguments']['nid']['summary']['number_of_records'] = '0';
   $handler->display->display_options['arguments']['nid']['summary']['format'] = 'default_summary';
   $handler->display->display_options['arguments']['nid']['summary_options']['items_per_page'] = '25';
+  $handler->display->display_options['filter_groups']['operator'] = 'OR';
   /* Filter criterion: Content: Published */
   $handler->display->display_options['filters']['status']['id'] = 'status';
   $handler->display->display_options['filters']['status']['table'] = 'node';
@@ -308,6 +308,15 @@ function osha_fop_page_views_default_views() {
   $handler->display->display_options['filters']['type']['value'] = array(
     'fop_page' => 'fop_page',
   );
+  $handler->display->display_options['filters']['type']['group'] = 1;
+  /* Filter criterion: Content: Link (field_fop_link:language) */
+  $handler->display->display_options['filters']['language_3']['id'] = 'language_3';
+  $handler->display->display_options['filters']['language_3']['table'] = 'field_data_field_fop_link';
+  $handler->display->display_options['filters']['language_3']['field'] = 'language';
+  $handler->display->display_options['filters']['language_3']['value'] = array(
+    '***CURRENT_LANGUAGE***' => '***CURRENT_LANGUAGE***',
+  );
+  $handler->display->display_options['filters']['language_3']['group'] = 1;
 
   /* Display: Block */
   $handler = $view->new_display('block', 'Block', 'block');

@@ -114,6 +114,16 @@ function osha_tmgmt_install() {
     db_add_field('tmgmt_job_item', 'vid', $field);
   }
 
+  if (!db_field_exists('tmgmt_job_item', 'merged')) {
+    $field = array(
+      'description' => 'If the translation was merged to entity',
+      'type' => 'int',
+      'default' => NULL,
+      'not null' => FALSE,
+    );
+    db_add_field('tmgmt_job_item', 'merged', $field);
+  }
+
 
   // tmgmt_job alteration.
   if (!db_field_exists('tmgmt_job', 'character_count')) {
@@ -179,6 +189,9 @@ function osha_tmgmt_install() {
   if ($local) {
     $local->delete();
   }
+
+  // Configure permissions for Layout Validator role.
+  osha_tmgmt_update_7009();
 }
 
 /**
@@ -410,4 +423,35 @@ function osha_tmgmt_update_7008() {
     ->fields(array('weight' => 15))
     ->condition('name', 'osha_tmgmt', '=')
     ->execute();
+}
+
+/**
+ * Configure permissions for Layout Validator so he can adjust strings & terms.
+ */
+function osha_tmgmt_update_7009() {
+  $vocabularies = taxonomy_get_vocabularies();
+  $permissions = array(
+    'translate taxonomy_term entities',
+    'translate interface',
+    'translate user-defined strings',
+    'translate admin strings',
+  );
+  foreach($vocabularies as $vid => $voc) {
+    $permissions[] = 'edit terms in ' . $vid;
+  }
+  if ($role = user_role_load_by_name('Layout Validator')) {
+    user_role_grant_permissions($role->rid, $permissions);
+  }
+}
+
+function osha_tmgmt_update_7010() {
+  if (!db_field_exists('tmgmt_job_item', 'merged')) {
+    $field = array(
+      'description' => 'If the translation was merged to entity',
+      'type' => 'int',
+      'default' => NULL,
+      'not null' => FALSE,
+    );
+    db_add_field('tmgmt_job_item', 'merged', $field);
+  }
 }

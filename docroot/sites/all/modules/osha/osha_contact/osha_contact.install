@@ -24,6 +24,13 @@ function osha_contact_update_7001() {
 }
 
 /**
+ * Update captcha for contacts to use default.
+ */
+function osha_contact_update_7002() {
+  enable_captcha();
+}
+
+/**
  * Add Captcha Image validation
  */
 function enable_captcha(){
@@ -31,8 +38,8 @@ function enable_captcha(){
 
   $data = array(
     'form_id' => 'contact_site_form',
-    'module' => 'image_captcha',
-    'captcha_type' => 'Image',
+    'module' => NULL,
+    'captcha_type' => 'default',
   );
 
   if($query)

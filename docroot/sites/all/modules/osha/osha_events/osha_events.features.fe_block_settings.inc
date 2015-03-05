@@ -20,8 +20,7 @@ function osha_events_default_fe_block_settings() {
     'i18n_mode' => 0,
     'module' => 'views',
     'node_types' => array(),
-    'pages' => 'tools-and-publications/events
-tools-and-publications/oshevents
+    'pages' => 'oshevents
 node/5322',
     'roles' => array(),
     'themes' => array(

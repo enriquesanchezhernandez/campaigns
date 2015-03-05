@@ -183,7 +183,7 @@ function fill_related_publications(&$vars) {
       ->entityCondition('bundle', 'publication')
       ->entityCondition('entity_id', $excluded_nids, 'NOT IN')
       ->fieldCondition('field_tags', 'tid', $tids, 'IN')
-      ->propertyOrderBy('changed', 'DESC');
+      ->fieldOrderBy('field_publication_date', 'value', 'DESC');
 
     $result = $query->execute();
     $limit = 3;
@@ -271,6 +271,27 @@ function osha_frontend_preprocess_page(&$variables){
 
   if(preg_match('/(.)*(blog)(.)*/', $_SERVER['REQUEST_URI']) || $bundle == 'comment_node_blog'){
     $variables['blog'] = TRUE;
+  }
+}
+
+/**
+ * Implements hook_page_alter().
+ */
+function osha_frontend_page_alter(&$page) {
+  // Move addtoany links to bottom of the page.
+  if (!empty($page['content']['system_main']['nodes'])
+    && count(element_children($page['content']['system_main']['nodes']) == 1)) {
+    $keys = element_children($page['content']['system_main']['nodes']);
+    $node = &$page['content']['system_main']['nodes'][current($keys)];
+    if (!empty($node['links']['#links']['addtoany'])) {
+      $links = $node['links']['#links']['addtoany'];
+      unset($node['links']['#links']['addtoany']);
+      $page['content']['addtoany'] = array(
+        '#markup' => $links['title'],
+        '#prefix' => '<div id="addtoany_bottom_container">',
+        '#suffix' => '</div>',
+      );
+    }
   }
 }
 

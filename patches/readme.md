@@ -7,6 +7,23 @@ When patching a contrib module, the following steps should be followed:
 
 List of patches (most recent first)
 
+* pdf_to_imagefield
+  * Integrate with workbench_moderation
+  * patches/pdf_toimagefield/pdf_to_image_moderation_integration.patch
+
+* workbench_moderation
+  * Fix saving 2 current statuses for same revision
+  * https://www.drupal.org/files/issues/1436260-workbench_moderation-states-node_save-74.patch
+  * https://www.drupal.org/node/1436260
+  
+* spamspan
+  * Get default settings from variables
+  * https://www.drupal.org/files/issues/spamspan-default-settings-from-variables-2430079_1.patch
+  * https://www.drupal.org/node/2430079
+
+* shs
+  * Fixes undefined property when no parent is present (undefined_property.patch)
+
 * ldap
   * ldap-property_of_non_object_in_ldap_authentication_init-2182413-3.patch
 

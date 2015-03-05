@@ -32,6 +32,7 @@ files[] = content.wiki.migrate.inc
 files[] = content.infographics.migrate.inc
 files[] = content.focal_points.migrate.inc
 files[] = content.fop_pages.migrate.inc
+files[] = content.board_bureau_members.migrate.inc
 files[] = files.migrate.inc
 files[] = images.migrate.inc
 files[] = utils.api.inc

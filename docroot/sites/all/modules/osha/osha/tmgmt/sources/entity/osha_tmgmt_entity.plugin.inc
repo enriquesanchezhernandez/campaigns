@@ -52,6 +52,10 @@ class OSHATMGMTEntitySourcePluginController extends TMGMTEntitySourcePluginContr
       // Force the same state in order to avoid creation of new weird transitions.
       $entity->workbench_moderation_state_new = $entity->workbench_moderation['current']->state;
     }
+    // Unset the pid so that the alias is created for current language.
+    if (!empty($entity->path['pid'])) {
+      unset($entity->path['pid']);
+    }
     entity_save($job_item->item_type, $entity);
 
     $translation = array(
