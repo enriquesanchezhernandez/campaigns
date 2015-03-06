@@ -194,6 +194,14 @@ function osha_publication_views_default_views() {
     'publication' => 'publication',
   );
   $handler->display->display_options['filters']['type']['group'] = 1;
+  /* Filter criterion: Field: Publication date (field_publication_date) */
+  $handler->display->display_options['filters']['field_publication_date_value']['id'] = 'field_publication_date_value';
+  $handler->display->display_options['filters']['field_publication_date_value']['table'] = 'field_data_field_publication_date';
+  $handler->display->display_options['filters']['field_publication_date_value']['field'] = 'field_publication_date_value';
+  $handler->display->display_options['filters']['field_publication_date_value']['operator'] = '<=';
+  $handler->display->display_options['filters']['field_publication_date_value']['granularity'] = 'minute';
+  $handler->display->display_options['filters']['field_publication_date_value']['form_type'] = 'date_text';
+  $handler->display->display_options['filters']['field_publication_date_value']['default_date'] = 'now';
   $handler->display->display_options['block_description'] = 'Publications Slideshow';
   $translatables['publications'] = array(
     t('Master'),
