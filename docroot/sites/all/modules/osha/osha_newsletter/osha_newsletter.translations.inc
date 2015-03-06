@@ -26,6 +26,7 @@ function osha_newsletter_get_translatable_strings() {
     'Your subscription has not been submitted because of a technical error.',
     'Your subscription has been submitted succesfully.',
     'Join',
-    'subscribers'
+    'subscribers',
+    'You have succesfully unsubscribed'
   );
 }
