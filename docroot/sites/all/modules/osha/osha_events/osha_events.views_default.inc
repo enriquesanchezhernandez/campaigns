@@ -1119,7 +1119,6 @@ function osha_events_views_default_views() {
   $handler->display->display_options['sorts']['field_start_date_value']['id'] = 'field_start_date_value';
   $handler->display->display_options['sorts']['field_start_date_value']['table'] = 'search_api_index_default_multilingual_node_index';
   $handler->display->display_options['sorts']['field_start_date_value']['field'] = 'field_start_date_value';
-  $handler->display->display_options['sorts']['field_start_date_value']['order'] = 'DESC';
   $handler->display->display_options['defaults']['filter_groups'] = FALSE;
   $handler->display->display_options['filter_groups']['groups'] = array(
     1 => 'AND',
