@@ -1019,6 +1019,10 @@ function osha_events_views_default_views() {
   $handler->display->display_options['pager']['options']['offset'] = '0';
   $handler->display->display_options['pager']['options']['id'] = '0';
   $handler->display->display_options['pager']['options']['quantity'] = '9';
+  $handler->display->display_options['pager']['options']['tags']['first'] = '«';
+  $handler->display->display_options['pager']['options']['tags']['previous'] = '‹';
+  $handler->display->display_options['pager']['options']['tags']['next'] = '›';
+  $handler->display->display_options['pager']['options']['tags']['last'] = '»';
   $handler->display->display_options['defaults']['style_plugin'] = FALSE;
   $handler->display->display_options['style_plugin'] = 'list';
   $handler->display->display_options['style_options']['grouping'] = array(
@@ -1410,6 +1414,10 @@ function osha_events_views_default_views() {
     t('Page'),
     t('Search'),
     t('Clear filter'),
+    t('«'),
+    t('‹'),
+    t('›'),
+    t('»'),
     t('No results'),
     t('[field_start_date_value] - '),
     t('LOCATION'),
