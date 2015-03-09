@@ -79,6 +79,16 @@ function osha_search_search_api_solr_query_alter(array &$call_args, SearchApiQue
   if (!empty($call_args['query'])) {
     $call_args['query'] = str_replace('%', '*', $call_args['query']);
   }
+  // Handle special chars query.
+  $special_chars = variable_get('search_solr_custom_special_chars',
+    '#, @, &, ?, !, €, $, £, ¥');
+  $special_chars = explode(',', $special_chars);
+  foreach ($special_chars as $char) {
+    if (strpos($call_args['query'], trim($char)) !== FALSE) {
+      $call_args['query'] = '*' . $call_args['query'] . '*';
+      break;
+    }
+  }
 }
 
 /**
