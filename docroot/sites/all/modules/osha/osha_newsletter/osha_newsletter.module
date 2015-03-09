@@ -686,7 +686,7 @@ function osha_newsletter_form_alter(&$form, &$form_state, $form_id) {
             if (strpos($k, 'node:') === 0) {
               $v['style']['#options'] = array(
                 'highlights_item' => 'Newsletter Highlights',
-                'newsletter_item ' => 'Newsletter Item',
+                'newsletter_item' => 'Newsletter Item',
               );
             }
           }
