@@ -38,6 +38,26 @@ function doc_to_imagefield_menu() {
     'weight' => 2,
   );
 
+  $items['admin/config/media/doc_to_imagefield/update'] = array(
+    'title' => 'Individual Update',
+    'description' => 'Individual Update',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('doc_to_imagefield_individual_update_form'),
+    'access arguments' => array('administer site configuration'),
+    'type' => MENU_LOCAL_TASK,
+    'weight' => 2,
+  );
+
+  $items['doc_to_imagefield/node/autocomplete'] = array(
+    'title' => 'Ajax callback autocomplete node',
+    'description' => 'Ajax callback autocomplete node',
+    'page callback' => 'doc_to_imagefield_node_autocomplete',
+    'access arguments' => array('administer site configuration'),
+    'type' => MENU_CALLBACK,
+    'weight' => 2,
+  );
+
+
   return $items;
 }
 /**
@@ -69,6 +89,22 @@ function doc_to_imagefield_admin() {
 
   system_settings_form($form);
   return $form;
+}
+
+/**
+ * Ajax callback for node autocomplete.
+ */
+function doc_to_imagefield_node_autocomplete($string = '') {
+  $matches = array();
+  $result = db_select('node')
+    ->fields('node', array('title', 'nid'))
+    ->condition('title', '%' . db_like($string) . '%', 'LIKE')
+    ->range(0, 20)
+    ->execute();
+  foreach ($result as $node) {
+    $matches[$node->nid] = check_plain($node->title) . ' (' . $node->nid . ')';
+  }
+  drupal_json_output($matches);
 }
 
 /**
@@ -106,9 +142,14 @@ function doc_to_imagefield_bulk_form() {
 /**
  * Callback for bulk admin form.
  */
-function doc_to_imagefiled_admin_bulk_form_submit($form, &$form_state) {
-  $entity_type = $form_state['values']['entity'];
-  $entities = entity_load($entity_type);
+function doc_to_imagefiled_admin_bulk_form_submit($form, &$form_state, $entity = NULL, $entity_type = NULL) {
+  if ($entity == NULL && $entity_type == NULL) {
+    $entity_type = $form_state['values']['entity'];
+    $entities = entity_load($entity_type);
+  }
+  else {
+    $entities = array($entity);
+  }
 
   $options = array();
   $options['overwrite_existing'] = $form_state['values']['overwrite_existing'];
@@ -126,6 +167,41 @@ function doc_to_imagefiled_admin_bulk_form_submit($form, &$form_state) {
     'finished'       => 'doc_to_imagefield_bulk_finished',
     'progress_message' => t('Processed @current out of @total.'),
   ));
+}
+
+/**
+ * Menu callback for individual update form on administration.
+ *
+ * Lets the user choose a node to regenerate it's cover images.
+ */
+function doc_to_imagefield_individual_update_form() {
+  $form = array();
+  $form['overwrite_existing'] = array(
+    '#type' => 'select',
+    '#title' => t('Overwrite existing'),
+    '#options' => array(
+      0 => 'No',
+      1 => 'Yes',
+    ),
+    '#default_value' => 0,
+  );
+  $form['node'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Choose a node by title'),
+    '#autocomplete_path' => 'doc_to_imagefield/node/autocomplete',
+  );
+  $form['save'] = array(
+    '#type' => 'submit',
+    '#value' => t('Update'),
+  );
+  $form['#submit'] = array('doc_to_imagefield_individual_update_form_submit');
+  return $form;
+}
+
+function doc_to_imagefield_individual_update_form_submit($form, &$form_state) {
+  $nid = $form_state['values']['node'];
+  $node = node_load($nid);
+  doc_to_imagefiled_admin_bulk_form_submit($form, $form_state, $node, 'node');
 }
 
 function doc_to_imagefield_entity_save_bulk($entity_type, $entity, $options, &$context) {
