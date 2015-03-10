@@ -121,7 +121,17 @@
           <tbody>
             <tr>
               <td style="width: 100%; font-size: 13px; font-family: Arial, sans-serif; color: #000000;">
-                <?php print($body[0]['safe_value']); ?>
+                <?php if (isset($body) && is_array($body)) {
+                  if (!empty($body)) {
+                    if (isset($body[0]['safe_value'])) {
+                      print($body[0]['safe_value']);
+                    }
+                  } else if (isset($field_summary) && is_array($field_summary)) {
+                    if (!empty($field_summary)) {
+                      print($field_summary[0]['safe_value']);
+                    }
+                  }
+                }?>
               </td>
             </tr>
           </tbody>
