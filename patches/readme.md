@@ -7,6 +7,10 @@ When patching a contrib module, the following steps should be followed:
 
 List of patches (most recent first)
 
+* entity_collection
+  * Fix position and depth when adding new item
+  * patches/entity_collection/entity_collection-depth-position.patch
+
 * pdf_to_imagefield
   * Integrate with workbench_moderation
   * patches/pdf_toimagefield/pdf_to_image_moderation_integration.patch

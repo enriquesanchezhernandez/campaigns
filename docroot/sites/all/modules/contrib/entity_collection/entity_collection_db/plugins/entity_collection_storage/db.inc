@@ -61,7 +61,8 @@ class EntityCollectionStorageDB extends EntityCollectionStorage {
     if ($position > 0) {
       $position++;
     }
-    $this->save($collection, $item, $contexts, $position);
+    $item->position = $position;
+    $this->save($collection, $item, $contexts, $position, 1);
   }
 
   /**
