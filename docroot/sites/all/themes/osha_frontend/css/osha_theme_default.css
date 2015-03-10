@@ -2818,7 +2818,8 @@ font-weight: normal;
 	min-width:8.2em;
 }
 
-.node-news .field-name-title-field a{
+.node-news .field-name-title-field a,
+.node-events .field-name-title-field a{
     border-bottom: 0 none !important;
     color: #003399;
     font-family: Open Sans Condensed !important;
@@ -2989,7 +2990,8 @@ font-weight: normal;
 	display:none!important; /*Display none to others social pages*/
 }
 
-.node-news ul.links.inline{
+.node-news ul.links.inline,
+.node-events ul.links.inline{
 	float: right;
     text-align: right;
     width: 100%;
@@ -3000,7 +3002,8 @@ font-weight: normal;
 
 }
 
-.node-news ul.links.inline a{
+.node-news ul.links.inline a,
+.node-events ul.links.inline a {
 	border-bottom:0px!important;
 	padding-right: 0.5em;
 	font-family: "Open Sans Condensed",sans-serif!important;
@@ -6749,7 +6752,7 @@ div.contextual-links-wrapper{
 
 /*EVENTS PORLET*/
 
-#block-views-related-content-block-6 h2{
+#block-views-related-events-block-6 h2{
 	background: url("../images/ico_events.png") no-repeat scroll 100% 30% transparent;
 	color: #000000;
 	font-family: "Open Sans Condensed",sans-serif;
@@ -6761,7 +6764,7 @@ div.contextual-links-wrapper{
 	font-weight: bold;
 }
 
-#block-views-related-content-block-6  a{
+#block-views-related-events-block-6  a{
     color: #003399;
 	text-decoration: none;
 	background: url("../images/li_arrow.png") no-repeat scroll 0% 100% transparent;
@@ -6771,12 +6774,12 @@ div.contextual-links-wrapper{
 	border-bottom: 0px!important;
 }
 
-#block-views-related-content-block-6 .views-field-field-start-date{
+#block-views-related-events-block-6 .views-field-field-start-date{
 	font-weight:bold;
 	font-size: 0.8em;
 }
 
-#block-views-related-content-block-6  .view-related-content{
+#block-views-related-events-block-6  .view-related-events{
 	padding-left:0.8em;
 	padding-top: 1em;
 	background: url("../images/separator_home.jpg") repeat-x scroll 0% -7px rgba(0, 0, 0, 0);
@@ -6784,7 +6787,7 @@ div.contextual-links-wrapper{
 }
 
 
-#block-views-related-content-block-6  .view-related-content .views-row{
+#block-views-related-events-block-6  .view-related-events .views-row{
 	padding-bottom:1em;
 	background: url("../images/separator_home.jpg") repeat-x scroll 0% 95% rgba(0, 0, 0, 0);
 }

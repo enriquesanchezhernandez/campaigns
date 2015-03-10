@@ -848,7 +848,6 @@ function osha_events_views_default_views() {
   $handler->display->display_options['fields']['field_organization']['id'] = 'field_organization';
   $handler->display->display_options['fields']['field_organization']['table'] = 'field_data_field_organization';
   $handler->display->display_options['fields']['field_organization']['field'] = 'field_organization';
-  $handler->display->display_options['fields']['field_organization']['label'] = 'Organization';
   /* Field: Content: Start date */
   $handler->display->display_options['fields']['field_start_date']['id'] = 'field_start_date';
   $handler->display->display_options['fields']['field_start_date']['table'] = 'field_data_field_start_date';
@@ -963,8 +962,7 @@ function osha_events_views_default_views() {
     t('Published'),
     t('End date'),
     t('Block'),
-    t('LOCATION'),
-    t('ORGANIZATION'),
+    t('Location'),
     t('[field_start_date_1] - Events'),
   );
   $export['events'] = $view;
