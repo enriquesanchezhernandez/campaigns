@@ -73,14 +73,16 @@ function osha_publication_url_inbound_alter(&$path, $original_path, $path_langua
       $source = $original_path;
     }
     if (!empty($source)) {
-      $node = menu_get_object('node', 1, $source);
-      if ($node->type == 'publication') {
-        global $language;
-        $lang = $language->language;
-        if (!empty($node->field_file[$lang][0])
-          || !empty($node->field_file['en'][0])) {
-          // Append the file_view identifier to be used in hook_node_view().
-          $path .= '/file_view';
+      if ($node = menu_get_object('node', 1, $source)) {
+        if ($node->type == 'publication') {
+          global $language;
+          $lang = $language->language;
+          if (!empty($node->field_file[$lang][0])
+            || !empty($node->field_file['en'][0])
+          ) {
+            // Append the file_view identifier to be used in hook_node_view().
+            $path .= '/file_view';
+          }
         }
       }
     }
