@@ -72,7 +72,7 @@ function osha_press_release_block_info() {
     'region' => 'sidebar_second',
     'visibility' => BLOCK_VISIBILITY_LISTED,
     'pages' => 'inside-eu-osha/press-room',
-    'cache' => DRUPAL_NO_CACHE,
+    'cache' => DRUPAL_CACHE_GLOBAL,
     'weight' => 3
   );
   $blocks['osha_press_rel_become_partner'] = array(
@@ -81,7 +81,7 @@ function osha_press_release_block_info() {
     'region' => 'sidebar_second',
     'visibility' => BLOCK_VISIBILITY_LISTED,
     'pages' => 'inside-eu-osha/press-room',
-    'cache' => DRUPAL_NO_CACHE,
+    'cache' => DRUPAL_CACHE_GLOBAL,
     'weight' => 4
   );
 
