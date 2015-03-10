@@ -263,10 +263,10 @@ function osha_content_default_fe_block_settings() {
     'visibility' => 0,
   );
 
-  $export['views-related_content-block_6'] = array(
+  $export['views-related_events-block_6'] = array(
     'cache' => -1,
     'custom' => 0,
-    'delta' => 'related_content-block_6',
+    'delta' => 'related_events-block_6',
     'i18n_block_language' => array(),
     'i18n_mode' => 0,
     'module' => 'views',
