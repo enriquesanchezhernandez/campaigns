@@ -263,14 +263,14 @@ function osha_newsletter_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'osha_newsletter_image_block_background_img';
-  $strongarm->value = '';
+  $strongarm->value = 0;
   $export['osha_newsletter_image_block_background_img'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'osha_newsletter_image_block_subscribers_no';
-  $strongarm->value = '65.000';
+  $strongarm->value = '67.000';
   $export['osha_newsletter_image_block_subscribers_no'] = $strongarm;
 
   $strongarm = new stdClass();
@@ -417,7 +417,7 @@ function osha_newsletter_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'subscribe_block_subscribers_no';
-  $strongarm->value = '65.000';
+  $strongarm->value = '67.000';
   $export['subscribe_block_subscribers_no'] = $strongarm;
 
   $strongarm = new stdClass();
