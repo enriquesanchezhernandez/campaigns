@@ -55,7 +55,7 @@ function osha_blocks_default_fe_block_settings() {
   );
 
   $export['osha_blocks-osha_archived_content'] = array(
-    'cache' => 1,
+    'cache' => 4,
     'custom' => 0,
     'delta' => 'osha_archived_content',
     'i18n_block_language' => array(),
@@ -105,7 +105,7 @@ function osha_blocks_default_fe_block_settings() {
   );
 
   $export['osha_blocks-osha_transl_extra_links'] = array(
-    'cache' => 1,
+    'cache' => 4,
     'custom' => 0,
     'delta' => 'osha_transl_extra_links',
     'i18n_block_language' => array(),
@@ -154,7 +154,7 @@ function osha_blocks_default_fe_block_settings() {
   );
 
   $export['osha_blocks-oshwiki_featured_articles'] = array(
-    'cache' => 1,
+    'cache' => 4,
     'custom' => 0,
     'delta' => 'oshwiki_featured_articles',
     'i18n_block_language' => array(),
@@ -197,7 +197,7 @@ function osha_blocks_default_fe_block_settings() {
   );
 
   $export['osha_wiki-osha_wiki_notopic'] = array(
-    'cache' => 1,
+    'cache' => 8,
     'custom' => 0,
     'delta' => 'osha_wiki_notopic',
     'i18n_block_language' => array(),
@@ -237,7 +237,7 @@ function osha_blocks_default_fe_block_settings() {
   );
 
   $export['osha_wiki-osha_wiki_related_content'] = array(
-    'cache' => 1,
+    'cache' => 4,
     'custom' => 0,
     'delta' => 'osha_wiki_related_content',
     'i18n_block_language' => array(),
