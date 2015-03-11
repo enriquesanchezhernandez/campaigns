@@ -45,12 +45,15 @@ function osha_wiki_block_info() {
     'status' => 1,
     'visibility' => BLOCK_VISIBILITY_NOTLISTED,
     'weight' => -3,
+    'cache' => DRUPAL_CACHE_PER_PAGE,
   );
+  // Test URL: /node/875
   $blocks['osha_wiki_notopic'] = array(
     'info' => t('OSHwiki articles (no theme)'),
     'status' => 1,
     'visibility' => BLOCK_VISIBILITY_NOTLISTED,
     'weight' => -3,
+    'cache' => DRUPAL_CACHE_GLOBAL,
   );
   return $blocks;
 }
