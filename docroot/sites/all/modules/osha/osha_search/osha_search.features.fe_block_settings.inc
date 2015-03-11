@@ -218,7 +218,7 @@ search/wiki',
   );
 
   $export['osha_search-osha_search_clear_filters'] = array(
-    'cache' => -1,
+    'cache' => 8,
     'custom' => 0,
     'delta' => 'osha_search_clear_filters',
     'i18n_block_language' => array(),
