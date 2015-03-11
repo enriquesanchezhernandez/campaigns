@@ -78,8 +78,8 @@ function osha_press_release_field_default_field_bases() {
           'type' => 'field',
         ),
         'target_bundles' => array(
-          'note_to_editor' => 'note_to_editor',
           'infographic' => 'infographic',
+          'note_to_editor' => 'note_to_editor',
         ),
       ),
       'target_type' => 'node',
