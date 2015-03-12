@@ -410,8 +410,8 @@ function osha_newsletter_block_view($delta = '') {
  */
 function _osha_newsletter_latest_block_content(){
 
-  $newsletters_no = variable_get('newsletters_no', 2);
-  $newsletter_items_no = variable_get('newsletter_items_no', 3);
+  $newsletters_no = variable_get('newsletters_no', 12);
+  $newsletter_items_no = variable_get('newsletter_items_no', 0);
   $items = array();
   $collections = array();
 
