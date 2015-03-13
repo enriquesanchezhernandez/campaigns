@@ -54,15 +54,13 @@ function osha_blocks_block_view($delta='') {
 }
 
 function oshwiki_featured_articles_block_view() {
-  $node = menu_get_object();
-
-  if (isset($node)) {
-    if ($node->type == 'article' || $node->type == 'publication') {
+  $tagged_wikis = array();
+  if ($node = menu_get_object()) {
+    if ($node->type == 'publication' || $node->type == 'article') {
       $tagged_wikis = get_related_wiki($node);
-      return theme('oshwiki_featured_articles', array('tagged_wikis' => $tagged_wikis));
     }
   }
-  return theme('oshwiki_featured_articles', array('tagged_wikis' => array()));
+  return theme('oshwiki_featured_articles', array('tagged_wikis' => $tagged_wikis));
 }
 
 
