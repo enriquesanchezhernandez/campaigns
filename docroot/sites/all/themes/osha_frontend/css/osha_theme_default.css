@@ -6580,6 +6580,12 @@ div.contextual-links-wrapper{
 	margin-left:-0.5em;
 }
 
+
+/* On the infographics section overview fix the block OSHWiki articles*/
+body.page-node-5429 #related-wiki {
+    clear: both;
+}
+
 /*END INFOGRAPHICS*/
 
 
