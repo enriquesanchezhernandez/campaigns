@@ -72,7 +72,8 @@ function osha_blog_views_pre_render(&$view) {
     // Set view breadcrumb.
     drupal_set_breadcrumb(
       array(
-        l(t('Home'), 'tools-and-publications/blog'),
+        l(t('Home'), '<front>'),
+        l(t('Blog'), 'tools-and-publications/blog'),
         $title,
       )
     );
