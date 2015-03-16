@@ -36,12 +36,20 @@ function osha_contact_form_contact_site_form_alter(&$form, &$form_state){
     '#title' => t('Country'),
   );
 
+  $form['surname'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Your surname'),
+    '#maxlength' => 255,
+    '#required' => TRUE,
+  );
+
   $form['contact_type_of_sender']['#weight'] = 0;
   $form['contact_topic']['#weight'] = 1;
   $form['name']['#weight'] = 2;
-  $form['mail']['#weight'] = 3;
-  $form['country']['#weight'] = 4;
-  $form['message']['#weight'] = 5;
+  $form['surname']['#weight'] = 3;
+  $form['mail']['#weight'] = 4;
+  $form['country']['#weight'] = 5;
+  $form['message']['#weight'] = 6;
 
   $form['#submit'][] = 'contact_form_send';
 }
@@ -129,6 +137,7 @@ function osha_contact_mail_alter(&$message) {
         '[sender]' ,
         '[topic]',
         '[name]',
+        '[surname]',
         '[email]',
         '[country]',
         '[message]',
@@ -138,6 +147,7 @@ function osha_contact_mail_alter(&$message) {
         $sender->name,
         $message['params']['contact_topic'],
         $message['params']['name'],
+        $message['params']['surname'],
         $message['params']['mail'],
         $message['params']['country'],
         $message['params']['message'],

@@ -508,6 +508,26 @@ function osha_form_alter(&$form, &$form_state, $form_id){
     $form_state['build_info']['args'][0]->field = array();
     $form['views_bulk_operations'] = FALSE;
   }
+
+  // Change cardinality (one value) for activity field
+  if(in_array($form['#form_id'],
+    array(
+      'blog_node_form',
+      'article_node_form',
+      'page_node_form',
+      'calls_node_form',
+      'directive_node_form',
+      'guideline_node_form',
+      'highlight_node_form',
+      'infographic_node_form',
+      'job_vacancies_node_form',
+      'news_node_form',
+      'press_release_node_form',
+      'publication_node_form',
+      'seminar_node_form'))) {
+    $form['field_activity']['und']['#cardinality'] = 1;
+    $form['field_activity']['und']['#multiple'] = FALSE;
+  }
 }
 
 /**

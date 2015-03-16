@@ -170,16 +170,16 @@ function osha_press_release_strongarm() {
     'extra_fields' => array(
       'form' => array(
         'path' => array(
-          'weight' => '16',
+          'weight' => '15',
         ),
         'redirect' => array(
-          'weight' => '17',
+          'weight' => '16',
         ),
         'language' => array(
           'weight' => '2',
         ),
         'metatags' => array(
-          'weight' => '18',
+          'weight' => '17',
         ),
         'workbench_access' => array(
           'weight' => '0',

@@ -21,6 +21,12 @@ function displayDialog(){
     //add css to html head
     jQuery($doc.head).append('<style>' +
         '.field-name-field-image{float: left;min-height: 95px;min-width: 100px;padding-bottom: 1em;padding-right: 1em;}' +
+        '.views-field-field-press-contact-job-title {font-size: 0.9em;font-weight: bold; margin-bottom: 5px}' +
+        '.views-field-title a {color: #003399;font-size: 0.9em;text-decoration: none;}' +
+        '.views-field-field-press-contact-phone {font-size: 0.9em;}' +
+        '.views-field-field-press-contact-email a {color: #003399;font-size: 0.9em;font-weight: bold;text-decoration: none;}' +
+        '.view-footer {margin-top:10px}' +
+        '.view-footer a {color: #003399; text-decoration: none; font-weight: bold; margin-left:4px}' +
         '</style>');
 
     //display dialog

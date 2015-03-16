@@ -42,6 +42,16 @@ function osha_user_default_permissions() {
     'module' => 'contact',
   );
 
+  // Exported permission: 'administer comments'.
+  $permissions['administer comments'] = array(
+    'name' => 'administer comments',
+    'roles' => array(
+      'Project Manager' => 'Project Manager',
+      'administrator' => 'administrator',
+    ),
+    'module' => 'comment',
+  );
+
   // Exported permission: 'post comments'.
   $permissions['post comments'] = array(
     'name' => 'post comments',
