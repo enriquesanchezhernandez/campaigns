@@ -1,0 +1,14 @@
+diff --git a/docroot/sites/all/modules/contrib/entity_collection/entity_collection_db/plugins/entity_collection_storage/db.inc b/docroot/sites/all/modules/contrib/entity_collection/entity_collection_db/plugins/entity_collection_storage/db.inc
+index b93af12..2194f10 100644
+--- a/docroot/sites/all/modules/contrib/entity_collection/entity_collection_db/plugins/entity_collection_storage/db.inc
++++ b/docroot/sites/all/modules/contrib/entity_collection/entity_collection_db/plugins/entity_collection_storage/db.inc
+@@ -61,7 +61,8 @@ class EntityCollectionStorageDB extends EntityCollectionStorage {
+     if ($position > 0) {
+       $position++;
+     }
+-    $this->save($collection, $item, $contexts, $position);
++    $item->position = $position;
++    $this->save($collection, $item, $contexts, $position, 1);
+   }
+ 
+   /**

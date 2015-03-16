@@ -124,8 +124,51 @@ td{
                       <tbody>
                       <tr>
                         <td style="font-family: Oswald, Arial, sans-serif; font-size: 16px; color: #003399; text-align: right;font-weight: bold;padding-top: 10px;">
-                        <span>
-                          <?php print l(t('More events'), url('events', array('absolute' => TRUE)), array('attributes' => array('style' => 'color: #003399; text-decoration: none;'), 'external' => TRUE)); ?>
+                          <span>
+                           <?php print l(t('More news'), url('oshnews', array('absolute' => TRUE)), array('attributes' => array('style' => 'color: #003399; text-decoration: none;'), 'external' => TRUE)); ?>
+                            <?php
+                            $directory = drupal_get_path('module','osha_newsletter');
+                            $site_url = variable_get('site_base_url', 'http://osha.europa.eu');
+                            print l(theme('image', array(
+                              'path' => $directory . '/images/pink-arrow.png',
+                              'width' => 19,
+                              'height' => 11,
+                              'alt' => 'link arrow',
+                            )), $site_url, array(
+                              'html' => TRUE,
+                              'external' => TRUE
+                            ));
+                            ?>
+                          </span>
+                        </td>
+                      </tr>
+                      </tbody>
+                    </table>
+                  <?php
+                  }
+                ?>
+                <?php
+                if (!empty($events) && sizeof($events) > 1) {?>
+                <table border="0" cellpadding="0" cellspacing="0" class="blue-line" width="100%">
+                  <tbody>
+                  <tr>
+                    <td style="padding-top: 15px;" class="space-above-blue-line"></td>
+                  </tr>
+                  <tr>
+                    <td width="100%" style="background-color:#003399; height: 4px;" valign="top"></td>
+                  </tr>
+                  </tbody>
+                </table>
+                <?php
+                foreach ($events as $item) {
+                  print(render($item));
+                }?>
+                <table border="0" cellpadding="0" cellspacing="0" width="100%" style="padding-bottom: 15px;" class="pink-arrow">
+                  <tbody>
+                  <tr>
+                    <td style="font-family: Oswald, Arial, sans-serif; font-size: 16px; color: #003399; text-align: right;font-weight: bold;padding-top: 10px;">
+                      <span>
+                          <?php print l(t('More events'), url('oshevents', array('absolute' => TRUE)), array('attributes' => array('style' => 'color: #003399; text-decoration: none;'), 'external' => TRUE)); ?>
                           <?php
                           $directory = drupal_get_path('module','osha_newsletter');
                           $site_url = variable_get('site_base_url', 'http://osha.europa.eu');
@@ -140,12 +183,12 @@ td{
                           ));
                           ?>
                         </span>
-                        </td>
-                      </tr>
-                      </tbody>
-                    </table>
-                  <?php
-                  }
+                    </td>
+                  </tr>
+                  </tbody>
+                </table>
+                <?php
+                }
                 ?>
               </td>
             </tr>

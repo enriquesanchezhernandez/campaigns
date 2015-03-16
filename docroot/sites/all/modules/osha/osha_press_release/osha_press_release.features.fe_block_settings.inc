@@ -93,7 +93,7 @@ function osha_press_release_default_fe_block_settings() {
   );
 
   $export['osha_press_release-osha_press_rel_become_partner'] = array(
-    'cache' => -1,
+    'cache' => 8,
     'custom' => 0,
     'delta' => 'osha_press_rel_become_partner',
     'i18n_block_language' => array(),
@@ -133,7 +133,7 @@ function osha_press_release_default_fe_block_settings() {
   );
 
   $export['osha_press_release-osha_press_rel_join_list'] = array(
-    'cache' => -1,
+    'cache' => 8,
     'custom' => 0,
     'delta' => 'osha_press_rel_join_list',
     'i18n_block_language' => array(),

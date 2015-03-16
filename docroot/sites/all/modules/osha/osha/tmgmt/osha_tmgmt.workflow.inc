@@ -838,7 +838,7 @@ function osha_tmgmt_file_translation_upload_submit($form, &$form_state) {
         try {
           // Validation successful, start import.
           $job->addTranslatedData($controller->import($file->uri));
-          $job->addMessage('Successfully imported file.');
+          $job->addMessage('Successfully imported file.'.$file->uri);
           OshaWorkflowNotifications::notifyTranslationUploadedFile($form_state['tmgmt_job']);
           $job->has_file_uploaded = 1;
           $job->save();

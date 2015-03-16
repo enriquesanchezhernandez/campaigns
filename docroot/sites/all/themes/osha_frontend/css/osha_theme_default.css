@@ -1172,6 +1172,8 @@ span.date-display-single{
 
 .node-publication  .field-name-field-related-publications article {
 	background-color:#E9EDF6;
+	height: 1%;
+	overflow: hidden;
 }
 
 .node-publication  .field-name-field-related-publications article  .field-name-field-file{
@@ -2818,7 +2820,8 @@ font-weight: normal;
 	min-width:8.2em;
 }
 
-.node-news .field-name-title-field a{
+.node-news .field-name-title-field a,
+.node-events .field-name-title-field a{
     border-bottom: 0 none !important;
     color: #003399;
     font-family: Open Sans Condensed !important;
@@ -2989,7 +2992,8 @@ font-weight: normal;
 	display:none!important; /*Display none to others social pages*/
 }
 
-.node-news ul.links.inline{
+.node-news ul.links.inline,
+.node-events ul.links.inline{
 	float: right;
     text-align: right;
     width: 100%;
@@ -3000,7 +3004,8 @@ font-weight: normal;
 
 }
 
-.node-news ul.links.inline a{
+.node-news ul.links.inline a,
+.node-events ul.links.inline a {
 	border-bottom:0px!important;
 	padding-right: 0.5em;
 	font-family: "Open Sans Condensed",sans-serif!important;
@@ -4222,12 +4227,12 @@ and (max-width: 1237px) {
 
 #block-views-press-contacts-block .view-press-contacts .view-footer{
 	border-top: 5px solid #003399;
-	width: 103%;
+	width: 108%;
 	padding: 0.5em 0em;
 	margin-top: 0em;
 	text-align: left;
 	float: left;
-	margin-left: -1em;
+	margin-left: -1.3em;
 }
 
 #block-views-press-contacts-block .view-press-contacts .view-footer .press-kit-link{
@@ -4261,15 +4266,15 @@ and (max-width: 1237px) {
 	font-size: 1.55em;
 	font-weight: bold;
 	margin: 0;
-	padding: 0em 0em 0 1em;
+	padding: 0em 0em 0 0.3em;
 	background: none repeat scroll 0 0 #FFFFFF;
 }
 
 .block-on-the-web span{
 	display: block;
     float: left;
-    padding-left: 0.5em;
-    padding-right: 0.5em;
+    padding-left: 0.2em;
+    padding-right: 0.2em;
     padding-top: 0.9em;
 }
 
@@ -6575,6 +6580,12 @@ div.contextual-links-wrapper{
 	margin-left:-0.5em;
 }
 
+
+/* On the infographics section overview fix the block OSHWiki articles*/
+body.page-node-5429 #related-wiki {
+    clear: both;
+}
+
 /*END INFOGRAPHICS*/
 
 
@@ -6749,7 +6760,7 @@ div.contextual-links-wrapper{
 
 /*EVENTS PORLET*/
 
-#block-views-related-content-block-6 h2{
+#block-views-related-events-block-6 h2{
 	background: url("../images/ico_events.png") no-repeat scroll 100% 30% transparent;
 	color: #000000;
 	font-family: "Open Sans Condensed",sans-serif;
@@ -6761,7 +6772,7 @@ div.contextual-links-wrapper{
 	font-weight: bold;
 }
 
-#block-views-related-content-block-6  a{
+#block-views-related-events-block-6  a{
     color: #003399;
 	text-decoration: none;
 	background: url("../images/li_arrow.png") no-repeat scroll 0% 100% transparent;
@@ -6771,12 +6782,12 @@ div.contextual-links-wrapper{
 	border-bottom: 0px!important;
 }
 
-#block-views-related-content-block-6 .views-field-field-start-date{
+#block-views-related-events-block-6 .views-field-field-start-date{
 	font-weight:bold;
 	font-size: 0.8em;
 }
 
-#block-views-related-content-block-6  .view-related-content{
+#block-views-related-events-block-6  .view-related-events{
 	padding-left:0.8em;
 	padding-top: 1em;
 	background: url("../images/separator_home.jpg") repeat-x scroll 0% -7px rgba(0, 0, 0, 0);
@@ -6784,7 +6795,7 @@ div.contextual-links-wrapper{
 }
 
 
-#block-views-related-content-block-6  .view-related-content .views-row{
+#block-views-related-events-block-6  .view-related-events .views-row{
 	padding-bottom:1em;
 	background: url("../images/separator_home.jpg") repeat-x scroll 0% 95% rgba(0, 0, 0, 0);
 }
@@ -7248,4 +7259,8 @@ a.contextual-links-trigger{
 
 .view-fop-flags.view-id-fop_flags.view-display-id-block{
 	padding-bottom:1em;
+}
+
+#block-views-fop-contacts-block h2{
+	margin-top:1em;
 }

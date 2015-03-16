@@ -129,7 +129,7 @@ function osha_newsletter_block_info() {
     'region' => 'sidebar_second',
     'visibility' => BLOCK_VISIBILITY_LISTED,
     'pages' => '<front>',
-    'cache' => DRUPAL_NO_CACHE,
+    'cache' => DRUPAL_CACHE_GLOBAL,
     'weight' => -30
   );
   $blocks['osha_newsletter_image'] = array(
@@ -139,7 +139,7 @@ function osha_newsletter_block_info() {
     'visibility' => BLOCK_VISIBILITY_LISTED,
     'pages' => 'oshmail-newsletter
 node/9',
-    'cache' => DRUPAL_NO_CACHE,
+    'cache' => DRUPAL_CACHE_GLOBAL,
   );
   $blocks['osha_newsletter_subscribe_extra'] = array(
     'info' => t('Subscribe to EU-OSHA Newsletter block - with extra link to unsubscribe page'),
@@ -147,7 +147,7 @@ node/9',
     'region' => 'content',
     'visibility' => BLOCK_VISIBILITY_LISTED,
     'pages' => OSHA_NEWSLETTER_PAGE_URL,
-    'cache' => DRUPAL_NO_CACHE,
+    'cache' => DRUPAL_CACHE_GLOBAL,
   );
   $blocks['osha_newsletter_latest'] = array(
     'info' => t('Display the latest newsletters'),
@@ -155,7 +155,7 @@ node/9',
     'region' => 'sidebar_second',
     'visibility' => BLOCK_VISIBILITY_LISTED,
     'pages' => OSHA_NEWSLETTER_PAGE_URL,
-    'cache' => DRUPAL_NO_CACHE,
+    'cache' => DRUPAL_CACHE_GLOBAL,
   );
 
   return $blocks;
@@ -595,7 +595,8 @@ function osha_newsletter_subscribe_form_submit($form, &$form_state) {
   $subscribe_email = $form_state['values']['email'];
   $to = variable_get('osha_newsletter_listserv', 'listserv@list.osha.europa.eu');
 
-  osha_newsletter_send_email('subscribe_email', $to, $subscribe_email, $form_state);
+  osha_newsletter_send_email('subscribe_email', $to, $subscribe_email, $form_state, 
+    t('Your subscription has been submitted succesfully.'));
 }
 
 /**
@@ -605,7 +606,8 @@ function osha_newsletter_unsubscribe_form_submit($form, &$form_state) {
   $unsubscribe_email = $form_state['values']['email'];
   $to = variable_get('osha_newsletter_listserv', 'listserv@list.osha.europa.eu');
 
-  osha_newsletter_send_email('unsubscribe_email', $to, $unsubscribe_email, $form_state);
+  osha_newsletter_send_email('unsubscribe_email', $to, $unsubscribe_email, $form_state,
+    t('You have succesfully unsubscribed'));
 }
 
 /**
@@ -684,7 +686,7 @@ function osha_newsletter_form_alter(&$form, &$form_state, $form_id) {
             if (strpos($k, 'node:') === 0) {
               $v['style']['#options'] = array(
                 'highlights_item' => 'Newsletter Highlights',
-                'newsletter_item ' => 'Newsletter Item',
+                'newsletter_item' => 'Newsletter Item',
               );
             }
           }
@@ -1022,7 +1024,8 @@ function osha_newsletter_send_test_email(&$form_state) {
   $to = $user->mail;
   $from = variable_get('osha_newsletter_listserv_from', $user->mail);
 
-  osha_newsletter_send_email('test_newsletter', $to, $from ,$form_state);
+  osha_newsletter_send_email('test_newsletter', $to, $from ,$form_state,
+    'Test newsletter was sent to '.$to);
 }
 
 
@@ -1035,14 +1038,15 @@ function osha_newsletter_send_email_to_subscribers(&$form_state) {
   $to = _get_listserv_subscription_email();
   $from = variable_get('osha_newsletter_listserv_from', $user->mail);
 
-  osha_newsletter_send_email('send_newsletter', $to, $from, $form_state);
+  osha_newsletter_send_email('send_newsletter', $to, $from, $form_state,
+    'Newsletter was sent to '.$to);
 }
 
 /**
  * Send email.
  *  $test_addresses - the email address for test
  */
-function osha_newsletter_send_email($key, $to, $from, $form_values) {
+function osha_newsletter_send_email($key, $to, $from, $form_values, $message) {
   // All system mails need to specify the module and template key (mirrored from
   // hook_mail()) that the message they want to send comes from.
   $module = 'osha_newsletter';
@@ -1077,7 +1081,7 @@ function osha_newsletter_send_email($key, $to, $from, $form_values) {
   $result = drupal_mail($module, $key, $to, $language, $params, $from, $send);
   if ($result['result'] == TRUE) {
     //drupal_set_message(t('Your message has been sent to @emails.', array('@emails' => $to)));
-    drupal_set_message(t('Your subscription has been submitted succesfully.'));
+    drupal_set_message($message);
   }
   else {
     drupal_set_message(t('Your subscription has not been submitted because of a technical error.'), 'error');
