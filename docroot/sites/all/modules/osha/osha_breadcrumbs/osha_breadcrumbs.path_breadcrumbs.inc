@@ -148,28 +148,6 @@ function osha_breadcrumbs_path_breadcrumbs_settings_info() {
 
   $path_breadcrumb = new stdClass();
   $path_breadcrumb->api_version = 1;
-  $path_breadcrumb->machine_name = 'guideline_search';
-  $path_breadcrumb->name = 'Guideline search';
-  $path_breadcrumb->path = 'search/guidelines';
-  $path_breadcrumb->data = array(
-    'titles' => array(
-      0 => 'Legislation',
-      1 => 'EU guidelines',
-    ),
-    'paths' => array(
-      0 => 'safety-and-health-legislation',
-      1 => 'safety-and-health-legislation/european-guidelines',
-    ),
-    'home' => 1,
-    'translatable' => 1,
-    'arguments' => array(),
-    'access' => array(),
-  );
-  $path_breadcrumb->weight = 0;
-  $export['guideline_search'] = $path_breadcrumb;
-
-  $path_breadcrumb = new stdClass();
-  $path_breadcrumb->api_version = 1;
   $path_breadcrumb->machine_name = 'directive_view';
   $path_breadcrumb->name = 'Directive view';
   $path_breadcrumb->path = 'legislation/directives/%string';
@@ -266,6 +244,52 @@ function osha_breadcrumbs_path_breadcrumbs_settings_info() {
 
   $path_breadcrumb = new stdClass();
   $path_breadcrumb->api_version = 1;
+  $path_breadcrumb->machine_name = 'footer_links';
+  $path_breadcrumb->name = 'Footer links';
+  $path_breadcrumb->path = 'node/%node';
+  $path_breadcrumb->data = array(
+    'titles' => array(
+      0 => '!page_title',
+    ),
+    'paths' => array(
+      0 => '<none>',
+    ),
+    'home' => 1,
+    'translatable' => 1,
+    'arguments' => array(
+      'node' => array(
+        'position' => 1,
+        'argument' => 'entity_id:node',
+        'settings' => array(
+          'identifier' => 'Node: ID',
+        ),
+      ),
+    ),
+    'access' => array(
+      'plugins' => array(
+        1 => array(
+          'name' => 'path_visibility',
+          'settings' => array(
+            'visibility_setting' => '1',
+            'paths' => 'contact-us
+sitemap
+accessibility-info
+privacy-notice-logged-users
+privacy-notice
+legal-notice',
+          ),
+          'context' => 'empty',
+          'not' => FALSE,
+        ),
+      ),
+      'logic' => 'and',
+    ),
+  );
+  $path_breadcrumb->weight = 0;
+  $export['footer_links'] = $path_breadcrumb;
+
+  $path_breadcrumb = new stdClass();
+  $path_breadcrumb->api_version = 1;
   $path_breadcrumb->machine_name = 'guideline';
   $path_breadcrumb->name = 'Guideline';
   $path_breadcrumb->path = 'node/%node';
@@ -311,6 +335,28 @@ function osha_breadcrumbs_path_breadcrumbs_settings_info() {
   );
   $path_breadcrumb->weight = 0;
   $export['guideline'] = $path_breadcrumb;
+
+  $path_breadcrumb = new stdClass();
+  $path_breadcrumb->api_version = 1;
+  $path_breadcrumb->machine_name = 'guideline_search';
+  $path_breadcrumb->name = 'Guideline search';
+  $path_breadcrumb->path = 'search/guidelines';
+  $path_breadcrumb->data = array(
+    'titles' => array(
+      0 => 'Legislation',
+      1 => 'EU guidelines',
+    ),
+    'paths' => array(
+      0 => 'safety-and-health-legislation',
+      1 => 'safety-and-health-legislation/european-guidelines',
+    ),
+    'home' => 1,
+    'translatable' => 1,
+    'arguments' => array(),
+    'access' => array(),
+  );
+  $path_breadcrumb->weight = 0;
+  $export['guideline_search'] = $path_breadcrumb;
 
   $path_breadcrumb = new stdClass();
   $path_breadcrumb->api_version = 1;
@@ -955,52 +1001,6 @@ inside-eu-osha',
   );
   $path_breadcrumb->weight = 0;
   $export['top_level_nodes'] = $path_breadcrumb;
-
-  $path_breadcrumb = new stdClass();
-  $path_breadcrumb->api_version = 1;
-  $path_breadcrumb->machine_name = 'footer_links';
-  $path_breadcrumb->name = 'Footer links';
-  $path_breadcrumb->path = 'node/%node';
-  $path_breadcrumb->data = array(
-    'titles' => array(
-      0 => '!page_title',
-    ),
-    'paths' => array(
-      0 => '<none>',
-    ),
-    'home' => 1,
-    'translatable' => 1,
-    'arguments' => array(
-      'node' => array(
-        'position' => 1,
-        'argument' => 'entity_id:node',
-        'settings' => array(
-          'identifier' => 'Node: ID',
-        ),
-      ),
-    ),
-    'access' => array(
-      'plugins' => array(
-        1 => array(
-          'name' => 'path_visibility',
-          'settings' => array(
-            'visibility_setting' => '1',
-            'paths' => 'contact-us
-sitemap
-accessibility-info
-privacy-notice-logged-users
-privacy-notice
-legal-notice',
-          ),
-          'context' => 'empty',
-          'not' => FALSE,
-        ),
-      ),
-      'logic' => 'and',
-    ),
-  );
-  $path_breadcrumb->weight = 0;
-  $export['footer_links'] = $path_breadcrumb;
 
   return $export;
 }
