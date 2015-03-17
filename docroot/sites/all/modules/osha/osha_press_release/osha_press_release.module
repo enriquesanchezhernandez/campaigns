@@ -43,6 +43,11 @@ function osha_press_release_workbench_access_node_element_alter(&$element, $form
   }
 }
 
+/**
+ * Implements hook_node_view()
+ *
+ * {@inheritdoc}
+ */
 function osha_press_release_node_view($node, $view_mode, $langcode) {
   if ($node->type == 'press_release' && $view_mode == 'full') {
     $output = field_view_field('node', $node, 'field_publication_date');
@@ -59,6 +64,18 @@ function osha_press_release_node_view($node, $view_mode, $langcode) {
       $message = t('FOR IMMEDIATE RELEASE').' - '.$str_publication_date;
     }
     $node->content['field_publication_date'][0]['#markup'] = '<span class="press-release-date">'.$message.'</span>';
+
+    // Add a css class for quotes field if image field is empty
+    if (!empty($node->content['field_quote'])) {
+        $quote_value = $node->content['field_quote'][0]['#markup'];
+        if (empty($node->field_image)) {
+          $node->content['field_quote'][0]['#markup']  = '<div class="press-release-quote-no-image">';
+        } else {
+          $node->content['field_quote'][0]['#markup']  = '<div class="press-release-quote-image">';
+        }
+        $node->content['field_quote'][0]['#markup'] .= $quote_value;
+        $node->content['field_quote'][0]['#markup'] .= '</div>';
+    }
   }
 }
 
