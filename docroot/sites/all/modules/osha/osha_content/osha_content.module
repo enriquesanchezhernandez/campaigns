@@ -39,10 +39,7 @@ function osha_content_osha_tmgmt_i18n_string_list() {
 function osha_content_init() {
   global $language;
 
-  $redirectId = variable_get('no_translation_nid');
-  if(empty($redirectId)) {
-    $redirectId = 7662;
-  }
+  $redirectId = variable_get('no_translation_nid', '7690');
 
   $node_path = explode('/', drupal_get_normal_path(current_path()));
   $nid = isset($node_path[1])? $node_path[1]: '';
@@ -58,6 +55,9 @@ function osha_content_init() {
         if (osha_content_has_translation($redirectId, $language)) {
           $nodeLanguage = $node->language;
         }
+
+        //redirect to no translation available page
+        variable_set('translation_nid', $nid);
         drupal_goto('/'.drupal_get_path_alias('node/'.$redirectId, $nodeLanguage),
           array('language' => (object)array('language' => $nodeLanguage), 'prefix' => $nodeLanguage));
         drupal_exit();
@@ -107,7 +107,7 @@ function osha_content_block_configure($delta = '') {
       $form['no_translation_nid'] = array(
         '#type' => 'textfield',
         '#title' => t('No translation page nid'),
-        '#default_value' => variable_get('no_translation_nid', '7662'),
+        '#default_value' => variable_get('no_translation_nid', '7960'),
       );
       break;
   }
@@ -144,21 +144,13 @@ function osha_content_block_view($delta = '') {
 function osha_content_no_translation_form($form, &$form_state){
   global $base_url;
   $form = array();
+  $nid = variable_get('translation_nid');
+  $node = node_load($nid);
 
-  // Direct access of the page
-  if(empty($_SERVER['HTTP_REFERER'])) {
-    return;
-  }
-
-  $path = substr(str_replace($base_url, '', drupal_get_path_alias($_SERVER['HTTP_REFERER'])), 4);
-  $node_path = explode('/', drupal_get_normal_path($path));
-  $nid = $node_path[1];
-
-  if(empty($nid) || !is_numeric($nid))
+  if(empty($nid) || !is_numeric($nid) || !$node)
     return;
 
   // Get node translations
-  $node = node_load($nid);
   $translations = array_keys($node->translations->data);
   sort($translations);
   // Get installed languages
@@ -214,7 +206,8 @@ function osha_content_no_translation_form_submit($form, &$form_state) {
   $site_email = variable_get('site_mail', ini_get('sendmail_from'));
 
   drupal_mail('osha_content', 'no_translation', $site_email, language_default(), $form_state);
-  drupal_set_message(t('The mail has been submitted. Thank you!'));;
+  drupal_set_message(t('The mail has been submitted. Thank you!'));
+  variable_set('translation_nid', '');
   //redirect to home page
   drupal_goto('<front>');
 }

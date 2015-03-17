@@ -20,7 +20,7 @@ function osha_content_default_fe_block_settings() {
     'i18n_mode' => 0,
     'module' => 'osha_content',
     'node_types' => array(),
-    'pages' => '',
+    'pages' => 'node/7690',
     'roles' => array(),
     'themes' => array(
       'bartik' => array(
@@ -49,7 +49,7 @@ function osha_content_default_fe_block_settings() {
       ),
     ),
     'title' => '',
-    'visibility' => 0,
+    'visibility' => 1,
   );
 
   $export['views-related_content-block'] = array(
