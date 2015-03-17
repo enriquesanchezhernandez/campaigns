@@ -42,7 +42,7 @@ function osha_events_form_validate($form, &$form_state) {
   $values = $form_state['values'];
   $node = $form_state['node'];
   if ($values['status'] == 1) {
-    if (empty($values['body'][$node->language]['0']['value'])) {
+    if (FALSE && empty($values['body'][$node->language]['0']['value'])) {
       form_set_error('body', t('You have to add a Description.'));
     }
     if (empty($values['field_start_date']['und']['0']['value'])) {
@@ -51,10 +51,10 @@ function osha_events_form_validate($form, &$form_state) {
     if (empty($values['field_start_date']['und']['0']['value2'])) {
       form_set_error('field_start_date', t('You have to add an End Date .'));
     }
-    if (empty($values['field_website_of_event']['und']['0']['title'])) {
+    if (FALSE && empty($values['field_website_of_event']['und']['0']['title'])) {
       form_set_error('field_website_of_event', t('You have to add a Web site title.'));
     }
-    if (empty($values['field_website_of_event']['und']['0']['url'])) {
+    if (FALSE && empty($values['field_website_of_event']['und']['0']['url'])) {
       form_set_error('field_website_of_event', t('You have to add a Web site url.'));
     }
     if (empty($values['field_organization']['und']['0']['value'])) {

@@ -280,7 +280,7 @@ function osha_search_autocomplete_add_group($group, $lang, $showing_items, $sear
   foreach ($group->doclist->docs as &$item) {
     $count_items++;
     $ac_item = array(
-      "link" => url($item->ss_search_api_url),
+      "link" => url('node/' . $item->is_nid),
       "value" => current($item->{'tm_' . $lang . '_title_field'}),
       "fields" => array(
         "title_field" => current($item->{'tm_' . $lang . '_title_field'}),
