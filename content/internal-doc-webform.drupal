@@ -128,7 +128,7 @@ array(
           1 => array(
             'nid' => '7691',
             'eid' => '1',
-            'email' => 'radu.sc@gmail.com',
+            'email' => 'information@osha.europa.eu',
             'subject' => 'default',
             'from_name' => 'default',
             'from_address' => 'default',
