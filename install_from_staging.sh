@@ -39,4 +39,6 @@ echo "Run post update"
 ../$post_update
 fi
 
+drush ne-import --file=../content/internal-doc-webform.drupal
+
 drush cc all

@@ -221,3 +221,30 @@ function osha_content_mail($key, &$message, $params) {
   }
 }
 
+/**
+ * Implementation of hook_webform_select_options_info().
+ * See webform/webform.api.php for further information on this hook in the Webform API.
+ */
+function osha_content_webform_select_options_info() {
+  $items = array();
+  $items['available_languages'] = array(
+    'title' => t('Languages'),
+    'options callback' => 'osha_content_webform_pre_build_list_languages'
+  );
+
+  return $items;
+}
+
+/**
+ * Build an options list (available languages) to be used with webforms select list
+ */
+function osha_content_webform_pre_build_list_languages() {
+  $available_languages = array();
+  $languages = osha_language_list(TRUE);
+  foreach($languages as $key => $language) {
+    $available_languages[$key] = $language->native;
+  }
+
+  return $available_languages;
+}
+
