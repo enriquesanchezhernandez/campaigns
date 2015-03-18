@@ -191,9 +191,9 @@ example.org';
     'publication' => 'publication',
     'seminar' => 'seminar',
     'slideshare' => 'slideshare',
-    'wiki_page' => 'wiki_page',
     'youtube' => 'youtube',
     'infographic' => 0,
+    'wiki_page' => 0,
   );
   $export['linkchecker_scan_nodetypes'] = $strongarm;
 
