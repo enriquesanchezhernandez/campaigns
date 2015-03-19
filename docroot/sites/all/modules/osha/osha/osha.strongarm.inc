@@ -13,6 +13,135 @@ function osha_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'addtoany_additional_html';
+  $strongarm->value = '<a class="a2a_button_twitter"></a><a class="a2a_button_facebook"></a><a class="a2a_button_linkedin"></a><a class="a2a_dd" href="http://www.addtoany.com/share_save"/><a class="a2a_button_print"></a>';
+  $export['addtoany_additional_html'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'addtoany_additional_html_placement';
+  $strongarm->value = 'after';
+  $export['addtoany_additional_html_placement'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'addtoany_additional_js';
+  $strongarm->value = 'jQuery(document).ready(function() {
+var el = jQuery(\'a.addtoany_share_save\');
+jQuery(\'<span />\').attr({\'className\':\'a2a_img_text\'}).html(el.text()).prependTo(jQuery(\'span.a2a_target\'));
+el.remove();
+});';
+  $export['addtoany_additional_js'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'addtoany_buttons_size';
+  $strongarm->value = '16';
+  $export['addtoany_buttons_size'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'addtoany_custom_image';
+  $strongarm->value = '';
+  $export['addtoany_custom_image'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'addtoany_display_in_nodecont';
+  $strongarm->value = 0;
+  $export['addtoany_display_in_nodecont'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'addtoany_display_in_nodelink';
+  $strongarm->value = 1;
+  $export['addtoany_display_in_nodelink'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'addtoany_display_in_teasers';
+  $strongarm->value = 0;
+  $export['addtoany_display_in_teasers'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'addtoany_display_weight';
+  $strongarm->value = '40';
+  $export['addtoany_display_weight'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'addtoany_image';
+  $strongarm->value = 'text';
+  $export['addtoany_image'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'addtoany_image_attributes';
+  $strongarm->value = 'Share';
+  $export['addtoany_image_attributes'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'addtoany_link_text';
+  $strongarm->value = 'Share this on:';
+  $export['addtoany_link_text'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'addtoany_nodetypes';
+  $strongarm->value = array(
+    'article' => 'article',
+    'blog' => 'blog',
+    'highlight' => 'highlight',
+    'news' => 'news',
+    'press_release' => 'press_release',
+    'banner' => 0,
+    'page' => 0,
+    'calls' => 0,
+    'press_contact' => 0,
+    'directive' => 0,
+    'events' => 0,
+    'external_url' => 0,
+    'file' => 0,
+    'flickr' => 0,
+    'fop_page' => 0,
+    'guideline' => 0,
+    'infographic' => 0,
+    'job_vacancies' => 0,
+    'newsletter_article' => 0,
+    'note_to_editor' => 0,
+    'publication' => 0,
+    'seminar' => 0,
+    'slideshare' => 0,
+    'webform' => 0,
+    'wiki_page' => 0,
+    'youtube' => 0,
+  );
+  $export['addtoany_nodetypes'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'addtoany_no_3p';
+  $strongarm->value = 0;
+  $export['addtoany_no_3p'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'comment_anonymous_article';
   $strongarm->value = 0;
   $export['comment_anonymous_article'] = $strongarm;

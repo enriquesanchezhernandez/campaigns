@@ -2989,7 +2989,7 @@ font-weight: normal;
 /*SHARE LINKS*/
 
 #a2apage_dropdown{
-	display:none!important; /*Display none to others social pages*/
+	/* display:none!important; Display none to others social pages - CW-1509 */
 }
 
 .node-news ul.links.inline,
