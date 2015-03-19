@@ -628,14 +628,21 @@ function osha_newsletter_views_default_views() {
   $handler->display->display_options['pager']['options']['items_per_page'] = '25';
   $handler->display->display_options['style_plugin'] = 'table';
   $handler->display->display_options['style_options']['columns'] = array(
+    'rendered_entity_2' => 'rendered_entity_2',
     'rendered_entity' => 'rendered_entity',
     'field_newsletter_sent' => 'field_newsletter_sent',
+    'field_publication_date' => 'field_publication_date',
     'field_created' => 'field_created',
     'field_newsletter_author' => 'field_newsletter_author',
     'rendered_entity_1' => 'rendered_entity_1',
   );
-  $handler->display->display_options['style_options']['default'] = 'field_created';
+  $handler->display->display_options['style_options']['default'] = 'field_publication_date';
   $handler->display->display_options['style_options']['info'] = array(
+    'rendered_entity_2' => array(
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
     'rendered_entity' => array(
       'align' => 'views-align-left',
       'separator' => '',
@@ -644,6 +651,13 @@ function osha_newsletter_views_default_views() {
     'field_newsletter_sent' => array(
       'sortable' => 1,
       'default_sort_order' => 'asc',
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+    'field_publication_date' => array(
+      'sortable' => 1,
+      'default_sort_order' => 'desc',
       'align' => '',
       'separator' => '',
       'empty_column' => 0,
@@ -705,6 +719,18 @@ function osha_newsletter_views_default_views() {
   $handler->display->display_options['fields']['field_newsletter_sent']['table'] = 'field_data_field_newsletter_sent';
   $handler->display->display_options['fields']['field_newsletter_sent']['field'] = 'field_newsletter_sent';
   $handler->display->display_options['fields']['field_newsletter_sent']['label'] = 'Was sent?';
+  /* Field: Field: Publication date */
+  $handler->display->display_options['fields']['field_publication_date']['id'] = 'field_publication_date';
+  $handler->display->display_options['fields']['field_publication_date']['table'] = 'field_data_field_publication_date';
+  $handler->display->display_options['fields']['field_publication_date']['field'] = 'field_publication_date';
+  $handler->display->display_options['fields']['field_publication_date']['settings'] = array(
+    'format_type' => 'long',
+    'fromto' => 'both',
+    'multiple_number' => '',
+    'multiple_from' => '',
+    'multiple_to' => '',
+    'osha_date_theme' => '',
+  );
   /* Field: Entity Collection: Created */
   $handler->display->display_options['fields']['field_created']['id'] = 'field_created';
   $handler->display->display_options['fields']['field_created']['table'] = 'field_data_field_created';
@@ -715,6 +741,7 @@ function osha_newsletter_views_default_views() {
     'multiple_number' => '',
     'multiple_from' => '',
     'multiple_to' => '',
+    'osha_date_theme' => '',
   );
   /* Field: Entity Collection: Author */
   $handler->display->display_options['fields']['field_newsletter_author']['id'] = 'field_newsletter_author';
@@ -773,6 +800,7 @@ function osha_newsletter_views_default_views() {
     t('ID'),
     t('Title'),
     t('Was sent?'),
+    t('Publication date'),
     t('Created'),
     t('Author'),
     t('Actions'),
