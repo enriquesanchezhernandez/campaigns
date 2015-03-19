@@ -143,7 +143,7 @@ function osha_content_block_view($delta = '') {
 
 function osha_content_no_translation_form($form, &$form_state){
   global $base_url;
-  $form = array();
+  $form = $available = array();
   $nid = variable_get('translation_nid');
   $node = node_load($nid);
 
