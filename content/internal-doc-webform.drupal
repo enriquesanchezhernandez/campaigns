@@ -1,6 +1,6 @@
-array(                    
+array(
   (object) array(
-      'vid' => '12196',
+      'vid' => '12216',
       'uid' => '1',
       'title' => 'Request form to access to a document held by the EU-OSHA',
       'log' => '',
@@ -8,17 +8,36 @@ array(
       'comment' => '1',
       'promote' => '0',
       'sticky' => '0',
-      'vuuid' => '022507e9-1873-4e0b-adb0-6d3c464c90e6',
-      'nid' => '7698',
+      'vuuid' => 'c1872ed8-5a98-4f49-9cd8-03930327afaf',
+      'nid' => '7709',
       'type' => 'webform',
       'language' => 'en',
-      'created' => '1426778769',
-      'changed' => '1426778850',
-      'tnid' => '7691',
+      'created' => '1426866593',
+      'changed' => '1426866634',
+      'tnid' => '0',
       'translate' => '0',
-      'uuid' => 'd03907f1-164a-4cda-b458-719d6cd99112',
-      'revision_timestamp' => '1426778850',
+      'uuid' => '6101a9e6-ba3e-4825-827f-98eae5897452',
+      'revision_timestamp' => '1426866634',
       'revision_uid' => '1',
+      'field_page_introduction' => array(
+        'en' => array(
+          array(
+            'value' => '<div id="parent-fieldname-formPrologue-d50dcd442994c29f374de9adbb7ad702"><p>Please supply all compulsory information, marked with a red dot. <span class="fieldRequired" title="Required"> (Required) </span></p><p>(When you have finished filling in the form, click on "Send" at the bottom of the screen.</p><p> If you have not filled in a section correctly, a message will tell you what changes are required)</p></div>',
+            'format' => 'full_html',
+            'safe_value' => "<div id=\"parent-fieldname-formPrologue-d50dcd442994c29f374de9adbb7ad702\">\n<p>Please supply all compulsory information, marked with a red dot. <span class=\"fieldRequired\" title=\"Required\"> (Required) </span></p>\n<p>(When you have finished filling in the form, click on \"Send\" at the bottom of the screen.</p>\n<p> If you have not filled in a section correctly, a message will tell you what changes are required)</p>\n</div>\n",
+          ),
+        ),
+      ),
+      'title_field' => array(
+        'en' => array(
+          array(
+            'value' => 'Request form to access to a document held by the EU-OSHA',
+            'format' => NULL,
+            'safe_value' => 'Request form to access to a document held by the EU-OSHA',
+          ),
+        ),
+      ),
+      'title_original' => 'Request form to access to a document held by the EU-OSHA',
       'metatags' => array(),
       'rdf_mapping' => array(
         'rdftype' => array(
@@ -76,17 +95,29 @@ array(
         ),
       ),
       'translations' => (object) array(
-          'original' => NULL,
-          'data' => array(),
+          'original' => 'en',
+          'data' => array(
+            'en' => array(
+              'entity_type' => 'node',
+              'entity_id' => '7709',
+              'language' => 'en',
+              'source' => '',
+              'uid' => '1',
+              'status' => '1',
+              'translate' => '0',
+              'created' => '1426866333',
+              'changed' => '1426866593',
+            ),
+          ),
         ),
       'webform' => array(
-        'nid' => '7698',
-        'next_serial' => '18',
+        'nid' => '7709',
+        'next_serial' => '1',
         'confirmation' => '<p>Confirmation message</p>',
         'confirmation_format' => 'full_html',
         'redirect_url' => '<confirmation>',
         'status' => '1',
-        'block' => '1',
+        'block' => '0',
         'allow_draft' => '0',
         'auto_save' => '0',
         'submit_notice' => '1',
@@ -126,7 +157,7 @@ array(
         ),
         'emails' => array(
           1 => array(
-            'nid' => '7698',
+            'nid' => '7709',
             'eid' => '1',
             'email' => 'information@osha.europa.eu',
             'subject' => 'default',
@@ -141,7 +172,7 @@ array(
         ),
         'components' => array(
           3 => array(
-            'nid' => 7698,
+            'nid' => 7709,
             'cid' => '3',
             'pid' => '0',
             'form_key' => 'originator_of_the_request',
@@ -161,7 +192,7 @@ array(
             'page_num' => 1,
           ),
           1 => array(
-            'nid' => 7698,
+            'nid' => 7709,
             'cid' => '1',
             'pid' => '3',
             'form_key' => 'first_name',
@@ -189,7 +220,7 @@ array(
             'page_num' => 1,
           ),
           2 => array(
-            'nid' => 7698,
+            'nid' => 7709,
             'cid' => '2',
             'pid' => '3',
             'form_key' => 'surname',
@@ -217,7 +248,7 @@ array(
             'page_num' => 1,
           ),
           8 => array(
-            'nid' => 7698,
+            'nid' => 7709,
             'cid' => '8',
             'pid' => '3',
             'form_key' => 'address',
@@ -234,7 +265,7 @@ array(
             'page_num' => 1,
           ),
           9 => array(
-            'nid' => 7698,
+            'nid' => 7709,
             'cid' => '9',
             'pid' => '3',
             'form_key' => 'street',
@@ -262,7 +293,7 @@ array(
             'page_num' => 1,
           ),
           10 => array(
-            'nid' => 7698,
+            'nid' => 7709,
             'cid' => '10',
             'pid' => '3',
             'form_key' => 'post_code',
@@ -290,7 +321,7 @@ array(
             'page_num' => 1,
           ),
           11 => array(
-            'nid' => 7698,
+            'nid' => 7709,
             'cid' => '11',
             'pid' => '3',
             'form_key' => 'town',
@@ -318,7 +349,7 @@ array(
             'page_num' => 1,
           ),
           12 => array(
-            'nid' => 7698,
+            'nid' => 7709,
             'cid' => '12',
             'pid' => '3',
             'form_key' => 'country',
@@ -346,7 +377,7 @@ array(
             'page_num' => 1,
           ),
           13 => array(
-            'nid' => 7698,
+            'nid' => 7709,
             'cid' => '13',
             'pid' => '3',
             'form_key' => 'fax',
@@ -374,7 +405,7 @@ array(
             'page_num' => 1,
           ),
           14 => array(
-            'nid' => 7698,
+            'nid' => 7709,
             'cid' => '14',
             'pid' => '3',
             'form_key' => 'e_mail_address',
@@ -399,7 +430,7 @@ array(
             'page_num' => 1,
           ),
           4 => array(
-            'nid' => 7698,
+            'nid' => 7709,
             'cid' => '4',
             'pid' => '0',
             'form_key' => 'document_requested',
@@ -419,7 +450,7 @@ array(
             'page_num' => 1,
           ),
           15 => array(
-            'nid' => 7698,
+            'nid' => 7709,
             'cid' => '15',
             'pid' => '4',
             'form_key' => 'date_of_the_document',
@@ -443,7 +474,7 @@ array(
             'page_num' => 1,
           ),
           16 => array(
-            'nid' => 7698,
+            'nid' => 7709,
             'cid' => '16',
             'pid' => '4',
             'form_key' => 'title_of_the_document',
@@ -471,7 +502,7 @@ array(
             'page_num' => 1,
           ),
           17 => array(
-            'nid' => 7698,
+            'nid' => 7709,
             'cid' => '17',
             'pid' => '4',
             'form_key' => 'word_in_the_title_or_subject',
@@ -499,7 +530,7 @@ array(
             'page_num' => 1,
           ),
           5 => array(
-            'nid' => 7698,
+            'nid' => 7709,
             'cid' => '5',
             'pid' => '4',
             'form_key' => 'language_requested',
@@ -527,7 +558,7 @@ array(
             'page_num' => 1,
           ),
           18 => array(
-            'nid' => 7698,
+            'nid' => 7709,
             'cid' => '18',
             'pid' => '4',
             'form_key' => 'alternative_language',
@@ -555,7 +586,7 @@ array(
             'page_num' => 1,
           ),
           6 => array(
-            'nid' => 7698,
+            'nid' => 7709,
             'cid' => '6',
             'pid' => '0',
             'form_key' => 'preferred_means_of_access',
@@ -575,7 +606,7 @@ array(
             'page_num' => 1,
           ),
           7 => array(
-            'nid' => 7698,
+            'nid' => 7709,
             'cid' => '7',
             'pid' => '6',
             'form_key' => 'please_send_me_a_copy_of_the_document',
@@ -606,22 +637,24 @@ array(
         'conditionals' => array(),
       ),
       'cid' => '0',
-      'last_comment_timestamp' => '1426778769',
+      'last_comment_timestamp' => '1426866593',
       'last_comment_name' => NULL,
       'last_comment_uid' => '1',
       'comment_count' => '0',
       'name' => 'admin',
       'picture' => '0',
       'data' => 'a:2:{s:18:"htmlmail_plaintext";i:0;s:7:"contact";i:0;}',
-      'workbench_access' => array(),
+      'workbench_access' => array(
+        'main-menu' => 'main-menu',
+      ),
       'print_html_display' => 1,
       'print_html_display_comment' => 0,
       'print_html_display_urllist' => 1,
       'print_pdf_display' => 1,
       'print_pdf_display_comment' => 0,
       'print_pdf_display_urllist' => 1,
-      'print_pdf_size' => '',
-      'print_pdf_orientation' => '',
+      'print_pdf_size' => NULL,
+      'print_pdf_orientation' => NULL,
       'path' => FALSE,
       'menu' => NULL,
       'node_export_drupal_version' => '7',
