@@ -32,24 +32,20 @@ function osha_content_osha_tmgmt_i18n_string_list() {
 }
 
 /**
- * Implementation of hook_init()
+ * Implementation of hook_node_view()
  *
  * Handle the case when the current language does not match content node language.
  */
-function osha_content_init() {
+function osha_content_node_view() {
   global $language;
 
   $redirectId = variable_get('no_translation_nid', '7690');
 
-  $node_path = explode('/', drupal_get_normal_path(current_path()));
-  $nid = isset($node_path[1])? $node_path[1]: '';
-
-  if (is_numeric($nid)) {
-    $node = node_load($nid);
+  if ($node = menu_get_object()) {
     // if current language does not match content node language
     if (!empty($node->language) && $node->language != $language->language) {
       // lookup translations for current node
-      if(!osha_content_has_translation($nid, $language)) {
+      if(!osha_content_has_translation($node->nid, $language)) {
         // redirect to a static page if there's not a translation in the currently active language
         $nodeLanguage = 'en';
         if (osha_content_has_translation($redirectId, $language)) {
@@ -57,7 +53,7 @@ function osha_content_init() {
         }
 
         //redirect to no translation available page
-        variable_set('translation_nid', $nid);
+        variable_set('translation_nid', $node->nid);
         drupal_goto('/'.drupal_get_path_alias('node/'.$redirectId, $nodeLanguage),
           array('language' => (object)array('language' => $nodeLanguage), 'prefix' => $nodeLanguage));
         drupal_exit();
