@@ -234,7 +234,7 @@ function osha_job_vacancies_views_default_views() {
   $handler->display->display_options['filters']['field_publication_date_value_1']['id'] = 'field_publication_date_value_1';
   $handler->display->display_options['filters']['field_publication_date_value_1']['table'] = 'field_data_field_publication_date';
   $handler->display->display_options['filters']['field_publication_date_value_1']['field'] = 'field_publication_date_value';
-  $handler->display->display_options['filters']['field_publication_date_value_1']['operator'] = '>';
+  $handler->display->display_options['filters']['field_publication_date_value_1']['operator'] = '<';
   $handler->display->display_options['filters']['field_publication_date_value_1']['group'] = 1;
   $handler->display->display_options['filters']['field_publication_date_value_1']['default_date'] = 'now';
   $handler->display->display_options['path'] = 'jobs_archive';
