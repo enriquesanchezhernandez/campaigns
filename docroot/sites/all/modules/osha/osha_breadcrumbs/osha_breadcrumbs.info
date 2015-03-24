@@ -18,6 +18,7 @@ features[path_breadcrumbs][] = directive_search
 features[path_breadcrumbs][] = directive_view
 features[path_breadcrumbs][] = events
 features[path_breadcrumbs][] = events_list
+features[path_breadcrumbs][] = focal_point_page
 features[path_breadcrumbs][] = footer_links
 features[path_breadcrumbs][] = guideline
 features[path_breadcrumbs][] = guideline_search
