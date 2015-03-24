@@ -217,7 +217,7 @@ function osha_newsletter_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'osha_newsletter_after_max_nodes';
-  $strongarm->value = '10';
+  $strongarm->value = '19';
   $export['osha_newsletter_after_max_nodes'] = $strongarm;
 
   $strongarm = new stdClass();

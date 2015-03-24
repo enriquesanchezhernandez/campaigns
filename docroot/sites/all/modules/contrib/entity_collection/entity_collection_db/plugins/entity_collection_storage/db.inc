@@ -57,12 +57,15 @@ class EntityCollectionStorageDB extends EntityCollectionStorage {
     $query->addField('rs', 'position');
     $query->orderBy('position', 'DESC');
     $query->condition('parent', isset($item->parent) && isset($item->parent->entity_id) ? $item->parent->entity_id : 0);
-    $position = $query->execute()->fetchField();
-    if ($position > 0) {
-      $position++;
+    $query->condition('name', $collection->name);
+    if (empty($item->position)) {
+      $position = $query->execute()->fetchField();
+      if ($position > 0) {
+        $position++;
+      }
+      $item->position = $position;
     }
-    $item->position = $position;
-    $this->save($collection, $item, $contexts, $position, 1);
+    $this->save($collection, $item, $contexts, $item->position, 1);
   }
 
   /**
