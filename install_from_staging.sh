@@ -39,6 +39,8 @@ echo "Run post update"
 ../$post_update
 fi
 
+# Post-install release 3
 drush ne-import --file=../content/internal-doc-webform.drupal
+drush php-script ../scripts/s9/post-update.php
 
 drush cc all

@@ -421,6 +421,7 @@ $options['init-modules'] = array(
   'contact',
   'field_collection',
   'webform',
+  'webform_localization',
 
   'osha_taxonomies',
   'osha',
