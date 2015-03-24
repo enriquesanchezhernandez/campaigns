@@ -36,12 +36,12 @@ function osha_content_osha_tmgmt_i18n_string_list() {
  *
  * Handle the case when the current language does not match content node language.
  */
-function osha_content_node_view() {
+function osha_content_node_view($node, $view_mode, $langcode) {
   global $language;
 
   $redirectId = variable_get('no_translation_nid', '7690');
 
-  if ($node = menu_get_object()) {
+  if ($view_mode == 'full') {
     // if current language does not match content node language
     if (!empty($node->language) && $node->language != $language->language) {
       // lookup translations for current node
@@ -139,7 +139,7 @@ function osha_content_block_view($delta = '') {
 
 function osha_content_no_translation_form($form, &$form_state){
   global $base_url;
-  $form = array();
+  $form = $available = array();
   $nid = variable_get('translation_nid');
   $node = node_load($nid);
 
