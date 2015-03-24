@@ -250,8 +250,8 @@ function osha_breadcrumbs_path_breadcrumbs_settings_info() {
   $path_breadcrumb->data = array(
     'titles' => array(
       0 => 'Inside EU-OSHA',
-      1 => 'National Focal Points',
-      2 => 'Focal Points Details',
+      1 => 'National focal points',
+      2 => 'Focal points details',
       3 => '!page_title',
     ),
     'paths' => array(
