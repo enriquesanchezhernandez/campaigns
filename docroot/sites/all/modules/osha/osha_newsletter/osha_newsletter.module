@@ -627,7 +627,6 @@ function osha_newsletter_add_to_newsletter_action($node, $context) {
       $item = new EntityCollectionTreeNode('node', $node->nid, $node);
       $contexts = _entity_collection_get_contexts($collection);
       // TODO: smart selection of $item->position based on $node->type
-      dpm($node);
       entity_collection_append_item($collection, $item, $contexts);
     }
   }
