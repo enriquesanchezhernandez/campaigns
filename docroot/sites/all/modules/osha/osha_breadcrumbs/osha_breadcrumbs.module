@@ -39,6 +39,14 @@ function osha_breadcrumbs_menu_breadcrumb_alter(&$active_trail, $item) {
   $end = end($active_trail);
 
   if (isset($item['page_arguments'])) {
+    global $user;
+    $allowed_roles = array('administrator');
+    $user_allowed = false;
+
+    if(count(array_intersect($user->roles, $allowed_roles)) > 0){
+      $user_allowed = true;
+    }
+
     if (!empty($item['page_arguments'])) {
       $is_newsletter = false;
       $key = 0;
@@ -53,27 +61,31 @@ function osha_breadcrumbs_menu_breadcrumb_alter(&$active_trail, $item) {
       if ($is_newsletter) {
         $custom_active_trail = array();
         $custom_active_trail[] = $start;
-        $custom_active_trail[] = array(
-          'title' => t('Administration'),
-          'href' => 'admin',
-          'link_path' => 'admin',
-          'localized_options' => array(),
-          'type' => 0
-        );
-        $custom_active_trail[] = array(
-          'title' => t('Content'),
-          'href' => 'admin/content',
-          'link_path' => 'admin/content',
-          'localized_options' => array(),
-          'type' => 0
-        );
-        $custom_active_trail[] = array(
-          'title' => t('Newsletter'),
-          'href' => 'admin/content/newsletter',
-          'link_path' => 'admin/content/newsletter',
-          'localized_options' => array(),
-          'type' => 0
-        );
+
+        if ($user_allowed && $user->uid != 0) {
+          $custom_active_trail[] = array(
+            'title' => t('Administration'),
+            'href' => 'admin',
+            'link_path' => 'admin',
+            'localized_options' => array(),
+            'type' => 0
+          );
+          $custom_active_trail[] = array(
+            'title' => t('Content'),
+            'href' => 'admin/content',
+            'link_path' => 'admin/content',
+            'localized_options' => array(),
+            'type' => 0
+          );
+          $custom_active_trail[] = array(
+            'title' => t('Newsletter'),
+            'href' => 'admin/content/newsletter',
+            'link_path' => 'admin/content/newsletter',
+            'localized_options' => array(),
+            'type' => 0
+          );
+        }
+
         $custom_active_trail[] = array(
           'title' => $item['page_arguments'][$key]->title,
           'href' => 'entity-collection/'.$item['page_arguments'][$key]->name,
