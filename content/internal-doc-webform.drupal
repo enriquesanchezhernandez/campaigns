@@ -113,7 +113,7 @@ array(
       'webform' => array(
         'nid' => '7709',
         'next_serial' => '1',
-        'confirmation' => '<p>Confirmation message</p>',
+        'confirmation' => '<p>Thanks for your input</p>',
         'confirmation_format' => 'full_html',
         'redirect_url' => '<confirmation>',
         'status' => '1',
@@ -133,7 +133,7 @@ array(
         'progressbar_include_confirmation' => '1',
         'progressbar_label_first' => 'Start',
         'progressbar_label_confirmation' => 'Complete',
-        'preview' => '0',
+        'preview' => '1',
         'preview_next_button_label' => '',
         'preview_prev_button_label' => '',
         'preview_title' => '',
@@ -159,7 +159,7 @@ array(
           1 => array(
             'nid' => '7709',
             'eid' => '1',
-            'email' => 'information@osha.europa.eu',
+            'email' => 'docrequest@osha.europa.eu',
             'subject' => 'default',
             'from_name' => '1',
             'from_address' => '14',
