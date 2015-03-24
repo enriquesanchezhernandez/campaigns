@@ -1,5 +1,6 @@
 <?php
 
+// Localizations settings
 osha_update_webform_localization();
 
 /**
@@ -23,5 +24,29 @@ function osha_update_webform_localization(){
   }
   else {
     drupal_write_record('webform_localization', $data);
+  }
+
+  // Create webform node alias
+  osha_update_webform_alias($last_id);
+}
+
+/**
+ * Create alias for the last inserted webform
+ */
+function osha_update_webform_alias($last_id){
+  $languages = osha_language_list();
+  $source = 'node/'.$last_id;
+
+  $query = db_query("SELECT * FROM url_alias WHERE source = '{$source}'")->fetchField();
+
+  if (!$query) {
+    foreach ($languages as $key => $language){
+      $data = array(
+        'source' => $source,
+        'alias' => 'inside-eu-osha/governance-eu-osha/internal_documents/document_request_form',
+        'language' => $key,
+      );
+      drupal_write_record('url_alias', $data);
+    }
   }
 }
