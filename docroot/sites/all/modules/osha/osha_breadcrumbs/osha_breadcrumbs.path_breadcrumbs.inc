@@ -244,6 +244,54 @@ function osha_breadcrumbs_path_breadcrumbs_settings_info() {
 
   $path_breadcrumb = new stdClass();
   $path_breadcrumb->api_version = 1;
+  $path_breadcrumb->machine_name = 'focal_point_page';
+  $path_breadcrumb->name = 'Focal Point Page';
+  $path_breadcrumb->path = 'node/%node';
+  $path_breadcrumb->data = array(
+    'titles' => array(
+      0 => 'Inside EU-OSHA',
+      1 => 'National Focal Points',
+      2 => 'Focal Points Details',
+      3 => '!page_title',
+    ),
+    'paths' => array(
+      0 => 'node/13',
+      1 => 'node/1457',
+      2 => 'node/7116',
+      3 => '<none>',
+    ),
+    'home' => 1,
+    'translatable' => 1,
+    'arguments' => array(
+      'node' => array(
+        'position' => 1,
+        'argument' => 'entity_id:node',
+        'settings' => array(
+          'identifier' => 'Node: ID',
+        ),
+      ),
+    ),
+    'access' => array(
+      'plugins' => array(
+        0 => array(
+          'name' => 'node_type',
+          'settings' => array(
+            'type' => array(
+              'fop_page' => 'fop_page',
+            ),
+          ),
+          'context' => 'node',
+          'not' => FALSE,
+        ),
+      ),
+      'logic' => 'and',
+    ),
+  );
+  $path_breadcrumb->weight = 0;
+  $export['focal_point_page'] = $path_breadcrumb;
+
+  $path_breadcrumb = new stdClass();
+  $path_breadcrumb->api_version = 1;
   $path_breadcrumb->machine_name = 'footer_links';
   $path_breadcrumb->name = 'Footer links';
   $path_breadcrumb->path = 'node/%node';
