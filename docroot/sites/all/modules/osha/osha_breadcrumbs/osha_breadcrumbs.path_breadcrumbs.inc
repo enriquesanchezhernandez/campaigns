@@ -602,30 +602,6 @@ safety-and-health-legislation/european-guidelines',
 
   $path_breadcrumb = new stdClass();
   $path_breadcrumb->api_version = 1;
-  $path_breadcrumb->machine_name = 'ongoing_job_vacancies_view';
-  $path_breadcrumb->name = 'Ongoing job vacancies View';
-  $path_breadcrumb->path = 'ongoing_job_vacancies';
-  $path_breadcrumb->data = array(
-    'titles' => array(
-      0 => 'Inside EU-OSHA',
-      1 => 'Careers',
-      2 => '!page_title',
-    ),
-    'paths' => array(
-      0 => 'inside-eu-osha',
-      1 => 'inside-eu-osha/careers',
-      2 => '<none>',
-    ),
-    'home' => 1,
-    'translatable' => 1,
-    'arguments' => array(),
-    'access' => array(),
-  );
-  $path_breadcrumb->weight = 0;
-  $export['ongoing_job_vacancies_view'] = $path_breadcrumb;
-
-  $path_breadcrumb = new stdClass();
-  $path_breadcrumb->api_version = 1;
   $path_breadcrumb->machine_name = 'open_job_vacancies_view';
   $path_breadcrumb->name = 'Open job vacancies View';
   $path_breadcrumb->path = 'open_job_vacancies';
@@ -911,30 +887,6 @@ safety-and-health-legislation/european-guidelines',
   );
   $path_breadcrumb->weight = 0;
   $export['seminars_search_view'] = $path_breadcrumb;
-
-  $path_breadcrumb = new stdClass();
-  $path_breadcrumb->api_version = 1;
-  $path_breadcrumb->machine_name = 'shortlisted_job_vacancies';
-  $path_breadcrumb->name = 'Shortlisted job vacancies View';
-  $path_breadcrumb->path = 'shortlisted_job_vacancies';
-  $path_breadcrumb->data = array(
-    'titles' => array(
-      0 => 'Inside EU-OSHA',
-      1 => 'Careers',
-      2 => '!page_title',
-    ),
-    'paths' => array(
-      0 => 'inside-eu-osha',
-      1 => 'inside-eu-osha/careers',
-      2 => '<none>',
-    ),
-    'home' => 1,
-    'translatable' => 1,
-    'arguments' => array(),
-    'access' => array(),
-  );
-  $path_breadcrumb->weight = 0;
-  $export['shortlisted_job_vacancies'] = $path_breadcrumb;
 
   $path_breadcrumb = new stdClass();
   $path_breadcrumb->api_version = 1;
