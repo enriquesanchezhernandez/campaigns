@@ -13,14 +13,14 @@ function osha_content_default_fe_block_settings() {
   $export['version'] = '2.0';
 
   $export['osha_content-no_translation'] = array(
-    'cache' => 1,
+    'cache' => -1,
     'custom' => 0,
     'delta' => 'no_translation',
     'i18n_block_language' => array(),
     'i18n_mode' => 0,
     'module' => 'osha_content',
     'node_types' => array(),
-    'pages' => 'node/7690',
+    'pages' => 'node/7702',
     'roles' => array(),
     'themes' => array(
       'bartik' => array(
@@ -39,7 +39,7 @@ function osha_content_default_fe_block_settings() {
         'region' => 'content',
         'status' => 1,
         'theme' => 'osha_frontend',
-        'weight' => -86,
+        'weight' => 1,
       ),
       'seven' => array(
         'region' => '',

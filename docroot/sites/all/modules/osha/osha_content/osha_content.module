@@ -36,27 +36,30 @@ function osha_content_osha_tmgmt_i18n_string_list() {
  *
  * Handle the case when the current language does not match content node language.
  */
-function osha_content_node_view() {
+function osha_content_node_view($node, $view_mode, $langcode) {
   global $language;
 
-  $redirectId = variable_get('no_translation_nid', '7690');
+  $redirectId = variable_get('no_translation_nid', '7702');
 
-  if ($node = menu_get_object()) {
+  if ($view_mode == 'full') {
     // if current language does not match content node language
-    if (!empty($node->language) && $node->language != $language->language) {
+    if (!empty($node->language) && $node->language != $language->language && $node->nid != $redirectId) {
       // lookup translations for current node
       if(!osha_content_has_translation($node->nid, $language)) {
         // redirect to a static page if there's not a translation in the currently active language
-        $nodeLanguage = 'en';
-        if (osha_content_has_translation($redirectId, $language)) {
-          $nodeLanguage = $node->language;
+        $nodeLanguage = $language->language;
+        if (!osha_content_has_translation($redirectId, $language)) {
+          $nodeLanguage = 'en';
         }
-
-        //redirect to no translation available page
-        variable_set('translation_nid', $node->nid);
-        drupal_goto('/'.drupal_get_path_alias('node/'.$redirectId, $nodeLanguage),
-          array('language' => (object)array('language' => $nodeLanguage), 'prefix' => $nodeLanguage));
-        drupal_exit();
+        // Redirect to no translation available page
+        drupal_goto(drupal_get_path_alias('node/'.$redirectId, $nodeLanguage),
+          array(
+            'query' => array('destination' => 'node/'.$node->nid),
+            'language' => (object)array('language' => $nodeLanguage),
+            'prefix' => $nodeLanguage.'/'
+          )
+        );
+        //drupal_exit();
       }
     }
   }
@@ -103,7 +106,7 @@ function osha_content_block_configure($delta = '') {
       $form['no_translation_nid'] = array(
         '#type' => 'textfield',
         '#title' => t('No translation page nid'),
-        '#default_value' => variable_get('no_translation_nid', '7960'),
+        '#default_value' => variable_get('no_translation_nid', '7702'),
       );
       break;
   }
@@ -139,12 +142,14 @@ function osha_content_block_view($delta = '') {
 
 function osha_content_no_translation_form($form, &$form_state){
   global $base_url;
-  $form = array();
-  $nid = variable_get('translation_nid');
-  $node = node_load($nid);
-
-  if(empty($nid) || !is_numeric($nid) || !$node)
+  $form = $available = array();
+  if (empty($_REQUEST['destination'])) {
     return;
+  }
+  $nid = str_replace('node/', '', $_REQUEST['destination']);
+  if (!$node = node_load($nid)) {
+    return;
+  }
 
   // Get node translations
   $translations = array_keys($node->translations->data);
@@ -190,7 +195,6 @@ function osha_content_no_translation_form($form, &$form_state){
     '#prefix' => t('Help us: Tell us this page is not available in your language '),
     '#value' => 'Send',
   );
-
   return $form;
 }
 
@@ -203,7 +207,6 @@ function osha_content_no_translation_form_submit($form, &$form_state) {
 
   drupal_mail('osha_content', 'no_translation', $site_email, language_default(), $form_state);
   drupal_set_message(t('The mail has been submitted. Thank you!'));
-  variable_set('translation_nid', '');
   //redirect to home page
   drupal_goto('<front>');
 }
