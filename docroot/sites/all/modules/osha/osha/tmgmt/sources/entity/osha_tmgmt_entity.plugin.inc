@@ -41,7 +41,15 @@ class OSHATMGMTEntitySourcePluginController extends TMGMTEntitySourcePluginContr
       self::osha_tmgmt_field_populate_entity($job_item->item_type, $entity, $job_item->target_language, $new_job_data);
       //$entity->field_needs_retranslation[LANGUAGE_NONE][0]['value'] = 0;
     } else {
-      self::osha_tmgmt_field_populate_entity($job_item->item_type, $entity, $job_item->target_language, $job_item->getData());
+      $data = $job_item->getData();
+      if ($this->valid_translation($data)) {
+        self::osha_tmgmt_field_populate_entity($job_item->item_type, $entity, $job_item->target_language, $data);
+      }
+      else {
+
+        // Do not accept an invalid translation
+        return;
+      }
     }
 
     // Change the active language of the entity to the target language.
@@ -112,6 +120,27 @@ class OSHATMGMTEntitySourcePluginController extends TMGMTEntitySourcePluginContr
         }
       }
     }
+  }
+
+  /**
+   * @return boolean
+   *   Returns TRUE if there was a non-empty translation sent and we have received a non-empty translation.
+   * Required to detect a partial import (import of a single language in a multi-language job).
+   */
+  public static function valid_translation($data) {
+    foreach(element_children($data) as $field_name) {
+      foreach (element_children($data[$field_name]) as $delta) {
+        foreach (element_children($data[$field_name][$delta]) as $column) {
+          $translation = $data[$field_name][$delta][$column];
+          if ($translation['#translate'] == TRUE
+              && empty($translation['#translation']['#text']) && !empty($translation['#text'])) {
+            // There was a translation #text sent, but returned empty (i.e. loading a single language).
+            return FALSE;
+          }
+        }
+      }
+    }
+    return TRUE;
   }
 }
 
