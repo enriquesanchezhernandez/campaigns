@@ -28,6 +28,9 @@ function osha_update_webform_localization(){
 
   // Create webform node alias
   osha_update_webform_alias($last_id);
+
+  // Enable captcha
+  osha_update_webform_captcha($last_id);
 }
 
 /**
@@ -48,5 +51,26 @@ function osha_update_webform_alias($last_id){
       );
       drupal_write_record('url_alias', $data);
     }
+  }
+}
+
+/**
+ * Update webform captcha
+ */
+function osha_update_webform_captcha($last_id) {
+  $form_id = 'webform_client_form_'.$last_id;
+
+  $query = db_query("SELECT * FROM captcha_points WHERE form_id = '{$form_id}' ")->fetchField();
+
+  $data = array(
+    'form_id' => $form_id,
+    'module' => NULL,
+    'captcha_type' => 'default',
+  );
+  if ($query) {
+    drupal_write_record('captcha_points', $data, 'form_id');
+  }
+  else {
+    drupal_write_record('captcha_points', $data);
   }
 }
