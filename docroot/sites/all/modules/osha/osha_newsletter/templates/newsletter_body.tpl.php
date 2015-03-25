@@ -31,7 +31,9 @@ td{
                   $elements_no = sizeof($items);
                   foreach ($items as $idx => $item) {
                     if ($item['#entity_type'] == 'taxonomy_term' && ($idx+1 <= $elements_no)) {
-                      if (($items[$idx+1]['#entity_type'] == 'taxonomy_term') || (($idx == $elements_no-1) && ($items[$idx]['#entity_type'] == 'taxonomy_term'))) {
+                      if (($idx == $elements_no-1) && ($items[$idx]['#entity_type'] == 'taxonomy_term')) {
+                        continue;
+                      } else if (($items[$idx+1]['#entity_type'] == 'taxonomy_term')) {
                         continue;
                       } else {
                         if ($idx != 0) {?>
