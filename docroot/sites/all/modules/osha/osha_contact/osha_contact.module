@@ -41,6 +41,13 @@ function osha_contact_form_contact_site_form_alter(&$form, &$form_state){
     '#title' => t('Your surname'),
     '#maxlength' => 255,
     '#required' => TRUE,
+    '#rules' => array(
+      array('rule' => 'length[2, *]', 'error' => t('Your surname is to short')),
+    ),
+  );
+
+  $form['name']['#rules'] = array(
+    array('rule' => 'length[2, *]', 'error' => t('Your name is to short')),
   );
 
   $form['contact_type_of_sender']['#weight'] = 0;
