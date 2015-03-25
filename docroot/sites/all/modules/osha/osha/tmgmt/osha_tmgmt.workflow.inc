@@ -855,6 +855,8 @@ function osha_tmgmt_file_translation_upload_submit($form, &$form_state) {
         }
       }
     }
+    // Remove the XML after upload.
+    file_delete($file);
   }
   foreach ($job->getMessagesSince() as $message) {
     // Ignore debug messages.
