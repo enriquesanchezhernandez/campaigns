@@ -1,6 +1,9 @@
 <?php
 
 
+/**
+ * Translation plugin controller for literals.
+ */
 class OSHATMGMTLocaleSourcePluginController extends TMGMTLocaleSourcePluginController {
 
   public function saveTranslation(TMGMTJobItem $job_item) {

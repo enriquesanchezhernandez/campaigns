@@ -30,8 +30,6 @@ class OSHATMGMTEntitySourcePluginController extends TMGMTEntitySourcePluginContr
    */
   public function saveTranslation(TMGMTJobItem $job_item) {
     $entity = entity_load_single($job_item->item_type, $job_item->item_id);
-    $job = tmgmt_job_load($job_item->tjid);
-
     if ($job_item->item_type == 'node') {
       // load the latest revision
       $entity = workbench_moderation_node_current_load($entity);
@@ -73,7 +71,6 @@ class OSHATMGMTEntitySourcePluginController extends TMGMTEntitySourcePluginContr
       'language' => $job_item->target_language,
       'source' => $job_item->source_language,
     );
-
     $handler->setTranslation($translation);
     $handler->saveTranslations();
     $job_item->accepted();

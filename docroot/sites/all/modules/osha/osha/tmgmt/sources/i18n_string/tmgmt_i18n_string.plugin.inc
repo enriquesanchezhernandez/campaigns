@@ -6,7 +6,7 @@
  */
 
 /**
- * Translation plugin controller for i18n strings.
+ * Translation plugin controller for i18n strings (menu items).
  */
 class OSHATMGMTI18nStringSourcePluginController extends TMGMTI18nStringSourcePluginController {
 
