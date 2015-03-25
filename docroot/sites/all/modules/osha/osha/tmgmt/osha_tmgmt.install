@@ -478,3 +478,23 @@ function osha_tmgmt_update_7011() {
     drupal_get_schema_unprocessed('osha_tmgmt', 'osha_locales_source_blacklist')
   );
 }
+
+/*
+ * Cleanup temporary files
+ */
+function osha_tmgmt_update_7012() {
+  $result = db_query('SELECT fid FROM {file_managed} WHERE status <> :permanent', array(':permanent' => FILE_STATUS_PERMANENT));
+  foreach ($result as $row) {
+    if ($file = file_load($row->fid)) {
+      $references = file_usage_list($file);
+      if (empty($references)) {
+        if (!file_delete($file)) {
+          watchdog('file system', 'Could not delete temporary file "%path" during garbage collection', array('%path' => $file->uri), WATCHDOG_ERROR);
+        }
+      }
+      else {
+        watchdog('file system', 'Did not delete temporary file "%path" during garbage collection, because it is in use by the following modules: %modules.', array('%path' => $file->uri, '%modules' => implode(', ', array_keys($references))), WATCHDOG_INFO);
+      }
+    }
+  }
+}
