@@ -16,20 +16,25 @@ $aliases['osha.staging'] = array(
   ),
 );
 
-$aliases['osha.staging.edw'] = array(
-  'uri' => '10.0.0.173',
+$aliases['osha.production'] = array(
+  'uri' => 'osha-corp.mainstrat.com',
   'db-allows-remote' => TRUE,
-  'remote-host' => '10.0.0.173',
+  'remote-host' => '194.30.34.9',
   'remote-user' => 'root',
-  'root' => '/var/local/osha-website/docroot',
+  'root' => '/expert/osha/docroot',
   'path-aliases' => array(
     '%files' => 'sites/default/files',
+  ),
+  'command-specific' => array(
+    'sql-sync' => array(
+      'simulate' => '1',
+    ),
   ),
 );
 
 // This alias is used in install and update scripts.
 // Rewrite it in your aliases.local.php as you need.
-$aliases['osha.staging.sync'] = $aliases['osha.staging.edw'];
+$aliases['osha.staging.sync'] = $aliases['osha.staging'];
 
 // Example of local setting.
 // $aliases['osha.local'] = array(
