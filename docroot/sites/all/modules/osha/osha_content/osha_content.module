@@ -190,11 +190,13 @@ function osha_content_no_translation_form($form, &$form_state){
   );
 
   // Send mail button
+  /*
   $form['no_translation_mail'] = array(
     '#type' => 'submit',
     '#prefix' => t('Help us: Tell us this page is not available in your language '),
     '#value' => 'Send',
   );
+  */
   return $form;
 }
 
@@ -202,6 +204,7 @@ function osha_content_no_translation_form($form, &$form_state){
 /**
  * Form submit handler
  */
+/*
 function osha_content_no_translation_form_submit($form, &$form_state) {
   $site_email = variable_get('site_mail', ini_get('sendmail_from'));
 
@@ -210,6 +213,7 @@ function osha_content_no_translation_form_submit($form, &$form_state) {
   //redirect to home page
   drupal_goto('<front>');
 }
+*/
 
 function osha_content_mail($key, &$message, $params) {
   switch($key) {
