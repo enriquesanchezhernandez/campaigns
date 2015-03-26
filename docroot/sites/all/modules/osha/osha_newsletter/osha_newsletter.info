@@ -70,7 +70,6 @@ features[variable][] = osha_newsletter_image_block_background_img
 features[variable][] = osha_newsletter_image_block_subscribers_no
 features[variable][] = osha_newsletter_image_block_text_end
 features[variable][] = osha_newsletter_image_block_text_start
-features[variable][] = osha_newsletter_list_name
 features[variable][] = osha_newsletter_listserv
 features[variable][] = osha_newsletter_listserv_from
 features[variable][] = osha_newsletter_node_view_mode

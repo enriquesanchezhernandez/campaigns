@@ -304,13 +304,6 @@ function osha_newsletter_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
-  $strongarm->name = 'osha_newsletter_list_name';
-  $strongarm->value = 'OSHMail-Test';
-  $export['osha_newsletter_list_name'] = $strongarm;
-
-  $strongarm = new stdClass();
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
   $strongarm->name = 'osha_newsletter_node_view_mode';
   $strongarm->value = 'newsletter_item';
   $export['osha_newsletter_node_view_mode'] = $strongarm;

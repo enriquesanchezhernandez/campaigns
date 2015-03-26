@@ -1217,7 +1217,7 @@ function osha_newsletter_format_body($text) {
  */
 function osha_newsletter_build_subscribe_mail(&$message){
   //Get list name
-  $list = variable_get('osha_newsletter_list_name', 'OSHMail');
+  $list = variable_get('osha_newsletter_list_name', 'OSHMail-Test');
 
   // Get message data from source.
   $message['subject'] = '';
@@ -1232,7 +1232,7 @@ function osha_newsletter_build_subscribe_mail(&$message){
  */
 function osha_newsletter_build_unsubscribe_mail(&$message){
   //Get list name
-  $list = variable_get('osha_newsletter_list_name', 'OSHMail');
+  $list = variable_get('osha_newsletter_list_name', 'OSHMail-Test');
 
   // Get message data from source.
   $message['subject'] = '';
