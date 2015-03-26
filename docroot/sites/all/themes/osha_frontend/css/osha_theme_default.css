@@ -7037,21 +7037,17 @@ body.page-node-5429 #related-wiki {
 	font-weight:bold;
 	font-size:0.8em;
 }
-/*
-#block-menu-block-2 #main-menu-links #main-menu-links .is-expanded {
-	background: url("../images/ico-plus.png")no-repeat scroll 96% 1em, url("../images/back-tit-blue.png")repeat-x scroll 0 100%;
-}   
 
-#block-menu-block-2 #main-menu-links #main-menu-links .expand{
-	background: url("../images/ico_minor.png")no-repeat scroll 96% 1em, url("../images/back-tit-blue.png")repeat-x scroll 0 100%;
+#block-menu-block-2 ul#main-menu-links li.is-expanded span.expand_menu {
+	width: 10px;
+	display: inline-block;
+	background: url("../images/ico-plus.png") no-repeat right center;
+	padding-left: 10px;
 }
 
-
-#block-menu-block-2 #main-menu-links #main-menu-links .active_minor{
-	background: url("../images/ico_minor.png")no-repeat scroll 96% 1em!important;
+#block-menu-block-2 ul#main-menu-links li.is-expanded span.expanded {
+	background: url("../images/ico_minor.png") no-repeat right center;
 }
-
-*/
 
 #block-menu-block-2 #main-menu-links #main-menu-links .menu__item.is-active.is-active-trail.is-leaf.first.last.leaf.active-trail.expand{
 	background: none, url("../images/back-tit-blue.png")repeat-x scroll 0 100%;

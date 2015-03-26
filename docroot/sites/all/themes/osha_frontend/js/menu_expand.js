@@ -5,7 +5,7 @@ jQuery(document).ready(function() {
             // Hide ul list
             jQuery(this).next('ul#main-menu-links').hide();
             // Add a span after expandable link
-            jQuery(this).after("<span class='expand_menu'></span>");
+            jQuery(this).after("<span class='expand_menu'>&nbsp;</span>");
 
             // Expand/collapse menu
             jQuery(this).next('span').click(function(){
