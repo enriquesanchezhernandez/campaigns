@@ -7043,6 +7043,7 @@ body.page-node-5429 #related-wiki {
 	display: inline-block;
 	background: url("../images/ico-plus.png") no-repeat right center;
 	padding-left: 10px;
+    cursor: pointer;
 }
 
 #block-menu-block-2 ul#main-menu-links li.is-expanded span.expanded {
