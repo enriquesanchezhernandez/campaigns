@@ -3333,12 +3333,11 @@ font-weight: normal;
 	font-weight:bold;
 }
 
-#block-views-seminars-block .view-seminars ul li  .views-field-title span{
-	display:block;
-	clear:both;
+#block-views-seminars-block .view-seminars ul li  .views-field-title-field .field-content{
+	clear: both;
 }
 
-#block-views-seminars-block .view-seminars ul li  .views-field-title span a{
+#block-views-seminars-block .view-seminars ul li  .views-field-title-field a{
 	font-size:1.5em;
 	 font-family: "Open Sans Condensed",sans-serif!important;
 	 border-bottom:0px!important;

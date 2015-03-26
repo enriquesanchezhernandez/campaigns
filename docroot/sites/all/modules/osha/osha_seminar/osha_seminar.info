@@ -79,4 +79,4 @@ features_exclude[field_base][field_tags] = field_tags
 features_exclude[field_base][field_image] = field_image
 features_exclude[field_base][field_further_actions] = field_further_actions
 features_exclude[taxonomy][tags] = tags
-mtime = 1424109868
+mtime = 1426065852
