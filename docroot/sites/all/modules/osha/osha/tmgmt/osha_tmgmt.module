@@ -2622,3 +2622,25 @@ function osha_tmgmt_i18n_string_locale_translate_edit_form($form, &$form_state, 
 function osha_tmgmt_i18n_string_locale_translate_edit_form_submit($form, &$form_state) {
   i18n_string_locale_translate_edit_form_submit($form, $form_state);
 }
+
+/**
+ * Check incoming string if requires translation and add to locale source.
+ *
+ * @param string $string
+ *   Translated or untranslated string
+ *
+ * @return string
+ *   Returns the $string if translation or its translation
+ */
+function osha_tmgmt_literal_get_translation($string) {
+  if (empty($string)) {
+    return $string;
+  }
+  $q = db_query('SELECT lid FROM {locales_target} t WHERE translation=:string', array(':string' => $string));
+  if ($q->fetchField()) {
+    return $string;
+  }
+  else {
+    return t($string); // Applies only to english untranslated strings
+  }
+}
