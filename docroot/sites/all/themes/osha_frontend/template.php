@@ -402,8 +402,6 @@ function osha_frontend_preprocess_block(&$vars) {
   }
 }
 
-
-
 /**
  * @todo @Ivan: Edit only below
  */

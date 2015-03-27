@@ -512,7 +512,7 @@ function osha_newsletter_subscribe_form() {
   $link_url = variable_get('subscribe_block_newsletter_page_url', OSHA_NEWSLETTER_PAGE_URL);
 
   $form['intro'] = array(
-    '#markup' => t($markup, array('@newsletter_page_url' => url($link_url)))
+    '#markup' => strtr($markup, array('@newsletter_page_url' => url($link_url)))
   );
   $form['email'] = array(
     '#type' => 'textfield',
