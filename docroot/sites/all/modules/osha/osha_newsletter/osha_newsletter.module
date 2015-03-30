@@ -173,63 +173,60 @@ function osha_newsletter_block_configure($delta = '') {
     case 'osha_newsletter_subscribe':
       $form['subscribe_block_intro_text'] = array(
         '#type' => 'textarea',
-        '#title' => t('Block intro text'),
+        '#title' => 'Block intro text',
         '#size' => 60,
-        '#description' => t('This text will appear in the Subscription block before the e-mail field.'),
-        '#default_value' => t(variable_get('subscribe_block_intro_text',
-          'Get our monthly update on safety and health at work. <a href="@newsletter_page_url">See more info</a><br/>')),
+        '#description' => 'This text will appear in the Subscription block before the e-mail field.',
+        '#default_value' => variable_get('subscribe_block_intro_text',
+          'Get our monthly update on safety and health at work. <a href="@newsletter_page_url">See more info</a><br/>'),
       );
       $form['subscribe_block_intro_text_second_line_start'] = array(
         '#type' => 'textarea',
         '#title' => t('Block intro text - begining of second line'),
         '#size' => 60,
-        '#description' => t('This text will appear in the Subscription block before the e-mail field (second line of intro text).'),
-        '#default_value' => t(variable_get('subscribe_block_intro_text_second_line_start',
-          'Join')),
+        '#description' => 'This text will appear in the Subscription block before the e-mail field (second line of intro text).',
+        '#default_value' => variable_get('subscribe_block_intro_text_second_line_start', 'Join'),
       );
       $form['subscribe_block_subscribers_no'] = array(
         '#type' => 'textarea',
-        '#title' => t('Subscribers number'),
+        '#title' => 'Subscribers number',
         '#size' => 60,
-        '#description' => t('This text will appear in the Subscription block before the e-mail field (second line of intro text).'),
-        '#default_value' => t(variable_get('subscribe_block_subscribers_no',
-          '65.000')),
+        '#description' => 'This text will appear in the Subscription block before the e-mail field (second line of intro text).',
+        '#default_value' => variable_get('subscribe_block_subscribers_no', '65.000'),
       );
       $form['subscribe_block_intro_text_second_line_end'] = array(
         '#type' => 'textarea',
-        '#title' => t('Block intro text - end of second line'),
+        '#title' => 'Block intro text - end of second line',
         '#size' => 60,
-        '#description' => t('This text will appear in the Subscription block before the e-mail field (second line of intro text).'),
-        '#default_value' => t(variable_get('subscribe_block_intro_text_second_line_end',
-          'subscribers')),
+        '#description' => 'This text will appear in the Subscription block before the e-mail field (second line of intro text).',
+        '#default_value' => variable_get('subscribe_block_intro_text_second_line_end', 'subscribers'),
       );
       $form['subscribe_block_newsletter_page_url'] = array(
         '#type' => 'textfield',
-        '#title' => t('Newsletter page URL'),
+        '#title' => 'Newsletter page URL',
         '#size' => 60,
-        '#description' => t('This is the link url for @newsletter_page_url.'),
+        '#description' => 'This is the link url for @newsletter_page_url.',
         '#default_value' => variable_get('subscribe_block_newsletter_page_url', OSHA_NEWSLETTER_PAGE_URL),
       );
       $form['subscribe_block_details_link_label'] = array(
         '#type' => 'textfield',
-        '#title' => t('Privacy notice label'),
+        '#title' => 'Privacy notice label',
         '#size' => 60,
-        '#description' => t('This text will appear as link label in the Subscription block after the e-mail field.'),
-        '#default_value' => t(variable_get('subscribe_block_details_link_label', 'Privacy notice')),
+        '#description' => 'This text will appear as link label in the Subscription block after the e-mail field.',
+        '#default_value' => variable_get('subscribe_block_details_link_label', 'Privacy notice'),
       );
       $form['subscribe_block_details_link_url'] = array(
         '#type' => 'textfield',
-        '#title' => t('Privacy notice URL'),
+        '#title' => 'Privacy notice URL',
         '#size' => 60,
-        '#description' => t('This text will appear as link url in the Subscription block after the e-mail field.'),
+        '#description' => 'This text will appear as link url in the Subscription block after the e-mail field.',
         '#default_value' => variable_get('subscribe_block_details_link_url', OSHA_PRIVACY_PAGE_URL),
       );
       break;
     case 'osha_newsletter_image':
       $form['osha_newsletter_image_block_background_img'] = array(
         '#type' => 'managed_file',
-        '#title' => t('Background image'),
-        '#description' => t('Upload a file, allowed extensions: jpg, jpeg, png, gif'),
+        '#title' => 'Background image',
+        '#description' => 'Upload a file, allowed extensions: jpg, jpeg, png, gif',
         '#default_value' => variable_get('osha_newsletter_image_block_background_img', ''),
         '#upload_location' => 'public://block_backgroundimage/',
         '#upload_validators' => array(
@@ -238,46 +235,46 @@ function osha_newsletter_block_configure($delta = '') {
       );
       $form['osha_newsletter_image_block_text_start'] = array(
         '#type' => 'textfield',
-        '#title' => t('Begining of text'),
+        '#title' => 'Begining of text',
         '#size' => 60,
-        '#description' => t('This text will appear over the background image (begining of the paragraph).'),
-        '#default_value' => t(variable_get('osha_newsletter_image_block_text_start', 'Join')),
+        '#description' => 'This text will appear over the background image (begining of the paragraph).',
+        '#default_value' => variable_get('osha_newsletter_image_block_text_start', 'Join'),
       );
       $form['osha_newsletter_image_block_subscribers_no'] = array(
         '#type' => 'textfield',
-        '#title' => t('Subscribers number'),
+        '#title' => 'Subscribers number',
         '#size' => 60,
-        '#description' => t('This text will appear over the background image (middle of the paragraph).'),
-        '#default_value' => t(variable_get('osha_newsletter_image_block_subscribers_no', '65.000')),
+        '#description' => 'This text will appear over the background image (middle of the paragraph).',
+        '#default_value' => variable_get('osha_newsletter_image_block_subscribers_no', '65.000'),
       );
       $form['osha_newsletter_image_block_text_end'] = array(
         '#type' => 'textfield',
-        '#title' => t('End of text'),
+        '#title' => 'End of text',
         '#size' => 60,
-        '#description' => t('This text will appear over the background image (end of the paragraph).'),
-        '#default_value' => t(variable_get('osha_newsletter_image_block_text_end', 'subscribers')),
+        '#description' => 'This text will appear over the background image (end of the paragraph).',
+        '#default_value' => variable_get('osha_newsletter_image_block_text_end', 'subscribers'),
       );
       break;
     case 'osha_newsletter_subscribe_extra':
       $form['subscribe_extra_block_intro_text'] = array(
         '#type' => 'textfield',
-        '#title' => t('Block intro text'),
+        '#title' => 'Block intro text',
         '#size' => 60,
-        '#description' => t('This text will appear in the Subscription block before the e-mail field.'),
-        '#default_value' => t(variable_get('subscribe_extra_block_intro_text', 'Once a month, OSHmail keeps you updated on ocupational safety and health.<br/> You can sign up below:')),
+        '#description' => 'This text will appear in the Subscription block before the e-mail field.',
+        '#default_value' => variable_get('subscribe_extra_block_intro_text', 'Once a month, OSHmail keeps you updated on ocupational safety and health.<br/> You can sign up below:'),
       );
       $form['subscribe_extra_block_details_link_label'] = array(
         '#type' => 'textfield',
-        '#title' => t('Link label'),
+        '#title' => 'Link label',
         '#size' => 60,
-        '#description' => t('This text will appear as link label in the Subscription block after the e-mail field.'),
-        '#default_value' => t(variable_get('subscribe_extra_block_details_link_label', 'How will EU-OSHA use my details?')),
+        '#description' => 'This text will appear as link label in the Subscription block after the e-mail field.',
+        '#default_value' => variable_get('subscribe_extra_block_details_link_label', 'How will EU-OSHA use my details?'),
       );
       $form['subscribe_extra_block_details_link_url'] = array(
         '#type' => 'textfield',
-        '#title' => t('Link URL'),
+        '#title' => 'Link URL',
         '#size' => 60,
-        '#description' => t('This text will appear as link url in the Subscription block after the e-mail field.'),
+        '#description' => 'This text will appear as link url in the Subscription block after the e-mail field.',
         '#default_value' => variable_get('subscribe_extra_block_details_link_url', OSHA_PRIVACY_PAGE_URL),
       );
 
@@ -296,13 +293,13 @@ function osha_newsletter_block_configure($delta = '') {
 
       $form['newsletters_no'] = array(
         '#type' => 'select',
-        '#title' => t('How many newsletters do you want to display?'),
+        '#title' => 'How many newsletters do you want to display?',
         '#options' => $newsletters_no_options,
         '#default_value' => variable_get('newsletters_no', $newsletters_no_options[12])
       );
       $form['newsletter_items_no'] = array(
         '#type' => 'select',
-        '#title' => t('How many items from the newsletter do you want to display?'),
+        '#title' => 'How many items from the newsletter do you want to display?',
         '#options' => $newsletters_items_no_options,
         '#default_value' => variable_get('newsletter_items_no', $newsletters_items_no_options[0])
       );
@@ -374,9 +371,9 @@ function osha_newsletter_block_view($delta = '') {
 
         $block['content'] = theme('osha_newsletter_image', array(
           'background_image_url' => $image_uri,
-          'start_text' => variable_get('osha_newsletter_image_block_text_start','Join'),
+          'start_text' => t(variable_get('osha_newsletter_image_block_text_start','Join')),
           'subscribers_no' => variable_get('osha_newsletter_image_block_subscribers_no','65.000'),
-          'end_text' => variable_get('osha_newsletter_image_block_text_end','subscribers'),
+          'end_text' => t(variable_get('osha_newsletter_image_block_text_end','subscribers')),
         ));
         return $block;
       }

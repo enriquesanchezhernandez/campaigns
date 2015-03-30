@@ -250,4 +250,3 @@ function osha_content_webform_pre_build_list_languages() {
 
   return $available_languages;
 }
-
