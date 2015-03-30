@@ -97,24 +97,14 @@ class OSHATMGMTEntitySourcePluginController extends TMGMTEntitySourcePluginContr
     tmgmt_field_populate_entity($entity_type, $entity, $langcode, $data, $use_field_translation);
     foreach(element_children($data) as $field_name) {
       if ($field_name == 'metatags') {
+        $metatags = array();
         foreach (element_children($data[$field_name]) as $delta) {
-          $columns = array();
-          foreach (element_children($data[$field_name][$delta]) as $column) {
-            if (isset($data[$field_name][$delta][$column]['#translation']['#text'])) {
-              $columns[$column] = $data[$field_name][$delta][$column]['#translation']['#text'];
-            }
-            // For elements which are not translatable, keep using the original
-            // value.
-            elseif (isset($data[$field_name][$delta][$column]['#translate']) && $data[$field_name][$delta][$column]['#translate'] == FALSE) {
-              $columns[$column] = $data[$field_name][$delta][$column]['#text'];
-            }
+          $translation = $data[$field_name][$delta];
+          if (!empty($translation['value']['#translation']['#text'])) {
+            $metatags[$delta] = $translation['value']['#translation']['#text'];
           }
-          // Make sure the array_merge() gets an array as a first parameter.
-          if (!isset($entity->{$field_name}[$delta])) {
-            $entity->{$field_name}[$delta] = array();
-          }
-          $entity->{$field_name}[$delta] = $columns;
         }
+        $entity->{$field_name} = $metatags;
       }
     }
   }

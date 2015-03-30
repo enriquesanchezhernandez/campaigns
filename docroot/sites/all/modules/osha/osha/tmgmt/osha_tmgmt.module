@@ -2515,20 +2515,6 @@ function osha_tmgmt_refresh_string_list() {
   drupal_set_message(sprintf('Refreshed %d strings into the locale system...', count($strings)));
 }
 
-/**
- * @param $vars
- */
-function osha_tmgmt_preprocess_block(&$vars) {
-  $strings = drupal_static(__FUNCTION__);
-  if (!isset($strings)) {
-    $strings = osha_tmgmt_get_osha_tmgmt_i18n_string_list();
-  }
-  $content = trim($vars['content']);
-  if (in_array($content, $strings)) {
-    $vars['content'] = t($content);
-  }
-}
-
 function osha_tmgmt_locale_add_translation($string, $language, $translation) {
   if ($lids = db_query("SELECT lid FROM {locales_source} WHERE source = :source", array('source' => $string))->fetchCol()) {
     module_load_include('inc', 'i18n_string', 'i18n_string.pages');
@@ -2599,4 +2585,26 @@ function osha_tmgmt_i18n_string_locale_translate_edit_form($form, &$form_state, 
 
 function osha_tmgmt_i18n_string_locale_translate_edit_form_submit($form, &$form_state) {
   i18n_string_locale_translate_edit_form_submit($form, $form_state);
+}
+
+/**
+ * Check incoming string if requires translation and add to locale source.
+ *
+ * @param string $string
+ *   Translated or untranslated string
+ *
+ * @return string
+ *   Returns the $string if translation or its translation
+ */
+function osha_tmgmt_literal_get_translation($string) {
+  if (empty($string)) {
+    return $string;
+  }
+  $q = db_query('SELECT lid FROM {locales_target} t WHERE translation=:string', array(':string' => $string));
+  if ($q->fetchField()) {
+    return $string;
+  }
+  else {
+    return t($string); // Applies only to english untranslated strings
+  }
 }
