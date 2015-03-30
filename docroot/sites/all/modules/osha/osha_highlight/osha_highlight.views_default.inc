@@ -138,7 +138,7 @@ function osha_highlight_views_default_views() {
   $handler->display->display_options['fields']['title_field']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['title_field']['type'] = 'smart_trim_format';
   $handler->display->display_options['fields']['title_field']['settings'] = array(
-    'trim_length' => '120',
+    'trim_length' => '110',
     'trim_type' => 'chars',
     'trim_suffix' => '...',
     'more_link' => '0',
