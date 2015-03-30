@@ -832,7 +832,7 @@ function osha_tmgmt_file_translation_upload_submit($form, &$form_state) {
       elseif ($validated_job->tjid != $job->tjid) {
         $uri = $validated_job->uri();
         $label = $validated_job->label();
-        $job->addMessage('Import file is from job <a href="@url">@label</a>, import aborted.', array('@url' => url($uri['path']), '@label' => $label));
+        $job->addMessage('Import file is from job <a href="@url">@label</a>, import aborted.', array('@url' => url($uri['path']), '@label' => $label), 'error');
       }
       else {
         try {
@@ -855,6 +855,8 @@ function osha_tmgmt_file_translation_upload_submit($form, &$form_state) {
         }
       }
     }
+    // Remove the XML after upload.
+    file_delete($file);
   }
   foreach ($job->getMessagesSince() as $message) {
     // Ignore debug messages.
