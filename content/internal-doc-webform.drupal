@@ -22,9 +22,9 @@ array(
       'field_page_introduction' => array(
         'en' => array(
           array(
-            'value' => '<div id="parent-fieldname-formPrologue-d50dcd442994c29f374de9adbb7ad702"><p>Please supply all compulsory information, marked with a red dot. <span class="fieldRequired" title="Required"> (Required) </span></p><p>(When you have finished filling in the form, click on "Send" at the bottom of the screen.</p><p> If you have not filled in a section correctly, a message will tell you what changes are required)</p></div>',
+            'value' => '<div id="parent-fieldname-formPrologue-d50dcd442994c29f374de9adbb7ad702"><p>Please supply all compulsory information, marked with a red dot. <span class="fieldRequired" title="Required"> (Required) </span></p><p>(When you have finished filling in the form, click on "Preview" at the bottom of the screen.</p><p> If you have not filled in a section correctly, a message will tell you what changes are required)</p></div>',
             'format' => 'full_html',
-            'safe_value' => "<div id=\"parent-fieldname-formPrologue-d50dcd442994c29f374de9adbb7ad702\">\n<p>Please supply all compulsory information, marked with a red dot. <span class=\"fieldRequired\" title=\"Required\"> (Required) </span></p>\n<p>(When you have finished filling in the form, click on \"Send\" at the bottom of the screen.</p>\n<p> If you have not filled in a section correctly, a message will tell you what changes are required)</p>\n</div>\n",
+            'safe_value' => "<div id=\"parent-fieldname-formPrologue-d50dcd442994c29f374de9adbb7ad702\">\n<p>Please supply all compulsory information, marked with a red dot. <span class=\"fieldRequired\" title=\"Required\"> (Required) </span></p>\n<p>(When you have finished filling in the form, click on \"Preview\" at the bottom of the screen.</p>\n<p> If you have not filled in a section correctly, a message will tell you what changes are required)</p>\n</div>\n",
           ),
         ),
       ),
