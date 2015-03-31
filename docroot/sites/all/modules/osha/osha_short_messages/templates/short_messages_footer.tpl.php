@@ -48,7 +48,7 @@
                       'path' => 'https://www.linkedin.com/company/european-agency-for-safety-and-health-at-work',
                       'alt' => t('LinkedIn')
                     ),
-                    'facebook' => array(
+                    'face' => array(
                       'path' => 'https://www.facebook.com/EuropeanAgencyforSafetyandHealthatWork',
                       'alt' => t('Facebook')
                     ),
@@ -69,12 +69,13 @@
                       'width' => 'auto',
                       'height' => 26,
                       'alt' => $options['alt'],
-                      'attributes' => array('style' => 'border: 0px; padding-right: 24px; vertical-align: middle;')
+                      'attributes' => array('style' => 'border: 0px;')
                     )), $options['path'], array(
                       'attributes' => array('style' => 'color: #144989; text-decoration: none;'),
                       'html' => TRUE,
                       'external' => TRUE
                     ));
+					print ('&nbsp;&nbsp;&nbsp;&nbsp;');
                   }
                 ?>
               </td>
