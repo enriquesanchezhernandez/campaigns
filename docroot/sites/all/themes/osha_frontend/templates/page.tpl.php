@@ -10,11 +10,7 @@
 <div id="page">
 
   <header class="header" id="header" role="banner">
-    <?php if(isset($blog) && $blog): ?>
-      <?php require "header_blog.tpl.php"; ?>
-    <?php else: ?>
-      <?php require "header.tpl.php"; ?>
-    <?php endif; ?>
+    <?php require "header.tpl.php"; ?>
   </header>
   <?php print $breadcrumb; ?>
   <div id="main">

@@ -508,6 +508,28 @@ function osha_form_alter(&$form, &$form_state, $form_id){
     $form_state['build_info']['args'][0]->field = array();
     $form['views_bulk_operations'] = FALSE;
   }
+
+  // Change cardinality (one value) for activity field
+  if(in_array($form['#form_id'],
+    array(
+      'blog_node_form',
+      'article_node_form',
+      'page_node_form',
+      'calls_node_form',
+      'directive_node_form',
+      'guideline_node_form',
+      'highlight_node_form',
+      'infographic_node_form',
+      'job_vacancies_node_form',
+      'news_node_form',
+      'press_release_node_form',
+      'publication_node_form',
+      'seminar_node_form'))) {
+    $form['field_activity']['und']['#cardinality'] = 1;
+    $form['field_activity']['und']['#multiple'] = FALSE;
+    $form['field_activity']['und']['#empty_option'] = t('Select activity');
+    $form['field_activity']['und']['#empty_value'] = 0;
+  }
 }
 
 /**
@@ -572,13 +594,21 @@ function osha_date_field_formatter_settings_summary_alter(&$summary, $context) {
  * {@inheritdoc}
  */
 function osha_node_view($node, $view_mode, $langcode) {
-    if ($node->type == 'article') {
-      $node->article_type_code = FALSE;
-      if (!empty($node->field_article_type[LANGUAGE_NONE][0]['tid'])) {
-        $term = taxonomy_term_load($node->field_article_type[LANGUAGE_NONE][0]['tid']);
-        $node->article_type_code = $term->field_article_type_code[LANGUAGE_NONE][0]['value'];
-      }
+  if ($node->type == 'article') {
+    $node->article_type_code = FALSE;
+    if (!empty($node->field_article_type[LANGUAGE_NONE][0]['tid'])) {
+      $term = taxonomy_term_load($node->field_article_type[LANGUAGE_NONE][0]['tid']);
+      $node->article_type_code = $term->field_article_type_code[LANGUAGE_NONE][0]['value'];
     }
+  }
+
+  // For webform content type - hide introduction field in Preview Mode
+  if ($node->type == 'webform') {
+    if (isset($node->content['webform']['#form']['preview'])) {
+      unset($node->content['field_page_introduction']);
+    }
+  }
+
   if ($view_mode != 'full') {
     if (!empty($node->field_archived[LANGUAGE_NONE][0]['value'])) {
       if (!empty($node->content['title_field'][0]['#markup'])) {

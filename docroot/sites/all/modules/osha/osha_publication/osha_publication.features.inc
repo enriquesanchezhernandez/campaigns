@@ -61,11 +61,11 @@ function osha_publication_fe_nodequeue_export_fields() {
 function osha_publication_node_info() {
   $items = array(
     'publication' => array(
-      'name' => t('Publication'),
+      'name' => 'Publication',
       'base' => 'node_content',
-      'description' => t('Publications'),
+      'description' => 'Publications',
       'has_title' => '1',
-      'title_label' => t('Title'),
+      'title_label' => 'Title',
       'help' => '',
     ),
   );

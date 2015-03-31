@@ -38,19 +38,27 @@ function osha_views_api($module = NULL, $api = NULL) {
 function osha_node_info() {
   $items = array(
     'article' => array(
-      'name' => t('Article'),
+      'name' => 'Article',
       'base' => 'node_content',
-      'description' => t('Introductions and Sections'),
+      'description' => 'Introductions and Sections',
       'has_title' => '1',
-      'title_label' => t('Title'),
+      'title_label' => 'Title',
       'help' => '',
     ),
     'page' => array(
-      'name' => t('Basic page'),
+      'name' => 'Basic page',
       'base' => 'node_content',
-      'description' => t('Static content, such as an \'About us\' page'),
+      'description' => 'Static content, such as an \'About us\' page',
       'has_title' => '1',
-      'title_label' => t('Title'),
+      'title_label' => 'Заглавие',
+      'help' => '',
+    ),
+    'webform' => array(
+      'name' => 'Webform',
+      'base' => 'node_content',
+      'description' => 'Create a new form or questionnaire accessible to users. Submission results and statistics are recorded and accessible to privileged users.',
+      'has_title' => '1',
+      'title_label' => 'Title',
       'help' => '',
     ),
   );

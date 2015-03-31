@@ -118,6 +118,7 @@
     },
     "variables": {
         "environment": "production",
+        "osha_newsletter_list_name": "OSHMail-Test",
         "osha_data_dir": "/var/local/osha/data",
         "site_name": "OSHA",
         "site_mail": "account@example.com",

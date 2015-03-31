@@ -244,6 +244,52 @@ function osha_breadcrumbs_path_breadcrumbs_settings_info() {
 
   $path_breadcrumb = new stdClass();
   $path_breadcrumb->api_version = 1;
+  $path_breadcrumb->machine_name = 'footer_links';
+  $path_breadcrumb->name = 'Footer links';
+  $path_breadcrumb->path = 'node/%node';
+  $path_breadcrumb->data = array(
+    'titles' => array(
+      0 => '!page_title',
+    ),
+    'paths' => array(
+      0 => '<none>',
+    ),
+    'home' => 1,
+    'translatable' => 1,
+    'arguments' => array(
+      'node' => array(
+        'position' => 1,
+        'argument' => 'entity_id:node',
+        'settings' => array(
+          'identifier' => 'Node: ID',
+        ),
+      ),
+    ),
+    'access' => array(
+      'plugins' => array(
+        1 => array(
+          'name' => 'path_visibility',
+          'settings' => array(
+            'visibility_setting' => '1',
+            'paths' => 'contact-us
+sitemap
+accessibility-info
+privacy-notice-logged-users
+privacy-notice
+legal-notice',
+          ),
+          'context' => 'empty',
+          'not' => FALSE,
+        ),
+      ),
+      'logic' => 'and',
+    ),
+  );
+  $path_breadcrumb->weight = 0;
+  $export['footer_links'] = $path_breadcrumb;
+
+  $path_breadcrumb = new stdClass();
+  $path_breadcrumb->api_version = 1;
   $path_breadcrumb->machine_name = 'guideline';
   $path_breadcrumb->name = 'Guideline';
   $path_breadcrumb->path = 'node/%node';
@@ -289,6 +335,28 @@ function osha_breadcrumbs_path_breadcrumbs_settings_info() {
   );
   $path_breadcrumb->weight = 0;
   $export['guideline'] = $path_breadcrumb;
+
+  $path_breadcrumb = new stdClass();
+  $path_breadcrumb->api_version = 1;
+  $path_breadcrumb->machine_name = 'guideline_search';
+  $path_breadcrumb->name = 'Guideline search';
+  $path_breadcrumb->path = 'search/guidelines';
+  $path_breadcrumb->data = array(
+    'titles' => array(
+      0 => 'Legislation',
+      1 => 'EU guidelines',
+    ),
+    'paths' => array(
+      0 => 'safety-and-health-legislation',
+      1 => 'safety-and-health-legislation/european-guidelines',
+    ),
+    'home' => 1,
+    'translatable' => 1,
+    'arguments' => array(),
+    'access' => array(),
+  );
+  $path_breadcrumb->weight = 0;
+  $export['guideline_search'] = $path_breadcrumb;
 
   $path_breadcrumb = new stdClass();
   $path_breadcrumb->api_version = 1;
@@ -531,30 +599,6 @@ safety-and-health-legislation/european-guidelines',
   );
   $path_breadcrumb->weight = 100;
   $export['node_breadcrumbs'] = $path_breadcrumb;
-
-  $path_breadcrumb = new stdClass();
-  $path_breadcrumb->api_version = 1;
-  $path_breadcrumb->machine_name = 'ongoing_job_vacancies_view';
-  $path_breadcrumb->name = 'Ongoing job vacancies View';
-  $path_breadcrumb->path = 'ongoing_job_vacancies';
-  $path_breadcrumb->data = array(
-    'titles' => array(
-      0 => 'Inside EU-OSHA',
-      1 => 'Careers',
-      2 => '!page_title',
-    ),
-    'paths' => array(
-      0 => 'inside-eu-osha',
-      1 => 'inside-eu-osha/careers',
-      2 => '<none>',
-    ),
-    'home' => 1,
-    'translatable' => 1,
-    'arguments' => array(),
-    'access' => array(),
-  );
-  $path_breadcrumb->weight = 0;
-  $export['ongoing_job_vacancies_view'] = $path_breadcrumb;
 
   $path_breadcrumb = new stdClass();
   $path_breadcrumb->api_version = 1;
@@ -846,30 +890,6 @@ safety-and-health-legislation/european-guidelines',
 
   $path_breadcrumb = new stdClass();
   $path_breadcrumb->api_version = 1;
-  $path_breadcrumb->machine_name = 'shortlisted_job_vacancies';
-  $path_breadcrumb->name = 'Shortlisted job vacancies View';
-  $path_breadcrumb->path = 'shortlisted_job_vacancies';
-  $path_breadcrumb->data = array(
-    'titles' => array(
-      0 => 'Inside EU-OSHA',
-      1 => 'Careers',
-      2 => '!page_title',
-    ),
-    'paths' => array(
-      0 => 'inside-eu-osha',
-      1 => 'inside-eu-osha/careers',
-      2 => '<none>',
-    ),
-    'home' => 1,
-    'translatable' => 1,
-    'arguments' => array(),
-    'access' => array(),
-  );
-  $path_breadcrumb->weight = 0;
-  $export['shortlisted_job_vacancies'] = $path_breadcrumb;
-
-  $path_breadcrumb = new stdClass();
-  $path_breadcrumb->api_version = 1;
   $path_breadcrumb->machine_name = 'sitemap';
   $path_breadcrumb->name = 'Sitemap page';
   $path_breadcrumb->path = 'sitemap';
@@ -933,52 +953,6 @@ inside-eu-osha',
   );
   $path_breadcrumb->weight = 0;
   $export['top_level_nodes'] = $path_breadcrumb;
-
-  $path_breadcrumb = new stdClass();
-  $path_breadcrumb->api_version = 1;
-  $path_breadcrumb->machine_name = 'footer_links';
-  $path_breadcrumb->name = 'Footer links';
-  $path_breadcrumb->path = 'node/%node';
-  $path_breadcrumb->data = array(
-    'titles' => array(
-      0 => '!page_title',
-    ),
-    'paths' => array(
-      0 => '<none>',
-    ),
-    'home' => 1,
-    'translatable' => 1,
-    'arguments' => array(
-      'node' => array(
-        'position' => 1,
-        'argument' => 'entity_id:node',
-        'settings' => array(
-          'identifier' => 'Node: ID',
-        ),
-      ),
-    ),
-    'access' => array(
-      'plugins' => array(
-        1 => array(
-          'name' => 'path_visibility',
-          'settings' => array(
-            'visibility_setting' => '1',
-            'paths' => 'contact-us
-sitemap
-accessibility-info
-privacy-notice-logged-users
-privacy-notice
-legal-notice',
-          ),
-          'context' => 'empty',
-          'not' => FALSE,
-        ),
-      ),
-      'logic' => 'and',
-    ),
-  );
-  $path_breadcrumb->weight = 0;
-  $export['footer_links'] = $path_breadcrumb;
 
   return $export;
 }

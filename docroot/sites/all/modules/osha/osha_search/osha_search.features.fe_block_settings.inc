@@ -229,7 +229,9 @@ search/wiki',
 tools-and-publications/publications
 tools-and-publications/seminars
 legislation/directives/*
-safety-and-health-legislation/european-directives',
+safety-and-health-legislation/european-directives
+node/2544
+legislation/guidelines/*',
     'roles' => array(),
     'themes' => array(
       'bartik' => array(

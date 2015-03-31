@@ -13,6 +13,135 @@ function osha_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'addtoany_additional_html';
+  $strongarm->value = '<a class="a2a_button_twitter"></a><a class="a2a_button_facebook"></a><a class="a2a_button_linkedin"></a><a class="a2a_dd" href="http://www.addtoany.com/share_save"></a><a class="a2a_button_print"></a>';
+  $export['addtoany_additional_html'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'addtoany_additional_html_placement';
+  $strongarm->value = 'after';
+  $export['addtoany_additional_html_placement'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'addtoany_additional_js';
+  $strongarm->value = 'jQuery(document).ready(function() {
+var el = jQuery(\'a.addtoany_share_save\');
+jQuery(\'<span />\').attr({\'className\':\'a2a_img_text\'}).html(el.text()).prependTo(jQuery(\'span.a2a_target\'));
+el.remove();
+});';
+  $export['addtoany_additional_js'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'addtoany_buttons_size';
+  $strongarm->value = '16';
+  $export['addtoany_buttons_size'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'addtoany_custom_image';
+  $strongarm->value = '';
+  $export['addtoany_custom_image'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'addtoany_display_in_nodecont';
+  $strongarm->value = 0;
+  $export['addtoany_display_in_nodecont'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'addtoany_display_in_nodelink';
+  $strongarm->value = 1;
+  $export['addtoany_display_in_nodelink'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'addtoany_display_in_teasers';
+  $strongarm->value = 0;
+  $export['addtoany_display_in_teasers'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'addtoany_display_weight';
+  $strongarm->value = '40';
+  $export['addtoany_display_weight'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'addtoany_image';
+  $strongarm->value = 'text';
+  $export['addtoany_image'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'addtoany_image_attributes';
+  $strongarm->value = 'Share';
+  $export['addtoany_image_attributes'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'addtoany_link_text';
+  $strongarm->value = 'Share this on:';
+  $export['addtoany_link_text'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'addtoany_nodetypes';
+  $strongarm->value = array(
+    'article' => 'article',
+    'blog' => 'blog',
+    'highlight' => 'highlight',
+    'news' => 'news',
+    'press_release' => 'press_release',
+    'banner' => 0,
+    'page' => 0,
+    'calls' => 0,
+    'press_contact' => 0,
+    'directive' => 0,
+    'events' => 0,
+    'external_url' => 0,
+    'file' => 0,
+    'flickr' => 0,
+    'fop_page' => 0,
+    'guideline' => 0,
+    'infographic' => 0,
+    'job_vacancies' => 0,
+    'newsletter_article' => 0,
+    'note_to_editor' => 0,
+    'publication' => 0,
+    'seminar' => 0,
+    'slideshare' => 0,
+    'webform' => 0,
+    'wiki_page' => 0,
+    'youtube' => 0,
+  );
+  $export['addtoany_nodetypes'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'addtoany_no_3p';
+  $strongarm->value = 0;
+  $export['addtoany_no_3p'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'comment_anonymous_article';
   $strongarm->value = 0;
   $export['comment_anonymous_article'] = $strongarm;
@@ -23,6 +152,13 @@ function osha_strongarm() {
   $strongarm->name = 'comment_anonymous_page';
   $strongarm->value = 0;
   $export['comment_anonymous_page'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'comment_anonymous_webform';
+  $strongarm->value = '0';
+  $export['comment_anonymous_webform'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
@@ -48,6 +184,13 @@ function osha_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'comment_default_mode_webform';
+  $strongarm->value = 1;
+  $export['comment_default_mode_webform'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'comment_default_per_page_article';
   $strongarm->value = '50';
   $export['comment_default_per_page_article'] = $strongarm;
@@ -62,6 +205,13 @@ function osha_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'comment_default_per_page_webform';
+  $strongarm->value = '50';
+  $export['comment_default_per_page_webform'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'comment_form_location_article';
   $strongarm->value = 1;
   $export['comment_form_location_article'] = $strongarm;
@@ -72,6 +222,13 @@ function osha_strongarm() {
   $strongarm->name = 'comment_form_location_page';
   $strongarm->value = 1;
   $export['comment_form_location_page'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'comment_form_location_webform';
+  $strongarm->value = 1;
+  $export['comment_form_location_webform'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
@@ -97,6 +254,13 @@ function osha_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'comment_preview_webform';
+  $strongarm->value = '1';
+  $export['comment_preview_webform'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'comment_subject_field_article';
   $strongarm->value = 1;
   $export['comment_subject_field_article'] = $strongarm;
@@ -107,6 +271,20 @@ function osha_strongarm() {
   $strongarm->name = 'comment_subject_field_page';
   $strongarm->value = 1;
   $export['comment_subject_field_page'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'comment_subject_field_webform';
+  $strongarm->value = 1;
+  $export['comment_subject_field_webform'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'comment_webform';
+  $strongarm->value = '1';
+  $export['comment_webform'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
@@ -128,6 +306,13 @@ function osha_strongarm() {
   $strongarm->name = 'entity_translation_comment_filter_page';
   $strongarm->value = FALSE;
   $export['entity_translation_comment_filter_page'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'entity_translation_comment_filter_webform';
+  $strongarm->value = 0;
+  $export['entity_translation_comment_filter_webform'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
@@ -159,9 +344,23 @@ function osha_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'entity_translation_hide_translation_links_webform';
+  $strongarm->value = 1;
+  $export['entity_translation_hide_translation_links_webform'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'entity_translation_node_metadata_page';
   $strongarm->value = 0;
   $export['entity_translation_node_metadata_page'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'entity_translation_node_metadata_webform';
+  $strongarm->value = '0';
+  $export['entity_translation_node_metadata_webform'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
@@ -1537,6 +1736,32 @@ function osha_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'field_bundle_settings_node__webform';
+  $strongarm->value = array(
+    'view_modes' => array(),
+    'extra_fields' => array(
+      'form' => array(
+        'metatags' => array(
+          'weight' => '5',
+        ),
+        'path' => array(
+          'weight' => '4',
+        ),
+        'redirect' => array(
+          'weight' => '3',
+        ),
+        'workbench_access' => array(
+          'weight' => '2',
+        ),
+      ),
+      'display' => array(),
+    ),
+  );
+  $export['field_bundle_settings_node__webform'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'htmlmail_postfilter';
   $strongarm->value = '0';
   $export['htmlmail_postfilter'] = $strongarm;
@@ -1565,6 +1790,13 @@ function osha_strongarm() {
   $strongarm->name = 'language_content_type_page';
   $strongarm->value = 4;
   $export['language_content_type_page'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'language_content_type_webform';
+  $strongarm->value = '4';
+  $export['language_content_type_webform'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
@@ -1668,6 +1900,13 @@ function osha_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'locale_field_language_fallback';
+  $strongarm->value = 1;
+  $export['locale_field_language_fallback'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'menu_options_article';
   $strongarm->value = array(
     0 => 'main-menu',
@@ -1686,6 +1925,15 @@ function osha_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'menu_options_webform';
+  $strongarm->value = array(
+    0 => 'main-menu',
+  );
+  $export['menu_options_webform'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'menu_parent_article';
   $strongarm->value = 'main-menu:0';
   $export['menu_parent_article'] = $strongarm;
@@ -1696,6 +1944,13 @@ function osha_strongarm() {
   $strongarm->name = 'menu_parent_page';
   $strongarm->value = 'main-menu:0';
   $export['menu_parent_page'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'menu_parent_webform';
+  $strongarm->value = 'main-menu:0';
+  $export['menu_parent_webform'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
@@ -1782,6 +2037,15 @@ function osha_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'node_options_webform';
+  $strongarm->value = array(
+    0 => 'status',
+  );
+  $export['node_options_webform'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'node_preview_article';
   $strongarm->value = '1';
   $export['node_preview_article'] = $strongarm;
@@ -1796,6 +2060,13 @@ function osha_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'node_preview_webform';
+  $strongarm->value = '1';
+  $export['node_preview_webform'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'node_submitted_article';
   $strongarm->value = 0;
   $export['node_submitted_article'] = $strongarm;
@@ -1806,6 +2077,13 @@ function osha_strongarm() {
   $strongarm->name = 'node_submitted_page';
   $strongarm->value = FALSE;
   $export['node_submitted_page'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'node_submitted_webform';
+  $strongarm->value = 0;
+  $export['node_submitted_webform'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */

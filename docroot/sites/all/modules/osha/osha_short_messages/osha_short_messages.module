@@ -88,6 +88,7 @@ function osha_short_messages_form($form, &$form_state){
 
   $body = theme('short_messages_body', array(
     'body_content' => drupal_render($display),
+    'contacts' => views_embed_view('press_contacts', 'block'),
   ));
 
   //content textarea

@@ -114,8 +114,8 @@ function osha_workflow_menu_alter(&$items) {
   $items['admin/workbench/sections']['access callback'] = FALSE;
 
   // Hide Editors tab from Workbench Access config.
-  $items['admin/config/workbench/access']['page callback'] = 'workbench_access_roles';
-  $items['admin/config/workbench/access/editors']['access callback'] = FALSE;
+  // $items['admin/config/workbench/access']['page callback'] = 'workbench_access_roles';
+  // $items['admin/config/workbench/access/editors']['access callback'] = FALSE;
 
   $items['admin/workbench']['page callback'] = 'views_embed_view';
   $items['admin/workbench']['page arguments'] = array('osh_workflow_admin', 'my_content');

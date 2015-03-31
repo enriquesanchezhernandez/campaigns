@@ -61,11 +61,11 @@ function osha_press_release_fe_nodequeue_export_fields() {
 function osha_press_release_node_info() {
   $items = array(
     'press_release' => array(
-      'name' => t('Press release'),
+      'name' => 'Press release',
       'base' => 'node_content',
-      'description' => t('Press releases'),
+      'description' => 'Press releases',
       'has_title' => '1',
-      'title_label' => t('Title'),
+      'title_label' => 'Title',
       'help' => '',
     ),
   );

@@ -1281,7 +1281,8 @@ function osha_tmgtm_job_item_node_accept($job_item) {
     // and it will be merged when publishing that revision.
     if ((!empty($node->workbench_moderation['published'])
         && $job_item->vid == $node->workbench_moderation['published']->vid)
-      || !isset($node->workbench_moderation['published'])) {
+      || !isset($node->workbench_moderation['published'])
+      || $node->workbench_moderation['current']->published) {
       $job_item->merged = 1;
       $job_item->acceptTranslationIntoEntity();
     }

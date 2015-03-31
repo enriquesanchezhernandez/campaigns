@@ -430,3 +430,22 @@ function osha_workflow_update_7004() {
   $role = user_role_load_by_name(OSHA_WORKFLOW_ROLE_REVIEW_MANAGER);
   user_role_grant_permissions($role->rid, array('assign workbench access'));
 }
+
+/**
+ * Assign extra permissions for Review Manager (CW-1598).
+ */
+function osha_workflow_update_7005() {
+  $role = user_role_load_by_name(OSHA_WORKFLOW_ROLE_REVIEW_MANAGER);
+  user_role_grant_permissions($role->rid, array(
+    'administer nodes',
+    'bypass workbench moderation',
+    'administer files',
+    'access site in maintenance mode',
+    'administer taxonomy',
+    'create translation jobs',
+    'submit translation jobs',
+    'accept translation jobs',
+    'administer users',
+
+  ));
+}

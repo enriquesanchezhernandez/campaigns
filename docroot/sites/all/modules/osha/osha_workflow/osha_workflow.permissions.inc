@@ -152,6 +152,16 @@ function osha_workflow_permissions_role_review_manager() {
       'access content overview',
       'assign workbench access',
 
+      'access site in maintenance mode',
+      'accept translation jobs',
+      'administer files',
+      'administer nodes',
+      'administer taxonomy',
+      'administer users',
+      'bypass workbench moderation',
+      'create translation jobs',
+      'submit translation jobs',
+
       'edit any content in draft',
       'edit any content in final_draft',
       'moderate content from draft to final_draft',

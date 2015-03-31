@@ -100,6 +100,12 @@ function osha_alert_service_subscribe_form() {
     '#description' => t('Alerts are sent in English. If the content is translated, you can choose to receive it in additional languages.'),
   );
 
+  $form['newsletter'] = array(
+    '#type' => 'checkbox',
+    '#title' => t('I also want to receive OSHMail'),
+    '#default_value' => 1,
+  );
+
   $form['help'] = array(
     '#type' => 'item',
     '#markup' => t('<b>Note</b>: In order to choose more than one item from the list, press the key CTRL on your keyboard (CMD on Mac), and select the item with your mouse.'),
@@ -173,6 +179,10 @@ function osha_alert_service_subscribe_form_submit($form, $form_state) {
     'language' => $language->language,
   );
   drupal_mail('osha_alert_service', 'subscribe', $email, $language->language, $params);
+  // Subscribe to OSHMail
+  if ($values['newsletter']) {
+    osha_newsletter_subscribe_form_submit($form, $form_state);
+  }
   drupal_goto('<front>');
 }
 
