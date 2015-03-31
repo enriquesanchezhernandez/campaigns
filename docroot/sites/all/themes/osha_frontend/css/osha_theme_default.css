@@ -4111,6 +4111,22 @@ and (max-width: 1237px) {
 	width:56%;
 }
 
+#block-views-exp-search-seminars-page #edit-field-seminar-start-date-wrapper{
+	width:59%;
+}
+
+#block-views-exp-search-seminars-page #edit-field-seminar-end-date-wrapper{
+	width:59%;
+}
+
+#block-views-exp-search-seminars-page #edit-field-seminar-start-date-wrapper input{
+	width:100%;
+}
+
+#block-views-exp-search-seminars-page #edit-field-seminar-end-date-wrapper input{
+	width:100%;
+}
+
 #block-views-exp-search-seminars-page .views-submit-button{
 	width:100%;
 	padding-top:0.7em!important;
@@ -7402,4 +7418,8 @@ a.contextual-links-trigger{
 
  #block-osha-newsletter-osha-newsletter-subscribe-extra .captcha{
 	display:none;
+}
+
+#block-views-exp-search-guidelines-page #edit-filter{
+	width:100%;
 }
