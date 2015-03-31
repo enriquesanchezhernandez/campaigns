@@ -7,6 +7,12 @@ When patching a contrib module, the following steps should be followed:
 
 List of patches (most recent first)
 
+* features
+  * Fixed double-string translation
+  * patches/features/features-double-translations-2462991-1-D7.patch
+  * https://www.drupal.org/node/2462991
+  * https://www.drupal.org/files/issues/features-double-translations-2462991-1-D7.patch
+
 * entity_collection
   * Fix position and depth when adding new item
   * patches/entity_collection/entity_collection-depth-position.patch
