@@ -1,7 +1,8 @@
 <link href='http://fonts.googleapis.com/css?family=Oswald:400,300,700' rel='stylesheet' type='text/css'>
 <style>
 a{
-	text-decoration:none!important
+	text-decoration:none!important;
+	color:#003399!important;
 }
 
 table{
@@ -26,7 +27,7 @@ td{
         <table border="0" cellpadding="20" cellspacing="0" width="100%">
           <tbody>
             <tr>
-               <td width="396" style="padding-top: 12px;vertical-align: top;padding-right:50px;" class="left-column">
+               <td width="396" style="padding-top: 0px;vertical-align: top;padding-right:50px;" class="left-column">
                 <?php
                   $elements_no = sizeof($items);
                   foreach ($items as $idx => $item) {
@@ -56,10 +57,10 @@ td{
                         <table border="0" cellpadding="0" cellspacing="0" width="100%">
                           <tbody>
                           <tr>
-                            <td style="border-style: dotted; border-top-width: 2px; border-bottom-width: 0px; border-left-width: 0px; border-right-width: 0px; border-color: #CFDDEE; padding-top: 0px; padding-bottom: 0px; height: 0px;" class="dotted-line"></td>
+                            <td style="border-bottom:2px dotted #CFDDEE;padding-top:0px;"></td>
                           </tr>
                           <tr>
-                            <td style="padding-bottom: 20px;" class="space-beyond-dotted-line"></td>
+                            <td></td>
                           </tr>
                           </tbody>
                         </table>
@@ -81,7 +82,7 @@ td{
                     <table border="0" cellpadding="0" cellspacing="0" width="100%" style="padding-bottom: 15px;" class="pink-arrow">
                       <tbody>
                       <tr>
-                        <td style="font-family: Oswald, Arial, sans-serif; font-size: 16px; color: #003399; text-align: right;font-weight: bold;padding-top: 10px;">
+                        <td style="font-family: Oswald, Arial, sans-serif; font-size: 16px; color: #003399; text-align: right;font-weight: bold;">
                         <span>
                           <?php print l(t('View the blog'), url('node/5445', array('absolute' => TRUE)), array('attributes' => array('style' => 'color: #003399; text-decoration: none;'), 'external' => TRUE)); ?>
                           <?php
@@ -125,7 +126,7 @@ td{
                     <table border="0" cellpadding="0" cellspacing="0" width="100%" style="padding-bottom: 15px;" class="pink-arrow">
                       <tbody>
                       <tr>
-                        <td style="font-family: Oswald, Arial, sans-serif; font-size: 16px; color: #003399; text-align: right;font-weight: bold;padding-top: 10px;">
+                        <td style="font-family: Oswald, Arial, sans-serif; font-size: 16px; color: #003399; text-align: right;font-weight: bold;">
                           <span>
                            <?php print l(t('More news'), url('oshnews', array('absolute' => TRUE)), array('attributes' => array('style' => 'color: #003399; text-decoration: none;'), 'external' => TRUE)); ?>
                             <?php
@@ -168,7 +169,7 @@ td{
                 <table border="0" cellpadding="0" cellspacing="0" width="100%" style="padding-bottom: 15px;" class="pink-arrow">
                   <tbody>
                   <tr>
-                    <td style="font-family: Oswald, Arial, sans-serif; font-size: 16px; color: #003399; text-align: right;font-weight: bold;padding-top: 10px;">
+                    <td style="font-family: Oswald, Arial, sans-serif; font-size: 16px; color: #003399; text-align: right;font-weight: bold">
                       <span>
                           <?php print l(t('More events'), url('oshevents', array('absolute' => TRUE)), array('attributes' => array('style' => 'color: #003399; text-decoration: none;'), 'external' => TRUE)); ?>
                           <?php

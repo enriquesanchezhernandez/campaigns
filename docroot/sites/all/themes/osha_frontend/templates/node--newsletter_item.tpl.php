@@ -120,7 +120,7 @@
         ));
         ?>
       </td>
-      <td align="right" width="95%" style="text-align: left; padding-top: 5px; padding-bottom: 5px;">
+      <td align="right" width="95%" style="text-align: left; padding-top: 5px; padding-bottom: 10px;">
         <?php
         if ($node->type == 'publication') {
           print l($node->title, url('node/' . $node->nid . '/view', array('absolute' => TRUE)), array(
@@ -137,10 +137,10 @@
       </td>
     </tr>
     <tr>
-      <td colspan="2" style="border-style: dotted; border-bottom-width: 2px; border-top-width: 0px; border-left-width: 0px; border-right-width: 0px; border-color: #CFDDEE; padding-top: 0px; padding-bottom: 0px; height: 0px;" class="dotted-line no-padding"></td>
+      <td colspan="2" style="border-bottom:2px dotted #CFDDEE;padding-top:0px;"></td>
     </tr>
     <tr>
-      <td colspan="2" style="padding-bottom: 5px;" class="space-beyond-dotted-line"></td>
+      <td colspan="2" style="padding-bottom: 10px;" class="space-beyond-dotted-line"></td>
     </tr>
   </tbody>
 </table>
