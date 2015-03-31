@@ -26,11 +26,11 @@ function osha_homepage_views_api($module = NULL, $api = NULL) {
 function osha_homepage_node_info() {
   $items = array(
     'banner' => array(
-      'name' => t('Banner'),
+      'name' => 'Banner',
       'base' => 'node_content',
-      'description' => t('Banners for home page'),
+      'description' => 'Banners for home page',
       'has_title' => '1',
-      'title_label' => t('Title'),
+      'title_label' => 'Title',
       'help' => '',
     ),
   );

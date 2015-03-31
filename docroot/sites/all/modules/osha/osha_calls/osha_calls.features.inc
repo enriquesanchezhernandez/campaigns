@@ -29,11 +29,11 @@ function osha_calls_views_api($module = NULL, $api = NULL) {
 function osha_calls_node_info() {
   $items = array(
     'calls' => array(
-      'name' => t('Calls'),
+      'name' => 'Calls',
       'base' => 'node_content',
-      'description' => t('Calls for proposals'),
+      'description' => 'Calls for proposals',
       'has_title' => '1',
-      'title_label' => t('Title'),
+      'title_label' => 'Title',
       'help' => '',
     ),
   );

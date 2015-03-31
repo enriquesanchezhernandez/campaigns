@@ -1,7 +1,7 @@
 name = Blog
 core = 7.x
 package = OSHA
-version = 7.x-1.7
+version = 7.x-1.8
 project = osha_blog
 dependencies[] = ctools
 dependencies[] = date
@@ -87,4 +87,4 @@ features_exclude[field_instance][node-blog-field_flickr_tags] = node-blog-field_
 features_exclude[taxonomy][tags] = tags
 features_exclude[taxonomy][flickr_tags] = flickr_tags
 files[] = osha_blog.translate.inc
-mtime = 1425308017
+mtime = 1427718361
