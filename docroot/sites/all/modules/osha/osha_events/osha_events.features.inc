@@ -38,11 +38,11 @@ function osha_events_views_api($module = NULL, $api = NULL) {
 function osha_events_node_info() {
   $items = array(
     'events' => array(
-      'name' => t('Events'),
+      'name' => 'Events',
       'base' => 'node_content',
-      'description' => t('Events'),
+      'description' => 'Events',
       'has_title' => '1',
-      'title_label' => t('Title'),
+      'title_label' => 'Title',
       'help' => '',
     ),
   );

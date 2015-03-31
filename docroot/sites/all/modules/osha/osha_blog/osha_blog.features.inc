@@ -26,11 +26,11 @@ function osha_blog_views_api($module = NULL, $api = NULL) {
 function osha_blog_node_info() {
   $items = array(
     'blog' => array(
-      'name' => t('Blog'),
+      'name' => 'Blog',
       'base' => 'node_content',
-      'description' => t('Blog articles'),
+      'description' => 'Blog articles',
       'has_title' => '1',
-      'title_label' => t('Title'),
+      'title_label' => 'Title',
       'help' => '',
     ),
   );

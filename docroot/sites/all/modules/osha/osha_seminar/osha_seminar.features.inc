@@ -29,11 +29,11 @@ function osha_seminar_views_api($module = NULL, $api = NULL) {
 function osha_seminar_node_info() {
   $items = array(
     'seminar' => array(
-      'name' => t('Seminar'),
+      'name' => 'Seminar',
       'base' => 'node_content',
-      'description' => t('Seminars'),
+      'description' => 'Seminars',
       'has_title' => '1',
-      'title_label' => t('Title'),
+      'title_label' => 'Title',
       'help' => '',
     ),
   );

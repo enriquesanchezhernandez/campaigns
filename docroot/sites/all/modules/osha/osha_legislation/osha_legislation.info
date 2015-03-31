@@ -1,7 +1,7 @@
 name = Legislation
 core = 7.x
 package = OSHA
-version = 7.x-0.8
+version = 7.x-0.9
 project = osha_legislation
 dependencies[] = link
 dependencies[] = osha
@@ -111,4 +111,4 @@ features_exclude[field_base][field_legislation_category_code] = field_legislatio
 features_exclude[taxonomy][directive_type] = directive_type
 features_exclude[taxonomy][legislation_category] = legislation_category
 features_exclude[taxonomy][tags] = tags
-mtime = 1426612364
+mtime = 1427718361

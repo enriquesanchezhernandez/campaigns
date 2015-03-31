@@ -58,11 +58,11 @@ function osha_press_contact_fe_nodequeue_export_fields() {
 function osha_press_contact_node_info() {
   $items = array(
     'press_contact' => array(
-      'name' => t('Contact'),
+      'name' => 'Contact',
       'base' => 'node_content',
-      'description' => t('Contacts (extended old Press contacts)  - used for Press contacts, Focal Points, Board Members etc.'),
+      'description' => 'Contacts (extended old Press contacts)  - used for Press contacts, Focal Points, Board Members etc.',
       'has_title' => '1',
-      'title_label' => t('Title'),
+      'title_label' => 'Title',
       'help' => '',
     ),
   );

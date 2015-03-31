@@ -19,11 +19,11 @@ function osha_wiki_ctools_plugin_api($module = NULL, $api = NULL) {
 function osha_wiki_node_info() {
   $items = array(
     'wiki_page' => array(
-      'name' => t('Wiki page'),
+      'name' => 'Wiki page',
       'base' => 'node_content',
-      'description' => t('Wiki articles'),
+      'description' => 'Wiki articles',
       'has_title' => '1',
-      'title_label' => t('Title'),
+      'title_label' => 'Title',
       'help' => '',
     ),
   );

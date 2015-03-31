@@ -1,7 +1,7 @@
 name = Job vacancies
 core = 7.x
 package = OSHA
-version = 7.x-1.6
+version = 7.x-1.7
 project = osha_job_vacancies
 dependencies[] = ctools
 dependencies[] = custom_formatters
@@ -68,4 +68,4 @@ features_exclude[dependencies][title] = title
 features_exclude[field_base][field_tags] = field_tags
 features_exclude[field_base][field_author] = field_author
 features_exclude[taxonomy][tags] = tags
-mtime = 1423039375
+mtime = 1427718361

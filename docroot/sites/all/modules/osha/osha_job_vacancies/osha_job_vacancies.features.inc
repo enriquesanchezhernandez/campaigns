@@ -29,11 +29,11 @@ function osha_job_vacancies_views_api($module = NULL, $api = NULL) {
 function osha_job_vacancies_node_info() {
   $items = array(
     'job_vacancies' => array(
-      'name' => t('Job vacancies'),
+      'name' => 'Job vacancies',
       'base' => 'node_content',
-      'description' => t('Job vacancies'),
+      'description' => 'Job vacancies',
       'has_title' => '1',
-      'title_label' => t('Title'),
+      'title_label' => 'Title',
       'help' => '',
     ),
   );
