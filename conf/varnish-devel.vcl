@@ -267,8 +267,8 @@ sub vcl_error {
    </head>
    <body onload="setTimeout(function() { window.location = '/' }, 15000)">
      <div id="page">
-       <h1 class="title">Page Unavailable</h1>
-       <p>The page you requested is temporarily unavailable.</p>
+       <h1 class="title">Varnish status page</h1>
+       <p>The requested page has been intercepted by the cache server due to an abnormal condition.</p>
        <p>We're redirecting you to the <a href="/">homepage</a> in 15 seconds.</p>
        <div class="error">(Error "} + obj.status + " " + obj.response + {")</div>
        <strong>Guru Meditation</strong> XID: "} + req.xid + {"
