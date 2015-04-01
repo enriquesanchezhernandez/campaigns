@@ -497,3 +497,32 @@ function osha_tmgmt_update_7012() {
   }
 }
 
+/**
+ * Fix broken metatag structure imported from translations
+ */
+function osha_tmgmt_update_7013() {
+  $query = db_query("SELECT * FROM metatag WHERE language <> 'en' AND entity_id  IN (SELECT item_id FROM tmgmt_job_item WHERE item_type = 'node' AND tjid IN (147, 148))");
+  while ($row = $query->fetchAssoc()) {
+    $data = unserialize($row['data']);
+    $new_data = array();
+    if (!empty($data['title']) && !is_array($data['title'])) {
+      $new_data['title'] = array('value' => $data['title']);
+    }
+
+    if (!empty($data['description']) && !is_array($data['description'])) {
+      $new_data['description'] = array('value' => $data['description']);
+    }
+
+    if (!empty($new_data)) {
+      $q = db_update('metatag')
+        ->fields(array(
+          'data' => serialize($new_data)
+        ))
+        ->condition('entity_type', 'node')
+        ->condition('entity_id', $row['entity_id'])
+        ->condition('revision_id', $row['revision_id'])
+        ->condition('language', $row['language']);
+      $q->execute();
+    }
+  }
+}
