@@ -95,6 +95,7 @@ class OSHATMGMTEntitySourcePluginController extends TMGMTEntitySourcePluginContr
    */
   public static function osha_tmgmt_field_populate_entity($entity_type, $entity, $langcode, $data, $use_field_translation = TRUE) {
     tmgmt_field_populate_entity($entity_type, $entity, $langcode, $data, $use_field_translation);
+    unset($entity->metatags);
     foreach(element_children($data) as $field_name) {
       if ($field_name == 'metatags') {
         $metatags = array();
