@@ -104,6 +104,7 @@ function osha_newsletter_action_info() {
   return array(
     'osha_newsletter_add_to_newsletter_action' => array(
       'label' => t('Add to newsletter'),
+      'configurable' => FALSE,
       'group' => t('Newsletter'),
       'type' => 'node',
       'parameter' => array(
