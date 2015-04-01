@@ -102,7 +102,7 @@ class OSHATMGMTEntitySourcePluginController extends TMGMTEntitySourcePluginContr
         foreach (element_children($data[$field_name]) as $delta) {
           $translation = $data[$field_name][$delta];
           if (!empty($translation['value']['#translation']['#text'])) {
-            $metatags[$delta] = $translation['value']['#translation']['#text'];
+            $metatags[$delta]['value'] = $translation['value']['#translation']['#text'];
           }
         }
         $entity->{$field_name} = $metatags;
