@@ -7423,3 +7423,11 @@ a.contextual-links-trigger{
 #block-views-exp-search-guidelines-page #edit-filter{
 	width:100%;
 }
+
+@media only screen and (min-width : 1006px) and (max-width : 1024px) { 
+
+	.view-id-highlight .view-content .views-field-title a{
+		font-size:1.4em!important;
+	}
+}
+
