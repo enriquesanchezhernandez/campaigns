@@ -2695,7 +2695,7 @@ font-weight: normal;
 }
 
 .view-id-highlight .view-content table tbody tr td .views-field-title{
-	height:4em;
+	min-height: 4em;
 	display:block;
 }
 
