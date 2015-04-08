@@ -475,14 +475,16 @@ function osha_tmgmt_job_access($op, $job = NULL, $account = NULL) {
  * {@inheritdoc}
  */
 function osha_tmgmt_node_access($node, $operation, $user) {
-  if ($operation == 'update') {
+  if ($operation == 'update' || $operation == 'delete') {
+  // Deny editing or deletion of nodes in translation workflow
     if ($user->uid != 1) {
-      $query = db_select('tmgmt_job', 'tj');
-      $query->join('tmgmt_job_item', 'tji', 'tj.tjid = tji.tjid');
-      $query->fields('tj');
-      $query->condition('tj.state', '1')
-        ->condition('tji.plugin', 'entity')
-        ->condition('tji.item_id', $node->nid);
+      $query = db_select('tmgmt_job_item')
+        ->fields(NULL, array('tjiid'));
+      $query->condition('state', '3', '<>') // TMGMT_JOB_ITEM_STATE_ACCEPTED
+        ->condition('state', '4', '<>') // TMGMT_JOB_ITEM_STATE_ABORTED
+        ->condition('item_type', 'node')
+        ->condition('tjid', 0, '<>') // Not in translation cart (temporary)
+        ->condition('item_id', $node->nid);
       $count = $query->execute()->rowCount();
       if ($count > 0) {
         return NODE_ACCESS_DENY;
