@@ -475,7 +475,8 @@ function osha_tmgmt_job_access($op, $job = NULL, $account = NULL) {
  * {@inheritdoc}
  */
 function osha_tmgmt_node_access($node, $operation, $user) {
-  if ($operation == 'update') {
+  if ($operation == 'update' || $operation == 'delete') {
+  // Deny editing or deletion of nodes in translation workflow
     if ($user->uid != 1) {
       $query = db_select('tmgmt_job_item')
         ->fields(NULL, array('tjiid'));
