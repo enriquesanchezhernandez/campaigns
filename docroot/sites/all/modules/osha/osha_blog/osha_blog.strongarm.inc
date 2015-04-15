@@ -173,16 +173,16 @@ function osha_blog_strongarm() {
           'weight' => '0',
         ),
         'path' => array(
-          'weight' => '15',
+          'weight' => '13',
         ),
         'redirect' => array(
-          'weight' => '14',
+          'weight' => '12',
         ),
         'language' => array(
           'weight' => '1',
         ),
         'metatags' => array(
-          'weight' => '16',
+          'weight' => '14',
         ),
         'workbench_access' => array(
           'weight' => '0',
