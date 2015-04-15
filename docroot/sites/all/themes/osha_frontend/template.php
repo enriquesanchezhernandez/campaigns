@@ -65,7 +65,9 @@ function osha_frontend_menu_link__menu_block($variables) {
     isset($element['#localized_options']['content']['image'])
   ) {
     $path = file_create_url($element['#localized_options']['content']['image']);
-    $link = l('<img src="' . $path . '" />', $element['#href'], array('html' => TRUE));
+    $link = l('<img src="' . $path . '" />', $element['#href'],
+      array('html' => TRUE, 'attributes' => $element['#localized_options']['attributes'])
+    );
     return sprintf("\n<li %s>%s</li>", $attr, $link);
   }
 
