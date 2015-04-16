@@ -7,6 +7,10 @@ When patching a contrib module, the following steps should be followed:
 
 List of patches (most recent first)
 
+* search_api_views
+  * Calling t($name) yields double translation
+  * patches/search_api_views/double-translation.patch
+
 * features
   * Fixed double-string translation
   * patches/features/features-double-translations-2462991-1-D7.patch
