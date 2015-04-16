@@ -84,7 +84,7 @@ function osha_blog_field_default_field_instances() {
         'summary_rows' => 5,
       ),
       'type' => 'text_textarea_with_summary',
-      'weight' => 7,
+      'weight' => 6,
     ),
   );
 
@@ -159,7 +159,7 @@ function osha_blog_field_default_field_instances() {
         'apply_chosen' => '',
       ),
       'type' => 'options_select',
-      'weight' => 11,
+      'weight' => 10,
     ),
   );
 
@@ -232,7 +232,7 @@ function osha_blog_field_default_field_instances() {
         'display_label' => 1,
       ),
       'type' => 'options_onoff',
-      'weight' => 12,
+      'weight' => 11,
     ),
   );
 
@@ -308,7 +308,7 @@ function osha_blog_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 24,
+      'weight' => 18,
     ),
   );
 
@@ -379,7 +379,7 @@ function osha_blog_field_default_field_instances() {
       'module' => 'number',
       'settings' => array(),
       'type' => 'number',
-      'weight' => 17,
+      'weight' => 15,
     ),
   );
 
@@ -456,7 +456,7 @@ function osha_blog_field_default_field_instances() {
         'year_range' => '-3:+3',
       ),
       'type' => 'date_select',
-      'weight' => 6,
+      'weight' => 5,
     ),
   );
 
@@ -562,7 +562,7 @@ function osha_blog_field_default_field_instances() {
         ),
       ),
       'type' => 'media_generic',
-      'weight' => 4,
+      'weight' => 3,
     ),
   );
 
@@ -638,7 +638,7 @@ function osha_blog_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'taxonomy_autocomplete',
-      'weight' => 9,
+      'weight' => 8,
     ),
   );
 
@@ -709,7 +709,7 @@ function osha_blog_field_default_field_instances() {
       'module' => 'number',
       'settings' => array(),
       'type' => 'number',
-      'weight' => 18,
+      'weight' => 16,
     ),
   );
 
@@ -717,7 +717,7 @@ function osha_blog_field_default_field_instances() {
   $field_instances['node-blog-field_project_manager'] = array(
     'bundle' => 'blog',
     'deleted' => 0,
-    'description' => '',
+    'description' => 'The person that will receive notifications on e-mail when a new comment is published.',
     'display' => array(
       'default' => array(
         'label' => 'above',
@@ -776,7 +776,7 @@ function osha_blog_field_default_field_instances() {
       'settings' => array(
         'allow_duplicates' => 0,
         'apply_chosen' => '',
-        'close_modal' => 0,
+        'close_modal' => 1,
         'pass_argument' => 0,
         'pass_arguments' => '',
         'rendered_entity' => 0,
@@ -784,7 +784,7 @@ function osha_blog_field_default_field_instances() {
         'view_mode' => 'full',
       ),
       'type' => 'entityreference_view_widget',
-      'weight' => 25,
+      'weight' => 17,
     ),
   );
 
@@ -883,7 +883,7 @@ function osha_blog_field_default_field_instances() {
         'year_range' => '-3:+3',
       ),
       'type' => 'date_select',
-      'weight' => 5,
+      'weight' => 4,
     ),
   );
 
@@ -972,7 +972,7 @@ function osha_blog_field_default_field_instances() {
         'rows' => 5,
       ),
       'type' => 'text_textarea',
-      'weight' => 3,
+      'weight' => 2,
     ),
   );
 
@@ -1050,7 +1050,7 @@ function osha_blog_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'options_select',
-      'weight' => 8,
+      'weight' => 7,
     ),
   );
 
@@ -1126,82 +1126,7 @@ function osha_blog_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'taxonomy_autocomplete',
-      'weight' => 10,
-    ),
-  );
-
-  // Exported field_instance: 'node-blog-field_workflow_status'
-  $field_instances['node-blog-field_workflow_status'] = array(
-    'bundle' => 'blog',
-    'default_value' => NULL,
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
-      'default' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 13,
-      ),
-      'highlights_item' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 5,
-      ),
-      'newsletter_item' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 5,
-      ),
-      'osha_resources' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-      'osha_slideshow' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-      'osha_wiki' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-      'scs' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-      'teaser' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-    ),
-    'entity_type' => 'node',
-    'field_name' => 'field_workflow_status',
-    'label' => 'Workflow status',
-    'required' => 0,
-    'settings' => array(
-      'entity_translation_sync' => FALSE,
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'active' => 1,
-      'module' => 'options',
-      'settings' => array(
-        'apply_chosen' => '',
-      ),
-      'type' => 'options_select',
-      'weight' => 12,
+      'weight' => 9,
     ),
   );
 
@@ -1296,7 +1221,7 @@ function osha_blog_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 2,
+      'weight' => 1,
     ),
   );
 
@@ -1317,9 +1242,9 @@ function osha_blog_field_default_field_instances() {
   t('Publication date');
   t('Summary');
   t('Tags');
+  t('The person that will receive notifications on e-mail when a new comment is published.');
   t('Thesaurus');
   t('Title');
-  t('Workflow status');
 
   return $field_instances;
 }
