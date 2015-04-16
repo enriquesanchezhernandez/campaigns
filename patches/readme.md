@@ -7,6 +7,10 @@ When patching a contrib module, the following steps should be followed:
 
 List of patches (most recent first)
 
+* search_api_views
+  * Calling t($name) yields double translation
+  * patches/search_api_views/double-translation.patch
+
 * pdf_to_imagefield
   * Integrate with workbench_moderation
   * patches/pdf_toimagefield/pdf_to_image_moderation_integration.patch
