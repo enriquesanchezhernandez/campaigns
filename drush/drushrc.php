@@ -272,6 +272,7 @@ $options['init-modules'] = array(
   'entity',
   'aggregator',
   'memcache_storage',
+  'varnish',
 
   'locale',
   'entity_translation',
