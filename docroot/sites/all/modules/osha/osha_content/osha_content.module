@@ -40,7 +40,8 @@ function osha_content_node_view($node, $view_mode, $langcode) {
   global $language;
 
   // Node Moderation State is not Published
-  if (!isset($node->workbench_moderation['published']) || $node->workbench_moderation['published']->current != 1) {
+  if (workbench_moderation_node_type_moderated($node->type) &&
+    (!isset($node->workbench_moderation['published']) || $node->workbench_moderation['published']->current != 1)) {
     return;
   }
 
@@ -144,13 +145,13 @@ function osha_content_block_configure($delta = '') {
       $form['no_translation_exceptions'] = array(
         '#type' => 'textarea',
         '#title' => 'Exceptions - node IDs',
-        '#description' => "IDs for which the rule doesn't applies. Enter one node ID per line.",
+        '#description' => "IDs for which the rule doesn't apply. Enter one node ID per line.",
         '#default_value' => variable_get('no_translation_exceptions'),
       );
       $form['no_translation_type_exceptions'] = array(
         '#type' => 'textarea',
         '#title' => 'Exceptions - content types',
-        '#description' => "Content types for which the rule doesn't applies. Enter one content type per line.",
+        '#description' => "Content types for which the rule doesn't apply. Enter one content type per line.",
         '#default_value' => variable_get('no_translation_type_exceptions'),
       );
       break;
