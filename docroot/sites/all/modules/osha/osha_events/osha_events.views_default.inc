@@ -1211,7 +1211,7 @@ function osha_events_views_default_views() {
   $handler->display->display_options['filters']['field_start_date_value']['group'] = 3;
   $handler->display->display_options['filters']['field_start_date_value']['exposed'] = TRUE;
   $handler->display->display_options['filters']['field_start_date_value']['expose']['operator_id'] = 'field_start_date_value_op';
-  $handler->display->display_options['filters']['field_start_date_value']['expose']['label'] = 'From';
+  $handler->display->display_options['filters']['field_start_date_value']['expose']['label'] = 'From date';
   $handler->display->display_options['filters']['field_start_date_value']['expose']['operator'] = 'field_start_date_value_op';
   $handler->display->display_options['filters']['field_start_date_value']['expose']['identifier'] = 'field_start_date_value';
   $handler->display->display_options['filters']['field_start_date_value']['expose']['remember_roles'] = array(
@@ -1237,7 +1237,7 @@ function osha_events_views_default_views() {
   $handler->display->display_options['filters']['field_start_date_value2']['group'] = 3;
   $handler->display->display_options['filters']['field_start_date_value2']['exposed'] = TRUE;
   $handler->display->display_options['filters']['field_start_date_value2']['expose']['operator_id'] = 'field_start_date_value2_op';
-  $handler->display->display_options['filters']['field_start_date_value2']['expose']['label'] = 'To';
+  $handler->display->display_options['filters']['field_start_date_value2']['expose']['label'] = 'To date';
   $handler->display->display_options['filters']['field_start_date_value2']['expose']['operator'] = 'field_start_date_value2_op';
   $handler->display->display_options['filters']['field_start_date_value2']['expose']['identifier'] = 'field_start_date_value2';
   $handler->display->display_options['filters']['field_start_date_value2']['expose']['remember_roles'] = array(
