@@ -30,7 +30,7 @@ function osha_strongarm() {
   $strongarm->name = 'addtoany_additional_js';
   $strongarm->value = 'jQuery(document).ready(function() {
 var el = jQuery(\'a.addtoany_share_save\');
-jQuery(\'<span />\').attr({\'className\':\'a2a_img_text\'}).html(el.text()).prependTo(jQuery(\'span.a2a_target\'));
+jQuery(\'<span />\').attr({\'class\':\'a2a_img_text\'}).html(el.text()).prependTo(jQuery(\'span.a2a_target\'));
 el.remove();
 });';
   $export['addtoany_additional_js'] = $strongarm;
