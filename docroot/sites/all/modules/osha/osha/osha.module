@@ -503,10 +503,14 @@ function osha_form_node_form_alter(&$form, &$form_state, $form_id) {
 function osha_form_alter(&$form, &$form_state, $form_id){
   global $user;
 
-  if($form['#form_id'] == 'views_form_administration_content_main_page' &&
+  if($form_id == 'views_form_administration_content_main_page' &&
     !in_array('administrator', $user->roles)){
     $form_state['build_info']['args'][0]->field = array();
     $form['views_bulk_operations'] = FALSE;
+  } else if ($form_id == 'lang_dropdown_form') {
+    $form['lang_dropdown_select']['#attributes']['accesskey'] = '8';
+  } else if ($form_id == 'search_block_form') {
+    $form['search_block_form']['#attributes']['accesskey'] = '4';
   }
 
   // Change cardinality (one value) for activity field
