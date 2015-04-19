@@ -18,7 +18,7 @@ function osha_authentication_strongarm() {
     'sids' => array(
       'edw' => 'edw',
     ),
-    'authenticationMode' => 2,
+    'authenticationMode' => 1,
     'loginUIUsernameTxt' => NULL,
     'loginUIPasswordTxt' => NULL,
     'ldapUserHelpLinkUrl' => NULL,
@@ -38,10 +38,10 @@ function osha_authentication_strongarm() {
     'ldapImplementation' => NULL,
     'cookieExpire' => NULL,
     'emailTemplate' => '@username@fake-domain.com',
-    'emailTemplateHandling' => 1,
+    'emailTemplateHandling' => 3,
     'templateUsagePromptUser' => 0,
-    'templateUsageNeverUpdate' => 1,
-    'templateUsageResolveConflict' => 1,
+    'templateUsageNeverUpdate' => 0,
+    'templateUsageResolveConflict' => 0,
     'templateUsagePromptRegex' => '.*@fake-domain\\.com',
     'templateUsageRedirectOnLogin' => 0,
   );
@@ -51,8 +51,15 @@ function osha_authentication_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'ldap_servers_encryption';
-  $strongarm->value = 6;
+  $strongarm->value = '6';
   $export['ldap_servers_encryption'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'ldap_servers_require_ssl_for_credentails';
+  $strongarm->value = 0;
+  $export['ldap_servers_require_ssl_for_credentails'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
@@ -68,7 +75,7 @@ function osha_authentication_strongarm() {
     'ldapEntryProvisionTriggers' => array(
       6 => '6',
       7 => '7',
-      8 => '8',
+      8 => 0,
       3 => 0,
     ),
     'orphanedDrupalAcctBehavior' => 'user_cancel_block',
@@ -78,9 +85,9 @@ function osha_authentication_strongarm() {
     'acctCreation' => 4,
     'ldapUserSynchMappings' => array(
       1 => array(
-        '[field.ldap_user_current_dn]' => array(
-          'ldap_attr' => '[dn]',
-          'user_attr' => '[field.ldap_user_current_dn]',
+        '[field.field_ldap_homedirectory]' => array(
+          'ldap_attr' => '[homeDirectory]',
+          'user_attr' => '[field.field_ldap_homedirectory]',
           'convert' => 0,
           'direction' => '1',
           'user_tokens' => NULL,
@@ -90,9 +97,9 @@ function osha_authentication_strongarm() {
         ),
       ),
       2 => array(
-        '[dn]' => array(
-          'ldap_attr' => '[dn]',
-          'user_attr' => '[field.ldap_user_current_dn]',
+        '[mail]' => array(
+          'ldap_attr' => '[mail]',
+          'user_attr' => '[property.mail]',
           'convert' => 0,
           'direction' => '2',
           'user_tokens' => '',
@@ -101,6 +108,7 @@ function osha_authentication_strongarm() {
           'enabled' => 1,
           'prov_events' => array(
             0 => 4,
+            1 => 3,
           ),
         ),
         '[userPassword]' => array(
@@ -117,12 +125,26 @@ function osha_authentication_strongarm() {
             1 => 3,
           ),
         ),
-        '[mail]' => array(
-          'ldap_attr' => '[mail]',
-          'user_attr' => '[property.mail]',
+        '[uid]' => array(
+          'ldap_attr' => '[uid]',
+          'user_attr' => '[property.name]',
           'convert' => 0,
           'direction' => '2',
           'user_tokens' => '',
+          'config_module' => 'ldap_user',
+          'prov_module' => 'ldap_user',
+          'enabled' => 1,
+          'prov_events' => array(
+            0 => 4,
+            1 => 3,
+          ),
+        ),
+        '[dn]' => array(
+          'ldap_attr' => '[dn]',
+          'user_attr' => 'user_tokens',
+          'convert' => 0,
+          'direction' => '2',
+          'user_tokens' => 'uid=[property.name],ou=[field. field_ldap_homedirectory],ou=people,dc=osha,dc=europa,dc=eu',
           'config_module' => 'ldap_user',
           'prov_module' => 'ldap_user',
           'enabled' => 1,
