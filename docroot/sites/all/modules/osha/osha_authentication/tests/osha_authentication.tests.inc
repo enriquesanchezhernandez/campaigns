@@ -136,9 +136,10 @@ class OSHALDAPTests {
   }
 
   function test_LDAP_US_US_01() {
-    if ($this->login('TEST_READ')) {
+    $username = 'TEST_READ';
+    if ($this->login($username)) {
       // Cleanup the test user after checking
-      $this->deleteDrupalUser('TEST_READ');
+      $this->deleteDrupalUser($username);
     }
     else {
       throw new Exception('Cannot login user');
@@ -146,41 +147,43 @@ class OSHALDAPTests {
   }
 
   function test_LDAP_US_US_02() {
-    if (!$this->createLDAPUser('TEST_TEMP')) {
+    $username = 'TEST_TEMP';
+    if (!$this->createLDAPUser($username)) {
       throw new Exception('Cannot create LDAP temporary user');
     }
     try {
       // Login with the user so the account can be created inside Drupal
-      if (!$this->login('TEST_TEMP')) {
+      if (!$this->login($username)) {
         throw new Exception('Cannot login temporary user in Drupal');
       }
       $this->logout();
       // Delete user from LDAP
-      if (!$this->deleteLDAPUser('TEST_TEMP')) {
+      if (!$this->deleteLDAPUser($username)) {
         throw new Exception('Cannot delete LDAP temporary user');
       }
       // Try to authenticated even when the user no longer exists in LDAP
-      if ($this->login('TEST_TEMP')) {
+      if ($this->login($username)) {
         throw new Exception('User was still able to login');
       }
     }
     catch (Exception $e) {
-      $this->deleteLDAPUser('TEST_TEMP');
+      $this->deleteLDAPUser($username);
       throw $e;
     }
   }
 
   function test_LDAP_APPRV_US_01() {
-    if (!$this->createLDAPUser('TEST_APPROVER', array('APPROVER'))) {
+    $username = 'TEST_APPROVER';
+    if (!$this->createLDAPUser($username, array('APPROVER'))) {
       throw new Exception('Cannot create LDAP temporary user');
     }
-    $this->login('TEST_APPROVER');
+    $this->login($username);
     global $user;
     // User has gained Approver role in Drupal
     if (!in_array('Approver', $user->roles)) {
       throw new Exception('User is missing Approver role');
     }
-    $this->deleteDrupalUser('TEST_EDITOR');
+    $this->deleteDrupalUser($username);
   }
 
   function test_LDAP_APPRV_US_02() {
