@@ -14,7 +14,8 @@ function osha_content_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'no_translation_exceptions';
-  $strongarm->value = '7665
+  $strongarm->value = '5445
+7665
 7666
 7667
 7668
