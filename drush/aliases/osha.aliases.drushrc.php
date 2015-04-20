@@ -12,6 +12,7 @@ $aliases['osha.staging'] = array(
   'command-specific' => array(
     'sql-sync' => array(
       'simulate' => '1',
+      'source-dump' => '/expert/osha/tmp/source-dump.sql',
     ),
   ),
 );
