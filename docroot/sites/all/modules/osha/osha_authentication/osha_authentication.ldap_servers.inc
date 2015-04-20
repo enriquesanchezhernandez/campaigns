@@ -23,7 +23,7 @@ function osha_authentication_default_ldap_servers() {
   $ldap_servers_conf->followrefs = FALSE;
   $ldap_servers_conf->bind_method = 1;
   $ldap_servers_conf->binddn = 'cn=admin,dc=osha,dc=europa,dc=eu';
-  $ldap_servers_conf->bindpw = '8DOu4+xj9FyrNYtxBk5AU1NHTa06E5dDswgfyywPqRoTRyUSJdhslg==';
+  $ldap_servers_conf->bindpw = '4Zr9HoV9luIjcppb0OWvNDU3gAibMA==';
   $ldap_servers_conf->basedn = array(
     0 => 'ou=people,dc=osha,dc=europa,dc=eu',
     1 => 'ou=MainSite,ou=Sites,dc=osha,dc=europa,dc=eu',
