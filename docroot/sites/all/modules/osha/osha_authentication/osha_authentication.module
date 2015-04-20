@@ -5,3 +5,23 @@
  */
 
 include_once 'osha_authentication.features.inc';
+
+/**
+ * Implements hook_ldap_entry_pre_provision_alter().
+ */
+function osha_authentication_ldap_entry_pre_provision_alter(&$ldap_entries, $ldap_server, $context) {
+  if ($context['action'] == 'update') {
+    // Alter user password
+    // @see http://www.openldap.org/faq/data/cache/347.html for {SHA} passwords
+    foreach ($ldap_entries as $key => $entry) {
+      if (isset($entry['userPassword'])) {
+        $existing = is_array($entry['userPassword']) ? current($entry['userPassword']) : $entry['userPassword'];
+        if (!empty($existing)) {
+          $password = "{SHA}" . base64_encode(pack( "H*", sha1($existing)));
+          $ldap_entries[$key]['userPassword'] = $password;
+        }
+      }
+    }
+  }
+}
+

@@ -7,6 +7,11 @@ When patching a contrib module, the following steps should be followed:
 
 List of patches (most recent first)
 
+* ldap_authentication
+  * Entrypt password when updating account
+  * https://www.drupal.org/node/2037887
+  * ldap_authentication-check_password_against_LDAP-2037887-10.patch
+
 * search_api_views
   * Calling t($name) yields double translation
   * patches/search_api_views/double-translation.patch
