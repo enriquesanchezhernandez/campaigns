@@ -71,6 +71,19 @@ class OSHALDAPTests {
     return TRUE;
   }
 
+  function ldapRemoveUserFromGroups($uid, $groups) {
+    /** @var LDAPServer $ldap_server */
+    $ldap_server = ldap_servers_get_servers(self::$SID, NULL, TRUE);
+    foreach($groups as $gcn) {
+      $gdn = sprintf(self::$GROUP_DN, $gcn);
+      $members = array('memberUid' => array());
+      if (!$ldap_server->modifyLdapEntry($gdn, $members)) {
+        return FALSE;
+      }
+    }
+    return TRUE;
+  }
+
   function ldapRemoveUserFromGroup($uid, $groups = array()) {
     /** @var LDAPServer $ldap_server */
     $ldap_server = ldap_servers_get_servers(self::$SID, NULL, TRUE);
@@ -117,8 +130,9 @@ class OSHALDAPTests {
 
   function logout() {
     global $user;
-    $user = NULL;
-    session_regenerate_id();
+    $tmp = NULL;
+    user_module_invoke('logout', $tmp, $user);
+    $user = drupal_anonymous_user();
   }
 
   function test_LDAP_US_US_01() {
@@ -166,10 +180,47 @@ class OSHALDAPTests {
     if (!in_array('Approver', $user->roles)) {
       throw new Exception('User is missing Approver role');
     }
-
-    //$this->ldapAddUserToGroups()
-    // User is revoked Approver, is removed from
     $this->deleteDrupalUser('TEST_EDITOR');
+  }
+
+  function test_LDAP_APPRV_US_02() {
+    global $user;
+    $username = 'TEST_APPROVER';
+    if (!$this->createLDAPUser($username, array('APPROVER'))) {
+      throw new Exception('Cannot create LDAP temporary user');
+    }
+    $this->login($username);
+    // User has gained Approver role in Drupal
+    if (!in_array('Approver', $user->roles)) {
+      throw new Exception('User is missing Approver role');
+    }
+    $count = db_select('entity_collection_storage', NULL)
+      ->condition('name', 'approvers')->condition('eid', $user->uid)->countQuery()
+      ->execute()->fetchField();
+    if ($count != 1 ) {
+      throw new Exception('User is NOT in the "approvers" entity collection');
+    }
+
+    $this->logout();
+    $this->ldapRemoveUserFromGroups($username, array('APPROVER'));
+
+    // Reset the entity collection static cache and entity cache
+    drupal_static_reset('entity_collection_load');
+    entity_get_controller('entity_collection')->resetCache();
+
+    // User is revoked Approver is removed from the approvers entity_collection
+    if (!$this->login($username)) {
+      throw new Exception('Cannot relogin the user');
+    }
+
+    $count = db_select('entity_collection_storage', NULL)
+      ->condition('name', 'approvers')->condition('eid', $user->uid)->countQuery()
+      ->execute()->fetchField();
+    if ($count != 0) {
+      throw new Exception('User is Approver after being revoked from LDAP');
+    }
+    $this->logout();
+    $this->deleteDrupalUser($username);
   }
 
   function test_password_change() {

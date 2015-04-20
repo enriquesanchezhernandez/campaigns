@@ -32,15 +32,8 @@ function osha_authentication_ldap_entry_pre_provision_alter(&$ldap_entries, $lda
  * A
  */
 function osha_authentication_user_login(&$edit, $account) {
-  var_dump($account->roles);
   // LDAP_APPRV_US_01 - Assign Approver to the default list of approvers
-  $is_approver = FALSE;
-  foreach($account->roles as $rolename) {
-    if(strtolower($rolename) == 'approver') {
-      $is_approver = TRUE;
-      break;
-    }
-  }
+  $is_approver = in_array('Approver', $account->roles);
   module_load_include('admin.inc', 'osha_authentication');
   osha_authentication_user_login_approver($account, $is_approver);
 }
