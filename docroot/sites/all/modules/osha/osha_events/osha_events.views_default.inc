@@ -1011,6 +1011,7 @@ function osha_events_views_default_views() {
   /* Display: Page */
   $handler = $view->new_display('page', 'Page', 'page');
   $handler->display->display_options['defaults']['title'] = FALSE;
+  $handler->display->display_options['title'] = 'OSH events';
   $handler->display->display_options['defaults']['exposed_form'] = FALSE;
   $handler->display->display_options['exposed_form']['type'] = 'basic';
   $handler->display->display_options['exposed_form']['options']['submit_button'] = 'Search';
@@ -1416,6 +1417,7 @@ function osha_events_views_default_views() {
     t('last »'),
     t('Multilingual ID'),
     t('Page'),
+    t('OSH events'),
     t('Search'),
     t('Clear filter'),
     t('«'),
