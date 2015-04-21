@@ -197,18 +197,6 @@ function osha_publication_post_features_enable_feature($component) {
   }
 }
 
-function osha_publication_workbench_access_node_element_alter(&$element, $form_state, $active) {
-  if (isset($form_state['build_info']['form_id']) && $form_state['build_info']['form_id'] == 'publication_node_form' ) {
-    $element['#required'] = FALSE;
-    foreach ($element['#options'] as $key=>$option) {
-      if (preg_match('/^[-\\s]*Publications$/', $option)) {
-        $element['#default_value'] = $key;
-        break;
-      }
-    }
-  }
-}
-
 /**
  * Implements hook_workbench_moderation_transition().
  */

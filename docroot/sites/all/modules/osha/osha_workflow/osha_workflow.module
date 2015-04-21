@@ -384,7 +384,10 @@ function osha_workflow_bundle_section_map() {
     'press_release' => 'PROOM',
     'blog' => 'BLOG',
     'directive' => 'ONETKA',
+//    'calls'
+//    'infographic'
   );
+  // TODO check mapping on commented content types above.
 }
 
 

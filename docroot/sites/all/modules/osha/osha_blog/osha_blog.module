@@ -154,23 +154,6 @@ function osha_blog_process_field(&$vars) {
 }
 
 /**
- * Implements hook_workbench_access_node_element_alter().
- *
- * {@inheritdoc}
- */
-function osha_blog_workbench_access_node_element_alter(&$element, $form_state, $active) {
-  if (isset($form_state['build_info']['form_id']) && $form_state['build_info']['form_id'] == 'blog_node_form') {
-    $element['#required'] = FALSE;
-    foreach ($element['#options'] as $key => $option) {
-      if (preg_match('/^[-\\s]*Blog/', $option)) {
-        $element['#default_value'] = $key;
-        break;
-      }
-    }
-  }
-}
-
-/**
  * Display custom title for monthly views.
  *
  * @return bool|null|string

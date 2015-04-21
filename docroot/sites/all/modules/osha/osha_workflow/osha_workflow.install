@@ -485,7 +485,7 @@ function osha_workflow_update_7006() {
       $term->field_ldap_section_code[LANGUAGE_NONE][0]['value'] = $mapping['LDAP code'];
       taxonomy_term_save($term);
     }
-    if (!empty($term->tid)) {
+    if (!empty($term->tid) && !empty($mapping['access_id'])) {
       db_update('workbench_access_node')
         ->fields(array(
             'access_id' => $term->tid,
