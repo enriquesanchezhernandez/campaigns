@@ -145,6 +145,15 @@ function osha_authentication_retrieve_ldap_sections($ldap_server) {
   return $ret;
 }
 
+/**
+ * Fetch LDAP data and check if there are new sections to import or update
+ * @param stdClass $ldap_server
+ *   Server to query
+ * @param bool $test
+ *   If TRUE do not commit changes to database
+ *
+ * @throws \EntityMetadataWrapperException
+ */
 function osha_authentication_sync_ldap_sections($ldap_server, $test = FALSE) {
   $voc = taxonomy_vocabulary_machine_name_load('section');
   $ldap_sections = osha_authentication_retrieve_ldap_sections($ldap_server);
