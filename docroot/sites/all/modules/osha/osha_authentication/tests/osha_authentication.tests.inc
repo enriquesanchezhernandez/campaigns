@@ -12,8 +12,12 @@ class OSHALDAPTests {
   private static $SID = 'edw';
   private static $USER_DN = 'uid=%s,ou=Contractors,ou=people,dc=osha,dc=europa,dc=eu';
   private static $GROUP_DN = 'cn=%s,ou=MainSite,ou=Sites,dc=osha,dc=europa,dc=eu';
+  /** @var LDAPServer $ldap_server */
+  private $ldap_server = NULL;
 
   function all_tests($testName = NULL, $debug = FALSE) {
+    /** @var LDAPServer $ldap_server */
+    $this->ldap_server = ldap_servers_get_servers(self::$SID, NULL, TRUE);
     foreach (get_class_methods('OSHALDAPTests') as $method) {
       if ((!$testName && strpos($method, 'test_') !== FALSE) || ($testName && $method == $testName)) {
         $username = 'TEST';
@@ -39,8 +43,7 @@ class OSHALDAPTests {
   }
 
   function createLDAPUser($uid, $groups = array()) {
-    /** @var LDAPServer $ldap_server */
-    $ldap_server = ldap_servers_get_servers(self::$SID, NULL, TRUE);
+    $ldap_server = $this->ldap_server;
     $result = $ldap_server->search('ou=people,dc=osha,dc=europa,dc=eu', 'uid=' . $uid);
     $udn = sprintf(self::$USER_DN, $uid);
     if (!$result['count']) {
@@ -66,8 +69,7 @@ class OSHALDAPTests {
   }
 
   function ldapAddUserToGroups($uid, $groups = array()) {
-    /** @var LDAPServer $ldap_server */
-    $ldap_server = ldap_servers_get_servers(self::$SID, NULL, TRUE);
+    $ldap_server = $this->ldap_server;
     foreach($groups as $gcn) {
       $gdn = sprintf(self::$GROUP_DN, $gcn);
       $members = array(
@@ -80,8 +82,7 @@ class OSHALDAPTests {
   }
 
   function ldapRemoveUserFromGroups($uid, $groups) {
-    /** @var LDAPServer $ldap_server */
-    $ldap_server = ldap_servers_get_servers(self::$SID, NULL, TRUE);
+    $ldap_server = $this->ldap_server;
     foreach($groups as $gcn) {
       $gdn = sprintf(self::$GROUP_DN, $gcn);
       $members = array('memberUid' => array());
@@ -92,8 +93,7 @@ class OSHALDAPTests {
   }
 
   function ldapRemoveUser($uid) {
-    /** @var LDAPServer $ldap_server */
-    $ldap_server = ldap_servers_get_servers(self::$SID, NULL, TRUE);
+    $ldap_server = $this->ldap_server;
     $result = $ldap_server->search('ou=people,dc=osha,dc=europa,dc=eu', 'uid=' . $uid);
     if ($result['count']) {
       $udn = sprintf(self::$USER_DN, $uid);
@@ -125,8 +125,7 @@ class OSHALDAPTests {
   }
 
   function deleteLDAPUser($uid) {
-    /** @var LDAPServer $ldap_server */
-    $ldap_server = ldap_servers_get_servers(self::$SID, NULL, TRUE);
+    $ldap_server = $this->ldap_server;
     // Detach from all groups
     $result = $ldap_server->search('ou=MainSite,ou=Sites,dc=osha,dc=europa,dc=eu', 'memberUid=' . $uid);
     if ($result['count'] > 0) {
