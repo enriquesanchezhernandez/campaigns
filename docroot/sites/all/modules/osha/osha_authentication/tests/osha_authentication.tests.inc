@@ -275,6 +275,21 @@ class OSHALDAPTests {
     }
   }
 
+  function test_LDAP_RVMN_US_02($username = 'TEST') {
+    global $user;
+    $this->createLDAPUser($username, array('OSHA_RVMN', 'SEMIN_RVMN'));
+    $this->login($username);
+    // User has gained Review Manager role in Drupal
+    if (count($user->roles) != 2 || !in_array('Review Manager', $user->roles) || !in_array('authenticated user', $user->roles)) {
+      throw new Exception('User has wrong roles:' . print_r(array_values($user->roles), TRUE));
+    }
+    // Check Review manager section assignment
+    $sections = osha_workflow_access_get_rm_sections($user->uid);
+    if (count($sections) != 2 || !in_array('section', $sections)) {
+      throw new Exception('User assigned to wrong sections:' . print_r(array_values($sections), TRUE));
+    }
+  }
+
 
   function test_password_change() {
     //@todo:

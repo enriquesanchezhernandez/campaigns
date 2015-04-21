@@ -77,6 +77,10 @@ function osha_authentication_get_role_and_section_from_dn($group_dn) {
       $role = $section_id;
       $section_id = NULL;
     }
+    else if($section_id == 'OSHA') {
+      // Hard-coded root of workbench_access tree
+      $section_id = 'section';
+    }
     // Map the role
     if (array_key_exists($role, $mappings)) {
       $role = $mappings[$role];

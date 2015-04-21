@@ -95,8 +95,17 @@ function osha_authentication_build_user_authorization($user, $ldap_server) {
   $authorizations = array();
   foreach($user->ldap_groups as $dn) {
     list($role_name, $section_id) = osha_authentication_get_role_and_section_from_dn($dn);
-    if ($section_id && $section = osha_workflow_get_section_term_by_ldap_id($section_id)) {
-      $authorizations[$role_name][] = $section->tid;
+    if (!empty($section_id)) {
+      if ($section_id == 'section') {
+        $section = $section_id;
+      }
+      else {
+        $term = osha_workflow_get_section_term_by_ldap_id($section_id);
+        $section = $term->tid;
+      }
+      if ($section) {
+        $authorizations[$role_name][] = $section;
+      }
     }
     else if (!array_key_exists($role_name, $authorizations)) {
       $authorizations[$role_name] = array();
