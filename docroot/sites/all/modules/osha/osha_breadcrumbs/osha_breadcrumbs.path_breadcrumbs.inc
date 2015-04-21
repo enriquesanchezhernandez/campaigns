@@ -339,12 +339,12 @@ legal-notice',
   $path_breadcrumb->path = 'search/guidelines';
   $path_breadcrumb->data = array(
     'titles' => array(
-      0 => 'Legislation',
-      1 => 'EU guidelines',
+      0 => '%site:current-page:menu-link:pb-join:name',
+      1 => '!page_title',
     ),
     'paths' => array(
-      0 => 'safety-and-health-legislation',
-      1 => 'safety-and-health-legislation/european-guidelines',
+      0 => '%site:current-page:menu-link:pb-join:url',
+      1 => '<none>',
     ),
     'home' => 1,
     'translatable' => 1,
