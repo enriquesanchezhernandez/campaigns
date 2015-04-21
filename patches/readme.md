@@ -11,6 +11,10 @@ List of patches (most recent first)
   * dirty patch for the translation of Home (path_breadcrumbs._home_translate.patch)
   * see also https://www.drupal.org/node/2081375 and https://www.drupal.org/node/2028845 for alternative solutions
 
+* search_api_views
+  * Calling t($name) yields double translation
+  * patches/search_api_views/double-translation.patch
+
 * features
   * Fixed double-string translation
   * patches/features/features-double-translations-2462991-1-D7.patch

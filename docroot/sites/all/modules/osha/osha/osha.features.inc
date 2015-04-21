@@ -50,7 +50,7 @@ function osha_node_info() {
       'base' => 'node_content',
       'description' => 'Static content, such as an \'About us\' page',
       'has_title' => '1',
-      'title_label' => 'Заглавие',
+      'title_label' => 'Title',
       'help' => '',
     ),
     'webform' => array(

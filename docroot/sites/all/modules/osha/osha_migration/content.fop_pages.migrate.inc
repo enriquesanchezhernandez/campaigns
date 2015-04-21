@@ -103,10 +103,6 @@ class MigrateOshaFOPPages extends OSHADynamicMigration {
    * {@inheritdoc}
    */
   public function prepareRow($row) {
-    if (MigrationUtil::entityRowValidator($row, $this) === FALSE) {
-      return FALSE;
-    }
-
     //format date according to UTC timezone
     $row->publication_date = MigrationUtil::getUTCTimestamp($row->publication_date);
     $row->expiration_date = MigrationUtil::getUTCTimestamp($row->expiration_date);
@@ -226,41 +222,6 @@ class MigrateOshaFOPPages extends OSHADynamicMigration {
           . $row->title, 'warning');
       }
 
-      $voc = taxonomy_vocabulary_machine_name_load('fop_link_sections');
-      $entity->field_fop_link;
-      $field_fop_link = array();
-      // Attach field collection field_fop_link.
-      if (is_array($row->field_fop_link)) {
-        foreach($row->field_fop_link as $lang => $links) {
-          foreach ($links as $link) {
-            $field_collection_item = entity_create('field_collection_item', array('field_name' => 'field_fop_link'));
-            $field_collection_item->setHostEntity('node', $entity, $lang);
-            $field_collection_item->field_link[$lang][] = array(
-              'title' => MigrationUtil::decodeHTMLText($link['title']),
-              'url' => $link['url'],
-            );
-            if (!empty($link['section'])) {
-              $term = taxonomy_get_term_by_name($link['section'], 'fop_link_sections');
-              if (empty($term)) {
-                $term = new stdClass();
-                $term->vid = $voc->vid;
-                $term->name = $link['section'];
-                taxonomy_term_save($term);
-              }
-              else {
-                $term = current($term);
-              }
-              $field_collection_item->field_fop_link_section[$lang][] = array('tid' => $term->tid);
-            }
-            $field_collection_item->save(TRUE);
-            $field_fop_link[$lang][] = array(
-              'value' => $field_collection_item->item_id,
-              'revision_id' => $field_collection_item->revision_id,
-            );
-          }
-        }
-        $entity->field_fop_link = $field_fop_link;
-      }
       if ($has_translation) {
         MigrationUtil::setTranslation($translation_handler, $entity, $row, $language);
       }
@@ -273,16 +234,79 @@ class MigrateOshaFOPPages extends OSHADynamicMigration {
       }
       $entity->language = 'en';
       $entity->path['pathauto'] = TRUE;
-
-
     }
-
   }
 
   public function complete($entity, $row) {
+    // Save the new alias for translated languages.
+    $languages = array_keys($entity->translations->data);
+    $args = array(
+      'source' => 'node/' . $entity->nid,
+      'language' => 'en',
+    );
+    $path_auto = path_load($args);
+    if (!empty($path_auto)) {
+      // Create alias for new path.
+      foreach ($languages as $language) {
+        $args = array(
+          'source' => 'node/' . $entity->nid,
+          'alias' => $path_auto['alias'],
+          'language' => $language,
+        );
+        // Check if path already exists.
+        $existing_path = path_load($args);
+        if (empty($existing_path)) {
+          path_save($args);
+        }
+      }
+    }
     // Create redirect for path; path auto generate handles the path.
     MigrationUtil::createRedirects($entity, substr($row->path, 4), TRUE);
     self::createRedirectsFromAliases($entity, $row);
+
+    // Remove existing field collections links.
+    $fc_item_values = array();
+    if (!empty($entity->field_fop_link)) {
+      foreach ($entity->field_fop_link as $lang => $values) {
+        foreach ($values as $idx => $value) {
+          $fc_item_values[] = $value['value'];
+          unset($entity->field_fop_link[$lang][$idx]);
+        }
+      }
+    }
+    entity_delete_multiple('field_collection_item', $fc_item_values);
+
+    // Attach field collection field_fop_link.
+    $voc = taxonomy_vocabulary_machine_name_load('fop_link_sections');
+    if (is_array($row->field_fop_link)) {
+      foreach ($row->field_fop_link as $lang => $links) {
+        foreach ($links as $link) {
+          $item = array(
+            'field_name' => 'field_fop_link',
+          );
+          $item['field_link'][$lang][] = array(
+            'title' => MigrationUtil::decodeHTMLText($link['title']),
+            'url' => $link['url'],
+          );
+          if (!empty($link['section'])) {
+            $term = taxonomy_get_term_by_name($link['section'], 'fop_link_sections');
+            if (empty($term)) {
+              $term = new stdClass();
+              $term->vid = $voc->vid;
+              $term->name = $link['section'];
+              taxonomy_term_save($term);
+            }
+            else {
+              $term = current($term);
+            }
+            $item['field_fop_link_section'][$lang][] = array('tid' => $term->tid);
+          }
+          $item = entity_create('field_collection_item', $item);
+          $item->setHostEntity('node', $entity, $lang);
+        }
+      }
+    }
+    node_save($entity);
   }
 
   /**
@@ -319,7 +343,7 @@ class MigrateOshaFOPPages extends OSHADynamicMigration {
   public function rollback() {
     $idlist = $this->getOption('idlist');
     if ($idlist) {
-      // Make the IDs keys, to more easily identify them
+      // Make the IDs keys, to more easily identify them.
       $idlist = array_flip(explode(',', $idlist));
     }
     foreach ($this->map as $destination_key) {
@@ -420,11 +444,6 @@ class FOPPagesContentListCSV extends MigrateList {
       // Assign the workflow state of the row from english entry.
       if ($language == 'en') {
         self::$data[$path]['workflow_state'] = $raw_data[$work_flow_key];
-      }
-      // Skip the private translations.
-      if (!in_array($raw_data[$work_flow_key],
-        array('published', 'checked', 'to_amend'))) {
-        continue;
       }
       foreach ($fields as $key => $field) {
         switch ($field) {

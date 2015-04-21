@@ -22,8 +22,8 @@ function osha_alert_service_subscribe_form() {
   $sections = array();
   if ($voc = taxonomy_vocabulary_machine_name_load('tags')) {
     $terms = taxonomy_get_tree($voc->vid);
-    foreach ($terms as $tid => $term) {
-      $w = entity_metadata_wrapper('taxonomy_term', $tid);
+    foreach ($terms as $term) {
+      $w = entity_metadata_wrapper('taxonomy_term', $term->tid);
       $sections[$term->tid] = $w->label();
     }
   }
@@ -55,17 +55,16 @@ function osha_alert_service_subscribe_form() {
   );
 
   $types = array();
+
   $allowed = array(
-    'article', 'blog', 'directive', 'guideline', 'highlight', 'job_vacancies', 'news',
-    'press_release', 'publication', 'seminar',
+    'publication', 'news', 'calls', 'job_vacancies', 'blog', 'events', 'directive', 'guideline', 'seminar',
   );
+
   $alltypes = node_type_get_types();
-  foreach ($alltypes as $machine_name => $type) {
-    if (in_array($machine_name, $allowed)) {
-      $types[$machine_name] = $type->name;
-    }
+  foreach ($allowed as $machine_name) {
+    $types[$machine_name] = $alltypes[$machine_name]->name;
   }
-  ksort($types);
+
   $form['type'] = array(
     '#type' => 'select',
     '#multiple' => TRUE, '#size' => 10,

@@ -65,7 +65,9 @@ function osha_frontend_menu_link__menu_block($variables) {
     isset($element['#localized_options']['content']['image'])
   ) {
     $path = file_create_url($element['#localized_options']['content']['image']);
-    $link = l('<img src="' . $path . '" />', $element['#href'], array('html' => TRUE));
+    $link = l('<img src="' . $path . '" />', $element['#href'],
+      array('html' => TRUE, 'attributes' => $element['#localized_options']['attributes'])
+    );
     return sprintf("\n<li %s>%s</li>", $attr, $link);
   }
 
@@ -104,7 +106,8 @@ function osha_frontend_menu_link__menu_block__menu_footer_menu($variables) {
   if (!empty($element['#localized_options']['content']['image'])
     && $image_url = file_create_url($element['#localized_options']['content']['image'])) {
     $image = '<img src="' . $image_url . '"/>';
-    $output_image = l($image, $element['#href'], array('html' => TRUE));
+    $output_image = l($image, $element['#href'],
+      array('html' => TRUE, 'attributes' => $element['#localized_options']['attributes']));
     return '<li' . drupal_attributes($element['#attributes']) . '>' . $output_image . '</li>';
   } else {
     $output_link = l($element['#title'], $element['#href'], $element['#localized_options']);

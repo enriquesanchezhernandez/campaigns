@@ -24,6 +24,7 @@ features[ctools][] = feeds_tamper:feeds_tamper_default:2
 features[ctools][] = field_group:field_group:1
 features[ctools][] = strongarm:strongarm:1
 features[ctools][] = views:views_default:3.0
+features[fe_block_settings][] = views--exp-events_index-page
 features[fe_block_settings][] = views-events-block_1
 features[fe_block_settings][] = views-events_index-block_1
 features[features_api][] = api:2
