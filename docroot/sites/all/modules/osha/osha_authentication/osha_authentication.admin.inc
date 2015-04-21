@@ -45,26 +45,6 @@ function osha_authentication_extract_user_roles($proposed_roles) {
   return $ret;
 }
 
-
-function osha_authentication_extract_roles($ldap_groups) {
-
-}
-
-function osha_authentication_map_role_and_sections($ldap_groups) {
-  $roles = array();
-  $sections = array();
-  foreach ($ldap_groups as $group_dn) {
-    list($role_name, $section_id) = osha_authentication_get_role_and_section_from_dn($group_dn);
-    if ($section_id && !in_array($section_id, $sections)) {
-      $sections[] = $section_id;
-    }
-    if (!in_array($role_name, $roles)) {
-      $roles[] = [$role_name];
-    }
-  }
-  return array($roles, $sections);
-}
-
 /**
  * Extract a single role and section from the DN of a group.
  *
