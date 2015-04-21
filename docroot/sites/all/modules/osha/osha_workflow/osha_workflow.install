@@ -449,3 +449,62 @@ function osha_workflow_update_7005() {
 
   ));
 }
+
+/**
+ * Move workflow sections to taxonomy.
+ */
+function osha_workflow_update_7006() {
+  module_load_include('inc', 'workbench_access', 'workbench_access.admin');
+
+  $form_state['values']['workbench_access'] = 'taxonomy';
+  $form_state['values']['workbench_access_taxonomy'] = array('section' => 'section');
+  $form_state['values']['workbench_access_menu'] = array();
+  $form_state['values']['op'] = t('Save configuration');
+  drupal_form_submit('workbench_access_settings_form', $form_state);
+
+  $file = osha_migration_get_data_dir() . '/mapping_sections.csv';
+  if (!is_readable($file)) {
+    drupal_set_message('Cannot read ' . $file, 'error');
+    return;
+  }
+  $mappings = array();
+  $handle = fopen($file, 'r');
+  $fields = $raw_data = fgetcsv($handle);
+  while (($raw_data = fgetcsv($handle)) !== FALSE) {
+    $mappings[$raw_data[0]] = array_combine($fields, $raw_data);
+  }
+  $voc = taxonomy_vocabulary_machine_name_load('section');
+  foreach ($mappings as $access_id => $mapping) {
+    $term = taxonomy_get_term_by_name($mapping['LDAP description']);
+    $term = current($term);
+    if (empty($term) && !empty($mapping['LDAP description'])) {
+      $term = new stdClass();
+      $term->vid = $voc->vid;
+      $term->bundle = 'section';
+      $term->name = $mapping['LDAP description'];
+      $term->field_ldap_section_code[LANGUAGE_NONE][0]['value'] = $mapping['LDAP code'];
+      taxonomy_term_save($term);
+    }
+    if (!empty($term->tid)) {
+      db_update('workbench_access_node')
+        ->fields(array(
+            'access_id' => $term->tid,
+            'access_scheme' => 'taxonomy',
+          )
+        )
+        ->condition('access_id', $mapping['access_id'])
+        ->execute();
+    }
+    else {
+      drupal_set_message('Section was not created' . $term->name, 'error');
+    }
+  }
+  db_update('workbench_access_node')
+    ->fields(array(
+        'access_id' => 'section',
+        'access_scheme' => 'taxonomy',
+      )
+    )
+    ->condition('access_id', 'main-menu')
+    ->execute();
+}
