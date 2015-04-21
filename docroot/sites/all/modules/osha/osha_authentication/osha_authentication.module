@@ -29,19 +29,27 @@ function osha_authentication_ldap_entry_pre_provision_alter(&$ldap_entries, $lda
 /**
  * Implements hook_user_login().
  *
- * A
  */
-function osha_authentication_user_login(&$edit, $account) {
-  var_dump($account->roles);
-  // LDAP_APPRV_US_01 - Assign Approver to the default list of approvers
-  $is_approver = FALSE;
-  foreach($account->roles as $rolename) {
-    if(strtolower($rolename) == 'approver') {
-      $is_approver = TRUE;
-      break;
-    }
+function osha_authentication_user_login(&$edit, $user) {
+  if ($user->uid > 1) {
+    list ($proposed_roles, $sections) = osha_authentication_map_role_and_sections($user->ldap_proposed_roles);
+    $roles = osha_authentication_extract_user_roles($user, $proposed_roles);
+    user_save($user, array('roles' => $roles));
+
+    workbench_access_rebuild_user($user->uid, $sections);
+
+    // LDAP_APPRV_US_01 - Assign Approver to the default list of approvers
+    $is_approver = in_array('Approver', $user->roles);
+    module_load_include('admin.inc', 'osha_authentication');
+    osha_authentication_user_login_approver($user, $is_approver);
   }
-  module_load_include('admin.inc', 'osha_authentication');
-  osha_authentication_user_login_approver($account, $is_approver);
 }
 
+
+/**
+ * Implements hook_ldap_authorization_maps_alter().
+ */
+function osha_authentication_ldap_authorization_maps_alter($user, $ldap_user, $ldap_server, $consumer_conf, &$proposed_ldap_authorizations, $op) {
+  module_load_include('admin.inc', 'osha_authentication');
+  $user->ldap_proposed_roles = $proposed_ldap_authorizations;
+}
