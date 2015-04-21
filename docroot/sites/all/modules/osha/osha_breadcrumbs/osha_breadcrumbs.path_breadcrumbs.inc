@@ -915,7 +915,7 @@ safety-and-health-legislation/european-guidelines',
   $path_breadcrumb->path = 'node/%node';
   $path_breadcrumb->data = array(
     'titles' => array(
-      0 => '%site:current-page:menu-link:title',
+      0 => '%site:current-page:menu-link:pb-join:name',
     ),
     'paths' => array(
       0 => '<none>',

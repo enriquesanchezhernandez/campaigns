@@ -7,6 +7,10 @@ When patching a contrib module, the following steps should be followed:
 
 List of patches (most recent first)
 
+* path_breadcrumbs
+  * dirty patch for the translation of Home (path_breadcrumbs._home_translate.patch)
+  * see also https://www.drupal.org/node/2081375 and https://www.drupal.org/node/2028845 for alternative solutions
+
 * search_api_views
   * Calling t($name) yields double translation
   * patches/search_api_views/double-translation.patch
