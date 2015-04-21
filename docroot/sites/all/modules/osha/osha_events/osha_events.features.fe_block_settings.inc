@@ -49,7 +49,7 @@ function osha_events_default_fe_block_settings() {
       ),
     ),
     'title' => '',
-    'visibility' => 0,
+    'visibility' => 1,
   );
 
   $export['views-events-block_1'] = array(
