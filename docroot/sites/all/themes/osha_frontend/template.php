@@ -37,9 +37,20 @@ function osha_frontend_menu_tree__menu_search($variables) {
 function osha_frontend_menu_link__menu_search($variables) {
   $element = $variables['element'];
   $active = '';
+
   if (in_array('active-trail', $element['#attributes']['class'])) {
     $active = 'is-active active';
   }
+
+  if (empty($element['#localized_options'])) {
+    $element['#localized_options'] = array();
+  }
+
+  $query_parameters = drupal_get_query_parameters();
+  if (!empty($query_parameters['search_block_form'])) {
+    $element['#localized_options']['query']['search_block_form'] = $query_parameters['search_block_form'];
+  }
+
   $element['#attributes']['class'] = array(
     'tabs-primary__tab', $active,
   );
