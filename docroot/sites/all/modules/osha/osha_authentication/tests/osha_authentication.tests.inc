@@ -15,7 +15,7 @@ class OSHALDAPTests {
 
   function all_tests($testName = NULL, $debug = FALSE) {
     foreach (get_class_methods('OSHALDAPTests') as $method) {
-      if ((!$testName && strpos($method, 'test_LDAP') !== FALSE) || ($testName && $method == $testName)) {
+      if ((!$testName && strpos($method, 'test_') !== FALSE) || ($testName && $method == $testName)) {
         $username = 'TEST';
         try {
           // Perform cleanup before starting the test
@@ -231,6 +231,24 @@ class OSHALDAPTests {
     }
   }
 
+  function test_LDAP_EDT_US_02($username = 'TEST') {
+    global $user;
+    $this->createLDAPUser($username, array('CAREER_EDT', 'CONTUS_EDT'));
+    $this->login($username);
+    // User has gained Editor role in Drupal
+    if (count($user->roles) != 2 || !in_array('Editor', $user->roles) || !in_array('authenticated user', $user->roles)) {
+      throw new Exception('User has wrong roles:' . print_r(array_values($user->roles), TRUE));
+    }
+    // Check section assignment
+    module_load_include('admin.inc', 'workbench_access');
+    workbench_access_user_load_data($user);
+    $sections = $user->workbench_access;
+    //@todo fix when switching to taxonomy access from menu
+    if (count($sections) != 1 || !array_key_exists(1717, $sections)) {
+      throw new Exception('User assigned to wrong sections:' . print_r(array_values($sections), TRUE));
+    }
+  }
+
   function test_LDAP_EDT_US_04($username = 'TEST') {
     global $user;
     $this->createLDAPUser($username, array('CAREER_EDT', 'CONTUS_EDT'));
@@ -247,6 +265,47 @@ class OSHALDAPTests {
     // User has gained Editor role in Drupal
     if (count($user->roles) != 1 || !in_array('authenticated user', $user->roles)) {
       throw new Exception('User has wrong roles:' . print_r(array_values($user->roles), TRUE));
+    }
+  }
+
+  function test_osha_authentication_map_section() {
+    $sid = osha_authentication_map_section('BLOG');
+    //@todo fix when switching to taxonomy access from menu
+    if ($sid != 1717) {
+      throw new Exception('Wrong section mapped');
+    }
+  }
+
+  function test_osha_authentication_map_role_and_sections() {
+    $data = array(
+      'cn=AWRACT_EDT,ou=MainSite,ou=Sites,dc=osha,dc=europa,dc=eu',
+      'cn=AWRACT_PM,ou=MainSite,ou=Sites,dc=osha,dc=europa,dc=eu',
+      'cn=APPROVER,ou=MainSite,ou=Sites,dc=osha,dc=europa,dc=eu',
+      'cn=RVMN,ou=MainSite,ou=Sites,dc=osha,dc=europa,dc=eu',
+    );
+    list($roles, $sections) = osha_authentication_map_role_and_sections($data);
+    if (count($roles) != 4
+        || !in_array('Editor', $roles)
+        || !in_array('Project Manager', $roles)
+        || !in_array('Approver', $roles)
+        || !in_array('Review Manager', $roles)) {
+      throw new Exception('Wrong roles mapped: ' . print_r($roles, TRUE));
+    }
+    if (count($sections) != 1 && !in_array(1717, $sections)) {
+      throw new Exception('Wrong section mapped:' . print_r($sections, TRUE));
+    }
+  }
+
+  function test_osha_authentication_map_role_and_sections_invalid_dn() {
+    $data = array(
+      'cn=_INVALID,ou=MainSite,ou=Sites,dc=osha,dc=europa,dc=eu',
+      'cn=INVALID_,ou=MainSite,ou=Sites,dc=osha,dc=europa,dc=eu',
+      'cn=PM_INVALID,ou=MainSite,ou=Sites,dc=osha,dc=europa,dc=eu',
+      'BLOG_PM,ou=MainSite,ou=Sites,dc=osha,dc=europa,dc=eu',
+    );
+    list($roles, $sections) = osha_authentication_map_role_and_sections($data);
+    if (count($roles) != 0) {
+      throw new Exception('Failed to filter invalid roles/sections');
     }
   }
 

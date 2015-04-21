@@ -19,6 +19,7 @@ function osha_authentication_drush_command()
 }
 
 function drush_osha_authentication_osha_ldap_tests() {
+  require_once dirname(__FILE__) . '/osha_authentication.admin.inc';
   require_once dirname(__FILE__) . '/tests/osha_authentication.tests.inc';
   $test = new OSHALDAPTests();
   $filter = drush_get_option('test');
