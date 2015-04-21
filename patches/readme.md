@@ -7,6 +7,10 @@ When patching a contrib module, the following steps should be followed:
 
 List of patches (most recent first)
 
+* path_breadcrumbs
+  * dirty patch for the translation of Home (path_breadcrumbs._home_translate.patch)
+  * see also https://www.drupal.org/node/2081375 and https://www.drupal.org/node/2028845 for alternative solutions
+
 * features
   * Fixed double-string translation
   * patches/features/features-double-translations-2462991-1-D7.patch
