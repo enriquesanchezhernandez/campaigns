@@ -31,10 +31,22 @@ function osha_authentication_ldap_entry_pre_provision_alter(&$ldap_entries, $lda
  *
  * A
  */
-function osha_authentication_user_login(&$edit, $account) {
-  // LDAP_APPRV_US_01 - Assign Approver to the default list of approvers
-  $is_approver = in_array('Approver', $account->roles);
-  module_load_include('admin.inc', 'osha_authentication');
-  osha_authentication_user_login_approver($account, $is_approver);
+function osha_authentication_user_login(&$edit, $user) {
+  if ($user->uid > 1) {
+    $roles = osha_authentication_user_roles_sync($user, $user->ldap_proposed_roles);
+    user_save($user, array('roles' => $roles));
+    // LDAP_APPRV_US_01 - Assign Approver to the default list of approvers
+    $is_approver = in_array('Approver', $user->roles);
+    module_load_include('admin.inc', 'osha_authentication');
+    osha_authentication_user_login_approver($user, $is_approver);
+  }
 }
 
+
+/**
+ * Implements hook_ldap_authorization_maps_alter().
+ */
+function osha_authentication_ldap_authorization_maps_alter($user, $ldap_user, $ldap_server, $consumer_conf, &$proposed_ldap_authorizations, $op) {
+  module_load_include('admin.inc', 'osha_authentication');
+  $user->ldap_proposed_roles = osha_map_ldap_role_to_drupal_role($proposed_ldap_authorizations);
+}

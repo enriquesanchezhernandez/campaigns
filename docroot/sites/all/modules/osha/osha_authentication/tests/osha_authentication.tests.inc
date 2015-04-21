@@ -13,16 +13,26 @@ class OSHALDAPTests {
   private static $USER_DN = 'uid=%s,ou=Contractors,ou=people,dc=osha,dc=europa,dc=eu';
   private static $GROUP_DN = 'cn=%s,ou=MainSite,ou=Sites,dc=osha,dc=europa,dc=eu';
 
-  function all_tests($testName = NULL) {
+  function all_tests($testName = NULL, $debug = FALSE) {
     foreach (get_class_methods('OSHALDAPTests') as $method) {
       if ((!$testName && strpos($method, 'test_LDAP') !== FALSE) || ($testName && $method == $testName)) {
+        $username = 'TEST';
         try {
-          $this->$method();
+          // Perform cleanup before starting the test
+          if (!$debug) {
+            $this->deleteLDAPUser($username);
+            $this->deleteDrupalUser($username);
+          }
+          $this->$method($username);
           drush_log($method, 'ok');
           $this->logout();
         }
         catch(Exception $e) {
           drush_set_error('ldap', $method . ' failed (' . $e->getMessage() . ')');
+          if (!$debug) {
+            $this->deleteLDAPUser($username);
+            $this->deleteDrupalUser($username);
+          }
         }
       }
     }
@@ -38,22 +48,21 @@ class OSHALDAPTests {
       $entry['objectClass'][0] = 'top';
       $entry['objectClass'][1] = 'posixaccount';
       $entry['objectClass'][2] = 'inetOrgPerson';
-      $entry['cn'] = 'TEST_TEMP';
+      $entry['cn'] = $uid;
       $entry['mail'] = user_password() . '@eaudeweb.ro';
       $entry['userpassword'] = 'test';
-      $entry['sn'] = 'TEST_TEMP';
-      $entry['uid'] = 'TEST_TEMP';
+      $entry['sn'] = $uid;
+      $entry['uid'] = $uid;
       $entry['gidNumber'] = 9991;
       $entry['uidNumber'] = 9992;
       $entry['homeDirectory'] = 'ou=Contractors';
-      if (!$ldap_server->createLdapEntry($entry, $udn)) {
-        return FALSE;
+      $result = $ldap_server->createLdapEntry($entry, $udn);
+      if (!$result) {
+        drush_set_error(ldap_errno($ldap_server->connection));
+        throw new Exception('Cannot create LDAP user:' . $uid);
       }
     }
-    if (!$this->ldapAddUserToGroups($uid, $groups)) {
-      return FALSE;
-    }
-    return TRUE;
+    $this->ldapAddUserToGroups($uid, $groups);
   }
 
   function ldapAddUserToGroups($uid, $groups = array()) {
@@ -65,10 +74,9 @@ class OSHALDAPTests {
         'memberUid' => array($uid)
       );
       if (!$ldap_server->modifyLdapEntry($gdn, $members)) {
-        return FALSE;
+        throw new Exception('Cannot assign user to LDAP group, user:' . $uid, ', group:' . $gcn);
       }
     }
-    return TRUE;
   }
 
   function ldapRemoveUserFromGroups($uid, $groups) {
@@ -78,19 +86,20 @@ class OSHALDAPTests {
       $gdn = sprintf(self::$GROUP_DN, $gcn);
       $members = array('memberUid' => array());
       if (!$ldap_server->modifyLdapEntry($gdn, $members)) {
-        return FALSE;
+        throw new Exception('Cannot remove user from LDAP group, user:' . $uid . ', group:' . $gcn);
       }
     }
-    return TRUE;
   }
 
-  function ldapRemoveUserFromGroup($uid, $groups = array()) {
+  function ldapRemoveUser($uid) {
     /** @var LDAPServer $ldap_server */
     $ldap_server = ldap_servers_get_servers(self::$SID, NULL, TRUE);
-    foreach($groups as $gcn) {
-      $gdn = sprintf(self::$GROUP_DN, $gcn);
-      $members = array('memberUid' => array());
-      $ldap_server->modifyLdapEntry($gdn, $members);
+    $result = $ldap_server->search('ou=people,dc=osha,dc=europa,dc=eu', 'uid=' . $uid);
+    if ($result['count']) {
+      $udn = sprintf(self::$USER_DN, $uid);
+      if (!$ldap_server->delete($udn)) {
+        throw new Exception('Cannot delete user from LDAP, user:' . $uid);
+      }
     }
   }
 
@@ -104,15 +113,12 @@ class OSHALDAPTests {
     );
     drupal_form_submit('user_login', $form_state);
     if ($user->uid < 2) {
-      return FALSE;
-    }
-    else {
-      return $user->uid;
+      throw new Exception('Failed to login user: ' . $username);
     }
   }
 
-  function deleteDrupalUser($name) {
-    $user = user_load_by_name($name);
+  function deleteDrupalUser($username) {
+    $user = user_load_by_name($username);
     if (!empty($user->uid)) {
       user_delete($user->uid);
     }
@@ -121,11 +127,24 @@ class OSHALDAPTests {
   function deleteLDAPUser($uid) {
     /** @var LDAPServer $ldap_server */
     $ldap_server = ldap_servers_get_servers(self::$SID, NULL, TRUE);
-    $result = $ldap_server->search('ou=people,dc=osha,dc=europa,dc=eu', 'uid=' . $uid);
+    // Detach from all groups
+    $result = $ldap_server->search('ou=MainSite,ou=Sites,dc=osha,dc=europa,dc=eu', 'memberUid=' . $uid);
     if ($result['count'] > 0) {
-      return $ldap_server->delete(sprintf(self::$USER_DN, $uid));
+      unset($result['count']);
+      foreach($result as $group) {
+        if (!$ldap_server->modifyLdapEntry($group['dn'], array('memberUid' => array()))) {
+          throw new Exception('Failed to remove user from LDAP group, user:' . $uid, ', group:' . $group['cn']);
+        }
+      }
     }
-    return TRUE;
+    // Remove the account
+    $users = $ldap_server->search('ou=Contractors,ou=people,dc=osha,dc=europa,dc=eu', 'uid=' . $uid);
+    if ($users['count'] > 0) {
+      $dn = sprintf(self::$USER_DN, $uid);
+      if (!$ldap_server->delete($dn)) {
+        throw new Exception('Failed to delete user from LDAP:' . $uid);
+      }
+    }
   }
 
   function logout() {
@@ -135,63 +154,43 @@ class OSHALDAPTests {
     $user = drupal_anonymous_user();
   }
 
-  function test_LDAP_US_US_01() {
-    $username = 'TEST_READ';
-    if ($this->login($username)) {
-      // Cleanup the test user after checking
-      $this->deleteDrupalUser($username);
-    }
-    else {
-      throw new Exception('Cannot login user');
-    }
-  }
-
-  function test_LDAP_US_US_02() {
-    $username = 'TEST_TEMP';
-    if (!$this->createLDAPUser($username)) {
-      throw new Exception('Cannot create LDAP temporary user');
-    }
-    try {
-      // Login with the user so the account can be created inside Drupal
-      if (!$this->login($username)) {
-        throw new Exception('Cannot login temporary user in Drupal');
-      }
-      $this->logout();
-      // Delete user from LDAP
-      if (!$this->deleteLDAPUser($username)) {
-        throw new Exception('Cannot delete LDAP temporary user');
-      }
-      // Try to authenticated even when the user no longer exists in LDAP
-      if ($this->login($username)) {
-        throw new Exception('User was still able to login');
-      }
-    }
-    catch (Exception $e) {
-      $this->deleteLDAPUser($username);
-      throw $e;
-    }
-  }
-
-  function test_LDAP_APPRV_US_01() {
-    $username = 'TEST_APPROVER';
-    if (!$this->createLDAPUser($username, array('APPROVER'))) {
-      throw new Exception('Cannot create LDAP temporary user');
-    }
+  function test_LDAP_US_US_01($username = 'TEST') {
+    $this->createLDAPUser($username);
     $this->login($username);
+  }
+
+  function test_LDAP_US_US_02($username = 'TEST') {
+    $this->createLDAPUser($username);
+    // Login with the user so the account can be provisioned inside Drupal
+    $this->login($username);
+    $this->logout();
+    $this->deleteLDAPUser($username);
+    // Try to authenticated when the user no longer exists in LDAP
     global $user;
+    try {
+      $this->login($username);
+    }
+    catch(Exception $e) {
+      // Expected.
+    }
+    if ($user->uid != 0) {
+      throw new ErrorException('User was still able to login');
+    }
+  }
+
+  function test_LDAP_APPRV_US_01($username = 'TEST') {
+    global $user;
+    $this->createLDAPUser($username, array('APPROVER'));
+    $this->login($username);
     // User has gained Approver role in Drupal
     if (!in_array('Approver', $user->roles)) {
       throw new Exception('User is missing Approver role');
     }
-    $this->deleteDrupalUser($username);
   }
 
-  function test_LDAP_APPRV_US_02() {
+  function test_LDAP_APPRV_US_02($username = 'TEST') {
     global $user;
-    $username = 'TEST_APPROVER';
-    if (!$this->createLDAPUser($username, array('APPROVER'))) {
-      throw new Exception('Cannot create LDAP temporary user');
-    }
+    $this->createLDAPUser($username, array('APPROVER'));
     $this->login($username);
     // User has gained Approver role in Drupal
     if (!in_array('Approver', $user->roles)) {
@@ -212,10 +211,7 @@ class OSHALDAPTests {
     entity_get_controller('entity_collection')->resetCache();
 
     // User is revoked Approver is removed from the approvers entity_collection
-    if (!$this->login($username)) {
-      throw new Exception('Cannot relogin the user');
-    }
-
+    $this->login($username);
     $count = db_select('entity_collection_storage', NULL)
       ->condition('name', 'approvers')->condition('eid', $user->uid)->countQuery()
       ->execute()->fetchField();
@@ -223,7 +219,35 @@ class OSHALDAPTests {
       throw new Exception('User is Approver after being revoked from LDAP');
     }
     $this->logout();
-    $this->deleteDrupalUser($username);
+  }
+
+  function test_LDAP_EDT_US_01($username = 'TEST') {
+    global $user;
+    $this->createLDAPUser($username, array('CAREER_EDT', 'CONTUS_EDT'));
+    $this->login($username);
+    // User has gained Editor role in Drupal
+    if (count($user->roles) != 2 || !in_array('Editor', $user->roles) || !in_array('authenticated user', $user->roles)) {
+      throw new Exception('User has wrong roles:' . print_r(array_values($user->roles), TRUE));
+    }
+  }
+
+  function test_LDAP_EDT_US_04($username = 'TEST') {
+    global $user;
+    $this->createLDAPUser($username, array('CAREER_EDT', 'CONTUS_EDT'));
+    $this->login($username);
+    // User has gained Editor role in Drupal
+    if (count($user->roles) != 2 || !in_array('Editor', $user->roles) || !in_array('authenticated user', $user->roles)) {
+      throw new Exception('User has wrong roles:' . print_r(array_values($user->roles), TRUE));
+    }
+
+    $this->logout();
+    $this->deleteLDAPUser($username);
+    $this->createLDAPUser($username);
+    $this->login($username);
+    // User has gained Editor role in Drupal
+    if (count($user->roles) != 1 || !in_array('authenticated user', $user->roles)) {
+      throw new Exception('User has wrong roles:' . print_r(array_values($user->roles), TRUE));
+    }
   }
 
   function test_password_change() {
