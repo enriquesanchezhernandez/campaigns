@@ -33,7 +33,7 @@ function osha_authentication_ldap_entry_pre_provision_alter(&$ldap_entries, $lda
 function osha_authentication_user_login(&$edit, $user) {
   if ($user->uid > 1) {
     list ($proposed_roles, $sections) = osha_authentication_map_role_and_sections($user->ldap_proposed_roles);
-    $roles = osha_authentication_extract_user_roles($user, $proposed_roles);
+    $roles = osha_authentication_extract_user_roles($proposed_roles);
     user_save($user, array('roles' => $roles));
 
     workbench_access_rebuild_user($user->uid, $sections);

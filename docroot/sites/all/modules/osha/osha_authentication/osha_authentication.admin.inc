@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Ensure if user is approver, exists in the default list of approvers
+ * Ensure if user is approver, add/remove from the default list of approvers.
  *
  * @param $is_approver
  */
@@ -19,12 +19,19 @@ function osha_authentication_user_login_approver($account, $is_approver) {
   }
 }
 
-function osha_authentication_extract_user_roles($user, $proposed_roles) {
+/**
+ * Given an array of Drupal role names, try to load them and return unique list
+ * that can be assigned to user.
+ *
+ * @param array $proposed_roles
+ *  List of roles names that to assign.
+ *
+ * @return array
+ *   Array of array($rid => role_name)
+ */
+function osha_authentication_extract_user_roles($proposed_roles) {
   $ret = array();
   $roles_names = array('authenticated user');
-  if (in_array('administrator', $user->roles)) {
-    $roles_names[] = 'administrator';
-  }
   $roles_names = array_merge($roles_names, array_values($proposed_roles));
   // Load the actual roles from DB
   foreach($roles_names as $role_name) {
@@ -38,66 +45,145 @@ function osha_authentication_extract_user_roles($user, $proposed_roles) {
   return $ret;
 }
 
+
+function osha_authentication_extract_roles($ldap_groups) {
+
+}
+
 function osha_authentication_map_role_and_sections($ldap_groups) {
   $roles = array();
   $sections = array();
-  $smart_mappings = array(
-    'EDT' => 'Editor',
-    'PM' => 'Project Manager',
-    'RVMN' => 'Review Manager',
-    'APPROVER' => 'Approver',
-    'LAYVAL' => 'Layout Validator',
-    'TRLIAS' => 'Translation Liaison',
-    'TRLMN' => 'Translation Manager',
-  );
-  $provisional_sections = array();
   foreach ($ldap_groups as $group_dn) {
-    $ldap_group_cn = array();
-    if (strpos($group_dn, 'cn=') !== 0) {
-      watchdog('osha_authentication',
-        'Invalid group DN: !dn. Must start with cn=',
-        array('!dn' => $group_dn),
-        WATCHDOG_ERROR
-      );
-      continue;
-    };
-    // LDAP group DN patterns:
-    // * cn=SECTION_ROLE,ou=MainSite,ou=Sites,dc=osha,dc=europa,dc=eu
-    // * cn=ROLE,ou=MainSite,ou=Sites,dc=osha,dc=europa,dc=eu
-    if (preg_match('/[A-Z\_]*/i', $group_dn, $ldap_group_cn, 0, 3) && count($ldap_group_cn) == 1) {
-      list($section, $role) = explode('_', $ldap_group_cn[0]);
-      if (empty($role)) {
-        $role = $section;
-      }
-      else {
-        $provisional_sections[] = $section;
-      }
-      if (array_key_exists($role, $smart_mappings)) {
-        if (!in_array($role, $roles)) {
-          $roles[] = $smart_mappings[$role];
-        }
-      }
-      else {
-        watchdog('osha_authentication',
-          'Unable to extract role !role from group DN: !dn, please check naming scheme syntax (cn=$SECTION_$ROLE or cn=$ROLE)',
-          array('!role' => $role, '!dn' => $group_dn),
-          WATCHDOG_ERROR
-        );
-      }
+    list($role_name, $section_id) = osha_authentication_get_role_and_section_from_dn($group_dn);
+    if ($section_id && !in_array($section_id, $sections)) {
+      $sections[] = $section_id;
     }
-  }
-  // Decode the sections according to mappings done in taxonomy
-  foreach($provisional_sections as $section) {
-    if ($tid = osha_authentication_map_section($section)) {
-      if (!in_array($tid, $sections)) {
-        $sections[] = $tid;
-      }
+    if (!in_array($role_name, $roles)) {
+      $roles[] = [$role_name];
     }
   }
   return array($roles, $sections);
 }
 
+/**
+ * Extract a single role and section from the DN of a group.
+ *
+ * @param string $group_dn
+ *
+ * @return array
+ *  array with role and section. May be null
+ */
+function osha_authentication_get_role_and_section_from_dn($group_dn) {
+  $role = NULL;
+  $section_id = NULL;
+  $mappings = array(
+    'ADMIN' => 'administrator',
+    'APPROVER' => 'Approver',
+    'LAYVAL' => 'Layout Validator',
+    'READ' => 'authenticated',
+    'TRLMN' => 'Translation Manager',
+    'TRLIAS' => 'Translation Liaison',
+    // Per-section roles
+    'EDT' => 'Editor',
+    'PM' => 'Project Manager',
+    'RVMN' => 'Review Manager',
+  );
+  // LDAP group DN patterns:
+  // * cn=SECTION_ROLE,ou=MainSite,ou=Sites,dc=osha,dc=europa,dc=eu
+  // * cn=ROLE,ou=MainSite,ou=Sites,dc=osha,dc=europa,dc=eu
+  if (preg_match('/[A-Z\_]*/i', $group_dn, $ldap_group_cn, 0, 3) && count($ldap_group_cn) == 1) {
+    list($section_id, $role) = explode('_', $ldap_group_cn[0]);
+    if (empty($role)) {
+      $role = $section_id;
+      $section_id = NULL;
+    }
+    // Map the role
+    if (array_key_exists($role, $mappings)) {
+      $role = $mappings[$role];
+    }
+    else {
+      $role = NULL;
+      watchdog('osha_authentication',
+        'Unable to extract role !role from group DN: !dn, please check naming scheme syntax (cn=$SECTION_$ROLE or cn=$ROLE)',
+        array('!role' => $role, '!dn' => $group_dn),
+        WATCHDOG_ERROR
+      );
+    }
+  }
+  return array($role, $section_id);
+}
+
 function osha_authentication_map_section($ldap_section) {
   //@TODO: Implement when the access is mapped to taxonomy instead of menu
   return 1717;
+}
+
+
+function osha_authentication_retrieve_ldap_sections($ldap_server) {
+  $ret = array();
+  /** @var LDAPServer $ldap_server */
+  $ldap_groups = $ldap_server->search('ou=MainSite,ou=Sites,dc=osha,dc=europa,dc=eu', 'cn=*');
+  unset($ldap_groups['count']);
+  foreach($ldap_groups as $ldap_group) {
+    $dn = $ldap_group['dn'];
+    // Do not parse Language skills groups
+    if(!preg_match('/ou=Languages/', $dn) && strpos($dn, '_') > 0) {
+      list($role, $section_id) = osha_authentication_get_role_and_section_from_dn($dn);
+      if ($section_id) {
+        $cn = NULL;
+        // Extract group cn
+        preg_match('/[A-Z\_]*/i', $dn, $cn, 0, 3);
+        // Ignore all groups ending in _PM and _RVM (handled by _EDT)
+        if (!preg_match('/\_PM$/', $cn[0]) && !preg_match('/\_RVM$/', $cn[0])) {
+          $description = $ldap_group['description'][0];
+          $description = preg_replace('/\seditor$/i', '', $description);
+          $ret[$section_id] = trim($description);
+        }
+      }
+    }
+  }
+  return $ret;
+}
+
+function osha_authentication_sync_ldap_sections($ldap_server, $test = FALSE) {
+  $voc = taxonomy_vocabulary_machine_name_load('section');
+  $ldap_sections = osha_authentication_retrieve_ldap_sections($ldap_server);
+  // Load all terms
+  $mappings = db_select('field_data_field_ldap_section_code', 'f')
+    ->fields('f', array('field_ldap_section_code_value', 'entity_id'))
+    ->execute()
+    ->fetchAllKeyed(0);
+  foreach($ldap_sections as $sid => $title) {
+    if (!array_key_exists($sid, $mappings)) {
+      // Save new section coming from LDAP
+      $wrapper = entity_property_values_create_entity('taxonomy_term', array(
+        'name' => $title,
+        'vocabulary' => $voc,
+        'field_ldap_section_code' => $sid,
+      ));
+      if (!$test) {
+        $wrapper->save();
+      }
+      watchdog(
+        'osha_authentication',
+        'LDAP provisioned new section <em>!section</em> (<b>!sid</b>)',
+        array('!section' => $title, '!sid' => $sid)
+      );
+    }
+    else {
+      $term = entity_metadata_wrapper('taxonomy_term', $mappings[$sid]);
+      $old = $term->name->value();
+      if ($old != $title) {
+        $term->name->set($title);
+        if (!$test) {
+          $term->save();
+        }
+        watchdog(
+          'osha_authentication',
+          'Updated new section name from <em>!old</em> to <em>!new</em> (<b>!sid</b>)',
+          array('!old' => $old, '!new' => $title, '!sid' => $sid)
+        );
+      }
+    }
+  }
 }
