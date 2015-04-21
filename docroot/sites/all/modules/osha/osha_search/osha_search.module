@@ -132,6 +132,16 @@ function osha_search_form_alter(&$form, &$form_state, $form_id) {
     }
   }
   if ($form['#id'] == 'views-exposed-form-publications-index-page') {
+    if (isset($form['search_api_language']['#options'])) {
+      $options = array();
+      $options['All'] = array_shift($form['search_api_language']['#options']);
+      // replace the name of each language
+      $languages = osha_language_list(TRUE);
+      foreach ($languages as $language_code => $lang) {
+        $options[$language_code] = $lang->native;
+      }
+      $form['search_api_language']['#options'] = $options;
+    }
     if (empty($form_state['input']['search_api_views_fulltext'])) {
       // For publication search, when no search term, the form should filter by
       // publication_date, but showing in the dropdown "Relevance".
