@@ -56,6 +56,7 @@ function osha_authentication_extract_user_roles($proposed_roles) {
 function osha_authentication_get_role_and_section_from_dn($group_dn) {
   $role = NULL;
   $section_id = NULL;
+  $language = NULL;
   $mappings = array(
     'ADMIN' => 'administrator',
     'APPROVER' => 'Approver',
@@ -63,6 +64,7 @@ function osha_authentication_get_role_and_section_from_dn($group_dn) {
     'READ' => 'authenticated',
     'TRLMN' => 'Translation Manager',
     'TRLIAS' => 'Translation Liaison',
+    'CV' => 'Content Validator',
     // Per-section roles
     'EDT' => 'Editor',
     'PM' => 'Project Manager',
@@ -75,6 +77,10 @@ function osha_authentication_get_role_and_section_from_dn($group_dn) {
     list($section_id, $role) = explode('_', $ldap_group_cn[0]);
     if (empty($role)) {
       $role = $section_id;
+      $section_id = NULL;
+    }
+    else if($role == 'CV') {
+      $language = $section_id;
       $section_id = NULL;
     }
     else if($section_id == 'OSHA') {
@@ -94,7 +100,7 @@ function osha_authentication_get_role_and_section_from_dn($group_dn) {
       );
     }
   }
-  return array($role, $section_id);
+  return array($role, $section_id, $language);
 }
 
 function osha_authentication_ldap_fetch_user_groups($ldap_server, $username) {

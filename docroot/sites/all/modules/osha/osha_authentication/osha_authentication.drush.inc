@@ -54,5 +54,5 @@ function drush_osha_authentication_osha_ldap_sync() {
   $ldap_servers = ldap_servers_get_servers();
   $ldap_server = current($ldap_servers);
   $user = user_load_by_name('CRomanescu');
-  osha_authentication_build_user_authorization($ldap_server, $user);
+  osha_authentication_build_user_from_ldap($ldap_server, $user);
 }

@@ -39,11 +39,10 @@ function osha_authentication_user_login(&$edit, $user) {
     /** @var LDAPServer $ldap_server */
     $ldap_servers = ldap_servers_get_servers($sid);
     $ldap_server = current($ldap_servers);
-    $authorization = osha_authentication_build_user_authorization($user, $ldap_server);
+    list($authorization, $languages) = osha_authentication_build_user_from_ldap($user, $ldap_server);
 
     // Assign user the calculated roles.
     $roles = osha_authentication_extract_user_roles(array_keys($authorization));
-    user_save($user, array('roles' => $roles));
 
     // Update user section assignment if user has roles: Editor, Project Manager or Review Manager
     $access_scheme = variable_get('workbench_access');
@@ -66,6 +65,17 @@ function osha_authentication_user_login(&$edit, $user) {
     // LDAP_APPRV_US_01 - Assign Approver to the default list of approvers
     $is_approver = in_array('Approver', $user->roles);
     osha_authentication_user_login_approver($user, $is_approver);
+
+    // Configure translator skills
+    $user->tmgmt_translation_skills[LANGUAGE_NONE] = array();
+    foreach($languages as $target) {
+      $user->tmgmt_translation_skills[LANGUAGE_NONE][] = array(
+        'language_from' => 'en',
+        'language_to' => $target
+      );
+    }
+    // Save the user with new data
+    user_save($user, array('roles' => $roles));
   }
 }
 
@@ -87,14 +97,16 @@ function osha_authentication_ldap_authorization_maps_alter($user, $ldap_user, $l
  * @return array
  *   Array keyed by role name with values an array of sections
  */
-function osha_authentication_build_user_authorization($user, $ldap_server) {
+function osha_authentication_build_user_from_ldap($user, $ldap_server) {
   if (!isset($user->ldap_groups)) {
     module_load_include('admin.inc', 'osha_authentication');
     $user->ldap_groups = osha_authentication_ldap_fetch_user_groups($ldap_server, $user->name);
   }
   $authorizations = array();
+  $languages = array();
+  $language_list = language_list();
   foreach($user->ldap_groups as $dn) {
-    list($role_name, $section_id) = osha_authentication_get_role_and_section_from_dn($dn);
+    list($role_name, $section_id, $language) = osha_authentication_get_role_and_section_from_dn($dn);
     if (!empty($section_id)) {
       if ($section_id == 'section') {
         $section = $section_id;
@@ -110,6 +122,22 @@ function osha_authentication_build_user_authorization($user, $ldap_server) {
     else if (!array_key_exists($role_name, $authorizations)) {
       $authorizations[$role_name] = array();
     }
+    if (!empty($language)) {
+      foreach($language_list as $key => $ob) {
+        if (strcasecmp($language, $ob->name) == 0) {
+          $languages[] = $key;
+        }
+      }
+    }
   }
-  return $authorizations;
+  return array($authorizations, $languages);
+}
+
+function osha_authentication_build_user_language_skills($user, $ldap_server) {
+  if (!isset($user->ldap_groups)) {
+    module_load_include('admin.inc', 'osha_authentication');
+    $user->ldap_groups = osha_authentication_ldap_fetch_user_groups($ldap_server, $user->name);
+
+  }
+
 }

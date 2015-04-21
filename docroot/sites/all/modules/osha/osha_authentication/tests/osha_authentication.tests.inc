@@ -12,6 +12,7 @@ class OSHALDAPTests {
   private static $SID = 'edw';
   private static $USER_DN = 'uid=%s,ou=Contractors,ou=people,dc=osha,dc=europa,dc=eu';
   private static $GROUP_DN = 'cn=%s,ou=MainSite,ou=Sites,dc=osha,dc=europa,dc=eu';
+  private static $GROUP_DN_LANGUAGE = 'cn=%s,ou=Languages,ou=MainSite,ou=Sites,dc=osha,dc=europa,dc=eu';
   /** @var LDAPServer $ldap_server */
   private $ldap_server = NULL;
 
@@ -42,7 +43,7 @@ class OSHALDAPTests {
     }
   }
 
-  function createLDAPUser($uid, $groups = array()) {
+  function createLDAPUser($uid, $groups = array(), $language_groups = array()) {
     $ldap_server = $this->ldap_server;
     $result = $ldap_server->search('ou=people,dc=osha,dc=europa,dc=eu', 'uid=' . $uid);
     $udn = sprintf(self::$USER_DN, $uid);
@@ -66,6 +67,7 @@ class OSHALDAPTests {
       }
     }
     $this->ldapAddUserToGroups($uid, $groups);
+    $this->ldapAddUserToLanguageGroups($uid, $language_groups);
   }
 
   function ldapAddUserToGroups($uid, $groups = array()) {
@@ -77,6 +79,19 @@ class OSHALDAPTests {
       );
       if (!$ldap_server->modifyLdapEntry($gdn, $members)) {
         throw new Exception('Cannot assign user to LDAP group, user:' . $uid, ', group:' . $gcn);
+      }
+    }
+  }
+
+  function ldapAddUserToLanguageGroups($uid, $groups = array()) {
+    $ldap_server = $this->ldap_server;
+    foreach($groups as $gcn) {
+      $gdn = sprintf(self::$GROUP_DN_LANGUAGE, $gcn);
+      $members = array(
+        'memberUid' => array($uid)
+      );
+      if (!$ldap_server->modifyLdapEntry($gdn, $members)) {
+        throw new Exception('Cannot assign user to LDAP language group, user:' . $uid, ', group:' . $gcn);
       }
     }
   }
@@ -290,6 +305,24 @@ class OSHALDAPTests {
     }
   }
 
+  function test_LDAP_CV_US_02($username = 'TEST') {
+    global $user;
+    $this->createLDAPUser($username, array(), array('ALBANIAN_CV', 'ROMANIAN_CV'));
+    $this->login($username);
+    // User has gained Content Validator role in Drupal
+    if (count($user->roles) != 2 || !in_array('Content Validator', $user->roles) || !in_array('authenticated user', $user->roles)) {
+      throw new Exception('User has wrong roles:' . print_r(array_values($user->roles), TRUE));
+    }
+    $albanians = osha_tmgmt_get_content_validators_by_skill('sq');
+    if ($user->uid != current($albanians)->uid) {
+      throw new Exception('Translation skills are wrong:' . $user->id);
+    }
+    $romanians = osha_tmgmt_get_content_validators_by_skill('ro');
+    // User has gained Content Validator role in Drupal
+    if ($user->uid != current($romanians)->uid) {
+      throw new Exception('Translation skills are wrong:' . $user->id);
+    }
+  }
 
   function test_password_change() {
     //@todo:
