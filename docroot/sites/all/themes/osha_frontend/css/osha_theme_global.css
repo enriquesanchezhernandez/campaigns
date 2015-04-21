@@ -369,7 +369,7 @@ body {
 	padding-bottom: .5em;
 }
 .more-link a {
-	color: #FFF;
+	color: #FFF!important;
 	float: none;
 	padding-right: 2.1em;
 	background: url("../images/flecha.png") no-repeat scroll 80% 29% rgba(0, 0, 0, 0)!important;    
@@ -630,6 +630,7 @@ h1, .field-name-title-field h1  {
 }
 .ui-accordion .ui-accordion-header .ui-accordion-header-icon {
 	left: 0;
+	padding-right: 0.5em;
 }
 /* Same space within contents */
 article.node-article .field-name-body  {
@@ -912,9 +913,7 @@ article.node-events.view-mode-full {
 .view-press-releases ul.links.inline a {
 	padding-right: 0em;
 }
-.view-press-releases .more-link {
-	background-color: #d2dced;
-}
+
 .view-press-contacts {
 	padding: 0em 0em 0em 1em;
 }
@@ -1180,6 +1179,7 @@ body.page-search-publications aside.sidebars_first {
 	float: none;	
 	padding: 0em;
 	width: auto;
+	margin-top: 2em!important
 }
 #block-views-infographic-block-1 .view-infographic .views-row .views-field-title {
 	padding-top: 0em;
@@ -1490,6 +1490,13 @@ body.page-search-publications aside.sidebars_first {
 	margin: 1em 1em 1em 1em;
 }
 
+.sidebars_second .region-sidebar-second {
+	clear: both;
+	float: none;
+	width: auto;
+	margin: 1em 1em 1em 1em;
+}
+
 .view.view-search.view-id-search.view .views-row {
 	padding-top: 0.5em;
 }
@@ -1685,6 +1692,22 @@ a {
 	float:none;
 }
 
+.a2a_img_text{
+	display: block;
+	float: left;
+	padding-top: 0.8em;
+	padding-left: 1em;
+}	
+
+#sliding-popup.sliding-popup-top{
+	height:136px!important;	
+}
+
+
+.field.field-name-body.field-type-text-with-summary.field-label-hidden a img { /*Ico Home*/
+	  width: auto!important;
+}
 
 
 }
+

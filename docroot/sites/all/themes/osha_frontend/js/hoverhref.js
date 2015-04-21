@@ -230,3 +230,12 @@ function hideSearcher() {
 	jQuery(".mean-container #languagesAndSearch").css("display","none");
 }
 
+
+/* Add image to External links - _target=blank */
+
+jQuery(document).ready(function() {
+	jQuery('#content a[target="_blank"]').append('<span class="osha_target_external_link">&nbsp;</span>');
+});
+
+
+

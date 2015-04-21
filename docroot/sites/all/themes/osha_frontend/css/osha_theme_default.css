@@ -244,13 +244,13 @@ header{
 }
 
 #block-menu-block-1 .menu li span {
-text-decoration: none;
-color: #003399;
+	text-decoration: none;
+	color: #003399;
 }
 
 #block-menu-block-1 .menu li a {
-text-decoration: none;
-color: #003399;
+	text-decoration: none;
+	color: #003399;
 }
 
 #block-menu-block-1 .menu li .menu li  a{
@@ -308,14 +308,14 @@ color: #003399;
 	font-size: 0.875em;
 	text-align: center;
 	border-left: 1px solid #FFF;
-	padding: .8em 0;
-	width: 13.6%;
+ 	padding: 0.8em 0.2em;
+	width: 13%;
 }
 #block-menu-block-1 .menu li {	
 	/*align-self: flex-end;*/
 }
 
-#block-menu-block-1 .menu li:hover  ul {
+#block-menu-block-1 .menu li:hover ul {
 	background-color: #ffffff;
     border-bottom: 5px solid #002f9d;
     border-top: 5px solid #a6b8db;
@@ -326,12 +326,13 @@ color: #003399;
     width: 20.6em;
 	z-index: 9999999999;
 	padding-bottom:1em;
+	margin-left: -10px;
 }
 #block-menu-block-1 .menu li:hover ul {
 	/*position: fixed;*/
 }
 
-#block-menu-block-1 .menu li .menu  li .menu {
+#block-menu-block-1 .menu li .menu li .menu {
 	border-top:  0px solid #A6B8DB;
 	border-bottom: 0px solid #002f9d;
 	background-color:#FFFFFF;
@@ -339,6 +340,7 @@ color: #003399;
 	margin-bottom:-1em;
 	margin-top:0px!important;
 	width:18em;
+	padding-left:10px;
 }
 
 #block-menu-block-1 .menu li ul  {
@@ -352,18 +354,18 @@ color: #003399;
 	width: 20.3em;
 	text-align: left;
 	padding-bottom:0px;
-	padding-left:40px;
+	padding-left:15px;
 }
 
 
 #block-menu-block-1 li:nth-child(8) ul{
-	margin-left: -165px;
+	margin-left: -165px!important;
 	width: 21em!important;
 }
 
 
 #block-menu-block-1 li:nth-child(8) ul li ul{
-	margin-left:0px;
+	margin-left:0px!important;
 	width: 18.4em!important;
 }
 
@@ -449,7 +451,7 @@ a{
 {
  color : #003399;
  float:right;
- width:40%;
+ width:43%;
  text-align:right;
  margin-right:5.5em;
  font-size: 0.813em;
@@ -599,6 +601,7 @@ footer {
 	overflow:auto;
 	padding: 0 0 4px;
 	font-weight:bold;
+	margin-top: 1em;
 }
 
 #footer-first-line{
@@ -1313,7 +1316,7 @@ span.date-display-single{
 
 .ui-accordion .ui-accordion-header{
 	width:92%;
-	padding-right:1em;
+	padding-right:1.5em;
 	padding-left:0.5em;
 	padding-top:0.2em;
 	padding-bottom:0.2em;
@@ -1408,6 +1411,7 @@ span.date-display-single{
 	margin:0;
 	overflow:hidden!important;
 	line-height: 1.7em;
+	width:98%;
 }
 
 .ui-accordion .ui-accordion-content p{
@@ -2469,7 +2473,7 @@ font-weight: normal;
     position: absolute;
     width: auto;
 	font-family: "Open Sans Condensed",sans-serif;
-	max-width:56%;
+	max-width:697px;
 	font-weight:bold;
 }
 
@@ -3035,6 +3039,22 @@ font-weight: normal;
 	font-weight:bold;
 }
 
+.a2a_menu a:link{
+	color:#003399!important;
+}
+
+.a2a_menu a:visited{
+	color:#003399!important;
+}
+
+.a2a_menu a:hover{
+	color:#003399!important;
+}
+
+.a2a_menu a:active{
+	color:#003399!important;
+}
+
 .a2a_img.a2a_i_a2a.a2a_img_text{
 	display:none!important; /*Hide the + icon*/
 }
@@ -3527,6 +3547,10 @@ font-weight: normal;
 /*This shows captcha for alert services*/
 #block-osha-alert-service-osha-alert-service-subscribe .captcha {
     display: block !important;
+}
+
+#block-osha-alert-service-osha-alert-service-subscribe #osha-alert-service-subscribe-form .form-type-checkbox #edit-newsletter{
+    width:auto!important;
 }
 
 .recaptcha_only_if_image{
@@ -4414,6 +4438,12 @@ article.node-press-release .field-name-title-field {
 	font-weight:bold;
 }
 
+article.node-press-release .field-name-field-image {
+	  float: left;
+	  padding-right: 1em;
+	  padding-top: 1.5em;
+}
+
 article.node-press-release .press-release-date {
 	font-weight:bold;
 	font-size:0.8em;
@@ -5220,6 +5250,21 @@ a.tabs-primary__tab-link{
     margin-left: 0em;
     text-decoration: underline;
 	margin-top:4.5em;
+	position:relative;
+}
+
+#block-views-exp-events-index-page .views-exposed-form #edit-reset{
+	background: none repeat scroll 0 0 rgba(0, 0, 0, 0);
+    border: 0 none;
+    clear: both;
+    color: #003399;
+    float: left;
+    font-family: arial;
+    font-size: 0.8em;
+    font-weight: bold;
+    margin-left: 0em;
+    text-decoration: underline;
+	margin-top:0em;
 	position:relative;
 }
 
@@ -6157,8 +6202,8 @@ article.comment p {
     padding-top: 0.5em;
 }
 
-.block-osha-alert-service  .link a{
-	background: url("../images/flecha.png") no-repeat scroll 66% center #b7c6e3;
+.block-osha-alert-service .link a{
+	background: url(/sites/all/themes/osha_frontend/images/flecha.png) no-repeat scroll 96% center #b7c6e3;
 	border: 0 none;
 	color: #003399;
 	float: none;
@@ -6166,15 +6211,15 @@ article.comment p {
 	font-size: 1.2em;
 	font-weight: bold;
 	margin-top: 0.5em;
-	margin-bottom:0.5em;
+	margin-bottom: 0.5em;
 	padding-bottom: 0.2em;
-	padding-right: 0em;
+	padding-right: 2em;
 	padding-top: 0.2em;
-	text-align: left;
-	width: 93%;
+	text-align: right;
+	width: 84%;
 	text-decoration: none;
 	display: block;
-	padding-left: 1em;
+	padding-left: 0.2em;
 }
 
 .privacy-policy-oshmail{
@@ -6510,12 +6555,12 @@ div.contextual-links-wrapper{
 }
 
 .news_and_events ul li .introduction-title{
-	padding-top:0em!important
+	padding-top:1em!important
 }
-
+<scr
 .text_news_events{
 	font-size:0.8em;
-	height:8em;
+	height:11em;
 	background: url("../images/separator_home.jpg") repeat-x scroll 0 100% rgba(0, 0, 0, 0);
 }
 
@@ -6582,6 +6627,7 @@ div.contextual-links-wrapper{
 	float:left;
 	width:16.2em;
 	padding-right:2em;
+	padding-top: 1.4em;
 }
 
 #block-views-infographic-block-1 .view-infographic .view-content .views-row img{
@@ -7382,7 +7428,7 @@ a.contextual-links-trigger{
 	display: block;
 	z-index: 9999999!important;
 	background: #575958!important;
-	height: 120px!important;
+	height: 95px!important; /*minimum height*/
 }
 
 #sliding-popup .popup-content #popup-text h2, #sliding-popup .popup-content #popup-text p{
@@ -7390,7 +7436,7 @@ a.contextual-links-trigger{
 }
 
 .view-footer .result_summary{
-	width: 200px;
+	width: 400%;
 	display: block;
 	float: right;
 	text-align: right;
@@ -7431,3 +7477,125 @@ a.contextual-links-trigger{
 	}
 }
 
+
+/*  Inside EU-OSHA » Governance Form*/
+
+.node-webform .webform-client-form .fieldset-legend{
+	padding: 1em;
+}
+
+.node-webform .webform-client-form fieldset{
+	margin-top: 0.5em;
+}
+
+.node-webform .webform-client-form input{
+	width:51.3%;
+
+}
+
+.node-webform .webform-client-form select{
+	width:51.3%!important;
+
+}
+
+.node-webform .webform-client-form .webform-component-date .day.form-select{
+	width:8.3em!important;
+
+}
+
+.node-webform .webform-client-form .webform-component-date .month.form-select{
+	width:8.3em!important;
+
+}
+
+.node-webform .webform-client-form .webform-component-date .year.form-select{
+	width:8.5em!important;
+
+}
+
+.node-webform .webform-client-form input.webform-calendar{
+	width:auto!important;
+
+}
+
+.node-webform .webform-client-form .form-type-checkbox input{
+	width:auto!important;
+}
+
+.node-webform .webform-client-form  .webform-next.button-primary.form-submit ,
+.node-webform .webform-client-form  .webform-submit.button-primary.form-submit {
+	background: url("../images/flecha.png") no-repeat scroll 96% center #e8eef7;
+	border: 0 none;
+	color: #003399;
+	float: none;
+	font-family: "Open Sans Condensed",sans-serif;
+	font-size: 1.2em;
+	font-weight: bold;
+	margin-top: 0.5em;
+	padding-bottom: 0.2em;
+	padding-right: 2em;
+	padding-top: 0.2em;
+	text-align: left;
+	width: auto!important;
+	margin-top: 1em;
+}
+
+.node-webform .webform-client-form  .webform-previous.form-submit{
+	background: none;
+	border: 0 none;
+	color: #003399;
+	float: none;
+	font-family: "Open Sans Condensed",sans-serif;
+	font-size: 1.2em;
+	font-weight: bold;
+	margin-top: 0.5em;
+	padding-bottom: 0.2em;
+	padding-right: 2em;
+	padding-top: 0.2em;
+	text-align: left;
+	width: auto!important;
+	margin-top: 1em;
+	margin-right: 1em;
+}
+
+.osha_target_external_link{
+	background: url("../images/external_link.png") no-repeat scroll 0 0 rgba(0, 0, 0, 0);
+    margin-left: 0.5em;
+    padding-right: 0.6em;
+}
+	
+.accesibility_table td{
+	padding:1em;
+}
+
+.press-release-quote-no-image{
+	float: right;
+	border-top: 5px solid #536e91;
+	border-bottom: 5px solid #536e91;
+	color: #536e91;
+	padding:2em;
+	background-image: url(../images/quotefirst.png), url(../images/quotesecond.png);
+	background-position: left 10px, right 93%;
+	background-repeat: no-repeat;
+	margin-top: 1em;
+    margin-bottom: 1em;
+    clear:both;
+}
+
+.press-release-quote-image {
+	float: right;
+	border-top: 5px solid #536e91;
+	border-bottom: 5px solid #536e91;
+	color: #536e91;
+	padding:2em;
+	background-image: url(../images/quotefirst.png), url(../images/quotesecond.png);
+	background-position: left 10px, right 93%;
+	background-repeat: no-repeat;
+	margin-top: 1em;
+    margin-bottom: 1em;
+    clear:both;
+}
+
+.views-field-search-api-excerpt strong{
+	background:yellow;
+}

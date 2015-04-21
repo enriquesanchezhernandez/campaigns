@@ -37,14 +37,12 @@ function osha_breadcrumbs_path_breadcrumbs_settings_info() {
   $path_breadcrumb->path = 'inside-eu-osha/procurement/calls_archive';
   $path_breadcrumb->data = array(
     'titles' => array(
-      0 => 'Inside EU-OSHA',
-      1 => 'Procurement',
-      2 => '!page_title',
+      0 => '%site:current-page:menu-link:pb-join:name',
+      1 => '!page_title',
     ),
     'paths' => array(
-      0 => 'inside-eu-osha',
-      1 => 'inside-eu-osha/procurement',
-      2 => '<none>',
+      0 => '%site:current-page:menu-link:pb-join:url',
+      1 => '<none>',
     ),
     'home' => 1,
     'translatable' => 1,
@@ -131,12 +129,12 @@ function osha_breadcrumbs_path_breadcrumbs_settings_info() {
   $path_breadcrumb->path = 'search/directives';
   $path_breadcrumb->data = array(
     'titles' => array(
-      0 => 'Legislation',
-      1 => 'EU directives',
+      0 => '%site:current-page:menu-link:pb-join:name',
+      1 => '!page_title',
     ),
     'paths' => array(
-      0 => 'safety-and-health-legislation',
-      1 => 'safety-and-health-legislation/european-directives',
+      0 => '%site:current-page:menu-link:pb-join:url',
+      1 => '<none>',
     ),
     'home' => 1,
     'translatable' => 1,
@@ -153,14 +151,12 @@ function osha_breadcrumbs_path_breadcrumbs_settings_info() {
   $path_breadcrumb->path = 'legislation/directives/%string';
   $path_breadcrumb->data = array(
     'titles' => array(
-      0 => 'Legislation',
-      1 => 'EU directives',
-      2 => '!page_title',
+      0 => '%site:current-page:menu-link:pb-join:name',
+      1 => '!page_title',
     ),
     'paths' => array(
-      0 => 'safety-and-health-legislation',
-      1 => 'safety-and-health-legislation/european-directives',
-      2 => '<none>',
+      0 => '%site:current-page:menu-link:pb-join:url',
+      1 => '<none>',
     ),
     'home' => 1,
     'translatable' => 1,
@@ -229,7 +225,7 @@ function osha_breadcrumbs_path_breadcrumbs_settings_info() {
   $path_breadcrumb->path = 'oshevents';
   $path_breadcrumb->data = array(
     'titles' => array(
-      0 => 'OSH events',
+      0 => '!page_title',
     ),
     'paths' => array(
       0 => '<none>',
@@ -631,7 +627,7 @@ safety-and-health-legislation/european-guidelines',
   $path_breadcrumb->path = 'oshnews';
   $path_breadcrumb->data = array(
     'titles' => array(
-      0 => 'OSH news',
+      0 => '!page_title',
     ),
     'paths' => array(
       0 => '<none>',
@@ -651,11 +647,11 @@ safety-and-health-legislation/european-guidelines',
   $path_breadcrumb->path = 'tools-and-publications/publications';
   $path_breadcrumb->data = array(
     'titles' => array(
-      0 => 'Tools & Publications',
-      1 => 'Publications',
+      0 => '%site:current-page:menu-link:pb-join:name',
+      1 => '!page_title',
     ),
     'paths' => array(
-      0 => 'tools-and-publications',
+      0 => '%site:current-page:menu-link:pb-join:url',
       1 => '<none>',
     ),
     'home' => 1,
@@ -665,26 +661,6 @@ safety-and-health-legislation/european-guidelines',
   );
   $path_breadcrumb->weight = 0;
   $export['osh_publications'] = $path_breadcrumb;
-
-  $path_breadcrumb = new stdClass();
-  $path_breadcrumb->api_version = 1;
-  $path_breadcrumb->machine_name = 'oshmail_newsletter';
-  $path_breadcrumb->name = 'OSHMAIL newsletter';
-  $path_breadcrumb->path = 'oshmail_newsletter';
-  $path_breadcrumb->data = array(
-    'titles' => array(
-      0 => 'OSHMAIL newsletter',
-    ),
-    'paths' => array(
-      0 => '<none>',
-    ),
-    'home' => 1,
-    'translatable' => 1,
-    'arguments' => array(),
-    'access' => array(),
-  );
-  $path_breadcrumb->weight = 0;
-  $export['oshmail_newsletter'] = $path_breadcrumb;
 
   $path_breadcrumb = new stdClass();
   $path_breadcrumb->api_version = 1;
@@ -717,11 +693,11 @@ safety-and-health-legislation/european-guidelines',
   $path_breadcrumb->path = 'inside-eu-osha/press-room';
   $path_breadcrumb->data = array(
     'titles' => array(
-      0 => 'Inside EU-OSHA',
+      0 => '%site:current-page:menu-link:pb-join:name',
       1 => '!page_title',
     ),
     'paths' => array(
-      0 => 'inside-eu-osha',
+      0 => '%site:current-page:menu-link:pb-join:url',
       1 => '<none>',
     ),
     'home' => 1,
@@ -825,14 +801,12 @@ safety-and-health-legislation/european-guidelines',
   $path_breadcrumb->path = 'node/%node';
   $path_breadcrumb->data = array(
     'titles' => array(
-      0 => 'Tools & Publications',
-      1 => 'Publications',
-      2 => '!page_title',
+      0 => '%site:current-page:menu-link:pb-join:name',
+      1 => '!page_title',
     ),
     'paths' => array(
-      0 => 'tools-and-publications',
-      1 => 'tools-and-publications/publications',
-      2 => '<none>',
+      0 => '%site:current-page:menu-link:pb-join:url',
+      1 => '<none>',
     ),
     'home' => 1,
     'translatable' => 1,
