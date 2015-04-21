@@ -191,6 +191,7 @@ class OSHALDAPTests {
     global $user;
     $this->createLDAPUser($username, array('APPROVER'));
     $this->login($username);
+
     // User has gained Approver role in Drupal
     if (!in_array('Approver', $user->roles)) {
       throw new Exception('User is missing Approver role');
@@ -209,13 +210,17 @@ class OSHALDAPTests {
     drupal_static_reset('entity_collection_load');
     entity_get_controller('entity_collection')->resetCache();
 
-    // User is revoked Approver is removed from the approvers entity_collection
+    // User revoked Approver is removed from the approvers entity_collection
     $this->login($username);
+    if (in_array('Approver', $user->roles)) {
+      throw new Exception('User has Approver role after being revoked from LDAP');
+    }
+
     $count = db_select('entity_collection_storage', NULL)
       ->condition('name', 'approvers')->condition('eid', $user->uid)->countQuery()
       ->execute()->fetchField();
     if ($count != 0) {
-      throw new Exception('User is Approver after being revoked from LDAP');
+      throw new Exception('User was left in the list of approvers');
     }
     $this->logout();
   }
@@ -242,8 +247,11 @@ class OSHALDAPTests {
     module_load_include('admin.inc', 'workbench_access');
     workbench_access_user_load_data($user);
     $sections = $user->workbench_access;
-    //@todo fix when switching to taxonomy access from menu
-    if (count($sections) != 1 || !array_key_exists(1717, $sections)) {
+    foreach($sections as $tid => &$conf) {
+      $conf = taxonomy_term_load($tid);
+      $conf = $conf->name;
+    }
+    if (count($sections) != 2 || !in_array('Careers', $sections) || !in_array('Contact us', $sections)) {
       throw new Exception('User assigned to wrong sections:' . print_r(array_values($sections), TRUE));
     }
   }
@@ -267,48 +275,8 @@ class OSHALDAPTests {
     }
   }
 
-  function test_osha_authentication_map_section() {
-    $sid = osha_authentication_map_section('BLOG');
-    //@todo fix when switching to taxonomy access from menu
-    if ($sid != 1717) {
-      throw new Exception('Wrong section mapped');
-    }
-  }
-
-  function test_osha_authentication_map_role_and_sections() {
-    $data = array(
-      'cn=AWRACT_EDT,ou=MainSite,ou=Sites,dc=osha,dc=europa,dc=eu',
-      'cn=AWRACT_PM,ou=MainSite,ou=Sites,dc=osha,dc=europa,dc=eu',
-      'cn=APPROVER,ou=MainSite,ou=Sites,dc=osha,dc=europa,dc=eu',
-      'cn=RVMN,ou=MainSite,ou=Sites,dc=osha,dc=europa,dc=eu',
-    );
-    list($roles, $sections) = osha_authentication_map_role_and_sections($data);
-    if (count($roles) != 4
-        || !in_array('Editor', $roles)
-        || !in_array('Project Manager', $roles)
-        || !in_array('Approver', $roles)
-        || !in_array('Review Manager', $roles)) {
-      throw new Exception('Wrong roles mapped: ' . print_r($roles, TRUE));
-    }
-    if (count($sections) != 1 && !in_array(1717, $sections)) {
-      throw new Exception('Wrong section mapped:' . print_r($sections, TRUE));
-    }
-  }
-
-  function test_osha_authentication_map_role_and_sections_invalid_dn() {
-    $data = array(
-      'cn=_INVALID,ou=MainSite,ou=Sites,dc=osha,dc=europa,dc=eu',
-      'cn=INVALID_,ou=MainSite,ou=Sites,dc=osha,dc=europa,dc=eu',
-      'cn=PM_INVALID,ou=MainSite,ou=Sites,dc=osha,dc=europa,dc=eu',
-      'BLOG_PM,ou=MainSite,ou=Sites,dc=osha,dc=europa,dc=eu',
-    );
-    list($roles, $sections) = osha_authentication_map_role_and_sections($data);
-    if (count($roles) != 0) {
-      throw new Exception('Failed to filter invalid roles/sections');
-    }
-  }
 
   function test_password_change() {
-
+    //@todo:
   }
 }

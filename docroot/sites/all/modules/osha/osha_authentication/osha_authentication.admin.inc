@@ -113,11 +113,16 @@ function osha_authentication_get_role_and_section_from_dn($group_dn) {
   return array($role, $section_id);
 }
 
-function osha_authentication_map_section($ldap_section) {
-  //@TODO: Implement when the access is mapped to taxonomy instead of menu
-  return 1717;
+function osha_authentication_ldap_fetch_user_groups($ldap_server, $username) {
+  $ret = array();
+  /** @var LDAPServer $ldap_server */
+  $ldap_groups = $ldap_server->search('ou=MainSite,ou=Sites,dc=osha,dc=europa,dc=eu', 'memberUid=' . $username);
+  unset($ldap_groups['count']);
+  foreach($ldap_groups as $group) {
+    $ret[$group['dn']] = $group['dn'];
+  }
+  return $ret;
 }
-
 
 function osha_authentication_retrieve_ldap_sections($ldap_server) {
   $ret = array();
@@ -134,7 +139,7 @@ function osha_authentication_retrieve_ldap_sections($ldap_server) {
         // Extract group cn
         preg_match('/[A-Z\_]*/i', $dn, $cn, 0, 3);
         // Ignore all groups ending in _PM and _RVM (handled by _EDT)
-        if (!preg_match('/\_PM$/', $cn[0]) && !preg_match('/\_RVM$/', $cn[0])) {
+        if (!preg_match('/\_PM$/', $cn[0]) && !preg_match('/\_RVMN$/', $cn[0])) {
           $description = $ldap_group['description'][0];
           $description = preg_replace('/\seditor$/i', '', $description);
           $ret[$section_id] = trim($description);
