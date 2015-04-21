@@ -48,6 +48,17 @@ function osha_workflow_menu() {
     'file' => 'osha_workflow.admin.inc',
   );
 
+  $items['admin/config/workbench/access/review-managers'] = array(
+    'title' => 'Review Managers',
+    'description' => 'Assignment of review managers for each website section.',
+    'page callback' => 'osha_workflow_workbench_review_managers',
+    'page arguments' => array(),
+    'access arguments' => array('assign workbench access'),
+    'type' => MENU_LOCAL_TASK,
+    'weight' => -12,
+    'file' => 'osha_workflow.review_manager.inc',
+  );
+
   $items['admin/workbench/workbench-access'] = array(
     'title' => 'Sections',
     'description' => 'Assignment of project managers for each website section.',
@@ -108,7 +119,7 @@ function osha_workflow_menu() {
  * @codeCoverageIgnore
  */
 function osha_workflow_menu_alter(&$items) {
-  unseT($items['admin/config/workbench/access']['access callback']);
+  unset($items['admin/config/workbench/access']['access callback']);
   $items['admin/config/workbench/access']['access arguments'] = array('view workbench access information');
   // Disable Section Menu from Workbench Dashboard.
   $items['admin/workbench/sections']['access callback'] = FALSE;
@@ -355,6 +366,10 @@ function osha_workflow_theme() {
     'osha_workflow_access_pm_form' => array(
       'render element' => 'form',
       'file' => 'osha_workflow.admin.inc',
+    ),
+    'osha_workflow_access_rm_form' => array(
+      'render element' => 'form',
+      'file' => 'osha_workflow.review_manager.inc',
     ),
   );
 }
