@@ -31,19 +31,6 @@ function osha_seminar_post_features_enable_feature($component) {
   }
 }
 
-function osha_seminar_workbench_access_node_element_alter(&$element, $form_state, $active) {
-  if (isset($form_state['build_info']['form_id']) && $form_state['build_info']['form_id'] == 'seminar_node_form' ) {
-    // CW-865 default value for Section
-    $element['#required'] = FALSE;
-    foreach ($element['#options'] as $key=>$option) {
-      if (preg_match('/^[-\\s]*Seminar reports/', $option)) {
-        $element['#default_value'] = $key;
-        break;
-      }
-    }
-  }
-}
-
 /**
  * Implements hook_field_formatter_info().
  */

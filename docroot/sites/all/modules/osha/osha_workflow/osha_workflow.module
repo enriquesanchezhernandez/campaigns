@@ -359,6 +359,62 @@ function osha_workflow_theme() {
   );
 }
 
+function osha_workflow_get_section_term_by_ldap_id($section) {
+  $query = new EntityFieldQuery();
+  $query->entityCondition('entity_type', 'taxonomy_term')
+    ->entityCondition('bundle', array('section'))
+    ->fieldCondition('field_ldap_section_code', 'value', $section);
+  $result = $query->execute();
+  if (!empty($result['taxonomy_term'])) {
+    $term = array_keys($result['taxonomy_term']);
+    $term = taxonomy_term_load(current($term));
+    return $term;
+  }
+  return NULL;
+}
+
+function osha_workflow_bundle_section_map() {
+  return array(
+    'news' => 'AWRACT',
+    'highlight' => 'AWRACT',
+    'events' => 'AWRACT',
+    'publication' => 'PUBLIC',
+    'seminar' => 'SEMIN',
+    'job_vacancies' => 'CAREER',
+    'press_release' => 'PROOM',
+    'blog' => 'BLOG',
+    'directive' => 'ONETKA',
+//    'calls'
+//    'infographic'
+  );
+  // TODO check mapping on commented content types above.
+}
+
+
+/**
+ * Implements hook_workbench_access_node_element_alter().
+ */
+function osha_workflow_workbench_access_node_element_alter(&$element, $form_state, $active) {
+  // Set default value for section according to mapping.
+  $node = $form_state['node'];
+  if ($term = osha_workflow_get_default_section($node)) {
+    $element['#default_value'] = $term->tid;
+  }
+}
+
+/**
+ * Get the term of the default section for node.
+ */
+function osha_workflow_get_default_section($node) {
+  $bundle_section_map = osha_workflow_bundle_section_map();
+  if (empty($node->workbench_access)
+    && !empty($bundle_section_map[$node->type])
+    && $term = osha_workflow_get_section_term_by_ldap_id($bundle_section_map[$node->type])) {
+    return $term;
+  }
+  return NULL;
+}
+
 /**
  * Implements hook_workbench_moderation_transition().
  *
