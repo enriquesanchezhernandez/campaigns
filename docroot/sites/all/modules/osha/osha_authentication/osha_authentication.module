@@ -100,7 +100,7 @@ function osha_authentication_ldap_authorization_maps_alter($user, $ldap_user, $l
 function osha_authentication_build_user_from_ldap($user, $ldap_server) {
   if (!isset($user->ldap_groups)) {
     module_load_include('admin.inc', 'osha_authentication');
-    $user->ldap_groups = osha_authentication_ldap_fetch_user_groups($ldap_server, $user->name);
+    $user->ldap_groups = osha_authentication_ldap_fetch_user_groups($user->name, $ldap_server);
   }
   $authorizations = array();
   $languages = array();
@@ -136,8 +136,6 @@ function osha_authentication_build_user_from_ldap($user, $ldap_server) {
 function osha_authentication_build_user_language_skills($user, $ldap_server) {
   if (!isset($user->ldap_groups)) {
     module_load_include('admin.inc', 'osha_authentication');
-    $user->ldap_groups = osha_authentication_ldap_fetch_user_groups($ldap_server, $user->name);
-
+    $user->ldap_groups = osha_authentication_ldap_fetch_user_groups($user->name, $ldap_server);
   }
-
 }

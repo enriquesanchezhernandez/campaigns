@@ -106,7 +106,7 @@ function osha_authentication_get_role_and_section_from_dn($group_dn) {
   return array($role, $section_id, $language);
 }
 
-function osha_authentication_ldap_fetch_user_groups($ldap_server, $username) {
+function osha_authentication_ldap_fetch_user_groups($username, $ldap_server) {
   $ret = array();
   /** @var LDAPServer $ldap_server */
   $ldap_groups = $ldap_server->search('ou=MainSite,ou=Sites,dc=osha,dc=europa,dc=eu', 'memberUid=' . $username);
