@@ -324,11 +324,146 @@ class OSHALDAPTests {
     }
   }
 
+  function test_LDAP_CV_US_04($username = 'TEST') {
+    global $user;
+    $this->createLDAPUser($username, array(), array('ALBANIAN_CV', 'ROMANIAN_CV'));
+    $this->login($username);
+    // User has gained Content Validator role in Drupal
+    if (count($user->roles) != 2 || !in_array('Content Validator', $user->roles) || !in_array('authenticated user', $user->roles)) {
+      throw new Exception('User has wrong roles:' . print_r(array_values($user->roles), TRUE));
+    }
+    // User has Albanian and Romanian skill in Drupal
+    $albanians = osha_tmgmt_get_content_validators_by_skill('sq');
+    if ($user->uid != current($albanians)->uid) {
+      throw new Exception('Translation skills are wrong:' . $user->id);
+    }
+    $romanians = osha_tmgmt_get_content_validators_by_skill('ro');
+    if ($user->uid != current($romanians)->uid) {
+      throw new Exception('Translation skills are wrong:' . $user->id);
+    }
+    $this->logout();
+
+    $lang_dn = 'cn=ALBANIAN_CV,ou=Languages,ou=MainSite,ou=Sites,dc=osha,dc=europa,dc=eu';
+    $this->ldap_server->modifyLdapEntry($lang_dn, array('memberUid' => array()));
+    $this->login($username);
+    // User has no longer Albanian language skill
+    $albanians = osha_tmgmt_get_content_validators_by_skill('sq');
+    if ($user->uid == current($albanians)->uid) {
+      throw new Exception('Translation skill was not removed:' . $user->id);
+    }
+  }
+
+
+  function test_LDAP_TRLMN_US_01($username = 'TEST') {
+    global $user;
+    $this->createLDAPUser($username, array('TRLMN'));
+    $this->login($username);
+    // User has gained Translation Manager role in Drupal
+    if (count($user->roles) != 2 || !in_array(OSHA_WORKFLOW_ROLE_TRANSLATION_MANAGER, $user->roles) || !in_array('authenticated user', $user->roles)) {
+      throw new Exception('User has wrong roles:' . print_r(array_values($user->roles), TRUE));
+    }
+  }
+
+  function test_LDAP_TRLMN_US_02($username = 'TEST') {
+    global $user;
+    $this->createLDAPUser($username, array('TRLMN'));
+    $this->login($username);
+    // User has gained Translation Manager role in Drupal
+    if (count($user->roles) != 2 || !in_array(OSHA_WORKFLOW_ROLE_TRANSLATION_MANAGER, $user->roles) || !in_array('authenticated user', $user->roles)) {
+      throw new Exception('User has wrong roles:' . print_r(array_values($user->roles), TRUE));
+    }
+
+    $this->logout();
+    $this->deleteLDAPUser($username);
+    $this->createLDAPUser($username);
+    $this->login($username);
+    // User has gained Editor role in Drupal
+    if (count($user->roles) != 1 || !in_array('authenticated user', $user->roles)) {
+      throw new Exception('User has wrong roles:' . print_r(array_values($user->roles), TRUE));
+    }
+  }
+
+  function test_LDAP_TRLIAS_US_01($username = 'TEST') {
+    global $user;
+    $this->createLDAPUser($username, array('TRLIAS'));
+    $this->login($username);
+    // User has gained Translation Manager role in Drupal
+    if (count($user->roles) != 2 || !in_array(OSHA_WORKFLOW_ROLE_TRANSLATION_LIAISON, $user->roles) || !in_array('authenticated user', $user->roles)) {
+      throw new Exception('User has wrong roles:' . print_r(array_values($user->roles), TRUE));
+    }
+  }
+
+  function test_LDAP_TRLIAS_US_02($username = 'TEST') {
+    global $user;
+    $this->createLDAPUser($username, array('TRLIAS'));
+    $this->login($username);
+    // User has gained Translation Manager role in Drupal
+    if (count($user->roles) != 2 || !in_array(OSHA_WORKFLOW_ROLE_TRANSLATION_LIAISON, $user->roles) || !in_array('authenticated user', $user->roles)) {
+      throw new Exception('User has wrong roles:' . print_r(array_values($user->roles), TRUE));
+    }
+
+    $this->logout();
+    $this->deleteLDAPUser($username);
+    $this->createLDAPUser($username);
+    $this->login($username);
+    // User has gained Editor role in Drupal
+    if (count($user->roles) != 1 || !in_array('authenticated user', $user->roles)) {
+      throw new Exception('User has wrong roles:' . print_r(array_values($user->roles), TRUE));
+    }
+  }
+
+  function LDAP_LAYVAL_US_01($username = 'TEST') {
+    global $user;
+    $this->createLDAPUser($username, array('LAYVAL'));
+    $this->login($username);
+    // User has gained Translation Manager role in Drupal
+    if (count($user->roles) != 2 || !in_array(OSHA_WORKFLOW_ROLE_LAYOUT_VALIDATOR, $user->roles) || !in_array('authenticated user', $user->roles)) {
+      throw new Exception('User has wrong roles:' . print_r(array_values($user->roles), TRUE));
+    }
+  }
+
+  function LDAP_LAYVAL_US_02($username = 'TEST') {
+    global $user;
+    $this->createLDAPUser($username, array('LAYVAL'));
+    $this->login($username);
+    // User has gained Translation Manager role in Drupal
+    if (count($user->roles) != 2 || !in_array(OSHA_WORKFLOW_ROLE_LAYOUT_VALIDATOR, $user->roles) || !in_array('authenticated user', $user->roles)) {
+      throw new Exception('User has wrong roles:' . print_r(array_values($user->roles), TRUE));
+    }
+
+    $this->logout();
+    $this->deleteLDAPUser($username);
+    $this->createLDAPUser($username);
+    $this->login($username);
+    // User has gained Editor role in Drupal
+    if (count($user->roles) != 1 || !in_array('authenticated user', $user->roles)) {
+      throw new Exception('User has wrong roles:' . print_r(array_values($user->roles), TRUE));
+    }
+  }
+
   function test_password_change() {
     throw new Exception('Not implemented');
   }
 
   function test_osha_authentication_sync_ldap_sections() {
-    throw new Exception('Not implemented');
+    $ldap_section['dn'] = 'cn=TEST_EDT,ou=MainSite,ou=Sites,dc=osha,dc=europa,dc=eu';
+    $ldap_section['cn'] = 'TEST_EDT';
+    $ldap_section['objectClass'] = array('posixGroup', 'top');
+    $ldap_section['gidNumber'] = array(9999);
+    $ldap_section['description'] = array('Test sync ldap sections');
+    $result = $this->ldap_server->search($ldap_section['dn'], 'cn=TEST_EDT');
+    $section = osha_workflow_get_section_term_by_ldap_id('TEST');
+    if (!empty($section)) {
+      taxonomy_term_delete($section->tid);
+    }
+    if ($result['count']) {
+      $this->ldap_server->delete($ldap_section['dn']);
+    }
+    $this->ldap_server->createLdapEntry($ldap_section);
+    osha_authentication_sync_ldap_sections($this->ldap_server);
+    $section = osha_workflow_get_section_term_by_ldap_id('TEST');
+    if (empty($section)) {
+      throw new Exception('Section was not imported.');
+    }
   }
 }
