@@ -58,12 +58,13 @@ function osha_authentication_get_role_and_section_from_dn($group_dn) {
   $section_id = NULL;
   $language = NULL;
   $mappings = array(
+    // Non-section roles (@todo: read from /admin/config/people/ldap/authorization/edit/drupal_role)
     'ADMIN' => 'administrator',
     'APPROVER' => 'Approver',
     'EVENTCOOR' => 'Events Coordinator',
     'EVENTEDT' => 'Events Editor',
     'LAYVAL' => 'Layout Validator',
-    'READ' => 'authenticated',
+    'READ' => 'authenticated user',
     'TRLMN' => 'Translation Manager',
     'TRLIAS' => 'Translation Liaison',
     // Per language
@@ -77,16 +78,18 @@ function osha_authentication_get_role_and_section_from_dn($group_dn) {
   // * cn=SECTION_ROLE,ou=MainSite,ou=Sites,dc=osha,dc=europa,dc=eu
   // * cn=ROLE,ou=MainSite,ou=Sites,dc=osha,dc=europa,dc=eu
   if (preg_match('/[A-Z\_]*/i', $group_dn, $ldap_group_cn, 0, 3) && count($ldap_group_cn) == 1) {
-    list($section_id, $role) = explode('_', $ldap_group_cn[0]);
-    if (empty($role)) {
-      $role = $section_id;
-      $section_id = NULL;
+    $section_id = NULL;
+    $role = NULL;
+    if (strpos($ldap_group_cn[0], '_') > 0) {
+      list($section_id, $role) = explode('_', $ldap_group_cn[0]);
+    } else {
+      $role = $ldap_group_cn[0];
     }
-    else if($role == 'CV') {
+    if($role == 'CV') {
       $language = $section_id;
       $section_id = NULL;
     }
-    else if($section_id == 'OSHA') {
+    if($section_id == 'OSHA') {
       // Hard-coded root of workbench_access tree
       $section_id = 'section';
     }
@@ -169,14 +172,10 @@ function osha_authentication_ldap_get_site_users($ldap_server) {
     if ($ldap_account = $ldap_server->search('ou=people,dc=osha,dc=europa,dc=eu', 'uid=' . $uid, array('dn', 'mail'))) {
       if (!empty($ldap_account[0]['mail'][0])) {
         $dn = $ldap_account[0]['dn'];
-        $parts = explode(',', $dn);
-        // uid=CRomanescu,ou=Contractors,ou=people,dc=osha,dc=europa,dc=eu
-        // uid=$uid      ,$homeDirectory,ou=people,dc=osha,dc=europa,dc=eu
         $user = (object) array(
           'dn' => $dn,
           'name' => $uid,
           'mail' => $ldap_account[0]['mail'][0],
-          'homeDirectory' => $parts[1],
         );
         $ret[$uid] = $user;
       }
@@ -253,7 +252,6 @@ function osha_authentication_ldap_sync($ldap_server) {
       // Set a random password
       $ldap_account->password = user_password(32);
       $ldap_account->status = 1;
-      $ldap_account->field_ldap_homedirectory[LANGUAGE_NONE][0]['value'] = $ldap_account->homeDirectory;
       if ($account = user_save($ldap_account)) {
         watchdog('osha_authentication', 'Created new account <em>!uid</em> from LDAP for dn: !dn', array(
           '!dn' => $ldap_account->dn,
@@ -268,9 +266,9 @@ function osha_authentication_ldap_sync($ldap_server) {
       }
     }
     if ($account) {
-      osha_authentication_build_user_from_ldap($account, $ldap_server);
       $edit = array();
-      osha_authentication_user_login($edit, $account);
+      // Simulate login to update user data
+      user_module_invoke('login', $edit, $account);
     }
   }
 }
