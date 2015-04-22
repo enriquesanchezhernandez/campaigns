@@ -333,6 +333,13 @@ function osha_search_views_default_views() {
   /* Display: Site search */
   $handler = $view->new_display('page', 'Site search', 'site');
   $handler->display->display_options['exposed_block'] = TRUE;
+  $handler->display->display_options['defaults']['header'] = FALSE;
+  /* Header: Global: Text area */
+  $handler->display->display_options['header']['area']['id'] = 'area';
+  $handler->display->display_options['header']['area']['table'] = 'views';
+  $handler->display->display_options['header']['area']['field'] = 'area';
+  $handler->display->display_options['header']['area']['content'] = 'More results are available in OSHWiki';
+  $handler->display->display_options['header']['area']['format'] = 'full_html';
   $handler->display->display_options['defaults']['fields'] = FALSE;
   /* Field: Indexed Multilingual Node: Title */
   $handler->display->display_options['fields']['title_field']['id'] = 'title_field';
@@ -702,6 +709,7 @@ function osha_search_views_default_views() {
     t('No results'),
     t('Relevance'),
     t('Site search'),
+    t('More results are available in OSHWiki'),
     t('Publication date'),
     t('Language'),
     t('OSHwiki search'),
