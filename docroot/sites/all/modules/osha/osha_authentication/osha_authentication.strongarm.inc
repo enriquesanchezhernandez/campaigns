@@ -66,7 +66,7 @@ function osha_authentication_strongarm() {
   $strongarm->api_version = 1;
   $strongarm->name = 'ldap_user_conf';
   $strongarm->value = array(
-    'drupalAcctProvisionServer' => 'ldap_last_authserv',
+    'drupalAcctProvisionServer' => 'osha',
     'ldapEntryProvisionServer' => 'osha',
     'drupalAcctProvisionTriggers' => array(
       2 => '2',
@@ -74,7 +74,7 @@ function osha_authentication_strongarm() {
     ),
     'ldapEntryProvisionTriggers' => array(
       6 => '6',
-      7 => '7',
+      7 => 0,
       8 => 0,
       3 => 0,
     ),
@@ -84,22 +84,6 @@ function osha_authentication_strongarm() {
     'manualAccountConflict' => '1',
     'acctCreation' => 4,
     'ldapUserSynchMappings' => array(
-      1 => array(
-        '[field.field_ldap_homedirectory]' => array(
-          'ldap_attr' => '[homeDirectory]',
-          'user_attr' => '[field.field_ldap_homedirectory]',
-          'convert' => 0,
-          'direction' => '1',
-          'user_tokens' => NULL,
-          'config_module' => 'ldap_user',
-          'prov_module' => 'ldap_user',
-          'enabled' => 1,
-          'prov_events' => array(
-            0 => 2,
-            1 => 1,
-          ),
-        ),
-      ),
       2 => array(
         '[mail]' => array(
           'ldap_attr' => '[mail]',
@@ -117,21 +101,7 @@ function osha_authentication_strongarm() {
         ),
         '[userPassword]' => array(
           'ldap_attr' => '[userPassword]',
-          'user_attr' => '[password.user-random]',
-          'convert' => 0,
-          'direction' => '2',
-          'user_tokens' => '',
-          'config_module' => 'ldap_user',
-          'prov_module' => 'ldap_user',
-          'enabled' => 1,
-          'prov_events' => array(
-            0 => 4,
-            1 => 3,
-          ),
-        ),
-        '[uid]' => array(
-          'ldap_attr' => '[uid]',
-          'user_attr' => '[property.name]',
+          'user_attr' => '[password.user-only]',
           'convert' => 0,
           'direction' => '2',
           'user_tokens' => '',
@@ -145,10 +115,10 @@ function osha_authentication_strongarm() {
         ),
         '[dn]' => array(
           'ldap_attr' => '[dn]',
-          'user_attr' => 'user_tokens',
+          'user_attr' => '[field.ldap_user_current_dn]',
           'convert' => 0,
           'direction' => '2',
-          'user_tokens' => 'uid=[property.name],[field.field_ldap_homedirectory],ou=people,dc=osha,dc=europa,dc=eu',
+          'user_tokens' => '',
           'config_module' => 'ldap_user',
           'prov_module' => 'ldap_user',
           'enabled' => 1,
@@ -156,16 +126,6 @@ function osha_authentication_strongarm() {
             0 => 4,
             1 => 3,
           ),
-        ),
-        '[homeDirectory]' => array(
-          'ldap_attr' => '[homeDirectory]',
-          'user_attr' => 'user_tokens',
-          'convert' => 0,
-          'direction' => '2',
-          'user_tokens' => '[property.name]',
-          'config_module' => 'ldap_user',
-          'prov_module' => 'ldap_user',
-          'enabled' => 1,
         ),
       ),
     ),

@@ -170,14 +170,10 @@ function osha_authentication_ldap_get_site_users($ldap_server) {
     if ($ldap_account = $ldap_server->search('ou=people,dc=osha,dc=europa,dc=eu', 'uid=' . $uid, array('dn', 'mail'))) {
       if (!empty($ldap_account[0]['mail'][0])) {
         $dn = $ldap_account[0]['dn'];
-        $parts = explode(',', $dn);
-        // uid=CRomanescu,ou=Contractors,ou=people,dc=osha,dc=europa,dc=eu
-        // uid=$uid      ,$homeDirectory,ou=people,dc=osha,dc=europa,dc=eu
         $user = (object) array(
           'dn' => $dn,
           'name' => $uid,
           'mail' => $ldap_account[0]['mail'][0],
-          'homeDirectory' => $parts[1],
         );
         $ret[$uid] = $user;
       }
@@ -254,7 +250,6 @@ function osha_authentication_ldap_sync($ldap_server) {
       // Set a random password
       $ldap_account->password = user_password(32);
       $ldap_account->status = 1;
-      $ldap_account->field_ldap_homedirectory[LANGUAGE_NONE][0]['value'] = $ldap_account->homeDirectory;
       if ($account = user_save($ldap_account)) {
         watchdog('osha_authentication', 'Created new account <em>!uid</em> from LDAP for dn: !dn', array(
           '!dn' => $ldap_account->dn,
@@ -269,9 +264,9 @@ function osha_authentication_ldap_sync($ldap_server) {
       }
     }
     if ($account) {
-      osha_authentication_build_user_from_ldap($account, $ldap_server);
       $edit = array();
-      osha_authentication_user_login($edit, $account);
+      // Simulate login to update user data
+      user_module_invoke('login', $edit, $account);
     }
   }
 }
