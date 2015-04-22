@@ -439,8 +439,8 @@ function osha_workflow_bundle_section_map() {
     'press_release' => 'PROOM',
     'blog' => 'BLOG',
     'directive' => 'ONETKA',
-//    'calls'
-//    'infographic'
+    'calls' => 'PROCUR',
+    'infographic' => 'CORPCM',
   );
   // TODO check mapping on commented content types above.
 }
@@ -471,7 +471,7 @@ function osha_workflow_workbench_access_node_element_alter(&$element, $form_stat
   // Set default value for section according to mapping.
   $node = $form_state['node'];
   $section_term = osha_workflow_get_default_section($node);
-  if ($section_term && in_array($section_term->tid, $element['#options'])) {
+  if ($section_term && in_array($section_term->tid, array_keys($element['#options']))) {
     $element['#default_value'] = $section_term->tid;
   }
 }
