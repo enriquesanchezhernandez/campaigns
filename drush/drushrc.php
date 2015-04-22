@@ -423,6 +423,7 @@ $options['init-modules'] = array(
   'field_collection',
   'webform',
   'webform_localization',
+  'fapi_validation',
 
   'osha_taxonomies',
   'osha',
