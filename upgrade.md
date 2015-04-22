@@ -30,11 +30,17 @@ and setting the field *Password for non-anonymous search* (under section BINDING
 */15 * * * * /expert/osha/.composer/vendor/bin/drush osha-ldap-sync 2>&1
 ```
 
-4. LDAP checklist
+4. Setup Drupal CRON (currently disabled)
+```
+0 * * * * wget -O - -q -t 1 http://osha-corp-staging.mainstrat.com/cron.php?cron_key=CRON_KEY
+```
+where CRON_KEY is taken from `/admin/config/system/cron` screen. Cron above will run on every hour.
+
+5. LDAP checklist
 
   a. Create the following group in LDAP cn=ADMIN,ou=MainSite,ou=Sites,dc=osha,dc=europa,dc=eu
   a. Create the following group in LDAP cn=READ,ou=MainSite,ou=Sites,dc=osha,dc=europa,dc=eu
 
-5. Drupal role review
+6. Drupal role review
 
   a. A new role has been created 'Events Editor' with no specifications - someone needs to review the permissions
