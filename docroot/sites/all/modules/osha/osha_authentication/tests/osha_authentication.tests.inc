@@ -59,6 +59,7 @@ class OSHALDAPTests {
       $entry['uid'] = $uid;
       $entry['gidNumber'] = 9991;
       $entry['uidNumber'] = 9992;
+      $entry['homeDirectory'] = 'TEST';
       $result = $ldap_server->createLdapEntry($entry, $udn);
       if (!$result) {
         drush_set_error(ldap_errno($ldap_server->connection));
