@@ -21,8 +21,10 @@ $conf['cache_class_cache_page'] = 'VarnishCache';
 ```
 A default tested Varnish VCL configuration file has been provided in (conf/varnish-devel.vcl)[conf/varnish-devel.vcl]
 
-2. Configure the binding password for LDAP password access by visiting /admin/config/people/ldap/servers/edit/osha
-and setting the field *Password for non-anonymous search* (under section BINDING METHOD), to the password provided by EU-OSHA.
+2. Configure the binding passwords for LDAP connection.
+
+a. password for read-only account by visiting /admin/config/people/ldap/servers/edit/osha and set the field *Password for non-anonymous search* (under section BINDING METHOD)
+b. password for writable account by visiting /admin/config/people/ldap/servers/edit/osha-write and set the field *Password for non-anonymous search* (under section BINDING METHOD)
 
 
 3. Set-up a CRON job to automatically synchronize the users and sections, using `crontab -e` as user 'root'.
