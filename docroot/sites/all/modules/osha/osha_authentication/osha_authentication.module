@@ -53,7 +53,7 @@ function osha_authentication_user_login(&$edit, $user) {
           break;
 
         case 'Project Manager':
-          osha_workflow_rebuild_rm_sections($user->uid, $sections, $access_scheme);
+          osha_workflow_rebuild_pm_sections($user->uid, $sections, $access_scheme);
           break;
 
         case 'Review Manager':
