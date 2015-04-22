@@ -273,6 +273,20 @@ function osha_frontend_process_node(&$vars) {
 }
 
 /**
+ * Implements hook_block_view_alter().
+ */
+function osha_frontend_block_view_alter(&$data, $block) {
+  if ($block->module == 'quicktabs' && isset($data['content']['content']['divs'])) {
+    foreach ($data['content']['content']['divs'] as $index => $div) {
+      if (isset($div['content']['#bundle']) && $div['content']['#bundle'] == 'article') {
+        // hide "Show details" link for articles used in quicktabs
+        unset($data['content']['content']['divs'][$index]['content']['links']['node']['#links']['node-readmore']);
+      }
+    }
+  }
+}
+
+/**
  * Implements hook_preprocess_page
  */
 function osha_frontend_preprocess_page(&$variables){
