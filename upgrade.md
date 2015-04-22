@@ -19,5 +19,21 @@ __AFTER__ the update:
 $conf['cache_backends'][] = 'sites/all/modules/contrib/varnish/varnish.cache.inc';
 $conf['cache_class_cache_page'] = 'VarnishCache';
 ```
-
 A default tested Varnish VCL configuration file has been provided in (conf/varnish-devel.vcl)[conf/varnish-devel.vcl]
+
+2. Configure the binding password for LDAP password access by visiting /admin/config/people/ldap/servers/edit/osha
+and setting the field *Password for non-anonymous search* (under section BINDING METHOD), to the password provided by EU-OSHA.
+
+
+3. Set-up a CRON job to automatically synchronize the users and sections, using `crontab -e` as user 'root'.
+```
+*/15 * * * * /expert/osha/.composer/vendor/bin/drush osha-ldap-sync 2>&1
+```
+
+4. LDAP checklist
+
+  a. Create the following group in LDAP cn=ADMIN,ou=MainSite,ou=Sites,dc=osha,dc=europa,dc=eu (Administrators)
+
+5. Drupal role review
+
+  a. A new role has been created 'Events Editor' with no specifications - someone needs to review the permissions
