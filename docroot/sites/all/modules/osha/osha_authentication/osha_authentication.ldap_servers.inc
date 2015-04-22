@@ -13,8 +13,8 @@ function osha_authentication_default_ldap_servers() {
   $ldap_servers_conf = new stdClass();
   $ldap_servers_conf->disabled = FALSE; /* Edit this to true to make a default ldap_servers_conf disabled initially */
   $ldap_servers_conf->api_version = 1;
-  $ldap_servers_conf->sid = 'edw';
-  $ldap_servers_conf->name = 'edw-ldap';
+  $ldap_servers_conf->sid = 'osha';
+  $ldap_servers_conf->name = 'osha-ldap';
   $ldap_servers_conf->status = TRUE;
   $ldap_servers_conf->ldap_type = 'openldap';
   $ldap_servers_conf->address = 'simshab.eaudeweb.ro';
@@ -53,7 +53,7 @@ function osha_authentication_default_ldap_servers() {
   $ldap_servers_conf->search_pagination = FALSE;
   $ldap_servers_conf->search_page_size = 1000;
   $ldap_servers_conf->weight = 0;
-  $export['edw'] = $ldap_servers_conf;
+  $export['osha'] = $ldap_servers_conf;
 
   return $export;
 }

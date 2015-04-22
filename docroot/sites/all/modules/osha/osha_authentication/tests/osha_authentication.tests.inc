@@ -9,7 +9,6 @@
  */
 class OSHALDAPTests {
 
-  private static $SID = 'edw';
   private static $USER_DN = 'uid=%s,ou=Contractors,ou=people,dc=osha,dc=europa,dc=eu';
   private static $GROUP_DN = 'cn=%s,ou=MainSite,ou=Sites,dc=osha,dc=europa,dc=eu';
   private static $GROUP_DN_LANGUAGE = 'cn=%s,ou=Languages,ou=MainSite,ou=Sites,dc=osha,dc=europa,dc=eu';
@@ -17,8 +16,9 @@ class OSHALDAPTests {
   private $ldap_server = NULL;
 
   function all_tests($testName = NULL, $debug = FALSE) {
+    $ldap_servers = ldap_servers_get_servers();
     /** @var LDAPServer $ldap_server */
-    $this->ldap_server = ldap_servers_get_servers(self::$SID, NULL, TRUE);
+    $this->ldap_server = current($ldap_servers);
     foreach (get_class_methods('OSHALDAPTests') as $method) {
       if ((!$testName && strpos($method, 'test_') !== FALSE) || ($testName && $method == $testName)) {
         $username = 'TEST';

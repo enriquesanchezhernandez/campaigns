@@ -13,7 +13,7 @@ function osha_authentication_default_ldap_authorization() {
   $consumer_type = new stdClass();
   $consumer_type->disabled = FALSE; /* Edit this to true to make a default consumer_type disabled initially */
   $consumer_type->api_version = 1;
-  $consumer_type->sid = 'edw';
+  $consumer_type->sid = 'osha';
   $consumer_type->consumer_type = 'drupal_role';
   $consumer_type->consumer_module = 'ldap_authorization_drupal_role';
   $consumer_type->status = TRUE;
