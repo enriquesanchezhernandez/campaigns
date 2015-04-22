@@ -32,17 +32,24 @@ b. password for writable account by visiting /admin/config/people/ldap/servers/e
 */15 * * * * /expert/osha/.composer/vendor/bin/drush osha-ldap-sync 2>&1
 ```
 
-4. Setup Drupal CRON (currently disabled)
+4. Run the cron job one time to do initial account synchronization:
+
+```
+cd /expert/osha/docroot
+drush osha-ldap-sync
+```
+
+5. Setup Drupal CRON (currently disabled)
 ```
 0 * * * * wget -O - -q -t 1 http://osha-corp-staging.mainstrat.com/cron.php?cron_key=CRON_KEY
 ```
 where CRON_KEY is taken from `/admin/config/system/cron` screen. Cron above will run on every hour.
 
-5. LDAP checklist
+6. LDAP checklist
 
   a. Create the following group in LDAP cn=ADMIN,ou=MainSite,ou=Sites,dc=osha,dc=europa,dc=eu
   a. Create the following group in LDAP cn=READ,ou=MainSite,ou=Sites,dc=osha,dc=europa,dc=eu
 
-6. Drupal role review
+7. Drupal role review
 
   a. A new role has been created 'Events Editor' with no specifications - someone needs to review the permissions
