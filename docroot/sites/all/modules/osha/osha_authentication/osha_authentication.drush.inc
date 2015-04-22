@@ -23,6 +23,12 @@ function osha_authentication_drush_command()
       '--dry-run' => 'Only check for new sections, do not create',
     ),
   );
+  $items['osha-ldap-sync'] = array(
+    'description' => 'Synchronize accounts from LDAP to Drupal and assign appropriate language skills, groups etc.',
+    'examples' => array(
+      'drush osha-ldap-sync' => 'Synchronize all existing accounts'
+    ),
+  );
   return $items;
 }
 
@@ -41,4 +47,12 @@ function drush_osha_authentication_osha_ldap_sync_sections() {
   $ldap_servers = ldap_servers_get_servers();
   $ldap_server = current($ldap_servers);
   osha_authentication_sync_ldap_sections($ldap_server, $dry_run);
+}
+
+function drush_osha_authentication_osha_ldap_sync() {
+  require_once dirname(__FILE__) . '/osha_authentication.admin.inc';
+  $ldap_servers = ldap_servers_get_servers();
+  $ldap_server = current($ldap_servers);
+  $user = user_load_by_name('CRomanescu');
+  osha_authentication_build_user_from_ldap($ldap_server, $user);
 }

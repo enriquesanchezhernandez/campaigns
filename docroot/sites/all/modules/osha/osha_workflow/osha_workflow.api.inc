@@ -46,6 +46,36 @@ function osha_workflow_get_default_project_manager($section) {
   return FALSE;
 }
 
+function osha_workflow_rebuild_pm_sections($uid, $sections, $workbench_access_scheme) {
+  db_delete('osha_workflow_access_pm')
+    ->condition('access_scheme', $workbench_access_scheme)
+    ->condition('uid', $uid)
+    ->execute();
+  foreach($sections as $sid) {
+    $record = array(
+      'uid' => $uid,
+      'access_id' => $sid,
+      'access_scheme' => $workbench_access_scheme
+    );
+    drupal_write_record('osha_workflow_access_pm', $record);
+  }
+}
+
+function osha_workflow_rebuild_rm_sections($uid, $sections, $workbench_access_scheme) {
+  db_delete('osha_workflow_access_rm')
+    ->condition('access_scheme', $workbench_access_scheme)
+    ->condition('uid', $uid)
+    ->execute();
+  foreach($sections as $sid) {
+    $record = array(
+      'uid' => $uid,
+      'access_id' => $sid,
+      'access_scheme' => $workbench_access_scheme
+    );
+    drupal_write_record('osha_workflow_access_rm', $record);
+  }
+}
+
 /**
  * Recursion Function to get the project manager from sections tree.
  *
@@ -96,6 +126,18 @@ function osha_workflow_access_pm_get_pm_uid($access_id, $access_scheme) {
  */
 function osha_workflow_access_get_pm_sections($uid) {
   $sections = db_select('osha_workflow_access_pm', 'owa')
+    ->fields('owa', array('access_id'))
+    ->condition('uid', $uid)
+    ->execute()
+    ->fetchAllAssoc('access_id');
+  return array_keys($sections);
+}
+
+/**
+ * Get sections ids of a rm.
+ */
+function osha_workflow_access_get_rm_sections($uid) {
+  $sections = db_select('osha_workflow_access_rm', 'owa')
     ->fields('owa', array('access_id'))
     ->condition('uid', $uid)
     ->execute()

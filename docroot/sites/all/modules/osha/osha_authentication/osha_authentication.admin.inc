@@ -45,26 +45,6 @@ function osha_authentication_extract_user_roles($proposed_roles) {
   return $ret;
 }
 
-
-function osha_authentication_extract_roles($ldap_groups) {
-
-}
-
-function osha_authentication_map_role_and_sections($ldap_groups) {
-  $roles = array();
-  $sections = array();
-  foreach ($ldap_groups as $group_dn) {
-    list($role_name, $section_id) = osha_authentication_get_role_and_section_from_dn($group_dn);
-    if ($section_id && !in_array($section_id, $sections)) {
-      $sections[] = $section_id;
-    }
-    if (!in_array($role_name, $roles)) {
-      $roles[] = [$role_name];
-    }
-  }
-  return array($roles, $sections);
-}
-
 /**
  * Extract a single role and section from the DN of a group.
  *
@@ -76,6 +56,7 @@ function osha_authentication_map_role_and_sections($ldap_groups) {
 function osha_authentication_get_role_and_section_from_dn($group_dn) {
   $role = NULL;
   $section_id = NULL;
+  $language = NULL;
   $mappings = array(
     'ADMIN' => 'administrator',
     'APPROVER' => 'Approver',
@@ -83,6 +64,7 @@ function osha_authentication_get_role_and_section_from_dn($group_dn) {
     'READ' => 'authenticated',
     'TRLMN' => 'Translation Manager',
     'TRLIAS' => 'Translation Liaison',
+    'CV' => 'Content Validator',
     // Per-section roles
     'EDT' => 'Editor',
     'PM' => 'Project Manager',
@@ -97,6 +79,14 @@ function osha_authentication_get_role_and_section_from_dn($group_dn) {
       $role = $section_id;
       $section_id = NULL;
     }
+    else if($role == 'CV') {
+      $language = $section_id;
+      $section_id = NULL;
+    }
+    else if($section_id == 'OSHA') {
+      // Hard-coded root of workbench_access tree
+      $section_id = 'section';
+    }
     // Map the role
     if (array_key_exists($role, $mappings)) {
       $role = $mappings[$role];
@@ -110,14 +100,19 @@ function osha_authentication_get_role_and_section_from_dn($group_dn) {
       );
     }
   }
-  return array($role, $section_id);
+  return array($role, $section_id, $language);
 }
 
-function osha_authentication_map_section($ldap_section) {
-  //@TODO: Implement when the access is mapped to taxonomy instead of menu
-  return 1717;
+function osha_authentication_ldap_fetch_user_groups($ldap_server, $username) {
+  $ret = array();
+  /** @var LDAPServer $ldap_server */
+  $ldap_groups = $ldap_server->search('ou=MainSite,ou=Sites,dc=osha,dc=europa,dc=eu', 'memberUid=' . $username);
+  unset($ldap_groups['count']);
+  foreach($ldap_groups as $group) {
+    $ret[$group['dn']] = $group['dn'];
+  }
+  return $ret;
 }
-
 
 function osha_authentication_retrieve_ldap_sections($ldap_server) {
   $ret = array();
@@ -134,7 +129,7 @@ function osha_authentication_retrieve_ldap_sections($ldap_server) {
         // Extract group cn
         preg_match('/[A-Z\_]*/i', $dn, $cn, 0, 3);
         // Ignore all groups ending in _PM and _RVM (handled by _EDT)
-        if (!preg_match('/\_PM$/', $cn[0]) && !preg_match('/\_RVM$/', $cn[0])) {
+        if (!preg_match('/\_PM$/', $cn[0]) && !preg_match('/\_RVMN$/', $cn[0])) {
           $description = $ldap_group['description'][0];
           $description = preg_replace('/\seditor$/i', '', $description);
           $ret[$section_id] = trim($description);
@@ -145,6 +140,15 @@ function osha_authentication_retrieve_ldap_sections($ldap_server) {
   return $ret;
 }
 
+/**
+ * Fetch LDAP data and check if there are new sections to import or update
+ * @param stdClass $ldap_server
+ *   Server to query
+ * @param bool $test
+ *   If TRUE do not commit changes to database
+ *
+ * @throws \EntityMetadataWrapperException
+ */
 function osha_authentication_sync_ldap_sections($ldap_server, $test = FALSE) {
   $voc = taxonomy_vocabulary_machine_name_load('section');
   $ldap_sections = osha_authentication_retrieve_ldap_sections($ldap_server);
