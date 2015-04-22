@@ -119,7 +119,7 @@ function osha_authentication_build_user_from_ldap($user, $ldap_server) {
         $authorizations[$role_name][] = $section;
       }
     }
-    else if (!array_key_exists($role_name, $authorizations)) {
+    if (!array_key_exists($role_name, $authorizations)) {
       $authorizations[$role_name] = array();
     }
     if (!empty($language)) {
