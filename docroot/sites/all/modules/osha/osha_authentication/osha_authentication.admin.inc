@@ -144,6 +144,51 @@ function osha_authentication_retrieve_ldap_sections($ldap_server) {
 }
 
 /**
+ * Querying all cn=MainSite groups and extract unique memberUid to build the
+ * list of website users
+ *
+ * @param stdClass $ldap_server
+ *   LDAP data provider
+ *
+ * @return Array of user objects (name, mail) found in the groups keyed by uid
+ */
+function osha_authentication_ldap_get_site_users($ldap_server) {
+  $ret = array();
+  /** @var LDAPServer $ldap_server */
+  $ldap_groups = $ldap_server->search('ou=MainSite,ou=Sites,dc=osha,dc=europa,dc=eu', 'cn=*', array('dn', 'memberUid', 'cn'));
+  unset($ldap_groups['count']);
+  $uids = array();
+  foreach($ldap_groups as $group) {
+    if ($group['memberuid']['count'] > 0) {
+      unset($group['memberuid']['count']);
+      $uids = array_merge($uids, $group['memberuid']);
+    }
+  }
+  $uids = array_unique($uids);
+  foreach($uids as $uid) {
+    if ($ldap_account = $ldap_server->search('ou=people,dc=osha,dc=europa,dc=eu', 'uid=' . $uid, array('dn', 'mail'))) {
+      if (!empty($ldap_account[0]['mail'][0])) {
+        $dn = $ldap_account[0]['dn'];
+        $parts = explode(',', $dn);
+        // uid=CRomanescu,ou=Contractors,ou=people,dc=osha,dc=europa,dc=eu
+        // uid=$uid      ,$homeDirectory,ou=people,dc=osha,dc=europa,dc=eu
+        $user = (object) array(
+          'dn' => $dn,
+          'name' => $uid,
+          'mail' => $ldap_account[0]['mail'][0],
+          'homeDirectory' => $parts[1],
+        );
+        $ret[$uid] = $user;
+      }
+      else {
+        watchdog('osha_authentication', 'Cannot provision user: !dn without email address', array('!dn' => $ldap_account['dn']), WATCHDOG_ERROR);
+      }
+    }
+  }
+  return $ret;
+}
+
+/**
  * Fetch LDAP data and check if there are new sections to import or update
  * @param stdClass $ldap_server
  *   Server to query
@@ -191,6 +236,39 @@ function osha_authentication_sync_ldap_sections($ldap_server, $test = FALSE) {
           array('!old' => $old, '!new' => $title, '!sid' => $sid)
         );
       }
+    }
+  }
+}
+
+/**
+ * Fetch LDAP accounts and membership and synchronize with Drupal accounts.
+ * @param stdClass $ldap_server
+ *   Server to query
+ */
+function osha_authentication_ldap_sync($ldap_server) {
+  osha_authentication_sync_ldap_sections($ldap_server);
+  $accounts = osha_authentication_ldap_get_site_users($ldap_server);
+  foreach($accounts as $username => $ldap_account) {
+    if (!$account = user_load_by_name($username)) {
+      // Set a random password
+      $ldap_account->password = user_password(32);
+      $ldap_account->status = 1;
+      $ldap_account->field_ldap_homedirectory[LANGUAGE_NONE][0]['value'] = $ldap_account->homeDirectory;
+      if ($account = user_save($ldap_account)) {
+        watchdog('osha_authentication', 'Created new account <em>!uid</em> from LDAP for dn: !dn', array(
+          '!dn' => $ldap_account->dn,
+          '!uid' => $username
+        ), WATCHDOG_NOTICE);
+      }
+      else {
+        watchdog('osha_authentication', 'Failed to save new account <em>!uid</em> from LDAP for dn: !dn', array(
+          '!dn' => $ldap_account->dn,
+          '!uid' => $username
+        ), WATCHDOG_ERROR);
+      }
+    }
+    if ($account) {
+      osha_authentication_build_user_from_ldap($account, $ldap_server);
     }
   }
 }
