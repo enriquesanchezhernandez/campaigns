@@ -492,10 +492,9 @@ function osha_workflow_update_7006() {
   $form_state['values']['op'] = t('Save configuration');
   drupal_form_submit('workbench_access_settings_form', $form_state);
 
-  $file = osha_migration_get_data_dir() . '/mapping_sections.csv';
+  $file = drupal_get_path('module', 'osha_workflow') . '/mapping_sections.csv';
   if (!is_readable($file)) {
-    drupal_set_message('Cannot read ' . $file, 'error');
-    return;
+    throw new DrupalUpdateException('Cannot read file ' . $file);
   }
   $mappings = array();
   $handle = fopen($file, 'r');
@@ -539,6 +538,9 @@ function osha_workflow_update_7006() {
     ->execute();
 }
 
+/**
+ * Create osha_workflow_access_rm table.
+ */
 function osha_workflow_update_7007() {
   if (!db_table_exists('osha_workflow_access_rm')) {
     $schema = osha_workflow_schema();
@@ -547,5 +549,4 @@ function osha_workflow_update_7007() {
       $schema['osha_workflow_access_rm']
     );
   }
-
 }

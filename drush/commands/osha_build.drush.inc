@@ -27,6 +27,7 @@ function _drush_osha_build() {
   $modules = drush_get_option('init-modules', array());
   _drush_osha_enable_modules($modules);
 
+  drush_invoke('cc', array('type' => 'all'));
   drush_invoke('updatedb');
   drush_invoke_process('@self', 'features-revert-all', array(), array(
     'force' => TRUE,
