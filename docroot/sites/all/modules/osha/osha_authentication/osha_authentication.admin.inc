@@ -60,10 +60,13 @@ function osha_authentication_get_role_and_section_from_dn($group_dn) {
   $mappings = array(
     'ADMIN' => 'administrator',
     'APPROVER' => 'Approver',
+    'EVENTCOOR' => 'Events Coordinator',
+    'EVENTEDT' => 'Events Editor',
     'LAYVAL' => 'Layout Validator',
     'READ' => 'authenticated',
     'TRLMN' => 'Translation Manager',
     'TRLIAS' => 'Translation Liaison',
+    // Per language
     'CV' => 'Content Validator',
     // Per-section roles
     'EDT' => 'Editor',
