@@ -78,16 +78,18 @@ function osha_authentication_get_role_and_section_from_dn($group_dn) {
   // * cn=SECTION_ROLE,ou=MainSite,ou=Sites,dc=osha,dc=europa,dc=eu
   // * cn=ROLE,ou=MainSite,ou=Sites,dc=osha,dc=europa,dc=eu
   if (preg_match('/[A-Z\_]*/i', $group_dn, $ldap_group_cn, 0, 3) && count($ldap_group_cn) == 1) {
-    list($section_id, $role) = explode('_', $ldap_group_cn[0]);
-    if (empty($role)) {
-      $role = $section_id;
-      $section_id = NULL;
+    $section_id = NULL;
+    $role = NULL;
+    if (strpos($ldap_group_cn[0], '_') > 0) {
+      list($section_id, $role) = explode('_', $ldap_group_cn[0]);
+    } else {
+      $role = $ldap_group_cn[0];
     }
-    else if($role == 'CV') {
+    if($role == 'CV') {
       $language = $section_id;
       $section_id = NULL;
     }
-    else if($section_id == 'OSHA') {
+    if($section_id == 'OSHA') {
       // Hard-coded root of workbench_access tree
       $section_id = 'section';
     }
