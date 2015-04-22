@@ -269,6 +269,8 @@ function osha_authentication_ldap_sync($ldap_server) {
     }
     if ($account) {
       osha_authentication_build_user_from_ldap($account, $ldap_server);
+      $edit = array();
+      osha_authentication_user_login($edit, $account);
     }
   }
 }
