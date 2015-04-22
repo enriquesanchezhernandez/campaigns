@@ -325,6 +325,10 @@ class OSHALDAPTests {
   }
 
   function test_password_change() {
-    //@todo:
+    throw new Exception('Not implemented');
+  }
+
+  function test_osha_authentication_sync_ldap_sections() {
+    throw new Exception('Not implemented');
   }
 }
