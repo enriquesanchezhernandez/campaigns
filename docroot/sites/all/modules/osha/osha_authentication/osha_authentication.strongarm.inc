@@ -67,7 +67,7 @@ function osha_authentication_strongarm() {
   $strongarm->name = 'ldap_user_conf';
   $strongarm->value = array(
     'drupalAcctProvisionServer' => 'osha',
-    'ldapEntryProvisionServer' => 'osha',
+    'ldapEntryProvisionServer' => 'osha-write',
     'drupalAcctProvisionTriggers' => array(
       2 => '2',
       1 => '1',

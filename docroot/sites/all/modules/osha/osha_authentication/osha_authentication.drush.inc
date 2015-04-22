@@ -44,14 +44,14 @@ function drush_osha_authentication_osha_ldap_tests() {
 function drush_osha_authentication_osha_ldap_sync_sections() {
   require_once dirname(__FILE__) . '/osha_authentication.admin.inc';
   $dry_run = drush_get_option('dry-run', FALSE);
-  $ldap_servers = ldap_servers_get_servers();
-  $ldap_server = current($ldap_servers);
+  $ldap_servers = ldap_servers_get_servers('osha');
+  $ldap_server = $ldap_servers['osha'];
   osha_authentication_sync_ldap_sections($ldap_server, $dry_run);
 }
 
 function drush_osha_authentication_osha_ldap_sync() {
   require_once dirname(__FILE__) . '/osha_authentication.admin.inc';
-  $ldap_servers = ldap_servers_get_servers();
-  $ldap_server = current($ldap_servers);
+  $ldap_servers = ldap_servers_get_servers('osha');
+  $ldap_server = $ldap_servers['osha'];
   osha_authentication_ldap_sync($ldap_server);
 }

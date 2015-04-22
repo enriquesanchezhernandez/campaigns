@@ -34,8 +34,8 @@ function osha_authentication_user_login(&$edit, $user) {
     module_load_include('admin.inc', 'osha_authentication');
     module_load_include('api.inc', 'osha_workflow');
 
-    //Try the sid that performed authentication (creation?)
-    $sid = !empty($user->data['ldap_user']['init']['sid']) ? $user->data['ldap_user']['init']['sid'] : NULL;
+    //Try the sid that performed authentication (creation?) or DEFAULT one.
+    $sid = !empty($user->data['ldap_user']['init']['sid']) ? $user->data['ldap_user']['init']['sid'] : 'osha';
     /** @var LDAPServer $ldap_server */
     $ldap_servers = ldap_servers_get_servers($sid);
     $ldap_server = current($ldap_servers);

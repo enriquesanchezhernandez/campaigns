@@ -16,9 +16,9 @@ class OSHALDAPTests {
   private $ldap_server = NULL;
 
   function all_tests($testName = NULL, $debug = FALSE) {
-    $ldap_servers = ldap_servers_get_servers();
+    $ldap_servers = ldap_servers_get_servers('osha-write');
     /** @var LDAPServer $ldap_server */
-    $this->ldap_server = current($ldap_servers);
+    $this->ldap_server = $ldap_servers['osha-write'];
     foreach (get_class_methods('OSHALDAPTests') as $method) {
       if ((!$testName && strpos($method, 'test_') !== FALSE) || ($testName && $method == $testName)) {
         $username = 'TEST';
