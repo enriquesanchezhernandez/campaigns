@@ -6,6 +6,7 @@
 
 include_once 'osha_workflow.features.inc';
 include_once 'osha_workflow.api.inc';
+include_once 'osha_workflow.review_manager.inc';
 
 /* Publishing workflow roles */
 define('OSHA_WORKFLOW_ROLE_EDITOR', 'Editor');
@@ -307,15 +308,54 @@ function osha_workflow_node_access($node, $operation, $user) {
       return NODE_ACCESS_DENY;
     }
 
-    global $user;
     if (OshaWorkflowPermissions::userHasRole(OSHA_WORKFLOW_ROLE_EDITOR, $user) &&
       osha_workflow_get_node_owner($node->nid, $node->uid) != $user->uid
       && $state != OSHA_WORKFLOW_STATE_PUBLISHED) {
       return NODE_ACCESS_DENY;
     }
-  }
 
+    // Review Managers ca edit only content from their sections.
+    if (!osha_workflow_node_in_rm_section($node, $user)) {
+      return NODE_ACCESS_DENY;
+    }
+    // Project managers moderate nodes only from their sections.
+    if (!osha_workflow_node_in_pm_section($node, $user)) {
+      return NODE_ACCESS_DENY;
+    }
+  }
   return NODE_ACCESS_IGNORE;
+}
+
+function osha_workflow_node_in_rm_section($node, $user) {
+  if (OshaWorkflowPermissions::userHasRole(OSHA_WORKFLOW_ROLE_REVIEW_MANAGER, $user)) {
+    if (empty($node->workbench_access)) {
+      return FALSE;
+    }
+    else {
+      $users_sections = osha_workflow_access_get_rm_sections($user->uid);
+      $common_sections = array_intersect($users_sections, $node->workbench_access);
+      if (empty($common_sections)) {
+        return FALSE;
+      }
+    }
+  }
+  return TRUE;
+}
+
+function osha_workflow_node_in_pm_section($node, $user) {
+  if (OshaWorkflowPermissions::userHasRole(OSHA_WORKFLOW_ROLE_PROJECT_MANAGER, $user)) {
+    if (empty($node->workbench_access)) {
+      return FALSE;
+    }
+    else {
+      $users_sections = osha_workflow_access_get_pm_sections($user->uid);
+      $common_sections = array_intersect($users_sections, $node->workbench_access);
+      if (empty($common_sections)) {
+        return FALSE;
+      }
+    }
+  }
+  return TRUE;
 }
 
 function osha_workflow_get_node_owner($nid, $uid = NULL) {
@@ -405,17 +445,37 @@ function osha_workflow_bundle_section_map() {
   // TODO check mapping on commented content types above.
 }
 
-
 /**
  * Implements hook_workbench_access_node_element_alter().
  */
 function osha_workflow_workbench_access_node_element_alter(&$element, $form_state, $active) {
+  // Unset sections that don't belongs to the user (PM, RM, Editor).
+  global $user;
+  if (!OshaWorkflowPermissions::userHasRole(OSHA_WORKFLOW_ROLE_ADMINISTRATOR, $user)
+    && (OshaWorkflowPermissions::userHasRole(OSHA_WORKFLOW_ROLE_EDITOR, $user)
+      || OshaWorkflowPermissions::userHasRole(OSHA_WORKFLOW_ROLE_PROJECT_MANAGER, $user)
+      || OshaWorkflowPermissions::userHasRole(OSHA_WORKFLOW_ROLE_REVIEW_MANAGER, $user))
+  ) {
+    $user_sections = array();
+    $user_sections = array_merge($user_sections, osha_workflow_access_get_pm_sections($user->uid));
+    $user_sections = array_merge($user_sections, osha_workflow_access_get_rm_sections($user->uid));
+    module_load_include('inc', 'workbench_access', 'workbench_access.tokens');
+    $wa_sections = _workbench_access_get_user_section_names($user);
+    $user_sections = array_merge($user_sections, array_keys($wa_sections));
+    foreach ($element['#options'] as $key => $option) {
+      if (!in_array($key, $user_sections)) {
+        unset($element['#options'][$key]);
+      }
+    }
+  }
   // Set default value for section according to mapping.
   $node = $form_state['node'];
-  if ($term = osha_workflow_get_default_section($node)) {
-    $element['#default_value'] = $term->tid;
+  $section_term = osha_workflow_get_default_section($node);
+  if ($section_term && in_array($section_term->tid, $element['#options'])) {
+    $element['#default_value'] = $section_term->tid;
   }
 }
+
 
 /**
  * Get the term of the default section for node.
@@ -538,6 +598,16 @@ function osha_workflow_workbench_moderation_access_alter(&$access, $op, $node) {
   if ($op == 'view revisions' && user_access('view revisions')) {
     $access = 1;
   }
+
+  // Review managers moderate nodes only from their sections.
+  if (!osha_workflow_node_in_rm_section($node, $user)) {
+    return $access = 0;
+  }
+  // Project managers moderate nodes only from their sections.
+  if (!osha_workflow_node_in_pm_section($node, $user)) {
+    return $access = 0;
+  }
+
 }
 
 /**
