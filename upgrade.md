@@ -32,7 +32,8 @@ and setting the field *Password for non-anonymous search* (under section BINDING
 
 4. LDAP checklist
 
-  a. Create the following group in LDAP cn=ADMIN,ou=MainSite,ou=Sites,dc=osha,dc=europa,dc=eu (Administrators)
+  a. Create the following group in LDAP cn=ADMIN,ou=MainSite,ou=Sites,dc=osha,dc=europa,dc=eu
+  a. Create the following group in LDAP cn=READ,ou=MainSite,ou=Sites,dc=osha,dc=europa,dc=eu
 
 5. Drupal role review
 

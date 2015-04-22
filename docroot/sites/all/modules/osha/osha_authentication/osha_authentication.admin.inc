@@ -58,12 +58,13 @@ function osha_authentication_get_role_and_section_from_dn($group_dn) {
   $section_id = NULL;
   $language = NULL;
   $mappings = array(
+    // Non-section roles (@todo: read from /admin/config/people/ldap/authorization/edit/drupal_role)
     'ADMIN' => 'administrator',
     'APPROVER' => 'Approver',
     'EVENTCOOR' => 'Events Coordinator',
     'EVENTEDT' => 'Events Editor',
     'LAYVAL' => 'Layout Validator',
-    'READ' => 'authenticated',
+    'READ' => 'authenticated user',
     'TRLMN' => 'Translation Manager',
     'TRLIAS' => 'Translation Liaison',
     // Per language
