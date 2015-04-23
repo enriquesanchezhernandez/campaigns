@@ -76,33 +76,43 @@ class OSHALDAPTests {
   function ldapSetUserGroups($uid, array $new_groups) {
     $ldap_server = $this->ldap_server;
     // Detach from all groups
-    $groups = $ldap_server->search('ou=MainSite,ou=Sites,dc=osha,dc=europa,dc=eu', 'cn=*');
+    $groups = $ldap_server->search('ou=MainSite,ou=Sites,dc=osha,dc=europa,dc=eu', '(&(objectClass=posixGroup)(memberuid=' . $uid . '))');
     if ($groups['count'] > 0) {
       unset($groups['count']);
-      foreach($groups as $group) {
-        $modified = FALSE;
+      foreach ($groups as $group) {
+        $dn= $group['dn'];
+        var_dump($dn);
         $members = $group['memberuid'];
         unset($members['count']);
-        if (!$members) {
-          $members = array();
+        $members = array_filter($members, function ($v) use ($uid) {
+          return $v != $uid;
+        });
+        if (!ldap_modify($ldap_server->connection, $dn, array('memberuid' => $members))) {
+          throw new Exception('Failed to remove user from LDAP group, user:' . $uid, ', group:' . $group['cn']);
         }
-        if (in_array($uid, $members) && !in_array($group['cn'][0], $new_groups)) {
-          $modified = TRUE;
-          $members = array_filter($members, function($v) use ($uid) { return $v != $uid; });
-          unset($members[$uid]);
-        }
-        if (!in_array($uid, $members) && in_array($group['cn'][0], $new_groups)) {
-          $modified = TRUE;
-          $members[] = $uid;
-        }
-        if ($modified) {
-          if (!$ldap_server->modifyLdapEntry($group['dn'], array('memberuid' => $members))) {
+      }
+    }
+    $groups = $ldap_server->search('ou=MainSite,ou=Sites,dc=osha,dc=europa,dc=eu', '(objectClass=posixGroup)');
+    if ($groups['count'] > 0) {
+      unset($groups['count']);
+      foreach ($groups as $group) {
+        if (in_array($group['cn'][0], $new_groups)) {
+          $members = $group['memberuid'];
+          unset($members['count']);
+          if (!$members) {
+            $members = array($uid);
+          }
+          else {
+            $members[] = $uid;
+          }
+          if (!ldap_modify($ldap_server->connection, $group['dn'], array('memberuid' => $members))) {
             throw new Exception('Failed to remove user from LDAP group, user:' . $uid, ', group:' . $group['cn']);
           }
         }
       }
     }
   }
+
 
   function login($username, $password = 'test') {
     global $user;
