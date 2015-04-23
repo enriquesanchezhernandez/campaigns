@@ -528,14 +528,28 @@ function osha_workflow_update_7006() {
       drupal_set_message('Section was not created' . $term->name, 'error');
     }
   }
+  // Update the nids not covered by the previous loop.
   db_update('workbench_access_node')
     ->fields(array(
         'access_id' => 'section',
         'access_scheme' => 'taxonomy',
       )
     )
-    ->condition('access_id', 'main-menu')
+    ->condition('access_scheme', 'menu')
     ->execute();
+
+  // Add admin, PM, RM to access by role for root section.
+  db_delete('workbench_access_role')
+    ->execute();
+  $roles = array(3, 5, 6);
+  foreach ($roles as $rid) {
+    $role = array(
+      'rid' => $rid,
+      'access_id' => 'section',
+      'access_scheme' => 'taxonomy',
+    );
+    drupal_write_record('workbench_access_role', $role);
+  }
 }
 
 /**
