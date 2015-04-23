@@ -91,21 +91,28 @@ class OSHALDAPTests {
         }
       }
     }
-    $groups = $ldap_server->search('ou=MainSite,ou=Sites,dc=osha,dc=europa,dc=eu', '(objectClass=posixGroup)');
-    if ($groups['count'] > 0) {
-      unset($groups['count']);
-      foreach ($groups as $group) {
-        if (in_array($group['cn'][0], $new_groups)) {
-          $members = $group['memberuid'];
-          unset($members['count']);
-          if (!$members) {
-            $members = array($uid);
-          }
-          else {
-            $members[] = $uid;
-          }
-          if (!ldap_modify($ldap_server->connection, $group['dn'], array('memberuid' => $members))) {
-            throw new Exception('Failed to remove user from LDAP group, user:' . $uid, ', group:' . $group['cn']);
+    if (!empty($new_groups)) {
+      $q = '';
+      foreach($new_groups as $cn) {
+        $q .= sprintf('(cn=%s)', $cn);
+      }
+      $q = '(&(objectClass=posixGroup)(|' . $q . '))';
+      $groups = $ldap_server->search('ou=MainSite,ou=Sites,dc=osha,dc=europa,dc=eu', $q);
+      if ($groups['count'] > 0) {
+        unset($groups['count']);
+        foreach ($groups as $group) {
+          if (in_array($group['cn'][0], $new_groups)) {
+            $members = $group['memberuid'];
+            unset($members['count']);
+            if (!$members) {
+              $members = array($uid);
+            }
+            else {
+              $members[] = $uid;
+            }
+            if (!ldap_modify($ldap_server->connection, $group['dn'], array('memberuid' => $members))) {
+              throw new Exception('Failed to remove user from LDAP group, user:' . $uid, ', group:' . $group['cn']);
+            }
           }
         }
       }
