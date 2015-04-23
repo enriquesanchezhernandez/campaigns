@@ -95,7 +95,7 @@ class OSHALDAPTests {
           return $v != $uid;
         });
         if (!ldap_modify($ldap_server->connection, $dn, array('memberuid' => $members))) {
-          throw new Exception('Failed to remove user from LDAP group, user:' . $uid, ', group:' . $group['cn']);
+          throw new Exception('Failed to remove user from LDAP group, user:' . $uid . ', group:' . $group['cn']);
         }
       }
     }
