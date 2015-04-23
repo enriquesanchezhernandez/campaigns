@@ -147,6 +147,43 @@ function osha_authentication_retrieve_ldap_sections($ldap_server) {
 }
 
 /**
+ * Check Drupal users no longer in LDAP and block them.
+ *
+ * @param $ldap_server
+ */
+function osha_authentication_block_disabled_ldap_accounts($ldap_server) {
+  $ldap_accounts = osha_authentication_ldap_get_site_users($ldap_server);
+  try {
+    $local_accounts = entity_load('user');
+    foreach ($local_accounts as $account) {
+      if ($account->uid > 1 && isset($account->data['ldap_user'])) {
+        // Block LDAP accounts no longer member of any group from ou=MainSite,ou=Sites,dc=osha,dc=europa,dc=eu
+        // Unblock users which are added again
+        $status = array_key_exists($account->name, $ldap_accounts) ? 1 : 0;
+        if ($status != $account->status) {
+          $account->status = $status;
+          user_save($account, array('roles' => array()));
+          if (!$status) {
+            watchdog('osha_authentication', 'Blocking inactive account (no longer in LDAP/part of any group): !user', array('!user' => $account->name), WATCHDOG_WARNING);
+          }
+          else {
+            watchdog('osha_authentication', 'Reactivating acount: !user', array('!user' => $account->name), WATCHDOG_WARNING);
+          }
+        }
+        // Remove blocked users from the list of approvers
+        if ($status == 0) {
+          osha_authentication_user_login_approver($account, FALSE);
+        }
+      }
+    }
+    return;
+  }
+  catch(Exception $e) {
+    //@todo: Handle exception
+  }
+}
+
+/**
  * Querying all cn=MainSite groups and extract unique memberUid to build the
  * list of website users
  *
@@ -245,7 +282,13 @@ function osha_authentication_sync_ldap_sections($ldap_server, $test = FALSE) {
  *   Server to query
  */
 function osha_authentication_ldap_sync($ldap_server) {
+  // Synchronize LDAP sections with Drupal sections
   osha_authentication_sync_ldap_sections($ldap_server);
+
+  // Block disabled accounts
+  osha_authentication_block_disabled_ldap_accounts($ldap_server);
+
+  // Handle LDAP accounts synchronization
   $accounts = osha_authentication_ldap_get_site_users($ldap_server);
   foreach($accounts as $username => $ldap_account) {
     if (!$account = user_load_by_name($username)) {
@@ -265,7 +308,7 @@ function osha_authentication_ldap_sync($ldap_server) {
         ), WATCHDOG_ERROR);
       }
     }
-    if ($account) {
+    if ($account && $account->status == 1) {
       $edit = array();
       // Simulate login to update user data
       user_module_invoke('login', $edit, $account);
