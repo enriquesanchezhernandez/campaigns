@@ -17,7 +17,7 @@ function osha_authentication_default_ldap_servers() {
   $ldap_servers_conf->name = 'osha-ldap';
   $ldap_servers_conf->status = TRUE;
   $ldap_servers_conf->ldap_type = 'openldap';
-  $ldap_servers_conf->address = 'simshab.eaudeweb.ro';
+  $ldap_servers_conf->address = '194.30.59.219';
   $ldap_servers_conf->port = 389;
   $ldap_servers_conf->tls = FALSE;
   $ldap_servers_conf->followrefs = FALSE;
@@ -62,7 +62,7 @@ function osha_authentication_default_ldap_servers() {
   $ldap_servers_conf->name = 'osha-write';
   $ldap_servers_conf->status = TRUE;
   $ldap_servers_conf->ldap_type = 'openldap';
-  $ldap_servers_conf->address = 'simshab.eaudeweb.ro';
+  $ldap_servers_conf->address = '194.30.59.219';
   $ldap_servers_conf->port = 389;
   $ldap_servers_conf->tls = FALSE;
   $ldap_servers_conf->followrefs = FALSE;
