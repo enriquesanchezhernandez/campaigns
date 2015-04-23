@@ -153,8 +153,10 @@ function osha_authentication_retrieve_ldap_sections($ldap_server) {
  *
  * @param $ldap_server
  */
-function osha_authentication_block_disabled_ldap_accounts($ldap_server) {
-  $ldap_accounts = osha_authentication_ldap_get_site_users($ldap_server);
+function osha_authentication_block_disabled_ldap_accounts($ldap_server, $ldap_accounts = NULL) {
+  if (!$ldap_accounts) {
+    $ldap_accounts = osha_authentication_ldap_get_site_users($ldap_server);
+  }
   try {
     $local_accounts = entity_load('user');
     foreach ($local_accounts as $account) {
@@ -225,7 +227,7 @@ function osha_authentication_ldap_get_site_users($ldap_server) {
         $ret[$uid] = $user;
       }
       else {
-        watchdog('osha_authentication', 'Cannot provision user: !uid without email address', array('!uid' => $uid), WATCHDOG_ERROR);
+        watchdog('osha_authentication', 'Ignoring user: !uid without email address from site membership (removed from LDAP?)', array('!uid' => $uid), WATCHDOG_ERROR);
       }
     }
   }
@@ -294,11 +296,12 @@ function osha_authentication_ldap_sync($ldap_server) {
   // Synchronize LDAP sections with Drupal sections
   osha_authentication_sync_ldap_sections($ldap_server);
 
-  // Block disabled accounts
-  osha_authentication_block_disabled_ldap_accounts($ldap_server);
-
   // Handle LDAP accounts synchronization
   $accounts = osha_authentication_ldap_get_site_users($ldap_server);
+
+  // Block disabled accounts
+  osha_authentication_block_disabled_ldap_accounts($ldap_server, $accounts);
+
   foreach($accounts as $username => $ldap_account) {
     if (!$account = user_load_by_name($username)) {
       // Set a random password
