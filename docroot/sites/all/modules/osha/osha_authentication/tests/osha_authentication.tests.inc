@@ -264,7 +264,7 @@ class OSHALDAPTests {
     if (count($user->roles) != 2 || !in_array('Editor', $user->roles) || !in_array('authenticated user', $user->roles)) {
       throw new Exception('User has wrong roles:' . print_r(array_values($user->roles), TRUE));
     }
-    // Check section assignment
+    // Check sections assignment
     module_load_include('admin.inc', 'workbench_access');
     workbench_access_user_load_data($user);
     $sections = $user->workbench_access;
@@ -273,6 +273,24 @@ class OSHALDAPTests {
       $conf = $conf->name;
     }
     if (count($sections) != 2 || !in_array('Careers', $sections) || !in_array('Contact us', $sections)) {
+      throw new Exception('User assigned to wrong sections:' . print_r(array_values($sections), TRUE));
+    }
+    $this->logout();
+
+    $this->ldapSetUserGroups($username, array('STRNET_EDT'));
+    $this->login($username);
+    if (count($user->roles) != 2 || !in_array('Editor', $user->roles) || !in_array('authenticated user', $user->roles)) {
+      throw new Exception('User has wrong roles:' . print_r(array_values($user->roles), TRUE));
+    }
+
+    // Check new sections assignment
+    workbench_access_user_load_data($user);
+    $sections = $user->workbench_access;
+    foreach($sections as $tid => &$conf) {
+      $conf = taxonomy_term_load($tid);
+      $conf = $conf->name;
+    }
+    if (count($sections) != 1 || !in_array('Strategic Networking', $sections)) {
       throw new Exception('User assigned to wrong sections:' . print_r(array_values($sections), TRUE));
     }
   }
