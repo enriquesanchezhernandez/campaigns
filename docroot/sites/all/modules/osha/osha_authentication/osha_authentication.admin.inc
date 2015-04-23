@@ -5,17 +5,19 @@
  *
  * @param $is_approver
  */
-function osha_authentication_user_login_approver($account, $is_approver) {
+function osha_authentication_user_login_approver($user, $is_approver) {
   $approvers_collection = entity_collection_load('approvers');
   /** @var EntityCollectionTreeNode $users */
   $users = $approvers_collection->getTree();
-  if ($is_approver && !array_key_exists('user:' . $account->uid, $users->list)) {
-    $entity_id = entity_id('user', $account);
-    $item = new EntityCollectionTreeNode('user', $entity_id, $account);
+  if ($is_approver && !array_key_exists('user:' . $user->uid, $users->list)) {
+    $entity_id = entity_id('user', $user);
+    watchdog('osha_authentication', 'Adding !user to the approver list', array('!user' => $user->name), WATCHDOG_WARNING);
+    $item = new EntityCollectionTreeNode('user', $entity_id, $user);
     entity_collection_append_item($approvers_collection, $item);
   }
-  if (!$is_approver && array_key_exists('user:' . $account->uid, $users->list)) {
-    entity_collection_content_delete($approvers_collection, 'user', array($account->uid));
+  if (!$is_approver && array_key_exists('user:' . $user->uid, $users->list)) {
+    watchdog('osha_authentication', 'Removing !user from approver list', array('!user' => $user->name), WATCHDOG_WARNING);
+    entity_collection_content_delete($approvers_collection, 'user', array($user->uid));
   }
 }
 
@@ -147,6 +149,51 @@ function osha_authentication_retrieve_ldap_sections($ldap_server) {
 }
 
 /**
+ * Check Drupal users no longer in LDAP and block them.
+ *
+ * @param $ldap_server
+ */
+function osha_authentication_block_disabled_ldap_accounts($ldap_server, $ldap_accounts = NULL) {
+  if (!$ldap_accounts) {
+    $ldap_accounts = osha_authentication_ldap_get_site_users($ldap_server);
+  }
+  try {
+    $local_accounts = entity_load('user');
+    foreach ($local_accounts as $account) {
+      if ($account->uid > 1 && isset($account->data['ldap_user'])) {
+        // Block LDAP accounts no longer member of any group from ou=MainSite,ou=Sites,dc=osha,dc=europa,dc=eu
+        // Unblock users which are added again
+        $status = array_key_exists($account->name, $ldap_accounts) ? 1 : 0;
+        if ($status != $account->status) {
+          $account->status = $status;
+
+          user_save($account, array('roles' => array()));
+          if (!$status) {
+            // Remove user from all sections before rebuilding it
+            $access_scheme = variable_get('workbench_access');
+            workbench_access_rebuild_user($account->uid, array());
+            osha_workflow_rebuild_pm_sections($account->uid, array(), $access_scheme);
+            osha_workflow_rebuild_rm_sections($account->uid, array(), $access_scheme);
+            watchdog('osha_authentication', 'Blocking inactive account (no longer in LDAP/part of any group): !user', array('!user' => $account->name), WATCHDOG_WARNING);
+          }
+          else {
+            watchdog('osha_authentication', 'Reactivating acount: !user', array('!user' => $account->name), WATCHDOG_WARNING);
+          }
+        }
+        // Remove blocked users from the list of approvers
+        if ($status == 0) {
+          osha_authentication_user_login_approver($account, FALSE);
+        }
+      }
+    }
+    return;
+  }
+  catch(Exception $e) {
+    //@todo: Handle exception
+  }
+}
+
+/**
  * Querying all cn=MainSite groups and extract unique memberUid to build the
  * list of website users
  *
@@ -180,7 +227,7 @@ function osha_authentication_ldap_get_site_users($ldap_server) {
         $ret[$uid] = $user;
       }
       else {
-        watchdog('osha_authentication', 'Cannot provision user: !dn without email address', array('!dn' => $ldap_account['dn']), WATCHDOG_ERROR);
+        watchdog('osha_authentication', 'Ignoring user: !uid without email address from site membership (removed from LDAP?)', array('!uid' => $uid), WATCHDOG_ERROR);
       }
     }
   }
@@ -218,7 +265,8 @@ function osha_authentication_sync_ldap_sections($ldap_server, $test = FALSE) {
       watchdog(
         'osha_authentication',
         'LDAP provisioned new section <em>!section</em> (<b>!sid</b>)',
-        array('!section' => $title, '!sid' => $sid)
+        array('!section' => $title, '!sid' => $sid),
+        WATCHDOG_WARNING
       );
     }
     else {
@@ -245,27 +293,34 @@ function osha_authentication_sync_ldap_sections($ldap_server, $test = FALSE) {
  *   Server to query
  */
 function osha_authentication_ldap_sync($ldap_server) {
+  // Synchronize LDAP sections with Drupal sections
   osha_authentication_sync_ldap_sections($ldap_server);
+
+  // Handle LDAP accounts synchronization
   $accounts = osha_authentication_ldap_get_site_users($ldap_server);
+
+  // Block disabled accounts
+  osha_authentication_block_disabled_ldap_accounts($ldap_server, $accounts);
+
   foreach($accounts as $username => $ldap_account) {
     if (!$account = user_load_by_name($username)) {
       // Set a random password
       $ldap_account->password = user_password(32);
       $ldap_account->status = 1;
       if ($account = user_save($ldap_account)) {
-        watchdog('osha_authentication', 'Created new account <em>!uid</em> from LDAP for dn: !dn', array(
+        watchdog('osha_authentication', 'Provisioning new LDAP account <em>!uid</em> in Drupal from dn: !dn', array(
           '!dn' => $ldap_account->dn,
           '!uid' => $username
-        ), WATCHDOG_NOTICE);
+        ), WATCHDOG_WARNING);
       }
       else {
-        watchdog('osha_authentication', 'Failed to save new account <em>!uid</em> from LDAP for dn: !dn', array(
+        watchdog('osha_authentication', 'Failed to save new Drupal account <em>!uid</em> from LDAP dn: !dn', array(
           '!dn' => $ldap_account->dn,
           '!uid' => $username
         ), WATCHDOG_ERROR);
       }
     }
-    if ($account) {
+    if ($account && $account->status == 1) {
       $edit = array();
       // Simulate login to update user data
       user_module_invoke('login', $edit, $account);

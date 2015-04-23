@@ -85,20 +85,6 @@ function osha_authentication_strongarm() {
     'acctCreation' => 4,
     'ldapUserSynchMappings' => array(
       2 => array(
-        '[mail]' => array(
-          'ldap_attr' => '[mail]',
-          'user_attr' => '[property.mail]',
-          'convert' => 0,
-          'direction' => '2',
-          'user_tokens' => '',
-          'config_module' => 'ldap_user',
-          'prov_module' => 'ldap_user',
-          'enabled' => 1,
-          'prov_events' => array(
-            0 => 4,
-            1 => 3,
-          ),
-        ),
         '[userPassword]' => array(
           'ldap_attr' => '[userPassword]',
           'user_attr' => '[password.user-only]',

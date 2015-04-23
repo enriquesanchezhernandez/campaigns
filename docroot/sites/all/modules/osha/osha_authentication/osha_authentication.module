@@ -30,7 +30,8 @@ function osha_authentication_ldap_entry_pre_provision_alter(&$ldap_entries, $lda
  * Implements hook_user_login().
  */
 function osha_authentication_user_login(&$edit, $user) {
-  if ($user->uid > 1) {
+  // Local accounts are ignored.
+  if ($user->uid > 1 && isset($user->data['ldap_user'])) {
     module_load_include('admin.inc', 'osha_authentication');
     module_load_include('api.inc', 'osha_workflow');
 
@@ -69,7 +70,7 @@ function osha_authentication_user_login(&$edit, $user) {
       }
     }
     // LDAP_APPRV_US_01 - Assign Approver to the default list of approvers
-    $is_approver = in_array('Approver', $user->roles);
+    $is_approver = in_array('Approver', $roles);
     osha_authentication_user_login_approver($user, $is_approver);
 
     // Configure translator skills

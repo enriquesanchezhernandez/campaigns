@@ -64,6 +64,14 @@ class OSHALDAPTests {
     $this->ldapSetUserGroups($uid, $groups);
   }
 
+  function ldapDeleteUser($uid) {
+    $this->ldapSetUserGroups($uid, array());
+    $user = $this->getLDAPUser($uid);
+    if (!ldap_delete($this->ldap_server->connection, $user['dn'])) {
+      throw new Exception('Failed to remove user from LDAP:' . $uid);
+    }
+  }
+
   function getLDAPUser($uid) {
     $ret = FALSE;
     $result = $this->ldap_server->search('ou=people,dc=osha,dc=europa,dc=eu', 'uid=' . $uid);
@@ -492,8 +500,60 @@ class OSHALDAPTests {
     }
   }
 
-  function test_password_change() {
+  /**
+   * Test blocking of users which are no longer member of any MainSite group
+   */
+  function test_osha_authentication_block_disabled_ldap_accounts($username = 'TEST') {
+    global $user;
+    $this->ldapCreateUser($username, array('LAYVAL'));
+    osha_authentication_block_disabled_ldap_accounts($this->ldap_server);
+    $this->login($username);
+
+    if ($user->status != 1) {
+      throw new Exception('User is disabled:' . print_r($user, TRUE));
+    }
+    if (count($user->roles) != 2 || !in_array('Layout Validator', $user->roles)) {
+      throw new Exception('User has wrong roles:' . print_r(array_values($user->roles), TRUE));
+    }
+
+    $uid = $user->uid;
+    $this->logout();
+    $this->ldapDeleteUser($username);
+
+    osha_authentication_block_disabled_ldap_accounts($this->ldap_server);
+
+    // User is still in Drupal
+    $user = user_load($uid);
+    if ($user->status != 0) {
+      throw new Exception('Account is not blocked:' . print_r($user, TRUE));
+    }
+  }
+
+  function test_password_change($username = 'TEST') {
+
     throw new Exception('Not implemented');
+
+    global $user;
+    $this->createLDAPUser($username, array('OSHA_RVMN', 'SEMIN_RVMN'));
+    $this->login($username);
+
+    module_load_include('pages.inc', 'user');
+    // Change the password from the profile edit form
+    $form_state = array();
+    $form = drupal_get_form('user_profile_form', $user);
+    var_dump($form);
+
+    return;
+    drupal_form_submit('user_profile_form', $form_state, $user, 'account');
+    $this->logout();
+
+    return;
+    $this->login($username);
+    $ldapu = $this->getLDAPUser($username);
+
+    var_dump($user->mail);
+    var_dump($ldapu['mail']);
+
   }
 
   function test_osha_authentication_sync_ldap_sections() {
