@@ -81,7 +81,6 @@ class OSHALDAPTests {
       unset($groups['count']);
       foreach ($groups as $group) {
         $dn= $group['dn'];
-        var_dump($dn);
         $members = $group['memberuid'];
         unset($members['count']);
         $members = array_filter($members, function ($v) use ($uid) {
@@ -92,21 +91,28 @@ class OSHALDAPTests {
         }
       }
     }
-    $groups = $ldap_server->search('ou=MainSite,ou=Sites,dc=osha,dc=europa,dc=eu', '(objectClass=posixGroup)');
-    if ($groups['count'] > 0) {
-      unset($groups['count']);
-      foreach ($groups as $group) {
-        if (in_array($group['cn'][0], $new_groups)) {
-          $members = $group['memberuid'];
-          unset($members['count']);
-          if (!$members) {
-            $members = array($uid);
-          }
-          else {
-            $members[] = $uid;
-          }
-          if (!ldap_modify($ldap_server->connection, $group['dn'], array('memberuid' => $members))) {
-            throw new Exception('Failed to remove user from LDAP group, user:' . $uid, ', group:' . $group['cn']);
+    if (!empty($new_groups)) {
+      $q = '';
+      foreach($new_groups as $cn) {
+        $q .= sprintf('(cn=%s)', $cn);
+      }
+      $q = '(&(objectClass=posixGroup)(|' . $q . '))';
+      $groups = $ldap_server->search('ou=MainSite,ou=Sites,dc=osha,dc=europa,dc=eu', $q);
+      if ($groups['count'] > 0) {
+        unset($groups['count']);
+        foreach ($groups as $group) {
+          if (in_array($group['cn'][0], $new_groups)) {
+            $members = $group['memberuid'];
+            unset($members['count']);
+            if (!$members) {
+              $members = array($uid);
+            }
+            else {
+              $members[] = $uid;
+            }
+            if (!ldap_modify($ldap_server->connection, $group['dn'], array('memberuid' => $members))) {
+              throw new Exception('Failed to remove user from LDAP group, user:' . $uid, ', group:' . $group['cn']);
+            }
           }
         }
       }
@@ -389,7 +395,7 @@ class OSHALDAPTests {
     $this->logout();
 
     $lang_dn = 'cn=ALBANIAN_CV,ou=Languages,ou=MainSite,ou=Sites,dc=osha,dc=europa,dc=eu';
-    $this->ldap_server->modifyLdapEntry($lang_dn, array('memberUid' => array()));
+    ldap_modify($this->ldap_server->connection, $lang_dn, array('memberuid' => array()));
     $this->login($username);
     // User has no longer Albanian language skill
     $albanians = osha_tmgmt_get_content_validators_by_skill('sq');
