@@ -227,7 +227,7 @@ function osha_authentication_ldap_get_site_users($ldap_server) {
         $ret[$uid] = $user;
       }
       else {
-        watchdog('osha_authentication', 'Ignoring user: !uid without email address from site membership (removed from LDAP?)', array('!uid' => $uid), WATCHDOG_ERROR);
+        watchdog('osha_authentication', 'Ignoring user: !uid without email address from site membership (removed from LDAP?)', array('!uid' => $uid), WATCHDOG_WARNING);
       }
     }
   }
