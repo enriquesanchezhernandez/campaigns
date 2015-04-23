@@ -81,7 +81,6 @@ class OSHALDAPTests {
       unset($groups['count']);
       foreach ($groups as $group) {
         $dn= $group['dn'];
-        var_dump($dn);
         $members = $group['memberuid'];
         unset($members['count']);
         $members = array_filter($members, function ($v) use ($uid) {
@@ -389,7 +388,7 @@ class OSHALDAPTests {
     $this->logout();
 
     $lang_dn = 'cn=ALBANIAN_CV,ou=Languages,ou=MainSite,ou=Sites,dc=osha,dc=europa,dc=eu';
-    $this->ldap_server->modifyLdapEntry($lang_dn, array('memberUid' => array()));
+    ldap_modify($this->ldap_server->connection, $lang_dn, array('memberuid' => array()));
     $this->login($username);
     // User has no longer Albanian language skill
     $albanians = osha_tmgmt_get_content_validators_by_skill('sq');
