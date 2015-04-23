@@ -5,17 +5,17 @@
  *
  * @param $is_approver
  */
-function osha_authentication_user_login_approver($account, $is_approver) {
+function osha_authentication_user_login_approver($user, $is_approver) {
   $approvers_collection = entity_collection_load('approvers');
   /** @var EntityCollectionTreeNode $users */
   $users = $approvers_collection->getTree();
-  if ($is_approver && !array_key_exists('user:' . $account->uid, $users->list)) {
-    $entity_id = entity_id('user', $account);
-    $item = new EntityCollectionTreeNode('user', $entity_id, $account);
+  if ($is_approver && !array_key_exists('user:' . $user->uid, $users->list)) {
+    $entity_id = entity_id('user', $user);
+    $item = new EntityCollectionTreeNode('user', $entity_id, $user);
     entity_collection_append_item($approvers_collection, $item);
   }
-  if (!$is_approver && array_key_exists('user:' . $account->uid, $users->list)) {
-    entity_collection_content_delete($approvers_collection, 'user', array($account->uid));
+  if (!$is_approver && array_key_exists('user:' . $user->uid, $users->list)) {
+    entity_collection_content_delete($approvers_collection, 'user', array($user->uid));
   }
 }
 

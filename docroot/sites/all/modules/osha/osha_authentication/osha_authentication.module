@@ -69,7 +69,7 @@ function osha_authentication_user_login(&$edit, $user) {
       }
     }
     // LDAP_APPRV_US_01 - Assign Approver to the default list of approvers
-    $is_approver = in_array('Approver', $user->roles);
+    $is_approver = in_array('Approver', $roles);
     osha_authentication_user_login_approver($user, $is_approver);
 
     // Configure translator skills
