@@ -217,7 +217,7 @@ function osha_authentication_ldap_get_site_users($ldap_server) {
         $ret[$uid] = $user;
       }
       else {
-        watchdog('osha_authentication', 'Cannot provision user: !dn without email address', array('!dn' => $ldap_account['dn']), WATCHDOG_ERROR);
+        watchdog('osha_authentication', 'Cannot provision user: !uid without email address', array('!uid' => $uid), WATCHDOG_ERROR);
       }
     }
   }
@@ -255,7 +255,8 @@ function osha_authentication_sync_ldap_sections($ldap_server, $test = FALSE) {
       watchdog(
         'osha_authentication',
         'LDAP provisioned new section <em>!section</em> (<b>!sid</b>)',
-        array('!section' => $title, '!sid' => $sid)
+        array('!section' => $title, '!sid' => $sid),
+        WATCHDOG_WARNING
       );
     }
     else {
@@ -296,13 +297,13 @@ function osha_authentication_ldap_sync($ldap_server) {
       $ldap_account->password = user_password(32);
       $ldap_account->status = 1;
       if ($account = user_save($ldap_account)) {
-        watchdog('osha_authentication', 'Created new account <em>!uid</em> from LDAP for dn: !dn', array(
+        watchdog('osha_authentication', 'Provisioning new LDAP account <em>!uid</em> in Drupal from dn: !dn', array(
           '!dn' => $ldap_account->dn,
           '!uid' => $username
-        ), WATCHDOG_NOTICE);
+        ), WATCHDOG_WARNING);
       }
       else {
-        watchdog('osha_authentication', 'Failed to save new account <em>!uid</em> from LDAP for dn: !dn', array(
+        watchdog('osha_authentication', 'Failed to save new Drupal account <em>!uid</em> from LDAP dn: !dn', array(
           '!dn' => $ldap_account->dn,
           '!uid' => $username
         ), WATCHDOG_ERROR);
