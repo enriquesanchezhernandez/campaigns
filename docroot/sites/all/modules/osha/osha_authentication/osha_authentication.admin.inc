@@ -11,10 +11,12 @@ function osha_authentication_user_login_approver($user, $is_approver) {
   $users = $approvers_collection->getTree();
   if ($is_approver && !array_key_exists('user:' . $user->uid, $users->list)) {
     $entity_id = entity_id('user', $user);
+    watchdog('osha_authentication', 'Adding !user to the approver list', array('!user' => $user->name), WATCHDOG_WARNING);
     $item = new EntityCollectionTreeNode('user', $entity_id, $user);
     entity_collection_append_item($approvers_collection, $item);
   }
   if (!$is_approver && array_key_exists('user:' . $user->uid, $users->list)) {
+    watchdog('osha_authentication', 'Removing !user from approver list', array('!user' => $user->name), WATCHDOG_WARNING);
     entity_collection_content_delete($approvers_collection, 'user', array($user->uid));
   }
 }
