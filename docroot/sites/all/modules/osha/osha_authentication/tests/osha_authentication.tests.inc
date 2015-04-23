@@ -10,8 +10,6 @@
 class OSHALDAPTests {
 
   private static $USER_DN = 'uid=%s,ou=Contractors,ou=people,dc=osha,dc=europa,dc=eu';
-  private static $GROUP_DN = 'cn=%s,ou=MainSite,ou=Sites,dc=osha,dc=europa,dc=eu';
-  private static $GROUP_DN_LANGUAGE = 'cn=%s,ou=Languages,ou=MainSite,ou=Sites,dc=osha,dc=europa,dc=eu';
   /** @var LDAPServer $ldap_server */
   private $ldap_server = NULL;
 
@@ -22,6 +20,7 @@ class OSHALDAPTests {
     foreach (get_class_methods('OSHALDAPTests') as $method) {
       if ((!$testName && strpos($method, 'test_') !== FALSE) || ($testName && $method == $testName)) {
         $username = 'TEST';
+        $this->logout();
         try {
           // Perform cleanup before starting the test
           if (!$debug) {
@@ -34,16 +33,12 @@ class OSHALDAPTests {
         }
         catch(Exception $e) {
           drush_set_error('ldap', $method . ' failed (' . $e->getMessage() . ')');
-          if (!$debug) {
-            $this->deleteLDAPUser($username);
-            $this->deleteDrupalUser($username);
-          }
         }
       }
     }
   }
 
-  function createLDAPUser($uid, $groups = array(), $language_groups = array()) {
+  function ldapCreateUser($uid, $groups = array(), $language_groups = array()) {
     $ldap_server = $this->ldap_server;
     $result = $ldap_server->search('ou=people,dc=osha,dc=europa,dc=eu', 'uid=' . $uid);
     $udn = sprintf(self::$USER_DN, $uid);
@@ -66,54 +61,45 @@ class OSHALDAPTests {
         throw new Exception('Cannot create LDAP user:' . $uid);
       }
     }
-    $this->ldapAddUserToGroups($uid, $groups);
-    $this->ldapAddUserToLanguageGroups($uid, $language_groups);
+    $this->ldapSetUserGroups($uid, $groups);
   }
 
-  function ldapAddUserToGroups($uid, $groups = array()) {
-    $ldap_server = $this->ldap_server;
-    foreach($groups as $gcn) {
-      $gdn = sprintf(self::$GROUP_DN, $gcn);
-      $members = array(
-        'memberUid' => array($uid)
-      );
-      if (!$ldap_server->modifyLdapEntry($gdn, $members)) {
-        throw new Exception('Cannot assign user to LDAP group, user:' . $uid, ', group:' . $gcn);
-      }
-    }
-  }
-
-  function ldapAddUserToLanguageGroups($uid, $groups = array()) {
-    $ldap_server = $this->ldap_server;
-    foreach($groups as $gcn) {
-      $gdn = sprintf(self::$GROUP_DN_LANGUAGE, $gcn);
-      $members = array(
-        'memberUid' => array($uid)
-      );
-      if (!$ldap_server->modifyLdapEntry($gdn, $members)) {
-        throw new Exception('Cannot assign user to LDAP language group, user:' . $uid, ', group:' . $gcn);
-      }
-    }
-  }
-
-  function ldapRemoveUserFromGroups($uid, $groups) {
-    $ldap_server = $this->ldap_server;
-    foreach($groups as $gcn) {
-      $gdn = sprintf(self::$GROUP_DN, $gcn);
-      $members = array('memberUid' => array());
-      if (!$ldap_server->modifyLdapEntry($gdn, $members)) {
-        throw new Exception('Cannot remove user from LDAP group, user:' . $uid . ', group:' . $gcn);
-      }
-    }
-  }
-
-  function ldapRemoveUser($uid) {
-    $ldap_server = $this->ldap_server;
-    $result = $ldap_server->search('ou=people,dc=osha,dc=europa,dc=eu', 'uid=' . $uid);
+  function getLDAPUser($uid) {
+    $ret = FALSE;
+    $result = $this->ldap_server->search('ou=people,dc=osha,dc=europa,dc=eu', 'uid=' . $uid);
     if ($result['count']) {
-      $udn = sprintf(self::$USER_DN, $uid);
-      if (!$ldap_server->delete($udn)) {
-        throw new Exception('Cannot delete user from LDAP, user:' . $uid);
+      $ret = $result[0];
+    }
+    return $ret;
+  }
+
+  function ldapSetUserGroups($uid, array $new_groups) {
+    $ldap_server = $this->ldap_server;
+    // Detach from all groups
+    $groups = $ldap_server->search('ou=MainSite,ou=Sites,dc=osha,dc=europa,dc=eu', 'cn=*');
+    if ($groups['count'] > 0) {
+      unset($groups['count']);
+      foreach($groups as $group) {
+        $modified = FALSE;
+        $members = $group['memberuid'];
+        unset($members['count']);
+        if (!$members) {
+          $members = array();
+        }
+        if (in_array($uid, $members) && !in_array($group['cn'][0], $new_groups)) {
+          $modified = TRUE;
+          $members = array_filter($members, function($v) use ($uid) { return $v != $uid; });
+          unset($members[$uid]);
+        }
+        if (!in_array($uid, $members) && in_array($group['cn'][0], $new_groups)) {
+          $modified = TRUE;
+          $members[] = $uid;
+        }
+        if ($modified) {
+          if (!$ldap_server->modifyLdapEntry($group['dn'], array('memberuid' => $members))) {
+            throw new Exception('Failed to remove user from LDAP group, user:' . $uid, ', group:' . $group['cn']);
+          }
+        }
       }
     }
   }
@@ -140,22 +126,11 @@ class OSHALDAPTests {
   }
 
   function deleteLDAPUser($uid) {
-    $ldap_server = $this->ldap_server;
-    // Detach from all groups
-    $result = $ldap_server->search('ou=MainSite,ou=Sites,dc=osha,dc=europa,dc=eu', 'memberUid=' . $uid);
-    if ($result['count'] > 0) {
-      unset($result['count']);
-      foreach($result as $group) {
-        if (!$ldap_server->modifyLdapEntry($group['dn'], array('memberUid' => array()))) {
-          throw new Exception('Failed to remove user from LDAP group, user:' . $uid, ', group:' . $group['cn']);
-        }
-      }
-    }
-    // Remove the account
-    $users = $ldap_server->search('ou=Contractors,ou=people,dc=osha,dc=europa,dc=eu', 'uid=' . $uid);
+    $this->ldapSetUserGroups($uid, array());
+    $users = $this->ldap_server->search('ou=Contractors,ou=people,dc=osha,dc=europa,dc=eu', 'uid=' . $uid);
     if ($users['count'] > 0) {
       $dn = sprintf(self::$USER_DN, $uid);
-      if (!$ldap_server->delete($dn)) {
+      if (!$this->ldap_server->delete($dn)) {
         throw new Exception('Failed to delete user from LDAP:' . $uid);
       }
     }
@@ -168,13 +143,44 @@ class OSHALDAPTests {
     $user = drupal_anonymous_user();
   }
 
+
+  function test_ldapCreateUser($username = 'TEST') {
+    $user_groups = array('CAREER_EDT', 'CONTUS_EDT');
+    $this->ldapCreateUser($username, $user_groups);
+    $user = $this->ldap_server->search('ou=Contractors,ou=people,dc=osha,dc=europa,dc=eu', 'uid=' . $username);
+    if ($user['count'] == 0) {
+      throw new Exception('User not created');
+    }
+
+    $groups = $this->ldap_server->search('ou=MainSite,ou=Sites,dc=osha,dc=europa,dc=eu', 'memberuid=' . $username);
+    if ($groups['count'] != 2
+        && !in_array($groups[0]['cn'], $user_groups)
+        && !in_array($groups[1]['cn'], $user_groups)) {
+      throw new Exception('User groups are not set correctly: ' . print_r($groups, TRUE));
+    }
+
+    $user_groups = array('ALBANIAN_CV');
+    $this->ldapSetUserGroups($username, $user_groups);
+    $groups = $this->ldap_server->search('ou=MainSite,ou=Sites,dc=osha,dc=europa,dc=eu', 'memberuid=' . $username);
+    if ($groups['count'] != 1 && !in_array($groups[0]['cn'], $user_groups)) {
+      throw new Exception('User groups are not set correctly: ' . print_r($groups, TRUE));
+    }
+
+    $user_groups = array();
+    $this->ldapSetUserGroups($username, $user_groups);
+    $groups = $this->ldap_server->search('ou=MainSite,ou=Sites,dc=osha,dc=europa,dc=eu', 'memberuid=' . $username);
+    if ($groups['count'] != 0) {
+      throw new Exception('User groups are not set correctly: ' . print_r($groups, TRUE));
+    }
+  }
+
   function test_LDAP_US_US_01($username = 'TEST') {
-    $this->createLDAPUser($username);
+    $this->ldapCreateUser($username);
     $this->login($username);
   }
 
   function test_LDAP_US_US_02($username = 'TEST') {
-    $this->createLDAPUser($username);
+    $this->ldapCreateUser($username);
     // Login with the user so the account can be provisioned inside Drupal
     $this->login($username);
     $this->logout();
@@ -194,7 +200,7 @@ class OSHALDAPTests {
 
   function test_LDAP_APPRV_US_01($username = 'TEST') {
     global $user;
-    $this->createLDAPUser($username, array('APPROVER'));
+    $this->ldapCreateUser($username, array('APPROVER'));
     $this->login($username);
     // User has gained Approver role in Drupal
     if (!in_array('Approver', $user->roles)) {
@@ -204,7 +210,7 @@ class OSHALDAPTests {
 
   function test_LDAP_APPRV_US_02($username = 'TEST') {
     global $user;
-    $this->createLDAPUser($username, array('APPROVER'));
+    $this->ldapCreateUser($username, array('APPROVER'));
     $this->login($username);
 
     // User has gained Approver role in Drupal
@@ -219,7 +225,7 @@ class OSHALDAPTests {
     }
 
     $this->logout();
-    $this->ldapRemoveUserFromGroups($username, array('APPROVER'));
+    $this->ldapSetUserGroups($username, array());
 
     // Reset the entity collection static cache and entity cache
     drupal_static_reset('entity_collection_load');
@@ -242,7 +248,7 @@ class OSHALDAPTests {
 
   function test_LDAP_EDT_US_01($username = 'TEST') {
     global $user;
-    $this->createLDAPUser($username, array('CAREER_EDT', 'CONTUS_EDT'));
+    $this->ldapCreateUser($username, array('CAREER_EDT', 'CONTUS_EDT'));
     $this->login($username);
     // User has gained Editor role in Drupal
     if (count($user->roles) != 2 || !in_array('Editor', $user->roles) || !in_array('authenticated user', $user->roles)) {
@@ -252,7 +258,7 @@ class OSHALDAPTests {
 
   function test_LDAP_EDT_US_02($username = 'TEST') {
     global $user;
-    $this->createLDAPUser($username, array('CAREER_EDT', 'CONTUS_EDT'));
+    $this->ldapCreateUser($username, array('CAREER_EDT', 'CONTUS_EDT'));
     $this->login($username);
     // User has gained Editor role in Drupal
     if (count($user->roles) != 2 || !in_array('Editor', $user->roles) || !in_array('authenticated user', $user->roles)) {
@@ -273,7 +279,7 @@ class OSHALDAPTests {
 
   function test_LDAP_EDT_US_04($username = 'TEST') {
     global $user;
-    $this->createLDAPUser($username, array('CAREER_EDT', 'CONTUS_EDT'));
+    $this->ldapCreateUser($username, array('CAREER_EDT', 'CONTUS_EDT'));
     $this->login($username);
     // User has gained Editor role in Drupal
     if (count($user->roles) != 2 || !in_array('Editor', $user->roles) || !in_array('authenticated user', $user->roles)) {
@@ -282,7 +288,7 @@ class OSHALDAPTests {
 
     $this->logout();
     $this->deleteLDAPUser($username);
-    $this->createLDAPUser($username);
+    $this->ldapCreateUser($username);
     $this->login($username);
     // User has gained Editor role in Drupal
     if (count($user->roles) != 1 || !in_array('authenticated user', $user->roles)) {
@@ -292,8 +298,9 @@ class OSHALDAPTests {
 
   function test_LDAP_RVMN_US_02($username = 'TEST') {
     global $user;
-    $this->createLDAPUser($username, array('OSHA_RVMN', 'SEMIN_RVMN'));
+    $this->ldapCreateUser($username, array('OSHA_RVMN', 'SEMIN_RVMN'));
     $this->login($username);
+
     // User has gained Review Manager role in Drupal
     if (count($user->roles) != 2 || !in_array('Review Manager', $user->roles) || !in_array('authenticated user', $user->roles)) {
       throw new Exception('User has wrong roles:' . print_r(array_values($user->roles), TRUE));
@@ -307,7 +314,7 @@ class OSHALDAPTests {
 
   function test_LDAP_CV_US_02($username = 'TEST') {
     global $user;
-    $this->createLDAPUser($username, array(), array('ALBANIAN_CV', 'ROMANIAN_CV'));
+    $this->ldapCreateUser($username, array('ALBANIAN_CV', 'ROMANIAN_CV'));
     $this->login($username);
     // User has gained Content Validator role in Drupal
     if (count($user->roles) != 2 || !in_array('Content Validator', $user->roles) || !in_array('authenticated user', $user->roles)) {
@@ -326,7 +333,7 @@ class OSHALDAPTests {
 
   function test_LDAP_CV_US_04($username = 'TEST') {
     global $user;
-    $this->createLDAPUser($username, array(), array('ALBANIAN_CV', 'ROMANIAN_CV'));
+    $this->ldapCreateUser($username, array('ALBANIAN_CV', 'ROMANIAN_CV'));
     $this->login($username);
     // User has gained Content Validator role in Drupal
     if (count($user->roles) != 2 || !in_array('Content Validator', $user->roles) || !in_array('authenticated user', $user->roles)) {
@@ -356,7 +363,7 @@ class OSHALDAPTests {
 
   function test_LDAP_TRLMN_US_01($username = 'TEST') {
     global $user;
-    $this->createLDAPUser($username, array('TRLMN'));
+    $this->ldapCreateUser($username, array('TRLMN'));
     $this->login($username);
     // User has gained Translation Manager role in Drupal
     if (count($user->roles) != 2 || !in_array(OSHA_WORKFLOW_ROLE_TRANSLATION_MANAGER, $user->roles) || !in_array('authenticated user', $user->roles)) {
@@ -366,7 +373,7 @@ class OSHALDAPTests {
 
   function test_LDAP_TRLMN_US_02($username = 'TEST') {
     global $user;
-    $this->createLDAPUser($username, array('TRLMN'));
+    $this->ldapCreateUser($username, array('TRLMN'));
     $this->login($username);
     // User has gained Translation Manager role in Drupal
     if (count($user->roles) != 2 || !in_array(OSHA_WORKFLOW_ROLE_TRANSLATION_MANAGER, $user->roles) || !in_array('authenticated user', $user->roles)) {
@@ -375,7 +382,7 @@ class OSHALDAPTests {
 
     $this->logout();
     $this->deleteLDAPUser($username);
-    $this->createLDAPUser($username);
+    $this->ldapCreateUser($username);
     $this->login($username);
     // User has gained Editor role in Drupal
     if (count($user->roles) != 1 || !in_array('authenticated user', $user->roles)) {
@@ -385,7 +392,7 @@ class OSHALDAPTests {
 
   function test_LDAP_TRLIAS_US_01($username = 'TEST') {
     global $user;
-    $this->createLDAPUser($username, array('TRLIAS'));
+    $this->ldapCreateUser($username, array('TRLIAS'));
     $this->login($username);
     // User has gained Translation Manager role in Drupal
     if (count($user->roles) != 2 || !in_array(OSHA_WORKFLOW_ROLE_TRANSLATION_LIAISON, $user->roles) || !in_array('authenticated user', $user->roles)) {
@@ -395,7 +402,7 @@ class OSHALDAPTests {
 
   function test_LDAP_TRLIAS_US_02($username = 'TEST') {
     global $user;
-    $this->createLDAPUser($username, array('TRLIAS'));
+    $this->ldapCreateUser($username, array('TRLIAS'));
     $this->login($username);
     // User has gained Translation Manager role in Drupal
     if (count($user->roles) != 2 || !in_array(OSHA_WORKFLOW_ROLE_TRANSLATION_LIAISON, $user->roles) || !in_array('authenticated user', $user->roles)) {
@@ -404,7 +411,7 @@ class OSHALDAPTests {
 
     $this->logout();
     $this->deleteLDAPUser($username);
-    $this->createLDAPUser($username);
+    $this->ldapCreateUser($username);
     $this->login($username);
     // User has gained Editor role in Drupal
     if (count($user->roles) != 1 || !in_array('authenticated user', $user->roles)) {
@@ -414,7 +421,7 @@ class OSHALDAPTests {
 
   function LDAP_LAYVAL_US_01($username = 'TEST') {
     global $user;
-    $this->createLDAPUser($username, array('LAYVAL'));
+    $this->ldapCreateUser($username, array('LAYVAL'));
     $this->login($username);
     // User has gained Translation Manager role in Drupal
     if (count($user->roles) != 2 || !in_array(OSHA_WORKFLOW_ROLE_LAYOUT_VALIDATOR, $user->roles) || !in_array('authenticated user', $user->roles)) {
@@ -424,7 +431,7 @@ class OSHALDAPTests {
 
   function LDAP_LAYVAL_US_02($username = 'TEST') {
     global $user;
-    $this->createLDAPUser($username, array('LAYVAL'));
+    $this->ldapCreateUser($username, array('LAYVAL'));
     $this->login($username);
     // User has gained Translation Manager role in Drupal
     if (count($user->roles) != 2 || !in_array(OSHA_WORKFLOW_ROLE_LAYOUT_VALIDATOR, $user->roles) || !in_array('authenticated user', $user->roles)) {
@@ -433,7 +440,7 @@ class OSHALDAPTests {
 
     $this->logout();
     $this->deleteLDAPUser($username);
-    $this->createLDAPUser($username);
+    $this->ldapCreateUser($username);
     $this->login($username);
     // User has gained Editor role in Drupal
     if (count($user->roles) != 1 || !in_array('authenticated user', $user->roles)) {
