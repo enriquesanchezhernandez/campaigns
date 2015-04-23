@@ -46,7 +46,7 @@ function osha_workflow_workbench_review_managers($access_type = NULL, $access_ty
             WHERE wau.access_scheme = :access_scheme AND wau.access_id = :access_id
             AND ur.rid IN (:rids)",
           array(':access_scheme' => $active['access_scheme']['access_type'], ':access_id' => $access_id, ':rids' => array_keys($roles))
-        )->fetchField();
+        )->fetchAllKeyed();
       }
       else {
         $pms = db_query("SELECT wau.uid as uid, us.name as name FROM {osha_workflow_access_rm} wau
@@ -69,7 +69,7 @@ function osha_workflow_workbench_review_managers($access_type = NULL, $access_ty
     $build['content']['#markup'] = $output;
     return $build;
   }
-  return NULL;
+  return drupal_get_form('osha_workflow_access_rm_form', $access_type, $access_type_id);
 }
 
 /**
@@ -174,4 +174,140 @@ function osha_workflow_access_rm_check_root() {
     }
   }
   return FALSE;
+}
+
+function osha_workflow_access_rm_form($form, &$form_state, $access_type, $access_type_id) {
+  // Set proper breadcrumb trails.
+  $breadcrumb[] = l(t('Workbench Access'), 'admin/config/workbench/access');
+  $breadcrumb[] = l(t('Review Managers'), 'admin/config/workbench/access/review-managers');
+  $current = drupal_get_breadcrumb();
+  $current = array_merge($current, $breadcrumb);
+  drupal_set_breadcrumb($current);
+
+  $form = array();
+  $active = workbench_access_get_active_tree();
+  $active['access_scheme']['access_id'] = $access_type_id;
+  if ($active['access_scheme']['access_type'] != $access_type || !isset($active['active'][$access_type_id])) {
+    drupal_access_denied();
+    drupal_exit();
+  }
+
+  // Get the list of user roles that can be assigned workbench access.
+  $roles = workbench_access_get_roles('access workbench access by role');
+
+  $query = db_select('users', 'u')
+    ->fields('u', array('uid', 'name'));
+  $query->join('osha_workflow_access_rm', 'wau', 'u.uid = wau.uid');
+  $query->condition('wau.access_scheme', $access_type)
+    ->condition('wau.access_id', $access_type_id)
+    ->extend('PagerDefault')->limit(25);
+  $result = $query->execute();
+  $form['users']['#tree'] = TRUE;
+  foreach ($result as $account) {
+    $form['users'][$account->uid]['name'] = array('#markup' => l($account->name, 'user/' . $account->uid));
+    $form['users'][$account->uid]['remove'] = array(
+      '#type' => 'checkbox',
+      '#title' => t('Remove'),
+    );
+  }
+  $options = array('' => "Select a Review Manager");
+  $options += osha_workflow_users_get_users_from_role_as_options(OSHA_WORKFLOW_ROLE_REVIEW_MANAGER);
+  $form['add_user'] = array(
+    '#type' => 'select',
+    '#title' => t('Add Project Manager'),
+    '#options' => $options,
+    '#default_value' => "",
+  );
+  $form['workbench_access'] = array(
+    '#type' => 'value',
+    '#value' => $active['access_scheme'],
+  );
+  $form['submit'] = array(
+    '#type' => 'submit',
+    '#value' => t('Update Review Managers'),
+  );
+  return $form;
+}
+
+/**
+ * Process form submission for adding editors.
+ */
+function osha_workflow_access_rm_form_validate($form, &$form_state) {
+  $values = $form_state['values'];
+  // User handling.
+  if (!empty($values['add_user'])) {
+    $account = user_load($values['add_user']);
+    $existing_users = osha_workflow_access_rm_get_rm($values['workbench_access']['access_id'],
+      $values['workbench_access']['access_scheme']);
+    if (empty($account)) {
+      form_set_error('add_user', t('The selected user does not exist.'));
+    }
+    elseif (in_array($account->uid, array_keys($existing_users))) {
+      form_set_error('add_user', t('The user already assigned.'));
+    }
+    elseif (!OshaWorkflowPermissions::userHasRole(
+        OSHA_WORKFLOW_ROLE_REVIEW_MANAGER, $account)) {
+        form_set_error('add_user', t('You can assign here only Review Managers.'));
+    }
+  }
+}
+
+/**
+ * Process form submission for adding editors.
+ */
+function osha_workflow_access_rm_form_submit($form, &$form_state) {
+  $values = $form_state['values'];
+  // User handling.
+  if (!empty($values['add_user'])) {
+    $account = user_load($values['add_user']);
+    $sections = $account->workbench_access;
+    if (!empty($account->workbench_access_by_role)) {
+      foreach ($account->workbench_access_by_role as $key) {
+        unset($sections[$key]);
+      }
+    }
+    // Add the access section.
+    $record['uid'] = $account->uid;
+    $record['access_id'] = $values['workbench_access']['access_id'];
+    $record['access_scheme'] = $values['workbench_access']['access_scheme'];
+    drupal_write_record('osha_workflow_access_rm', $record);
+  }
+  if (!empty($values['users'])) {
+    foreach ($values['users'] as $key => $value) {
+      if (!empty($value['remove'])) {
+        // Remove the access section.
+        db_delete('osha_workflow_access_rm')
+          ->condition('access_id', $values['workbench_access']['access_id'])
+          ->condition('access_scheme', $values['workbench_access']['access_scheme'])
+          ->condition('uid', $key)
+          ->execute();
+      }
+    }
+  }
+}
+
+/**
+ * Theme the editor list form.
+ */
+function theme_osha_workflow_access_rm_form($variables) {
+  $form = $variables['form'];
+  $scheme = $form['workbench_access']['#value'];
+  $access_info = workbench_access_load_access_info($scheme);
+  $output = '<h2>' . t('%name review managers by account', array('%name' => $access_info['name'])) . '</h2>';
+  $header = array(t('Review managers'), t('Actions'));
+  $rows = array();
+  foreach (element_children($form['users']) as $key) {
+    $rows[] = array(
+      drupal_render($form['users'][$key]['name']),
+      drupal_render($form['users'][$key]['remove']),
+    );
+  }
+  $variables = array(
+    'header' => $header,
+    'rows' => $rows,
+    'empty' => t('No active review managers have been found.'),
+  );
+  $output .= theme('table', $variables);
+  $output .= drupal_render_children($form);
+  return $output;
 }
