@@ -35,12 +35,11 @@ function osha_workflow_get_default_approvers() {
  */
 function osha_workflow_get_default_project_manager($section) {
   $section_tree = workbench_access_get_active_tree();
-  if (osha_workflow_access_pm_check_root()) {
-    if (!empty($section_tree['tree'])) {
-      $users = osha_workflow_access_find_pm($section_tree, $section);
-      if (!empty($users)) {
-        return current($users);
-      }
+  osha_workflow_access_pm_check_root();
+  if (!empty($section_tree['tree'])) {
+    $users = osha_workflow_access_find_pm($section_tree, $section);
+    if (!empty($users)) {
+      return current($users);
     }
   }
   return FALSE;
