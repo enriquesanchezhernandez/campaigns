@@ -310,6 +310,16 @@ class OSHALDAPTests {
     if (count($sections) != 2 || !in_array('section', $sections)) {
       throw new Exception('User assigned to wrong sections:' . print_r(array_values($sections), TRUE));
     }
+    $this->logout();
+
+    // User is removed from RVMN LDAP group no longer has Review manager role
+    global $user;
+    $this->ldapCreateUser($username);
+
+    $this->login($username);
+    if (count($user->roles) != 1 || in_array('Review Manager', $user->roles)) {
+      throw new Exception('User is still Review Manager:' . print_r(array_values($user->roles), TRUE));
+    }
   }
 
   function test_LDAP_CV_US_02($username = 'TEST') {
