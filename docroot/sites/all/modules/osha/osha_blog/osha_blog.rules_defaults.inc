@@ -26,8 +26,8 @@ function osha_blog_default_rules_configuration() {
       "DO" : [
         { "mail" : {
             "to" : [ "comment:node:field-project-manager:mail" ],
-            "subject" : "New comment for \\u0022[comment:node]\\u0022",
-            "message" : "New comment on Blog post \\u0022[comment:node]\\u0022: \\u003Cbr \\/\\u003E\\u003Cbr \\/\\u003E\\r\\n[comment:body] \\u003Cbr \\/\\u003E\\r\\nSee comment: [comment:url]",
+            "subject" : "A comment on \\u0022[comment:node]\\u0022",
+            "message" : "A comment on \\u0022[comment:node]\\u0022 has been posted here: [comment:url]\\u003Cbr \\/\\u003E\\r\\n--\\u003Cbr \\/\\u003E\\u003Cbr \\/\\u003E\\u003Cbr \\/\\u003E\\r\\n[comment:body] \\u003Cbr \\/\\u003E\\r\\n--\\u003Cbr \\/\\u003EDelete comment:\\u003Cbr \\/\\u003E[site:url]/comment/[comment:cid]/delete\\u003Cbr \\/\\u003EReply:\\u003Cbr \\/\\u003E[site:url]/comment/reply/[comment:node:nid]/[comment:cid]/delete",
             "language" : [ "" ]
           }
         }
