@@ -274,6 +274,7 @@ $options['init-modules'] = array(
   'aggregator',
   'memcache_storage',
   'varnish',
+  'elysia_cron',
 
   'locale',
   'entity_translation',
