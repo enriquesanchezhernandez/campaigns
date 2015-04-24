@@ -326,6 +326,16 @@ function osha_alert_service_cron_queue_info() {
 }
 
 /**
+ * Implements Elysia hook_cronapi().
+ */
+function osha_alert_service_cronapi() {
+  return array('osha_alert_service_cron' => array(
+    'description' => 'Send notifications to people registered to the alert service',
+    'rule' => '0 */3 * * *', // Every three hours
+  ));
+}
+
+/**
  * Implements hook_cron().
  *
  * Queue all alerts we need to send into osha_alert_service_queue.

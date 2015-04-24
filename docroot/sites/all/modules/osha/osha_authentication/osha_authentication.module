@@ -7,10 +7,13 @@
 include_once 'osha_authentication.features.inc';
 
 
+/**
+ * Implements Elysia hook_cronapi().
+ */
 function osha_authentication_cronapi() {
   return array('osha_authentication_cron' => array(
     'description' => 'Synchronize LDAP sections and users to Drupal',
-    'rule' => '*/10 * * * *',
+    'rule' => '*/10 * * * *', // Every 10 minutes
   ));
 }
 
