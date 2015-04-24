@@ -525,7 +525,8 @@ function osha_workflow_update_7006() {
         ->execute();
     }
     else {
-      drupal_set_message('Section was not created' . $term->name, 'error');
+      $msg = strtr('Section was not created @name (old_access_id: @id)', array('@name' => $term->name, '@id' => $mapping['access_id']));
+      drupal_set_message($msg, 'error');
     }
   }
   // Update the nids not covered by the previous loop.
