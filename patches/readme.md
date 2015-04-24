@@ -7,6 +7,10 @@ When patching a contrib module, the following steps should be followed:
 
 List of patches (most recent first)
 
+* workbench_moderation
+  * path to add access check in workbench moderation form to prevent change of status
+  * /patches/workbench_moderation/workbench_moderation_access_check_in_moderation_form.patch
+
 * path_breadcrumbs
   * dirty patch for the translation of Home (path_breadcrumbs._home_translate.patch)
   * see also https://www.drupal.org/node/2081375 and https://www.drupal.org/node/2028845 for alternative solutions
