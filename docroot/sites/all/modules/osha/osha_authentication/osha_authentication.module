@@ -6,6 +6,23 @@
 
 include_once 'osha_authentication.features.inc';
 
+
+/**
+ * Implements hook_cron().
+ */
+function osha_authentication_cron() {
+  $interval = variable_get('cron_osha_authentication_ldap_sync_interval', 10 * 60);
+  $NEXT_EXECUTION = 'cron_osha_ldap_sync_next_execution';
+  if (time() >= variable_get($NEXT_EXECUTION, 0)) {
+    watchdog('osha_authentication', 'Running ldap synchronization cron job', array(), WATCHDOG_INFO);
+    $ldap_servers = ldap_servers_get_servers('osha');
+    $ldap_server = $ldap_servers['osha'];
+    module_load_include('admin.inc', 'osha_authentication');
+    osha_authentication_ldap_sync($ldap_server);
+    variable_set($NEXT_EXECUTION, time() + $interval);
+  }
+}
+
 /**
  * Implements hook_ldap_entry_pre_provision_alter().
  */

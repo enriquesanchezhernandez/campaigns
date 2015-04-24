@@ -27,23 +27,11 @@ a. password for read-only account by visiting /admin/config/people/ldap/servers/
 b. password for writable account by visiting /admin/config/people/ldap/servers/edit/osha-write and set the field *Password for non-anonymous search* (under section BINDING METHOD)
 
 
-3. Set-up a CRON job to automatically synchronize the users and sections, using `crontab -e` as user 'root'.
-```
-*/15 * * * * /expert/osha/.composer/vendor/bin/drush osha-ldap-sync 2>&1
-```
-
-4. Run the cron job one time to do initial account synchronization:
-
-```
-cd /expert/osha/docroot
-drush osha-ldap-sync
-```
-
 5. Setup Drupal CRON (currently disabled)
 ```
-0 * * * * wget -O - -q -t 1 http://osha-corp-staging.mainstrat.com/cron.php?cron_key=CRON_KEY
+*/15 * * * * wget -O - -q -t 1 http://osha-corp-staging.mainstrat.com/cron.php?cron_key=CRON_KEY
 ```
-where CRON_KEY is taken from `/admin/config/system/cron` screen. Cron above will run on every hour.
+where CRON_KEY is taken from `/admin/config/system/cron` screen. Cron above will run on every 15 minutes.
 
 6. LDAP checklist
 
