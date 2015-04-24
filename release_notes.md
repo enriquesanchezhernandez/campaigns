@@ -11,6 +11,14 @@ __BEFORE__ the update:
   * varnish_control_key: "secret key" - Only if authentication is configured in Varnish
   * varnish_socket_timeout: 150 - A decent default for Varnish hosted on another machine
 
+__UPDATE STEPS__:
+
+  * cd /expert/osha/docroot
+  * git checkout tags/2015_04_27
+  * drush fr -y --force osha_workflow
+  * drush cc all
+  * drush osha_build –y
+
 __AFTER__ the update:
 
 1. Edit `sites/default/settings.php` and append the following lines at the end of the file:
@@ -27,7 +35,7 @@ a. password for read-only account by visiting /admin/config/people/ldap/servers/
 b. password for writable account by visiting /admin/config/people/ldap/servers/edit/osha-write and set the field *Password for non-anonymous search* (under section BINDING METHOD)
 
 
-5. Setup Drupal CRON (currently disabled)
+3. Setup Drupal CRON (currently disabled)
 ```
 * * * * * wget -O - -q -t 1 http://osha-corp-staging.mainstrat.com/sites/all/modules/contrib/elysia_cron/cron.php?cron_key=CRON_KEY
 ```
@@ -35,3 +43,7 @@ b. password for writable account by visiting /admin/config/people/ldap/servers/e
 where CRON_KEY is taken from `/admin/config/system/cron/settings` screen. Cron above will run on every 1 minute.
 
 *Note*: The various cron tasks are scheduled to run differently, setting to one minute ensures task can run when scheduled.
+
+4. Run the first LDAP synchronization (optional)
+  * From command line (shows more details): in docroot, execute command `drush osha-ldap-sync`
+  * From web interface: Go to `/admin/config/system/cron` and execute task `osha_authentication_cron`

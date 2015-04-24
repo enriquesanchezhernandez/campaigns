@@ -30,6 +30,9 @@ fi
 drush devify --yes
 drush devify_solr
 
+# temporary command for release 24.04.2015
+drush fr -y --force osha_workflow
+
 # Build the site
 drush osha_build -y
 
