@@ -1,4 +1,4 @@
-17 April 2015 upgrade instructions
+24.04.2015 - Upgrade instructions
 ==================================
 
 Aside from the common update procedure described in the technical documentation, apply the following manual changes:
@@ -35,12 +35,3 @@ b. password for writable account by visiting /admin/config/people/ldap/servers/e
 where CRON_KEY is taken from `/admin/config/system/cron/settings` screen. Cron above will run on every 1 minute.
 
 *Note*: The various cron tasks are scheduled to run differently, setting to one minute ensures task can run when scheduled.
-
-6. LDAP checklist
-
-  a. Create the following group in LDAP cn=ADMIN,ou=MainSite,ou=Sites,dc=osha,dc=europa,dc=eu
-  a. Create the following group in LDAP cn=READ,ou=MainSite,ou=Sites,dc=osha,dc=europa,dc=eu
-
-7. Drupal role review
-
-  a. A new role has been created 'Events Editor' with no specifications - someone needs to review the permissions
