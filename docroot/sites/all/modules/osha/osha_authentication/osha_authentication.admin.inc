@@ -115,6 +115,9 @@ function osha_authentication_ldap_fetch_user_groups($username, $ldap_server) {
   $ret = array();
   /** @var LDAPServer $ldap_server */
   $ldap_groups = $ldap_server->search('ou=MainSite,ou=Sites,dc=osha,dc=europa,dc=eu', 'memberUid=' . $username);
+  if (!$ldap_groups) {
+    return $ret;
+  }
   unset($ldap_groups['count']);
   foreach($ldap_groups as $group) {
     $ret[$group['dn']] = $group['dn'];
@@ -126,6 +129,9 @@ function osha_authentication_retrieve_ldap_sections($ldap_server) {
   $ret = array();
   /** @var LDAPServer $ldap_server */
   $ldap_groups = $ldap_server->search('ou=MainSite,ou=Sites,dc=osha,dc=europa,dc=eu', 'cn=*');
+  if (!$ldap_groups) {
+    return $ret;
+  }
   unset($ldap_groups['count']);
   foreach($ldap_groups as $ldap_group) {
     $dn = $ldap_group['dn'];
@@ -206,6 +212,9 @@ function osha_authentication_ldap_get_site_users($ldap_server) {
   $ret = array();
   /** @var LDAPServer $ldap_server */
   $ldap_groups = $ldap_server->search('ou=MainSite,ou=Sites,dc=osha,dc=europa,dc=eu', 'cn=*', array('dn', 'memberUid', 'cn'));
+  if (!$ldap_groups) {
+    return $ret;
+  }
   unset($ldap_groups['count']);
   $uids = array();
   foreach($ldap_groups as $group) {
