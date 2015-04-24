@@ -4321,14 +4321,15 @@ and (max-width: 1237px) {
 /* FOLLOW US ON block-on-the-web */
 
 .block-on-the-web{
-  border-top: 5px solid #003399;
-   margin: 0;
-   clear:both;
+	border-top: 5px solid #003399;
+	margin: 0;
+	clear:both;
+	padding-left: 0.8em;
 }
 
 .block-on-the-web h2{
 	background:none;
-	float:left;
+	float:none;
 	color: #000;
 	font-family: 'Open Sans Condensed',sans-serif;
 	font-size: 1.55em;
@@ -4343,7 +4344,7 @@ and (max-width: 1237px) {
     float: left;
     padding-left: 0.2em;
     padding-right: 0.2em;
-    padding-top: 0.9em;
+    padding-top: 0.2em;
 }
 
 /* END FOLLOW US ON block-on-the-web */
@@ -4549,7 +4550,6 @@ article.node-press-release .field-name-body.field-type-text-with-summary p{
 
 .view-legislation-guidelines table tr td{
 	padding:0.5em 0.5em 1em 1.5em;
-	width: 509px;
 	display: block;
 }
 
@@ -4581,7 +4581,7 @@ article.node-press-release .field-name-body.field-type-text-with-summary p{
 	margin: 0em;
 	text-align:left;
 	margin-bottom:0em;
-	 width: 98.8%;
+	width: 98.8%;
 }
 
 .view-legislation-guidelines table caption a{
@@ -4906,6 +4906,13 @@ a.tabs-primary__tab-link{
     padding-top: 0.5em;
 }
 
+.view.view-search .view-header p{
+  text-align: right;
+  font-weight: bold;
+  font-size: 0.8em;
+  margin-right: 2.5em;
+}
+
 .view-search.view-id-search .views-row .views-field-field-image a{
 	float: left;
 	padding-right: 0em;
@@ -5097,7 +5104,24 @@ a.tabs-primary__tab-link{
 	margin-bottom:3em;
 }
 
+#block-twitter-block-1{
+	border-top: 5px solid #003399;
+	margin-bottom:3em;
+}
+
 #block-views-events-index-block-1 h2{
+	color: #000;
+	font-family: 'Open Sans Condensed',sans-serif!important;
+	font-size: 1.25em;
+	font-weight: lighter;
+	margin: 0;
+	padding: 0 0 0.3em;
+	background: none repeat scroll 0 0 #FFFFFF;
+	background: url("../images/separator_home.jpg") repeat-x scroll 0% 100% rgba(0, 0, 0, 0);
+	font-weight: bold;
+}
+
+#block-twitter-block-1 h2{
 	color: #000;
 	font-family: 'Open Sans Condensed',sans-serif!important;
 	font-size: 1.25em;
@@ -5160,6 +5184,16 @@ a.tabs-primary__tab-link{
 }
 
 .view-events-index.view-display-id-block_1 a {
+	color:#003399;
+	text-decoration:none;
+	background: url("../images/li_arrow.png") no-repeat scroll 0 50% transparent;
+	font-weight:bold;
+	padding-left:1em;
+	font-size:0.8em;
+	clear:both;
+}
+
+#block-twitter-block-1 a {
 	color:#003399;
 	text-decoration:none;
 	background: url("../images/li_arrow.png") no-repeat scroll 0 50% transparent;
@@ -5264,8 +5298,9 @@ a.tabs-primary__tab-link{
     font-weight: bold;
     margin-left: 0em;
     text-decoration: underline;
-	margin-top:0em;
+	margin-top:0.5em;
 	position:relative;
+	text-align: left;
 }
 
 .view-events-index #edit-search-api-views-fulltext-wrapper{
@@ -5986,7 +6021,7 @@ a.tabs-primary__tab-link{
 	background: url("../images/separator_home.jpg") repeat-x scroll 0 100% rgba(0, 0, 0, 0);
     color: #000;
     font-family: "Open Sans Condensed",sans-serif;
-    font-size: 1.45em;
+    font-size: 1.25em;
     font-weight: bold;
     margin: 0;
     padding: 0 0 0.3em;
@@ -6115,6 +6150,11 @@ article.comment p {
 	margin-top: 0em;
 }
 
+.view-search-blog .view-content{
+	margin-bottom: 1em;
+}
+
+
 .view-search-blog h1{
 	line-height:0.6em;
 }
@@ -6155,8 +6195,17 @@ article.comment p {
 	padding-top:0em;
 }
 
-.node-blog .field-name-field-summary p{
-	margin:0;
+
+.node-blog .field-name-field-summary{
+	padding-top:0em;
+}
+
+.node-blog .field-name-field-summary table{
+	margin-top:0em;
+}
+
+.node-blog .field-name-field-summary table img{
+	padding-right:1em;
 }
 
 /*BLOG SEARCH*/
@@ -7129,7 +7178,7 @@ body.page-node-5429 #related-wiki {
 	margin-top: 0.5em;
 	padding: 0.2em 2.3em 0.2em 0.4em;
 	text-align: right;
-	width: 100%;
+	width: auto;
 }
 
 #edit-submit-search-seminars{
@@ -7598,4 +7647,11 @@ a.contextual-links-trigger{
 
 .views-field-search-api-excerpt strong{
 	background:yellow;
+}
+
+
+.wysiwyg_accordion .img_campaigns{
+	float: right;  
+	margin-right: 1em; 
+	padding-left: 0.5em;
 }
