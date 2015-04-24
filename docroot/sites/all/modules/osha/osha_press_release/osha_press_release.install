@@ -86,3 +86,10 @@ function osha_press_release_update_7002() {
       'context' => 'context_press_room',
     ))->execute();
 }
+
+/**
+ * Disable PDF print autoconfig, move "images" inside "files" writable directory
+ */
+function osha_press_release_update_7003() {
+  variable_set('print_pdf_autoconfig', 0);
+}

@@ -29,9 +29,12 @@ b. password for writable account by visiting /admin/config/people/ldap/servers/e
 
 5. Setup Drupal CRON (currently disabled)
 ```
-*/15 * * * * wget -O - -q -t 1 http://osha-corp-staging.mainstrat.com/cron.php?cron_key=CRON_KEY
+* * * * * wget -O - -q -t 1 http://osha-corp-staging.mainstrat.com/sites/all/modules/contrib/elysia_cron/cron.php?cron_key=CRON_KEY
 ```
-where CRON_KEY is taken from `/admin/config/system/cron` screen. Cron above will run on every 15 minutes.
+
+where CRON_KEY is taken from `/admin/config/system/cron/settings` screen. Cron above will run on every 1 minute.
+
+*Note*: The various cron tasks are scheduled to run differently, setting to one minute ensures task can run when scheduled.
 
 6. LDAP checklist
 

@@ -289,6 +289,13 @@ el.remove();
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'cron_safe_threshold';
+  $strongarm->value = '0';
+  $export['cron_safe_threshold'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'date_first_day';
   $strongarm->value = '1';
   $export['date_first_day'] = $strongarm;
@@ -299,6 +306,22 @@ el.remove();
   $strongarm->name = 'date_format_month';
   $strongarm->value = 'F';
   $export['date_format_month'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'elysia_cron_default_rules';
+  $strongarm->value = array(
+    '*/15 * * * *' => 'Every 15 minutes',
+    '*/30 * * * *' => 'Every 30 minutes',
+    '0 * * * *' => 'Every hour',
+    '0 */6 * * *' => 'Every 6 hours',
+    '4 0 * * *' => 'Once a day',
+    '4 0 * * 0' => 'Once a week',
+    '4 0 1 * *' => 'Once a month',
+    '4 0 1 */6 *' => 'Every 6 months',
+  );
+  $export['elysia_cron_default_rules'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
