@@ -102,7 +102,7 @@ function osha_workflow_workbench_project_managers($access_type = NULL, $access_t
             WHERE wau.access_scheme = :access_scheme AND wau.access_id = :access_id
             AND ur.rid IN (:rids)",
           array(':access_scheme' => $active['access_scheme']['access_type'], ':access_id' => $access_id, ':rids' => array_keys($roles))
-        )->fetchField();
+        )->fetchAllKeyed();
       }
       else {
         $pms = db_query("SELECT wau.uid as uid, us.name as name FROM {osha_workflow_access_pm} wau

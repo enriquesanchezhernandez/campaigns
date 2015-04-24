@@ -49,3 +49,22 @@ function osha_events_update_7003() {
 
   node_delete_multiple($nids);
 }
+
+
+/**
+ * Create the 'Events Editor role'
+ */
+function osha_events_update_7004() {
+  $roles = array(
+    'Events Coordinator',
+    'Events Editor',
+  );
+  foreach($roles as $name) {
+    if (!user_role_load_by_name($name)) {
+      user_role_save((object)array(
+        'name' => $name,
+      ));
+      watchdog('osha_events', 'Created role !name', array('!name' => $name));
+    }
+  }
+}

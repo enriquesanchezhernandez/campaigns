@@ -11,6 +11,11 @@ List of patches (most recent first)
   * dirty patch for the translation of Home (path_breadcrumbs._home_translate.patch)
   * see also https://www.drupal.org/node/2081375 and https://www.drupal.org/node/2028845 for alternative solutions
 
+* ldap_authentication
+  * Entrypt password when updating account
+  * https://www.drupal.org/node/2037887
+  * ldap_authentication-check_password_against_LDAP-2037887-10.patch
+
 * search_api_views
   * Calling t($name) yields double translation
   * patches/search_api_views/double-translation.patch

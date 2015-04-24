@@ -14,7 +14,7 @@ function osha_workflow_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'workbench_access';
-  $strongarm->value = 'menu';
+  $strongarm->value = 'taxonomy';
   $export['workbench_access'] = $strongarm;
 
   $strongarm = new stdClass();
@@ -50,7 +50,7 @@ function osha_workflow_strongarm() {
   $strongarm->api_version = 1;
   $strongarm->name = 'workbench_access_menu';
   $strongarm->value = array(
-    'main-menu' => 'main-menu',
+    'main-menu' => 0,
     'devel' => 0,
     'features' => 0,
     'menu-footer-menu' => 0,
@@ -177,7 +177,7 @@ function osha_workflow_strongarm() {
     'legislation_category' => 0,
     'esener' => 0,
     'nace_codes' => 0,
-    'section' => 0,
+    'section' => 'section',
     'attachment_file_type' => 0,
     'contact_topic' => 0,
     'contact_type' => 0,

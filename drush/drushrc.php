@@ -178,6 +178,7 @@ $options['structure-tables']['common'] = array(
   'cache',
   'cache_filter',
   'cache_menu',
+  'cache_form',
   'cache_page',
   'history',
   'sessions',

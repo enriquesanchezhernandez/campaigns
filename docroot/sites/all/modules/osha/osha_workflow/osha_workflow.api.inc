@@ -35,15 +35,44 @@ function osha_workflow_get_default_approvers() {
  */
 function osha_workflow_get_default_project_manager($section) {
   $section_tree = workbench_access_get_active_tree();
-  if (osha_workflow_access_pm_check_root()) {
-    if (!empty($section_tree['tree'])) {
-      $users = osha_workflow_access_find_pm($section_tree, $section);
-      if (!empty($users)) {
-        return current($users);
-      }
+  osha_workflow_access_pm_check_root();
+  if (!empty($section_tree['tree'])) {
+    $users = osha_workflow_access_find_pm($section_tree, $section);
+    if (!empty($users)) {
+      return current($users);
     }
   }
   return FALSE;
+}
+
+function osha_workflow_rebuild_pm_sections($uid, $sections, $workbench_access_scheme) {
+  db_delete('osha_workflow_access_pm')
+    ->condition('access_scheme', $workbench_access_scheme)
+    ->condition('uid', $uid)
+    ->execute();
+  foreach($sections as $sid) {
+    $record = array(
+      'uid' => $uid,
+      'access_id' => $sid,
+      'access_scheme' => $workbench_access_scheme
+    );
+    drupal_write_record('osha_workflow_access_pm', $record);
+  }
+}
+
+function osha_workflow_rebuild_rm_sections($uid, $sections, $workbench_access_scheme) {
+  db_delete('osha_workflow_access_rm')
+    ->condition('access_scheme', $workbench_access_scheme)
+    ->condition('uid', $uid)
+    ->execute();
+  foreach($sections as $sid) {
+    $record = array(
+      'uid' => $uid,
+      'access_id' => $sid,
+      'access_scheme' => $workbench_access_scheme
+    );
+    drupal_write_record('osha_workflow_access_rm', $record);
+  }
 }
 
 /**

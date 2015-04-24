@@ -90,3 +90,47 @@ function osha_events_osha_tmgmt_i18n_string_list() {
   module_load_include('inc', 'osha_events', 'osha_events.translations');
   return osha_events_get_translatable_strings();
 }
+
+
+/**
+ * Implements hook_user_role_insert().
+ */
+function osha_events_user_role_insert($role) {
+  if ($role->name == 'Events Editor') {
+    user_role_grant_permissions($role->rid, array(
+      'access contextual links',
+      'access dashboard',
+
+      'create files',
+      'view own private files',
+      'view own files',
+      'view files',
+
+      'edit own image files',
+      'edit any image files',
+      'delete own image files',
+      'download own image files',
+      'download any image files',
+
+      'use text format full_html',
+      'use text format filtered_html',
+
+      'access media browser',
+
+      'edit meta tags',
+      'access content',
+      'view own unpublished content',
+      'view revisions',
+
+      'create events content',
+      'edit own events content',
+      'edit any events content',
+      'delete own events content',
+      'delete any events content',
+
+      'create url aliases',
+      'access administration pages',
+      'view the administration theme',
+    ));
+  }
+}

@@ -19,5 +19,37 @@ __AFTER__ the update:
 $conf['cache_backends'][] = 'sites/all/modules/contrib/varnish/varnish.cache.inc';
 $conf['cache_class_cache_page'] = 'VarnishCache';
 ```
-
 A default tested Varnish VCL configuration file has been provided in (conf/varnish-devel.vcl)[conf/varnish-devel.vcl]
+
+2. Configure the binding passwords for LDAP connection.
+
+a. password for read-only account by visiting /admin/config/people/ldap/servers/edit/osha and set the field *Password for non-anonymous search* (under section BINDING METHOD)
+b. password for writable account by visiting /admin/config/people/ldap/servers/edit/osha-write and set the field *Password for non-anonymous search* (under section BINDING METHOD)
+
+
+3. Set-up a CRON job to automatically synchronize the users and sections, using `crontab -e` as user 'root'.
+```
+*/15 * * * * /expert/osha/.composer/vendor/bin/drush osha-ldap-sync 2>&1
+```
+
+4. Run the cron job one time to do initial account synchronization:
+
+```
+cd /expert/osha/docroot
+drush osha-ldap-sync
+```
+
+5. Setup Drupal CRON (currently disabled)
+```
+0 * * * * wget -O - -q -t 1 http://osha-corp-staging.mainstrat.com/cron.php?cron_key=CRON_KEY
+```
+where CRON_KEY is taken from `/admin/config/system/cron` screen. Cron above will run on every hour.
+
+6. LDAP checklist
+
+  a. Create the following group in LDAP cn=ADMIN,ou=MainSite,ou=Sites,dc=osha,dc=europa,dc=eu
+  a. Create the following group in LDAP cn=READ,ou=MainSite,ou=Sites,dc=osha,dc=europa,dc=eu
+
+7. Drupal role review
+
+  a. A new role has been created 'Events Editor' with no specifications - someone needs to review the permissions
