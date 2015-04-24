@@ -17,6 +17,7 @@ function osha_authentication_cron() {
     watchdog('osha_authentication', 'Running ldap synchronization cron job', array(), WATCHDOG_INFO);
     $ldap_servers = ldap_servers_get_servers('osha');
     $ldap_server = $ldap_servers['osha'];
+    module_load_include('admin.inc', 'osha_authentication');
     osha_authentication_ldap_sync($ldap_server);
     variable_set($NEXT_EXECUTION, time() + $interval);
   }
