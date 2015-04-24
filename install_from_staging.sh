@@ -3,6 +3,7 @@
 # Go to docroot/
 cd docroot/
 
+drush sql-drop -y
 drush site-install -y
 
 pre_update=  post_update=
