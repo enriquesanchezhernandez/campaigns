@@ -164,6 +164,13 @@ function osha_workflow_permissions_role_review_manager() {
 
       'edit any content in draft',
       'edit any content in final_draft',
+      'edit any content in ready_to_publish',
+      'edit any content in published',
+      'edit any content in to_be_approved',
+      'edit any content in needs_review',
+      'edit any content in rejected',
+      'edit any content in approved',
+
       'moderate content from draft to final_draft',
       'moderate content from final_draft to ready_to_publish',
       'moderate content from final_draft to draft',
