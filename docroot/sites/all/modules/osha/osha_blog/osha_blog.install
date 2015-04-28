@@ -26,3 +26,20 @@ function osha_blog_update_7002() {
     drupal_write_record('captcha_points', $data);
   }
 }
+
+/**
+ * Set the section for Blog nodes.
+ */
+function osha_blog_update_7003() {
+  $query = new EntityFieldQuery();
+  $result = $query->entityCondition('entity_type', 'node')
+    ->entityCondition('bundle', 'blog')
+    ->propertyOrderBy('nid')
+    ->execute();
+  $nids = array_keys($result['node']);
+  $nodes = node_load_multiple($nids);
+  foreach ($nodes as $node) {
+    $node->workbench_access = array('3068');
+    node_save($node);
+  }
+}
