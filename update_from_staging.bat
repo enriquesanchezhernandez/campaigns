@@ -3,8 +3,6 @@
 rem Go to docroot/
 cd docroot/
 
-call drush site-install -y
-
 rem Sync from edw staging
 call drush downsync_sql @osha.staging.sync @osha.local -y -v
 
