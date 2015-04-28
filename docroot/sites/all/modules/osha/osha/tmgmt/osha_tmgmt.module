@@ -2603,7 +2603,9 @@ function osha_tmgmt_literal_get_translation($string) {
   if (empty($string)) {
     return $string;
   }
-  $q = db_query('SELECT lid FROM {locales_target} t WHERE translation=:string', array(':string' => $string));
+  global $language;
+  $q = db_query('SELECT lid FROM {locales_target} t WHERE translation=:string and language = :language',
+    array(':string' => $string, ':language' => $language->language));
   if ($q->fetchField()) {
     return $string;
   }
