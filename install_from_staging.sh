@@ -4,7 +4,11 @@
 cd docroot/
 
 drush sql-drop -y
-drush site-install -y
+ecode=$?
+if [ ${ecode} != 0 ]; then
+  echo "Error cleaning database"
+  exit ${ecode};
+fi
 
 pre_update=  post_update=
 while getopts b:a: opt; do
@@ -20,31 +24,46 @@ done
 
 # Sync from edw staging
 drush downsync_sql @osha.staging @osha.local -y -v
+ecode=$?
+if [ ${ecode} != 0 ]; then
+  echo "downsync_sql has returned an error"
+  exit ${ecode};
+fi
+
 
 if [ ! -z "$pre_update" ]; then
-echo "Run pre update"
-../$pre_update
+  echo "Run pre update"
+  ../$pre_update
 fi
 
 # Devify - development settings
 drush devify --yes
-drush devify_solr
+ecode=$?
+if [ ${ecode} != 0 ]; then
+  echo "Devify has returned an error"
+  exit ${ecode};
+fi
 
-# temporary command for release 24.04.2015
-drush fr -y --force osha_workflow
+drush devify_solr
+ecode=$?
+if [ ${ecode} != 0 ]; then
+  echo "Devify Solr has returned an error"
+  exit ${ecode};
+fi
 
 # Build the site
 drush osha_build -y
-
-drush cc all
+if [ ${ecode} != 0 ]; then
+  echo "osha_build has returned an error"
+  exit ${ecode};
+fi
 
 if [ ! -z "$post_update" ]; then
-echo "Run post update"
-../$post_update
+  echo "Run post update"
+  ../$post_update
+  drush cc all
 fi
 
 # Post-install release 3
 # drush ne-import --file=../content/internal-doc-webform.drupal
 # drush php-script ../scripts/s9/post-update.php
-
-drush cc all
