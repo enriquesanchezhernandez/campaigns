@@ -10,6 +10,47 @@
 function osha_newsletter_field_default_field_instances() {
   $field_instances = array();
 
+  // Exported field_instance: 'entity_collection-newsletter_content_collection-field_campaign_id'
+  $field_instances['entity_collection-newsletter_content_collection-field_campaign_id'] = array(
+    'bundle' => 'newsletter_content_collection',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 5,
+      ),
+    ),
+    'entity_type' => 'entity_collection',
+    'field_name' => 'field_campaign_id',
+    'label' => 'Campaign ID in Piwik',
+    'required' => 1,
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+      'linkit' => array(
+        'button_text' => 'Search',
+        'enable' => 0,
+        'profile' => '',
+      ),
+      'text_processing' => 0,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'text',
+      'settings' => array(
+        'size' => 60,
+      ),
+      'type' => 'text_textfield',
+      'weight' => 7,
+    ),
+    'workbench_access_field' => 0,
+  );
+
   // Exported field_instance: 'entity_collection-newsletter_content_collection-field_created'
   $field_instances['entity_collection-newsletter_content_collection-field_created'] = array(
     'bundle' => 'newsletter_content_collection',
@@ -485,6 +526,7 @@ function osha_newsletter_field_default_field_instances() {
   // Included for use with string extractors like potx.
   t('Author');
   t('Body');
+  t('Campaign ID in Piwik');
   t('Created');
   t('Description');
   t('Name');

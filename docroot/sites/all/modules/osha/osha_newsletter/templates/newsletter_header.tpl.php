@@ -11,6 +11,11 @@
     <tr>
       <td>
         <?php
+          if (isset($campaign_id)) {
+            $url_query = array('pk_campaign' => $campaign_id);
+          } else {
+            $url_query = array();
+          }
           $directory = drupal_get_path('module','osha_newsletter');
           global $base_url;
           print l(theme('image', array(
@@ -21,7 +26,8 @@
           'attributes' => array('style' => 'border: 0px;')
           )), $base_url, array(
           'html' => TRUE,
-          'external' => TRUE
+          'external' => TRUE,
+          'query' => $url_query
         ));
         ?>
       </td>
@@ -66,9 +72,9 @@
                            }
                            $last_lang = array_pop($newsletter_languages);
                            foreach ($newsletter_languages as $language):?>
-                             <a href="<?php echo url('entity-collection/' . $newsletter_id, array('absolute' => TRUE, 'language' => $language));?>" style="text-decoration: none; color: #003399;"><?php print $language->native . ' | ';?></a>
+                             <a href="<?php echo url('entity-collection/' . $newsletter_id, array('absolute' => TRUE, 'language' => $language, 'query' => $url_query));?>" style="text-decoration: none; color: #003399;"><?php print $language->native . ' | ';?></a>
                            <?php endforeach; ?>
-                           <a href="<?php echo url('entity-collection/' . $newsletter_id, array('absolute' => TRUE, 'language' => $last_lang));?>" style="text-decoration: none; color: #003399;"><?php print $last_lang->native;?></a>
+                           <a href="<?php echo url('entity-collection/' . $newsletter_id, array('absolute' => TRUE, 'language' => $last_lang, 'query' => $url_query));?>" style="text-decoration: none; color: #003399;"><?php print $last_lang->native;?></a>
                          <?php
                          }
                         ?>

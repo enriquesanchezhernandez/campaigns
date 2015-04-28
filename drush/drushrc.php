@@ -403,6 +403,7 @@ $options['init-modules'] = array(
 
   // cookie privacy
   'eu_cookie_compliance',
+  'piwik',
 
   'calendar',
   'date_popup',
@@ -505,6 +506,10 @@ $options['init-themes'] = array(
   'osha_frontend'
 );
 
+$options['disable-modules'] = array(
+  'varnish', 'memcache_storage', 'piwik',
+);
+
 // Add specific settings for development or demo.
 $command_specific['devify'] = array(
   'enable-modules' => array(
@@ -514,7 +519,6 @@ $command_specific['devify'] = array(
     'devel_node_access',
     'stage_file_proxy',
   ),
-//  'disable-modules' => array('varnish', 'memcache_admin'),
   'delete-variables' => array('googleanalytics_account'),
   'reset-variables' => array_merge(
     array(
