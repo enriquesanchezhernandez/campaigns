@@ -603,7 +603,7 @@ safety-and-health-legislation/european-guidelines',
   $path_breadcrumb->path = 'open_job_vacancies';
   $path_breadcrumb->data = array(
     'titles' => array(
-      0 => 'Inside EU-OSHA',
+      0 => 'About EU-OSHA',
       1 => 'Careers',
       2 => '!page_title',
     ),
@@ -669,7 +669,7 @@ safety-and-health-legislation/european-guidelines',
   $path_breadcrumb->path = 'inside-eu-osha/press-releases';
   $path_breadcrumb->data = array(
     'titles' => array(
-      0 => 'Inside EU-OSHA',
+      0 => 'About EU-OSHA',
       1 => 'Press room',
       2 => '!page_title',
     ),

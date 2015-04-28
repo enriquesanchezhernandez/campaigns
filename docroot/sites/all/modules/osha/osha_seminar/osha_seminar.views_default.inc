@@ -15,14 +15,14 @@ function osha_seminar_views_default_views() {
   $view->description = '';
   $view->tag = 'default';
   $view->base_table = 'search_api_index_default_multilingual_node_index';
-  $view->human_name = 'Search Seminars';
+  $view->human_name = 'Search seminars';
   $view->core = 7;
   $view->api_version = '3.0';
   $view->disabled = FALSE; /* Edit this to true to make a default view disabled initially */
 
   /* Display: Master */
   $handler = $view->new_display('default', 'Master', 'default');
-  $handler->display->display_options['title'] = 'Search Seminars';
+  $handler->display->display_options['title'] = 'Search seminars';
   $handler->display->display_options['use_more_always'] = FALSE;
   $handler->display->display_options['access']['type'] = 'none';
   $handler->display->display_options['cache']['type'] = 'none';
@@ -313,7 +313,7 @@ function osha_seminar_views_default_views() {
   $handler->display->display_options['facet_field'] = 'field_tags';
   $translatables['search_seminars'] = array(
     t('Master'),
-    t('Search Seminars'),
+    t('Search seminars'),
     t('more'),
     t('Search'),
     t('Reset'),
