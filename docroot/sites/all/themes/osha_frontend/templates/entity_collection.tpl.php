@@ -14,7 +14,11 @@ if (module_exists('osha_newsletter') && isset($variables['element'])) {
     if (!empty($source->field_publication_date)) {
       $newsletter_date = $source->field_publication_date[LANGUAGE_NONE][0]['value'];
     }
-
+    $campaign_id = NULL;
+    if (isset($source->field_campaign_id[LANGUAGE_NONE][0]['value'])) {
+      // disable campaign tracking from the web newsletter
+      // $campaign_id = $source->field_campaign_id[LANGUAGE_NONE][0]['value'];
+    };
     $elements = array();
     $last_section = NULL;
     $blogs = array();
@@ -37,6 +41,7 @@ if (module_exists('osha_newsletter') && isset($variables['element'])) {
       } else if ($item->type == 'node') {
         $style = $item->style;
         $node = node_view($item->content,$style);
+        $node['#campaign_id'] = $campaign_id;
 
         if ($last_section == 'Blog') {
           $blogs[] = $node;
@@ -50,14 +55,10 @@ if (module_exists('osha_newsletter') && isset($variables['element'])) {
       }
     }
 
-    $languages = osha_language_list();
-    usort($languages, function ($a, $b) {
-      return strcmp($a->name, $b->name);
-    });
-
-    print theme_render_template($module_templates_path.'/newsletter_header.tpl.php', array('languages' => $languages, 'newsletter_title' => $newsletter_title, 'newsletter_id' => $newsletter_id, 'newsletter_date' => $newsletter_date));
-    print theme_render_template($module_templates_path.'/newsletter_body.tpl.php', array('items' => $elements, 'blogs' => $blogs, 'news' => $news, 'events' => $events));
-    print theme_render_template($module_templates_path.'/newsletter_footer.tpl.php', array());
+    $languages = osha_language_list(TRUE);
+    print theme_render_template($module_templates_path.'/newsletter_header.tpl.php', array('languages' => $languages, 'newsletter_title' => $newsletter_title, 'newsletter_id' => $newsletter_id, 'newsletter_date' => $newsletter_date, 'campaign_id' => $campaign_id));
+    print theme_render_template($module_templates_path.'/newsletter_body.tpl.php', array('items' => $elements, 'blogs' => $blogs, 'news' => $news, 'events' => $events, 'campaign_id' => $campaign_id));
+    print theme_render_template($module_templates_path.'/newsletter_footer.tpl.php', array('campaign_id' => $campaign_id));
   }
 } else {
   ?>

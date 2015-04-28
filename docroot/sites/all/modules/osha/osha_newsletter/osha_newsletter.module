@@ -1139,6 +1139,10 @@ function osha_newsletter_build_mail(&$message, EntityCollection $source) {
   if (!empty($source->field_publication_date)) {
     $newsletter_date = $source->field_publication_date[LANGUAGE_NONE][0]['value'];
   }
+  $campaign_id = '';
+  if (isset($source->field_campaign_id[LANGUAGE_NONE][0]['value'])) {
+    $campaign_id = $source->field_campaign_id[LANGUAGE_NONE][0]['value'];
+  };
 
   $items = $content->children;
   $elements = array();
@@ -1163,6 +1167,7 @@ function osha_newsletter_build_mail(&$message, EntityCollection $source) {
     } else if ($item->type == 'node') {
       $style = $item->style;
       $node = node_view($item->content,$style);
+      $node['#campaign_id'] = $campaign_id;
 
       if ($last_section == 'Blog') {
         $blogs[] = $node;
@@ -1180,13 +1185,19 @@ function osha_newsletter_build_mail(&$message, EntityCollection $source) {
 
   // Get message data from source.
   $message['subject'] = $source->title;
-  $message['body']['header'] = theme('newsletter_header', array('languages' => $languages, 'newsletter_title' => $newsletter_title, 'newsletter_id' => $newsletter_id, 'newsletter_date' => $newsletter_date));
-  $message['body']['body'] = theme('newsletter_body', array('items' => $elements, 'blogs' => $blogs, 'news' => $news, 'events' => $events));
+  $message['body']['header'] = theme('newsletter_header', array(
+    'languages' => $languages, 'newsletter_title' => $newsletter_title,
+    'newsletter_id' => $newsletter_id, 'newsletter_date' => $newsletter_date,
+    'campaign_id' => $campaign_id
+  ));
+  $message['body']['body'] = theme('newsletter_body', array(
+    'items' => $elements, 'blogs' => $blogs, 'news' => $news, 'events' => $events, 'campaign_id' => $campaign_id
+  ));
 
   //add css styles to href in body
   $message['body']['body'] = osha_newsletter_format_body($message['body']['body']);
 
-  $message['body']['footer'] = theme('newsletter_footer');
+  $message['body']['footer'] = theme('newsletter_footer', array('campaign_id' => $campaign_id));
 
   // Optional params for HTML mails.
   $message['params']['plain'] = NULL;
@@ -1253,7 +1264,8 @@ function osha_newsletter_theme() {
       'languages' => NULL,
       'newsletter_title' => NULL,
       'newsletter_id' => NULL,
-      'newsletter_date' => NULL
+      'newsletter_date' => NULL,
+      'campaign_id' => NULL
     ),
     'path' => $path . '/templates'
   );
@@ -1263,12 +1275,16 @@ function osha_newsletter_theme() {
       'items' => NULL,
       'blogs' => NULL,
       'news' => NULL,
-      'events' => NULL
+      'events' => NULL,
+      'campaign_id' => NULL
     ),
     'path' => $path . '/templates'
   );
   $theme['newsletter_footer'] = array(
     'template' => 'newsletter_footer',
+    'variables' => array(
+      'campaign_id' => NULL
+    ),
     'path' => $path . '/templates'
   );
   $theme['subscribe_extra_block'] = array(

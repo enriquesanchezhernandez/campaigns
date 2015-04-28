@@ -434,10 +434,6 @@ function osha_frontend_preprocess_block(&$vars) {
  * @todo @Ivan: Edit only below
  */
 
-
-
-
-
 /**
  * @todo @Ivan: Do not go below this line
  */
