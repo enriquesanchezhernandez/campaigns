@@ -15,12 +15,11 @@
 
 <head>
   <?php print $head; ?>
-  <?php if (isset($head_title_array['title']) && isset($head_title_array['name']) ) { ?>
-    <title><?php print $head_title_array['title'] . ' | ' . $head_title_array['name']; ?></title>
-  <?php } else { ?>
-    <title><?php print $head_title; ?></title>
-  <?php } ?>
-
+  <title><?php
+  if (isset($head_title)) print $head_title;
+    else if (isset($head_title_array['title']) && isset($head_title_array['name'])) {
+      print $head_title_array['title'] . ' | ' . $head_title_array['name'];
+  }?></title>
 
   <?php if ($default_mobile_metatags): ?>
     <meta name="MobileOptimized" content="width">

@@ -759,6 +759,22 @@ function osha_date_formatter_dates_alter(&$dates, $context) {
 }
 
 /**
+ * Implements hook_tokens_alter().
+ */
+function osha_tokens_alter(array &$replacements, array $context) {
+  // translate only site:name
+  if (isset($replacements['[site:name]'])) {
+    if (isset($context['options']['language'])) {
+      $language_code = $context['options']['language']->language;
+    } else {
+      global $language;
+      $language_code = $language->language;
+    }
+    $replacements['[site:name]'] = t($replacements['[site:name]'], array(), array('langcode' => $language_code));
+  }
+}
+
+/**
  * Retrieve the decoded name for Activity field attached to a node.
  *
  * @param object $node
