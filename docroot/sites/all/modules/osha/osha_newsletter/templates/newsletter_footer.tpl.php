@@ -1,3 +1,10 @@
+<?php
+  if (isset($campaign_id)) {
+    $url_query = array('pk_campaign' => $campaign_id);
+  } else {
+    $url_query = array();
+  }
+  ?>
 <table border="0" cellpadding="28" cellspacing="0" width="800" class="blue-line">
   <tbody>
     <tr>
@@ -35,7 +42,7 @@
             <tr>
               <td style="padding-top: 10px; padding-bottom: 10px; color: #FFFFFF; font-family: Arial, sans-serif; font-size: 13px; ">
                 <?php print t('Subscribe to our <a href="@url" style="@style">Alert service</a> for <br/> customised content delivery',
-                            array('@style' => 'color: #FFFFFF;', '@url' => url($base_url.'/en/alertservice'))); ?>
+                            array('@style' => 'color: #FFFFFF;', '@url' => url($base_url.'/en/alertservice', array('query' => $url_query)))); ?>
               </td>
               <td class="social">
                 <?php
@@ -53,7 +60,7 @@
                       'alt' => t('Facebook')
                     ),
                     'blog' => array(
-                      'path' => url('tools-and-publications/blog', array('alias' => TRUE, 'absolute' => TRUE)),
+                      'path' => url('tools-and-publications/blog', array('alias' => TRUE, 'absolute' => TRUE, 'query' => $url_query)),
                       'alt' => t('blog')
                     ),
                     'youtube' => array(
@@ -90,7 +97,7 @@
           <tbody>
             <tr>
               <td style="text-align: center; font-family: Arial, sans-serif; font-size: 13px;">
-                <?php print t('No longer wish to receive OSHmail? <a href="@url" style="@style">Unsubscribe here.</a>', array('@style' => 'color: #003399; text-decoration: none;', '@url' => url($base_url.'/en/oshmail-newsletter'))); ?>
+                <?php print t('No longer wish to receive OSHmail? <a href="@url" style="@style">Unsubscribe here.</a>', array('@style' => 'color: #003399; text-decoration: none;', '@url' => url($base_url.'/en/oshmail-newsletter', array('query' => $url_query)))); ?>
               </td>
             </tr>
           </tbody>
