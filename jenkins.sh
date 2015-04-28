@@ -12,7 +12,7 @@ if [ ${ecode} != 0 ]; then
 fi
 
 # Load the local dump
-cat ../../source-dump.sql | mysql osha
+cat ../../source-dump.sql | mysql -h php-mysql -u jenkins --password=jenkins jenkins_osha
 ecode=$?
 if [ ${ecode} != 0 ]; then
   echo "Error loading SQL dump into database"
