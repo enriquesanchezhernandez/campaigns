@@ -62,7 +62,7 @@ function osha_alert_service_subscribe_form() {
 
   $alltypes = node_type_get_types();
   foreach ($allowed as $machine_name) {
-    $types[$machine_name] = $alltypes[$machine_name]->name;
+    $types[$machine_name] = t($alltypes[$machine_name]->name);
   }
 
   $form['type'] = array(

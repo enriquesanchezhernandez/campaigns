@@ -218,7 +218,7 @@ function osha_authentication_ldap_get_site_users($ldap_server) {
   unset($ldap_groups['count']);
   $uids = array();
   foreach($ldap_groups as $group) {
-    if ($group['memberuid']['count'] > 0) {
+    if (isset($group['memberuid']) && $group['memberuid']['count'] > 0) {
       unset($group['memberuid']['count']);
       $uids = array_merge($uids, $group['memberuid']);
     }

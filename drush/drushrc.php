@@ -403,6 +403,7 @@ $options['init-modules'] = array(
 
   // cookie privacy
   'eu_cookie_compliance',
+  'piwik',
 
   'calendar',
   'date_popup',

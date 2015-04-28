@@ -6697,7 +6697,7 @@ div.contextual-links-wrapper{
 			}
 }
 
-#block-views-infographic-block-1 .view-infographic  .views-row .views-field-title-field{
+#block-views-infographic-block-1 .view-infographic .views-row .views-field-title-field{
 	border-bottom: 10px solid #d2dced;
     color: #001791 !important;
     font-family: "Open Sans Condensed",sans-serif;
@@ -6714,6 +6714,10 @@ div.contextual-links-wrapper{
     position: relative;
     text-decoration: none;
     width: 216px;
+}
+
+#block-views-infographic-block-1 .view-infographic .views-row-7 .views-field-title-field{
+    padding-top: 2.5em!important;
 }
 
 
