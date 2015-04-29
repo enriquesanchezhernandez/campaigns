@@ -16,7 +16,7 @@ function doc_to_imagefield_menu() {
     'title' => 'Doc to Image Field',
     'description' => 'Config information for the module',
     'page callback' => 'drupal_get_form',
-    'page arguments' => array('doc_to_imagefield_admin'),
+    'page arguments' => array('doc_to_imagefield_admin_form'),
     'access arguments' => array('administer site configuration'),
   );
   $items['admin/config/media/doc_to_imagefield/tab1'] = array(
@@ -61,9 +61,9 @@ function doc_to_imagefield_menu() {
   return $items;
 }
 /**
- * Implements hook_admin().
+ * Administration form.
  */
-function doc_to_imagefield_admin() {
+function doc_to_imagefield_admin_form($form, $form_state) {
   $form = array();
 
   $form['convertor_plugin'] = array(
