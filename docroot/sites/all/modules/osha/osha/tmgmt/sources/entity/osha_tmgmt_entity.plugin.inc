@@ -63,7 +63,6 @@ class OSHATMGMTEntitySourcePluginController extends TMGMTEntitySourcePluginContr
       unset($entity->path['pid']);
     }
     entity_save($job_item->item_type, $entity);
-
     $translation = array(
       // @todo Improve hardcoded values.
       'translate' => 0,
@@ -73,6 +72,9 @@ class OSHATMGMTEntitySourcePluginController extends TMGMTEntitySourcePluginContr
     );
     $handler->setTranslation($translation);
     $handler->saveTranslations();
+    // save() to set new job item state, otherwise job is not properly closed
+    // when this job item is the latest one accepted.
+    $job_item->save();
     $job_item->accepted();
   }
 
