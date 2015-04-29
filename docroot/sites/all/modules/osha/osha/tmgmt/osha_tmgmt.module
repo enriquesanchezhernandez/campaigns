@@ -355,6 +355,10 @@ function osha_tmgmt_tmgmt_file_format_plugin_info() {
       'label' => t('CDT XML file'),
       'plugin controller class' => 'OSHATranslatorFileformatCDT',
     ),
+    'XML' => array(
+      'label' => t('CDT XML file'),
+      'plugin controller class' => 'OSHATranslatorFileformatCDT',
+    ),
   );
 }
 
