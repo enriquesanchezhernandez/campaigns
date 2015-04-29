@@ -12,7 +12,7 @@
 function doc_to_imagefield_requirements($phase) {
   $results = array();
   if ($phase === 'runtime') {
-    $results = doc_to_imagefield_check_requirements();
+//    $results = doc_to_imagefield_check_requirements();
   }
   return $results;
 }
