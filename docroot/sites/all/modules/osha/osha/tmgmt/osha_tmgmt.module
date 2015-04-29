@@ -915,6 +915,14 @@ function osha_tmgmt_form_alter(&$form, &$form_state, $form_id) {
         // Happens when user clicks the Ajax checkmark button on review form.
         drupal_set_message('Value was saved');
       }
+
+      // For taxonomy terms hide the 'Save' button and show the 'Publish' button
+      if (isset($form_state['item']) && $form_state['item']->item_type == 'taxonomy_term') {
+        if (!empty($form['actions']['save'])) {
+          $form['actions']['save']['#access'] = FALSE;
+        }
+        $form['actions']['accept']['#access'] = TRUE;
+      }
       if (isset($form_state['item']) && $form_state['item']->item_type == 'node'
           && user_access('preview layout validation')) {
         $form['preview'] = array(
