@@ -23,7 +23,7 @@ while getopts b:a: opt; do
 done
 
 # Sync from edw staging
-drush downsync_sql @osha.staging @osha.local -y -v
+drush downsync_sql @osha.staging @osha.local -y
 ecode=$?
 if [ ${ecode} != 0 ]; then
   echo "downsync_sql has returned an error"
