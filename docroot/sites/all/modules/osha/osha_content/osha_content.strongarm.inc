@@ -47,6 +47,7 @@ blog
 events
 seminar
 job_vacancies
+calls
 press_contact
 banner
 news
