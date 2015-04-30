@@ -479,7 +479,7 @@ function osha_newsletter_subscribe_extra_form() {
     '#type' => 'captcha',
     '#captcha_type' => 'default',
   );
-  $link_label = variable_get('subscribe_extra_block_details_link_label', t('How will EU-OSHA use my details?'));
+  $link_label = t(variable_get('subscribe_extra_block_details_link_label', 'How will EU-OSHA use my details?'));
   $link_url = variable_get('subscribe_extra_block_details_link_url', OSHA_PRIVACY_PAGE_URL);
   $form['details_link'] = array(
     '#markup' => '<a class="privacy-policy-oshmail" href='.url($link_url).'>'.$link_label.'</a><br/>',
