@@ -9,7 +9,7 @@
 ?>
 <?php if($page): ?>
   <h1 id="page-title" class="page__title title"><?php print t('Press releases');?></h1>
-  <div class="view-header back"><?php print l(t('Back to Press Releases'), 'inside-eu-osha/press-room'); ?></div>
+  <div class="view-header back"><?php print l(t('Back to press releases'), 'inside-eu-osha/press-room'); ?></div>
 <?php endif; ?>
 
 <article class="node-<?php print $node->nid; ?> <?php print $classes; ?> clearfix"<?php print $attributes; ?>>
