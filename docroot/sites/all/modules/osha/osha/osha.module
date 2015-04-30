@@ -560,8 +560,8 @@ function osha_form_alter(&$form, &$form_state, $form_id){
       'seminar_node_form'))) {
     $form['field_activity']['und']['#cardinality'] = 1;
     $form['field_activity']['und']['#multiple'] = FALSE;
-    $form['field_activity']['und']['#empty_option'] = t('Select activity');
-    $form['field_activity']['und']['#empty_value'] = 0;
+    $form['field_activity']['und']['#empty_option'] = 'Select activity';
+    $form['field_activity']['und']['#empty_value'] = '';
   }
 }
 
