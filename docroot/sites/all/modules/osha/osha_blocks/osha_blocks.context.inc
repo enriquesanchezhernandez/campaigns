@@ -76,7 +76,6 @@ function osha_blocks_context_default_contexts() {
         'inside-eu-osha/careers' => 'inside-eu-osha/careers',
         'node/21' => 'node/21',
         'inside-eu-osha/procurement' => 'inside-eu-osha/procurement',
-        'node/1471' => 'node/1471',
         'node/1472' => 'node/1472',
         'tools-and-publications/blog' => 'tools-and-publications/blog',
         'node/5445' => 'node/5445',
