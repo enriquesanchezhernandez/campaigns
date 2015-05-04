@@ -76,7 +76,7 @@ function osha_alert_service_subscribe_form() {
   $form['schedule'] = array(
     '#type' => 'select',
     '#multiple' => FALSE,
-    '#title' => t('Item type'),
+    '#title' => t('Schedule'),
     '#options' => array(
       'daily' => t('Daily'),
       'weekly' => t('Weekly'),

@@ -5,7 +5,7 @@ function osha_alert_service_get_translatable_strings() {
     'Click here for the RSS Feed',
     'E-mail',
     'Subjects of interest',
-    'Item type',
+    'Schedule',
     'Daily',
     'Weekly',
     'Monthly',
