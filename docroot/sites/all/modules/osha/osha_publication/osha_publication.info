@@ -44,7 +44,6 @@ features[ctools][] = views:views_default:3.0
 features[fe_block_settings][] = views-publications-slidehow
 features[fe_nodequeue][] = publication_queue
 features[features_api][] = api:2
-features[field_base][] = field_aditional_resources
 features[field_base][] = field_publication_bookshop_id
 features[field_base][] = field_publication_related_res
 features[field_base][] = field_publication_type

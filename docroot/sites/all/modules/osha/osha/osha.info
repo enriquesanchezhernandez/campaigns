@@ -63,6 +63,7 @@ features[fe_block_settings][] = system-powered-by
 features[features_api][] = api:2
 features[field_base][] = body
 features[field_base][] = field_activity
+features[field_base][] = field_aditional_resources
 features[field_base][] = field_archived
 features[field_base][] = field_article_type
 features[field_base][] = field_author
