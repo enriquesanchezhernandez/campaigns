@@ -717,6 +717,13 @@ function osha_workflow_user_get_all_sections($user) {
     $wa_sections = osha_workflow_editor_get_sections($user);
     $user_sections = array_merge($user_sections, array_keys($wa_sections));
   }
+  // If user has root section, has all sections.
+  if (in_array('section', $user_sections)) {
+    $active_tree = workbench_access_get_active_tree();
+    if (!empty($active_tree['tree'])) {
+      $user_sections = drupal_map_assoc(array_keys($active_tree['tree']));
+    }
+  }
   return $user_sections;
 }
 
