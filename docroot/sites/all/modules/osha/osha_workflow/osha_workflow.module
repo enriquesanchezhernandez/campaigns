@@ -551,7 +551,7 @@ function osha_workflow_bundle_in_pm_section($bundle, $user) {
  * If node is in one of Editor's section.
  */
 function osha_workflow_node_in_editor_section($node, $user) {
-  $wa_sections = workbench_access_get_user_tree($user);
+  $wa_sections = osha_workflow_editor_get_sections($user);
   $wa_sections = array_keys($wa_sections);
   if (!isset($node->workbench_access) || in_array('section', $wa_sections)) {
     return TRUE;
@@ -564,7 +564,7 @@ function osha_workflow_node_in_editor_section($node, $user) {
 }
 
 function osha_workflow_bundle_in_editor_section($bundle, $user) {
-  $users_sections = workbench_access_get_user_tree($user);
+  $users_sections = osha_workflow_editor_get_sections($user);
   $users_sections = array_keys($users_sections);
   // If assigned to root, can edit anything.
   if (in_array('section', $users_sections)) {
@@ -714,10 +714,21 @@ function osha_workflow_user_get_all_sections($user) {
   }
   if (OshaWorkflowPermissions::userHasRole(OSHA_WORKFLOW_ROLE_EDITOR, $user)) {
     module_load_include('inc', 'workbench_access', 'workbench_access.tokens');
-    $wa_sections = workbench_access_get_user_tree($user);
+    $wa_sections = osha_workflow_editor_get_sections($user);
     $user_sections = array_merge($user_sections, array_keys($wa_sections));
   }
   return $user_sections;
+}
+
+/**
+ * Return Editors sections.
+ */
+function osha_workflow_editor_get_sections($user) {
+  $query = db_query(
+    "SELECT access_id, access_id FROM {workbench_access_user}
+     WHERE access_scheme = :access_scheme AND uid = :uid",
+    array(':access_scheme' => 'taxonomy', ':uid' => $user->uid));
+  return $query->fetchAllKeyed();
 }
 
 /**
