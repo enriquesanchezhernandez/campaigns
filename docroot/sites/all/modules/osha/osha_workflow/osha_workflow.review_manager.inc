@@ -83,7 +83,7 @@ function osha_workflow_workbench_review_managers($access_type = NULL, $access_ty
  * @return object|FALSE
  *   User Object
  */
-function osha_workflow_get_default_review_manager($section) {
+function osha_workflow_get_default_review_managers($section) {
   $section_tree = workbench_access_get_active_tree();
   if (osha_workflow_access_rm_check_root()) {
     if (!empty($section_tree['tree'])) {
@@ -121,7 +121,7 @@ function osha_workflow_access_find_rm(&$section_tree, $section_id) {
 }
 
 /**
- * Get PM of a section.
+ * Get RM of a section.
  */
 function osha_workflow_access_rm_get_rm($access_id, $access_scheme) {
   return user_load_multiple(
@@ -129,12 +129,12 @@ function osha_workflow_access_rm_get_rm($access_id, $access_scheme) {
 }
 
 /**
- * Get PM of a section.
+ * Get RM of a section.
  */
 function osha_workflow_access_rm_get_rm_uid($access_id, $access_scheme) {
   $users = db_select('osha_workflow_access_rm', 'owa')
     ->fields('owa', array('uid'))
-    ->condition('access_id', $access_id)
+    ->condition('access_id', array($access_id, 'section'), 'IN')
     ->condition('access_scheme', $access_scheme)
     ->execute()
     ->fetchAllAssoc('uid');
@@ -169,7 +169,7 @@ function osha_workflow_access_rm_check_root() {
       return TRUE;
     }
     else {
-      drupal_set_message(t("Workflow: You haven't assigned a PM for root Section"), 'error');
+      drupal_set_message(t("Workflow: You haven't assigned a RM for root Section"), 'error');
       return FALSE;
     }
   }

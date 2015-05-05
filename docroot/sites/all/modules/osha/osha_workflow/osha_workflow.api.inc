@@ -113,7 +113,7 @@ function osha_workflow_access_pm_get_pm($access_id, $access_scheme) {
 function osha_workflow_access_pm_get_pm_uid($access_id, $access_scheme) {
   $users = db_select('osha_workflow_access_pm', 'owa')
     ->fields('owa', array('uid'))
-    ->condition('access_id', $access_id)
+    ->condition('access_id', array($access_id, 'section'), 'IN')
     ->condition('access_scheme', $access_scheme)
     ->execute()
     ->fetchAllAssoc('uid');
