@@ -797,8 +797,6 @@ function osha_workflow_workbench_moderation_transition($node, $old, $new) {
     OshaWorkflowNotifications::notifyNodeIsReadyToPublish($node);
   }
 
-  OshaWorkflowNotifications::notifyWebTeamStatusChanged($node, $old, $new);
-
   // Reindex all published translations
   if( !empty($node->translations->data)) {
     foreach ($node->translations->data as $language => $tr) {
