@@ -523,11 +523,9 @@ class OshaWorkflowPermissions {
       global $user;
     }
     if (isset($node->workbench_moderation)) {
-      // $current = $node->workbench_moderation['current'];
-      // $state = $current->state;
-      return
-        self::userHasRole(OSHA_WORKFLOW_ROLE_REVIEW_MANAGER, $user)
-        || self::userHasRole(OSHA_WORKFLOW_ROLE_ADMINISTRATOR, $user);
+      $node_in_rm_section = osha_workflow_node_in_rm_section($node, $user);
+      $is_admin = self::userHasRole(OSHA_WORKFLOW_ROLE_ADMINISTRATOR, $user);
+      return $is_admin || $node_in_rm_section;
     }
     return FALSE;
   }
@@ -549,13 +547,9 @@ class OshaWorkflowPermissions {
       global $user;
     }
     if (isset($node->workbench_moderation)) {
-      // $current = $node->workbench_moderation['current'];
-      // $state = $current->state;
-
-      if (self::userHasRole(OSHA_WORKFLOW_ROLE_ADMINISTRATOR, $user)
-          || self::userHasRole(OSHA_WORKFLOW_ROLE_REVIEW_MANAGER, $user)) {
-        return TRUE;
-      }
+      $node_in_rm_section = osha_workflow_node_in_rm_section($node, $user);
+      $is_admin = self::userHasRole(OSHA_WORKFLOW_ROLE_ADMINISTRATOR, $user);
+      return $is_admin || $node_in_rm_section;
     }
     return FALSE;
   }
