@@ -674,7 +674,7 @@ class OshaWorkflowNotifications {
    */
   public static function notifyOnChangeFromDraftToFinalDraft($node) {
     // Get RM of node's section.
-    $users = osha_workflow_get_rm_of_node_section($node);
+    $users = osha_workflow_get_node_rm($node);
     OshaWorkflowNotifications::sendEmail($users, array('node' => $node), 'osha_workflow');
   }
 
@@ -700,7 +700,7 @@ class OshaWorkflowNotifications {
    *   Affected node
    */
   public static function notifyOnChangeFromDraftOrFinalDraftToBeReviewed($node) {
-    $users = osha_workflow_get_rm_of_node_section($node);
+    $users = osha_workflow_get_node_rm($node);
     $users[] = osha_workflow_get_project_manager($node->nid);
 
     OshaWorkflowNotifications::sendEmail($users, array('node' => $node), 'osha_workflow');
@@ -727,7 +727,7 @@ class OshaWorkflowNotifications {
    *   Affected node
    */
   public static function notifyOnNodeApproved($node) {
-    $users = osha_workflow_get_rm_of_node_section($node);
+    $users = osha_workflow_get_node_rm($node);
     $users[] = osha_workflow_get_project_manager($node->nid);
     OshaWorkflowNotifications::sendEmail($users, array('node' => $node), 'osha_workflow');
   }
@@ -741,7 +741,7 @@ class OshaWorkflowNotifications {
    *   Affected node
    */
   public static function notifyOnNodeRejected($node) {
-    $users = osha_workflow_get_rm_of_node_section($node);
+    $users = osha_workflow_get_node_rm($node);
     $users[] = osha_workflow_get_project_manager($node->nid);
     OshaWorkflowNotifications::sendEmail($users, array('node' => $node), 'osha_workflow');
   }
@@ -755,7 +755,7 @@ class OshaWorkflowNotifications {
    *   Affected node
    */
   public static function notifyNodeRejectedFromApprovedToFinalDraft($node) {
-    $users = osha_workflow_get_rm_of_node_section($node);
+    $users = osha_workflow_get_node_rm($node);
     OshaWorkflowNotifications::sendEmail($users, array('node' => $node), 'osha_workflow');
   }
 
@@ -770,7 +770,7 @@ class OshaWorkflowNotifications {
    *   Affected node
    */
   public static function notifyNodeIsReadyToPublish($node) {
-    $review_managers = osha_workflow_get_rm_of_node_section($node);
+    $review_managers = osha_workflow_get_node_rm($node);
     OshaWorkflowNotifications::sendEmail($review_managers, array('node' => $node), 'osha_workflow');
 
     $translation_managers = OshaWorkflowPermissions::getUsersByRole(OSHA_WORKFLOW_ROLE_TRANSLATION_MANAGER);
