@@ -1,14 +1,13 @@
 name = OSHA Events
 core = 7.x
 package = OSHA
-version = 7.x-1.3
+version = 7.x-1.4
 project = osha_events
 dependencies[] = entity
 dependencies[] = feeds_tamper
 dependencies[] = field_group
 dependencies[] = i18n_field
 dependencies[] = multiple_selects
-dependencies[] = node
 dependencies[] = osha
 dependencies[] = osha_blog
 dependencies[] = osha_seminar
