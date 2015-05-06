@@ -752,7 +752,8 @@ class OshaWorkflowNotifications {
    *   Affected node
    */
   public static function notifyOnChangeFromDraftToFinalDraft($node) {
-    $users = OshaWorkflowPermissions::getUsersByRole(OSHA_WORKFLOW_ROLE_REVIEW_MANAGER);
+    // Get RM of node's section.
+    $users = osha_workflow_get_rm_of_node_section($node);
     OshaWorkflowNotifications::sendEmail($users, array('node' => $node), 'osha_workflow');
   }
 
@@ -803,7 +804,7 @@ class OshaWorkflowNotifications {
    *   Affected node
    */
   public static function notifyOnNodeApproved($node) {
-    $users = OshaWorkflowPermissions::getUsersByRole(OSHA_WORKFLOW_ROLE_REVIEW_MANAGER);
+    $users = osha_workflow_get_rm_of_node_section($node);
     $users[] = osha_workflow_get_project_manager($node->nid);
     OshaWorkflowNotifications::sendEmail($users, array('node' => $node), 'osha_workflow');
   }
@@ -817,7 +818,7 @@ class OshaWorkflowNotifications {
    *   Affected node
    */
   public static function notifyOnNodeRejected($node) {
-    $users = OshaWorkflowPermissions::getUsersByRole(OSHA_WORKFLOW_ROLE_REVIEW_MANAGER);
+    $users = osha_workflow_get_rm_of_node_section($node);
     $users[] = osha_workflow_get_project_manager($node->nid);
     OshaWorkflowNotifications::sendEmail($users, array('node' => $node), 'osha_workflow');
   }
@@ -831,7 +832,7 @@ class OshaWorkflowNotifications {
    *   Affected node
    */
   public static function notifyNodeRejectedFromApprovedToFinalDraft($node) {
-    $users = OshaWorkflowPermissions::getUsersByRole(OSHA_WORKFLOW_ROLE_REVIEW_MANAGER);
+    $users = osha_workflow_get_rm_of_node_section($node);
     OshaWorkflowNotifications::sendEmail($users, array('node' => $node), 'osha_workflow');
   }
 

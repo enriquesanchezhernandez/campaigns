@@ -123,7 +123,7 @@ function osha_workflow_access_find_rm(&$section_tree, $section_id) {
 /**
  * Get RM of a section.
  */
-function osha_workflow_access_rm_get_rm($access_id, $access_scheme) {
+function osha_workflow_access_rm_get_rm($access_id, $access_scheme = 'taxonomy') {
   return user_load_multiple(
     osha_workflow_access_rm_get_rm_uid($access_id, $access_scheme));
 }
@@ -142,7 +142,7 @@ function osha_workflow_access_rm_get_rm_uid($access_id, $access_scheme) {
 }
 
 /**
- * Get sections ids of a pm.
+ * Get sections ids of a rm.
  */
 function osha_workflow_access_get_rm_sections($uid) {
   $sections = db_select('osha_workflow_access_rm', 'owa')
@@ -151,6 +151,15 @@ function osha_workflow_access_get_rm_sections($uid) {
     ->execute()
     ->fetchAllAssoc('access_id');
   return array_keys($sections);
+}
+
+function osha_workflow_get_rm_of_node_section($node) {
+  $users = array();
+  if (!empty($node->workbench_access)) {
+    $section = current($node->workbench_access);
+    $users = osha_workflow_access_rm_get_rm($section);
+  }
+  return $users;
 }
 
 /**
