@@ -186,9 +186,8 @@ function osha_events_views_default_views() {
     'field_country_code' => 'field_country_code',
     'field_city' => 'field_city',
     'field_start_date' => 'field_start_date',
-    'field_end_date' => 'field_end_date',
+    'field_start_date_1' => 'field_start_date_1',
     'field_website_of_event' => 'field_website_of_event',
-    'field_theme' => 'field_theme',
     'field_adonis' => 'field_adonis',
     'field_unit_ref' => 'field_unit_ref',
     'field_activity' => 'field_activity',
@@ -204,6 +203,8 @@ function osha_events_views_default_views() {
     'edit_node' => 'edit_node',
     'delete_node' => 'delete_node',
     'nothing' => 'nothing',
+    'name' => 'name',
+    'field_agency_rep_confirmed_1' => 'field_agency_rep_confirmed_1',
   );
   $handler->display->display_options['style_options']['default'] = '-1';
   $handler->display->display_options['style_options']['info'] = array(
@@ -256,7 +257,7 @@ function osha_events_views_default_views() {
       'separator' => '',
       'empty_column' => 0,
     ),
-    'field_end_date' => array(
+    'field_start_date_1' => array(
       'sortable' => 1,
       'default_sort_order' => 'asc',
       'align' => '',
@@ -264,13 +265,6 @@ function osha_events_views_default_views() {
       'empty_column' => 0,
     ),
     'field_website_of_event' => array(
-      'sortable' => 1,
-      'default_sort_order' => 'asc',
-      'align' => '',
-      'separator' => '',
-      'empty_column' => 0,
-    ),
-    'field_theme' => array(
       'align' => '',
       'separator' => '',
       'empty_column' => 0,
@@ -290,8 +284,6 @@ function osha_events_views_default_views() {
       'empty_column' => 0,
     ),
     'field_activity' => array(
-      'sortable' => 0,
-      'default_sort_order' => 'asc',
       'align' => '',
       'separator' => '',
       'empty_column' => 0,
@@ -316,8 +308,6 @@ function osha_events_views_default_views() {
       'empty_column' => 0,
     ),
     'field_organised_by' => array(
-      'sortable' => 1,
-      'default_sort_order' => 'asc',
       'align' => '',
       'separator' => '',
       'empty_column' => 0,
@@ -368,6 +358,20 @@ function osha_events_views_default_views() {
       'empty_column' => 0,
     ),
     'nothing' => array(
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+    'name' => array(
+      'sortable' => 0,
+      'default_sort_order' => 'asc',
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+    'field_agency_rep_confirmed_1' => array(
+      'sortable' => 0,
+      'default_sort_order' => 'asc',
       'align' => '',
       'separator' => '',
       'empty_column' => 0,
@@ -459,7 +463,20 @@ function osha_events_views_default_views() {
   $handler->display->display_options['fields']['field_start_date']['field'] = 'field_start_date';
   $handler->display->display_options['fields']['field_start_date']['settings'] = array(
     'format_type' => 'long',
-    'fromto' => 'both',
+    'fromto' => 'value',
+    'multiple_number' => '',
+    'multiple_from' => '',
+    'multiple_to' => '',
+    'osha_date_theme' => '',
+  );
+  /* Field: Content: Start date */
+  $handler->display->display_options['fields']['field_start_date_1']['id'] = 'field_start_date_1';
+  $handler->display->display_options['fields']['field_start_date_1']['table'] = 'field_data_field_start_date';
+  $handler->display->display_options['fields']['field_start_date_1']['field'] = 'field_start_date';
+  $handler->display->display_options['fields']['field_start_date_1']['label'] = 'End date';
+  $handler->display->display_options['fields']['field_start_date_1']['settings'] = array(
+    'format_type' => 'long',
+    'fromto' => 'value2',
     'multiple_number' => '',
     'multiple_from' => '',
     'multiple_to' => '',
@@ -571,8 +588,37 @@ function osha_events_views_default_views() {
   $handler->display->display_options['fields']['name']['field'] = 'name';
   $handler->display->display_options['fields']['name']['relationship'] = 'uid';
   $handler->display->display_options['fields']['name']['link_to_user'] = FALSE;
+  /* Field: Content: Agency rep confirmed */
+  $handler->display->display_options['fields']['field_agency_rep_confirmed_1']['id'] = 'field_agency_rep_confirmed_1';
+  $handler->display->display_options['fields']['field_agency_rep_confirmed_1']['table'] = 'field_data_field_agency_rep_confirmed';
+  $handler->display->display_options['fields']['field_agency_rep_confirmed_1']['field'] = 'field_agency_rep_confirmed';
   $handler->display->display_options['defaults']['filter_groups'] = FALSE;
   $handler->display->display_options['defaults']['filters'] = FALSE;
+  /* Filter criterion: Content: Color (field_color) */
+  $handler->display->display_options['filters']['field_color_value']['id'] = 'field_color_value';
+  $handler->display->display_options['filters']['field_color_value']['table'] = 'field_data_field_color';
+  $handler->display->display_options['filters']['field_color_value']['field'] = 'field_color_value';
+  $handler->display->display_options['filters']['field_color_value']['group'] = 1;
+  $handler->display->display_options['filters']['field_color_value']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['field_color_value']['expose']['operator_id'] = 'field_color_value_op';
+  $handler->display->display_options['filters']['field_color_value']['expose']['label'] = 'Color';
+  $handler->display->display_options['filters']['field_color_value']['expose']['operator'] = 'field_color_value_op';
+  $handler->display->display_options['filters']['field_color_value']['expose']['identifier'] = 'field_color_value';
+  $handler->display->display_options['filters']['field_color_value']['expose']['remember_roles'] = array(
+    2 => '2',
+    1 => 0,
+    3 => 0,
+    4 => 0,
+    5 => 0,
+    6 => 0,
+    7 => 0,
+    8 => 0,
+    9 => 0,
+    10 => 0,
+    11 => 0,
+    12 => 0,
+    13 => 0,
+  );
   /* Filter criterion: Content: Published */
   $handler->display->display_options['filters']['status']['id'] = 'status';
   $handler->display->display_options['filters']['status']['table'] = 'node';
@@ -808,6 +854,32 @@ function osha_events_views_default_views() {
     12 => 0,
   );
   $handler->display->display_options['filters']['field_organised_by_tid']['vocabulary'] = 'organised_by';
+  /* Filter criterion: Content: Agency rep confirmed (field_agency_rep_confirmed) */
+  $handler->display->display_options['filters']['field_agency_rep_confirmed_value']['id'] = 'field_agency_rep_confirmed_value';
+  $handler->display->display_options['filters']['field_agency_rep_confirmed_value']['table'] = 'field_data_field_agency_rep_confirmed';
+  $handler->display->display_options['filters']['field_agency_rep_confirmed_value']['field'] = 'field_agency_rep_confirmed_value';
+  $handler->display->display_options['filters']['field_agency_rep_confirmed_value']['operator'] = 'contains';
+  $handler->display->display_options['filters']['field_agency_rep_confirmed_value']['group'] = 1;
+  $handler->display->display_options['filters']['field_agency_rep_confirmed_value']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['field_agency_rep_confirmed_value']['expose']['operator_id'] = 'field_agency_rep_confirmed_value_op';
+  $handler->display->display_options['filters']['field_agency_rep_confirmed_value']['expose']['label'] = 'Agency rep confirmed';
+  $handler->display->display_options['filters']['field_agency_rep_confirmed_value']['expose']['operator'] = 'field_agency_rep_confirmed_value_op';
+  $handler->display->display_options['filters']['field_agency_rep_confirmed_value']['expose']['identifier'] = 'field_agency_rep_confirmed_value';
+  $handler->display->display_options['filters']['field_agency_rep_confirmed_value']['expose']['remember_roles'] = array(
+    2 => '2',
+    1 => 0,
+    3 => 0,
+    4 => 0,
+    5 => 0,
+    6 => 0,
+    7 => 0,
+    8 => 0,
+    9 => 0,
+    10 => 0,
+    11 => 0,
+    12 => 0,
+    13 => 0,
+  );
   $handler->display->display_options['path'] = 'admin/content/events';
   $handler->display->display_options['menu']['type'] = 'tab';
   $handler->display->display_options['menu']['title'] = 'Events';
@@ -959,6 +1031,7 @@ function osha_events_views_default_views() {
     t('Color'),
     t('[field_color]'),
     t('Title'),
+    t('End date'),
     t('Activity'),
     t('Operations'),
     t('<ul class="links inline">
@@ -967,7 +1040,6 @@ function osha_events_views_default_views() {
 </ul>'),
     t('Name'),
     t('Published'),
-    t('End date'),
     t('Block'),
     t('Location'),
     t('[field_start_date_1] - Events'),
