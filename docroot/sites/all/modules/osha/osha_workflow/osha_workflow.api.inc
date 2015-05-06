@@ -22,28 +22,6 @@ function osha_workflow_get_default_approvers() {
   return $users;
 }
 
-/**
- * Function to retrieve default Project Manager for a section.
- *
- *   It searches UP in the section tree for an assigned PM.
- *
- * @param int|string $section
- *   Section ID
- *
- * @return int|FALSE
- *   User Id
- */
-function osha_workflow_get_default_project_manager($section) {
-  $section_tree = workbench_access_get_active_tree();
-  if (!empty($section_tree['tree'])) {
-    $users = osha_workflow_access_find_pm($section_tree, $section);
-    if (!empty($users)) {
-      return current($users);
-    }
-  }
-  return FALSE;
-}
-
 function osha_workflow_rebuild_pm_sections($uid, $sections, $workbench_access_scheme) {
   db_delete('osha_workflow_access_pm')
     ->condition('access_scheme', $workbench_access_scheme)
@@ -75,61 +53,27 @@ function osha_workflow_rebuild_rm_sections($uid, $sections, $workbench_access_sc
 }
 
 /**
- * Function to get PMs of the current section or from root section.
- *
- * @param array $section_tree
- *   active tree array
- * @param int|string $section_id
- *   Id of the section to search PM for
- *
+ * Get PMs for a section (currently one per section, but we return array).
  * @return array
- *   Array of Users Objects
+ *   User objects
  */
-function osha_workflow_access_find_pm(&$section_tree, $section_id) {
+function osha_workflow_access_get_section_pm($section_id) {
+  $ret = array();
+  $section_tree = workbench_access_get_active_tree();
   $access = $section_tree['tree'][$section_id];
-  $users = osha_workflow_access_pm_get_sections_uid($access['access_id'],
-    $section_tree['access_scheme']['access_scheme']);
-  if (empty($users)) {
-    $users = osha_workflow_access_pm_get_sections_uid('section',
-      $section_tree['access_scheme']['access_scheme']);
+  $access_id = $access['access_id'];
+  $access_scheme = $section_tree['access_scheme']['access_scheme'];
+
+  $users = db_select('osha_workflow_access_pm', 'owa')
+    ->fields('owa', array('uid'))
+    ->condition('access_id', $access_id, '=')
+    ->condition('access_scheme', $access_scheme)
+    ->execute()
+    ->fetchAllAssoc('uid');
+  if (!empty($users)) {
+    $ret = user_load_multiple(array_keys($users));
   }
-  return $users;
-}
-
-/**
- * Get PM of a section.
- */
-function osha_workflow_access_pm_get_pm($access_id, $access_scheme) {
-  return user_load_multiple(
-    osha_workflow_access_pm_get_pm_uid($access_id, $access_scheme));
-}
-
-
-/**
- * Get PM of a section.
- */
-function osha_workflow_access_pm_get_sections_uid($access_id, $access_scheme) {
-  $users = db_select('osha_workflow_access_pm', 'owa')
-    ->fields('owa', array('uid'))
-    ->condition('access_id', array($access_id), 'IN')
-    ->condition('access_scheme', $access_scheme)
-    ->execute()
-    ->fetchAllAssoc('uid');
-  return array_keys($users);
-}
-
-
-/**
- * Get PM of a section.
- */
-function osha_workflow_access_pm_get_pm_uid($access_id, $access_scheme) {
-  $users = db_select('osha_workflow_access_pm', 'owa')
-    ->fields('owa', array('uid'))
-    ->condition('access_id', array($access_id, 'section'), 'IN')
-    ->condition('access_scheme', $access_scheme)
-    ->execute()
-    ->fetchAllAssoc('uid');
-  return array_keys($users);
+  return $ret;
 }
 
 /**
@@ -142,29 +86,6 @@ function osha_workflow_access_get_pm_sections($uid) {
     ->execute()
     ->fetchAllAssoc('access_id');
   return array_keys($sections);
-}
-
-/**
- * Checks for PM to be assigned to root Section.
- *
- * @return bool
- *   If a PM is assigned for root Section or not.
- */
-function osha_workflow_access_pm_check_root() {
-  $section_tree = workbench_access_get_active_tree();
-  $access = current($section_tree['tree']);
-  if (!empty($access)) {
-    $users = osha_workflow_access_pm_get_pm($access['access_id'],
-      $section_tree['access_scheme']['access_scheme']);
-    if (!empty($users)) {
-      return TRUE;
-    }
-    else {
-      drupal_set_message(t("Workflow: You haven't assigned a PM for root Section"), 'error');
-      return FALSE;
-    }
-  }
-  return FALSE;
 }
 
 /**

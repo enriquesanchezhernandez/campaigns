@@ -216,8 +216,7 @@ function osha_workflow_access_pm_form_validate($form, &$form_state) {
   // User handling.
   if (!empty($values['add_user'])) {
     $account = user_load($values['add_user']);
-    $existing_users = osha_workflow_access_pm_get_pm($values['workbench_access']['access_id'],
-      $values['workbench_access']['access_scheme']);
+    $existing_users = osha_workflow_access_get_section_pm($values['workbench_access']['access_id']);
     if (empty($account)) {
       form_set_error('add_user', t('The selected user does not exist.'));
     }
@@ -324,10 +323,10 @@ function osha_workflow_node_review_form($form, &$form_state, $node) {
   $form_state['node'] = $node;
   $project_manager = osha_workflow_get_project_manager($node->nid);
   $section = current($node->workbench_access);
-  $users = osha_workflow_access_pm_get_pm($section, 'taxonomy');
+  $users = osha_workflow_access_get_section_pm($section);
   $options = array('' => t('-- Please select --'));
-  foreach ($users as $user) {
-    $options[$user->uid] = $user->name;
+  foreach ($users as $uid => $user) {
+    $options[$uid] = $user->name;
   }
   $form['#attributes'] = array('class' => array('container-inline'));
   if ($project_manager) {
@@ -644,10 +643,15 @@ function osha_workflow_access_section_review_form($form, &$form_state, $access_t
   );
 
   global $user;
-  $pm_uids = osha_workflow_access_pm_get_pm_uid($access_type_id, $access_type);
-  if (!in_array('administrator', $user->roles)
-    && !in_array($user->uid, $pm_uids)) {
-    $form['actions']['#access'] = FALSE;
+  $form['actions']['#access'] = FALSE;
+  if (in_array('administrator', $user->roles)) {
+    $form['actions']['#access'] = TRUE;
+  }
+  if ($pms = osha_workflow_access_get_section_pm($access_type_id)) {
+    // Current user is among the PMs for this section
+    if (array_key_exists($user->uid, $pms)) {
+      $form['actions']['#access'] = TRUE;
+    }
   }
 
   // Add review history.
@@ -673,16 +677,6 @@ function osha_workflow_access_section_review_form($form, &$form_state, $access_t
   );
 
   return $form;
-}
-
-function osha_workflow_access_section_review_form_validate($form, &$form_state) {
-  global $user;
-  $access_id = $form_state['access_id'];
-  $access_scheme = $form_state['access_scheme'];
-  $pm_uids = osha_workflow_access_pm_get_pm_uid($access_id, $access_scheme);
-  if (!in_array($user->uid, $pm_uids)) {
-
-  }
 }
 
 /**
@@ -719,9 +713,7 @@ function osha_workflow_access_section_review_form_submit($form, &$form_state) {
       }
     }
   }
-
   drupal_set_message(t('Section reviewed successfully!'));
-
   $form_state['redirect'] = 'admin/config/workbench/access/managers';
 }
 

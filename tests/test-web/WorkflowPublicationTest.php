@@ -12,7 +12,7 @@ class WorkflowPublicationTest extends OshaWebTestCase {
    * Test access to the project managers configuration per section.
    */
   public function testProjectManagersScreen() {
-    $pms = osha_workflow_access_pm_get_pm('main-menu', 'menu');
+    $pms = osha_workflow_access_get_section_pm('section');
     if (!empty($pms)) {
       reset($pms);
       $pm = current($pms);
@@ -60,10 +60,6 @@ class WorkflowPublicationTest extends OshaWebTestCase {
     $this->assertTrue(osha_workflow_is_last_approver($node, $ap3));
 
     node_delete($node->nid);
-  }
-
-  public function test_osha_workflow_get_default_project_manager() {
-    $this->assertNotEmpty(osha_workflow_get_default_project_manager('main-menu'));
   }
 
   public function test_osha_workflow_get_set_project_manager() {
