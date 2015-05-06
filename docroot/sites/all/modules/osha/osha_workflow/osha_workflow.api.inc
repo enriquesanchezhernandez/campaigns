@@ -30,8 +30,8 @@ function osha_workflow_get_default_approvers() {
  * @param int|string $section
  *   Section ID
  *
- * @return object|FALSE
- *   User Object
+ * @return int|FALSE
+ *   User Id
  */
 function osha_workflow_get_default_project_manager($section) {
   $section_tree = workbench_access_get_active_tree();

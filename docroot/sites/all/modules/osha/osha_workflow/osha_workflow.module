@@ -747,10 +747,9 @@ function osha_workflow_workbench_moderation_transition($node, $old, $new) {
     if (!osha_workflow_get_project_manager($node->nid)) {
       reset($node->workbench_access);
       $section = current($node->workbench_access);
-      $project_manager = osha_workflow_get_default_project_manager($section);
-      if ($project_manager) {
+      if ($pm_uid = osha_workflow_get_default_project_manager($section)) {
         drupal_set_message('Assigned default project manager of this section to the review process');
-        osha_workflow_set_project_manager($node->nid, $project_manager->uid);
+        osha_workflow_set_project_manager($node->nid, $pm_uid);
       }
       else {
         drupal_set_message('No default project manager was found. Please select one manually.');
