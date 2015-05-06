@@ -13,6 +13,8 @@ define('OSHA_WORKFLOW_ROLE_EDITOR', 'Editor');
 define('OSHA_WORKFLOW_ROLE_REVIEW_MANAGER', 'Review Manager');
 define('OSHA_WORKFLOW_ROLE_PROJECT_MANAGER', 'Project Manager');
 define('OSHA_WORKFLOW_ROLE_APPROVER', 'Approver');
+define('OSHA_WORKFLOW_ROLE_EVENTS_COORDINATOR', 'Events Coordinator');
+define('OSHA_WORKFLOW_ROLE_EVENTS_EDITOR', 'Events Editor');
 /* Translation workflow roles */
 define('OSHA_WORKFLOW_ROLE_TRANSLATION_MANAGER', 'Translation Manager');
 define('OSHA_WORKFLOW_ROLE_TRANSLATION_LIAISON', 'Translation Liaison');
@@ -289,118 +291,100 @@ function osha_workflow_node_access($node, $operation, $user) {
   if (OshaWorkflowPermissions::userIsAdministrator($user)) {
     return NODE_ACCESS_IGNORE;
   }
+  if ($operation == 'view') {
+    return NODE_ACCESS_IGNORE;
+  }
+
+  $is_approver = OshaWorkflowPermissions::userHasRole(OSHA_WORKFLOW_ROLE_APPROVER, $user);
+  $is_events_coordinator = OshaWorkflowPermissions::userHasRole(OSHA_WORKFLOW_ROLE_EVENTS_COORDINATOR, $user);
+  $is_events_editor = OshaWorkflowPermissions::userHasRole(OSHA_WORKFLOW_ROLE_EVENTS_EDITOR, $user);
+
+  $is_rm = OshaWorkflowPermissions::userHasRole(OSHA_WORKFLOW_ROLE_REVIEW_MANAGER, $user);
+  $is_pm = OshaWorkflowPermissions::userHasRole(OSHA_WORKFLOW_ROLE_PROJECT_MANAGER, $user);
+  $is_editor = OshaWorkflowPermissions::userHasRole(OSHA_WORKFLOW_ROLE_EDITOR, $user);
+
+  /* Global whitelist independend of create/update */
+  // If is not Editor/PM/RM leave permissions to Drupal
+  if (!$is_editor && !$is_rm && !$is_pm && !$is_approver) {
+    return NODE_ACCESS_IGNORE;
+  }
+  // Event editors can add any event.
+  if ($node == 'events' && ($is_events_editor || $is_events_coordinator)) {
+    return NODE_ACCESS_IGNORE;
+  }
 
   // On creation.
   if ($operation == 'create') {
-    // Prevent users from adding content of bundles not in their sections.
-    if (OshaWorkflowPermissions::userHasRole(OSHA_WORKFLOW_ROLE_EDITOR, $user)
-      || OshaWorkflowPermissions::userHasRole(OSHA_WORKFLOW_ROLE_PROJECT_MANAGER, $user)
-      || OshaWorkflowPermissions::userHasRole(OSHA_WORKFLOW_ROLE_REVIEW_MANAGER, $user)) {
+    // When $operation is 'create', $node is actually the bundle (i.e. "news").
+    $bundle_in_rm_section = osha_workflow_bundle_in_rm_section($node, $user);
+    $bundle_in_editor_section = osha_workflow_bundle_in_editor_section($node, $user);
+    $bundle_in_pm_section = osha_workflow_bundle_in_pm_section($node, $user);
 
-      // Establish the role that user is trying to access the node.
-      if (OshaWorkflowPermissions::userHasRole(OSHA_WORKFLOW_ROLE_REVIEW_MANAGER, $user)) {
-        if (osha_workflow_bundle_in_rm_section($node, $user)) {
-          return NODE_ACCESS_IGNORE;
-        }
-        else {
-          return NODE_ACCESS_DENY;
-        }
-      }
-      elseif (OshaWorkflowPermissions::userHasRole(OSHA_WORKFLOW_ROLE_PROJECT_MANAGER, $user)) {
-        if (osha_workflow_bundle_in_pm_section($node, $user)) {
-          return NODE_ACCESS_IGNORE;
-        }
-        else {
-          return NODE_ACCESS_DENY;
-        }
-      }
-      elseif (OshaWorkflowPermissions::userHasRole(OSHA_WORKFLOW_ROLE_EDITOR, $user)) {
-        if (osha_workflow_bundle_in_editor_section($node, $user)) {
-          return NODE_ACCESS_IGNORE;
-        }
-        else {
-          return NODE_ACCESS_DENY;
-        }
-      }
-      else {
-        return NODE_ACCESS_DENY;
-      }
+    /* Editor role */
+    // Editors are allowed to edit the content in their own section
+    if ($is_editor && $bundle_in_editor_section) {
+      return NODE_ACCESS_IGNORE;
+    }
+
+    /* Review manager */
+    // Allow Review manager to moderate content in their own section
+    if ($is_rm && $bundle_in_rm_section) {
+      return NODE_ACCESS_IGNORE;
+    }
+
+    /* Project manager */
+    // Allow Review manager to moderate content in their own section
+    if ($is_pm && $bundle_in_pm_section) {
+      return NODE_ACCESS_IGNORE;
     }
   }
 
   // For editing..
   if ($operation == 'update') {
-    $state = NULL;
-    if (isset($node->workbench_moderation)) {
-      $state = $node->workbench_moderation['current']->state;
+    $node_in_rm_section = osha_workflow_node_in_rm_section($node, $user);
+    $node_in_editor_section = osha_workflow_node_in_editor_section($node, $user);
+    $node_in_pm_section = osha_workflow_node_in_pm_section($node, $user);
+
+
+    // Assuming if not moderated, no workbench access restrictions apply
+    // @todo: can have workbench_access but without moderation?
+    if (!isset($node->workbench_moderation) || !isset($node->workbench_access)) {
+      return NODE_ACCESS_IGNORE;
     }
 
-    if ($state && variable_get('workbench_moderation_per_node_type', FALSE)
-      && !user_access('edit any content in ' . $state, $user)
-    ) {
+    $state = $node->workbench_moderation['current']->state;
+    // Deny access if @todo
+    if ($state && variable_get('workbench_moderation_per_node_type', FALSE) && !user_access('edit any content in ' . $state, $user)) {
       return NODE_ACCESS_DENY;
     }
 
-    if (!empty($node->workbench_access)) {
-      // If section role, deal with permission separately.
-      if (OshaWorkflowPermissions::userHasRole(OSHA_WORKFLOW_ROLE_EDITOR, $user)
-        || OshaWorkflowPermissions::userHasRole(OSHA_WORKFLOW_ROLE_PROJECT_MANAGER, $user)
-        || OshaWorkflowPermissions::userHasRole(OSHA_WORKFLOW_ROLE_REVIEW_MANAGER, $user)) {
+    /* Editor role */
+    if($node_in_editor_section) {
+      // If editor is node owner or state is published, allow further editing
+      if (osha_workflow_get_node_owner($node->nid, $node->uid) == $user->uid || $state == OSHA_WORKFLOW_STATE_PUBLISHED) {
+        return NODE_ACCESS_IGNORE;
+      }
+    }
 
-        // Establish the role that user is trying to access the node.
-        $user_main_role = NULL;
-        if (OshaWorkflowPermissions::userHasRole(OSHA_WORKFLOW_ROLE_REVIEW_MANAGER, $user)
-            && osha_workflow_node_in_rm_section($node, $user)) {
-          $user_main_role = OSHA_WORKFLOW_ROLE_REVIEW_MANAGER;
-        }
-        elseif (OshaWorkflowPermissions::userHasRole(OSHA_WORKFLOW_ROLE_PROJECT_MANAGER, $user)
-          && osha_workflow_node_in_pm_section($node, $user)) {
-          $user_main_role = OSHA_WORKFLOW_ROLE_REVIEW_MANAGER;
-          if ($state == OSHA_WORKFLOW_STATE_TO_BE_REVIEWED
-            && !osha_workflow_is_assigned_project_manager($node->nid)) {
-            // Do not allow edit for project managers
-            // that is not assigned for review.
-            return NODE_ACCESS_DENY;
-          }
-        }
-        elseif (OshaWorkflowPermissions::userHasRole(OSHA_WORKFLOW_ROLE_EDITOR, $user)
-          && osha_workflow_node_in_editor_section($node, $user)) {
-          $user_main_role = OSHA_WORKFLOW_ROLE_EDITOR;
-          if (isset($node->workbench_moderation)) {
-            $state = $node->workbench_moderation['current']->state;
-            // Editors can edit only in their content.
-            if (osha_workflow_get_node_owner($node->nid, $node->uid) != $user->uid
-              && $state != OSHA_WORKFLOW_STATE_PUBLISHED
-            ) {
-              return NODE_ACCESS_DENY;
-            }
-          }
-        }
-        else {
-          return NODE_ACCESS_DENY;
-        }
-      }
-      // Do not allow edit for approvers that already reviewed.
-      if ($state == OSHA_WORKFLOW_STATE_TO_BE_APPROVED) {
-        if (OshaWorkflowPermissions::userHasRole(OSHA_WORKFLOW_ROLE_APPROVER, $user)
-          && !osha_workflow_is_next_approver($node->nid)) {
-          return NODE_ACCESS_DENY;
-        }
-      }
-//      if ($state == OSHA_WORKFLOW_STATE_DRAFT) {
-//        if (!osha_workflow_user_has_access($node)) {
-//          return NODE_ACCESS_DENY;
-//        }
-//        elseif (OshaWorkflowPermissions::userHasRole(OSHA_WORKFLOW_ROLE_EDITOR, $user)
-//          || OshaWorkflowPermissions::userIsAdministrator($user)
-//          || osha_workflow_node_in_rm_section($node, $user)
-//        ) {
-//          return NODE_ACCESS_IGNORE;
-//        }
-//      }
+    /* Project manager */
+    // Is assigned as PM to node and node section matches one of PMs.
+    if ($node_in_pm_section && osha_workflow_is_assigned_project_manager($node->nid)) {
+      return NODE_ACCESS_IGNORE;
+    }
+
+    /* Review manager */
+    // @todo: Allow editing in any state???
+    if ($node_in_rm_section) {
+      return NODE_ACCESS_IGNORE;
+    }
+
+    /* Approver */
+    if (osha_workflow_is_next_approver($node->nid)) {
+      return NODE_ACCESS_IGNORE;
     }
   }
-  return NODE_ACCESS_IGNORE;
+
+  return NODE_ACCESS_DENY;
 }
 
 
@@ -530,7 +514,7 @@ function osha_workflow_node_in_pm_section($node, $user) {
 }
 
 function osha_workflow_bundle_in_pm_section($bundle, $user) {
-  $users_sections = osha_workflow_access_get_rm_sections($user->uid);
+  $users_sections = osha_workflow_access_get_pm_sections($user->uid);
   // If assigned to root, can edit anything.
   if (in_array('section', $users_sections)) {
     return TRUE;
@@ -832,29 +816,73 @@ function osha_workflow_workbench_moderation_transition($node, $old, $new) {
 function osha_workflow_workbench_moderation_access_alter(&$access, $op, $node) {
   global $user;
   if (OshaWorkflowPermissions::userIsAdministrator($user)) {
-    return $access = 1;
+    return $access = TRUE;
+  }
+
+  // Allow everyone access to moderation history
+  if ($op == 'view history' && user_access('view moderation history')) {
+    $access = 1;
+    return $access;
+  }
+
+  // Allow everyone access to view revisions
+  if ($op == 'view revisions' && user_access('view revisions')) {
+    $access = 1;
+    return $access;
   }
 
   if ($op == 'update') {
-    $access = 0;
+    $is_rm = OshaWorkflowPermissions::userHasRole(OSHA_WORKFLOW_ROLE_REVIEW_MANAGER, $user);
+    $is_pm = OshaWorkflowPermissions::userHasRole(OSHA_WORKFLOW_ROLE_PROJECT_MANAGER, $user);
+    $is_editor = OshaWorkflowPermissions::userHasRole(OSHA_WORKFLOW_ROLE_EDITOR, $user);
+
+    $node_in_rm_section = osha_workflow_node_in_rm_section($node, $user);
+    $node_in_editor_section = osha_workflow_node_in_editor_section($node, $user);
+    $node_in_pm_section = osha_workflow_node_in_pm_section($node, $user);
+
+    $access = FALSE;
     $state = $node->workbench_moderation['current']->state;
 
-    if (OshaWorkflowPermissions::userHasRole(OSHA_WORKFLOW_ROLE_EDITOR, $user)
-      || OshaWorkflowPermissions::userHasRole(OSHA_WORKFLOW_ROLE_PROJECT_MANAGER, $user)
-      || OshaWorkflowPermissions::userHasRole(OSHA_WORKFLOW_ROLE_REVIEW_MANAGER, $user)) {
+    /* Project manager */
+    // Allow moderation of nodes for PM assigned to a node.
+    if ($is_pm && $state == OSHA_WORKFLOW_STATE_TO_BE_REVIEWED && osha_workflow_is_assigned_project_manager($node->nid)) {
+      $access = TRUE;
+    }
+
+    /* Review manager and Editor */
+    if ($node_in_rm_section || $node_in_editor_section) {
+      $access = 1;
+      return $access;
+    }
+
+    /* Approver */
+    // Allow next approver permission
+    if ($state == OSHA_WORKFLOW_STATE_TO_BE_APPROVED) {
+      $next_approver = osha_workflow_get_next_approver($node->nid);
+      $is_next_approver = isset($next_approver->uid) && $user->uid == $next_approver->uid;
+      // Check the user is next to take action. Otherwise deny change.
+      if ($is_next_approver) {
+        $access = 1;
+      }
+    }
+
+///////////////////////////////////////////////////////////////////////////////////////////////
+
+    //
+    if ($is_editor || $is_pm || $is_rm) {
+      // Deny moderation for project managers not assigned for review.
+      if ($state == OSHA_WORKFLOW_STATE_TO_BE_REVIEWED) {
+        if ($node_in_pm_section && !osha_workflow_is_assigned_project_manager($node->nid)) {
+          $access = 0;
+          return $access;
+        }
+      }
 
       // Establish the role that user is trying to access the node.
-      if (OshaWorkflowPermissions::userHasRole(OSHA_WORKFLOW_ROLE_REVIEW_MANAGER, $user)
-        && osha_workflow_node_in_rm_section($node, $user)) {
-        return $access = 1;
-      }
-      elseif (OshaWorkflowPermissions::userHasRole(OSHA_WORKFLOW_ROLE_PROJECT_MANAGER, $user)
-        && osha_workflow_node_in_pm_section($node, $user)) {
-        return $access = 1;
-      }
-      elseif (OshaWorkflowPermissions::userHasRole(OSHA_WORKFLOW_ROLE_EDITOR, $user)
-        && osha_workflow_node_in_editor_section($node, $user)) {
-        return $access = 1;
+      // Node's section matches one of the user's section (per role), allow.
+      if ($node_in_rm_section || $node_in_pm_section || $node_in_editor_section) {
+        $access = 1;
+        return $access;
       }
     }
 
@@ -866,21 +894,18 @@ function osha_workflow_workbench_moderation_access_alter(&$access, $op, $node) {
         $access = 0;
       }
     }
-    // Do not allow moderation for project managers
-    // that is not assigned for review.
-    if ($state == OSHA_WORKFLOW_STATE_TO_BE_REVIEWED) {
-      if (osha_workflow_node_in_pm_section($node, $user)
-        && !osha_workflow_is_assigned_project_manager($node->nid)) {
-        return $access = 0;
-      }
-    }
+
   }
   if ($op == 'view history' && user_access('view moderation history')) {
-    return $access = 1;
+    $access = 1;
+    return $access;
   }
   if ($op == 'view revisions' && user_access('view revisions')) {
-    return $access = 1;
+    $access = 1;
+    return $access;
   }
+
+  return $access;
 }
 
 /**
