@@ -822,13 +822,13 @@ function osha_workflow_workbench_moderation_access_alter(&$access, $op, $node) {
   // Allow everyone access to moderation history
   if ($op == 'view history' && user_access('view moderation history')) {
     $access = 1;
-    return $access;
+    return NULL;
   }
 
   // Allow everyone access to view revisions
   if ($op == 'view revisions' && user_access('view revisions')) {
     $access = 1;
-    return $access;
+    return NULL;
   }
 
   if ($op == 'update') {
@@ -847,12 +847,13 @@ function osha_workflow_workbench_moderation_access_alter(&$access, $op, $node) {
     // Allow moderation of nodes for PM assigned to a node.
     if ($is_pm && $state == OSHA_WORKFLOW_STATE_TO_BE_REVIEWED && osha_workflow_is_assigned_project_manager($node->nid)) {
       $access = TRUE;
+      return NULL;
     }
 
     /* Review manager and Editor */
     if ($node_in_rm_section || $node_in_editor_section) {
       $access = 1;
-      return $access;
+      return NULL;
     }
 
     /* Approver */
@@ -862,50 +863,12 @@ function osha_workflow_workbench_moderation_access_alter(&$access, $op, $node) {
       $is_next_approver = isset($next_approver->uid) && $user->uid == $next_approver->uid;
       // Check the user is next to take action. Otherwise deny change.
       if ($is_next_approver) {
-        $access = 1;
+        $access = TRUE;
+        return NULL;
       }
     }
-
-///////////////////////////////////////////////////////////////////////////////////////////////
-
-    //
-    if ($is_editor || $is_pm || $is_rm) {
-      // Deny moderation for project managers not assigned for review.
-      if ($state == OSHA_WORKFLOW_STATE_TO_BE_REVIEWED) {
-        if ($node_in_pm_section && !osha_workflow_is_assigned_project_manager($node->nid)) {
-          $access = 0;
-          return $access;
-        }
-      }
-
-      // Establish the role that user is trying to access the node.
-      // Node's section matches one of the user's section (per role), allow.
-      if ($node_in_rm_section || $node_in_pm_section || $node_in_editor_section) {
-        $access = 1;
-        return $access;
-      }
-    }
-
-    if ($state == OSHA_WORKFLOW_STATE_TO_BE_APPROVED) {
-      $next_approver = osha_workflow_get_next_approver($node->nid);
-      $is_next_approver = isset($next_approver->uid) && $user->uid == $next_approver->uid;
-      // Check the user is next to take action. Otherwise deny change.
-      if (!$is_next_approver && OshaWorkflowPermissions::userHasRole(OSHA_WORKFLOW_ROLE_APPROVER, $user)) {
-        $access = 0;
-      }
-    }
-
   }
-  if ($op == 'view history' && user_access('view moderation history')) {
-    $access = 1;
-    return $access;
-  }
-  if ($op == 'view revisions' && user_access('view revisions')) {
-    $access = 1;
-    return $access;
-  }
-
-  return $access;
+  return NULL;
 }
 
 /**
