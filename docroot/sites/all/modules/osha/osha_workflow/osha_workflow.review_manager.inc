@@ -135,6 +135,7 @@ function osha_workflow_access_get_rm_sections($uid) {
 function osha_workflow_get_node_rm($node) {
   $users = array();
   if (!empty($node->workbench_access)) {
+    reset($node->workbench_access);
     $section = current($node->workbench_access);
     $users = osha_workflow_access_find_section_rm($section);
   }
