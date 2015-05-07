@@ -176,10 +176,9 @@ function osha_authentication_block_disabled_ldap_accounts($ldap_server, $ldap_ac
           user_save($account, array('roles' => array()));
           if (!$status) {
             // Remove user from all sections before rebuilding it
-            $access_scheme = variable_get('workbench_access');
             workbench_access_rebuild_user($account->uid, array());
-            osha_workflow_rebuild_pm_sections($account->uid, array(), $access_scheme);
-            osha_workflow_rebuild_rm_sections($account->uid, array(), $access_scheme);
+            osha_workflow_rebuild_pm_sections($account->uid, array());
+            osha_workflow_rebuild_rm_sections($account->uid, array());
             watchdog('osha_authentication', 'Blocking inactive account (no longer in LDAP/part of any group): !user', array('!user' => $account->name), WATCHDOG_WARNING);
           }
           else {
