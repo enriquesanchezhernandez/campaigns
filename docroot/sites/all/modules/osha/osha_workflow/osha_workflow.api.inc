@@ -22,7 +22,8 @@ function osha_workflow_get_default_approvers() {
   return $users;
 }
 
-function osha_workflow_rebuild_pm_sections($uid, $sections, $workbench_access_scheme) {
+function osha_workflow_rebuild_pm_sections($uid, $sections) {
+  $workbench_access_scheme = variable_get('workbench_access');
   db_delete('osha_workflow_access_pm')
     ->condition('access_scheme', $workbench_access_scheme)
     ->condition('uid', $uid)
@@ -37,7 +38,8 @@ function osha_workflow_rebuild_pm_sections($uid, $sections, $workbench_access_sc
   }
 }
 
-function osha_workflow_rebuild_rm_sections($uid, $sections, $workbench_access_scheme) {
+function osha_workflow_rebuild_rm_sections($uid, $sections) {
+  $workbench_access_scheme = variable_get('workbench_access');
   db_delete('osha_workflow_access_rm')
     ->condition('access_scheme', $workbench_access_scheme)
     ->condition('uid', $uid)
