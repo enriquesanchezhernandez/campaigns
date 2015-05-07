@@ -742,6 +742,7 @@ function osha_workflow_get_default_section($node) {
  */
 function osha_workflow_workbench_moderation_transition($node, $old, $new) {
   // Review workflow.
+  $rm_notified = FALSE;
   if ($old == OSHA_WORKFLOW_STATE_DRAFT && $new == OSHA_WORKFLOW_STATE_FINAL_DRAFT) {
     // Assign the default PM, if none assigned.
     if (!osha_workflow_get_project_manager($node->nid)) {
@@ -771,6 +772,7 @@ function osha_workflow_workbench_moderation_transition($node, $old, $new) {
       }
     }
     OshaWorkflowNotifications::notifyOnChangeFromDraftToFinalDraft($node);
+    $rm_notified = TRUE;
   }
   if ($old != OSHA_WORKFLOW_STATE_DRAFT && $new == OSHA_WORKFLOW_STATE_DRAFT) {
     OshaWorkflowNotifications::notifyOnChangeToDraft($node);
@@ -780,9 +782,13 @@ function osha_workflow_workbench_moderation_transition($node, $old, $new) {
   if ($old != OSHA_WORKFLOW_STATE_TO_BE_APPROVED && $new == OSHA_WORKFLOW_STATE_TO_BE_APPROVED) {
     osha_workflow_reset_node_approvers($node->nid);
     OshaWorkflowNotifications::notifyFirstApprover($node);
+    // Review manager should not be notified when approvers
+    // mark as approved (not state change).
+    $rm_notified = TRUE;
   }
   if (($old == OSHA_WORKFLOW_STATE_DRAFT || $old == OSHA_WORKFLOW_STATE_FINAL_DRAFT) && $new == OSHA_WORKFLOW_STATE_TO_BE_REVIEWED) {
     OshaWorkflowNotifications::notifyOnChangeFromDraftOrFinalDraftToBeReviewed($node);
+    $rm_notified = TRUE;
   }
   if ($old == OSHA_WORKFLOW_STATE_TO_BE_APPROVED && ($new == OSHA_WORKFLOW_STATE_APPROVED || $new == OSHA_WORKFLOW_STATE_REJECTED)) {
     if ($new == OSHA_WORKFLOW_STATE_APPROVED) {
@@ -793,12 +799,19 @@ function osha_workflow_workbench_moderation_transition($node, $old, $new) {
       osha_workflow_approve($node, OSHA_WORKFLOW_STATE_REJECTED);
       OshaWorkflowNotifications::notifyOnNodeRejected($node);
     }
+    $rm_notified = TRUE;
   }
   if ($old == OSHA_WORKFLOW_STATE_APPROVED && $new == OSHA_WORKFLOW_STATE_FINAL_DRAFT) {
     OshaWorkflowNotifications::notifyNodeRejectedFromApprovedToFinalDraft($node);
+    $rm_notified = TRUE;
   }
   if ($new == OSHA_WORKFLOW_STATE_READY_TO_PUBLISH) {
     OshaWorkflowNotifications::notifyNodeIsReadyToPublish($node);
+    $rm_notified = TRUE;
+  }
+
+  if (!$rm_notified) {
+    OshaWorkflowNotifications::notifyWebTeamStatusChanged($node, $old, $new);
   }
 
   // Reindex all published translations

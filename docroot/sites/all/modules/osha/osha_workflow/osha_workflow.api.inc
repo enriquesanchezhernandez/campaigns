@@ -773,9 +773,6 @@ class OshaWorkflowNotifications {
 
   /**
    * REV_RM_US_15 Notification sent to WebTeam when a node had status changed.
-   *
-   * @Deprecated - Admins are not notified, RM are notified in each change
-   *  trough functions of this class.
    */
   public static function notifyWebTeamStatusChanged($node, $from_state, $to_state) {
     $params = array(
@@ -783,7 +780,7 @@ class OshaWorkflowNotifications {
       'from' => $from_state,
       'to' => $to_state,
     );
-    $users = OshaWorkflowPermissions::getUsersByRole(OSHA_WORKFLOW_ROLE_ADMINISTRATOR);
+    $users = osha_workflow_get_node_rm($node);
     OshaWorkflowNotifications::sendEmail($users, $params, 'osha_workflow', 'osha_workflow_notification_admin');
   }
 
