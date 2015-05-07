@@ -1,0 +1,8 @@
+<?php
+
+/**
+ * Update menu translations from csv - 07.05.2015.
+ */
+function osha_menu_update_7001() {
+  drush_osha_menu_import_translations();
+}
