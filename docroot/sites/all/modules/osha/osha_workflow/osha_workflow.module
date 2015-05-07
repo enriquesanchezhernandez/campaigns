@@ -896,7 +896,8 @@ function osha_workflow_workbench_moderation_states_next_alter(&$access, $op, $no
   if(isset($the_node->workbench_moderation['current']->state)) {
     $state = $the_node->workbench_moderation['current']->state;
     if ($state == OSHA_WORKFLOW_STATE_TO_BE_APPROVED) {
-      if (osha_workflow_has_approved($the_node->nid, $the_user->uid)) {
+      $is_workflow_admin = user_access('moderate content from approved to ready_to_publish');
+      if (!$is_workflow_admin && osha_workflow_has_approved($the_node->nid, $the_user->uid)) {
         $access = array();
       }
     }
@@ -939,7 +940,7 @@ function osha_workflow_form_alter(&$form, &$form_state, $form_id) {
     $state = $node->workbench_moderation['current']->state;
     $form['#validate'][] = 'osha_workflow_workbench_moderation_approval_form_validate';
     if ($state == OSHA_WORKFLOW_STATE_TO_BE_APPROVED) {
-      $is_workflow_admin = user_access('moderate content from ready_to_publish to published');
+      $is_workflow_admin = user_access('moderate content from approved to ready_to_publish');
       $next = osha_workflow_get_next_approver($node->nid);
       global $user;
       if (!osha_workflow_needs_last_approver($node)) {
