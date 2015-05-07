@@ -846,7 +846,7 @@ function osha_workflow_workbench_moderation_access_alter(&$access, $op, $node) {
 
     /* Project manager */
     // Allow moderation of nodes for PM assigned to a node.
-    if ($is_pm && $state == OSHA_WORKFLOW_STATE_TO_BE_REVIEWED && osha_workflow_is_assigned_project_manager($node->nid)) {
+    if ($is_pm && osha_workflow_is_assigned_project_manager($node->nid)) {
       $access = TRUE;
       return NULL;
     }
