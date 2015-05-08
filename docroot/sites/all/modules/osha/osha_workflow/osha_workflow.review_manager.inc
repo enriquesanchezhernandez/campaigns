@@ -83,7 +83,7 @@ function osha_workflow_workbench_review_managers($access_type = NULL, $access_ty
  */
 function osha_workflow_access_find_section_rm($section_id) {
   $users = osha_workflow_access_get_section_rm($section_id);
-  if (empty($users)&& !empty($access['parent'])) {
+  if (empty($users)) {
     $users = osha_workflow_access_get_section_rm('section');
   }
   else {

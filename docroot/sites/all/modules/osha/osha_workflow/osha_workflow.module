@@ -742,6 +742,7 @@ function osha_workflow_get_default_section($node) {
  */
 function osha_workflow_workbench_moderation_transition($node, $old, $new) {
   // Review workflow.
+  $rm_notified = FALSE;
   if ($old == OSHA_WORKFLOW_STATE_DRAFT && $new == OSHA_WORKFLOW_STATE_FINAL_DRAFT) {
     // Assign the default PM, if none assigned.
     if (!osha_workflow_get_project_manager($node->nid)) {
@@ -771,6 +772,7 @@ function osha_workflow_workbench_moderation_transition($node, $old, $new) {
       }
     }
     OshaWorkflowNotifications::notifyOnChangeFromDraftToFinalDraft($node);
+    $rm_notified = TRUE;
   }
   if ($old != OSHA_WORKFLOW_STATE_DRAFT && $new == OSHA_WORKFLOW_STATE_DRAFT) {
     OshaWorkflowNotifications::notifyOnChangeToDraft($node);
@@ -780,9 +782,13 @@ function osha_workflow_workbench_moderation_transition($node, $old, $new) {
   if ($old != OSHA_WORKFLOW_STATE_TO_BE_APPROVED && $new == OSHA_WORKFLOW_STATE_TO_BE_APPROVED) {
     osha_workflow_reset_node_approvers($node->nid);
     OshaWorkflowNotifications::notifyFirstApprover($node);
+    // Review manager should not be notified when approvers
+    // mark as approved (not state change).
+    $rm_notified = TRUE;
   }
   if (($old == OSHA_WORKFLOW_STATE_DRAFT || $old == OSHA_WORKFLOW_STATE_FINAL_DRAFT) && $new == OSHA_WORKFLOW_STATE_TO_BE_REVIEWED) {
     OshaWorkflowNotifications::notifyOnChangeFromDraftOrFinalDraftToBeReviewed($node);
+    $rm_notified = TRUE;
   }
   if ($old == OSHA_WORKFLOW_STATE_TO_BE_APPROVED && ($new == OSHA_WORKFLOW_STATE_APPROVED || $new == OSHA_WORKFLOW_STATE_REJECTED)) {
     if ($new == OSHA_WORKFLOW_STATE_APPROVED) {
@@ -793,12 +799,19 @@ function osha_workflow_workbench_moderation_transition($node, $old, $new) {
       osha_workflow_approve($node, OSHA_WORKFLOW_STATE_REJECTED);
       OshaWorkflowNotifications::notifyOnNodeRejected($node);
     }
+    $rm_notified = TRUE;
   }
   if ($old == OSHA_WORKFLOW_STATE_APPROVED && $new == OSHA_WORKFLOW_STATE_FINAL_DRAFT) {
     OshaWorkflowNotifications::notifyNodeRejectedFromApprovedToFinalDraft($node);
+    $rm_notified = TRUE;
   }
   if ($new == OSHA_WORKFLOW_STATE_READY_TO_PUBLISH) {
     OshaWorkflowNotifications::notifyNodeIsReadyToPublish($node);
+    $rm_notified = TRUE;
+  }
+
+  if (!$rm_notified) {
+    OshaWorkflowNotifications::notifyWebTeamStatusChanged($node, $old, $new);
   }
 
   // Reindex all published translations
@@ -883,8 +896,16 @@ function osha_workflow_workbench_moderation_states_next_alter(&$access, $op, $no
   if(isset($the_node->workbench_moderation['current']->state)) {
     $state = $the_node->workbench_moderation['current']->state;
     if ($state == OSHA_WORKFLOW_STATE_TO_BE_APPROVED) {
-      if (osha_workflow_has_approved($the_node->nid, $the_user->uid)) {
+      $is_workflow_admin = user_access('moderate content from approved to ready_to_publish');
+      if (!$is_workflow_admin && osha_workflow_has_approved($the_node->nid, $the_user->uid)) {
         $access = array();
+      }
+      else {
+        // Hard code this states to force power users to follow workflow.
+        // i.e current user is RM on other section but last approver here
+        //     -> without this would have multiple state available in drop-down.
+        $approver_states = drupal_map_assoc(array(OSHA_WORKFLOW_STATE_APPROVED, OSHA_WORKFLOW_STATE_REJECTED));
+        $access = array_intersect_key($access, $approver_states);
       }
     }
   }
@@ -926,7 +947,7 @@ function osha_workflow_form_alter(&$form, &$form_state, $form_id) {
     $state = $node->workbench_moderation['current']->state;
     $form['#validate'][] = 'osha_workflow_workbench_moderation_approval_form_validate';
     if ($state == OSHA_WORKFLOW_STATE_TO_BE_APPROVED) {
-      $is_workflow_admin = user_access('moderate content from ready_to_publish to published');
+      $is_workflow_admin = user_access('moderate content from approved to ready_to_publish');
       $next = osha_workflow_get_next_approver($node->nid);
       global $user;
       if (!osha_workflow_needs_last_approver($node)) {
