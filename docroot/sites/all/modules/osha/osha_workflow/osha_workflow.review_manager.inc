@@ -123,6 +123,14 @@ function osha_workflow_access_get_rm_sections($uid) {
     ->condition('uid', $uid)
     ->execute()
     ->fetchAllAssoc('access_id');
+  if (in_array('section', array_keys($sections))) {
+    $sections = db_select('workbench_access', 'wa')
+      ->fields('wa', array('access_id'))
+      ->condition('access_scheme', 'taxonomy')
+      ->condition('access_type_id', 'section')
+      ->execute()
+      ->fetchAllAssoc('access_id');
+  }
   return array_keys($sections);
 }
 
