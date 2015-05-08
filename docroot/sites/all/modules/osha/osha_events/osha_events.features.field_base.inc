@@ -773,7 +773,7 @@ function osha_events_field_default_field_bases() {
   // Exported field_base: 'field_unit_ref'
   $field_bases['field_unit_ref'] = array(
     'active' => 1,
-    'cardinality' => 1,
+    'cardinality' => 4,
     'deleted' => 0,
     'entity_types' => array(),
     'field_name' => 'field_unit_ref',
