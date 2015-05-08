@@ -112,7 +112,10 @@ function osha_workflow_workbench_project_managers($access_type = NULL, $access_t
         )->fetchAllKeyed();
       }
       $count = count($pms);
-      $new_row = l(format_plural($count, '1 Project Manager', '@count Project Managers'), 'admin/config/workbench/access/managers/' . $active['access_scheme']['access_type'] . '/' . $access_id);
+      $new_row = format_plural($count, '1 Project Manager', '@count Project Managers');
+      if (user_access('assign workbench access')) {
+        $new_row = l($new_row, 'admin/config/workbench/access/managers/' . $active['access_scheme']['access_type'] . '/' . $access_id);
+      }
       if (!empty($pms)) {
         $new_row .= ' (' . implode(', ',$pms ) . ') ';
       }
