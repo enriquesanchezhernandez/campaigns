@@ -895,7 +895,11 @@ function osha_events_field_default_field_instances() {
   // Exported field_instance: 'node-events-field_event_type'
   $field_instances['node-events-field_event_type'] = array(
     'bundle' => 'events',
-    'default_value' => NULL,
+    'default_value' => array(
+      0 => array(
+        'value' => 'Event',
+      ),
+    ),
     'deleted' => 0,
     'description' => '',
     'display' => array(
