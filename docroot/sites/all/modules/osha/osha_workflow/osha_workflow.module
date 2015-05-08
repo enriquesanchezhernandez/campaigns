@@ -124,8 +124,16 @@ function osha_workflow_menu() {
  * @codeCoverageIgnore
  */
 function osha_workflow_menu_alter(&$items) {
-  unset($items['admin/config/workbench/access']['access callback']);
-  $items['admin/config/workbench/access']['access arguments'] = array('view workbench access information');
+
+  // Let Administrators to see the editors screen - they don;t have permission
+  // to edit them, so we overwrite this.
+  $items['admin/config/workbench']['access callback'] = 'osha_workflow_user_has_role_access_callback';
+  $items['admin/config/workbench/access']['access callback'] = 'osha_workflow_user_has_role_access_callback';
+  $items['admin/config/workbench/access/editors']['access callback'] = 'osha_workflow_user_has_role_access_callback';
+  $items['admin/config/workbench']['access arguments'] = array(OSHA_WORKFLOW_ROLE_ADMINISTRATOR);
+  $items['admin/config/workbench/access']['access arguments'] = array(OSHA_WORKFLOW_ROLE_ADMINISTRATOR);
+  $items['admin/config/workbench/access/editors']['access arguments'] = array(OSHA_WORKFLOW_ROLE_ADMINISTRATOR);
+
   // Disable Section Menu from Workbench Dashboard.
   $items['admin/workbench/sections']['access callback'] = FALSE;
 
@@ -283,7 +291,7 @@ function osha_workflow_permission() {
   return $permissions;
 }
 
-function osha_workflow_user_has_role_access_callback($role) {
+function osha_workflow_user_has_role_access_callback($role = 'OSHA_WORKFLOW_ROLE_ADMINISTRATOR') {
   global $user;
   if (OshaWorkflowPermissions::userHasRole(OSHA_WORKFLOW_ROLE_ADMINISTRATOR, $user)) {
     return TRUE;
