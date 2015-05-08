@@ -7,6 +7,10 @@ When patching a contrib module, the following steps should be followed:
 
 List of patches (most recent first)
 
+* workbench_access
+  * read-only screen for editorrial management
+  * /patches/workbench_access/read_only_root_section.patch
+
 * ldap_server
   * DN is not correctly parsed
   * /patches/ldap/ldap_servers/dn_parsing_bug.patch
