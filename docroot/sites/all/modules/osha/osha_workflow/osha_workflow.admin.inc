@@ -164,6 +164,7 @@ function osha_workflow_access_pm_form($form, &$form_state, $access_type, $access
   drupal_set_breadcrumb($current);
 
   $form = array();
+  $form['#access'] = user_access('assign workbench access');
   $active = workbench_access_get_active_tree();
   $active['access_scheme']['access_id'] = $access_type_id;
   if ($active['access_scheme']['access_type'] != $access_type || !isset($active['active'][$access_type_id])) {
@@ -598,7 +599,7 @@ function osha_workflow_node_approval_form_submit($form, $form_state) {
 function osha_workflow_access_section_review_form($form, &$form_state, $access_type, $access_type_id) {
   $access_info = workbench_access_load($access_type, $access_type_id);
   $output = '<h2>' . t('%name PM section review', array('%name' => $access_info['name'])) . '</h2>';
-  drupal_set_message(t("The children sections that does not have a PM assigned will be marked as reviewed!"), 'warning');
+//  drupal_set_message(t("The children sections that does not have a PM assigned will be marked as reviewed!"), 'warning');
   $form_state['access_id'] = $access_type_id;
   $form_state['access_scheme'] = $access_type;
   $form['title'] = array(
