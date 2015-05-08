@@ -166,29 +166,37 @@ function osha_authentication_block_disabled_ldap_accounts($ldap_server, $ldap_ac
   try {
     $local_accounts = entity_load('user');
     foreach ($local_accounts as $account) {
-      if ($account->uid > 1 && isset($account->data['ldap_user'])) {
+      // Do not touch 'admin' accounts NOT coming from LDAP
+      if ($account->uid > 1 && !empty($account->data['ldap_user']['init']['sid'])) {
         // Block LDAP accounts no longer member of any group from ou=MainSite,ou=Sites,dc=osha,dc=europa,dc=eu
         // Unblock users which are added again
         $status = array_key_exists($account->name, $ldap_accounts) ? 1 : 0;
-        if ($status != $account->status) {
-          $account->status = $status;
+        if (!$status) {
+          // Remove blocked user from the list of approvers
+          osha_authentication_user_login_approver($account, FALSE);
 
-          user_save($account, array('roles' => array()));
-          if (!$status) {
-            // Remove user from all sections before rebuilding it
-            workbench_access_rebuild_user($account->uid, array());
-            osha_workflow_rebuild_pm_sections($account->uid, array());
-            osha_workflow_rebuild_rm_sections($account->uid, array());
+          // Remove blocked user from all sections
+          workbench_access_rebuild_user($account->uid, array());
+          osha_workflow_rebuild_pm_sections($account->uid, array());
+          osha_workflow_rebuild_rm_sections($account->uid, array());
+
+          // Remove user roles
+          db_delete('users_roles')->condition('uid', $account->uid)->execute();
+          if ($account->status == 1) {
             watchdog('osha_authentication', 'Blocking inactive account (no longer in LDAP/part of any group): !user', array('!user' => $account->name), WATCHDOG_WARNING);
           }
-          else {
+        }
+        else {
+          if ($account->status == 0) {
             watchdog('osha_authentication', 'Reactivating acount: !user', array('!user' => $account->name), WATCHDOG_WARNING);
           }
         }
-        // Remove blocked users from the list of approvers
-        if ($status == 0) {
-          osha_authentication_user_login_approver($account, FALSE);
-        }
+        $account->status = $status;
+        // Set user status
+        db_update('users')->fields(array(
+          'status' => $status
+        ))->condition('uid', $account->uid)->execute();
+        // user_save($account, array('roles' => array()));
       }
     }
     return;
@@ -316,7 +324,7 @@ function osha_authentication_ldap_sync($ldap_server) {
       $ldap_account->password = user_password(32);
       $ldap_account->status = 1;
       if ($account = user_save($ldap_account)) {
-        watchdog('osha_authentication', 'Provisioning new LDAP account <em>!uid</em> in Drupal from dn: !dn', array(
+        watchdog('osha_authentication', 'Creating Drupal account <em>!uid</em> from LDAP dn: !dn', array(
           '!dn' => $ldap_account->dn,
           '!uid' => $username
         ), WATCHDOG_WARNING);
