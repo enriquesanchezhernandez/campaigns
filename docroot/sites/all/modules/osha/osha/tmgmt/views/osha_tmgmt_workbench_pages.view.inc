@@ -252,8 +252,10 @@ $handler = $view->new_display('page', 'Needs Review TM', 'page_2');
 $handler->display->display_options['defaults']['title'] = FALSE;
 $handler->display->display_options['title'] = 'Needs Review TM';
 $handler->display->display_options['defaults']['access'] = FALSE;
-$handler->display->display_options['access']['type'] = 'perm';
-$handler->display->display_options['access']['perm'] = 'create translation jobs';
+$handler->display->display_options['access']['type'] = 'role';
+$handler->display->display_options['access']['role'] = array(
+  8 => '8',
+);
 $handler->display->display_options['defaults']['filter_groups'] = FALSE;
 $handler->display->display_options['defaults']['filters'] = FALSE;
 /* Filter criterion: Translation Management Job Item: State */
