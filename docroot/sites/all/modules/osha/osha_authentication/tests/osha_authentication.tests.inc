@@ -55,7 +55,8 @@ class OSHALDAPTests {
       $entry['gidNumber'] = 9991;
       $entry['uidNumber'] = 9992;
       $entry['homeDirectory'] = 'TEST';
-      $result = $ldap_server->createLdapEntry($entry, $udn);
+      drush_log('@todo: Disabled createLdapEntry($entry);', 'error');
+      // $result = $ldap_server->createLdapEntry($entry, $udn);
       if (!$result) {
         drush_set_error(ldap_errno($ldap_server->connection));
         throw new Exception('Cannot create LDAP user:' . $uid);
@@ -572,7 +573,8 @@ class OSHALDAPTests {
     if ($result['count']) {
       $this->ldap_server->delete($ldap_section['dn']);
     }
-    $this->ldap_server->createLdapEntry($ldap_section);
+    drush_log('@todo: Disabled createLdapEntry($ldap_section);', 'error');
+    //$this->ldap_server->createLdapEntry($ldap_section);
     osha_authentication_sync_ldap_sections($this->ldap_server);
     $section = osha_workflow_get_section_term_by_ldap_id('TEST2');
     if (empty($section)) {
