@@ -84,7 +84,7 @@ function osha_workflow_workbench_project_managers($access_type = NULL, $access_t
         $parent = $section['name'];
       }
       $row = array(
-        str_repeat('-', $section['depth'] ) . ' ' . l($section['name'], 'admin/config/workbench/access/' . "managers/" . $active['access_scheme']['access_type'] . '/' . $access_id),
+        str_repeat('-', $section['depth'] ) . ' ' . $section['name'],
       );
       $roles = workbench_access_get_roles('access workbench access by role');
       if (empty($roles)) {
@@ -114,7 +114,7 @@ function osha_workflow_workbench_project_managers($access_type = NULL, $access_t
       $count = count($pms);
       $new_row = format_plural($count, '1 Project Manager', '@count Project Managers');
       if (user_access('assign workbench access')) {
-        $new_row = l($new_row, 'admin/config/workbench/access/managers/' . $active['access_scheme']['access_type'] . '/' . $access_id);
+        $new_row = $new_row;
       }
       if (!empty($pms)) {
         $new_row .= ' (' . implode(', ',$pms ) . ') ';

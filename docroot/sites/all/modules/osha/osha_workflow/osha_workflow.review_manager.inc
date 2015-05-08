@@ -28,7 +28,7 @@ function osha_workflow_workbench_review_managers($access_type = NULL, $access_ty
         $parent = $section['name'];
       }
       $row = array(
-        str_repeat('-', $section['depth'] ) . ' ' . l($section['name'], 'admin/config/workbench/access/review-managers/' . $active['access_scheme']['access_type'] . '/' . $access_id),
+        str_repeat('-', $section['depth'] ) . ' ' . $section['name'],
       );
       $roles = workbench_access_get_roles('access workbench access by role');
       if (empty($roles)) {
@@ -56,7 +56,7 @@ function osha_workflow_workbench_review_managers($access_type = NULL, $access_ty
         )->fetchAllKeyed();
       }
       $count = count($pms);
-      $new_row = l(format_plural($count, '1 Review Manager', '@count Review Managers'), 'admin/config/workbench/access/review-managers/' . $active['access_scheme']['access_type'] . '/' . $access_id);
+      $new_row = format_plural($count, '1 Review Manager', '@count Review Managers');
       if (!empty($pms)) {
         $new_row .= ' (' . implode(', ',$pms ) . ') ';
       }
