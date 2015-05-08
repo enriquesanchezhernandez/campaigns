@@ -475,8 +475,6 @@ function osha_workflow_update_7005() {
     'create translation jobs',
     'submit translation jobs',
     'accept translation jobs',
-    'administer users',
-
   ));
 }
 

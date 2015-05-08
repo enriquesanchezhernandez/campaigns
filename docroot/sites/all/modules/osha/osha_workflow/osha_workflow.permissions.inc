@@ -157,7 +157,6 @@ function osha_workflow_permissions_role_review_manager() {
       'administer files',
       'administer nodes',
       'administer taxonomy',
-      'administer users',
       'bypass workbench moderation',
       'create translation jobs',
       'submit translation jobs',
