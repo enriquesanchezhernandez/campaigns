@@ -7,6 +7,10 @@ When patching a contrib module, the following steps should be followed:
 
 List of patches (most recent first)
 
+* ldap_server
+  * DN is not correctly parsed
+  * /patches/ldap/ldap_servers/dn_parsing_bug.patch
+
 * workbench_moderation
   * path to add access check in workbench moderation form to prevent change of status
   * /patches/workbench_moderation/workbench_moderation_access_check_in_moderation_form.patch
