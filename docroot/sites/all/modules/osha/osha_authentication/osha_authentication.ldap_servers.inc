@@ -32,7 +32,7 @@ function osha_authentication_default_ldap_servers() {
   $ldap_servers_conf->account_name_attr = '';
   $ldap_servers_conf->mail_attr = 'mail';
   $ldap_servers_conf->mail_template = '';
-  $ldap_servers_conf->picture_attr = 'jpegphoto';
+  $ldap_servers_conf->picture_attr = '';
   $ldap_servers_conf->unique_persistent_attr = 'dn';
   $ldap_servers_conf->unique_persistent_attr_binary = FALSE;
   $ldap_servers_conf->user_dn_expression = '';
@@ -74,7 +74,7 @@ function osha_authentication_default_ldap_servers() {
   $ldap_servers_conf->account_name_attr = '';
   $ldap_servers_conf->mail_attr = 'mail';
   $ldap_servers_conf->mail_template = '';
-  $ldap_servers_conf->picture_attr = 'jpegphoto';
+  $ldap_servers_conf->picture_attr = '';
   $ldap_servers_conf->unique_persistent_attr = 'dn';
   $ldap_servers_conf->unique_persistent_attr_binary = FALSE;
   $ldap_servers_conf->user_dn_expression = '';

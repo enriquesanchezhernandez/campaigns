@@ -73,46 +73,18 @@ function osha_workflow_workbench_review_managers($access_type = NULL, $access_ty
 }
 
 /**
- * Function to retrieve default Project Manager for a section.
+ * Find the RM for a section. Look at given section or retrieve the root RMs.
  *
- *   It searches UP in the section tree for an assigned PM.
- *
- * @param int|string $section
- *   Section ID
- *
- * @return object|FALSE
- *   User Object
- */
-function osha_workflow_get_default_review_manager($section) {
-  $section_tree = workbench_access_get_active_tree();
-  if (osha_workflow_access_rm_check_root()) {
-    if (!empty($section_tree['tree'])) {
-      $users = osha_workflow_access_find_rm($section_tree, $section);
-      if (!empty($users)) {
-        return current($users);
-      }
-    }
-  }
-  return FALSE;
-}
-
-/**
- * Recursion Function to get the project manager from sections tree.
- *
- * @param array $section_tree
- *   active tree array
  * @param int|string $section_id
  *   Id of the section to search PM for
  *
  * @return array
- *   Array of Users Objects
+ *   User objects
  */
-function osha_workflow_access_find_rm(&$section_tree, $section_id) {
-  $access = $section_tree['tree'][$section_id];
-  $users = osha_workflow_access_rm_get_rm($access['access_id'],
-    $section_tree['access_scheme']['access_scheme']);
-  if (empty($users)&& !empty($access['parent'])) {
-    $users = osha_workflow_access_find_rm($section_tree, $access['parent']);
+function osha_workflow_access_find_section_rm($section_id) {
+  $users = osha_workflow_access_get_section_rm($section_id);
+  if (empty($users)) {
+    $users = osha_workflow_access_get_section_rm('section');
   }
   else {
     return $users;
@@ -121,28 +93,29 @@ function osha_workflow_access_find_rm(&$section_tree, $section_id) {
 }
 
 /**
- * Get PM of a section.
+ * Get Review Managers for a section
  */
-function osha_workflow_access_rm_get_rm($access_id, $access_scheme) {
-  return user_load_multiple(
-    osha_workflow_access_rm_get_rm_uid($access_id, $access_scheme));
-}
+function osha_workflow_access_get_section_rm($section_id) {
+  $section_tree = workbench_access_get_active_tree();
+  $access = $section_tree['tree'][$section_id];
+  $access_id = $access['access_id'];
+  $access_scheme = $section_tree['access_scheme']['access_scheme'];
 
-/**
- * Get PM of a section.
- */
-function osha_workflow_access_rm_get_rm_uid($access_id, $access_scheme) {
+  $ret = array();
   $users = db_select('osha_workflow_access_rm', 'owa')
     ->fields('owa', array('uid'))
-    ->condition('access_id', $access_id)
+    ->condition('access_id', $access_id, '=')
     ->condition('access_scheme', $access_scheme)
     ->execute()
     ->fetchAllAssoc('uid');
-  return array_keys($users);
+  if (!empty($users)) {
+    $ret = user_load_multiple(array_keys($users));
+  }
+  return $ret;
 }
 
 /**
- * Get sections ids of a pm.
+ * Get sections ids of a rm.
  */
 function osha_workflow_access_get_rm_sections($uid) {
   $sections = db_select('osha_workflow_access_rm', 'owa')
@@ -154,26 +127,19 @@ function osha_workflow_access_get_rm_sections($uid) {
 }
 
 /**
- * Checks for PM to be assigned to root Section.
+ * Compute the review managers in charge of the node. Check assigned section
+ * @param $node
  *
- * @return bool
- *   If a PM is assigned for root Section or not.
+ * @return array
  */
-function osha_workflow_access_rm_check_root() {
-  $section_tree = workbench_access_get_active_tree();
-  $access = current($section_tree['tree']);
-  if (!empty($access)) {
-    $users = osha_workflow_access_rm_get_rm($access['access_id'],
-      $section_tree['access_scheme']['access_scheme']);
-    if (!empty($users)) {
-      return TRUE;
-    }
-    else {
-      drupal_set_message(t("Workflow: You haven't assigned a PM for root Section"), 'error');
-      return FALSE;
-    }
+function osha_workflow_get_node_rm($node) {
+  $users = array();
+  if (!empty($node->workbench_access)) {
+    reset($node->workbench_access);
+    $section = current($node->workbench_access);
+    $users = osha_workflow_access_find_section_rm($section);
   }
-  return FALSE;
+  return $users;
 }
 
 function osha_workflow_access_rm_form($form, &$form_state, $access_type, $access_type_id) {
@@ -237,8 +203,8 @@ function osha_workflow_access_rm_form_validate($form, &$form_state) {
   // User handling.
   if (!empty($values['add_user'])) {
     $account = user_load($values['add_user']);
-    $existing_users = osha_workflow_access_rm_get_rm($values['workbench_access']['access_id'],
-      $values['workbench_access']['access_scheme']);
+    $section_id = $values['workbench_access']['access_id'];
+    $existing_users = osha_workflow_access_get_section_rm($section_id);
     if (empty($account)) {
       form_set_error('add_user', t('The selected user does not exist.'));
     }

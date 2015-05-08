@@ -329,6 +329,11 @@ function osha_workflow_views_default_views() {
     7 => 0,
   );
   $handler->display->display_options['filters']['state']['expose']['reduce'] = TRUE;
+  /* Filter criterion: Osha workflow: If section in rm section */
+  $handler->display->display_options['filters']['section_in_rm_section']['id'] = 'section_in_rm_section';
+  $handler->display->display_options['filters']['section_in_rm_section']['table'] = 'osha_workflow';
+  $handler->display->display_options['filters']['section_in_rm_section']['field'] = 'section_in_rm_section';
+  $handler->display->display_options['filters']['section_in_rm_section']['value'] = '1';
   $handler->display->display_options['path'] = 'admin/workbench/review-manager';
   $handler->display->display_options['menu']['type'] = 'tab';
   $handler->display->display_options['menu']['title'] = 'Needs RM Review';
