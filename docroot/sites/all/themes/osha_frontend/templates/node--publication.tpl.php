@@ -40,6 +40,9 @@
   if (isset($content['field_related_oshwiki_articles'])) {
     hide($content['field_related_oshwiki_articles']);
   }
+  if (isset($content['field_aditional_resources'])) {
+    hide($content['field_aditional_resources']);
+  }
   print render($content);
   // render related publications(dynamic from template preprocess_node
   if ( $view_mode == 'full') {
@@ -51,6 +54,9 @@
       foreach ($tagged_related_publications as $related_pub) {
         print render($related_pub);
       }
+    }
+    if (isset($content['field_aditional_resources'])) {
+      print render($content['field_aditional_resources']);
     }
   }?>
 

@@ -5751,6 +5751,45 @@ a.tabs-primary__tab-link{
 	padding-bottom:1.5em;
 }
 
+.additional_resource_group.events{
+	border:1px dotted #CCCCCC;
+	padding:1em;
+	margin-top:0.5em;
+	margin-bottom:0.5em;
+}
+
+.additional_resource_group.events span.additional_resource_title{
+	display: block;
+	height: 40px;
+	padding-left: 0em;
+	margin-bottom: 0em;
+	font-family: "Open Sans Condensed",sans-serif;
+	font-size: 1.6em;
+	font-weight: lighter;
+	padding-top: 0.5em;
+}
+
+.additional_resource_group.events .field-name-title-field{
+	font-size: 0.8em;
+	font-family: arial;
+	background: url("../images/separator_home.jpg") repeat-x scroll 0 100% rgba(0, 0, 0, 0);
+	height: auto;
+	padding-bottom:1.5em;
+}
+
+.additional_resource_group.events  .field-name-field-start-date{
+    float:none;
+}
+
+.additional_resource_group.events  span.date-display-single {
+	margin:0;
+	padding:0;
+	font-family: Arial!important;
+	font-size: 0.8em;
+	color:#000000;
+	font-weight:bold;
+}
+
 .additional_resource_group.publication{
 	border:1px dotted #CCCCCC;
 	padding:1em;
