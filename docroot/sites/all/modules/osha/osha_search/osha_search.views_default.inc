@@ -247,7 +247,7 @@ function osha_search_views_default_views() {
   $handler->display->display_options['empty']['area_text_custom']['field'] = 'area_text_custom';
   $handler->display->display_options['empty']['area_text_custom']['empty'] = TRUE;
   $handler->display->display_options['empty']['area_text_custom']['content'] = 'No results';
-  /* Field: Indexed Multilingual Node: Title */
+  /* Field: Indexed Multilingual Node: Name */
   $handler->display->display_options['fields']['title_field']['id'] = 'title_field';
   $handler->display->display_options['fields']['title_field']['table'] = 'search_api_index_default_multilingual_node_index';
   $handler->display->display_options['fields']['title_field']['field'] = 'title_field';
@@ -341,7 +341,7 @@ function osha_search_views_default_views() {
   $handler->display->display_options['header']['area']['content'] = 'More results are available in OSHWiki';
   $handler->display->display_options['header']['area']['format'] = 'full_html';
   $handler->display->display_options['defaults']['fields'] = FALSE;
-  /* Field: Indexed Multilingual Node: Title */
+  /* Field: Indexed Multilingual Node: Name */
   $handler->display->display_options['fields']['title_field']['id'] = 'title_field';
   $handler->display->display_options['fields']['title_field']['table'] = 'search_api_index_default_multilingual_node_index';
   $handler->display->display_options['fields']['title_field']['field'] = 'title_field';
@@ -462,6 +462,7 @@ function osha_search_views_default_views() {
     10 => 0,
     11 => 0,
     12 => 0,
+    13 => 0,
   );
   $handler->display->display_options['filters']['search_api_views_fulltext']['fields'] = array(
     'attachments_field_file' => 'attachments_field_file',
@@ -470,6 +471,8 @@ function osha_search_views_default_views() {
     'attachments_field_related_resources' => 'attachments_field_related_resources',
     'body:summary' => 'body:summary',
     'body:value' => 'body:value',
+    'field_aditional_resources:body:summary' => 'field_aditional_resources:body:summary',
+    'field_aditional_resources:body:value' => 'field_aditional_resources:body:value',
     'field_aditional_resources:field_summary' => 'field_aditional_resources:field_summary',
     'field_aditional_resources:title' => 'field_aditional_resources:title',
     'field_aditional_resources:title_field' => 'field_aditional_resources:title_field',
@@ -579,7 +582,7 @@ function osha_search_views_default_views() {
   $handler->display->display_options['fields']['field_wiki_page_url']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['field_wiki_page_url']['click_sort_column'] = 'url';
   $handler->display->display_options['fields']['field_wiki_page_url']['type'] = 'link_plain';
-  /* Field: Indexed Multilingual Node: Title */
+  /* Field: Indexed Multilingual Node: Name */
   $handler->display->display_options['fields']['title_field']['id'] = 'title_field';
   $handler->display->display_options['fields']['title_field']['table'] = 'search_api_index_default_multilingual_node_index';
   $handler->display->display_options['fields']['title_field']['field'] = 'title_field';
@@ -748,7 +751,7 @@ function osha_search_views_default_views() {
     'title_field' => 'title_field',
     'type' => 'type',
   );
-  /* Field: Indexed Multilingual Node: Title */
+  /* Field: Indexed Multilingual Node: Name */
   $handler->display->display_options['fields']['title_field']['id'] = 'title_field';
   $handler->display->display_options['fields']['title_field']['table'] = 'search_api_index_default_multilingual_node_index';
   $handler->display->display_options['fields']['title_field']['field'] = 'title_field';
