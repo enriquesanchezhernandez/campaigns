@@ -12,8 +12,8 @@
 <table id="node-<?php print $node->nid; ?>" border="0" cellpadding="0" cellspacing="0" width="100%">
   <tbody>
     <?php
-    if (isset($field_publication_date) && $node->type != 'newsletter_article') {
-      $date = strtotime($field_publication_date[0]['value']);
+    if (isset($node->field_publication_date[LANGUAGE_NONE][0]['value']) && $node->type != 'newsletter_article') {
+      $date = strtotime($node->field_publication_date[LANGUAGE_NONE][0]['value']);
     ?>
       <tr>
         <td colspan="2" style="font-family: Arial, sans-serif; font-size: 14px; padding-left: 14px;">
