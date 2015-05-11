@@ -396,8 +396,9 @@ function osha_workflow_node_access($node, $operation, $user) {
       return NODE_ACCESS_IGNORE;
     }
 
-    /* Approver */
-    if (osha_workflow_is_next_approver($node->nid)) {
+    /* Approver (next approver) */
+    if ($state == OSHA_WORKFLOW_STATE_TO_BE_APPROVED && osha_workflow_is_next_approver($node->nid)) {
+      // Approver needs acces to edit because to add comments
       return NODE_ACCESS_IGNORE;
     }
   }
@@ -1007,6 +1008,37 @@ function osha_workflow_form_alter(&$form, &$form_state, $form_id) {
       '#title' => 'Send notifications',
       '#default_value' => variable_get('osha_workflow_send_mail'),
     );
+  }
+  if (isset($form_state['node'])) {
+    $node = $form_state['node'];
+    $to_be_approved = isset($node->workbench_moderation['current']) && $node->workbench_moderation['current']->state == OSHA_WORKFLOW_STATE_TO_BE_APPROVED;
+    $next_aprover = osha_workflow_is_next_approver($node->nid);
+    if ($form_id == $node->type . '_node_form' && $to_be_approved && $next_aprover) {
+      reset($node->workbench_access);
+      $ai = current($node->workbench_access);
+      $tai = taxonomy_term_load($ai);
+      foreach(element_children($form) as $item) {
+        $form[$item]['#access'] = FALSE;
+      }
+      $form['form_id']['#access'] = TRUE;
+
+      $form['options']['#access'] = TRUE;
+      $form['options']['promote']['#access'] = FALSE;
+      $form['options']['sticky']['#access'] = FALSE;
+      $form['options']['workbench_moderation_state_new']['#access'] = FALSE;
+
+      $form['actions']['#access'] = TRUE;
+      $form['actions']['preview']['#access'] = FALSE;
+      $form['actions']['preview_changes']['#access'] = FALSE;
+      $form['actions']['submit']['#disabled'] = FALSE;
+      $form['actions']['submit']['#value'] = 'Add comment';
+
+      $form['revision_information']['#access'] = FALSE;
+      $form['revision_information']['revision']['#access'] = TRUE;
+
+      $form['additional_settings']['#access'] = TRUE;
+      $form['workbench_access']['workbench_access']['#options'] = array($ai => $tai->name);
+    }
   }
 }
 
