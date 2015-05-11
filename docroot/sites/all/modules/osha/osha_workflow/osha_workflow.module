@@ -1017,26 +1017,6 @@ function osha_workflow_form_alter(&$form, &$form_state, $form_id) {
       reset($node->workbench_access);
       $ai = current($node->workbench_access);
       $tai = taxonomy_term_load($ai);
-      foreach(element_children($form) as $item) {
-        $form[$item]['#access'] = FALSE;
-      }
-      $form['form_id']['#access'] = TRUE;
-
-      $form['options']['#access'] = TRUE;
-      $form['options']['promote']['#access'] = FALSE;
-      $form['options']['sticky']['#access'] = FALSE;
-      $form['options']['workbench_moderation_state_new']['#access'] = FALSE;
-
-      $form['actions']['#access'] = TRUE;
-      $form['actions']['preview']['#access'] = FALSE;
-      $form['actions']['preview_changes']['#access'] = FALSE;
-      $form['actions']['submit']['#disabled'] = FALSE;
-      $form['actions']['submit']['#value'] = 'Add comment';
-
-      $form['revision_information']['#access'] = FALSE;
-      $form['revision_information']['revision']['#access'] = TRUE;
-
-      $form['additional_settings']['#access'] = TRUE;
       $form['workbench_access']['workbench_access']['#options'] = array($ai => $tai->name);
     }
   }
