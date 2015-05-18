@@ -354,7 +354,6 @@ $options['init-modules'] = array(
   'multiple_selects',
 
   'imce_wysiwyg',
-  'wysiwyg_accordion',
 
   'nodequeue',
   'fe_block',
@@ -368,7 +367,6 @@ $options['init-modules'] = array(
   'term_reference_tree',
   'node_export',
   'mpac',
-  'linkit',
   'pathologic',
   'scanner',
   'search_and_replace',
