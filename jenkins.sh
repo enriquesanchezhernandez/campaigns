@@ -11,11 +11,11 @@ if [ ${ecode} != 0 ]; then
   exit ${ecode};
 fi
 
-# Load the local dump
-cat ../../source-dump.sql | mysql -h php-mysql -u jenkins --password=jenkins jenkins_osha
+# Sync from edw staging
+drush downsync_sql @hcw.staging @self -y
 ecode=$?
 if [ ${ecode} != 0 ]; then
-  echo "Error loading SQL dump into database"
+  echo "downsync_sql has returned an error"
   exit ${ecode};
 fi
 
