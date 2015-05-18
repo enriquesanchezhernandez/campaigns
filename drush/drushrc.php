@@ -283,6 +283,11 @@ $options['init-modules'] = array(
   'varnish',
   'elysia_cron',
 
+  'devel',
+  'devel_node_access',
+  'diff',
+  'update',
+
   'locale',
   'entity_translation',
   'i18n',
@@ -304,8 +309,6 @@ $options['init-modules'] = array(
 
   'taxonomy_access_fix',
   'date',
-  'migrate',
-  'migrate_ui',
   'features',
 
   'field_group',
@@ -381,9 +384,10 @@ $options['init-modules'] = array(
   'shs',
   'smtp',
 
+  'linkchecker',
+
   // Enable last (conflict with rules)
   'uuid',
-  'uuid_features',
 
   'path_breadcrumbs',
   'path_breadcrumbs_ui',
@@ -395,6 +399,10 @@ $options['init-modules'] = array(
   'workbench',
   'workbench_access',
   'workbench_moderation',
+
+  // Link content types with main menu items
+  'menu_position',
+  'r4032login',
 
   // print and generate pdf - per node action
   'print',
@@ -436,38 +444,25 @@ $options['init-modules'] = array(
   'webform_localization',
   'fapi_validation',
 
-  'osha_taxonomies',
+  // Captcha
+ 'recaptcha',
+
+  'osha_resources',
   'osha',
-  'osha_migration',
   'osha_news',
   'osha_note_to_editor',
-  'osha_nodequeue',
   'osha_publication',
-  'osha_calls',
-  'osha_blog',
   'osha_infographics',
   'osha_tmgmt',
-  'osha_highlight',
   'osha_press_contact',
   'osha_press_release',
-  'osha_homepage',
-  'osha_menu',
-  'osha_job_vacancies',
-  'osha_wiki',
   'osha_workflow',
-  'osha_blocks',
-  'osha_breadcrumbs',
-  'osha_legislation',
-  'osha_short_messages',
-  'osha_resources',
   'osha_slideshare',
   'osha_events',
   'osha_alert_service',
   'osha_contact',
-  'osha_fop_page',
   'osha_authentication',
 
-  'linkchecker',
   'osha_linkchecker',
   'osha_reminders',
 
@@ -479,8 +474,6 @@ $options['init-modules'] = array(
   'search_api_views',
   'search_api_attachments',
 
-  'osha_search',
-  'osha_content',
   'osha_lingua_tools',
 
   // Newsletter modules.
@@ -488,24 +481,9 @@ $options['init-modules'] = array(
   'entity_collection_db',
   'osha_newsletter',
 
-  // Captcha
-  'captcha',
-  'recaptcha',
-  'image_captcha',
-  'spamspan',
-
   // Social share
   'addtoany',
   'on_the_web',
-
-  // Link content types with main menu items
-  'menu_position',
-  'r4032login',
-
-  'devel',
-  'devel_node_access',
-  'diff',
-  'update'
 );
 
 
