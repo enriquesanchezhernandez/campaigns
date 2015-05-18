@@ -73,7 +73,7 @@ function osha_newsletter_admin_form() {
     'osha_newsletter_allowed_bundles',
     array(
       // TODO:EDW: check 'event' - non existing for now.
-      'publication', 'blog', 'news', 'press_release', 'highlight', 'newsletter_article'
+      'publication', 'news', 'press_release', 'newsletter_article'
     )
   );
   $entity_info = entity_get_info();
@@ -140,10 +140,6 @@ function osha_newsletter_admin_form() {
 }
 
 function _default_view_mode($content_type){
-  if ($content_type == 'highlight') {
-    return 'highlights_item';
-  } else {
-    return 'newsletter_item';
-  }
+  return 'newsletter_item';
 }
 

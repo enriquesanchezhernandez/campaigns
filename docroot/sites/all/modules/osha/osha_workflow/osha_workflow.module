@@ -180,6 +180,7 @@ function osha_workflow_node_review_access($node) {
  * @codeCoverageIgnore
  */
 function osha_workflow_entity_info() {
+  module_load_include('inc', 'osha_workflow', 'osha_workflow.entity');
   return array(
     'node_project_managers' => array(
       'label' => t('Node project manager'),
@@ -664,13 +665,10 @@ function osha_workflow_get_section_term_by_ldap_id($section) {
 function osha_workflow_bundle_section_map() {
   return array(
     'news' => 'AWRACT',
-    'highlight' => 'AWRACT',
     'events' => 'AWRACT',
     'publication' => 'PUBLIC',
-    'seminar' => 'SEMIN',
     'job_vacancies' => 'CAREER',
     'press_release' => 'PROOM',
-    'blog' => 'BLOG',
     'directive' => 'ONETKA',
     'guideline' => 'ONETKA',
     'calls' => 'PROCUR',

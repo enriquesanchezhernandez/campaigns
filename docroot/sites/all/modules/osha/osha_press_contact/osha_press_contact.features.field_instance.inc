@@ -24,12 +24,6 @@ function osha_press_contact_field_default_field_instances() {
         'type' => 'text_default',
         'weight' => 9,
       ),
-      'highlights_item' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
       'newsletter_item' => array(
         'label' => 'above',
         'settings' => array(),
@@ -100,12 +94,6 @@ function osha_press_contact_field_default_field_instances() {
         'type' => 'i18n_taxonomy_term_reference_plain',
         'weight' => 11,
       ),
-      'highlights_item' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
       'newsletter_item' => array(
         'label' => 'above',
         'settings' => array(),
@@ -170,12 +158,6 @@ function osha_press_contact_field_default_field_instances() {
         'type' => 'i18n_taxonomy_term_reference_plain',
         'weight' => 15,
       ),
-      'highlights_item' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
       'newsletter_item' => array(
         'label' => 'above',
         'settings' => array(),
@@ -239,12 +221,6 @@ function osha_press_contact_field_default_field_instances() {
         'settings' => array(),
         'type' => 'text_default',
         'weight' => 7,
-      ),
-      'highlights_item' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
       ),
       'newsletter_item' => array(
         'label' => 'above',
@@ -316,12 +292,6 @@ function osha_press_contact_field_default_field_instances() {
         'type' => 'email_spamspan',
         'weight' => 3,
       ),
-      'highlights_item' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
       'newsletter_item' => array(
         'label' => 'above',
         'settings' => array(),
@@ -385,12 +355,6 @@ function osha_press_contact_field_default_field_instances() {
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
-        'weight' => 0,
-      ),
-      'highlights_item' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
         'weight' => 0,
       ),
       'newsletter_item' => array(
@@ -468,12 +432,6 @@ function osha_press_contact_field_default_field_instances() {
         'type' => 'text_default',
         'weight' => 2,
       ),
-      'highlights_item' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
       'newsletter_item' => array(
         'label' => 'above',
         'settings' => array(),
@@ -544,12 +502,6 @@ function osha_press_contact_field_default_field_instances() {
         'type' => 'text_default',
         'weight' => 1,
       ),
-      'highlights_item' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
       'newsletter_item' => array(
         'label' => 'above',
         'settings' => array(),
@@ -619,12 +571,6 @@ function osha_press_contact_field_default_field_instances() {
         'settings' => array(),
         'type' => 'text_default',
         'weight' => 4,
-      ),
-      'highlights_item' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
       ),
       'newsletter_item' => array(
         'label' => 'above',
@@ -700,12 +646,6 @@ function osha_press_contact_field_default_field_instances() {
         'settings' => array(),
         'type' => 'link_default',
         'weight' => 16,
-      ),
-      'highlights_item' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
       ),
       'newsletter_item' => array(
         'label' => 'above',
@@ -794,12 +734,6 @@ function osha_press_contact_field_default_field_instances() {
         'type' => 'i18n_taxonomy_term_reference_plain',
         'weight' => 14,
       ),
-      'highlights_item' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
       'newsletter_item' => array(
         'label' => 'above',
         'settings' => array(),
@@ -863,12 +797,6 @@ function osha_press_contact_field_default_field_instances() {
         'settings' => array(),
         'type' => 'i18n_taxonomy_term_reference_plain',
         'weight' => 12,
-      ),
-      'highlights_item' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
       ),
       'newsletter_item' => array(
         'label' => 'above',
@@ -934,12 +862,6 @@ function osha_press_contact_field_default_field_instances() {
         'type' => 'i18n_taxonomy_term_reference_plain',
         'weight' => 13,
       ),
-      'highlights_item' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
       'newsletter_item' => array(
         'label' => 'above',
         'settings' => array(),
@@ -1003,12 +925,6 @@ function osha_press_contact_field_default_field_instances() {
         'settings' => array(),
         'type' => 'text_default',
         'weight' => 8,
-      ),
-      'highlights_item' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
       ),
       'newsletter_item' => array(
         'label' => 'above',
@@ -1078,12 +994,6 @@ function osha_press_contact_field_default_field_instances() {
         'settings' => array(),
         'type' => 'hidden',
         'weight' => 5,
-      ),
-      'highlights_item' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
       ),
       'newsletter_item' => array(
         'label' => 'above',

@@ -24,12 +24,6 @@ function osha_note_to_editor_field_default_field_instances() {
         'type' => 'text_default',
         'weight' => 0,
       ),
-      'highlights_item' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
       'newsletter_item' => array(
         'label' => 'above',
         'settings' => array(),
@@ -179,12 +173,6 @@ function osha_note_to_editor_field_default_field_instances() {
         'settings' => array(),
         'type' => 'hidden',
         'weight' => 1,
-      ),
-      'highlights_item' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
       ),
       'newsletter_item' => array(
         'label' => 'above',

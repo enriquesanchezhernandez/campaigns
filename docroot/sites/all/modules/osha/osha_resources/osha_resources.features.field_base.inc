@@ -65,7 +65,6 @@ function osha_resources_field_default_field_bases() {
         'target_bundles' => array(
           'article' => 'article',
           'calls' => 'calls',
-          'highlight' => 'highlight',
           'news' => 'news',
           'press_release' => 'press_release',
           'publication' => 'publication',

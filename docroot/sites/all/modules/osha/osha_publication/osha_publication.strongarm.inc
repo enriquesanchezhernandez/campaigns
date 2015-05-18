@@ -80,7 +80,6 @@ function osha_publication_strongarm() {
     'search_index' => 0,
     'search_result' => 0,
     'diff_standard' => 0,
-    'highlights_item' => 0,
     'newsletter_item' => 0,
     'print' => 0,
     'token' => 0,
@@ -135,9 +134,6 @@ function osha_publication_strongarm() {
         'custom_settings' => FALSE,
       ),
       'osha_slideshow' => array(
-        'custom_settings' => TRUE,
-      ),
-      'highlights_item' => array(
         'custom_settings' => TRUE,
       ),
       'newsletter_item' => array(

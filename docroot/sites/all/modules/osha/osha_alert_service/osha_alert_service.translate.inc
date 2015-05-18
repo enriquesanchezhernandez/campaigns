@@ -34,11 +34,9 @@ function osha_alert_service_get_translatable_strings() {
     'Latest publications',
     'Latest news',
     'Latest events',
-    'Latest blog',
     'Latest calls',
     'Latest vacancies',
     'Latest directives',
-    'Latest seminars',
     'Latest guidelines',
     'Privacy policy',
   );

@@ -17,7 +17,6 @@ function osha_newsletter_get_translatable_strings() {
     'The e-mail address is not valid.',
     'No newsletters available.',
     'More news',
-    'View the blog',
     'More events',
     'Occupational Safety and Health News &ndash; Europe',
     'No longer wish to receive OSHmail? <a href="@url" style="@style">Unsubscribe here.</a>',

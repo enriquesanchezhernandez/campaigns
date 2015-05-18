@@ -50,45 +50,6 @@ function osha_newsletter_uuid_features_default_terms() {
     'metatags' => array(),
   );
   $terms[] = array(
-    'name' => 'Highlights',
-    'description' => NULL,
-    'format' => NULL,
-    'weight' => 0,
-    'uuid' => '4edd574b-8dbd-4af8-b82c-6e85eeb5be99',
-    'language' => 'en',
-    'i18n_tsid' => 0,
-    'vocabulary_machine_name' => 'newsletter_sections',
-    'description_field' => array(),
-    'name_field' => array(
-      'en' => array(
-        0 => array(
-          'value' => 'Highlights',
-          'format' => NULL,
-          'safe_value' => 'Highlights',
-        ),
-      ),
-    ),
-    'name_original' => 'Highlights',
-    'translations' => array(
-      'original' => 'en',
-      'data' => array(
-        'en' => array(
-          'entity_type' => 'taxonomy_term',
-          'entity_id' => 12,
-          'language' => 'en',
-          'source' => '',
-          'uid' => 0,
-          'status' => 1,
-          'translate' => 0,
-          'created' => 1410881110,
-          'changed' => 1410881110,
-        ),
-      ),
-    ),
-    'description_original' => NULL,
-    'metatags' => array(),
-  );
-  $terms[] = array(
     'name' => 'Coming soon',
     'description' => NULL,
     'format' => NULL,
@@ -114,45 +75,6 @@ function osha_newsletter_uuid_features_default_terms() {
         'en' => array(
           'entity_type' => 'taxonomy_term',
           'entity_id' => 13,
-          'language' => 'en',
-          'source' => '',
-          'uid' => 0,
-          'status' => 1,
-          'translate' => 0,
-          'created' => 1410881110,
-          'changed' => 1410881110,
-        ),
-      ),
-    ),
-    'description_original' => NULL,
-    'metatags' => array(),
-  );
-  $terms[] = array(
-    'name' => 'Blog',
-    'description' => NULL,
-    'format' => NULL,
-    'weight' => 4,
-    'uuid' => '798b75d1-a135-495f-805d-fb3293be88c3',
-    'language' => 'en',
-    'i18n_tsid' => 0,
-    'vocabulary_machine_name' => 'newsletter_sections',
-    'description_field' => array(),
-    'name_field' => array(
-      'en' => array(
-        0 => array(
-          'value' => 'Blog',
-          'format' => NULL,
-          'safe_value' => 'Blog',
-        ),
-      ),
-    ),
-    'name_original' => 'Blog',
-    'translations' => array(
-      'original' => 'en',
-      'data' => array(
-        'en' => array(
-          'entity_type' => 'taxonomy_term',
-          'entity_id' => 14,
           'language' => 'en',
           'source' => '',
           'uid' => 0,

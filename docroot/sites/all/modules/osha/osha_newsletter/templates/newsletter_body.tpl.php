@@ -59,63 +59,12 @@ td{
                         }
                         print(render($item));
                       }
-                    } else {
-                      if ($idx != 1 && $item["#view_mode"] == "highlights_item") {?>
-                        <table border="0" cellpadding="0" cellspacing="0" width="100%">
-                          <tbody>
-                          <tr>
-                            <td style="border-bottom:2px dotted #CFDDEE;padding-top:0px;"></td>
-                          </tr>
-                          <tr>
-                            <td></td>
-                          </tr>
-                          </tbody>
-                        </table>
-                      <?php
-                      }
-                      print(render($item));
                     }
                   }
                 ?>
               </td>
 
               <td width="308" style="vertical-align: top; padding-top: 0px; padding-right: 0px;" class="right-column">
-
-                <?php
-                  if (!empty($blogs) && sizeof($blogs) > 1) {
-                    foreach ($blogs as $item) {
-                      print(render($item));
-                    }?>
-                    <table border="0" cellpadding="0" cellspacing="0" width="100%" style="padding-bottom: 15px;" class="pink-arrow">
-                      <tbody>
-                      <tr>
-                        <td style="font-family: Oswald, Arial, sans-serif; font-size: 16px; color: #003399; text-align: right;font-weight: bold;">
-                        <span>
-                          <?php print l(t('View the blog'), url('node/5445', array('absolute' => TRUE)), array(
-                            'attributes' => array('style' => 'color: #003399; text-decoration: none;'),
-                            'query' => $url_query,
-                            'external' => TRUE));
-                          $directory = drupal_get_path('module','osha_newsletter');
-                          $site_url = variable_get('site_base_url', 'http://osha.europa.eu');
-                          print l(theme('image', array(
-                            'path' => $directory . '/images/pink-arrow.png',
-                            'width' => 19,
-                            'height' => 11,
-                            'alt' => 'link arrow',
-                            'attributes' => array('style' => 'border: 0px;')
-                          )), $site_url, array(
-                            'html' => TRUE,
-                            'external' => TRUE
-                          ));
-                          ?>
-                        </span>
-                        </td>
-                      </tr>
-                      </tbody>
-                    </table>
-                  <?php
-                  }
-                ?>
                 <?php
                   if (!empty($news) && sizeof($news) > 1) {?>
                     <table border="0" cellpadding="0" cellspacing="0" class="blue-line" width="100%">

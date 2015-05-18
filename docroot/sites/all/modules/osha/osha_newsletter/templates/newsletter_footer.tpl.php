@@ -59,10 +59,6 @@
                       'path' => 'https://www.facebook.com/EuropeanAgencyforSafetyandHealthatWork',
                       'alt' => t('Facebook')
                     ),
-                    'blog' => array(
-                      'path' => url('tools-and-publications/blog', array('alias' => TRUE, 'absolute' => TRUE, 'query' => $url_query)),
-                      'alt' => t('blog')
-                    ),
                     'youtube' => array(
                       'path' => 'https://www.youtube.com/user/EUOSHA',
                       'alt' => t('Youtube')

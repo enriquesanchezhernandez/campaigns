@@ -1,0 +1,19 @@
+<?php
+/**
+ * @file
+ * Code for the osha_taxonomies feature.
+ */
+
+include_once 'osha_taxonomies.features.inc';
+
+define('OSHA_TAXONOMIES_ACTIVITY', 'activity');
+define('OSHA_TAXONOMIES_TAGS', 'tags');
+define('OSHA_TAXONOMIES_ESENER', 'esener');
+define('OSHA_TAXONOMIES_NACE_CODES', 'nace_codes');
+define('OSHA_TAXONOMIES_PUBLICATION_TYPES', 'publication_types');
+define('OSHA_TAXONOMIES_DIRECTIVE_TYPE', 'directive_type');
+define('OSHA_TAXONOMIES_LEGISLATION_CATEGORY', 'legislation_category');
+define('OSHA_TAXONOMIES_THESAURUS', 'thesaurus');
+define('OSHA_TAXONOMIES_ARTICLE_TYPES', 'article_types');
+define('OSHA_TAXONOMIES_WIKI_CATEGORIES', 'wiki_categories');
+

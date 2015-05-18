@@ -85,23 +85,9 @@ function osha_workflow_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
-  $strongarm->name = 'workbench_access_node_type_blog';
-  $strongarm->value = 1;
-  $export['workbench_access_node_type_blog'] = $strongarm;
-
-  $strongarm = new stdClass();
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
   $strongarm->name = 'workbench_access_node_type_calls';
   $strongarm->value = 1;
   $export['workbench_access_node_type_calls'] = $strongarm;
-
-  $strongarm = new stdClass();
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
-  $strongarm->name = 'workbench_access_node_type_highlight';
-  $strongarm->value = 1;
-  $export['workbench_access_node_type_highlight'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
@@ -144,13 +130,6 @@ function osha_workflow_strongarm() {
   $strongarm->name = 'workbench_access_node_type_publication';
   $strongarm->value = 1;
   $export['workbench_access_node_type_publication'] = $strongarm;
-
-  $strongarm = new stdClass();
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
-  $strongarm->name = 'workbench_access_node_type_seminar';
-  $strongarm->value = 1;
-  $export['workbench_access_node_type_seminar'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */

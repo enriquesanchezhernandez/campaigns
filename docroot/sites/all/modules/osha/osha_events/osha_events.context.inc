@@ -19,30 +19,16 @@ function osha_events_context_default_contexts() {
   $context->conditions = array(
     'node' => array(
       'values' => array(
-        'blog' => 'blog',
-        'highlight' => 'highlight',
         'news' => 'news',
-        'seminar' => 'seminar',
       ),
       'options' => array(
         'node_form' => '1',
       ),
     ),
-    'path' => array(
-      'values' => array(
-        '<front>' => '<front>',
-        'tools-and-publications/blog' => 'tools-and-publications/blog',
-        'node/5445' => 'node/5445',
-      ),
-    ),
     'views' => array(
       'values' => array(
-        'blog' => 'blog',
         'events' => 'events',
-        'highlight' => 'highlight',
         'news' => 'news',
-        'search_blog' => 'search_blog',
-        'seminars' => 'seminars',
       ),
     ),
   );

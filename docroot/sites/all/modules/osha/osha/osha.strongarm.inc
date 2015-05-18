@@ -104,8 +104,6 @@ el.remove();
   $strongarm->name = 'addtoany_nodetypes';
   $strongarm->value = array(
     'article' => 'article',
-    'blog' => 'blog',
-    'highlight' => 'highlight',
     'news' => 'news',
     'press_release' => 'press_release',
     'banner' => 0,
@@ -414,19 +412,6 @@ el.remove();
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
-  $strongarm->name = 'entity_translation_settings_node__blog';
-  $strongarm->value = array(
-    'default_language' => 'en',
-    'hide_language_selector' => 1,
-    'exclude_language_none' => 1,
-    'lock_language' => 1,
-    'shared_fields_original_only' => 1,
-  );
-  $export['entity_translation_settings_node__blog'] = $strongarm;
-
-  $strongarm = new stdClass();
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
   $strongarm->name = 'entity_translation_settings_node__calls';
   $strongarm->value = array(
     'default_language' => 'en',
@@ -501,19 +486,6 @@ el.remove();
     'shared_fields_original_only' => 1,
   );
   $export['entity_translation_settings_node__guideline'] = $strongarm;
-
-  $strongarm = new stdClass();
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
-  $strongarm->name = 'entity_translation_settings_node__highlight';
-  $strongarm->value = array(
-    'default_language' => 'en',
-    'hide_language_selector' => 1,
-    'exclude_language_none' => 1,
-    'lock_language' => 1,
-    'shared_fields_original_only' => 1,
-  );
-  $export['entity_translation_settings_node__highlight'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
@@ -622,19 +594,6 @@ el.remove();
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
-  $strongarm->name = 'entity_translation_settings_node__seminar';
-  $strongarm->value = array(
-    'default_language' => 'en',
-    'hide_language_selector' => 1,
-    'exclude_language_none' => 1,
-    'lock_language' => 1,
-    'shared_fields_original_only' => 1,
-  );
-  $export['entity_translation_settings_node__seminar'] = $strongarm;
-
-  $strongarm = new stdClass();
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
   $strongarm->name = 'entity_translation_settings_node__slideshare';
   $strongarm->value = array(
     'default_language' => 'en',
@@ -733,7 +692,6 @@ el.remove();
     'search_result' => 0,
     'diff_standard' => 0,
     'osha_slideshow' => 0,
-    'highlights_item' => 0,
     'newsletter_item' => 0,
     'osha_wiki' => 0,
     'print' => 0,
@@ -789,9 +747,6 @@ el.remove();
         'custom_settings' => FALSE,
       ),
       'osha_slideshow' => array(
-        'custom_settings' => TRUE,
-      ),
-      'highlights_item' => array(
         'custom_settings' => TRUE,
       ),
       'newsletter_item' => array(
@@ -870,9 +825,6 @@ el.remove();
         'custom_settings' => FALSE,
       ),
       'osha_slideshow' => array(
-        'custom_settings' => TRUE,
-      ),
-      'highlights_item' => array(
         'custom_settings' => TRUE,
       ),
       'newsletter_item' => array(
@@ -1257,13 +1209,6 @@ el.remove();
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
-  $strongarm->name = 'pathauto_blog_pattern';
-  $strongarm->value = 'blogs/[user:name]';
-  $export['pathauto_blog_pattern'] = $strongarm;
-
-  $strongarm = new stdClass();
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
   $strongarm->name = 'pathauto_file_audio_pattern';
   $strongarm->value = '';
   $export['pathauto_file_audio_pattern'] = $strongarm;
@@ -1341,13 +1286,6 @@ el.remove();
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
-  $strongarm->name = 'pathauto_node_blog_pattern';
-  $strongarm->value = 'blog/[node:title]';
-  $export['pathauto_node_blog_pattern'] = $strongarm;
-
-  $strongarm = new stdClass();
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
   $strongarm->name = 'pathauto_node_calls_pattern';
   $strongarm->value = 'inside-eu-osha/procurement/[node:title]';
   $export['pathauto_node_calls_pattern'] = $strongarm;
@@ -1386,13 +1324,6 @@ el.remove();
   $strongarm->name = 'pathauto_node_guideline_pattern';
   $strongarm->value = 'legislation/guidelines/[node:title]';
   $export['pathauto_node_guideline_pattern'] = $strongarm;
-
-  $strongarm = new stdClass();
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
-  $strongarm->name = 'pathauto_node_highlight_pattern';
-  $strongarm->value = 'highlights/[node:title]';
-  $export['pathauto_node_highlight_pattern'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
@@ -1463,13 +1394,6 @@ el.remove();
   $strongarm->name = 'pathauto_node_publication_pattern';
   $strongarm->value = 'tools-and-publications/publications/[node:title]';
   $export['pathauto_node_publication_pattern'] = $strongarm;
-
-  $strongarm = new stdClass();
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
-  $strongarm->name = 'pathauto_node_seminar_pattern';
-  $strongarm->value = 'tools-and-publications/seminars/[node:title]';
-  $export['pathauto_node_seminar_pattern'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */

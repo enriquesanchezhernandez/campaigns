@@ -122,13 +122,6 @@ function osha_alert_service_block_info() {
     'cache' => DRUPAL_CACHE_GLOBAL,
     'weight' => -5
   );
-  $blocks['osha_seminar_rss'] = array(
-    'info' => t('Seminar feed'),
-    'visibility' => BLOCK_VISIBILITY_LISTED,
-    'pages' => 'node/2427',
-    'cache' => DRUPAL_CACHE_GLOBAL,
-    'weight' => 1
-  );
   $blocks['osha_job_vacancies_rss'] = array(
     'info' => t('Job vacancies feed'),
     'visibility' => BLOCK_VISIBILITY_LISTED,
@@ -149,13 +142,6 @@ function osha_alert_service_block_info() {
     'pages' => 'events',
     'cache' => DRUPAL_CACHE_GLOBAL,
     'weight' => 1
-  );
-  $blocks['osha_blog_rss'] = array(
-    'info' => t('Blog feed'),
-    'visibility' => BLOCK_VISIBILITY_LISTED,
-    'pages' => 'node/883',
-    'cache' => DRUPAL_CACHE_GLOBAL,
-    'weight' => -5
   );
   $blocks['osha_directives_rss'] = array(
     'info' => t('Directives feed'),
@@ -207,10 +193,6 @@ function osha_alert_service_block_view($delta = '') {
       $ret['content'] = l(t('Click here for the RSS Feed'), 'rss-feeds/latest/calls.xml',
         array('attributes' => array('class' => array('rss-feed'))));
       break;
-    case 'osha_seminar_rss':
-      $ret['content'] = l(t('Click here for the RSS Feed'), 'rss-feeds/latest/seminars.xml',
-        array('attributes' => array('class' => array('rss-feed'))));
-      break;
     case 'osha_job_vacancies_rss':
       $ret['content'] = l(t('Click here for the RSS Feed'), 'rss-feeds/latest/vacancies.xml',
         array('attributes' => array('class' => array('rss-feed'))));
@@ -221,10 +203,6 @@ function osha_alert_service_block_view($delta = '') {
       break;
     case 'osha_events_rss':
       $ret['content'] = l(t('Click here for the RSS Feed'), 'rss-feeds/latest/events.xml',
-        array('attributes' => array('class' => array('rss-feed'))));
-      break;
-    case 'osha_blog_rss':
-      $ret['content'] = l(t('Click here for the RSS Feed'), 'rss-feeds/latest/blog.xml',
         array('attributes' => array('class' => array('rss-feed'))));
       break;
     case 'osha_directives_rss':

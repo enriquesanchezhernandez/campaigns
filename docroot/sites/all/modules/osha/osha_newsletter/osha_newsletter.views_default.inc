@@ -382,9 +382,7 @@ function osha_newsletter_views_default_views() {
   $handler->display->display_options['filters']['type']['table'] = 'node';
   $handler->display->display_options['filters']['type']['field'] = 'type';
   $handler->display->display_options['filters']['type']['value'] = array(
-    'blog' => 'blog',
     'events' => 'events',
-    'highlight' => 'highlight',
     'news' => 'news',
     'newsletter_article' => 'newsletter_article',
     'press_release' => 'press_release',

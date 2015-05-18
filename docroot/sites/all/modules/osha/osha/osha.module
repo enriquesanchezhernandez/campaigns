@@ -317,97 +317,6 @@ function osha_get_mysql_column_size($table, $column) {
 }
 
 /**
- * Replace the node title with field_tile for page/article. Uses title module.
- *
- * Warning: Assuming no content is present
- */
-function osha_replace_title_field() {
-  if (module_load_include('module', 'title', 'title')) {
-    $types = array('article', 'page');
-    foreach ($types as $bundle) {
-      // Inspired by https://www.drupal.org/files/1801242-title-upgrade.patch
-      title_field_replacement_toggle('node', $bundle, 'title');
-      drupal_set_message(
-        t('Replacing title_field for !bundle', array('!bundle' => $bundle))
-      );
-    }
-  }
-  else {
-    drupal_set_message('osha_replace_title_field: Title module not available', 'warning');
-  }
-}
-
-/**
- * Enable translation for the basic page entity.
- */
-function osha_configure_basic_page() {
-  if (module_load_include('inc', 'node', 'content_types')) {
-    $form_state['values']['language_content_type'] = ENTITY_TRANSLATION_ENABLED;
-    $form_state['values']['entity_translation_hide_translation_links'] = 1;
-    $form_state['values']['promote'] = NULL;
-    $form_state['values']['comment'] = 1;
-    $type = node_type_load('page');
-    drupal_form_submit('node_type_form', $form_state, $type);
-    $errors = form_get_errors();
-    if (!empty($errors)) {
-      foreach ($errors as $error) {
-        drupal_set_message(
-          t('Basic page setup error: !error', array('!error' => $error))
-        );
-      }
-    }
-  }
-  else {
-    drupal_set_message('osha_configure_basic_page: content_types module not available', 'warning');
-  }
-}
-
-/**
- * Enable translation for the tags taxonomy..
- */
-function osha_configure_tags_taxonomy() {
-  if (module_load_include('inc', 'taxonomy', 'taxonomy.admin')) {
-    $form_state['values']['i18n_mode'] = 1;
-    $form_state['triggering_element']['#value'] = t('Save');
-    $form_state['triggering_element']['#name'] = 'op';
-    $type = taxonomy_vocabulary_machine_name_load(OSHA_TAXONOMIES_TAGS);
-    drupal_form_submit('taxonomy_form_vocabulary', $form_state, $type);
-    $errors = form_get_errors();
-    if (!empty($errors)) {
-      foreach ($errors as $error) {
-        drupal_set_message(
-          t('Tags setup error: !error', array('!error' => $error))
-        );
-      }
-    }
-  }
-  else {
-    drupal_set_message('osha_configure_tags_taxonomy: taxonomy module not available', 'warning');
-  }
-}
-
-/**
- * Make the field_image field translatable.
- */
-function osha_enable_field_image_translations() {
-  if (module_load_include('inc', 'entity_translation', 'entity_translation.admin')) {
-    $info = field_info_field('field_image');
-    if ($info !== NULL) {
-      drupal_set_message('Making field_image field translatable');
-      $form_state['values']['translatable'] = "0";
-      $form_state['field']['field_name'] = 'field_image';
-      drupal_form_submit('entity_translation_translatable_form', $form_state, 'field_image');
-    }
-    else {
-      drupal_set_message('field_image field not available yet', 'error');
-    }
-  }
-  else {
-    drupal_set_message('osha_configure_basic_page: entity_translation module not available', 'error');
-  }
-}
-
-/**
  * Implements hook_entity_info_alter().
  */
 function osha_entity_info_alter(&$entity_info) {
@@ -545,19 +454,16 @@ function osha_form_alter(&$form, &$form_state, $form_id){
   // Change cardinality (one value) for activity field
   if(in_array($form['#form_id'],
     array(
-      'blog_node_form',
       'article_node_form',
       'page_node_form',
       'calls_node_form',
       'directive_node_form',
       'guideline_node_form',
-      'highlight_node_form',
       'infographic_node_form',
       'job_vacancies_node_form',
       'news_node_form',
       'press_release_node_form',
-      'publication_node_form',
-      'seminar_node_form'))) {
+      'publication_node_form'))) {
     $form['field_activity']['und']['#cardinality'] = 1;
     $form['field_activity']['und']['#multiple'] = FALSE;
     $form['field_activity']['und']['#empty_option'] = 'Select activity';

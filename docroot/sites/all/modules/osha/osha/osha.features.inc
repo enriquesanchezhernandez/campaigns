@@ -45,14 +45,6 @@ function osha_node_info() {
       'title_label' => 'Title',
       'help' => '',
     ),
-    'page' => array(
-      'name' => 'Basic page',
-      'base' => 'node_content',
-      'description' => 'Static content, such as an \'About us\' page',
-      'has_title' => '1',
-      'title_label' => 'Title',
-      'help' => '',
-    ),
     'webform' => array(
       'name' => 'Webform',
       'base' => 'node_content',
