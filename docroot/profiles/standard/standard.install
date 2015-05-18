@@ -184,4 +184,13 @@ function standard_install() {
     ->execute();
   variable_set('admin_theme', 'seven');
   variable_set('node_admin_theme', '1');
+
+  $translatable_entities = array (
+    'node' => 'node',
+    'taxonomy_term' => 'taxonomy_term',
+    'comment' => 0,
+    'file' => 0,
+    'user' => 0,
+  );
+  variable_set('entity_translation_entity_types', $translatable_entities);
 }
