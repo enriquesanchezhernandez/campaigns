@@ -4,7 +4,74 @@
  * Implements hook_install().
  */
 function osha_workflow_install() {
+  module_load_include('inc', 'workbench_access', 'workbench_access.admin');
+  module_load_include('module', 'osha_workflow');
+  // Rebuild schema cache to
+  drupal_get_schema(NULL, TRUE);
+
+  $roles = array(
+    OSHA_WORKFLOW_ROLE_EDITOR,
+    OSHA_WORKFLOW_ROLE_APPROVER,
+  );
+
+  foreach ($roles as $role_name) {
+    if (!$role = user_role_load_by_name($role_name)) {
+      $role = new stdClass();
+      $role->name = $role_name;
+      user_role_save($role);
+    }
+  }
+
+  // We want our hooks to execute *after* workbench!
+  db_update('system')
+    ->fields(array('weight' => 10))
+    ->condition('name', 'osha_workflow')
+    ->execute();
+
+  drupal_static_reset();
+  cache_clear_all();
+
+  // @see https://www.drupal.org/node/1681414#comment-6347524
   osha_workflow_add_user_fields();
+
+  // Disable workbench default views.
+  $status = variable_get('views_defaults', array());
+  $status['workbench_moderation'] = TRUE;
+  variable_set('views_defaults', $status);
+
+  // Set the workbench access system to use the 'section' taxonomy
+  $form_state['values']['workbench_access'] = 'taxonomy';
+  $form_state['values']['workbench_access_taxonomy'] = array('section' => 'section');
+  $form_state['values']['workbench_access_menu'] = array();
+  $form_state['values']['op'] = t('Save configuration');
+  drupal_form_submit('workbench_access_settings_form', $form_state);
+
+  if ($voc = taxonomy_vocabulary_machine_name_load('section')) {
+    $term = array(
+      'vid' => $voc->vid,
+      'bundle' => 'section',
+      'name' => 'Default',
+    );
+    taxonomy_term_save((object) $term);
+    if (empty($term->tid)) {
+      drupal_set_message('Failed to create default section', 'error');
+    }
+  }
+  else {
+    drupal_set_message('Unable to find <b>section</b> taxonomy', 'error');
+  }
+  // Add admin access by role for root section.
+  db_delete('workbench_access_role')->execute();
+  $r1 = user_role_load_by_name(OSHA_WORKFLOW_ROLE_ADMINISTRATOR);
+  $role = array(
+    'rid' => $r1->rid,
+    'access_id' => 'section',
+    'access_scheme' => 'taxonomy',
+  );
+  drupal_write_record('workbench_access_role', $role);
+
+  // Disable the views from 'My Workbench'
+  osha_workflow_disable_workbench_views();
 }
 
 /**
@@ -228,49 +295,6 @@ function osha_workflow_schema() {
 }
 
 /**
- * Implements hook_update_n().
- */
-function osha_workflow_update_7001() {
-  module_load_include('module', 'osha_workflow');
-  osha_workflow_create_roles();
-
-  $schema = osha_workflow_schema();
-
-  db_create_table(
-    'osha_workflow_node_project_managers',
-    $schema['osha_workflow_node_project_managers']
-  );
-
-  db_create_table(
-    'osha_workflow_node_approval',
-    $schema['osha_workflow_node_approval']
-  );
-
-  db_create_table(
-    'osha_workflow_access_pm',
-    $schema['osha_workflow_access_pm']
-  );
-
-  // @see https://www.drupal.org/node/1681414#comment-6347524
-  drupal_static_reset('i18n_object_info');
-  osha_workflow_add_user_fields();
-
-  if ($role = user_role_load_by_name('administrator')) {
-    user_role_revoke_permissions($role->rid, array('use workbench_moderation needs review tab'));
-  }
-  // We want our hooks to execute *after* workbench!
-  db_update('system')
-    ->fields(array('weight' => 10))
-    ->condition('name', 'osha_workflow')
-    ->execute();
-
-  // Disable workbench default views.
-  $status = variable_get('views_defaults', array());
-  $status['workbench_moderation'] = TRUE;
-  variable_set('views_defaults', $status);
-}
-
-/**
  * Add new checkbox to receive workflow_notifications in user profile.
  */
 function osha_workflow_add_user_fields() {
@@ -347,7 +371,7 @@ function osha_workflow_add_user_fields() {
  *
  * Add permissions for Review Manager.
  */
-function osha_workflow_update_7002() {
+function osha_workflow_disable_workbench_views() {
   // Disable workbench views from My Workbench.
   $view = views_get_view('workbench_edited');
   if (!empty($view)) {
@@ -369,153 +393,4 @@ function osha_workflow_update_7002() {
     $status['workbench_recent_content'] = TRUE;
     variable_set('views_defaults', $status);
   }
-
-  // New transition installed before perm.
-  $transition = array(
-    'from_name' => 'ready_to_publish',
-    'to_name' => 'published',
-    'name' => 'Publishing',
-  );
-  workbench_moderation_transition_save((object) $transition);
-
-  require_once 'osha_workflow.permissions.inc';
-  // Give new permissions to Review Manager.
-  $role = user_role_load_by_name(OSHA_WORKFLOW_ROLE_REVIEW_MANAGER);
-  user_role_grant_permissions($role->rid, osha_workflow_permissions_role_review_manager());
-}
-
-/**
- * Add section review table.
- */
-function osha_workflow_update_7003() {
-  if (!db_table_exists('osha_workflow_sections_review')) {
-    db_create_table(
-      'osha_workflow_sections_review',
-      drupal_get_schema_unprocessed('osha_workflow', 'osha_workflow_sections_review')
-    );
-  }
-  require_once 'osha_workflow.permissions.inc';
-  // Give new permissions to Review Manager.
-  $role = user_role_load_by_name(OSHA_WORKFLOW_ROLE_PROJECT_MANAGER);
-  user_role_grant_permissions($role->rid, osha_workflow_permissions_role_project_manager());
-}
-
-/**
- * Add 'assign workbench access' permission to Review manager role
- */
-function osha_workflow_update_7004() {
-  $role = user_role_load_by_name(OSHA_WORKFLOW_ROLE_REVIEW_MANAGER);
-  user_role_grant_permissions($role->rid, array('assign workbench access'));
-}
-
-/**
- * Assign extra permissions for Review Manager (CW-1598).
- */
-function osha_workflow_update_7005() {
-  $role = user_role_load_by_name(OSHA_WORKFLOW_ROLE_REVIEW_MANAGER);
-  user_role_grant_permissions($role->rid, array(
-    'administer nodes',
-    'bypass workbench moderation',
-    'administer files',
-    'access site in maintenance mode',
-    'administer taxonomy',
-    'create translation jobs',
-    'submit translation jobs',
-    'accept translation jobs',
-  ));
-}
-
-/**
- * Move workflow sections to taxonomy.
- */
-function osha_workflow_update_7006() {
-  module_load_include('inc', 'workbench_access', 'workbench_access.admin');
-
-  $form_state['values']['workbench_access'] = 'taxonomy';
-  $form_state['values']['workbench_access_taxonomy'] = array('section' => 'section');
-  $form_state['values']['workbench_access_menu'] = array();
-  $form_state['values']['op'] = t('Save configuration');
-  drupal_form_submit('workbench_access_settings_form', $form_state);
-
-  $file = drupal_get_path('module', 'osha_workflow') . '/mapping_sections.csv';
-  if (!is_readable($file)) {
-    throw new DrupalUpdateException('Cannot read file ' . $file);
-  }
-  $mappings = array();
-  $handle = fopen($file, 'r');
-  $fields = $raw_data = fgetcsv($handle);
-  while (($raw_data = fgetcsv($handle)) !== FALSE) {
-    $mappings[$raw_data[0]] = array_combine($fields, $raw_data);
-  }
-  $voc = taxonomy_vocabulary_machine_name_load('section');
-  foreach ($mappings as $access_id => $mapping) {
-    $term = taxonomy_get_term_by_name($mapping['LDAP description']);
-    $term = current($term);
-    if (empty($term) && !empty($mapping['LDAP description'])) {
-      $term = new stdClass();
-      $term->vid = $voc->vid;
-      $term->bundle = 'section';
-      $term->name = $mapping['LDAP description'];
-      $term->field_ldap_section_code[LANGUAGE_NONE][0]['value'] = $mapping['LDAP code'];
-      taxonomy_term_save($term);
-    }
-    if (!empty($term->tid) && !empty($mapping['access_id'])) {
-      db_update('workbench_access_node')
-        ->fields(array(
-            'access_id' => $term->tid,
-            'access_scheme' => 'taxonomy',
-          )
-        )
-        ->condition('access_id', $mapping['access_id'])
-        ->execute();
-    }
-    else {
-      $msg = strtr('Section was not created @name (old_access_id: @id)', array('@name' => $term->name, '@id' => $mapping['access_id']));
-      drupal_set_message($msg, 'warning');
-    }
-  }
-  // Update the nids not covered by the previous loop.
-  db_update('workbench_access_node')
-    ->fields(array(
-        'access_id' => 'section',
-        'access_scheme' => 'taxonomy',
-      )
-    )
-    ->condition('access_scheme', 'menu')
-    ->execute();
-
-  // Add admin, PM, RM to access by role for root section.
-  db_delete('workbench_access_role')
-    ->execute();
-  $roles = array(3, 5, 6);
-  foreach ($roles as $rid) {
-    $role = array(
-      'rid' => $rid,
-      'access_id' => 'section',
-      'access_scheme' => 'taxonomy',
-    );
-    drupal_write_record('workbench_access_role', $role);
-  }
-}
-
-/**
- * Create osha_workflow_access_rm table.
- */
-function osha_workflow_update_7007() {
-  if (!db_table_exists('osha_workflow_access_rm')) {
-    $schema = osha_workflow_schema();
-    db_create_table(
-      'osha_workflow_access_rm',
-      $schema['osha_workflow_access_rm']
-    );
-  }
-}
-
-/**
- * Assign workflow permissions to roles.
- */
-function osha_workflow_update_7008() {
-  require_once 'osha_workflow.permissions.inc';
-  $role = user_role_load_by_name(OSHA_WORKFLOW_ROLE_REVIEW_MANAGER);
-  user_role_grant_permissions($role->rid, osha_workflow_permissions_role_review_manager());
 }

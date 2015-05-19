@@ -1,0 +1,9 @@
+name = hcw
+core = 7.x
+package = OSHA
+version = 7.x-0.1
+project = osha
+dependencies[] = features
+dependencies[] = linkit
+features[ctools][] = linkit:linkit_profiles:1
+features[linkit_profiles][] = osha_linkit_profile

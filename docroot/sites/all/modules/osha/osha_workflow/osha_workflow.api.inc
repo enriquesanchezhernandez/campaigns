@@ -157,10 +157,10 @@ function osha_workflow_is_assigned_project_manager($nid) {
 function osha_workflow_create_roles() {
   module_load_include('inc', 'osha_workflow', 'osha_workflow.permissions');
   $roles = array(
-    'Editor' => osha_workflow_permissions_role_editor(),
-    'Review Manager' => osha_workflow_permissions_role_review_manager(),
-    'Project Manager' => osha_workflow_permissions_role_project_manager(),
-    'Approver' => osha_workflow_permissions_role_approver(),
+    OSHA_WORKFLOW_ROLE_EDITOR => osha_workflow_permissions_role_editor(),
+    OSHA_WORKFLOW_ROLE_REVIEW_MANAGER => osha_workflow_permissions_role_review_manager(),
+    OSHA_WORKFLOW_ROLE_PROJECT_MANAGER => osha_workflow_permissions_role_project_manager(),
+    OSHA_WORKFLOW_ROLE_APPROVER => osha_workflow_permissions_role_approver(),
   );
 
   foreach ($roles as $role_name => $permissions) {
@@ -174,7 +174,7 @@ function osha_workflow_create_roles() {
     }
     user_role_grant_permissions($role->rid, $permissions);
     // Grant workbench access for this role.
-    workbench_access_role_section_save($role->rid, 'main-menu', 'menu');
+    workbench_access_role_section_save($role->rid, 'section', 'taxonomy');
   }
 }
 

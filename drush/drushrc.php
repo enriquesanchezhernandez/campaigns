@@ -482,6 +482,8 @@ $options['init-modules'] = array(
   // Social share
   'addtoany',
   'on_the_web',
+
+  'hcw',
 );
 
 
