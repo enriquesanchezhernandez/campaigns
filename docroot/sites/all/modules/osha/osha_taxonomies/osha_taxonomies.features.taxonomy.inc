@@ -109,31 +109,6 @@ function osha_taxonomies_taxonomy_default_vocabularies() {
         ),
       ),
     ),
-    'directive_type' => array(
-      'name' => 'Directive type',
-      'machine_name' => 'directive_type',
-      'description' => 'Directive type',
-      'hierarchy' => 0,
-      'module' => 'taxonomy',
-      'weight' => -8,
-      'language' => 'und',
-      'i18n_mode' => 1,
-      'rdf_mapping' => array(
-        'rdftype' => array(
-          0 => 'skos:ConceptScheme',
-        ),
-        'name' => array(
-          'predicates' => array(
-            0 => 'dc:title',
-          ),
-        ),
-        'description' => array(
-          'predicates' => array(
-            0 => 'rdfs:comment',
-          ),
-        ),
-      ),
-    ),
     'esener' => array(
       'name' => 'Esener',
       'machine_name' => 'esener',
@@ -141,31 +116,6 @@ function osha_taxonomies_taxonomy_default_vocabularies() {
       'hierarchy' => 0,
       'module' => 'taxonomy',
       'weight' => -6,
-      'language' => 'und',
-      'i18n_mode' => 1,
-      'rdf_mapping' => array(
-        'rdftype' => array(
-          0 => 'skos:ConceptScheme',
-        ),
-        'name' => array(
-          'predicates' => array(
-            0 => 'dc:title',
-          ),
-        ),
-        'description' => array(
-          'predicates' => array(
-            0 => 'rdfs:comment',
-          ),
-        ),
-      ),
-    ),
-    'legislation_category' => array(
-      'name' => 'Legislation category',
-      'machine_name' => 'legislation_category',
-      'description' => 'Legislation category',
-      'hierarchy' => 0,
-      'module' => 'taxonomy',
-      'weight' => -7,
       'language' => 'und',
       'i18n_mode' => 1,
       'rdf_mapping' => array(
@@ -234,10 +184,10 @@ function osha_taxonomies_taxonomy_default_vocabularies() {
         ),
       ),
     ),
-    'thesaurus' => array(
-      'name' => 'Thesaurus',
-      'machine_name' => 'thesaurus',
-      'description' => 'This taxonomy will be used to classify content by EU-OSHA’s controlled vocabulary',
+    'tags' => array(
+      'name' => 'Tags',
+      'machine_name' => 'tags',
+      'description' => 'Use tags to group articles on similar topics into categories.',
       'hierarchy' => 0,
       'module' => 'taxonomy',
       'weight' => 0,
@@ -259,40 +209,15 @@ function osha_taxonomies_taxonomy_default_vocabularies() {
         ),
       ),
     ),
-    'wiki_categories' => array(
-      'name' => 'Wiki Categories',
-      'machine_name' => 'wiki_categories',
-      'description' => '',
-      'hierarchy' => 1,
-      'module' => 'taxonomy',
-      'weight' => 1,
-      'language' => 'und',
-      'i18n_mode' => 1,
-      'rdf_mapping' => array(
-        'rdftype' => array(
-          0 => 'skos:ConceptScheme',
-        ),
-        'name' => array(
-          'predicates' => array(
-            0 => 'dc:title',
-          ),
-        ),
-        'description' => array(
-          'predicates' => array(
-            0 => 'rdfs:comment',
-          ),
-        ),
-      ),
-    ),
-    'workflow_status' => array(
-      'name' => 'Workflow status',
-      'machine_name' => 'workflow_status',
-      'description' => 'Content status for translation and publishing workflow',
+    'thesaurus' => array(
+      'name' => 'Thesaurus',
+      'machine_name' => 'thesaurus',
+      'description' => 'This taxonomy will be used to classify content by EU-OSHA’s controlled vocabulary',
       'hierarchy' => 0,
       'module' => 'taxonomy',
-      'weight' => 2,
+      'weight' => 0,
       'language' => 'und',
-      'i18n_mode' => 0,
+      'i18n_mode' => 1,
       'rdf_mapping' => array(
         'rdftype' => array(
           0 => 'skos:ConceptScheme',

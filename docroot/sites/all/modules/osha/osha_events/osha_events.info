@@ -82,7 +82,6 @@ features[field_instance][] = taxonomy_term-organised_by-description_field
 features[field_instance][] = taxonomy_term-organised_by-name_field
 features[node][] = events
 features[taxonomy][] = organised_by
-features[taxonomy][] = tags
 features[variable][] = comment_anonymous_events
 features[variable][] = comment_default_mode_events
 features[variable][] = comment_default_per_page_events

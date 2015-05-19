@@ -129,8 +129,6 @@ function osha_workflow_strongarm() {
   $strongarm->value = array(
     'activity' => 0,
     'article_types' => 0,
-    'directive_type' => 0,
-    'legislation_category' => 0,
     'esener' => 0,
     'nace_codes' => 0,
     'section' => 'section',
@@ -150,8 +148,6 @@ function osha_workflow_strongarm() {
     'wg_category' => 0,
     'wg_role_1' => 0,
     'wg_role_2' => 0,
-    'wiki_categories' => 0,
-    'workflow_status' => 0,
   );
   $export['workbench_access_taxonomy'] = $strongarm;
 

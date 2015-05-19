@@ -67,7 +67,6 @@ features[field_instance][] = node-publication-field_related_oshwiki_articles
 features[field_instance][] = node-publication-field_related_publications
 features[field_instance][] = node-publication-field_tags
 features[field_instance][] = node-publication-field_thesaurus
-features[field_instance][] = node-publication-field_wiki_categories
 features[field_instance][] = node-publication-title_field
 features[node][] = publication
 features[taxonomy][] = publication_types

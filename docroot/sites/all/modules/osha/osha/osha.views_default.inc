@@ -120,8 +120,6 @@ function osha_views_default_views() {
   $handler->display->display_options['relationships']['term_node_tid']['vocabularies'] = array(
     'activity' => 0,
     'article_types' => 0,
-    'directive_type' => 0,
-    'legislation_category' => 0,
     'esener' => 0,
     'nace_codes' => 0,
     'section' => 0,
@@ -131,8 +129,6 @@ function osha_views_default_views() {
     'publication_types' => 0,
     'tags' => 0,
     'thesaurus' => 0,
-    'wiki_categories' => 0,
-    'workflow_status' => 0,
   );
   /* Relationship: Content: Entity translation: translations */
   $handler->display->display_options['relationships']['entity_translations']['id'] = 'entity_translations';
