@@ -803,7 +803,10 @@ function osha_field_default_field_instances() {
         'allow_duplicates' => 0,
         'close_modal' => 0,
         'pass_argument' => 0,
+        'pass_arguments' => '',
+        'rendered_entity' => FALSE,
         'view' => 'aditional_resources|entityreference_view_widget_1',
+        'view_mode' => FALSE,
       ),
       'type' => 'entityreference_view_widget',
       'weight' => 24,
@@ -1541,36 +1544,25 @@ function osha_field_default_field_instances() {
     'description' => '',
     'display' => array(
       'default' => array(
-        'label' => 'hidden',
+        'label' => 'above',
+        'module' => 'i18n_taxonomy',
         'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 9,
+        'type' => 'i18n_taxonomy_term_reference_link',
+        'weight' => 17,
       ),
       'newsletter_item' => array(
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 8,
+        'weight' => 0,
       ),
       'osha_resources' => array(
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 11,
+        'weight' => 0,
       ),
       'osha_slideshow' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-      'osha_wiki' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-      'scs' => array(
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
@@ -1580,7 +1572,7 @@ function osha_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 3,
+        'weight' => 0,
       ),
     ),
     'entity_type' => 'node',
@@ -1595,11 +1587,12 @@ function osha_field_default_field_instances() {
       'active' => 1,
       'module' => 'options',
       'settings' => array(
-        'apply_chosen' => 1,
+        'apply_chosen' => '',
       ),
       'type' => 'options_select',
-      'weight' => 9,
+      'weight' => 25,
     ),
+    'workbench_access_field' => 0,
   );
 
   // Exported field_instance: 'node-article-field_thesaurus'
@@ -2261,7 +2254,6 @@ function osha_field_default_field_instances() {
   t('Image');
   t('Language');
   t('Nace');
-  t('OSHwiki category');
   t('OSHwiki featured articles');
   t('Page Introduction');
   t('Page count');

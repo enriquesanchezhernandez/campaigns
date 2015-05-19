@@ -715,7 +715,7 @@ function osha_views_default_views() {
   $handler->display->display_options['style_options']['unescaped_slashes'] = 0;
   $handler->display->display_options['style_options']['unescaped_unicode'] = 0;
   $handler->display->display_options['style_options']['char_encoding'] = array();
-  /* Relationship: Field: Tags (field_tags) */
+  /* Relationship: Content: Tags (field_tags) */
   $handler->display->display_options['relationships']['field_tags_tid']['id'] = 'field_tags_tid';
   $handler->display->display_options['relationships']['field_tags_tid']['table'] = 'field_data_field_tags';
   $handler->display->display_options['relationships']['field_tags_tid']['field'] = 'field_tags_tid';
@@ -785,7 +785,7 @@ function osha_views_default_views() {
   $handler->display->display_options['fields']['body']['table'] = 'field_data_body';
   $handler->display->display_options['fields']['body']['field'] = 'body';
   $handler->display->display_options['fields']['body']['label'] = 'body';
-  /* Field: Field: Tags */
+  /* Field: Content: Tags */
   $handler->display->display_options['fields']['field_tags']['id'] = 'field_tags';
   $handler->display->display_options['fields']['field_tags']['table'] = 'field_data_field_tags';
   $handler->display->display_options['fields']['field_tags']['field'] = 'field_tags';
@@ -866,7 +866,7 @@ function osha_views_default_views() {
   /* Display: News */
   $handler = $view->new_display('page', 'News', 'page_news');
   $handler->display->display_options['defaults']['relationships'] = FALSE;
-  /* Relationship: Field: Tags (field_tags) */
+  /* Relationship: Content: Tags (field_tags) */
   $handler->display->display_options['relationships']['field_tags_tid']['id'] = 'field_tags_tid';
   $handler->display->display_options['relationships']['field_tags_tid']['table'] = 'field_data_field_tags';
   $handler->display->display_options['relationships']['field_tags_tid']['field'] = 'field_tags_tid';
@@ -949,7 +949,7 @@ function osha_views_default_views() {
   $handler->display->display_options['fields']['body']['table'] = 'field_data_body';
   $handler->display->display_options['fields']['body']['field'] = 'body';
   $handler->display->display_options['fields']['body']['label'] = 'body';
-  /* Field: Field: Tags */
+  /* Field: Content: Tags */
   $handler->display->display_options['fields']['field_tags']['id'] = 'field_tags';
   $handler->display->display_options['fields']['field_tags']['table'] = 'field_data_field_tags';
   $handler->display->display_options['fields']['field_tags']['field'] = 'field_tags';
@@ -1036,7 +1036,7 @@ function osha_views_default_views() {
   /* Display: Events */
   $handler = $view->new_display('page', 'Events', 'page_events');
   $handler->display->display_options['defaults']['relationships'] = FALSE;
-  /* Relationship: Field: Tags (field_tags) */
+  /* Relationship: Content: Tags (field_tags) */
   $handler->display->display_options['relationships']['field_tags_tid']['id'] = 'field_tags_tid';
   $handler->display->display_options['relationships']['field_tags_tid']['table'] = 'field_data_field_tags';
   $handler->display->display_options['relationships']['field_tags_tid']['field'] = 'field_tags_tid';
@@ -1130,7 +1130,7 @@ function osha_views_default_views() {
   $handler->display->display_options['fields']['field_website_of_event']['click_sort_column'] = 'url';
   $handler->display->display_options['fields']['field_website_of_event']['type'] = 'link_plain';
   $handler->display->display_options['fields']['field_website_of_event']['delta_offset'] = '0';
-  /* Field: Field: Tags */
+  /* Field: Content: Tags */
   $handler->display->display_options['fields']['field_tags_1']['id'] = 'field_tags_1';
   $handler->display->display_options['fields']['field_tags_1']['table'] = 'field_data_field_tags';
   $handler->display->display_options['fields']['field_tags_1']['field'] = 'field_tags';
@@ -1396,7 +1396,7 @@ function osha_views_default_views() {
   $handler->display->display_options['fields']['body']['table'] = 'field_data_body';
   $handler->display->display_options['fields']['body']['field'] = 'body';
   $handler->display->display_options['fields']['body']['label'] = 'body';
-  /* Field: Field: Tags */
+  /* Field: Content: Tags */
   $handler->display->display_options['fields']['field_tags']['id'] = 'field_tags';
   $handler->display->display_options['fields']['field_tags']['table'] = 'field_data_field_tags';
   $handler->display->display_options['fields']['field_tags']['field'] = 'field_tags';
@@ -1468,7 +1468,7 @@ function osha_views_default_views() {
   /* Display: Publications */
   $handler = $view->new_display('page', 'Publications', 'page_publication');
   $handler->display->display_options['defaults']['relationships'] = FALSE;
-  /* Relationship: Field: Tags (field_tags) */
+  /* Relationship: Content: Tags (field_tags) */
   $handler->display->display_options['relationships']['field_tags_tid']['id'] = 'field_tags_tid';
   $handler->display->display_options['relationships']['field_tags_tid']['table'] = 'field_data_field_tags';
   $handler->display->display_options['relationships']['field_tags_tid']['field'] = 'field_tags_tid';
@@ -1562,7 +1562,7 @@ function osha_views_default_views() {
   $handler->display->display_options['fields']['body']['table'] = 'field_data_body';
   $handler->display->display_options['fields']['body']['field'] = 'body';
   $handler->display->display_options['fields']['body']['label'] = 'body';
-  /* Field: Field: Tags */
+  /* Field: Content: Tags */
   $handler->display->display_options['fields']['field_tags']['id'] = 'field_tags';
   $handler->display->display_options['fields']['field_tags']['table'] = 'field_data_field_tags';
   $handler->display->display_options['fields']['field_tags']['field'] = 'field_tags';
@@ -1592,7 +1592,7 @@ function osha_views_default_views() {
   $handler->display->display_options['fields']['field_nace_codes']['type'] = 'i18n_taxonomy_term_reference_plain';
   $handler->display->display_options['fields']['field_nace_codes']['delta_offset'] = '0';
   $handler->display->display_options['fields']['field_nace_codes']['separator'] = '\\n';
-  /* Field: Content: Author */
+  /* Field: Content: Author(s) */
   $handler->display->display_options['fields']['field_author']['id'] = 'field_author';
   $handler->display->display_options['fields']['field_author']['table'] = 'field_data_field_author';
   $handler->display->display_options['fields']['field_author']['field'] = 'field_author';
@@ -1762,7 +1762,7 @@ function osha_views_default_views() {
   $handler->display->display_options['fields']['body']['table'] = 'field_data_body';
   $handler->display->display_options['fields']['body']['field'] = 'body';
   $handler->display->display_options['fields']['body']['label'] = 'body';
-  /* Field: Field: Tags */
+  /* Field: Content: Tags */
   $handler->display->display_options['fields']['field_tags']['id'] = 'field_tags';
   $handler->display->display_options['fields']['field_tags']['table'] = 'field_data_field_tags';
   $handler->display->display_options['fields']['field_tags']['field'] = 'field_tags';
@@ -1848,7 +1848,7 @@ function osha_views_default_views() {
   $handler->display->display_options['query']['type'] = 'views_query';
   $handler->display->display_options['query']['options']['distinct'] = TRUE;
   $handler->display->display_options['defaults']['relationships'] = FALSE;
-  /* Relationship: Field: Tags (field_tags) */
+  /* Relationship: Content: Tags (field_tags) */
   $handler->display->display_options['relationships']['field_tags_tid']['id'] = 'field_tags_tid';
   $handler->display->display_options['relationships']['field_tags_tid']['table'] = 'field_data_field_tags';
   $handler->display->display_options['relationships']['field_tags_tid']['field'] = 'field_tags_tid';
@@ -1942,7 +1942,7 @@ function osha_views_default_views() {
   $handler->display->display_options['fields']['field_website_of_event']['click_sort_column'] = 'url';
   $handler->display->display_options['fields']['field_website_of_event']['type'] = 'link_plain';
   $handler->display->display_options['fields']['field_website_of_event']['delta_offset'] = '0';
-  /* Field: Field: Tags */
+  /* Field: Content: Tags */
   $handler->display->display_options['fields']['field_tags_1']['id'] = 'field_tags_1';
   $handler->display->display_options['fields']['field_tags_1']['table'] = 'field_data_field_tags';
   $handler->display->display_options['fields']['field_tags_1']['field'] = 'field_tags';
@@ -2209,7 +2209,7 @@ function osha_views_default_views() {
   $handler->display->display_options['fields']['body']['label'] = 'body';
   $handler->display->display_options['fields']['body']['element_default_classes'] = FALSE;
   $handler->display->display_options['fields']['body']['hide_alter_empty'] = FALSE;
-  /* Field: Field: Tags */
+  /* Field: Content: Tags */
   $handler->display->display_options['fields']['field_tags']['id'] = 'field_tags';
   $handler->display->display_options['fields']['field_tags']['table'] = 'field_data_field_tags';
   $handler->display->display_options['fields']['field_tags']['field'] = 'field_tags';
@@ -2295,7 +2295,7 @@ function osha_views_default_views() {
   $handler->display->display_options['query']['type'] = 'views_query';
   $handler->display->display_options['query']['options']['distinct'] = TRUE;
   $handler->display->display_options['defaults']['relationships'] = FALSE;
-  /* Relationship: Field: Tags (field_tags) */
+  /* Relationship: Content: Tags (field_tags) */
   $handler->display->display_options['relationships']['field_tags_tid']['id'] = 'field_tags_tid';
   $handler->display->display_options['relationships']['field_tags_tid']['table'] = 'field_data_field_tags';
   $handler->display->display_options['relationships']['field_tags_tid']['field'] = 'field_tags_tid';
@@ -2391,7 +2391,7 @@ function osha_views_default_views() {
   $handler->display->display_options['fields']['body']['table'] = 'field_data_body';
   $handler->display->display_options['fields']['body']['field'] = 'body';
   $handler->display->display_options['fields']['body']['label'] = 'body';
-  /* Field: Field: Tags */
+  /* Field: Content: Tags */
   $handler->display->display_options['fields']['field_tags']['id'] = 'field_tags';
   $handler->display->display_options['fields']['field_tags']['table'] = 'field_data_field_tags';
   $handler->display->display_options['fields']['field_tags']['field'] = 'field_tags';
@@ -2421,7 +2421,7 @@ function osha_views_default_views() {
   $handler->display->display_options['fields']['field_nace_codes']['type'] = 'i18n_taxonomy_term_reference_plain';
   $handler->display->display_options['fields']['field_nace_codes']['delta_offset'] = '0';
   $handler->display->display_options['fields']['field_nace_codes']['separator'] = '\\n';
-  /* Field: Content: Author */
+  /* Field: Content: Author(s) */
   $handler->display->display_options['fields']['field_author']['id'] = 'field_author';
   $handler->display->display_options['fields']['field_author']['table'] = 'field_data_field_author';
   $handler->display->display_options['fields']['field_author']['field'] = 'field_author';
@@ -2684,7 +2684,7 @@ function osha_views_default_views() {
     3 => 0,
   );
   $handler->display->display_options['filters']['field_nace_codes_tid']['vocabulary'] = 'nace_codes';
-  /* Filter criterion: Field: Tags (field_tags) */
+  /* Filter criterion: Content: Tags (field_tags) */
   $handler->display->display_options['filters']['field_tags_tid']['id'] = 'field_tags_tid';
   $handler->display->display_options['filters']['field_tags_tid']['table'] = 'field_data_field_tags';
   $handler->display->display_options['filters']['field_tags_tid']['field'] = 'field_tags_tid';

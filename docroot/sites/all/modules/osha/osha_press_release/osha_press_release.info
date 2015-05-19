@@ -127,7 +127,6 @@ features[variable][] = print_pdf_sys_link_pages
 features[variable][] = print_pdf_sys_link_visibility
 features[views_view][] = press_releases
 features_exclude[dependencies][osha_infographics] = osha_infographics
-features_exclude[field_base][field_tags] = field_tags
 features_exclude[field_base][field_flickr_tags] = field_flickr_tags
 features_exclude[taxonomy][tags] = tags
 features_exclude[taxonomy][flickr_tags] = flickr_tags
