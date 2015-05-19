@@ -1499,7 +1499,6 @@ el.remove();
   $strongarm->name = 'site_map_show_menus';
   $strongarm->value = array(
     'main-menu' => 'main-menu',
-    'devel' => 0,
     'features' => 0,
     'menu-footer-menu' => 0,
     'management' => 0,
