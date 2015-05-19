@@ -44,9 +44,11 @@ function osha_publication_field_default_field_instances() {
           'more_text' => 'Read more',
           'summary_handler' => 'trim',
           'trim_length' => 150,
+          'trim_link' => FALSE,
           'trim_options' => array(
             'text' => 'text',
           ),
+          'trim_preserve_tags' => '',
           'trim_suffix' => '...',
           'trim_type' => 'chars',
         ),
@@ -1590,7 +1592,6 @@ function osha_publication_field_default_field_instances() {
   t('Expiration date');
   t('File');
   t('Nace');
-  t('OSHwiki categories');
   t('OSHwiki featured articles');
   t('Page count');
   t('Publication Type');
