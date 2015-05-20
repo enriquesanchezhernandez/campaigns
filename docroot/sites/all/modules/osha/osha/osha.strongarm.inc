@@ -110,13 +110,11 @@ el.remove();
     'page' => 0,
     'calls' => 0,
     'press_contact' => 0,
-    'directive' => 0,
     'events' => 0,
     'external_url' => 0,
     'file' => 0,
     'flickr' => 0,
     'fop_page' => 0,
-    'guideline' => 0,
     'infographic' => 0,
     'job_vacancies' => 0,
     'newsletter_article' => 0,
@@ -425,19 +423,6 @@ el.remove();
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
-  $strongarm->name = 'entity_translation_settings_node__directive';
-  $strongarm->value = array(
-    'default_language' => 'en',
-    'hide_language_selector' => 1,
-    'exclude_language_none' => 1,
-    'lock_language' => 1,
-    'shared_fields_original_only' => 1,
-  );
-  $export['entity_translation_settings_node__directive'] = $strongarm;
-
-  $strongarm = new stdClass();
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
   $strongarm->name = 'entity_translation_settings_node__external_url';
   $strongarm->value = array(
     'default_language' => 'en',
@@ -473,19 +458,6 @@ el.remove();
     'shared_fields_original_only' => 1,
   );
   $export['entity_translation_settings_node__flickr'] = $strongarm;
-
-  $strongarm = new stdClass();
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
-  $strongarm->name = 'entity_translation_settings_node__guideline';
-  $strongarm->value = array(
-    'default_language' => 'en',
-    'hide_language_selector' => 1,
-    'exclude_language_none' => 1,
-    'lock_language' => 1,
-    'shared_fields_original_only' => 1,
-  );
-  $export['entity_translation_settings_node__guideline'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
@@ -1293,13 +1265,6 @@ el.remove();
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
-  $strongarm->name = 'pathauto_node_directive_pattern';
-  $strongarm->value = 'legislation/directive/[node:title]';
-  $export['pathauto_node_directive_pattern'] = $strongarm;
-
-  $strongarm = new stdClass();
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
   $strongarm->name = 'pathauto_node_events_pattern';
   $strongarm->value = 'oshevents/[node:title]';
   $export['pathauto_node_events_pattern'] = $strongarm;
@@ -1317,13 +1282,6 @@ el.remove();
   $strongarm->name = 'pathauto_node_flickr_pattern';
   $strongarm->value = 'additional-resources/flickr/[node:title]';
   $export['pathauto_node_flickr_pattern'] = $strongarm;
-
-  $strongarm = new stdClass();
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
-  $strongarm->name = 'pathauto_node_guideline_pattern';
-  $strongarm->value = 'legislation/guidelines/[node:title]';
-  $export['pathauto_node_guideline_pattern'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */

@@ -457,8 +457,6 @@ function osha_form_alter(&$form, &$form_state, $form_id){
       'article_node_form',
       'page_node_form',
       'calls_node_form',
-      'directive_node_form',
-      'guideline_node_form',
       'infographic_node_form',
       'job_vacancies_node_form',
       'news_node_form',

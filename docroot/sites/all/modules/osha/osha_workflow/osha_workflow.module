@@ -689,8 +689,6 @@ function osha_workflow_bundle_section_map() {
     'publication' => 'PUBLIC',
     'job_vacancies' => 'CAREER',
     'press_release' => 'PROOM',
-    'directive' => 'ONETKA',
-    'guideline' => 'ONETKA',
     'calls' => 'PROCUR',
     'infographic' => 'CORPCM',
   );
