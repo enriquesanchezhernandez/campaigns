@@ -36,8 +36,6 @@ function osha_alert_service_get_translatable_strings() {
     'Latest events',
     'Latest calls',
     'Latest vacancies',
-    'Latest directives',
-    'Latest guidelines',
     'Privacy policy',
   );
 }

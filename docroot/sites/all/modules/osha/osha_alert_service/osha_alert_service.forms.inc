@@ -57,7 +57,7 @@ function osha_alert_service_subscribe_form() {
   $types = array();
 
   $allowed = array(
-    'publication', 'news', 'calls', 'job_vacancies', 'events', 'directive', 'guideline',
+    'publication', 'news', 'calls', 'job_vacancies', 'events',
   );
 
   $alltypes = node_type_get_types();

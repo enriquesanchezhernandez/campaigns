@@ -143,20 +143,6 @@ function osha_alert_service_block_info() {
     'cache' => DRUPAL_CACHE_GLOBAL,
     'weight' => 1
   );
-  $blocks['osha_directives_rss'] = array(
-    'info' => t('Directives feed'),
-    'visibility' => BLOCK_VISIBILITY_LISTED,
-    'pages' => 'node/11',
-    'cache' => DRUPAL_CACHE_GLOBAL,
-    'weight' => -5
-  );
-  $blocks['osha_guidelines_rss'] = array(
-    'info' => t('Guidelines feed'),
-    'visibility' => BLOCK_VISIBILITY_LISTED,
-    'pages' => 'node/2544',
-    'cache' => DRUPAL_CACHE_GLOBAL,
-    'weight' => -5
-  );
   return $blocks;
 }
 
@@ -203,14 +189,6 @@ function osha_alert_service_block_view($delta = '') {
       break;
     case 'osha_events_rss':
       $ret['content'] = l(t('Click here for the RSS Feed'), 'rss-feeds/latest/events.xml',
-        array('attributes' => array('class' => array('rss-feed'))));
-      break;
-    case 'osha_directives_rss':
-      $ret['content'] = l(t('Click here for the RSS Feed'), 'rss-feeds/latest/directives.xml',
-        array('attributes' => array('class' => array('rss-feed'))));
-      break;
-    case 'osha_guidelines_rss':
-      $ret['content'] = l(t('Click here for the RSS Feed'), 'rss-feeds/latest/guidelines.xml',
         array('attributes' => array('class' => array('rss-feed'))));
       break;
   }
