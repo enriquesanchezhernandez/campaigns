@@ -30,17 +30,11 @@ node/9',
         'theme' => 'bartik',
         'weight' => 0,
       ),
-      'osha_admin' => array(
+      'hcw_frontend' => array(
         'region' => '',
         'status' => 0,
-        'theme' => 'osha_admin',
-        'weight' => 0,
-      ),
-      'osha_frontend' => array(
-        'region' => 'content',
-        'status' => 1,
-        'theme' => 'osha_frontend',
-        'weight' => 2,
+        'theme' => 'hcw_frontend',
+        'weight' => -9,
       ),
       'seven' => array(
         'region' => '',
@@ -71,17 +65,11 @@ node/9',
         'theme' => 'bartik',
         'weight' => 0,
       ),
-      'osha_admin' => array(
+      'hcw_frontend' => array(
         'region' => '',
         'status' => 0,
-        'theme' => 'osha_admin',
-        'weight' => 0,
-      ),
-      'osha_frontend' => array(
-        'region' => 'sidebar_second',
-        'status' => 1,
-        'theme' => 'osha_frontend',
-        'weight' => 0,
+        'theme' => 'hcw_frontend',
+        'weight' => -35,
       ),
       'seven' => array(
         'region' => '',
@@ -111,17 +99,11 @@ node/9',
         'theme' => 'bartik',
         'weight' => -30,
       ),
-      'osha_admin' => array(
+      'hcw_frontend' => array(
         'region' => '',
         'status' => 0,
-        'theme' => 'osha_admin',
-        'weight' => -30,
-      ),
-      'osha_frontend' => array(
-        'region' => 'sidebar_second',
-        'status' => 1,
-        'theme' => 'osha_frontend',
-        'weight' => 0,
+        'theme' => 'hcw_frontend',
+        'weight' => 8,
       ),
       'seven' => array(
         'region' => '',
@@ -152,17 +134,11 @@ node/9',
         'theme' => 'bartik',
         'weight' => 0,
       ),
-      'osha_admin' => array(
+      'hcw_frontend' => array(
         'region' => '',
         'status' => 0,
-        'theme' => 'osha_admin',
-        'weight' => 0,
-      ),
-      'osha_frontend' => array(
-        'region' => 'content',
-        'status' => 1,
-        'theme' => 'osha_frontend',
-        'weight' => 1,
+        'theme' => 'hcw_frontend',
+        'weight' => 9,
       ),
       'seven' => array(
         'region' => '',
