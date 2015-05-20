@@ -289,7 +289,7 @@ function osha_press_contact_field_default_field_instances() {
         'label' => 'inline',
         'module' => 'email',
         'settings' => array(),
-        'type' => 'email_spamspan',
+        'type' => 'email_default',
         'weight' => 3,
       ),
       'newsletter_item' => array(
@@ -320,7 +320,7 @@ function osha_press_contact_field_default_field_instances() {
         'label' => 'hidden',
         'module' => 'email',
         'settings' => array(),
-        'type' => 'email_spamspan',
+        'type' => 'email_default',
         'weight' => 3,
       ),
     ),
@@ -488,7 +488,8 @@ function osha_press_contact_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-press_contact-field_press_contact_organization'
+  // Exported field_instance:
+  // 'node-press_contact-field_press_contact_organization'
   $field_instances['node-press_contact-field_press_contact_organization'] = array(
     'bundle' => 'press_contact',
     'default_value' => NULL,
