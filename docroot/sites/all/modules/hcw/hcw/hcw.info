@@ -1,7 +1,7 @@
 name = hcw
 description = HCW Specific customizations
 core = 7.x
-package = OSHA
+package = NCW
 version = 7.x-0.3
 project = hcw
 dependencies[] = fe_block
