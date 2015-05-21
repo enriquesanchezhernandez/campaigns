@@ -182,6 +182,7 @@ function standard_install() {
     ->condition('type', 'theme')
     ->condition('name', 'seven')
     ->execute();
+  variable_set('theme_default', 'hcw_frontend');
   variable_set('admin_theme', 'seven');
   variable_set('node_admin_theme', '1');
 
