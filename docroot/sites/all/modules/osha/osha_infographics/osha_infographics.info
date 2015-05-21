@@ -55,4 +55,3 @@ features[variable][] = node_preview_infographic
 features[variable][] = node_submitted_infographic
 features[views_view][] = infographic
 features_exclude[taxonomy][infographic_topic] = infographic_topic
-mtime = 1427718361
