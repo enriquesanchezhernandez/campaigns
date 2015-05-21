@@ -7,6 +7,7 @@ dependencies[] = ctools
 dependencies[] = entity
 dependencies[] = entity_collection
 dependencies[] = features
+dependencies[] = osha_taxonomies
 dependencies[] = strongarm
 dependencies[] = views
 dependencies[] = workbench_access

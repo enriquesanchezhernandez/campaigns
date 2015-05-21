@@ -47,19 +47,21 @@ function osha_workflow_install() {
   drupal_form_submit('workbench_access_settings_form', $form_state);
 
   if ($voc = taxonomy_vocabulary_machine_name_load('section')) {
-    $term = array(
+    $term = (object) array(
       'vid' => $voc->vid,
-      'bundle' => 'section',
+      'language' => LANGUAGE_NONE,
+      'vocabulary_machine_name' => 'section',
       'name' => 'Default',
     );
-    taxonomy_term_save((object) $term);
+    taxonomy_term_save($term);
     if (empty($term->tid)) {
       drupal_set_message('Failed to create default section', 'error');
     }
   }
   else {
-    drupal_set_message('Unable to find <b>section</b> taxonomy', 'error');
+    drupal_set_message('Failed to find taxonomy section', 'error');
   }
+
   // Add admin access by role for root section.
   db_delete('workbench_access_role')->execute();
   $r1 = user_role_load_by_name(OSHA_WORKFLOW_ROLE_ADMINISTRATOR);
