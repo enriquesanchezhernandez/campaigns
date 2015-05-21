@@ -14,8 +14,10 @@ function hcw_default_fe_block_settings() {
 
   $export['menu-menu-footer-menu'] = array(
     'cache' => -1,
+    'custom' => 0,
     'delta' => 'menu-footer-menu',
     'i18n_block_language' => array(),
+    'i18n_mode' => 0,
     'module' => 'menu',
     'node_types' => array(),
     'pages' => '',
@@ -28,8 +30,8 @@ function hcw_default_fe_block_settings() {
         'weight' => 0,
       ),
       'hcw_frontend' => array(
-        'region' => '',
-        'status' => 0,
+        'region' => 'footer',
+        'status' => 1,
         'theme' => 'hcw_frontend',
         'weight' => 0,
       ),
@@ -40,6 +42,8 @@ function hcw_default_fe_block_settings() {
         'weight' => 0,
       ),
     ),
+    'title' => '<none>',
+    'visibility' => 0,
   );
 
   return $export;

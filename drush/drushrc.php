@@ -483,6 +483,7 @@ $options['init-modules'] = array(
   'addtoany',
   'on_the_web',
 
+  'hcw_frontend',
   'hcw',
 );
 
