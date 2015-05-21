@@ -23,12 +23,6 @@ function osha_press_contact_default_fe_block_settings() {
     'pages' => 'node/1503',
     'roles' => array(),
     'themes' => array(
-      'bartik' => array(
-        'region' => '',
-        'status' => 0,
-        'theme' => 'bartik',
-        'weight' => 0,
-      ),
       'hcw_frontend' => array(
         'region' => '',
         'status' => 0,
@@ -59,12 +53,6 @@ function osha_press_contact_default_fe_block_settings() {
     'pages' => '',
     'roles' => array(),
     'themes' => array(
-      'bartik' => array(
-        'region' => '',
-        'status' => 0,
-        'theme' => 'bartik',
-        'weight' => 0,
-      ),
       'hcw_frontend' => array(
         'region' => '',
         'status' => 0,
@@ -93,12 +81,6 @@ function osha_press_contact_default_fe_block_settings() {
     'pages' => '',
     'roles' => array(),
     'themes' => array(
-      'bartik' => array(
-        'region' => '',
-        'status' => 0,
-        'theme' => 'bartik',
-        'weight' => 0,
-      ),
       'hcw_frontend' => array(
         'region' => '',
         'status' => 0,

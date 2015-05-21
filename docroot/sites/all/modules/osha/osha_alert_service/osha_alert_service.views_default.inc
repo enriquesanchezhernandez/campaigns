@@ -444,7 +444,6 @@ function osha_alert_service_views_default_views() {
   $handler->display->display_options['filters']['field_job_vacancies_deadline_value_1']['operator'] = 'empty';
   $handler->display->display_options['filters']['field_job_vacancies_deadline_value_1']['group'] = 2;
   $handler->display->display_options['path'] = 'rss-feeds/latest/vacancies.xml';
-
   $translatables['latest_items_rss_'] = array(
     t('Master'),
     t('more'),

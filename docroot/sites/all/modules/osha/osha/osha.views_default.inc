@@ -777,7 +777,7 @@ function osha_views_default_views() {
     3 => 0,
   );
   $handler->display->display_options['filters']['field_nace_codes_tid']['vocabulary'] = 'nace_codes';
-  /* Filter criterion: Content: Tags (field_tags) */
+  /* Filter criterion: Field: Tags (field_tags) */
   $handler->display->display_options['filters']['field_tags_tid']['id'] = 'field_tags_tid';
   $handler->display->display_options['filters']['field_tags_tid']['table'] = 'field_data_field_tags';
   $handler->display->display_options['filters']['field_tags_tid']['field'] = 'field_tags_tid';

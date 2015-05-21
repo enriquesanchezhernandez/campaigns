@@ -23,12 +23,6 @@ function osha_press_release_default_fe_block_settings() {
     'pages' => '',
     'roles' => array(),
     'themes' => array(
-      'bartik' => array(
-        'region' => '',
-        'status' => 0,
-        'theme' => 'bartik',
-        'weight' => 0,
-      ),
       'hcw_frontend' => array(
         'region' => '',
         'status' => 0,
@@ -91,12 +85,6 @@ function osha_press_release_default_fe_block_settings() {
     'pages' => '',
     'roles' => array(),
     'themes' => array(
-      'bartik' => array(
-        'region' => 'sidebar_second',
-        'status' => 1,
-        'theme' => 'bartik',
-        'weight' => 4,
-      ),
       'hcw_frontend' => array(
         'region' => 'sidebar_second',
         'status' => 1,
@@ -125,12 +113,6 @@ function osha_press_release_default_fe_block_settings() {
     'pages' => '',
     'roles' => array(),
     'themes' => array(
-      'bartik' => array(
-        'region' => 'sidebar_second',
-        'status' => 1,
-        'theme' => 'bartik',
-        'weight' => 3,
-      ),
       'hcw_frontend' => array(
         'region' => 'sidebar_second',
         'status' => 1,
@@ -159,12 +141,6 @@ function osha_press_release_default_fe_block_settings() {
     'pages' => 'inside-eu-osha/press-room',
     'roles' => array(),
     'themes' => array(
-      'bartik' => array(
-        'region' => '',
-        'status' => 0,
-        'theme' => 'bartik',
-        'weight' => 0,
-      ),
       'hcw_frontend' => array(
         'region' => '',
         'status' => 0,

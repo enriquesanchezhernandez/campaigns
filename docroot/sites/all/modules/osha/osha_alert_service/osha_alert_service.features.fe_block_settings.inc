@@ -23,12 +23,6 @@ function osha_alert_service_default_fe_block_settings() {
     'pages' => '',
     'roles' => array(),
     'themes' => array(
-      'bartik' => array(
-        'region' => '',
-        'status' => 0,
-        'theme' => 'bartik',
-        'weight' => -28,
-      ),
       'hcw_frontend' => array(
         'region' => '',
         'status' => 0,
@@ -58,12 +52,6 @@ function osha_alert_service_default_fe_block_settings() {
 node/5432',
     'roles' => array(),
     'themes' => array(
-      'bartik' => array(
-        'region' => 'content',
-        'status' => 1,
-        'theme' => 'bartik',
-        'weight' => 0,
-      ),
       'hcw_frontend' => array(
         'region' => 'content',
         'status' => 1,
@@ -92,12 +80,6 @@ node/5432',
     'pages' => 'node/1472',
     'roles' => array(),
     'themes' => array(
-      'bartik' => array(
-        'region' => '',
-        'status' => 0,
-        'theme' => 'bartik',
-        'weight' => -5,
-      ),
       'hcw_frontend' => array(
         'region' => '',
         'status' => 0,
@@ -127,12 +109,6 @@ node/5432',
 node/5322',
     'roles' => array(),
     'themes' => array(
-      'bartik' => array(
-        'region' => '',
-        'status' => 0,
-        'theme' => 'bartik',
-        'weight' => 1,
-      ),
       'hcw_frontend' => array(
         'region' => '',
         'status' => 0,
@@ -161,12 +137,6 @@ node/5322',
     'pages' => 'node/21',
     'roles' => array(),
     'themes' => array(
-      'bartik' => array(
-        'region' => '',
-        'status' => 0,
-        'theme' => 'bartik',
-        'weight' => 1,
-      ),
       'hcw_frontend' => array(
         'region' => '',
         'status' => 0,
@@ -195,12 +165,6 @@ node/5322',
     'pages' => 'oshnews',
     'roles' => array(),
     'themes' => array(
-      'bartik' => array(
-        'region' => '',
-        'status' => 0,
-        'theme' => 'bartik',
-        'weight' => -5,
-      ),
       'hcw_frontend' => array(
         'region' => '',
         'status' => 0,
@@ -229,12 +193,6 @@ node/5322',
     'pages' => 'tools-and-publications/publications',
     'roles' => array(),
     'themes' => array(
-      'bartik' => array(
-        'region' => '',
-        'status' => 0,
-        'theme' => 'bartik',
-        'weight' => 1,
-      ),
       'hcw_frontend' => array(
         'region' => '',
         'status' => 0,
