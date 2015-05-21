@@ -64,7 +64,7 @@ function osha_default_fe_block_settings() {
         'weight' => 0,
       ),
       'hcw_frontend' => array(
-        'region' => '',
+        'region' => 'above_header',
         'status' => 0,
         'theme' => 'hcw_frontend',
         'weight' => -6,
@@ -77,40 +77,6 @@ function osha_default_fe_block_settings() {
       ),
     ),
     'title' => '<none>',
-    'visibility' => 0,
-  );
-
-  $export['system-powered-by'] = array(
-    'cache' => -1,
-    'custom' => 0,
-    'delta' => 'powered-by',
-    'i18n_block_language' => array(),
-    'i18n_mode' => 0,
-    'module' => 'system',
-    'node_types' => array(),
-    'pages' => '',
-    'roles' => array(),
-    'themes' => array(
-      'bartik' => array(
-        'region' => 'footer',
-        'status' => 1,
-        'theme' => 'bartik',
-        'weight' => 10,
-      ),
-      'hcw_frontend' => array(
-        'region' => 'footer',
-        'status' => 1,
-        'theme' => 'hcw_frontend',
-        'weight' => 10,
-      ),
-      'seven' => array(
-        'region' => '',
-        'status' => 0,
-        'theme' => 'seven',
-        'weight' => 10,
-      ),
-    ),
-    'title' => '',
     'visibility' => 0,
   );
 
