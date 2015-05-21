@@ -157,7 +157,8 @@ function osha_taxonomies_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'taxonomy_term-article_types-field_article_type_code'
+  // Exported field_instance:
+  // 'taxonomy_term-article_types-field_article_type_code'
   $field_instances['taxonomy_term-article_types-field_article_type_code'] = array(
     'bundle' => 'article_types',
     'default_value' => NULL,
@@ -552,7 +553,8 @@ function osha_taxonomies_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'taxonomy_term-nace_codes-field_nace_includes_also'
+  // Exported field_instance:
+  // 'taxonomy_term-nace_codes-field_nace_includes_also'
   $field_instances['taxonomy_term-nace_codes-field_nace_includes_also'] = array(
     'bundle' => 'nace_codes',
     'default_value' => NULL,
@@ -624,7 +626,8 @@ function osha_taxonomies_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'taxonomy_term-publication_types-description_field'
+  // Exported field_instance:
+  // 'taxonomy_term-publication_types-description_field'
   $field_instances['taxonomy_term-publication_types-description_field'] = array(
     'bundle' => 'publication_types',
     'default_value' => NULL,
@@ -663,7 +666,8 @@ function osha_taxonomies_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'taxonomy_term-publication_types-field_publication_type_code'
+  // Exported field_instance:
+  // 'taxonomy_term-publication_types-field_publication_type_code'
   $field_instances['taxonomy_term-publication_types-field_publication_type_code'] = array(
     'bundle' => 'publication_types',
     'default_value' => NULL,
