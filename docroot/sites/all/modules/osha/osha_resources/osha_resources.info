@@ -25,6 +25,7 @@ dependencies[] = youtube
 features[ctools][] = strongarm:strongarm:1
 features[ctools][] = views:views_default:3.0
 features[features_api][] = api:2
+features[field_base][] = field_external_url
 features[field_base][] = field_flickr
 features[field_base][] = field_internal_contents
 features[field_base][] = field_slideshare
