@@ -52,8 +52,8 @@ function osha_press_release_default_fe_block_settings() {
     'roles' => array(),
     'themes' => array(
       'hcw_frontend' => array(
-        'region' => 'sidebar_second',
-        'status' => 1,
+        'region' => '',
+        'status' => 0,
         'theme' => 'hcw_frontend',
         'weight' => 4,
       ),
@@ -80,8 +80,8 @@ function osha_press_release_default_fe_block_settings() {
     'roles' => array(),
     'themes' => array(
       'hcw_frontend' => array(
-        'region' => 'sidebar_second',
-        'status' => 1,
+        'region' => '',
+        'status' => 0,
         'theme' => 'hcw_frontend',
         'weight' => 3,
       ),
