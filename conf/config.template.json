@@ -41,6 +41,8 @@
         "file_temporary_path": "/tmp",
         "sa_admin_helper": "0",
         "smtp_on": 1,
+        "recaptcha_site_key": "",
+        "recaptcha_private_key": "",
         "smtp_queue": 0,
         "smtp_host": "some.smtp.server",
         "smtp_hostbackup": "some.backup.smtp.server",
