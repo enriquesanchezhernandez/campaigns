@@ -1,4 +1,5 @@
 name = HCW front
+project = hcw_frontend
 description = HCW website front-end theme
 core = 7.x
 base theme = bootstrap
