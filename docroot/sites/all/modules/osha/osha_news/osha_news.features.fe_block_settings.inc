@@ -29,17 +29,11 @@ function osha_news_default_fe_block_settings() {
         'theme' => 'bartik',
         'weight' => 0,
       ),
-      'osha_admin' => array(
+      'hcw_frontend' => array(
         'region' => '',
         'status' => 0,
-        'theme' => 'osha_admin',
+        'theme' => 'hcw_frontend',
         'weight' => 0,
-      ),
-      'osha_frontend' => array(
-        'region' => 'sidebar_second',
-        'status' => 1,
-        'theme' => 'osha_frontend',
-        'weight' => 5,
       ),
       'seven' => array(
         'region' => '',
