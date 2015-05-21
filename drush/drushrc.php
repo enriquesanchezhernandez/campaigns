@@ -476,13 +476,11 @@ $options['init-modules'] = array(
   'on_the_web',
 
   'hcw',
-  'hcw_frontend',
 );
 
 
 $options['init-themes'] = array(
-  'osha_admin',
-  'osha_frontend'
+  'hcw_frontend'
 );
 
 $options['disable-modules'] = array(
