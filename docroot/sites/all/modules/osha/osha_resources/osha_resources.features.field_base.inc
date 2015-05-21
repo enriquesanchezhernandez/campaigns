@@ -17,7 +17,6 @@ function osha_resources_field_default_field_bases() {
     'deleted' => 0,
     'entity_types' => array(),
     'field_name' => 'field_flickr',
-    'foreign keys' => array(),
     'indexes' => array(),
     'locked' => 0,
     'module' => 'flickrfield',
@@ -35,14 +34,6 @@ function osha_resources_field_default_field_bases() {
     'deleted' => 0,
     'entity_types' => array(),
     'field_name' => 'field_internal_contents',
-    'foreign keys' => array(
-      'node' => array(
-        'columns' => array(
-          'target_id' => 'nid',
-        ),
-        'table' => 'node',
-      ),
-    ),
     'indexes' => array(
       'target_id' => array(
         0 => 'target_id',
@@ -83,7 +74,6 @@ function osha_resources_field_default_field_bases() {
     'deleted' => 0,
     'entity_types' => array(),
     'field_name' => 'field_slideshare',
-    'foreign keys' => array(),
     'indexes' => array(),
     'locked' => 0,
     'module' => 'osha_slideshare',
@@ -103,7 +93,6 @@ function osha_resources_field_default_field_bases() {
     'deleted' => 0,
     'entity_types' => array(),
     'field_name' => 'field_youtube',
-    'foreign keys' => array(),
     'indexes' => array(
       'video_id' => array(
         0 => 'video_id',
