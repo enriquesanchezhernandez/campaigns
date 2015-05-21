@@ -12,34 +12,6 @@ function osha_press_release_default_fe_block_settings() {
 
   $export['version'] = '2.0';
 
-  $export['aggregator-feed-1'] = array(
-    'cache' => 1,
-    'custom' => 0,
-    'delta' => 'feed-1',
-    'i18n_block_language' => array(),
-    'i18n_mode' => 0,
-    'module' => 'aggregator',
-    'node_types' => array(),
-    'pages' => '',
-    'roles' => array(),
-    'themes' => array(
-      'hcw_frontend' => array(
-        'region' => '',
-        'status' => 0,
-        'theme' => 'hcw_frontend',
-        'weight' => -34,
-      ),
-      'seven' => array(
-        'region' => '',
-        'status' => 0,
-        'theme' => 'seven',
-        'weight' => 0,
-      ),
-    ),
-    'title' => 'EU-OSHA in the media',
-    'visibility' => 0,
-  );
-
   $export['on_the_web-0'] = array(
     'cache' => 1,
     'custom' => 0,
@@ -51,12 +23,6 @@ function osha_press_release_default_fe_block_settings() {
     'pages' => '',
     'roles' => array(),
     'themes' => array(
-      'bartik' => array(
-        'region' => '',
-        'status' => 0,
-        'theme' => 'bartik',
-        'weight' => 0,
-      ),
       'hcw_frontend' => array(
         'region' => '',
         'status' => 0,
