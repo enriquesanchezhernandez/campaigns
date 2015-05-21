@@ -233,18 +233,19 @@ function osha_authentication_ldap_get_site_users($ldap_server) {
   $uids = array_unique($uids);
   foreach($uids as $uid) {
     if ($ldap_account = $ldap_server->search('ou=people,dc=osha,dc=europa,dc=eu', 'uid=' . $uid, array('dn', 'mail'))) {
-      if (!empty($ldap_account[0]['mail'][0])) {
-        $dn = $ldap_account[0]['dn'];
-        $user = (object) array(
-          'dn' => $dn,
-          'name' => $uid,
-          'mail' => $ldap_account[0]['mail'][0],
-        );
-        $ret[$uid] = $user;
+      if (empty($ldap_account[0]['mail'][0])) {
+        $mail = $uid . '@fake-domain.com';
       }
       else {
-        watchdog('osha_authentication', 'Ignoring user: !uid without email address from site membership (removed from LDAP?)', array('!uid' => $uid), WATCHDOG_WARNING);
+        $mail = $ldap_account[0]['mail'][0];
       }
+      $dn = $ldap_account[0]['dn'];
+      $user = (object) array(
+        'dn' => $dn,
+        'name' => $uid,
+        'mail' => $mail,
+      );
+      $ret[$uid] = $user;
     }
   }
   return $ret;
