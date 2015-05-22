@@ -24,22 +24,21 @@ function ncw_migration_migrate_api() {
 }
 
 
-abstract class AbstractNCWMigration extends Migration {
+abstract class AbstractNCWNodeMigration extends Migration {
 
   protected $endpoint_url = NULL;
+  protected $bundle = NULL;
 
-  public function __construct($arguments, $source_klass) {
+  public function __construct($arguments, $source_klass, $bundle) {
     parent::__construct($arguments);
+    $this->bundle = $bundle;
     if (!empty($arguments['dependencies'])) {
       $this->dependencies = $arguments['dependencies'];
     }
-    if (empty($arguments['endpoint_url'])) {
-      $this->endpoint_url = $arguments['endpoint_url'];
-    }
-
-    $this->map         = new MigrateSQLMap($this->machineName,
+    $this->endpoint_url = osha_migration_url_data_source('/hcw/events/oira');
+    $this->map = new MigrateSQLMap($this->machineName,
       array(
-        'id' => array(
+        'nid' => array(
           'type'        => 'varchar',
           'length'      => 255,
           'not null'    => TRUE,
@@ -48,12 +47,85 @@ abstract class AbstractNCWMigration extends Migration {
       ),
       MigrateDestinationNode::getKeySchema()
     );
-    $this->source      = new $source_klass($this->endpoint_url);
-    $this->destination = new MigrateDestinationNode('event');
+    $this->source = new $source_klass(array('endpoint_url' => $this->endpoint_url));
+    $this->destination = new MigrateDestinationNode('events');
+    $this->addFieldMappings();
   }
 
-  abstract function addFieldMappings();
+  protected function addFieldMappings() {
+    // Node base fields
+    $this->addFieldMapping('uid')->defaultValue(0);
+    $this->addFieldMapping('comment')->defaultValue(0);
+    $this->addFieldMapping('status', 'status');
+    $this->addFieldMapping('title', 'title');
+    $this->addFieldMapping('changed', 'changed');
+    $this->addFieldMapping('created', 'created');
+    $this->addFieldMapping('promote', 'promote');
+    $this->addFieldMapping('sticky', 'sticky');
+    $this->addFieldMapping('log', 'log');
+    $this->addFieldMapping('language', 'language');
+    $this->addFieldMapping('path', 'path');
+
+    // Handle field migration in a generic way
+    $fields = field_info_instances('node', $this->bundle);
+    $exposed = $this->source->fields();
+    foreach($fields as $field_name => $field_info) {
+      if (array_key_exists($field_name, $exposed)) {
+        $this->addFieldMapping($field_name, $field_name);
+
+        // Extra mappings depending on field type
+        $fi = field_info_field($field_name);
+        if ($fi['translatable'] == 1 && $fi['type'] != 'taxonomy_term_reference' /* field_organised_by */) {
+          $this->addFieldMapping("$field_name:language", $field_name . '_language');
+        }
+        if ($fi['type'] == 'taxonomy_term_reference') {
+          $this->addFieldMapping("$field_name:create_term")->defaultValue(TRUE);
+        }
+        if ($fi['type'] == 'link_field') {
+          $this->addFieldMapping("$field_name:title", $field_name . '_title');
+          $this->addFieldMapping("$field_name:attributes", $field_name . '_attributes');
+        }
+        if ($fi['type'] == 'text_with_summary') {
+          $this->addFieldMapping("$field_name:summary", $field_name . '_summary');
+          $this->addFieldMapping("$field_name:format", $field_name . '_format');
+        }
+        if ($fi['type'] == 'datetime') {
+          $this->addFieldMapping("$field_name:to", $field_name . '_value2');
+          $this->addFieldMapping("$field_name:timezone", $field_name . '_timezone');
+        }
+        if ($fi['type'] == 'file') {
+          $this->addFieldMapping("$field_name:file_replace")->defaultValue(TRUE);
+        }
+      }
+    }
+
+    //@todo: metatag migration - which is sob
+    $this->addUnmigratedDestinations(
+      array(
+        'revision', 'tnid', 'translate', 'revision_uid', 'is_new'
+      )
+    );
+  }
+
+  public function prepareRow($row) {
+    $row->path = !empty($row->path['alias']) ? $row->path['alias']:  NULL;
+    // Normalize JSON structure, to match migrate expectations for field data
+    $fields = field_info_instances('node', $this->bundle);
+    foreach($fields as $field_name => $field_info) {
+      $fi = field_info_field($field_name);
+      $normalizer = 'osha_migration_normalize_field_' . $fi['type'];
+      if(function_exists($normalizer)) {
+        $normalizer($row, $field_name, $fi);
+      }
+      else {
+        $name = $this->currentMigration()->getMachineName();
+        watchdog('ncw_migration', "[BUG][$name] Cannot find normalization '$normalizer', skipping field $field_name", array(), WATCHDOG_ERROR);
+        $row->{$field_name} = array();
+      }
+    }
+  }
 }
+
 
 /**
  * Class AbstractNCWSource base for all NCW imports
@@ -115,10 +187,181 @@ abstract class AbstractNCWSource extends MigrateSource {
 
   /**
    * Remote call to load the data from the endpoint URL
+   * @todo: the remote loading using cURL?
    */
   public function readData() {
-    //@todo: the remote loading using cURL?
     $this->rows = array();
+    $content = file_get_contents($this->endpoint_url);
+    if ($data = json_decode($content)) {
+      foreach ($data->nodes as $ob) {
+        $ob = $ob->node;
+        $node_url = osha_migration_url_data_source('/export/node/' . $ob->nid);
+        if ($rowd = file_get_contents($node_url)) {
+          if ($row_ob = json_decode($rowd, TRUE)) {
+            $row = new stdClass();
+            foreach($row_ob as $k => $v) {
+              $row->$k = $v;
+            }
+            $this->rows[$row_ob['nid']] = $row;
+          }
+        }
+      }
+    }
     reset($this->rows);
   }
+
+  public function fields() {
+    return array(
+      'nid' => 'nid',
+      'title' => 'title',
+      'created' => 'created',
+      'changed' => 'changed',
+      'status' => 'status',
+      'promote' => 'promote',
+      'sticky' => 'sticky',
+      'log' => 'log',
+      'language' => 'language',
+      'path' => 'path',
+    ) + $this->contentFields();
+  }
+
+  public abstract function contentFields();
+}
+
+////////////////////////////////// Utilities ///////////////////////////////////
+
+function osha_migration_url_data_source($suffix = '') {
+  return variable_get('hcw_ncw_root_url', 'http://osha.localhost') . $suffix;
+}
+
+function osha_migration_url_files($suffix = '') {
+  return variable_get('hcw_ncw_root_url', 'http://osha.localhost') . '/sites/default/files/' . $suffix;
+}
+
+
+
+////////////////////////////// Normalization functions /////////////////////////
+function osha_migration_normalize_field_list_text($row, $field_name) {
+  $field = array();
+  if (!empty($row->{$field_name}) && is_array($row->{$field_name})) {
+    foreach ($row->{$field_name} as $language => $values) {
+      foreach($values as $v) {
+        $field[] = $v['value'];
+      }
+    }
+  }
+  $row->{$field_name} = $field;
+}
+
+function osha_migration_normalize_field_number_integer($row, $field_name) {
+  $field = array();
+  if (!empty($row->{$field_name}) && is_array($row->{$field_name})) {
+    foreach ($row->{$field_name} as $language => $values) {
+      foreach($values as $v) {
+        $field[] = $v['value'];
+      }
+    }
+  }
+  $row->{$field_name} = $field;
+}
+
+function osha_migration_normalize_field_text_long($row, $field_name) {
+  $field = array();
+  if (!empty($row->{$field_name}) && is_array($row->{$field_name})) {
+    foreach ($row->{$field_name} as $language => $values) {
+      foreach($values as $v) {
+        $field[] = $v['value'];
+      }
+    }
+  }
+  $row->{$field_name} = $field;
+}
+
+function osha_migration_normalize_field_text_with_summary($row, $field_name, $field_info) {
+  $field = array();
+  if (!empty($row->{$field_name}) && is_array($row->{$field_name})) {
+    foreach ($row->{$field_name} as $language => $values) {
+      foreach($values as $v) {
+        $field[$language] = $v['value'];
+      }
+    }
+  }
+  $row->{$field_name} = $field;
+}
+
+function osha_migration_normalize_field_link_field($row, $field_name, $field_info) {
+  $field = array(
+    'url' => array(),
+    'title' => array(),
+  );
+  if (!empty($row->{$field_name}) && is_array($row->{$field_name})) {
+    if ($field_info['translatable'] == 0) {
+      $data = array_pop($row->{$field_name});
+      foreach ($data as $link) {
+        $field['url'][] = $link['url'];
+        $field['title'][] = $link['title'];
+        $field['attributes'][] = $link['attributes'];
+      }
+    }
+  }
+  $row->{$field_name} = $field['url'];
+  $row->{$field_name . '_title'} = $field['title'];
+  $row->{$field_name . '_attributes'} = $field['attributes'];//@todo not tested
+}
+
+function osha_migration_normalize_field_text($row, $field_name, $field_info) {
+  $field = array();
+  $languages = array();
+  if (!empty($row->{$field_name}) && is_array($row->{$field_name})) {
+    foreach ($row->{$field_name} as $language => $values) {
+      foreach($values as $v) {
+        $field[] = $v['value'];
+        $languages[] = $language;
+      }
+    }
+  }
+  $row->{$field_name} = $field;
+  $row->{$field_name . '_language'} = $languages;
+}
+
+function osha_migration_normalize_field_datetime($row, $field_name, $field_info) {
+  $field = array(
+    'value' => NULL,
+    'timezone' => NULL,
+    'value2' => NULL,
+  );
+  if (!empty($row->{$field_name}) && is_array($row->{$field_name})) {
+    $field = array_pop($row->{$field_name});
+    if (!empty($field[0])) {
+      $field = $field[0];
+    }
+  }
+  $row->{$field_name} = $field['value'];
+  $row->{$field_name . '_value2'} = $field['value2'];
+  $row->{$field_name . '_timezone'} = $field['timezone'];
+}
+
+function osha_migration_normalize_field_taxonomy_term_reference($row, $field_name, $field_info) {
+  $field = array();
+  if (!empty($row->{$field_name}) && is_array($row->{$field_name})) {
+    foreach ($row->{$field_name} as $value) {
+      $field[] = $value['name'];
+    }
+  }
+  $row->{$field_name} = $field;
+}
+
+function osha_migration_normalize_field_file($row, $field_name) {
+  $field = array();
+  $languages = array();
+  if (!empty($row->{$field_name}) && is_array($row->{$field_name})) {
+    foreach ($row->{$field_name} as $language => $values) {
+      foreach($values as $f) {
+        $field[] = osha_migration_url_files(str_replace('public://', '', $f['uri']));
+        $languages[] = $language;
+      }
+    }
+  }
+  $row->{$field_name} = $field;
+  $row->{$field_name . '_language'} = $languages;
 }
