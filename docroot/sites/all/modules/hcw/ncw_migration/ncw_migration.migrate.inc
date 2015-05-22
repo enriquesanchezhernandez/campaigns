@@ -18,6 +18,11 @@ function ncw_migration_migrate_api() {
         'group_name' => 'ncw',
         'dependencies' => array(),
         'class_name' => 'NCWEventsMigration',
+      ),
+      'publications' => array(
+        'group_name' => 'ncw',
+        'dependencies' => array(),
+        'class_name' => 'NCWPublicationsMigration',
       )
     ),
   );

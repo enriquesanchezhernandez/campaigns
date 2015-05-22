@@ -5,12 +5,20 @@
  * Implements Elysia hook_cronapi().
  */
 function ncw_migration_cronapi() {
-  return array('ncw_migration_cron_migrate_events' => array(
-    'description' => 'Synchronize events with NCW',
-    'callback' => 'ncw_migration_cron_migrate',
-    'arguments' => array('events'),
-    'rule' => '0 22 * * *', // Every day at 22:00
-  ));
+  return array(
+    'ncw_migration_cron_migrate_events' => array(
+      'description' => 'Synchronize events with NCW',
+      'callback' => 'ncw_migration_cron_migrate',
+      'arguments' => array('events'),
+      'rule' => '0 22 * * *', // Every day at 22:00
+    ),
+    'ncw_migration_cron_migrate_publications' => array(
+      'description' => 'Synchronize publications with NCW',
+      'callback' => 'ncw_migration_cron_migrate',
+      'arguments' => array('publication'),
+      'rule' => '0 23 * * *', // Every day at 23:00
+    ),
+  );
 }
 
 /**
