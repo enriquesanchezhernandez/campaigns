@@ -23,7 +23,9 @@ function ncw_migration_migrate_api() {
   );
 }
 
-
+/**
+ * Class AbstractNCWNodeMigration is used to migrate nodes from NCW.
+ */
 abstract class AbstractNCWNodeMigration extends Migration {
 
   protected $endpoint_url = NULL;
@@ -52,9 +54,12 @@ abstract class AbstractNCWNodeMigration extends Migration {
     $this->addFieldMappings();
   }
 
+  /**
+   * Configure field mappings, reads bundle field information
+   */
   protected function addFieldMappings() {
     // Node base fields
-    $this->addFieldMapping('uid')->defaultValue(0);
+    $this->addFieldMapping('uid')->defaultValue(osha_migration_author_uid());
     $this->addFieldMapping('comment')->defaultValue(0);
     $this->addFieldMapping('status', 'status');
     $this->addFieldMapping('title', 'title');
@@ -107,6 +112,9 @@ abstract class AbstractNCWNodeMigration extends Migration {
     );
   }
 
+  /**
+   * Implements Migration::prepareRow() to adapt JSON fields data to what migrate expects in the field.
+   */
   public function prepareRow($row) {
     $row->path = !empty($row->path['alias']) ? $row->path['alias']:  NULL;
     // Normalize JSON structure, to match migrate expectations for field data
@@ -124,13 +132,33 @@ abstract class AbstractNCWNodeMigration extends Migration {
       }
     }
   }
+
+  /**
+   * Implements Migration::complete() to configure translations
+   */
+  public function complete($entity, stdClass $row) {
+    unset($row->translations['data']['en']);
+    if (!empty($row->translations['data'])) {
+      $handler = entity_translation_get_handler('node', $entity);
+      foreach($row->translations['data'] as $language => $data) {
+        $handler->setTranslation(array(
+          'language' => $data['language'],
+          'source' => $data['source'],
+          'status' => $data['status'],
+          'translate' => $data['translate'],
+          'uid' => osha_migration_author_uid(),
+        ));
+      }
+      $handler->saveTranslations();
+    }
+  }
 }
 
 
 /**
- * Class AbstractNCWSource base for all NCW imports
+ * Class AbstractNCWSource base for all NCW JSON imports.
  */
-abstract class AbstractNCWSource extends MigrateSource {
+abstract class AbstractNCWNodeSource extends MigrateSource {
 
   protected $endpoint_url = NULL;
   protected $rows = array();
@@ -238,6 +266,9 @@ function osha_migration_url_files($suffix = '') {
   return variable_get('hcw_ncw_root_url', 'http://osha.localhost') . '/sites/default/files/' . $suffix;
 }
 
+function osha_migration_author_uid() {
+  return 0;
+}
 
 
 ////////////////////////////// Normalization functions /////////////////////////

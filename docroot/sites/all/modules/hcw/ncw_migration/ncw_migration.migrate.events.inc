@@ -4,7 +4,7 @@ class NCWEventsMigration extends AbstractNCWNodeMigration {
 
   public function __construct($arguments) {
     parent::__construct($arguments, 'NCWEventsSource', 'events');
-    $this->description = 'Import Events from NCW';
+    $this->description = 'Import events from NCW';
   }
 
   function addFieldMappings() {
@@ -36,7 +36,7 @@ class NCWEventsMigration extends AbstractNCWNodeMigration {
 }
 
 
-class NCWEventsSource extends AbstractNCWSource {
+class NCWEventsSource extends AbstractNCWNodeSource {
 
   /**
    * The list of available fields to map from the source, keyed by field name.
