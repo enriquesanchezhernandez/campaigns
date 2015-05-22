@@ -33,6 +33,7 @@ class NCWEventsMigration extends AbstractNCWNodeMigration {
       'field_related_documents:display',
       'field_website_of_event:language',
     ));
+    $this->ignoreMetatagMigration();
   }
 }
 

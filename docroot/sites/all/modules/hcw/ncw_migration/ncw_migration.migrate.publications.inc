@@ -46,6 +46,7 @@ class NCWPublicationsMigration extends AbstractNCWNodeMigration {
       'field_thesaurus:ignore_case',
       'field_expiration_date:rrule',
     ));
+    $this->ignoreMetatagMigration();
   }
 }
 

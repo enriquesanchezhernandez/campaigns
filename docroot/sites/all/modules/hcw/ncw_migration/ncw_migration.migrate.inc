@@ -117,6 +117,45 @@ abstract class AbstractNCWNodeMigration extends Migration {
     );
   }
 
+
+  protected function ignoreMetatagMigration() {
+    $this->addUnmigratedDestinations(array(
+      'metatag_title',
+      'metatag_description',
+      'metatag_abstract',
+      'metatag_keywords',
+      'metatag_robots',
+      'metatag_news_keywords',
+      'metatag_standout',
+      'metatag_generator',
+      'metatag_rights',
+      'metatag_image_src',
+      'metatag_canonical',
+      'metatag_shortlink',
+      'metatag_publisher',
+      'metatag_author',
+      'metatag_original-source',
+      'metatag_revisit-after',
+      'metatag_content-language',
+      'metatag_dcterms.title',
+      'metatag_dcterms.creator',
+      'metatag_dcterms.subject',
+      'metatag_dcterms.description',
+      'metatag_dcterms.publisher',
+      'metatag_dcterms.contributor',
+      'metatag_dcterms.date',
+      'metatag_dcterms.modified',
+      'metatag_dcterms.type',
+      'metatag_dcterms.format',
+      'metatag_dcterms.identifier',
+      'metatag_dcterms.source',
+      'metatag_dcterms.language',
+      'metatag_dcterms.relation',
+      'metatag_dcterms.coverage',
+      'metatag_dcterms.rights',
+    ));
+  }
+
   /**
    * Implements Migration::prepareRow() to adapt JSON fields data to what migrate expects in the field.
    */
