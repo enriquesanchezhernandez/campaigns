@@ -1,1 +1,34 @@
 <?php
+
+
+/**
+ * Implements Elysia hook_cronapi().
+ */
+function ncw_migration_cronapi() {
+  return array('ncw_migration_cron_migrate_events' => array(
+    'description' => 'Synchronize events with NCW',
+    'callback' => 'ncw_migration_cron_migrate',
+    'arguments' => array('events'),
+    'rule' => '0 22 * * *', // Every day at 22:00
+  ));
+}
+
+/**
+ * @param string $machine_name
+ *   Migration machine name
+ *
+ * @throws \Exception
+ */
+function ncw_migration_cron_migrate($machine_name) {
+  migrate_static_registration(array($machine_name));
+  $migration = Migration::getInstance($machine_name);
+  $migration->prepareUpdate();
+  $result = $migration->processImport();
+  if ($result != MigrationBase::RESULT_COMPLETED) {
+    watchdog(
+      'ncw_migration',
+      '[CRON]Last CW import did not finished successfully (machine:!machine_name)',
+      array('!machine_name' => $machine_name)
+    );
+  }
+}
