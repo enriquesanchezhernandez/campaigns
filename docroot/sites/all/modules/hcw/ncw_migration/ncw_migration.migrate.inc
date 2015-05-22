@@ -31,13 +31,13 @@ abstract class AbstractNCWNodeMigration extends Migration {
   protected $endpoint_url = NULL;
   protected $bundle = NULL;
 
-  public function __construct($arguments, $source_klass, $bundle) {
+  public function __construct($arguments, $source_klass, $bundle, $endpoint_url) {
     parent::__construct($arguments);
     $this->bundle = $bundle;
     if (!empty($arguments['dependencies'])) {
       $this->dependencies = $arguments['dependencies'];
     }
-    $this->endpoint_url = osha_migration_url_data_source('/hcw/events/oira');
+    $this->endpoint_url = $endpoint_url;
     $this->map = new MigrateSQLMap($this->machineName,
       array(
         'nid' => array(
@@ -50,7 +50,7 @@ abstract class AbstractNCWNodeMigration extends Migration {
       MigrateDestinationNode::getKeySchema()
     );
     $this->source = new $source_klass(array('endpoint_url' => $this->endpoint_url));
-    $this->destination = new MigrateDestinationNode('events');
+    $this->destination = new MigrateDestinationNode($bundle);
     $this->addFieldMappings();
   }
 
