@@ -103,7 +103,7 @@ abstract class AbstractNCWNodeMigration extends Migration {
           $this->addFieldMapping("$field_name:to", $field_name . '_value2');
           $this->addFieldMapping("$field_name:timezone", $field_name . '_timezone');
         }
-        if ($fi['type'] == 'file') {
+        if ($fi['type'] == 'file' || $fi['type'] == 'image') {
           $this->addFieldMapping("$field_name:file_replace")->defaultValue(TRUE);
         }
       }
