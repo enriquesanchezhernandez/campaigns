@@ -476,6 +476,7 @@ $options['init-modules'] = array(
   'on_the_web',
 
   'hcw',
+  'hcw_homepage',
 );
 
 
