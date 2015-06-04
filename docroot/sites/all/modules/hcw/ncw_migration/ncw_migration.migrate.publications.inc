@@ -42,8 +42,6 @@ class NCWPublicationsMigration extends AbstractNCWNodeMigration {
       'field_publication_type:source_type',
       'field_publication_type:ignore_case',
       'field_related_oshwiki_articles',
-      'field_thesaurus:source_type',
-      'field_thesaurus:ignore_case',
       'field_expiration_date:rrule',
     ));
     $this->ignoreMetatagMigration();
@@ -64,7 +62,6 @@ class NCWPublicationsSource extends AbstractNCWNodeSource {
       'body_language',
       'body_summary',
       'body_format',
-      'field_activity',
       'field_archived',
       'field_author',
       'field_author_language',
@@ -85,7 +82,6 @@ class NCWPublicationsSource extends AbstractNCWNodeSource {
       'field_publication_related_res',
       'field_publication_related_res_language',
       'field_publication_type',
-      'field_thesaurus',
       'field_tags',
       //@todo: 'field_nace_codes',
       //@todo: 'field_aditional_resources',
