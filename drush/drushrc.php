@@ -477,6 +477,7 @@ $options['init-modules'] = array(
 
   'hcw',
   'hcw_homepage',
+  'ncw_migration',
 );
 
 

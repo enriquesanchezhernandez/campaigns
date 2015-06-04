@@ -18,6 +18,12 @@ function ncw_migration_cronapi() {
       'arguments' => array('publication'),
       'rule' => '0 23 * * *', // Every day at 23:00
     ),
+    'ncw_migration_cron_migrate_news' => array(
+      'description' => 'Synchronize news with NCW',
+      'callback' => 'ncw_migration_cron_migrate',
+      'arguments' => array('news'),
+      'rule' => '0 0 * * *', // Every day at 24:00
+    ),
   );
 }
 

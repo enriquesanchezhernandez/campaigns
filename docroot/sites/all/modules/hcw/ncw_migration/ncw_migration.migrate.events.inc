@@ -51,7 +51,6 @@ class NCWEventsSource extends AbstractNCWNodeSource {
       'body_language',
       'body_summary',
       'body_format',
-      'field_activity',
       'field_country_code',
       'field_city',
       'field_agency_role',
