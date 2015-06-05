@@ -1,0 +1,40 @@
+<?php
+/**
+ * @file
+ * Code for the Highlight feature.
+ */
+
+include_once 'osha_highlight.features.inc';
+
+define('OSHA_HIGHLIGHT_CONTENT_TYPE_HIGHLIGHT', 'highlight');
+
+/**
+ * Implements hook_post_features_enable_feature().
+ *
+ * {@inheritdoc}
+ */
+function osha_highlight_post_features_enable_feature($component) {
+  // After the field_instance ...
+  if ($component == 'variable') {
+    menu_rebuild();
+    drupal_static_reset();
+    if ($role = user_role_load_by_name('administrator')) {
+      $permissions = array(
+        'create highlight content',
+        'edit own highlight content',
+        'edit any highlight content',
+        'delete own highlight content',
+        'delete any highlight content',
+      );
+      user_role_grant_permissions($role->rid, $permissions);
+    }
+  }
+}
+
+/**
+ * Implements hook_osha_tmgmt_i18n_string_list().
+ */
+function osha_highlight_osha_tmgmt_i18n_string_list() {
+  module_load_include('inc', 'osha_highlight', 'osha_highlight.translations');
+  return osha_highlight_get_translatable_strings();
+}

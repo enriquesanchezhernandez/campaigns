@@ -28,7 +28,17 @@ function ncw_migration_migrate_api() {
         'group_name' => 'ncw',
         'dependencies' => array(),
         'class_name' => 'NCWNewsMigration',
-      )
+      ),
+      'press_release' => array(
+        'group_name' => 'ncw',
+        'dependencies' => array(),
+        'class_name' => 'NCWPressMigration',
+      ),
+      'highlight' => array(
+        'group_name' => 'ncw',
+        'dependencies' => array(),
+        'class_name' => 'NCWHighlightMigration',
+      ),
     ),
   );
 }

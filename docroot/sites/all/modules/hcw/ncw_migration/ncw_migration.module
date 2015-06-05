@@ -24,6 +24,18 @@ function ncw_migration_cronapi() {
       'arguments' => array('news'),
       'rule' => '0 0 * * *', // Every day at 24:00
     ),
+    'ncw_migration_cron_migrate_press_release' => array(
+      'description' => 'Synchronize press releases with NCW',
+      'callback' => 'ncw_migration_cron_migrate',
+      'arguments' => array('press_release'),
+      'rule' => '0 1 * * *', // Every day at 01:00
+    ),
+    'ncw_migration_cron_migrate_highlight' => array(
+      'description' => 'Synchronize highlights with NCW',
+      'callback' => 'ncw_migration_cron_migrate',
+      'arguments' => array('highlight'),
+      'rule' => '0 2 * * *', // Every day at 02:00
+    ),
   );
 }
 

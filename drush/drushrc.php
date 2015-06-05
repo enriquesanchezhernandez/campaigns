@@ -440,6 +440,7 @@ $options['init-modules'] = array(
   'osha_resources',
   'osha',
   'osha_news',
+  'osha_highlight',
   'osha_note_to_editor',
   'osha_publication',
   'osha_infographics',
@@ -455,6 +456,9 @@ $options['init-modules'] = array(
 
   'osha_linkchecker',
   'osha_reminders',
+
+  'migrate',
+  'migrate_ui',
 
   'facetapi',
   'search_api_facetapi',
@@ -486,7 +490,7 @@ $options['init-themes'] = array(
 );
 
 $options['disable-modules'] = array(
-  'varnish', 'memcache_storage', 'piwik',
+  'varnish', 'memcache_storage', 'piwik', 'overlay',
 );
 
 // Add specific settings for development or demo.
