@@ -488,7 +488,7 @@ function osha_press_release_strongarm() {
   $strongarm->api_version = 1;
   $strongarm->name = 'print_pdf_link_pos';
   $strongarm->value = array(
-    'link' => 'link',
+    'link' => 0,
     'corner' => 0,
     'block' => 0,
     'help' => 0,
