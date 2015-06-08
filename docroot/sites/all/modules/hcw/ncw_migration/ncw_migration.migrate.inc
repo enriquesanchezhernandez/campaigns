@@ -29,6 +29,11 @@ function ncw_migration_migrate_api() {
         'dependencies' => array(),
         'class_name' => 'NCWNewsMigration',
       ),
+      'note_to_editor' => array(
+        'group_name' => 'ncw',
+        'dependencies' => array(),
+        'class_name' => 'NCWNoteMigration',
+      ),
       'press_release' => array(
         'group_name' => 'ncw',
         'dependencies' => array(),
@@ -38,6 +43,16 @@ function ncw_migration_migrate_api() {
         'group_name' => 'ncw',
         'dependencies' => array(),
         'class_name' => 'NCWHighlightMigration',
+      ),
+      'infographic' => array(
+        'group_name' => 'ncw',
+        'dependencies' => array(),
+        'class_name' => 'NCWInfographicMigration',
+      ),
+      'press_contact' => array(
+        'group_name' => 'ncw',
+        'dependencies' => array(),
+        'class_name' => 'NCWPressContactMigration',
       ),
     ),
   );
@@ -420,6 +435,21 @@ function osha_migration_normalize_field_text($row, $field_name, $field_info) {
     foreach ($row->{$field_name} as $language => $values) {
       foreach($values as $v) {
         $field[] = $v['value'];
+        $languages[] = $language;
+      }
+    }
+  }
+  $row->{$field_name} = $field;
+  $row->{$field_name . '_language'} = $languages;
+}
+
+function osha_migration_normalize_field_email($row, $field_name, $field_info) {
+  $field = array();
+  $languages = array();
+  if (!empty($row->{$field_name}) && is_array($row->{$field_name})) {
+    foreach ($row->{$field_name} as $language => $values) {
+      foreach($values as $v) {
+        $field[] = $v['email'];
         $languages[] = $language;
       }
     }

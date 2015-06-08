@@ -56,6 +56,7 @@ class NCWHighlightSource extends AbstractNCWNodeSource {
       'field_archived',
       'field_character_count',
       'field_page_count',
+      //@todo: 'field_aditional_resources',
     );
     return array_combine($fields, $fields);
   }

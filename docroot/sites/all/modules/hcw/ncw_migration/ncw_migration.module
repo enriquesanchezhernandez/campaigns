@@ -24,17 +24,35 @@ function ncw_migration_cronapi() {
       'arguments' => array('news'),
       'rule' => '0 0 * * *', // Every day at 24:00
     ),
+    'ncw_migration_cron_migrate_note_to_editor' => array(
+      'description' => 'Synchronize notes to editor with NCW',
+      'callback' => 'ncw_migration_cron_migrate',
+      'arguments' => array('note_to_editor'),
+      'rule' => '0 1 * * *', // Every day at 01:00
+    ),
     'ncw_migration_cron_migrate_press_release' => array(
       'description' => 'Synchronize press releases with NCW',
       'callback' => 'ncw_migration_cron_migrate',
       'arguments' => array('press_release'),
-      'rule' => '0 1 * * *', // Every day at 01:00
+      'rule' => '0 2 * * *', // Every day at 02:00
     ),
     'ncw_migration_cron_migrate_highlight' => array(
       'description' => 'Synchronize highlights with NCW',
       'callback' => 'ncw_migration_cron_migrate',
       'arguments' => array('highlight'),
-      'rule' => '0 2 * * *', // Every day at 02:00
+      'rule' => '0 3 * * *', // Every day at 03:00
+    ),
+    'ncw_migration_cron_migrate_infographic' => array(
+      'description' => 'Synchronize infographics with NCW',
+      'callback' => 'ncw_migration_cron_migrate',
+      'arguments' => array('infographic'),
+      'rule' => '0 4 * * *', // Every day at 04:00
+    ),
+    'ncw_migration_cron_migrate_press_contact' => array(
+      'description' => 'Synchronize press contacts with NCW',
+      'callback' => 'ncw_migration_cron_migrate',
+      'arguments' => array('press_contact'),
+      'rule' => '0 5 * * *', // Every day at 05:00
     ),
   );
 }
