@@ -95,7 +95,7 @@ el.remove();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'addtoany_link_text';
-  $strongarm->value = 'Share this on:';
+  $strongarm->value = 'Share this article';
   $export['addtoany_link_text'] = $strongarm;
 
   $strongarm = new stdClass();
