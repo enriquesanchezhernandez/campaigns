@@ -10,32 +10,31 @@
 function hcw_menu_default_menu_links() {
   $menu_links = array();
 
-  // Exported menu link: main-menu_business-care:<front>
-  $menu_links['main-menu_business-care:<front>'] = array(
+  // Exported menu link: main-menu_about-the-topic:<front>
+  $menu_links['main-menu_about-the-topic:<front>'] = array(
     'menu_name' => 'main-menu',
     'link_path' => '<front>',
     'router_path' => '',
-    'link_title' => 'Business care',
+    'link_title' => 'About the topic',
     'options' => array(
+      'alter' => TRUE,
+      'identifier' => 'main-menu_about-the-topic:<front>',
       'attributes' => array(),
       'item_attributes' => array(
         'id' => '',
         'class' => '',
         'style' => '',
       ),
-      'alter' => TRUE,
-      'identifier' => 'main-menu_business-care:<front>',
     ),
     'module' => 'menu',
     'hidden' => 0,
     'external' => 1,
-    'has_children' => 0,
-    'expanded' => 0,
-    'weight' => -46,
+    'has_children' => 1,
+    'expanded' => 1,
+    'weight' => -50,
     'customized' => 1,
     'language' => 'en',
     'menu_links_customized' => 1,
-    'parent_identifier' => 'main-menu_stress-and-psychosocial-risks:<front>',
   );
   // Exported menu link: main-menu_campaign-partners:<front>
   $menu_links['main-menu_campaign-partners:<front>'] = array(
@@ -56,7 +55,7 @@ function hcw_menu_default_menu_links() {
     'module' => 'menu',
     'hidden' => 0,
     'external' => 1,
-    'has_children' => 0,
+    'has_children' => 1,
     'expanded' => 0,
     'weight' => -47,
     'customized' => 1,
@@ -88,7 +87,7 @@ function hcw_menu_default_menu_links() {
     'customized' => 1,
     'language' => 'en',
     'menu_links_customized' => 1,
-    'parent_identifier' => 'main-menu_stress-and-psychosocial-risks:<front>',
+    'parent_identifier' => 'main-menu_about-the-topic:<front>',
   );
   // Exported menu link: main-menu_get-involved:<front>
   $menu_links['main-menu_get-involved:<front>'] = array(
@@ -109,55 +108,28 @@ function hcw_menu_default_menu_links() {
     'module' => 'menu',
     'hidden' => 0,
     'external' => 1,
-    'has_children' => 0,
+    'has_children' => 1,
     'expanded' => 0,
     'weight' => -48,
     'customized' => 1,
     'language' => 'en',
     'menu_links_customized' => 1,
   );
-  // Exported menu link: main-menu_how-to-identify-them:<front>
-  $menu_links['main-menu_how-to-identify-them:<front>'] = array(
+  // Exported menu link: main-menu_how-can-it-be-managed:<front>
+  $menu_links['main-menu_how-can-it-be-managed:<front>'] = array(
     'menu_name' => 'main-menu',
     'link_path' => '<front>',
     'router_path' => '',
-    'link_title' => 'How to identify them?',
+    'link_title' => 'How can it be managed?',
     'options' => array(
+      'alter' => TRUE,
+      'identifier' => 'main-menu_how-can-it-be-managed:<front>',
       'attributes' => array(),
       'item_attributes' => array(
         'id' => '',
         'class' => '',
         'style' => '',
       ),
-      'alter' => TRUE,
-      'identifier' => 'main-menu_how-to-identify-them:<front>',
-    ),
-    'module' => 'menu',
-    'hidden' => 0,
-    'external' => 1,
-    'has_children' => 0,
-    'expanded' => 0,
-    'weight' => -48,
-    'customized' => 1,
-    'language' => 'en',
-    'menu_links_customized' => 1,
-    'parent_identifier' => 'main-menu_stress-and-psychosocial-risks:<front>',
-  );
-  // Exported menu link: main-menu_how-to-manage-them:<front>
-  $menu_links['main-menu_how-to-manage-them:<front>'] = array(
-    'menu_name' => 'main-menu',
-    'link_path' => '<front>',
-    'router_path' => '',
-    'link_title' => 'How to manage them?',
-    'options' => array(
-      'attributes' => array(),
-      'item_attributes' => array(
-        'id' => '',
-        'class' => '',
-        'style' => '',
-      ),
-      'alter' => TRUE,
-      'identifier' => 'main-menu_how-to-manage-them:<front>',
     ),
     'module' => 'menu',
     'hidden' => 0,
@@ -168,7 +140,7 @@ function hcw_menu_default_menu_links() {
     'customized' => 1,
     'language' => 'en',
     'menu_links_customized' => 1,
-    'parent_identifier' => 'main-menu_stress-and-psychosocial-risks:<front>',
+    'parent_identifier' => 'main-menu_about-the-topic:<front>',
   );
   // Exported menu link: main-menu_media-centre:<front>
   $menu_links['main-menu_media-centre:<front>'] = array(
@@ -189,22 +161,22 @@ function hcw_menu_default_menu_links() {
     'module' => 'menu',
     'hidden' => 0,
     'external' => 1,
-    'has_children' => 0,
+    'has_children' => 1,
     'expanded' => 0,
     'weight' => -46,
     'customized' => 1,
     'language' => 'en',
     'menu_links_customized' => 1,
   );
-  // Exported menu link: main-menu_stress-and-psychosocial-risks:<front>
-  $menu_links['main-menu_stress-and-psychosocial-risks:<front>'] = array(
+  // Exported menu link: main-menu_the-business-case:<front>
+  $menu_links['main-menu_the-business-case:<front>'] = array(
     'menu_name' => 'main-menu',
     'link_path' => '<front>',
     'router_path' => '',
-    'link_title' => 'Stress and psychosocial risks',
+    'link_title' => 'The business case',
     'options' => array(
       'alter' => TRUE,
-      'identifier' => 'main-menu_stress-and-psychosocial-risks:<front>',
+      'identifier' => 'main-menu_the-business-case:<front>',
       'attributes' => array(),
       'item_attributes' => array(
         'id' => '',
@@ -215,12 +187,13 @@ function hcw_menu_default_menu_links() {
     'module' => 'menu',
     'hidden' => 0,
     'external' => 1,
-    'has_children' => 1,
-    'expanded' => 1,
-    'weight' => -50,
+    'has_children' => 0,
+    'expanded' => 0,
+    'weight' => -46,
     'customized' => 1,
     'language' => 'en',
     'menu_links_customized' => 1,
+    'parent_identifier' => 'main-menu_about-the-topic:<front>',
   );
   // Exported menu link: main-menu_tools-and-resources:<front>
   $menu_links['main-menu_tools-and-resources:<front>'] = array(
@@ -248,21 +221,21 @@ function hcw_menu_default_menu_links() {
     'language' => 'en',
     'menu_links_customized' => 1,
   );
-  // Exported menu link: main-menu_what-are-they:<front>
-  $menu_links['main-menu_what-are-they:<front>'] = array(
+  // Exported menu link: main-menu_what-is-the-issue:<front>
+  $menu_links['main-menu_what-is-the-issue:<front>'] = array(
     'menu_name' => 'main-menu',
     'link_path' => '<front>',
     'router_path' => '',
-    'link_title' => 'What are they?',
+    'link_title' => 'What is the issue?',
     'options' => array(
+      'alter' => TRUE,
+      'identifier' => 'main-menu_what-is-the-issue:<front>',
       'attributes' => array(),
       'item_attributes' => array(
         'id' => '',
         'class' => '',
         'style' => '',
       ),
-      'alter' => TRUE,
-      'identifier' => 'main-menu_what-are-they:<front>',
     ),
     'module' => 'menu',
     'hidden' => 0,
@@ -273,23 +246,50 @@ function hcw_menu_default_menu_links() {
     'customized' => 1,
     'language' => 'en',
     'menu_links_customized' => 1,
-    'parent_identifier' => 'main-menu_stress-and-psychosocial-risks:<front>',
+    'parent_identifier' => 'main-menu_about-the-topic:<front>',
   );
-  // Exported menu link: main-menu_why-are-they-important:<front>
-  $menu_links['main-menu_why-are-they-important:<front>'] = array(
+  // Exported menu link: main-menu_who-has-to-be-involved:<front>
+  $menu_links['main-menu_who-has-to-be-involved:<front>'] = array(
     'menu_name' => 'main-menu',
     'link_path' => '<front>',
     'router_path' => '',
-    'link_title' => 'Why are they important?',
+    'link_title' => 'Who has to be involved?',
     'options' => array(
+      'alter' => TRUE,
+      'identifier' => 'main-menu_who-has-to-be-involved:<front>',
       'attributes' => array(),
       'item_attributes' => array(
         'id' => '',
         'class' => '',
         'style' => '',
       ),
+    ),
+    'module' => 'menu',
+    'hidden' => 0,
+    'external' => 1,
+    'has_children' => 0,
+    'expanded' => 0,
+    'weight' => -48,
+    'customized' => 1,
+    'language' => 'en',
+    'menu_links_customized' => 1,
+    'parent_identifier' => 'main-menu_about-the-topic:<front>',
+  );
+  // Exported menu link: main-menu_why-is-it-so--important:<front>
+  $menu_links['main-menu_why-is-it-so--important:<front>'] = array(
+    'menu_name' => 'main-menu',
+    'link_path' => '<front>',
+    'router_path' => '',
+    'link_title' => 'Why is it so  important?',
+    'options' => array(
       'alter' => TRUE,
-      'identifier' => 'main-menu_why-are-they-important:<front>',
+      'identifier' => 'main-menu_why-is-it-so--important:<front>',
+      'attributes' => array(),
+      'item_attributes' => array(
+        'id' => '',
+        'class' => '',
+        'style' => '',
+      ),
     ),
     'module' => 'menu',
     'hidden' => 0,
@@ -300,7 +300,7 @@ function hcw_menu_default_menu_links() {
     'customized' => 1,
     'language' => 'en',
     'menu_links_customized' => 1,
-    'parent_identifier' => 'main-menu_stress-and-psychosocial-risks:<front>',
+    'parent_identifier' => 'main-menu_about-the-topic:<front>',
   );
   // Exported menu link: menu-footer-menu_contact:<front>
   $menu_links['menu-footer-menu_contact:<front>'] = array(
@@ -408,21 +408,21 @@ function hcw_menu_default_menu_links() {
   );
   // Translatables
   // Included for use with string extractors like potx.
-  t('Business care');
+  t('About the topic');
   t('Campaign partners');
   t('Contact');
   t('Facts and figures');
   t('Get involved');
-  t('How to identify them?');
-  t('How to manage them?');
+  t('How can it be managed?');
   t('Log in');
   t('Media centre');
   t('Privacy policy');
   t('Site map');
-  t('Stress and psychosocial risks');
+  t('The business case');
   t('Tools and resources');
-  t('What are they?');
-  t('Why are they important?');
+  t('What is the issue?');
+  t('Who has to be involved?');
+  t('Why is it so  important?');
 
 
   return $menu_links;
