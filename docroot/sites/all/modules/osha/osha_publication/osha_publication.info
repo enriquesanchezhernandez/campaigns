@@ -63,7 +63,6 @@ features[field_instance][] = node-publication-field_publication_bookshop_id
 features[field_instance][] = node-publication-field_publication_date
 features[field_instance][] = node-publication-field_publication_related_res
 features[field_instance][] = node-publication-field_publication_type
-features[field_instance][] = node-publication-field_related_oshwiki_articles
 features[field_instance][] = node-publication-field_related_publications
 features[field_instance][] = node-publication-field_tags
 features[field_instance][] = node-publication-field_thesaurus
