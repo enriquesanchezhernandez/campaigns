@@ -19,12 +19,11 @@ function hcw_frontend_preprocess_page(&$vars) {
       $node = $vars['node'];
       switch ($node->type) {
         case 'news':
-          $view_name = 'news';
+          $link_title = 'Back to news';
           $link_href = 'news';
           break;
       }
-      if (isset($view_name)) {
-        $link_title = t('Back to').' '.$view_name;
+      if (isset($link_title)) {
         $vars['page']['content']['back-to-link'] = array(
             '#type' => 'item',
             '#markup' => l($link_title, $link_href, array('attributes' => array('class' => array('back-to-link pull-right')))),
