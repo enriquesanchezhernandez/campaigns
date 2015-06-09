@@ -140,6 +140,7 @@ $theme_dir = drupal_get_path('theme', 'hcw_frontend');
       <?php if (!empty($action_links)): ?>
         <ul class="action-links"><?php print render($action_links); ?></ul>
       <?php endif; ?>
+      <?php if (!empty($page['content']['back-to-link'])) print render($page['content']['back-to-link']); ?>
       <?php print render($page['content']); ?>
     </section>
     <?php if (!empty($page['sidebar_second'])): ?>
