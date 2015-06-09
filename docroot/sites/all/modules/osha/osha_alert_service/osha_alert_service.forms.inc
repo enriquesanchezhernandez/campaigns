@@ -67,7 +67,7 @@ function osha_alert_service_subscribe_form() {
 
   $form['type'] = array(
     '#type' => 'select',
-    '#multiple' => TRUE, '#size' => 10,
+    '#multiple' => TRUE, '#size' => 3,
     '#title' => t('Item type'),
     '#required' => TRUE,
     '#options' => $types,

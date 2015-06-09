@@ -24,10 +24,10 @@ function osha_alert_service_default_fe_block_settings() {
     'roles' => array(),
     'themes' => array(
       'hcw_frontend' => array(
-        'region' => '',
-        'status' => 0,
+        'region' => 'sidebar_second',
+        'status' => 1,
         'theme' => 'hcw_frontend',
-        'weight' => -43,
+        'weight' => 1,
       ),
       'seven' => array(
         'region' => '',
@@ -56,7 +56,7 @@ node/50',
         'region' => 'content',
         'status' => 1,
         'theme' => 'hcw_frontend',
-        'weight' => 0,
+        'weight' => 1,
       ),
       'seven' => array(
         'region' => 'content',
