@@ -94,7 +94,7 @@ abstract class AbstractNCWNodeMigration extends Migration {
    */
   protected function addFieldMappings() {
     // Node base fields
-    $this->addFieldMapping('uid')->defaultValue(osha_migration_author_uid());
+    $this->addFieldMapping('uid')->defaultValue(0);
     $this->addFieldMapping('comment')->defaultValue(0);
     $this->addFieldMapping('status', 'status');
     $this->addFieldMapping('title', 'title');
