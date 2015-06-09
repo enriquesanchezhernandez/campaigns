@@ -292,6 +292,15 @@ function osha_newsletter_field_default_field_instances() {
         'type' => 'text_default',
         'weight' => 0,
       ),
+      'highlights_item' => array(
+        'label' => 'hidden',
+        'module' => 'text',
+        'settings' => array(
+          'trim_length' => 600,
+        ),
+        'type' => 'text_trimmed',
+        'weight' => 1,
+      ),
       'newsletter_item' => array(
         'label' => 'above',
         'settings' => array(),
@@ -359,6 +368,17 @@ function osha_newsletter_field_default_field_instances() {
         'settings' => array(),
         'type' => 'hidden',
         'weight' => 1,
+      ),
+      'highlights_item' => array(
+        'label' => 'hidden',
+        'module' => 'title',
+        'settings' => array(
+          'title_class' => '',
+          'title_link' => '',
+          'title_style' => '',
+        ),
+        'type' => 'title_linked',
+        'weight' => 0,
       ),
       'newsletter_item' => array(
         'label' => 'hidden',

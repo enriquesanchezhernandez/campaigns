@@ -50,12 +50,12 @@ node/9',
     'module' => 'osha_newsletter',
     'node_types' => array(),
     'pages' => 'oshmail-newsletter
-node/9',
+node/52',
     'roles' => array(),
     'themes' => array(
       'hcw_frontend' => array(
-        'region' => '',
-        'status' => 0,
+        'region' => 'sidebar_second',
+        'status' => 1,
         'theme' => 'hcw_frontend',
         'weight' => -35,
       ),
@@ -107,12 +107,12 @@ node/9',
     'module' => 'osha_newsletter',
     'node_types' => array(),
     'pages' => 'oshmail-newsletter
-node/9',
+node/52',
     'roles' => array(),
     'themes' => array(
       'hcw_frontend' => array(
-        'region' => '',
-        'status' => 0,
+        'region' => 'content',
+        'status' => 1,
         'theme' => 'hcw_frontend',
         'weight' => 9,
       ),

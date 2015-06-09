@@ -54,7 +54,7 @@
               <td style="background-color:#003399; width: 100%; height: 4px;"></td>
             </tr>
             <tr>
-              <td style="background-color: #A6B8DB; width: 100%; height: 36px; text-align: center; font-size: 24px; font-weight: 300; color: #003399; font-family: Oswald, Arial,sans-serif;">Occupational Safety and Health News - Europe</td>
+              <td style="background-color: #A6B8DB; width: 100%; height: 36px; text-align: center; font-size: 24px; font-weight: 300; color: #003399; font-family: Oswald, Arial,sans-serif;"><?php print t("Occupational Safety and Health News &ndash; Europe");?></td>
             </tr>
             <tr>
               <td>
