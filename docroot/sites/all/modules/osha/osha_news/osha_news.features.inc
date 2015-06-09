@@ -26,11 +26,11 @@ function osha_news_views_api($module = NULL, $api = NULL) {
 function osha_news_node_info() {
   $items = array(
     'news' => array(
-      'name' => 'News',
+      'name' => t('News'),
       'base' => 'node_content',
-      'description' => 'OSH news',
+      'description' => t('OSH news'),
       'has_title' => '1',
-      'title_label' => 'Title',
+      'title_label' => t('Title'),
       'help' => '',
     ),
   );
