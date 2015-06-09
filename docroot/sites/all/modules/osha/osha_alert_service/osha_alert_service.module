@@ -332,28 +332,77 @@ EOT
  * Get the alert view filtered content.
  */
 function osha_alert_service_render_alert($entity) {
-  $view = views_get_view('alert_service_subscription');
   $settings = json_decode($entity->filters);
-  $view->set_display('default');
-  $view->is_cacheable = FALSE;
-  $view->pre_execute();
-  if (!empty($settings->type)) {
-    $view->filter['type']->value = drupal_map_assoc($settings->type);
+  if (!$settings) {
+    return '';
   }
-  if (!empty($settings->section)) {
-    $view->filter['field_tags_tid']->value = drupal_map_assoc($settings->section);
+  /*
+  SELECT a.nid, a.type, a.created, c.title_field_value
+  FROM node a
+    INNER JOIN field_data_field_tags b ON (a.nid = b.entity_id AND a.vid = b.revision_id)
+  INNER JOIN field_data_title_field c ON (a.nid = c.entity_id AND a.vid = c.revision_id AND AND c.language = 'en')
+  WHERE
+    a.status = 1
+    AND b.field_tags_tid IN (18, 32, 37)
+    AND a.created >= 1423401066
+    AND a.type IN ('publication', 'news', 'event')
+  GROUP BY a.nid
+  ORDER BY a.type, a.created DESC
+  */
+  $q = db_select('node', 'a');
+  $q->fields('a', array('nid', 'type', 'created'));
+  $q->fields('c', array('title_field_value'));
+  $q->innerJoin('field_data_field_tags', 'b', 'a.nid = b.entity_id AND a.vid = b.revision_id');
+  $q->innerJoin('field_data_title_field', 'c', "a.nid = c.entity_id AND a.vid = c.revision_id AND c.language = 'en'");
+  $q->groupBy('a.nid');
+  $q->orderBy('a.type', 'ASC');
+  $q->orderBy('a.created', 'DESC');
+  $q->condition('a.status', 1);
+  $q->condition('b.field_tags_tid', $settings->section, 'IN');
+  $q->condition('a.created', $entity->last_alert, '>=');
+  $rows = $q->execute()->fetchAll();
+  if(empty($rows)) {
+    return '';
   }
-  if (!empty($entity->last_alert)) {
-    $view->filter['created']->value['value'] = date('Y-m-d H:i:s', $entity->last_alert);
+  $output = '';
+  $row0 = $rows[0];
+  $prev_label = 'Type: ' . entity_bundle_label('node', $row0->type);
+  $table = array('rows' => array(), 'caption' => $prev_label, 'attributes' => array());
+  $languages = osha_language_list();
+  foreach($rows as $row) {
+    $label = 'Type: ' . entity_bundle_label('node', $row->type);
+    if ($label != $prev_label) {
+      $output .= theme_table($table);
+      $table = array('rows' => array(), 'caption' => $label, 'attributes' => array());
+    }
+
+    $cells = array(0 => l($row->title_field_value, 'node/' . $row->nid, array('absolute' => TRUE)), 1 => '&nbsp;');
+    // Get all translations needed for the result.
+    if (!empty($settings->languages)) {
+      $translations = db_select('entity_translation', 'et')
+        ->fields('et', array('language'))->condition('entity_type', 'node')
+        ->condition('language', $settings->languages, 'IN')
+        ->condition('status', 1)
+        ->condition('entity_id', $row->nid)
+        ->execute()->fetchCol();
+      if (!empty($translations)) {
+        $translations = osha_sort_language_list(array_combine($translations, $translations));
+        $scell = array();
+        foreach($translations as $tr) {
+          $lang = $languages[$tr];
+          $scell[] = l($lang->native, 'node/' . $row->nid, array('absolute' => TRUE, 'language' => $lang));
+        }
+        $cells[1] = 'Available also in: ' . implode(', ', $scell);
+      }
+    }
+    $table['rows'][] = $cells;
+    $prev_label = $label;
   }
-  $view->alert_lang = $settings->languages;
-  $view->pre_execute();
-  $view->execute();
-  $view->osha_hide_exposed_filters = TRUE;
-  if (empty($view->result)) {
-    return NULL;
+  if (!empty($table['rows'])) {
+    $output .= theme_table($table);
+    $table = array('rows' => array(), 'caption' => $label, 'attributes' => array());
   }
-  return $view->render();
+  return $output;
 }
 
 /**
@@ -361,6 +410,9 @@ function osha_alert_service_render_alert($entity) {
  *
  * @param int $item_id
  *   osha_alert_service entity ID.
+ *
+ * @return bool
+ *   TRUE if there was any mail sent (can be FALSE if no content was found).
  */
 function osha_alert_service_send_alert($item_id) {
   // User still holds a valid subscription from last check.
@@ -371,67 +423,14 @@ function osha_alert_service_send_alert($item_id) {
       'view' => osha_alert_service_render_alert($entity),
     );
     if (empty($params['view'])) {
-      return;
+      return FALSE;
     }
     drupal_mail('osha_alert_service', 'alert', $entity->email, 'en', $params);
     $entity->last_alert = time();
     entity_save('osha_alert_service', $entity);
+    return TRUE;
   }
-}
-
-/**
- * Implements hook__views_pre_render().
- */
-function osha_alert_service_views_pre_render(&$view) {
-  if ($view->name != 'alert_service_subscription') {
-    return;
-  }
-  if (empty($view->result)) {
-    return;
-  }
-  // Empty second title (used by this module).
-  foreach ($view->result as &$result) {
-    $result->field_title_field_1[0]['rendered']['#markup'] = '';
-  }
-  if (empty($view->alert_lang)) {
-    return;
-  }
-  $languages = language_list();
-
-  // Get the results nids.
-  $nids = array();
-  foreach ($view->result as $result) {
-    $nids[] = $result->nid;
-  }
-  // Get all translations needed for the result.
-  $query = db_select('entity_translation', 'et')
-    ->fields('et')
-    ->condition('entity_type', 'node')
-    ->condition('language', $view->alert_lang, 'IN')
-    ->condition('status', 1)
-    ->condition('entity_id', $nids, 'IN')
-    ->execute();
-  $entries = $query->fetchAll();
-  $entities = array();
-  foreach ($entries as $entry) {
-    $entities[$entry->entity_id][$entry->language] = $entry->language;
-  }
-  // Append the extra links to results, where needed.
-  foreach ($view->result as &$result) {
-    $extra_links = array();
-    if (!empty($entities[$result->nid])) {
-      foreach ($entities[$result->nid] as $lang) {
-        $extra_links[] = l(strtoupper($lang), 'node/' . $result->nid,
-          array(
-            'language' => $languages[$lang],
-            'absolute' => TRUE,
-          )
-        );
-      }
-      $extra_text = t('See it also in your selected languages') . ' ' . implode(' | ', $extra_links);
-      $result->field_title_field_1[0]['rendered']['#markup'] = $extra_text;
-    }
-  }
+  return FALSE;
 }
 
 /**
@@ -501,4 +500,30 @@ function osha_alert_service_tokens($type, $tokens, array $data = array(), array 
 function osha_alert_service_osha_tmgmt_i18n_string_list() {
   module_load_include('inc', 'osha_alert_service', 'osha_alert_service.translate');
   return osha_alert_service_get_translatable_strings();
+}
+
+
+if (!function_exists('entity_bundle_label')) {
+  /**
+   * Returns the label of a bundle.
+   *
+   * @param string $entity_type
+   *   The entity type; e.g. 'node' or 'user'.
+   * @param string $bundle_name
+   *   The bundle for which we want the label from
+   *
+   * @return
+   *   A string with the human-readable name of the bundle, or FALSE if not specified.
+   */
+  function entity_bundle_label($entity_type, $bundle_name) {
+    $labels = &drupal_static(__FUNCTION__, array());
+    if (empty($labels)) {
+      foreach (entity_get_info() as $type => $info) {
+        foreach ($info['bundles'] as $bundle => $bundle_info) {
+          $labels[$type][$bundle] = !empty($bundle_info['label']) ? $bundle_info['label'] : FALSE;
+        }
+      }
+    }
+    return $labels[$entity_type][$bundle_name];
+  }
 }

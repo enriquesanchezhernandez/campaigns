@@ -57,7 +57,7 @@ function osha_alert_service_subscribe_form() {
   $types = array();
 
   $allowed = array(
-    'publication', 'news', 'calls', 'job_vacancies', 'events',
+    'publication', 'news', 'events',
   );
 
   $alltypes = node_type_get_types();
@@ -86,7 +86,7 @@ function osha_alert_service_subscribe_form() {
   );
 
   $languages = array();
-  $alllanguages = language_list();
+  $alllanguages = osha_language_list(TRUE);
   unset($alllanguages['en']);
   foreach ($alllanguages as $code => $language) {
     $languages[$code] = $language->native;
@@ -180,7 +180,7 @@ function osha_alert_service_subscribe_form_submit($form, $form_state) {
   drupal_mail('osha_alert_service', 'subscribe', $email, $language->language, $params);
   // Subscribe to OSHMail
   if ($values['newsletter']) {
-    osha_newsletter_subscribe_form_submit($form, $form_state);
+    osha_newsletter_block_subscribe_captcha_form_submit($form, $form_state);
   }
   drupal_goto('<front>');
 }
@@ -210,7 +210,7 @@ function osha_alert_service_remove_alert_form($form, &$form_state) {
     );
   }
   else {
-    drupal_set_message(t("Invalid request, and I hope it's a test!"), 'error');
+    drupal_set_message(t('Invalid alert subscription token'), 'error');
   }
   return $form;
 }
