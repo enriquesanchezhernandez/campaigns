@@ -23,22 +23,10 @@ function osha_highlight_default_fe_block_settings() {
     'pages' => '<front>',
     'roles' => array(),
     'themes' => array(
-      'bartik' => array(
+      'hcw_frontend' => array(
         'region' => '',
         'status' => 0,
-        'theme' => 'bartik',
-        'weight' => 0,
-      ),
-      'osha_admin' => array(
-        'region' => '',
-        'status' => 0,
-        'theme' => 'osha_admin',
-        'weight' => 0,
-      ),
-      'osha_frontend' => array(
-        'region' => 'content',
-        'status' => 1,
-        'theme' => 'osha_frontend',
+        'theme' => 'hcw_frontend',
         'weight' => 0,
       ),
       'seven' => array(
