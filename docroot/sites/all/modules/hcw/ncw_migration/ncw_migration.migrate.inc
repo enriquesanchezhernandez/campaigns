@@ -54,6 +54,36 @@ function ncw_migration_migrate_api() {
         'dependencies' => array(),
         'class_name' => 'NCWPressContactMigration',
       ),
+      'tax_country' => array(
+        'group_name' => 'ncw',
+        'dependencies' => array(),
+        'class_name' => 'NCWTaxonomyCountryMigration',
+      ),
+      'tax_country_status' => array(
+        'group_name' => 'ncw',
+        'dependencies' => array(),
+        'class_name' => 'NCWTaxonomyCountryStatusMigration',
+      ),
+      'tax_fop_link_sections' => array(
+        'group_name' => 'ncw',
+        'dependencies' => array(),
+        'class_name' => 'NCWTaxonomyFOPLinkSectionsMigration',
+      ),
+      'tax_newsletter_sections' => array(
+        'group_name' => 'ncw',
+        'dependencies' => array(),
+        'class_name' => 'NCWTaxonomyNewsletterSectionsMigration',
+      ),
+      'tax_publication_type' => array(
+        'group_name' => 'ncw',
+        'dependencies' => array(),
+        'class_name' => 'NCWTaxonomyPublicationTypeMigration',
+      ),
+      'tax_tags' => array(
+        'group_name' => 'ncw',
+        'dependencies' => array(),
+        'class_name' => 'NCWTagsMigration',
+      ),
     ),
   );
 }
