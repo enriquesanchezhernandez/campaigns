@@ -41,7 +41,6 @@ class NCWPublicationsMigration extends AbstractNCWNodeMigration {
       'field_publication_related_res:display',
       'field_publication_type:source_type',
       'field_publication_type:ignore_case',
-      'field_related_oshwiki_articles',
       'field_expiration_date:rrule',
     ));
     $this->ignoreMetatagMigration();
