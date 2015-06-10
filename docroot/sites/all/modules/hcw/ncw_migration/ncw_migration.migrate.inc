@@ -212,6 +212,13 @@ abstract class AbstractNCWNodeMigration extends Migration {
   }
 
   /**
+   * Implements Migration::prepare()
+   */
+  public function prepare($entity, stdClass $row) {
+    $entity->workbench_moderation_state_new = $row->workbench_moderation['current']['state'];
+  }
+
+  /**
    * Implements Migration::complete() to configure translations
    */
   public function complete($entity, stdClass $row) {
