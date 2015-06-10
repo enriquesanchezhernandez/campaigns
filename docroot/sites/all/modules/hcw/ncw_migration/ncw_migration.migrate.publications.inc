@@ -83,7 +83,6 @@ class NCWPublicationsSource extends AbstractNCWNodeSource {
       'field_publication_related_res_language',
       'field_publication_type',
       'field_tags',
-      //@todo: 'field_nace_codes',
       //@todo: 'field_aditional_resources',
       //@todo: 'field_related_publications',
     );

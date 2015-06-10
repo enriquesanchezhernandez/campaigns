@@ -1,13 +1,13 @@
 <?php
 /**
  * @file
- * osha_press_contact.features.taxonomy.inc
+ * osha_press_release.features.taxonomy.inc
  */
 
 /**
  * Implements hook_taxonomy_default_vocabularies().
  */
-function osha_press_contact_taxonomy_default_vocabularies() {
+function osha_press_release_taxonomy_default_vocabularies() {
   return array(
     'contact_type' => array(
       'name' => 'Contact Type',

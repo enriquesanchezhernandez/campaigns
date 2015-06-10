@@ -28,7 +28,32 @@ function ncw_migration_migrate_api() {
         'group_name' => 'ncw',
         'dependencies' => array(),
         'class_name' => 'NCWNewsMigration',
-      )
+      ),
+      'note_to_editor' => array(
+        'group_name' => 'ncw',
+        'dependencies' => array(),
+        'class_name' => 'NCWNoteMigration',
+      ),
+      'press_release' => array(
+        'group_name' => 'ncw',
+        'dependencies' => array(),
+        'class_name' => 'NCWPressMigration',
+      ),
+      'highlight' => array(
+        'group_name' => 'ncw',
+        'dependencies' => array(),
+        'class_name' => 'NCWHighlightMigration',
+      ),
+      'infographic' => array(
+        'group_name' => 'ncw',
+        'dependencies' => array(),
+        'class_name' => 'NCWInfographicMigration',
+      ),
+      'press_contact' => array(
+        'group_name' => 'ncw',
+        'dependencies' => array(),
+        'class_name' => 'NCWPressContactMigration',
+      ),
     ),
   );
 }
@@ -69,7 +94,7 @@ abstract class AbstractNCWNodeMigration extends Migration {
    */
   protected function addFieldMappings() {
     // Node base fields
-    $this->addFieldMapping('uid')->defaultValue(osha_migration_author_uid());
+    $this->addFieldMapping('uid')->defaultValue(0);
     $this->addFieldMapping('comment')->defaultValue(0);
     $this->addFieldMapping('status', 'status');
     $this->addFieldMapping('title', 'title');
@@ -184,6 +209,13 @@ abstract class AbstractNCWNodeMigration extends Migration {
         $row->{$field_name} = array();
       }
     }
+  }
+
+  /**
+   * Implements Migration::prepare()
+   */
+  public function prepare($entity, stdClass $row) {
+    $entity->workbench_moderation_state_new = $row->workbench_moderation['current']['state'];
   }
 
   /**
@@ -410,6 +442,21 @@ function osha_migration_normalize_field_text($row, $field_name, $field_info) {
     foreach ($row->{$field_name} as $language => $values) {
       foreach($values as $v) {
         $field[] = $v['value'];
+        $languages[] = $language;
+      }
+    }
+  }
+  $row->{$field_name} = $field;
+  $row->{$field_name . '_language'} = $languages;
+}
+
+function osha_migration_normalize_field_email($row, $field_name, $field_info) {
+  $field = array();
+  $languages = array();
+  if (!empty($row->{$field_name}) && is_array($row->{$field_name})) {
+    foreach ($row->{$field_name} as $language => $values) {
+      foreach($values as $v) {
+        $field[] = $v['email'];
         $languages[] = $language;
       }
     }

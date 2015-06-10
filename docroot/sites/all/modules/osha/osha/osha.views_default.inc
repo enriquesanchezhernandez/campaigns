@@ -395,23 +395,18 @@ function osha_views_default_views() {
   $handler->display->display_options['filters']['type']['field'] = 'type';
   $handler->display->display_options['filters']['type']['value'] = array(
     'article' => 'article',
-    'banner' => 'banner',
-    'page' => 'page',
-    'calls' => 'calls',
     'press_contact' => 'press_contact',
     'external_url' => 'external_url',
     'file' => 'file',
     'flickr' => 'flickr',
-    'fop_page' => 'fop_page',
+    'highlight' => 'highlight',
     'infographic' => 'infographic',
-    'job_vacancies' => 'job_vacancies',
     'news' => 'news',
     'newsletter_article' => 'newsletter_article',
     'note_to_editor' => 'note_to_editor',
     'press_release' => 'press_release',
     'publication' => 'publication',
     'slideshare' => 'slideshare',
-    'wiki_page' => 'wiki_page',
     'youtube' => 'youtube',
   );
   $handler->display->display_options['filters']['type']['group'] = 1;
@@ -432,8 +427,6 @@ function osha_views_default_views() {
     8 => 0,
     9 => 0,
     10 => 0,
-    11 => 0,
-    12 => 0,
   );
   $handler->display->display_options['filters']['type']['expose']['reduce'] = TRUE;
   /* Filter criterion: User: Name */

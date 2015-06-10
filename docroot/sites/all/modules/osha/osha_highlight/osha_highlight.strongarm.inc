@@ -1,81 +1,75 @@
 <?php
 /**
  * @file
- * osha_press_contact.strongarm.inc
+ * osha_highlight.strongarm.inc
  */
 
 /**
  * Implements hook_strongarm().
  */
-function osha_press_contact_strongarm() {
+function osha_highlight_strongarm() {
   $export = array();
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
-  $strongarm->name = 'comment_anonymous_press_contact';
-  $strongarm->value = '0';
-  $export['comment_anonymous_press_contact'] = $strongarm;
+  $strongarm->name = 'comment_anonymous_highlight';
+  $strongarm->value = 0;
+  $export['comment_anonymous_highlight'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
-  $strongarm->name = 'comment_default_mode_press_contact';
+  $strongarm->name = 'comment_default_mode_highlight';
   $strongarm->value = 1;
-  $export['comment_default_mode_press_contact'] = $strongarm;
+  $export['comment_default_mode_highlight'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
-  $strongarm->name = 'comment_default_per_page_press_contact';
+  $strongarm->name = 'comment_default_per_page_highlight';
   $strongarm->value = '50';
-  $export['comment_default_per_page_press_contact'] = $strongarm;
+  $export['comment_default_per_page_highlight'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
-  $strongarm->name = 'comment_form_location_press_contact';
+  $strongarm->name = 'comment_form_location_highlight';
   $strongarm->value = 1;
-  $export['comment_form_location_press_contact'] = $strongarm;
+  $export['comment_form_location_highlight'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
-  $strongarm->name = 'comment_press_contact';
+  $strongarm->name = 'comment_highlight';
   $strongarm->value = '1';
-  $export['comment_press_contact'] = $strongarm;
+  $export['comment_highlight'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
-  $strongarm->name = 'comment_preview_press_contact';
+  $strongarm->name = 'comment_preview_highlight';
   $strongarm->value = '1';
-  $export['comment_preview_press_contact'] = $strongarm;
+  $export['comment_preview_highlight'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
-  $strongarm->name = 'comment_subject_field_press_contact';
+  $strongarm->name = 'comment_subject_field_highlight';
   $strongarm->value = 1;
-  $export['comment_subject_field_press_contact'] = $strongarm;
+  $export['comment_subject_field_highlight'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
-  $strongarm->name = 'entity_translation_settings_taxonomy_term__country';
-  $strongarm->value = array(
-    'default_language' => 'en',
-    'hide_language_selector' => 0,
-    'exclude_language_none' => 1,
-    'lock_language' => 1,
-    'shared_fields_original_only' => 0,
-  );
-  $export['entity_translation_settings_taxonomy_term__country'] = $strongarm;
+  $strongarm->name = 'entity_translation_hide_translation_links_highlight';
+  $strongarm->value = 1;
+  $export['entity_translation_hide_translation_links_highlight'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
-  $strongarm->name = 'exclude_node_title_content_type_modes_press_contact';
+  $strongarm->name = 'exclude_node_title_content_type_modes_highlight';
   $strongarm->value = array(
     'full' => 'full',
     'teaser' => 'teaser',
@@ -85,37 +79,38 @@ function osha_press_contact_strongarm() {
     'search_result' => 0,
     'diff_standard' => 0,
     'osha_slideshow' => 0,
+    'highlights_item' => 0,
     'newsletter_item' => 0,
     'osha_wiki' => 0,
     'print' => 0,
     'token' => 0,
     'nodeform' => 0,
   );
-  $export['exclude_node_title_content_type_modes_press_contact'] = $strongarm;
+  $export['exclude_node_title_content_type_modes_highlight'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
-  $strongarm->name = 'exclude_node_title_content_type_value_press_contact';
+  $strongarm->name = 'exclude_node_title_content_type_value_highlight';
   $strongarm->value = 'all';
-  $export['exclude_node_title_content_type_value_press_contact'] = $strongarm;
+  $export['exclude_node_title_content_type_value_highlight'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
-  $strongarm->name = 'field_bundle_settings_node__press_contact';
+  $strongarm->name = 'field_bundle_settings_node__highlight';
   $strongarm->value = array(
     'view_modes' => array(
       'teaser' => array(
         'custom_settings' => TRUE,
       ),
       'osha_slideshow' => array(
+        'custom_settings' => FALSE,
+      ),
+      'highlights_item' => array(
         'custom_settings' => TRUE,
       ),
       'newsletter_item' => array(
-        'custom_settings' => TRUE,
-      ),
-      'osha_wiki' => array(
         'custom_settings' => TRUE,
       ),
       'full' => array(
@@ -136,29 +131,32 @@ function osha_press_contact_strongarm() {
       'token' => array(
         'custom_settings' => FALSE,
       ),
-      'osha_resources' => array(
-        'custom_settings' => TRUE,
+      'osha_wiki' => array(
+        'custom_settings' => FALSE,
       ),
       'print' => array(
         'custom_settings' => FALSE,
       ),
+      'osha_resources' => array(
+        'custom_settings' => TRUE,
+      ),
     ),
     'extra_fields' => array(
       'form' => array(
-        'metatags' => array(
-          'weight' => '14',
-        ),
         'title' => array(
-          'weight' => '0',
+          'weight' => '1',
         ),
         'path' => array(
-          'weight' => '13',
+          'weight' => '12',
         ),
         'redirect' => array(
-          'weight' => '12',
+          'weight' => '11',
         ),
         'language' => array(
           'weight' => '2',
+        ),
+        'metatags' => array(
+          'weight' => '13',
         ),
         'workbench_access' => array(
           'weight' => '0',
@@ -167,60 +165,54 @@ function osha_press_contact_strongarm() {
       'display' => array(),
     ),
   );
-  $export['field_bundle_settings_node__press_contact'] = $strongarm;
+  $export['field_bundle_settings_node__highlight'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
-  $strongarm->name = 'language_content_type_press_contact';
+  $strongarm->name = 'language_content_type_highlight';
   $strongarm->value = '4';
-  $export['language_content_type_press_contact'] = $strongarm;
+  $export['language_content_type_highlight'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
-  $strongarm->name = 'menu_options_press_contact';
+  $strongarm->name = 'menu_options_highlight';
   $strongarm->value = array(
     0 => 'main-menu',
   );
-  $export['menu_options_press_contact'] = $strongarm;
+  $export['menu_options_highlight'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
-  $strongarm->name = 'menu_parent_press_contact';
+  $strongarm->name = 'menu_parent_highlight';
   $strongarm->value = 'main-menu:0';
-  $export['menu_parent_press_contact'] = $strongarm;
+  $export['menu_parent_highlight'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
-  $strongarm->name = 'node_options_press_contact';
+  $strongarm->name = 'node_options_highlight';
   $strongarm->value = array(
-    0 => 'status',
+    0 => 'moderation',
+    1 => 'revision',
   );
-  $export['node_options_press_contact'] = $strongarm;
+  $export['node_options_highlight'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
-  $strongarm->name = 'node_preview_press_contact';
+  $strongarm->name = 'node_preview_highlight';
   $strongarm->value = '1';
-  $export['node_preview_press_contact'] = $strongarm;
+  $export['node_preview_highlight'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
-  $strongarm->name = 'node_submitted_press_contact';
+  $strongarm->name = 'node_submitted_highlight';
   $strongarm->value = 0;
-  $export['node_submitted_press_contact'] = $strongarm;
-
-  $strongarm = new stdClass();
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
-  $strongarm->name = 'workbench_access_node_type_press_contact';
-  $strongarm->value = 0;
-  $export['workbench_access_node_type_press_contact'] = $strongarm;
+  $export['node_submitted_highlight'] = $strongarm;
 
   return $export;
 }
