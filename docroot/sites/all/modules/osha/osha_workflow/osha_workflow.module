@@ -1028,12 +1028,14 @@ function osha_workflow_form_alter(&$form, &$form_state, $form_id) {
   if (isset($form_state['node'])) {
     $node = $form_state['node'];
     $to_be_approved = isset($node->workbench_moderation['current']) && $node->workbench_moderation['current']->state == OSHA_WORKFLOW_STATE_TO_BE_APPROVED;
-    $next_aprover = osha_workflow_is_next_approver($node->nid);
-    if ($form_id == $node->type . '_node_form' && $to_be_approved && $next_aprover) {
-      reset($node->workbench_access);
-      $ai = current($node->workbench_access);
-      $tai = taxonomy_term_load($ai);
-      $form['workbench_access']['workbench_access']['#options'] = array($ai => $tai->name);
+    if (!empty($node->nid) && $to_be_approved ) {
+      $next_aprover = osha_workflow_is_next_approver($node->nid);
+      if ($next_aprover && $form_id == $node->type . '_node_form') {
+        reset($node->workbench_access);
+        $ai = current($node->workbench_access);
+        $tai = taxonomy_term_load($ai);
+        $form['workbench_access']['workbench_access']['#options'] = array($ai => $tai->name);
+      }
     }
   }
 }

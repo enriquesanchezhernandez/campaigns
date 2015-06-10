@@ -66,7 +66,7 @@ function osha_get_translatable_strings() {
     'Go to last page',
 
     // Other strings
-    'Share this on:',
+    'Share this article',
     'Share',
     'Recent tweets',
     'Clear filter',

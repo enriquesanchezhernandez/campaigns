@@ -140,6 +140,7 @@ $theme_dir = drupal_get_path('theme', 'hcw_frontend');
       <?php if (!empty($action_links)): ?>
         <ul class="action-links"><?php print render($action_links); ?></ul>
       <?php endif; ?>
+      <?php if (!empty($page['content']['back-to-link'])) print render($page['content']['back-to-link']); ?>
       <?php print render($page['content']); ?>
     </section>
     <?php if (!empty($page['sidebar_second'])): ?>
@@ -151,4 +152,10 @@ $theme_dir = drupal_get_path('theme', 'hcw_frontend');
 </div>
 <footer class="footer container">
   <?php print render($page['footer']); ?>
+  <h3>
+    <?php print t("Safety and health at work is everyone's concern. It's good for you. It's good for business."); ?>
+  </h3>
+  <p>
+    <?php print t("European Agency for Safety and Health at Work"); ?>
+  </p>
 </footer>

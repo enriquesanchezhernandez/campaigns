@@ -29,11 +29,11 @@ function osha_newsletter_views_api($module = NULL, $api = NULL) {
 function osha_newsletter_node_info() {
   $items = array(
     'newsletter_article' => array(
-      'name' => 'Newsletter article',
+      'name' => t('Newsletter article'),
       'base' => 'node_content',
-      'description' => 'Ad-hoc content for newsletter (such as Coming soon...)',
+      'description' => t('Ad-hoc content for newsletter (such as Coming soon...)'),
       'has_title' => '1',
-      'title_label' => 'Title',
+      'title_label' => t('Title'),
       'help' => '',
     ),
   );

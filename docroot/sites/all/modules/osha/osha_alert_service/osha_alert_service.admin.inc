@@ -76,17 +76,20 @@ EOT
     '#collapsible' => TRUE,
     '#collapsed' => TRUE,
   );
-  $form['test']['osha_alert_service_test_reset_months'] = array(
-    '#title' => 'Months to reset',
+  $form['test']['osha_alert_service_test_reset_days'] = array(
+    '#title' => 'Days to reset',
     '#type' => 'textfield',
-    '#description' => 'Number of months to reset back your last sent alert date.',
-    '#default_value' => variable_get('osha_alert_service_test_reset_months', 1),
+    '#description' => 'Number of days to reset back your last sent alert date.',
+    '#default_value' => variable_get('osha_alert_service_test_reset_days', 30),
   );
   $form['test']['test_submit'] = array(
     '#value' => 'Test your alerts',
     '#type' => 'submit',
-    '#suffix' => 'This will reset your last send alert time to 1 month ago and runs the Cron! Use it with caution! ',
+    '#suffix' => 'This will reset your alerts\' last sent time to X days ago and send your alerts!',
     '#submit' => array('osha_alert_service_test_my_email_submit'),
+  );
+  $form['test']['info'] = array(
+    '#markup' => '<p>You can also use drush command: ' . htmlentities('drush osha-alert-service-test <id> <days>') . '</p>',
   );
 
   return system_settings_form($form);
@@ -97,14 +100,25 @@ EOT
  */
 function osha_alert_service_test_my_email_submit($form, &$form_state) {
   global $user;
-  $months = $form_state['values']['osha_alert_service_test_reset_months'];
-  $month_ago = strtotime("-" . $months . " month");
-  db_update('osha_alert_service')
-    ->fields(array(
-      'last_alert' => $month_ago,
-    ))
+  $result = db_select('osha_alert_service', 'a')
+    ->fields('a')
     ->condition('email', $user->mail)
-    ->execute();
-  drupal_cron_run();
-  drupal_set_message('Your subscription last sent was reseted ' . $months . ' months ago!', 'warning');
+    ->execute()
+    ->fetchAllKeyed(0);
+
+  if (empty($result)) {
+    drupal_set_message('You don\'t have a subscription for alert service! Please subscribe in order to test!', 'warning');
+    return;
+  }
+
+  $days = $form_state['values']['osha_alert_service_test_reset_days'];
+  $item_ids = array_keys($result);
+  foreach ($item_ids as $item_id) {
+    if ($entity = entity_load_single('osha_alert_service', $item_id)) {
+      $entity->last_alert = date('U') - ($days * 24 * 3600);
+      entity_save('osha_alert_service', $entity);
+      osha_alert_service_send_alert($item_id);
+    }
+  }
+  drupal_set_message('Your alerts have been sent!');
 }

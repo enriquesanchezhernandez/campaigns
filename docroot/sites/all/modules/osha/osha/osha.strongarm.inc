@@ -14,7 +14,7 @@ function osha_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'addtoany_additional_html';
-  $strongarm->value = '<a class="a2a_button_twitter"></a><a class="a2a_button_facebook"></a><a class="a2a_button_linkedin"></a><a class="a2a_dd" href="http://www.addtoany.com/share_save"></a><a class="a2a_button_print"></a>';
+  $strongarm->value = '</a><a class="a2a_button_facebook"></a><a class="a2a_button_facebook_like"></a><a class="a2a_button_twitter"><a class="a2a_button_linkedin"></a><a class="a2a_dd" href="http://www.addtoany.com/share_save"></a><a class="a2a_button_print"></a>';
   $export['addtoany_additional_html'] = $strongarm;
 
   $strongarm = new stdClass();
@@ -95,7 +95,7 @@ el.remove();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'addtoany_link_text';
-  $strongarm->value = 'Share this on:';
+  $strongarm->value = 'Share this article';
   $export['addtoany_link_text'] = $strongarm;
 
   $strongarm = new stdClass();
@@ -106,24 +106,18 @@ el.remove();
     'article' => 'article',
     'news' => 'news',
     'press_release' => 'press_release',
-    'banner' => 0,
-    'page' => 0,
-    'calls' => 0,
     'press_contact' => 0,
     'events' => 0,
     'external_url' => 0,
     'file' => 0,
     'flickr' => 0,
-    'fop_page' => 0,
+    'frontpage_slider' => 0,
     'infographic' => 0,
-    'job_vacancies' => 0,
     'newsletter_article' => 0,
     'note_to_editor' => 0,
     'publication' => 0,
-    'seminar' => 0,
     'slideshare' => 0,
     'webform' => 0,
-    'wiki_page' => 0,
     'youtube' => 0,
   );
   $export['addtoany_nodetypes'] = $strongarm;
@@ -1308,7 +1302,7 @@ el.remove();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'pathauto_node_news_pattern';
-  $strongarm->value = 'oshnews/[node:title]';
+  $strongarm->value = 'news/[node:title]';
   $export['pathauto_node_news_pattern'] = $strongarm;
 
   $strongarm = new stdClass();
