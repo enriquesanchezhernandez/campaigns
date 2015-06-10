@@ -215,7 +215,9 @@ abstract class AbstractNCWNodeMigration extends Migration {
    * Implements Migration::prepare()
    */
   public function prepare($entity, stdClass $row) {
-    $entity->workbench_moderation_state_new = $row->workbench_moderation['current']['state'];
+    if(!empty($row->workbench_moderation)) {
+      $entity->workbench_moderation_state_new = $row->workbench_moderation['current']['state'];
+    }
   }
 
   /**
@@ -241,7 +243,7 @@ abstract class AbstractNCWNodeMigration extends Migration {
 
 
 /**
- * Class AbstractNCWSource base for all NCW JSON imports.
+ * Class AbstractNCWNodeSource base for all NCW JSON node imports.
  */
 abstract class AbstractNCWNodeSource extends MigrateSource {
 
@@ -306,21 +308,33 @@ abstract class AbstractNCWNodeSource extends MigrateSource {
     $this->rows = array();
     $content = file_get_contents($this->endpoint_url);
     if ($data = json_decode($content)) {
-      foreach ($data->nodes as $ob) {
-        $ob = $ob->node;
-        $node_url = osha_migration_url_data_source('/export/node/' . $ob->nid);
+      foreach ($data->items as $ob) {
+        $ob = $ob->item;
+        $id = $this->itemIdentifier($ob);
+        $node_url = $this->itemUrl($id);
         if ($rowd = file_get_contents($node_url)) {
           if ($row_ob = json_decode($rowd, TRUE)) {
             $row = new stdClass();
             foreach($row_ob as $k => $v) {
               $row->$k = $v;
             }
-            $this->rows[$row_ob['nid']] = $row;
+            $this->rows[$id] = $row;
           }
+        }
+        else {
+          //@todo: var_dump($node_url);
         }
       }
     }
     reset($this->rows);
+  }
+
+  public function itemUrl($id) {
+    return osha_migration_url_data_source('/export/node/' . $id);
+  }
+
+  public function itemIdentifier($ob) {
+    return $ob->nid;
   }
 
   public function fields() {
