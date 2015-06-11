@@ -4,8 +4,8 @@ class NCWHighlightMigration extends AbstractNCWNodeMigration {
 
   public function __construct($arguments) {
     $endpoint_url = osha_migration_url_data_source('/export/list/highlight/women_and_osh');
-    parent::__construct($arguments, 'NCWHighlightSource', 'highlight', $endpoint_url);
-    $this->description = 'Import highlights from NCW';
+    parent::__construct($arguments, 'NCWHighlightSource', 'news', $endpoint_url);
+    $this->description = 'Import highlights (into news) from NCW';
   }
 
   function addFieldMappings() {
@@ -25,6 +25,11 @@ class NCWHighlightMigration extends AbstractNCWNodeMigration {
       'field_image:alt',
       'field_image:title',
       'field_publication_date:rrule',
+      'field_summary',
+      'field_summary:format',
+      'field_summary:language',
+      'field_image_caption',
+      'field_image_caption:language',
     ));
     $this->ignoreMetatagMigration();
   }
