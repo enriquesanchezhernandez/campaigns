@@ -13,6 +13,7 @@ dependencies[] = shs
 dependencies[] = text
 dependencies[] = title
 dependencies[] = views
+scripts[] = includes/js/collapse_block.js
 features[context][] = context_events
 features[ctools][] = context:context:3
 features[ctools][] = field_group:field_group:1
