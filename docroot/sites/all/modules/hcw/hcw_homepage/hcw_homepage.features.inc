@@ -5,6 +5,15 @@
  */
 
 /**
+ * Implements hook_default_blockgroups().
+ */
+function hcw_homepage_default_blockgroups() {
+  return array(
+    'tools_and_resources_block_g' => 'Tools and resources block group',
+  );
+}
+
+/**
  * Implements hook_ctools_plugin_api().
  */
 function hcw_homepage_ctools_plugin_api($module = NULL, $api = NULL) {
