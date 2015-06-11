@@ -74,7 +74,7 @@ function ncw_migration_migrate_api() {
         'dependencies' => array(),
         'class_name' => 'NCWTaxonomyNewsletterSectionsMigration',
       ),
-      'tax_publication_type' => array(
+      'tax_publication_types' => array(
         'group_name' => 'ncw',
         'dependencies' => array(),
         'class_name' => 'NCWTaxonomyPublicationTypeMigration',
