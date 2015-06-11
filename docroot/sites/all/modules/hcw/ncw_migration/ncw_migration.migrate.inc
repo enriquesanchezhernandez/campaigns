@@ -56,7 +56,7 @@ function ncw_migration_migrate_api() {
       ),
       'tax_country' => array(
         'group_name' => 'ncw',
-        'dependencies' => array(),
+        'dependencies' => array('tax_country_status'),
         'class_name' => 'NCWTaxonomyCountryMigration',
       ),
       'tax_country_status' => array(
