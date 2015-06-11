@@ -112,9 +112,14 @@ abstract class AbstractNCWNodeMigration extends Migration {
           'description' => 'Original nid in the NCW website',
         ),
       ),
-      MigrateDestinationNode::getKeySchema()
+      MigrateDestinationNode::getKeySchema(),
+      'default',
+      array('track_last_imported' => TRUE)
     );
-    $this->source = new $source_klass(array('endpoint_url' => $this->endpoint_url));
+    $this->source = new $source_klass(array(
+      'endpoint_url' => $this->endpoint_url,
+      'track_changes' => TRUE,
+    ));
     $this->destination = new MigrateDestinationNode($bundle);
     $this->addFieldMappings();
   }

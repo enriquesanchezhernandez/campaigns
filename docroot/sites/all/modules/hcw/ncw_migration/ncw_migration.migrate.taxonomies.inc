@@ -23,7 +23,10 @@ abstract class AbstractNCWTaxonomyTermMigration extends AbstractNCWNodeMigration
       ),
       MigrateDestinationTerm::getKeySchema()
     );
-    $this->source = new $source_klass(array('endpoint_url' => $this->endpoint_url));
+    $this->source = new $source_klass(array(
+      'endpoint_url' => $this->endpoint_url,
+      'track_changes' => TRUE
+    ));
     $this->destination = new MigrateDestinationTerm($bundle, array('language' => 'en'));
     $this->ignoreMetatagMigration();
   }
