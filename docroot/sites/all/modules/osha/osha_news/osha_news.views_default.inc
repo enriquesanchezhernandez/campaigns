@@ -170,10 +170,10 @@ function osha_news_views_default_views() {
   $handler->display->display_options['defaults']['use_more_always'] = FALSE;
   $handler->display->display_options['use_more_always'] = FALSE;
   $handler->display->display_options['defaults']['use_more_text'] = FALSE;
-  $handler->display->display_options['use_more_text'] = 'View all';
+  $handler->display->display_options['use_more_text'] = 'See all news';
   $handler->display->display_options['defaults']['pager'] = FALSE;
   $handler->display->display_options['pager']['type'] = 'some';
-  $handler->display->display_options['pager']['options']['items_per_page'] = '2';
+  $handler->display->display_options['pager']['options']['items_per_page'] = '4';
   $handler->display->display_options['pager']['options']['offset'] = '0';
   $handler->display->display_options['defaults']['style_plugin'] = FALSE;
   $handler->display->display_options['style_plugin'] = 'default';
@@ -215,7 +215,7 @@ function osha_news_views_default_views() {
     'multiple_from' => '',
     'multiple_to' => '',
   );
-  $handler->display->display_options['block_description'] = 'News';
+  $handler->display->display_options['block_description'] = 'Latest news';
   $translatables['news'] = array(
     t('Master'),
     t('News'),
@@ -235,7 +235,8 @@ function osha_news_views_default_views() {
     t('Get the actual content from a content revision.'),
     t('News list'),
     t('Latest News'),
-    t('View all'),
+    t('See all news'),
+    t('Latest news'),
   );
   $export['news'] = $view;
 

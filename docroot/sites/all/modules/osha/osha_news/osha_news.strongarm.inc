@@ -148,6 +148,9 @@ function osha_news_strongarm() {
       'osha_resources' => array(
         'custom_settings' => TRUE,
       ),
+      'highlights_item' => array(
+        'custom_settings' => TRUE,
+      ),
     ),
     'extra_fields' => array(
       'form' => array(
@@ -155,7 +158,7 @@ function osha_news_strongarm() {
           'weight' => '0',
         ),
         'path' => array(
-          'weight' => '14',
+          'weight' => '12',
         ),
         'workbench_access' => array(
           'weight' => '0',
@@ -164,10 +167,10 @@ function osha_news_strongarm() {
           'weight' => '1',
         ),
         'redirect' => array(
-          'weight' => '15',
+          'weight' => '13',
         ),
         'metatags' => array(
-          'weight' => '16',
+          'weight' => '14',
         ),
       ),
       'display' => array(),
