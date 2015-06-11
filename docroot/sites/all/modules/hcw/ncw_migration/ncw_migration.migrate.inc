@@ -177,8 +177,6 @@ abstract class AbstractNCWNodeMigration extends Migration {
         }
       }
     }
-
-    //@todo: metatag migration - which is sob
     $this->addUnmigratedDestinations(
       array(
         'revision', 'tnid', 'translate', 'revision_uid', 'is_new'
@@ -337,11 +335,10 @@ abstract class AbstractNCWNodeSource extends MigrateSource {
 
   /**
    * Remote call to load the data from the endpoint URL
-   * @todo: the remote loading using cURL?
    */
   public function readData() {
     $this->rows = array();
-    $content = file_get_contents($this->endpoint_url);
+    $content = $this->fileGetContents($this->endpoint_url);
     if ($data = json_decode($content)) {
       foreach ($data->items as $ob) {
         $ob = $ob->item;
@@ -357,11 +354,23 @@ abstract class AbstractNCWNodeSource extends MigrateSource {
           }
         }
         else {
-          //@todo: var_dump($node_url);
+          if ($this->activeMigration) {
+            $this->activeMigration->saveMessage(format_string('Failed to read data from !url', array('!url' => $node_url)));
+          }
         }
       }
     }
     reset($this->rows);
+  }
+
+  public function fileGetContents($url) {
+    $ch = curl_init();
+    curl_setopt($ch, CURLOPT_URL, $url);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+    curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 5);
+    $result = curl_exec($ch);
+    curl_close($ch);
+    return $result;
   }
 
   public function itemUrl($id) {
@@ -419,15 +428,15 @@ function osha_migration_normalize_field_list_text($row, $field_name) {
 }
 
 function osha_migration_normalize_field_number_integer($row, $field_name) {
-  $field = array();
-  if (!empty($row->{$field_name}) && is_array($row->{$field_name})) {
-    foreach ($row->{$field_name} as $language => $values) {
-      foreach($values as $v) {
-        $field[] = $v['value'];
-      }
-    }
-  }
-  $row->{$field_name} = $field;
+  osha_migration_normalize_field_list_text($row, $field_name);
+}
+
+function osha_migration_normalize_field_number_decimal($row, $field_name) {
+  osha_migration_normalize_field_number_integer($row, $field_name);
+}
+
+function osha_migration_normalize_field_list_boolean($row, $field_name) {
+  osha_migration_normalize_field_number_integer($row, $field_name);
 }
 
 function osha_migration_normalize_field_text_long($row, $field_name) {
@@ -543,8 +552,11 @@ function osha_migration_normalize_field_taxonomy_term_reference($row, $field_nam
       }
     }
   }
+  else if (empty($row->{$field_name})) {
+    // Do nothing ...
+  }
   else {
-    // @todo: show error watchdog ...
+    watchdog('ncw_migration', '[normalize_field_taxonomy_term_reference] Failed to extract value from !field', array('!field' => $field_name), WATCHDOG_WARNING);
   }
   $row->{$field_name} = $field;
 }
@@ -565,16 +577,5 @@ function osha_migration_normalize_field_file($row, $field_name) {
 }
 
 function osha_migration_normalize_field_image($row, $field_name) {
-  $field = array();
-  $languages = array();
-  if (!empty($row->{$field_name}) && is_array($row->{$field_name})) {
-    foreach ($row->{$field_name} as $language => $values) {
-      foreach($values as $f) {
-        $field[] = osha_migration_url_files(str_replace('public://', '', $f['uri']));
-        $languages[] = $language;
-      }
-    }
-  }
-  $row->{$field_name} = $field;
-  $row->{$field_name . '_language'} = $languages;
+  osha_migration_normalize_field_file($row, $field_name);
 }
