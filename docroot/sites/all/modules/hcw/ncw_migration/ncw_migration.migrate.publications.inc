@@ -15,11 +15,20 @@ class NCWPublicationsMigration extends AbstractNCWNodeMigration {
 
   function addFieldMappings() {
     parent::addFieldMappings();
+
+    $this->addFieldMapping('field_tags:source_type')->defaultValue('tid');
+    $this->addFieldMapping('field_tags:create_term')->defaultValue(FALSE);
+    $this->addFieldMapping('field_tags', 'field_tags');
+
+    $this->addFieldMapping('field_publication_type:source_type')->defaultValue('tid');
+    $this->addFieldMapping('field_publication_type:create_term')->defaultValue(FALSE);
+    $this->addFieldMapping('field_publication_type', 'field_publication_type');
+
     $this->addUnmigratedDestinations(array(
       'field_activity:source_type',
       'field_activity:ignore_case',
-      'field_tags:source_type',
       'field_tags:ignore_case',
+      'field_publication_type:ignore_case',
       'field_cover_image:file_class',
       'field_cover_image:preserve_files',
       'field_cover_image:destination_dir',
@@ -44,11 +53,13 @@ class NCWPublicationsMigration extends AbstractNCWNodeMigration {
       'field_publication_related_res:urlencode',
       'field_publication_related_res:description',
       'field_publication_related_res:display',
-      'field_publication_type:source_type',
-      'field_publication_type:ignore_case',
       'field_expiration_date:rrule',
     ));
     $this->ignoreMetatagMigration();
+  }
+
+  protected function getManuallyMigratedFields() {
+    return array('field_tags', 'field_publication_type');
   }
 
   function prepareRow($row) {
@@ -61,24 +72,8 @@ class NCWPublicationsMigration extends AbstractNCWNodeMigration {
     foreach ($related_publications as $original_nid) {
       $row->field_related_publications[] = $this->handleSourceMigration('publications', $original_nid);
     }
-  }
-
-  protected function createStub($migration, array $source_id) {
-    $node = new stdClass();
-    node_submit($node);
-    // Do not delete/change this marker unless you know what you are doing!
-    $node->title = format_string(MIGRATE_STUB_MARKER . ' stub for publication !id', array('!id' => $source_id[0]));
-    $node->language = 'en';
-    $node->type = $this->destination->getBundle();
-    $node->uid = 0;
-    $node->status = 1;
-    node_save($node);
-    if (isset($node->nid)) {
-      return array($node->nid);
-    }
-    else {
-      return FALSE;
-    }
+    $row->field_tags = osha_migration_normalize_migrated_term_reference($row->field_tags, 'tax_tags');
+    $row->field_publication_type = osha_migration_normalize_migrated_term_reference($row->field_publication_type, 'tax_publication_types');
   }
 }
 
@@ -117,14 +112,14 @@ class NCWPublicationsSource extends AbstractNCWNodeSource {
       'field_publication_related_res_language',
       'field_publication_type',
       'field_tags',
-      //@todo: 'field_aditional_resources',
       'field_related_publications',
+      //@todo: 'field_aditional_resources',
     );
     return array_combine($fields, $fields);
   }
 
   /**
-   * Include the related publications into the migrated content.
+   * Include the related publications recursively into the migrated content.
    */
   public function readData() {
     $this->rows = array();

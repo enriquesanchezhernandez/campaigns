@@ -1,5 +1,7 @@
 <?php
 
+define('MIGRATE_STUB_MARKER', '#stub#');
+
 /**
  * Implements hook_migrate_api().
  *
@@ -127,6 +129,9 @@ abstract class AbstractNCWNodeMigration extends Migration {
 
   /**
    * Configure field mappings, reads bundle field information
+   *
+   * @param array $ignore
+   *   Ignore these fields during mapping (or handle manually in derived class).
    */
   protected function addFieldMappings() {
     // Node base fields
@@ -147,7 +152,7 @@ abstract class AbstractNCWNodeMigration extends Migration {
     $fields = field_info_instances('node', $this->bundle);
     $exposed = $this->source->fields();
     foreach($fields as $field_name => $field_info) {
-      if (array_key_exists($field_name, $exposed)) {
+      if (array_key_exists($field_name, $exposed) && !in_array($field_name, $this->getManuallyMigratedFields())) {
         $this->addFieldMapping($field_name, $field_name);
 
         // Extra mappings depending on field type
@@ -185,6 +190,9 @@ abstract class AbstractNCWNodeMigration extends Migration {
     );
   }
 
+  protected function getManuallyMigratedFields() {
+    return array();
+  }
 
   protected function ignoreMetatagMigration() {
     $this->addUnmigratedDestinations(array(
@@ -232,6 +240,9 @@ abstract class AbstractNCWNodeMigration extends Migration {
     // Normalize JSON structure, to match migrate expectations for field data
     $fields = field_info_instances('node', $this->bundle);
     foreach($fields as $field_name => $field_info) {
+      if (in_array($field_name, $this->getManuallyMigratedFields())) {
+        continue;
+      }
       $fi = field_info_field($field_name);
       if ($fi['type'] == 'entityreference') {
         // Entity references will be manually handled by each migration
@@ -295,6 +306,24 @@ abstract class AbstractNCWNodeMigration extends Migration {
       return FALSE;
     }
     return TRUE;
+  }
+
+  protected function createStub($migration, array $source_id) {
+    $node = new stdClass();
+    node_submit($node);
+    // Do not delete/change this marker unless you know what you are doing!
+    $node->title = format_string(MIGRATE_STUB_MARKER . ' stub for original nid: !id', array('!id' => $source_id[0]));
+    $node->language = 'en';
+    $node->type = $this->destination->getBundle();
+    $node->uid = 0;
+    $node->status = 1;
+    node_save($node);
+    if (isset($node->nid)) {
+      return array($node->nid);
+    }
+    else {
+      return FALSE;
+    }
   }
 }
 
@@ -470,7 +499,10 @@ abstract class AbstractNCWTaxonomyTermMigration extends AbstractNCWNodeMigration
   }
 
   /**
-   * Configure field mappings, reads bundle field information
+   * Configure field mappings, reads bundle field information.
+   *
+   * @param array $ignore
+   *   Ignore these fields during mapping (or handle manually in derived class).
    */
   protected function addFieldMappings() {
     // Taxnomy term base fields
@@ -480,7 +512,7 @@ abstract class AbstractNCWTaxonomyTermMigration extends AbstractNCWNodeMigration
     $fields = field_info_instances('taxonomy_term', $this->bundle);
     $exposed = $this->source->fields();
     foreach($fields as $field_name => $field_info) {
-      if (array_key_exists($field_name, $exposed)) {
+      if (array_key_exists($field_name, $exposed) && !in_array($field_name, $this->getManuallyMigratedFields())) {
         $this->addFieldMapping($field_name, $field_name);
         // Extra mappings depending on field type
         $fi = field_info_field($field_name);
@@ -521,6 +553,9 @@ abstract class AbstractNCWTaxonomyTermMigration extends AbstractNCWNodeMigration
     // Normalize JSON structure, to match migrate expectations for field data
     $fields = field_info_instances('taxonomy_term', $this->bundle);
     foreach($fields as $field_name => $field_info) {
+      if (in_array($field_name, $this->getManuallyMigratedFields())) {
+        continue;
+      }
       $fi = field_info_field($field_name);
       $normalizer = 'osha_migration_normalize_field_' . $fi['type'];
       if(function_exists($normalizer)) {
@@ -728,8 +763,8 @@ function osha_migration_normalize_field_datetime($row, $field_name, $field_info)
     }
   }
   $row->{$field_name} = $field['value'];
-  $row->{$field_name . '_value2'} = $field['value2'];
-  $row->{$field_name . '_timezone'} = $field['timezone'];
+  $row->{$field_name . '_value2'} = !empty($field['value2']) ? $field['value2'] : NULL;
+  $row->{$field_name . '_timezone'} = !empty($field['timezone']) ? $field['timezone'] : NULL;
 }
 
 function osha_migration_normalize_field_taxonomy_term_reference($row, $field_name, $field_info) {
@@ -791,4 +826,29 @@ function osha_migration_normalize_field_file($row, $field_name) {
 
 function osha_migration_normalize_field_image($row, $field_name) {
   osha_migration_normalize_field_file($row, $field_name);
+}
+
+/**
+ * Not used automatically by normalizing
+ */
+function osha_migration_normalize_migrated_term_reference(&$original, $source_migration_name) {
+  $ret = array();
+  if ($migration = Migration::getInstance($source_migration_name)) {
+    foreach ($original as $term) {
+      $tid = NULL;
+      if(is_numeric($term)) {
+        $tid = $term;
+        if ($tid && $dest = $migration->getMap()->getRowBySource(array($tid))) {
+          $ret = $dest['destid1'];
+        }
+      }
+      else if (!empty($term['tid'])) {
+        $tid = $term['tid'];
+        if ($tid && $dest = $migration->getMap()->getRowBySource(array($tid))) {
+          $ret[] = $dest['destid1'];
+        }
+      }
+    }
+  }
+  return $ret;
 }
