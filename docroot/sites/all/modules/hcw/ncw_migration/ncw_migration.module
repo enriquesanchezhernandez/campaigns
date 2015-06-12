@@ -6,65 +6,50 @@
  */
 function ncw_migration_cronapi() {
   return array(
-    'ncw_migration_cron_migrate_events' => array(
-      'description' => 'Synchronize events with NCW',
-      'callback' => 'ncw_migration_cron_migrate',
+    'ncw_migration_run' => array(
+      'description' => 'Synchronize with corporate website',
       'arguments' => array('events'),
       'rule' => '0 22 * * *', // Every day at 22:00
-    ),
-    'ncw_migration_cron_migrate_publications' => array(
-      'description' => 'Synchronize publications with NCW',
-      'callback' => 'ncw_migration_cron_migrate',
-      'arguments' => array('publication'),
-      'rule' => '0 23 * * *', // Every day at 23:00
-    ),
-    'ncw_migration_cron_migrate_news' => array(
-      'description' => 'Synchronize news with NCW',
-      'callback' => 'ncw_migration_cron_migrate',
-      'arguments' => array('news'),
-      'rule' => '0 0 * * *', // Every day at 24:00
-    ),
-    'ncw_migration_cron_migrate_note_to_editor' => array(
-      'description' => 'Synchronize notes to editor with NCW',
-      'callback' => 'ncw_migration_cron_migrate',
-      'arguments' => array('note_to_editor'),
-      'rule' => '0 1 * * *', // Every day at 01:00
-    ),
-    'ncw_migration_cron_migrate_press_release' => array(
-      'description' => 'Synchronize press releases with NCW',
-      'callback' => 'ncw_migration_cron_migrate',
-      'arguments' => array('press_release'),
-      'rule' => '0 2 * * *', // Every day at 02:00
-    ),
-    'ncw_migration_cron_migrate_highlight' => array(
-      'description' => 'Synchronize highlights with NCW',
-      'callback' => 'ncw_migration_cron_migrate',
-      'arguments' => array('highlight'),
-      'rule' => '0 3 * * *', // Every day at 03:00
-    ),
-    'ncw_migration_cron_migrate_infographic' => array(
-      'description' => 'Synchronize infographics with NCW',
-      'callback' => 'ncw_migration_cron_migrate',
-      'arguments' => array('infographic'),
-      'rule' => '0 4 * * *', // Every day at 04:00
-    ),
-    'ncw_migration_cron_migrate_press_contact' => array(
-      'description' => 'Synchronize press contacts with NCW',
-      'callback' => 'ncw_migration_cron_migrate',
-      'arguments' => array('press_contact'),
-      'rule' => '0 5 * * *', // Every day at 05:00
-    ),
+    )
   );
+}
+
+
+function ncw_migration_run() {
+  /* BE AWARE OF THE MIGRATIONS ORDERING! */
+  $migrations = array(
+    'tax_country_status',
+    'tax_country',
+    'tax_fop_link_sections',
+    'tax_newsletter_sections',
+    'tax_publication_types',
+    'tax_tags',
+
+    'events',
+    'infographic',
+    'news',
+    'note_to_editor',
+    'press_contact',
+    'press_release',
+    'publications',
+  );
+  foreach($migrations as $migration) {
+    ncw_migration_run_single($migration);
+  }
 }
 
 /**
  * @param string $machine_name
  *   Migration machine name
  *
+ * @return boolean
+ *   Returns TRUE if migration was successful
+ *
  * @throws \Exception
  */
-function ncw_migration_cron_migrate($machine_name) {
+function ncw_migration_run_single($machine_name) {
   migrate_static_registration(array($machine_name));
+  /** @var Migration $migration */
   $migration = Migration::getInstance($machine_name);
   $migration->prepareUpdate();
   $result = $migration->processImport();
@@ -74,5 +59,7 @@ function ncw_migration_cron_migrate($machine_name) {
       '[CRON]Last CW import did not finished successfully (machine:!machine_name)',
       array('!machine_name' => $machine_name)
     );
+    return FALSE;
   }
+  return TRUE;
 }
