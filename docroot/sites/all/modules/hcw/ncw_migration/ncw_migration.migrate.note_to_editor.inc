@@ -15,10 +15,23 @@ class NCWNoteMigration extends AbstractNCWNodeMigration {
 
   function addFieldMappings() {
     parent::addFieldMappings();
-    $this->addUnmigratedDestinations(array(
 
+    $this->addFieldMapping('field_tags:source_type')->defaultValue('tid');
+    $this->addFieldMapping('field_tags:create_term')->defaultValue(FALSE);
+    $this->addFieldMapping('field_tags', 'field_tags');
+
+    $this->addUnmigratedDestinations(array(
     ));
     $this->ignoreMetatagMigration();
+  }
+
+  protected function getManuallyMigratedFields() {
+    return array('field_tags');
+  }
+
+  function prepareRow($row) {
+    parent::prepareRow($row);
+    $row->field_tags = osha_migration_normalize_migrated_term_reference($row->field_tags, 'tax_tags');
   }
 }
 
