@@ -1,9 +1,14 @@
 <?php
 
+/**
+ * Class NCWNewsMigration migrates news
+ *
+ * Set hwc_migration_news_url variable for explicit source URL.
+ */
 class NCWNewsMigration extends AbstractNCWNodeMigration {
 
   public function __construct($arguments) {
-    $endpoint_url = osha_migration_url_data_source('/export/list/news/women_and_osh');
+    $endpoint_url = $this->getMigrationURL('/export/list/news/women_and_osh');
     parent::__construct($arguments, 'NCWNewsSource', 'news', $endpoint_url);
     $this->description = 'Import news from NCW';
   }

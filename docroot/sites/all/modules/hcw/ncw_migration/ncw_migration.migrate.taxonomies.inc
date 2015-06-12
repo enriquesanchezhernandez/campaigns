@@ -1,10 +1,9 @@
 <?php
 
-/* Actual migrations */
 class NCWTaxonomyCountryMigration extends AbstractNCWTaxonomyTermMigration {
 
   public function __construct($arguments) {
-    $endpoint_url = osha_migration_url_data_source('/export/taxonomy/country');
+    $endpoint_url = $this->getMigrationURL('/export/taxonomy/country');
     parent::__construct($arguments, 'CountryNCWTaxonomyTermSource', 'country', $endpoint_url);
     $this->description = 'Import taxonomy "country" from NCW';
   }
@@ -13,7 +12,7 @@ class NCWTaxonomyCountryMigration extends AbstractNCWTaxonomyTermMigration {
 class NCWTaxonomyCountryStatusMigration extends AbstractNCWTaxonomyTermMigration {
 
   public function __construct($arguments) {
-    $endpoint_url = osha_migration_url_data_source('/export/taxonomy/country_status');
+    $endpoint_url = $this->getMigrationURL('/export/taxonomy/country_status');
     parent::__construct($arguments, 'SimpleNCWTaxonomyTermSource', 'country_status', $endpoint_url);
     $this->description = 'Import taxonomy "country_status" from NCW';
   }
@@ -22,7 +21,7 @@ class NCWTaxonomyCountryStatusMigration extends AbstractNCWTaxonomyTermMigration
 class NCWTaxonomyFOPLinkSectionsMigration extends AbstractNCWTaxonomyTermMigration {
 
   public function __construct($arguments) {
-    $endpoint_url = osha_migration_url_data_source('/export/taxonomy/fop_link_sections');
+    $endpoint_url = $this->getMigrationURL('/export/taxonomy/fop_link_sections');
     parent::__construct($arguments, 'SimpleNCWTaxonomyTermSource', 'fop_link_sections', $endpoint_url);
     $this->description = 'Import taxonomy "fop_link_sections" from NCW';
   }
@@ -31,7 +30,7 @@ class NCWTaxonomyFOPLinkSectionsMigration extends AbstractNCWTaxonomyTermMigrati
 class NCWTaxonomyNewsletterSectionsMigration extends AbstractNCWTaxonomyTermMigration {
 
   public function __construct($arguments) {
-    $endpoint_url = osha_migration_url_data_source('/export/taxonomy/newsletter_sections');
+    $endpoint_url = $this->getMigrationURL('/export/taxonomy/newsletter_sections');
     parent::__construct($arguments, 'SimpleNCWTaxonomyTermSource', 'newsletter_sections', $endpoint_url);
     $this->description = 'Import taxonomy "newsletter_sections" from NCW';
   }
@@ -40,7 +39,7 @@ class NCWTaxonomyNewsletterSectionsMigration extends AbstractNCWTaxonomyTermMigr
 class NCWTaxonomyPublicationTypeMigration extends AbstractNCWTaxonomyTermMigration {
 
   public function __construct($arguments) {
-    $endpoint_url = osha_migration_url_data_source('/export/taxonomy/publication_types');
+    $endpoint_url = $this->getMigrationURL('/export/taxonomy/publication_types');
     parent::__construct($arguments, 'PublicationTypeNCWTaxonomyTermSource', 'publication_types', $endpoint_url);
     $this->description = 'Import taxonomy "publication_types" from NCW';
   }
@@ -49,7 +48,7 @@ class NCWTaxonomyPublicationTypeMigration extends AbstractNCWTaxonomyTermMigrati
 class NCWTagsMigration extends AbstractNCWTaxonomyTermMigration {
 
   public function __construct($arguments) {
-    $endpoint_url = osha_migration_url_data_source('/export/taxonomy/tags');
+    $endpoint_url = $this->getMigrationURL('/export/taxonomy/tags');
     parent::__construct($arguments, 'TagsNCWTaxonomyTermSource', 'tags', $endpoint_url);
     $this->description = 'Import taxonomy "tags" from NCW';
   }

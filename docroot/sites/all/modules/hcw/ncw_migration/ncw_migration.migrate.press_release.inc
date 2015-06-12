@@ -1,9 +1,14 @@
 <?php
 
+/**
+ * Class NCWPressMigration migrates press releases
+ *
+ * Set hwc_migration_press_releases_url variable for explicit source URL.
+ */
 class NCWPressMigration extends AbstractNCWNodeMigration {
 
   public function __construct($arguments) {
-    $endpoint_url = osha_migration_url_data_source('/export/list/press_release/campaign_2014_2015');
+    $endpoint_url = $this->getMigrationURL('/export/list/press_release/campaign_2014_2015');
     parent::__construct($arguments, 'NCWPressSource', 'press_release', $endpoint_url);
     $this->description = 'Import press releases from NCW';
   }

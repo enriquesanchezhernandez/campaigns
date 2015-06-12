@@ -1,9 +1,14 @@
 <?php
 
+/**
+ * Class NCWNoteMigration migrates note_to_editor
+ *
+ * Set hwc_migration_notes_to_editor_url variable for explicit source URL.
+ */
 class NCWNoteMigration extends AbstractNCWNodeMigration {
 
   public function __construct($arguments) {
-    $endpoint_url = osha_migration_url_data_source('/export/notetoeditor');
+    $endpoint_url = $this->getMigrationURL('/export/notetoeditor');
     parent::__construct($arguments, 'NCWNoteSource', 'note_to_editor', $endpoint_url);
     $this->description = 'Import notes to editor from NCW';
   }

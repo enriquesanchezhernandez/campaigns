@@ -1,9 +1,14 @@
 <?php
 
+/**
+ * Class NCWHighlightMigration migrates highlights into news content type
+ *
+ * Set hwc_migration_highlights_url variable for explicit source URL.
+ */
 class NCWHighlightMigration extends AbstractNCWNodeMigration {
 
   public function __construct($arguments) {
-    $endpoint_url = osha_migration_url_data_source('/export/list/highlight/women_and_osh');
+    $endpoint_url = $this->getMigrationURL('/export/list/highlight/women_and_osh');
     parent::__construct($arguments, 'NCWHighlightSource', 'news', $endpoint_url);
     $this->description = 'Import highlights (into news) from NCW';
   }

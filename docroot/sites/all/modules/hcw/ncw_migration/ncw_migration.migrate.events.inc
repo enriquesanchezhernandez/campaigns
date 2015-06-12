@@ -1,9 +1,14 @@
 <?php
 
+/**
+ * Class NCWEventsMigration migrates events
+ *
+ * Set hwc_migration_events_url variable for explicit source URL.
+ */
 class NCWEventsMigration extends AbstractNCWNodeMigration {
 
   public function __construct($arguments) {
-    $endpoint_url = osha_migration_url_data_source('/export/list/events/accident_prevention');
+    $endpoint_url = $this->getMigrationURL('/export/list/events/accident_prevention');
     parent::__construct($arguments, 'NCWEventsSource', 'events', $endpoint_url);
     $this->description = 'Import events from NCW';
   }

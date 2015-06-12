@@ -29,27 +29,22 @@ function ncw_migration_migrate_api() {
         'dependencies' => array(),
         'class_name' => 'NCWNewsMigration',
       ),
-      'note_to_editor' => array(
+      'notes_to_editor' => array(
         'group_name' => 'ncw',
         'dependencies' => array(),
         'class_name' => 'NCWNoteMigration',
       ),
-      'press_release' => array(
+      'press_releases' => array(
         'group_name' => 'ncw',
         'dependencies' => array(),
         'class_name' => 'NCWPressMigration',
       ),
-      'highlight' => array(
+      'highlights' => array(
         'group_name' => 'ncw',
         'dependencies' => array(),
         'class_name' => 'NCWHighlightMigration',
       ),
-      'infographic' => array(
-        'group_name' => 'ncw',
-        'dependencies' => array(),
-        'class_name' => 'NCWInfographicMigration',
-      ),
-      'press_contact' => array(
+      'press_contacts' => array(
         'group_name' => 'ncw',
         'dependencies' => array(),
         'class_name' => 'NCWPressContactMigration',
@@ -97,6 +92,7 @@ abstract class AbstractNCWNodeMigration extends Migration {
 
   protected $endpoint_url = NULL;
   protected $bundle = NULL;
+  protected $missingUrl = TRUE;
 
   public function __construct($arguments, $source_klass, $bundle, $endpoint_url) {
     parent::__construct($arguments);
@@ -105,6 +101,9 @@ abstract class AbstractNCWNodeMigration extends Migration {
       $this->dependencies = $arguments['dependencies'];
     }
     $this->endpoint_url = $endpoint_url;
+    if ($this->validateEndpointURL()) {
+      $this->missingUrl = FALSE;
+    }
     $this->map = new MigrateSQLMap($this->machineName,
       array(
         'nid' => array(
@@ -278,6 +277,25 @@ abstract class AbstractNCWNodeMigration extends Migration {
       $handler->saveTranslations();
     }
   }
+
+  public function getMigrationURL($suffix = '') {
+    $ret = '';
+    $variable = 'hwc_migration_' . $this->getMachineName() . '_url';
+    $value = variable_get($variable);
+    if (empty($value)) {
+      return variable_get('hwc_migration_root_url', 'http://osha.localhost') . $suffix;
+    }
+    return $ret;
+  }
+
+  public function validateEndpointURL() {
+    if(empty($this->endpoint_url)) {
+      $variable = 'hwc_migration_' . $this->getMachineName() . '_url';
+      drupal_set_message($this->getMachineName() . " migration has incorrect URL, set '$variable' or 'hwc_migration_root_url", 'error');
+      return FALSE;
+    }
+    return TRUE;
+  }
 }
 
 
@@ -349,7 +367,7 @@ abstract class AbstractNCWNodeSource extends MigrateSource {
       foreach ($data->items as $ob) {
         $ob = $ob->item;
         $id = $this->itemIdentifier($ob);
-        $node_url = $this->itemUrl($id);
+        $node_url = $this->itemURL($id);
         if ($rowd = file_get_contents($node_url)) {
           if ($row_ob = json_decode($rowd, TRUE)) {
             $row = new stdClass();
@@ -379,8 +397,9 @@ abstract class AbstractNCWNodeSource extends MigrateSource {
     return $result;
   }
 
-  public function itemUrl($id) {
-    return osha_migration_url_data_source('/export/node/' . $id);
+  public function itemURL($id) {
+    $value = variable_get('hwc_ncw_root_url', 'http://osha.localhost');
+    return $value . '/export/node/' . $id;
   }
 
   public function itemIdentifier($ob) {
@@ -564,8 +583,9 @@ abstract class AbstractNCWTaxonomyTermSource extends AbstractNCWNodeSource {
     return $ob->tid;
   }
 
-  public function itemUrl($id) {
-    return osha_migration_url_data_source('/export/taxonomy_term/' . $id);
+  public function itemURL($id) {
+    $value = variable_get('hwc_ncw_root_url', 'http://osha.localhost');
+    return $value . '/export/taxonomy_term/' . $id;
   }
 
   public function fields() {
@@ -589,12 +609,8 @@ abstract class AbstractNCWTaxonomyTermSource extends AbstractNCWNodeSource {
 
 ////////////////////////////////// Utilities ///////////////////////////////////
 
-function osha_migration_url_data_source($suffix = '') {
-  return variable_get('hcw_ncw_root_url', 'http://osha.localhost') . $suffix;
-}
-
 function osha_migration_url_files($suffix = '') {
-  return variable_get('hcw_ncw_root_url', 'http://osha.localhost') . '/sites/default/files/' . $suffix;
+  return variable_get('hwc_ncw_root_url', 'http://osha.localhost') . '/sites/default/files/' . $suffix;
 }
 
 function osha_migration_author_uid() {
@@ -630,12 +646,13 @@ function osha_migration_normalize_field_list_boolean($row, $field_name) {
 function osha_migration_normalize_field_text_long($row, $field_name) {
   $field = array();
   $languages = array();
+  $format = array();
   if (!empty($row->{$field_name}) && is_array($row->{$field_name})) {
     foreach ($row->{$field_name} as $language => $values) {
       foreach($values as $v) {
         $field[] = $v['value'];
         $languages[] = $language;
-        $format = $v['format'];
+        $format[] = $v['format'];
       }
     }
   }
@@ -645,20 +662,7 @@ function osha_migration_normalize_field_text_long($row, $field_name) {
 }
 
 function osha_migration_normalize_field_text_with_summary($row, $field_name, $field_info) {
-  $field = array();
-  $languages = array();
-  if (!empty($row->{$field_name}) && is_array($row->{$field_name})) {
-    foreach ($row->{$field_name} as $language => $values) {
-      foreach($values as $v) {
-        $field[$language] = $v['value'];
-        $languages[] = $language;
-        $format = $v['format'];
-      }
-    }
-  }
-  $row->{$field_name} = $field;
-  $row->{$field_name . '_language'} = $languages;
-  $row->{$field_name . '_format'} = $format;
+  osha_migration_normalize_field_text_long($row, $field_name, $field_info);
 }
 
 function osha_migration_normalize_field_link_field($row, $field_name, $field_info) {

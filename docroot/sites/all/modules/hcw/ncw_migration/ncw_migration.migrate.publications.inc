@@ -1,9 +1,14 @@
 <?php
 
+/**
+ * Class NCWPublicationsMigration migrates publications.
+ *
+ * Set hwc_migration_publications_url variable for explicit source URL.
+ */
 class NCWPublicationsMigration extends AbstractNCWNodeMigration {
 
   public function __construct($arguments) {
-    $endpoint_url = osha_migration_url_data_source('/export/list/publication/road_transport');
+    $endpoint_url = $this->getMigrationURL('/export/list/publication/road_transport');
     parent::__construct($arguments, 'NCWPublicationsSource', 'publication', $endpoint_url);
     $this->description = 'Import publications from NCW';
   }

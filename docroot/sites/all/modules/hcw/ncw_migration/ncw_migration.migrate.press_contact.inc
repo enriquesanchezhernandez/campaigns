@@ -1,9 +1,14 @@
 <?php
 
+/**
+ * Class NCWPressContactMigration migrates press contacts
+ *
+ * Set hwc_migration_press_contacts_url variable for explicit source URL.
+ */
 class NCWPressContactMigration extends AbstractNCWNodeMigration {
 
   public function __construct($arguments) {
-    $endpoint_url = osha_migration_url_data_source('/export/presscontact');
+    $endpoint_url = $this->getMigrationURL('/export/presscontact');
     parent::__construct($arguments, 'NCWPressContactSource', 'press_contact', $endpoint_url);
     $this->description = 'Import press contacts from NCW';
   }
