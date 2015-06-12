@@ -440,7 +440,6 @@ $options['init-modules'] = array(
   'osha_resources',
   'osha',
   'osha_news',
-  'osha_highlight',
   'osha_note_to_editor',
   'osha_publication',
   'osha_infographics',

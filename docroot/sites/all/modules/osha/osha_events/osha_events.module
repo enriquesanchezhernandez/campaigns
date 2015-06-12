@@ -190,14 +190,13 @@ function osha_events_views_pre_render(&$view) {
     // Set view title.
     $view->build_info['title'] = $title;
     // Set view breadcrumb.
-    /*drupal_set_breadcrumb(
+    drupal_set_breadcrumb(
       array(
-        l(t('Home'), '<front>'),
-        l(t('Tools & Publications'), 'tools-and-publications'),
-        l(t('Blog'), 'tools-and-publications/blog'),
+        l(t('Media centre'), '<front>'),
+        l(t('Events'), 'events'),
         $title,
       )
-    );*/
+    );
   }
 }
 
@@ -208,7 +207,6 @@ function osha_events_views_pre_render(&$view) {
  *   View's title.
  */
 function osha_events_get_view_title($title) {
-  dpm($title);
   if (preg_match('/([\d]{4}\-[\d]{2})/', $title)) {
     $title = date(
       'F Y',

@@ -68,3 +68,20 @@ function osha_events_update_7004() {
     }
   }
 }
+
+/**
+ * Add publication menu position rules
+ */
+function osha_events_update_7005() {
+  osha_events_add_menu_position_rules();
+}
+
+/**
+ * Add menu position rules for publication content type.
+ */
+function osha_events_add_menu_position_rules() {
+  if (module_exists('osha') && module_load_include('inc', 'osha', 'osha.utils')) {
+    $condition = array('content_type' => array('events' => 'events'));
+    osha_add_menu_position_rule('Events (menu position rule)', '---- Events', $condition);
+  }
+}
