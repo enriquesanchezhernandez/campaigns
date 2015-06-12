@@ -232,6 +232,10 @@ abstract class AbstractNCWNodeMigration extends Migration {
     $fields = field_info_instances('node', $this->bundle);
     foreach($fields as $field_name => $field_info) {
       $fi = field_info_field($field_name);
+      if ($fi['type'] == 'entityreference') {
+        // Entity references will be manually handled by each migration
+        continue;
+      }
       $normalizer = 'osha_migration_normalize_field_' . $fi['type'];
       if(function_exists($normalizer)) {
         $normalizer($row, $field_name, $fi);
