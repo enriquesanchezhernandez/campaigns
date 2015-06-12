@@ -79,7 +79,7 @@ function ncw_migration_migrate_api() {
       'tax_tags' => array(
         'group_name' => 'ncw',
         'dependencies' => array(),
-        'class_name' => 'NCWTagsMigration',
+        'class_name' => 'NCWTaxonomyTagsMigration',
       ),
     ),
   );
@@ -129,9 +129,6 @@ abstract class AbstractNCWNodeMigration extends Migration {
 
   /**
    * Configure field mappings, reads bundle field information
-   *
-   * @param array $ignore
-   *   Ignore these fields during mapping (or handle manually in derived class).
    */
   protected function addFieldMappings() {
     // Node base fields

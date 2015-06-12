@@ -45,7 +45,7 @@ class NCWTaxonomyPublicationTypeMigration extends AbstractNCWTaxonomyTermMigrati
   }
 }
 
-class NCWTagsMigration extends AbstractNCWTaxonomyTermMigration {
+class NCWTaxonomyTagsMigration extends AbstractNCWTaxonomyTermMigration {
 
   public function __construct($arguments) {
     $endpoint_url = $this->getMigrationURL('/export/taxonomy/tags');
