@@ -20,12 +20,12 @@ function drush_ncw_migration_ncw_import_all() {
     'tax_tags',
 
     'events',
-    'infographic',
-    'news',
-    'note_to_editor',
-    'press_contact',
-    'press_release',
     'publications',
+    'news',
+    'notes_to_editor',
+    'press_releases',
+    'highlights',
+    'press_contacts',
   );
   foreach($migrations as $migration) {
     ncw_migration_run_single($migration);
