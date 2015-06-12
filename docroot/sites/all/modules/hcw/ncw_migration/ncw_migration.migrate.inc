@@ -368,7 +368,7 @@ abstract class AbstractNCWNodeSource extends MigrateSource {
         $ob = $ob->item;
         $id = $this->itemIdentifier($ob);
         $node_url = $this->itemURL($id);
-        if ($rowd = file_get_contents($node_url)) {
+        if ($rowd = $this->fileGetContents($node_url)) {
           if ($row_ob = json_decode($rowd, TRUE)) {
             $row = new stdClass();
             foreach($row_ob as $k => $v) {
@@ -749,6 +749,27 @@ function osha_migration_normalize_field_taxonomy_term_reference($row, $field_nam
   }
   else {
     watchdog('ncw_migration', '[normalize_field_taxonomy_term_reference] Failed to extract value from !field', array('!field' => $field_name), WATCHDOG_WARNING);
+  }
+  $row->{$field_name} = $field;
+}
+
+function osha_migration_normalize_field_entityreference($row, $field_name, $field_info) {
+  $field = array();
+  //@todo cardinality -1 (multiple) not implemented
+  if (!empty($row->{$field_name}) && is_array($row->{$field_name})) {
+    foreach ($row->{$field_name} as $value) {
+      foreach($value as $arr) {
+        if (isset($arr['target_id'])) {
+          $field[] = $arr['target_id'];
+        }
+      }
+    }
+  }
+  else if (empty($row->{$field_name})) {
+    // Do nothing ...
+  }
+  else {
+    watchdog('ncw_migration', '[osha_migration_normalize_field_entityreference] Failed to extract value from !field', array('!field' => $field_name), WATCHDOG_WARNING);
   }
   $row->{$field_name} = $field;
 }

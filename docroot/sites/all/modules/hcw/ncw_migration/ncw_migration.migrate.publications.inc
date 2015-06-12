@@ -50,6 +50,36 @@ class NCWPublicationsMigration extends AbstractNCWNodeMigration {
     ));
     $this->ignoreMetatagMigration();
   }
+
+  function prepareRow($row) {
+    parent::prepareRow($row);
+    // field_related_publications
+    $fi = field_info_field('field_related_publications');
+    osha_migration_normalize_field_entityreference($row, 'field_related_publications', $fi);
+    $related_publications = $row->field_related_publications;
+    $row->field_related_publications = array();
+    foreach ($related_publications as $original_nid) {
+      $row->field_related_publications[] = $this->handleSourceMigration('publications', $original_nid);
+    }
+  }
+
+  protected function createStub($migration, array $source_id) {
+    $node = new stdClass();
+    node_submit($node);
+    // Do not delete/change this marker unless you know what you are doing!
+    $node->title = format_string(MIGRATE_STUB_MARKER . ' stub for publication !id', array('!id' => $source_id[0]));
+    $node->language = 'en';
+    $node->type = $this->destination->getBundle();
+    $node->uid = 0;
+    $node->status = 1;
+    node_save($node);
+    if (isset($node->nid)) {
+      return array($node->nid);
+    }
+    else {
+      return FALSE;
+    }
+  }
 }
 
 
@@ -88,8 +118,61 @@ class NCWPublicationsSource extends AbstractNCWNodeSource {
       'field_publication_type',
       'field_tags',
       //@todo: 'field_aditional_resources',
-      //@todo: 'field_related_publications',
+      'field_related_publications',
     );
     return array_combine($fields, $fields);
+  }
+
+  /**
+   * Include the related publications into the migrated content.
+   */
+  public function readData() {
+    $this->rows = array();
+    $content = $this->fileGetContents($this->endpoint_url);
+    if ($data = json_decode($content)) {
+      foreach ($data->items as $ob) {
+        $ob = $ob->item;
+        $id = $this->itemIdentifier($ob);
+        $node_url = $this->itemURL($id);
+        if ($rowd = $this->fileGetContents($node_url)) {
+          if ($row_ob = json_decode($rowd, TRUE)) {
+            $row = new stdClass();
+            foreach ($row_ob as $k => $v) { $row->$k = $v; }
+            $this->rows[$id] = $row;
+            $this->children_recursive_publications($row);
+          }
+        }
+        else {
+          if ($this->activeMigration) {
+            $this->activeMigration->saveMessage(format_string('Failed to read data from !url', array('!url' => $node_url)));
+          }
+        }
+      }
+    }
+    reset($this->rows);
+  }
+
+
+  protected function children_recursive_publications($row) {
+    // Check the field_related_publications for children and add to source
+    $tmp = new stdClass();
+    $tmp->field_related_publications = $row->field_related_publications;
+    $firp = field_info_field('field_related_publications');
+    osha_migration_normalize_field_entityreference($tmp, 'field_related_publications', $firp);
+    foreach($tmp->field_related_publications as $cid) {
+      // Skip records already added
+      if (array_key_exists($cid, $this->rows)) {
+        continue;
+      }
+      $child_url = $this->itemURL($cid);
+      if ($child_rowd = $this->fileGetContents($child_url)) {
+        if ($child_row_ob = json_decode($child_rowd, TRUE)) {
+          $child_row = new stdClass();
+          foreach ($child_row_ob as $k => $v) { $child_row->$k = $v; }
+          $this->rows[$cid] = $child_row;
+          $this->children_recursive_publications($child_row);
+        }
+      }
+    }
   }
 }
