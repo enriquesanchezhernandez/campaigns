@@ -23,7 +23,6 @@ class NCWNewsMigration extends AbstractNCWNodeMigration {
     $this->addUnmigratedDestinations(array(
       'field_activity:source_type',
       'field_activity:ignore_case',
-      'field_tags:source_type',
       'field_tags:ignore_case',
       'field_expiration_date:rrule',
       'field_image:file_class',

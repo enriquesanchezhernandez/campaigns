@@ -24,7 +24,6 @@ class NCWEventsMigration extends AbstractNCWNodeMigration {
       'field_activity:source_type',
       'field_activity:ignore_case',
       'field_city:language',
-      'field_tags:source_type',
       'field_agency_contact_reply:language',
       'field_agency_initial_contact:language',
       'field_agency_rep_confirmed:language',
