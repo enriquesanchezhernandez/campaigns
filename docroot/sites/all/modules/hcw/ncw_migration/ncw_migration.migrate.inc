@@ -411,7 +411,7 @@ abstract class AbstractNCWNodeSource extends MigrateSource {
    * @return bool
    *   TRUE if the key exists, FALSE otherwise
    */
-  public function inSource($id) {
+  public function containsKey($id) {
     return array_key_exists($id, $this->rows);
   }
 
