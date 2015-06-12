@@ -15,6 +15,10 @@ class NCWPressContactMigration extends AbstractNCWNodeMigration {
 
   function addFieldMappings() {
     parent::addFieldMappings();
+
+    $this->addFieldMapping('field_contact_type')->defaultValue('Press Contact');
+    $this->addFieldMapping('field_contact_type:create_term')->defaultValue(TRUE);
+
     $this->addUnmigratedDestinations(array(
       'field_city:language',
       'field_contact_type:source_type',
@@ -35,6 +39,10 @@ class NCWPressContactMigration extends AbstractNCWNodeMigration {
     ));
     $this->ignoreMetatagMigration();
   }
+
+  function getManuallyMigratedFieldS() {
+    return array('field_contact_type');
+  }
 }
 
 
@@ -47,7 +55,7 @@ class NCWPressContactSource extends AbstractNCWNodeSource {
     $fields = array(
       'title_field',
       'title_field_language',
-      //@todo: 'field_contact_type',
+      'field_contact_type',
       'field_press_contact_job_title',
       'field_press_contact_job_title_language',
       'field_personal_title',
@@ -66,6 +74,8 @@ class NCWPressContactSource extends AbstractNCWNodeSource {
       'field_website',
       'field_website_title',
       'field_website_attributes',
+      //@todo: 'field_press_contact_declaration',
+      //@todo: 'field_press_contact_cv',
     );
     return array_combine($fields, $fields);
   }
