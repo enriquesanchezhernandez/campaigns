@@ -13,7 +13,7 @@ function hcw_menu_default_menu_links() {
   // Exported menu link: menu-footer-menu_contact:<front>
   $menu_links['menu-footer-menu_contact:<front>'] = array(
     'menu_name' => 'menu-footer-menu',
-    'link_path' => '<front>',
+    'link_path' => 'contact',
     'router_path' => '',
     'link_title' => 'Contact',
     'options' => array(
@@ -65,9 +65,9 @@ function hcw_menu_default_menu_links() {
   // Exported menu link: menu-footer-menu_privacy-policy:<front>
   $menu_links['menu-footer-menu_privacy-policy:<front>'] = array(
     'menu_name' => 'menu-footer-menu',
-    'link_path' => '<front>',
+    'link_path' => 'privacy-notice',
     'router_path' => '',
-    'link_title' => 'Privacy policy',
+    'link_title' => 'Privacy notice',
     'options' => array(
       'alter' => TRUE,
       'attributes' => array(),
@@ -91,7 +91,7 @@ function hcw_menu_default_menu_links() {
   // Exported menu link: menu-footer-menu_site-map:<front>
   $menu_links['menu-footer-menu_site-map:<front>'] = array(
     'menu_name' => 'menu-footer-menu',
-    'link_path' => '<front>',
+    'link_path' => 'sitemap',
     'router_path' => '',
     'link_title' => 'Site map',
     'options' => array(
@@ -118,7 +118,7 @@ function hcw_menu_default_menu_links() {
   // Included for use with string extractors like potx.
   t('Contact');
   t('Log in');
-  t('Privacy policy');
+  t('Privacy notice');
   t('Site map');
 
 
