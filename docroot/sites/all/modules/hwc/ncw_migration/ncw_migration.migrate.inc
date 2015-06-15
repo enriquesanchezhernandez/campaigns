@@ -641,8 +641,8 @@ abstract class AbstractNCWTaxonomyTermSource extends AbstractNCWNodeSource {
 function ncw_migration_datasource_url() {
   $ret = NULL;
   static $errorDisplayed = FALSE;
-  $variable = variable_get('hwc_migration_root_url');
-  if (empty($variable)) {
+  $ret = variable_get('hwc_migration_root_url');
+  if (empty($ret)) {
     $ret = 'http://osha.localhost';
     if (!$errorDisplayed) {
       $errorDisplayed = TRUE;
