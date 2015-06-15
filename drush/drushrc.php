@@ -452,6 +452,7 @@ $options['init-modules'] = array(
   'osha_alert_service',
   'osha_contact',
   'osha_authentication',
+  'osha_search',
 
   'osha_linkchecker',
   'osha_reminders',
