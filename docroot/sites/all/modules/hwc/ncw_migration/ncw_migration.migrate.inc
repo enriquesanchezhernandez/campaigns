@@ -96,13 +96,14 @@ abstract class AbstractNCWNodeMigration extends Migration {
   protected $bundle = NULL;
   protected $missingUrl = TRUE;
 
-  public function __construct($arguments, $source_klass, $bundle, $endpoint_url) {
+  public function __construct($arguments, $source_klass, $bundle, $url_suffix) {
     parent::__construct($arguments);
+
     $this->bundle = $bundle;
     if (!empty($arguments['dependencies'])) {
       $this->dependencies = $arguments['dependencies'];
     }
-    $this->endpoint_url = $endpoint_url;
+    $this->endpoint_url = $this->getMigrationURL($url_suffix);
     if ($this->validateEndpointURL()) {
       $this->missingUrl = FALSE;
     }
@@ -469,13 +470,12 @@ abstract class AbstractNCWNodeSource extends MigrateSource {
  */
 abstract class AbstractNCWTaxonomyTermMigration extends AbstractNCWNodeMigration {
 
-  public function __construct($arguments, $source_klass, $bundle, $endpoint_url) {
-    parent::__construct($arguments, $source_klass, $bundle, $endpoint_url);
+  public function __construct($arguments, $source_klass, $bundle, $url_suffix) {
+    parent::__construct($arguments, $source_klass, $bundle, $url_suffix);
     $this->bundle = $bundle;
     if (!empty($arguments['dependencies'])) {
       $this->dependencies = $arguments['dependencies'];
     }
-    $this->endpoint_url = $endpoint_url;
     $this->map = new MigrateSQLMap($this->machineName,
       array(
         'tid' => array(

@@ -8,8 +8,7 @@
 class NCWPublicationsMigration extends AbstractNCWNodeMigration {
 
   public function __construct($arguments) {
-    $endpoint_url = $this->getMigrationURL('/export/list/publication/road_transport');
-    parent::__construct($arguments, 'NCWPublicationsSource', 'publication', $endpoint_url);
+    parent::__construct($arguments, 'NCWPublicationsSource', 'publication', '/export/list/publication/road_transport');
     $this->description = 'Import publications from NCW';
   }
 

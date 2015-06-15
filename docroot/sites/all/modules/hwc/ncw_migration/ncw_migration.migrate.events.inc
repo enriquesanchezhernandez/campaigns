@@ -8,8 +8,7 @@
 class NCWEventsMigration extends AbstractNCWNodeMigration {
 
   public function __construct($arguments) {
-    $endpoint_url = $this->getMigrationURL('/export/list/events/accident_prevention');
-    parent::__construct($arguments, 'NCWEventsSource', 'events', $endpoint_url);
+    parent::__construct($arguments, 'NCWEventsSource', 'events', '/export/list/events/accident_prevention');
     $this->description = 'Import events from NCW';
   }
 

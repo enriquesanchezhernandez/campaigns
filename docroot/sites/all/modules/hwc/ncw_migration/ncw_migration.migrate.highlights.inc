@@ -8,8 +8,7 @@
 class NCWHighlightMigration extends AbstractNCWNodeMigration {
 
   public function __construct($arguments) {
-    $endpoint_url = $this->getMigrationURL('/export/list/highlight/women_and_osh');
-    parent::__construct($arguments, 'NCWHighlightSource', 'news', $endpoint_url);
+    parent::__construct($arguments, 'NCWHighlightSource', 'news', '/export/list/highlight/women_and_osh');
     $this->description = 'Import highlights (into news) from NCW';
   }
 

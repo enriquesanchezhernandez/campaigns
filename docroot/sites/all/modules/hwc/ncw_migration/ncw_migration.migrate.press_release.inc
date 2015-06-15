@@ -8,8 +8,7 @@
 class NCWPressMigration extends AbstractNCWNodeMigration {
 
   public function __construct($arguments) {
-    $endpoint_url = $this->getMigrationURL('/export/list/press_release/campaign_2014_2015');
-    parent::__construct($arguments, 'NCWPressSource', 'press_release', $endpoint_url);
+    parent::__construct($arguments, 'NCWPressSource', 'press_release', '/export/list/press_release/campaign_2014_2015');
     $this->description = 'Import press releases from NCW';
   }
 

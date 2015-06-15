@@ -8,8 +8,7 @@
 class NCWNoteMigration extends AbstractNCWNodeMigration {
 
   public function __construct($arguments) {
-    $endpoint_url = $this->getMigrationURL('/export/notetoeditor');
-    parent::__construct($arguments, 'NCWNoteSource', 'note_to_editor', $endpoint_url);
+    parent::__construct($arguments, 'NCWNoteSource', 'note_to_editor', '/export/notetoeditor');
     $this->description = 'Import notes to editor from NCW';
   }
 
