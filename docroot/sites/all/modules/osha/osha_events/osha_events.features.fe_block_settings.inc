@@ -23,10 +23,10 @@ function osha_events_default_fe_block_settings() {
     'pages' => 'oshevents',
     'roles' => array(),
     'themes' => array(
-      'hcw_frontend' => array(
+      'hwc_frontend' => array(
         'region' => '',
         'status' => 0,
-        'theme' => 'hcw_frontend',
+        'theme' => 'hwc_frontend',
         'weight' => -31,
       ),
       'seven' => array(
@@ -52,10 +52,10 @@ function osha_events_default_fe_block_settings() {
 node/5322',
     'roles' => array(),
     'themes' => array(
-      'hcw_frontend' => array(
+      'hwc_frontend' => array(
         'region' => '',
         'status' => 0,
-        'theme' => 'hcw_frontend',
+        'theme' => 'hwc_frontend',
         'weight' => 16,
       ),
       'seven' => array(
@@ -66,6 +66,35 @@ node/5322',
       ),
     ),
     'title' => '<none>',
+    'visibility' => 1,
+  );
+
+  $export['views-events-block_2'] = array(
+    'cache' => -1,
+    'custom' => 0,
+    'delta' => 'events-block_2',
+    'i18n_block_language' => array(),
+    'i18n_mode' => 0,
+    'module' => 'views',
+    'node_types' => array(),
+    'pages' => 'events
+events/*',
+    'roles' => array(),
+    'themes' => array(
+      'hcw_frontend' => array(
+        'region' => 'content',
+        'status' => 1,
+        'theme' => 'hcw_frontend',
+        'weight' => -45,
+      ),
+      'seven' => array(
+        'region' => '',
+        'status' => 0,
+        'theme' => 'seven',
+        'weight' => 0,
+      ),
+    ),
+    'title' => '',
     'visibility' => 1,
   );
 
@@ -80,10 +109,10 @@ node/5322',
     'pages' => '',
     'roles' => array(),
     'themes' => array(
-      'hcw_frontend' => array(
+      'hwc_frontend' => array(
         'region' => '',
         'status' => 0,
-        'theme' => 'hcw_frontend',
+        'theme' => 'hwc_frontend',
         'weight' => 13,
       ),
       'seven' => array(

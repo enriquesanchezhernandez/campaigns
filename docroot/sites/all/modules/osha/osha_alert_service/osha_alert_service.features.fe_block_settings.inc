@@ -23,10 +23,10 @@ function osha_alert_service_default_fe_block_settings() {
     'pages' => '',
     'roles' => array(),
     'themes' => array(
-      'hcw_frontend' => array(
+      'hwc_frontend' => array(
         'region' => 'sidebar_second',
         'status' => 1,
-        'theme' => 'hcw_frontend',
+        'theme' => 'hwc_frontend',
         'weight' => 1,
       ),
       'seven' => array(
@@ -52,10 +52,10 @@ function osha_alert_service_default_fe_block_settings() {
 node/50',
     'roles' => array(),
     'themes' => array(
-      'hcw_frontend' => array(
+      'hwc_frontend' => array(
         'region' => 'content',
         'status' => 1,
-        'theme' => 'hcw_frontend',
+        'theme' => 'hwc_frontend',
         'weight' => 1,
       ),
       'seven' => array(
@@ -80,10 +80,10 @@ node/50',
     'pages' => 'node/1472',
     'roles' => array(),
     'themes' => array(
-      'hcw_frontend' => array(
+      'hwc_frontend' => array(
         'region' => '',
         'status' => 0,
-        'theme' => 'hcw_frontend',
+        'theme' => 'hwc_frontend',
         'weight' => -41,
       ),
       'seven' => array(
@@ -109,10 +109,10 @@ node/50',
 node/5322',
     'roles' => array(),
     'themes' => array(
-      'hcw_frontend' => array(
+      'hwc_frontend' => array(
         'region' => '',
         'status' => 0,
-        'theme' => 'hcw_frontend',
+        'theme' => 'hwc_frontend',
         'weight' => -33,
       ),
       'seven' => array(
@@ -137,10 +137,10 @@ node/5322',
     'pages' => 'node/21',
     'roles' => array(),
     'themes' => array(
-      'hcw_frontend' => array(
+      'hwc_frontend' => array(
         'region' => '',
         'status' => 0,
-        'theme' => 'hcw_frontend',
+        'theme' => 'hwc_frontend',
         'weight' => -10,
       ),
       'seven' => array(
@@ -165,10 +165,10 @@ node/5322',
     'pages' => 'oshnews',
     'roles' => array(),
     'themes' => array(
-      'hcw_frontend' => array(
+      'hwc_frontend' => array(
         'region' => '',
         'status' => 0,
-        'theme' => 'hcw_frontend',
+        'theme' => 'hwc_frontend',
         'weight' => -1,
       ),
       'seven' => array(
@@ -193,10 +193,10 @@ node/5322',
     'pages' => 'tools-and-publications/publications',
     'roles' => array(),
     'themes' => array(
-      'hcw_frontend' => array(
+      'hwc_frontend' => array(
         'region' => '',
         'status' => 0,
-        'theme' => 'hcw_frontend',
+        'theme' => 'hwc_frontend',
         'weight' => 3,
       ),
       'seven' => array(

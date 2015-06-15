@@ -23,10 +23,10 @@ function osha_default_fe_block_settings() {
     'pages' => '',
     'roles' => array(),
     'themes' => array(
-      'hcw_frontend' => array(
+      'hwc_frontend' => array(
         'region' => 'header',
         'status' => 1,
-        'theme' => 'hcw_frontend',
+        'theme' => 'hwc_frontend',
         'weight' => -44,
       ),
       'seven' => array(
@@ -51,10 +51,10 @@ function osha_default_fe_block_settings() {
     'pages' => '',
     'roles' => array(),
     'themes' => array(
-      'hcw_frontend' => array(
+      'hwc_frontend' => array(
         'region' => '',
         'status' => 0,
-        'theme' => 'hcw_frontend',
+        'theme' => 'hwc_frontend',
         'weight' => -6,
       ),
       'seven' => array(

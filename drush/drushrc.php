@@ -440,7 +440,6 @@ $options['init-modules'] = array(
   'osha_resources',
   'osha',
   'osha_news',
-  'osha_highlight',
   'osha_note_to_editor',
   'osha_publication',
   'osha_infographics',
@@ -452,6 +451,7 @@ $options['init-modules'] = array(
   'osha_alert_service',
   'osha_contact',
   'osha_authentication',
+  'osha_search',
 
   'osha_linkchecker',
   'osha_reminders',
@@ -478,14 +478,14 @@ $options['init-modules'] = array(
   'addtoany',
   'on_the_web',
 
-  'hcw',
-  'hcw_homepage',
+  'hwc',
+  'hwc_homepage',
   'ncw_migration',
 );
 
 
 $options['init-themes'] = array(
-  'hcw_frontend'
+  'hwc_frontend'
 );
 
 $options['disable-modules'] = array(
