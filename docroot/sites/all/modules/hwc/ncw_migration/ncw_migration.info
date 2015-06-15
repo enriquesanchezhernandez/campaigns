@@ -15,3 +15,4 @@ files[] = ncw_migration.migrate.publications.inc
 files[] = ncw_migration.migrate.infographic.inc
 files[] = ncw_migration.migrate.press_contact.inc
 files[] = ncw_migration.migrate.taxonomies.inc
+files[] = ncw_migration.migrate.node.inc
