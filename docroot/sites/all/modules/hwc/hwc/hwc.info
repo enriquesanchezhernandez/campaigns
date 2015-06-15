@@ -1,9 +1,9 @@
-name = hcw
-description = HCW Specific customizations
+name = hwc
+description = HWC Specific customizations
 core = 7.x
-package = NCW
+package = HWC
 version = 7.x-0.3
-project = hcw
+project = hwc
 dependencies[] = fe_block
 dependencies[] = features
 dependencies[] = linkit

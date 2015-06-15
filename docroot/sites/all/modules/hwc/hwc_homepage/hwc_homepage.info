@@ -1,9 +1,9 @@
-name = hcw_homepage
+name = hwc_homepage
 description = Homepage views, blocks, settings
 core = 7.x
-package = NCW
+package = HWC
 version = 7.x-0.1
-project = hcw_homepage
+project = hwc_homepage
 dependencies[] = blockgroup
 dependencies[] = menu_block
 dependencies[] = nodeblock

@@ -1,13 +1,13 @@
 <?php
 /**
  * @file
- * hcw_homepage.strongarm.inc
+ * hwc_homepage.strongarm.inc
  */
 
 /**
  * Implements hook_strongarm().
  */
-function hcw_homepage_strongarm() {
+function hwc_homepage_strongarm() {
   $export = array();
 
   $strongarm = new stdClass();

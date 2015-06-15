@@ -1,13 +1,13 @@
 <?php
 /**
  * @file
- * hcw_homepage.views_default.inc
+ * hwc_homepage.views_default.inc
  */
 
 /**
  * Implements hook_views_default_views().
  */
-function hcw_homepage_views_default_views() {
+function hwc_homepage_views_default_views() {
   $export = array();
 
   $view = new view();

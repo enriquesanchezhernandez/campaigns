@@ -1,13 +1,13 @@
 <?php
 /**
  * @file
- * hcw_homepage.features.fe_block_settings.inc
+ * hwc_homepage.features.fe_block_settings.inc
  */
 
 /**
  * Implements hook_default_fe_block_settings().
  */
-function hcw_homepage_default_fe_block_settings() {
+function hwc_homepage_default_fe_block_settings() {
   $export = array();
 
   $export['version'] = '2.0';
@@ -23,10 +23,10 @@ function hcw_homepage_default_fe_block_settings() {
     'pages' => '<front>',
     'roles' => array(),
     'themes' => array(
-      'hcw_frontend' => array(
+      'hwc_frontend' => array(
         'region' => 'content',
         'status' => 1,
-        'theme' => 'hcw_frontend',
+        'theme' => 'hwc_frontend',
         'weight' => 1,
       ),
       'seven' => array(
@@ -51,10 +51,10 @@ function hcw_homepage_default_fe_block_settings() {
     'pages' => '<front>',
     'roles' => array(),
     'themes' => array(
-      'hcw_frontend' => array(
+      'hwc_frontend' => array(
         'region' => 'blockgroup_tools_and_resources_block_g',
         'status' => 1,
-        'theme' => 'hcw_frontend',
+        'theme' => 'hwc_frontend',
         'weight' => 1,
       ),
       'seven' => array(
@@ -79,10 +79,10 @@ function hcw_homepage_default_fe_block_settings() {
     'pages' => '<front>',
     'roles' => array(),
     'themes' => array(
-      'hcw_frontend' => array(
+      'hwc_frontend' => array(
         'region' => 'blockgroup_tools_and_resources_block_g',
         'status' => 1,
-        'theme' => 'hcw_frontend',
+        'theme' => 'hwc_frontend',
         'weight' => 0,
       ),
       'seven' => array(
@@ -107,10 +107,10 @@ function hcw_homepage_default_fe_block_settings() {
     'pages' => '',
     'roles' => array(),
     'themes' => array(
-      'hcw_frontend' => array(
+      'hwc_frontend' => array(
         'region' => 'header',
         'status' => 1,
-        'theme' => 'hcw_frontend',
+        'theme' => 'hwc_frontend',
         'weight' => 0,
       ),
       'seven' => array(

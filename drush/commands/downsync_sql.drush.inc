@@ -32,7 +32,7 @@ function downsync_sql_drush_command() {
  * Actual function run by the downsync command.
  */
 function drush_downsync_sql($source = NULL, $destination = NULL) {
-  include __DIR__ . '/../aliases/hcw.aliases.drushrc.php';
+  include __DIR__ . '/../aliases/hwc.aliases.drushrc.php';
   // Make sure we have the source-dump and target-dump options.
   $destination_name = substr($destination, 1);
   $source_name = substr($source, 1);

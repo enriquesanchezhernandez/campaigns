@@ -1,13 +1,13 @@
 <?php
 /**
  * @file
- * hcw_homepage.features.inc
+ * hwc_homepage.features.inc
  */
 
 /**
  * Implements hook_default_blockgroups().
  */
-function hcw_homepage_default_blockgroups() {
+function hwc_homepage_default_blockgroups() {
   return array(
     'tools_and_resources_block_g' => 'Tools and resources block group',
   );
@@ -16,7 +16,7 @@ function hcw_homepage_default_blockgroups() {
 /**
  * Implements hook_ctools_plugin_api().
  */
-function hcw_homepage_ctools_plugin_api($module = NULL, $api = NULL) {
+function hwc_homepage_ctools_plugin_api($module = NULL, $api = NULL) {
   if ($module == "strongarm" && $api == "strongarm") {
     return array("version" => "1");
   }
@@ -25,14 +25,14 @@ function hcw_homepage_ctools_plugin_api($module = NULL, $api = NULL) {
 /**
  * Implements hook_views_api().
  */
-function hcw_homepage_views_api($module = NULL, $api = NULL) {
+function hwc_homepage_views_api($module = NULL, $api = NULL) {
   return array("api" => "3.0");
 }
 
 /**
  * Implements hook_node_info().
  */
-function hcw_homepage_node_info() {
+function hwc_homepage_node_info() {
   $items = array(
     'frontpage_slider' => array(
       'name' => t('Frontpage Slider'),

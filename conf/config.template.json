@@ -4,7 +4,7 @@
         "username" : "root",
         "password" : "root",
         "port": 3306,
-        "database" : "osha_hcw",
+        "database" : "osha_hwc",
         "root_username": "root",
         "root_password": "root"
     },

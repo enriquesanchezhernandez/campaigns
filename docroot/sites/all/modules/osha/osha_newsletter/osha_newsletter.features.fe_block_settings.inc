@@ -24,10 +24,10 @@ function osha_newsletter_default_fe_block_settings() {
 node/9',
     'roles' => array(),
     'themes' => array(
-      'hcw_frontend' => array(
+      'hwc_frontend' => array(
         'region' => '',
         'status' => 0,
-        'theme' => 'hcw_frontend',
+        'theme' => 'hwc_frontend',
         'weight' => -9,
       ),
       'seven' => array(
@@ -53,10 +53,10 @@ node/9',
 node/52',
     'roles' => array(),
     'themes' => array(
-      'hcw_frontend' => array(
+      'hwc_frontend' => array(
         'region' => 'sidebar_second',
         'status' => 1,
-        'theme' => 'hcw_frontend',
+        'theme' => 'hwc_frontend',
         'weight' => -35,
       ),
       'seven' => array(
@@ -81,10 +81,10 @@ node/52',
     'pages' => '',
     'roles' => array(),
     'themes' => array(
-      'hcw_frontend' => array(
+      'hwc_frontend' => array(
         'region' => '',
         'status' => 0,
-        'theme' => 'hcw_frontend',
+        'theme' => 'hwc_frontend',
         'weight' => 8,
       ),
       'seven' => array(
@@ -110,10 +110,10 @@ node/52',
 node/52',
     'roles' => array(),
     'themes' => array(
-      'hcw_frontend' => array(
+      'hwc_frontend' => array(
         'region' => 'content',
         'status' => 1,
-        'theme' => 'hcw_frontend',
+        'theme' => 'hwc_frontend',
         'weight' => 9,
       ),
       'seven' => array(

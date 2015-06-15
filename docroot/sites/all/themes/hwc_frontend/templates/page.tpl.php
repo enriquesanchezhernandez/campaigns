@@ -72,7 +72,7 @@
  *
  * @ingroup themeable
  */
-$theme_dir = drupal_get_path('theme', 'hcw_frontend');
+$theme_dir = drupal_get_path('theme', 'hwc_frontend');
 ?>
 <?php if (!empty($page['above_header'])): ?>
   <div class="header_top_bar container">

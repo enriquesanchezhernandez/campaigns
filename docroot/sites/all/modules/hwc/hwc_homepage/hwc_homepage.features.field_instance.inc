@@ -1,13 +1,13 @@
 <?php
 /**
  * @file
- * hcw_homepage.features.field_instance.inc
+ * hwc_homepage.features.field_instance.inc
  */
 
 /**
  * Implements hook_field_default_field_instances().
  */
-function hcw_homepage_field_default_field_instances() {
+function hwc_homepage_field_default_field_instances() {
   $field_instances = array();
 
   // Exported field_instance: 'node-frontpage_slider-body'

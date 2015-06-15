@@ -1,6 +1,6 @@
-name = HCW front
-project = hcw_frontend
-description = HCW website front-end theme
+name = HWC front
+project = hwc_frontend
+description = HWC website front-end theme
 core = 7.x
 base theme = bootstrap
 
@@ -31,7 +31,7 @@ files[] = theme/menu/menu.inc
 ;; Stylesheets
 ;;;;;;;;;;;;;;;;;;;;;
 
-stylesheets[all][] = css/hcw_override.css
+stylesheets[all][] = css/hwc_override.css
 
 
 ; For information on choosing the desired method, please read the Drupal

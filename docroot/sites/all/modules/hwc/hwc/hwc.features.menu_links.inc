@@ -1,13 +1,13 @@
 <?php
 /**
  * @file
- * hcw.features.menu_links.inc
+ * hwc.features.menu_links.inc
  */
 
 /**
  * Implements hook_menu_default_menu_links().
  */
-function hcw_menu_default_menu_links() {
+function hwc_menu_default_menu_links() {
   $menu_links = array();
 
   // Exported menu link: menu-footer-menu_contact:<front>

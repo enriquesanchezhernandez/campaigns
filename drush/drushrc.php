@@ -478,14 +478,14 @@ $options['init-modules'] = array(
   'addtoany',
   'on_the_web',
 
-  'hcw',
-  'hcw_homepage',
+  'hwc',
+  'hwc_homepage',
   'ncw_migration',
 );
 
 
 $options['init-themes'] = array(
-  'hcw_frontend'
+  'hwc_frontend'
 );
 
 $options['disable-modules'] = array(

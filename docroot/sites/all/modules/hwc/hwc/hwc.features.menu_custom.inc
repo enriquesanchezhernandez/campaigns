@@ -1,13 +1,13 @@
 <?php
 /**
  * @file
- * hcw.features.menu_custom.inc
+ * hwc.features.menu_custom.inc
  */
 
 /**
  * Implements hook_menu_default_menu_custom().
  */
-function hcw_menu_default_menu_custom() {
+function hwc_menu_default_menu_custom() {
   $menus = array();
 
   // Exported menu: main-menu.
