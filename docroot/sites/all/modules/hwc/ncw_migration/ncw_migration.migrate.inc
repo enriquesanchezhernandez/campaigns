@@ -33,7 +33,7 @@ function ncw_migration_migrate_api() {
       ),
       'notes_to_editor' => array(
         'group_name' => 'ncw',
-        'dependencies' => array(),
+        'dependencies' => array('tax_tags'),
         'class_name' => 'NCWNoteMigration',
       ),
       'press_releases' => array(
@@ -829,6 +829,9 @@ function osha_migration_normalize_field_image($row, $field_name) {
  * Not used automatically by normalizing
  */
 function osha_migration_normalize_migrated_term_reference(&$original, $source_migration_name) {
+  if (empty($original)) {
+    return array();
+  }
   $ret = array();
   if ($migration = Migration::getInstance($source_migration_name)) {
     foreach ($original as $term) {

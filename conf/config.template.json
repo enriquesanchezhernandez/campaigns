@@ -61,6 +61,7 @@
         "cache_class_external_varnish_page": "VarnishCache",
         "jquery_update_jquery_version": "1.8",
         "jquery_update_jquery_admin_version": "1.8",
-        "print_pdf_autoconfig" : 0
+        "print_pdf_autoconfig" : 0,
+        "hwc_migration_root_url": "http://osha.edw.ro"
     }
 }

@@ -20,8 +20,7 @@ class NCWNoteMigration extends AbstractNCWNodeMigration {
     $this->addFieldMapping('field_tags:create_term')->defaultValue(FALSE);
     $this->addFieldMapping('field_tags', 'field_tags');
 
-    $this->addUnmigratedDestinations(array(
-    ));
+    $this->addUnmigratedDestinations(array());
     $this->ignoreMetatagMigration();
   }
 

@@ -30,6 +30,7 @@ function osha_newsletter_post_features_enable_feature($component) {
   // After the field_instance ...
   if ($component == 'variable') {
     drupal_static_reset();
+    menu_rebuild();
     // Permissions.
     user_role_grant_permissions(DRUPAL_ANONYMOUS_RID, array(
       'view newsletter_content_collection entity collections',
