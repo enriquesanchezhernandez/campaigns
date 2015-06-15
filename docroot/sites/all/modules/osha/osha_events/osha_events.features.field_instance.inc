@@ -22,7 +22,7 @@ function osha_events_field_default_field_instances() {
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
-        'weight' => 3,
+        'weight' => 4,
       ),
       'highlights_item' => array(
         'label' => 'above',
@@ -94,7 +94,7 @@ function osha_events_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 19,
+        'weight' => 23,
       ),
       'highlights_item' => array(
         'label' => 'above',
@@ -170,7 +170,7 @@ function osha_events_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 9,
+        'weight' => 14,
       ),
       'highlights_item' => array(
         'label' => 'above',
@@ -243,9 +243,14 @@ function osha_events_field_default_field_instances() {
     'display' => array(
       'default' => array(
         'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 15,
+        'module' => 'title',
+        'settings' => array(
+          'title_class' => '',
+          'title_link' => '',
+          'title_style' => '',
+        ),
+        'type' => 'title_linked',
+        'weight' => 5,
       ),
       'highlights_item' => array(
         'label' => 'above',
@@ -320,7 +325,7 @@ function osha_events_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 12,
+        'weight' => 17,
       ),
       'highlights_item' => array(
         'label' => 'above',
@@ -395,7 +400,7 @@ function osha_events_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 13,
+        'weight' => 18,
       ),
       'highlights_item' => array(
         'label' => 'above',
@@ -470,7 +475,7 @@ function osha_events_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 11,
+        'weight' => 16,
       ),
       'highlights_item' => array(
         'label' => 'above',
@@ -538,7 +543,7 @@ function osha_events_field_default_field_instances() {
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
-        'weight' => 19,
+        'weight' => 1,
       ),
       'highlights_item' => array(
         'label' => 'above',
@@ -615,7 +620,7 @@ function osha_events_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 7,
+        'weight' => 12,
       ),
       'highlights_item' => array(
         'label' => 'above',
@@ -684,7 +689,7 @@ function osha_events_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 16,
+        'weight' => 20,
       ),
       'highlights_item' => array(
         'label' => 'above',
@@ -760,7 +765,7 @@ function osha_events_field_default_field_instances() {
         'module' => 'list',
         'settings' => array(),
         'type' => 'list_default',
-        'weight' => 20,
+        'weight' => 2,
       ),
       'highlights_item' => array(
         'label' => 'above',
@@ -835,7 +840,7 @@ function osha_events_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 14,
+        'weight' => 19,
       ),
       'highlights_item' => array(
         'label' => 'above',
@@ -906,7 +911,7 @@ function osha_events_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 5,
+        'weight' => 10,
       ),
       'highlights_item' => array(
         'label' => 'above',
@@ -976,7 +981,7 @@ function osha_events_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 8,
+        'weight' => 13,
       ),
       'highlights_item' => array(
         'label' => 'above',
@@ -1043,7 +1048,7 @@ function osha_events_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 17,
+        'weight' => 21,
       ),
       'highlights_item' => array(
         'label' => 'above',
@@ -1114,7 +1119,7 @@ function osha_events_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 6,
+        'weight' => 11,
       ),
       'highlights_item' => array(
         'label' => 'above',
@@ -1191,7 +1196,7 @@ function osha_events_field_default_field_instances() {
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
-        'weight' => 21,
+        'weight' => 22,
       ),
       'highlights_item' => array(
         'label' => 'above',
@@ -1354,7 +1359,7 @@ function osha_events_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 18,
+        'weight' => 22,
       ),
       'highlights_item' => array(
         'label' => 'above',
@@ -1432,7 +1437,7 @@ function osha_events_field_default_field_instances() {
           'osha_date_theme' => '',
         ),
         'type' => 'date_default',
-        'weight' => 23,
+        'weight' => 3,
       ),
       'highlights_item' => array(
         'label' => 'above',
@@ -1535,7 +1540,7 @@ function osha_events_field_default_field_instances() {
         'module' => 'i18n_taxonomy',
         'settings' => array(),
         'type' => 'i18n_taxonomy_term_reference_plain',
-        'weight' => 22,
+        'weight' => 23,
       ),
       'highlights_item' => array(
         'label' => 'above',
@@ -1604,7 +1609,7 @@ function osha_events_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 10,
+        'weight' => 15,
       ),
       'highlights_item' => array(
         'label' => 'above',
