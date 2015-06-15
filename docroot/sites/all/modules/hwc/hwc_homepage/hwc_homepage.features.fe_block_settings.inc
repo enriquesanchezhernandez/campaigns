@@ -68,10 +68,10 @@ function hwc_homepage_default_fe_block_settings() {
     'visibility' => 1,
   );
 
-  $export['nodeblock-54'] = array(
+  $export['nodeblock-29'] = array(
     'cache' => 1,
     'custom' => 0,
-    'delta' => 54,
+    'delta' => 29,
     'i18n_block_language' => array(),
     'i18n_mode' => 0,
     'module' => 'nodeblock',
