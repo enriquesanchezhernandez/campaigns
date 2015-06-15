@@ -1,19 +1,28 @@
 <?php
 
+/**
+ * Class NCWPressMigration migrates press releases
+ *
+ * Set hwc_migration_press_releases_url variable for explicit source URL.
+ */
 class NCWPressMigration extends AbstractNCWNodeMigration {
 
   public function __construct($arguments) {
-    $endpoint_url = osha_migration_url_data_source('/export/list/press_release/campaign_2014_2015');
+    $endpoint_url = $this->getMigrationURL('/export/list/press_release/campaign_2014_2015');
     parent::__construct($arguments, 'NCWPressSource', 'press_release', $endpoint_url);
     $this->description = 'Import press releases from NCW';
   }
 
   function addFieldMappings() {
     parent::addFieldMappings();
+
+    $this->addFieldMapping('field_tags:source_type')->defaultValue('tid');
+    $this->addFieldMapping('field_tags:create_term')->defaultValue(FALSE);
+    $this->addFieldMapping('field_tags', 'field_tags');
+
     $this->addUnmigratedDestinations(array(
       'field_activity:source_type',
       'field_activity:ignore_case',
-      'field_tags:source_type',
       'field_tags:ignore_case',
       'field_expiration_date:rrule',
       'field_image:file_class',
@@ -28,6 +37,15 @@ class NCWPressMigration extends AbstractNCWNodeMigration {
       'field_pr_embargo_date:rrule',
     ));
     $this->ignoreMetatagMigration();
+  }
+
+  protected function getManuallyMigratedFields() {
+    return array('field_tags');
+  }
+
+  function prepareRow($row) {
+    parent::prepareRow($row);
+    $row->field_tags = osha_migration_normalize_migrated_term_reference($row->field_tags, 'tax_tags');
   }
 }
 

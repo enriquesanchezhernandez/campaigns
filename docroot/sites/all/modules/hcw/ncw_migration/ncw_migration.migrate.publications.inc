@@ -1,20 +1,34 @@
 <?php
 
+/**
+ * Class NCWPublicationsMigration migrates publications.
+ *
+ * Set hwc_migration_publications_url variable for explicit source URL.
+ */
 class NCWPublicationsMigration extends AbstractNCWNodeMigration {
 
   public function __construct($arguments) {
-    $endpoint_url = osha_migration_url_data_source('/export/list/publication/road_transport');
+    $endpoint_url = $this->getMigrationURL('/export/list/publication/road_transport');
     parent::__construct($arguments, 'NCWPublicationsSource', 'publication', $endpoint_url);
     $this->description = 'Import publications from NCW';
   }
 
   function addFieldMappings() {
     parent::addFieldMappings();
+
+    $this->addFieldMapping('field_tags:source_type')->defaultValue('tid');
+    $this->addFieldMapping('field_tags:create_term')->defaultValue(FALSE);
+    $this->addFieldMapping('field_tags', 'field_tags');
+
+    $this->addFieldMapping('field_publication_type:source_type')->defaultValue('tid');
+    $this->addFieldMapping('field_publication_type:create_term')->defaultValue(FALSE);
+    $this->addFieldMapping('field_publication_type', 'field_publication_type');
+
     $this->addUnmigratedDestinations(array(
       'field_activity:source_type',
       'field_activity:ignore_case',
-      'field_tags:source_type',
       'field_tags:ignore_case',
+      'field_publication_type:ignore_case',
       'field_cover_image:file_class',
       'field_cover_image:preserve_files',
       'field_cover_image:destination_dir',
@@ -39,11 +53,27 @@ class NCWPublicationsMigration extends AbstractNCWNodeMigration {
       'field_publication_related_res:urlencode',
       'field_publication_related_res:description',
       'field_publication_related_res:display',
-      'field_publication_type:source_type',
-      'field_publication_type:ignore_case',
       'field_expiration_date:rrule',
     ));
     $this->ignoreMetatagMigration();
+  }
+
+  protected function getManuallyMigratedFields() {
+    return array('field_tags', 'field_publication_type');
+  }
+
+  function prepareRow($row) {
+    parent::prepareRow($row);
+    // field_related_publications
+    $fi = field_info_field('field_related_publications');
+    osha_migration_normalize_field_entityreference($row, 'field_related_publications', $fi);
+    $related_publications = $row->field_related_publications;
+    $row->field_related_publications = array();
+    foreach ($related_publications as $original_nid) {
+      $row->field_related_publications[] = $this->handleSourceMigration('publications', $original_nid);
+    }
+    $row->field_tags = osha_migration_normalize_migrated_term_reference($row->field_tags, 'tax_tags');
+    $row->field_publication_type = osha_migration_normalize_migrated_term_reference($row->field_publication_type, 'tax_publication_types');
   }
 }
 
@@ -82,9 +112,62 @@ class NCWPublicationsSource extends AbstractNCWNodeSource {
       'field_publication_related_res_language',
       'field_publication_type',
       'field_tags',
+      'field_related_publications',
       //@todo: 'field_aditional_resources',
-      //@todo: 'field_related_publications',
     );
     return array_combine($fields, $fields);
+  }
+
+  /**
+   * Include the related publications recursively into the migrated content.
+   */
+  public function readData() {
+    $this->rows = array();
+    $content = $this->fileGetContents($this->endpoint_url);
+    if ($data = json_decode($content)) {
+      foreach ($data->items as $ob) {
+        $ob = $ob->item;
+        $id = $this->itemIdentifier($ob);
+        $node_url = $this->itemURL($id);
+        if ($rowd = $this->fileGetContents($node_url)) {
+          if ($row_ob = json_decode($rowd, TRUE)) {
+            $row = new stdClass();
+            foreach ($row_ob as $k => $v) { $row->$k = $v; }
+            $this->rows[$id] = $row;
+            $this->children_recursive_publications($row);
+          }
+        }
+        else {
+          if ($this->activeMigration) {
+            $this->activeMigration->saveMessage(format_string('Failed to read data from !url', array('!url' => $node_url)));
+          }
+        }
+      }
+    }
+    reset($this->rows);
+  }
+
+
+  protected function children_recursive_publications($row) {
+    // Check the field_related_publications for children and add to source
+    $tmp = new stdClass();
+    $tmp->field_related_publications = $row->field_related_publications;
+    $firp = field_info_field('field_related_publications');
+    osha_migration_normalize_field_entityreference($tmp, 'field_related_publications', $firp);
+    foreach($tmp->field_related_publications as $cid) {
+      // Skip records already added
+      if (array_key_exists($cid, $this->rows)) {
+        continue;
+      }
+      $child_url = $this->itemURL($cid);
+      if ($child_rowd = $this->fileGetContents($child_url)) {
+        if ($child_row_ob = json_decode($child_rowd, TRUE)) {
+          $child_row = new stdClass();
+          foreach ($child_row_ob as $k => $v) { $child_row->$k = $v; }
+          $this->rows[$cid] = $child_row;
+          $this->children_recursive_publications($child_row);
+        }
+      }
+    }
   }
 }

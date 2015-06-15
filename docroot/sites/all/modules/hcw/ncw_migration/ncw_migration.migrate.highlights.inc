@@ -1,19 +1,28 @@
 <?php
 
+/**
+ * Class NCWHighlightMigration migrates highlights into news content type
+ *
+ * Set hwc_migration_highlights_url variable for explicit source URL.
+ */
 class NCWHighlightMigration extends AbstractNCWNodeMigration {
 
   public function __construct($arguments) {
-    $endpoint_url = osha_migration_url_data_source('/export/list/highlight/women_and_osh');
+    $endpoint_url = $this->getMigrationURL('/export/list/highlight/women_and_osh');
     parent::__construct($arguments, 'NCWHighlightSource', 'news', $endpoint_url);
     $this->description = 'Import highlights (into news) from NCW';
   }
 
   function addFieldMappings() {
     parent::addFieldMappings();
+
+    $this->addFieldMapping('field_tags:source_type')->defaultValue('tid');
+    $this->addFieldMapping('field_tags:create_term')->defaultValue(FALSE);
+    $this->addFieldMapping('field_tags', 'field_tags');
+
     $this->addUnmigratedDestinations(array(
       'field_activity:source_type',
       'field_activity:ignore_case',
-      'field_tags:source_type',
       'field_tags:ignore_case',
       'field_expiration_date:rrule',
       'field_image:file_class',
@@ -32,6 +41,15 @@ class NCWHighlightMigration extends AbstractNCWNodeMigration {
       'field_image_caption:language',
     ));
     $this->ignoreMetatagMigration();
+  }
+
+  protected function getManuallyMigratedFields() {
+    return array('field_tags');
+  }
+
+  function prepareRow($row) {
+    parent::prepareRow($row);
+    $row->field_tags = osha_migration_normalize_migrated_term_reference($row->field_tags, 'tax_tags');
   }
 }
 

@@ -1,15 +1,24 @@
 <?php
 
+/**
+ * Class NCWPressContactMigration migrates press contacts
+ *
+ * Set hwc_migration_press_contacts_url variable for explicit source URL.
+ */
 class NCWPressContactMigration extends AbstractNCWNodeMigration {
 
   public function __construct($arguments) {
-    $endpoint_url = osha_migration_url_data_source('/export/presscontact');
+    $endpoint_url = $this->getMigrationURL('/export/presscontact');
     parent::__construct($arguments, 'NCWPressContactSource', 'press_contact', $endpoint_url);
     $this->description = 'Import press contacts from NCW';
   }
 
   function addFieldMappings() {
     parent::addFieldMappings();
+
+    $this->addFieldMapping('field_contact_type')->defaultValue('Press Contact');
+    $this->addFieldMapping('field_contact_type:create_term')->defaultValue(TRUE);
+
     $this->addUnmigratedDestinations(array(
       'field_city:language',
       'field_contact_type:source_type',
@@ -30,6 +39,10 @@ class NCWPressContactMigration extends AbstractNCWNodeMigration {
     ));
     $this->ignoreMetatagMigration();
   }
+
+  function getManuallyMigratedFieldS() {
+    return array('field_contact_type');
+  }
 }
 
 
@@ -42,7 +55,7 @@ class NCWPressContactSource extends AbstractNCWNodeSource {
     $fields = array(
       'title_field',
       'title_field_language',
-      //@todo: 'field_contact_type',
+      'field_contact_type',
       'field_press_contact_job_title',
       'field_press_contact_job_title_language',
       'field_personal_title',
@@ -61,6 +74,8 @@ class NCWPressContactSource extends AbstractNCWNodeSource {
       'field_website',
       'field_website_title',
       'field_website_attributes',
+      //@todo: 'field_press_contact_declaration',
+      //@todo: 'field_press_contact_cv',
     );
     return array_combine($fields, $fields);
   }

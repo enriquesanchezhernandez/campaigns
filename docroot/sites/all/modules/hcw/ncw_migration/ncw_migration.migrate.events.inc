@@ -1,20 +1,29 @@
 <?php
 
+/**
+ * Class NCWEventsMigration migrates events
+ *
+ * Set hwc_migration_events_url variable for explicit source URL.
+ */
 class NCWEventsMigration extends AbstractNCWNodeMigration {
 
   public function __construct($arguments) {
-    $endpoint_url = osha_migration_url_data_source('/export/list/events/accident_prevention');
+    $endpoint_url = $this->getMigrationURL('/export/list/events/accident_prevention');
     parent::__construct($arguments, 'NCWEventsSource', 'events', $endpoint_url);
     $this->description = 'Import events from NCW';
   }
 
   function addFieldMappings() {
     parent::addFieldMappings();
+
+    $this->addFieldMapping('field_tags:source_type')->defaultValue('tid');
+    $this->addFieldMapping('field_tags:create_term')->defaultValue(FALSE);
+    $this->addFieldMapping('field_tags', 'field_tags');
+
     $this->addUnmigratedDestinations(array(
       'field_activity:source_type',
       'field_activity:ignore_case',
       'field_city:language',
-      'field_tags:source_type',
       'field_agency_contact_reply:language',
       'field_agency_initial_contact:language',
       'field_agency_rep_confirmed:language',
@@ -34,6 +43,15 @@ class NCWEventsMigration extends AbstractNCWNodeMigration {
       'field_website_of_event:language',
     ));
     $this->ignoreMetatagMigration();
+  }
+
+  protected function getManuallyMigratedFields() {
+    return array('field_tags');
+  }
+
+  function prepareRow($row) {
+    parent::prepareRow($row);
+    $row->field_tags = osha_migration_normalize_migrated_term_reference($row->field_tags, 'tax_tags');
   }
 }
 
