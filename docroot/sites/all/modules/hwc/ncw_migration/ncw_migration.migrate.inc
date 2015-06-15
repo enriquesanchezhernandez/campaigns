@@ -292,7 +292,7 @@ abstract class AbstractNCWNodeMigration extends Migration {
     $variable = 'hwc_migration_' . $this->getMachineName() . '_url';
     $value = variable_get($variable);
     if (empty($value)) {
-      return variable_get('hwc_migration_root_url', 'http://osha.localhost') . $suffix;
+      return ncw_migration_datasource_url() . $suffix;
     }
     return $ret;
   }
@@ -425,8 +425,7 @@ abstract class AbstractNCWNodeSource extends MigrateSource {
   }
 
   public function itemURL($id) {
-    $value = variable_get('hwc_ncw_root_url', 'http://osha.localhost');
-    return $value . '/export/node/' . $id;
+    return ncw_migration_datasource_url() . '/export/node/' . $id;
   }
 
   public function itemIdentifier($ob) {
@@ -616,8 +615,7 @@ abstract class AbstractNCWTaxonomyTermSource extends AbstractNCWNodeSource {
   }
 
   public function itemURL($id) {
-    $value = variable_get('hwc_ncw_root_url', 'http://osha.localhost');
-    return $value . '/export/taxonomy_term/' . $id;
+    return ncw_migration_datasource_url() . '/export/taxonomy_term/' . $id;
   }
 
   public function fields() {
@@ -640,9 +638,22 @@ abstract class AbstractNCWTaxonomyTermSource extends AbstractNCWNodeSource {
 
 
 ////////////////////////////////// Utilities ///////////////////////////////////
+function ncw_migration_datasource_url() {
+  $ret = 'http://osha.localhost';
+  static $errorDisplayed = FALSE;
+  $variable = variable_get('hwc_migration_root_url');
+  //var_dump($errorDisplayed);
+  if (empty($variable) && !$errorDisplayed) {
+    $errorDisplayed = TRUE;
+    drupal_set_message("Empty 'hwc_migration_root_url' variable. Using default 'http://osha.localhost'", 'warning');
+  }
+  return $ret;
+}
+
+
 
 function osha_migration_url_files($suffix = '') {
-  return variable_get('hwc_ncw_root_url', 'http://osha.localhost') . '/sites/default/files/' . $suffix;
+  return ncw_migration_datasource_url() . '/sites/default/files/' . $suffix;
 }
 
 function osha_migration_author_uid() {
