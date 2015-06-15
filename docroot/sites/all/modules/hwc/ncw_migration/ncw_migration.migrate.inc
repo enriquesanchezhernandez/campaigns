@@ -639,13 +639,15 @@ abstract class AbstractNCWTaxonomyTermSource extends AbstractNCWNodeSource {
 
 ////////////////////////////////// Utilities ///////////////////////////////////
 function ncw_migration_datasource_url() {
-  $ret = 'http://osha.localhost';
+  $ret = NULL;
   static $errorDisplayed = FALSE;
   $variable = variable_get('hwc_migration_root_url');
-  //var_dump($errorDisplayed);
-  if (empty($variable) && !$errorDisplayed) {
-    $errorDisplayed = TRUE;
-    drupal_set_message("Empty 'hwc_migration_root_url' variable. Using default 'http://osha.localhost'", 'warning');
+  if (empty($variable)) {
+    $ret = 'http://osha.localhost';
+    if (!$errorDisplayed) {
+      $errorDisplayed = TRUE;
+      drupal_set_message("Empty 'hwc_migration_root_url' variable. Using default 'http://osha.localhost'", 'warning');
+    }
   }
   return $ret;
 }
