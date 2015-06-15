@@ -25,7 +25,6 @@ function osha_search_strongarm() {
     'attachments_field_file' => 'attachments_field_file',
     'attachments_field_publication_related_res' => 'attachments_field_publication_related_res',
     'attachments_field_related_documents' => 'attachments_field_related_documents',
-    'attachments_field_related_resources' => 'attachments_field_related_resources',
     'body:summary' => 'body:summary',
     'body:value' => 'body:value',
     'field_summary' => 'field_summary',

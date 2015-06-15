@@ -266,15 +266,11 @@ function osha_search_views_default_views() {
     8 => 0,
     9 => 0,
     10 => 0,
-    11 => 0,
-    12 => 0,
-    13 => 0,
   );
   $handler->display->display_options['filters']['search_api_views_fulltext']['fields'] = array(
     'attachments_field_file' => 'attachments_field_file',
     'attachments_field_publication_related_res' => 'attachments_field_publication_related_res',
     'attachments_field_related_documents' => 'attachments_field_related_documents',
-    'attachments_field_related_resources' => 'attachments_field_related_resources',
     'body:summary' => 'body:summary',
     'body:value' => 'body:value',
     'field_aditional_resources:body:summary' => 'field_aditional_resources:body:summary',
@@ -529,7 +525,6 @@ function osha_search_views_default_views() {
     'attachments_field_file' => 'attachments_field_file',
     'attachments_field_publication_related_res' => 'attachments_field_publication_related_res',
     'attachments_field_related_documents' => 'attachments_field_related_documents',
-    'attachments_field_related_resources' => 'attachments_field_related_resources',
     'body:summary' => 'body:summary',
     'body:value' => 'body:value',
     'field_summary' => 'field_summary',
