@@ -30,24 +30,58 @@ function osha_views_api($module = NULL, $api = NULL) {
 }
 
 /**
+ * Implements hook_image_default_styles().
+ */
+function osha_image_default_styles() {
+  $styles = array();
+
+  // Exported image style: article_image.
+  $styles['article_image'] = array(
+    'label' => 'Article image',
+    'effects' => array(
+      1 => array(
+        'name' => 'image_scale',
+        'data' => array(
+          'width' => 1140,
+          'height' => '',
+          'upscale' => 1,
+        ),
+        'weight' => 1,
+      ),
+      2 => array(
+        'name' => 'image_crop',
+        'data' => array(
+          'width' => 1140,
+          'height' => 350,
+          'anchor' => 'center-top',
+        ),
+        'weight' => 2,
+      ),
+    ),
+  );
+
+  return $styles;
+}
+
+/**
  * Implements hook_node_info().
  */
 function osha_node_info() {
   $items = array(
     'article' => array(
-      'name' => 'Article',
+      'name' => t('Article'),
       'base' => 'node_content',
-      'description' => 'Introductions and Sections',
+      'description' => t('Introductions and Sections'),
       'has_title' => '1',
-      'title_label' => 'Title',
+      'title_label' => t('Title'),
       'help' => '',
     ),
     'webform' => array(
-      'name' => 'Webform',
+      'name' => t('Webform'),
       'base' => 'node_content',
-      'description' => 'Create a new form or questionnaire accessible to users. Submission results and statistics are recorded and accessible to privileged users.',
+      'description' => t('Create a new form or questionnaire accessible to users. Submission results and statistics are recorded and accessible to privileged users.'),
       'has_title' => '1',
-      'title_label' => 'Title',
+      'title_label' => t('Title'),
       'help' => '',
     ),
   );
