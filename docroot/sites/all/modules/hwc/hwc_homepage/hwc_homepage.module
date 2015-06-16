@@ -1,0 +1,19 @@
+<?php
+/**
+ * @file
+ * Code for the hwc_homepage feature.
+ */
+
+include_once 'hwc_homepage.features.inc';
+
+/**
+ * Implements hook_views_pre_render
+ * {@inheritdoc}
+ */
+function hwc_homepage_views_pre_render(&$view){
+  if ($view->name == 'frontpage_slider' && drupal_is_front_page()) {
+    $jssor_path = libraries_get_path('jquery-slider-master');
+    drupal_add_js($jssor_path . '/jssor.slider.mini.js');
+    drupal_add_css($jssor_path . '/jssor.css');
+  }
+}

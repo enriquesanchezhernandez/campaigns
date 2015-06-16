@@ -12,7 +12,7 @@ if [ ${ecode} != 0 ]; then
 fi
 
 # Sync from edw staging
-drush downsync_sql @hcw.staging @self -y
+drush downsync_sql @hwc.staging @self -y
 ecode=$?
 if [ ${ecode} != 0 ]; then
   echo "downsync_sql has returned an error"

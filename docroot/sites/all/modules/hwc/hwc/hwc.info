@@ -1,0 +1,14 @@
+name = hwc
+description = HWC Specific customizations
+core = 7.x
+package = HWC
+version = 7.x-0.3
+project = hwc
+dependencies[] = fe_block
+dependencies[] = features
+dependencies[] = linkit
+dependencies[] = menu
+features[ctools][] = linkit:linkit_profiles:1
+features[fe_block_settings][] = menu-menu-footer-menu
+features[features_api][] = api:2
+features_exclude[dependencies][ctools] = ctools

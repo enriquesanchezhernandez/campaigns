@@ -1,33 +1,33 @@
 <?php
 /**
  * @file
- * osha_publication.features.fe_block_settings.inc
+ * hwc.features.fe_block_settings.inc
  */
 
 /**
  * Implements hook_default_fe_block_settings().
  */
-function osha_publication_default_fe_block_settings() {
+function hwc_default_fe_block_settings() {
   $export = array();
 
   $export['version'] = '2.0';
 
-  $export['views-publications-slidehow'] = array(
+  $export['menu-menu-footer-menu'] = array(
     'cache' => -1,
     'custom' => 0,
-    'delta' => 'publications-slidehow',
+    'delta' => 'menu-footer-menu',
     'i18n_block_language' => array(),
     'i18n_mode' => 0,
-    'module' => 'views',
+    'module' => 'menu',
     'node_types' => array(),
-    'pages' => 'tools-and-publications/publications',
+    'pages' => '',
     'roles' => array(),
     'themes' => array(
       'hwc_frontend' => array(
-        'region' => '',
-        'status' => 0,
+        'region' => 'footer',
+        'status' => 1,
         'theme' => 'hwc_frontend',
-        'weight' => 4,
+        'weight' => 0,
       ),
       'seven' => array(
         'region' => '',
@@ -37,7 +37,7 @@ function osha_publication_default_fe_block_settings() {
       ),
     ),
     'title' => '<none>',
-    'visibility' => 1,
+    'visibility' => 0,
   );
 
   return $export;

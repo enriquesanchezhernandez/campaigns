@@ -23,10 +23,10 @@ function osha_events_default_fe_block_settings() {
     'pages' => 'oshevents',
     'roles' => array(),
     'themes' => array(
-      'hcw_frontend' => array(
+      'hwc_frontend' => array(
         'region' => '',
         'status' => 0,
-        'theme' => 'hcw_frontend',
+        'theme' => 'hwc_frontend',
         'weight' => -31,
       ),
       'seven' => array(
@@ -52,10 +52,10 @@ function osha_events_default_fe_block_settings() {
 node/5322',
     'roles' => array(),
     'themes' => array(
-      'hcw_frontend' => array(
+      'hwc_frontend' => array(
         'region' => '',
         'status' => 0,
-        'theme' => 'hcw_frontend',
+        'theme' => 'hwc_frontend',
         'weight' => 16,
       ),
       'seven' => array(
@@ -109,10 +109,10 @@ events/*',
     'pages' => '',
     'roles' => array(),
     'themes' => array(
-      'hcw_frontend' => array(
+      'hwc_frontend' => array(
         'region' => '',
         'status' => 0,
-        'theme' => 'hcw_frontend',
+        'theme' => 'hwc_frontend',
         'weight' => 13,
       ),
       'seven' => array(

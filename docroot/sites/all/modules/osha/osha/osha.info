@@ -74,7 +74,6 @@ features[field_base][] = field_nace_codes
 features[field_base][] = field_page_count
 features[field_base][] = field_page_introduction
 features[field_base][] = field_publication_date
-features[field_base][] = field_related_resources
 features[field_base][] = field_summary
 features[field_base][] = field_tags
 features[field_base][] = field_thesaurus
