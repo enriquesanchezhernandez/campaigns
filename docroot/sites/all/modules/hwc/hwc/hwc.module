@@ -1,5 +1,9 @@
 <?php
 
+include_once 'hwc.features.inc';
+
+
+
 function hwc_req_param($form_state, $name, $default = NULL) {
   if (!empty($form_state['values'][$name])) {
     $ret = $form_state['values'][$name];

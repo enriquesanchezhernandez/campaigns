@@ -41,6 +41,7 @@ dependencies[] = osha_taxonomies
 dependencies[] = pathologic
 dependencies[] = print_pdf
 dependencies[] = search_api
+dependencies[] = smart_trim
 dependencies[] = strongarm
 dependencies[] = taxonomy
 dependencies[] = text
