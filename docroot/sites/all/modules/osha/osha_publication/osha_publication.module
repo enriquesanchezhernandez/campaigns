@@ -9,6 +9,24 @@ include_once 'osha_publication.features.inc';
 define('OSHA_PUBLICATION_CONTENT_TYPE_PUBLICATION', 'publication');
 
 /**
+ * Implements hook_menu().
+ */
+function osha_publication_menu() {
+  return array(
+    'publications' => array(
+      'title' => 'Publications',
+      'description' => 'Listing page for publications',
+      'page callback' => 'drupal_get_form',
+      'page arguments' => array('osha_publication_menu_publications_form'),
+      'file' => 'osha_publication.pages.inc',
+      'access arguments' => array('administer site configuration'),
+      'menu_name' => 'main-menu',
+      'type' => MENU_NORMAL_ITEM,
+    )
+  );
+}
+
+/**
  * Implements hook_url_inbound_alter().
  */
 function osha_publication_url_inbound_alter(&$path, $original_path, $path_language) {
