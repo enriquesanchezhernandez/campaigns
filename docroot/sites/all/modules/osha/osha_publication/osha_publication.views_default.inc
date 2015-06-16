@@ -11,7 +11,7 @@ function osha_publication_views_default_views() {
   $export = array();
 
   $view = new view();
-  $view->name = 'publications';
+  $view->name = 'publications_slideshow';
   $view->description = '';
   $view->tag = 'default';
   $view->base_table = 'node';
@@ -224,7 +224,7 @@ function osha_publication_views_default_views() {
     t('queue'),
     t('Publications Slideshow'),
   );
-  $export['publications'] = $view;
+  $export['publications_slideshow'] = $view;
 
   return $export;
 }
