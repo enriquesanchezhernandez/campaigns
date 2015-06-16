@@ -81,6 +81,11 @@ function ncw_migration_migrate_api() {
         'dependencies' => array(),
         'class_name' => 'NCWTaxonomyTagsMigration',
       ),
+      'article' => array(
+        'group_name' => 'ncw',
+        'dependencies' => array(),
+        'class_name' => 'NCWSingleArticleMigration',
+      ),
     ),
   );
 }
@@ -415,13 +420,8 @@ abstract class AbstractNCWNodeSource extends MigrateSource {
   }
 
   public function fileGetContents($url) {
-    $ch = curl_init();
-    curl_setopt($ch, CURLOPT_URL, $url);
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-    curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 5);
-    $result = curl_exec($ch);
-    curl_close($ch);
-    return $result;
+    //@todo replace all instances of fileGetContents
+    return ncw_migration_file_get_contents($url);
   }
 
   public function itemURL($id) {
@@ -657,6 +657,17 @@ function ncw_migration_datasource_url() {
 function osha_migration_url_files($suffix = '') {
   return ncw_migration_datasource_url() . '/sites/default/files/' . $suffix;
 }
+
+function ncw_migration_file_get_contents($url) {
+  $ch = curl_init();
+  curl_setopt($ch, CURLOPT_URL, $url);
+  curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+  curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 5);
+  $result = curl_exec($ch);
+  curl_close($ch);
+  return $result;
+}
+
 
 function osha_migration_author_uid() {
   return 0;
