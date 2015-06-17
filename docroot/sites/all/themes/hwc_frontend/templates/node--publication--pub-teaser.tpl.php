@@ -13,6 +13,7 @@
 <?php
 /** @var array $variables */
 $content = $variables['content'];
+$node = $variables['node'];
 global $language;
 foreach($content as $field_name => $field) {
   if ($field_name != 'field_file') {
@@ -20,7 +21,6 @@ foreach($content as $field_name => $field) {
   }
 }
 // List files
-$node = $variables['node'];
 $languages = !empty($node->filter_languages) ? $node->filter_languages : array($language->language);
 $languages[] = 'en';
 $items = array();

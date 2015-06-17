@@ -30,4 +30,13 @@ function hwc_frontend_preprocess_page(&$vars) {
         );
       }
     }
+  if ($node = menu_get_object()) {
+    if ($node->type == 'publication') {
+      ctools_include('plugins');
+      ctools_include('context');
+      $pb = path_breadcrumbs_load_by_name('publications_detail_page');
+      $breadcrumbs = _path_breadcrumbs_build_breadcrumbs($pb);
+      drupal_set_breadcrumb($breadcrumbs);
+    }
+  }
 }
