@@ -19,7 +19,7 @@ function osha_publication_menu() {
       'page callback' => 'drupal_get_form',
       'page arguments' => array('osha_publication_menu_publications_form'),
       'file' => 'osha_publication.pages.inc',
-      'access arguments' => array('administer site configuration'),
+      'access arguments' => array('access content'),
       'menu_name' => 'main-menu',
       'type' => MENU_NORMAL_ITEM,
     )
