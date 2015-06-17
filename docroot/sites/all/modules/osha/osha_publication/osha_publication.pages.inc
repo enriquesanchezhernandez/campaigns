@@ -100,6 +100,9 @@ function osha_publication_menu_publications_search_native($form_state) {
     }
   }
   $nids = array_unique($nids);
+  if (empty($nids)) {
+    return array();
+  }
   $per_page = 4;
   $current_page = pager_default_initialize(count($nids), $per_page);
   $page = array_chunk($nids, $per_page, TRUE);
@@ -154,6 +157,9 @@ function osha_publication_menu_publications_search_related($form_state) {
     }
   }
   $nids = array_unique($nids);
+  if (empty($nids)) {
+    return array();
+  }
   $per_page = 2;
   $current_page = pager_default_initialize(count($nids), $per_page);
   $page = array_chunk($nids, $per_page, TRUE);
