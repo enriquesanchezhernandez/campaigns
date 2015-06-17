@@ -62,7 +62,7 @@ legislation/guidelines/*',
         'region' => 'sidebar_first',
         'status' => 1,
         'theme' => 'hwc_frontend',
-        'weight' => 0,
+        'weight' => -51,
       ),
       'seven' => array(
         'region' => 'content',
@@ -100,7 +100,7 @@ legislation/guidelines/*',
       ),
     ),
     'title' => '',
-    'visibility' => 0,
+    'visibility' => 1,
   );
 
   $export['views--exp-search-site'] = array(
