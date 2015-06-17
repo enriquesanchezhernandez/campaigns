@@ -403,9 +403,6 @@ function osha_publication_theme() {
     'osha_publication_bookshop_id_format' => array(
       'variables' => array('bookshop_id' => NULL, 'delta' => NULL),
     ),
-    'osha_publication_twin_publications_format' => array(
-      'variables' => array('items' => NULL),
-    ),
   );
 }
 
@@ -444,12 +441,9 @@ function osha_publication_field_formatter_view($entity_type, $entity, $field, $i
       }
       break;
     case 'publication_twin_publications':
-      foreach ($items as $delta => $item) {
-
-      }
       $element[0] = array(
-        '#theme' => 'osha_publication_twin_publications_format',
-        '#items' => $items,
+        '#theme' => 'item_list',
+        '#items' => osha_publication_twin_publications_formatter($items),
       );
       break;
     case 'publication_title_linked':
@@ -555,14 +549,14 @@ function theme_osha_publication_bookshop_id_format($element) {
 /*
  * Formats the related resources (attached files) as icon and description/filename
  */
-function theme_osha_publication_twin_publications_format($element) {
+function osha_publication_twin_publications_formatter($items) {
   global $language;
   $languages = array('en');
   if ($language->language != 'en') {
     array_unshift($languages, $language->language);
   }
-  $items = array();
-  foreach($element['items'] as $meta) {
+  $ret = array();
+  foreach($items as $meta) {
     $node = node_load($meta['target_id']);
     $w = entity_metadata_wrapper('node', $meta['target_id']);
     $title = $w->label();
@@ -585,9 +579,9 @@ function theme_osha_publication_twin_publications_format($element) {
       'title' => array('#type' => 'item', '#markup' => l($title, 'node/' . $meta['target_id'])),
       'files' => array('#type' => 'item', '#markup' => theme('item_list', array('items' => $files)), '#title' => t('Download in:')),
     );
-    $items[] = drupal_render($render);
+    $ret[] = drupal_render($render);
   }
-  return theme('item_list', array('items' => $items));
+  return $ret;
 }
 
 /**
