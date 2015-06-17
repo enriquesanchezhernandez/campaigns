@@ -1,6 +1,7 @@
 <?php
 
 function osha_publication_menu_publications_form($form, $form_state) {
+  drupal_set_title(t('Publications'));
   global $language;
   $text = hwc_req_param($form_state, 'text');
   $languages = hwc_req_param($form_state, 'languages', array($language->language));
@@ -37,7 +38,8 @@ function osha_publication_menu_publications_form($form, $form_state) {
   );
   if (empty($form_state['input'])) {
     $form['content']['results-native'] = osha_publication_menu_publications_search_native($form_state);
-    $form['content']['results-related'] = osha_publication_menu_publications_search_related($form_state);
+    $native_nids = $form['content']['results-native']['#nids'];
+    $form['content']['results-related'] = osha_publication_menu_publications_search_related($form_state, $native_nids);
   }
   if (!empty($form_state['#results-native'])) {
     $form['content']['results-native'] = $form_state['#results-native'];
@@ -51,7 +53,8 @@ function osha_publication_menu_publications_form_submit($form, &$form_state) {
   $form_state['rebuild'] = TRUE;
   $form_state['redirect'] = FALSE;
   $form_state['#results-native'] = osha_publication_menu_publications_search_native($form_state);
-  $form_state['#results-related'] = osha_publication_menu_publications_search_related($form_state);
+  $native_nids = $form_state['#results-native']['#nids'];
+  $form_state['#results-related'] = osha_publication_menu_publications_search_related($form_state, $native_nids);
 }
 
 function osha_publication_menu_publications_search_native($form_state) {
@@ -107,13 +110,17 @@ function osha_publication_menu_publications_search_native($form_state) {
   $current_page = pager_default_initialize(count($nids), $per_page);
   $page = array_chunk($nids, $per_page, TRUE);
   $nodes = node_load_multiple($page[$current_page]);
+  foreach($nodes as $node) {
+    $node->filter_languages = $languages;
+  }
   $pager_params = array('languages' => $languages);
   if ($is_search) {
     $pager_params['text'] = $text;
   }
   $ret = array(
+    '#nids' => $nids,
     '#prefix' => '<h4>' . t('Publications available in national languages') . '</h4>',
-    'results-native' => node_view_multiple($nodes, 'teaser', 0, $language->language),
+    'results-native' => node_view_multiple($nodes, 'pub_teaser', 0, $language->language),
     '#suffix' => theme('pager', array(
       'tags' => array('<', '<', '', '>', '>'),
       'quantity' => count($nodes),
@@ -123,9 +130,8 @@ function osha_publication_menu_publications_search_native($form_state) {
   return $ret;
 }
 
-function osha_publication_menu_publications_search_related($form_state) {
+function osha_publication_menu_publications_search_related($form_state, $native_nids) {
   global $language;
-  $text = hwc_req_param($form_state, 'text');
   $ret = array();
   if ($language->language == 'en') {
     return $ret;
@@ -160,10 +166,21 @@ function osha_publication_menu_publications_search_related($form_state) {
   if (empty($nids)) {
     return array();
   }
+  else {
+    if (!empty($native_nids)) { // Remove the nodes displayed above (native)
+      $nids = array_filter($nids, function($nid) use ($native_nids) {
+        return !in_array($nid, $native_nids);
+      });
+    }
+  }
   $per_page = 2;
   $current_page = pager_default_initialize(count($nids), $per_page);
   $page = array_chunk($nids, $per_page, TRUE);
   $nodes = node_load_multiple($page[$current_page]);
+  $languages = hwc_req_param($form_state, 'languages', array($language->language));
+  foreach($nodes as $node) {
+    $node->filter_languages = $languages;
+  }
   $languages = hwc_req_param($form_state, 'languages', array($language->language));
   $pager_params = array('languages' => $languages);
   if ($is_search) {
@@ -171,7 +188,7 @@ function osha_publication_menu_publications_search_related($form_state) {
   }
   $ret = array(
     '#prefix' => '<h4>' . t('Other relevant publications in English') . '</h4>',
-    'results-related' => node_view_multiple($nodes, 'teaser', 0, $language->language),
+    'results-related' => node_view_multiple($nodes, 'pub_teaser', 0, $language->language),
     '#suffix' => theme('pager', array(
       'tags' => array('<', '<', '', '>', '>'),
       'quantity' => count($nodes),

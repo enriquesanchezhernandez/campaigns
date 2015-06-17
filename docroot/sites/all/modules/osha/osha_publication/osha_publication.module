@@ -27,6 +27,57 @@ function osha_publication_menu() {
 }
 
 /**
+ * Implements hook_entity_info_alter().
+ */
+function osha_publication_entity_info_alter(&$entity_info) {
+  $entity_info['node']['view modes']['pub_teaser'] = array(
+    'label' => t('Publication listing'),
+    'custom settings' => TRUE,
+  );
+}
+
+/**
+ * Implements hook_preprocess_node().
+ */
+function osha_publication_preprocess_node(&$vars) {
+  if($vars['view_mode'] == 'pub_teaser') {
+    $vars['theme_hook_suggestions'][] = 'node__' . $vars['type'] . '__pub_teaser';
+  }
+}
+
+/**
+ * Implements hook_page_alter().
+ */
+function osha_publication_page_alter(&$page) {
+  if ($menu = menu_get_item()) {
+    if(!empty($menu['path']) && $menu['path'] == 'publications') {
+      // A fallback in case the node is deleted. Do not translate with t!
+      $subtitle = 'Reports, factsheets, summaries, etc. produced by EU-OSHA on the topic of managing stress and psychosocial risks.';
+      $nid = 105;
+      $fields = field_info_instances('node', 'article');
+      $rows = array($nid => (object) array('nid' => $nid, 'vid' => NULL, 'type' => 'article'));
+      field_attach_load('node', $rows, FIELD_LOAD_CURRENT, array('field_id' => $fields['body']['field_id']));
+      $node = $rows[$nid];
+      if ($text = field_view_field('node', $node, 'body',  array('label' => 'hidden'))) {
+        drupal_add_library('contextual', 'contextual-links');
+        $subtitle = '<div class="contextual-links-region clearfix">' . drupal_render($text);
+        $subtitle .= '<div class="contextual-links-wrapper"><ul class="contextual-links">';
+        $subtitle .= sprintf('<li><a href="%s">%s</a></li>', url("node/$nid/edit"), t('Edit'));
+        $subtitle .= '</ul></div></div>';
+      }
+      else {
+        drupal_set_message("Node #$nid body is empty, showing default text as subtitle", 'warning');
+      }
+
+      array_unshift($page['content'], array(
+        '#type' => 'item',
+        '#markup' => $subtitle
+      ));
+    }
+  }
+}
+
+/**
  * Implements hook_url_inbound_alter().
  */
 function osha_publication_url_inbound_alter(&$path, $original_path, $path_language) {
@@ -185,8 +236,7 @@ function osha_publication_form_lang_dropdown_form_alter(&$form, &$form_state, $f
  */
 function osha_publication_views_pre_render(&$view) {
   $jssor_path = libraries_get_path('jquery-slider-master');
-
-  if ($view->name == 'publications') {
+  if ($view->name == 'publications_slideshow') {
     drupal_add_js($jssor_path . '/jssor.slider.mini.js');
     drupal_add_css($jssor_path . '/jssor.css');
   }
