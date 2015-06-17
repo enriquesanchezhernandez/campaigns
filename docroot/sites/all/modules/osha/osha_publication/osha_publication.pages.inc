@@ -163,15 +163,13 @@ function osha_publication_menu_publications_search_related($form_state, $native_
     }
   }
   $nids = array_unique($nids);
+  if (!empty($native_nids)) { // Remove the nodes displayed above (native)
+    $nids = array_filter($nids, function($nid) use ($native_nids) {
+      return !in_array($nid, $native_nids);
+    });
+  }
   if (empty($nids)) {
     return array();
-  }
-  else {
-    if (!empty($native_nids)) { // Remove the nodes displayed above (native)
-      $nids = array_filter($nids, function($nid) use ($native_nids) {
-        return !in_array($nid, $native_nids);
-      });
-    }
   }
   $per_page = 2;
   $current_page = pager_default_initialize(count($nids), $per_page);
