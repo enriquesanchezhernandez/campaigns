@@ -132,7 +132,7 @@ function osha_publication_default_page_manager_handlers() {
     $pane->access = array();
     $pane->configuration = array(
       'label' => 'hidden',
-      'formatter' => 'file_table',
+      'formatter' => 'file_all_group_mimetype',
       'delta_limit' => 0,
       'delta_offset' => '0',
       'delta_reversed' => FALSE,

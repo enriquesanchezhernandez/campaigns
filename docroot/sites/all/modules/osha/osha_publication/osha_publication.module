@@ -289,6 +289,11 @@ function osha_publication_field_formatter_info() {
       'field types' => array('file'),
       'description' => 'Displays default icon per file type and lists all languages of the attachment.',
     ),
+    'file_all_group_mimetype' => array(
+      'label' => 'All languages, group by MIME type',
+      'field types' => array('file'),
+      'description' => 'Show files in all languages and group by MIME type',
+    ),
     'file_publication_related_res' => array(
       'label' => 'Publication related resources',
       'field types' => array('file'),
@@ -446,6 +451,13 @@ function osha_publication_field_formatter_view($entity_type, $entity, $field, $i
         '#items' => osha_publication_twin_publications_formatter($items),
       );
       break;
+    case 'file_all_group_mimetype':
+      $field_name = $field['field_name'];
+      $element[0] = array(
+        '#theme' => 'item_list',
+        '#items' => osha_publication_file_all_group_mimetype_formatter($entity->{$field_name}),
+      );
+      break;
     case 'publication_title_linked':
       $settings = $display['settings'];
       $output = isset($items[0]) ? $items[0]['safe_value'] : '';
@@ -578,6 +590,45 @@ function osha_publication_twin_publications_formatter($items) {
     $render = array(
       'title' => array('#type' => 'item', '#markup' => l($title, 'node/' . $meta['target_id'])),
       'files' => array('#type' => 'item', '#markup' => theme('item_list', array('items' => $files)), '#title' => t('Download in:')),
+    );
+    $ret[] = drupal_render($render);
+  }
+  return $ret;
+}
+
+function osha_publication_file_all_group_mimetype_formatter($items) {
+  global $language;
+  $languages = array('en');
+  if ($language->language != 'en') {
+    array_unshift($languages, $language->language);
+  }
+  $ret = array();
+  $groups = array();
+  foreach ($items as $langcode => $files) {
+    if (!in_array($langcode, $languages)) {
+      continue;
+    }
+    foreach ($files as $file) {
+      $mime = $file['filemime'];
+      $groups[$mime][$langcode][] = $file;
+    }
+  }
+  foreach ($groups as $mime => $value) {
+    $links = array();
+    foreach($value as $langcode => $files) {
+      foreach($files as $file) {
+        $title = strtoupper($langcode) . '<i class="glyphicon glyphicon-circle-arrow-down"></i>';
+        $links[] = l($title, file_create_url($file['uri']), array(
+          'absolute' => TRUE, 'html' => TRUE,
+          'attributes' => array(
+            'title' => $file['filename'],
+          )));
+      }
+    }
+    $title = t('Download !mime in:', array('!mime' => hwc_mime_friendly_acronym($mime)));
+    $render = array(
+      'title' => array('#type' => 'item', '#markup' => l($title, '<front>')),
+      'files' => array('#type' => 'item', '#markup' => theme('item_list', array('items' => $links))),
     );
     $ret[] = drupal_render($render);
   }
