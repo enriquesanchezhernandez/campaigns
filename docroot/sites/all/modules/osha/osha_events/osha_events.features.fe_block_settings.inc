@@ -40,35 +40,6 @@ function osha_events_default_fe_block_settings() {
     'visibility' => 1,
   );
 
-  $export['views-events-block_1'] = array(
-    'cache' => -1,
-    'custom' => 0,
-    'delta' => 'events-block_1',
-    'i18n_block_language' => array(),
-    'i18n_mode' => 0,
-    'module' => 'views',
-    'node_types' => array(),
-    'pages' => 'oshevents
-node/5322',
-    'roles' => array(),
-    'themes' => array(
-      'hwc_frontend' => array(
-        'region' => '',
-        'status' => 0,
-        'theme' => 'hwc_frontend',
-        'weight' => 16,
-      ),
-      'seven' => array(
-        'region' => '',
-        'status' => 0,
-        'theme' => 'seven',
-        'weight' => 0,
-      ),
-    ),
-    'title' => '<none>',
-    'visibility' => 1,
-  );
-
   $export['views-events-block_2'] = array(
     'cache' => -1,
     'custom' => 0,
