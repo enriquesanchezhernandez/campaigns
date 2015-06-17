@@ -556,31 +556,38 @@ function theme_osha_publication_bookshop_id_format($element) {
  * Formats the related resources (attached files) as icon and description/filename
  */
 function theme_osha_publication_twin_publications_format($element) {
-  $related_pubs = $element['items'];
-  $output = '<h3>Summary &amp; Resources</h3>';
-  $output .= '<ul id="publication_related_publications">';
-  foreach ($related_pubs as $pub) {
-    $output .= '<li>';
-    $node = node_load($pub['target_id']);
-    $curr_lang = 'en';
-    $title = isset($node->title_field[$curr_lang][0]) ? $node->title_field[$curr_lang][0]['value'] : $node->title_field['en'][0]['value'];
-    $output .=  '<a href="' . url('node/' . $node->nid, array('absolute' => TRUE)) . '">' . $title . '</a>';
-    $output .= '<span>Download</span>';
-    $file = isset($node->field_file[$curr_lang][0]) ? $node->field_file[$curr_lang][0] : $node->field_file['en'][0];
-    $output .= theme_file_icon(
-      array(
-        "file" => file_load($file['fid']),
-        "icon_directory" => drupal_get_path('theme', 'osha_frontend') . '/images/file_icons'
-      ));
-    $output .='<span>in:</span>';
-    foreach ($node->field_file as $lang => $object) {
-      $output .=  ' <a href="' . file_create_url($object[0]['uri']) . '">' . strtoupper($lang) . '</a> | ';
-    }
-    $output = substr($output, 0, -3);
-    $output .= '</li>';
+  global $language;
+  $languages = array('en');
+  if ($language->language != 'en') {
+    array_unshift($languages, $language->language);
   }
-  $output .= '</ul>';
-  return $output;
+  $items = array();
+  foreach($element['items'] as $meta) {
+    $node = node_load($meta['target_id']);
+    $w = entity_metadata_wrapper('node', $meta['target_id']);
+    $title = $w->label();
+    $files = array();
+    foreach($node->field_file as $lang => $value) {
+      if(in_array($lang, $languages)) {
+        foreach($value as $delta => $file) {
+          $label = strtoupper($lang) . '<i class="glyphicon glyphicon-circle-arrow-down"></i>';
+          $link = l($label, file_create_url($file['uri']), array(
+            'absolute' => TRUE, 'html' => TRUE,
+            'attributes' => array(
+              'title' => $file['filename'],
+            ),
+          ));
+          $files[] = $link;
+        }
+      }
+    };
+    $render = array(
+      'title' => array('#type' => 'item', '#markup' => l($title, 'node/' . $meta['target_id'])),
+      'files' => array('#type' => 'item', '#markup' => theme('item_list', array('items' => $files)), '#title' => t('Download in:')),
+    );
+    $items[] = drupal_render($render);
+  }
+  return theme('item_list', array('items' => $items));
 }
 
 /**
