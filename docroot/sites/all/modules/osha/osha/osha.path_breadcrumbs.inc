@@ -24,7 +24,7 @@ function osha_path_breadcrumbs_settings_info() {
       0 => '%site:current-page:menu-link:pb-join:url',
       1 => '<none>',
     ),
-    'home' => 0,
+    'home' => 1,
     'translatable' => 1,
     'arguments' => array(
       'node' => array(
