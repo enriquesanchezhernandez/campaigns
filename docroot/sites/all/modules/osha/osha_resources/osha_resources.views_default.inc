@@ -45,11 +45,11 @@ function osha_resources_views_default_views() {
   $handler->display->display_options['fields']['title']['label'] = '';
   $handler->display->display_options['fields']['title']['alter']['word_boundary'] = FALSE;
   $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
-  /* Sort criterion: Content: Updated (field_updated) */
-  $handler->display->display_options['sorts']['field_updated_value']['id'] = 'field_updated_value';
-  $handler->display->display_options['sorts']['field_updated_value']['table'] = 'field_data_field_updated';
-  $handler->display->display_options['sorts']['field_updated_value']['field'] = 'field_updated_value';
-  $handler->display->display_options['sorts']['field_updated_value']['order'] = 'DESC';
+  /* Sort criterion: Content: Updated date */
+  $handler->display->display_options['sorts']['changed']['id'] = 'changed';
+  $handler->display->display_options['sorts']['changed']['table'] = 'node';
+  $handler->display->display_options['sorts']['changed']['field'] = 'changed';
+  $handler->display->display_options['sorts']['changed']['order'] = 'DESC';
   /* Filter criterion: Content: Published */
   $handler->display->display_options['filters']['status']['id'] = 'status';
   $handler->display->display_options['filters']['status']['table'] = 'node';

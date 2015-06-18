@@ -78,6 +78,7 @@ features[field_base][] = field_publication_date
 features[field_base][] = field_recommended_articles
 features[field_base][] = field_related_resources
 features[field_base][] = field_summary
+features[field_base][] = field_tags
 features[field_base][] = title_field
 features[field_instance][] = file-document-field_file_description
 features[field_instance][] = file-document-field_language

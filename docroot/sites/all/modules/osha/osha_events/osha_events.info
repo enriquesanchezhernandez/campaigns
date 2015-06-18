@@ -51,7 +51,6 @@ features[field_group][] = group_events_event_details|node|events|default
 features[field_group][] = group_events_links|node|events|default
 features[field_group][] = group_events_related_documents|node|events|default
 features[field_instance][] = node-events-body
-features[field_instance][] = node-events-field_activity
 features[field_instance][] = node-events-field_adonis
 features[field_instance][] = node-events-field_agency_contact_reply
 features[field_instance][] = node-events-field_agency_initial_contact

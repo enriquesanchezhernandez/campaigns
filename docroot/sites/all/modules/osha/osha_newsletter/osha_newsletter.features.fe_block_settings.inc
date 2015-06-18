@@ -114,7 +114,7 @@ node/52',
         'region' => 'content',
         'status' => 1,
         'theme' => 'hwc_frontend',
-        'weight' => 9,
+        'weight' => -44,
       ),
       'seven' => array(
         'region' => '',
