@@ -56,7 +56,7 @@ events/*',
         'region' => 'content',
         'status' => 1,
         'theme' => 'hwc_frontend',
-        'weight' => -45,
+        'weight' => -49,
       ),
       'seven' => array(
         'region' => '',
