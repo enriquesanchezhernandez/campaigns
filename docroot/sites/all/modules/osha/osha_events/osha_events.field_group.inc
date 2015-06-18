@@ -23,8 +23,8 @@ function osha_events_field_group_info() {
     'label' => 'Contact',
     'weight' => '11',
     'children' => array(
-      0 => 'field_contact_name',
-      1 => 'field_contact_email',
+      0 => 'field_contact_email',
+      1 => 'field_contact_name',
       2 => 'field_contact_phone',
     ),
     'format_type' => 'fieldset',

@@ -19,15 +19,33 @@ function hwc_frontend_preprocess_page(&$vars) {
       $node = $vars['node'];
       switch ($node->type) {
         case 'news':
-          $link_title = 'Back to news';
+          $link_title = t('Back to news');
           $link_href = 'news';
+          break;
+        case 'publication':
+          $link_title = t('Back to publications list');
+          $link_href = 'publications';
+          $vars['page']['above_title']['title-alternative'] = array(
+            '#type' => 'item',
+            '#markup' => t('Publications'),
+            '#prefix' => '<strong class="title-alt">', '#suffix' => '</strong>'
+          );
           break;
       }
       if (isset($link_title)) {
-        $vars['page']['content']['back-to-link'] = array(
+        $vars['page']['above_title']['back-to-link'] = array(
             '#type' => 'item',
             '#markup' => l($link_title, $link_href, array('attributes' => array('class' => array('back-to-link pull-right')))),
         );
       }
     }
+  if ($node = menu_get_object()) {
+    if ($node->type == 'publication') {
+      ctools_include('plugins');
+      ctools_include('context');
+      $pb = path_breadcrumbs_load_by_name('publications_detail_page');
+      $breadcrumbs = _path_breadcrumbs_build_breadcrumbs($pb);
+      drupal_set_breadcrumb($breadcrumbs);
+    }
+  }
 }

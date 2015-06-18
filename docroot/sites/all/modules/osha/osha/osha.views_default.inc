@@ -118,10 +118,8 @@ function osha_views_default_views() {
   $handler->display->display_options['relationships']['term_node_tid']['table'] = 'node';
   $handler->display->display_options['relationships']['term_node_tid']['field'] = 'term_node_tid';
   $handler->display->display_options['relationships']['term_node_tid']['vocabularies'] = array(
-    'activity' => 0,
     'article_types' => 0,
     'esener' => 0,
-    'nace_codes' => 0,
     'section' => 0,
     'attachment_file_type' => 0,
     'flickr_tags' => 0,
@@ -895,22 +893,6 @@ function osha_views_default_views() {
   $handler->display->display_options['filters']['type']['expose']['label'] = 'Type';
   $handler->display->display_options['filters']['type']['expose']['operator'] = 'type_op';
   $handler->display->display_options['filters']['type']['expose']['identifier'] = 'type';
-  /* Filter criterion: Field: Nace (field_nace_codes) */
-  $handler->display->display_options['filters']['field_nace_codes_tid']['id'] = 'field_nace_codes_tid';
-  $handler->display->display_options['filters']['field_nace_codes_tid']['table'] = 'field_data_field_nace_codes';
-  $handler->display->display_options['filters']['field_nace_codes_tid']['field'] = 'field_nace_codes_tid';
-  $handler->display->display_options['filters']['field_nace_codes_tid']['value'] = '';
-  $handler->display->display_options['filters']['field_nace_codes_tid']['exposed'] = TRUE;
-  $handler->display->display_options['filters']['field_nace_codes_tid']['expose']['operator_id'] = 'field_nace_codes_tid_op';
-  $handler->display->display_options['filters']['field_nace_codes_tid']['expose']['label'] = 'Nace';
-  $handler->display->display_options['filters']['field_nace_codes_tid']['expose']['operator'] = 'field_nace_codes_tid_op';
-  $handler->display->display_options['filters']['field_nace_codes_tid']['expose']['identifier'] = 'field_nace_codes_tid';
-  $handler->display->display_options['filters']['field_nace_codes_tid']['expose']['remember_roles'] = array(
-    2 => '2',
-    1 => 0,
-    3 => 0,
-  );
-  $handler->display->display_options['filters']['field_nace_codes_tid']['vocabulary'] = 'nace_codes';
   /* Filter criterion: Field: Tags (field_tags) */
   $handler->display->display_options['filters']['field_tags_tid']['id'] = 'field_tags_tid';
   $handler->display->display_options['filters']['field_tags_tid']['table'] = 'field_data_field_tags';
@@ -928,22 +910,6 @@ function osha_views_default_views() {
   );
   $handler->display->display_options['filters']['field_tags_tid']['type'] = 'select';
   $handler->display->display_options['filters']['field_tags_tid']['vocabulary'] = 'tags';
-  /* Filter criterion: Field: Thesaurus (field_thesaurus) */
-  $handler->display->display_options['filters']['field_thesaurus_tid']['id'] = 'field_thesaurus_tid';
-  $handler->display->display_options['filters']['field_thesaurus_tid']['table'] = 'field_data_field_thesaurus';
-  $handler->display->display_options['filters']['field_thesaurus_tid']['field'] = 'field_thesaurus_tid';
-  $handler->display->display_options['filters']['field_thesaurus_tid']['value'] = '';
-  $handler->display->display_options['filters']['field_thesaurus_tid']['exposed'] = TRUE;
-  $handler->display->display_options['filters']['field_thesaurus_tid']['expose']['operator_id'] = 'field_thesaurus_tid_op';
-  $handler->display->display_options['filters']['field_thesaurus_tid']['expose']['label'] = 'Thesaurus';
-  $handler->display->display_options['filters']['field_thesaurus_tid']['expose']['operator'] = 'field_thesaurus_tid_op';
-  $handler->display->display_options['filters']['field_thesaurus_tid']['expose']['identifier'] = 'field_thesaurus_tid';
-  $handler->display->display_options['filters']['field_thesaurus_tid']['expose']['remember_roles'] = array(
-    2 => '2',
-    1 => 0,
-    3 => 0,
-  );
-  $handler->display->display_options['filters']['field_thesaurus_tid']['vocabulary'] = 'thesaurus';
 
   /* Display: Media browser */
   $handler = $view->new_display('media_browser', 'Media browser', 'media_browser_osha');
@@ -1048,9 +1014,7 @@ function osha_views_default_views() {
     t('Use count'),
     t('File name'),
     t('Type'),
-    t('Nace'),
     t('Tags'),
-    t('Thesaurus'),
     t('Media browser'),
     t('OSHA Library '),
     t('My files'),

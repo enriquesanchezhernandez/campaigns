@@ -1300,13 +1300,6 @@ function osha_events_views_default_views() {
     'title_class' => '',
   );
   $handler->display->display_options['fields']['title_field']['link_to_entity'] = 0;
-  /* Field: Content: Activity */
-  $handler->display->display_options['fields']['field_activity']['id'] = 'field_activity';
-  $handler->display->display_options['fields']['field_activity']['table'] = 'field_data_field_activity';
-  $handler->display->display_options['fields']['field_activity']['field'] = 'field_activity';
-  $handler->display->display_options['fields']['field_activity']['label'] = '';
-  $handler->display->display_options['fields']['field_activity']['exclude'] = TRUE;
-  $handler->display->display_options['fields']['field_activity']['element_label_colon'] = FALSE;
   /* Field: Global: View result counter */
   $handler->display->display_options['fields']['counter']['id'] = 'counter';
   $handler->display->display_options['fields']['counter']['table'] = 'views';
@@ -1329,11 +1322,6 @@ function osha_events_views_default_views() {
     'multiple_to' => '',
     'osha_date_theme' => '',
   );
-  /* Sort criterion: Content: Activity (field_activity) */
-  $handler->display->display_options['sorts']['field_activity_tid']['id'] = 'field_activity_tid';
-  $handler->display->display_options['sorts']['field_activity_tid']['table'] = 'field_data_field_activity';
-  $handler->display->display_options['sorts']['field_activity_tid']['field'] = 'field_activity_tid';
-  $handler->display->display_options['sorts']['field_activity_tid']['order'] = 'DESC';
   /* Filter criterion: Content: Published */
   $handler->display->display_options['filters']['status']['id'] = 'status';
   $handler->display->display_options['filters']['status']['table'] = 'node';
@@ -1349,33 +1337,6 @@ function osha_events_views_default_views() {
     'events' => 'events',
   );
   $handler->display->display_options['filters']['type']['group'] = 1;
-  /* Filter criterion: Content: Activity (field_activity) */
-  $handler->display->display_options['filters']['field_activity_tid']['id'] = 'field_activity_tid';
-  $handler->display->display_options['filters']['field_activity_tid']['table'] = 'field_data_field_activity';
-  $handler->display->display_options['filters']['field_activity_tid']['field'] = 'field_activity_tid';
-  $handler->display->display_options['filters']['field_activity_tid']['group'] = 1;
-  $handler->display->display_options['filters']['field_activity_tid']['exposed'] = TRUE;
-  $handler->display->display_options['filters']['field_activity_tid']['expose']['operator_id'] = 'field_activity_tid_op';
-  $handler->display->display_options['filters']['field_activity_tid']['expose']['label'] = 'Activity';
-  $handler->display->display_options['filters']['field_activity_tid']['expose']['operator'] = 'field_activity_tid_op';
-  $handler->display->display_options['filters']['field_activity_tid']['expose']['identifier'] = 'field_activity_tid';
-  $handler->display->display_options['filters']['field_activity_tid']['expose']['remember_roles'] = array(
-    2 => '2',
-    1 => 0,
-    3 => 0,
-    4 => 0,
-    5 => 0,
-    6 => 0,
-    7 => 0,
-    8 => 0,
-    9 => 0,
-    10 => 0,
-    11 => 0,
-    12 => 0,
-  );
-  $handler->display->display_options['filters']['field_activity_tid']['type'] = 'select';
-  $handler->display->display_options['filters']['field_activity_tid']['vocabulary'] = 'activity';
-  $handler->display->display_options['filters']['field_activity_tid']['hierarchy'] = 1;
   /* Filter criterion: Content: Start date -  start date (field_start_date) */
   $handler->display->display_options['filters']['field_start_date_value']['id'] = 'field_start_date_value';
   $handler->display->display_options['filters']['field_start_date_value']['table'] = 'field_data_field_start_date';
@@ -1433,7 +1394,6 @@ function osha_events_views_default_views() {
     t('Total: @end
 '),
     t('Start date:'),
-    t('Activity'),
     t('Start date (field_start_date)'),
     t('Page'),
     t('Block'),

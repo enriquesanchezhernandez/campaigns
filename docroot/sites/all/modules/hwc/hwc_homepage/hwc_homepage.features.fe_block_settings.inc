@@ -27,7 +27,7 @@ function hwc_homepage_default_fe_block_settings() {
         'region' => 'content',
         'status' => 1,
         'theme' => 'hwc_frontend',
-        'weight' => 1,
+        'weight' => -46,
       ),
       'seven' => array(
         'region' => '',
@@ -104,7 +104,7 @@ function hwc_homepage_default_fe_block_settings() {
     'i18n_mode' => 0,
     'module' => 'views',
     'node_types' => array(),
-    'pages' => '',
+    'pages' => '<front>',
     'roles' => array(),
     'themes' => array(
       'hwc_frontend' => array(
@@ -121,7 +121,7 @@ function hwc_homepage_default_fe_block_settings() {
       ),
     ),
     'title' => '',
-    'visibility' => 0,
+    'visibility' => 1,
   );
 
   return $export;

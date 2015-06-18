@@ -27,6 +27,57 @@ function osha_publication_menu() {
 }
 
 /**
+ * Implements hook_entity_info_alter().
+ */
+function osha_publication_entity_info_alter(&$entity_info) {
+  $entity_info['node']['view modes']['pub_teaser'] = array(
+    'label' => t('Publication listing'),
+    'custom settings' => TRUE,
+  );
+}
+
+/**
+ * Implements hook_preprocess_node().
+ */
+function osha_publication_preprocess_node(&$vars) {
+  if($vars['view_mode'] == 'pub_teaser') {
+    $vars['theme_hook_suggestions'][] = 'node__' . $vars['type'] . '__pub_teaser';
+  }
+}
+
+/**
+ * Implements hook_page_alter().
+ */
+function osha_publication_page_alter(&$page) {
+  if ($menu = menu_get_item()) {
+    if(!empty($menu['path']) && $menu['path'] == 'publications') {
+      // A fallback in case the node is deleted. Do not translate with t!
+      $subtitle = 'Reports, factsheets, summaries, etc. produced by EU-OSHA on the topic of managing stress and psychosocial risks.';
+      $nid = 105;
+      $fields = field_info_instances('node', 'article');
+      $rows = array($nid => (object) array('nid' => $nid, 'vid' => NULL, 'type' => 'article'));
+      field_attach_load('node', $rows, FIELD_LOAD_CURRENT, array('field_id' => $fields['body']['field_id']));
+      $node = $rows[$nid];
+      if ($text = field_view_field('node', $node, 'body',  array('label' => 'hidden'))) {
+        drupal_add_library('contextual', 'contextual-links');
+        $subtitle = '<div class="contextual-links-region clearfix">' . drupal_render($text);
+        $subtitle .= '<div class="contextual-links-wrapper"><ul class="contextual-links">';
+        $subtitle .= sprintf('<li><a href="%s">%s</a></li>', url("node/$nid/edit"), t('Edit'));
+        $subtitle .= '</ul></div></div>';
+      }
+      else {
+        drupal_set_message("Node #$nid body is empty, showing default text as subtitle", 'warning');
+      }
+
+      array_unshift($page['content'], array(
+        '#type' => 'item',
+        '#markup' => $subtitle
+      ));
+    }
+  }
+}
+
+/**
  * Implements hook_url_inbound_alter().
  */
 function osha_publication_url_inbound_alter(&$path, $original_path, $path_language) {
@@ -185,8 +236,7 @@ function osha_publication_form_lang_dropdown_form_alter(&$form, &$form_state, $f
  */
 function osha_publication_views_pre_render(&$view) {
   $jssor_path = libraries_get_path('jquery-slider-master');
-
-  if ($view->name == 'publications') {
+  if ($view->name == 'publications_slideshow') {
     drupal_add_js($jssor_path . '/jssor.slider.mini.js');
     drupal_add_css($jssor_path . '/jssor.css');
   }
@@ -238,6 +288,11 @@ function osha_publication_field_formatter_info() {
       'label' => 'Publication file',
       'field types' => array('file'),
       'description' => 'Displays default icon per file type and lists all languages of the attachment.',
+    ),
+    'file_all_group_mimetype' => array(
+      'label' => 'All languages, group by MIME type',
+      'field types' => array('file'),
+      'description' => 'Show files in all languages and group by MIME type',
     ),
     'file_publication_related_res' => array(
       'label' => 'Publication related resources',
@@ -353,9 +408,6 @@ function osha_publication_theme() {
     'osha_publication_bookshop_id_format' => array(
       'variables' => array('bookshop_id' => NULL, 'delta' => NULL),
     ),
-    'osha_publication_twin_publications_format' => array(
-      'variables' => array('items' => NULL),
-    ),
   );
 }
 
@@ -394,12 +446,16 @@ function osha_publication_field_formatter_view($entity_type, $entity, $field, $i
       }
       break;
     case 'publication_twin_publications':
-      foreach ($items as $delta => $item) {
-
-      }
       $element[0] = array(
-        '#theme' => 'osha_publication_twin_publications_format',
-        '#items' => $items,
+        '#theme' => 'item_list',
+        '#items' => osha_publication_twin_publications_formatter($items),
+      );
+      break;
+    case 'file_all_group_mimetype':
+      $field_name = $field['field_name'];
+      $element[0] = array(
+        '#theme' => 'item_list',
+        '#items' => osha_publication_file_all_group_mimetype_formatter($entity->{$field_name}),
       );
       break;
     case 'publication_title_linked':
@@ -505,32 +561,78 @@ function theme_osha_publication_bookshop_id_format($element) {
 /*
  * Formats the related resources (attached files) as icon and description/filename
  */
-function theme_osha_publication_twin_publications_format($element) {
-  $related_pubs = $element['items'];
-  $output = '<h3>Summary &amp; Resources</h3>';
-  $output .= '<ul id="publication_related_publications">';
-  foreach ($related_pubs as $pub) {
-    $output .= '<li>';
-    $node = node_load($pub['target_id']);
-    $curr_lang = 'en';
-    $title = isset($node->title_field[$curr_lang][0]) ? $node->title_field[$curr_lang][0]['value'] : $node->title_field['en'][0]['value'];
-    $output .=  '<a href="' . url('node/' . $node->nid, array('absolute' => TRUE)) . '">' . $title . '</a>';
-    $output .= '<span>Download</span>';
-    $file = isset($node->field_file[$curr_lang][0]) ? $node->field_file[$curr_lang][0] : $node->field_file['en'][0];
-    $output .= theme_file_icon(
-      array(
-        "file" => file_load($file['fid']),
-        "icon_directory" => drupal_get_path('theme', 'osha_frontend') . '/images/file_icons'
-      ));
-    $output .='<span>in:</span>';
-    foreach ($node->field_file as $lang => $object) {
-      $output .=  ' <a href="' . file_create_url($object[0]['uri']) . '">' . strtoupper($lang) . '</a> | ';
-    }
-    $output = substr($output, 0, -3);
-    $output .= '</li>';
+function osha_publication_twin_publications_formatter($items) {
+  global $language;
+  $languages = array('en');
+  if ($language->language != 'en') {
+    array_unshift($languages, $language->language);
   }
-  $output .= '</ul>';
-  return $output;
+  $ret = array();
+  foreach($items as $meta) {
+    $node = node_load($meta['target_id']);
+    $w = entity_metadata_wrapper('node', $meta['target_id']);
+    $title = $w->label();
+    $files = array();
+    foreach($node->field_file as $lang => $value) {
+      if(in_array($lang, $languages)) {
+        foreach($value as $delta => $file) {
+          $label = strtoupper($lang) . '<i class="glyphicon glyphicon-circle-arrow-down"></i>';
+          $link = l($label, file_create_url($file['uri']), array(
+            'absolute' => TRUE, 'html' => TRUE,
+            'attributes' => array(
+              'title' => $file['filename'],
+            ),
+          ));
+          $files[] = $link;
+        }
+      }
+    };
+    $render = array(
+      'title' => array('#type' => 'item', '#markup' => l($title, 'node/' . $meta['target_id'])),
+      'files' => array('#type' => 'item', '#markup' => theme('item_list', array('items' => $files)), '#title' => t('Download in:')),
+    );
+    $ret[] = drupal_render($render);
+  }
+  return $ret;
+}
+
+function osha_publication_file_all_group_mimetype_formatter($items) {
+  global $language;
+  $languages = array('en');
+  if ($language->language != 'en') {
+    array_unshift($languages, $language->language);
+  }
+  $ret = array();
+  $groups = array();
+  foreach ($items as $langcode => $files) {
+    if (!in_array($langcode, $languages)) {
+      continue;
+    }
+    foreach ($files as $file) {
+      $mime = $file['filemime'];
+      $groups[$mime][$langcode][] = $file;
+    }
+  }
+  foreach ($groups as $mime => $value) {
+    $links = array();
+    foreach($value as $langcode => $files) {
+      foreach($files as $file) {
+        $title = strtoupper($langcode) . '<i class="glyphicon glyphicon-circle-arrow-down"></i>';
+        $links[] = l($title, file_create_url($file['uri']), array(
+          'absolute' => TRUE, 'html' => TRUE,
+          'attributes' => array(
+            'title' => $file['filename'],
+          )));
+      }
+    }
+    $title = t('Download !mime in:', array('!mime' => hwc_mime_friendly_acronym($mime)));
+    $render = array(
+      'title' => array('#type' => 'item', '#markup' => l($title, '<front>')),
+      'files' => array('#type' => 'item', '#markup' => theme('item_list', array('items' => $links))),
+    );
+    $ret[] = drupal_render($render);
+  }
+  return $ret;
 }
 
 /**

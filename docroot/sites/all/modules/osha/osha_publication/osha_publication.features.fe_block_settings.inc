@@ -12,22 +12,22 @@ function osha_publication_default_fe_block_settings() {
 
   $export['version'] = '2.0';
 
-  $export['views-publications-slidehow'] = array(
+  $export['views-publications_slideshow-slidehow'] = array(
     'cache' => -1,
     'custom' => 0,
-    'delta' => 'publications-slidehow',
+    'delta' => 'publications_slideshow-slidehow',
     'i18n_block_language' => array(),
     'i18n_mode' => 0,
     'module' => 'views',
     'node_types' => array(),
-    'pages' => 'tools-and-publications/publications',
+    'pages' => 'publications',
     'roles' => array(),
     'themes' => array(
       'hwc_frontend' => array(
-        'region' => '',
-        'status' => 0,
+        'region' => 'content',
+        'status' => 1,
         'theme' => 'hwc_frontend',
-        'weight' => 4,
+        'weight' => -52,
       ),
       'seven' => array(
         'region' => '',

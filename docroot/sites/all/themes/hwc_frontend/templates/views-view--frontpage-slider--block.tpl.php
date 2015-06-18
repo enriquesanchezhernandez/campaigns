@@ -27,8 +27,14 @@
  * @ingroup views_templates
  */
 ?>
+<?php
+/** @var array $variables */
+/** @var view $view */
+$view = $variables['view'];
+$intNumberOfItems = count($view->result);
+setcookie('numberOfItems', $intNumberOfItems, time() + 3600);
+?>
 <script>
-
   jQuery(document).ready(function ($) {
     var options = {
       $AutoPlay: true,
@@ -42,13 +48,8 @@
     };
     var jssor_slider1 = new $JssorSlider$("home_slider", options);
   });
-
 </script>
 <div class="separator_recomended_resources_home">&nbsp;</div>
-<?php
-$intNumberOfItems = substr_count($rows ,'<img typeof=');
-setcookie('numberOfItems', $intNumberOfItems, time() + 3600);
-?>
 <div id="home_slider" style="position: relative; top: 0px; left: 0px; width: 1138px; height: 160px; overflow: hidden;">
   <!-- Slides Container -->
   <div id="num_slides" u="slides" style="cursor: move; position: absolute; left: 5em; top: 0px; width: 1138px; height: 160px; overflow: hidden;">

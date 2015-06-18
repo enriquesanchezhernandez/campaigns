@@ -26,3 +26,27 @@ function hwc_req_param($form_state, $name, $default = NULL) {
   }
   return $default;
 }
+
+
+function hwc_mime_friendly_acronym($mime) {
+  $mappings = array(
+    'application/msword' => t('DOC'),
+    'application/vnd.ms-excel' => t('XLS'),
+    'application/vnd.ms-powerpoint' => t('PPT'),
+    'application/pdf' => t('PDF'),
+    'video/quicktime' => t('Movie'),
+    'audio/mpeg' => t('Audio'),
+    'audio/wav' => t('Audio'),
+    'image/jpeg' => t('Image'),
+    'image/png' => t('Image'),
+    'image/gif' => t('Image'),
+    'application/zip' => t('ZIP'),
+    'text/html' => t('HTML'),
+    'text/plain' => t('TXT'),
+    'application/octet-stream' => t('BIN'),
+  );
+  if (array_key_exists($mime, $mappings)) {
+    return $mappings[$mime];
+  }
+  return $mime;
+}
