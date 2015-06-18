@@ -90,6 +90,15 @@ function osha_press_release_block_info() {
     'weight' => 4
   );
 
+  $blocks['osha_press_kit'] = array(
+    'info' => t('Press kit'),
+    'status' => 1,
+    'region' => '',
+    'visibility' => BLOCK_VISIBILITY_NOTLISTED,
+    'pages' => '',
+    'cache' => DRUPAL_CACHE_GLOBAL,
+  );
+
   return $blocks;
 }
 
@@ -162,6 +171,29 @@ To receive EU-OSHA's news releases by email, please send us full contact details
         '#default_value' => variable_get('become_partner_link_url', 'https://www.healthy-workplaces.eu/en/campaign-partners/media-partners'),
       );
       break;
+
+    case 'osha_press_kit':
+      $form['osha_press_kit_intro_text'] = array(
+        '#type' => 'textarea',
+        '#title' => t('Block intro text'),
+        '#size' => 60,
+        '#description' => 'This text will appear in the Press kit block.',
+        '#default_value' => variable_get('osha_press_kit_intro_text', ''),
+      );
+      $form['osha_press_kit_link_label'] = array(
+        '#type' => 'textfield',
+        '#title' => 'Press kit link label',
+        '#size' => 60,
+        '#description' => 'This text will appear as link label in the Join our news distribution list block after intro text.',
+        '#default_value' => variable_get('osha_press_kit_link_label', 'Download'),
+      );
+      $form['osha_press_kit_link_url'] = array(
+        '#type' => 'textfield',
+        '#title' => 'Press kit button url',
+        '#size' => 60,
+        '#description' => 'This will be the url of the Press kit button.',
+        '#default_value' => variable_get('osha_press_kit_link_url', ''),
+      );
   }
   return $form;
 }
@@ -178,10 +210,18 @@ function osha_press_release_block_save($delta = '', $edit = array()) {
       variable_set('join_dist_list_link_url', $edit['join_dist_list_link_url']);
       variable_set('join_dist_list_email_text', $edit['join_dist_list_email_text']);
       break;
+
     case 'osha_press_rel_become_partner':
       variable_set('become_partner_block_intro_text', $edit['become_partner_block_intro_text']);
       variable_set('become_partner_link_label', $edit['become_partner_link_label']);
       variable_set('become_partner_link_url', $edit['become_partner_link_url']);
+      break;
+
+    case 'osha_press_kit':
+      variable_set('osha_press_kit_title', $edit['title']);
+      variable_set('osha_press_kit_intro_text', $edit['osha_press_kit_intro_text']);
+      variable_set('osha_press_kit_link_label', $edit['osha_press_kit_link_label']);
+      variable_set('osha_press_kit_link_url', $edit['osha_press_kit_link_url']);
       break;
   }
 }
@@ -225,6 +265,20 @@ To receive EU-OSHA’s news releases by email, please send us full contact detai
         return $block;
       }
       break;
+
+    case 'osha_press_kit':
+      if(user_access('access content')) {
+        $block['subject'] = t(variable_get('osha_press_kit_title', 'Press kit'));
+        $link = variable_get('osha_press_kit_link_url', '');
+        $label = variable_get('osha_press_kit_link_label', 'Download');
+        $block['content'] = theme('osha_press_kit', array(
+            'osha_press_kit_intro_text' => t(variable_get('osha_press_kit_intro_text', '')),
+            'osha_press_kit_link' => l(t($label), $link),
+          )
+        );
+        return $block;
+      }
+      break;
   }
   return array();
 }
@@ -243,6 +297,14 @@ function osha_press_release_theme() {
       'join_dist_list_link_label' => NULL,
       'join_dist_list_link_url' => NULL,
       'join_dist_list_email_text' => NULL
+    ),
+    'path' => $path . '/templates'
+  );
+  $theme['osha_press_kit'] = array(
+    'template' => 'osha_press_kit',
+    'variables' => array(
+      'osha_press_kit_intro_text' => NULL,
+      'osha_press_kit_link' => NULL,
     ),
     'path' => $path . '/templates'
   );

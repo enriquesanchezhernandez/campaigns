@@ -73,6 +73,8 @@ function osha_press_release_default_page_manager_pages() {
           0 => 'center',
         ),
         'parent' => 'main',
+        'class' => 'col-md-12',
+        'hide_empty' => 0,
       ),
       'center' => array(
         'type' => 'region',
@@ -177,7 +179,7 @@ function osha_press_release_default_page_manager_pages() {
     $pane->configuration = array(
       'admin_title' => '',
       'title' => '',
-      'body' => '<p>Lorem ipsum</p>',
+      'body' => '<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>',
       'format' => 'full_html',
       'substitute' => TRUE,
     );
@@ -250,6 +252,64 @@ function osha_press_release_default_page_manager_pages() {
     $pane->uuid = 'e411aa7e-f936-4ea8-813c-6556763895f6';
     $display->content['new-e411aa7e-f936-4ea8-813c-6556763895f6'] = $pane;
     $display->panels['content_'][0] = 'new-e411aa7e-f936-4ea8-813c-6556763895f6';
+    $pane = new stdClass();
+    $pane->pid = 'new-6f5e9b9c-694a-4582-a086-7a1039dbfac7';
+    $pane->panel = 'content_';
+    $pane->type = 'views';
+    $pane->subtype = 'press_contacts';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'override_pager_settings' => 0,
+      'use_pager' => 0,
+      'nodes_per_page' => '0',
+      'pager_id' => '0',
+      'offset' => '0',
+      'more_link' => 0,
+      'feed_icons' => 0,
+      'panel_args' => 0,
+      'link_to_view' => 0,
+      'args' => '',
+      'url' => '',
+      'display' => 'block',
+      'override_title' => 0,
+      'override_title_text' => '',
+      'override_title_heading' => 'h2',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 1;
+    $pane->locks = array();
+    $pane->uuid = '6f5e9b9c-694a-4582-a086-7a1039dbfac7';
+    $display->content['new-6f5e9b9c-694a-4582-a086-7a1039dbfac7'] = $pane;
+    $display->panels['content_'][1] = 'new-6f5e9b9c-694a-4582-a086-7a1039dbfac7';
+    $pane = new stdClass();
+    $pane->pid = 'new-59926498-8374-4038-b46c-fc5582623d22';
+    $pane->panel = 'content_';
+    $pane->type = 'block';
+    $pane->subtype = 'osha_press_release-osha_press_kit';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'override_title' => 0,
+      'override_title_text' => '',
+      'override_title_heading' => 'h2',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 2;
+    $pane->locks = array();
+    $pane->uuid = '59926498-8374-4038-b46c-fc5582623d22';
+    $display->content['new-59926498-8374-4038-b46c-fc5582623d22'] = $pane;
+    $display->panels['content_'][2] = 'new-59926498-8374-4038-b46c-fc5582623d22';
   $display->hide_title = PANELS_TITLE_FIXED;
   $display->title_pane = '0';
   $handler->conf['display'] = $display;

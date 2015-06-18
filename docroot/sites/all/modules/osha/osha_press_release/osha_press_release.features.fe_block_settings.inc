@@ -40,6 +40,36 @@ function osha_press_release_default_fe_block_settings() {
     'visibility' => 0,
   );
 
+  $export['osha_press_release-osha_press_kit'] = array(
+    'cache' => 8,
+    'custom' => 0,
+    'delta' => 'osha_press_kit',
+    'i18n_block_language' => array(),
+    'i18n_mode' => 0,
+    'module' => 'osha_press_release',
+    'node_types' => array(
+      0 => 'press_release',
+    ),
+    'pages' => '',
+    'roles' => array(),
+    'themes' => array(
+      'hwc_frontend' => array(
+        'region' => 'sidebar_second',
+        'status' => 1,
+        'theme' => 'hwc_frontend',
+        'weight' => -49,
+      ),
+      'seven' => array(
+        'region' => '',
+        'status' => 0,
+        'theme' => 'seven',
+        'weight' => 0,
+      ),
+    ),
+    'title' => 'Press kit',
+    'visibility' => 0,
+  );
+
   $export['osha_press_release-osha_press_rel_become_partner'] = array(
     'cache' => 8,
     'custom' => 0,
@@ -47,15 +77,17 @@ function osha_press_release_default_fe_block_settings() {
     'i18n_block_language' => array(),
     'i18n_mode' => 0,
     'module' => 'osha_press_release',
-    'node_types' => array(),
+    'node_types' => array(
+      0 => 'press_release',
+    ),
     'pages' => '',
     'roles' => array(),
     'themes' => array(
       'hwc_frontend' => array(
-        'region' => '',
-        'status' => 0,
+        'region' => 'sidebar_second',
+        'status' => 1,
         'theme' => 'hwc_frontend',
-        'weight' => 4,
+        'weight' => -51,
       ),
       'seven' => array(
         'region' => '',
@@ -93,6 +125,36 @@ function osha_press_release_default_fe_block_settings() {
       ),
     ),
     'title' => 'Join our news distribution list',
+    'visibility' => 0,
+  );
+
+  $export['views-press_contacts-block'] = array(
+    'cache' => -1,
+    'custom' => 0,
+    'delta' => 'press_contacts-block',
+    'i18n_block_language' => array(),
+    'i18n_mode' => 0,
+    'module' => 'views',
+    'node_types' => array(
+      0 => 'press_release',
+    ),
+    'pages' => '',
+    'roles' => array(),
+    'themes' => array(
+      'hwc_frontend' => array(
+        'region' => 'sidebar_second',
+        'status' => 1,
+        'theme' => 'hwc_frontend',
+        'weight' => -50,
+      ),
+      'seven' => array(
+        'region' => '',
+        'status' => 0,
+        'theme' => 'seven',
+        'weight' => 0,
+      ),
+    ),
+    'title' => '',
     'visibility' => 0,
   );
 
