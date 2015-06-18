@@ -22,7 +22,6 @@ dependencies[] = number
 dependencies[] = options
 dependencies[] = osha
 dependencies[] = osha_events
-dependencies[] = osha_publication
 dependencies[] = osha_taxonomies
 dependencies[] = page_manager
 dependencies[] = path_breadcrumbs

@@ -104,10 +104,10 @@ el.remove();
   $strongarm->name = 'addtoany_nodetypes';
   $strongarm->value = array(
     'article' => 'article',
+    'events' => 'events',
     'news' => 'news',
     'press_release' => 'press_release',
     'press_contact' => 0,
-    'events' => 0,
     'external_url' => 0,
     'file' => 0,
     'flickr' => 0,

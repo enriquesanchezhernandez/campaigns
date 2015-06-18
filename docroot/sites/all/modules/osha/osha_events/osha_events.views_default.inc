@@ -498,11 +498,6 @@ function osha_events_views_default_views() {
   $handler->display->display_options['fields']['field_unit_ref']['table'] = 'field_data_field_unit_ref';
   $handler->display->display_options['fields']['field_unit_ref']['field'] = 'field_unit_ref';
   $handler->display->display_options['fields']['field_unit_ref']['element_label_colon'] = FALSE;
-  /* Field: Content: Activity */
-  $handler->display->display_options['fields']['field_activity']['id'] = 'field_activity';
-  $handler->display->display_options['fields']['field_activity']['table'] = 'field_data_field_activity';
-  $handler->display->display_options['fields']['field_activity']['field'] = 'field_activity';
-  $handler->display->display_options['fields']['field_activity']['element_label_colon'] = FALSE;
   /* Field: Content: Agency role */
   $handler->display->display_options['fields']['field_agency_role']['id'] = 'field_agency_role';
   $handler->display->display_options['fields']['field_agency_role']['table'] = 'field_data_field_agency_role';
@@ -800,33 +795,6 @@ function osha_events_views_default_views() {
     10 => 0,
     11 => 0,
   );
-  /* Filter criterion: Content: Activity (field_activity) */
-  $handler->display->display_options['filters']['field_activity_tid']['id'] = 'field_activity_tid';
-  $handler->display->display_options['filters']['field_activity_tid']['table'] = 'field_data_field_activity';
-  $handler->display->display_options['filters']['field_activity_tid']['field'] = 'field_activity_tid';
-  $handler->display->display_options['filters']['field_activity_tid']['group'] = 1;
-  $handler->display->display_options['filters']['field_activity_tid']['exposed'] = TRUE;
-  $handler->display->display_options['filters']['field_activity_tid']['expose']['operator_id'] = 'field_activity_tid_op';
-  $handler->display->display_options['filters']['field_activity_tid']['expose']['label'] = 'Activity';
-  $handler->display->display_options['filters']['field_activity_tid']['expose']['operator'] = 'field_activity_tid_op';
-  $handler->display->display_options['filters']['field_activity_tid']['expose']['identifier'] = 'field_activity_tid';
-  $handler->display->display_options['filters']['field_activity_tid']['expose']['remember_roles'] = array(
-    2 => '2',
-    1 => 0,
-    3 => 0,
-    4 => 0,
-    5 => 0,
-    6 => 0,
-    7 => 0,
-    8 => 0,
-    9 => 0,
-    10 => 0,
-    11 => 0,
-    12 => 0,
-  );
-  $handler->display->display_options['filters']['field_activity_tid']['type'] = 'select';
-  $handler->display->display_options['filters']['field_activity_tid']['vocabulary'] = 'activity';
-  $handler->display->display_options['filters']['field_activity_tid']['hierarchy'] = 1;
   /* Filter criterion: Content: Organised by (field_organised_by) */
   $handler->display->display_options['filters']['field_organised_by_tid']['id'] = 'field_organised_by_tid';
   $handler->display->display_options['filters']['field_organised_by_tid']['table'] = 'field_data_field_organised_by';
@@ -1252,7 +1220,6 @@ function osha_events_views_default_views() {
     t('[field_color]'),
     t('Title'),
     t('End date'),
-    t('Activity'),
     t('Operations'),
     t('<ul class="links inline">
 <li>[edit_node]</li>
@@ -1260,6 +1227,7 @@ function osha_events_views_default_views() {
 </ul>'),
     t('Name'),
     t('Published'),
+    t('Activity'),
     t('Block'),
     t('Location'),
     t('[field_start_date_1] - Events'),
@@ -1300,7 +1268,7 @@ function osha_events_views_default_views() {
   $handler->display->display_options['fields']['search_api_et_id']['id'] = 'search_api_et_id';
   $handler->display->display_options['fields']['search_api_et_id']['table'] = 'search_api_index_default_multilingual_node_index';
   $handler->display->display_options['fields']['search_api_et_id']['field'] = 'search_api_et_id';
-  /* Sort criterion: Broken/missing handler */
+  /* Sort criterion: Indexed Multilingual Node: Publication date */
   $handler->display->display_options['sorts']['field_publication_date']['id'] = 'field_publication_date';
   $handler->display->display_options['sorts']['field_publication_date']['table'] = 'search_api_index_default_multilingual_node_index';
   $handler->display->display_options['sorts']['field_publication_date']['field'] = 'field_publication_date';
@@ -1352,7 +1320,7 @@ function osha_events_views_default_views() {
   $handler->display->display_options['empty']['area_text_custom']['empty'] = TRUE;
   $handler->display->display_options['empty']['area_text_custom']['content'] = 'No results';
   $handler->display->display_options['defaults']['fields'] = FALSE;
-  /* Field: Indexed Multilingual Node: Start date » Start date */
+  /* Field: Start date: Start date (indexed) */
   $handler->display->display_options['fields']['field_start_date_value']['id'] = 'field_start_date_value';
   $handler->display->display_options['fields']['field_start_date_value']['table'] = 'search_api_index_default_multilingual_node_index';
   $handler->display->display_options['fields']['field_start_date_value']['field'] = 'field_start_date_value';
@@ -1363,7 +1331,7 @@ function osha_events_views_default_views() {
   $handler->display->display_options['fields']['field_start_date_value']['date_format'] = 'osha_day_only';
   $handler->display->display_options['fields']['field_start_date_value']['second_date_format'] = 'year';
   $handler->display->display_options['fields']['field_start_date_value']['link_to_entity'] = 0;
-  /* Field: Indexed Multilingual Node: Start date » End date */
+  /* Field: Start date: End date (indexed) */
   $handler->display->display_options['fields']['field_start_date_value2']['id'] = 'field_start_date_value2';
   $handler->display->display_options['fields']['field_start_date_value2']['table'] = 'search_api_index_default_multilingual_node_index';
   $handler->display->display_options['fields']['field_start_date_value2']['field'] = 'field_start_date_value2';
@@ -1426,7 +1394,7 @@ function osha_events_views_default_views() {
   $handler->display->display_options['fields']['view_node']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['view_node']['text'] = 'See details';
   $handler->display->display_options['defaults']['sorts'] = FALSE;
-  /* Sort criterion: Broken/missing handler */
+  /* Sort criterion: Start date: Start date (indexed) */
   $handler->display->display_options['sorts']['field_start_date_value']['id'] = 'field_start_date_value';
   $handler->display->display_options['sorts']['field_start_date_value']['table'] = 'search_api_index_default_multilingual_node_index';
   $handler->display->display_options['sorts']['field_start_date_value']['field'] = 'field_start_date_value';
@@ -1474,7 +1442,7 @@ function osha_events_views_default_views() {
     'events' => 'events',
   );
   $handler->display->display_options['filters']['type']['group'] = 1;
-  /* Filter criterion: Broken/missing handler */
+  /* Filter criterion: Indexed Multilingual Node: Status */
   $handler->display->display_options['filters']['status']['id'] = 'status';
   $handler->display->display_options['filters']['status']['table'] = 'search_api_index_default_multilingual_node_index';
   $handler->display->display_options['filters']['status']['field'] = 'status';
@@ -1482,7 +1450,7 @@ function osha_events_views_default_views() {
     1 => '1',
   );
   $handler->display->display_options['filters']['status']['group'] = 1;
-  /* Filter criterion: Broken/missing handler */
+  /* Filter criterion: Indexed Multilingual Node: Country */
   $handler->display->display_options['filters']['field_country_code']['id'] = 'field_country_code';
   $handler->display->display_options['filters']['field_country_code']['table'] = 'search_api_index_default_multilingual_node_index';
   $handler->display->display_options['filters']['field_country_code']['field'] = 'field_country_code';
@@ -1505,7 +1473,7 @@ function osha_events_views_default_views() {
     10 => 0,
     11 => 0,
   );
-  /* Filter criterion: Broken/missing handler */
+  /* Filter criterion: Start date: Start date (indexed) */
   $handler->display->display_options['filters']['field_start_date_value']['id'] = 'field_start_date_value';
   $handler->display->display_options['filters']['field_start_date_value']['table'] = 'search_api_index_default_multilingual_node_index';
   $handler->display->display_options['filters']['field_start_date_value']['field'] = 'field_start_date_value';
@@ -1530,7 +1498,7 @@ function osha_events_views_default_views() {
     11 => 0,
     12 => 0,
   );
-  /* Filter criterion: Broken/missing handler */
+  /* Filter criterion: Start date: End date (indexed) */
   $handler->display->display_options['filters']['field_start_date_value2']['id'] = 'field_start_date_value2';
   $handler->display->display_options['filters']['field_start_date_value2']['table'] = 'search_api_index_default_multilingual_node_index';
   $handler->display->display_options['filters']['field_start_date_value2']['field'] = 'field_start_date_value2';
@@ -1555,14 +1523,14 @@ function osha_events_views_default_views() {
     11 => 0,
     12 => 0,
   );
-  /* Filter criterion: Broken/missing handler */
+  /* Filter criterion: Indexed Multilingual Node: Publication date */
   $handler->display->display_options['filters']['field_publication_date']['id'] = 'field_publication_date';
   $handler->display->display_options['filters']['field_publication_date']['table'] = 'search_api_index_default_multilingual_node_index';
   $handler->display->display_options['filters']['field_publication_date']['field'] = 'field_publication_date';
   $handler->display->display_options['filters']['field_publication_date']['operator'] = '<=';
   $handler->display->display_options['filters']['field_publication_date']['value'] = 'now';
   $handler->display->display_options['filters']['field_publication_date']['group'] = 2;
-  /* Filter criterion: Broken/missing handler */
+  /* Filter criterion: Indexed Multilingual Node: Publication date */
   $handler->display->display_options['filters']['field_publication_date_1']['id'] = 'field_publication_date_1';
   $handler->display->display_options['filters']['field_publication_date_1']['table'] = 'search_api_index_default_multilingual_node_index';
   $handler->display->display_options['filters']['field_publication_date_1']['field'] = 'field_publication_date';
@@ -1672,7 +1640,7 @@ function osha_events_views_default_views() {
     'trim_length' => '150',
   );
   $handler->display->display_options['defaults']['sorts'] = FALSE;
-  /* Sort criterion: Broken/missing handler */
+  /* Sort criterion: Start date: Start date (indexed) */
   $handler->display->display_options['sorts']['field_start_date_value']['id'] = 'field_start_date_value';
   $handler->display->display_options['sorts']['field_start_date_value']['table'] = 'search_api_index_default_multilingual_node_index';
   $handler->display->display_options['sorts']['field_start_date_value']['field'] = 'field_start_date_value';
@@ -1685,14 +1653,14 @@ function osha_events_views_default_views() {
   $handler->display->display_options['filters']['type']['value'] = array(
     'events' => 'events',
   );
-  /* Filter criterion: Broken/missing handler */
+  /* Filter criterion: Indexed Multilingual Node: Status */
   $handler->display->display_options['filters']['status']['id'] = 'status';
   $handler->display->display_options['filters']['status']['table'] = 'search_api_index_default_multilingual_node_index';
   $handler->display->display_options['filters']['status']['field'] = 'status';
   $handler->display->display_options['filters']['status']['value'] = array(
     1 => '1',
   );
-  /* Filter criterion: Broken/missing handler */
+  /* Filter criterion: Start date: End date (indexed) */
   $handler->display->display_options['filters']['field_start_date_value2']['id'] = 'field_start_date_value2';
   $handler->display->display_options['filters']['field_start_date_value2']['table'] = 'search_api_index_default_multilingual_node_index';
   $handler->display->display_options['filters']['field_start_date_value2']['field'] = 'field_start_date_value2';
@@ -1791,13 +1759,6 @@ function osha_events_views_default_views() {
     'title_class' => '',
   );
   $handler->display->display_options['fields']['title_field']['link_to_entity'] = 0;
-  /* Field: Content: Activity */
-  $handler->display->display_options['fields']['field_activity']['id'] = 'field_activity';
-  $handler->display->display_options['fields']['field_activity']['table'] = 'field_data_field_activity';
-  $handler->display->display_options['fields']['field_activity']['field'] = 'field_activity';
-  $handler->display->display_options['fields']['field_activity']['label'] = '';
-  $handler->display->display_options['fields']['field_activity']['exclude'] = TRUE;
-  $handler->display->display_options['fields']['field_activity']['element_label_colon'] = FALSE;
   /* Field: Global: View result counter */
   $handler->display->display_options['fields']['counter']['id'] = 'counter';
   $handler->display->display_options['fields']['counter']['table'] = 'views';
@@ -1846,11 +1807,6 @@ function osha_events_views_default_views() {
     'thousand_separator' => ' ',
     'prefix_suffix' => 1,
   );
-  /* Sort criterion: Content: Activity (field_activity) */
-  $handler->display->display_options['sorts']['field_activity_tid']['id'] = 'field_activity_tid';
-  $handler->display->display_options['sorts']['field_activity_tid']['table'] = 'field_data_field_activity';
-  $handler->display->display_options['sorts']['field_activity_tid']['field'] = 'field_activity_tid';
-  $handler->display->display_options['sorts']['field_activity_tid']['order'] = 'DESC';
   /* Filter criterion: Content: Published */
   $handler->display->display_options['filters']['status']['id'] = 'status';
   $handler->display->display_options['filters']['status']['table'] = 'node';
@@ -1866,33 +1822,6 @@ function osha_events_views_default_views() {
     'events' => 'events',
   );
   $handler->display->display_options['filters']['type']['group'] = 1;
-  /* Filter criterion: Content: Activity (field_activity) */
-  $handler->display->display_options['filters']['field_activity_tid']['id'] = 'field_activity_tid';
-  $handler->display->display_options['filters']['field_activity_tid']['table'] = 'field_data_field_activity';
-  $handler->display->display_options['filters']['field_activity_tid']['field'] = 'field_activity_tid';
-  $handler->display->display_options['filters']['field_activity_tid']['group'] = 1;
-  $handler->display->display_options['filters']['field_activity_tid']['exposed'] = TRUE;
-  $handler->display->display_options['filters']['field_activity_tid']['expose']['operator_id'] = 'field_activity_tid_op';
-  $handler->display->display_options['filters']['field_activity_tid']['expose']['label'] = 'Activity';
-  $handler->display->display_options['filters']['field_activity_tid']['expose']['operator'] = 'field_activity_tid_op';
-  $handler->display->display_options['filters']['field_activity_tid']['expose']['identifier'] = 'field_activity_tid';
-  $handler->display->display_options['filters']['field_activity_tid']['expose']['remember_roles'] = array(
-    2 => '2',
-    1 => 0,
-    3 => 0,
-    4 => 0,
-    5 => 0,
-    6 => 0,
-    7 => 0,
-    8 => 0,
-    9 => 0,
-    10 => 0,
-    11 => 0,
-    12 => 0,
-  );
-  $handler->display->display_options['filters']['field_activity_tid']['type'] = 'select';
-  $handler->display->display_options['filters']['field_activity_tid']['vocabulary'] = 'activity';
-  $handler->display->display_options['filters']['field_activity_tid']['hierarchy'] = 1;
   /* Filter criterion: Content: Event in AMP (field_event_in_amp) */
   $handler->display->display_options['filters']['field_event_in_amp_value']['id'] = 'field_event_in_amp_value';
   $handler->display->display_options['filters']['field_event_in_amp_value']['table'] = 'field_data_field_event_in_amp';

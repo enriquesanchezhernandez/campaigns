@@ -32,8 +32,8 @@ function osha_publication_field_group_info() {
       'instance_settings' => array(
         'classes' => 'group-summary-resources field-group-html-element',
         'element' => 'div',
-        'show_label' => '1',
-        'label_element' => 'h3',
+        'show_label' => '0',
+        'label_element' => '',
         'attributes' => '',
       ),
     ),
