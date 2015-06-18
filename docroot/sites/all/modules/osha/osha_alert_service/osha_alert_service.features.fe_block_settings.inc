@@ -20,7 +20,7 @@ function osha_alert_service_default_fe_block_settings() {
     'i18n_mode' => 0,
     'module' => 'osha_alert_service',
     'node_types' => array(),
-    'pages' => '',
+    'pages' => '<front>',
     'roles' => array(),
     'themes' => array(
       'hwc_frontend' => array(
@@ -37,7 +37,7 @@ function osha_alert_service_default_fe_block_settings() {
       ),
     ),
     'title' => '<none>',
-    'visibility' => 0,
+    'visibility' => 1,
   );
 
   $export['osha_alert_service-osha_alert_service_subscribe'] = array(
