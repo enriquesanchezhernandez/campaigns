@@ -1,20 +1,20 @@
 <?php
 /**
  * @file
- * osha.path_breadcrumbs.inc
+ * osha_press_release.path_breadcrumbs.inc
  */
 
 /**
  * Implements hook_path_breadcrumbs_settings_info().
  */
-function osha_path_breadcrumbs_settings_info() {
+function osha_press_release_path_breadcrumbs_settings_info() {
   $export = array();
 
   $path_breadcrumb = new stdClass();
   $path_breadcrumb->api_version = 1;
-  $path_breadcrumb->machine_name = 'node_breadcrumbs';
-  $path_breadcrumb->name = 'Node breadcrumbs';
-  $path_breadcrumb->path = 'node/%node';
+  $path_breadcrumb->machine_name = 'press_room';
+  $path_breadcrumb->name = 'Press room';
+  $path_breadcrumb->path = 'press-room';
   $path_breadcrumb->data = array(
     'titles' => array(
       0 => '%site:current-page:menu-link:pb-join:name',
@@ -26,15 +26,11 @@ function osha_path_breadcrumbs_settings_info() {
     ),
     'home' => 1,
     'translatable' => 1,
-    'arguments' => array(
-      'node' => array(
-        'position' => 1,
-      ),
-    ),
+    'arguments' => array(),
     'access' => array(),
   );
   $path_breadcrumb->weight = 0;
-  $export['node_breadcrumbs'] = $path_breadcrumb;
+  $export['press_room'] = $path_breadcrumb;
 
   return $export;
 }
