@@ -28,6 +28,7 @@
  */
 ?>
 <?php
+/** @var array $rows */
 /** @var array $variables */
 /** @var view $view */
 $view = $variables['view'];
@@ -46,38 +47,18 @@ setcookie('numberOfItems', $intNumberOfItems, time() + 3600);
         $AutoCenter: 1
       }
     };
-    var jssor_slider1 = new $JssorSlider$("home_slider", options);
+    new $JssorSlider$('homepage_slider', options);
   });
 </script>
 <div class="separator_recomended_resources_home">&nbsp;</div>
-<div id="home_slider" style="position: relative; top: 0px; left: 0px; width: 1138px; height: 160px; overflow: hidden;">
+<div id="homepage_slider" class="homepage-slider">
   <!-- Slides Container -->
-  <div id="num_slides" u="slides" style="cursor: move; position: absolute; left: 5em; top: 0px; width: 1138px; height: 160px; overflow: hidden;">
+  <div id="num_slides" u="slides">
     <?php print $rows ?>
   </div>
-  <!--#region Bullet Navigator Skin Begin -->
-  <style>
-    /* jssor slider bullet navigator skin 12 css */
-    .jssorb12 {
-      position: absolute;
-    }
-    .jssorb12 div, .jssorb12 div:hover, .jssorb12 .av {
-      position: absolute;
-      /* size of bullet elment */
-      width: 16px;
-      height: 16px;
-      background: url(sites/all/libraries/jquery-slider-master/img/b12.png) no-repeat;
-      overflow: hidden;
-      cursor: pointer;
-    }
-    .jssorb12 div { background-position: -7px -7px; }
-    .jssorb12 div:hover, .jssorb12 .av:hover { background-position: -37px -7px; }
-    .jssorb12 .av { background-position: -67px -7px; }
-    .jssorb12 .dn, .jssorb12 .dn:hover { background-position: -97px -7px; }
-  </style>
-  <!-- bullet navigator container -->
-  <div u="navigator" class="jssorb12" style="bottom: 16px; right: 6px;">
-    <!-- bullet navigator item prototype -->
+  <!-- Bullet navigator container -->
+  <div u="navigator" class="jssorb12">
+    <!-- Bullet navigator item prototype -->
     <div u="prototype"></div>
   </div>
   <!--#endregion Bullet Navigator Skin End -->
