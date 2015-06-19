@@ -486,6 +486,7 @@ $options['init-modules'] = array(
   'hwc',
   'hwc_homepage',
   'ncw_migration',
+  'campaign_materials',
 );
 
 
