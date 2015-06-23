@@ -619,6 +619,20 @@ function osha_events_views_default_views() {
   $handler->display->display_options['access']['type'] = 'none';
   $handler->display->display_options['defaults']['relationships'] = FALSE;
   $handler->display->display_options['defaults']['fields'] = FALSE;
+  /* Field: Content: Start date */
+  $handler->display->display_options['fields']['field_start_date']['id'] = 'field_start_date';
+  $handler->display->display_options['fields']['field_start_date']['table'] = 'field_data_field_start_date';
+  $handler->display->display_options['fields']['field_start_date']['field'] = 'field_start_date';
+  $handler->display->display_options['fields']['field_start_date']['label'] = '';
+  $handler->display->display_options['fields']['field_start_date']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_start_date']['settings'] = array(
+    'format_type' => 'day_month_year',
+    'fromto' => 'value',
+    'multiple_number' => '',
+    'multiple_from' => '',
+    'multiple_to' => '',
+    'osha_date_theme' => '',
+  );
   /* Field: Content: Title */
   $handler->display->display_options['fields']['title']['id'] = 'title';
   $handler->display->display_options['fields']['title']['table'] = 'node';
@@ -627,13 +641,13 @@ function osha_events_views_default_views() {
   $handler->display->display_options['fields']['title']['alter']['word_boundary'] = FALSE;
   $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
   /* Field: Content: Start date */
-  $handler->display->display_options['fields']['field_start_date']['id'] = 'field_start_date';
-  $handler->display->display_options['fields']['field_start_date']['table'] = 'field_data_field_start_date';
-  $handler->display->display_options['fields']['field_start_date']['field'] = 'field_start_date';
-  $handler->display->display_options['fields']['field_start_date']['label'] = 'Event date';
-  $handler->display->display_options['fields']['field_start_date']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['field_start_date']['settings'] = array(
-    'format_type' => 'long',
+  $handler->display->display_options['fields']['field_start_date_1']['id'] = 'field_start_date_1';
+  $handler->display->display_options['fields']['field_start_date_1']['table'] = 'field_data_field_start_date';
+  $handler->display->display_options['fields']['field_start_date_1']['field'] = 'field_start_date';
+  $handler->display->display_options['fields']['field_start_date_1']['label'] = '';
+  $handler->display->display_options['fields']['field_start_date_1']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_start_date_1']['settings'] = array(
+    'format_type' => 'month_day_year',
     'fromto' => 'both',
     'multiple_number' => '',
     'multiple_from' => '',
@@ -666,6 +680,13 @@ function osha_events_views_default_views() {
   $handler->display->display_options['fields']['field_website_of_event']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['field_website_of_event']['click_sort_column'] = 'url';
   $handler->display->display_options['fields']['field_website_of_event']['delta_offset'] = '0';
+  /* Field: Content: Link */
+  $handler->display->display_options['fields']['view_node']['id'] = 'view_node';
+  $handler->display->display_options['fields']['view_node']['table'] = 'views_entity_node';
+  $handler->display->display_options['fields']['view_node']['field'] = 'view_node';
+  $handler->display->display_options['fields']['view_node']['label'] = '';
+  $handler->display->display_options['fields']['view_node']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['view_node']['text'] = 'Learn more';
   $handler->display->display_options['defaults']['sorts'] = FALSE;
   /* Sort criterion: Content: Start date -  start date (field_start_date) */
   $handler->display->display_options['sorts']['field_start_date_value']['id'] = 'field_start_date_value';
@@ -786,8 +807,9 @@ function osha_events_views_default_views() {
     t('Calendar filter'),
     t('[field_start_date_1]'),
     t('Upcoming events'),
-    t('Event date'),
+    t('Learn more'),
     t('Events by start date'),
+    t('Event date'),
     t('All'),
     t('%1'),
   );
