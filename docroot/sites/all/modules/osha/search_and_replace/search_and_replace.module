@@ -1,7 +1,0 @@
-<?php
-/**
- * @file
- * Code for the Search and Replace feature.
- */
-
-include_once 'search_and_replace.features.inc';
