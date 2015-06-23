@@ -471,6 +471,7 @@ $options['init-modules'] = array(
   'search_api_et_solr',
   'search_api_views',
   'search_api_attachments',
+  'search_and_replace',
 
   'osha_lingua_tools',
 
