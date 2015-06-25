@@ -21,7 +21,7 @@ function osha_locale_default_languages() {
     'formula' => '',
     'domain' => '',
     'prefix' => 'bg',
-    'weight' => -9,
+    'weight' => -99,
   );
   // Exported language: ca.
   $languages['ca'] = array(
@@ -34,7 +34,7 @@ function osha_locale_default_languages() {
     'formula' => '',
     'domain' => '',
     'prefix' => 'ca',
-    'weight' => 10,
+    'weight' => -75,
   );
   // Exported language: cs.
   $languages['cs'] = array(
@@ -47,7 +47,7 @@ function osha_locale_default_languages() {
     'formula' => '',
     'domain' => '',
     'prefix' => 'cs',
-    'weight' => -8,
+    'weight' => -98,
   );
   // Exported language: da.
   $languages['da'] = array(
@@ -60,7 +60,7 @@ function osha_locale_default_languages() {
     'formula' => '',
     'domain' => '',
     'prefix' => 'da',
-    'weight' => -7,
+    'weight' => -97,
   );
   // Exported language: de.
   $languages['de'] = array(
@@ -73,7 +73,7 @@ function osha_locale_default_languages() {
     'formula' => '',
     'domain' => '',
     'prefix' => 'de',
-    'weight' => -6,
+    'weight' => -96,
   );
   // Exported language: el.
   $languages['el'] = array(
@@ -86,7 +86,7 @@ function osha_locale_default_languages() {
     'formula' => '',
     'domain' => '',
     'prefix' => 'el',
-    'weight' => -5,
+    'weight' => -95,
   );
   // Exported language: en.
   $languages['en'] = array(
@@ -99,7 +99,7 @@ function osha_locale_default_languages() {
     'formula' => '',
     'domain' => '',
     'prefix' => 'en',
-    'weight' => -10,
+    'weight' => -100,
   );
   // Exported language: es.
   $languages['es'] = array(
@@ -112,7 +112,7 @@ function osha_locale_default_languages() {
     'formula' => '',
     'domain' => '',
     'prefix' => 'es',
-    'weight' => -4,
+    'weight' => -94,
   );
   // Exported language: et.
   $languages['et'] = array(
@@ -125,7 +125,7 @@ function osha_locale_default_languages() {
     'formula' => '',
     'domain' => '',
     'prefix' => 'et',
-    'weight' => -3,
+    'weight' => -93,
   );
   // Exported language: fi.
   $languages['fi'] = array(
@@ -138,7 +138,7 @@ function osha_locale_default_languages() {
     'formula' => '',
     'domain' => '',
     'prefix' => 'fi',
-    'weight' => -2,
+    'weight' => -92,
   );
   // Exported language: fr.
   $languages['fr'] = array(
@@ -151,7 +151,7 @@ function osha_locale_default_languages() {
     'formula' => '',
     'domain' => '',
     'prefix' => 'fr',
-    'weight' => 0,
+    'weight' => -90,
   );
   // Exported language: hr.
   $languages['hr'] = array(
@@ -164,7 +164,7 @@ function osha_locale_default_languages() {
     'formula' => '',
     'domain' => '',
     'prefix' => 'hr',
-    'weight' => -1,
+    'weight' => -91,
   );
   // Exported language: hu.
   $languages['hu'] = array(
@@ -177,7 +177,7 @@ function osha_locale_default_languages() {
     'formula' => '',
     'domain' => '',
     'prefix' => 'hu',
-    'weight' => 1,
+    'weight' => -89,
   );
   // Exported language: is.
   $languages['is'] = array(
@@ -190,7 +190,7 @@ function osha_locale_default_languages() {
     'formula' => '',
     'domain' => '',
     'prefix' => 'is',
-    'weight' => 2,
+    'weight' => -88,
   );
   // Exported language: it.
   $languages['it'] = array(
@@ -203,7 +203,7 @@ function osha_locale_default_languages() {
     'formula' => '',
     'domain' => '',
     'prefix' => 'it',
-    'weight' => 3,
+    'weight' => -87,
   );
   // Exported language: lt.
   $languages['lt'] = array(
@@ -216,7 +216,7 @@ function osha_locale_default_languages() {
     'formula' => '',
     'domain' => '',
     'prefix' => 'lt',
-    'weight' => 5,
+    'weight' => -85,
   );
   // Exported language: lv.
   $languages['lv'] = array(
@@ -229,7 +229,7 @@ function osha_locale_default_languages() {
     'formula' => '',
     'domain' => '',
     'prefix' => 'lv',
-    'weight' => 4,
+    'weight' => -86,
   );
   // Exported language: mt.
   $languages['mt'] = array(
@@ -242,7 +242,7 @@ function osha_locale_default_languages() {
     'formula' => '',
     'domain' => '',
     'prefix' => 'mt',
-    'weight' => 7,
+    'weight' => -83,
   );
   // Exported language: nl.
   $languages['nl'] = array(
@@ -255,7 +255,7 @@ function osha_locale_default_languages() {
     'formula' => '',
     'domain' => '',
     'prefix' => 'nl',
-    'weight' => 6,
+    'weight' => -84,
   );
   // Exported language: no.
   $languages['no'] = array(
@@ -268,7 +268,7 @@ function osha_locale_default_languages() {
     'formula' => '',
     'domain' => '',
     'prefix' => 'no',
-    'weight' => 8,
+    'weight' => -82,
   );
   // Exported language: pl.
   $languages['pl'] = array(
@@ -281,7 +281,7 @@ function osha_locale_default_languages() {
     'formula' => '',
     'domain' => '',
     'prefix' => 'pl',
-    'weight' => 9,
+    'weight' => -81,
   );
   // Exported language: pt.
   $languages['pt'] = array(
@@ -294,7 +294,7 @@ function osha_locale_default_languages() {
     'formula' => '',
     'domain' => '',
     'prefix' => 'pt',
-    'weight' => 10,
+    'weight' => -80,
   );
   // Exported language: ro.
   $languages['ro'] = array(
@@ -307,7 +307,7 @@ function osha_locale_default_languages() {
     'formula' => '',
     'domain' => '',
     'prefix' => 'ro',
-    'weight' => 10,
+    'weight' => -79,
   );
   // Exported language: ru.
   $languages['ru'] = array(
@@ -320,7 +320,7 @@ function osha_locale_default_languages() {
     'formula' => '',
     'domain' => '',
     'prefix' => 'ru',
-    'weight' => 10,
+    'weight' => -74,
   );
   // Exported language: sk.
   $languages['sk'] = array(
@@ -333,7 +333,7 @@ function osha_locale_default_languages() {
     'formula' => '',
     'domain' => '',
     'prefix' => 'sk',
-    'weight' => 10,
+    'weight' => -78,
   );
   // Exported language: sl.
   $languages['sl'] = array(
@@ -346,7 +346,7 @@ function osha_locale_default_languages() {
     'formula' => '',
     'domain' => '',
     'prefix' => 'sl',
-    'weight' => 10,
+    'weight' => -77,
   );
   // Exported language: sv.
   $languages['sv'] = array(
@@ -359,7 +359,7 @@ function osha_locale_default_languages() {
     'formula' => '',
     'domain' => '',
     'prefix' => 'sv',
-    'weight' => 10,
+    'weight' => -76,
   );
   // Exported language: tr.
   $languages['tr'] = array(
@@ -372,7 +372,7 @@ function osha_locale_default_languages() {
     'formula' => '',
     'domain' => '',
     'prefix' => 'tr',
-    'weight' => 10,
+    'weight' => -73,
   );
   return $languages;
 }
