@@ -378,6 +378,15 @@ function osha_language_list_options() {
 //  }
 //}
 
+function osha_extra_language_list() {
+  $disabled = array(
+    'tr',
+    'ru',
+    'ca',
+  );
+  return drupal_map_assoc($disabled);
+}
+
 /**
  * Implements hook_form_alter().
  */
