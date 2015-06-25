@@ -17,10 +17,12 @@ function osha_events_path_breadcrumbs_settings_info() {
   $path_breadcrumb->path = 'events';
   $path_breadcrumb->data = array(
     'titles' => array(
-      0 => '!page_title',
+      0 => '%site:current-page:menu-link:pb-join:name',
+      1 => '!page_title',
     ),
     'paths' => array(
-      0 => '<none>',
+      0 => '%site:current-page:menu-link:pb-join:url',
+      1 => '<none>',
     ),
     'home' => 1,
     'translatable' => 1,

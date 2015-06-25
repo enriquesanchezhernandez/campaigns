@@ -8,6 +8,7 @@ dependencies[] = entity
 dependencies[] = entityreference
 dependencies[] = field_collection
 dependencies[] = field_group
+dependencies[] = file_entity
 dependencies[] = i18n_field
 dependencies[] = multiple_selects
 dependencies[] = osha
