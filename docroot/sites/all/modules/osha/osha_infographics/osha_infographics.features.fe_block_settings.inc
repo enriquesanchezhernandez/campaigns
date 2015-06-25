@@ -20,14 +20,14 @@ function osha_infographics_default_fe_block_settings() {
     'i18n_mode' => 0,
     'module' => 'views',
     'node_types' => array(),
-    'pages' => 'infographic/*',
+    'pages' => 'infographics/*',
     'roles' => array(),
     'themes' => array(
       'hwc_frontend' => array(
-        'region' => '',
-        'status' => 0,
+        'region' => 'content',
+        'status' => 1,
         'theme' => 'hwc_frontend',
-        'weight' => 19,
+        'weight' => -47,
       ),
       'seven' => array(
         'region' => '',
@@ -48,15 +48,14 @@ function osha_infographics_default_fe_block_settings() {
     'i18n_mode' => 0,
     'module' => 'views',
     'node_types' => array(),
-    'pages' => 'node/5429
-tools-and-publications/infographics',
+    'pages' => 'node/114',
     'roles' => array(),
     'themes' => array(
       'hwc_frontend' => array(
-        'region' => '',
-        'status' => 0,
+        'region' => 'content',
+        'status' => 1,
         'theme' => 'hwc_frontend',
-        'weight' => 18,
+        'weight' => -48,
       ),
       'seven' => array(
         'region' => '',
@@ -65,7 +64,7 @@ tools-and-publications/infographics',
         'weight' => 0,
       ),
     ),
-    'title' => '',
+    'title' => '<none>',
     'visibility' => 1,
   );
 
@@ -77,15 +76,14 @@ tools-and-publications/infographics',
     'i18n_mode' => 0,
     'module' => 'views',
     'node_types' => array(),
-    'pages' => 'node/5429
-tools-and-publications/infographics',
+    'pages' => 'node/114',
     'roles' => array(),
     'themes' => array(
       'hwc_frontend' => array(
-        'region' => '',
-        'status' => 0,
+        'region' => 'content',
+        'status' => 1,
         'theme' => 'hwc_frontend',
-        'weight' => 20,
+        'weight' => -49,
       ),
       'seven' => array(
         'region' => '',
@@ -94,7 +92,7 @@ tools-and-publications/infographics',
         'weight' => 0,
       ),
     ),
-    'title' => '',
+    'title' => '<none>',
     'visibility' => 1,
   );
 
