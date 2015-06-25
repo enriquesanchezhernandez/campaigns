@@ -39,7 +39,6 @@ features[field_base][] = field_related_documents
 features[field_base][] = field_schedule
 features[field_base][] = field_speaker
 features[field_base][] = field_start_date
-features[field_base][] = field_tags
 features[field_base][] = field_talking_date
 features[field_base][] = field_talking_files
 features[field_base][] = field_talking_speaker

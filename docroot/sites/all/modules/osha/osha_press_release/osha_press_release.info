@@ -205,7 +205,6 @@ features[views_view][] = press_contacts
 features[views_view][] = press_releases
 features_exclude[dependencies][osha_infographics] = osha_infographics
 features_exclude[field_base][field_flickr_tags] = field_flickr_tags
-features_exclude[field_base][field_tags] = field_tags
 features_exclude[field_base][field_thesaurus] = field_thesaurus
 features_exclude[field_base][field_nace_code] = field_nace_code
 features_exclude[taxonomy][tags] = tags
