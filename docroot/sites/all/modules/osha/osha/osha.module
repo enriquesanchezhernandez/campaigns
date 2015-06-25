@@ -161,6 +161,8 @@ function osha_date_format_types() {
     'osha_day_only'  => t('Day only'),
     'month' => t('Month: F'),
     'year_and_month'  => t('Year and Month'),
+    'day_month_year' => t('Day Month Year'),
+    'month_day_year' => t('Month Day Year'),
   );
 }
 

@@ -157,12 +157,12 @@ function osha_events_user_role_insert($role) {
  * {@inheritdoc}
  */
 function osha_events_views_pre_render(&$view) {
-  if ($view->name == 'events' && $view->current_display == 'block_2') {
+  if ($view->name == 'events' && in_array($view->current_display, array('block_1', 'block_2'))) {
     $month = '';
     $current_year = date('Y', time());
 
     foreach ($view->result as $key => $result) {
-      $row_month = date('F', strtotime($result->field_field_start_date[0]['raw']['value']));
+      $row_month = format_date(strtotime($result->field_field_start_date[0]['raw']['value']), 'custom', 'M');
       $row_month_raw = date('m', strtotime($result->field_field_start_date[0]['raw']['value']));
       $row_year = date('Y', strtotime($result->field_field_start_date_1[0]['raw']['value']));
 
@@ -173,13 +173,22 @@ function osha_events_views_pre_render(&$view) {
       }
       $month = $row_month;
 
+      $path = $view->current_display == 'block_1'? 'past-events':'events';
+
       $result->field_field_start_date[0]['rendered']['#markup']
-        = "<a href='/events/{$row_year}-{$row_month_raw}'>$row_month</a>";
+        = l($row_month, $path, array(
+          'query' =>
+            array('f' => array(
+                0 => urlencode('field_start_date:') . 'value:' . $row_year . '-' . $row_month_raw,
+              )
+            )
+          )
+        );
     }
   }
 
-  // Breadcrumb and title for Montly Posts.
-  if ($view->name == 'events' && $view->current_display == 'page_2') {
+  // Breadcrumb and title for Monthly Posts.
+  if ($view->name == 'events_search' && $view->current_display == 'page_2') {
     $title = isset($view->args[0]) ? osha_events_get_view_title($view->args[0]) : '';
     // Set view title.
     $view->build_info['title'] = $title;
