@@ -1148,6 +1148,11 @@ function osha_tmgmt_form_tmgmt_ui_entity_translation_review_form_alter(&$form, &
     foreach ($values as $value) {
       $form['review'][$field][$value]['actions']['#access'] = $user_can_edit;
       $form['review'][$field][$value]['translation']['#disabled'] = !$user_can_edit;
+      // Set english text if is editing in extra language.
+      if (osha_tmgmt_job_item_in_extra_language($job_item)
+        && empty($form['review'][$field][$value]['translation']['#default_value'])) {
+        $form['review'][$field][$value]['translation']['#default_value'] = $form['review'][$field][$value]['source']['#default_value'];
+      }
     }
   }
   // Fix State Label.
