@@ -343,6 +343,7 @@ abstract class AbstractNCWNodeSource extends MigrateSource {
 
   protected $endpoint_url = NULL;
   protected $rows = array();
+  protected $count = -1;
 
   public function __construct($options) {
     parent::__construct($options);
@@ -360,10 +361,14 @@ abstract class AbstractNCWNodeSource extends MigrateSource {
    * Total number of entities.
    */
   public function computeCount() {
-    if (empty($this->rows)) {
-      $this->readData();
+    if ($this->count == -1) {
+      $data = $this->fileGetContents($this->endpoint_url);
+      $this->count = 0;
+      if ($data = json_decode($data)) {
+        $this->count = count($data->items);
+      }
     }
-    return count($this->rows);
+    return $this->count;
   }
 
   /**
