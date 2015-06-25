@@ -1,3 +1,11 @@
+/* Menu dropdown */
+ul.nav li.dropdown:hover ul.dropdown-menu {
+    display: block;
+}
+ul.nav li.dropdown ul.dropdown-menu {
+    margin-top: 0;
+}
+
 #block-search-form .input-group { width: 250px; }
 #block-search-form input { width: 200px; }
 
