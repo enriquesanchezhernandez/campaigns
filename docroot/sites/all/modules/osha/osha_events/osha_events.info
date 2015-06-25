@@ -113,6 +113,7 @@ features[variable][] = node_submitted_events
 features[variable][] = workbench_access_node_type_events
 features[views_view][] = events
 features[views_view][] = events_index
+features[views_view][] = events_search
 features[views_view][] = reporting_view
 features_exclude[dependencies][ctools] = ctools
 features_exclude[dependencies][date] = date
