@@ -975,6 +975,11 @@ function osha_tmgmt_form_alter(&$form, &$form_state, $form_id) {
         $job_item->state != TMGMT_JOB_ITEM_STATE_ABORTED
         && $job_item->state != TMGMT_JOB_ITEM_STATE_ACCEPTED
         && (user_access('accept job item translation') || in_array('Layout Validator', $user->roles));
+
+    case 'locale_languages_overview_form':
+      foreach(element_children($form['weight']) as $key) {
+        $form['weight'][$key]['#delta'] = 100;
+      }
   }
 }
 
