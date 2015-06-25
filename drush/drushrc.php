@@ -373,7 +373,6 @@ $options['init-modules'] = array(
   'node_export',
   'mpac',
   'pathologic',
-  'scanner',
   'search_and_replace',
   'nodeblock',
   'quicktabs',
