@@ -2326,7 +2326,7 @@ function osha_tmgmt_views_default_views_alter(&$views) {
  */
 function osha_tmgmt_mail($key, &$message, $params) {
   if ($key == 'notifyNodeIsReadyToPublish') {
-    $subject = variable_get('osha_mail_template_approval_subject', '[OSHA Website] CMW: ([node:nid]) [node:title-field]');
+    $subject = variable_get('osha_mail_template_approval_subject', '[HWC Website] CMW: ([node:nid]) [node:title-field]');
     $body = variable_get('osha_mail_template_approval_body',
       'Dear [user:name],
       There was new content published/ready to publish that can be translated [node:url].
@@ -2335,7 +2335,7 @@ function osha_tmgmt_mail($key, &$message, $params) {
     );
   }
   elseif (isset($params['tmgmt_job_item'])) {
-    $subject = variable_get('osha_mail_template_translation_job_item_subject', '[OSHA Website] CMW: [tmgmt_job_item:tjid:label]');
+    $subject = variable_get('osha_mail_template_translation_job_item_subject', '[HWC Website] CMW: [tmgmt_job_item:tjid:label]');
     $body = variable_get('osha_mail_template_translation_job_item_body',
       'Dear [user:name],
       You have a translation task that needs your attention <a href="[tmgmt_job_item:url]">[tmgmt_job_item:tjid:label]</a>.
@@ -2344,7 +2344,7 @@ function osha_tmgmt_mail($key, &$message, $params) {
     );
   }
   else {
-    $subject = variable_get('osha_mail_template_translation_subject', '[OSHA Website] CMW: [tmgmt_job:label]');
+    $subject = variable_get('osha_mail_template_translation_subject', '[HWC Website] CMW: [tmgmt_job:label]');
     $body = variable_get('osha_mail_template_translation_body',
       'Dear [user:name],
       You have a translation task that needs your attention <a href="[site:url]/admin/tmgmt/jobs/[tmgmt_job:tjid]">[tmgmt_job:label]</a>.
