@@ -55,7 +55,6 @@ class NCWInfographicsMigration extends AbstractNCWNodeMigration {
   }
 
   function prepareRow($row) {
-    var_dump('row');
     parent::prepareRow($row);
     // field_twin_infographics
     $fi = field_info_field('field_twin_infographics');
@@ -87,10 +86,10 @@ class NCWInfographicsSource extends AbstractNCWNodeSource {
       'body_summary',
       'body_format',
       'field_tags',
-#      'field_image',
-#      'field_image_language',
-#      'field_thumbnail',
-#      'field_thumbnail_language',
+      'field_image',
+      'field_image_language',
+      'field_thumbnail',
+      'field_thumbnail_language',
       'field_file',
       'field_file_language',
       'field_twin_infographics'
@@ -102,7 +101,6 @@ class NCWInfographicsSource extends AbstractNCWNodeSource {
    * Include the related infographics recursively into the migrated content.
    */
   public function readData() {
-    var_dump($this->endpoint_url);
     $this->rows = array();
     $content = $this->fileGetContents($this->endpoint_url);
     if ($data = json_decode($content)) {
@@ -111,7 +109,6 @@ class NCWInfographicsSource extends AbstractNCWNodeSource {
         $id = $this->itemIdentifier($ob);
         $node_url = $this->itemURL($id);
         if ($rowd = $this->fileGetContents($node_url)) {
-          var_dump($node_url);
           if ($row_ob = json_decode($rowd, TRUE)) {
             $row = new stdClass();
             foreach ($row_ob as $k => $v) { $row->$k = $v; }
@@ -126,7 +123,6 @@ class NCWInfographicsSource extends AbstractNCWNodeSource {
         }
       }
     }
-    var_dump(count($this->rows));
     reset($this->rows);
   }
 
