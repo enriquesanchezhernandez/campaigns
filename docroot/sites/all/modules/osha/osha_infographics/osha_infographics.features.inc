@@ -50,11 +50,11 @@ function osha_infographics_image_default_styles() {
 function osha_infographics_node_info() {
   $items = array(
     'infographic' => array(
-      'name' => 'Infographic',
+      'name' => t('Infographic'),
       'base' => 'node_content',
-      'description' => 'Infographics',
+      'description' => t('Infographics'),
       'has_title' => '1',
-      'title_label' => 'Title',
+      'title_label' => t('Title'),
       'help' => '',
     ),
   );
