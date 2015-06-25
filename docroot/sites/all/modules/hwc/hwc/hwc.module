@@ -50,3 +50,12 @@ function hwc_mime_friendly_acronym($mime) {
   }
   return $mime;
 }
+
+/**
+ * Implments hook_form_FORM_ID_alter().
+ */
+function hwc_form_chosen_admin_settings_alter(&$form, $form_state) {
+  // Add options to chosen 30.
+  $form['chosen_minimum_single']['#options']['30'] = '30';
+  $form['chosen_minimum_multiple']['#options']['30'] = '30';
+}
