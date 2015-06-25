@@ -46,6 +46,11 @@ function ncw_migration_migrate_api() {
         'dependencies' => array('tax_tags'),
         'class_name' => 'NCWHighlightMigration',
       ),
+      'infographics' => array(
+        'group_name' => 'ncw',
+        'dependencies' => array('tax_tags'),
+        'class_name' => 'NCWInfographicsMigration',
+      ),
       'press_contacts' => array(
         'group_name' => 'ncw',
         'dependencies' => array(),
