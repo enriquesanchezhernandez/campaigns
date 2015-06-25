@@ -438,6 +438,9 @@ $options['init-modules'] = array(
   'webform_localization',
   'fapi_validation',
 
+  'context_layouts',
+  'context_entity_field',
+
   // Captcha
  'recaptcha',
 
@@ -486,6 +489,8 @@ $options['init-modules'] = array(
   'hwc',
   'hwc_homepage',
   'ncw_migration',
+  'hwc_menu',
+
 );
 
 

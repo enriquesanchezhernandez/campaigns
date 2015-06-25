@@ -1,0 +1,14 @@
+name = HWC Menu
+description = Menu for HWC
+core = 7.x
+package = HWC
+version = 7.x-1.4
+project = hwc_menu
+features[context][] = introduction_page
+features[ctools][] = context:context:3
+features[fe_block_settings][] = menu_block-2
+features[features_api][] = api:2
+features_exclude[dependencies][context] = context
+features_exclude[dependencies][ctools] = ctools
+features_exclude[dependencies][fe_block] = fe_block
+features_exclude[dependencies][menu_block] = menu_block
