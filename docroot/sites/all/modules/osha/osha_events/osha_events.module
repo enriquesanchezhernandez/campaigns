@@ -157,7 +157,7 @@ function osha_events_user_role_insert($role) {
  * {@inheritdoc}
  */
 function osha_events_views_pre_render(&$view) {
-  if ($view->name == 'events' && $view->current_display == 'block_2') {
+  if ($view->name == 'events' && in_array($view->current_display, array('block_1', 'block_2'))) {
     $month = '';
     $current_year = date('Y', time());
 
@@ -173,8 +173,10 @@ function osha_events_views_pre_render(&$view) {
       }
       $month = $row_month;
 
+      $path = $view->current_display == 'block_1'? 'past-events':'events';
+
       $result->field_field_start_date[0]['rendered']['#markup']
-        = "<a href='/events/{$row_year}-{$row_month_raw}'>$row_month</a>";
+        = "<a href='{$path}/{$row_year}-{$row_month_raw}'>$row_month</a>";
     }
   }
 
