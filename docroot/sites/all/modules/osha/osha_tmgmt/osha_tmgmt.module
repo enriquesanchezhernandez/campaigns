@@ -1168,6 +1168,12 @@ function osha_tmgmt_form_tmgmt_ui_entity_translation_review_form_alter(&$form, &
     $form['actions']['accept']['#access'] = $can_accept;
     $form['actions']['accept']['#submit'] = array('osha_tmgmt_job_item_accept_submit');
     $form['actions']['accept']['#validate'] = array('osha_tmgmt_job_item_accept_validate');
+
+    // In in extra language and translator is the CV of the job item
+    // He can publish the translation.
+    if (osha_tmgmt_is_internal_translator($job_item)) {
+      $form['actions']['accept']['#access'] = TRUE;
+    }
   }
 
 
@@ -1218,6 +1224,14 @@ function osha_tmgmt_form_tmgmt_ui_entity_translation_review_form_alter(&$form, &
       '#validate' => array('osha_tmgmt_ready_to_publish_validate'),
       '#access' => $show_ready_to_publish,
     );
+
+    // In in extra language and translator is the CV of the job item
+    // He can ready to  publish the translation.
+    if (osha_tmgmt_is_internal_translator($job_item)) {
+      $form['actions']['ready_to_publish']['#access'] = TRUE;
+    }
+
+
     $form['actions']['reject'] = array(
       '#type' => 'submit',
       '#submit' => array('osha_tmgmt_job_item_translation_reject'),
@@ -1269,6 +1283,18 @@ function osha_tmgmt_form_tmgmt_ui_entity_translation_review_form_alter(&$form, &
           '#validate' => array('osha_tmgmt_layout_validator_approve_validate'),
           '#access' => user_access('set job item to translated state'),
         );
+        // If in extra language, the TM can directly require content validation
+        // so that the translators can have access to editing form of job item.
+        if (osha_tmgmt_job_item_in_extra_language($job_item)) {
+          hide($form['actions']['accept_layout']);
+          $form['actions']['require_content_validation'] = array(
+            '#type' => 'submit',
+            '#value' => t('Require Content Validation'),
+            '#submit' => array('osha_tmgmt_require_content_validation_submit'),
+            '#validate' => array('osha_tmgmt_require_content_validation_validate'),
+            '#access' => user_access('set job item to require content validation state'),
+          );
+        }
         break;
 
       case TMGMT_JOB_ITEM_STATE_REVIEW:
@@ -2330,6 +2356,9 @@ function osha_tmgmt_mail($key, &$message, $params) {
   $message['body'][] = token_replace($body, $params);
 }
 
+function osha_tmgmt_job_item_in_extra_language($job_item) {
+  return in_array($job_item->target_language, osha_extra_language_list());
+}
 
 class OshaTMGMTStatistics {
 

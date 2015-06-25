@@ -197,6 +197,22 @@ function osha_tmgmt_get_translators_groups_as_options() {
 }
 
 /**
+ * Check if a user is a CV of a extra language, that is not translated with CDT.
+ */
+function osha_tmgmt_is_internal_translator($job_item){
+  global $user;
+  // In in extra language and translator is the CV of the job item
+  // He can publish the translation.
+  if (osha_tmgmt_job_item_in_extra_language($job_item)) {
+    $validators = osha_tmgmt_load_validators_by_job_item($job_item);
+    if (array_key_exists($user->uid, $validators)) {
+      return TRUE;
+    }
+  }
+  return FALSE;
+}
+
+/**
  * Get users of a Collection Translation Validators.
  */
 function osha_tmgmt_get_users_from_collection($tg_eid) {
