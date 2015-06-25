@@ -1,6 +1,18 @@
 <?php
 
 /**
+ * List of bundles periodically updated from the corporate website
+ * @return array
+ *   Array of bundles
+ */
+function ncw_migration_get_migrated_bundles() {
+  return array(
+    'publication', 'events', 'news', 'note_to_editor', 'press_contact',
+    'press_release', 'infographics',
+  );
+}
+
+/**
  * @param string $machine_name
  *   Migration machine name
  *
