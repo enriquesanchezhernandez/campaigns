@@ -1,7 +1,7 @@
 name = OSHA Events
 core = 7.x
 package = OSHA
-version = 7.x-1.7
+version = 7.x-1.8
 project = osha_events
 dependencies[] = email
 dependencies[] = entity
@@ -25,6 +25,7 @@ features[ctools][] = field_group:field_group:1
 features[ctools][] = path_breadcrumbs:path_breadcrumbs:1
 features[ctools][] = strongarm:strongarm:1
 features[ctools][] = views:views_default:3.0
+features[fe_block_settings][] = osha_events-events_links
 features[fe_block_settings][] = views--exp-events_index-page
 features[fe_block_settings][] = views-events-block_1
 features[fe_block_settings][] = views-events-block_2

@@ -188,8 +188,14 @@ function osha_events_views_pre_render(&$view) {
   }
 
   // Breadcrumb and title for Monthly Posts.
-  if ($view->name == 'events_search' && $view->current_display == 'page_2') {
-    $title = isset($view->args[0]) ? osha_events_get_view_title($view->args[0]) : '';
+  if ($view->name == 'events_search' && in_array($view->current_display, array('page', 'page_1'))) {
+    $title = '';
+
+    if(isset($view->exposed_input['f'])) {
+      $pos = strpos($view->exposed_input['f'][0],':');
+      $title = osha_events_get_view_title(substr($view->exposed_input['f'][0], $pos+1));
+    }
+
     // Set view title.
     $view->build_info['title'] = $title;
     // Set view breadcrumb.
@@ -220,3 +226,41 @@ function osha_events_get_view_title($title) {
   return $title;
 }
 
+/**
+ * Implements hook_block_info().
+ */
+function osha_events_block_info() {
+  $blocks = array();
+  $blocks['events_links'] = array(
+    'info' => t('Upcoming/Past events links'),
+  );
+
+  return $blocks;
+}
+
+/**
+ * Implements hook_block_view().
+ */
+function osha_events_block_view($delta = '') {
+  $block = array();
+
+  switch($delta) {
+    case 'events_links' :
+      $block['content'] = theme('events_links');
+      break;
+  }
+
+  return $block;
+}
+
+/**
+ * Implements hook_theme().
+ */
+function osha_events_theme() {
+  return array(
+    'events_links' => array(
+      'variables' => array(),
+      'template' => 'theme/events_links'
+    ),
+  );
+}
