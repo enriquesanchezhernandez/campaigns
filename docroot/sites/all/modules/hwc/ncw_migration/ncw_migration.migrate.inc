@@ -26,10 +26,20 @@ function ncw_migration_migrate_api() {
         'dependencies' => array('tax_tags', 'tax_publication_types'),
         'class_name' => 'NCWPublicationsMigration',
       ),
+      'publications_add_res' => array(
+        'group_name' => 'ncw',
+        'dependencies' => array('tax_tags', 'tax_publication_types'),
+        'class_name' => 'NCWAdditionalResourcesPublicationsMigration',
+      ),
       'news' => array(
         'group_name' => 'ncw',
         'dependencies' => array('tax_tags'),
         'class_name' => 'NCWNewsMigration',
+      ),
+      'news_add_res' => array(
+        'group_name' => 'ncw',
+        'dependencies' => array('tax_tags'),
+        'class_name' => 'NCWAdditionalResourcesNewsMigration',
       ),
       'notes_to_editor' => array(
         'group_name' => 'ncw',
@@ -41,10 +51,20 @@ function ncw_migration_migrate_api() {
         'dependencies' => array('tax_tags'),
         'class_name' => 'NCWPressMigration',
       ),
+      'press_releases_add_res' => array(
+        'group_name' => 'ncw',
+        'dependencies' => array('tax_tags'),
+        'class_name' => 'NCWAdditionalResourcesPressReleasesMigration',
+      ),
       'highlights' => array(
         'group_name' => 'ncw',
         'dependencies' => array('tax_tags'),
         'class_name' => 'NCWHighlightMigration',
+      ),
+      'highlights_add_res' => array(
+        'group_name' => 'ncw',
+        'dependencies' => array('tax_tags'),
+        'class_name' => 'NCWAdditionalResourcesHighlightsMigration',
       ),
       'infographics' => array(
         'group_name' => 'ncw',
