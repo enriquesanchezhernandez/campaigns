@@ -460,6 +460,8 @@ $options['init-modules'] = array(
   'osha_authentication',
   'osha_search',
 
+  'osh_image_gallery',
+
   'osha_linkchecker',
   'osha_reminders',
 
