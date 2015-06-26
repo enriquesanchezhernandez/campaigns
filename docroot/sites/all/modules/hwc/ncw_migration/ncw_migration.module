@@ -39,3 +39,13 @@ function ncw_migration_run_single($machine_name) {
     return FALSE;
   }
 }
+
+function ncw_migration_debug($message, $message_args) {
+  if(function_exists('drush_get_option')) {
+    // Message appear when running 'drush -d migrate-import events'
+    if ($debug = drush_get_option('debug')) {
+      $str = format_string($message, $message_args);
+      drush_log($str);
+    }
+  }
+}
