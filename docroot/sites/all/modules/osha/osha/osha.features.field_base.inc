@@ -529,7 +529,6 @@ function osha_field_default_field_bases() {
     'type' => 'taxonomy_term_reference',
   );
 
-
   // Exported field_base: 'title_field'
   $field_bases['title_field'] = array(
     'active' => 1,
