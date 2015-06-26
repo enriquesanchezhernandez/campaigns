@@ -914,3 +914,21 @@ function osha_migration_normalize_migrated_term_reference(&$original, $source_mi
   }
   return $ret;
 }
+
+
+function ncw_migration_find_additional_resource($source_nid) {
+  $migrations = array(
+    'publications_add_res', 'news_add_res', 'press_releases_add_res',
+    'press_releases_add_res', 'highlights_add_res'
+  );
+  foreach($migrations as $machine_name) {
+    $migration = Migration::getInstance($machine_name);
+    /** @var MigrateMap $map */
+    $map = $migration->getMap();
+    if ($destid1 = $map->lookupDestinationID(array($source_nid))) {
+      // @todo add some debugging here
+      return $destid1['destid1'];
+    }
+  }
+  return NULL;
+}
