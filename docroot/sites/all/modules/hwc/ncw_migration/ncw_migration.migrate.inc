@@ -61,7 +61,11 @@ function ncw_migration_migrate_api() {
       ),
       'press_releases_add_res' => array(
         'group_name' => 'ncw',
-        'dependencies' => array('tax_tags'),
+        'dependencies' => array(
+          'tax_tags', 'publications_add_res', 'news_add_res',
+          'press_releases_add_res', 'press_releases_add_res',
+          'highlights_add_res'
+        ),
         'class_name' => 'NCWAdditionalResourcesPressReleasesMigration',
       ),
       'highlights' => array(
@@ -71,7 +75,11 @@ function ncw_migration_migrate_api() {
       ),
       'highlights_add_res' => array(
         'group_name' => 'ncw',
-        'dependencies' => array('tax_tags'),
+        'dependencies' => array(
+          'tax_tags', 'publications_add_res', 'news_add_res',
+          'press_releases_add_res', 'press_releases_add_res',
+          'highlights_add_res'
+        ),
         'class_name' => 'NCWAdditionalResourcesHighlightsMigration',
       ),
       'infographics' => array(
