@@ -76,6 +76,7 @@ features[field_instance][] = taxonomy_term-organised_by-name_field
 features[node][] = event_speaker
 features[node][] = events
 features[path_breadcrumbs][] = events
+features[path_breadcrumbs][] = past_events
 features[taxonomy][] = organised_by
 features[variable][] = comment_anonymous_event_speaker
 features[variable][] = comment_anonymous_events
