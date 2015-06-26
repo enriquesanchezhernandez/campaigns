@@ -526,7 +526,7 @@ function osha_publication_field_default_field_instances() {
     'settings' => array(
       'alt_field' => 0,
       'default_image' => 0,
-      'entity_translation_sync' => FALSE,
+      'entity_translation_sync' => 0,
       'file_directory' => 'publications/cover_images',
       'file_extensions' => 'png gif jpg jpeg',
       'image_field_caption' => 0,
@@ -541,19 +541,26 @@ function osha_publication_field_default_field_instances() {
       'module' => 'media',
       'settings' => array(
         'allowed_schemes' => array(
-          0 => 'public',
-          1 => 'private',
+          'public' => 'public',
         ),
         'allowed_types' => array(
-          0 => 'image',
+          'audio' => 0,
+          'document' => 0,
+          'image' => 'image',
+          'video' => 0,
         ),
-        'browser_plugins' => array(),
-        'preview_image_style' => 'thumbnail',
-        'progress_indicator' => 'throbber',
+        'browser_plugins' => array(
+          'media_browser_osha--media_browser_osha' => 'media_browser_osha--media_browser_osha',
+          'media_browser_osha--media_browser_osha_my_files' => 'media_browser_osha--media_browser_osha_my_files',
+          'media_default--media_browser_1' => 0,
+          'media_default--media_browser_my_files' => 0,
+          'upload' => 'upload',
+        ),
       ),
       'type' => 'media_generic',
       'weight' => 3,
     ),
+    'workbench_access_field' => 0,
   );
 
   // Exported field_instance: 'node-publication-field_expiration_date'
@@ -1122,8 +1129,8 @@ function osha_publication_field_default_field_instances() {
           'video' => 0,
         ),
         'browser_plugins' => array(
-          'media_browser_osha--media_browser_2' => 'media_browser_osha--media_browser_2',
-          'media_browser_osha--media_browser_3' => 'media_browser_osha--media_browser_3',
+          'media_browser_osha--media_browser_osha' => 'media_browser_osha--media_browser_osha',
+          'media_browser_osha--media_browser_osha_my_files' => 'media_browser_osha--media_browser_osha_my_files',
           'media_default--media_browser_1' => 0,
           'media_default--media_browser_my_files' => 0,
           'upload' => 'upload',
@@ -1434,13 +1441,13 @@ function osha_publication_field_default_field_instances() {
       ),
       'osha_slideshow' => array(
         'label' => 'hidden',
-        'module' => 'osha_publication',
+        'module' => 'text',
         'settings' => array(
           'title_class' => '',
           'title_link' => 'content',
           'title_style' => '_none',
         ),
-        'type' => 'publication_title_linked',
+        'type' => 'text_default',
         'weight' => 2,
       ),
       'osha_wiki' => array(
@@ -1473,13 +1480,13 @@ function osha_publication_field_default_field_instances() {
       ),
       'teaser' => array(
         'label' => 'hidden',
-        'module' => 'osha_publication',
+        'module' => 'text',
         'settings' => array(
           'title_class' => '',
           'title_link' => 'content',
           'title_style' => '_none',
         ),
-        'type' => 'publication_title_linked',
+        'type' => 'text_default',
         'weight' => 1,
       ),
     ),
