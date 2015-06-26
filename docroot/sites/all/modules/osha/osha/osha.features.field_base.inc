@@ -212,8 +212,8 @@ function osha_field_default_field_bases() {
       'entity_translation_sync' => FALSE,
       'granularity' => array(
         'day' => 'day',
-        'hour' => 'hour',
-        'minute' => 'minute',
+        'hour' => 0,
+        'minute' => 0,
         'month' => 'month',
         'second' => 0,
         'year' => 'year',
@@ -404,8 +404,8 @@ function osha_field_default_field_bases() {
       'entity_translation_sync' => FALSE,
       'granularity' => array(
         'day' => 'day',
-        'hour' => 'hour',
-        'minute' => 'minute',
+        'hour' => 0,
+        'minute' => 0,
         'month' => 'month',
         'second' => 0,
         'year' => 'year',
@@ -528,6 +528,7 @@ function osha_field_default_field_bases() {
     'translatable' => 0,
     'type' => 'taxonomy_term_reference',
   );
+
 
   // Exported field_base: 'title_field'
   $field_bases['title_field'] = array(
