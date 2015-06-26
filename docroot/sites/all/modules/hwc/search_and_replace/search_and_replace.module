@@ -532,8 +532,6 @@ function search_and_replace_get_search_expression(array $settings) {
   elseif ($whole_word && !$regex) {
     $search_db = "[[:<:]]" . $preceded . addcslashes($search, SEARCH_AND_REPLACE_REGEX_CHARS) . $followed . "[[:>:]]";
     $search_php = '\b' . $preceded_php . addcslashes($search, SEARCH_AND_REPLACE_REGEX_CHARS) . $followed_php . '\b';
-    dpm($search_php);
-    dpm($search_db);
   }
   elseif (!$whole_word && $regex) {
     $search_db = $preceded . $search . $followed;
