@@ -12,6 +12,7 @@ dependencies[] = file_entity
 dependencies[] = i18n_field
 dependencies[] = multiple_selects
 dependencies[] = osha
+dependencies[] = osha_infographics
 dependencies[] = osha_taxonomies
 dependencies[] = path_breadcrumbs
 dependencies[] = shs
