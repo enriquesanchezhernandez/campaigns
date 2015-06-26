@@ -23,7 +23,11 @@ function ncw_migration_migrate_api() {
       ),
       'publications' => array(
         'group_name' => 'ncw',
-        'dependencies' => array('tax_tags', 'tax_publication_types'),
+        'dependencies' => array(
+          'tax_tags', 'tax_publication_types', 'publications_add_res',
+          'news_add_res', 'press_releases_add_res', 'press_releases_add_res',
+          'highlights_add_res'
+        ),
         'class_name' => 'NCWPublicationsMigration',
       ),
       'publications_add_res' => array(
@@ -38,7 +42,11 @@ function ncw_migration_migrate_api() {
       ),
       'news_add_res' => array(
         'group_name' => 'ncw',
-        'dependencies' => array('tax_tags'),
+        'dependencies' => array(
+          'tax_tags', 'publications_add_res', 'news_add_res',
+          'press_releases_add_res', 'press_releases_add_res',
+          'highlights_add_res'
+        ),
         'class_name' => 'NCWAdditionalResourcesNewsMigration',
       ),
       'notes_to_editor' => array(
@@ -927,6 +935,10 @@ function ncw_migration_find_additional_resource($source_nid) {
     $map = $migration->getMap();
     if ($destid1 = $map->lookupDestinationID(array($source_nid))) {
       // @todo add some debugging here
+      ncw_migration_debug(
+        'Linking additional resource from !machine (src=!src:dest=!dest',
+          array('!machine' => $machine_name, '!src' => $source_nid, '!dest' => $destid1['destid1'])
+      );
       return $destid1['destid1'];
     }
   }
