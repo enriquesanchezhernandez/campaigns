@@ -1731,18 +1731,26 @@ function osha_press_release_field_default_field_instances() {
       'module' => 'media',
       'settings' => array(
         'allowed_schemes' => array(
-          0 => 'public',
+          'public' => 'public',
         ),
         'allowed_types' => array(
-          0 => 'image',
+          'audio' => 0,
+          'document' => 0,
+          'image' => 'image',
+          'video' => 0,
         ),
-        'browser_plugins' => array(),
-        'preview_image_style' => 'thumbnail',
-        'progress_indicator' => 'throbber',
+        'browser_plugins' => array(
+          'media_browser_osha--media_browser_osha' => 'media_browser_osha--media_browser_osha',
+          'media_browser_osha--media_browser_osha_my_files' => 'media_browser_osha--media_browser_osha_my_files',
+          'media_default--media_browser_1' => 0,
+          'media_default--media_browser_my_files' => 0,
+          'upload' => 'upload',
+        ),
       ),
       'type' => 'media_generic',
       'weight' => 6,
     ),
+    'workbench_access_field' => 0,
   );
 
   // Exported field_instance: 'node-press_release-field_page_count'
