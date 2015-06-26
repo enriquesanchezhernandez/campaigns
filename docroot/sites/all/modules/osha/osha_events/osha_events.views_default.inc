@@ -1335,6 +1335,7 @@ function osha_events_views_default_views() {
   /* Display: Upcoming events */
   $handler = $view->new_display('page', 'Upcoming events', 'page');
   $handler->display->display_options['defaults']['title'] = FALSE;
+  $handler->display->display_options['title'] = 'Upcoming events';
   $handler->display->display_options['defaults']['header'] = FALSE;
   $handler->display->display_options['defaults']['arguments'] = FALSE;
   $handler->display->display_options['defaults']['filter_groups'] = FALSE;
@@ -1395,6 +1396,7 @@ function osha_events_views_default_views() {
   /* Display: Past events */
   $handler = $view->new_display('page', 'Past events', 'page_1');
   $handler->display->display_options['defaults']['title'] = FALSE;
+  $handler->display->display_options['title'] = 'Past events';
   $handler->display->display_options['defaults']['filter_groups'] = FALSE;
   $handler->display->display_options['defaults']['filters'] = FALSE;
   /* Filter criterion: Indexed Multilingual Node: Content type */

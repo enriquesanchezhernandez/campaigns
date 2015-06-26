@@ -20,7 +20,8 @@ function osha_events_default_fe_block_settings() {
     'i18n_mode' => 0,
     'module' => 'osha_events',
     'node_types' => array(),
-    'pages' => '',
+    'pages' => 'events
+past-events',
     'roles' => array(),
     'themes' => array(
       'hwc_frontend' => array(
@@ -37,7 +38,7 @@ function osha_events_default_fe_block_settings() {
       ),
     ),
     'title' => '',
-    'visibility' => 0,
+    'visibility' => 1,
   );
 
   $export['views--exp-events_index-page'] = array(
