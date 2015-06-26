@@ -535,16 +535,17 @@ function osha_news_field_default_field_instances() {
           'video' => 0,
         ),
         'browser_plugins' => array(
-          'media_browser_osha--media_browser_2' => 0,
-          'media_browser_osha--media_browser_3' => 0,
+          'media_browser_osha--media_browser_osha' => 'media_browser_osha--media_browser_osha',
+          'media_browser_osha--media_browser_osha_my_files' => 'media_browser_osha--media_browser_osha_my_files',
           'media_default--media_browser_1' => 0,
           'media_default--media_browser_my_files' => 0,
-          'upload' => 0,
+          'upload' => 'upload',
         ),
       ),
       'type' => 'media_generic',
       'weight' => 3,
     ),
+    'workbench_access_field' => 0,
   );
 
   // Exported field_instance: 'node-news-field_image_caption'
