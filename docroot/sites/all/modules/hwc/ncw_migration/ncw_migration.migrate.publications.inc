@@ -26,8 +26,6 @@ class NCWPublicationsMigration extends AbstractNCWNodeMigration {
     $this->addFieldMapping('field_aditional_resources', 'field_aditional_resources');
 
     $this->addUnmigratedDestinations(array(
-      'field_activity:source_type',
-      'field_activity:ignore_case',
       'field_tags:ignore_case',
       'field_publication_type:ignore_case',
       'field_cover_image:file_class',
