@@ -23,13 +23,31 @@ function ncw_migration_migrate_api() {
       ),
       'publications' => array(
         'group_name' => 'ncw',
-        'dependencies' => array('tax_tags', 'tax_publication_types'),
+        'dependencies' => array(
+          'tax_tags', 'tax_publication_types', 'publications_add_res',
+          'news_add_res', 'press_releases_add_res', 'press_releases_add_res',
+          'highlights_add_res'
+        ),
         'class_name' => 'NCWPublicationsMigration',
+      ),
+      'publications_add_res' => array(
+        'group_name' => 'ncw',
+        'dependencies' => array('tax_tags', 'tax_publication_types'),
+        'class_name' => 'NCWAdditionalResourcesPublicationsMigration',
       ),
       'news' => array(
         'group_name' => 'ncw',
-        'dependencies' => array('tax_tags'),
+        'dependencies' => array(
+          'tax_tags', 'publications_add_res', 'news_add_res',
+          'press_releases_add_res', 'press_releases_add_res',
+          'highlights_add_res'
+        ),
         'class_name' => 'NCWNewsMigration',
+      ),
+      'news_add_res' => array(
+        'group_name' => 'ncw',
+        'dependencies' => array('tax_tags'),
+        'class_name' => 'NCWAdditionalResourcesNewsMigration',
       ),
       'notes_to_editor' => array(
         'group_name' => 'ncw',
@@ -38,13 +56,31 @@ function ncw_migration_migrate_api() {
       ),
       'press_releases' => array(
         'group_name' => 'ncw',
-        'dependencies' => array('tax_tags'),
+        'dependencies' => array(
+          'tax_tags', 'publications_add_res', 'news_add_res',
+          'press_releases_add_res', 'press_releases_add_res',
+          'highlights_add_res'
+        ),
         'class_name' => 'NCWPressMigration',
+      ),
+      'press_releases_add_res' => array(
+        'group_name' => 'ncw',
+        'dependencies' => array('tax_tags'),
+        'class_name' => 'NCWAdditionalResourcesPressReleasesMigration',
       ),
       'highlights' => array(
         'group_name' => 'ncw',
-        'dependencies' => array('tax_tags'),
+        'dependencies' => array(
+          'tax_tags', 'publications_add_res', 'news_add_res',
+          'press_releases_add_res', 'press_releases_add_res',
+          'highlights_add_res'
+        ),
         'class_name' => 'NCWHighlightMigration',
+      ),
+      'highlights_add_res' => array(
+        'group_name' => 'ncw',
+        'dependencies' => array('tax_tags'),
+        'class_name' => 'NCWAdditionalResourcesHighlightsMigration',
       ),
       'infographics' => array(
         'group_name' => 'ncw',
@@ -893,4 +929,26 @@ function osha_migration_normalize_migrated_term_reference(&$original, $source_mi
     }
   }
   return $ret;
+}
+
+
+function ncw_migration_find_additional_resource($source_nid) {
+  $migrations = array(
+    'publications_add_res', 'news_add_res', 'press_releases_add_res',
+    'press_releases_add_res', 'highlights_add_res'
+  );
+  foreach($migrations as $machine_name) {
+    $migration = Migration::getInstance($machine_name);
+    /** @var MigrateMap $map */
+    $map = $migration->getMap();
+    if ($destid1 = $map->lookupDestinationID(array($source_nid))) {
+      // @todo add some debugging here
+      ncw_migration_debug(
+        'Linking additional resource from !machine (src=!src:dest=!dest',
+          array('!machine' => $machine_name, '!src' => $source_nid, '!dest' => $destid1['destid1'])
+      );
+      return $destid1['destid1'];
+    }
+  }
+  return NULL;
 }

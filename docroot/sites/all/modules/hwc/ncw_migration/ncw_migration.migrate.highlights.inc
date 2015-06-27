@@ -8,7 +8,15 @@
 class NCWHighlightMigration extends AbstractNCWNodeMigration {
 
   public function __construct($arguments) {
-    parent::__construct($arguments, 'NCWHighlightSource', 'news', '/export/list/highlight/women_and_osh');
+    $url = '/export/list/highlight/women_and_osh';
+    if (isset($arguments['url'])) {
+      $url = $arguments['url'];
+    }
+    $source_klass = 'NCWHighlightSource';
+    if (isset($arguments['source_klass'])) {
+      $source_klass = $arguments['source_klass'];
+    }
+    parent::__construct($arguments, $source_klass, 'news', $url);
     $this->description = 'Import highlights (into news) from NCW';
   }
 
@@ -18,6 +26,7 @@ class NCWHighlightMigration extends AbstractNCWNodeMigration {
     $this->addFieldMapping('field_tags:source_type')->defaultValue('tid');
     $this->addFieldMapping('field_tags:create_term')->defaultValue(FALSE);
     $this->addFieldMapping('field_tags', 'field_tags');
+    $this->addFieldMapping('field_aditional_resources', 'field_aditional_resources');
 
     $this->addUnmigratedDestinations(array(
       'field_activity:source_type',
@@ -43,12 +52,23 @@ class NCWHighlightMigration extends AbstractNCWNodeMigration {
   }
 
   protected function getManuallyMigratedFields() {
-    return array('field_tags');
+    return array('field_tags', 'field_aditional_resources');
   }
 
   function prepareRow($row) {
     parent::prepareRow($row);
     $row->field_tags = osha_migration_normalize_migrated_term_reference($row->field_tags, 'tax_tags');
+
+    // field_aditional_resources
+    $fi = field_info_field('field_aditional_resources');
+    osha_migration_normalize_field_entityreference($row, 'field_aditional_resources', $fi);
+    $additional_resources = $row->field_aditional_resources;
+    $row->field_aditional_resources = array();
+    foreach ($additional_resources as $original_nid) {
+      if ($destid1 = ncw_migration_find_additional_resource($original_nid)) {
+        $row->field_aditional_resources[] = $destid1;
+      }
+    }
   }
 }
 
@@ -78,7 +98,7 @@ class NCWHighlightSource extends AbstractNCWNodeSource {
       'field_archived',
       'field_character_count',
       'field_page_count',
-      //@todo: 'field_aditional_resources',
+      'field_aditional_resources',
     );
     return array_combine($fields, $fields);
   }
