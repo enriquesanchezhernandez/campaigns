@@ -37,16 +37,16 @@ function ncw_migration_migrate_api() {
       ),
       'news' => array(
         'group_name' => 'ncw',
-        'dependencies' => array('tax_tags'),
-        'class_name' => 'NCWNewsMigration',
-      ),
-      'news_add_res' => array(
-        'group_name' => 'ncw',
         'dependencies' => array(
           'tax_tags', 'publications_add_res', 'news_add_res',
           'press_releases_add_res', 'press_releases_add_res',
           'highlights_add_res'
         ),
+        'class_name' => 'NCWNewsMigration',
+      ),
+      'news_add_res' => array(
+        'group_name' => 'ncw',
+        'dependencies' => array('tax_tags'),
         'class_name' => 'NCWAdditionalResourcesNewsMigration',
       ),
       'notes_to_editor' => array(
@@ -56,30 +56,30 @@ function ncw_migration_migrate_api() {
       ),
       'press_releases' => array(
         'group_name' => 'ncw',
-        'dependencies' => array('tax_tags'),
+        'dependencies' => array(
+          'tax_tags', 'publications_add_res', 'news_add_res',
+          'press_releases_add_res', 'press_releases_add_res',
+          'highlights_add_res'
+        ),
         'class_name' => 'NCWPressMigration',
       ),
       'press_releases_add_res' => array(
         'group_name' => 'ncw',
-        'dependencies' => array(
-          'tax_tags', 'publications_add_res', 'news_add_res',
-          'press_releases_add_res', 'press_releases_add_res',
-          'highlights_add_res'
-        ),
+        'dependencies' => array('tax_tags'),
         'class_name' => 'NCWAdditionalResourcesPressReleasesMigration',
       ),
       'highlights' => array(
         'group_name' => 'ncw',
-        'dependencies' => array('tax_tags'),
-        'class_name' => 'NCWHighlightMigration',
-      ),
-      'highlights_add_res' => array(
-        'group_name' => 'ncw',
         'dependencies' => array(
           'tax_tags', 'publications_add_res', 'news_add_res',
           'press_releases_add_res', 'press_releases_add_res',
           'highlights_add_res'
         ),
+        'class_name' => 'NCWHighlightMigration',
+      ),
+      'highlights_add_res' => array(
+        'group_name' => 'ncw',
+        'dependencies' => array('tax_tags'),
         'class_name' => 'NCWAdditionalResourcesHighlightsMigration',
       ),
       'infographics' => array(

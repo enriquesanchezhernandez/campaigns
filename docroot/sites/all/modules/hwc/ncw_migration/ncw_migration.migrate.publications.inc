@@ -23,6 +23,8 @@ class NCWPublicationsMigration extends AbstractNCWNodeMigration {
     $this->addFieldMapping('field_publication_type:create_term')->defaultValue(FALSE);
     $this->addFieldMapping('field_publication_type', 'field_publication_type');
 
+    $this->addFieldMapping('field_aditional_resources', 'field_aditional_resources');
+
     $this->addUnmigratedDestinations(array(
       'field_activity:source_type',
       'field_activity:ignore_case',
@@ -58,7 +60,7 @@ class NCWPublicationsMigration extends AbstractNCWNodeMigration {
   }
 
   protected function getManuallyMigratedFields() {
-    return array('field_tags', 'field_publication_type');
+    return array('field_tags', 'field_publication_type', 'field_aditional_resources');
   }
 
   function prepareRow($row) {
@@ -73,6 +75,17 @@ class NCWPublicationsMigration extends AbstractNCWNodeMigration {
     }
     $row->field_tags = osha_migration_normalize_migrated_term_reference($row->field_tags, 'tax_tags');
     $row->field_publication_type = osha_migration_normalize_migrated_term_reference($row->field_publication_type, 'tax_publication_types');
+
+    // field_aditional_resources
+    $fi = field_info_field('field_aditional_resources');
+    osha_migration_normalize_field_entityreference($row, 'field_aditional_resources', $fi);
+    $additional_resources = $row->field_aditional_resources;
+    $row->field_aditional_resources = array();
+    foreach ($additional_resources as $original_nid) {
+      if ($destid1 = ncw_migration_find_additional_resource($original_nid)) {
+        $row->field_aditional_resources[] = $destid1;
+      }
+    }
   }
 }
 
@@ -112,7 +125,7 @@ class NCWPublicationsSource extends AbstractNCWNodeSource {
       'field_publication_type',
       'field_tags',
       'field_related_publications',
-      //@todo: 'field_aditional_resources',
+      'field_aditional_resources',
     );
     return array_combine($fields, $fields);
   }
