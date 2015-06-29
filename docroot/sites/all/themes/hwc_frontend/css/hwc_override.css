@@ -41,3 +41,24 @@ div.workbench-info-block {
 .jssora03r { width: 55px; height: 55px; top: 115px; right: 8px }
 #publications_slideshow #num_slides { cursor: move; position: absolute; left: 1em; top: 1px; width: 1138px; height: 230px; overflow: hidden; }
 #publications_slideshow .prototype { position: absolute; width: 21px; height: 21px; text-align:center; line-height:21px; color:white; font-size:12px; }
+
+.navbar-header {
+    width: 100%;
+}
+#block-lang-dropdown-language {
+    width: auto !important;
+    float: right;
+    margin: 5px;
+}
+#lang_dropdown_select_language_chosen {
+    width: 150px !important;
+    height: auto !important;
+    border: none;
+    padding: 0;
+    margin: 5px 0;
+}
+#search-block-form {
+    float: right;
+    width: auto !important;
+    margin: 5px;
+}
