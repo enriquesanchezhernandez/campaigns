@@ -1402,13 +1402,14 @@ function osha_events_field_default_field_instances() {
     ),
     'entity_type' => 'node',
     'field_name' => 'field_tags',
-    'label' => 'Tags',
-    'required' => FALSE,
+    'label' => 'Category',
+    'required' => 0,
     'settings' => array(
       'entity_translation_sync' => FALSE,
       'user_register_form' => FALSE,
     ),
     'widget' => array(
+      'active' => 1,
       'module' => 'options',
       'settings' => array(
         'apply_chosen' => '',
@@ -1416,6 +1417,7 @@ function osha_events_field_default_field_instances() {
       'type' => 'options_select',
       'weight' => 17,
     ),
+    'workbench_access_field' => 0,
   );
 
   // Exported field_instance: 'node-events-field_website_of_event'
@@ -1686,6 +1688,7 @@ function osha_events_field_default_field_instances() {
   // Translatables
   // Included for use with string extractors like potx.
   t('Body');
+  t('Category');
   t('City');
   t('Contact Email');
   t('Contact Name');
@@ -1700,7 +1703,6 @@ function osha_events_field_default_field_instances() {
   t('Schedule');
   t('Speaker');
   t('Start date');
-  t('Tags');
   t('Talking date');
   t('Talking files');
   t('Talking speaker');
