@@ -38,6 +38,7 @@
 
   print render($content['links']['#links']['addtoany']['title']);
 
+  print render($content['field_aditional_resources']);
   print render($content['field_recommended_articles']);
 
   unset($content['links']['#links']['addtoany']);
