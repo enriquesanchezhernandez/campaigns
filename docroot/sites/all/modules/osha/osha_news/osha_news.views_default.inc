@@ -139,7 +139,7 @@ function osha_news_views_default_views() {
     'trim_type' => 'chars',
     'trim_suffix' => '...',
     'more_link' => '1',
-    'more_text' => 'Continue reading',
+    'more_text' => 'See more',
     'summary_handler' => 'full',
     'trim_options' => array(
       'text' => 0,

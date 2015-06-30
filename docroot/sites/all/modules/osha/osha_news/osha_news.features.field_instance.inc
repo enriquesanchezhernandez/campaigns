@@ -71,7 +71,7 @@ function osha_news_field_default_field_instances() {
         'module' => 'smart_trim',
         'settings' => array(
           'more_link' => 1,
-          'more_text' => 'Continue reading',
+          'more_text' => 'See more',
           'summary_handler' => 'full',
           'trim_length' => 500,
           'trim_link' => 0,
