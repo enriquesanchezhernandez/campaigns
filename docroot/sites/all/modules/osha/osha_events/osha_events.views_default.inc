@@ -1298,7 +1298,7 @@ function osha_events_views_default_views() {
   $handler->display->display_options['fields']['view_node']['field'] = 'view_node';
   $handler->display->display_options['fields']['view_node']['label'] = '';
   $handler->display->display_options['fields']['view_node']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['view_node']['text'] = 'Learn more';
+  $handler->display->display_options['fields']['view_node']['text'] = 'See more';
   /* Sort criterion: Start date: Start date (indexed) */
   $handler->display->display_options['sorts']['field_start_date_value']['id'] = 'field_start_date_value';
   $handler->display->display_options['sorts']['field_start_date_value']['table'] = 'search_api_index_default_multilingual_node_index';
@@ -1468,7 +1468,7 @@ function osha_events_views_default_views() {
     t('next ›'),
     t('last »'),
     t('Event date'),
-    t('Learn more'),
+    t('See more'),
     t('Upcoming events'),
   );
   $export['events_search'] = $view;
