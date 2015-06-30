@@ -121,6 +121,15 @@ function hwc_frontend_preprocess_page(&$vars) {
             '#prefix' => '<strong class="title-alt">', '#suffix' => '</strong>'
           );
           break;
+        case 'infographic':
+          $link_title = t('Back to infographics list');
+          $link_href = 'infographics';
+          $vars['page']['above_title']['title-alternative'] = array(
+            '#type' => 'item',
+            '#markup' => t('Infographics'),
+            '#prefix' => '<strong class="title-alt">', '#suffix' => '</strong>'
+          );
+          break;
       }
       if (isset($link_title)) {
         $vars['page']['above_title']['back-to-link'] = array(
