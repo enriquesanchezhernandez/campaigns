@@ -70,7 +70,6 @@ function osha_search_strongarm() {
     'flickr' => 0,
     'infographic' => 0,
     'job_vacancies' => 0,
-    'newsletter_article' => 0,
     'note_to_editor' => 0,
     'press_contact' => 0,
     'slideshare' => 0,

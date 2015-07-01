@@ -22,21 +22,3 @@ function osha_newsletter_ctools_plugin_api($module = NULL, $api = NULL) {
 function osha_newsletter_views_api($module = NULL, $api = NULL) {
   return array("api" => "3.0");
 }
-
-/**
- * Implements hook_node_info().
- */
-function osha_newsletter_node_info() {
-  $items = array(
-    'newsletter_article' => array(
-      'name' => t('Newsletter article'),
-      'base' => 'node_content',
-      'description' => t('Ad-hoc content for newsletter (such as Coming soon...)'),
-      'has_title' => '1',
-      'title_label' => t('Title'),
-      'help' => '',
-    ),
-  );
-  drupal_alter('node_info', $items);
-  return $items;
-}

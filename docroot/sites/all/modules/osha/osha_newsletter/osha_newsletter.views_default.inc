@@ -380,9 +380,6 @@ function osha_newsletter_views_default_views() {
   $handler->display->display_options['filters']['type']['value'] = array(
     'events' => 'events',
     'news' => 'news',
-    'newsletter_article' => 'newsletter_article',
-    'press_release' => 'press_release',
-    'publication' => 'publication',
   );
   $handler->display->display_options['filters']['type']['group'] = 1;
   $handler->display->display_options['filters']['type']['exposed'] = TRUE;
@@ -528,10 +525,6 @@ function osha_newsletter_views_default_views() {
     t('Author name'),
     t('Type'),
     t('Node ID'),
-    t('Activity'),
-    t('Activity (field_activity)'),
-    t('Nace Codes'),
-    t('Thesaurus'),
     t('Enter name or part of author\'s name'),
     t('Select an interval for filtering'),
     t('Vocabulary'),

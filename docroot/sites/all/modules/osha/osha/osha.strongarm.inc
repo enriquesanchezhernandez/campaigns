@@ -113,7 +113,6 @@ el.remove();
     'flickr' => 0,
     'frontpage_slider' => 0,
     'infographic' => 0,
-    'newsletter_article' => 0,
     'note_to_editor' => 0,
     'publication' => 0,
     'slideshare' => 0,
@@ -1308,13 +1307,6 @@ el.remove();
   $strongarm->name = 'pathauto_node_job_vacancies_pattern';
   $strongarm->value = 'inside-eu-osha/careers/[node:title]';
   $export['pathauto_node_job_vacancies_pattern'] = $strongarm;
-
-  $strongarm = new stdClass();
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
-  $strongarm->name = 'pathauto_node_newsletter_article_pattern';
-  $strongarm->value = '';
-  $export['pathauto_node_newsletter_article_pattern'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */

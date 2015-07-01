@@ -53,7 +53,7 @@ class osha_workbench_moderation_handler_filter_state extends workbench_moderatio
           )
           ->condition(
             // ((node.type IN
-            // ('banner', 'page', 'newsletter_article', 'wiki_page'))
+            // ('banner', 'page', 'wiki_page'))
             // AND (node.status = '1')).
             db_and()
               ->condition(

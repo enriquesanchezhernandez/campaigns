@@ -40,12 +40,6 @@ function osha_newsletter_post_features_enable_feature($component) {
     ));
     if ($role = user_role_load_by_name('administrator')) {
       $permissions = array(
-        'create newsletter_article content',
-        'edit own newsletter_article content',
-        'edit any newsletter_article content',
-        'delete own newsletter_article content',
-        'delete any newsletter_article content',
-
         'create newsletter_content_collection entity collections',
         'edit newsletter_content_collection entity collections',
         'delete newsletter_content_collection entity collections',
@@ -876,7 +870,7 @@ function osha_newsletter_fix_entity_collection_add_form(&$form, &$form_state) {
   $default_row = 'entity_collection_row_view_mode';
   $allowed_bundles_var = variable_get('osha_newsletter_allowed_bundles',
     array(
-      'publication', 'article', 'blog', 'news', 'press_release', 'highlight', 'newsletter_article'
+      'news', 'events'
     )
   );
   $allowed_bundles = array(
@@ -965,11 +959,6 @@ function osha_newsletter_entity_insert($entity_collection, $type) {
     $contexts = _entity_collection_get_contexts($entity_collection);
 
     // Assign all taxonomies to the newly created entity.
-    // Highlights
-    // OSH matters
-    // Latest publications
-    // Coming soon
-    // - Blog
     // - News
     // - Events.
     $voc = taxonomy_vocabulary_machine_name_load('newsletter_sections');
@@ -990,16 +979,6 @@ function osha_newsletter_entity_insert($entity_collection, $type) {
     // Mapping of term newsletter sections and content types.
     $term_ct_map = variable_get('osha_newsletter_term_ct_map');
 
-    if (!empty($term_ct_map['newsletter_article'])) {
-      // Create 'Coming soon' node and append it at the end.
-      $node = osha_newsletter_create_node('Coming soon '.$entity_collection->title);
-      $item = new EntityCollectionTreeNode('node', $node->nid, $node);
-      $weights[$term_ct_map['newsletter_article']]['children']++;
-      $item->position = $weights[$term_ct_map['newsletter_article']]['children'];
-      $item->style = (isset($term_ct_map['view_mode_newsletter_article'])) ? $term_ct_map['view_mode_newsletter_article'] : variable_get('osha_newsletter_node_view_mode', 'newsletter_item');
-      entity_collection_append_item($entity_collection, $item, $contexts);
-    }
-
     // Get allowed bundles for nodes.
     $settings = unserialize($entity_collection->settings);
     if (!empty($settings['allowed_bundles']['node'])) {
@@ -1007,7 +986,7 @@ function osha_newsletter_entity_insert($entity_collection, $type) {
     } else {
       $allowed_bundles = variable_get('osha_newsletter_allowed_bundles',
         array(
-          'publication', 'article', 'blog', 'news', 'press_release', 'highlight', 'newsletter_article'
+          'news', 'events'
         )
       );
     }
@@ -1019,10 +998,10 @@ function osha_newsletter_entity_insert($entity_collection, $type) {
       $query = new EntityFieldQuery();
       $rows = $query->entityCondition('entity_type', 'node')
         ->entityCondition('bundle', $allowed_bundles, 'IN')
-        ->entityCondition('bundle', array('article','newsletter_article'), 'NOT IN')
         ->propertyCondition('created', $after, '>=')
         ->propertyCondition('status', NODE_PUBLISHED)
         ->execute();
+
       if (isset($rows['node'])) {
         $nodes = node_load_multiple(array_keys($rows['node']));
         foreach ($nodes as $nid => $node) {
@@ -1045,40 +1024,12 @@ function osha_newsletter_entity_insert($entity_collection, $type) {
 }
 
 function _init_node_view_mode($content_type){
-  if ($content_type == 'highlight') {
+  if ($content_type == 'news') {
     return 'highlights_item';
   } else {
     return 'newsletter_item';
   }
 }
-
-/**
- * Create new node of specified type.
- *
- * @param string $title
- *   Node title
- * @param string $type
- *   bundle name
- *
- * @return object
- *   Saved node.
- */
-function osha_newsletter_create_node($title, $type = 'newsletter_article') {
-  global $user;
-  $node = new stdClass();
-  $node->title = $title;
-  $node->type = $type;
-  node_object_prepare($node);
-  $node->language = 'en';
-  $node->uid = $user->uid;
-  $node->status = 1;
-  $node->promote = 0;
-  $node->title_field[$node->language][0]['value'] = $title;
-  $node = node_submit($node);
-  node_save($node);
-  return $node;
-}
-
 
 /**
  * Implements hook_mail().
