@@ -187,6 +187,7 @@ function osha_newsletter_field_default_field_instances() {
       'type' => 'date_text',
       'weight' => 4,
     ),
+    'workbench_access_field' => 0,
   );
 
   // Exported field_instance:
@@ -267,7 +268,7 @@ function osha_newsletter_field_default_field_instances() {
       'module' => 'date',
       'settings' => array(
         'increment' => 15,
-        'input_format' => 'm/d/Y - H:i:s',
+        'input_format' => 'd/m/Y - H:i:s',
         'input_format_custom' => '',
         'label_position' => 'above',
         'text_parts' => array(),
@@ -276,6 +277,7 @@ function osha_newsletter_field_default_field_instances() {
       'type' => 'date_select',
       'weight' => 6,
     ),
+    'workbench_access_field' => 0,
   );
 
   // Exported field_instance:
