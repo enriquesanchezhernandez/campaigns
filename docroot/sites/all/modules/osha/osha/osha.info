@@ -284,7 +284,6 @@ features[variable][] = pathauto_node_flickr_pattern
 features[variable][] = pathauto_node_infographic_pattern
 features[variable][] = pathauto_node_job_vacancies_pattern
 features[variable][] = pathauto_node_news_pattern
-features[variable][] = pathauto_node_newsletter_article_pattern
 features[variable][] = pathauto_node_note_to_editor_pattern
 features[variable][] = pathauto_node_page_pattern
 features[variable][] = pathauto_node_pattern

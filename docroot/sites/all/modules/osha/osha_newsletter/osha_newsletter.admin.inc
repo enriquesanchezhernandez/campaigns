@@ -72,7 +72,7 @@ function osha_newsletter_admin_form() {
   $allowed_bundles = variable_get(
     'osha_newsletter_allowed_bundles',
     array(
-      'publication', 'news', 'press_release', 'newsletter_article', 'events'
+      'news', 'events'
     )
   );
   $entity_info = entity_get_info();

@@ -30,7 +30,6 @@ features[variable][] = workbench_access_node_type_banner
 features[variable][] = workbench_access_node_type_calls
 features[variable][] = workbench_access_node_type_job_vacancies
 features[variable][] = workbench_access_node_type_news
-features[variable][] = workbench_access_node_type_newsletter_article
 features[variable][] = workbench_access_node_type_page
 features[variable][] = workbench_access_node_type_press_release
 features[variable][] = workbench_access_node_type_publication

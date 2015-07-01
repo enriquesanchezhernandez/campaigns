@@ -400,7 +400,6 @@ function osha_views_default_views() {
     'highlight' => 'highlight',
     'infographic' => 'infographic',
     'news' => 'news',
-    'newsletter_article' => 'newsletter_article',
     'note_to_editor' => 'note_to_editor',
     'press_release' => 'press_release',
     'publication' => 'publication',
