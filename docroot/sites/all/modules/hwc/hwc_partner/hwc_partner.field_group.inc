@@ -21,7 +21,7 @@ function hwc_partner_field_group_info() {
   $field_group->parent_name = '';
   $field_group->data = array(
     'label' => 'Category',
-    'weight' => '5',
+    'weight' => '6',
     'children' => array(
       0 => 'field_category',
       1 => 'field_social_dialog_partner',
@@ -50,7 +50,7 @@ function hwc_partner_field_group_info() {
   $field_group->parent_name = '';
   $field_group->data = array(
     'label' => 'CEO',
-    'weight' => '4',
+    'weight' => '5',
     'children' => array(
       0 => 'field_ceo_photo',
       1 => 'field_ceo',
@@ -77,8 +77,8 @@ function hwc_partner_field_group_info() {
   $field_group->mode = 'form';
   $field_group->parent_name = '';
   $field_group->data = array(
-    'label' => 'Guid Main Contact',
-    'weight' => '3',
+    'label' => 'Main Contact',
+    'weight' => '4',
     'children' => array(
       0 => 'field_main_contact',
       1 => 'field_main_contact_email',
@@ -86,12 +86,13 @@ function hwc_partner_field_group_info() {
     ),
     'format_type' => 'fieldset',
     'format_settings' => array(
-      'formatter' => 'collapsible',
+      'label' => 'Main Contact',
       'instance_settings' => array(
-        'description' => '',
-        'classes' => 'group-guid-main-contact field-group-fieldset',
         'required_fields' => 1,
+        'classes' => 'group-main-contact field-group-fieldset',
+        'description' => '',
       ),
+      'formatter' => 'collapsible',
     ),
   );
   $export['group_guid_main_contact|node|partner|form'] = $field_group;
@@ -107,7 +108,7 @@ function hwc_partner_field_group_info() {
   $field_group->parent_name = '';
   $field_group->data = array(
     'label' => 'Guid organisation',
-    'weight' => '1',
+    'weight' => '2',
     'children' => array(
       0 => 'title_field',
       1 => 'field_general_email',
@@ -143,7 +144,7 @@ function hwc_partner_field_group_info() {
   $field_group->parent_name = '';
   $field_group->data = array(
     'label' => 'Ph Address',
-    'weight' => '2',
+    'weight' => '3',
     'children' => array(
       0 => 'field_ph_cp',
       1 => 'field_country_code',

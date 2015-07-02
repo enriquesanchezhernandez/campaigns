@@ -111,13 +111,13 @@ function hwc_partner_strongarm() {
           'weight' => '10',
         ),
         'path' => array(
-          'weight' => '7',
-        ),
-        'redirect' => array(
           'weight' => '8',
         ),
+        'redirect' => array(
+          'weight' => '9',
+        ),
         'workbench_access' => array(
-          'weight' => '6',
+          'weight' => '7',
         ),
       ),
       'display' => array(),
