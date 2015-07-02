@@ -79,6 +79,14 @@ function osha_node_info() {
       'title_label' => t('Title'),
       'help' => '',
     ),
+    'internal_url' => array(
+      'name' => t('Internal URL'),
+      'base' => 'node_content',
+      'description' => '',
+      'has_title' => '1',
+      'title_label' => t('Title'),
+      'help' => '',
+    ),
     'webform' => array(
       'name' => t('Webform'),
       'base' => 'node_content',
