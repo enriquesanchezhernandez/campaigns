@@ -79,7 +79,7 @@ function hwc_partner_default_page_manager_handlers() {
       ),
     );
     $pane->configuration = array(
-      'override_title' => 1,
+      'override_title' => 0,
       'override_title_text' => '',
       'override_title_heading' => 'span',
     );
@@ -115,7 +115,7 @@ function hwc_partner_default_page_manager_handlers() {
       ),
     );
     $pane->configuration = array(
-      'override_title' => 1,
+      'override_title' => 0,
       'override_title_text' => '',
       'override_title_heading' => 'span',
     );
@@ -151,7 +151,7 @@ function hwc_partner_default_page_manager_handlers() {
       ),
     );
     $pane->configuration = array(
-      'override_title' => 1,
+      'override_title' => 0,
       'override_title_text' => '',
       'override_title_heading' => 'span',
     );

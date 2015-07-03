@@ -81,7 +81,7 @@ function hwc_partner_block_view($delta = '') {
   // Get the number of the block (0,1,2)
   $it = substr($delta, -1);
   $url = variable_get('hwc_partner_private_link_' . $it . '_url', '');
-  $block['subject'] = t(variable_get('hwc_partner_private_link_' . $it . '_title', 'Private link block'));
+  $block['subject'] = '<none>';
   $block['content'] = theme('hwc_partner_private_link_' . $it, array(
       'hwc_partner_private_link_title' => l(t(variable_get('hwc_partner_private_link_' . $it . '_title')), $url),
       'hwc_partner_private_link_description' => t(variable_get('hwc_partner_private_link_' . $it . '_description')),
