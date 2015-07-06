@@ -21,19 +21,13 @@ if (module_exists('osha_newsletter') && isset($variables['element'])) {
     };
     $elements = array();
     $last_section = NULL;
-    $blogs = array();
-    $news = array();
     $events = array();
 
     foreach ($items as $item) {
       if ($item->type == 'taxonomy_term') {
         $term = taxonomy_term_view($item->content, 'token');
         $last_section = $item->content->name_original;
-        if ($last_section == 'Blog') {
-          $blogs[] = $term;
-        } else if ($last_section == 'News') {
-          $news[] = $term;
-        } else if ($last_section == 'Events') {
+        if ($last_section == 'Events') {
           $events[] = $term;
         } else {
           $elements[] = $term;
@@ -43,11 +37,7 @@ if (module_exists('osha_newsletter') && isset($variables['element'])) {
         $node = node_view($item->content,$style);
         $node['#campaign_id'] = $campaign_id;
 
-        if ($last_section == 'Blog') {
-          $blogs[] = $node;
-        } else if ($last_section == 'News') {
-          $news[] = $node;
-        } else if ($last_section == 'Events') {
+       if ($last_section == 'Events') {
           $events[] = $node;
         } else {
           $elements[] = $node;
@@ -60,7 +50,7 @@ if (module_exists('osha_newsletter') && isset($variables['element'])) {
     <div class="newsletter-wrapper" style="width: 800px;">
       <?php
         print theme_render_template($module_templates_path.'/newsletter_header.tpl.php', array('languages' => $languages, 'newsletter_title' => $newsletter_title, 'newsletter_id' => $newsletter_id, 'newsletter_date' => $newsletter_date, 'campaign_id' => $campaign_id));
-        print osha_newsletter_format_body(theme_render_template($module_templates_path.'/newsletter_body.tpl.php', array('items' => $elements, 'blogs' => $blogs, 'news' => $news, 'events' => $events, 'campaign_id' => $campaign_id)));
+        print osha_newsletter_format_body(theme_render_template($module_templates_path.'/newsletter_body.tpl.php', array('items' => $elements, 'events' => $events, 'campaign_id' => $campaign_id)));
         print theme_render_template($module_templates_path.'/newsletter_footer.tpl.php', array('campaign_id' => $campaign_id));
       ?>
     </div><?php
