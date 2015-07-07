@@ -5,3 +5,20 @@
  */
 
 include_once 'hwc_practical_tool.features.inc';
+
+/**
+ * Implements hook_menu().
+ */
+function hwc_practical_tool_menu() {
+  $items['practical-tools'] = array(
+    'title' => 'Practical tools',
+    'description' => 'Listing page for practical tools',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('hwc_practical_tool_menu_tools_form'),
+    'file' => 'hwc_practical_tool.pages.inc',
+    'access arguments' => array('access content'),
+    'menu_name' => 'main-menu',
+    'type' => MENU_NORMAL_ITEM,
+  );
+  return $items;
+}
