@@ -77,8 +77,13 @@ function hwc_practical_tool_menu_tools_search_native($form_state) {
         $restrict[] = $result['fields']['nid'];
       }
     }
+    else {
+      return array(
+        '#nids' => '',
+      );
+    }
+
   }
-  dpm($restrict);
   $q = db_select('node', 'a')
     ->fields('a', array('nid', 'vid'))
     ->condition('type', 'practical_tool')
@@ -88,23 +93,24 @@ function hwc_practical_tool_menu_tools_search_native($form_state) {
     $q->condition('a.nid', $restrict, 'IN');
   }
   $pnids = $q->execute()->fetchCol();
-//  $nids = array();
-//  foreach ($pnids as $pnid) {
-//    $q = db_select('field_data_field_file', 'b');
-//    $q->fields('b', array('entity_id'));
-//    $q->innerJoin('node', 'a', 'a.nid = b.entity_id AND a.vid = b.revision_id');
-//    $q->condition('b.bundle', 'publication');
-//    $q->condition('b.entity_id', $pnid);
-//    $q->condition('b.language', $languages, 'IN');
-//    $c = $q->countQuery()->execute()->fetchField();
-//    if ($c >= count($languages)) {
-//      $nids[] = $pnid;
-//    }
-//  }
-  $nids = $pnids;
+  $nids = array();
+  foreach ($pnids as $pnid) {
+    $q = db_select('entity_translation', 'b');
+    $q->fields('b', array('entity_id'));
+    $q->innerJoin('node', 'a', 'a.nid = b.entity_id');
+    $q->condition('b.entity_id', $pnid);
+    $q->condition('b.entity_type', 'node');
+    $q->condition('b.language', $languages, 'IN');
+    $c = $q->countQuery()->execute()->fetchField();
+    if ($c >= count($languages)) {
+      $nids[] = $pnid;
+    }
+  }
   $nids = array_unique($nids);
   if (empty($nids)) {
-    return array();
+    return array(
+      '#nids' => '',
+    );
   }
   $per_page = 4;
   $current_page = pager_default_initialize(count($nids), $per_page);
@@ -142,7 +148,7 @@ function hwc_practical_tool_menu_tools_search_related($form_state, $native_nids)
   $direction = 'desc';
   /** @var SearchApiQuery $query */
   /** @var SearchApiSolrService $server */
-  list($server, $query) = osha_publication_menu_publications_get_query();
+  list($server, $query) = hwc_practical_tool_menu_tools_get_query();
   $query->condition('status', 1);
   $query->condition('type', 'practical_tool');
   $query->condition('language', 'en');
