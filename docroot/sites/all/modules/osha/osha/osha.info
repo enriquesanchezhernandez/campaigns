@@ -328,7 +328,6 @@ features[variable][] = smtp_allowhtml
 features[variable][] = spamspan_dot_enable
 features[views_view][] = administration_content
 features[views_view][] = articles
-features[views_view][] = media_browser_osha
 features[wysiwyg][] = full_html
 features[wysiwyg][] = plain_text
 features_exclude[dependencies][link] = link

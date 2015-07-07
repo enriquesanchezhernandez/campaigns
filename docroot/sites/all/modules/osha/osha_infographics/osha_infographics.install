@@ -1,0 +1,18 @@
+<?php
+
+/**
+ * Add infographics menu position rules
+ */
+function osha_infographics_update_7001() {
+  osha_infographics_add_menu_position_rules();
+}
+
+/**
+ * Add menu position rules for infographics content type.
+ */
+function osha_infographics_add_menu_position_rules() {
+  if (module_exists('osha') && module_load_include('inc', 'osha', 'osha.utils')) {
+    $condition = array('content_type' => array('infographic' => 'infographic'));
+    osha_add_menu_position_rule('infographics (menu position rule)', '---- Infographics', $condition);
+  }
+}
