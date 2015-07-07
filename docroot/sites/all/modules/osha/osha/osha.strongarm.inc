@@ -139,7 +139,7 @@ el.remove();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'comment_anonymous_internal_url';
-  $strongarm->value = '0';
+  $strongarm->value = '-1';
   $export['comment_anonymous_internal_url'] = $strongarm;
 
   $strongarm = new stdClass();
@@ -230,7 +230,7 @@ el.remove();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'comment_form_location_internal_url';
-  $strongarm->value = 1;
+  $strongarm->value = 0;
   $export['comment_form_location_internal_url'] = $strongarm;
 
   $strongarm = new stdClass();
@@ -251,7 +251,7 @@ el.remove();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'comment_internal_url';
-  $strongarm->value = '2';
+  $strongarm->value = '1';
   $export['comment_internal_url'] = $strongarm;
 
   $strongarm = new stdClass();
@@ -272,7 +272,7 @@ el.remove();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'comment_preview_internal_url';
-  $strongarm->value = '1';
+  $strongarm->value = '0';
   $export['comment_preview_internal_url'] = $strongarm;
 
   $strongarm = new stdClass();
@@ -378,6 +378,13 @@ el.remove();
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'entity_translation_comment_filter_internal_url';
+  $strongarm->value = 0;
+  $export['entity_translation_comment_filter_internal_url'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'entity_translation_comment_filter_page';
   $strongarm->value = FALSE;
   $export['entity_translation_comment_filter_page'] = $strongarm;
@@ -412,6 +419,13 @@ el.remove();
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'entity_translation_hide_translation_links_internal_url';
+  $strongarm->value = 1;
+  $export['entity_translation_hide_translation_links_internal_url'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'entity_translation_hide_translation_links_page';
   $strongarm->value = 1;
   $export['entity_translation_hide_translation_links_page'] = $strongarm;
@@ -422,6 +436,13 @@ el.remove();
   $strongarm->name = 'entity_translation_hide_translation_links_webform';
   $strongarm->value = 1;
   $export['entity_translation_hide_translation_links_webform'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'entity_translation_node_metadata_internal_url';
+  $strongarm->value = '0';
+  $export['entity_translation_node_metadata_internal_url'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
@@ -720,8 +741,9 @@ el.remove();
     'search_result' => 0,
     'diff_standard' => 0,
     'osha_slideshow' => 0,
+    'highlights_item' => 0,
     'newsletter_item' => 0,
-    'osha_wiki' => 0,
+    'pub_teaser' => 0,
     'print' => 0,
     'token' => 0,
     'nodeform' => 0,
@@ -731,9 +753,38 @@ el.remove();
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'exclude_node_title_content_type_modes_internal_url';
+  $strongarm->value = array(
+    'full' => 'full',
+    'teaser' => 'teaser',
+    'rss' => 0,
+    'search_index' => 0,
+    'search_result' => 0,
+    'diff_standard' => 0,
+    'osha_slideshow' => 0,
+    'highlights_item' => 0,
+    'newsletter_item' => 0,
+    'pub_teaser' => 0,
+    'osha_resources' => 0,
+    'print' => 0,
+    'token' => 0,
+    'nodeform' => 0,
+  );
+  $export['exclude_node_title_content_type_modes_internal_url'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'exclude_node_title_content_type_value_article';
   $strongarm->value = 'all';
   $export['exclude_node_title_content_type_value_article'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'exclude_node_title_content_type_value_internal_url';
+  $strongarm->value = 'all';
+  $export['exclude_node_title_content_type_value_internal_url'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
@@ -969,7 +1020,7 @@ el.remove();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'language_content_type_internal_url';
-  $strongarm->value = '0';
+  $strongarm->value = '4';
   $export['language_content_type_internal_url'] = $strongarm;
 
   $strongarm = new stdClass();
@@ -1236,7 +1287,6 @@ el.remove();
   $strongarm->name = 'node_options_internal_url';
   $strongarm->value = array(
     0 => 'status',
-    1 => 'promote',
   );
   $export['node_options_internal_url'] = $strongarm;
 
@@ -1615,6 +1665,20 @@ el.remove();
   $strongarm->name = 'spamspan_dot_enable';
   $strongarm->value = '1';
   $export['spamspan_dot_enable'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'workbench_access_node_type_internal_url';
+  $strongarm->value = 0;
+  $export['workbench_access_node_type_internal_url'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'workbench_moderation_default_state_internal_url';
+  $strongarm->value = 'draft';
+  $export['workbench_moderation_default_state_internal_url'] = $strongarm;
 
   return $export;
 }
