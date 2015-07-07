@@ -43,6 +43,7 @@ features[variable][] = comment_form_location_practical_tool
 features[variable][] = comment_practical_tool
 features[variable][] = comment_preview_practical_tool
 features[variable][] = comment_subject_field_practical_tool
+features[variable][] = entity_translation_hide_translation_links_practical_tool
 features[variable][] = field_bundle_settings_node__practical_tool
 features[variable][] = language_content_type_practical_tool
 features[variable][] = menu_options_practical_tool
