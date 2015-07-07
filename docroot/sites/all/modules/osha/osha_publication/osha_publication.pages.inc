@@ -79,15 +79,18 @@ function osha_publication_menu_publications_search_native($form_state) {
       }
     }
   }
-  // Select all publications having field_file available in filtered languages
+  if (empty($restrict)) {
+    return array(
+      '#nids' => '',
+    );
+  }
+  // Select all publications having field_file available in filtered languages.
   $q = db_select('node', 'a')
     ->fields('a', array('nid', 'vid'))
     ->condition('type', 'publication')
     ->condition('status', 1)
     ->orderBy('changed', 'DESC');
-  if (!empty($restrict)) {
-    $q->condition('a.nid', $restrict, 'IN');
-  }
+  $q->condition('a.nid', $restrict, 'IN');
   $pnids = $q->execute()->fetchCol();
   $nids = array();
   foreach($pnids as $pnid) {
