@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the HWC Practical tool feature.
+ */
+
+include_once 'hwc_practical_tool.features.inc';
