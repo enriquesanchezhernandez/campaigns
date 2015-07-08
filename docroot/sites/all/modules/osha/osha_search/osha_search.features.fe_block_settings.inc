@@ -115,10 +115,10 @@ legislation/guidelines/*',
     'roles' => array(),
     'themes' => array(
       'hwc_frontend' => array(
-        'region' => '',
-        'status' => 0,
+        'region' => 'content',
+        'status' => 1,
         'theme' => 'hwc_frontend',
-        'weight' => 0,
+        'weight' => -54,
       ),
       'seven' => array(
         'region' => '',

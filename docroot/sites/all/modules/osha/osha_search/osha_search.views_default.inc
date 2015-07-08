@@ -243,6 +243,7 @@ function osha_search_views_default_views() {
   $handler->display->display_options['filter_groups']['groups'] = array(
     1 => 'AND',
     2 => 'OR',
+    3 => 'OR',
   );
   $handler->display->display_options['defaults']['filters'] = FALSE;
   /* Filter criterion: Search: Fulltext search */
@@ -281,51 +282,6 @@ function osha_search_views_default_views() {
     'field_summary' => 'field_summary',
     'title_field' => 'title_field',
   );
-  /* Filter criterion: Indexed Multilingual Node: Item language */
-  $handler->display->display_options['filters']['search_api_language']['id'] = 'search_api_language';
-  $handler->display->display_options['filters']['search_api_language']['table'] = 'search_api_index_default_multilingual_node_index';
-  $handler->display->display_options['filters']['search_api_language']['field'] = 'search_api_language';
-  $handler->display->display_options['filters']['search_api_language']['value'] = array(
-    'en' => 'en',
-    'bg' => 'bg',
-    'cs' => 'cs',
-    'da' => 'da',
-    'de' => 'de',
-    'el' => 'el',
-    'es' => 'es',
-    'et' => 'et',
-    'fi' => 'fi',
-    'hr' => 'hr',
-    'fr' => 'fr',
-    'hu' => 'hu',
-    'is' => 'is',
-    'it' => 'it',
-    'lv' => 'lv',
-    'lt' => 'lt',
-    'nl' => 'nl',
-    'mt' => 'mt',
-    'no' => 'no',
-    'pl' => 'pl',
-    'pt' => 'pt',
-    'ro' => 'ro',
-    'ru' => 'ru',
-    'sk' => 'sk',
-    'sl' => 'sl',
-    'sv' => 'sv',
-    'tr' => 'tr',
-  );
-  $handler->display->display_options['filters']['search_api_language']['group'] = 1;
-  $handler->display->display_options['filters']['search_api_language']['exposed'] = TRUE;
-  $handler->display->display_options['filters']['search_api_language']['expose']['operator_id'] = 'search_api_language_op';
-  $handler->display->display_options['filters']['search_api_language']['expose']['label'] = 'Language';
-  $handler->display->display_options['filters']['search_api_language']['expose']['operator'] = 'search_api_language_op';
-  $handler->display->display_options['filters']['search_api_language']['expose']['identifier'] = 'search_api_language';
-  $handler->display->display_options['filters']['search_api_language']['expose']['remember_roles'] = array(
-    2 => '2',
-    1 => 0,
-    3 => 0,
-  );
-  $handler->display->display_options['filters']['search_api_language']['expose']['reduce'] = 1;
   /* Filter criterion: Indexed Multilingual Node: Content type */
   $handler->display->display_options['filters']['type']['id'] = 'type';
   $handler->display->display_options['filters']['type']['table'] = 'search_api_index_default_multilingual_node_index';
@@ -345,6 +301,22 @@ function osha_search_views_default_views() {
     1 => '1',
   );
   $handler->display->display_options['filters']['status']['group'] = 1;
+  /* Filter criterion: Indexed Multilingual Node: Item language */
+  $handler->display->display_options['filters']['search_api_language']['id'] = 'search_api_language';
+  $handler->display->display_options['filters']['search_api_language']['table'] = 'search_api_index_default_multilingual_node_index';
+  $handler->display->display_options['filters']['search_api_language']['field'] = 'search_api_language';
+  $handler->display->display_options['filters']['search_api_language']['value'] = array(
+    'en' => 'en',
+  );
+  $handler->display->display_options['filters']['search_api_language']['group'] = 3;
+  /* Filter criterion: Indexed Multilingual Node: Item language */
+  $handler->display->display_options['filters']['search_api_language_1']['id'] = 'search_api_language_1';
+  $handler->display->display_options['filters']['search_api_language_1']['table'] = 'search_api_index_default_multilingual_node_index';
+  $handler->display->display_options['filters']['search_api_language_1']['field'] = 'search_api_language';
+  $handler->display->display_options['filters']['search_api_language_1']['value'] = array(
+    'current' => 'current',
+  );
+  $handler->display->display_options['filters']['search_api_language_1']['group'] = 3;
   /* Filter criterion: Indexed Multilingual Node: Publication date */
   $handler->display->display_options['filters']['field_publication_date']['id'] = 'field_publication_date';
   $handler->display->display_options['filters']['field_publication_date']['table'] = 'search_api_index_default_multilingual_node_index';
@@ -358,8 +330,7 @@ function osha_search_views_default_views() {
   $handler->display->display_options['filters']['field_publication_date_1']['field'] = 'field_publication_date';
   $handler->display->display_options['filters']['field_publication_date_1']['operator'] = 'empty';
   $handler->display->display_options['filters']['field_publication_date_1']['group'] = 2;
-  $handler->display->display_options['path'] = 'search/site';
-  $handler->display->display_options['menu']['type'] = 'normal';
+  $handler->display->display_options['path'] = 'search';
   $handler->display->display_options['menu']['title'] = 'Site';
   $handler->display->display_options['menu']['weight'] = '0';
   $handler->display->display_options['menu']['name'] = 'menu-search';
@@ -389,7 +360,6 @@ function osha_search_views_default_views() {
     t('Site search'),
     t('More results are available in OSHWiki'),
     t('Publication date'),
-    t('Language'),
   );
   $export['search'] = $view;
 
