@@ -98,7 +98,7 @@ function osha_search_form_alter(&$form, &$form_state, $form_id) {
   if ($form_id == 'search_block_form') {
     // Overwrite the search page default url.
     // Unset the form elements - the search view needs just the search param.
-    $form['#action'] = url('search/site');
+    $form['#action'] = url('search');
     $form['#method'] = 'get';
     unset($form['#submit']);
     unset($form['form_build_id']);
@@ -204,38 +204,24 @@ function osha_search_autocomplete_callback($search = '*') {
   $showed_items = 0;
   $showed_categ = 0;
   $total_on_showed_categ = 0;
-  $wiki_result = array();
-  $total_wiki_results = 0;
 
   foreach ($data->grouped->ss_type->groups as &$group) {
-    // Wiki page will be last added in the return array.
-    if ($group->groupValue == 'wiki_page') {
-      $wiki_result = osha_search_autocomplete_add_group($group, $lang, $showing_items, $search, 'search/wiki');
-//      $showed_items += $wiki_result['count'];
-      $showed_categ += ($wiki_result['count']) ? 1 : 0;
-      $total_wiki_results = $group->doclist->numFound;
-      continue;
+    if ($count_categ++ < $showing_categ) {
+      $ret = osha_search_autocomplete_add_group($group, $lang, $showing_items, $search);
+      $showed_items += $ret['count'];
+      $showed_categ += ($ret['count']) ? 1 : 0;
+      $total_on_showed_categ += $group->doclist->numFound;
+      $return = array_merge($return, $ret['results']);
     }
-    if ($count_categ++ >= $showing_categ) {
-      // If not found wiki by now, continue loop trough groups.
-      if (!empty($wiki_result)) {
-        break;
-      }
-      else {
-        continue;
-      }
+    else {
+      break;
     }
-    $ret = osha_search_autocomplete_add_group($group, $lang, $showing_items, $search);
-    $showed_items += $ret['count'];
-    $showed_categ += ($ret['count']) ? 1 : 0;
-    $total_on_showed_categ += $group->doclist->numFound;
-    $return = array_merge($return, $ret['results']);
   }
 
   // Add extra link with search summery (see CW-220).
-  if (!empty($total_items) && $total_items - $total_wiki_results > $showed_items) {
+  if (!empty($total_items) && $total_items - $total_on_showed_categ > 0) {
     $text = t('@search_result more in @categories categories', array(
-      '@search_result' => $total_items - $total_wiki_results - $total_on_showed_categ,
+      '@search_result' => $total_items - $total_on_showed_categ,
       '@categories' => $total_groups - $showed_categ,
     ));
     $ac_item = array(
@@ -254,10 +240,6 @@ function osha_search_autocomplete_callback($search = '*') {
       "group_name" => t('More results'),
     );
     $return[] = $ac_item;
-  }
-  // Now append the wiki results.
-  if (!empty($wiki_result['results'])) {
-    $return = array_merge($return, $wiki_result['results']);
   }
   print_r(json_encode($return));
   exit;
@@ -282,10 +264,6 @@ function osha_search_autocomplete_add_group($group, $lang, $showing_items, $sear
     );
     if (!empty($item->{'ss_field_wiki_page_url:url'})) {
       $ac_item["link"] = $item->{'ss_field_wiki_page_url:url'};
-    }
-    // For publications the default link opens the file | /view opens node.
-    if ($item->ss_type == 'publication') {
-      $ac_item["link"] .= '/view';
     }
     if ($count_items == 1) {
       $ac_item["group"] = array(

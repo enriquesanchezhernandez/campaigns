@@ -93,14 +93,14 @@ legislation/guidelines/*',
         'weight' => 0,
       ),
       'seven' => array(
-        'region' => 'dashboard_inactive',
-        'status' => 1,
+        'region' => '',
+        'status' => 0,
         'theme' => 'seven',
         'weight' => -10,
       ),
     ),
-    'title' => '',
-    'visibility' => 1,
+    'title' => '<none>',
+    'visibility' => 0,
   );
 
   $export['views--exp-search-site'] = array(
@@ -111,7 +111,7 @@ legislation/guidelines/*',
     'i18n_mode' => 0,
     'module' => 'views',
     'node_types' => array(),
-    'pages' => '',
+    'pages' => 'search',
     'roles' => array(),
     'themes' => array(
       'hwc_frontend' => array(
@@ -128,7 +128,7 @@ legislation/guidelines/*',
       ),
     ),
     'title' => '',
-    'visibility' => 0,
+    'visibility' => 1,
   );
 
   return $export;
