@@ -68,6 +68,34 @@ function hwc_social_sprites_default_fe_block_settings() {
     'visibility' => 0,
   );
 
+  $export['printfriendly-printfriendly'] = array(
+    'cache' => 8,
+    'custom' => 0,
+    'delta' => 'printfriendly',
+    'i18n_block_language' => array(),
+    'i18n_mode' => 0,
+    'module' => 'printfriendly',
+    'node_types' => array(),
+    'pages' => '',
+    'roles' => array(),
+    'themes' => array(
+      'hwc_frontend' => array(
+        'region' => 'above_header',
+        'status' => 1,
+        'theme' => 'hwc_frontend',
+        'weight' => 0,
+      ),
+      'seven' => array(
+        'region' => '',
+        'status' => 0,
+        'theme' => 'seven',
+        'weight' => 0,
+      ),
+    ),
+    'title' => '<none>',
+    'visibility' => 0,
+  );
+
   $export['text_resize-0'] = array(
     'cache' => 4,
     'custom' => 0,
