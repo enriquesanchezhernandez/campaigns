@@ -10,6 +10,30 @@
 function hwc_social_sprites_menu_default_menu_links() {
   $menu_links = array();
 
+  // Exported menu link: management_text-resize:admin/config/user-interface/text_resize
+  $menu_links['management_text-resize:admin/config/user-interface/text_resize'] = array(
+    'menu_name' => 'management',
+    'link_path' => 'admin/config/user-interface/text_resize',
+    'router_path' => 'admin/config/user-interface/text_resize',
+    'link_title' => 'Text Resize',
+    'options' => array(
+      'attributes' => array(
+        'title' => 'Settings for your Text Resize block.',
+      ),
+      'alter' => TRUE,
+      'identifier' => 'management_text-resize:admin/config/user-interface/text_resize',
+    ),
+    'module' => 'system',
+    'hidden' => 0,
+    'external' => 0,
+    'has_children' => 0,
+    'expanded' => 0,
+    'weight' => 0,
+    'customized' => 0,
+    'language' => 'und',
+    'menu_links_customized' => 0,
+    'parent_identifier' => 'management_user-interface:admin/config/user-interface',
+  );
   // Exported menu link: menu-footer-menu_accessibility:node/100
   $menu_links['menu-footer-menu_accessibility:node/100'] = array(
     'menu_name' => 'menu-footer-menu',
@@ -414,6 +438,7 @@ function hwc_social_sprites_menu_default_menu_links() {
   t('RSS');
   t('Site map');
   t('Social');
+  t('Text Resize');
   t('Twitter');
   t('YouTube');
 
