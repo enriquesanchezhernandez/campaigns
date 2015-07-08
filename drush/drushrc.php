@@ -533,6 +533,11 @@ $command_specific['devify_solr'] = array(
   'solr_server' => (array) $cfg->solr_server,
 );
 
+$command_specific['devify_ldap'] = array(
+  'ldap-read' => (array) $cfg->ldap_read,
+  'ldap-write' => (array) $cfg->ldap_write,
+);
+
 if (file_exists(dirname(__FILE__) . '/drushrc.local.php')) {
   include dirname(__FILE__) . '/drushrc.local.php';
 }
