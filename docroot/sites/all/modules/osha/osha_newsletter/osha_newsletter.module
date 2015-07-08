@@ -128,19 +128,18 @@ function osha_newsletter_block_info() {
   $blocks['osha_newsletter_subscribe'] = array(
     'info' => t('Subscribe to EU-OSHA Newsletter'),
     'status' => 1,
-    'region' => 'sidebar_second',
+    'region' => 'content',
     'visibility' => BLOCK_VISIBILITY_LISTED,
-    'pages' => '<front>',
+    'pages' => 'node/129',
     'cache' => DRUPAL_CACHE_GLOBAL,
     'weight' => -30
   );
   $blocks['osha_newsletter_image'] = array(
-    'info' => t('Join OSHMail subscribers'),
+    'info' => t('Homepage newsletter block'),
     'status' => 1,
     'region' => 'content',
     'visibility' => BLOCK_VISIBILITY_LISTED,
-    'pages' => 'oshmail-newsletter
-node/9',
+    'pages' => '<front>',
     'cache' => DRUPAL_CACHE_GLOBAL,
   );
   $blocks['osha_newsletter_subscribe_extra'] = array(
@@ -148,7 +147,7 @@ node/9',
     'status' => 1,
     'region' => 'content',
     'visibility' => BLOCK_VISIBILITY_LISTED,
-    'pages' => OSHA_NEWSLETTER_PAGE_URL,
+    'pages' => 'node/129',
     'cache' => DRUPAL_CACHE_GLOBAL,
   );
   $blocks['osha_newsletter_latest'] = array(
@@ -235,26 +234,12 @@ function osha_newsletter_block_configure($delta = '') {
           'file_validate_extensions' => array('jpg jpeg png gif')
         ),
       );
-      $form['osha_newsletter_image_block_text_start'] = array(
+      $form['osha_newsletter_image_block_intro_text'] = array(
         '#type' => 'textfield',
-        '#title' => 'Begining of text',
+        '#title' => 'Newsletter intro text',
         '#size' => 60,
         '#description' => 'This text will appear over the background image (begining of the paragraph).',
-        '#default_value' => variable_get('osha_newsletter_image_block_text_start', 'Join'),
-      );
-      $form['osha_newsletter_image_block_subscribers_no'] = array(
-        '#type' => 'textfield',
-        '#title' => 'Subscribers number',
-        '#size' => 60,
-        '#description' => 'This text will appear over the background image (middle of the paragraph).',
-        '#default_value' => variable_get('osha_newsletter_image_block_subscribers_no', '65.000'),
-      );
-      $form['osha_newsletter_image_block_text_end'] = array(
-        '#type' => 'textfield',
-        '#title' => 'End of text',
-        '#size' => 60,
-        '#description' => 'This text will appear over the background image (end of the paragraph).',
-        '#default_value' => variable_get('osha_newsletter_image_block_text_end', 'subscribers'),
+        '#default_value' => variable_get('osha_newsletter_image_block_intro_text','Would you like to stay informed about the latest developments regarding ageing workers?'),
       );
       break;
     case 'osha_newsletter_subscribe_extra':
@@ -328,9 +313,7 @@ function osha_newsletter_block_save($delta = '', $edit = array()) {
       break;
     case 'osha_newsletter_image':
       variable_set('osha_newsletter_image_block_background_img', $edit['osha_newsletter_image_block_background_img']);
-      variable_set('osha_newsletter_image_block_text_start', $edit['osha_newsletter_image_block_text_start']);
-      variable_set('osha_newsletter_image_block_subscribers_no', $edit['osha_newsletter_image_block_subscribers_no']);
-      variable_set('osha_newsletter_image_block_text_end', $edit['osha_newsletter_image_block_text_end']);
+      variable_set('osha_newsletter_image_block_intro_text', $edit['osha_newsletter_image_block_intro_text']);
       break;
     case 'osha_newsletter_subscribe_extra':
       variable_set('subscribe_extra_block_intro_text', $edit['subscribe_extra_block_intro_text']);
@@ -364,7 +347,7 @@ function osha_newsletter_block_view($delta = '') {
         $markup .= t(variable_get('subscribe_block_subscribers_no', '65.000'));
         $markup .= ' ';
         $markup .= t(variable_get('subscribe_block_intro_text_second_line_end', 'subscribers'));
-        $markup .= '!</p>';
+        $markup .= '</p>';
         $markup .= '</div>';
         $link_url = variable_get('subscribe_block_newsletter_page_url', OSHA_NEWSLETTER_PAGE_URL);
         $markup = strtr($markup, array('@newsletter_page_url' => url($link_url)));
@@ -376,7 +359,7 @@ function osha_newsletter_block_view($delta = '') {
       break;
     case 'osha_newsletter_image':
       if(user_access('access content')) {
-        $block['subject'] = t('Join OSHMail subscribers');
+        $block['subject'] = t('Newsletter');
 
         $image_fid = variable_get('osha_newsletter_image_block_background_img');
         $image_uri = NULL;
@@ -387,9 +370,7 @@ function osha_newsletter_block_view($delta = '') {
 
         $block['content'] = theme('osha_newsletter_image', array(
           'background_image_url' => $image_uri,
-          'start_text' => t(variable_get('osha_newsletter_image_block_text_start','Join')),
-          'subscribers_no' => variable_get('osha_newsletter_image_block_subscribers_no','65.000'),
-          'end_text' => t(variable_get('osha_newsletter_image_block_text_end','subscribers')),
+          'intro_text' => t(variable_get('osha_newsletter_image_block_intro_text','Would you like to stay informed about the latest developments regarding ageing workers?')),
         ));
         return $block;
       }
@@ -1321,9 +1302,7 @@ function osha_newsletter_theme() {
      'template' => 'osha_newsletter_image_block',
      'variables' => array(
        'background_image_url' => NULL,
-       'start_text' => NULL,
-       'subscribers_no' => NULL,
-       'end_text' => NULL,
+       'newsletter_intro_text' => NULL,
      ),
      'path' => $path . '/templates'
    );

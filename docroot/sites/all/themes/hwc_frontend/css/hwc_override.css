@@ -62,3 +62,30 @@ div.workbench-info-block {
     width: auto !important;
     margin: 5px;
 }
+/* Homepage newsletter block START */
+#block-osha-newsletter-osha-newsletter-image {
+    height: 300px;
+    position: relative;
+}
+#block-osha-newsletter-osha-newsletter-image .block-title {
+    position: absolute;
+    width: 100%;
+    color: #ffffff;
+    text-align: center;
+    margin: 0;
+    top: 100px;
+}
+#block_newsletter_image_text {
+    position: absolute;
+    width: 100%;
+    color: #ffffff;
+    text-align: center;
+    top: 150px;
+}
+#join_subscribers img {
+    position: absolute;
+    height: 300px;
+    width: 100%;
+    z-index: -10;
+}
+/* Homepage newsletter block END */
