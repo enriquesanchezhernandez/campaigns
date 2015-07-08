@@ -143,7 +143,7 @@ function osha_newsletter_block_info() {
     'cache' => DRUPAL_CACHE_GLOBAL,
   );
   $blocks['osha_newsletter_subscribe_extra'] = array(
-    'info' => t('Subscribe to EU-OSHA Newsletter block - with extra link to unsubscribe page'),
+    'info' => t('Subscribe to Campaigns Newsletter block - with extra link to unsubscribe'),
     'status' => 1,
     'region' => 'content',
     'visibility' => BLOCK_VISIBILITY_LISTED,
@@ -248,14 +248,14 @@ function osha_newsletter_block_configure($delta = '') {
         '#title' => 'Block intro text',
         '#size' => 60,
         '#description' => 'This text will appear in the Subscription block before the e-mail field.',
-        '#default_value' => variable_get('subscribe_extra_block_intro_text', 'Once a month, OSHmail keeps you updated on ocupational safety and health.<br/> You can sign up below:'),
+        '#default_value' => variable_get('subscribe_extra_block_intro_text', 'Keep you updated on...'),
       );
       $form['subscribe_extra_block_details_link_label'] = array(
         '#type' => 'textfield',
         '#title' => 'Link label',
         '#size' => 60,
         '#description' => 'This text will appear as link label in the Subscription block after the e-mail field.',
-        '#default_value' => variable_get('subscribe_extra_block_details_link_label', 'How will EU-OSHA use my details?'),
+        '#default_value' => variable_get('subscribe_extra_block_details_link_label', ''),
       );
       $form['subscribe_extra_block_details_link_url'] = array(
         '#type' => 'textfield',
@@ -377,7 +377,7 @@ function osha_newsletter_block_view($delta = '') {
       break;
     case 'osha_newsletter_subscribe_extra':
       if(user_access('access content')) {
-        $block['subject'] = t('OSHMail newsletter');
+        $block['subject'] = t('Campaign Newsletter');
         $subscribe_form = drupal_get_form('osha_newsletter_subscribe_extra_form');
         $block['content'] = theme('subscribe_extra_block', array(
           'subscribe_form' => drupal_render($subscribe_form)
@@ -487,6 +487,10 @@ function osha_newsletter_subscribe_extra_form() {
     '#type' => 'submit',
     '#value' => t('Subscribe'),
     '#submit' => array('osha_newsletter_block_subscribe_captcha_form_submit')
+  );
+  $form['subscribe-to-OSHMail-newsletter'] = array(
+    '#type' => 'checkbox',
+    '#title' => t('Subscribe to OSHMail Newsletter'),
   );
   $form['unsubscribe_text'] = array(
     '#markup' => '<hr><span>'.t('Not interested anymore?').'</span>',
@@ -614,13 +618,25 @@ function osha_newsletter_block_subscribe_captcha_form_validate($form, &$form_sta
 function osha_newsletter_block_subscribe_captcha_form_submit($form, &$form_state) {
   $email = $form_state['values']['email'];
   $to = variable_get('osha_newsletter_listserv', 'listserv@list.osha.europa.eu');
+
   osha_newsletter_send_email(
-    'subscribe_email',
+    'campaigns_subscribe_email',
     $to,
     $email,
     $form_state,
     t('Your subscription has been submitted succesfully.')
   );
+
+  if($form_state['values']['subscribe-to-OSHMail-newsletter']) {
+    osha_newsletter_send_email(
+      'subscribe_email',
+      $to,
+      $email,
+      $form_state,
+      t('Your subscription has been submitted succesfully.')
+    );
+  }
+
   // Need to redirect due to Ajax handling
   $referer = empty($_SERVER['HTTP_REFERER']) ? '/' : $_SERVER['HTTP_REFERER'];
   $form_state['redirect'] = $referer;
@@ -1051,6 +1067,9 @@ function osha_newsletter_mail($key, &$message, $params) {
     case 'subscribe_email':
       osha_newsletter_build_subscribe_mail($message);
       break;
+    case 'campaigns_subscribe_email':
+      osha_newsletter_build_campaigns_subscribe_mail($message);
+      break;
     case 'unsubscribe_email':
       osha_newsletter_build_unsubscribe_mail($message);
       break;
@@ -1245,9 +1264,24 @@ function osha_newsletter_build_subscribe_mail(&$message){
 /**
  * Implements hook_mail().
  */
+function osha_newsletter_build_campaigns_subscribe_mail(&$message){
+  //Get list name
+  $list = variable_get('campaigns_newsletter_list_name', 'OSHMail-Test');
+
+  // Get message data from source.
+  $message['subject'] = '';
+  $message['body']['body'] = 'subscribe ' . $list . ' anonymous';
+
+  // Optional params for HTML mails.
+  $message['params']['plain'] = NULL;
+}
+
+/**
+ * Implements hook_mail().
+ */
 function osha_newsletter_build_unsubscribe_mail(&$message){
   //Get list name
-  $list = variable_get('osha_newsletter_list_name', 'OSHMail-Test');
+  $list = variable_get('campaigns_newsletter_list_name', 'OSHMail-Test');
 
   // Get message data from source.
   $message['subject'] = '';

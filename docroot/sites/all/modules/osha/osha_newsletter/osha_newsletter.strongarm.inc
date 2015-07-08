@@ -247,21 +247,21 @@ You cand sign up below:';
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'subscribe_extra_block_details_link_label';
-  $strongarm->value = 'How will EU-OSHA use my details?';
+  $strongarm->value = '';
   $export['subscribe_extra_block_details_link_label'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'subscribe_extra_block_details_link_url';
-  $strongarm->value = 'oshmail-newsletter/privacy-statement-oshmail';
+  $strongarm->value = '';
   $export['subscribe_extra_block_details_link_url'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'subscribe_extra_block_intro_text';
-  $strongarm->value = 'nfgbddf';
+  $strongarm->value = 'Keep you updated on...';
   $export['subscribe_extra_block_intro_text'] = $strongarm;
 
   return $export;
