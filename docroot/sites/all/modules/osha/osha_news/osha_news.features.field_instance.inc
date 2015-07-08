@@ -25,10 +25,11 @@ function osha_news_field_default_field_instances() {
         'weight' => 5,
       ),
       'highlights_item' => array(
-        'label' => 'above',
+        'label' => 'hidden',
+        'module' => 'text',
         'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
+        'type' => 'text_default',
+        'weight' => 2,
       ),
       'newsletter_item' => array(
         'label' => 'above',
@@ -128,7 +129,7 @@ function osha_news_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 0,
+        'weight' => 8,
       ),
       'newsletter_item' => array(
         'label' => 'above',
@@ -213,7 +214,7 @@ function osha_news_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 0,
+        'weight' => 9,
       ),
       'newsletter_item' => array(
         'label' => 'above',
@@ -288,7 +289,7 @@ function osha_news_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 0,
+        'weight' => 10,
       ),
       'newsletter_item' => array(
         'label' => 'above',
@@ -364,7 +365,7 @@ function osha_news_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 0,
+        'weight' => 11,
       ),
       'newsletter_item' => array(
         'label' => 'above',
@@ -449,10 +450,14 @@ function osha_news_field_default_field_instances() {
         'weight' => 3,
       ),
       'highlights_item' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
+        'label' => 'hidden',
+        'module' => 'image',
+        'settings' => array(
+          'image_link' => 'content',
+          'image_style' => 'thumbnail',
+        ),
+        'type' => 'image',
+        'weight' => 1,
       ),
       'newsletter_item' => array(
         'label' => 'above',
@@ -567,7 +572,7 @@ function osha_news_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 0,
+        'weight' => 7,
       ),
       'newsletter_item' => array(
         'label' => 'above',
@@ -637,7 +642,7 @@ function osha_news_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 0,
+        'weight' => 4,
       ),
       'newsletter_item' => array(
         'label' => 'above',
@@ -721,7 +726,7 @@ function osha_news_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 0,
+        'weight' => 3,
       ),
       'newsletter_item' => array(
         'label' => 'hidden',
@@ -837,7 +842,7 @@ function osha_news_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 0,
+        'weight' => 5,
       ),
       'newsletter_item' => array(
         'label' => 'above',
@@ -933,7 +938,7 @@ function osha_news_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 0,
+        'weight' => 6,
       ),
       'newsletter_item' => array(
         'label' => 'above',
@@ -1017,9 +1022,14 @@ function osha_news_field_default_field_instances() {
         'weight' => 0,
       ),
       'highlights_item' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
+        'label' => 'hidden',
+        'module' => 'title',
+        'settings' => array(
+          'title_class' => '',
+          'title_link' => '',
+          'title_style' => '',
+        ),
+        'type' => 'title_linked',
         'weight' => 0,
       ),
       'newsletter_item' => array(
