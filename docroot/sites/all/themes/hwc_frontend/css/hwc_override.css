@@ -88,4 +88,17 @@ div.workbench-info-block {
     width: 100%;
     z-index: -10;
 }
+#views-exposed-form-search-site {
+    margin: 20px 0 0 0;
+}
+#views-exposed-form-search-site .form-type-textfield,
+#views-exposed-form-search-site input,
+#views-exposed-form-search-site button {
+    display: inline-block;
+    margin: 0;
+}
+#views-exposed-form-search-site button {
+    margin-left: -4px;
+    margin-top: -2px;
+}
 /* Homepage newsletter block END */

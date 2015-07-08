@@ -13,5 +13,6 @@
 	}?>
 	<div id="block_newsletter_image_text">
 		<?php print $intro_text ?>
+        <?php print($subscribe_form) ?>
 	</div>
 </div>
