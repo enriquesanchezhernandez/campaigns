@@ -441,6 +441,9 @@ $options['init-modules'] = array(
   'context_layouts',
   'context_entity_field',
 
+  'image_url_formatter',
+  'views_data_export',
+
   // Captcha
  'recaptcha',
 
@@ -489,6 +492,7 @@ $options['init-modules'] = array(
   'on_the_web',
 
   'hwc',
+  'hwc_admin_reports',
   'hwc_homepage',
   'ncw_migration',
   'hwc_menu',

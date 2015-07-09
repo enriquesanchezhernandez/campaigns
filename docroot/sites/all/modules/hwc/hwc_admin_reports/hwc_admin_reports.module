@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the HWC Admin Reports feature.
+ */
+
+include_once 'hwc_admin_reports.features.inc';
