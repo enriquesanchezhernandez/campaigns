@@ -522,18 +522,17 @@ function campaigns_newsletter_subscribe_form() {
       'onclick' => "jQuery('div.captcha').show()"
     ),
   );
+  $form['submit'] = array(
+    '#type' => 'submit',
+    '#value' => t('Sign up!'),
+    '#submit' => array('campaigns_newsletter_block_subscribe_captcha_form_submit')
+  );
   if (user_is_anonymous()) {
     $form['captcha'] = array(
       '#type' => 'captcha',
       '#captcha_type' => 'default',
     );
   }
-  $form['submit'] = array(
-    '#type' => 'submit',
-    '#value' => t('Sign up!'),
-    '#submit' => array('campaigns_newsletter_block_subscribe_captcha_form_submit')
-  );
-
   return $form;
 }
 
