@@ -7,6 +7,7 @@
  * @see template_preprocess_node()
  * @see template_process()
  */
+dpm('ss');
 ?>
 <?php if($node->title != NULL) {?>
 <table id="node-<?php print $node->nid; ?>" border="0" cellpadding="0" cellspacing="0" width="100%">
@@ -16,7 +17,7 @@
       $date = strtotime($node->field_publication_date[LANGUAGE_NONE][0]['value']);
     ?>
       <tr>
-        <td colspan="2" style="font-family: Arial, sans-serif; font-size: 14px; padding-left: 14px;">
+        <td>
           <span class="item-date"><?php print format_date($date, 'custom', 'M d, Y');?></span>
         </td>
       </tr>
@@ -28,7 +29,7 @@
       ?>
       <tr>
         <td colspan="2" style="font-family: Arial, sans-serif; font-size: 14px; padding-left: 14px;">
-          <span class="item-date"><?php if (trim($country_location) != '' && trim($city_location) != '') { echo $country_location . ' ' . $city_location . ', ';} if (trim($date) != '') { print format_date($date, 'custom', 'M d, Y');}?></span>
+          <span class="item-date"><?php print format_date($date, 'custom', 'M d, Y'); ?></span>
         </td>
       </tr>
     <?php
@@ -72,6 +73,11 @@
           ));
         }
         ?>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2" style="font-family: Arial, sans-serif; font-size: 14px; padding-left: 14px;">
+        <span class="item-date"><?php print $node->field_city['und'][0]['value']; ?></span>
       </td>
     </tr>
     <tr>
