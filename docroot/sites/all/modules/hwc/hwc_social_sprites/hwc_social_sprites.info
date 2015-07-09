@@ -39,6 +39,7 @@ features[menu_links][] = menu-footer-menu_twitter:https://twitter.com/eu_osha
 features[menu_links][] = menu-footer-menu_youtube:https://www.youtube.com/user/EUOSHA
 features[variable][] = on_the_web_delicious_page
 features[variable][] = on_the_web_facebook_page
+features[variable][] = on_the_web_flickr_page
 features[variable][] = on_the_web_friendfeed_page
 features[variable][] = on_the_web_google_page
 features[variable][] = on_the_web_itunes_page
