@@ -81,6 +81,8 @@ function osha_publication_page_alter(&$page) {
  * Implements hook_url_inbound_alter().
  */
 function osha_publication_url_inbound_alter(&$path, $original_path, $path_language) {
+  // For HWC this is no longer required.
+  return;
   // For publications, the default url should serve the file.
   // if the path ends with /view than should serve the node.
   // see CW-1072
@@ -195,6 +197,8 @@ function osha_publication_node_view($node, $view_mode, $langcode) {
  * Implements hook_menu_local_tasks_alter().
  */
 function osha_publication_menu_local_tasks_alter(&$data, $router_item, $root_path) {
+  // No longer needed for HWC.
+  return;
   // For publications, the "View" tab should point to alias/view.
   $is_node = !empty($router_item['map'][0]) && $router_item['map'][0] == 'node'
     && !empty($router_item['map'][1]) && is_object($router_item['map'][1]);
@@ -269,6 +273,8 @@ function osha_publication_post_features_enable_feature($component) {
  * Implements hook_workbench_moderation_transition().
  */
 function osha_publication_workbench_moderation_transition($node, $old, $new) {
+  // No longer needed for HWC.
+  return;
   if ($node->type == 'publication' && $new == 'published') {
     $destination = 'node/' . $node->nid;
     $path = path_load(array('source' => $destination));
@@ -309,11 +315,11 @@ function osha_publication_field_formatter_info() {
       'field types' => array('entityreference'),
       'description' => 'Displays twin publications as title and link to file in all languages.',
     ),
-    'publication_title_linked' => array(
-      'label' => t('Publication Linked and wrapped'),
-      'field types' => array('text'),
-      'settings' => array('title_style' => '', 'title_link' => '', 'title_class' => ''),
-    ),
+//    'publication_title_linked' => array(
+//      'label' => t('Publication Linked and wrapped'),
+//      'field types' => array('text'),
+//      'settings' => array('title_style' => '', 'title_link' => '', 'title_class' => ''),
+//    ),
   );
   return $info;
 }

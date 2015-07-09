@@ -23,13 +23,31 @@ function ncw_migration_migrate_api() {
       ),
       'publications' => array(
         'group_name' => 'ncw',
-        'dependencies' => array('tax_tags', 'tax_publication_types'),
+        'dependencies' => array(
+          'tax_tags', 'tax_publication_types', 'publications_add_res',
+          'news_add_res', 'press_releases_add_res', 'press_releases_add_res',
+          'highlights_add_res'
+        ),
         'class_name' => 'NCWPublicationsMigration',
+      ),
+      'publications_add_res' => array(
+        'group_name' => 'ncw',
+        'dependencies' => array('tax_tags', 'tax_publication_types'),
+        'class_name' => 'NCWAdditionalResourcesPublicationsMigration',
       ),
       'news' => array(
         'group_name' => 'ncw',
-        'dependencies' => array('tax_tags'),
+        'dependencies' => array(
+          'tax_tags', 'publications_add_res', 'news_add_res',
+          'press_releases_add_res', 'press_releases_add_res',
+          'highlights_add_res'
+        ),
         'class_name' => 'NCWNewsMigration',
+      ),
+      'news_add_res' => array(
+        'group_name' => 'ncw',
+        'dependencies' => array('tax_tags'),
+        'class_name' => 'NCWAdditionalResourcesNewsMigration',
       ),
       'notes_to_editor' => array(
         'group_name' => 'ncw',
@@ -38,13 +56,36 @@ function ncw_migration_migrate_api() {
       ),
       'press_releases' => array(
         'group_name' => 'ncw',
-        'dependencies' => array('tax_tags'),
+        'dependencies' => array(
+          'tax_tags', 'publications_add_res', 'news_add_res',
+          'press_releases_add_res', 'press_releases_add_res',
+          'highlights_add_res'
+        ),
         'class_name' => 'NCWPressMigration',
+      ),
+      'press_releases_add_res' => array(
+        'group_name' => 'ncw',
+        'dependencies' => array('tax_tags'),
+        'class_name' => 'NCWAdditionalResourcesPressReleasesMigration',
       ),
       'highlights' => array(
         'group_name' => 'ncw',
-        'dependencies' => array('tax_tags'),
+        'dependencies' => array(
+          'tax_tags', 'publications_add_res', 'news_add_res',
+          'press_releases_add_res', 'press_releases_add_res',
+          'highlights_add_res'
+        ),
         'class_name' => 'NCWHighlightMigration',
+      ),
+      'highlights_add_res' => array(
+        'group_name' => 'ncw',
+        'dependencies' => array('tax_tags'),
+        'class_name' => 'NCWAdditionalResourcesHighlightsMigration',
+      ),
+      'infographics' => array(
+        'group_name' => 'ncw',
+        'dependencies' => array('tax_tags'),
+        'class_name' => 'NCWInfographicsMigration',
       ),
       'press_contacts' => array(
         'group_name' => 'ncw',
@@ -239,6 +280,7 @@ abstract class AbstractNCWNodeMigration extends Migration {
    * Implements Migration::prepareRow() to adapt JSON fields data to what migrate expects in the field.
    */
   public function prepareRow($row) {
+    ncw_migration_debug('!klass:      * Preparing source node: !id', array('!klass' => get_class($this), '!id' => $row->nid));
     $row->path = !empty($row->path['alias']) ? $row->path['alias']:  NULL;
     // Normalize JSON structure, to match migrate expectations for field data
     $fields = field_info_instances('node', $this->bundle);
@@ -338,6 +380,7 @@ abstract class AbstractNCWNodeSource extends MigrateSource {
 
   protected $endpoint_url = NULL;
   protected $rows = array();
+  protected $count = -1;
 
   public function __construct($options) {
     parent::__construct($options);
@@ -355,10 +398,16 @@ abstract class AbstractNCWNodeSource extends MigrateSource {
    * Total number of entities.
    */
   public function computeCount() {
-    if (empty($this->rows)) {
-      $this->readData();
+    ncw_migration_debug('!klass: Starting counting !url', array('!klass' => get_class($this), '!url' => $this->endpoint_url));
+    if ($this->count == -1) {
+      $data = $this->fileGetContents($this->endpoint_url);
+      $this->count = 0;
+      if ($data = json_decode($data)) {
+        $this->count = count($data->items);
+      }
     }
-    return count($this->rows);
+    ncw_migration_debug('!klass: Found !count items', array('!klass' => get_class($this), '!count' => $this->count));
+    return $this->count;
   }
 
   /**
@@ -393,13 +442,16 @@ abstract class AbstractNCWNodeSource extends MigrateSource {
    * Remote call to load the data from the endpoint URL
    */
   public function readData() {
+    ncw_migration_debug('!klass: Starting reading items from !url', array('!klass' => get_class($this), '!url' => $this->endpoint_url));
     $this->rows = array();
     $content = $this->fileGetContents($this->endpoint_url);
     if ($data = json_decode($content)) {
+      ncw_migration_debug('!klass:      * Processing !count items', array('!klass' => get_class($this), '!count' => count($data->items)));
       foreach ($data->items as $ob) {
         $ob = $ob->item;
         $id = $this->itemIdentifier($ob);
         $node_url = $this->itemURL($id);
+        ncw_migration_debug('!klass:      * Reading item: !url', array('!klass' => get_class($this), '!url' => $node_url));
         if ($rowd = $this->fileGetContents($node_url)) {
           if ($row_ob = json_decode($rowd, TRUE)) {
             $row = new stdClass();
@@ -416,6 +468,7 @@ abstract class AbstractNCWNodeSource extends MigrateSource {
         }
       }
     }
+    ncw_migration_debug('!klass: Done reading items', array('!klass' => get_class($this)));
     reset($this->rows);
   }
 
@@ -544,6 +597,7 @@ abstract class AbstractNCWTaxonomyTermMigration extends AbstractNCWNodeMigration
    * Implements Migration::prepareRow() to adapt JSON fields data to what migrate expects in the field.
    */
   public function prepareRow($row) {
+    ncw_migration_debug('!klass:      * Preparing source term: !id', array('!klass' => get_class($this), '!id' => $row->tid));
     $row->language = 'en';
     $row->path = !empty($row->path['alias']) ? $row->path['alias']:  NULL;
     // Normalize JSON structure, to match migrate expectations for field data
@@ -875,4 +929,26 @@ function osha_migration_normalize_migrated_term_reference(&$original, $source_mi
     }
   }
   return $ret;
+}
+
+
+function ncw_migration_find_additional_resource($source_nid) {
+  $migrations = array(
+    'publications_add_res', 'news_add_res', 'press_releases_add_res',
+    'press_releases_add_res', 'highlights_add_res'
+  );
+  foreach($migrations as $machine_name) {
+    $migration = Migration::getInstance($machine_name);
+    /** @var MigrateMap $map */
+    $map = $migration->getMap();
+    if ($destid1 = $map->lookupDestinationID(array($source_nid))) {
+      // @todo add some debugging here
+      ncw_migration_debug(
+        'Linking additional resource from !machine (src=!src:dest=!dest',
+          array('!machine' => $machine_name, '!src' => $source_nid, '!dest' => $destid1['destid1'])
+      );
+      return $destid1['destid1'];
+    }
+  }
+  return NULL;
 }

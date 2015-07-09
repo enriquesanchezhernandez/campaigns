@@ -86,6 +86,9 @@ function osha_workflow_views_data_alter(&$data) {
       'handler' => 'osha_workflow_handler_filter_section_in_rm_section',
     ),
   );
+  $data['workbench_access']['access_id']['argument'] = array(
+    'handler' => 'osha_workflow_access_handler_argument_access',
+  );
 }
 
 

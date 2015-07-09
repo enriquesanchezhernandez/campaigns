@@ -161,6 +161,8 @@ function osha_date_format_types() {
     'osha_day_only'  => t('Day only'),
     'month' => t('Month: F'),
     'year_and_month'  => t('Year and Month'),
+    'day_month_year' => t('Day Month Year'),
+    'month_day_year' => t('Month Day Year'),
   );
 }
 
@@ -328,8 +330,6 @@ function osha_entity_info_alter(&$entity_info) {
 
 function osha_disabled_language_list() {
   $disabled = array(
-    'ru',
-    'tr',
     'sq',
     'bs',
     'sr',
@@ -379,6 +379,15 @@ function osha_language_list_options() {
 //    $languages_options[$lang] = $language->name;
 //  }
 //}
+
+function osha_extra_language_list() {
+  $disabled = array(
+    'tr',
+    'ru',
+    'ca',
+  );
+  return drupal_map_assoc($disabled);
+}
 
 /**
  * Implements hook_form_alter().

@@ -34,7 +34,6 @@ class NCWSingleArticleMigration extends AbstractNCWNodeMigration {
 
     $this->removeFieldMapping('field_summary:format');
     $this->addUnmigratedDestinations(array(
-      'field_activity', 'field_activity:source_type', 'field_activity:ignore_case', 'field_activity:create_term',
       'field_article_type:source_type', 'field_article_type:ignore_case',
       'field_expiration_date:rrule',
       'field_nace_codes', 'field_nace_codes:source_type', 'field_nace_codes:create_term', 'field_nace_codes:ignore_case',

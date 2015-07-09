@@ -40,9 +40,21 @@ function osha_search_default_search_api_index() {
       "search_api_et" : { "include" : "incomplete", "fallback language" : "en" },
       "data_alter_callbacks" : {
         "search_api_alter_bundle_filter" : {
-          "status" : 0,
+          "status" : 1,
           "weight" : "-10",
-          "settings" : { "default" : "1", "bundles" : [] }
+          "settings" : {
+            "default" : "0",
+            "bundles" : {
+              "article" : "article",
+              "campaign_materials" : "campaign_materials",
+              "events" : "events",
+              "infographic" : "infographic",
+              "news" : "news",
+              "note_to_editor" : "note_to_editor",
+              "press_release" : "press_release",
+              "publication" : "publication"
+            }
+          }
         },
         "search_api_alter_node_access" : { "status" : 1, "weight" : "0", "settings" : [] },
         "search_api_alter_node_status" : { "status" : 0, "weight" : "0", "settings" : [] },
@@ -143,7 +155,6 @@ function osha_search_default_search_api_index() {
             "exclude_fields" : {
               "field_author" : "field_author",
               "field_tags:name" : "field_tags:name",
-              "field_wiki_page_url:title" : "field_wiki_page_url:title",
               "title" : "title",
               "title_field" : "title_field",
               "uuid" : "uuid"
@@ -217,7 +228,7 @@ function osha_search_default_search_api_server() {
       "scheme" : "http",
       "host" : "localhost",
       "port" : "8983",
-      "path" : "\\/solr\\/hwc",
+      "path" : "\\/solr\\/campaigns",
       "http_user" : "admin",
       "http_pass" : "password",
       "excerpt" : 0,

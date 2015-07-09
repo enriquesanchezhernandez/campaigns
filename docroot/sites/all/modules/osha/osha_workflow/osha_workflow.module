@@ -307,6 +307,12 @@ function osha_workflow_user_has_role_access_callback($role = 'OSHA_WORKFLOW_ROLE
  * @see http://openmonkey.blogspot.ro/2011/10/add-permissions-to-workbench-moderation.html
  */
 function osha_workflow_node_access($node, $operation, $user) {
+  if (($operation == 'update' || $operation == 'delete')
+      && in_array($node->type, ncw_migration_get_migrated_bundles())
+      && $node->uid == 0) {
+    return NODE_ACCESS_DENY;
+  }
+
   if (OshaWorkflowPermissions::userIsAdministrator($user)) {
     return NODE_ACCESS_IGNORE;
   }
@@ -864,6 +870,13 @@ function osha_workflow_workbench_moderation_transition($node, $old, $new) {
  */
 function osha_workflow_workbench_moderation_access_alter(&$access, $op, $node) {
   global $user;
+  if (($op == 'update' || $op == 'delete')
+      && in_array($node->type, ncw_migration_get_migrated_bundles())
+      && $node->uid == 0) {
+    $access = FALSE;
+  }
+
+
   if (OshaWorkflowPermissions::userIsAdministrator($user)) {
     return $access = TRUE;
   }

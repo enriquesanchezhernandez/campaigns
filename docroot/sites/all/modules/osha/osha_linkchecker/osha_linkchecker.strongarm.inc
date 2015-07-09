@@ -180,7 +180,6 @@ example.org';
     'flickr' => 'flickr',
     'job_vacancies' => 'job_vacancies',
     'news' => 'news',
-    'newsletter_article' => 'newsletter_article',
     'note_to_editor' => 'note_to_editor',
     'press_contact' => 'press_contact',
     'press_release' => 'press_release',

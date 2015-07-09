@@ -128,7 +128,7 @@ function osha_authentication_ldap_fetch_user_groups($username, $ldap_server) {
 function osha_authentication_retrieve_ldap_sections($ldap_server) {
   $ret = array();
   /** @var LDAPServer $ldap_server */
-  $ldap_groups = $ldap_server->search('ou=MainSite,ou=Sites,dc=osha,dc=europa,dc=eu', 'cn=*');
+  $ldap_groups = $ldap_server->search('ou=HWC,ou=Sites,dc=osha,dc=europa,dc=eu', 'cn=*');
   if (!$ldap_groups) {
     return $ret;
   }

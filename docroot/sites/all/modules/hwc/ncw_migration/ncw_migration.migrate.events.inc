@@ -20,8 +20,6 @@ class NCWEventsMigration extends AbstractNCWNodeMigration {
     $this->addFieldMapping('field_tags', 'field_tags');
 
     $this->addUnmigratedDestinations(array(
-      'field_activity:source_type',
-      'field_activity:ignore_case',
       'field_city:language',
       'field_agency_contact_reply:language',
       'field_agency_initial_contact:language',

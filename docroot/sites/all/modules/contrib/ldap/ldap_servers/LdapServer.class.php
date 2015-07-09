@@ -450,8 +450,6 @@ class LdapServer {
    */
 
   public function createLdapEntry($attributes, $dn = NULL) {
-    //@todo: EauDeWeb (for EU-OSHA, we do not want LDAP to try to create entries)
-    return TRUE;
 
     if (!$this->connection) {
       $this->connect();
@@ -1140,9 +1138,7 @@ class LdapServer {
         && isset($ldap_entry[$this->unique_persistent_attr][0])
         && is_scalar($ldap_entry[$this->unique_persistent_attr][0])
         ) {
-      //$puid = $ldap_entry[$this->unique_persistent_attr][0];
-      //@todo:cristiroma, edw: $ldap_entry['dn'] is not array, but the actual DN string!
-      $puid = $ldap_entry[$this->unique_persistent_attr];
+      $puid = $ldap_entry[$this->unique_persistent_attr][0];
       return ($this->unique_persistent_attr_binary) ? ldap_servers_binary($puid) : $puid;
     }
     else {

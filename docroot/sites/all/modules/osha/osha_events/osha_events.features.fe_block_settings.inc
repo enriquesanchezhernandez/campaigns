@@ -12,6 +12,35 @@ function osha_events_default_fe_block_settings() {
 
   $export['version'] = '2.0';
 
+  $export['osha_events-events_links'] = array(
+    'cache' => 1,
+    'custom' => 0,
+    'delta' => 'events_links',
+    'i18n_block_language' => array(),
+    'i18n_mode' => 0,
+    'module' => 'osha_events',
+    'node_types' => array(),
+    'pages' => 'events
+past-events',
+    'roles' => array(),
+    'themes' => array(
+      'hwc_frontend' => array(
+        'region' => 'content',
+        'status' => 1,
+        'theme' => 'hwc_frontend',
+        'weight' => -52,
+      ),
+      'seven' => array(
+        'region' => '',
+        'status' => 0,
+        'theme' => 'seven',
+        'weight' => 0,
+      ),
+    ),
+    'title' => '',
+    'visibility' => 1,
+  );
+
   $export['views--exp-events_index-page'] = array(
     'cache' => -1,
     'custom' => 0,
@@ -48,15 +77,15 @@ function osha_events_default_fe_block_settings() {
     'i18n_mode' => 0,
     'module' => 'views',
     'node_types' => array(),
-    'pages' => 'oshevents
-node/5322',
+    'pages' => 'past-events
+past-events/*',
     'roles' => array(),
     'themes' => array(
       'hwc_frontend' => array(
-        'region' => '',
-        'status' => 0,
+        'region' => 'content',
+        'status' => 1,
         'theme' => 'hwc_frontend',
-        'weight' => 16,
+        'weight' => -50,
       ),
       'seven' => array(
         'region' => '',
@@ -65,7 +94,7 @@ node/5322',
         'weight' => 0,
       ),
     ),
-    'title' => '<none>',
+    'title' => 'Calendar filter',
     'visibility' => 1,
   );
 
@@ -85,7 +114,7 @@ events/*',
         'region' => 'content',
         'status' => 1,
         'theme' => 'hwc_frontend',
-        'weight' => -45,
+        'weight' => -51,
       ),
       'seven' => array(
         'region' => '',

@@ -373,7 +373,6 @@ $options['init-modules'] = array(
   'node_export',
   'mpac',
   'pathologic',
-  'scanner',
   'search_and_replace',
   'nodeblock',
   'quicktabs',
@@ -439,6 +438,9 @@ $options['init-modules'] = array(
   'webform_localization',
   'fapi_validation',
 
+  'context_layouts',
+  'context_entity_field',
+
   // Captcha
  'recaptcha',
 
@@ -458,6 +460,8 @@ $options['init-modules'] = array(
   'osha_authentication',
   'osha_search',
 
+  'osh_image_gallery',
+
   'osha_linkchecker',
   'osha_reminders',
 
@@ -471,6 +475,7 @@ $options['init-modules'] = array(
   'search_api_et_solr',
   'search_api_views',
   'search_api_attachments',
+  'search_and_replace',
 
   'osha_lingua_tools',
 
@@ -487,6 +492,9 @@ $options['init-modules'] = array(
   'hwc_homepage',
   'ncw_migration',
   'campaign_materials',
+  'hwc_menu',
+  'hwc_partner',
+  'hwc_feeds',
 );
 
 
@@ -524,6 +532,11 @@ $command_specific['devify'] = array(
 
 $command_specific['devify_solr'] = array(
   'solr_server' => (array) $cfg->solr_server,
+);
+
+$command_specific['devify_ldap'] = array(
+  'ldap-read' => (array) $cfg->ldap_read,
+  'ldap-write' => (array) $cfg->ldap_write,
 );
 
 if (file_exists(dirname(__FILE__) . '/drushrc.local.php')) {

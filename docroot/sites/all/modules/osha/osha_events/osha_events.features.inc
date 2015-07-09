@@ -34,12 +34,20 @@ function osha_events_views_api($module = NULL, $api = NULL) {
  */
 function osha_events_node_info() {
   $items = array(
-    'events' => array(
-      'name' => 'Events',
+    'event_speaker' => array(
+      'name' => t('Event speaker'),
       'base' => 'node_content',
-      'description' => 'Events',
+      'description' => t('Event speaker'),
       'has_title' => '1',
-      'title_label' => 'Title',
+      'title_label' => t('Title'),
+      'help' => '',
+    ),
+    'events' => array(
+      'name' => t('Events'),
+      'base' => 'node_content',
+      'description' => t('Events'),
+      'has_title' => '1',
+      'title_label' => t('Title'),
       'help' => '',
     ),
   );

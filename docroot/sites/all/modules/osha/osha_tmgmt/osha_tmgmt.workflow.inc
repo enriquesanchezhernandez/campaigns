@@ -58,7 +58,8 @@ function osha_tmgmt_user_can_edit_job_item($job_item) {
       break;
 
     case OSHA_TMGMT_JOB_ITEM_STATE_TranslationValidated:
-      if (user_access('set job item to ready to publish state')) {
+      if (user_access('set job item to ready to publish state')
+      || osha_tmgmt_is_internal_translator($job_item)) {
         return TRUE;
       }
       break;
@@ -71,7 +72,8 @@ function osha_tmgmt_user_can_edit_job_item($job_item) {
       break;
 
     case OSHA_TMGMT_JOB_ITEM_STATE_TranslatedReadyToPublish:
-      if (user_access('accept job item translation')) {
+      if (user_access('accept job item translation')
+        || osha_tmgmt_is_internal_translator($job_item)) {
         return TRUE;
       }
       break;
@@ -194,6 +196,22 @@ function osha_tmgmt_get_translators_groups_as_options() {
     $options[$group->eid] = $group->name;
   }
   return $options;
+}
+
+/**
+ * Check if a user is a CV of a extra language, that is not translated with CDT.
+ */
+function osha_tmgmt_is_internal_translator($job_item){
+  global $user;
+  // In in extra language and translator is the CV of the job item
+  // He can publish the translation.
+  if (osha_tmgmt_job_item_in_extra_language($job_item)) {
+    $validators = osha_tmgmt_load_validators_by_job_item($job_item);
+    if (array_key_exists($user->uid, $validators)) {
+      return TRUE;
+    }
+  }
+  return FALSE;
 }
 
 /**
@@ -755,7 +773,8 @@ function osha_tmgmt_require_content_validation_submit($form, &$form_state) {
  * Validation callback for Ready to publish form.
  */
 function osha_tmgmt_ready_to_publish_validate($form, &$form_state) {
-  if (!user_access('set job item to ready to publish state')) {
+  if (!user_access('set job item to ready to publish state')
+    && !osha_tmgmt_is_internal_translator($form_state['item'])) {
     form_set_error('actions][ready_to_publish', t('You do not have the rights to make this action'));
   }
   $result = OshaTMGMTRetranslate::validate_translation_structure($form_state['item']);
@@ -780,7 +799,8 @@ function osha_tmgmt_ready_to_publish_submit($form, &$form_state) {
  * Validation Callback for Save as Completed action.
  */
 function osha_tmgmt_job_item_accept_validate($form, &$form_state) {
-  if (!user_access('accept job item translation')) {
+  if (!user_access('accept job item translation')
+    && !osha_tmgmt_is_internal_translator($form_state['item'])) {
     form_set_error('actions][accept', t('You do not have the rights to make this action'));
   }
 }
