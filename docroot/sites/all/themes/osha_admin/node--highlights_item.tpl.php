@@ -71,10 +71,6 @@
                     if (isset($body[0]['safe_value'])) {
                       print($body[0]['safe_value']);
                     }
-                  } else if (isset($field_summary) && is_array($field_summary)) {
-                    if (!empty($field_summary)) {
-                      print($field_summary[0]['safe_value']);
-                    }
                   }
                 }?>
               </td>
