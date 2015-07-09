@@ -27,7 +27,7 @@ function hwc_social_sprites_default_fe_block_settings() {
         'region' => 'footer',
         'status' => 1,
         'theme' => 'hwc_frontend',
-        'weight' => 1,
+        'weight' => 0,
       ),
       'seven' => array(
         'region' => '',
@@ -56,6 +56,34 @@ function hwc_social_sprites_default_fe_block_settings() {
         'status' => 1,
         'theme' => 'hwc_frontend',
         'weight' => 0,
+      ),
+      'seven' => array(
+        'region' => '',
+        'status' => 0,
+        'theme' => 'seven',
+        'weight' => 0,
+      ),
+    ),
+    'title' => '<none>',
+    'visibility' => 0,
+  );
+
+  $export['on_the_web-0'] = array(
+    'cache' => 1,
+    'custom' => 0,
+    'delta' => 0,
+    'i18n_block_language' => array(),
+    'i18n_mode' => 0,
+    'module' => 'on_the_web',
+    'node_types' => array(),
+    'pages' => '',
+    'roles' => array(),
+    'themes' => array(
+      'hwc_frontend' => array(
+        'region' => 'above_header',
+        'status' => 1,
+        'theme' => 'hwc_frontend',
+        'weight' => 1,
       ),
       'seven' => array(
         'region' => '',

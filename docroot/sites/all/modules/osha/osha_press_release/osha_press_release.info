@@ -38,7 +38,6 @@ features[ctools][] = page_manager:pages_default:1
 features[ctools][] = path_breadcrumbs:path_breadcrumbs:1
 features[ctools][] = strongarm:strongarm:1
 features[ctools][] = views:views_default:3.0
-features[fe_block_settings][] = on_the_web-0
 features[fe_block_settings][] = osha_press_release-osha_press_kit
 features[fe_block_settings][] = osha_press_release-osha_press_rel_become_partner
 features[fe_block_settings][] = osha_press_release-osha_press_rel_join_list
