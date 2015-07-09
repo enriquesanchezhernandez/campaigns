@@ -4,4 +4,4 @@
  * Code for the Feeds feature.
  */
 
-include_once 'feeds.features.inc';
+include_once 'hwc_feeds.features.inc';

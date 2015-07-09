@@ -7,7 +7,7 @@
 /**
  * Implements hook_views_default_views().
  */
-function feeds_views_default_views() {
+function hwc_feeds_views_default_views() {
   $export = array();
 
   $view = new view();
