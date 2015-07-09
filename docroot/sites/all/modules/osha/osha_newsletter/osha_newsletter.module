@@ -274,7 +274,7 @@ function osha_newsletter_block_configure($delta = '') {
         $newsletters_no_options[$i] = $i;
       }
 
-      for ($i = 0; $i <= 3; $i++) {
+      for ($i = 0; $i <= 5; $i++) {
         $newsletters_items_no_options[$i] = $i;
       }
 
@@ -282,13 +282,13 @@ function osha_newsletter_block_configure($delta = '') {
         '#type' => 'select',
         '#title' => 'How many newsletters do you want to display?',
         '#options' => $newsletters_no_options,
-        '#default_value' => variable_get('newsletters_no', $newsletters_no_options[12]),
+        '#default_value' => variable_get('newsletters_no', $newsletters_no_options[2]),
       );
       $form['newsletter_items_no'] = array(
         '#type' => 'select',
         '#title' => 'How many items from the newsletter do you want to display?',
         '#options' => $newsletters_items_no_options,
-        '#default_value' => variable_get('newsletter_items_no', $newsletters_items_no_options[0]),
+        '#default_value' => variable_get('newsletter_items_no', $newsletters_items_no_options[3]),
       );
       $form['newsletter_items_date_enable'] = array(
         '#type' => 'checkbox',
@@ -411,8 +411,8 @@ function osha_newsletter_block_view($delta = '') {
  */
 function _osha_newsletter_latest_block_content(){
 
-  $newsletters_no = variable_get('newsletters_no', 12);
-  $newsletter_items_no = variable_get('newsletter_items_no', 0);
+  $newsletters_no = variable_get('newsletters_no', 2);
+  $newsletter_items_no = variable_get('newsletter_items_no', 3);
   $items = array();
   $collections = array();
 
