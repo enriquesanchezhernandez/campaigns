@@ -28,7 +28,7 @@
       ?>
       <tr>
         <td colspan="2" style="font-family: Arial, sans-serif; font-size: 14px; padding-left: 14px;">
-          <span class="item-date"><?php if (trim($country_location) != '' && trim($city_location) != '') { echo $country_location . ' ' . $city_location . ', ';} if (trim($date) != '') { print format_date($date, 'custom', 'M d, Y');}?></span>
+          <span class="item-date"><?php print format_date($date, 'custom', 'M d, Y'); ?></span>
         </td>
       </tr>
     <?php
@@ -72,6 +72,11 @@
           ));
         }
         ?>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2" style="font-family: Arial, sans-serif; font-size: 14px; padding-left: 14px;">
+        <span class="item-date"><?php print $node->field_city['und'][0]['value']; ?></span>
       </td>
     </tr>
     <tr>

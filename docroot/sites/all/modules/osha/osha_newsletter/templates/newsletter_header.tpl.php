@@ -13,23 +13,60 @@
         <?php
           if (isset($campaign_id)) {
             $url_query = array('pk_campaign' => $campaign_id);
-          } else {
+          }
+          else {
             $url_query = array();
           }
-          $directory = drupal_get_path('module','osha_newsletter');
+          $directory = drupal_get_path('module', 'osha_newsletter');
           global $base_url;
-          print l(theme('image', array(
-          'path' => $directory . '/images/Osha-EU-logos.png',
-          'width' => 256,
-          'height' => 60,
-          'alt' => 'Osha logo',
-          'attributes' => array('style' => 'border: 0px;')
-          )), $base_url, array(
-          'html' => TRUE,
-          'external' => TRUE,
-          'query' => $url_query
-        ));
         ?>
+        <div style="float: left;">
+        <?php
+            print l(
+              theme(
+                'image',
+                array(
+                  'path' => $directory . '/images/healthy_workplaces.png',
+                  'width' => 100,
+                  'height' => 92,
+                  'alt' => 'Healthy workplaces logo',
+                  'attributes' => array('style' => 'border: 0px;'),
+                )
+              ),
+              $base_url, array(
+                'html' => TRUE,
+                'external' => TRUE,
+                'query' => $url_query,
+              )
+            );
+          ?>
+        </div>
+        <div style="float: left;">
+          <?php
+            print l(
+              theme(
+                'image',
+                array(
+                  'path' => $directory . '/images/Osha-EU-logos.png',
+                  'width' => 256,
+                  'height' => 60,
+                  'alt' => 'Osha logo',
+                  'attributes' => array('style' => 'border: 0px;'),
+                )
+              ),
+              $base_url, array(
+                'html' => TRUE,
+                'external' => TRUE,
+                'query' => $url_query,
+              )
+            );
+          ?>
+        </div>
+        <div style="float: left;">
+          <h4>
+            <?php print t('Healthy Workplaces for All Ages'); ?>
+          </h4>
+        </div>
       </td>
       <td>
         <?php
@@ -37,8 +74,6 @@
         if($newsletter_date) {
           $newsletter_ready_date = date('F Y', strtotime($newsletter_date));
         }?>
-        <div class="newsletter-month" style="color: #DC2F82; font-size: 26px; text-align: right;"><?php print $newsletter_ready_date?></div>
-        <div class="newsletter-number" style="color: #003399; font-size: 24px; font-weight: 300; text-align: right;"><?php print $newsletter_title?></div>
       </td>
     </tr>
   </tbody>
@@ -54,7 +89,9 @@
               <td style="background-color:#003399; width: 100%; height: 4px;"></td>
             </tr>
             <tr>
-              <td style="background-color: #A6B8DB; width: 100%; height: 36px; text-align: center; font-size: 24px; font-weight: 300; color: #003399; font-family: Oswald, Arial,sans-serif;"><?php print t("Occupational Safety and Health News &ndash; Europe");?></td>
+              <td style="background-color: #A6B8DB; width: 100%; height: 36px; text-align: center; font-size: 24px; font-weight: 300; color: #003399; font-family: Oswald, Arial,sans-serif;">
+                <?php print $newsletter_title ?> - <?php print $newsletter_ready_date ?>
+              </td>
             </tr>
             <tr>
               <td>
