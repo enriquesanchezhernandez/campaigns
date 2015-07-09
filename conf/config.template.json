@@ -34,6 +34,23 @@
         "apachesolr_direct_commit": 1,
         "apachesolr_soft_commit": 1
     },
+    "sanitize_password": "password",
+    "ldap_read": {
+      "disabled": 0,
+      "status": 1,
+      "ldap_type":"openldap",
+      "address":"ldap.server.address",
+      "bindpw": "pass",
+      "port": 389
+    },
+    "ldap_write": {
+      "disabled": 0,
+      "status": 1,
+      "ldap_type":"openldap",
+      "address":"ldap.server.address",
+      "bindpw": "pass",
+      "port": 389
+    },
     "variables": {
         "environment": "production",
         "site_name": "OSHA",
