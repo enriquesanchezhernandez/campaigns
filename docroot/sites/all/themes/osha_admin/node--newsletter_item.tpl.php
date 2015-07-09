@@ -16,8 +16,22 @@
       $date = strtotime($node->field_publication_date[LANGUAGE_NONE][0]['value']);
     ?>
       <tr>
-        <td colspan="2" style="font-family: Arial, sans-serif; font-size: 14px; padding-left: 14px;">
-          <span class="item-date"><?php print format_date($date, 'custom', 'M d, Y');?></span>
+        <td colspan="2">
+          <?php
+          if($node->type == 'news'){
+          $show_date = variable_get('newsletter_items_date_enable',0);
+          if($show_date){
+            ?>
+            <span class="item-date"><?php print format_date($date, 'custom', 'M d, Y');?></span>
+            <?php
+            }
+          }
+          else {
+            ?>
+            <span class="item-date"><?php print format_date($date, 'custom', 'M d, Y');?></span>
+            <?php
+          }
+          ?>
         </td>
       </tr>
     <?php
@@ -76,7 +90,13 @@
     </tr>
     <tr>
       <td colspan="2" style="font-family: Arial, sans-serif; font-size: 14px; padding-left: 14px;">
-        <span class="item-date"><?php print $node->field_city['und'][0]['value']; ?></span>
+        <?php
+        if($node->type == 'events'){
+          ?>
+          <span class="item-date"><?php print $node->field_city['und'][0]['value']; ?></span>
+          <?php
+        }
+        ?>
       </td>
     </tr>
     <tr>

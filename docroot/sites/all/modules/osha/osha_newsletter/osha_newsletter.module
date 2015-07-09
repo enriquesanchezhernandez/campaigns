@@ -282,13 +282,18 @@ function osha_newsletter_block_configure($delta = '') {
         '#type' => 'select',
         '#title' => 'How many newsletters do you want to display?',
         '#options' => $newsletters_no_options,
-        '#default_value' => variable_get('newsletters_no', $newsletters_no_options[12])
+        '#default_value' => variable_get('newsletters_no', $newsletters_no_options[12]),
       );
       $form['newsletter_items_no'] = array(
         '#type' => 'select',
         '#title' => 'How many items from the newsletter do you want to display?',
         '#options' => $newsletters_items_no_options,
-        '#default_value' => variable_get('newsletter_items_no', $newsletters_items_no_options[0])
+        '#default_value' => variable_get('newsletter_items_no', $newsletters_items_no_options[0]),
+      );
+      $form['newsletter_items_date_enable'] = array(
+        '#type' => 'checkbox',
+        '#title' => 'Show date',
+        '#default_value' => variable_get('newsletter_items_date_enable', 0),
       );
       break;
   }
@@ -323,6 +328,7 @@ function osha_newsletter_block_save($delta = '', $edit = array()) {
     case 'osha_newsletter_latest':
       variable_set('newsletters_no', $edit['newsletters_no']);
       variable_set('newsletter_items_no', $edit['newsletter_items_no']);
+      variable_set('newsletter_items_date_enable', $edit['newsletter_items_date_enable']);
       break;
   }
 }
@@ -1402,7 +1408,8 @@ function osha_newsletter_theme() {
     'template' => 'latest_newsletters_block',
     'variables' => array(
       'items' => NULL,
-      'newsletter_items_no' => NULL
+      'newsletter_items_no' => NULL,
+      'newsletter_items_date_enable' => NULL
     ),
     'path' => $path . '/templates'
   );

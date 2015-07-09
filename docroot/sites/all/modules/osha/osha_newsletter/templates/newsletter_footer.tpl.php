@@ -1,4 +1,6 @@
 <?php
+global $base_url;
+
   if (isset($campaign_id)) {
     $url_query = array('pk_campaign' => $campaign_id);
   } else {
@@ -81,7 +83,7 @@
               <td style="text-align: center; font-family: Arial, sans-serif; font-size: 13px;">
                 <?php
                   print t('This is a disclaimer lorem ipsum.');
-                  $url = url($GLOBALS['base_url'].'/en/oshmail-newsletter', array('query' => $url_query));
+                  $url = url($base_url.'/en/oshmail-newsletter', array('query' => $url_query));
                 ?>
                 <a href="<?php echo $url; ?>" style="@style">Unsubscribe.</a>
               </td>

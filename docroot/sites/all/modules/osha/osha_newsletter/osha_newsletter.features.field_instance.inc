@@ -47,7 +47,7 @@ function osha_newsletter_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 7,
+      'weight' => 6,
     ),
     'workbench_access_field' => 0,
   );
@@ -100,6 +100,48 @@ function osha_newsletter_field_default_field_instances() {
       'type' => 'date_text',
       'weight' => 3,
     ),
+  );
+
+  // Exported field_instance:
+  // 'entity_collection-newsletter_content_collection-field_introduction_text'
+  $field_instances['entity_collection-newsletter_content_collection-field_introduction_text'] = array(
+    'bundle' => 'newsletter_content_collection',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 6,
+      ),
+    ),
+    'entity_type' => 'entity_collection',
+    'field_name' => 'field_introduction_text',
+    'label' => 'Introduction text',
+    'required' => 0,
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+      'linkit' => array(
+        'button_text' => 'Search',
+        'enable' => 0,
+        'profile' => '',
+      ),
+      'text_processing' => 0,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'text',
+      'settings' => array(
+        'rows' => 5,
+      ),
+      'type' => 'text_textarea',
+      'weight' => 0,
+    ),
+    'workbench_access_field' => 0,
   );
 
   // Exported field_instance:
@@ -275,7 +317,7 @@ function osha_newsletter_field_default_field_instances() {
         'year_range' => '-3:+3',
       ),
       'type' => 'date_select',
-      'weight' => 6,
+      'weight' => 5,
     ),
     'workbench_access_field' => 0,
   );
@@ -376,6 +418,7 @@ function osha_newsletter_field_default_field_instances() {
   t('Campaign ID in Piwik');
   t('Created');
   t('Description');
+  t('Introduction text');
   t('Name');
   t('Newsletter sent?');
   t('Publication date');
