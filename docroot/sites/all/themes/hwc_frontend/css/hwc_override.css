@@ -62,3 +62,59 @@ div.workbench-info-block {
     width: auto !important;
     margin: 5px;
 }
+/* Homepage newsletter block START */
+#block-osha-newsletter-osha-newsletter-image {
+    height: 300px;
+    position: relative;
+}
+#block-osha-newsletter-osha-newsletter-image .block-title {
+    position: absolute;
+    width: 100%;
+    color: #ffffff;
+    text-align: center;
+    margin: 0;
+    top: 70px;
+}
+#block_newsletter_image_text {
+    position: absolute;
+    width: 100%;
+    color: #ffffff;
+    text-align: center;
+    top: 120px;
+}
+#join_subscribers img {
+    position: absolute;
+    height: 300px;
+    width: 100%;
+    z-index: -10;
+}
+#views-exposed-form-search-site {
+    margin: 20px 0 0 0;
+}
+#views-exposed-form-search-site .form-type-textfield,
+#views-exposed-form-search-site input,
+#views-exposed-form-search-site button {
+    display: inline-block;
+    margin: 0;
+}
+#views-exposed-form-search-site button {
+    margin-left: -4px;
+    margin-top: -2px;
+}
+#block-osha-newsletter-osha-newsletter-image .captcha {
+    margin-top: 15px;
+}
+#block-osha-newsletter-osha-newsletter-image .form-item-captcha-response label {
+    clear: both;
+}
+#block-osha-newsletter-osha-newsletter-image .form-item-captcha-response {
+    width: 100%;
+    text-align: center;
+}
+#block-osha-newsletter-osha-newsletter-image .form-item-captcha-response input {
+    max-width: 50px;
+}
+.captcha {
+    display: none;
+}
+/* Homepage newsletter block END */

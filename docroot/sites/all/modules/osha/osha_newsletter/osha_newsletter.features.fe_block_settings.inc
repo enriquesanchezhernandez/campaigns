@@ -20,13 +20,12 @@ function osha_newsletter_default_fe_block_settings() {
     'i18n_mode' => 0,
     'module' => 'osha_newsletter',
     'node_types' => array(),
-    'pages' => 'oshmail-newsletter
-node/9',
+    'pages' => '<front>',
     'roles' => array(),
     'themes' => array(
       'hwc_frontend' => array(
-        'region' => '',
-        'status' => 0,
+        'region' => 'content',
+        'status' => 1,
         'theme' => 'hwc_frontend',
         'weight' => -9,
       ),
@@ -37,7 +36,7 @@ node/9',
         'weight' => 0,
       ),
     ),
-    'title' => '<none>',
+    'title' => 'Newsletter',
     'visibility' => 1,
   );
 
@@ -49,8 +48,7 @@ node/9',
     'i18n_mode' => 0,
     'module' => 'osha_newsletter',
     'node_types' => array(),
-    'pages' => 'oshmail-newsletter
-node/52',
+    'pages' => 'node/129',
     'roles' => array(),
     'themes' => array(
       'hwc_frontend' => array(
@@ -66,7 +64,7 @@ node/52',
         'weight' => 0,
       ),
     ),
-    'title' => 'Display the latest newsletters',
+    'title' => 'Our latest newsletters',
     'visibility' => 1,
   );
 
@@ -78,12 +76,12 @@ node/52',
     'i18n_mode' => 0,
     'module' => 'osha_newsletter',
     'node_types' => array(),
-    'pages' => '',
+    'pages' => 'node/129',
     'roles' => array(),
     'themes' => array(
       'hwc_frontend' => array(
-        'region' => '',
-        'status' => 0,
+        'region' => 'content',
+        'status' => 1,
         'theme' => 'hwc_frontend',
         'weight' => 8,
       ),
@@ -95,7 +93,7 @@ node/52',
       ),
     ),
     'title' => 'OSHMail newsletter',
-    'visibility' => 0,
+    'visibility' => 1,
   );
 
   $export['osha_newsletter-osha_newsletter_subscribe_extra'] = array(
@@ -106,8 +104,7 @@ node/52',
     'i18n_mode' => 0,
     'module' => 'osha_newsletter',
     'node_types' => array(),
-    'pages' => 'oshmail-newsletter
-node/52',
+    'pages' => 'node/129',
     'roles' => array(),
     'themes' => array(
       'hwc_frontend' => array(
@@ -123,7 +120,7 @@ node/52',
         'weight' => 0,
       ),
     ),
-    'title' => 'OSHMail newsletter',
+    'title' => 'Campaign Newsletter',
     'visibility' => 1,
   );
 

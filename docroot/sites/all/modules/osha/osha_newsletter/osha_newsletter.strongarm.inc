@@ -204,63 +204,71 @@ function osha_newsletter_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'subscribe_block_details_link_label';
-  $strongarm->value = 'Privacy notice';
+  $strongarm->value = '';
   $export['subscribe_block_details_link_label'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'subscribe_block_details_link_url';
-  $strongarm->value = 'oshmail-newsletter/privacy-statement-oshmail';
+  $strongarm->value = '';
   $export['subscribe_block_details_link_url'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'subscribe_block_intro_text';
-  $strongarm->value = 'Get our monthly update on safety and health at work. <a href="@newsletter_page_url">See more info</a><br/>';
+  $strongarm->value = 'Once a month, OSHmail keeps you updated on occupational safety and health. <br>
+You cand sign up below:';
   $export['subscribe_block_intro_text'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'subscribe_block_intro_text_second_line_end';
-  $strongarm->value = 'subscribers';
+  $strongarm->value = '';
   $export['subscribe_block_intro_text_second_line_end'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'subscribe_block_intro_text_second_line_start';
-  $strongarm->value = 'Join';
+  $strongarm->value = '';
   $export['subscribe_block_intro_text_second_line_start'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'subscribe_block_newsletter_page_url';
-  $strongarm->value = 'oshmail-newsletter';
+  $strongarm->value = '';
   $export['subscribe_block_newsletter_page_url'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'subscribe_block_subscribers_no';
+  $strongarm->value = '';
+  $export['subscribe_block_subscribers_no'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'subscribe_extra_block_details_link_label';
-  $strongarm->value = 'How will EU-OSHA use my details?';
+  $strongarm->value = '';
   $export['subscribe_extra_block_details_link_label'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'subscribe_extra_block_details_link_url';
-  $strongarm->value = 'oshmail-newsletter/privacy-statement-oshmail';
+  $strongarm->value = '';
   $export['subscribe_extra_block_details_link_url'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'subscribe_extra_block_intro_text';
-  $strongarm->value = 'Once a month, OSHmail keeps you updated on ocupational safety and health.<br/> You can sign up below:';
+  $strongarm->value = 'Keep you updated on...';
   $export['subscribe_extra_block_intro_text'] = $strongarm;
 
   return $export;

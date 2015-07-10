@@ -32,12 +32,23 @@ function osha_newsletter_admin_form() {
 
   $form['osha_newsletter_list_name'] = array(
     '#type' => 'textfield',
-    '#title' => t('List name'),
+    '#title' => t('OSHMail Newsletter Listname'),
     '#default_value' => variable_get('osha_newsletter_list_name', 'OSHMail-Test'),
     '#attributes' => array('tabindex' => 2),
     '#size' => 40,
     '#maxlength' => 40,
-    '#description' => t('The newsletter list name'),
+    '#description' => t('The OSH newsletter list name'),
+    '#required' => TRUE,
+  );
+
+  $form['osha_newsletter_campaigns_list_name'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Campaigns Newsletter Listname'),
+    '#default_value' => variable_get('campaigns_newsletter_list_name', 'OSHMail-Test'),
+    '#attributes' => array('tabindex' => 2),
+    '#size' => 40,
+    '#maxlength' => 40,
+    '#description' => t('The Campaigns newsletter list name'),
     '#required' => TRUE,
   );
 
