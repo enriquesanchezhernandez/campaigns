@@ -360,7 +360,7 @@ function osha_newsletter_block_view($delta = '') {
         $form = drupal_get_form('osha_newsletter_block_subscribe_form');
         $markup .= drupal_render($form);
         $block['content'] = $markup;
-        dpm($block);
+
         return $block;
       }
       break;

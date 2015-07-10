@@ -64,7 +64,7 @@ function osha_newsletter_default_fe_block_settings() {
         'weight' => 0,
       ),
     ),
-    'title' => 'Display the latest newsletters',
+    'title' => 'Our latest newsletters',
     'visibility' => 1,
   );
 
