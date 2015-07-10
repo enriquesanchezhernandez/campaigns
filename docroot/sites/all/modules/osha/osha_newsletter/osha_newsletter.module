@@ -350,7 +350,7 @@ function osha_newsletter_block_view($delta = '') {
         $markup .= '<p style="color : #dc2f82;">';
         $markup .= t(variable_get('subscribe_block_intro_text_second_line_start', 'Join'));
         $markup .= ' ';
-        $markup .= t(variable_get('subscribe_block_subscribers_no', '65.000'));
+        $markup .= t(variable_get('subscribe_block_subscribers_no', ''));
         $markup .= ' ';
         $markup .= t(variable_get('subscribe_block_intro_text_second_line_end', 'subscribers'));
         $markup .= '</p>';
@@ -360,6 +360,7 @@ function osha_newsletter_block_view($delta = '') {
         $form = drupal_get_form('osha_newsletter_block_subscribe_form');
         $markup .= drupal_render($form);
         $block['content'] = $markup;
+        dpm($block);
         return $block;
       }
       break;
@@ -589,19 +590,13 @@ function osha_newsletter_block_subscribe_form($form, &$form_state) {
   $form['details_link'] = array(
     '#markup' => '<a class="privacy-policy-oshmail" href='.url($link_url).'>'.$link_label.'</a><br/>',
   );
-  if (user_is_anonymous()) {
-    drupal_add_library('system', 'drupal.ajax');
-    drupal_add_library('system', 'jquery.form');
-    drupal_add_js(drupal_get_path('module', 'osha_newsletter') . '/js/ajax.js');
-  }
-  else {
-    $form['submit'] = array(
-      '#type' => 'submit',
-      '#value' => t('Subscribe')
-    );
-    $form['#validate'] = array('osha_newsletter_block_subscribe_captcha_form_validate');
-    $form['#submit'] = array('osha_newsletter_block_subscribe_captcha_form_submit');
-  }
+  $form['submit'] = array(
+    '#type' => 'submit',
+    '#value' => t('Subscribe')
+  );
+  $form['#validate'] = array('osha_newsletter_block_subscribe_captcha_form_validate');
+  $form['#submit'] = array('osha_newsletter_block_subscribe_captcha_form_submit');
+
   return $form;
 }
 
