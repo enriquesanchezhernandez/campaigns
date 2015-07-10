@@ -246,6 +246,13 @@ You cand sign up below:';
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'subscribe_block_subscribers_no';
+  $strongarm->value = '';
+  $export['subscribe_block_subscribers_no'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'subscribe_extra_block_details_link_label';
   $strongarm->value = '';
   $export['subscribe_extra_block_details_link_label'] = $strongarm;

@@ -120,7 +120,7 @@ function osha_newsletter_default_fe_block_settings() {
         'weight' => 0,
       ),
     ),
-    'title' => 'OSHMail newsletter',
+    'title' => 'Campaign Newsletter',
     'visibility' => 1,
   );
 

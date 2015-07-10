@@ -63,6 +63,7 @@ features[variable][] = subscribe_block_intro_text
 features[variable][] = subscribe_block_intro_text_second_line_end
 features[variable][] = subscribe_block_intro_text_second_line_start
 features[variable][] = subscribe_block_newsletter_page_url
+features[variable][] = subscribe_block_subscribers_no
 features[variable][] = subscribe_extra_block_details_link_label
 features[variable][] = subscribe_extra_block_details_link_url
 features[variable][] = subscribe_extra_block_intro_text
