@@ -493,14 +493,14 @@ function osha_newsletter_subscribe_extra_form() {
   $form['details_link'] = array(
     '#markup' => '<a class="privacy-policy-oshmail" href='.url($link_url).'>'.$link_label.'</a><br/>',
   );
+  $form['subscribe-to-OSHMail-newsletter'] = array(
+    '#type' => 'checkbox',
+    '#title' => t('Subscribe to OSHMail Newsletter') . ' ' . l(t('See more'),'https://osha.europa.eu/oshmail-newsletter'),
+  );
   $form['submit'] = array(
     '#type' => 'submit',
     '#value' => t('Subscribe'),
     '#submit' => array('osha_newsletter_block_subscribe_captcha_form_submit')
-  );
-  $form['subscribe-to-OSHMail-newsletter'] = array(
-    '#type' => 'checkbox',
-    '#title' => t('Subscribe to OSHMail Newsletter'),
   );
   $form['unsubscribe_text'] = array(
     '#markup' => '<hr><span>'.t('Not interested anymore?').'</span>',
