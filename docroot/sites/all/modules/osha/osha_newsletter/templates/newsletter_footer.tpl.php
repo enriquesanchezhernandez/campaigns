@@ -83,7 +83,7 @@ global $base_url;
               <td style="text-align: center; font-family: Arial, sans-serif; font-size: 13px;">
                 <?php
                   print t('This is a disclaimer lorem ipsum.');
-                  $url = url($base_url.'/en/oshmail-newsletter', array('query' => $url_query));
+                  $url = url($base_url.'/en/healthy-workplaces-newsletter', array('query' => $url_query));
                 ?>
                 <a href="<?php echo $url; ?>" style="@style">Unsubscribe.</a>
               </td>
