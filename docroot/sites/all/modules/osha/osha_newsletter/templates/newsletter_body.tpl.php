@@ -104,7 +104,7 @@ td{
                   <tr>
                     <td style="font-family: Oswald, Arial, sans-serif; font-size: 16px; color: #003399; text-align: right;font-weight: bold">
                       <span>
-                          <?php print l(t('More events'), url('oshevents', array('absolute' => TRUE)), array(
+                          <?php print l(t('More events'), url('events', array('absolute' => TRUE)), array(
                             'attributes' => array('style' => 'color: #003399; text-decoration: none;'),
                             'query' => $url_query,
                             'external' => TRUE)
