@@ -496,7 +496,7 @@ $options['init-modules'] = array(
   'hwc_menu',
   'hwc_partner',
   'hwc_feeds',
-  'HWC_homepage_featured',
+
 );
 
 

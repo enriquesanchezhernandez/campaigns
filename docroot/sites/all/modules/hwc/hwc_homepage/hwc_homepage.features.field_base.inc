@@ -1,13 +1,13 @@
 <?php
 /**
  * @file
- * hwc_homepage_featured.features.field_base.inc
+ * hwc_homepage.features.field_base.inc
  */
 
 /**
  * Implements hook_field_default_field_bases().
  */
-function hwc_homepage_featured_field_default_field_bases() {
+function hwc_homepage_field_default_field_bases() {
   $field_bases = array();
 
   // Exported field_base: 'eq_node'
