@@ -493,8 +493,12 @@ $options['init-modules'] = array(
   'ncw_migration',
   'campaign_materials',
   'hwc_menu',
+
   'hwc_partner',
   'hwc_feeds',
+
+  'feeds',
+  'hwc_practical_tool',
 );
 
 
