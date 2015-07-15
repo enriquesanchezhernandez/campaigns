@@ -108,16 +108,16 @@ function hwc_partner_strongarm() {
     'extra_fields' => array(
       'form' => array(
         'metatags' => array(
-          'weight' => '10',
+          'weight' => '3',
         ),
         'path' => array(
-          'weight' => '8',
+          'weight' => '1',
         ),
         'redirect' => array(
-          'weight' => '9',
+          'weight' => '2',
         ),
         'workbench_access' => array(
-          'weight' => '7',
+          'weight' => '0',
         ),
       ),
       'display' => array(),

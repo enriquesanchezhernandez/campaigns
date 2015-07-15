@@ -834,7 +834,10 @@ function hwc_partner_default_page_manager_pages() {
   $page->admin_title = 'Partner profile';
   $page->admin_description = '';
   $page->path = 'partner-profile/%node';
-  $page->access = array();
+  $page->access = array(
+    'type' => 'none',
+    'settings' => NULL,
+  );
   $page->menu = array();
   $page->arguments = array(
     'node' => array(
