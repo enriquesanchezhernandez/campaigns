@@ -118,3 +118,12 @@ div.workbench-info-block {
     display: none;
 }
 /* Homepage newsletter block END */
+
+.dropdown-toggle {
+    display: inline-block;
+    padding: 10px;
+}
+.dropdown-toggle:hover {
+    background-color: #d6d6d6;
+    cursor: pointer;
+}
