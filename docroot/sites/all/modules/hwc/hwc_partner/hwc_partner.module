@@ -12,9 +12,9 @@ include_once 'hwc_partner.features.inc';
 function hwc_partner_block_info() {
   $blocks = array();
   $blocks_infos = array('Create an event', 'Create News', 'Private Area');
-  for ($it = 0; $it < 3; $it++) {
-    $blocks['hwc_partner_private_link_' . $it] = array(
-      'info' => t('Private link block - ' . $blocks_infos[$it]),
+  foreach ($blocks_infos as $i => $title) {
+    $blocks['hwc_partner_private_link_' . $i] = array(
+      'info' => t('Private link block - ' . $title),
       'status' => 1,
       'region' => '-1',
       'visibility' => BLOCK_VISIBILITY_NOTLISTED,
@@ -105,18 +105,33 @@ function hwc_partner_block_save($delta = '', $edit = array()) {
  * Implements hook_block_view().
  */
 function hwc_partner_block_view($delta = '') {
-  // Get the number of the block (0,1,2)
-  $it = substr($delta, -1);
-  $url = variable_get('hwc_partner_private_link_' . $it . '_url', '');
-  $block['subject'] = '<none>';
-  $block['content'] = theme('hwc_partner_private_link_' . $it, array(
-      'hwc_partner_private_link_title' => l(t(variable_get('hwc_partner_private_link_' . $it . '_title')), $url),
-      'hwc_partner_private_link_description' => t(variable_get('hwc_partner_private_link_' . $it . '_description')),
-      'hwc_partner_private_link_link_text' => l(t(variable_get('hwc_partner_private_link_' . $it . '_link_text')), $url),
-    )
-  );
+  $block = array();
+  if (preg_match('/hwc_partner_private_link_[0-2]/', $delta)) {
+    $it = substr($delta, -1);
+    $url = variable_get('hwc_partner_private_link_' . $it . '_url', '');
+    $block['subject'] = '<none>';
+    global $user;
+    $node = menu_get_object();
+    if (in_array(ROLE_CAMPAIGN_PARTNER, $user->roles) && $node && $node->type == 'partner' && !empty($user->workbench_access) && !empty($node->workbench_access)) {
+      // We show the block only when partner sees his own profile
+      $visible = FALSE;
+      foreach(array_keys($user->workbench_access) as $id_section) {
+        if (in_array($id_section, $node->workbench_access)) {
+          $visible = TRUE;
+          break;
+        }
+      }
+      if ($visible) {
+        $block['content'] = theme('hwc_partner_private_link_' . $it, array(
+            'hwc_partner_private_link_title' => l(t(variable_get('hwc_partner_private_link_' . $it . '_title')), $url),
+            'hwc_partner_private_link_description' => t(variable_get('hwc_partner_private_link_' . $it . '_description')),
+            'hwc_partner_private_link_link_text' => l(t(variable_get('hwc_partner_private_link_' . $it . '_link_text')), $url),
+          )
+        );
+      }
+    }
+  }
   return $block;
-
 }
 
 /**
