@@ -2,6 +2,18 @@
 
 include_once 'hwc.features.inc';
 
+/**
+ * Implements hook_permission().
+ */
+function hwc_permission() {
+  return array(
+    'access private area' => array(
+      'title' => t('Access the private area'),
+      'description' => t('Access content inside the private area'),
+    ),
+  );
+}
+
 
 
 function hwc_req_param($form_state, $name, $default = NULL) {
