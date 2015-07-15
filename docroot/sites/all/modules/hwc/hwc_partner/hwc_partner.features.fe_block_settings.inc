@@ -64,7 +64,7 @@ function hwc_partner_default_fe_block_settings() {
         'weight' => 0,
       ),
     ),
-    'title' => 'Create News',
+    'title' => '',
     'visibility' => 0,
   );
 
