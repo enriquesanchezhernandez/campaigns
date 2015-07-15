@@ -25,6 +25,33 @@ function hwc_partner_block_info() {
 }
 
 /**
+ * Retrieve partner node by its corresponding section ID.
+ *
+ * @param integer $id
+ *   Section id for the corresponding partner.
+ *
+ * @return mixed
+ *   Returns partner node object or FALSE if not found
+ */
+function hwc_partner_by_section_id_load($id) {
+  // @todo: We could improve with direct query on node & workbench_access_node.
+  $q = new EntityFieldQuery();
+  $q->entityCondition('entity_type', 'node');
+  $q->entityCondition('bundle', 'partner');
+  $q->propertyCondition('status', NODE_PUBLISHED);
+  $result = $q->execute();
+  if (isset($result['node'])) {
+    $partners = entity_load('node', array_keys($result['node']));
+    foreach($partners as $partner) {
+      if(!empty($partner->workbench_access) && in_array($id, $partner->workbench_access)) {
+        return $partner;
+      }
+    }
+  }
+  return FALSE;
+}
+
+/**
  * Implements hook_block_configure().
  */
 function hwc_partner_block_configure($delta = '') {
