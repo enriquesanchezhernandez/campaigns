@@ -107,6 +107,10 @@ function osha_authentication_ldap_entry_pre_provision_alter(&$ldap_entries, $lda
  * Implements hook_user_login().
  */
 function osha_authentication_user_login(&$edit, $user) {
+
+  // @todo - CRISTIROMA DEVEL DISABLED BECAUSE WE LOOSE SETTINGS WITH EACH LOGIN
+  return FALSE;
+
   // Local accounts are ignored.
   if ($user->uid > 1 && isset($user->data['ldap_user'])) {
     module_load_include('admin.inc', 'osha_authentication');
