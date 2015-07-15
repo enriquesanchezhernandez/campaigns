@@ -324,7 +324,7 @@ $options['init-modules'] = array(
   'media_wysiwyg',
   'languagefield',
   'image_field_caption',
-  'entityqueue',
+
 
   'tmgmt',
   'tmgmt_local',
