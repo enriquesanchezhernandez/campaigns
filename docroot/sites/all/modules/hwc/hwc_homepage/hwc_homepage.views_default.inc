@@ -224,11 +224,10 @@ function hwc_homepage_views_default_views() {
   $handler->display->display_options['pager']['options']['items_per_page'] = '1';
   $handler->display->display_options['style_plugin'] = 'default';
   $handler->display->display_options['row_plugin'] = 'fields';
-  /* Relationship: Broken/missing handler */
-  $handler->display->display_options['relationships']['entityqueue_relationship']['id'] = 'entityqueue_relationship';
-  $handler->display->display_options['relationships']['entityqueue_relationship']['table'] = 'node';
-  $handler->display->display_options['relationships']['entityqueue_relationship']['field'] = 'entityqueue_relationship';
-  $handler->display->display_options['relationships']['entityqueue_relationship']['label'] = 'Featured Partner';
+  /* Relationship: Nodequeue: Queue */
+  $handler->display->display_options['relationships']['nodequeue_rel']['id'] = 'nodequeue_rel';
+  $handler->display->display_options['relationships']['nodequeue_rel']['table'] = 'node';
+  $handler->display->display_options['relationships']['nodequeue_rel']['field'] = 'nodequeue_rel';
   /* Field: Content: Title */
   $handler->display->display_options['fields']['title']['id'] = 'title';
   $handler->display->display_options['fields']['title']['table'] = 'node';
@@ -260,6 +259,19 @@ function hwc_homepage_views_default_views() {
   $handler = $view->new_display('block', 'Featured Partner', 'block');
   $handler->display->display_options['defaults']['title'] = FALSE;
   $handler->display->display_options['title'] = 'Partners';
+  $handler->display->display_options['defaults']['relationships'] = FALSE;
+  /* Relationship: Nodequeue: Queue */
+  $handler->display->display_options['relationships']['nodequeue_rel']['id'] = 'nodequeue_rel';
+  $handler->display->display_options['relationships']['nodequeue_rel']['table'] = 'node';
+  $handler->display->display_options['relationships']['nodequeue_rel']['field'] = 'nodequeue_rel';
+  $handler->display->display_options['relationships']['nodequeue_rel']['label'] = 'Featured Partner Frontpage';
+  $handler->display->display_options['relationships']['nodequeue_rel']['limit'] = 1;
+  $handler->display->display_options['relationships']['nodequeue_rel']['names'] = array(
+    'featured_partner_frontpage' => 'featured_partner_frontpage',
+    'publication_queue' => 0,
+    'featured_press_release' => 0,
+    'press_contacts_queue' => 0,
+  );
   $handler->display->display_options['defaults']['fields'] = FALSE;
   /* Field: Content: Logo */
   $handler->display->display_options['fields']['field_logo']['id'] = 'field_logo';
@@ -318,11 +330,13 @@ function hwc_homepage_views_default_views() {
   $handler->display->display_options['filters']['type']['value'] = array(
     'partner' => 'partner',
   );
-  /* Filter criterion: Broken/missing handler */
-  $handler->display->display_options['filters']['entityqueue_relationship']['id'] = 'entityqueue_relationship';
-  $handler->display->display_options['filters']['entityqueue_relationship']['table'] = 'node';
-  $handler->display->display_options['filters']['entityqueue_relationship']['field'] = 'entityqueue_relationship';
-  $handler->display->display_options['filters']['entityqueue_relationship']['value'] = '1';
+  $handler->display->display_options['filters']['type']['group'] = 1;
+  /* Filter criterion: Nodequeue: In queue */
+  $handler->display->display_options['filters']['in_queue']['id'] = 'in_queue';
+  $handler->display->display_options['filters']['in_queue']['table'] = 'nodequeue_nodes';
+  $handler->display->display_options['filters']['in_queue']['field'] = 'in_queue';
+  $handler->display->display_options['filters']['in_queue']['relationship'] = 'nodequeue_rel';
+  $handler->display->display_options['filters']['in_queue']['value'] = '1';
 
   /* Display: Partner Logo List */
   $handler = $view->new_display('block', 'Partner Logo List', 'block_1');
@@ -330,6 +344,19 @@ function hwc_homepage_views_default_views() {
   $handler->display->display_options['pager']['type'] = 'some';
   $handler->display->display_options['pager']['options']['items_per_page'] = '12';
   $handler->display->display_options['pager']['options']['offset'] = '0';
+  $handler->display->display_options['defaults']['relationships'] = FALSE;
+  /* Relationship: Nodequeue: Queue */
+  $handler->display->display_options['relationships']['nodequeue_rel']['id'] = 'nodequeue_rel';
+  $handler->display->display_options['relationships']['nodequeue_rel']['table'] = 'node';
+  $handler->display->display_options['relationships']['nodequeue_rel']['field'] = 'nodequeue_rel';
+  $handler->display->display_options['relationships']['nodequeue_rel']['label'] = 'Featured Partner Frontpage';
+  $handler->display->display_options['relationships']['nodequeue_rel']['limit'] = 1;
+  $handler->display->display_options['relationships']['nodequeue_rel']['names'] = array(
+    'featured_partner_frontpage' => 'featured_partner_frontpage',
+    'publication_queue' => 0,
+    'featured_press_release' => 0,
+    'press_contacts_queue' => 0,
+  );
   $handler->display->display_options['defaults']['fields'] = FALSE;
   /* Field: Content: Logo */
   $handler->display->display_options['fields']['field_logo']['id'] = 'field_logo';
@@ -365,12 +392,12 @@ function hwc_homepage_views_default_views() {
     'partner' => 'partner',
   );
   $handler->display->display_options['filters']['type']['group'] = 1;
-  /* Filter criterion: Broken/missing handler */
-  $handler->display->display_options['filters']['entityqueue_relationship']['id'] = 'entityqueue_relationship';
-  $handler->display->display_options['filters']['entityqueue_relationship']['table'] = 'node';
-  $handler->display->display_options['filters']['entityqueue_relationship']['field'] = 'entityqueue_relationship';
-  $handler->display->display_options['filters']['entityqueue_relationship']['value'] = '0';
-  $handler->display->display_options['filters']['entityqueue_relationship']['group'] = 1;
+  /* Filter criterion: Nodequeue: In queue */
+  $handler->display->display_options['filters']['in_queue']['id'] = 'in_queue';
+  $handler->display->display_options['filters']['in_queue']['table'] = 'nodequeue_nodes';
+  $handler->display->display_options['filters']['in_queue']['field'] = 'in_queue';
+  $handler->display->display_options['filters']['in_queue']['relationship'] = 'nodequeue_rel';
+  $handler->display->display_options['filters']['in_queue']['value'] = '0';
   $translatables['partners'] = array(
     t('Master'),
     t('See all'),
@@ -379,9 +406,11 @@ function hwc_homepage_views_default_views() {
     t('Sort by'),
     t('Asc'),
     t('Desc'),
+    t('queue'),
     t('Featured Partner'),
     t('Partners'),
     t('more'),
+    t('Featured Partner Frontpage'),
     t('Partner Logo List'),
   );
   $export['partners'] = $view;

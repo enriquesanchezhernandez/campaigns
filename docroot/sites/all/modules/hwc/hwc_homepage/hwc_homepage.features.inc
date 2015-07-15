@@ -30,6 +30,38 @@ function hwc_homepage_views_api($module = NULL, $api = NULL) {
 }
 
 /**
+ * Implements hook_fe_nodequeue_export_fields().
+ */
+function hwc_homepage_fe_nodequeue_export_fields() {
+  $nodequeues = array();
+
+  // Exported nodequeues: featured_partner_frontpage
+  $nodequeues['featured_partner_frontpage'] = array(
+    'name' => 'featured_partner_frontpage',
+    'title' => 'Featured Partner Frontpage',
+    'subqueue_title' => '',
+    'size' => 1,
+    'link' => '',
+    'link_remove' => '',
+    'owner' => 'nodequeue',
+    'show_in_ui' => 1,
+    'show_in_tab' => 1,
+    'show_in_links' => 0,
+    'reference' => 0,
+    'reverse' => 0,
+    'i18n' => 0,
+    'subqueues' => 1,
+    'types' => array(
+      0 => 'partner',
+    ),
+    'roles' => array(),
+    'count' => 0,
+  );
+
+  return $nodequeues;
+}
+
+/**
  * Implements hook_node_info().
  */
 function hwc_homepage_node_info() {
