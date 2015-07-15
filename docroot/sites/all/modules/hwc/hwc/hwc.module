@@ -15,6 +15,12 @@ function hwc_permission() {
 }
 
 
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function hwc_form_user_login_alter(&$form, &$form_state) {
+  drupal_add_js('jQuery(document).ready(function () {jQuery("#edit-name").focus();});', 'inline');
+}
 
 function hwc_req_param($form_state, $name, $default = NULL) {
   if (!empty($form_state['values'][$name])) {
