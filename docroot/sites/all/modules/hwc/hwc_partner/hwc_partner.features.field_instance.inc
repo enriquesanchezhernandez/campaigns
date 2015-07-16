@@ -82,7 +82,7 @@ function hwc_partner_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 16,
+      'weight' => 17,
     ),
     'workbench_access_field' => 0,
   );
@@ -176,7 +176,7 @@ function hwc_partner_field_default_field_instances() {
       'module' => 'link',
       'settings' => array(),
       'type' => 'link_field',
-      'weight' => 19,
+      'weight' => 21,
     ),
     'workbench_access_field' => 0,
   );
@@ -253,7 +253,7 @@ function hwc_partner_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 22,
+      'weight' => 7,
     ),
     'workbench_access_field' => 0,
   );
@@ -330,7 +330,7 @@ function hwc_partner_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 20,
+      'weight' => 22,
     ),
     'workbench_access_field' => 0,
   );
@@ -427,7 +427,7 @@ function hwc_partner_field_default_field_instances() {
         ),
       ),
       'type' => 'media_generic',
-      'weight' => 21,
+      'weight' => 23,
     ),
     'workbench_access_field' => 0,
   );
@@ -498,7 +498,7 @@ function hwc_partner_field_default_field_instances() {
         'apply_chosen' => '',
       ),
       'type' => 'options_select',
-      'weight' => 12,
+      'weight' => 11,
     ),
     'workbench_access_field' => 0,
   );
@@ -568,7 +568,7 @@ function hwc_partner_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'email_textfield',
-      'weight' => 12,
+      'weight' => 10,
     ),
   );
 
@@ -644,7 +644,7 @@ function hwc_partner_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 13,
+      'weight' => 12,
     ),
     'workbench_access_field' => 0,
   );
@@ -779,7 +779,7 @@ function hwc_partner_field_default_field_instances() {
     ),
     'entity_type' => 'node',
     'field_name' => 'field_guid_organisation',
-    'label' => 'Guid organisation',
+    'label' => 'Organisation GUID',
     'required' => 0,
     'settings' => array(
       'entity_translation_sync' => FALSE,
@@ -798,7 +798,7 @@ function hwc_partner_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 10,
+      'weight' => 26,
     ),
     'workbench_access_field' => 0,
   );
@@ -895,7 +895,7 @@ function hwc_partner_field_default_field_instances() {
         ),
       ),
       'type' => 'media_generic',
-      'weight' => 18,
+      'weight' => 20,
     ),
     'workbench_access_field' => 0,
   );
@@ -972,7 +972,7 @@ function hwc_partner_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 15,
+      'weight' => 16,
     ),
     'workbench_access_field' => 0,
   );
@@ -1043,7 +1043,7 @@ function hwc_partner_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'email_textfield',
-      'weight' => 16,
+      'weight' => 19,
     ),
     'workbench_access_field' => 0,
   );
@@ -1120,7 +1120,7 @@ function hwc_partner_field_default_field_instances() {
         'rows' => 5,
       ),
       'type' => 'text_textarea',
-      'weight' => 17,
+      'weight' => 18,
     ),
     'workbench_access_field' => 0,
   );
@@ -1178,7 +1178,7 @@ function hwc_partner_field_default_field_instances() {
     ),
     'entity_type' => 'node',
     'field_name' => 'field_orgtype',
-    'label' => 'OrgType',
+    'label' => 'Organisation type',
     'required' => 0,
     'settings' => array(
       'entity_translation_sync' => FALSE,
@@ -1197,7 +1197,7 @@ function hwc_partner_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 15,
+      'weight' => 6,
     ),
     'workbench_access_field' => 0,
   );
@@ -1254,7 +1254,7 @@ function hwc_partner_field_default_field_instances() {
     ),
     'entity_type' => 'node',
     'field_name' => 'field_partner_type',
-    'label' => 'Partner Type',
+    'label' => 'Type',
     'required' => 0,
     'settings' => array(
       'entity_translation_sync' => FALSE,
@@ -1267,7 +1267,7 @@ function hwc_partner_field_default_field_instances() {
         'apply_chosen' => '',
       ),
       'type' => 'options_select',
-      'weight' => 0,
+      'weight' => 5,
     ),
     'workbench_access_field' => 0,
   );
@@ -1344,7 +1344,7 @@ function hwc_partner_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 10,
+      'weight' => 8,
     ),
     'workbench_access_field' => 0,
   );
@@ -1498,7 +1498,7 @@ function hwc_partner_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 11,
+      'weight' => 9,
     ),
     'workbench_access_field' => 0,
   );
@@ -1575,7 +1575,7 @@ function hwc_partner_field_default_field_instances() {
         'rows' => 5,
       ),
       'type' => 'text_textarea',
-      'weight' => 24,
+      'weight' => 25,
     ),
     'workbench_access_field' => 0,
   );
@@ -1652,78 +1652,7 @@ function hwc_partner_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 23,
-    ),
-    'workbench_access_field' => 0,
-  );
-
-  // Exported field_instance: 'node-partner-field_users'
-  $field_instances['node-partner-field_users'] = array(
-    'bundle' => 'partner',
-    'default_value' => NULL,
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
-      'default' => array(
-        'label' => 'above',
-        'module' => 'entityreference',
-        'settings' => array(
-          'link' => FALSE,
-        ),
-        'type' => 'entityreference_label',
-        'weight' => 1,
-      ),
-      'highlights_item' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-      'newsletter_item' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-      'osha_resources' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-      'osha_slideshow' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-      'pub_teaser' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-      'teaser' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-    ),
-    'entity_type' => 'node',
-    'field_name' => 'field_users',
-    'label' => 'Users',
-    'required' => 0,
-    'settings' => array(
-      'entity_translation_sync' => FALSE,
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'active' => 0,
-      'module' => 'multiple_selects',
-      'settings' => array(),
-      'type' => 'multiple_selects',
-      'weight' => 1,
+      'weight' => 24,
     ),
     'workbench_access_field' => 0,
   );
@@ -1817,7 +1746,7 @@ function hwc_partner_field_default_field_instances() {
       'module' => 'link',
       'settings' => array(),
       'type' => 'link_field',
-      'weight' => 14,
+      'weight' => 15,
     ),
     'workbench_access_field' => 0,
   );
@@ -1902,7 +1831,7 @@ function hwc_partner_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 11,
+      'weight' => 4,
     ),
     'workbench_access_field' => 0,
   );
@@ -1917,22 +1846,21 @@ function hwc_partner_field_default_field_instances() {
   t('General email');
   t('General phone');
   t('Guid Main Contact');
-  t('Guid organisation');
   t('His/Her quote on the HWC');
   t('Logo');
   t('Main Contact');
   t('Main Contact Email');
   t('Mission Statement');
-  t('OrgType');
   t('Organisation');
-  t('Partner Type');
+  t('Organisation GUID');
+  t('Organisation type');
   t('Ph Address');
   t('Ph Address Extra');
   t('Ph CP');
   t('Ph Country');
   t('Quote');
   t('Social Dialog Partner');
-  t('Users');
+  t('Type');
   t('Website');
 
   return $field_instances;

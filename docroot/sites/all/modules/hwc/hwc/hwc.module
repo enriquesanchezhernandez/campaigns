@@ -2,7 +2,45 @@
 
 include_once 'hwc.features.inc';
 
+define('ROLE_CAMPAIGN_PARTNER', 'campaign partner');
 
+/**
+ * Implements hook_permission().
+ */
+function hwc_permission() {
+  return array(
+    'access private area' => array(
+      'title' => t('Access the private area'),
+      'description' => t('Access content inside the private area'),
+    ),
+  );
+}
+
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function hwc_form_user_login_alter(&$form, &$form_state) {
+  drupal_add_js('jQuery(document).ready(function () {jQuery("#edit-name").focus();});', 'inline');
+}
+
+/**
+ * Implements hook_user_login().
+ */
+function hwc_user_login(&$edit, $account) {
+  if (!isset($_POST['form_id']) || $_POST['form_id'] != 'user_pass_reset') {
+    // If the user is a partner, redirect to the corresponding partner profile
+    if (in_array(ROLE_CAMPAIGN_PARTNER, $account->roles) && !empty($account->workbench_access)) {
+      $sections = array_keys($account->workbench_access);
+      foreach($sections as $id_section) {
+        if ($partner = hwc_partner_by_section_id_load($id_section)) {
+          $edit['redirect'] = 'node/' . $partner->nid;
+          break;
+        }
+      }
+    }
+  }
+}
 
 function hwc_req_param($form_state, $name, $default = NULL) {
   if (!empty($form_state['values'][$name])) {

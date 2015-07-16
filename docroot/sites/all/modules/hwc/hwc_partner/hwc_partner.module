@@ -12,9 +12,9 @@ include_once 'hwc_partner.features.inc';
 function hwc_partner_block_info() {
   $blocks = array();
   $blocks_infos = array('Create an event', 'Create News', 'Private Area');
-  for ($it = 0; $it < 3; $it++) {
-    $blocks['hwc_partner_private_link_' . $it] = array(
-      'info' => t('Private link block - ' . $blocks_infos[$it]),
+  foreach ($blocks_infos as $i => $title) {
+    $blocks['hwc_partner_private_link_' . $i] = array(
+      'info' => t('Private link block - ' . $title),
       'status' => 1,
       'region' => '-1',
       'visibility' => BLOCK_VISIBILITY_NOTLISTED,
@@ -22,6 +22,47 @@ function hwc_partner_block_info() {
     );
   }
   return $blocks;
+}
+
+/**
+ * Implements hook_field_extra_fields().
+ */
+function hwc_partner_field_extra_fields() {
+  $extra['node']['partner']['display'] = array(
+    'profile_update_link' => array(
+      'label' => 'Profile update link',
+      'description' => 'A link to update partner profile',
+      'weight' => 0,
+    ),
+  );
+  return $extra;
+}
+
+/**
+ * Retrieve partner node by its corresponding section ID.
+ *
+ * @param integer $id
+ *   Section id for the corresponding partner.
+ *
+ * @return mixed
+ *   Returns partner node object or FALSE if not found
+ */
+function hwc_partner_by_section_id_load($id) {
+  // @todo: We could improve with direct query on node & workbench_access_node.
+  $q = new EntityFieldQuery();
+  $q->entityCondition('entity_type', 'node');
+  $q->entityCondition('bundle', 'partner');
+  $q->propertyCondition('status', NODE_PUBLISHED);
+  $result = $q->execute();
+  if (isset($result['node'])) {
+    $partners = entity_load('node', array_keys($result['node']));
+    foreach($partners as $partner) {
+      if(!empty($partner->workbench_access) && in_array($id, $partner->workbench_access)) {
+        return $partner;
+      }
+    }
+  }
+  return FALSE;
 }
 
 /**
@@ -78,18 +119,47 @@ function hwc_partner_block_save($delta = '', $edit = array()) {
  * Implements hook_block_view().
  */
 function hwc_partner_block_view($delta = '') {
-  // Get the number of the block (0,1,2)
-  $it = substr($delta, -1);
-  $url = variable_get('hwc_partner_private_link_' . $it . '_url', '');
-  $block['subject'] = '<none>';
-  $block['content'] = theme('hwc_partner_private_link_' . $it, array(
-      'hwc_partner_private_link_title' => l(t(variable_get('hwc_partner_private_link_' . $it . '_title')), $url),
-      'hwc_partner_private_link_description' => t(variable_get('hwc_partner_private_link_' . $it . '_description')),
-      'hwc_partner_private_link_link_text' => l(t(variable_get('hwc_partner_private_link_' . $it . '_link_text')), $url),
-    )
-  );
+  $block = array();
+  if (preg_match('/hwc_partner_private_link_[0-2]/', $delta)) {
+    $it = substr($delta, -1);
+    $url = variable_get('hwc_partner_private_link_' . $it . '_url', '');
+    $block['subject'] = '<none>';
+    $node = menu_get_object();
+    $visible = hwc_partner_match_user_partner($node);
+    if ($visible) {
+      $block['content'] = theme('hwc_partner_private_link_' . $it, array(
+          'hwc_partner_private_link_title' => l(t(variable_get('hwc_partner_private_link_' . $it . '_title')), $url),
+          'hwc_partner_private_link_description' => t(variable_get('hwc_partner_private_link_' . $it . '_description')),
+          'hwc_partner_private_link_link_text' => l(t(variable_get('hwc_partner_private_link_' . $it . '_link_text')), $url),
+        )
+      );
+    }
+  }
   return $block;
+}
 
+/**
+ * Check if the given user matches a partner node (they are in same section).
+ *
+ * @param stdClass $node
+ * @param stdClass $account
+ *
+ * @return bool
+ *   TRUE if the account is partner and matches the current 'partner' $node.
+ */
+function hwc_partner_match_user_partner($node, $account = NULL) {
+  if (empty($account)) {
+    global $user;
+    $account = $user;
+  }
+  if ($node && $node->type == 'partner' && in_array(ROLE_CAMPAIGN_PARTNER, $account->roles) && !empty($account->workbench_access) && !empty($node->workbench_access)) {
+    foreach(array_keys($account->workbench_access) as $id_section) {
+      if (in_array($id_section, $node->workbench_access)) {
+        return TRUE;
+      }
+    }
+  }
+  return FALSE;
 }
 
 /**
@@ -110,4 +180,24 @@ function hwc_partner_theme() {
     );
   }
   return $theme;
+}
+
+/**
+ * Implements hook_node_view().
+ */
+function hwc_partner_node_view($node, $view_mode, $langcode) {
+  if ($node->type == 'partner' && $view_mode == 'full') {
+    $user_is_partner = hwc_partner_match_user_partner($node);
+    if ($user_is_partner) {
+      $node->content['profile_update_link'] = array(
+        '#theme' => 'link',
+        '#text' => t('Update profile'),
+        '#path' => 'node/' . $node->nid . '/edit',
+        '#options' => array(
+          'attributes' => array('onclick' => "alert('@todo: Waiting for the profile edit link ... now move along!'); return false;"),
+          'html' => TRUE,
+        ),
+      );
+    }
+  }
 }
