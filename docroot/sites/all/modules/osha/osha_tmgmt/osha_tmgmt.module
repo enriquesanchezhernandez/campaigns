@@ -2493,6 +2493,8 @@ class OshaTMGMTStatistics {
           );
           $sxml = simplexml_import_dom($doc);
           foreach ($selectors as $attribute => $expr) {
+            if(!$sxml)
+              continue; 
             $tags = $sxml->xpath($expr);
             foreach ($tags as $tag) {
               $attributes = $tag->attributes();
