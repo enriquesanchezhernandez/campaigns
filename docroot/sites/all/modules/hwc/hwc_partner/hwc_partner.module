@@ -204,3 +204,61 @@ function hwc_partner_node_view($node, $view_mode, $langcode) {
     }
   }
 }
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function hwc_partner_form_news_node_form_alter(&$form, &$form_state) {
+  global $user;
+  if (in_array(ROLE_CAMPAIGN_PARTNER, $user->roles) && count($user->roles) == 2) {
+    foreach($user->workbench_access as $user_id_section => $value) {
+      foreach($form['workbench_access']['workbench_access']['#options'] as $wb_id_section => $label) {
+        if ($user_id_section == $wb_id_section) {
+          $form['workbench_access']['workbench_access']['#default_value'] = $user_id_section;
+          $form['workbench_access']['workbench_access']['#access'] = FALSE;
+          break;
+        }
+      }
+    }
+    if (empty($form['workbench_access']['workbench_access']['#default_value'])) {
+      drupal_goto('<front>');
+    }
+    $form['field_summary']['#access'] = FALSE;
+    $form['field_expiration_date']['#access'] = FALSE;
+    $form['field_tags']['#access'] = FALSE;
+    $form['field_aditional_resources']['#access'] = FALSE;
+    $form['#after_build'][] = 'hwc_partner_node_form_after_build_hide_hints';
+  }
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function hwc_partner_form_events_node_form_alter(&$form, &$form_state) {
+  global $user;
+  if (in_array(ROLE_CAMPAIGN_PARTNER, $user->roles) && count($user->roles) == 2) {
+    foreach($user->workbench_access as $user_id_section => $value) {
+      foreach($form['workbench_access']['workbench_access']['#options'] as $wb_id_section => $label) {
+        if ($user_id_section == $wb_id_section) {
+          $form['workbench_access']['workbench_access']['#default_value'] = $user_id_section;
+          $form['workbench_access']['workbench_access']['#access'] = FALSE;
+          break;
+        }
+      }
+    }
+    if (empty($form['workbench_access']['workbench_access']['#default_value'])) {
+      drupal_goto('<front>');
+    }
+    $form['field_partner_id']['#access'] = FALSE;
+    $form['field_schedule']['#access'] = FALSE;
+    $form['field_speaker']['#access'] = FALSE;
+    $form['#after_build'][] = 'hwc_partner_node_form_after_build_hide_hints';
+  }
+}
+
+function hwc_partner_node_form_after_build_hide_hints($form, &$form_state) {
+  if (!empty($form['body'][LANGUAGE_NONE][0]['format'])) {
+    $form['body'][LANGUAGE_NONE][0]['format']['#attributes']['class'][] = 'hidden';
+  }
+  return ($form);
+}
