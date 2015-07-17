@@ -67,7 +67,7 @@ function hwc_homepage_fe_nodequeue_export_fields() {
 function hwc_homepage_node_info() {
   $items = array(
     'frontpage_slider' => array(
-      'name' => t('Frontpage Slider'),
+      'name' => t('Frontpage Banner'),
       'base' => 'node_content',
       'description' => t('Frontpage slider content'),
       'has_title' => '1',
