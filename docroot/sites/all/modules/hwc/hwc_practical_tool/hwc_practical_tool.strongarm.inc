@@ -129,6 +129,9 @@ function hwc_practical_tool_strongarm() {
         'workbench_access' => array(
           'weight' => '1',
         ),
+        'language' => array(
+          'weight' => '5',
+        ),
       ),
       'display' => array(),
     ),
