@@ -494,7 +494,7 @@ $options['init-modules'] = array(
   'ncw_migration',
   'campaign_materials',
   'hwc_menu',
-  'hwc_practical_tool'
+  'hwc_practical_tool',
   'hwc_partner',
   'hwc_feeds',
 
