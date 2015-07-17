@@ -80,9 +80,30 @@ function campaign_materials_views_default_views() {
   $handler->display->display_options['fields']['body']['label'] = '';
   $handler->display->display_options['fields']['body']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['body']['element_wrapper_class'] = 'materials_teaser';
-  $handler->display->display_options['fields']['body']['type'] = 'text_summary_or_trimmed';
+  $handler->display->display_options['fields']['body']['type'] = 'smart_trim_format';
   $handler->display->display_options['fields']['body']['settings'] = array(
+    'trim_link' => '0',
     'trim_length' => '600',
+    'trim_type' => 'chars',
+    'trim_suffix' => '...',
+    'more_link' => '1',
+    'more_text' => '> See more',
+    'summary_handler' => 'ignore',
+    'trim_options' => array(
+      'text' => 0,
+    ),
+    'trim_preserve_tags' => '',
+  );
+  /* Field: Content: File */
+  $handler->display->display_options['fields']['field_file']['id'] = 'field_file';
+  $handler->display->display_options['fields']['field_file']['table'] = 'field_data_field_file';
+  $handler->display->display_options['fields']['field_file']['field'] = 'field_file';
+  $handler->display->display_options['fields']['field_file']['label'] = '';
+  $handler->display->display_options['fields']['field_file']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_file']['click_sort_column'] = 'fid';
+  $handler->display->display_options['fields']['field_file']['type'] = 'file_download_link';
+  $handler->display->display_options['fields']['field_file']['settings'] = array(
+    'text' => 'Download [file:name]',
   );
   /* Sort criterion: Content: Post date */
   $handler->display->display_options['sorts']['created']['id'] = 'created';
@@ -106,6 +127,10 @@ function campaign_materials_views_default_views() {
 
   /* Display: Block */
   $handler = $view->new_display('block', 'Block', 'block');
+
+  /* Display: Campaign materials page */
+  $handler = $view->new_display('page', 'Campaign materials page', 'page_1');
+  $handler->display->display_options['path'] = 'campaign-materials';
   $translatables['view_campaign_materials'] = array(
     t('Master'),
     t('> See more'),
@@ -116,6 +141,7 @@ function campaign_materials_views_default_views() {
     t('Desc'),
     t('Block'),
     t('more'),
+    t('Campaign materials page'),
   );
   $export['view_campaign_materials'] = $view;
 

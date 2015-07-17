@@ -5,3 +5,68 @@
  */
 
 include_once 'campaign_materials.features.inc';
+
+/**
+ * Implements hook_field_formatter_info().
+ */
+function campaign_materials_field_formatter_info() {
+  $info = array(
+    'file_campaign_material_resource' => array(
+      'label' => 'Campaign material file',
+      'field types' => array('file'),
+      'description' => 'Displays default icon per file type and file description.',
+    ),
+  );
+  return $info;
+}
+
+/**
+ * Implements hook_theme().
+ */
+function campaign_materials_theme() {
+  return array(
+    'campaign_materials_file_campaign_material_resource_format' => array(
+      'variables' => array('file' => NULL, 'delta' => NULL),
+    ),
+  );
+}
+
+/**
+ * Implements hook_field_formatter_view().
+ */
+function campaign_materials_field_formatter_view($entity_type, $entity, $field, $instance, $langcode, $items, $display) {
+  $element = array();
+  switch ($display['type']) {
+    case 'file_campaign_material_resource':
+      foreach ($items as $delta => $item) {
+        $element[$delta] = array(
+          '#theme' => 'campaign_materials_file_campaign_material_resource_format',
+          '#file' => $item,
+          '#delta' => $delta,
+        );
+      }
+      break;
+  }
+  return $element;
+}
+
+/*
+ * Formats the related resources (attached files) as icon and description/filename
+ */
+function theme_campaign_materials_file_campaign_material_resource_format($element) {
+  $file = (object) $element['file'];
+  $output = '';
+  $icon_directory = drupal_get_path('theme', 'hwc_frontend') . '/images/file_icons';
+  $size = @filesize($file->uri);
+  if ($size) {
+    $output .= '<span class="related_size">' . format_size($size) . '</span>';
+  }
+  $name = ($file->description != NULL) ? $file->description : $file->filename;
+  $output .= ' <a href="' . file_create_url($file->uri) . '">';
+  // Disable icon for the moment
+  // $output .= theme('file_icon', array('file' => $file, 'icon_directory' => $icon_directory));
+  $output .= '<span>Download ' . $name . '</span>';
+  $output .= '</a>';
+
+  return $output;
+}
