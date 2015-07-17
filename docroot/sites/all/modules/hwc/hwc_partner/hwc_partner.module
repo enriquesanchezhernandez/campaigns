@@ -152,6 +152,9 @@ function hwc_partner_match_user_partner($node, $account = NULL) {
     global $user;
     $account = $user;
   }
+  if (empty($account->workbench_access)) {
+    workbench_access_user_load_data($account);
+  }
   if ($node && $node->type == 'partner' && in_array(ROLE_CAMPAIGN_PARTNER, $account->roles) && !empty($account->workbench_access) && !empty($node->workbench_access)) {
     foreach(array_keys($account->workbench_access) as $id_section) {
       if (in_array($id_section, $node->workbench_access)) {
