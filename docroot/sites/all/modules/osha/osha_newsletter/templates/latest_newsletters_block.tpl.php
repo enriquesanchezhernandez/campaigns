@@ -6,7 +6,7 @@
         ?>
         <h2><?php print l($item['title'], url($item['url'], array('absolute' => TRUE)), array(
             'attributes' => array('style' => 'color: #003399; text-decoration: none;'),
-            'external' => TRUE
+            'external' => TRUE,
           )); ?></h2>
         <?php
         foreach($item['items'] as $element){

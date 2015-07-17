@@ -41,3 +41,80 @@ div.workbench-info-block {
 .jssora03r { width: 55px; height: 55px; top: 115px; right: 8px }
 #publications_slideshow #num_slides { cursor: move; position: absolute; left: 1em; top: 1px; width: 1138px; height: 230px; overflow: hidden; }
 #publications_slideshow .prototype { position: absolute; width: 21px; height: 21px; text-align:center; line-height:21px; color:white; font-size:12px; }
+
+.navbar-header {
+    width: 100%;
+}
+#block-lang-dropdown-language {
+    width: auto !important;
+    float: right;
+    margin: 5px;
+}
+#lang_dropdown_select_language_chosen {
+    width: 150px !important;
+    height: auto !important;
+    border: none;
+    padding: 0;
+    margin: 5px 0;
+}
+#search-block-form {
+    float: right;
+    width: auto !important;
+    margin: 5px;
+}
+/* Homepage newsletter block START */
+#block-osha-newsletter-osha-newsletter-image {
+    height: 300px;
+    position: relative;
+}
+#block-osha-newsletter-osha-newsletter-image .block-title {
+    position: absolute;
+    width: 100%;
+    color: #ffffff;
+    text-align: center;
+    margin: 0;
+    top: 70px;
+}
+#block_newsletter_image_text {
+    position: absolute;
+    width: 100%;
+    color: #ffffff;
+    text-align: center;
+    top: 120px;
+}
+#join_subscribers img {
+    position: absolute;
+    height: 300px;
+    width: 100%;
+    z-index: -10;
+}
+#views-exposed-form-search-site {
+    margin: 20px 0 0 0;
+}
+#views-exposed-form-search-site .form-type-textfield,
+#views-exposed-form-search-site input,
+#views-exposed-form-search-site button {
+    display: inline-block;
+    margin: 0;
+}
+#views-exposed-form-search-site button {
+    margin-left: -4px;
+    margin-top: -2px;
+}
+#block-osha-newsletter-osha-newsletter-image .captcha {
+    margin-top: 15px;
+}
+#block-osha-newsletter-osha-newsletter-image .form-item-captcha-response label {
+    clear: both;
+}
+#block-osha-newsletter-osha-newsletter-image .form-item-captcha-response {
+    width: 100%;
+    text-align: center;
+}
+#block-osha-newsletter-osha-newsletter-image .form-item-captcha-response input {
+    max-width: 50px;
+}
+.captcha {
+    display: none;
+}
+/* Homepage newsletter block END */

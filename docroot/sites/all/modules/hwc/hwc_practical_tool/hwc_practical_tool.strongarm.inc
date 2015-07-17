@@ -42,7 +42,7 @@ function hwc_practical_tool_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'comment_practical_tool';
-  $strongarm->value = '2';
+  $strongarm->value = '1';
   $export['comment_practical_tool'] = $strongarm;
 
   $strongarm = new stdClass();
@@ -62,6 +62,14 @@ function hwc_practical_tool_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'entity_translation_hide_translation_links_practical_tool';
+  $strongarm->value = 1;
+  $export['entity_translation_hide_translation_links_practical_tool'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+
   $strongarm->name = 'field_bundle_settings_node__practical_tool';
   $strongarm->value = array(
     'view_modes' => array(
@@ -122,6 +130,9 @@ function hwc_practical_tool_strongarm() {
         'workbench_access' => array(
           'weight' => '1',
         ),
+        'language' => array(
+          'weight' => '5',
+        ),
       ),
       'display' => array(),
     ),
@@ -157,7 +168,6 @@ function hwc_practical_tool_strongarm() {
   $strongarm->name = 'node_options_practical_tool';
   $strongarm->value = array(
     0 => 'status',
-    1 => 'promote',
   );
   $export['node_options_practical_tool'] = $strongarm;
 

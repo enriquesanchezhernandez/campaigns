@@ -491,10 +491,11 @@ $options['init-modules'] = array(
   'hwc',
   'hwc_homepage',
   'ncw_migration',
+  'campaign_materials',
   'hwc_menu',
-  'feeds',
   'hwc_practical_tool'
-
+  'hwc_partner',
+  'hwc_feeds',
 );
 
 
@@ -532,6 +533,11 @@ $command_specific['devify'] = array(
 
 $command_specific['devify_solr'] = array(
   'solr_server' => (array) $cfg->solr_server,
+);
+
+$command_specific['devify_ldap'] = array(
+  'ldap-read' => (array) $cfg->ldap_read,
+  'ldap-write' => (array) $cfg->ldap_write,
 );
 
 if (file_exists(dirname(__FILE__) . '/drushrc.local.php')) {
