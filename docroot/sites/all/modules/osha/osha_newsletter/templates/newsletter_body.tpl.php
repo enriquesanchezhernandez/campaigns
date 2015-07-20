@@ -34,9 +34,11 @@ td{
         <table border="0" cellpadding="20" cellspacing="0" width="100%">
           <tbody>
             <tr>
-               <td width="396" style="padding-top: 0px;vertical-align: top;padding-right:50px;" class="left-column">
+               <td width="396" style="padding-top: 15px;vertical-align: top;padding-right:50px;" class="left-column">
                 <?php
                   $elements_no = sizeof($items);
+                  // Delete title 'News'.
+                  unset($items[0]);
                   foreach ($items as $idx => $item) {
                     if ($item['#entity_type'] == 'taxonomy_term' && ($idx+1 <= $elements_no)) {
                       if (($idx == $elements_no-1) && ($items[$idx]['#entity_type'] == 'taxonomy_term')) {
@@ -48,7 +50,7 @@ td{
                           <table border="0" cellpadding="0" cellspacing="0" class="blue-line" width="100%">
                             <tbody>
                             <tr>
-                              <td style="padding-top: 15px;" class="space-above-blue-line"></td>
+                              <td style="padding-top: 15px;"></td>
                             </tr>
                             <tr>
                               <td width="100%" style="background-color:#003399; height: 4px;" valign="top"></td>
@@ -94,6 +96,7 @@ td{
                 </table>
                 <?php
                 foreach ($events as $item) {
+
                   print(render($item));
                 }?>
                 <table border="0" cellpadding="0" cellspacing="0" width="100%" style="padding-bottom: 15px;" class="pink-arrow">
@@ -101,7 +104,7 @@ td{
                   <tr>
                     <td style="font-family: Oswald, Arial, sans-serif; font-size: 16px; color: #003399; text-align: right;font-weight: bold">
                       <span>
-                          <?php print l(t('More events'), url('oshevents', array('absolute' => TRUE)), array(
+                          <?php print l(t('More events'), url('events', array('absolute' => TRUE)), array(
                             'attributes' => array('style' => 'color: #003399; text-decoration: none;'),
                             'query' => $url_query,
                             'external' => TRUE)

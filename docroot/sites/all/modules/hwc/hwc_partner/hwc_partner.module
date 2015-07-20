@@ -1,0 +1,264 @@
+<?php
+/**
+ * @file
+ * Code for the HWC Partner feature.
+ */
+
+include_once 'hwc_partner.features.inc';
+
+/**
+ * Implements hook_block_info().
+ */
+function hwc_partner_block_info() {
+  $blocks = array();
+  $blocks_infos = array('Create an event', 'Create News', 'Private Area');
+  foreach ($blocks_infos as $i => $title) {
+    $blocks['hwc_partner_private_link_' . $i] = array(
+      'info' => t('Private link block - ' . $title),
+      'status' => 1,
+      'region' => '-1',
+      'visibility' => BLOCK_VISIBILITY_NOTLISTED,
+      'cache' => DRUPAL_CACHE_GLOBAL,
+    );
+  }
+  return $blocks;
+}
+
+/**
+ * Implements hook_field_extra_fields().
+ */
+function hwc_partner_field_extra_fields() {
+  $extra['node']['partner']['display'] = array(
+    'profile_update_link' => array(
+      'label' => 'Profile update link',
+      'description' => 'A link to update partner profile',
+      'weight' => 0,
+    ),
+  );
+  return $extra;
+}
+
+/**
+ * Retrieve partner node by its corresponding section ID.
+ *
+ * @param integer $id
+ *   Section id for the corresponding partner.
+ *
+ * @return mixed
+ *   Returns partner node object or FALSE if not found
+ */
+function hwc_partner_by_section_id_load($id) {
+  // @todo: We could improve with direct query on node & workbench_access_node.
+  $q = new EntityFieldQuery();
+  $q->entityCondition('entity_type', 'node');
+  $q->entityCondition('bundle', 'partner');
+  $q->propertyCondition('status', NODE_PUBLISHED);
+  $result = $q->execute();
+  if (isset($result['node'])) {
+    $partners = entity_load('node', array_keys($result['node']));
+    foreach($partners as $partner) {
+      if(!empty($partner->workbench_access) && in_array($id, $partner->workbench_access)) {
+        return $partner;
+      }
+    }
+  }
+  return FALSE;
+}
+
+/**
+ * Implements hook_block_configure().
+ */
+function hwc_partner_block_configure($delta = '') {
+  $form = array();
+  // Get the number of the block (0,1,2)
+  $it = substr($delta, -1);
+  $form['hwc_partner_private_link_' . $it . '_title'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Link title'),
+    '#size' => 60,
+    '#description' => 'This text will appear at the top of the block.',
+    '#default_value' => variable_get('hwc_partner_private_link_' . $it . '_title', ''),
+  );
+  $form['hwc_partner_private_link_' . $it . '_description'] = array(
+    '#type' => 'textarea',
+    '#title' => t('Description'),
+    '#size' => 60,
+    '#description' => 'This text will appear as a description under the title.',
+    '#default_value' => variable_get('hwc_partner_private_link_' . $it . '_description', ''),
+  );
+  $form['hwc_partner_private_link_' . $it . '_link_text'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Link text'),
+    '#size' => 60,
+    '#description' => 'This will appear after description. (e.g. "Click here").',
+    '#default_value' => variable_get('hwc_partner_private_link_' . $it . '_link_text', ''),
+  );
+  $form['hwc_partner_private_link_' . $it . '_url'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Link URL'),
+    '#size' => 60,
+    '#description' => 'This will be the url of the private link.',
+    '#default_value' => variable_get('hwc_partner_private_link_' . $it . '_url', ''),
+  );
+  return $form;
+}
+
+/**
+ * Implements hook_block_save().
+ */
+function hwc_partner_block_save($delta = '', $edit = array()) {
+  // Get the number of the block (0,1,2)
+  $it = substr($delta, -1);
+  variable_set('hwc_partner_private_link_' . $it . '_title', $edit['hwc_partner_private_link_' . $it . '_title']);
+  variable_set('hwc_partner_private_link_' . $it . '_description', $edit['hwc_partner_private_link_' . $it . '_description']);
+  variable_set('hwc_partner_private_link_' . $it . '_link_text', $edit['hwc_partner_private_link_' . $it . '_link_text']);
+  variable_set('hwc_partner_private_link_' . $it . '_url', $edit['hwc_partner_private_link_' . $it . '_url']);
+}
+
+/**
+ * Implements hook_block_view().
+ */
+function hwc_partner_block_view($delta = '') {
+  $block = array();
+  if (preg_match('/hwc_partner_private_link_[0-2]/', $delta)) {
+    $it = substr($delta, -1);
+    $url = variable_get('hwc_partner_private_link_' . $it . '_url', '');
+    $block['subject'] = '<none>';
+    $node = menu_get_object();
+    $visible = hwc_partner_match_user_partner($node);
+    if ($visible) {
+      $block['content'] = theme('hwc_partner_private_link_' . $it, array(
+          'hwc_partner_private_link_title' => l(t(variable_get('hwc_partner_private_link_' . $it . '_title')), $url),
+          'hwc_partner_private_link_description' => t(variable_get('hwc_partner_private_link_' . $it . '_description')),
+          'hwc_partner_private_link_link_text' => l(t(variable_get('hwc_partner_private_link_' . $it . '_link_text')), $url),
+        )
+      );
+    }
+  }
+  return $block;
+}
+
+/**
+ * Check if the given user matches a partner node (they are in same section).
+ *
+ * @param stdClass $node
+ * @param stdClass $account
+ *
+ * @return bool
+ *   TRUE if the account is partner and matches the current 'partner' $node.
+ */
+function hwc_partner_match_user_partner($node, $account = NULL) {
+  if (empty($account)) {
+    global $user;
+    $account = $user;
+  }
+  if (empty($account->workbench_access)) {
+    workbench_access_user_load_data($account);
+  }
+  if ($node && $node->type == 'partner' && in_array(ROLE_CAMPAIGN_PARTNER, $account->roles) && !empty($account->workbench_access) && !empty($node->workbench_access)) {
+    foreach(array_keys($account->workbench_access) as $id_section) {
+      if (in_array($id_section, $node->workbench_access)) {
+        return TRUE;
+      }
+    }
+  }
+  return FALSE;
+}
+
+/**
+ * Implements hook_theme().
+ */
+function hwc_partner_theme() {
+  $theme = array();
+  $path = drupal_get_path('module', 'hwc_partner');
+  for ($it = 0; $it < 3; $it++) {
+    $theme['hwc_partner_private_link_' . $it] = array(
+      'template' => 'hwc_partner_private_link',
+      'variables' => array(
+        'hwc_partner_private_link_title' => NULL,
+        'hwc_partner_private_link_description' => NULL,
+        'hwc_partner_private_link_url' => NULL,
+      ),
+      'path' => $path . '/templates',
+    );
+  }
+  return $theme;
+}
+
+/**
+ * Implements hook_node_view().
+ */
+function hwc_partner_node_view($node, $view_mode, $langcode) {
+  if ($node->type == 'partner' && $view_mode == 'full') {
+    $user_is_partner = hwc_partner_match_user_partner($node);
+    if ($user_is_partner) {
+      $node->content['profile_update_link'] = array(
+        '#theme' => 'link',
+        '#text' => t('Update profile'),
+        '#path' => 'node/' . $node->nid . '/edit',
+        '#options' => array(
+          'attributes' => array('onclick' => "alert('@todo: Waiting for the profile edit link ... now move along!'); return false;"),
+          'html' => TRUE,
+        ),
+      );
+    }
+  }
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function hwc_partner_form_news_node_form_alter(&$form, &$form_state) {
+  global $user;
+  if (in_array(ROLE_CAMPAIGN_PARTNER, $user->roles) && count($user->roles) == 2) {
+    foreach($user->workbench_access as $user_id_section => $value) {
+      foreach($form['workbench_access']['workbench_access']['#options'] as $wb_id_section => $label) {
+        if ($user_id_section == $wb_id_section) {
+          $form['workbench_access']['workbench_access']['#default_value'] = $user_id_section;
+          $form['workbench_access']['workbench_access']['#access'] = FALSE;
+          break;
+        }
+      }
+    }
+    if (empty($form['workbench_access']['workbench_access']['#default_value'])) {
+      drupal_goto('<front>');
+    }
+    $form['field_summary']['#access'] = FALSE;
+    $form['field_expiration_date']['#access'] = FALSE;
+    $form['field_tags']['#access'] = FALSE;
+    $form['field_aditional_resources']['#access'] = FALSE;
+    $form['#after_build'][] = 'hwc_partner_node_form_after_build_hide_hints';
+  }
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function hwc_partner_form_events_node_form_alter(&$form, &$form_state) {
+  global $user;
+  if (in_array(ROLE_CAMPAIGN_PARTNER, $user->roles) && count($user->roles) == 2) {
+    foreach($user->workbench_access as $user_id_section => $value) {
+      foreach($form['workbench_access']['workbench_access']['#options'] as $wb_id_section => $label) {
+        if ($user_id_section == $wb_id_section) {
+          $form['workbench_access']['workbench_access']['#default_value'] = $user_id_section;
+          $form['workbench_access']['workbench_access']['#access'] = FALSE;
+          break;
+        }
+      }
+    }
+    if (empty($form['workbench_access']['workbench_access']['#default_value'])) {
+      drupal_goto('<front>');
+    }
+    $form['field_partner_id']['#access'] = FALSE;
+    $form['field_schedule']['#access'] = FALSE;
+    $form['field_speaker']['#access'] = FALSE;
+    $form['#after_build'][] = 'hwc_partner_node_form_after_build_hide_hints';
+  }
+}
+
+function hwc_partner_node_form_after_build_hide_hints($form, &$form_state) {
+  if (!empty($form['body'][LANGUAGE_NONE][0]['format'])) {
+    $form['body'][LANGUAGE_NONE][0]['format']['#attributes']['class'][] = 'hidden';
+  }
+  return ($form);
+}

@@ -325,6 +325,7 @@ $options['init-modules'] = array(
   'languagefield',
   'image_field_caption',
 
+
   'tmgmt',
   'tmgmt_local',
   'tmgmt_locale',
@@ -495,8 +496,11 @@ $options['init-modules'] = array(
   'hwc_admin_reports',
   'hwc_homepage',
   'ncw_migration',
+  'campaign_materials',
   'hwc_menu',
-  'feeds',
+  'hwc_practical_tool',
+  'hwc_partner',
+  'hwc_feeds',
 
 );
 

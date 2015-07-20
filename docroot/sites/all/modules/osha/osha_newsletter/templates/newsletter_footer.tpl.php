@@ -1,4 +1,6 @@
 <?php
+global $base_url;
+
   if (isset($campaign_id)) {
     $url_query = array('pk_campaign' => $campaign_id);
   } else {
@@ -21,17 +23,6 @@
   </tbody>
 </table>
 
-<table border="0" cellpadding="28" cellspacing="0" width="800">
-  <tbody>
-    <tr>
-      <td style="padding-top: 15px; padding-bottom: 15px; text-align: center; font-family: Arial,sans-serif; font-size: 12px; color: #333333;">
-        <span><?php print t('Occupational Safety and Health News &ndash; Europe'); ?></span>
-        <?php global $base_url; print t('Brought to you by EU-OSHA. Visit us at: <a href="@base_url" style="@style">@base_url</a>',
-                    array('@style' => 'color: #003399; border-bottom-color: #DC2F82; border-bottom-style: solid; border-bottom-width: 1px; text-decoration: none;', '@base_url' => $base_url)); ?>
-      </td>
-    </tr>
-  </tbody>
-</table>
 
 <table border="0" cellpadding="0" cellspacing="0" width="800">
   <tbody>
@@ -40,11 +31,8 @@
         <table border="0" cellpadding="28" cellspacing="0" width="800">
           <tbody>
             <tr>
-              <td style="padding-top: 10px; padding-bottom: 10px; color: #FFFFFF; font-family: Arial, sans-serif; font-size: 13px; ">
-                <?php print t('Subscribe to our <a href="@url" style="@style">Alert service</a> for <br/> customised content delivery',
-                            array('@style' => 'color: #FFFFFF;', '@url' => url($base_url.'/en/alertservice', array('query' => $url_query)))); ?>
-              </td>
               <td class="social">
+                <h2 style="color: #ffffff;">Follow us on:</h2>
                 <?php
                   $social = array(
                     'twitter' => array(
@@ -93,7 +81,11 @@
           <tbody>
             <tr>
               <td style="text-align: center; font-family: Arial, sans-serif; font-size: 13px;">
-                <?php print t('No longer wish to receive OSHmail? <a href="@url" style="@style">Unsubscribe here.</a>', array('@style' => 'color: #003399; text-decoration: none;', '@url' => url($base_url.'/en/oshmail-newsletter', array('query' => $url_query)))); ?>
+                <?php
+                  print t('This is a disclaimer lorem ipsum.');
+                  $url = url($base_url.'/en/healthy-workplaces-newsletter', array('query' => $url_query));
+                ?>
+                <a href="<?php echo $url; ?>" style="@style">Unsubscribe.</a>
               </td>
             </tr>
           </tbody>

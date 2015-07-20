@@ -173,13 +173,6 @@ function osha_update_7007() {
     ))
     ->condition('language', $add, 'IN')
     ->execute();
-  // Enable Russian and Turkish.
-  db_update('languages')
-    ->fields(array(
-      'enabled' => 1,
-    ))
-    ->condition('language', array('ru', 'tr'), 'IN')
-    ->execute();
 }
 
 /**

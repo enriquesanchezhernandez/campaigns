@@ -361,7 +361,10 @@ function osha_events_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'node_options_events';
-  $strongarm->value = array();
+  $strongarm->value = array(
+    0 => 'moderation',
+    1 => 'revision',
+  );
   $export['node_options_events'] = $strongarm;
 
   $strongarm = new stdClass();
@@ -377,7 +380,7 @@ function osha_events_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'node_preview_events';
-  $strongarm->value = '1';
+  $strongarm->value = '0';
   $export['node_preview_events'] = $strongarm;
 
   $strongarm = new stdClass();
@@ -405,7 +408,7 @@ function osha_events_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'workbench_access_node_type_events';
-  $strongarm->value = 0;
+  $strongarm->value = 1;
   $export['workbench_access_node_type_events'] = $strongarm;
 
   return $export;

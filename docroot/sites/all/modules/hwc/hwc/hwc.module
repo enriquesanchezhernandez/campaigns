@@ -2,7 +2,45 @@
 
 include_once 'hwc.features.inc';
 
+define('ROLE_CAMPAIGN_PARTNER', 'campaign partner');
 
+/**
+ * Implements hook_permission().
+ */
+function hwc_permission() {
+  return array(
+    'access private area' => array(
+      'title' => t('Access the private area'),
+      'description' => t('Access content inside the private area'),
+    ),
+  );
+}
+
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function hwc_form_user_login_alter(&$form, &$form_state) {
+  drupal_add_js('jQuery(document).ready(function () {jQuery("#edit-name").focus();});', 'inline');
+}
+
+/**
+ * Implements hook_user_login().
+ */
+function hwc_user_login(&$edit, $account) {
+  if (!isset($_POST['form_id']) || $_POST['form_id'] != 'user_pass_reset') {
+    // If the user is a partner, redirect to the corresponding partner profile
+    if (in_array(ROLE_CAMPAIGN_PARTNER, $account->roles) && !empty($account->workbench_access)) {
+      $sections = array_keys($account->workbench_access);
+      foreach($sections as $id_section) {
+        if ($partner = hwc_partner_by_section_id_load($id_section)) {
+          $edit['redirect'] = 'node/' . $partner->nid;
+          break;
+        }
+      }
+    }
+  }
+}
 
 function hwc_req_param($form_state, $name, $default = NULL) {
   if (!empty($form_state['values'][$name])) {
@@ -49,6 +87,72 @@ function hwc_mime_friendly_acronym($mime) {
     return $mappings[$mime];
   }
   return $mime;
+}
+
+
+/**
+* Implements hook_field_formatter_info().
+*/
+function hwc_field_formatter_info() {
+  $info = array(
+    'field_file' => array(
+      'label' => 'Resource file formatter',
+      'field types' => array('file'),
+      'description' => 'Displays default icon per file type and file description.',
+    ),
+  );
+  return $info;
+}
+
+/**
+* Implements hook_theme().
+*/
+function hwc_theme() {
+  return array(
+    'hwc_file_format' => array(
+      'variables' => array('file' => NULL, 'delta' => NULL),
+    ),
+  );
+}
+
+/**
+* Implements hook_field_formatter_view().
+*/
+function hwc_field_formatter_view($entity_type, $entity, $field, $instance, $langcode, $items, $display) {
+  $element = array();
+  switch ($display['type']) {
+    case 'field_file':
+      foreach ($items as $delta => $item) {
+        $element[$delta] = array(
+          '#theme' => 'hwc_file_format',
+          '#file' => $item,
+          '#delta' => $delta,
+        );
+      }
+      break;
+  }
+  return $element;
+}
+
+/*
+* Formats the related resources (attached files) as icon and description/filename
+*/
+function theme_hwc_file_format($element) {
+  $file = (object) $element['file'];
+  $icon_directory = drupal_get_path('theme', 'hwc_frontend') . '/images/file_icons';
+  $name = ($file->description != NULL) ? $file->description : $file->filename;
+  $output = '<a href="' . file_create_url($file->uri) . '">';
+  $output .= theme('file_icon', array(
+    'file' => $file,
+    'icon_directory' => $icon_directory
+  ));
+  $output .= '<span>' . $name . '</span>';
+  $size = @filesize($file->uri);
+  if ($size) {
+    $output .= '<span class="file_size">(' . format_size($size) . ')</span>';
+  }
+  $output .= '</a>';
+  return $output;
 }
 
 /**
