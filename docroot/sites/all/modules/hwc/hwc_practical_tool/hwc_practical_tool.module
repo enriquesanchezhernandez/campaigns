@@ -30,7 +30,7 @@ function hwc_practical_tool_page_alter(&$page) {
   if ($menu = menu_get_item()) {
     if(!empty($menu['path']) && $menu['path'] == 'practical-tools') {
       $subtitle = '';
-      $nid = 139;
+      $nid = 150;
       $fields = field_info_instances('node', 'article');
       $rows = array($nid => (object) array('nid' => $nid, 'vid' => NULL, 'type' => 'article'));
       field_attach_load('node', $rows, FIELD_LOAD_CURRENT, array('field_id' => $fields['body']['field_id']));
