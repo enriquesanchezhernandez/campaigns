@@ -24,7 +24,7 @@ function osha_alert_service_default_fe_block_settings() {
     'roles' => array(),
     'themes' => array(
       'hwc_frontend' => array(
-        'region' => 'sidebar_second',
+        'region' => '',
         'status' => 1,
         'theme' => 'hwc_frontend',
         'weight' => 1,
