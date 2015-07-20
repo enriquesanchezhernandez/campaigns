@@ -397,6 +397,7 @@ function osha_views_default_views() {
     'external_url' => 'external_url',
     'file' => 'file',
     'flickr' => 'flickr',
+    'frontpage_slider' => 'frontpage_slider',
     'highlight' => 'highlight',
     'infographic' => 'infographic',
     'news' => 'news',
