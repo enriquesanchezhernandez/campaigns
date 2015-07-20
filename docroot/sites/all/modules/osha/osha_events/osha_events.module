@@ -12,9 +12,7 @@ include_once 'osha_events.features.inc';
 
 function osha_events_form_alter(&$form, &$form_state, $form_id) {
   if ($form_id == 'events_node_form') {
-
-    $form['#validate'][] = 'osha_events_form_validate';
-
+    array_unshift($form['#validate'], 'osha_events_form_validate');
     // Activity field changes
     if (isset($form['field_activity'][LANGUAGE_NONE][0])) {
       unset($form['field_activity'][LANGUAGE_NONE]['add_more']);
@@ -53,41 +51,40 @@ function osha_events_form_views_exposed_form_alter(&$form, &$form_state) {
   }
 }
 
+
 /**
- * Validation callback.
+ * Implements hook_element_info_alter().
  */
-function osha_events_form_validate($form, &$form_state) {
-  // When publishing an event, some fields are required.
-  $values = $form_state['values'];
-  $node = $form_state['node'];
-  if ($values['status'] == 1) {
-    if (FALSE && empty($values['body'][$node->language]['0']['value'])) {
-      form_set_error('body', t('You have to add a Description.'));
-    }
-    if (empty($values['field_start_date']['und']['0']['value'])) {
-      form_set_error('field_start_date', t('You have to add a Start Date.'));
-    }
-    if (empty($values['field_start_date']['und']['0']['value2'])) {
-      form_set_error('field_start_date', t('You have to add an End Date .'));
-    }
-    if (FALSE && empty($values['field_website_of_event']['und']['0']['title'])) {
-      form_set_error('field_website_of_event', t('You have to add a Web site title.'));
-    }
-    if (FALSE && empty($values['field_website_of_event']['und']['0']['url'])) {
-      form_set_error('field_website_of_event', t('You have to add a Web site url.'));
-    }
-    if (empty($values['field_country_code']['und']['0']['value'])) {
-      form_set_error('field_country_code', t('You have to add a Country Code.'));
-    }
-    if (empty($values['field_city']['und']['0']['value'])) {
-      form_set_error('field_city', t('You have to add a City.'));
-    }
-    if (empty($values['field_tags']['und']['0']['tid'])) {
-      form_set_error('field_tags', t('You have to add a Category.'));
-    }
-  }
+function osha_events_element_info_alter(&$type) {
+  $type['date_popup']['#process'][] = 'osha_events_popup_date_process';
 }
 
+/**
+ * Implements hook_date_popup_pre_validate_alter().
+ */
+function osha_events_popup_date_process($element, &$form_state, $form) {
+  $element['#element_validate'] = array('osha_events_popup_date_validate');
+  return $element;
+}
+
+
+function osha_events_popup_date_validate($element, &$form_state, $form) {
+  if ($element['#name'] == 'field_start_date[und][0][value]') {
+    list($date_format, $time_format) = explode(" ", $element['#date_format']);
+    $element['#date_format'] = trim($date_format);
+    if (empty($form_state['input']['field_start_date'][LANGUAGE_NONE][0]['value']['time'])) {
+      $form_state['input']['field_start_date'][LANGUAGE_NONE][0]['value']['time'] = '00:00';
+    }
+  }
+  if ($element['#name'] == 'field_start_date[und][0][value2]') {
+    list($date_format, $time_format) = explode(" ", $element['#date_format']);
+    $element['#date_format'] = trim($date_format);
+    if (empty($form_state['input']['field_start_date'][LANGUAGE_NONE][0]['value2']['time'])) {
+      $form_state['input']['field_start_date'][LANGUAGE_NONE][0]['value2']['time'] = '00:00';
+    }
+  }
+  date_popup_validate($element, $form_state);
+}
 
 /**
  * Altering Date Popup to remove labels and description for specific field
