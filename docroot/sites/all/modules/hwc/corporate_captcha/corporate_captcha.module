@@ -47,10 +47,10 @@ function corporate_captcha_captcha($op, $captcha_type = '') {
               "length":"' . variable_get('corporate_captcha_length', 6) . '",
               "noise_level":"' . variable_get('corporate_captcha_noise_level', 0) . '",
               "case_sensitive":"' . variable_get('corporate_captcha_case_sensitive', 'false') . '",
+              "autodetect_protocol":"' . variable_get('corporate_captcha_autodetect_protocol', 'true') . '",
               "perturbation":"' . variable_get('corporate_captcha_perturbation', 0.6) . '",
               "num_lines":"' . variable_get('corporate_captcha_num_lines', 8) . '",
-              "noise_level":"' . variable_get('corporate_captcha_noise_level', 0) . '",
-              "use_transparent_text":"' . variable_get('corporate_captcha_use_transparent_text', 'false') . '"
+              "noise_level":"' . variable_get('corporate_captcha_noise_level', 0) . '"
           }
           //--></SPAN>';
 
