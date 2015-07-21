@@ -45,11 +45,15 @@ function eu_captcha_captcha($op, $captcha_type = '') {
         $use_transparent_text = variable_get('eu_captcha_use_transparent_text', '0') ? 'true' : 'false';
         $case_sensitive = variable_get('eu_captcha_case_sensitive', '0') ? 'true' : 'false';
         $autodetect_protocol = variable_get('eu_captcha_autodetect_protocol', '1') ? 'true' : 'false';
+        $lang = 'en';
+        if (!empty($language->language) && $language->language != LANGUAGE_NONE) {
+          $lang = $language->language;
+        }
 
-        $create_captcha =
-          '<SPAN class="captcha"><!--
+        $create_captcha
+          = '<SPAN class="captcha"><!--
           {
-              "lang":"' . $language->language . '",
+              "lang":"' . $lang . '",
               "type":"' . $eu_captcha_type . '",
               "length":' . variable_get('eu_captcha_length', 6) . ',
               "case_sensitive":' . $case_sensitive . ',

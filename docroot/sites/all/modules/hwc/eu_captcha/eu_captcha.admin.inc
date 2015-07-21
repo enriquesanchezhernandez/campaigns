@@ -12,42 +12,7 @@
  */
 function eu_captcha_settings_form() {
 
-  $captcha_languages = array(
-    'bg',
-    'cs',
-    'da',
-    'de',
-    'el',
-    'en',
-    'es',
-    'et',
-    'fr',
-    'ga',
-    'hr',
-    'it',
-    'lt',
-    'lv',
-    'hu',
-    'mt',
-    'nl',
-    'pl',
-    'pt',
-    'ro',
-    'sk',
-    'sl',
-    'fi',
-    'sv',
-  );
-
   $form = array();
-//  Disabled for us because we take the language from global $language
-//  $form['language'] = array(
-//    '#type' => 'select',
-//    '#title' => t('Language'),
-//    '#options' => $captcha_languages,
-//    '#default_value' => variable_get('eu_captcha_language', 'en'),
-//    '#description' => t('Language used for labels and ALT on captcha elements'),
-//  );
   $form['type'] = array(
     '#type' => 'select',
     '#title' => t('Type'),
