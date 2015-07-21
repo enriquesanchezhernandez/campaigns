@@ -22,3 +22,83 @@ function hwc_practical_tool_menu() {
   );
   return $items;
 }
+
+/**
+ * Implements hook_page_alter().
+ */
+function hwc_practical_tool_page_alter(&$page) {
+  if ($menu = menu_get_item()) {
+    if(!empty($menu['path']) && $menu['path'] == 'practical-tools') {
+      $subtitle = '';
+      $nid = 150;
+      $fields = field_info_instances('node', 'article');
+      $rows = array($nid => (object) array('nid' => $nid, 'vid' => NULL, 'type' => 'article'));
+      field_attach_load('node', $rows, FIELD_LOAD_CURRENT, array('field_id' => $fields['body']['field_id']));
+      $node = $rows[$nid];
+      if ($text = field_view_field('node', $node, 'body',  array('label' => 'hidden'))) {
+        drupal_add_library('contextual', 'contextual-links');
+        $subtitle = '<div class="contextual-links-region clearfix">' . drupal_render($text);
+        $subtitle .= '<div class="contextual-links-wrapper"><ul class="contextual-links">';
+        $subtitle .= sprintf('<li><a href="%s">%s</a></li>', url("node/$nid/edit"), t('Edit'));
+        $subtitle .= '</ul></div></div>';
+      }
+
+      array_unshift($page['content'], array(
+        '#type' => 'item',
+        '#markup' => $subtitle
+      ));
+    }
+  }
+}
+
+/**
+ * Implements hook_block_info().
+ */
+function hwc_practical_tool_block_info() {
+  $block['hwc_practical_tool_language_list'] = array(
+    'info' => t('Practical tool language list'),
+    'status' => 1,
+    'region' => '-1',
+    'visibility' => BLOCK_VISIBILITY_NOTLISTED,
+    'cache' => DRUPAL_CACHE_GLOBAL,
+  );
+  return $block;
+}
+
+/**
+ * Implements hook_block_view().
+ */
+function hwc_practical_tool_block_view($delta = '') {
+  $block = array();
+  if($delta == 'hwc_practical_tool_language_list') {
+    $node = menu_get_object();
+    $q = db_select('languages', 'l');
+    $q->fields('l', array('language', 'name', 'native'));
+    $q->innerJoin('entity_translation', 'a', 'l.language = a.language');
+    $q->condition('a.entity_id', $node->nid);
+    $q->condition('a.entity_type', 'node');
+    $languages = $q->execute()->fetchAll();
+
+    $block['content'] = theme('hwc_practical_tool_language_list', array(
+     'languages' => $languages,
+      )
+    );
+  }
+  return $block;
+}
+
+/**
+ * Implements hook_theme().
+ */
+function hwc_practical_tool_theme() {
+  $theme = array();
+  $path = drupal_get_path('module', 'hwc_practical_tool');
+  $theme['hwc_practical_tool_language_list'] = array(
+    'template' => 'hwc_practical_tool_language_list',
+    'variables' => array(
+      'languages' => NULL,
+    ),
+    'path' => $path . '/templates',
+  );
+  return $theme;
+}

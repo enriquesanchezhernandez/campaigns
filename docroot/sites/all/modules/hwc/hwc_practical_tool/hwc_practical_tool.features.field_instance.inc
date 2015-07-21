@@ -22,7 +22,7 @@ function hwc_practical_tool_field_default_field_instances() {
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
-        'weight' => 3,
+        'weight' => 4,
       ),
       'highlights_item' => array(
         'label' => 'above',
@@ -52,7 +52,7 @@ function hwc_practical_tool_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 0,
+        'weight' => 10,
       ),
       'teaser' => array(
         'label' => 'hidden',
@@ -104,7 +104,7 @@ function hwc_practical_tool_field_default_field_instances() {
         'module' => 'link',
         'settings' => array(),
         'type' => 'link_default',
-        'weight' => 6,
+        'weight' => 7,
       ),
       'highlights_item' => array(
         'label' => 'above',
@@ -134,13 +134,13 @@ function hwc_practical_tool_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 0,
+        'weight' => 6,
       ),
       'teaser' => array(
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 5,
+        'weight' => 7,
       ),
     ),
     'entity_type' => 'node',
@@ -228,7 +228,7 @@ function hwc_practical_tool_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 0,
+        'weight' => 7,
       ),
       'teaser' => array(
         'label' => 'inline',
@@ -272,7 +272,7 @@ function hwc_practical_tool_field_default_field_instances() {
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
-        'weight' => 5,
+        'weight' => 6,
       ),
       'highlights_item' => array(
         'label' => 'above',
@@ -302,13 +302,13 @@ function hwc_practical_tool_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 0,
+        'weight' => 8,
       ),
       'teaser' => array(
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 8,
+        'weight' => 10,
       ),
     ),
     'entity_type' => 'node',
@@ -351,7 +351,7 @@ function hwc_practical_tool_field_default_field_instances() {
           'link' => FALSE,
         ),
         'type' => 'entityreference_label',
-        'weight' => 7,
+        'weight' => 8,
       ),
       'highlights_item' => array(
         'label' => 'above',
@@ -381,13 +381,13 @@ function hwc_practical_tool_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 0,
+        'weight' => 9,
       ),
       'teaser' => array(
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 6,
+        'weight' => 8,
       ),
     ),
     'entity_type' => 'node',
@@ -420,7 +420,7 @@ function hwc_practical_tool_field_default_field_instances() {
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
-        'weight' => 4,
+        'weight' => 5,
       ),
       'highlights_item' => array(
         'label' => 'above',
@@ -450,13 +450,13 @@ function hwc_practical_tool_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 0,
+        'weight' => 5,
       ),
       'teaser' => array(
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 7,
+        'weight' => 9,
       ),
     ),
     'entity_type' => 'node',
@@ -496,7 +496,7 @@ function hwc_practical_tool_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 8,
+        'weight' => 10,
       ),
       'highlights_item' => array(
         'label' => 'above',
@@ -584,7 +584,7 @@ function hwc_practical_tool_field_default_field_instances() {
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
-        'weight' => 2,
+        'weight' => 3,
       ),
       'highlights_item' => array(
         'label' => 'above',
@@ -614,7 +614,7 @@ function hwc_practical_tool_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 0,
+        'weight' => 1,
       ),
       'teaser' => array(
         'label' => 'inline',
@@ -654,8 +654,8 @@ function hwc_practical_tool_field_default_field_instances() {
     'workbench_access_field' => 0,
   );
 
-  // Exported field_instance: 'node-practical_tool-field_tool_type'
-  $field_instances['node-practical_tool-field_tool_type'] = array(
+  // Exported field_instance: 'node-practical_tool-field_relevant_for'
+  $field_instances['node-practical_tool-field_relevant_for'] = array(
     'bundle' => 'practical_tool',
     'default_value' => NULL,
     'deleted' => 0,
@@ -663,9 +663,8 @@ function hwc_practical_tool_field_default_field_instances() {
     'display' => array(
       'default' => array(
         'label' => 'above',
-        'module' => 'i18n_taxonomy',
         'settings' => array(),
-        'type' => 'i18n_taxonomy_term_reference_link',
+        'type' => 'hidden',
         'weight' => 9,
       ),
       'highlights_item' => array(
@@ -696,13 +695,85 @@ function hwc_practical_tool_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 0,
+        'weight' => 4,
       ),
       'teaser' => array(
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
+        'weight' => 6,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_relevant_for',
+    'label' => 'Relevant for',
+    'required' => 0,
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 0,
+      'module' => 'multiple_selects',
+      'settings' => array(),
+      'type' => 'multiple_selects',
+      'weight' => 14,
+    ),
+    'workbench_access_field' => 0,
+  );
+
+  // Exported field_instance: 'node-practical_tool-field_tool_type'
+  $field_instances['node-practical_tool-field_tool_type'] = array(
+    'bundle' => 'practical_tool',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'i18n_taxonomy',
+        'settings' => array(),
+        'type' => 'i18n_taxonomy_term_reference_link',
+        'weight' => 2,
+      ),
+      'highlights_item' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
         'weight' => 0,
+      ),
+      'newsletter_item' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'osha_resources' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'osha_slideshow' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'pub_teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 2,
+      ),
+      'teaser' => array(
+        'label' => 'inline',
+        'module' => 'shs',
+        'settings' => array(
+          'linked' => FALSE,
+        ),
+        'type' => 'shs_default',
+        'weight' => 5,
       ),
     ),
     'entity_type' => 'node',
@@ -771,7 +842,7 @@ function hwc_practical_tool_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 0,
+        'weight' => 3,
       ),
       'teaser' => array(
         'label' => 'hidden',
@@ -825,6 +896,7 @@ function hwc_practical_tool_field_default_field_instances() {
   t('Implementation steps');
   t('Objective');
   t('Provider');
+  t('Relevant for');
   t('Tool name');
   t('Type');
 
