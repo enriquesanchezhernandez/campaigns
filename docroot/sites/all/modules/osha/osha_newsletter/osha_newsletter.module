@@ -520,7 +520,7 @@ function campaigns_newsletter_subscribe_form() {
     '#size' => 30,
     '#attributes' => array(
       'placeholder' => t('E-mail address'),
-      'onclick' => "jQuery('div.captcha').show()"
+      'onclick' => "jQuery('.captcha').show()"
     ),
   );
   $form['submit'] = array(

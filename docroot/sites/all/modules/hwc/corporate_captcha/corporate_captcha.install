@@ -1,0 +1,16 @@
+<?php
+
+/**
+ * @file
+ * Installation/uninstallation related functions for the corporate_captcha module.
+ */
+
+/**
+ * On uninstall: remove module variables and clear variable cache
+ */
+function corporate_captcha_uninstall() {
+  db_delete('variable')
+    ->condition('name', db_like('corporate_captcha_') . '%', 'LIKE')
+    ->execute();
+  cache_clear_all('variables', 'cache');
+}

@@ -73,14 +73,14 @@ div.workbench-info-block {
     color: #ffffff;
     text-align: center;
     margin: 0;
-    top: 70px;
+    top: 15px;
 }
 #block_newsletter_image_text {
     position: absolute;
     width: 100%;
     color: #ffffff;
     text-align: center;
-    top: 120px;
+    top: 60px;
 }
 #join_subscribers img {
     position: absolute;
@@ -89,7 +89,7 @@ div.workbench-info-block {
     z-index: -10;
 }
 #views-exposed-form-search-site {
-    margin: 20px 0 0 0;
+    margin: 10px 0 0 0;
 }
 #views-exposed-form-search-site .form-type-textfield,
 #views-exposed-form-search-site input,
@@ -116,6 +116,10 @@ div.workbench-info-block {
 }
 .captcha {
     display: none;
+    z-index: 100;
+}
+#block-osha-newsletter-osha-newsletter-image .form-item-security-code {
+    margin-top: 50px;
 }
 /* Homepage newsletter block END */
 
@@ -126,4 +130,49 @@ div.workbench-info-block {
 .dropdown-toggle:hover {
     background-color: #d6d6d6;
     cursor: pointer;
+}
+
+/* Corporate captcha */
+#captcha_0 {
+    display: block !important;
+    margin-top: 5px !important;
+}
+.captchaContainer {
+    position: relative;
+}
+#captcha_0_readaudio, #captcha_0_refresh {
+    display: inline-block !important;
+}
+#captcha_0_readaudio img, #captcha_0_refresh img {
+    height: 38px;
+    width: 38px;
+    z-index: 100;
+}
+#captcha_0_img {
+    height: 80px !important;
+    width: 215px !important;
+}
+#captcha_0 #security_code {
+    color: #000000;
+}
+/* Captcha for newsletter subscribe on homepage */
+#block-osha-newsletter-osha-newsletter-image #captcha_0 {
+    margin-left: auto;
+    margin-right: auto;
+    width: 257px;
+}
+#block-osha-newsletter-osha-newsletter-image .captchaContainer {
+    width: 257px;
+}
+#block-osha-newsletter-osha-newsletter-image #captcha_0_readaudio img, #captcha_0_refresh img {
+    right: 0;
+}
+#block-osha-newsletter-osha-newsletter-image #captcha_0_readaudio img {
+    top: 0;
+}
+#block-osha-newsletter-osha-newsletter-image #captcha_0_refresh img {
+    top: 43px;
+}
+#block-osha-newsletter-osha-newsletter-image #captcha_0_img {
+    left: 0;
 }
