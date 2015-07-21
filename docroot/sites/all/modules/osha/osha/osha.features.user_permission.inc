@@ -46,6 +46,7 @@ function osha_user_default_permissions() {
   $permissions['administer comments'] = array(
     'name' => 'administer comments',
     'roles' => array(
+      'Superadministrators' => 'Superadministrators',
       'administrator' => 'administrator',
     ),
     'module' => 'comment',

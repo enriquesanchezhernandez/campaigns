@@ -131,6 +131,12 @@ function campaign_materials_views_default_views() {
   /* Display: Campaign materials page */
   $handler = $view->new_display('page', 'Campaign materials page', 'page_1');
   $handler->display->display_options['path'] = 'campaign-materials';
+  $handler->display->display_options['menu']['type'] = 'normal';
+  $handler->display->display_options['menu']['title'] = 'Campaign materials';
+  $handler->display->display_options['menu']['weight'] = '0';
+  $handler->display->display_options['menu']['name'] = 'main-menu';
+  $handler->display->display_options['menu']['context'] = 0;
+  $handler->display->display_options['menu']['context_only_inline'] = 0;
   $translatables['view_campaign_materials'] = array(
     t('Master'),
     t('> See more'),
