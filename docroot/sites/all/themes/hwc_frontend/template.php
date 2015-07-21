@@ -146,5 +146,19 @@ function hwc_frontend_preprocess_page(&$vars) {
       $breadcrumbs = _path_breadcrumbs_build_breadcrumbs($pb);
       drupal_set_breadcrumb($breadcrumbs);
     }
+    if ($node->type == 'practical_tool') {
+      ctools_include('plugins');
+      ctools_include('context');
+      $pb = path_breadcrumbs_load_by_name('practical_tools_details_page');
+      $breadcrumbs = _path_breadcrumbs_build_breadcrumbs($pb);
+      drupal_set_breadcrumb($breadcrumbs);
+    }
+    if ($node->type == 'campaign_materials') {
+      ctools_include('plugins');
+      ctools_include('context');
+      $pb = path_breadcrumbs_load_by_name('campaign_materials_details_page');
+      $breadcrumbs = _path_breadcrumbs_build_breadcrumbs($pb);
+      drupal_set_breadcrumb($breadcrumbs);
+    }
   }
 }
