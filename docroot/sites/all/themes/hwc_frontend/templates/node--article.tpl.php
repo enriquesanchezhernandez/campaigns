@@ -31,7 +31,9 @@
   print render($content['field_summary']);
   print render($content['body']);
 
-  print render($content['links']['#links']['addtoany']['title']);
+  if ($view_mode == 'full') {
+    print render($content['links']['#links']['addtoany']['title']);
+  }
 
   // Recommended for you
   if (!empty($content['field_recommended_articles']) || !empty($content['field_recommended_resources'])) {
