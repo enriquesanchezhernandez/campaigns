@@ -208,10 +208,11 @@ function hwc_admin_reports_views_default_views() {
   $handler->display->display_options['fields']['name']['relationship'] = 'uid';
   $handler->display->display_options['fields']['name']['label'] = 'Author';
   $handler->display->display_options['fields']['name']['link_to_user'] = FALSE;
-  $handler->display->display_options['path'] = 'admin/content-reports/news';
-  $handler->display->display_options['menu']['type'] = 'default tab';
+  $handler->display->display_options['path'] = 'admin/reports/news';
+  $handler->display->display_options['menu']['type'] = 'normal';
   $handler->display->display_options['menu']['title'] = 'News';
   $handler->display->display_options['menu']['weight'] = '0';
+  $handler->display->display_options['menu']['name'] = 'management';
   $handler->display->display_options['menu']['context'] = 0;
   $handler->display->display_options['menu']['context_only_inline'] = 0;
   $handler->display->display_options['tab_options']['type'] = 'normal';
@@ -402,6 +403,94 @@ function hwc_admin_reports_views_default_views() {
     'multiple_to' => '',
     'osha_date_theme' => '',
   );
+  $handler->display->display_options['defaults']['filter_groups'] = FALSE;
+  $handler->display->display_options['defaults']['filters'] = FALSE;
+  /* Filter criterion: Content: Published */
+  $handler->display->display_options['filters']['status']['id'] = 'status';
+  $handler->display->display_options['filters']['status']['table'] = 'node';
+  $handler->display->display_options['filters']['status']['field'] = 'status';
+  $handler->display->display_options['filters']['status']['value'] = 1;
+  $handler->display->display_options['filters']['status']['group'] = 1;
+  $handler->display->display_options['filters']['status']['expose']['operator'] = FALSE;
+  /* Filter criterion: Content: Type */
+  $handler->display->display_options['filters']['type']['id'] = 'type';
+  $handler->display->display_options['filters']['type']['table'] = 'node';
+  $handler->display->display_options['filters']['type']['field'] = 'type';
+  $handler->display->display_options['filters']['type']['value'] = array(
+    'events' => 'events',
+  );
+  /* Filter criterion: Field: Publication date (field_publication_date) */
+  $handler->display->display_options['filters']['field_publication_date_value']['id'] = 'field_publication_date_value';
+  $handler->display->display_options['filters']['field_publication_date_value']['table'] = 'field_data_field_publication_date';
+  $handler->display->display_options['filters']['field_publication_date_value']['field'] = 'field_publication_date_value';
+  $handler->display->display_options['filters']['field_publication_date_value']['operator'] = '>=';
+  $handler->display->display_options['filters']['field_publication_date_value']['value']['value'] = '2015-01-02';
+  $handler->display->display_options['filters']['field_publication_date_value']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['field_publication_date_value']['expose']['operator_id'] = 'field_publication_date_value_op';
+  $handler->display->display_options['filters']['field_publication_date_value']['expose']['label'] = 'Publication date';
+  $handler->display->display_options['filters']['field_publication_date_value']['expose']['operator'] = 'field_publication_date_value_op';
+  $handler->display->display_options['filters']['field_publication_date_value']['expose']['identifier'] = 'field_publication_date_value';
+  $handler->display->display_options['filters']['field_publication_date_value']['expose']['remember_roles'] = array(
+    2 => '2',
+    1 => 0,
+    3 => 0,
+    4 => 0,
+    5 => 0,
+    6 => 0,
+    7 => 0,
+    8 => 0,
+    9 => 0,
+    10 => 0,
+    11 => 0,
+  );
+  $handler->display->display_options['filters']['field_publication_date_value']['form_type'] = 'date_popup';
+  /* Filter criterion: User: Roles */
+  $handler->display->display_options['filters']['rid']['id'] = 'rid';
+  $handler->display->display_options['filters']['rid']['table'] = 'users_roles';
+  $handler->display->display_options['filters']['rid']['field'] = 'rid';
+  $handler->display->display_options['filters']['rid']['relationship'] = 'uid';
+  $handler->display->display_options['filters']['rid']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['rid']['expose']['operator_id'] = 'rid_op';
+  $handler->display->display_options['filters']['rid']['expose']['label'] = 'Author';
+  $handler->display->display_options['filters']['rid']['expose']['operator'] = 'rid_op';
+  $handler->display->display_options['filters']['rid']['expose']['identifier'] = 'rid';
+  $handler->display->display_options['filters']['rid']['expose']['remember_roles'] = array(
+    2 => '2',
+    1 => 0,
+    3 => 0,
+    4 => 0,
+    5 => 0,
+    6 => 0,
+    7 => 0,
+    8 => 0,
+    9 => 0,
+    10 => 0,
+    11 => 0,
+  );
+  /* Filter criterion: Workbench Access: Access filter */
+  $handler->display->display_options['filters']['access_id']['id'] = 'access_id';
+  $handler->display->display_options['filters']['access_id']['table'] = 'workbench_access';
+  $handler->display->display_options['filters']['access_id']['field'] = 'access_id';
+  $handler->display->display_options['filters']['access_id']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['access_id']['expose']['operator_id'] = 'access_id_op';
+  $handler->display->display_options['filters']['access_id']['expose']['label'] = 'Access filter';
+  $handler->display->display_options['filters']['access_id']['expose']['operator'] = 'access_id_op';
+  $handler->display->display_options['filters']['access_id']['expose']['identifier'] = 'access_id';
+  $handler->display->display_options['filters']['access_id']['expose']['remember_roles'] = array(
+    2 => '2',
+    1 => 0,
+    3 => 0,
+    4 => 0,
+    5 => 0,
+    6 => 0,
+    7 => 0,
+    8 => 0,
+    9 => 0,
+    10 => 0,
+    11 => 0,
+  );
+  $handler->display->display_options['filters']['access_id']['access_id'] = array();
+  $handler->display->display_options['filters']['access_id']['size'] = '5';
   $handler->display->display_options['path'] = 'admin/content-reports/export/events';
   $handler->display->display_options['displays'] = array(
     'page_1' => 'page_1',
@@ -411,10 +500,101 @@ function hwc_admin_reports_views_default_views() {
 
   /* Display: Events */
   $handler = $view->new_display('page', 'Events', 'page_1');
-  $handler->display->display_options['path'] = 'admin/content-reports/events';
-  $handler->display->display_options['menu']['type'] = 'tab';
+  $handler->display->display_options['defaults']['title'] = FALSE;
+  $handler->display->display_options['title'] = 'Events reports';
+  $handler->display->display_options['defaults']['filter_groups'] = FALSE;
+  $handler->display->display_options['defaults']['filters'] = FALSE;
+  /* Filter criterion: Content: Published */
+  $handler->display->display_options['filters']['status']['id'] = 'status';
+  $handler->display->display_options['filters']['status']['table'] = 'node';
+  $handler->display->display_options['filters']['status']['field'] = 'status';
+  $handler->display->display_options['filters']['status']['value'] = 1;
+  $handler->display->display_options['filters']['status']['group'] = 1;
+  $handler->display->display_options['filters']['status']['expose']['operator'] = FALSE;
+  /* Filter criterion: Content: Type */
+  $handler->display->display_options['filters']['type']['id'] = 'type';
+  $handler->display->display_options['filters']['type']['table'] = 'node';
+  $handler->display->display_options['filters']['type']['field'] = 'type';
+  $handler->display->display_options['filters']['type']['value'] = array(
+    'events' => 'events',
+  );
+  /* Filter criterion: Field: Publication date (field_publication_date) */
+  $handler->display->display_options['filters']['field_publication_date_value']['id'] = 'field_publication_date_value';
+  $handler->display->display_options['filters']['field_publication_date_value']['table'] = 'field_data_field_publication_date';
+  $handler->display->display_options['filters']['field_publication_date_value']['field'] = 'field_publication_date_value';
+  $handler->display->display_options['filters']['field_publication_date_value']['operator'] = '>=';
+  $handler->display->display_options['filters']['field_publication_date_value']['value']['value'] = '2015-01-02';
+  $handler->display->display_options['filters']['field_publication_date_value']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['field_publication_date_value']['expose']['operator_id'] = 'field_publication_date_value_op';
+  $handler->display->display_options['filters']['field_publication_date_value']['expose']['label'] = 'Publication date';
+  $handler->display->display_options['filters']['field_publication_date_value']['expose']['operator'] = 'field_publication_date_value_op';
+  $handler->display->display_options['filters']['field_publication_date_value']['expose']['identifier'] = 'field_publication_date_value';
+  $handler->display->display_options['filters']['field_publication_date_value']['expose']['remember_roles'] = array(
+    2 => '2',
+    1 => 0,
+    3 => 0,
+    4 => 0,
+    5 => 0,
+    6 => 0,
+    7 => 0,
+    8 => 0,
+    9 => 0,
+    10 => 0,
+    11 => 0,
+  );
+  $handler->display->display_options['filters']['field_publication_date_value']['form_type'] = 'date_popup';
+  /* Filter criterion: User: Roles */
+  $handler->display->display_options['filters']['rid']['id'] = 'rid';
+  $handler->display->display_options['filters']['rid']['table'] = 'users_roles';
+  $handler->display->display_options['filters']['rid']['field'] = 'rid';
+  $handler->display->display_options['filters']['rid']['relationship'] = 'uid';
+  $handler->display->display_options['filters']['rid']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['rid']['expose']['operator_id'] = 'rid_op';
+  $handler->display->display_options['filters']['rid']['expose']['label'] = 'Author';
+  $handler->display->display_options['filters']['rid']['expose']['operator'] = 'rid_op';
+  $handler->display->display_options['filters']['rid']['expose']['identifier'] = 'rid';
+  $handler->display->display_options['filters']['rid']['expose']['remember_roles'] = array(
+    2 => '2',
+    1 => 0,
+    3 => 0,
+    4 => 0,
+    5 => 0,
+    6 => 0,
+    7 => 0,
+    8 => 0,
+    9 => 0,
+    10 => 0,
+    11 => 0,
+  );
+  /* Filter criterion: Workbench Access: Access filter */
+  $handler->display->display_options['filters']['access_id']['id'] = 'access_id';
+  $handler->display->display_options['filters']['access_id']['table'] = 'workbench_access';
+  $handler->display->display_options['filters']['access_id']['field'] = 'access_id';
+  $handler->display->display_options['filters']['access_id']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['access_id']['expose']['operator_id'] = 'access_id_op';
+  $handler->display->display_options['filters']['access_id']['expose']['label'] = 'Access filter';
+  $handler->display->display_options['filters']['access_id']['expose']['operator'] = 'access_id_op';
+  $handler->display->display_options['filters']['access_id']['expose']['identifier'] = 'access_id';
+  $handler->display->display_options['filters']['access_id']['expose']['remember_roles'] = array(
+    2 => '2',
+    1 => 0,
+    3 => 0,
+    4 => 0,
+    5 => 0,
+    6 => 0,
+    7 => 0,
+    8 => 0,
+    9 => 0,
+    10 => 0,
+    11 => 0,
+  );
+  $handler->display->display_options['filters']['access_id']['access_id'] = array();
+  $handler->display->display_options['filters']['access_id']['size'] = '5';
+  $handler->display->display_options['path'] = 'admin/reports/events';
+  $handler->display->display_options['menu']['type'] = 'normal';
   $handler->display->display_options['menu']['title'] = 'Events';
   $handler->display->display_options['menu']['weight'] = '0';
+  $handler->display->display_options['menu']['name'] = 'management';
   $handler->display->display_options['menu']['context'] = 0;
   $handler->display->display_options['menu']['context_only_inline'] = 0;
   $translatables['content_reports'] = array(
@@ -446,6 +626,7 @@ function hwc_admin_reports_views_default_views() {
     t('News export'),
     t('Events export'),
     t('Events'),
+    t('Events reports'),
   );
   $export['content_reports'] = $view;
 
