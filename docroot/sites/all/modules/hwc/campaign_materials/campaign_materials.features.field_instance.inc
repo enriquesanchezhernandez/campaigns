@@ -1096,74 +1096,6 @@ function campaign_materials_field_default_field_instances() {
     'workbench_access_field' => 0,
   );
 
-  // Exported field_instance: 'node-campaign_materials-field_thesaurus'
-  $field_instances['node-campaign_materials-field_thesaurus'] = array(
-    'bundle' => 'campaign_materials',
-    'default_value' => NULL,
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
-      'default' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 10,
-      ),
-      'highlights_item' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-      'newsletter_item' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-      'osha_resources' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-      'osha_slideshow' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-      'pub_teaser' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-      'teaser' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 13,
-      ),
-    ),
-    'entity_type' => 'node',
-    'field_name' => 'field_thesaurus',
-    'label' => 'Thesaurus',
-    'required' => 0,
-    'settings' => array(
-      'entity_translation_sync' => FALSE,
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'active' => 0,
-      'module' => 'multiple_selects',
-      'settings' => array(),
-      'type' => 'multiple_selects',
-      'weight' => 52,
-    ),
-    'workbench_access_field' => 0,
-  );
-
   // Exported field_instance: 'node-campaign_materials-title_field'
   $field_instances['node-campaign_materials-title_field'] = array(
     'bundle' => 'campaign_materials',
@@ -1253,7 +1185,6 @@ function campaign_materials_field_default_field_instances() {
   t('Publication date');
   t('Summary');
   t('Tags');
-  t('Thesaurus');
   t('Title');
 
   return $field_instances;

@@ -126,7 +126,6 @@ function osha_views_default_views() {
     'newsletter_sections' => 0,
     'publication_types' => 0,
     'tags' => 0,
-    'thesaurus' => 0,
   );
   /* Relationship: Content: Entity translation: translations */
   $handler->display->display_options['relationships']['entity_translations']['id'] = 'entity_translations';

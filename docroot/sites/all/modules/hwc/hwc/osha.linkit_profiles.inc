@@ -89,7 +89,6 @@ function osha_default_linkit_profiles() {
         'esener' => 0,
         'nace_codes' => 0,
         'section' => 0,
-        'thesaurus' => 0,
         'publication_types' => 0,
         'newsletter_sections' => 0,
         'flickr_tags' => 0,

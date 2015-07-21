@@ -137,7 +137,6 @@ function osha_workflow_strongarm() {
     'organised_by' => 0,
     'publication_types' => 0,
     'tags' => 0,
-    'thesaurus' => 0,
     'wg_category' => 0,
     'wg_role_1' => 0,
     'wg_role_2' => 0,
