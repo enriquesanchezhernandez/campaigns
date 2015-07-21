@@ -444,6 +444,7 @@ $options['init-modules'] = array(
 
   'image_url_formatter',
   'views_data_export',
+  'phpexcel',
 
   // Captcha
  'recaptcha',
