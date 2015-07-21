@@ -1113,7 +1113,7 @@ function osha_field_default_field_instances() {
     'description' => '',
     'display' => array(
       'default' => array(
-        'label' => 'above',
+        'label' => 'hidden',
         'module' => 'entityreference',
         'settings' => array(
           'links' => 0,
@@ -1192,12 +1192,13 @@ function osha_field_default_field_instances() {
     'description' => '',
     'display' => array(
       'default' => array(
-        'label' => 'above',
+        'label' => 'hidden',
         'module' => 'entityreference',
         'settings' => array(
-          'link' => FALSE,
+          'links' => 1,
+          'view_mode' => 'osha_resources',
         ),
-        'type' => 'entityreference_label',
+        'type' => 'entityreference_entity_view',
         'weight' => 12,
       ),
       'highlights_item' => array(
@@ -1459,11 +1460,11 @@ function osha_field_default_field_instances() {
     'description' => '',
     'display' => array(
       'default' => array(
-        'label' => 'above',
+        'label' => 'hidden',
         'module' => 'link',
         'settings' => array(),
         'type' => 'link_default',
-        'weight' => 2,
+        'weight' => 0,
       ),
       'highlights_item' => array(
         'label' => 'above',
@@ -1478,9 +1479,10 @@ function osha_field_default_field_instances() {
         'weight' => 0,
       ),
       'osha_resources' => array(
-        'label' => 'above',
+        'label' => 'hidden',
+        'module' => 'link',
         'settings' => array(),
-        'type' => 'hidden',
+        'type' => 'link_default',
         'weight' => 0,
       ),
       'osha_slideshow' => array(
@@ -1496,15 +1498,16 @@ function osha_field_default_field_instances() {
         'weight' => 0,
       ),
       'teaser' => array(
-        'label' => 'above',
+        'label' => 'hidden',
+        'module' => 'link',
         'settings' => array(),
-        'type' => 'hidden',
+        'type' => 'link_default',
         'weight' => 0,
       ),
     ),
     'entity_type' => 'node',
     'field_name' => 'field_external_url',
-    'label' => 'External URL',
+    'label' => 'URL',
     'required' => 0,
     'settings' => array(
       'absolute_url' => 1,
@@ -1529,7 +1532,7 @@ function osha_field_default_field_instances() {
       'rel_remove' => 'default',
       'title' => 'optional',
       'title_label_use_field_label' => 0,
-      'title_maxlength' => 128,
+      'title_maxlength' => 255,
       'title_value' => '',
       'url' => 0,
       'user_register_form' => FALSE,
@@ -1554,9 +1557,8 @@ function osha_field_default_field_instances() {
     'display' => array(
       'default' => array(
         'label' => 'above',
-        'module' => 'text',
         'settings' => array(),
-        'type' => 'text_default',
+        'type' => 'hidden',
         'weight' => 1,
       ),
       'highlights_item' => array(
@@ -1575,7 +1577,7 @@ function osha_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 0,
+        'weight' => 1,
       ),
       'osha_slideshow' => array(
         'label' => 'above',
@@ -1593,7 +1595,7 @@ function osha_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 0,
+        'weight' => 1,
       ),
     ),
     'entity_type' => 'node',
@@ -2126,7 +2128,6 @@ function osha_field_default_field_instances() {
   t('Character count');
   t('Description');
   t('Expiration date');
-  t('External URL');
   t('Image');
   t('Language');
   t('Page Introduction');
@@ -2138,6 +2139,7 @@ function osha_field_default_field_instances() {
   t('Title');
   t('Title text');
   t('Title text is used in the tool tip when a user hovers their mouse over the image. Adding title text makes it easier to understand the context of an image and improves usability.');
+  t('URL');
 
   return $field_instances;
 }

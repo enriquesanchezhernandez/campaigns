@@ -14,6 +14,7 @@ function osha_search_user_default_permissions() {
   $permissions['administer Search Autocomplete'] = array(
     'name' => 'administer Search Autocomplete',
     'roles' => array(
+      'Superadministrators' => 'Superadministrators',
       'administrator' => 'administrator',
     ),
     'module' => 'search_autocomplete',
@@ -23,6 +24,7 @@ function osha_search_user_default_permissions() {
   $permissions['administer search'] = array(
     'name' => 'administer search',
     'roles' => array(
+      'Superadministrators' => 'Superadministrators',
       'administrator' => 'administrator',
     ),
     'module' => 'search',
@@ -32,6 +34,7 @@ function osha_search_user_default_permissions() {
   $permissions['administer search_api'] = array(
     'name' => 'administer search_api',
     'roles' => array(
+      'Superadministrators' => 'Superadministrators',
       'administrator' => 'administrator',
     ),
     'module' => 'search_api',
@@ -63,6 +66,7 @@ function osha_search_user_default_permissions() {
   $permissions['use advanced search'] = array(
     'name' => 'use advanced search',
     'roles' => array(
+      'Superadministrators' => 'Superadministrators',
       'administrator' => 'administrator',
     ),
     'module' => 'search',

@@ -506,6 +506,7 @@ function osha_resources_views_default_views() {
     'file' => 'file',
     'flickr' => 'flickr',
     'infographic' => 'infographic',
+    'internal_url' => 'internal_url',
     'news' => 'news',
     'publication' => 'publication',
     'slideshare' => 'slideshare',
@@ -530,6 +531,7 @@ function osha_resources_views_default_views() {
     10 => 0,
     11 => 0,
     12 => 0,
+    13 => 0,
   );
   $handler->display->display_options['filters']['type']['expose']['reduce'] = TRUE;
   /* Filter criterion: Content: Title */
