@@ -155,8 +155,9 @@ function osha_events_strongarm() {
     'search_result' => 0,
     'diff_standard' => 0,
     'osha_slideshow' => 0,
+    'highlights_item' => 0,
     'newsletter_item' => 0,
-    'osha_wiki' => 0,
+    'pub_teaser' => 0,
     'print' => 0,
     'token' => 0,
     'nodeform' => 0,
@@ -222,16 +223,16 @@ function osha_events_strongarm() {
     'extra_fields' => array(
       'form' => array(
         'metatags' => array(
-          'weight' => '3',
+          'weight' => '4',
         ),
         'title' => array(
           'weight' => '4',
         ),
         'path' => array(
-          'weight' => '2',
+          'weight' => '3',
         ),
         'redirect' => array(
-          'weight' => '1',
+          'weight' => '2',
         ),
         'workbench_access' => array(
           'weight' => '1',

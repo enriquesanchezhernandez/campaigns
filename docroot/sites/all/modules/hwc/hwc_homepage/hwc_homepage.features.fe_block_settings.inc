@@ -136,10 +136,10 @@ function hwc_homepage_default_fe_block_settings() {
     'roles' => array(),
     'themes' => array(
       'hwc_frontend' => array(
-        'region' => 'header',
+        'region' => 'content',
         'status' => 1,
         'theme' => 'hwc_frontend',
-        'weight' => 0,
+        'weight' => -58,
       ),
       'seven' => array(
         'region' => '',

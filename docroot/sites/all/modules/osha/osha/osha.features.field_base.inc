@@ -486,6 +486,7 @@ function osha_field_default_field_bases() {
           'file' => 'file',
           'flickr' => 'flickr',
           'infographic' => 'infographic',
+          'internal_url' => 'internal_url',
           'news' => 'news',
           'press_release' => 'press_release',
           'publication' => 'publication',
