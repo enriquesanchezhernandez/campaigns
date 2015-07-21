@@ -166,6 +166,48 @@ function hwc_admin_reports_views_default_views() {
   $handler = $view->new_display('page', 'News', 'page');
   $handler->display->display_options['defaults']['title'] = FALSE;
   $handler->display->display_options['title'] = 'News reports';
+  $handler->display->display_options['defaults']['fields'] = FALSE;
+  /* Field: Content: Title */
+  $handler->display->display_options['fields']['title']['id'] = 'title';
+  $handler->display->display_options['fields']['title']['table'] = 'node';
+  $handler->display->display_options['fields']['title']['field'] = 'title';
+  $handler->display->display_options['fields']['title']['alter']['word_boundary'] = FALSE;
+  $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
+  /* Field: Field: Publication date */
+  $handler->display->display_options['fields']['field_publication_date']['id'] = 'field_publication_date';
+  $handler->display->display_options['fields']['field_publication_date']['table'] = 'field_data_field_publication_date';
+  $handler->display->display_options['fields']['field_publication_date']['field'] = 'field_publication_date';
+  $handler->display->display_options['fields']['field_publication_date']['settings'] = array(
+    'format_type' => 'long',
+    'fromto' => 'both',
+    'multiple_number' => '',
+    'multiple_from' => '',
+    'multiple_to' => '',
+    'osha_date_theme' => '',
+  );
+  /* Field: Content: Expiration date */
+  $handler->display->display_options['fields']['field_expiration_date']['id'] = 'field_expiration_date';
+  $handler->display->display_options['fields']['field_expiration_date']['table'] = 'field_data_field_expiration_date';
+  $handler->display->display_options['fields']['field_expiration_date']['field'] = 'field_expiration_date';
+  $handler->display->display_options['fields']['field_expiration_date']['settings'] = array(
+    'format_type' => 'long',
+    'fromto' => 'both',
+    'multiple_number' => '',
+    'multiple_from' => '',
+    'multiple_to' => '',
+    'osha_date_theme' => '',
+  );
+  /* Field: Workbench Access: Section */
+  $handler->display->display_options['fields']['section']['id'] = 'section';
+  $handler->display->display_options['fields']['section']['table'] = 'workbench_access';
+  $handler->display->display_options['fields']['section']['field'] = 'section';
+  /* Field: User: Name */
+  $handler->display->display_options['fields']['name']['id'] = 'name';
+  $handler->display->display_options['fields']['name']['table'] = 'users';
+  $handler->display->display_options['fields']['name']['field'] = 'name';
+  $handler->display->display_options['fields']['name']['relationship'] = 'uid';
+  $handler->display->display_options['fields']['name']['label'] = 'Author';
+  $handler->display->display_options['fields']['name']['link_to_user'] = FALSE;
   $handler->display->display_options['path'] = 'admin/content-reports/news';
   $handler->display->display_options['menu']['type'] = 'default tab';
   $handler->display->display_options['menu']['title'] = 'News';
@@ -179,45 +221,139 @@ function hwc_admin_reports_views_default_views() {
   /* Display: News export */
   $handler = $view->new_display('views_data_export', 'News export', 'views_data_export_1');
   $handler->display->display_options['pager']['type'] = 'some';
-  $handler->display->display_options['style_plugin'] = 'views_data_export_xls';
+  $handler->display->display_options['style_plugin'] = 'views_data_export_xlsx';
   $handler->display->display_options['style_options']['provide_file'] = 1;
-  $handler->display->display_options['style_options']['filename'] = '%view-%timestamp-full.xls';
-  $handler->display->display_options['style_options']['parent_sort'] = 1;
+  $handler->display->display_options['style_options']['parent_sort'] = 0;
   $handler->display->display_options['defaults']['fields'] = FALSE;
-  /* Field: Content: Title */
+  /* Field: title_field */
   $handler->display->display_options['fields']['title']['id'] = 'title';
   $handler->display->display_options['fields']['title']['table'] = 'node';
   $handler->display->display_options['fields']['title']['field'] = 'title';
+  $handler->display->display_options['fields']['title']['ui_name'] = 'title_field';
+  $handler->display->display_options['fields']['title']['label'] = '';
   $handler->display->display_options['fields']['title']['alter']['word_boundary'] = FALSE;
   $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
-  /* Field: Content: Summary */
+  $handler->display->display_options['fields']['title']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['title']['link_to_node'] = FALSE;
+  /* Field: field_summary */
   $handler->display->display_options['fields']['field_summary']['id'] = 'field_summary';
   $handler->display->display_options['fields']['field_summary']['table'] = 'field_data_field_summary';
   $handler->display->display_options['fields']['field_summary']['field'] = 'field_summary';
-  /* Field: Content: Expiration date */
-  $handler->display->display_options['fields']['field_expiration_date']['id'] = 'field_expiration_date';
-  $handler->display->display_options['fields']['field_expiration_date']['table'] = 'field_data_field_expiration_date';
-  $handler->display->display_options['fields']['field_expiration_date']['field'] = 'field_expiration_date';
-  $handler->display->display_options['fields']['field_expiration_date']['settings'] = array(
-    'format_type' => 'long',
-    'fromto' => 'both',
-    'multiple_number' => '',
-    'multiple_from' => '',
-    'multiple_to' => '',
-    'osha_date_theme' => '',
+  $handler->display->display_options['fields']['field_summary']['ui_name'] = 'field_summary';
+  $handler->display->display_options['fields']['field_summary']['label'] = '';
+  $handler->display->display_options['fields']['field_summary']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_summary']['type'] = 'text_plain';
+  /* Field: field_image */
+  $handler->display->display_options['fields']['field_image']['id'] = 'field_image';
+  $handler->display->display_options['fields']['field_image']['table'] = 'field_data_field_image';
+  $handler->display->display_options['fields']['field_image']['field'] = 'field_image';
+  $handler->display->display_options['fields']['field_image']['ui_name'] = 'field_image';
+  $handler->display->display_options['fields']['field_image']['label'] = '';
+  $handler->display->display_options['fields']['field_image']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_image']['click_sort_column'] = 'fid';
+  $handler->display->display_options['fields']['field_image']['type'] = 'image_url';
+  $handler->display->display_options['fields']['field_image']['settings'] = array(
+    'url_type' => '0',
+    'image_style' => '',
+    'image_link' => '',
   );
-  /* Field: Field: Publication date */
+  /* Field: field_image_caption */
+  $handler->display->display_options['fields']['field_image_caption']['id'] = 'field_image_caption';
+  $handler->display->display_options['fields']['field_image_caption']['table'] = 'field_data_field_image_caption';
+  $handler->display->display_options['fields']['field_image_caption']['field'] = 'field_image_caption';
+  $handler->display->display_options['fields']['field_image_caption']['ui_name'] = 'field_image_caption';
+  $handler->display->display_options['fields']['field_image_caption']['label'] = '';
+  $handler->display->display_options['fields']['field_image_caption']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_image_caption']['type'] = 'text_plain';
+  /* Field: field_tags */
   $handler->display->display_options['fields']['field_publication_date']['id'] = 'field_publication_date';
   $handler->display->display_options['fields']['field_publication_date']['table'] = 'field_data_field_publication_date';
   $handler->display->display_options['fields']['field_publication_date']['field'] = 'field_publication_date';
+  $handler->display->display_options['fields']['field_publication_date']['ui_name'] = 'field_tags';
+  $handler->display->display_options['fields']['field_publication_date']['label'] = '';
+  $handler->display->display_options['fields']['field_publication_date']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_publication_date']['type'] = 'date_plain';
   $handler->display->display_options['fields']['field_publication_date']['settings'] = array(
     'format_type' => 'long',
     'fromto' => 'both',
     'multiple_number' => '',
     'multiple_from' => '',
     'multiple_to' => '',
-    'osha_date_theme' => '',
   );
+  /* Field: body */
+  $handler->display->display_options['fields']['body']['id'] = 'body';
+  $handler->display->display_options['fields']['body']['table'] = 'field_data_body';
+  $handler->display->display_options['fields']['body']['field'] = 'body';
+  $handler->display->display_options['fields']['body']['ui_name'] = 'body';
+  $handler->display->display_options['fields']['body']['label'] = '';
+  $handler->display->display_options['fields']['body']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['body']['type'] = 'text_plain';
+  /* Field: field_tags */
+  $handler->display->display_options['fields']['field_tags']['id'] = 'field_tags';
+  $handler->display->display_options['fields']['field_tags']['table'] = 'field_data_field_tags';
+  $handler->display->display_options['fields']['field_tags']['field'] = 'field_tags';
+  $handler->display->display_options['fields']['field_tags']['ui_name'] = 'field_tags';
+  $handler->display->display_options['fields']['field_tags']['label'] = '';
+  $handler->display->display_options['fields']['field_tags']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_tags']['type'] = 'taxonomy_term_reference_plain';
+  $handler->display->display_options['fields']['field_tags']['delta_offset'] = '0';
+  $handler->display->display_options['fields']['field_tags']['separator'] = '|';
+  /* Field: field_aditional_resources.title */
+  $handler->display->display_options['fields']['field_aditional_resources']['id'] = 'field_aditional_resources';
+  $handler->display->display_options['fields']['field_aditional_resources']['table'] = 'field_data_field_aditional_resources';
+  $handler->display->display_options['fields']['field_aditional_resources']['field'] = 'field_aditional_resources';
+  $handler->display->display_options['fields']['field_aditional_resources']['ui_name'] = 'field_aditional_resources.title';
+  $handler->display->display_options['fields']['field_aditional_resources']['label'] = '';
+  $handler->display->display_options['fields']['field_aditional_resources']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_aditional_resources']['settings'] = array(
+    'link' => 0,
+  );
+  $handler->display->display_options['fields']['field_aditional_resources']['delta_offset'] = '0';
+  $handler->display->display_options['fields']['field_aditional_resources']['separator'] = '|';
+  /* Field: field_aditional_resources */
+  $handler->display->display_options['fields']['field_aditional_resources_1']['id'] = 'field_aditional_resources_1';
+  $handler->display->display_options['fields']['field_aditional_resources_1']['table'] = 'field_data_field_aditional_resources';
+  $handler->display->display_options['fields']['field_aditional_resources_1']['field'] = 'field_aditional_resources';
+  $handler->display->display_options['fields']['field_aditional_resources_1']['ui_name'] = 'field_aditional_resources';
+  $handler->display->display_options['fields']['field_aditional_resources_1']['label'] = '';
+  $handler->display->display_options['fields']['field_aditional_resources_1']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_aditional_resources_1']['type'] = 'entityreference_entity_id';
+  $handler->display->display_options['fields']['field_aditional_resources_1']['settings'] = array(
+    'link' => 0,
+  );
+  $handler->display->display_options['fields']['field_aditional_resources_1']['delta_offset'] = '0';
+  $handler->display->display_options['fields']['field_aditional_resources_1']['separator'] = '|';
+  /* Field: path */
+  $handler->display->display_options['fields']['path']['id'] = 'path';
+  $handler->display->display_options['fields']['path']['table'] = 'node';
+  $handler->display->display_options['fields']['path']['field'] = 'path';
+  $handler->display->display_options['fields']['path']['ui_name'] = 'path';
+  $handler->display->display_options['fields']['path']['label'] = '';
+  $handler->display->display_options['fields']['path']['element_label_colon'] = FALSE;
+  /* Field: uid */
+  $handler->display->display_options['fields']['name']['id'] = 'name';
+  $handler->display->display_options['fields']['name']['table'] = 'users';
+  $handler->display->display_options['fields']['name']['field'] = 'name';
+  $handler->display->display_options['fields']['name']['relationship'] = 'uid';
+  $handler->display->display_options['fields']['name']['ui_name'] = 'uid';
+  $handler->display->display_options['fields']['name']['label'] = '';
+  $handler->display->display_options['fields']['name']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['name']['link_to_user'] = FALSE;
+  /* Field: nid */
+  $handler->display->display_options['fields']['nid']['id'] = 'nid';
+  $handler->display->display_options['fields']['nid']['table'] = 'node';
+  $handler->display->display_options['fields']['nid']['field'] = 'nid';
+  $handler->display->display_options['fields']['nid']['ui_name'] = 'nid';
+  $handler->display->display_options['fields']['nid']['label'] = '';
+  $handler->display->display_options['fields']['nid']['element_label_colon'] = FALSE;
+  /* Field: workbench_access */
+  $handler->display->display_options['fields']['section']['id'] = 'section';
+  $handler->display->display_options['fields']['section']['table'] = 'workbench_access';
+  $handler->display->display_options['fields']['section']['field'] = 'section';
+  $handler->display->display_options['fields']['section']['ui_name'] = 'workbench_access';
+  $handler->display->display_options['fields']['section']['label'] = '';
+  $handler->display->display_options['fields']['section']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['section']['separator'] = '|';
   $handler->display->display_options['path'] = 'admin/content-reports/export/news';
   $handler->display->display_options['displays'] = array(
     'page' => 'page',
@@ -306,6 +442,7 @@ function hwc_admin_reports_views_default_views() {
     t('Access filter'),
     t('News'),
     t('News reports'),
+    t('Section'),
     t('News export'),
     t('Events export'),
     t('Events'),
