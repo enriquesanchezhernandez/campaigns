@@ -152,6 +152,9 @@ function osha_news_strongarm() {
       'highlights_item' => array(
         'custom_settings' => TRUE,
       ),
+      'pub_teaser' => array(
+        'custom_settings' => TRUE,
+      ),
     ),
     'extra_fields' => array(
       'form' => array(

@@ -582,10 +582,9 @@ function osha_events_field_default_field_instances() {
     'display' => array(
       'default' => array(
         'label' => 'above',
-        'module' => 'i18n_taxonomy',
         'settings' => array(),
-        'type' => 'i18n_taxonomy_term_reference_link',
-        'weight' => 16,
+        'type' => 'hidden',
+        'weight' => 14,
       ),
       'highlights_item' => array(
         'label' => 'above',
@@ -1044,7 +1043,7 @@ function osha_events_field_default_field_instances() {
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
-        'weight' => 15,
+        'weight' => 13,
       ),
       'highlights_item' => array(
         'label' => 'above',
