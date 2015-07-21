@@ -168,9 +168,14 @@ function hwc_form_chosen_admin_settings_alter(&$form, $form_state) {
  * Implements hook_form_alter().
  */
 function hwc_form_alter(&$form, &$form_state, $form_id) {
-  if (isset($form['field_activity']) && !empty($form['#node'] && empty($form['#node']->nid))) {
-    if ($tid = osha_taxonomies_load_activity_by_code('raising_awareness_3') && empty($form['field_activity'][LANGUAGE_NONE]['#default_value'])) {
+  if (isset($form['field_activity']) && !empty($form['#node']
+      && empty($form['#node']->nid))
+      && empty($form['field_activity'][LANGUAGE_NONE]['#default_value'])) {
+    if ($tid = osha_taxonomies_load_activity_by_code('raising_awareness_3')) {
       $form['field_activity'][LANGUAGE_NONE]['#default_value'][] = $tid;
     }
+  }
+  if (isset($form['field_activity'])) {
+    $form['field_activity'][LANGUAGE_NONE]['#multiple'] = FALSE;
   }
 }

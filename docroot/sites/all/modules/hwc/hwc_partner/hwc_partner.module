@@ -227,6 +227,7 @@ function hwc_partner_form_news_node_form_alter(&$form, &$form_state) {
     $form['field_expiration_date']['#access'] = FALSE;
     $form['field_tags']['#access'] = FALSE;
     $form['field_aditional_resources']['#access'] = FALSE;
+    $form['field_activity']['#access'] = FALSE;
     $form['#after_build'][] = 'hwc_partner_node_form_after_build_hide_hints';
   }
 }
@@ -252,6 +253,7 @@ function hwc_partner_form_events_node_form_alter(&$form, &$form_state) {
     $form['field_partner_id']['#access'] = FALSE;
     $form['field_schedule']['#access'] = FALSE;
     $form['field_speaker']['#access'] = FALSE;
+    $form['field_activity']['#access'] = FALSE;
     $form['#after_build'][] = 'hwc_partner_node_form_after_build_hide_hints';
   }
 }
