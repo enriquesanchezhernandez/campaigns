@@ -497,6 +497,7 @@ $options['init-modules'] = array(
   'hwc_practical_tool',
   'hwc_partner',
   'hwc_feeds',
+  'eu_captcha',
 
 );
 
