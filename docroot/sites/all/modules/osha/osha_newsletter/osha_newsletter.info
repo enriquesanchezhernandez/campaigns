@@ -70,7 +70,6 @@ features[variable][] = subscribe_extra_block_intro_text
 features[views_view][] = newsletter_node_selection
 features[views_view][] = newsletters_overview
 features_exclude[taxonomy][tags] = tags
-features_exclude[taxonomy][activity] = activity
 features_exclude[taxonomy][article_types] = article_types
 features_exclude[taxonomy][flickr_tags] = flickr_tags
 files[] = osha_newsletter.test
