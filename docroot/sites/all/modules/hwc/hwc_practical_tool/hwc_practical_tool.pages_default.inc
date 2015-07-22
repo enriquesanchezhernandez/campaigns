@@ -339,3 +339,121 @@ function hwc_practical_tool_default_page_manager_handlers() {
 
   return $export;
 }
+
+/**
+ * Implements hook_default_page_manager_pages().
+ */
+function hwc_practical_tool_default_page_manager_pages() {
+  $page = new stdClass();
+  $page->disabled = FALSE; /* Edit this to true to make a default page disabled initially */
+  $page->api_version = 1;
+  $page->name = 'practical_tools_listing';
+  $page->task = 'page';
+  $page->admin_title = 'Practical tools listing';
+  $page->admin_description = '';
+  $page->path = 'practical-tools';
+  $page->access = array();
+  $page->menu = array();
+  $page->arguments = array();
+  $page->conf = array(
+    'admin_paths' => FALSE,
+  );
+  $page->default_handlers = array();
+  $handler = new stdClass();
+  $handler->disabled = FALSE; /* Edit this to true to make a default handler disabled initially */
+  $handler->api_version = 1;
+  $handler->name = 'page_practical_tools_listing__panel_context_f90c4d3e-683b-4dd2-a516-4b046ab3e75f';
+  $handler->task = 'page';
+  $handler->subtask = 'practical_tools_listing';
+  $handler->handler = 'panel_context';
+  $handler->weight = 0;
+  $handler->conf = array(
+    'title' => 'Practical tools listing',
+    'no_blocks' => 0,
+    'pipeline' => 'standard',
+    'body_classes_to_remove' => '',
+    'body_classes_to_add' => '',
+    'css_id' => '',
+    'css' => '',
+    'contexts' => array(),
+    'relationships' => array(),
+  );
+  $display = new panels_display();
+  $display->layout = 'onecol';
+  $display->layout_settings = array();
+  $display->panel_settings = array(
+    'style_settings' => array(
+      'default' => NULL,
+      'middle' => NULL,
+    ),
+    'middle' => array(
+      'style' => '-1',
+    ),
+  );
+  $display->cache = array();
+  $display->title = 'Practical tools';
+  $display->uuid = '286d97ce-6c9e-4437-852b-031f77a40961';
+  $display->content = array();
+  $display->panels = array();
+    $pane = new stdClass();
+    $pane->pid = 'new-84992a82-9ee8-44c2-8b19-f23a24a82abe';
+    $pane->panel = 'middle';
+    $pane->type = 'node';
+    $pane->subtype = 'node';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'nid' => '150',
+      'links' => 0,
+      'leave_node_title' => 0,
+      'identifier' => 'section_introduction',
+      'build_mode' => 'full',
+      'link_node_title' => 0,
+      'override_title' => 1,
+      'override_title_text' => '',
+      'override_title_heading' => 'h2',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+      'style' => 'default',
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = '84992a82-9ee8-44c2-8b19-f23a24a82abe';
+    $display->content['new-84992a82-9ee8-44c2-8b19-f23a24a82abe'] = $pane;
+    $display->panels['middle'][0] = 'new-84992a82-9ee8-44c2-8b19-f23a24a82abe';
+    $pane = new stdClass();
+    $pane->pid = 'new-65a196f7-6a56-4168-94c7-f950af997e21';
+    $pane->panel = 'middle';
+    $pane->type = 'block';
+    $pane->subtype = 'hwc_practical_tool-hwc_practical_tool_listing';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'override_title' => 1,
+      'override_title_text' => '',
+      'override_title_heading' => 'h2',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 1;
+    $pane->locks = array();
+    $pane->uuid = '65a196f7-6a56-4168-94c7-f950af997e21';
+    $display->content['new-65a196f7-6a56-4168-94c7-f950af997e21'] = $pane;
+    $display->panels['middle'][1] = 'new-65a196f7-6a56-4168-94c7-f950af997e21';
+  $display->hide_title = PANELS_TITLE_FIXED;
+  $display->title_pane = 'new-84992a82-9ee8-44c2-8b19-f23a24a82abe';
+  $handler->conf['display'] = $display;
+  $page->default_handlers[$handler->name] = $handler;
+  $pages['practical_tools_listing'] = $page;
+
+  return $pages;
+
+}
