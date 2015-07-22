@@ -25,8 +25,6 @@
 //
 //## Settings for some of the most global styles.
 
-//** Background color for `<body>`.
-@body-bg:               #fff;
 //** Global text color on `<body>`.
 @text-color:            @gray-dark;
 
@@ -42,11 +40,12 @@
 //
 //## Font, line-height, and color for body text, headings, and more.
 
-@font-family-sans-serif:  "Helvetica Neue", Helvetica, Arial, sans-serif;
-@font-family-serif:       Georgia, "Times New Roman", Times, serif;
-//** Default monospace fonts for `<code>`, `<kbd>`, and `<pre>`.
+@import url('//fonts.googleapis.com/css?family=Open+Sans:300,400,500,700,300italic,400italic,500italic,700italic&subset=cyrillic,cyrillic-ext,latin,greek-ext,greek,latin-ext');
+
+@font-family-base:        'Open Sans';
+
+// Default monospace fonts for `<code>`, `<kbd>`, and `<pre>`.
 @font-family-monospace:   Menlo, Monaco, Consolas, "Courier New", monospace;
-@font-family-base:        @font-family-sans-serif;
 
 @font-size-base:          14px;
 @font-size-large:         ceil((@font-size-base * 1.25)); // ~18px
@@ -169,7 +168,6 @@
 @btn-danger-border:              darken(@btn-danger-bg, 5%);
 
 @btn-link-disabled-color:        @gray-light;
-
 
 //== Forms
 //
@@ -436,27 +434,6 @@
 @nav-pills-border-radius:                   @border-radius-base;
 @nav-pills-active-link-hover-bg:            @component-active-bg;
 @nav-pills-active-link-hover-color:         @component-active-color;
-
-
-//== Pagination
-//
-//##
-
-@pagination-color:                     @link-color;
-@pagination-bg:                        #fff;
-@pagination-border:                    #ddd;
-
-@pagination-hover-color:               @link-hover-color;
-@pagination-hover-bg:                  @gray-lighter;
-@pagination-hover-border:              #ddd;
-
-@pagination-active-color:              #fff;
-@pagination-active-bg:                 @brand-primary;
-@pagination-active-border:             @brand-primary;
-
-@pagination-disabled-color:            @gray-light;
-@pagination-disabled-bg:               #fff;
-@pagination-disabled-border:           #ddd;
 
 
 //== Pager
@@ -776,23 +753,6 @@
 @badge-line-height:           1;
 @badge-border-radius:         10px;
 
-
-//== Breadcrumbs
-//
-//##
-
-@breadcrumb-padding-vertical:   8px;
-@breadcrumb-padding-horizontal: 15px;
-//** Breadcrumb background color
-@breadcrumb-bg:                 #f5f5f5;
-//** Breadcrumb text color
-@breadcrumb-color:              #ccc;
-//** Text color of current page in the breadcrumb
-@breadcrumb-active-color:       @gray-light;
-//** Textual separator for between breadcrumb elements
-@breadcrumb-separator:          "/";
-
-
 //== Carousel
 //
 //##
@@ -859,3 +819,129 @@
 @dl-horizontal-offset:        @component-offset-horizontal;
 //** Horizontal line color.
 @hr-border:                   @gray-lighter;
+
+//** MG
+//** GENERAL
+@color0:	transparent;
+@color1:	#fff;
+@color2:	#003399; //azul
+@color3:	#749b00; //verde
+@color4:	#c1e000; //verde claro
+@color5:	#575757; //gris
+@color6:	#608000; //verde oscuro
+@color7: 	#565351; //gris bg
+
+@size1:		30px;
+@size2:		20px;
+@size3:		12px;
+@size4:		14px;
+@size5:		15px;
+
+
+//** Background color for `<body>`.
+@body-bg:               		@color1;
+@bg-default-color:             	@color1;
+@bg-color-2:             		@color2;
+
+@h1-default-color:				@color3;
+@h1-default-size: 				@size1;
+	@h1-color-2:				@color5;
+	@h1-size-2: 				@size1;
+@h2-default-color: 				@color1;
+@h2-default-size: 				@size1;
+	@h2-default-color-2:			@color3;
+	@h2-default-size-2:				@size1;
+	@h2-default-color-3:			@color5;
+	@h2-default-size-3:				@size1;
+@h3-default-color: 				@color3;
+@h3-default-size: 				@size2;
+@h4-default-color: 				@color3;
+@h4-default-size: 				@size2;
+@h5-default-color: 				@color2;
+@h5-default-size: 				@size2;
+
+@href-default-color:		    @color2;
+
+@btn-default-color:             @color1;
+@btn-default-bg:                @color2;
+@btn-default-border:            @color2;
+
+@text-default-color:			@color5;
+@text-color-2:					@color2;
+@text-color-3:					@color3;
+
+@border-default-color:			@color3;
+@border-color-2:				@color2;
+
+//** FIN GENERAL
+//** HEADER
+	@input-search-default-color:	@color2;
+	@input-language-default-color:	@color2;
+	@input-language-default-bg:		@color4;
+	@input-language-default-size:		@size3;
+	@border-header-color:			@color2;
+	//** SLIDER //
+		@slider-color: @color1;
+	//** FIN SLIDER //
+	//** MENU **//
+		@menu-bg-color: 		@color2;
+		@menu-color: 			@color1;
+		@menu-selected-color:	@color4;
+	//** FIN MENU **//
+//** FIN HEADER
+
+
+//** CONTENT
+	@input-content-default-color:	@color5;
+	
+//== Breadcrumbs
+//
+//#
+	@breadcrumb-txt-size:			@size3;
+	//** Breadcrumb text color
+	@breadcrumb-txt-color:			@color3;
+	@breadcrumb-color:				@color3;
+	//** Text color of current page in the breadcrumb
+	@breadcrumb-href-color:			@color2;
+	@breadcrumb-active-color:		@color2;
+	@breadcrumb-padding-vertical:   "??";
+	@breadcrumb-padding-horizontal:	"??";
+	//** Breadcrumb background color
+	@breadcrumb-bg:                 "??";
+	//** Textual separator for between breadcrumb elements
+	@breadcrumb-separator:          ">";
+
+//== Pagination
+//
+//##
+	@pagination-bg:						"??";
+	@pagination-border:					"??";
+
+	@pagination-hover-color:			"??";
+	@pagination-hover-bg:				"??";
+	@pagination-hover-border:			"??";
+
+	@pagination-active-bg:				"??";
+	@pagination-active-border:			"??";
+
+	@pagination-disabled-color:			"??";
+	@pagination-disabled-bg:			"??";
+	@pagination-disabled-border:		"??";
+
+	@pagination-color:				@color2;
+	@pagination-active-color:		@color5;
+	
+//** FIN CONTENT
+
+
+//** FOOTER
+	@footer-bg-image: url("../images/footer/ruedas.png");
+	@footer-bg-image: url("../images/footer/bg-complete.png");
+	@footer-bg-image-list: rgba(96,128,0, 1), rgba(38, 105, 23, 0) 100%;
+	@direction: to right;
+	// @footer-bg-color: svg-gradient(@direction, rgba(96,128,0, 1), rgba(96,128,0, 0.5) 100%);
+	// @footer-bg-color: @color6; //rgb(96,128,0);
+	@footer-bg-color: transparent;
+	@footer-color:	@color1;
+//** FIN FOOTER
+//** FIN MG

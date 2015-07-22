@@ -28,7 +28,7 @@ if (!empty($node->field_file)) {
   foreach($node->field_file as $lang => $files) {
     foreach($files as $f) {
       if (in_array($lang, $languages)) {
-        $items[] = sprintf('<a href="%s">Download in %s</a><i class="glyphicon glyphicon-circle-arrow-down"></i>', url($f['uri']), i18n_language_name($lang));
+        $items[] = sprintf('<a href="%s">Download in %s</a><i class="glyphicon glyphicon-circle-arrow-down"></i>', file_create_url($f['uri']), i18n_language_name($lang));
       }
     }
   }

@@ -84,42 +84,44 @@ $theme_dir = drupal_get_path('theme', 'hwc_frontend');
 <header id="navbar" role="banner" class="<?php print $navbar_classes; ?>">
   <div class="container">
     <div class="row">
-    <div class="navbar-header">
-        <a class="pull-left" href="<?php print $front_page; ?>" title="<?php print t('Home'); ?>">
-          <img src="<?php print $logo; ?>" alt="<?php print t('Home'); ?>" />
-        </a>
-      <img class="pull-left" src="/<?php print $theme_dir . '/logo-osha.png'; ?>" alt="<?php print t('EU-OSHA logo'); ?>" />
-      <img class="pull-left" src="/<?php print $theme_dir . '/logo-eu.png'; ?>" alt="<?php print t('EU logo'); ?>" />
-      <?php print render($page['header']); ?>
-      <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-    </div>
+		<div class="navbar-header">
+			<a class="pull-left" href="<?php print $front_page; ?>" title="<?php print t('Home'); ?>">
+			  <img src="<?php print $logo; ?>" alt="<?php print t('Home'); ?>" />
+			</a>
+		  <img class="pull-left" src="/<?php print $theme_dir . '/images/header/logo-osha.png'; ?>" alt="<?php print t('EU-OSHA logo'); ?>" />
+		  <img class="pull-left" src="/<?php print $theme_dir . '/images/header/logo-eu.png'; ?>" alt="<?php print t('EU logo'); ?>" />
+		  <?php print render($page['header']); ?>
+		  <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+		  <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+			<span class="sr-only">Toggle navigation</span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+		  </button>
+		</div>
     </div>
     <div class="row">
-    <div class="navbar-collapse collapse">
-      <nav role="navigation">
-        <?php if (!empty($primary_nav)): ?>
-          <?php print render($primary_nav); ?>
-        <?php endif; ?>
-      </nav>
-    </div>
+		<div class="navbar-collapse collapse">
+		  <nav role="navigation">
+			<?php if (!empty($primary_nav)): ?>
+			  <?php print render($primary_nav); ?>
+			<?php endif; ?>
+		  </nav>
+		</div>
     </div>
   </div>
 </header>
 
 <div class="main-container container">
+
   <div class="row">
     <?php if (!empty($page['sidebar_first'])): ?>
-      <aside class="col-sm-3" role="complementary">
+      <aside class="col-sm-3 col-lg-12" role="complementary">
         <?php print render($page['sidebar_first']); ?>
       </aside>  <!-- /#sidebar-first -->
     <?php endif; ?>
-    <section<?php print $content_column_class; ?>>
+    <section class="col-sm-9 col-lg-12">
+		<?php /* print $content_column_class; */ ?>
       <?php if (!empty($page['highlighted'])): ?>
         <div class="highlighted jumbotron"><?php print render($page['highlighted']); ?></div>
       <?php endif; ?>
@@ -144,12 +146,13 @@ $theme_dir = drupal_get_path('theme', 'hwc_frontend');
       <?php print render($page['content']); ?>
     </section>
     <?php if (!empty($page['sidebar_second'])): ?>
-      <aside class="col-sm-3" role="complementary">
+      <aside class="col-sm-3 col-lg-12" role="complementary">
         <?php print render($page['sidebar_second']); ?>
       </aside>  <!-- /#sidebar-second -->
     <?php endif; ?>
   </div>
 </div>
+
 <footer class="footer container">
   <?php print render($page['footer']); ?>
   <h3>
