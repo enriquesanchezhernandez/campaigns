@@ -8,7 +8,11 @@
   <?php
   if ($view_mode === 'full') {
     ?>
-    <h1>News</h1>
+    <h1>
+      <?php
+        print t('News');
+      ?>
+    </h1>
     <?php
   }
   // We hide the comments and links now so that we can render them later.
