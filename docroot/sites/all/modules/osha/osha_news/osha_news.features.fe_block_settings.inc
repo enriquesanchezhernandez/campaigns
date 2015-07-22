@@ -27,7 +27,7 @@ function osha_news_default_fe_block_settings() {
         'region' => 'content',
         'status' => 1,
         'theme' => 'hwc_frontend',
-        'weight' => -45,
+        'weight' => -47,
       ),
       'seven' => array(
         'region' => '',
