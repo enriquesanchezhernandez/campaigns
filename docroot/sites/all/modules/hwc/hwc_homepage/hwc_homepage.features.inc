@@ -62,6 +62,30 @@ function hwc_homepage_fe_nodequeue_export_fields() {
 }
 
 /**
+ * Implements hook_image_default_styles().
+ */
+function hwc_homepage_image_default_styles() {
+  $styles = array();
+
+  // Exported image style: partner_logo_front.
+  $styles['partner_logo_front'] = array(
+    'label' => 'partner_logo_front',
+    'effects' => array(
+      1 => array(
+        'name' => 'image_resize',
+        'data' => array(
+          'width' => 170,
+          'height' => 128,
+        ),
+        'weight' => 1,
+      ),
+    ),
+  );
+
+  return $styles;
+}
+
+/**
  * Implements hook_node_info().
  */
 function hwc_homepage_node_info() {
@@ -69,7 +93,7 @@ function hwc_homepage_node_info() {
     'frontpage_slider' => array(
       'name' => t('Frontpage Banner'),
       'base' => 'node_content',
-      'description' => t('Frontpage slider content'),
+      'description' => t('Frontpage banner content'),
       'has_title' => '1',
       'title_label' => t('Title'),
       'help' => '',
