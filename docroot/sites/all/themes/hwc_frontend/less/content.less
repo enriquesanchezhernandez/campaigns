@@ -285,6 +285,23 @@
 		}
 	}
 	
+	/* Infographics */
+	.view-infographic{
+		padding: 0 135px;
+		.views-row{
+			border-bottom: 1px dotted @border-default-color;
+			padding-top: 2em;
+			padding-bottom: 2em;
+			.views-field-title-field a{
+				color: @text-default-color;
+				font-size: @size2;
+			}
+		}
+	}
+	.node-infographic {
+		padding: 0 135px;
+	}
+	
 	/* Press Room */
 	.node-press-release {
 		h3{
@@ -458,3 +475,42 @@
 	}
 
 /* FIN contenedor principal */
+
+
+
+
+/* -----------ENDIKA------------ */
+
+/* -News- */
+.view-news {
+	border-top: 1px dotted @color3;
+	.views-row {
+		.content{
+			border-bottom: 1px dotted @color3;
+			padding-bottom: 1em;
+			min-height: 180px;
+		}
+	}
+}
+.node-news{
+	padding: 0 135px;
+	h1{
+		font-style: italic;
+		font-weight: normal;
+		color: @h1-color-2;
+		font-size: @h1-size-2;
+	}
+	.field-name-field-image img{
+		float: left;
+		margin-top: 1em;
+		margin-right: 1em;
+		margin-bottom: 1em;
+	}
+	h2{
+		font-size: @size2 !important;//quitar los important al desanidar
+		font-weight: bold !important;
+		font-style: normal !important; 
+	}
+}
+
+/* ----------END ENDIKA--------- */
