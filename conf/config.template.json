@@ -58,6 +58,7 @@
         "file_temporary_path": "/tmp",
         "sa_admin_helper": "0",
         "smtp_on": 1,
+        "hwc_crm_data_dir": "/var/local/hwc/crm_data",
         "recaptcha_site_key": "",
         "recaptcha_private_key": "",
         "smtp_queue": 0,
