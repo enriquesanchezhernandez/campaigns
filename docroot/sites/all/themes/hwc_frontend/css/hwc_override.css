@@ -129,9 +129,7 @@ div.workbench-info-block {
 }
 .dropdown-toggle:hover {
     background-color: #d6d6d6;
-    cursor: pointer;
 }
-
 /* Corporate captcha */
 #captcha_0 {
     display: block !important;
