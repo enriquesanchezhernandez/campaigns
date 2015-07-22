@@ -162,19 +162,19 @@ function osha_news_strongarm() {
           'weight' => '0',
         ),
         'path' => array(
-          'weight' => '12',
+          'weight' => '1',
         ),
         'workbench_access' => array(
-          'weight' => '0',
+          'weight' => '4',
         ),
         'language' => array(
           'weight' => '1',
         ),
         'redirect' => array(
-          'weight' => '13',
+          'weight' => '2',
         ),
         'metatags' => array(
-          'weight' => '14',
+          'weight' => '0',
         ),
       ),
       'display' => array(),
