@@ -7211,7 +7211,7 @@ header.navbar-default .navbar-header .lang-dropdown-select-element ul.chosen-res
 header.navbar-default .navbar-header .lang-dropdown-select-element .chosen-single {
   border-radius: 0;
   background: none;
-  box-shadow: 0 0 0px #ffffff inset, 0 0px 0px rgba(0, 0, 0, 0);
+  box-shadow: 0 0 0px white inset, 0 0px 0px rgba(0, 0, 0, 0);
   background-color: #c1e000;
   border: none;
   color: #003399;
@@ -7687,6 +7687,22 @@ body .more-link:before {
 .node-article .field-name-field-image + .field-name-title-field + .field-name-body {
   margin-top: 5em;
 }
+/* Infographics */
+.view-infographic {
+  padding: 0 135px;
+}
+.view-infographic .views-row {
+  border-bottom: 1px dotted #749b00;
+  padding-top: 2em;
+  padding-bottom: 2em;
+}
+.view-infographic .views-row .views-field-title-field a {
+  color: #575757;
+  font-size: 20px;
+}
+.node-infographic {
+  padding: 0 135px;
+}
 /* Press Room */
 .node-press-release h3 a {
   background: url("../images/content/continue-reading.png") no-repeat right center;
@@ -7848,6 +7864,36 @@ div[class*='node-'] .more-link {
   float: left;
 }
 /* FIN contenedor principal */
+/* -----------ENDIKA------------ */
+/* -News- */
+.view-news {
+  border-top: 1px dotted #749b00;
+}
+.view-news .views-row .content {
+  border-bottom: 1px dotted #749b00;
+  padding-bottom: 1em;
+  min-height: 180px;
+}
+.node-news {
+  padding: 0 135px;
+}
+.node-news h1 {
+  font-style: italic;
+  font-weight: normal;
+  color: #575757;
+  font-size: 30px;
+}
+.node-news .field-name-field-image img {
+  float: left;
+  margin-top: 1em;
+  margin-right: 1em;
+  margin-bottom: 1em;
+}
+.node-news h2 {
+  font-size: 20px !important;
+  font-weight: bold !important;
+  font-style: normal !important;
+}
 .footer {
   background: transparent url("../images/footer/bg-complete.png") no-repeat left;
   border: none;
