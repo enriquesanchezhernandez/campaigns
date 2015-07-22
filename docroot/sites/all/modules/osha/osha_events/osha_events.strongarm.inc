@@ -223,19 +223,19 @@ function osha_events_strongarm() {
     'extra_fields' => array(
       'form' => array(
         'metatags' => array(
-          'weight' => '4',
+          'weight' => '0',
         ),
         'title' => array(
           'weight' => '4',
         ),
         'path' => array(
-          'weight' => '3',
+          'weight' => '1',
         ),
         'redirect' => array(
           'weight' => '2',
         ),
         'workbench_access' => array(
-          'weight' => '1',
+          'weight' => '4',
         ),
         'language' => array(
           'weight' => '4',

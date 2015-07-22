@@ -14,7 +14,7 @@ function osha_news_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'comment_anonymous_news';
-  $strongarm->value = 0;
+  $strongarm->value = '0';
   $export['comment_anonymous_news'] = $strongarm;
 
   $strongarm = new stdClass();
@@ -152,6 +152,9 @@ function osha_news_strongarm() {
       'highlights_item' => array(
         'custom_settings' => TRUE,
       ),
+      'pub_teaser' => array(
+        'custom_settings' => TRUE,
+      ),
     ),
     'extra_fields' => array(
       'form' => array(
@@ -159,19 +162,19 @@ function osha_news_strongarm() {
           'weight' => '0',
         ),
         'path' => array(
-          'weight' => '12',
+          'weight' => '1',
         ),
         'workbench_access' => array(
-          'weight' => '0',
+          'weight' => '4',
         ),
         'language' => array(
           'weight' => '1',
         ),
         'redirect' => array(
-          'weight' => '13',
+          'weight' => '2',
         ),
         'metatags' => array(
-          'weight' => '14',
+          'weight' => '0',
         ),
       ),
       'display' => array(),
@@ -216,7 +219,7 @@ function osha_news_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'node_preview_news';
-  $strongarm->value = '1';
+  $strongarm->value = '0';
   $export['node_preview_news'] = $strongarm;
 
   $strongarm = new stdClass();

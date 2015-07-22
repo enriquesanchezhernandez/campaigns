@@ -27,7 +27,7 @@ function osha_infographics_default_fe_block_settings() {
         'region' => 'content',
         'status' => 1,
         'theme' => 'hwc_frontend',
-        'weight' => -47,
+        'weight' => -49,
       ),
       'seven' => array(
         'region' => '',
@@ -55,7 +55,7 @@ function osha_infographics_default_fe_block_settings() {
         'region' => 'content',
         'status' => 1,
         'theme' => 'hwc_frontend',
-        'weight' => -48,
+        'weight' => -51,
       ),
       'seven' => array(
         'region' => '',

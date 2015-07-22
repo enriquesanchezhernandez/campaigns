@@ -44,7 +44,6 @@ class NCWSingleArticleMigration extends AbstractNCWNodeMigration {
       'field_publication_date:rrule',
       'field_tags:ignore_case',
 
-      'field_thesaurus', 'field_thesaurus:source_type', 'field_thesaurus:create_term', 'field_thesaurus:ignore_case',
     ));
   }
 

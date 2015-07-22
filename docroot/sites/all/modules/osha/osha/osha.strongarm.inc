@@ -933,6 +933,9 @@ el.remove();
         'workbench_access' => array(
           'weight' => '4',
         ),
+        'language' => array(
+          'weight' => '0',
+        ),
       ),
       'display' => array(),
     ),

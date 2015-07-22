@@ -22,7 +22,6 @@ function osha_get_translatable_strings() {
     'Publication date',
     'Summary',
     'Tags',
-    'Thesaurus',
     'Title',
     'Title text',
 

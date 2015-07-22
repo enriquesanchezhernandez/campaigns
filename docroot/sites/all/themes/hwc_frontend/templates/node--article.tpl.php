@@ -31,12 +31,14 @@
   print render($content['field_summary']);
   print render($content['body']);
 
-  print render($content['links']['#links']['addtoany']['title']);
-
-  if (!empty($content['field_recommended_articles']) || !empty($content['field_recommended_resources'])) {
-    print '<h2>' . t('Recommended for you') . '</h2>' . '<hr />';
+  if ($view_mode == 'full') {
+    print render($content['links']['#links']['addtoany']['title']);
   }
 
+  // Recommended for you
+  if (!empty($content['field_recommended_articles']) || !empty($content['field_recommended_resources'])) {
+    print '<div class="dot-separator green"></div><div class="icon recommended-for-you"></div>' . '<h2>' . t('Recommended for you') . '</h2>';
+  }
   if (!empty($content['field_recommended_articles'])) {
     print render($content['field_recommended_articles']);
   }
@@ -45,12 +47,13 @@
   }
   unset($content['links']['#links']['addtoany']);
 
-
-
+  // Additional resources
+  if (!empty($content['field_aditional_resources'])) {
+    print '<div class="dot-separator green"></div><div class="icon recommended-for-you"></div>' . '<h2>' . t('Additional resources') . '</h2>';
+    print render($content['field_aditional_resources']);
+  }
 
   ?>
-
   <?php print render($content['links']); ?>
   <?php print render($content['comments']); ?>
-
 </article>

@@ -5,6 +5,11 @@
  */
 
 include_once 'hwc_partner.features.inc';
+include_once 'hwc_partner.inc';
+
+define ('PARTNER_TYPE_OCP', '825c3b00-0dd2-4026-b292-bc76d6e49a70');
+define ('PARTNER_TYPE_MP', '8b662e6e-054a-4148-8495-490ac5858964');
+define ('PARTNER_TYPE_FOP', '1dca3546-7c11-49b5-b74f-a77f87f60d96');
 
 /**
  * Implements hook_block_info().
@@ -36,33 +41,6 @@ function hwc_partner_field_extra_fields() {
     ),
   );
   return $extra;
-}
-
-/**
- * Retrieve partner node by its corresponding section ID.
- *
- * @param integer $id
- *   Section id for the corresponding partner.
- *
- * @return mixed
- *   Returns partner node object or FALSE if not found
- */
-function hwc_partner_by_section_id_load($id) {
-  // @todo: We could improve with direct query on node & workbench_access_node.
-  $q = new EntityFieldQuery();
-  $q->entityCondition('entity_type', 'node');
-  $q->entityCondition('bundle', 'partner');
-  $q->propertyCondition('status', NODE_PUBLISHED);
-  $result = $q->execute();
-  if (isset($result['node'])) {
-    $partners = entity_load('node', array_keys($result['node']));
-    foreach($partners as $partner) {
-      if(!empty($partner->workbench_access) && in_array($id, $partner->workbench_access)) {
-        return $partner;
-      }
-    }
-  }
-  return FALSE;
 }
 
 /**
@@ -125,10 +103,24 @@ function hwc_partner_block_view($delta = '') {
     $url = variable_get('hwc_partner_private_link_' . $it . '_url', '');
     $block['subject'] = '<none>';
     $node = menu_get_object();
-    $visible = hwc_partner_match_user_partner($node);
+    global $user;
+    $visible =
+      count(array_intersect(array('administrator', ROLE_MOSTRA), $user->roles))
+      || (in_array(ROLE_CAMPAIGN_PARTNER, $user->roles) && hwc_partner_match_user_partner($node))
+      || $user->uid == 1;
+    // Media partners cannot create events, hide the block
+    if ($delta == 'hwc_partner_private_link_0' && in_array(ROLE_CAMPAIGN_PARTNER, $user->roles) && hwc_partner_is_mp($node)) {
+      $visible = FALSE;
+    }
     if ($visible) {
+      $url_options = array();
+      if (count(array_intersect(array('administrator', ROLE_MOSTRA), $user->roles))) {
+        reset($node->workbench_access);
+        $id_section = current($node->workbench_access);
+        $url_options = array('query' => array('workbench_access' => $id_section));
+      }
       $block['content'] = theme('hwc_partner_private_link_' . $it, array(
-          'hwc_partner_private_link_title' => l(t(variable_get('hwc_partner_private_link_' . $it . '_title')), $url),
+          'hwc_partner_private_link_title' => l(t(variable_get('hwc_partner_private_link_' . $it . '_title')), $url, $url_options),
           'hwc_partner_private_link_description' => t(variable_get('hwc_partner_private_link_' . $it . '_description')),
           'hwc_partner_private_link_link_text' => l(t(variable_get('hwc_partner_private_link_' . $it . '_link_text')), $url),
         )
@@ -136,33 +128,6 @@ function hwc_partner_block_view($delta = '') {
     }
   }
   return $block;
-}
-
-/**
- * Check if the given user matches a partner node (they are in same section).
- *
- * @param stdClass $node
- * @param stdClass $account
- *
- * @return bool
- *   TRUE if the account is partner and matches the current 'partner' $node.
- */
-function hwc_partner_match_user_partner($node, $account = NULL) {
-  if (empty($account)) {
-    global $user;
-    $account = $user;
-  }
-  if (empty($account->workbench_access)) {
-    workbench_access_user_load_data($account);
-  }
-  if ($node && $node->type == 'partner' && in_array(ROLE_CAMPAIGN_PARTNER, $account->roles) && !empty($account->workbench_access) && !empty($node->workbench_access)) {
-    foreach(array_keys($account->workbench_access) as $id_section) {
-      if (in_array($id_section, $node->workbench_access)) {
-        return TRUE;
-      }
-    }
-  }
-  return FALSE;
 }
 
 /**
@@ -206,6 +171,21 @@ function hwc_partner_node_view($node, $view_mode, $langcode) {
 }
 
 /**
+ * Implements hook_node_access().
+ */
+function hwc_partner_node_access($node, $op, $account) {
+  // Do not allow media partners to create news
+  if ($node == 'events' && $op == 'create' && in_array(ROLE_CAMPAIGN_PARTNER, $account->roles)) {
+    $partner = hwc_partner_get_account_partner($account);
+    if (hwc_partner_is_mp($partner)) {
+      // drupal_set_message('Partners are not allowed to create events.', 'error');
+      return NODE_ACCESS_DENY;
+    }
+  }
+  return NODE_ACCESS_IGNORE;
+}
+
+/**
  * Implements hook_form_FORM_ID_alter().
  */
 function hwc_partner_form_news_node_form_alter(&$form, &$form_state) {
@@ -227,7 +207,13 @@ function hwc_partner_form_news_node_form_alter(&$form, &$form_state) {
     $form['field_expiration_date']['#access'] = FALSE;
     $form['field_tags']['#access'] = FALSE;
     $form['field_aditional_resources']['#access'] = FALSE;
+    $form['field_activity']['#access'] = FALSE;
     $form['#after_build'][] = 'hwc_partner_node_form_after_build_hide_hints';
+  }
+  else if (count(array_intersect(array('administrator', ROLE_MOSTRA), $user->roles))) {
+    if (!empty($_GET['workbench_access']) && intval($_GET['workbench_access'])) {
+      $form['workbench_access']['workbench_access']['#default_value'] = intval($_GET['workbench_access']);
+    }
   }
 }
 
@@ -252,7 +238,13 @@ function hwc_partner_form_events_node_form_alter(&$form, &$form_state) {
     $form['field_partner_id']['#access'] = FALSE;
     $form['field_schedule']['#access'] = FALSE;
     $form['field_speaker']['#access'] = FALSE;
+    $form['field_activity']['#access'] = FALSE;
     $form['#after_build'][] = 'hwc_partner_node_form_after_build_hide_hints';
+  }
+  else if (count(array_intersect(array('administrator', ROLE_MOSTRA), $user->roles))) {
+    if (!empty($_GET['workbench_access']) && intval($_GET['workbench_access'])) {
+      $form['workbench_access']['workbench_access']['#default_value'] = intval($_GET['workbench_access']);
+    }
   }
 }
 

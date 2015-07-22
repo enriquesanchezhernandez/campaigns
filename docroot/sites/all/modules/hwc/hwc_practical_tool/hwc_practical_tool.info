@@ -35,6 +35,7 @@ features[field_base][] = field_relevant_for
 features[field_base][] = field_tool_type
 features[field_instance][] = node-practical_tool-body
 features[field_instance][] = node-practical_tool-field_access_tool_link
+features[field_instance][] = node-practical_tool-field_activity
 features[field_instance][] = node-practical_tool-field_country
 features[field_instance][] = node-practical_tool-field_dissemination_used
 features[field_instance][] = node-practical_tool-field_external_urls
