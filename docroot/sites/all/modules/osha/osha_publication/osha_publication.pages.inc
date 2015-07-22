@@ -24,11 +24,13 @@ function osha_publication_menu_publications_form($form, $form_state) {
     '#maxlength' => 200,
     '#default_value' => $text,
     '#title_display' => 'invisible',
-    '#attributes' => array('placeholder' => t('Free text filter'))
+    '#attributes' => array('placeholder' => t('Free text filter')),
+    '#prefix' => '<div id="search">',
   );
   $form['content']['submit'] = array(
     '#type' => 'submit',
     '#value' => t('Search'),
+    '#suffix' => '</div>',
   );
   $form['left-column']['languages'] = array(
     '#type' => 'checkboxes',
