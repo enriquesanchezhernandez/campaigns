@@ -31,20 +31,11 @@
   print render($content['field_summary']);
   print render($content['body']);
 
-  if ($view_mode == 'full') {
-    print render($content['links']['#links']['addtoany']['title']);
-  }
+  print render($content['links']['#links']['addtoany']['title']);
 
-  // Recommended for you
-  if (!empty($content['field_recommended_articles']) || !empty($content['field_recommended_resources'])) {
-    print '<div class="dot-separator green"></div><div class="icon recommended-for-you"></div>' . '<h2>' . t('Recommended for you') . '</h2>';
-  }
-  if (!empty($content['field_recommended_articles'])) {
-    print render($content['field_recommended_articles']);
-  }
-  if (!empty($content['field_recommended_resources'])) {
-    print render($content['field_recommended_resources']);
-  }
+  print render($content['field_aditional_resources']);
+  print render($content['field_recommended_articles']);
+
   unset($content['links']['#links']['addtoany']);
 
   // Additional resources
