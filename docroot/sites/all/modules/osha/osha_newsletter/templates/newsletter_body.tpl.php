@@ -33,6 +33,11 @@ td{
       <td width="100%" style="padding-top: 0px; padding-bottom: 0px;">
         <table border="0" cellpadding="20" cellspacing="0" width="100%">
           <tbody>
+            <?php if(!empty($newsletter_intro)){ ?>
+              <tr>
+                <td colspan="2" width="100%" style="padding-top: 15px;vertical-align: top;padding-right:50px;padding-left:50px; font-size: 13px; font-family: Arial, sans-serif; color: #000000;"><?php print($newsletter_intro);?></td>
+              </tr>
+            <?php } ?>
             <tr>
                <td width="396" style="padding-top: 15px;vertical-align: top;padding-right:50px;" class="left-column">
                 <?php

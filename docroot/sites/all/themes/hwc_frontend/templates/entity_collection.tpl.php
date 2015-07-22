@@ -14,6 +14,10 @@ if (module_exists('osha_newsletter') && isset($variables['element'])) {
     if (!empty($source->field_publication_date)) {
       $newsletter_date = $source->field_publication_date[LANGUAGE_NONE][0]['value'];
     }
+    $newsletter_intro = NULL;
+    if (isset($source->field_introduction_text[LANGUAGE_NONE][0])) {
+      $newsletter_intro = $source->field_introduction_text[LANGUAGE_NONE][0]['value'];
+    };
     $campaign_id = NULL;
     if (isset($source->field_campaign_id[LANGUAGE_NONE][0]['value'])) {
       // disable campaign tracking from the web newsletter
@@ -50,7 +54,7 @@ if (module_exists('osha_newsletter') && isset($variables['element'])) {
     <div class="newsletter-wrapper" style="width: 800px;">
       <?php
         print theme_render_template($module_templates_path.'/newsletter_header.tpl.php', array('languages' => $languages, 'newsletter_title' => $newsletter_title, 'newsletter_id' => $newsletter_id, 'newsletter_date' => $newsletter_date, 'campaign_id' => $campaign_id));
-        print osha_newsletter_format_body(theme_render_template($module_templates_path.'/newsletter_body.tpl.php', array('items' => $elements, 'events' => $events, 'campaign_id' => $campaign_id)));
+        print osha_newsletter_format_body(theme_render_template($module_templates_path.'/newsletter_body.tpl.php', array('newsletter_intro' => t($newsletter_intro) ,'items' => $elements, 'events' => $events, 'campaign_id' => $campaign_id)));
         print theme_render_template($module_templates_path.'/newsletter_footer.tpl.php', array('campaign_id' => $campaign_id));
       ?>
     </div><?php
