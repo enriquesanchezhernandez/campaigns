@@ -232,9 +232,9 @@ function osha_search_default_search_api_server() {
       "path" : "\\/solr\\/campaigns",
       "http_user" : "admin",
       "http_pass" : "password",
-      "excerpt" : 0,
+      "excerpt" : 1,
       "retrieve_data" : 1,
-      "highlight_data" : 0,
+      "highlight_data" : 1,
       "skip_schema_check" : 0,
       "solr_version" : "",
       "http_method" : "AUTO"

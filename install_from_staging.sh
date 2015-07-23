@@ -47,13 +47,6 @@ if [ ${ecode} != 0 ]; then
   exit ${ecode};
 fi
 
-drush devify_solr
-ecode=$?
-if [ ${ecode} != 0 ]; then
-  echo "Devify Solr has returned an error"
-  exit ${ecode};
-fi
-
 # temporary
 drush fr -y --force osha_events
 
@@ -64,6 +57,7 @@ if [ ${ecode} != 0 ]; then
   exit ${ecode};
 fi
 
+drush devify_solr
 drush devify_ldap
 
 if [ ! -z "$post_update" ]; then
