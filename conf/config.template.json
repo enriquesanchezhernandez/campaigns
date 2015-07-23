@@ -53,6 +53,7 @@
     },
     "variables": {
         "environment": "production",
+        "captcha_default_challenge": "eu_captcha/EUCAPTCHA",
         "site_name": "OSHA",
         "site_mail": "test@eaudeweb.ro",
         "file_temporary_path": "/tmp",
