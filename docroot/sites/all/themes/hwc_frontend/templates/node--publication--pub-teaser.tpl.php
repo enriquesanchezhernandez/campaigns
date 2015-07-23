@@ -10,6 +10,7 @@
  * @ingroup themeable
  */
 ?>
+<div class="publication-item">
 <?php
 /** @var array $variables */
 $content = $variables['content'];
@@ -34,3 +35,5 @@ if (!empty($node->field_file)) {
   }
   print theme('item_list', array('items' => $items));
 }
+?>
+</div>
