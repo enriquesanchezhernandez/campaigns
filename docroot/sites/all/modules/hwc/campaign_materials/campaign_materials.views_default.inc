@@ -131,7 +131,6 @@ function campaign_materials_views_default_views() {
 
   /* Display: Block */
   $handler = $view->new_display('block', 'Block', 'block');
-  
   $translatables['view_campaign_materials'] = array(
     t('Master'),
     t('> See more'),

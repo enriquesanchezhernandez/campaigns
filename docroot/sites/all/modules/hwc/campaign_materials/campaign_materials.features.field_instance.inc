@@ -96,7 +96,7 @@ function campaign_materials_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 11,
+        'weight' => 9,
       ),
       'highlights_item' => array(
         'label' => 'above',
@@ -166,7 +166,7 @@ function campaign_materials_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 13,
+        'weight' => 11,
       ),
       'highlights_item' => array(
         'label' => 'above',
@@ -246,7 +246,7 @@ function campaign_materials_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 7,
+        'weight' => 6,
       ),
       'highlights_item' => array(
         'label' => 'above',
@@ -315,10 +315,9 @@ function campaign_materials_field_default_field_instances() {
     'display' => array(
       'default' => array(
         'label' => 'hidden',
-        'module' => 'i18n_taxonomy',
         'settings' => array(),
-        'type' => 'i18n_taxonomy_term_reference_link',
-        'weight' => 4,
+        'type' => 'hidden',
+        'weight' => 3,
       ),
       'highlights_item' => array(
         'label' => 'above',
@@ -388,7 +387,7 @@ function campaign_materials_field_default_field_instances() {
         'label' => 'hidden',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 8,
+        'weight' => 7,
       ),
       'highlights_item' => array(
         'label' => 'above',
@@ -459,7 +458,7 @@ function campaign_materials_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 9,
+        'weight' => 8,
       ),
       'highlights_item' => array(
         'label' => 'above',
@@ -538,7 +537,7 @@ function campaign_materials_field_default_field_instances() {
         'module' => 'hwc',
         'settings' => array(),
         'type' => 'field_file',
-        'weight' => 3,
+        'weight' => 2,
       ),
       'highlights_item' => array(
         'label' => 'above',
@@ -716,10 +715,9 @@ function campaign_materials_field_default_field_instances() {
     'display' => array(
       'default' => array(
         'label' => 'hidden',
-        'module' => 'text',
         'settings' => array(),
-        'type' => 'text_default',
-        'weight' => 5,
+        'type' => 'hidden',
+        'weight' => 14,
       ),
       'highlights_item' => array(
         'label' => 'above',
@@ -795,7 +793,7 @@ function campaign_materials_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 12,
+        'weight' => 10,
       ),
       'highlights_item' => array(
         'label' => 'above',
@@ -864,17 +862,9 @@ function campaign_materials_field_default_field_instances() {
     'display' => array(
       'default' => array(
         'label' => 'hidden',
-        'module' => 'date',
-        'settings' => array(
-          'format_type' => 'long',
-          'fromto' => 'both',
-          'multiple_from' => '',
-          'multiple_number' => '',
-          'multiple_to' => '',
-          'osha_date_theme' => '',
-        ),
-        'type' => 'date_default',
-        'weight' => 2,
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 5,
       ),
       'highlights_item' => array(
         'label' => 'above',
@@ -961,7 +951,7 @@ function campaign_materials_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 6,
+        'weight' => 4,
       ),
       'highlights_item' => array(
         'label' => 'above',
@@ -1037,7 +1027,7 @@ function campaign_materials_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 14,
+        'weight' => 12,
       ),
       'highlights_item' => array(
         'label' => 'above',
@@ -1107,7 +1097,7 @@ function campaign_materials_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 15,
+        'weight' => 13,
       ),
       'highlights_item' => array(
         'label' => 'above',
