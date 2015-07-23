@@ -10,6 +10,28 @@
 function hwc_partner_field_default_field_bases() {
   $field_bases = array();
 
+  // Exported field_base: 'field_appform_status'
+  $field_bases['field_appform_status'] = array(
+    'active' => 1,
+    'cardinality' => 1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'field_appform_status',
+    'indexes' => array(
+      'format' => array(
+        0 => 'format',
+      ),
+    ),
+    'locked' => 0,
+    'module' => 'text',
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+      'max_length' => 255,
+    ),
+    'translatable' => 0,
+    'type' => 'text',
+  );
+
   // Exported field_base: 'field_bussines_sector'
   $field_bases['field_bussines_sector'] = array(
     'active' => 1,
@@ -60,28 +82,6 @@ function hwc_partner_field_default_field_bases() {
     ),
     'translatable' => 0,
     'type' => 'link_field',
-  );
-
-  // Exported field_base: 'field_category'
-  $field_bases['field_category'] = array(
-    'active' => 1,
-    'cardinality' => 1,
-    'deleted' => 0,
-    'entity_types' => array(),
-    'field_name' => 'field_category',
-    'indexes' => array(
-      'format' => array(
-        0 => 'format',
-      ),
-    ),
-    'locked' => 0,
-    'module' => 'text',
-    'settings' => array(
-      'entity_translation_sync' => FALSE,
-      'max_length' => 255,
-    ),
-    'translatable' => 1,
-    'type' => 'text',
   );
 
   // Exported field_base: 'field_ceo'
@@ -299,6 +299,28 @@ function hwc_partner_field_default_field_bases() {
     'type' => 'text_long',
   );
 
+  // Exported field_base: 'field_organisation_rep'
+  $field_bases['field_organisation_rep'] = array(
+    'active' => 1,
+    'cardinality' => 1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'field_organisation_rep',
+    'indexes' => array(
+      'format' => array(
+        0 => 'format',
+      ),
+    ),
+    'locked' => 0,
+    'module' => 'text',
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+      'max_length' => 255,
+    ),
+    'translatable' => 0,
+    'type' => 'text',
+  );
+
   // Exported field_base: 'field_orgtype'
   $field_bases['field_orgtype'] = array(
     'active' => 1,
@@ -415,13 +437,13 @@ function hwc_partner_field_default_field_bases() {
     'type' => 'text',
   );
 
-  // Exported field_base: 'field_social_dialog_partner'
-  $field_bases['field_social_dialog_partner'] = array(
+  // Exported field_base: 'field_position_identifier'
+  $field_bases['field_position_identifier'] = array(
     'active' => 1,
     'cardinality' => 1,
     'deleted' => 0,
     'entity_types' => array(),
-    'field_name' => 'field_social_dialog_partner',
+    'field_name' => 'field_position_identifier',
     'indexes' => array(
       'format' => array(
         0 => 'format',
@@ -435,6 +457,32 @@ function hwc_partner_field_default_field_bases() {
     ),
     'translatable' => 0,
     'type' => 'text',
+  );
+
+  // Exported field_base: 'field_social_dialog_partner'
+  $field_bases['field_social_dialog_partner'] = array(
+    'active' => 1,
+    'cardinality' => 1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'field_social_dialog_partner',
+    'indexes' => array(
+      'value' => array(
+        0 => 'value',
+      ),
+    ),
+    'locked' => 0,
+    'module' => 'list',
+    'settings' => array(
+      'allowed_values' => array(
+        0 => 'No',
+        1 => 'Yes',
+      ),
+      'allowed_values_function' => '',
+      'entity_translation_sync' => FALSE,
+    ),
+    'translatable' => 0,
+    'type' => 'list_boolean',
   );
 
   return $field_bases;

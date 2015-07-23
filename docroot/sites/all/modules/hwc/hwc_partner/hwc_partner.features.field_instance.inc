@@ -10,6 +10,47 @@
 function hwc_partner_field_default_field_instances() {
   $field_instances = array();
 
+  // Exported field_instance: 'node-partner-field_appform_status'
+  $field_instances['node-partner-field_appform_status'] = array(
+    'bundle' => 'partner',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 27,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_appform_status',
+    'label' => 'Appform status',
+    'required' => 0,
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+      'linkit' => array(
+        'button_text' => 'Search',
+        'enable' => 0,
+        'profile' => '',
+      ),
+      'text_processing' => 0,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'text',
+      'settings' => array(
+        'size' => 60,
+      ),
+      'type' => 'text_textfield',
+      'weight' => 29,
+    ),
+    'workbench_access_field' => 0,
+  );
+
   // Exported field_instance: 'node-partner-field_bussines_sector'
   $field_instances['node-partner-field_bussines_sector'] = array(
     'bundle' => 'partner',
@@ -177,83 +218,6 @@ function hwc_partner_field_default_field_instances() {
       'settings' => array(),
       'type' => 'link_field',
       'weight' => 21,
-    ),
-    'workbench_access_field' => 0,
-  );
-
-  // Exported field_instance: 'node-partner-field_category'
-  $field_instances['node-partner-field_category'] = array(
-    'bundle' => 'partner',
-    'default_value' => NULL,
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
-      'default' => array(
-        'label' => 'above',
-        'module' => 'text',
-        'settings' => array(),
-        'type' => 'text_default',
-        'weight' => 20,
-      ),
-      'highlights_item' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-      'newsletter_item' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-      'osha_resources' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-      'osha_slideshow' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-      'pub_teaser' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-      'teaser' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-    ),
-    'entity_type' => 'node',
-    'field_name' => 'field_category',
-    'label' => 'Category',
-    'required' => 0,
-    'settings' => array(
-      'entity_translation_sync' => FALSE,
-      'linkit' => array(
-        'button_text' => 'Search',
-        'enable' => 0,
-        'profile' => '',
-      ),
-      'text_processing' => 0,
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'active' => 1,
-      'module' => 'text',
-      'settings' => array(
-        'size' => 60,
-      ),
-      'type' => 'text_textfield',
-      'weight' => 7,
     ),
     'workbench_access_field' => 0,
   );
@@ -432,8 +396,8 @@ function hwc_partner_field_default_field_instances() {
     'workbench_access_field' => 0,
   );
 
-  // Exported field_instance: 'node-partner-field_country_code'
-  $field_instances['node-partner-field_country_code'] = array(
+  // Exported field_instance: 'node-partner-field_country'
+  $field_instances['node-partner-field_country'] = array(
     'bundle' => 'partner',
     'default_value' => NULL,
     'deleted' => 0,
@@ -441,51 +405,15 @@ function hwc_partner_field_default_field_instances() {
     'display' => array(
       'default' => array(
         'label' => 'above',
-        'module' => 'list',
+        'module' => 'i18n_taxonomy',
         'settings' => array(),
-        'type' => 'list_default',
-        'weight' => 11,
-      ),
-      'highlights_item' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-      'newsletter_item' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-      'osha_resources' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-      'osha_slideshow' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-      'pub_teaser' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-      'teaser' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
+        'type' => 'i18n_taxonomy_term_reference_link',
+        'weight' => 28,
       ),
     ),
     'entity_type' => 'node',
-    'field_name' => 'field_country_code',
-    'label' => 'Ph Country',
+    'field_name' => 'field_country',
+    'label' => 'Country',
     'required' => 0,
     'settings' => array(
       'entity_translation_sync' => FALSE,
@@ -498,7 +426,7 @@ function hwc_partner_field_default_field_instances() {
         'apply_chosen' => '',
       ),
       'type' => 'options_select',
-      'weight' => 11,
+      'weight' => 31,
     ),
     'workbench_access_field' => 0,
   );
@@ -1125,6 +1053,47 @@ function hwc_partner_field_default_field_instances() {
     'workbench_access_field' => 0,
   );
 
+  // Exported field_instance: 'node-partner-field_organisation_rep'
+  $field_instances['node-partner-field_organisation_rep'] = array(
+    'bundle' => 'partner',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 25,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_organisation_rep',
+    'label' => 'Organisation representative',
+    'required' => 0,
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+      'linkit' => array(
+        'button_text' => 'Search',
+        'enable' => 0,
+        'profile' => '',
+      ),
+      'text_processing' => 0,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'text',
+      'settings' => array(
+        'size' => 60,
+      ),
+      'type' => 'text_textfield',
+      'weight' => 27,
+    ),
+    'workbench_access_field' => 0,
+  );
+
   // Exported field_instance: 'node-partner-field_orgtype'
   $field_instances['node-partner-field_orgtype'] = array(
     'bundle' => 'partner',
@@ -1503,6 +1472,47 @@ function hwc_partner_field_default_field_instances() {
     'workbench_access_field' => 0,
   );
 
+  // Exported field_instance: 'node-partner-field_position_identifier'
+  $field_instances['node-partner-field_position_identifier'] = array(
+    'bundle' => 'partner',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 26,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_position_identifier',
+    'label' => 'Position identifier',
+    'required' => 0,
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+      'linkit' => array(
+        'button_text' => 'Search',
+        'enable' => 0,
+        'profile' => '',
+      ),
+      'text_processing' => 0,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'text',
+      'settings' => array(
+        'size' => 60,
+      ),
+      'type' => 'text_textfield',
+      'weight' => 28,
+    ),
+    'workbench_access_field' => 0,
+  );
+
   // Exported field_instance: 'node-partner-field_quote'
   $field_instances['node-partner-field_quote'] = array(
     'bundle' => 'partner',
@@ -1575,7 +1585,7 @@ function hwc_partner_field_default_field_instances() {
         'rows' => 5,
       ),
       'type' => 'text_textarea',
-      'weight' => 25,
+      'weight' => 6,
     ),
     'workbench_access_field' => 0,
   );
@@ -1583,76 +1593,38 @@ function hwc_partner_field_default_field_instances() {
   // Exported field_instance: 'node-partner-field_social_dialog_partner'
   $field_instances['node-partner-field_social_dialog_partner'] = array(
     'bundle' => 'partner',
-    'default_value' => NULL,
+    'default_value' => array(
+      0 => array(
+        'value' => 0,
+      ),
+    ),
     'deleted' => 0,
     'description' => '',
     'display' => array(
       'default' => array(
         'label' => 'above',
-        'module' => 'text',
+        'module' => 'list',
         'settings' => array(),
-        'type' => 'text_default',
-        'weight' => 21,
-      ),
-      'highlights_item' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-      'newsletter_item' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-      'osha_resources' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-      'osha_slideshow' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-      'pub_teaser' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-      'teaser' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
+        'type' => 'list_default',
+        'weight' => 24,
       ),
     ),
     'entity_type' => 'node',
     'field_name' => 'field_social_dialog_partner',
-    'label' => 'Social Dialog Partner',
+    'label' => 'Social dialog partner',
     'required' => 0,
     'settings' => array(
       'entity_translation_sync' => FALSE,
-      'linkit' => array(
-        'button_text' => 'Search',
-        'enable' => 0,
-        'profile' => '',
-      ),
-      'text_processing' => 0,
       'user_register_form' => FALSE,
     ),
     'widget' => array(
       'active' => 1,
-      'module' => 'text',
+      'module' => 'options',
       'settings' => array(
-        'size' => 60,
+        'display_label' => 1,
       ),
-      'type' => 'text_textfield',
-      'weight' => 24,
+      'type' => 'options_onoff',
+      'weight' => 7,
     ),
     'workbench_access_field' => 0,
   );
@@ -1838,11 +1810,12 @@ function hwc_partner_field_default_field_instances() {
 
   // Translatables
   // Included for use with string extractors like potx.
+  t('Appform status');
   t('Bussines Sector');
   t('CEO');
   t('CEO photo');
   t('Campaign website');
-  t('Category');
+  t('Country');
   t('General email');
   t('General phone');
   t('Guid Main Contact');
@@ -1853,13 +1826,14 @@ function hwc_partner_field_default_field_instances() {
   t('Mission Statement');
   t('Organisation');
   t('Organisation GUID');
+  t('Organisation representative');
   t('Organisation type');
   t('Ph Address');
   t('Ph Address Extra');
   t('Ph CP');
-  t('Ph Country');
+  t('Position identifier');
   t('Quote');
-  t('Social Dialog Partner');
+  t('Social dialog partner');
   t('Type');
   t('Website');
 

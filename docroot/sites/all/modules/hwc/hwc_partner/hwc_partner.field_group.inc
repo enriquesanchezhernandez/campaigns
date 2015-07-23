@@ -23,9 +23,9 @@ function hwc_partner_field_group_info() {
     'label' => 'Category',
     'weight' => '6',
     'children' => array(
-      0 => 'field_category',
-      1 => 'field_social_dialog_partner',
-      2 => 'field_quote',
+      0 => 'field_partner_type',
+      1 => 'field_quote',
+      2 => 'field_social_dialog_partner',
     ),
     'format_type' => 'fieldset',
     'format_settings' => array(
@@ -52,8 +52,8 @@ function hwc_partner_field_group_info() {
     'label' => 'CEO',
     'weight' => '5',
     'children' => array(
-      0 => 'field_ceo_photo',
-      1 => 'field_ceo',
+      0 => 'field_ceo',
+      1 => 'field_ceo_photo',
     ),
     'format_type' => 'fieldset',
     'format_settings' => array(
@@ -80,9 +80,9 @@ function hwc_partner_field_group_info() {
     'label' => 'Main Contact',
     'weight' => '4',
     'children' => array(
-      0 => 'field_main_contact',
-      1 => 'field_main_contact_email',
-      2 => 'field_guid_main_contact',
+      0 => 'field_guid_main_contact',
+      1 => 'field_main_contact',
+      2 => 'field_main_contact_email',
     ),
     'format_type' => 'fieldset',
     'format_settings' => array(
@@ -110,16 +110,16 @@ function hwc_partner_field_group_info() {
     'label' => 'Guid organisation',
     'weight' => '2',
     'children' => array(
-      0 => 'title_field',
-      1 => 'field_general_email',
-      2 => 'field_general_phone',
-      3 => 'field_website',
-      4 => 'field_orgtype',
-      5 => 'field_bussines_sector',
+      0 => 'field_bussines_sector',
+      1 => 'field_campaign_website',
+      2 => 'field_general_email',
+      3 => 'field_general_phone',
+      4 => 'field_guid_organisation',
+      5 => 'field_logo',
       6 => 'field_mission_statement',
-      7 => 'field_logo',
-      8 => 'field_campaign_website',
-      9 => 'field_guid_organisation',
+      7 => 'field_orgtype',
+      8 => 'field_website',
+      9 => 'title_field',
     ),
     'format_type' => 'fieldset',
     'format_settings' => array(
@@ -146,10 +146,9 @@ function hwc_partner_field_group_info() {
     'label' => 'Ph Address',
     'weight' => '3',
     'children' => array(
-      0 => 'field_ph_cp',
-      1 => 'field_country_code',
-      2 => 'field_ph_address_extra',
-      3 => 'field_ph_address',
+      0 => 'field_ph_address',
+      1 => 'field_ph_address_extra',
+      2 => 'field_ph_cp',
     ),
     'format_type' => 'fieldset',
     'format_settings' => array(
