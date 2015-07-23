@@ -15,7 +15,7 @@
  * @ingroup themeable
  */
 ?>
-<div class="tools-and-resources-block">
+<div class="tools-and-resources-block col-sm-4">
 <?php print($content); ?>
 
 </div>
