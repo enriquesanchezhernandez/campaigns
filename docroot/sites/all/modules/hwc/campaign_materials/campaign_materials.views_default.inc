@@ -98,17 +98,18 @@ function campaign_materials_views_default_views() {
     ),
     'trim_preserve_tags' => '',
   );
-  /* Field: Content: File */
-  $handler->display->display_options['fields']['field_file']['id'] = 'field_file';
-  $handler->display->display_options['fields']['field_file']['table'] = 'field_data_field_file';
-  $handler->display->display_options['fields']['field_file']['field'] = 'field_file';
-  $handler->display->display_options['fields']['field_file']['label'] = '';
-  $handler->display->display_options['fields']['field_file']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['field_file']['click_sort_column'] = 'fid';
-  $handler->display->display_options['fields']['field_file']['type'] = 'file_download_link';
-  $handler->display->display_options['fields']['field_file']['settings'] = array(
+  /* Field: Content: Files */
+  $handler->display->display_options['fields']['field_related_documents']['id'] = 'field_related_documents';
+  $handler->display->display_options['fields']['field_related_documents']['table'] = 'field_data_field_related_documents';
+  $handler->display->display_options['fields']['field_related_documents']['field'] = 'field_related_documents';
+  $handler->display->display_options['fields']['field_related_documents']['label'] = '';
+  $handler->display->display_options['fields']['field_related_documents']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_related_documents']['click_sort_column'] = 'fid';
+  $handler->display->display_options['fields']['field_related_documents']['type'] = 'file_download_link';
+  $handler->display->display_options['fields']['field_related_documents']['settings'] = array(
     'text' => 'Download [file:name]',
   );
+  $handler->display->display_options['fields']['field_related_documents']['delta_offset'] = '0';
   /* Sort criterion: Content: Post date */
   $handler->display->display_options['sorts']['created']['id'] = 'created';
   $handler->display->display_options['sorts']['created']['table'] = 'node';

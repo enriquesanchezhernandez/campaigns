@@ -108,19 +108,22 @@ function campaign_materials_strongarm() {
     'extra_fields' => array(
       'form' => array(
         'metatags' => array(
-          'weight' => '40',
+          'weight' => '6',
         ),
         'title' => array(
           'weight' => '-5',
         ),
         'path' => array(
-          'weight' => '30',
+          'weight' => '3',
         ),
         'redirect' => array(
-          'weight' => '30',
+          'weight' => '4',
         ),
         'workbench_access' => array(
-          'weight' => '0',
+          'weight' => '1',
+        ),
+        'language' => array(
+          'weight' => '2',
         ),
       ),
       'display' => array(),
