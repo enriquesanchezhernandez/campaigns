@@ -18,6 +18,8 @@ function campaign_materials_default_page_manager_pages() {
   $page->path = 'campaign-materials';
   $page->access = array(
     'logic' => 'and',
+    'type' => 'none',
+    'settings' => NULL,
   );
   $page->menu = array(
     'type' => 'normal',
