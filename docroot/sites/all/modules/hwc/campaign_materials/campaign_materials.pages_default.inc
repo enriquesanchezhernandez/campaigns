@@ -128,7 +128,7 @@ function campaign_materials_default_page_manager_pages() {
     ),
   );
   $display->cache = array();
-  $display->title = '';
+  $display->title = 'Campaign materials';
   $display->uuid = '9747aef2-0f57-4a9a-815c-c8298d9a7a53';
   $display->content = array();
   $display->panels = array();
@@ -181,11 +181,11 @@ function campaign_materials_default_page_manager_pages() {
       'nid' => '151',
       'links' => 0,
       'leave_node_title' => 0,
-      'identifier' => 'campaignsection',
+      'identifier' => 'section_introduction',
       'build_mode' => 'full',
       'link_node_title' => 0,
       'override_title' => 1,
-      'override_title_text' => '%title_field',
+      'override_title_text' => '',
       'override_title_heading' => 'h3',
     );
     $pane->cache = array();
@@ -199,7 +199,7 @@ function campaign_materials_default_page_manager_pages() {
     $pane->uuid = 'da09d9e5-65d7-46a5-94d0-da6f6cc3c2a7';
     $display->content['new-da09d9e5-65d7-46a5-94d0-da6f6cc3c2a7'] = $pane;
     $display->panels['introduction_section'][0] = 'new-da09d9e5-65d7-46a5-94d0-da6f6cc3c2a7';
-  $display->hide_title = PANELS_TITLE_NONE;
+  $display->hide_title = PANELS_TITLE_FIXED;
   $display->title_pane = '0';
   $handler->conf['display'] = $display;
   $page->default_handlers[$handler->name] = $handler;

@@ -7,62 +7,25 @@
 include_once 'hwc_practical_tool.features.inc';
 
 /**
- * Implements hook_menu().
- */
-function hwc_practical_tool_menu() {
-  $items['practical-tools'] = array(
-    'title' => 'Practical tools',
-    'description' => 'Listing page for practical tools',
-    'page callback' => 'drupal_get_form',
-    'page arguments' => array('hwc_practical_tool_menu_tools_form'),
-    'file' => 'hwc_practical_tool.pages.inc',
-    'access arguments' => array('access content'),
-    'menu_name' => 'main-menu',
-    'type' => MENU_NORMAL_ITEM,
-  );
-  return $items;
-}
-
-/**
- * Implements hook_page_alter().
- */
-function hwc_practical_tool_page_alter(&$page) {
-  if ($menu = menu_get_item()) {
-    if(!empty($menu['path']) && $menu['path'] == 'practical-tools') {
-      $subtitle = '';
-      $nid = 150;
-      $fields = field_info_instances('node', 'article');
-      $rows = array($nid => (object) array('nid' => $nid, 'vid' => NULL, 'type' => 'article'));
-      field_attach_load('node', $rows, FIELD_LOAD_CURRENT, array('field_id' => $fields['body']['field_id']));
-      $node = $rows[$nid];
-      if ($text = field_view_field('node', $node, 'body',  array('label' => 'hidden'))) {
-        drupal_add_library('contextual', 'contextual-links');
-        $subtitle = '<div class="contextual-links-region clearfix">' . drupal_render($text);
-        $subtitle .= '<div class="contextual-links-wrapper"><ul class="contextual-links">';
-        $subtitle .= sprintf('<li><a href="%s">%s</a></li>', url("node/$nid/edit"), t('Edit'));
-        $subtitle .= '</ul></div></div>';
-      }
-
-      array_unshift($page['content'], array(
-        '#type' => 'item',
-        '#markup' => $subtitle
-      ));
-    }
-  }
-}
-
-/**
  * Implements hook_block_info().
  */
 function hwc_practical_tool_block_info() {
-  $block['hwc_practical_tool_language_list'] = array(
+  $blocks = array();
+  $blocks['hwc_practical_tool_listing'] = array(
+    'info' => t('Practical tools listing'),
+    'status' => 1,
+    'region' => '-1',
+    'visibility' => BLOCK_VISIBILITY_NOTLISTED,
+    'cache' => DRUPAL_CACHE_GLOBAL,
+  );
+  $blocks['hwc_practical_tool_language_list'] = array(
     'info' => t('Practical tool language list'),
     'status' => 1,
     'region' => '-1',
     'visibility' => BLOCK_VISIBILITY_NOTLISTED,
     'cache' => DRUPAL_CACHE_GLOBAL,
   );
-  return $block;
+  return $blocks;
 }
 
 /**
@@ -70,7 +33,7 @@ function hwc_practical_tool_block_info() {
  */
 function hwc_practical_tool_block_view($delta = '') {
   $block = array();
-  if($delta == 'hwc_practical_tool_language_list') {
+  if ($delta == 'hwc_practical_tool_language_list') {
     $node = menu_get_object();
     $q = db_select('languages', 'l');
     $q->fields('l', array('language', 'name', 'native'));
@@ -83,6 +46,10 @@ function hwc_practical_tool_block_view($delta = '') {
      'languages' => $languages,
       )
     );
+  }
+  if ($delta == 'hwc_practical_tool_listing') {
+    module_load_include('inc', 'hwc_practical_tool', 'hwc_practical_tool.pages');
+    $block['content'] = drupal_get_form('hwc_practical_tool_menu_tools_form');
   }
   return $block;
 }
