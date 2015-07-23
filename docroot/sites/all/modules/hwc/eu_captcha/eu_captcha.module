@@ -58,8 +58,6 @@ function eu_captcha_captcha($op, $captcha_type = '') {
               "length":' . variable_get('eu_captcha_length', 6) . ',
               "case_sensitive":' . $case_sensitive . ',
               "autodetect_protocol":"' . $autodetect_protocol . '",
-              "id_confirmation_field":"' . variable_get('eu_captcha_id_confirmation_field', '') . '",
-              "label_confirmation_field":"' . variable_get('eu_captcha_label_confirmation_field', '') . '",
               "perturbation":' . variable_get('eu_captcha_perturbation', 0.6) . ',
               "num_lines":' . variable_get('eu_captcha_num_lines', 8) . ',
               "noise_level":' . variable_get('eu_captcha_noise_level', 0) . ',
