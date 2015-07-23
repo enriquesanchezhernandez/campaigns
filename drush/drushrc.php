@@ -499,6 +499,7 @@ $options['init-modules'] = array(
   'hwc_partner',
   'hwc_feeds',
   'eu_captcha',
+  'hwc_social_sprites',
 
 );
 
