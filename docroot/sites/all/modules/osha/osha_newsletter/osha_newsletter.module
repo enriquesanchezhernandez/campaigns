@@ -773,6 +773,8 @@ function osha_newsletter_form_alter(&$form, &$form_state, $form_id) {
         osha_newsletter_fix_entity_collection_edit_form($form, $form_state);
         // Alter submit button label.
         $form['actions']['submit']['#value'] = t('Update newsletter');
+        // Add a submit handler.
+        $form['#submit'][] = 'osha_newsletter_entity_collection_form_submit';
       }
       break;
 
@@ -874,7 +876,7 @@ function osha_newsletter_form_validate($form, &$form_state){
 }
 
 /**
- * Submit callback when adding a newsletter.
+ * Submit callback when adding or updating a newsletter.
  */
 function osha_newsletter_entity_collection_form_submit($form, &$form_state) {
   $eid = $form_state['entity_collection']->eid;
@@ -1078,6 +1080,19 @@ function osha_newsletter_entity_insert($entity_collection, $type) {
   }
 }
 
+/**
+ * Implements hook_entity_presave().
+ */
+function osha_newsletter_entity_presave($entity_collection, $type) {
+  if ($type == 'entity_collection'
+    && isset($entity_collection->bundle)
+    && $entity_collection->bundle == 'newsletter_content_collection'
+    && isset($entity_collection->field_introduction_text[LANGUAGE_NONE][0])) {
+      $intro = $entity_collection->field_introduction_text[LANGUAGE_NONE][0]['value'];
+      locale(trim($intro));
+  }
+}
+
 function _init_node_view_mode($content_type){
   if ($content_type == 'news') {
     return 'highlights_item';
@@ -1232,6 +1247,12 @@ function osha_newsletter_build_mail(&$message, EntityCollection $source) {
   if (!empty($source->field_publication_date)) {
     $newsletter_date = $source->field_publication_date[LANGUAGE_NONE][0]['value'];
   }
+
+  $newsletter_intro = NULL;
+  if (isset($source->field_introduction_text[LANGUAGE_NONE][0])) {
+    $newsletter_intro = $source->field_introduction_text[LANGUAGE_NONE][0]['value'];
+  };
+
   $campaign_id = '';
   if (isset($source->field_campaign_id[LANGUAGE_NONE][0]['value'])) {
     $campaign_id = $source->field_campaign_id[LANGUAGE_NONE][0]['value'];
@@ -1274,7 +1295,10 @@ function osha_newsletter_build_mail(&$message, EntityCollection $source) {
     'campaign_id' => $campaign_id
   ));
   $message['body']['body'] = theme('newsletter_body', array(
-    'items' => $elements, 'events' => $events, 'campaign_id' => $campaign_id
+    'newsletter_intro' => $newsletter_intro,
+    'items' => $elements,
+    'events' => $events,
+    'campaign_id' => $campaign_id
   ));
 
   //add css styles to href in body
@@ -1370,6 +1394,7 @@ function osha_newsletter_theme() {
   $theme['newsletter_body'] = array(
     'template' => 'newsletter_body',
     'variables' => array(
+      'newsletter_intro' => NULL,
       'items' => NULL,
       'events' => NULL,
       'campaign_id' => NULL
