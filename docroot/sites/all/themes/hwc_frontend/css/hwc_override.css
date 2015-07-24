@@ -144,7 +144,7 @@ div.workbench-info-block {
 #captcha_0_readaudio img, #captcha_0_refresh img {
     height: 38px;
     width: 38px;
-    z-index: 100;
+    z-index: 10;
 }
 #captcha_0_img {
     height: 80px !important;
@@ -162,8 +162,10 @@ div.workbench-info-block {
 #block-osha-newsletter-osha-newsletter-image .captchaContainer {
     width: 257px;
 }
-#block-osha-newsletter-osha-newsletter-image #captcha_0_readaudio img, #captcha_0_refresh img {
+#block-osha-newsletter-osha-newsletter-image #captcha_0_readaudio img,#block-osha-newsletter-osha-newsletter-image #captcha_0_refresh img {
+    position: absolute;
     right: 0;
+    left: auto;
 }
 #block-osha-newsletter-osha-newsletter-image #captcha_0_readaudio img {
     top: 0;
@@ -173,4 +175,5 @@ div.workbench-info-block {
 }
 #block-osha-newsletter-osha-newsletter-image #captcha_0_img {
     left: 0;
+    z-index: 10;
 }
