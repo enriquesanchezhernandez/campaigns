@@ -3,7 +3,7 @@
 include_once 'hwc.features.inc';
 
 define('ROLE_CAMPAIGN_PARTNER', 'campaign partner');
-define('ROLE_MOSTRA', 'mostra');
+define('ROLE_SUPERVISOR', 'supervisor');
 
 /**
  * Implements hook_permission().
