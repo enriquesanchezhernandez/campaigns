@@ -1354,13 +1354,6 @@ function osha_resources_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
-  $strongarm->name = 'on_the_web_flickr_page';
-  $strongarm->value = 'http://www.flickr.com/photos/euosha/';
-  $export['on_the_web_flickr_page'] = $strongarm;
-
-  $strongarm = new stdClass();
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
   $strongarm->name = 'print_html_display_comment_resources';
   $strongarm->value = 0;
   $export['print_html_display_comment_resources'] = $strongarm;
