@@ -868,9 +868,13 @@ function campaign_materials_field_default_field_instances() {
     'display' => array(
       'default' => array(
         'label' => 'hidden',
-        'module' => 'hwc',
-        'settings' => array(),
-        'type' => 'field_file',
+        'module' => 'campaign_materials',
+        'settings' => array(
+          'description' => 0,
+          'label' => 'Download',
+          'size' => 1,
+        ),
+        'type' => 'icon_file_formatter',
         'weight' => 15,
       ),
       'highlights_item' => array(
