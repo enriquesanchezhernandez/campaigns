@@ -36,7 +36,7 @@ function hwc_social_sprites_default_fe_block_settings() {
         'weight' => 0,
       ),
     ),
-    'title' => 'Follow us on:',
+    'title' => '<none>',
     'visibility' => 0,
   );
 
