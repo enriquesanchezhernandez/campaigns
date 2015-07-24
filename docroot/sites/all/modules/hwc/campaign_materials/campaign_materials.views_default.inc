@@ -105,11 +105,14 @@ function campaign_materials_views_default_views() {
   $handler->display->display_options['fields']['field_related_documents']['label'] = '';
   $handler->display->display_options['fields']['field_related_documents']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['field_related_documents']['click_sort_column'] = 'fid';
-  $handler->display->display_options['fields']['field_related_documents']['type'] = 'file_download_link';
+  $handler->display->display_options['fields']['field_related_documents']['type'] = 'icon_file_formatter';
   $handler->display->display_options['fields']['field_related_documents']['settings'] = array(
-    'text' => 'Download [file:name]',
+    'label' => 'Download',
+    'description' => 0,
+    'size' => 1,
   );
   $handler->display->display_options['fields']['field_related_documents']['delta_offset'] = '0';
+  $handler->display->display_options['fields']['field_related_documents']['multi_type'] = 'ul';
   /* Sort criterion: Content: Post date */
   $handler->display->display_options['sorts']['created']['id'] = 'created';
   $handler->display->display_options['sorts']['created']['table'] = 'node';

@@ -105,6 +105,7 @@ function hwc_field_formatter_info() {
   return $info;
 }
 
+
 /**
 * Implements hook_theme().
 */
