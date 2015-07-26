@@ -1,1 +1,35 @@
 // Insert your styling here.
+.footer{
+	background: @footer-bg-color @footer-bg-image no-repeat left;
+	border: none;
+	padding-bottom: 1em;
+	padding-top: 0;
+	padding-left: 40px;
+	color: @footer-color;
+	height: 160px;
+	margin-top: 30px;
+	ul{
+		li{
+			a{
+				color: @footer-color;
+				padding-left: 0;
+			}
+			:hover, :focus{
+				background: none;
+			}
+			::after{
+				content: "|";
+				padding-left: 1em;
+			}
+			&.last ::after{
+				content: "";
+			}
+		}
+			
+	}
+	h3{
+		font-size: @h3-default-size;
+		font-weight: bold;
+		margin-bottom: 20px;
+	}
+}

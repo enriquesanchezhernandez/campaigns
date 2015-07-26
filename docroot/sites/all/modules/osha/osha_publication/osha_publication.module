@@ -9,21 +9,30 @@ include_once 'osha_publication.features.inc';
 define('OSHA_PUBLICATION_CONTENT_TYPE_PUBLICATION', 'publication');
 
 /**
- * Implements hook_menu().
+ * Implements hook_block_info().
  */
-function osha_publication_menu() {
-  return array(
-    'publications' => array(
-      'title' => 'Publications',
-      'description' => 'Listing page for publications',
-      'page callback' => 'drupal_get_form',
-      'page arguments' => array('osha_publication_menu_publications_form'),
-      'file' => 'osha_publication.pages.inc',
-      'access arguments' => array('access content'),
-      'menu_name' => 'main-menu',
-      'type' => MENU_NORMAL_ITEM,
-    )
+function osha_publication_block_info() {
+  $blocks = array();
+  $blocks['osha_publication_listing'] = array(
+    'info' => t('Publications listing'),
+    'status' => 1,
+    'region' => '-1',
+    'visibility' => BLOCK_VISIBILITY_NOTLISTED,
+    'cache' => DRUPAL_CACHE_GLOBAL,
   );
+  return $blocks;
+}
+
+/**
+ * Implements hook_block_view().
+ */
+function osha_publication_block_view($delta = '') {
+  $block = array();
+  if ($delta == 'osha_publication_listing') {
+    module_load_include('inc', 'osha_publication', 'osha_publication.pages');
+    $block['content'] = drupal_get_form('osha_publication_menu_publications_form');
+  }
+  return $block;
 }
 
 /**
@@ -42,38 +51,6 @@ function osha_publication_entity_info_alter(&$entity_info) {
 function osha_publication_preprocess_node(&$vars) {
   if($vars['view_mode'] == 'pub_teaser') {
     $vars['theme_hook_suggestions'][] = 'node__' . $vars['type'] . '__pub_teaser';
-  }
-}
-
-/**
- * Implements hook_page_alter().
- */
-function osha_publication_page_alter(&$page) {
-  if ($menu = menu_get_item()) {
-    if(!empty($menu['path']) && $menu['path'] == 'publications') {
-      // A fallback in case the node is deleted. Do not translate with t!
-      $subtitle = 'Reports, factsheets, summaries, etc. produced by EU-OSHA on the topic of managing stress and psychosocial risks.';
-      $nid = 105;
-      $fields = field_info_instances('node', 'article');
-      $rows = array($nid => (object) array('nid' => $nid, 'vid' => NULL, 'type' => 'article'));
-      field_attach_load('node', $rows, FIELD_LOAD_CURRENT, array('field_id' => $fields['body']['field_id']));
-      $node = $rows[$nid];
-      if ($text = field_view_field('node', $node, 'body',  array('label' => 'hidden'))) {
-        drupal_add_library('contextual', 'contextual-links');
-        $subtitle = '<div class="contextual-links-region clearfix">' . drupal_render($text);
-        $subtitle .= '<div class="contextual-links-wrapper"><ul class="contextual-links">';
-        $subtitle .= sprintf('<li><a href="%s">%s</a></li>', url("node/$nid/edit"), t('Edit'));
-        $subtitle .= '</ul></div></div>';
-      }
-      else {
-        drupal_set_message("Node #$nid body is empty, showing default text as subtitle", 'warning');
-      }
-
-      array_unshift($page['content'], array(
-        '#type' => 'item',
-        '#markup' => $subtitle
-      ));
-    }
   }
 }
 

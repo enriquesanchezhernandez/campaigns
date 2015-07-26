@@ -81,7 +81,7 @@ function campaign_materials_field_default_field_instances() {
         'summary_rows' => 5,
       ),
       'type' => 'text_textarea_with_summary',
-      'weight' => 31,
+      'weight' => 5,
     ),
   );
 
@@ -96,7 +96,7 @@ function campaign_materials_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 11,
+        'weight' => 9,
       ),
       'highlights_item' => array(
         'label' => 'above',
@@ -150,7 +150,7 @@ function campaign_materials_field_default_field_instances() {
         'apply_chosen' => '',
       ),
       'type' => 'options_select',
-      'weight' => 54,
+      'weight' => 12,
     ),
     'workbench_access_field' => 0,
   );
@@ -166,7 +166,7 @@ function campaign_materials_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 13,
+        'weight' => 11,
       ),
       'highlights_item' => array(
         'label' => 'above',
@@ -226,7 +226,7 @@ function campaign_materials_field_default_field_instances() {
         'view_mode' => 'full',
       ),
       'type' => 'entityreference_view_widget',
-      'weight' => 64,
+      'weight' => 17,
     ),
     'workbench_access_field' => 0,
   );
@@ -246,7 +246,7 @@ function campaign_materials_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 7,
+        'weight' => 6,
       ),
       'highlights_item' => array(
         'label' => 'above',
@@ -300,7 +300,7 @@ function campaign_materials_field_default_field_instances() {
         'display_label' => 0,
       ),
       'type' => 'options_onoff',
-      'weight' => 58,
+      'weight' => 14,
     ),
     'workbench_access_field' => 0,
   );
@@ -315,10 +315,9 @@ function campaign_materials_field_default_field_instances() {
     'display' => array(
       'default' => array(
         'label' => 'hidden',
-        'module' => 'i18n_taxonomy',
         'settings' => array(),
-        'type' => 'i18n_taxonomy_term_reference_link',
-        'weight' => 4,
+        'type' => 'hidden',
+        'weight' => 3,
       ),
       'highlights_item' => array(
         'label' => 'above',
@@ -372,7 +371,7 @@ function campaign_materials_field_default_field_instances() {
         'apply_chosen' => '',
       ),
       'type' => 'options_select',
-      'weight' => 67,
+      'weight' => 20,
     ),
     'workbench_access_field' => 0,
   );
@@ -388,7 +387,7 @@ function campaign_materials_field_default_field_instances() {
         'label' => 'hidden',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 8,
+        'weight' => 7,
       ),
       'highlights_item' => array(
         'label' => 'above',
@@ -444,7 +443,7 @@ function campaign_materials_field_default_field_instances() {
       'module' => 'number',
       'settings' => array(),
       'type' => 'number',
-      'weight' => 60,
+      'weight' => 15,
     ),
     'workbench_access_field' => 0,
   );
@@ -459,7 +458,7 @@ function campaign_materials_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 9,
+        'weight' => 8,
       ),
       'highlights_item' => array(
         'label' => 'above',
@@ -522,87 +521,7 @@ function campaign_materials_field_default_field_instances() {
         'year_range' => '-3:+3',
       ),
       'type' => 'date_select',
-      'weight' => 50,
-    ),
-    'workbench_access_field' => 0,
-  );
-
-  // Exported field_instance: 'node-campaign_materials-field_file'
-  $field_instances['node-campaign_materials-field_file'] = array(
-    'bundle' => 'campaign_materials',
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
-      'default' => array(
-        'label' => 'hidden',
-        'module' => 'hwc',
-        'settings' => array(),
-        'type' => 'field_file',
-        'weight' => 3,
-      ),
-      'highlights_item' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-      'newsletter_item' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-      'osha_resources' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-      'osha_slideshow' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-      'pub_teaser' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-      'teaser' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 8,
-      ),
-    ),
-    'entity_type' => 'node',
-    'field_name' => 'field_file',
-    'label' => 'File',
-    'required' => 0,
-    'settings' => array(
-      'description_field' => 0,
-      'entity_translation_sync' => 0,
-      'file_directory' => '',
-      'file_extensions' => 'txt pdf ppt pptx jpg png gif jpeg',
-      'max_filesize' => '',
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'active' => 1,
-      'module' => 'pdf_to_image',
-      'settings' => array(
-        'pdf_to_image' => array(
-          'density' => '25x25',
-          'extra_args' => '',
-          'hide_imagefield' => 0,
-          'target_field' => '',
-        ),
-        'progress_indicator' => NULL,
-      ),
-      'type' => 'pdf_to_image',
-      'weight' => 66,
+      'weight' => 11,
     ),
     'workbench_access_field' => 0,
   );
@@ -702,7 +621,7 @@ function campaign_materials_field_default_field_instances() {
         ),
       ),
       'type' => 'media_generic',
-      'weight' => 44,
+      'weight' => 8,
     ),
     'workbench_access_field' => 0,
   );
@@ -716,10 +635,9 @@ function campaign_materials_field_default_field_instances() {
     'display' => array(
       'default' => array(
         'label' => 'hidden',
-        'module' => 'text',
         'settings' => array(),
-        'type' => 'text_default',
-        'weight' => 5,
+        'type' => 'hidden',
+        'weight' => 14,
       ),
       'highlights_item' => array(
         'label' => 'above',
@@ -779,7 +697,7 @@ function campaign_materials_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 46,
+      'weight' => 9,
     ),
     'workbench_access_field' => 0,
   );
@@ -795,7 +713,7 @@ function campaign_materials_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 12,
+        'weight' => 10,
       ),
       'highlights_item' => array(
         'label' => 'above',
@@ -851,7 +769,7 @@ function campaign_materials_field_default_field_instances() {
       'module' => 'number',
       'settings' => array(),
       'type' => 'number',
-      'weight' => 62,
+      'weight' => 16,
     ),
     'workbench_access_field' => 0,
   );
@@ -864,17 +782,9 @@ function campaign_materials_field_default_field_instances() {
     'display' => array(
       'default' => array(
         'label' => 'hidden',
-        'module' => 'date',
-        'settings' => array(
-          'format_type' => 'long',
-          'fromto' => 'both',
-          'multiple_from' => '',
-          'multiple_number' => '',
-          'multiple_to' => '',
-          'osha_date_theme' => '',
-        ),
-        'type' => 'date_default',
-        'weight' => 2,
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 5,
       ),
       'highlights_item' => array(
         'label' => 'above',
@@ -945,7 +855,91 @@ function campaign_materials_field_default_field_instances() {
         'year_range' => '-3:+3',
       ),
       'type' => 'date_select',
-      'weight' => 48,
+      'weight' => 10,
+    ),
+    'workbench_access_field' => 0,
+  );
+
+  // Exported field_instance: 'node-campaign_materials-field_related_documents'
+  $field_instances['node-campaign_materials-field_related_documents'] = array(
+    'bundle' => 'campaign_materials',
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'hidden',
+        'module' => 'campaign_materials',
+        'settings' => array(
+          'description' => 0,
+          'label' => 'Download',
+          'size' => 1,
+        ),
+        'type' => 'icon_file_formatter',
+        'weight' => 15,
+      ),
+      'highlights_item' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'newsletter_item' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'osha_resources' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'osha_slideshow' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'pub_teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_related_documents',
+    'label' => 'Files',
+    'required' => 0,
+    'settings' => array(
+      'description_field' => 0,
+      'entity_translation_sync' => 0,
+      'file_directory' => '',
+      'file_extensions' => 'txt pdf ppt pptx jpg png gif jpeg doc docx',
+      'max_filesize' => '',
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'pdf_to_image',
+      'settings' => array(
+        'pdf_to_image' => array(
+          'density' => '25x25',
+          'extra_args' => '',
+          'hide_imagefield' => 0,
+          'target_field' => '',
+        ),
+        'progress_indicator' => NULL,
+      ),
+      'type' => 'pdf_to_image',
+      'weight' => 19,
     ),
     'workbench_access_field' => 0,
   );
@@ -961,7 +955,7 @@ function campaign_materials_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 6,
+        'weight' => 4,
       ),
       'highlights_item' => array(
         'label' => 'above',
@@ -1021,7 +1015,7 @@ function campaign_materials_field_default_field_instances() {
         'rows' => 5,
       ),
       'type' => 'text_textarea',
-      'weight' => 42,
+      'weight' => 7,
     ),
     'workbench_access_field' => 0,
   );
@@ -1037,7 +1031,7 @@ function campaign_materials_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 14,
+        'weight' => 12,
       ),
       'highlights_item' => array(
         'label' => 'above',
@@ -1091,7 +1085,7 @@ function campaign_materials_field_default_field_instances() {
         'apply_chosen' => '',
       ),
       'type' => 'options_select',
-      'weight' => 56,
+      'weight' => 13,
     ),
     'workbench_access_field' => 0,
   );
@@ -1107,7 +1101,7 @@ function campaign_materials_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 15,
+        'weight' => 13,
       ),
       'highlights_item' => array(
         'label' => 'above',
@@ -1165,7 +1159,7 @@ function campaign_materials_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => -5,
+      'weight' => 0,
     ),
   );
 
@@ -1178,7 +1172,7 @@ function campaign_materials_field_default_field_instances() {
   t('Campaign material type');
   t('Character count');
   t('Expiration date');
-  t('File');
+  t('Files');
   t('Image');
   t('Image Caption');
   t('Page Count');

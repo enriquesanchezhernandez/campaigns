@@ -11,10 +11,15 @@ include_once 'campaign_materials.features.inc';
  */
 function campaign_materials_field_formatter_info() {
   $info = array(
-    'file_campaign_material_resource' => array(
-      'label' => 'Campaign material file',
+    'icon_file_formatter' => array(
+      'label' => t('File with icon'),
       'field types' => array('file'),
-      'description' => 'Displays default icon per file type and file description.',
+      'description' => 'Displays default icon per file type (optional: label in front, file size, file description.',
+      'settings' => array(
+        'label' => t('Download'),
+        'description' => 0,
+        'size' => 1,
+      ),
     ),
   );
   return $info;
@@ -25,10 +30,56 @@ function campaign_materials_field_formatter_info() {
  */
 function campaign_materials_theme() {
   return array(
-    'campaign_materials_file_campaign_material_resource_format' => array(
-      'variables' => array('file' => NULL, 'delta' => NULL),
+    'icon_file_formatter' => array(
+      'variables' => array(
+        'file' => NULL,
+        'label' => NULL,
+        'description' => NULL,
+        'size' => NULL,
+        'delta' => NULL
+      ),
     ),
   );
+}
+
+/**
+ * Implements hook_field_formatter_settings_form().
+ */
+function campaign_materials_field_formatter_settings_form($field, $instance, $view_mode, $form, &$form_state) {
+  $display = $instance['display'][$view_mode];
+  $settings = $display['settings'];
+
+  $element = array();
+  $element['label'] = array(
+    '#type'           => 'textfield',
+    '#title'          => t('Label'),
+    '#description'    => t('Displays text in front'),
+    '#default_value'  => $settings['label'],
+  );
+
+  $element['description'] = array(
+    '#type'   => 'checkbox',
+    '#title' => t('Display description/filename.'),
+    '#default_value'  => $settings['description'],
+  );
+
+  $element['size'] = array(
+    '#type'   => 'checkbox',
+    '#title' => t('Display file size.'),
+    '#default_value'  => $settings['size'],
+  );
+
+  return $element;
+}
+
+/**
+ * Implements hook_field_formatter_settings_summary().
+ */
+function campaign_materials_field_formatter_settings_summary($field, $instance, $view_mode) {
+  $display = $instance['display'][$view_mode];
+  $settings = $display['settings'];
+  $summary = t("Displays default icon per file type (optional: <br/> label in front, file size, file description).");
+  return $summary;
 }
 
 /**
@@ -37,36 +88,62 @@ function campaign_materials_theme() {
 function campaign_materials_field_formatter_view($entity_type, $entity, $field, $instance, $langcode, $items, $display) {
   $element = array();
   switch ($display['type']) {
-    case 'file_campaign_material_resource':
+    case 'icon_file_formatter':
+      $settings = $display['settings'];
+      $label = trim($settings['label']);
+      $description = $settings['description'];
+      $size = $settings['size'];
+
       foreach ($items as $delta => $item) {
         $element[$delta] = array(
-          '#theme' => 'campaign_materials_file_campaign_material_resource_format',
+          '#theme' => 'icon_file_formatter',
           '#file' => $item,
+          '#label' => $label,
+          '#description' => $description,
+          '#size' => $size,
           '#delta' => $delta,
         );
       }
+
       break;
   }
   return $element;
 }
 
-/*
- * Formats the related resources (attached files) as icon and description/filename
+/**
+ * Formats the file fields as label , icon , description/filename, filesize
  */
-function theme_campaign_materials_file_campaign_material_resource_format($element) {
+function theme_icon_file_formatter($element) {
   $file = (object) $element['file'];
-  $output = '';
   $icon_directory = drupal_get_path('theme', 'hwc_frontend') . '/images/file_icons';
-  $size = @filesize($file->uri);
-  if ($size) {
-    $output .= '<span class="related_size">' . format_size($size) . '</span>';
-  }
   $name = ($file->description != NULL) ? $file->description : $file->filename;
-  $output .= ' <a href="' . file_create_url($file->uri) . '">';
-  // Disable icon for the moment
-  // $output .= theme('file_icon', array('file' => $file, 'icon_directory' => $icon_directory));
-  $output .= '<span>Download ' . $name . '</span>';
+  $label = $element['label'];
+  $description = $element['description'];
+  $show_size = $element['size'];
+
+  $output = '';
+  if ($label != '') {
+    $output .= '<span>' . t($label) . '</span>';
+  }
+
+  $output .= '<a href="' . file_create_url($file->uri) . '">';
+  $output .= theme('file_icon', array(
+    'file' => $file,
+    'icon_directory' => $icon_directory
+  ));
+
+  if ($description) {
+    $output .= '<span>' . $name . '</span>';
+  }
+
   $output .= '</a>';
+
+  $file_size = @filesize($file->uri);
+  if ($show_size && $file_size) {
+    $output .= '<span class="file_size">(' . format_size($file_size) . ')</span>';
+  }
+
+  $output .= '<span class="glyphicon glyphicon-chevron-right"></span>';
 
   return $output;
 }

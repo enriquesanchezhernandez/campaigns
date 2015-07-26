@@ -495,12 +495,14 @@ $options['init-modules'] = array(
   'hwc',
   'hwc_homepage',
   'ncw_migration',
+  'hwc_crm_migration',
   'campaign_materials',
   'hwc_menu',
   'hwc_practical_tool',
   'hwc_partner',
   'hwc_feeds',
- 
+  'eu_captcha',
+  'hwc_social_sprites',
 
 );
 

@@ -24,9 +24,9 @@
         "path": "/solr/campaigns",
         "http_user": "",
         "http_password": "",
-        "excerpt": false,
-        "retrieve_data": false,
-        "highlight_data": false,
+        "excerpt": 1,
+        "retrieve_data": 1,
+        "highlight_data": 1,
         "skip_schema_check": null,
         "solr_version": "",
         "http_method": "AUTO",
@@ -53,11 +53,13 @@
     },
     "variables": {
         "environment": "production",
+        "captcha_default_challenge": "eu_captcha/EUCAPTCHA",
         "site_name": "OSHA",
         "site_mail": "test@eaudeweb.ro",
         "file_temporary_path": "/tmp",
         "sa_admin_helper": "0",
         "smtp_on": 1,
+        "hwc_crm_data_dir": "/var/local/hwc/crm_data",
         "recaptcha_site_key": "",
         "recaptcha_private_key": "",
         "smtp_queue": 0,
@@ -79,6 +81,6 @@
         "jquery_update_jquery_version": "1.8",
         "jquery_update_jquery_admin_version": "1.8",
         "print_pdf_autoconfig" : 0,
-        "hwc_migration_root_url": "http://osha.edw.ro"
+        "hwc_migration_root_url": "http://osha.europa.eu"
     }
 }
