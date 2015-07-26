@@ -14,6 +14,7 @@ function hwc_homepage_default_fe_block_settings() {
 
   $export['blockgroup-tools_and_resources_block_g'] = array(
     'cache' => -1,
+    'css_class' => '',
     'custom' => 0,
     'delta' => 'tools_and_resources_block_g',
     'i18n_block_language' => array(),
@@ -40,8 +41,38 @@ function hwc_homepage_default_fe_block_settings() {
     'visibility' => 1,
   );
 
+  $export['menu-menu-social-links'] = array(
+    'cache' => -1,
+    'css_class' => '',
+    'custom' => 0,
+    'delta' => 'menu-social-links',
+    'i18n_block_language' => array(),
+    'i18n_mode' => 0,
+    'module' => 'menu',
+    'node_types' => array(),
+    'pages' => '',
+    'roles' => array(),
+    'themes' => array(
+      'hwc_frontend' => array(
+        'region' => '',
+        'status' => 0,
+        'theme' => 'hwc_frontend',
+        'weight' => 0,
+      ),
+      'seven' => array(
+        'region' => '',
+        'status' => 0,
+        'theme' => 'seven',
+        'weight' => 0,
+      ),
+    ),
+    'title' => '',
+    'visibility' => 0,
+  );
+
   $export['menu_block-1'] = array(
     'cache' => -1,
+    'css_class' => '',
     'custom' => 0,
     'delta' => 1,
     'i18n_block_language' => array(),
@@ -68,8 +99,67 @@ function hwc_homepage_default_fe_block_settings() {
     'visibility' => 1,
   );
 
+  $export['menu_block-3'] = array(
+    'cache' => -1,
+    'css_class' => '',
+    'custom' => 0,
+    'delta' => 3,
+    'i18n_block_language' => array(),
+    'i18n_mode' => 0,
+    'module' => 'menu_block',
+    'node_types' => array(),
+    'pages' => '',
+    'roles' => array(),
+    'themes' => array(
+      'hwc_frontend' => array(
+        'region' => 'header',
+        'status' => 1,
+        'theme' => 'hwc_frontend',
+        'weight' => 0,
+      ),
+      'seven' => array(
+        'region' => '',
+        'status' => 0,
+        'theme' => 'seven',
+        'weight' => 0,
+      ),
+    ),
+    'title' => '<none>',
+    'visibility' => 0,
+  );
+
+  $export['menu_block-4'] = array(
+    'cache' => -1,
+    'css_class' => '',
+    'custom' => 0,
+    'delta' => 4,
+    'i18n_block_language' => array(),
+    'i18n_mode' => 0,
+    'module' => 'menu_block',
+    'node_types' => array(),
+    'pages' => '',
+    'roles' => array(),
+    'themes' => array(
+      'hwc_frontend' => array(
+        'region' => 'footer',
+        'status' => 1,
+        'theme' => 'hwc_frontend',
+        'weight' => 0,
+      ),
+      'seven' => array(
+        'region' => '',
+        'status' => 0,
+        'theme' => 'seven',
+        'weight' => 0,
+      ),
+    ),
+    'title' => '<none>',
+    'visibility' => 0,
+  );
+
   $export['nodeblock-29'] = array(
     'cache' => 1,
+    'css_class' => '',
     'custom' => 0,
     'delta' => 29,
     'i18n_block_language' => array(),
@@ -96,8 +186,38 @@ function hwc_homepage_default_fe_block_settings() {
     'visibility' => 1,
   );
 
+  $export['text_resize-0'] = array(
+    'cache' => 4,
+    'css_class' => '',
+    'custom' => 0,
+    'delta' => 0,
+    'i18n_block_language' => array(),
+    'i18n_mode' => 0,
+    'module' => 'text_resize',
+    'node_types' => array(),
+    'pages' => '',
+    'roles' => array(),
+    'themes' => array(
+      'hwc_frontend' => array(
+        'region' => 'header',
+        'status' => 1,
+        'theme' => 'hwc_frontend',
+        'weight' => 0,
+      ),
+      'seven' => array(
+        'region' => '',
+        'status' => 0,
+        'theme' => 'seven',
+        'weight' => 0,
+      ),
+    ),
+    'title' => '<none>',
+    'visibility' => 0,
+  );
+
   $export['views-frontpage_events-block'] = array(
     'cache' => -1,
+    'css_class' => 'col-md-4',
     'custom' => 0,
     'delta' => 'frontpage_events-block',
     'i18n_block_language' => array(),
@@ -126,6 +246,7 @@ function hwc_homepage_default_fe_block_settings() {
 
   $export['views-frontpage_slider-block'] = array(
     'cache' => -1,
+    'css_class' => '',
     'custom' => 0,
     'delta' => 'frontpage_slider-block',
     'i18n_block_language' => array(),
@@ -154,6 +275,7 @@ function hwc_homepage_default_fe_block_settings() {
 
   $export['views-partners-block'] = array(
     'cache' => -1,
+    'css_class' => '',
     'custom' => 0,
     'delta' => 'partners-block',
     'i18n_block_language' => array(),
@@ -182,6 +304,7 @@ function hwc_homepage_default_fe_block_settings() {
 
   $export['views-partners-block_1'] = array(
     'cache' => -1,
+    'css_class' => '',
     'custom' => 0,
     'delta' => 'partners-block_1',
     'i18n_block_language' => array(),

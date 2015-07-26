@@ -489,6 +489,9 @@ $options['init-modules'] = array(
   'addtoany',
   'on_the_web',
 
+  'text_resize',
+  'block_class',
+
   'hwc',
   'hwc_homepage',
   'ncw_migration',
@@ -497,6 +500,7 @@ $options['init-modules'] = array(
   'hwc_practical_tool',
   'hwc_partner',
   'hwc_feeds',
+ 
 
 );
 
