@@ -39,10 +39,12 @@ function hwc_practical_tool_menu_tools_form($form, $form_state) {
     '#default_value' => $text,
     '#title_display' => 'invisible',
     '#attributes' => array('placeholder' => t('Free text filter')),
+    '#prefix' => '<div id="search">',
   );
   $form['content']['submit'] = array(
     '#type' => 'submit',
     '#value' => t('Search'),
+    '#suffix' => '</div>',
   );
   $form['left-column']['relevant_for'] = array(
     '#type' => 'checkboxes',
