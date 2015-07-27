@@ -32,7 +32,6 @@ body {
   // Fix horizontal scrolling on iOS devices.
   // http://drupal.org/node/1870076
   position: relative;
-  color: @text-default-color;
   &.admin-expanded.admin-vertical.admin-nw .navbar,
   &.admin-expanded.admin-vertical.admin-sw .navbar {
     margin-left: 260px;
@@ -88,43 +87,6 @@ body {
       line-height: normal;
     }
   }
-  /* MG */
-  *{
-	border-radius: 0px;
-  }
-  .row{
-	margin:0;
-  }
-  [class*=col-sm-], [class*=col-lg-]{
-	padding-left: 0px;
-	padding-right: 0px;
-  }
-  a{
-    color: @href-default-color;
-  }
-  .form-control{
-	border-radius: 0;
-	border-color: @border-color-2;
-	color: @text-default-color;
-	width: auto;
-	box-shadow: inset 0 0px 0px rgba(0, 0, 0, 0);
-  }
-  .btn{
-	background-color: @bg-color-2;
-	border-color: @bg-color-2;
-	border-radius: 0px;
-  }
-  .radio + .radio, .checkbox + .checkbox {
-	margin-top: 0px;
-  }
-  label{
-	font-weight: normal;
-  }
-  ul{
-	list-style: none;
-	padding-left: 0;
-  }
-  /* FIN MG */
 }
 
 // Default navbar.
@@ -226,10 +188,7 @@ p:last-child {
     overflow: hidden;
   }
 }
-//language form
-.navbar #block-lang-dropdown-language{
-	margin-right: 0;
-}
+
 // Search form.
 form#search-block-form {
   margin: 0;
@@ -237,9 +196,6 @@ form#search-block-form {
 .navbar #block-search-form {
   float: none;
   margin: 5px 0 5px 5px;
-  .input-group {
-	  width: auto;
-	}
   @media @normal {
     float: right;
   }
@@ -247,9 +203,7 @@ form#search-block-form {
 .navbar-search .control-group {
   margin-bottom:0px;
 }
-#views-exposed-form-search-site .form-type-textfield, #views-exposed-form-search-site input, #views-exposed-form-search-site button{
-	background-image: none;
-}
+
 // Action Links
 ul.action-links {
   margin: @padding-base-horizontal 0;
@@ -345,7 +299,7 @@ table tr.error {
 // Lists
 .list-inline {
   > li.first {
-   /*  padding-left: 0; */
+    padding-left: 0;
   }
 }
 .nav-tabs {

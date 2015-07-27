@@ -59,7 +59,7 @@
 			/* text-align: left; */
 			clear: both;
 		}
-		.comillas{
+		.quotation{
 			font-weight: bold;
 			font-size: @size9;
 			font-family: garamond;
@@ -73,8 +73,12 @@
 	  list-style: disc;
 	  padding-left: 3em;
 	}
-	.region-content .form-type-item p{
-		text-align: center; /* puesto para http://192.168.1.237:8884/en/publications */
+	.section-introduction p{
+		text-align: center;
+		font-weight: bold;
+		&:last-child {
+			margin-bottom: 10px;
+		}
 	}
 	.checkbox{
 		input[type="checkbox"]{
@@ -96,6 +100,7 @@
 			content: "\2713";
 			/* padding: 0px 1px 0px 3px; */
 			color: @text-color-2;
+			font-weight: bold;
 		}
 	}
 	.radio{
@@ -131,7 +136,6 @@
 		font-style: italic;
 		margin-bottom: 1em;
 		text-align: right;
-		border-bottom: 1px solid green;
 		width: 100%;
 		border-bottom: 1px dotted @border-default-color;
 		&:before{
@@ -247,10 +251,10 @@
 	}
 	/* News */
 	.view-news {
-		border-top: 1px solid @color3;
+		border-top: 1px solid @border-default-color;
 		.views-row {
 			.content{
-				border-bottom: 1px solid @color3;
+				border-bottom: 1px solid @border-default-color;
 				padding-bottom: 1em;
 				min-height: 180px;
 			}
@@ -289,8 +293,8 @@
 	
 	/* Article */
 	.node-article{
-		padding: 0 135px;
-		.field-name-field-image + .field-name-title-field{
+		/* padding: 0 135px; */
+		/* .field-name-field-image + .field-name-title-field{
 			position: absolute;
 			background: url("../images/content/image-shadow.png") repeat-x left bottom;
 			width: 100%;
@@ -298,11 +302,19 @@
 			z-index: 22;
 			top: 68px;
 			h1{
-				/* margin-top: -100px;
-				margin-bottom: 100px; */
 				color: @color1;
 				padding-top: 230px;
 			}
+		} */
+		.field-name-field-image + .field-name-title-field h1{
+			position: absolute;
+			background: url("../images/content/image-shadow.png") repeat-x left bottom;
+			width: 100%;
+			height: 350px;
+			z-index: 22;
+			top: 68px;
+			color: @color1;
+			padding-top: 230px;
 		}
 		.field-name-field-image + .field-name-title-field + .field-name-body{
 			margin-top: 5em;
@@ -381,12 +393,6 @@
 			color: @h1-color-2;
 			font-size: @h1-size-2;
 		}
-		.field-name-field-publication-date{
-			margin-top: 1em;
-			span{
-				font-size: @size3;
-			}
-		}
 		.field-name-field-summary{
 			font-weight: bold;
 		}
@@ -396,6 +402,17 @@
 			font-weight: bold;
 			font-style: italic;
 		}
+	}
+	.field-name-field-publication-date{
+		margin-top: 1em;
+		span{
+			font-size: @size3;
+		}
+	}
+	
+	.form-item-relevant-for > label, .form-item-languages > label{
+		font-size: @size2;
+		font-weight: bold;
 	}
 	
 	#block-views-news-oshnews-latest{
@@ -439,20 +456,16 @@
 		}
 	}
 	
-	#block-views-publications-slideshow-slidehow{
+	#block-views-publications-slideshow-slidehow, #block-system-main{
 		#publications_slideshow{
-			width: 75%;
-			width: 66%;
-			width: 782px; /* para que tambien funcione en IE */
-			float: right;
+			width: 926px !important; 
 			border-bottom: 1px solid @border-default-color;
 			border-top: 1px solid @border-default-color;
+			margin: 0em auto 1em;
 			#num_slides{
-				top: 0em;
 				left: 5em;
+				top: 0em;
 				> div{
-					width: 750px !important;
-					width: 650px !important;
 				}
 	
 				.field-name-title-field{
@@ -462,7 +475,7 @@
 					h5{
 						font-size: @h5-default-size;
 						font-weight: bold;
-						&:before{
+						:before{
 							content: ">";
 							padding-right: 0.5em;
 							color: @text-color-2;
@@ -470,9 +483,14 @@
 					}
 				}
 				.field-name-field-publication-date{
-					float: left;
+					/* float: left;
+					margin-left: 20px; */
+
 					margin-top: 12px;
-					margin-left: 20px;
+					margin-left: 6em;
+					span{
+						font-size: @size3;
+					}
 				}
 				.field-name-body{
 					  clear: both;
@@ -482,6 +500,10 @@
 					/* float: left; */
 					position: absolute;
 					top: 1em;
+					margin-top: 0;
+					img{
+						width: auto;
+					}
 				}
 				ul{
 					margin-top: 1em;
@@ -494,6 +516,9 @@
 						font-weight: bold;
 					}
 				}
+				.publication-item{
+					border-bottom: none;
+				}
 			}
 			.jssora03l, .jssora03r{
 				display: block !important;
@@ -503,12 +528,30 @@
 			}
 			.jssora03l{
 				left: 0;
-				background-position: -3px 53px;
+				/* background-position: -3px 53px; */
+				background: @bg-color-2 url("../images/content/slider-left.png") no-repeat center;
 			}
 			.jssora03r{
 				right: 0px;
-				background-position: -63px 53px;
+				/* background-position: -63px 53px; */
+				background: @bg-color-2 url("../images/content/slider-right.png") no-repeat center;
 			}
+			.jssorb03{
+				top: 200px;
+				display: block !important;
+				div, div:hover, .av{
+					background: url("../images/content/navigation.png") no-repeat;
+					height: 20px;
+					width: 20px;
+				}
+				.prototypeav{
+					background-position: 3px center;
+				}
+				.prototype{
+					background-position: -20px center;
+				}
+			}
+	
 		}
 		
 		.more-link{
@@ -518,12 +561,91 @@
 			font-style: italic;
 		}
 	}
+	
+	.col #block-views-publications-slideshow-slidehow, .col #block-system-main{
+		#publications_slideshow{
+			/* width: 75%;
+			width: 66%; */
+			width: 782px; /* para que tambien funcione en IE */
+			float: right;
+			#num_slides{
+				left: 5em;
+				> div{
+					width: 650px !important;
+				}
+
+			}
+		}
+		
+	}
+	
+	
+	#search{
+		margin: 1em 0;
+		padding: 1em 0 0;
+		border-top: 1px dotted @border-default-color;
+		border-bottom: 1px dotted @border-default-color;
+		width: 100%;
+		float: left;
+		div{
+			float: left;
+		}
+		button{
+			float: left;
+			background: @bg-color-2 url("../images/content/search.png") no-repeat center;
+			height: 34px;
+			width: 30px;
+			color: @color0;
+		}
+	}
 	#osha-publication-menu-publications-form{
 		.form-type-textfield{
 			float: left;
 		}
 	}
-
+	.publication-item{
+		padding: 1em 0;
+		border-bottom: 1px dotted @border-default-color;
+		h5{
+			color: @h5-default-color;
+			font-size: @h5-default-size;
+			font-weight: bold;
+			:before{
+				content: ">";
+			}
+		}
+		.field-name-field-cover-image{
+			float: left;
+			margin-top: -80px;
+			img{
+				width: 160px;
+				margin-right: 20px;
+			}
+		}
+		.field-name-title-field, .field-name-field-publication-date{
+			margin-left: 180px;
+		}
+		.more-link, ul li a{
+			color: @btn-default-bg;
+			background-color: transparent;
+			font-weight: bold;
+			font-style: italic;
+		}
+		ul{
+			margin-top: 1em;
+		}
+	}
+	
+	/* Practical tools */
+	.pane-hwc-practical-tool-hwc-practical-tool-listing{
+		h4{
+			font-size: @size1;
+		}
+		.link-wrapper ul li a{
+		
+		}
+	}
+	
 /* FIN contenedor principal */
 
 
@@ -542,6 +664,7 @@
 		}
 	}
 }
+
 .node-news{
 	padding: 0 135px;
 	h1{
@@ -655,5 +778,6 @@
 		}
 	}
 }
+
 
 /* ----------END ENDIKA--------- */
