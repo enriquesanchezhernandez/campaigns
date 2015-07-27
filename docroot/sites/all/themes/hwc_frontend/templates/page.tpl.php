@@ -81,24 +81,30 @@ $theme_dir = drupal_get_path('theme', 'hwc_frontend');
     </div>
   </div>
 <?php endif; ?>
-<header id="navbar" role="banner" class="<?php print $navbar_classes; ?>">
-  <div class="container">
+<header id="navbar" role="banner" class="navbar navbar-default container-fluid"><!--<?php print $navbar_classes; ?>-->
+  <div class="container-fluid campaigns-header">
     <div class="row">
-		<div class="navbar-header">
-			<a class="pull-left" href="<?php print $front_page; ?>" title="<?php print t('Home'); ?>">
-			  <img src="<?php print $logo; ?>" alt="<?php print t('Home'); ?>" />
-			</a>
-		  <img class="pull-left" src="/<?php print $theme_dir . '/images/header/logo-osha.png'; ?>" alt="<?php print t('EU-OSHA logo'); ?>" />
-		  <img class="pull-left" src="/<?php print $theme_dir . '/images/header/logo-eu.png'; ?>" alt="<?php print t('EU logo'); ?>" />
-		  <?php print render($page['header']); ?>
-		  <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
-		  <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-			<span class="sr-only">Toggle navigation</span>
-			<span class="icon-bar"></span>
-			<span class="icon-bar"></span>
-			<span class="icon-bar"></span>
-		  </button>
-		</div>
+      <div class="navbar-header">
+        <div class="row">
+          <div class="col-xs-12 col-sm-6">
+            <a class="pull-left" href="<?php print $front_page; ?>" title="<?php print t('Home'); ?>">
+              <img src="<?php print $logo; ?>" alt="<?php print t('Home'); ?>" />
+            </a>
+            <img class="pull-left" src="/<?php print $theme_dir . '/logo-osha.png'; ?>" alt="<?php print t('EU-OSHA logo'); ?>" />
+            <img class="pull-left" src="/<?php print $theme_dir . '/logo-eu.png'; ?>" alt="<?php print t('EU logo'); ?>" />
+          </div>
+          <div class="col-xs-12 col-sm-6">
+            <?php print render($page['header']); ?>
+          </div>
+        </div>
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+      </div>
     </div>
     <div class="row">
 		<div class="navbar-collapse collapse">
@@ -152,8 +158,7 @@ $theme_dir = drupal_get_path('theme', 'hwc_frontend');
     <?php endif; ?>
   </div>
 </div>
-
-<footer class="footer container">
+<footer class="footer">
   <?php print render($page['footer']); ?>
   <h3>
     <?php print t("Safety and health at work is everyone's concern. It's good for you. It's good for business."); ?>
