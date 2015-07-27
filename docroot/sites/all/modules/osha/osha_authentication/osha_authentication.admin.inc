@@ -59,53 +59,39 @@ function osha_authentication_get_role_and_section_from_dn($group_dn) {
   $role = NULL;
   $section_id = NULL;
   $language = NULL;
-  $mappings = array(
-    // Non-section roles (@todo: read from /admin/config/people/ldap/authorization/edit/drupal_role)
-    'ADMIN' => 'administrator',
-    'APPROVER' => 'Approver',
-    'EVENTCOOR' => 'Events Coordinator',
-    'EVENTEDT' => 'Events Editor',
-    'LAYVAL' => 'Layout Validator',
-    'READ' => 'authenticated user',
-    'TRLMN' => 'Translation Manager',
-    'TRLIAS' => 'Translation Liaison',
-    // Per language
-    'CV' => 'Content Validator',
-    // Per-section roles
-    'EDT' => 'Editor',
-    'PM' => 'Project Manager',
-    'RVMN' => 'Review Manager',
-  );
-  // LDAP group DN patterns:
-  // * cn=SECTION_ROLE,ou=MainSite,ou=Sites,dc=osha,dc=europa,dc=eu
-  // * cn=ROLE,ou=MainSite,ou=Sites,dc=osha,dc=europa,dc=eu
-  if (preg_match('/[A-Z\d\_]*/i', $group_dn, $ldap_group_cn, 0, 3) && count($ldap_group_cn) == 1) {
-    $section_id = NULL;
-    $role = NULL;
-    if (strpos($ldap_group_cn[0], '_') > 0) {
-      list($section_id, $role) = explode('_', $ldap_group_cn[0]);
-    } else {
-      $role = $ldap_group_cn[0];
+  if ($group_dn == 'cn=ADMIN,ou=HWC,ou=Sites,dc=osha,dc=europa,dc=eu') {
+    $role = OSHA_WORKFLOW_ROLE_ADMINISTRATOR;
+  }
+  else if ($group_dn == 'cn=LAYVAL,ou=HWC,ou=Sites,dc=osha,dc=europa,dc=eu') {
+    $role = OSHA_WORKFLOW_ROLE_LAYOUT_VALIDATOR;
+  }
+  else if ($group_dn == 'cn=NEW&EVEN_EDT,ou=HWC,ou=Sites,dc=osha,dc=europa,dc=eu') {
+    $role = OSHA_WORKFLOW_ROLE_PROJECT_MANAGER;
+  }
+  else if ($group_dn == 'cn=NEW&EVEN_SUP,ou=HWC,ou=Sites,dc=osha,dc=europa,dc=eu') {
+    $role = ROLE_SUPERVISOR;
+  }
+  else if ($group_dn == 'cn=RVMN,ou=HWC,ou=Sites,dc=osha,dc=europa,dc=eu') {
+    $role = OSHA_WORKFLOW_ROLE_REVIEW_MANAGER;
+  }
+  else if ($group_dn == 'cn=TRLIAS,ou=HWC,ou=Sites,dc=osha,dc=europa,dc=eu') {
+    $role = OSHA_WORKFLOW_ROLE_TRANSLATION_LIAISON;
+  }
+  else if ($group_dn == 'cn=TRLMN,ou=HWC,ou=Sites,dc=osha,dc=europa,dc=eu') {
+    $role = OSHA_WORKFLOW_ROLE_TRANSLATION_MANAGER;
+  }
+  // Either CV or PARTNER
+  else {
+    $ldap_group_cn = NULL;
+    // _CV
+    if (preg_match('/[A-Z]*\_CV$/', $group_dn, $ldap_group_cn, 0) && count($ldap_group_cn) == 1) {
+      $language = $ldap_group_cn[0];
     }
-    if($role == 'CV') {
-      $language = $section_id;
-      $section_id = NULL;
-    }
-    if($section_id == 'OSHA') {
-      // Hard-coded root of workbench_access tree
-      $section_id = 'section';
-    }
-    // Map the role
-    if (array_key_exists($role, $mappings)) {
-      $role = $mappings[$role];
-    }
-    else {
-      $role = NULL;
-      watchdog('osha_authentication',
-        'Unable to extract role !role from group DN: !dn, please check naming scheme syntax (cn=$SECTION_$ROLE or cn=$ROLE)',
-        array('!role' => $role, '!dn' => $group_dn),
-        WATCHDOG_ERROR
-      );
+    // NEW&EVEN_EDT_PRT1
+    else if (preg_match('/^cn=NEW\&EVEN\_EDT\_/', $group_dn, $ldap_group_cn) && count($ldap_group_cn) == 1) {
+      $parts = explode(',', $group_dn);
+      $role = ROLE_CAMPAIGN_PARTNER;
+      $section_id = str_replace('cn=NEW&EVEN_EDT_', '', $parts[0]);
     }
   }
   return array($role, $section_id, $language);
@@ -114,7 +100,7 @@ function osha_authentication_get_role_and_section_from_dn($group_dn) {
 function osha_authentication_ldap_fetch_user_groups($username, $ldap_server) {
   $ret = array();
   /** @var LDAPServer $ldap_server */
-  $ldap_groups = $ldap_server->search('ou=MainSite,ou=Sites,dc=osha,dc=europa,dc=eu', 'memberUid=' . $username);
+  $ldap_groups = $ldap_server->search('ou=HWC,ou=Sites,dc=osha,dc=europa,dc=eu', 'memberUid=' . $username);
   if (!$ldap_groups) {
     return $ret;
   }
@@ -136,7 +122,7 @@ function osha_authentication_retrieve_ldap_sections($ldap_server) {
   foreach($ldap_groups as $ldap_group) {
     $dn = $ldap_group['dn'];
     // Do not parse Language skills groups
-    if(!preg_match('/ou=Languages/', $dn) && strpos($dn, '_') > 0) {
+    if(strpos($dn, 'ou=Languages') === FALSE) {
       list($role, $section_id) = osha_authentication_get_role_and_section_from_dn($dn);
       if ($section_id) {
         $cn = NULL;
@@ -145,7 +131,6 @@ function osha_authentication_retrieve_ldap_sections($ldap_server) {
         // Ignore all groups ending in _PM and _RVM (handled by _EDT)
         if (!preg_match('/\_PM$/', $cn[0]) && !preg_match('/\_RVMN$/', $cn[0])) {
           $description = $ldap_group['description'][0];
-          $description = preg_replace('/\seditor$/i', '', $description);
           $ret[$section_id] = trim($description);
         }
       }
