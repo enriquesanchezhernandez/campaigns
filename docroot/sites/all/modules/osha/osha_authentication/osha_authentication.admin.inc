@@ -1,27 +1,6 @@
 <?php
 
 /**
- * Ensure if user is approver, add/remove from the default list of approvers.
- *
- * @param $is_approver
- */
-function osha_authentication_user_login_approver($user, $is_approver) {
-  $approvers_collection = entity_collection_load('approvers');
-  /** @var EntityCollectionTreeNode $users */
-  $users = $approvers_collection->getTree();
-  if ($is_approver && !array_key_exists('user:' . $user->uid, $users->list)) {
-    $entity_id = entity_id('user', $user);
-    watchdog('osha_authentication', 'Adding !user to the approver list', array('!user' => $user->name), WATCHDOG_WARNING);
-    $item = new EntityCollectionTreeNode('user', $entity_id, $user);
-    entity_collection_append_item($approvers_collection, $item);
-  }
-  if (!$is_approver && array_key_exists('user:' . $user->uid, $users->list)) {
-    watchdog('osha_authentication', 'Removing !user from approver list', array('!user' => $user->name), WATCHDOG_WARNING);
-    entity_collection_content_delete($approvers_collection, 'user', array($user->uid));
-  }
-}
-
-/**
  * Given an array of Drupal role names, try to load them and return unique list
  * that can be assigned to user.
  *
@@ -84,14 +63,23 @@ function osha_authentication_get_role_and_section_from_dn($group_dn) {
   else {
     $ldap_group_cn = NULL;
     // _CV
-    if (preg_match('/[A-Z]*\_CV$/', $group_dn, $ldap_group_cn, 0) && count($ldap_group_cn) == 1) {
-      $language = $ldap_group_cn[0];
+    if (preg_match('/_CV\,ou\=Languages/', $group_dn, $ldap_group_cn, 0) && count($ldap_group_cn) == 1) {
+      $parts = explode(',', $group_dn);
+      $language = str_replace('_CV', '', $parts[0]);
+      $language = str_replace('cn=', '', $language);
+      $role = OSHA_WORKFLOW_ROLE_CONTENT_VALIDATOR;
     }
     // NEW&EVEN_EDT_PRT1
     else if (preg_match('/^cn=NEW\&EVEN\_EDT\_/', $group_dn, $ldap_group_cn) && count($ldap_group_cn) == 1) {
       $parts = explode(',', $group_dn);
       $role = ROLE_CAMPAIGN_PARTNER;
       $section_id = str_replace('cn=NEW&EVEN_EDT_', '', $parts[0]);
+    }
+    else if ($group_dn == 'cn=READ,ou=HWC,ou=Sites,dc=osha,dc=europa,dc=eu') {
+      // Do nothing ...
+    }
+    else {
+      watchdog('osha_authentication', 'Unknown DN: !dn', array('!dn' => $group_dn), WATCHDOG_WARNING);
     }
   }
   return array($role, $section_id, $language);
@@ -157,9 +145,6 @@ function osha_authentication_block_disabled_ldap_accounts($ldap_server, $ldap_ac
         // Unblock users which are added again
         $status = array_key_exists($account->name, $ldap_accounts) ? 1 : 0;
         if (!$status) {
-          // Remove blocked user from the list of approvers
-          osha_authentication_user_login_approver($account, FALSE);
-
           // Remove blocked user from all sections
           workbench_access_rebuild_user($account->uid, array());
           osha_workflow_rebuild_pm_sections($account->uid, array());
