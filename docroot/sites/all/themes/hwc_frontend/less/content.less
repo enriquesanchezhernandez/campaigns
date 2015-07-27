@@ -19,6 +19,9 @@
 			content: ">";
 			padding-right: 0.35em;
 		}
+		input[type="text"], textarea, select{
+			color: @text-color-2;
+		}
 	}
 /* FIN para toda la aplicacion */
 
@@ -56,13 +59,18 @@
 			/* text-align: left; */
 			clear: both;
 		}
+		.comillas{
+			font-weight: bold;
+			font-size: @size9;
+			font-family: garamond;
+		}
 	}
 	
 	.page-header{
 		border-bottom: none;
 	}
-	.field-item ul {
-	  list-style: inherit;
+	.field-name-body .field-item ul {
+	  list-style: disc;
 	  padding-left: 3em;
 	}
 	.region-content .form-type-item p{
@@ -125,7 +133,7 @@
 		text-align: right;
 		border-bottom: 1px solid green;
 		width: 100%;
-		border-bottom: 1px solid @border-default-color;
+		border-bottom: 1px dotted @border-default-color;
 		&:before{
 			content: ">";
 			padding-right: 5px;
@@ -264,8 +272,24 @@
 		}
 	}
 	
+	/* user */
+	#block-system-main #views-exposed-form-search-site{
+		div div.form-type-textfield, div div.form-type-password{
+			width: auto;
+			margin-bottom: 1em;
+			display: table;
+			label{
+			    display: block;
+			}
+			&.error label{
+			    padding: 0.2em 0 0 0.2em;
+			}
+		}
+	}
+	
 	/* Article */
 	.node-article{
+		padding: 0 135px;
 		.field-name-field-image + .field-name-title-field{
 			position: absolute;
 			background: url("../images/content/image-shadow.png") repeat-x left bottom;
@@ -282,6 +306,17 @@
 		}
 		.field-name-field-image + .field-name-title-field + .field-name-body{
 			margin-top: 5em;
+		}
+		.addtoany_list{
+			width: 100%;
+			float: left;
+			margin-top: 1em;
+			padding: 0.5em 0;
+			border-top: 1px dotted @border-default-color;
+			border-bottom: 1px dotted @border-default-color;
+			a{
+				margin-right: 1em;
+			}
 		}
 	}
 	
@@ -300,6 +335,21 @@
 	}
 	.node-infographic {
 		padding: 0 135px;
+		.label_multilang_file{
+			padding-right: 3px;
+		}
+		a{
+			font-style: italic;
+			font-weight: bold;
+		}
+		.field-name-field-twin-infographics{
+			padding: 1em 0;
+			a:before{
+				content: ">";
+				padding-right: 0.35em;
+				margin-left: 1em;
+			}
+		}
 	}
 	
 	/* Press Room */
@@ -327,14 +377,14 @@
 	div[class*='node-']{
 		h1{
 			font-style: italic;
-			font-weight: normal;
+			font-weight: lighter;
 			color: @h1-color-2;
 			font-size: @h1-size-2;
 		}
 		.field-name-field-publication-date{
 			margin-top: 1em;
 			span{
-				font-size: 12px;
+				font-size: @size3;
 			}
 		}
 		.field-name-field-summary{
@@ -507,9 +557,102 @@
 		margin-bottom: 1em;
 	}
 	h2{
-		font-size: @size2 !important;//quitar los important al desanidar
-		font-weight: bold !important;
-		font-style: normal !important; 
+		font-size: @size2;
+		font-weight: bold;
+		font-style: normal;
+	}
+}
+/* News-detail */
+.back-to-link{
+	  border-bottom: 1px dotted @color3;
+}
+/* -Press Room- */
+.contextual-links-region{
+	.panels-flexible-row.panels-flexible-row-3-main-row{
+		border-bottom: 1px dotted @color3;
+		padding-bottom: @padding-bottom-introduction-text;
+		.panels-flexible-region{
+			.pane-custom{
+				.pane-content{
+					margin-left: 0px !important;
+					margin-right: 0px !important;
+					p{
+						text-align: center;
+						font-weight: bold;
+						font-size: @size6;
+					}
+				}
+			}
+		}
+	}
+}
+.panels-flexible-column{
+	.pane-osha-press-release-osha-press-rel-become-partner{
+		text-align: center;
+		#become-partner-link{
+			a{
+				margin-top: 1.5em;
+				font-weight: bold;
+				font-style: italic;
+				display: block;
+				&:before{
+					content: "> ";
+				}
+			}
+		}
+	}
+	.pane-press-contacts{
+		text-align: center;
+		border-left: 1px dotted @color3;
+		border-right: 1px dotted @color3;
+		.views-field-field-press-contact-email{
+			margin-bottom: 2em;
+			a{
+				font-weight: bold;
+				font-style: italic;
+			}
+		}
+	}
+	.pane-osha-press-release-osha-press-kit{
+		text-align: center;
+		.osha-press-contact-block-link{
+			a{
+				margin-top: 1.5em;
+				font-weight: bold;
+				font-style: italic;
+				display: block;
+				&:after{
+					//content: " >";
+					content: url("../images/content/download.png");
+				}
+			}
+		}
+	}
+	.pane-title{
+		color: @color3;
+		font-size: @size8;
+		font-weight: bold;
+		font-style: normal;
+	}
+}
+.view-press-releases {
+	.views-row{
+		border-bottom: 1px dotted @color3;
+		padding-bottom: @padding-bottom-articles;
+		h3{
+			font-size: @size2;
+			font-weight: bold;
+			font-style: normal;
+		}
+		.field-name-body{
+			a{
+				display: table-cell;
+				padding-left: 0px;
+				&:before{
+					padding-right: 0em;
+				}
+			}
+		}
 	}
 }
 
