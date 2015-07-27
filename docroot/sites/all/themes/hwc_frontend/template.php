@@ -108,10 +108,6 @@ function hwc_frontend_preprocess_page(&$vars) {
     if (isset($vars['node'])) {
       $node = $vars['node'];
       switch ($node->type) {
-        case 'news':
-          $link_title = t('Back to news');
-          $link_href = 'news';
-          break;
         case 'publication':
           $link_title = t('Back to publications list');
           $link_href = 'publications';

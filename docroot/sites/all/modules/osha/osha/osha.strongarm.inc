@@ -95,7 +95,7 @@ el.remove();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'addtoany_link_text';
-  $strongarm->value = 'Share this article';
+  $strongarm->value = '';
   $export['addtoany_link_text'] = $strongarm;
 
   $strongarm = new stdClass();
@@ -107,13 +107,18 @@ el.remove();
     'events' => 'events',
     'news' => 'news',
     'press_release' => 'press_release',
+    'campaign_materials' => 0,
     'press_contact' => 0,
+    'event_speaker' => 0,
     'external_url' => 0,
     'file' => 0,
     'flickr' => 0,
     'frontpage_slider' => 0,
     'infographic' => 0,
+    'internal_url' => 0,
     'note_to_editor' => 0,
+    'partner' => 0,
+    'practical_tool' => 0,
     'publication' => 0,
     'slideshare' => 0,
     'webform' => 0,
