@@ -63,7 +63,6 @@ features[variable][] = node_preview_frontpage_slider
 features[variable][] = node_submitted_frontpage_slider
 features[views_view][] = frontpage_events
 features[views_view][] = frontpage_slider
-features[views_view][] = partner_title
 features[views_view][] = partners
 features_exclude[dependencies][image] = image
 features_exclude[dependencies][media] = media
