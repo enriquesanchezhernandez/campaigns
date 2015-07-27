@@ -203,7 +203,7 @@ function osha_authentication_block_disabled_ldap_accounts($ldap_server, $ldap_ac
 function osha_authentication_ldap_get_site_users($ldap_server) {
   $ret = array();
   /** @var LDAPServer $ldap_server */
-  $ldap_groups = $ldap_server->search('ou=MainSite,ou=Sites,dc=osha,dc=europa,dc=eu', 'cn=*', array('dn', 'memberUid', 'cn'));
+  $ldap_groups = $ldap_server->search('ou=HWC,ou=Sites,dc=osha,dc=europa,dc=eu', 'cn=*', array('dn', 'memberUid', 'cn'));
   if (!$ldap_groups) {
     return $ret;
   }
