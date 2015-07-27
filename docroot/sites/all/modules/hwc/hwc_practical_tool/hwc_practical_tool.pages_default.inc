@@ -382,7 +382,10 @@ function hwc_practical_tool_default_page_manager_pages() {
   $page->admin_title = 'Practical tools listing';
   $page->admin_description = '';
   $page->path = 'practical-tools';
-  $page->access = array();
+  $page->access = array(
+    'type' => 'none',
+    'settings' => NULL,
+  );
   $page->menu = array();
   $page->arguments = array();
   $page->conf = array(
