@@ -34,18 +34,19 @@ function hwc_practical_tool_block_info() {
 function hwc_practical_tool_block_view($delta = '') {
   $block = array();
   if ($delta == 'hwc_practical_tool_language_list') {
-    $node = menu_get_object();
-    $q = db_select('languages', 'l');
-    $q->fields('l', array('language', 'name', 'native'));
-    $q->innerJoin('entity_translation', 'a', 'l.language = a.language');
-    $q->condition('a.entity_id', $node->nid);
-    $q->condition('a.entity_type', 'node');
-    $languages = $q->execute()->fetchAll();
+    if ($node = menu_get_object()) {
+      $q = db_select('languages', 'l');
+      $q->fields('l', array('language', 'name', 'native'));
+      $q->innerJoin('entity_translation', 'a', 'l.language = a.language');
+      $q->condition('a.entity_id', $node->nid);
+      $q->condition('a.entity_type', 'node');
+      $languages = $q->execute()->fetchAll();
 
-    $block['content'] = theme('hwc_practical_tool_language_list', array(
-     'languages' => $languages,
-      )
-    );
+      $block['content'] = theme('hwc_practical_tool_language_list', array(
+          'languages' => $languages,
+        )
+      );
+    }
   }
   if ($delta == 'hwc_practical_tool_listing') {
     module_load_include('inc', 'hwc_practical_tool', 'hwc_practical_tool.pages');
