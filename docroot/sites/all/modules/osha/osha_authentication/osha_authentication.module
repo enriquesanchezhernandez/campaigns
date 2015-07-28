@@ -128,20 +128,10 @@ function osha_authentication_user_login(&$edit, $user) {
     workbench_access_rebuild_user($user->uid, array());
     osha_workflow_rebuild_pm_sections($user->uid, array());
     osha_workflow_rebuild_rm_sections($user->uid, array());
-
     foreach($authorization as $role => $sections) {
       switch($role) {
-        case 'Editor':
+        case ROLE_CAMPAIGN_PARTNER:
           workbench_access_rebuild_user($user->uid, $sections);
-          break;
-
-        case 'Project Manager':
-          osha_workflow_rebuild_pm_sections($user->uid, $sections);
-          break;
-
-        case 'Review Manager':
-          osha_workflow_rebuild_rm_sections($user->uid, $sections);
-          break;
           break;
       }
     }
