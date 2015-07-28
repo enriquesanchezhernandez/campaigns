@@ -101,9 +101,21 @@ function osha_authentication_ldap_fetch_user_groups($username, $ldap_server) {
 
 function osha_authentication_retrieve_ldap_sections($ldap_server) {
   $ret = array();
+  $ldap_groups = array();
   /** @var LDAPServer $ldap_server */
-  $ldap_groups = $ldap_server->search('ou=HWC,ou=Sites,dc=osha,dc=europa,dc=eu', 'cn=*');
-  if (!$ldap_groups) {
+  if ($ldap_groups_ocp = $ldap_server->search('ou=OCP,ou=HWC,ou=Sites,dc=osha,dc=europa,dc=eu', 'objectClass=posixGroup')) {
+    unset($ldap_groups_ocp['count']);
+    $ldap_groups = array_merge($ldap_groups, $ldap_groups_ocp);
+  }
+  if ($ldap_groups_mp = $ldap_server->search('ou=MP,ou=HWC,ou=Sites,dc=osha,dc=europa,dc=eu', 'objectClass=posixGroup')) {
+    unset($ldap_groups_mp['count']);
+    $ldap_groups = array_merge($ldap_groups, $ldap_groups_mp);
+  }
+  if ($ldap_groups_fop = $ldap_server->search('ou=FOP,ou=HWC,ou=Sites,dc=osha,dc=europa,dc=eu', 'objectClass=posixGroup')) {
+    unset($ldap_groups_fop['count']);
+    $ldap_groups = array_merge($ldap_groups, $ldap_groups_fop);
+  }
+  if (empty($ldap_groups)) {
     return $ret;
   }
   unset($ldap_groups['count']);
