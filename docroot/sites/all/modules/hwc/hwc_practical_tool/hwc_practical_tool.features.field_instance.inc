@@ -462,7 +462,7 @@ function hwc_practical_tool_field_default_field_instances() {
     ),
     'entity_type' => 'node',
     'field_name' => 'field_external_urls',
-    'label' => 'External URLs',
+    'label' => 'Additional links',
     'required' => 0,
     'settings' => array(
       'entity_translation_sync' => FALSE,
@@ -1035,10 +1035,10 @@ function hwc_practical_tool_field_default_field_instances() {
   // Included for use with string extractors like potx.
   t('Access tool link');
   t('Activity');
+  t('Additional links');
   t('Country');
   t('Description');
   t('Dissemination used');
-  t('External URLs');
   t('Free');
   t('Implementation steps');
   t('Objective');
