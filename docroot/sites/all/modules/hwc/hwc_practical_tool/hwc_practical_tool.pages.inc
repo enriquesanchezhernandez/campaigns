@@ -187,7 +187,7 @@ function hwc_practical_tool_menu_tools_search_native($form_state) {
 function hwc_practical_tool_menu_tools_search_related($form_state, $native_nids) {
   global $language;
   $ret = array();
-  if ($language->language === 'en') {
+  if (($form_state['input']['languages']['en'] !== NULL)) {
     return $ret;
   }
   if ($form_state['input']) {
