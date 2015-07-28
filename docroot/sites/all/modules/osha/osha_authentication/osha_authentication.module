@@ -126,8 +126,6 @@ function osha_authentication_user_login(&$edit, $user) {
     // Update user section assignment if user has roles: Editor, Project Manager or Review Manager
     // Remove user from all sections before rebuilding it
     workbench_access_rebuild_user($user->uid, array());
-    osha_workflow_rebuild_pm_sections($user->uid, array());
-    osha_workflow_rebuild_rm_sections($user->uid, array());
     foreach($authorization as $role => $sections) {
       switch($role) {
         case ROLE_CAMPAIGN_PARTNER:
