@@ -187,8 +187,14 @@ function hwc_practical_tool_menu_tools_search_native($form_state) {
 function hwc_practical_tool_menu_tools_search_related($form_state, $native_nids) {
   global $language;
   $ret = array();
-  if ($language->language === 'en') {
+  if (($form_state['input']['languages']['en'] !== NULL)) {
     return $ret;
+  }
+  if ($form_state['input']) {
+    // If is search.
+    if ($form_state['input']['languages']['en'] !== NULL) {
+      return $ret;
+    }
   }
   $text = hwc_req_param($form_state, 'text');
   $is_search = !empty($text);
@@ -224,11 +230,13 @@ function hwc_practical_tool_menu_tools_search_related($form_state, $native_nids)
   if (empty($nids)) {
     return array();
   }
-
   $per_page = 2;
   $current_page = pager_default_initialize(count($nids), $per_page, 1);
   $page = array_chunk($nids, $per_page, TRUE);
   $nodes = node_load_multiple($page[$current_page]);
+  if (empty($nodes)) {
+    return array();
+  }
   $languages = hwc_req_param($form_state, 'languages', array($language->language));
   foreach($nodes as $node) {
     $node->filter_languages = $languages;
