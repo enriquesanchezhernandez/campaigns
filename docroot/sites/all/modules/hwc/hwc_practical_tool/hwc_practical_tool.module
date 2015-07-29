@@ -56,6 +56,24 @@ function hwc_practical_tool_block_view($delta = '') {
 }
 
 /**
+ * Implements hook_field_formatter_info().
+ */
+function hwc_practical_tool_field_formatter_info() {
+  $info = array(
+    'language_list_formatter' => array(
+      'label' => t('Language list'),
+      'field types' => array('language_field'),
+      'description' => 'Displays available languages list - ex.:English (EN)',
+      'settings' => array(
+        'label' => t('Languages:'),
+        'separator' => ','
+      ),
+    ),
+  );
+  return $info;
+}
+
+/**
  * Implements hook_theme().
  */
 function hwc_practical_tool_theme() {
@@ -68,5 +86,102 @@ function hwc_practical_tool_theme() {
     ),
     'path' => $path . '/templates',
   );
+  $theme['language_list_formatter'] = array(
+    'variables' => array(
+      'items' => NULL,
+      'label' => NULL,
+      'separator' => NULL,
+    ),
+  );
   return $theme;
+}
+
+/**
+ * Implements hook_field_formatter_settings_form().
+ */
+function hwc_practical_tool_field_formatter_settings_form($field, $instance, $view_mode, $form, &$form_state) {
+  $display = $instance['display'][$view_mode];
+  $settings = $display['settings'];
+
+  $element = array();
+
+  $element['label'] = array(
+    '#type'           => 'textfield',
+    '#title'          => t('Label'),
+    '#description'    => t('Displays text in front'),
+    '#default_value'  => $settings['label'],
+  );
+
+  $element['separator'] = array(
+    '#type'           => 'textfield',
+    '#title'          => t('separator'),
+    '#description'    => t('Choose a separator for the elements of the list.'),
+    '#default_value'  => $settings['separator'],
+  );
+
+  return $element;
+}
+
+/**
+ * Implements hook_field_formatter_settings_summary().
+ */
+function hwc_practical_tool_field_formatter_settings_summary($field, $instance, $view_mode) {
+  $display = $instance['display'][$view_mode];
+  $settings = $display['settings'];
+
+  $summary = t('Use "@separator" separator.', array(
+    '@separator'     => $settings['separator'],
+  ));
+
+  return $summary;
+}
+
+/**
+ * Implements hook_field_formatter_view().
+ */
+function hwc_practical_tool_field_formatter_view($entity_type, $entity, $field, $instance, $langcode, $items, $display) {
+  $element = array();
+  switch ($display['type']) {
+    case 'language_list_formatter':
+      $settings = $display['settings'];
+      $label = trim($settings['label']);
+      $separator = $settings['separator'];
+
+      $element = array(
+        '#theme' => 'language_list_formatter',
+        '#items' => $items,
+        '#label' => $label,
+        '#separator' => $separator,
+      );
+
+      break;
+  }
+  return $element;
+}
+
+/**
+ * Formats the list of languages using the chosen separator
+ */
+function theme_language_list_formatter($element) {
+  $items = $element['items'];
+  $label = $element['label'];
+  $separator = $element['separator'];
+
+  $output = '<div class="practical-tool-available-languages">';
+
+  if ($label != '') {
+    $output .= '<b>' . t($label) . '</b> ';
+  }
+
+  foreach($items as $key => $lang) {
+    $language = (object) $lang;
+    $output .= t($language->name) . ' (' . strtoupper($language->langcode) . ')';
+    if($key < count($items) - 1) {
+      $output .= $separator . ' ';
+    }
+  }
+
+  $output .= '</div>';
+
+  return $output;
 }
