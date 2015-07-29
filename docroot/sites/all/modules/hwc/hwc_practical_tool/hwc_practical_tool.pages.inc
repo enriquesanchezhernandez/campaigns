@@ -187,12 +187,13 @@ function hwc_practical_tool_menu_tools_search_native($form_state) {
 function hwc_practical_tool_menu_tools_search_related($form_state, $native_nids) {
   global $language;
   $ret = array();
-  if (($form_state['input']['languages']['en'] !== NULL)) {
-    return $ret;
+  if($form_state['input']) {
+    if (($form_state['input']['languages']['en'] !== NULL)) {
+      return $ret;
+    }
   }
-  if ($form_state['input']) {
-    // If is search.
-    if ($form_state['input']['languages']['en'] !== NULL) {
+  else {
+    if($language->language == 'en') {
       return $ret;
     }
   }
