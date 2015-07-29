@@ -338,13 +338,28 @@ function hwc_practical_tool_default_page_manager_handlers() {
     $display->content['new-02d7c136-f951-4699-87eb-d28672a3fd65'] = $pane;
     $display->panels['middle'][8] = 'new-02d7c136-f951-4699-87eb-d28672a3fd65';
     $pane = new stdClass();
-    $pane->pid = 'new-f27f4696-7196-4c7f-ad4d-cb35c333dfdc';
+    $pane->pid = 'new-5191f675-de94-4325-99c9-a1eb9598fe75';
     $pane->panel = 'middle';
-    $pane->type = 'block';
-    $pane->subtype = 'hwc_practical_tool-hwc_practical_tool_language_list';
+    $pane->type = 'entity_field';
+    $pane->subtype = 'node:field_available_languages';
     $pane->shown = TRUE;
     $pane->access = array();
     $pane->configuration = array(
+      'label' => 'hidden',
+      'formatter' => 'language_list_formatter',
+      'delta_limit' => '0',
+      'delta_offset' => '0',
+      'delta_reversed' => 0,
+      'formatter_settings' => array(
+        'format' => array(
+          'name' => 'name',
+          'iso' => 0,
+          'name_native' => 0,
+        ),
+        'separator' => ',',
+        'label' => 'Languages:',
+      ),
+      'context' => 'argument_entity_id:node_1',
       'override_title' => 0,
       'override_title_text' => '',
       'override_title_heading' => 'h2',
@@ -357,9 +372,9 @@ function hwc_practical_tool_default_page_manager_handlers() {
     $pane->extras = array();
     $pane->position = 9;
     $pane->locks = array();
-    $pane->uuid = 'f27f4696-7196-4c7f-ad4d-cb35c333dfdc';
-    $display->content['new-f27f4696-7196-4c7f-ad4d-cb35c333dfdc'] = $pane;
-    $display->panels['middle'][9] = 'new-f27f4696-7196-4c7f-ad4d-cb35c333dfdc';
+    $pane->uuid = '5191f675-de94-4325-99c9-a1eb9598fe75';
+    $display->content['new-5191f675-de94-4325-99c9-a1eb9598fe75'] = $pane;
+    $display->panels['middle'][9] = 'new-5191f675-de94-4325-99c9-a1eb9598fe75';
     $pane = new stdClass();
     $pane->pid = 'new-4ea61eda-ab16-477e-849f-d1b59140cfa6';
     $pane->panel = 'middle';
