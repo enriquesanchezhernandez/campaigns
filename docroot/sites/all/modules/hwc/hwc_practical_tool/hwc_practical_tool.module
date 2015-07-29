@@ -63,10 +63,19 @@ function hwc_practical_tool_field_formatter_info() {
     'language_list_formatter' => array(
       'label' => t('Language list'),
       'field types' => array('language_field'),
-      'description' => 'Displays available languages list - ex.:English (EN)',
+      'description' => 'Displays available languages list - ex.:[label] English (EN)',
       'settings' => array(
         'label' => t('Languages:'),
         'separator' => ','
+      ),
+    ),
+    'link_tool_language_list_formatter' => array(
+      'label' => t('Language list - link to external tool site'),
+      'field types' => array('language_field'),
+      'description' => 'Displays links to external tool site in selected languages - ex.:[label]> English (link to external site)',
+      'settings' => array(
+        'link_label' => t('Visit tool in:'),
+        'link_separator' => ''
       ),
     ),
   );
@@ -93,6 +102,14 @@ function hwc_practical_tool_theme() {
       'separator' => NULL,
     ),
   );
+  $theme['link_tool_language_list_formatter'] = array(
+    'variables' => array(
+      'entity' => NULL,
+      'items' => NULL,
+      'link_label' => NULL,
+      'link_separator' => NULL,
+    ),
+  );
   return $theme;
 }
 
@@ -105,19 +122,40 @@ function hwc_practical_tool_field_formatter_settings_form($field, $instance, $vi
 
   $element = array();
 
-  $element['label'] = array(
-    '#type'           => 'textfield',
-    '#title'          => t('Label'),
-    '#description'    => t('Displays text in front'),
-    '#default_value'  => $settings['label'],
-  );
+  switch ($display['type']) {
+    case 'language_list_formatter':
+      $element['label'] = array(
+        '#type'           => 'textfield',
+        '#title'          => t('Label'),
+        '#description'    => t('Displays text in front'),
+        '#default_value'  => $settings['label'],
+      );
 
-  $element['separator'] = array(
-    '#type'           => 'textfield',
-    '#title'          => t('separator'),
-    '#description'    => t('Choose a separator for the elements of the list.'),
-    '#default_value'  => $settings['separator'],
-  );
+      $element['separator'] = array(
+        '#type'           => 'textfield',
+        '#title'          => t('Separator'),
+        '#description'    => t('Choose a separator for the elements of the list.'),
+        '#default_value'  => $settings['separator'],
+      );
+
+      break;
+    case 'link_tool_language_list_formatter':
+      $element['link_label'] = array(
+        '#type'           => 'textfield',
+        '#title'          => t('Label'),
+        '#description'    => t('Displays text in front'),
+        '#default_value'  => $settings['link_label'],
+      );
+
+      $element['link_separator'] = array(
+        '#type'           => 'textfield',
+        '#title'          => t('Separator'),
+        '#description'    => t('Choose a separator for the elements of the list.'),
+        '#default_value'  => $settings['link_separator'],
+      );
+
+      break;
+  }
 
   return $element;
 }
@@ -129,9 +167,20 @@ function hwc_practical_tool_field_formatter_settings_summary($field, $instance, 
   $display = $instance['display'][$view_mode];
   $settings = $display['settings'];
 
-  $summary = t('Use "@separator" separator.', array(
-    '@separator'     => $settings['separator'],
-  ));
+  $summary = '';
+
+  switch ($display['type']) {
+    case 'language_list_formatter':
+      $summary = t('Use "@separator" separator.', array(
+        '@separator' => $settings['separator'],
+      ));
+
+      break;
+    case 'link_tool_language_list_formatter':
+      $summary = t("Displays links to external tool site in selected languages<br/> - ex.:[label]> English (link to external site)");
+
+      break;
+  }
 
   return $summary;
 }
@@ -155,12 +204,26 @@ function hwc_practical_tool_field_formatter_view($entity_type, $entity, $field, 
       );
 
       break;
+    case 'link_tool_language_list_formatter':
+      $settings = $display['settings'];
+      $label = trim($settings['link_label']);
+      $separator = $settings['link_separator'];
+
+      $element = array(
+        '#theme' => 'link_tool_language_list_formatter',
+        '#entity' => $entity,
+        '#items' => $items,
+        '#link_label' => $label,
+        '#link_separator' => $separator,
+      );
+
+      break;
   }
   return $element;
 }
 
 /**
- * Formats the list of languages using the chosen separator
+ * Formats the list of languages using the label and the chosen separator
  */
 function theme_language_list_formatter($element) {
   $items = $element['items'];
@@ -182,6 +245,63 @@ function theme_language_list_formatter($element) {
   }
 
   $output .= '</div>';
+
+  return $output;
+}
+
+/**
+ * Formats the list of languages using the label and the chosen separator and each item is a link to an external site of a practical tool
+ */
+function theme_link_tool_language_list_formatter($element) {
+  $entity = $element['entity'];
+  $field_name = 'field_access_tool_link';
+  $items = $element['items'];
+  $label = $element['link_label'];
+  $separator = $element['link_separator'];
+  $external_links = array();
+  $output = '';
+
+  if (!empty($items)) {
+    $output .= '<div class="practical-tool-visit-tool-site">';
+
+    if ($label != '') {
+      $output .= '<b>' . t($label) . '</b> ';
+    }
+
+    if (isset($entity->$field_name) && !empty($entity->$field_name)) {
+      $item = $entity->$field_name;
+      foreach($item as $key => $link) {
+        $external_links[$key] = $link[0]['url'];
+      }
+    }
+
+    foreach($items as $key => $lang) {
+      $language = (object) $lang;
+      $langcode = $language->langcode;
+
+      $output .= '<span class="glyphicon glyphicon-chevron-right"></span>';
+      if (isset($external_links[$langcode])) {
+        $output .= l($language->native, $external_links[$langcode], array(
+          'external' => TRUE,
+          'attributes' => array(
+            'title' => t('External website in @language.', array('@language' => $language->name)),
+            'target' => '_blank'
+          ),
+        ));
+      } else {
+        $output .= l($language->native, '#', array(
+          'attributes' => array(
+            'title' => t('External website in @language not available yet.', array('@language' => $language->name))
+          ),
+        ));
+      }
+
+      if($key < count($items) - 1) {
+        $output .= $separator . ' ';
+      }
+    }
+    $output .= '</div>';
+  }
 
   return $output;
 }
