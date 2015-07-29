@@ -292,7 +292,9 @@ function theme_link_tool_language_list_formatter($element) {
           ),
         ));
       } else {
-        $output .= l($language->native, '#', array(
+        $output .= l($language->native, NULL, array(
+          'external' => TRUE,
+          'fragment' => FALSE,
           'attributes' => array(
             'title' => t('External website in @language not available yet.', array('@language' => $language->name))
           ),
