@@ -229,22 +229,25 @@ function theme_language_list_formatter($element) {
   $items = $element['items'];
   $label = $element['label'];
   $separator = $element['separator'];
+  $output = '';
 
-  $output = '<div class="practical-tool-available-languages">';
+  if(!empty($items)) {
+    $output = '<div class="practical-tool-available-languages">';
 
-  if ($label != '') {
-    $output .= '<b>' . t($label) . '</b> ';
-  }
-
-  foreach($items as $key => $lang) {
-    $language = (object) $lang;
-    $output .= t($language->name) . ' (' . strtoupper($language->langcode) . ')';
-    if($key < count($items) - 1) {
-      $output .= $separator . ' ';
+    if ($label != '') {
+      $output .= '<b>' . t($label) . '</b> ';
     }
-  }
 
-  $output .= '</div>';
+    foreach($items as $key => $lang) {
+      $language = (object) $lang;
+      $output .= t($language->name) . ' (' . strtoupper($language->langcode) . ')';
+      if($key < count($items) - 1) {
+        $output .= $separator . ' ';
+      }
+    }
+
+    $output .= '</div>';
+  }
 
   return $output;
 }
