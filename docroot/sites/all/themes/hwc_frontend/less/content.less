@@ -3,7 +3,7 @@
 	body{
 	/* para toda la aplicacion */
 		font-family: @font-family-base;
-		.btn-default, .more-link{
+		.btn-default, .more-link, .btn-primary{
 			color: @btn-default-color;
 			background-color: @btn-default-bg;
 			border-radius: 0;
@@ -21,6 +21,8 @@
 		}
 		input[type="text"], textarea, select{
 			color: @text-color-2;
+			border-color: @text-color-2;
+			border-radius: 0;
 		}
 	}
 /* FIN para toda la aplicacion */
@@ -34,11 +36,16 @@
 			font-size: @h1-default-size;
 			font-weight: bold;
 			text-align: center;
+			margin-top: 26px;
+			.form-item{
+				margin-top: 26px; //ENDIKA
+			}
+		
 		}
 		h2{
 			color: @h2-default-color-3;
 			font-size: @h2-default-size-3;
-			font-weight: normal;
+			font-weight: 100;
 			font-style: italic;
 			a:empty {
 				display: none;
@@ -59,7 +66,7 @@
 			/* text-align: left; */
 			clear: both;
 		}
-		.comillas{
+		.quotation{
 			font-weight: bold;
 			font-size: @size9;
 			font-family: garamond;
@@ -73,8 +80,12 @@
 	  list-style: disc;
 	  padding-left: 3em;
 	}
-	.region-content .form-type-item p{
-		text-align: center; /* puesto para http://192.168.1.237:8884/en/publications */
+	.section-introduction p{
+		text-align: center;
+		font-weight: bold;
+		&:last-child {
+			margin-bottom: 10px;
+		}
 	}
 	.checkbox{
 		input[type="checkbox"]{
@@ -96,6 +107,7 @@
 			content: "\2713";
 			/* padding: 0px 1px 0px 3px; */
 			color: @text-color-2;
+			font-weight: bold;
 		}
 	}
 	.radio{
@@ -131,7 +143,7 @@
 		font-style: italic;
 		margin-bottom: 1em;
 		text-align: right;
-		border-bottom: 1px solid green;
+
 		width: 100%;
 		border-bottom: 1px dotted @border-default-color;
 		&:before{
@@ -207,6 +219,11 @@
 			font-weight: bold;
 		}
 		ul.menu li{
+			a{
+				padding: 2px 0px;
+				font-weight: bold;
+				font-style: italic;
+			}
 			a:before{
 				content: ">";
 				padding-right: 0.35em;
@@ -217,6 +234,22 @@
 		}
 		span.date-display-single {
 		  display: block;
+		}
+		.node-article .addtoany_list{
+			border: none;
+			a{
+				padding: 0;
+				margin-right: 0.3em;
+			}
+		}
+		.view-news .views-row{
+			height: auto;
+			min-height: auto;
+		}
+		.a2a_kit.a2a_target.addtoany_list{
+			border: none;
+			margin-top: 0;
+			margin-bottom: .5em;
 		}
 	}
 	.tools-and-resources-block{
@@ -230,6 +263,64 @@
 	  content: " ";
 	  background: url("../images/content/download.png") no-repeat center;
 	  padding: 2px 15px;
+	}	
+	
+	/* homepage slider */
+	#homepage_slider{
+		height: 321px !important;
+		background-color: #749b00;
+		#num_slides{
+			margin: 0;
+			padding: 0;
+			width: 1139px !important; /*1296 ??*/
+			height: 230px;
+			div{ /* .views-field.views-field-field-image */
+				width: 1139px !important;
+				&.views-field.views-field-body{
+					height: 230px !important;
+					div:empty{
+						height: 230px !important;
+					}
+				}
+				div{
+					margin: 0;
+					padding: 0;
+					width: 1139px !important;
+					a{
+						margin: 0;
+						padding: 0;
+						height: 2.5em;
+						width: 100%;
+						float: left;
+						color: @slider-color;
+						&.more-link{
+							width: auto;
+							padding: 0.5em;
+						}
+						&.more-link:before{
+							content: "";
+						}
+						img{
+							width: 100%;
+						}
+					}
+					p{
+						color: @slider-color;
+						width: 85%;
+						text-align: right;
+						padding-right: 1%;
+					}
+				}
+			}
+		}
+		.views-field-title {
+			font-size: 2em;
+			position: absolute;
+			top: 20px;
+			left: 20px;
+			color: @slider-color;
+			z-index: 2;
+		}
 	}
 	/* pagination */
 	.pagination{
@@ -247,10 +338,10 @@
 	}
 	/* News */
 	.view-news {
-		border-top: 1px solid @color3;
+		border-top: 1px solid @border-default-color;
 		.views-row {
 			.content{
-				border-bottom: 1px solid @color3;
+				border-bottom: 1px solid @border-default-color;
 				padding-bottom: 1em;
 				min-height: 180px;
 			}
@@ -289,7 +380,7 @@
 	
 	/* Article */
 	.node-article{
-		padding: 0 135px;
+		/* padding: 0 135px; */
 		.field-name-field-image + .field-name-title-field{
 			position: absolute;
 			background: url("../images/content/image-shadow.png") repeat-x left bottom;
@@ -298,12 +389,20 @@
 			z-index: 22;
 			top: 68px;
 			h1{
-				/* margin-top: -100px;
-				margin-bottom: 100px; */
 				color: @color1;
 				padding-top: 230px;
 			}
 		}
+		/* .field-name-field-image + .field-name-title-field h1{
+			position: absolute;
+			background: url("../images/content/image-shadow.png") repeat-x left bottom;
+			width: 100%;
+			height: 350px;
+			z-index: 22;
+			top: 68px;
+			color: @color1;
+			padding-top: 230px;
+		} */
 		.field-name-field-image + .field-name-title-field + .field-name-body{
 			margin-top: 5em;
 		}
@@ -316,6 +415,45 @@
 			border-bottom: 1px dotted @border-default-color;
 			a{
 				margin-right: 1em;
+			}
+		}
+		.list-inline{
+			float: left;
+			.node-readmore{
+				color: @btn-default-bg;
+				background-color: transparent;
+				font-weight: bold;
+				font-style: italic;
+				a:before{
+					content: ">";
+					padding-right: 0.35em;
+					margin-left: 1em;
+				}
+			}
+		}
+		.field-name-title-field a{
+			color: @text-default-color;
+			font-weight: bold;
+			font-size: @size2;
+		}
+		.node-article{
+			border-bottom: 1px dotted @border-default-color;
+			clear: both;
+			margin: 1em 0;
+			padding: 2em 0;
+			.field-name-field-image + .field-name-title-field{
+				position: relative;
+				background: none;
+				height: auto;
+				top: 0;
+			}
+			.field-name-field-image{
+				float: left;
+				margin-right: 1em;
+			}
+			.addtoany_list{
+				border: none;
+				text-align: center;
 			}
 		}
 	}
@@ -381,12 +519,6 @@
 			color: @h1-color-2;
 			font-size: @h1-size-2;
 		}
-		.field-name-field-publication-date{
-			margin-top: 1em;
-			span{
-				font-size: @size3;
-			}
-		}
 		.field-name-field-summary{
 			font-weight: bold;
 		}
@@ -397,18 +529,63 @@
 			font-style: italic;
 		}
 	}
+	.field-name-field-publication-date{
+		margin-top: 1em;
+		span{
+			font-size: @size3;
+		}
+	}
 	
+	.form-item-relevant-for > label, .form-item-languages > label{
+		font-size: @size2;
+		font-weight: bold;
+	}
+	
+	/* home news */
 	#block-views-news-oshnews-latest{
 		h2{
 			margin: 20px 0;
 			padding-top: 70px;
 			background: url("../images/content/news.png") no-repeat center top;
 		}
+		a{
+			color: @href-default-color;
+			font-weight: bold;
+			font-style: italic;
+		}
+		a:before{
+			content: ">";
+			padding-right: 0.35em;
+		}
+		.more-link{
+		    display: inline-table;
+			margin-top: 1em;
+			a{
+				color: @color1;
+				&:before{
+					content: "";
+					padding-right: 0.35em;
+				}
+			}
+		}
+		.date-display-single{
+			font-size: @size3;
+		}
+		.view-news{
+			border: none;
+			.views-row {
+				border-bottom: none;
+				margin: 0;
+			}
+		}
 	}
 	#block-osha-newsletter-osha-newsletter-subscribe, #block-osha-newsletter-osha-newsletter-image{
+		clear: both;
 		background: url("../images/content/bg-newsletter.png") no-repeat left top;
+		background: url("../images/content/bg-campaign-partner.png") no-repeat left 20px;
 		height: 320px;
-		margin: 20px 0;
+		height: 380px !important;
+		margin: 20px 0 !important;
 		text-align: center;
 		color: #FFF;
 		#join_subscribers img{
@@ -419,8 +596,9 @@
 		}
 		h2{
 			margin: 20px 0;
-			padding-top: 70px;
-			background: url("../images/content/newsletter.png") no-repeat center top;
+			padding-top: 90px;
+			/* padding-top: 58px; */
+			background: url("../images/content/newsletter.png") no-repeat center 20px;
 			color: @h2-default-color;
 		}
 		p{
@@ -437,22 +615,96 @@
 				margin: auto;
 			}
 		}
+		.block-title{
+			/* top: 3px !important; */
+		}
+		#block_newsletter_image_text{
+			top: 88px;
+			top: 150px;
+		}
+		#join_subscribers > img{
+			display: none;
+		}
 	}
 	
-	#block-views-publications-slideshow-slidehow{
+	/* home events */
+	#block-views-frontpage-events-block{
+	    float: left;
+		text-align: center;
+		width: 33.3%;
+		h2{
+			margin: 20px 0;
+			padding-top: 70px;
+			background: url("../images/content/events.png") no-repeat center top;
+		}
+		a{
+			color: @href-default-color;
+			font-weight: bold;
+			font-style: italic;
+		}
+		a:before{
+			content: ">";
+			padding-right: 0.35em;
+		}
+		.date-display-single{
+			font-size: @size3;
+		}
+	}
+	
+	#block-views-partners-block-1{
+		padding-top: 1em;
+		clear: both;
+		h2{
+			/* border-bottom: 1px dotted @border-default-color; */
+			text-align: center;
+			background: url("../images/content/partners.png") no-repeat center top;
+			padding-top: 70px;
+			padding-bottom: 0.5em;
+			margin-bottom: 0px;
+		}
+		.views-field-field-logo{
+			padding-top: 1em;
+		}
+		.view-content{
+			height: 160px;
+			border-top:  1px dotted @border-default-color;
+			div.views-row{
+				height: 100%;
+				float: left;
+				border-right:  1px dotted @border-default-color;
+				&:last-child{
+					border: none;
+				}
+			}
+		}
+		.more-link{
+			clear: both;
+			width: 100%;
+			margin: 2em auto 0;
+			float: left;
+			text-align: center;
+			background-color: @color0;
+			a{
+				background-color: @bg-color-2;
+				padding: 10px;
+				&:before{
+					content: ">";
+					padding-right: 0.35em;
+				}
+			}
+		}
+	}
+	
+	#block-views-publications-slideshow-slidehow, #block-system-main{
 		#publications_slideshow{
-			width: 75%;
-			width: 66%;
-			width: 782px; /* para que tambien funcione en IE */
-			float: right;
+			width: 926px !important; 
 			border-bottom: 1px solid @border-default-color;
 			border-top: 1px solid @border-default-color;
+			margin: 0em auto 1em;
 			#num_slides{
-				top: 0em;
 				left: 5em;
+				top: 0em;
 				> div{
-					width: 750px !important;
-					width: 650px !important;
 				}
 	
 				.field-name-title-field{
@@ -462,7 +714,7 @@
 					h5{
 						font-size: @h5-default-size;
 						font-weight: bold;
-						&:before{
+						:before{
 							content: ">";
 							padding-right: 0.5em;
 							color: @text-color-2;
@@ -470,9 +722,14 @@
 					}
 				}
 				.field-name-field-publication-date{
-					float: left;
+					/* float: left;
+					margin-left: 20px; */
+
 					margin-top: 12px;
-					margin-left: 20px;
+					margin-left: 6em;
+					span{
+						font-size: @size3;
+					}
 				}
 				.field-name-body{
 					  clear: both;
@@ -482,6 +739,10 @@
 					/* float: left; */
 					position: absolute;
 					top: 1em;
+					margin-top: 0;
+					img{
+						width: auto;
+					}
 				}
 				ul{
 					margin-top: 1em;
@@ -494,6 +755,9 @@
 						font-weight: bold;
 					}
 				}
+				.publication-item{
+					border-bottom: none;
+				}
 			}
 			.jssora03l, .jssora03r{
 				display: block !important;
@@ -503,11 +767,28 @@
 			}
 			.jssora03l{
 				left: 0;
-				background-position: -3px 53px;
+				/* background-position: -3px 53px; */
+				background: @bg-color-2 url("../images/content/slider-left.png") no-repeat center;
 			}
 			.jssora03r{
 				right: 0px;
-				background-position: -63px 53px;
+				/* background-position: -63px 53px; */
+				background: @bg-color-2 url("../images/content/slider-right.png") no-repeat center;
+			}
+			.jssorb03{
+				top: 200px;
+				display: block !important;
+				div{
+					background: url("../images/content/navigation.png") no-repeat;
+					height: 20px;
+					width: 20px;
+				}
+				.prototypeav, .prototypeav:hover, .prototypedn, .prototypedn:hover{
+					background-position: 3px center;
+				}
+				.prototype, .prototype:hover{
+					background-position: -20px center;
+				}
 			}
 		}
 		
@@ -518,28 +799,263 @@
 			font-style: italic;
 		}
 	}
+	
+	.col #block-views-publications-slideshow-slidehow, .col #block-system-main{
+		#publications_slideshow{
+			/* width: 75%;
+			width: 66%; */
+			width: 782px; /* para que tambien funcione en IE */
+			float: right;
+			#num_slides{
+				left: 5em;
+				> div{
+					width: 650px !important;
+				}
+
+			}
+		}
+		
+	}
+	.pane-osha-publication-osha-publication-listing{
+		h4{
+			font-size: @size1;
+		}
+	}
+	
+	#search{
+		margin: 1em 0;
+		padding: 1em 0 0;
+		border-top: 1px dotted @border-default-color;
+		border-bottom: 1px dotted @border-default-color;
+		width: 100%;
+		float: left;
+		div{
+			float: left;
+		}
+		button{
+			float: left;
+			background: @bg-color-2 url("../images/content/search.png") no-repeat center;
+			height: 34px;
+			width: 30px;
+			color: @color0;
+		}
+	}
+	#views-exposed-form-search-site #search button {
+		margin-top: 0;
+	}
 	#osha-publication-menu-publications-form{
 		.form-type-textfield{
 			float: left;
 		}
 	}
-
+	.publication-item{
+		padding: 1em 0;
+		border-bottom: 1px dotted @border-default-color;
+		h5{
+			color: @h5-default-color;
+			font-size: @h5-default-size;
+			font-weight: bold;
+			:before{
+				content: ">";
+			}
+		}
+		.field-name-field-cover-image{
+			float: left;
+			margin-top: -80px;
+			img{
+				width: 160px;
+				margin-right: 20px;
+			}
+		}
+		.field-name-title-field, .field-name-field-publication-date{
+			margin-left: 180px;
+		}
+		.more-link, ul li a{
+			color: @btn-default-bg;
+			background-color: transparent;
+			font-weight: bold;
+			font-style: italic;
+		}
+		ul{
+			list-style: none;
+			margin-top: 1em;
+			padding-left: 0;
+		}
+	}
+	
+	/* Practical tools */
+	.pane-hwc-practical-tool-hwc-practical-tool-listing{
+		h4{
+			font-size: @size1;
+		}
+		.field-label-inline{
+			float: left;
+			margin: 1em 1em 1em 0;
+		}
+		.field-type-text-with-summary{
+			clear: both;
+		}
+		.link-wrapper ul li a{
+		    color: @text-color-2;
+			background-color: @color0;
+			font-weight: bold;
+			font-style: italic;
+			&:before{
+			    content: ">";
+				padding-right: 0.35em;
+			}
+		}
+	}
+	.pane-node-field-free, .pane-node-field-country, .pane-node-field-tool-type{
+		background-color: @color8;
+		color: @text-color-2;
+		font-style: italic;
+		font-weight: bold;
+		float: left;
+		margin-right: 2em;
+		padding: 0.5em 1.5em;
+	}
+	.pane-node-field-provider, .pane-node-body, .pane-node-field-implementation-steps, .pane-node-field-dissemination-used, .pane-node-field-access-tool-link,
+		.pane-hwc-practical-tool-hwc-practical-tool-language-list, .pane-node-field-external-urls{
+		clear: both;
+		width: 100%;
+		float: left;
+		margin: 1em 0 0;
+		.field-label{
+			width: 15%;
+			float: left;
+		}
+		.field-items{
+			width: 85%;
+			float: left;
+		}
+		.practical-tool-languages{
+			font-weight: bold;
+			b{
+				width: 15%;
+				float: left;
+			}
+		}
+	}
+	.pane-node-field-access-tool-link{
+		border-top: 1px dotted @border-default-color;
+		padding-top: 2em;
+		a{
+			font-weight: bold;
+			font-style: italic;
+			background: url("../images/content/continue-reading.png") no-repeat right center;
+			padding-right: 20px;
+		}
+	}
+	.panel-panel div .pane-node-field-access-tool-link:first-child{
+		padding-top: 1em;
+		a{
+			font-size: 30px;
+			font-weight: normal;
+			line-height: 2em;
+		}
+	}
+	.pane-node-field-external-urls{
+		a{
+			font-weight: bold;
+			font-style: italic;
+			&:before{
+				content: ">";
+				padding-right: 0.35em;
+			}
+		}
+	}
+	
+	/* Site Map */
+	.site-map-menu{
+		span{
+			line-height: @size1;
+		}
+		a{
+			font-weight: bold;
+			font-style: italic;
+			&:before{
+			    content: ">";
+				padding-right: 0.35em;
+			}
+		}
+	}
+	
+	/* Accesibility */
+	.accesibility_table{
+		tr:first-child{
+			background-color: @bg-color-2;
+			color: @color1;
+		}
+		td, th{
+			padding: 0.5em;
+		}
+	}
+	
+	/* Search page */
+	.form-type-radio.form-item-sort-by.form-item.radio{
+		display: inline;
+	}
 /* FIN contenedor principal */
 
 
 
 
 /* -----------ENDIKA------------ */
+/*share line*/
+.a2a_kit.a2a_target.addtoany_list{
+	width: 100%;
+	float: left;
+	margin-top: 1em;
+	margin-bottom: 2.5em;
+	padding: 0.5em 0;
+	border-top: 1px dotted @border-default-color;
+	border-bottom: 1px dotted @border-default-color;
+	a{
+		margin-right: 1em;
+	}
+}
 
 /* -News- */
 .view-news {
 	border-top: 1px dotted @color3;
 	.views-row {
-		.content{
-			border-bottom: 1px dotted @color3;
-			padding-bottom: 1em;
-			min-height: 180px;
+		border-bottom: 1px dotted @color3;
+		padding-bottom: 1em;
+		margin: 0px 135px;
+		min-height: 180px;
+		h2{
+			font-size: @size2;
+			font-weight: bold;
+			font-style: normal;
 		}
+		.field-name-field-summary{
+			font-weight: bold;
+			margin-bottom: 1em;
+		}
+		.field-name-field-publication-date{
+			margin-bottom: 1em;
+		}
+		.field-type-text-with-summary{
+			margin-bottom: 1em;
+			.more-link{
+				background-color: transparent;
+				color: @color2;
+				font-weight: bold;
+				font-style: italic;
+				&:before{
+					content: "> ";
+				}
+			}
+		}
+		//para imagen articulos news
+		.field-name-field-image img{
+			float: left;
+			margin-top: 0.3em;
+			margin-right: 1em;
+			margin-bottom: 1em;
+		}
+
 	}
 }
 .node-news{
@@ -556,89 +1072,142 @@
 		margin-right: 1em;
 		margin-bottom: 1em;
 	}
-	h2{
-		font-size: @size2;
-		font-weight: bold;
-		font-style: normal;
-	}
 }
 /* News-detail */
 .back-to-link{
 	  border-bottom: 1px dotted @color3;
 }
+.field.field-name-field-summary{
+	font-weight: bold;
+	margin-bottom: 1em;
+}
+.field.field-name-field-publication-date{
+	padding-top: 0.3em;
+	margin-bottom: 1em;
+}
+.field.field-name-field-image{
+	margin-right: 1.5em;
+	margin-bottom: 1em;
+	float: left;
+}
+.field.field-name-body{
+	p{
+		a{
+			background-color: transparent;
+			color: @color2;
+			font-weight: bold;
+			font-style: italic;
+			&:before{
+				//content: "> ";
+			}
+		}
+	}
+}
+.field-name-field-aditional-resources{
+	.field-name-title-field{
+		a{
+			background-color: transparent;
+			color: @color2;
+			font-weight: bold;
+			font-style: italic;
+			&:before{
+				content: "> ";
+			}
+		}
+	}
+}
+/* fin news*/
+
 /* -Press Room- */
-.contextual-links-region{
-	.panels-flexible-row.panels-flexible-row-3-main-row{
-		border-bottom: 1px dotted @color3;
+//texto introduccion
+.section-introduction{
+	/* border-bottom: 1px dotted @color3; */
+	.field-type-text-with-summary{
+		padding: 0 135px;
 		padding-bottom: @padding-bottom-introduction-text;
-		.panels-flexible-region{
-			.pane-custom{
-				.pane-content{
-					margin-left: 0px !important;
-					margin-right: 0px !important;
-					p{
-						text-align: center;
-						font-weight: bold;
-						font-size: @size6;
+	}
+}
+//tres bloques
+.press-room-blocks-row{
+	.panels-flexible-row-inside{
+		padding: 0 50px;
+	}
+	> .panels-flexible-row-inside{
+		border-top: 1px dotted @color3;
+	}
+	.panels-flexible-row-first{
+		.pane-osha-press-release-osha-press-rel-become-partner{
+			&:before{
+				//content: url("../images/content/campaign-partner.png");
+				display: block;
+				margin-top: 1.5em;
+			}
+			text-align: center;
+			#become-partner-link{
+				a{
+					margin-top: 1.5em;
+					font-weight: bold;
+					font-style: italic;
+					display: block;
+					&:before{
+						content: "> ";
 					}
 				}
 			}
 		}
-	}
-}
-.panels-flexible-column{
-	.pane-osha-press-release-osha-press-rel-become-partner{
-		text-align: center;
-		#become-partner-link{
-			a{
-				margin-top: 1.5em;
-				font-weight: bold;
-				font-style: italic;
+		.pane-press-contacts{
+			&:before{
+				//content: url("../images/content/campaign-partner.png");
 				display: block;
-				&:before{
-					content: "> ";
+				margin-top: 1.5em;
+			}
+			text-align: center;
+			border-left: 1px dotted @color3;
+			border-right: 1px dotted @color3;
+			.views-field-field-press-contact-email{
+				margin-bottom: 2em;
+				a{
+					font-weight: bold;
+					font-style: italic;
 				}
 			}
 		}
-	}
-	.pane-press-contacts{
-		text-align: center;
-		border-left: 1px dotted @color3;
-		border-right: 1px dotted @color3;
-		.views-field-field-press-contact-email{
-			margin-bottom: 2em;
-			a{
-				font-weight: bold;
-				font-style: italic;
-			}
-		}
-	}
-	.pane-osha-press-release-osha-press-kit{
-		text-align: center;
-		.osha-press-contact-block-link{
-			a{
-				margin-top: 1.5em;
-				font-weight: bold;
-				font-style: italic;
+		.pane-osha-press-release-osha-press-kit{
+			&:before{
+				//content: url("../images/content/campaign-partner.png");
 				display: block;
-				&:after{
-					//content: " >";
-					content: url("../images/content/download.png");
+				margin-top: 1.5em;
+			}
+			text-align: center;
+			.osha-press-contact-block-link{
+				a{
+					margin-top: 1.5em;
+					font-weight: bold;
+					font-style: italic;
+					display: inline-block;
 				}
 			}
 		}
-	}
-	.pane-title{
-		color: @color3;
-		font-size: @size8;
-		font-weight: bold;
-		font-style: normal;
+		.pane-title{
+			color: @color3;
+			font-size: @size8;
+			font-weight: bold;
+			font-style: normal;
+		}
 	}
 }
+
+//articulos
 .view-press-releases {
 	.views-row{
 		border-bottom: 1px dotted @color3;
 		padding-bottom: @padding-bottom-articles;
+		&:first-child{
+			border-top: 1px dotted @color3;
+		}
+		h2{
+			margin-top: 0px;
+		}
 		h3{
 			font-size: @size2;
 			font-weight: bold;
@@ -653,7 +1222,112 @@
 				}
 			}
 		}
+		.field-name-field-publication-date{
+			margin-bottom: 1em;
+		}
 	}
 }
+/*pressroom detail*/
+.node-press-release{
+	padding: 0 135px;
+	iframe{
+		margin-right: 1.5em;
+		margin-bottom: 1em;
+		float: left;
+	}
+	.field-item.even{
+		p{
+			a{
+				font-weight: bold !important;
+			}
+		}
+	}
+	.list-inline > li{
+		display: block;
+	}
+}
+.region-sidebar-second{
+	margin: 0px 135px;
+	padding-top: 1.5em;
+	border-top: 1px dotted @color3;
+	#block-osha-press-release-osha-press-rel-become-partner{
+		float: left;
+		width:33%;
+		padding: 0px 10px;
+		text-align: center;
+		&:before{
+			//content: url("../images/content/campaign-partner.png");
+			display: block;
+			margin-top: 1.5em;
+		}
+		h2{
+			margin-top: 1em;
+			margin-bottom: 1em;
+		}
+		#become-partner-link{
+			a{
+				margin-top: 1.5em;
+				font-weight: bold;
+				font-style: italic;
+				display: block;
+				&:before{
+					content: "> ";
+				}
+			}
+		}
+	}
+	#block-views-press-contacts-block{
+		float: left;
+		width:33%;
+		padding: 0px 10px;
+		text-align: center;
+		border-left: 1px dotted @color3;
+		border-right: 1px dotted @color3;
+		&:before{
+			//content: url("../images/content/campaign-partner.png");
+			display: block;
+			margin-top: 1.5em;
+		}
+		h2{
+			margin-top: 1em;
+			margin-bottom: 1em;
+		}
+		.views-field-field-press-contact-email{
+			margin-bottom: 2em;
+			a{
+				font-weight: bold;
+				font-style: italic;
+			}
+		}
+	}
+	#block-osha-press-release-osha-press-kit{
+		float: left;
+		width:33%;
+		padding: 0px 10px;
+		text-align: center;
+		&:before{
+			//content: url("../images/content/campaign-partner.png");
+			display: block;
+			margin-top: 1.5em;
+		}
+		h2{
+			margin-top: 1em;
+			margin-bottom: 1em;
+		}
+		.osha-press-contact-block-link{
+			a{
+				margin-top: 1.5em;
+				font-weight: bold;
+				font-style: italic;
+				display: inline-block;
+			}
+		}
+	}
+}
+/*fin pressroom*/
+
+/* Events*/
+
+/*fin events*/
 
 /* ----------END ENDIKA--------- */
