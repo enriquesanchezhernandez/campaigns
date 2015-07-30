@@ -31,11 +31,11 @@ $rss_hide = !empty($options['rss_hide']);
       <a href="<?php print $tweet_url; ?>">Twitter</a>
     </li>
     <li id="linked-in-<?php print $node->nid; ?>" class="napo-share-widget-button napo-share-widget-linkedin">
-      <a href="https://www.linkedin.com/shareArticle?mini=true&url=<?php print $url ?>">Linked in</a>
+      <a href="https://www.linkedin.com/shareArticle?mini=true&url=<?php print $url; ?>">Linked in</a>
     </li>
     <?php if (!$rss_hide): ?>
     <li class="pull-right">
-      <a href="<?print $rss_url; ?>">RSS</a>
+      <a href="<?php print $rss_url; ?>">RSS</a>
     </li>
     <?php endif; ?>
   </ul>

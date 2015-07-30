@@ -233,10 +233,17 @@ function hwc_form_alter(&$form, &$form_state, $form_id) {
  * Implements hook_node_view().
  */
 function hwc_node_view($node, $view_mode, $langcode) {
-  if ($view_mode == 'full' && in_array($node->type, array('news'))) {
+  if ($view_mode == 'full' && in_array($node->type, array('news', 'events', 'article'))) {
     $extra_fields = field_info_extra_fields('node', $node->type, 'display');
     if (!empty($extra_fields['share_widget']['display']['default']['visible'])) {
-      $node->content['share_widget'] = array('#markup' => hwc_news_share_widget($node));
+      $options = array();
+      if ($node->type == 'article') {
+        $options['rss_hide'] = 1;
+      }
+      if ($node->type == 'events') {
+        $options['rss_url'] = url('rss-feeds/latest/events.xml', array('absolute' => TRUE));
+      }
+      $node->content['share_widget'] = array('#markup' => hwc_news_share_widget($node, $options));
     }
   }
 }
