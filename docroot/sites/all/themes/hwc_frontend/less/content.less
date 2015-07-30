@@ -273,11 +273,13 @@
 			margin: 0;
 			padding: 0;
 			width: 1139px !important; /*1296 ??*/
-			height: 230px;
-			div{ /* .views-field.views-field-field-image */
+			height: 320px !important;
+			> div{ /* .views-field.views-field-field-image */
 				width: 1139px !important;
+				height: 320px !important;
 				&.views-field.views-field-body{
-					height: 230px !important;
+					height: 320px !important;
+					margin-top: 4em;
 					div:empty{
 						height: 230px !important;
 					}
@@ -286,6 +288,7 @@
 					margin: 0;
 					padding: 0;
 					width: 1139px !important;
+					float: right;
 					a{
 						margin: 0;
 						padding: 0;
@@ -296,6 +299,10 @@
 						&.more-link{
 							width: auto;
 							padding: 0.5em;
+							margin-left: 1em;
+							position: absolute;
+							top: 2em;
+							right: 20px;
 						}
 						&.more-link:before{
 							content: "";
@@ -306,20 +313,26 @@
 					}
 					p{
 						color: @slider-color;
-						width: 85%;
+					
 						text-align: right;
-						padding-right: 1%;
+						padding-right: 20px;
+						margin-top: 40px;
 					}
 				}
 			}
 		}
 		.views-field-title {
-			font-size: 2em;
+			font-size: 39px;
 			position: absolute;
 			top: 20px;
-			left: 20px;
+			right: 20px;
 			color: @slider-color;
 			z-index: 2;
+			float: right;
+			font-weight: bold;
+			span{
+				float: right;
+			}
 		}
 	}
 	/* pagination */
@@ -1048,14 +1061,17 @@
 				}
 			}
 		}
-		//para imagen articulos news
-		.field-name-field-image img{
-			float: left;
-			margin-top: 0.3em;
-			margin-right: 1em;
-			margin-bottom: 1em;
+		.left-column{
+			//para imagen articulos news
+			min-height: 272px;
+			float:left;
+			.field-name-field-image img{
+				float: left;
+				margin-top: 1.8em;
+				margin-right: 1em;
+				margin-bottom: 1em;
+			}
 		}
-
 	}
 }
 .node-news{
@@ -1116,6 +1132,10 @@
 		}
 	}
 }
+
+.node-type-news{
+	#block-system-main { padding: 0 135px; }//probando lo que ha dicho cris
+} 
 /* fin news*/
 
 /* -Press Room- */
@@ -1327,7 +1347,51 @@
 /*fin pressroom*/
 
 /* Events*/
+.page-past-events{
+	.region-content{
+		#block-system-main{
+			.views-row{
+				margin:0px 135px;
+				padding-top: 20px;
+				padding-bottom: 40px;
+				border-bottom: 1px dotted @color3;
+				.views-field-field-start-date{
+					.field-content{
+						.date-display-single{
+							background-color: @color3;
+							color: @color1;
+						    float: left;
+						    width: 180px;
+						    height: 170px;
+						    margin-right: 50px;
+						    overflow: hidden;
+						    margin-top: 5px;
+						    font-size: 36px;
+						    font-weight: bold;
+						    padding: 0px 50px;
+						    text-align: center;
+						}
+					}
+				}
+				.views-field-title-field{
+					a{
+						font-weight: bold;
+						display: block;
+						font-size:@size2; 
+						margin-bottom: 20px;
+						&:before{
+							content: "> ";
+						}
+					}
+				}
+				.views-field-field-start-date-1{
+					
+				}
 
-/*fin events*/
+			}
+		}
+	}
+}
+/*Fin events*/
 
 /* ----------END ENDIKA--------- */
