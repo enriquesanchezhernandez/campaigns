@@ -1121,7 +1121,7 @@
 /* -Press Room- */
 //texto introduccion
 .section-introduction{
-	border-bottom: 1px dotted @color3;
+	/* border-bottom: 1px dotted @color3; */
 	.field-type-text-with-summary{
 		padding: 0 135px;
 		padding-bottom: @padding-bottom-introduction-text;
@@ -1131,6 +1131,9 @@
 .press-room-blocks-row{
 	.panels-flexible-row-inside{
 		padding: 0 50px;
+	}
+	> .panels-flexible-row-inside{
+		border-top: 1px dotted @color3;
 	}
 	.panels-flexible-row-first{
 		.pane-osha-press-release-osha-press-rel-become-partner{

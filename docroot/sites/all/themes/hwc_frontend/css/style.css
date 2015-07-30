@@ -8575,14 +8575,17 @@ div[class*='node-'] .more-link {
 /* fin news*/
 /* -Press Room- */
 .section-introduction {
-  border-bottom: 1px dotted #749b00;
+  /* border-bottom: 1px dotted @color3; */
 }
 .section-introduction .field-type-text-with-summary {
   padding: 0 135px;
-  padding-bottom: 3em;
+  padding-bottom: 2em;
 }
 .press-room-blocks-row .panels-flexible-row-inside {
   padding: 0 50px;
+}
+.press-room-blocks-row > .panels-flexible-row-inside {
+  border-top: 1px dotted #749b00;
 }
 .press-room-blocks-row .panels-flexible-row-first .pane-osha-press-release-osha-press-rel-become-partner {
   text-align: center;
@@ -8637,7 +8640,7 @@ div[class*='node-'] .more-link {
 }
 .view-press-releases .views-row {
   border-bottom: 1px dotted #749b00;
-  padding-bottom: 3em;
+  padding-bottom: 2em;
 }
 .view-press-releases .views-row:first-child {
   border-top: 1px dotted #749b00;
