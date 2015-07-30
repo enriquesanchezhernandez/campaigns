@@ -14,6 +14,7 @@ function osha_events_default_fe_block_settings() {
 
   $export['osha_events-events_links'] = array(
     'cache' => 1,
+    'css_class' => '',
     'custom' => 0,
     'delta' => 'events_links',
     'i18n_block_language' => array(),
@@ -43,6 +44,7 @@ past-events',
 
   $export['views--exp-events_index-page'] = array(
     'cache' => -1,
+    'css_class' => '',
     'custom' => 0,
     'delta' => '-exp-events_index-page',
     'i18n_block_language' => array(),
@@ -71,6 +73,7 @@ past-events',
 
   $export['views-events-block_1'] = array(
     'cache' => -1,
+    'css_class' => '',
     'custom' => 0,
     'delta' => 'events-block_1',
     'i18n_block_language' => array(),
@@ -100,6 +103,7 @@ past-events/*',
 
   $export['views-events-block_2'] = array(
     'cache' => -1,
+    'css_class' => '',
     'custom' => 0,
     'delta' => 'events-block_2',
     'i18n_block_language' => array(),
@@ -129,6 +133,7 @@ events/*',
 
   $export['views-events_index-block_1'] = array(
     'cache' => -1,
+    'css_class' => '',
     'custom' => 0,
     'delta' => 'events_index-block_1',
     'i18n_block_language' => array(),

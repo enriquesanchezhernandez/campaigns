@@ -28,6 +28,7 @@
   print render($content['title_field']);
   print render($content['field_summary']);
   print render($content['body']);
+  print render($content['share_widget']);
   // Additional resources
   if (!empty($content['field_recommended_resources']) || !empty($content['field_recommended_articles'])) {
     print '<div class="dot-separator green"></div><div class="icon recommended-resources"></div>' . '<h2>' . t('Recommended for you') . '</h2>';
