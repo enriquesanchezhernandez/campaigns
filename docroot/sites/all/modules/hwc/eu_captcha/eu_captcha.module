@@ -37,7 +37,7 @@ function eu_captcha_captcha($op, $captcha_type = '') {
         $result = array();
 
         $captcha_path = drupal_get_path('module', 'eu_captcha');
-        drupal_add_js($captcha_path . '/captcha.js');
+        drupal_add_js($captcha_path . '/captcha.js', array('defer' => TRUE, 'async' => TRUE, 'preprocess' => FALSE));
         require_once $captcha_path . '/captchalib.php';
 
         global $language;
