@@ -491,6 +491,7 @@ $options['init-modules'] = array(
 
   'text_resize',
   'block_class',
+  'shorten',
 
   'hwc',
   'hwc_homepage',
