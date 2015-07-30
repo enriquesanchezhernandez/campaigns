@@ -486,7 +486,6 @@ $options['init-modules'] = array(
   'osha_newsletter',
 
   // Social share
-  'addtoany',
   'on_the_web',
 
   'text_resize',
