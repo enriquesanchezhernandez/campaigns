@@ -504,6 +504,8 @@ $options['init-modules'] = array(
   'eu_captcha',
   'hwc_social_sprites',
 
+  'search_api_title2',
+
 );
 
 
