@@ -122,11 +122,11 @@ $theme_dir = drupal_get_path('theme', 'hwc_frontend');
 
   <div class="row">
     <?php if (!empty($page['sidebar_first'])): ?>
-      <aside class="col-sm-3 col-lg-12" role="complementary">
+      <aside class="col-sm-3" role="complementary">
         <?php print render($page['sidebar_first']); ?>
       </aside>  <!-- /#sidebar-first -->
     <?php endif; ?>
-    <section class="col-sm-9 col-lg-12">
+    <section class="col-sm-9">
 		<?php /* print $content_column_class; */ ?>
       <?php if (!empty($page['highlighted'])): ?>
         <div class="highlighted jumbotron"><?php print render($page['highlighted']); ?></div>
