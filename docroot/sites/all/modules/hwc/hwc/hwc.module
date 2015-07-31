@@ -278,3 +278,30 @@ function hwc_news_share_widget($node, $options = array()) {
   );
   return theme('news_share_widget', $vars);
 }
+
+/**
+ * Allows modules to edit the Workbench Access node form element.
+ *
+ * This convenience function runs a hook_form_alter() targeted only at
+ * the form element defined by Workbench Access.
+ *
+ * @param &$element
+ *   The form element defined by workbench_access_form_alter(), passed
+ *   by reference.
+ * @param &$form_state
+ *   The current form state, passed by reference.
+ * @param $active
+ *   The active data information for the access scheme.
+ *
+ * @see workbench_access_get_active_tree()
+ *
+ */
+function hwc_workbench_access_node_element_alter(&$element, $form_state, $active) {
+  $allow_section_field = array('news','events');
+  $form_id = $form_state['build_info']['form_id'];
+  $form = drupal_retrieve_form($form_id, $form_state);
+
+  if (!empty($form['#node_edit_form']) && !in_array($form['#node']->type, $allow_section_field)) {
+    $element['#access'] = FALSE;
+  }
+}
