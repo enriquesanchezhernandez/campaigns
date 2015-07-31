@@ -40,6 +40,11 @@ function campaign_materials_views_default_views() {
     'title' => 'title',
     'field_publication_date' => 'field_publication_date',
   );
+  /* Relationship: Content revision: Content */
+  $handler->display->display_options['relationships']['nid']['id'] = 'nid';
+  $handler->display->display_options['relationships']['nid']['table'] = 'node_revision';
+  $handler->display->display_options['relationships']['nid']['field'] = 'nid';
+  $handler->display->display_options['relationships']['nid']['required'] = TRUE;
   /* Field: Content: Image */
   $handler->display->display_options['fields']['field_image']['id'] = 'field_image';
   $handler->display->display_options['fields']['field_image']['table'] = 'field_data_field_image';
@@ -77,22 +82,21 @@ function campaign_materials_views_default_views() {
     'multiple_to' => '',
     'osha_date_theme' => '',
   );
-  /* Field: Content: Body */
-  $handler->display->display_options['fields']['body']['id'] = 'body';
-  $handler->display->display_options['fields']['body']['table'] = 'field_data_body';
-  $handler->display->display_options['fields']['body']['field'] = 'body';
-  $handler->display->display_options['fields']['body']['label'] = '';
-  $handler->display->display_options['fields']['body']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['body']['element_wrapper_class'] = 'materials_teaser';
-  $handler->display->display_options['fields']['body']['type'] = 'smart_trim_format';
-  $handler->display->display_options['fields']['body']['settings'] = array(
+  /* Field: Content: Summary */
+  $handler->display->display_options['fields']['field_summary']['id'] = 'field_summary';
+  $handler->display->display_options['fields']['field_summary']['table'] = 'field_data_field_summary';
+  $handler->display->display_options['fields']['field_summary']['field'] = 'field_summary';
+  $handler->display->display_options['fields']['field_summary']['label'] = '';
+  $handler->display->display_options['fields']['field_summary']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_summary']['element_wrapper_class'] = 'materials_teaser';
+  $handler->display->display_options['fields']['field_summary']['type'] = 'smart_trim_format';
+  $handler->display->display_options['fields']['field_summary']['settings'] = array(
     'trim_link' => '0',
     'trim_length' => '600',
     'trim_type' => 'chars',
     'trim_suffix' => '...',
     'more_link' => '1',
-    'more_text' => '> See more',
-    'summary_handler' => 'ignore',
+    'more_text' => 'See more',
     'trim_options' => array(
       'text' => 0,
     ),
@@ -132,6 +136,12 @@ function campaign_materials_views_default_views() {
   $handler->display->display_options['filters']['type']['value'] = array(
     'campaign_materials' => 'campaign_materials',
   );
+  /* Filter criterion: Workbench Moderation: Published */
+  $handler->display->display_options['filters']['published']['id'] = 'published';
+  $handler->display->display_options['filters']['published']['table'] = 'workbench_moderation_node_history';
+  $handler->display->display_options['filters']['published']['field'] = 'published';
+  $handler->display->display_options['filters']['published']['relationship'] = 'nid';
+  $handler->display->display_options['filters']['published']['value'] = '1';
 
   /* Display: Block */
   $handler = $view->new_display('block', 'Block', 'block');
@@ -150,6 +160,7 @@ function campaign_materials_views_default_views() {
     t('‹ previous'),
     t('next ›'),
     t('last »'),
+    t('Get the actual content from a content revision.'),
     t('Block'),
     t('more'),
   );
