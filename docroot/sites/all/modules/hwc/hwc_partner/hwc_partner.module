@@ -210,7 +210,7 @@ function hwc_partner_form_news_node_form_alter(&$form, &$form_state) {
     if (empty($form['workbench_access']['workbench_access']['#default_value'])) {
       drupal_goto('<front>');
     }
-    $form['field_summary']['#access'] = FALSE;
+    $form['field_publication_date']['#access'] = FALSE;
     $form['field_expiration_date']['#access'] = FALSE;
     $form['field_tags']['#access'] = FALSE;
     $form['field_aditional_resources']['#access'] = FALSE;
