@@ -14,6 +14,7 @@ function hwc_menu_default_fe_block_settings() {
 
   $export['menu_block-2'] = array(
     'cache' => -1,
+    'css_class' => '',
     'custom' => 0,
     'delta' => 2,
     'i18n_block_language' => array(),
@@ -24,8 +25,8 @@ function hwc_menu_default_fe_block_settings() {
     'roles' => array(),
     'themes' => array(
       'hwc_frontend' => array(
-        'region' => 'content',
-        'status' => 1,
+        'region' => '',
+        'status' => 0,
         'theme' => 'hwc_frontend',
         'weight' => 0,
       ),
