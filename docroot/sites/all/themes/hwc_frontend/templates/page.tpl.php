@@ -73,6 +73,7 @@
  * @ingroup themeable
  */
 $theme_dir = drupal_get_path('theme', 'hwc_frontend');
+$content_class = (!empty($page['sidebar_first']) || !empty($page['sidebar_second'])) ? 'col-sm-9' : '';
 ?>
 <?php if (!empty($page['above_header'])): ?>
   <div class="header_top_bar container">
@@ -126,7 +127,7 @@ $theme_dir = drupal_get_path('theme', 'hwc_frontend');
         <?php print render($page['sidebar_first']); ?>
       </aside>  <!-- /#sidebar-first -->
     <?php endif; ?>
-    <section class="col-sm-9">
+    <section class="<?php print $content_class; ?>">
 		<?php /* print $content_column_class; */ ?>
       <?php if (!empty($page['highlighted'])): ?>
         <div class="highlighted jumbotron"><?php print render($page['highlighted']); ?></div>
@@ -151,8 +152,8 @@ $theme_dir = drupal_get_path('theme', 'hwc_frontend');
       <?php print render($page['above_title']); ?>
       <?php print render($page['content']); ?>
     </section>
-    <?php if (!empty($page['sidebar_second'])): ?>
-      <aside class="col-sm-3 col-lg-12" role="complementary">
+    <?php if (!empty($page['sidebar_second'])):?>
+      <aside class="col-sm-3" role="complementary">
         <?php print render($page['sidebar_second']); ?>
       </aside>  <!-- /#sidebar-second -->
     <?php endif; ?>
