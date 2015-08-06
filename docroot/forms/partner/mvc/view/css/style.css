@@ -1,0 +1,124 @@
+body {
+    font-family: Trebuchet MS, Tahoma, Verdana, Arial, sans-serif;
+    padding: 20px;
+    margin: 0;
+}
+a {
+    text-decoration: none;
+    color: black;
+}
+label {
+    font-weight: bold;
+    width: 200px;
+    display: block;
+    float: left;
+}
+input[type=text] {
+    width: 300px;
+}
+.clear {
+    clear: both;
+}
+#progressbar {
+    padding: 20px;
+    margin-bottom: 10px;
+}
+#footer {
+}
+#sidebar {
+    float: left;
+    min-width: 100px;
+    padding: 20px;
+    width: 20%;
+}
+#form {
+    float: left;
+    padding: 20px;
+    width: 70%;
+}
+.sidebar-border {
+    border-left: 1px solid black;
+}
+.progress {
+    margin-bottom: 0;
+    padding: 0;
+}
+.control-group, .controls {
+    margin-bottom: 15px;
+    clear: both;
+}
+input.error {
+    border: 3px solid red;
+}
+.error-msg, .sidebar-error {
+    color: red;
+    font-weight: bold;
+}
+.col-md-4 {
+    text-align: center;
+    font-weight: bolder;
+}
+.progress-bar-striped {
+    min-width: 2em;
+}
+.thank-you {
+    text-align: center;
+    font-weight: bolder;
+}
+.export-pdf {
+    margin-top: 20px;
+}
+.center {
+    text-align: center;
+}
+.progressbar-text {
+    margin-bottom: 10px;
+}
+/**********************/
+label {
+    margin-bottom: 10px;
+    width: 100%;
+}
+input[type=text], textarea, select {
+    border: 1px solid #003399;
+    color: #003399;
+}
+input[type=submit], button {
+    border: none;
+    background-color: #003399;
+    color: #fff;
+}
+input[type=text], select {
+    padding : 2px;
+    width: 100%;
+}
+textarea {
+    padding : 5px;
+    width: 100%;
+    height: 200px;
+}
+fieldset {
+    border: none;
+    border-bottom: 1px solid #c1e000;
+    padding-bottom: 40px;
+    margin-bottom: 40px;
+}
+legend {
+    font-size: 20px;
+    font-weight: normal !important;
+    color: #749B00;
+    font-style: italic;
+    margin-bottom: 20px;
+}
+.control-group {
+    margin-bottom: 40px;
+}
+.float-left {
+    float: left;
+    width: 40%;
+    margin-right: 20px;
+}
+.float-right {
+    float: right;
+    width: 40%;
+}

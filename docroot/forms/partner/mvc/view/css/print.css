@@ -1,0 +1,32 @@
+button,
+input[type=submit],
+input[type=file],
+#progressbar,
+#sidebar,
+.help-block,
+.add_user,
+.captcha {
+    display: none !important;
+}
+input[type=text], select, textarea {
+    border: none !important;
+    padding: 0 !important;
+    background-color: transparent !important;
+}
+select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    text-indent: 1px;
+    text-overflow: '';
+}
+textarea {
+    height: auto !important;
+}
+.sidebar-border {
+    border: none !important;
+}
+/*
+input:not(:checked) {
+    display: none;
+}
+*/
