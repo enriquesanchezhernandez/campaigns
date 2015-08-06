@@ -7492,6 +7492,7 @@ body select {
   font-weight: bold;
   text-align: center;
   margin-top: 26px;
+  border-bottom: 1px dotted #749b00;
 }
 .main-container h1 .form-item,
 .main-container .title-alt .form-item {
@@ -7813,9 +7814,6 @@ body select {
   color: #575757;
 }
 /* News */
-.view-news {
-  border-top: 1px solid #749b00;
-}
 .view-news .views-row .content {
   border-bottom: 1px solid #749b00;
   padding-bottom: 1em;
@@ -8040,6 +8038,7 @@ div[class*='node-'] .more-link {
   margin: 20px 0 !important;
   text-align: center;
   color: #FFF;
+  background-size: cover;
 }
 #block-osha-newsletter-osha-newsletter-subscribe #join_subscribers img,
 #block-osha-newsletter-osha-newsletter-image #join_subscribers img {
@@ -8525,9 +8524,6 @@ div[class*='node-'] .more-link {
   margin-right: 1em;
 }
 /* -News- */
-.view-news {
-  border-top: 1px dotted #749b00;
-}
 .view-news .views-row {
   border-bottom: 1px dotted #749b00;
   padding-bottom: 1em;
