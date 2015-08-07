@@ -14,6 +14,7 @@ function osha_publication_default_fe_block_settings() {
 
   $export['osha_publication-osha_publication_listing'] = array(
     'cache' => 8,
+    'css_class' => '',
     'custom' => 0,
     'delta' => 'osha_publication_listing',
     'i18n_block_language' => array(),
@@ -42,6 +43,7 @@ function osha_publication_default_fe_block_settings() {
 
   $export['views-publications_slideshow-slidehow'] = array(
     'cache' => -1,
+    'css_class' => '',
     'custom' => 0,
     'delta' => 'publications_slideshow-slidehow',
     'i18n_block_language' => array(),
