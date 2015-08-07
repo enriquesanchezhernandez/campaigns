@@ -5,12 +5,11 @@
  */
 ?>
 
-  <?php
-  if ($view_mode === 'full') {
-    print '<h1>' . t('News') . '</h1>';
-  }
+<?php
+  print render($content['title_field']);
+  print render($content['links']['#links']['addtoany']['title']);
   // We hide the comments and links now so that we can render them later.
   hide($content['comments']);
   hide($content['links']);
   print render($content);
-  ?>
+?>

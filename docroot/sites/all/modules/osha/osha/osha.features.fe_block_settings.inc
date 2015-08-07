@@ -14,6 +14,7 @@ function osha_default_fe_block_settings() {
 
   $export['lang_dropdown-language'] = array(
     'cache' => -1,
+    'css_class' => '',
     'custom' => 0,
     'delta' => 'language',
     'i18n_block_language' => array(),
@@ -27,7 +28,7 @@ function osha_default_fe_block_settings() {
         'region' => 'header',
         'status' => 1,
         'theme' => 'hwc_frontend',
-        'weight' => -44,
+        'weight' => -59,
       ),
       'seven' => array(
         'region' => '',
@@ -42,6 +43,7 @@ function osha_default_fe_block_settings() {
 
   $export['lang_dropdown-language_content'] = array(
     'cache' => -1,
+    'css_class' => '',
     'custom' => 0,
     'delta' => 'language_content',
     'i18n_block_language' => array(),

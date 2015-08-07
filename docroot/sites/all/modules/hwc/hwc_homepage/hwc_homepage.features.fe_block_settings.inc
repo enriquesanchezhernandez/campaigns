@@ -14,6 +14,7 @@ function hwc_homepage_default_fe_block_settings() {
 
   $export['blockgroup-tools_and_resources_block_g'] = array(
     'cache' => -1,
+    'css_class' => '',
     'custom' => 0,
     'delta' => 'tools_and_resources_block_g',
     'i18n_block_language' => array(),
@@ -42,6 +43,7 @@ function hwc_homepage_default_fe_block_settings() {
 
   $export['menu_block-1'] = array(
     'cache' => -1,
+    'css_class' => '',
     'custom' => 0,
     'delta' => 1,
     'i18n_block_language' => array(),
@@ -70,6 +72,7 @@ function hwc_homepage_default_fe_block_settings() {
 
   $export['nodeblock-29'] = array(
     'cache' => 1,
+    'css_class' => '',
     'custom' => 0,
     'delta' => 29,
     'i18n_block_language' => array(),
@@ -98,6 +101,7 @@ function hwc_homepage_default_fe_block_settings() {
 
   $export['views-frontpage_events-block'] = array(
     'cache' => -1,
+    'css_class' => 'col-md-4',
     'custom' => 0,
     'delta' => 'frontpage_events-block',
     'i18n_block_language' => array(),
@@ -126,6 +130,7 @@ function hwc_homepage_default_fe_block_settings() {
 
   $export['views-frontpage_slider-block'] = array(
     'cache' => -1,
+    'css_class' => '',
     'custom' => 0,
     'delta' => 'frontpage_slider-block',
     'i18n_block_language' => array(),
@@ -152,10 +157,11 @@ function hwc_homepage_default_fe_block_settings() {
     'visibility' => 1,
   );
 
-  $export['views-partners-block'] = array(
+  $export['views-partner_title-block'] = array(
     'cache' => -1,
+    'css_class' => 'col-md-12',
     'custom' => 0,
-    'delta' => 'partners-block',
+    'delta' => 'partner_title-block',
     'i18n_block_language' => array(),
     'i18n_mode' => 0,
     'module' => 'views',
@@ -167,7 +173,7 @@ function hwc_homepage_default_fe_block_settings() {
         'region' => 'content',
         'status' => 1,
         'theme' => 'hwc_frontend',
-        'weight' => -46,
+        'weight' => 10,
       ),
       'seven' => array(
         'region' => '',
@@ -182,6 +188,7 @@ function hwc_homepage_default_fe_block_settings() {
 
   $export['views-partners-block_1'] = array(
     'cache' => -1,
+    'css_class' => 'col-md-12',
     'custom' => 0,
     'delta' => 'partners-block_1',
     'i18n_block_language' => array(),
@@ -195,7 +202,7 @@ function hwc_homepage_default_fe_block_settings() {
         'region' => 'content',
         'status' => 1,
         'theme' => 'hwc_frontend',
-        'weight' => -45,
+        'weight' => 12,
       ),
       'seven' => array(
         'region' => '',
@@ -204,7 +211,7 @@ function hwc_homepage_default_fe_block_settings() {
         'weight' => 0,
       ),
     ),
-    'title' => '',
+    'title' => 'Partners',
     'visibility' => 1,
   );
 

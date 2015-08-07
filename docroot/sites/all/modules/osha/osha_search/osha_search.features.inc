@@ -47,10 +47,11 @@ function osha_search_default_search_api_index() {
             "bundles" : {
               "article" : "article",
               "campaign_materials" : "campaign_materials",
+              "event_speaker" : "event_speaker",
               "events" : "events",
-              "infographic" : "infographic",
               "news" : "news",
               "note_to_editor" : "note_to_editor",
+              "partner" : "partner",
               "practical_tool" : "practical_tool",
               "press_release" : "press_release",
               "publication" : "publication"
@@ -199,6 +200,7 @@ function osha_search_default_search_api_index() {
         "source" : { "type" : "integer", "entity_type" : "node" },
         "status" : { "type" : "integer" },
         "title" : { "type" : "text", "boost" : "2.0" },
+        "title2" : { "type" : "string" },
         "title_field" : { "type" : "text", "boost" : "2.0" },
         "type" : { "type" : "string" },
         "url" : { "type" : "uri" },
@@ -219,23 +221,20 @@ function osha_search_default_search_api_index() {
 function osha_search_default_search_api_server() {
   $items = array();
   $items['solr_server'] = entity_import('search_api_server', '{
-    "name" : "Solr server",
+    "name" : "Apache Solr server",
     "machine_name" : "solr_server",
     "description" : "",
     "class" : "search_api_solr_service",
     "options" : {
-      "clean_ids" : true,
-      "site_hash" : true,
       "scheme" : "http",
       "host" : "localhost",
-      "port" : "8983",
+      "port" : 8983,
       "path" : "\\/solr\\/campaigns",
-      "http_user" : "admin",
-      "http_pass" : "password",
+      "http" : { "http_user" : "", "http_pass" : null },
       "excerpt" : 1,
       "retrieve_data" : 1,
       "highlight_data" : 1,
-      "skip_schema_check" : 0,
+      "skip_schema_check" : null,
       "solr_version" : "",
       "http_method" : "AUTO"
     },

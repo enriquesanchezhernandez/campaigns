@@ -486,8 +486,11 @@ $options['init-modules'] = array(
   'osha_newsletter',
 
   // Social share
-  'addtoany',
   'on_the_web',
+
+  'text_resize',
+  'block_class',
+  'shorten',
 
   'hwc',
   'hwc_homepage',
@@ -500,6 +503,8 @@ $options['init-modules'] = array(
   'hwc_feeds',
   'eu_captcha',
   'hwc_social_sprites',
+
+  'search_api_title2',
 
 );
 

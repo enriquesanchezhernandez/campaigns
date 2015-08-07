@@ -108,16 +108,30 @@ function hwc_frontend_preprocess_page(&$vars) {
     if (isset($vars['node'])) {
       $node = $vars['node'];
       switch ($node->type) {
-        case 'news':
-          $link_title = t('Back to news');
-          $link_href = 'news';
-          break;
         case 'publication':
           $link_title = t('Back to publications list');
           $link_href = 'publications';
           $vars['page']['above_title']['title-alternative'] = array(
             '#type' => 'item',
             '#markup' => t('Publications'),
+            '#prefix' => '<strong class="title-alt">', '#suffix' => '</strong>'
+          );
+          break;
+        case 'press_release':
+          $link_title = t('Back to press releases list');
+          $link_href = 'press-room';
+          $vars['page']['above_title']['title-alternative'] = array(
+            '#type' => 'item',
+            '#markup' => t('Press releases'),
+            '#prefix' => '<strong class="title-alt">', '#suffix' => '</strong>'
+          );
+          break;
+        case 'news':
+          $link_title = t('Back to news');
+          $link_href = 'news';
+          $vars['page']['above_title']['title-alternative'] = array(
+            '#type' => 'item',
+            '#markup' => t('News'),
             '#prefix' => '<strong class="title-alt">', '#suffix' => '</strong>'
           );
           break;
@@ -167,6 +181,9 @@ function hwc_frontend_preprocess_node(&$vars) {
   $view_mode = $vars['view_mode'];
   $vars['theme_hook_suggestions'][] = 'node__' . $vars['node']->type . '__' . $view_mode;
   $vars['theme_hook_suggestions'][] = 'node__' . $vars['node']->nid . '__' . $view_mode;
+  if($vars['type'] == 'practical_tool') {
+    unset($vars['content']['links']);
+  }
 }
 
 /**
