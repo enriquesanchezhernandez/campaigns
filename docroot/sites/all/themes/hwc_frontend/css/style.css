@@ -7503,6 +7503,7 @@ body select {
   text-align: center;
   margin-top: 26px;
   border-bottom: 1px dotted #749b00;
+  padding-bottom: 0.7em;
 }
 .main-container h1 .form-item,
 .main-container .title-alt .form-item {

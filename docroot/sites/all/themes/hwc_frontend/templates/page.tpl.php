@@ -122,11 +122,11 @@ $theme_dir = drupal_get_path('theme', 'hwc_frontend');
 
   <div class="row">
     <?php if (!empty($page['sidebar_first'])): ?>
-      <aside class="col-sm-3 col-lg-12" role="complementary">
+      <aside class="col-sm-3" role="complementary">
         <?php print render($page['sidebar_first']); ?>
       </aside>  <!-- /#sidebar-first -->
     <?php endif; ?>
-    <section>
+    <section class="<?php print $content_class; ?>">
 		<?php /* print $content_column_class; */ ?>
       <?php if (!empty($page['highlighted'])): ?>
         <div class="highlighted jumbotron"><?php print render($page['highlighted']); ?></div>
@@ -170,4 +170,10 @@ $theme_dir = drupal_get_path('theme', 'hwc_frontend');
   <p>
     <?php print t("European Agency for Safety and Health at Work"); ?>
   </p>
+  <div class="on-the-web">
+    <?php
+    $my_block = module_invoke('on_the_web', 'block_view', 'on_the_web');
+    print render($my_block['content']);
+    ?>
+  </div>
 </footer>
