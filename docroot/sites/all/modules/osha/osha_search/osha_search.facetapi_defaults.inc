@@ -1309,16 +1309,16 @@ function osha_search_facetapi_default_facet_settings() {
     'widget' => 'facetapi_checkbox_links',
     'filters' => array(),
     'active_sorts' => array(
+      'display' => 'display',
       'active' => 'active',
       'count' => 'count',
-      'display' => 'display',
       'indexed' => 0,
     ),
     'sort_weight' => array(
-      'active' => '-50',
-      'count' => '-49',
-      'display' => '-48',
-      'indexed' => '0',
+      'active' => '-49',
+      'count' => '-48',
+      'display' => '-50',
+      'indexed' => '-47',
     ),
     'sort_order' => array(
       'active' => '3',

@@ -102,29 +102,36 @@ function hwc_partner_block_view($delta = '') {
     $it = substr($delta, -1);
     $url = variable_get('hwc_partner_private_link_' . $it . '_url', '');
     $block['subject'] = '<none>';
-    $node = menu_get_object();
-    global $user;
-    $visible =
-      count(array_intersect(array('administrator', ROLE_SUPERVISOR), $user->roles))
-      || (in_array(ROLE_CAMPAIGN_PARTNER, $user->roles) && hwc_partner_match_user_partner($node))
-      || $user->uid == 1;
-    // Media partners cannot create events, hide the block
-    if ($delta == 'hwc_partner_private_link_0' && in_array(ROLE_CAMPAIGN_PARTNER, $user->roles) && hwc_partner_is_mp($node)) {
-      $visible = FALSE;
-    }
-    if ($visible) {
-      $url_options = array();
-      if (count(array_intersect(array('administrator', ROLE_SUPERVISOR), $user->roles))) {
-        reset($node->workbench_access);
-        $id_section = current($node->workbench_access);
-        $url_options = array('query' => array('workbench_access' => $id_section));
+    if ($node = menu_get_object()) {
+      global $user;
+      $visible =
+        count(array_intersect(array(
+          'administrator',
+          ROLE_SUPERVISOR
+        ), $user->roles))
+        || (in_array(ROLE_CAMPAIGN_PARTNER, $user->roles) && hwc_partner_match_user_partner($node))
+        || $user->uid == 1;
+      // Media partners cannot create events, hide the block
+      if ($delta == 'hwc_partner_private_link_0' && in_array(ROLE_CAMPAIGN_PARTNER, $user->roles) && hwc_partner_is_mp($node)) {
+        $visible = FALSE;
       }
-      $block['content'] = theme('hwc_partner_private_link_' . $it, array(
-          'hwc_partner_private_link_title' => l(t(variable_get('hwc_partner_private_link_' . $it . '_title')), $url, $url_options),
-          'hwc_partner_private_link_description' => t(variable_get('hwc_partner_private_link_' . $it . '_description')),
-          'hwc_partner_private_link_link_text' => l(t(variable_get('hwc_partner_private_link_' . $it . '_link_text')), $url),
-        )
-      );
+      if ($visible) {
+        $url_options = array();
+        if (count(array_intersect(array(
+          'administrator',
+          ROLE_SUPERVISOR
+        ), $user->roles))) {
+          reset($node->workbench_access);
+          $id_section = current($node->workbench_access);
+          $url_options = array('query' => array('workbench_access' => $id_section));
+        }
+        $block['content'] = theme('hwc_partner_private_link_' . $it, array(
+            'hwc_partner_private_link_title' => l(t(variable_get('hwc_partner_private_link_' . $it . '_title')), $url, $url_options),
+            'hwc_partner_private_link_description' => t(variable_get('hwc_partner_private_link_' . $it . '_description')),
+            'hwc_partner_private_link_link_text' => l(t(variable_get('hwc_partner_private_link_' . $it . '_link_text')), $url),
+          )
+        );
+      }
     }
   }
   return $block;
@@ -206,7 +213,6 @@ function hwc_partner_form_news_node_form_alter(&$form, &$form_state) {
     $form['field_summary']['#access'] = FALSE;
     $form['field_expiration_date']['#access'] = FALSE;
     $form['field_tags']['#access'] = FALSE;
-    $form['field_aditional_resources']['#access'] = FALSE;
     $form['field_activity']['#access'] = FALSE;
     $form['#after_build'][] = 'hwc_partner_node_form_after_build_hide_hints';
   }

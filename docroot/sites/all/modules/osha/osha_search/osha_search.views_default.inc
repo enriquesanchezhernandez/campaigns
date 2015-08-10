@@ -41,6 +41,13 @@ function osha_search_views_default_views() {
   $handler->display->display_options['pager']['options']['tags']['next'] = '›';
   $handler->display->display_options['pager']['options']['tags']['last'] = '»';
   $handler->display->display_options['style_plugin'] = 'default';
+  $handler->display->display_options['style_options']['grouping'] = array(
+    0 => array(
+      'field' => 'type',
+      'rendered' => 1,
+      'rendered_strip' => 0,
+    ),
+  );
   $handler->display->display_options['row_plugin'] = 'fields';
   /* Footer: Global: Result summary */
   $handler->display->display_options['footer']['result']['id'] = 'result';
@@ -140,12 +147,6 @@ function osha_search_views_default_views() {
   $handler = $view->new_display('page', 'Site search', 'site');
   $handler->display->display_options['exposed_block'] = TRUE;
   $handler->display->display_options['defaults']['header'] = FALSE;
-  /* Header: Global: Text area */
-  $handler->display->display_options['header']['area']['id'] = 'area';
-  $handler->display->display_options['header']['area']['table'] = 'views';
-  $handler->display->display_options['header']['area']['field'] = 'area';
-  $handler->display->display_options['header']['area']['content'] = 'More results are available in OSHWiki';
-  $handler->display->display_options['header']['area']['format'] = 'full_html';
   $handler->display->display_options['defaults']['fields'] = FALSE;
   /* Field: Indexed Multilingual Node: Title */
   $handler->display->display_options['fields']['title_field']['id'] = 'title_field';
@@ -239,6 +240,12 @@ function osha_search_views_default_views() {
   $handler->display->display_options['sorts']['field_publication_date']['order'] = 'DESC';
   $handler->display->display_options['sorts']['field_publication_date']['exposed'] = TRUE;
   $handler->display->display_options['sorts']['field_publication_date']['expose']['label'] = 'Publication date';
+  /* Sort criterion: Indexed Multilingual Node: Title #2 */
+  $handler->display->display_options['sorts']['title2']['id'] = 'title2';
+  $handler->display->display_options['sorts']['title2']['table'] = 'search_api_index_default_multilingual_node_index';
+  $handler->display->display_options['sorts']['title2']['field'] = 'title2';
+  $handler->display->display_options['sorts']['title2']['exposed'] = TRUE;
+  $handler->display->display_options['sorts']['title2']['expose']['label'] = 'Title';
   $handler->display->display_options['defaults']['filter_groups'] = FALSE;
   $handler->display->display_options['filter_groups']['groups'] = array(
     1 => 'AND',
@@ -282,17 +289,6 @@ function osha_search_views_default_views() {
     'field_summary' => 'field_summary',
     'title_field' => 'title_field',
   );
-  /* Filter criterion: Indexed Multilingual Node: Content type */
-  $handler->display->display_options['filters']['type']['id'] = 'type';
-  $handler->display->display_options['filters']['type']['table'] = 'search_api_index_default_multilingual_node_index';
-  $handler->display->display_options['filters']['type']['field'] = 'type';
-  $handler->display->display_options['filters']['type']['operator'] = '<>';
-  $handler->display->display_options['filters']['type']['value'] = array(
-    'banner' => 'banner',
-    'page' => 'page',
-    'wiki_page' => 'wiki_page',
-  );
-  $handler->display->display_options['filters']['type']['group'] = 1;
   /* Filter criterion: Indexed Multilingual Node: Status */
   $handler->display->display_options['filters']['status']['id'] = 'status';
   $handler->display->display_options['filters']['status']['table'] = 'search_api_index_default_multilingual_node_index';
@@ -358,8 +354,8 @@ function osha_search_views_default_views() {
     t('No results'),
     t('Relevance'),
     t('Site search'),
-    t('More results are available in OSHWiki'),
     t('Publication date'),
+    t('Title'),
   );
   $export['search'] = $view;
 

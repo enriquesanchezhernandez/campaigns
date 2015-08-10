@@ -39,10 +39,12 @@ function hwc_practical_tool_menu_tools_form($form, $form_state) {
     '#default_value' => $text,
     '#title_display' => 'invisible',
     '#attributes' => array('placeholder' => t('Free text filter')),
+    '#prefix' => '<div id="search">',
   );
   $form['content']['submit'] = array(
     '#type' => 'submit',
     '#value' => t('Search'),
+    '#suffix' => '</div>',
   );
   $form['left-column']['relevant_for'] = array(
     '#type' => 'checkboxes',
@@ -185,8 +187,15 @@ function hwc_practical_tool_menu_tools_search_native($form_state) {
 function hwc_practical_tool_menu_tools_search_related($form_state, $native_nids) {
   global $language;
   $ret = array();
-  if ($language->language === 'en') {
-    return $ret;
+  if($form_state['input']) {
+    if (($form_state['input']['languages']['en'] !== NULL)) {
+      return $ret;
+    }
+  }
+  else {
+    if($language->language == 'en') {
+      return $ret;
+    }
   }
   $text = hwc_req_param($form_state, 'text');
   $is_search = !empty($text);
@@ -222,11 +231,13 @@ function hwc_practical_tool_menu_tools_search_related($form_state, $native_nids)
   if (empty($nids)) {
     return array();
   }
-
   $per_page = 2;
   $current_page = pager_default_initialize(count($nids), $per_page, 1);
   $page = array_chunk($nids, $per_page, TRUE);
   $nodes = node_load_multiple($page[$current_page]);
+  if (empty($nodes)) {
+    return array();
+  }
   $languages = hwc_req_param($form_state, 'languages', array($language->language));
   foreach($nodes as $node) {
     $node->filter_languages = $languages;

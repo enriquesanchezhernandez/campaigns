@@ -140,8 +140,15 @@ function osha_publication_menu_publications_search_native($form_state) {
 function osha_publication_menu_publications_search_related($form_state, $native_nids) {
   global $language;
   $ret = array();
-  if (($language->language == 'en') || ($form_state['input']['languages']['en'] !== NULL)) {
-    return $ret;
+  if($form_state['input']) {
+    if (($form_state['input']['languages']['en'] !== NULL)) {
+      return $ret;
+    }
+  }
+  else {
+    if($language->language == 'en') {
+      return $ret;
+    }
   }
   $text = hwc_req_param($form_state, 'text');
   $is_search = !empty($text);

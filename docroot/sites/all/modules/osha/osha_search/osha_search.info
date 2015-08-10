@@ -67,7 +67,6 @@ features[fe_block_settings][] = menu-menu-search
 features[fe_block_settings][] = osha_search-osha_search_clear_filters
 features[fe_block_settings][] = search-form
 features[fe_block_settings][] = views--exp-search-site
-features[fe_block_settings][] = views--exp-search-wiki
 features[features_api][] = api:2
 features[menu_custom][] = menu-search
 features[search_api_index][] = default_multilingual_node_index
