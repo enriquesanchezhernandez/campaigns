@@ -171,13 +171,25 @@ function osha_events_views_pre_render(&$view) {
 
       $path = $view->current_display == 'block_1'? 'past-events':'events';
 
+      // Add a css class to selected month
+      $class = '';
+      $url_params = drupal_get_query_parameters($_GET, array('search_api_views_fulltext', 'q'));
+      if(isset($url_params['f'][0]) && strpos($url_params['f'][0], 'field_start_date') !== FALSE){
+        if(substr($url_params['f'][0],  -7) == $row_year . '-' . $row_month_raw){
+          $class = 'current_month';
+        }
+      }
+
+
       $result->field_field_start_date[0]['rendered']['#markup']
         = l($row_month, $path, array(
-          'query' =>
-            array('f' => array(
+          'query' => array('f' => array(
                 0 => urlencode('field_start_date:') . 'value:' . $row_year . '-' . $row_month_raw,
               )
-            )
+            ),
+           'attributes' => array(
+             'class' => array($class),
+           ),
           )
         );
     }
