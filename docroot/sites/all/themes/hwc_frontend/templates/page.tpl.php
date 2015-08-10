@@ -75,11 +75,6 @@
 $theme_dir = drupal_get_path('theme', 'hwc_frontend');
 ?>
 <?php if (!empty($page['above_header'])): ?>
-  <div class="header_top_bar container">
-    <div class="row vertical-align">
-      <?php print render($page['above_header']); ?>
-    </div>
-  </div>
 <?php endif; ?>
 <header id="navbar" role="banner" class="navbar navbar-default container-fluid"><!--<?php print $navbar_classes; ?>-->
   <div class="container-fluid campaigns-header">
@@ -93,7 +88,12 @@ $theme_dir = drupal_get_path('theme', 'hwc_frontend');
             <img class="pull-left" src="/<?php print $theme_dir . '/logo-osha.png'; ?>" alt="<?php print t('EU-OSHA logo'); ?>" />
             <img class="pull-left" src="/<?php print $theme_dir . '/logo-eu.png'; ?>" alt="<?php print t('EU logo'); ?>" />
           </div>
-          <div class="col-xs-12 col-sm-6">
+          <div class="col-xs-12 col-sm-3 col-sm-offset-3">
+            <div class="header_top_bar">
+              <div class="vertical-align">
+                <?php print render($page['above_header']); ?>
+              </div>
+            </div>
             <?php print render($page['header']); ?>
           </div>
         </div>

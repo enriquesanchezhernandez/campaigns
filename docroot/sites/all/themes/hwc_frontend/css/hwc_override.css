@@ -7,7 +7,7 @@ ul.nav li.dropdown ul.dropdown-menu {
 }
 
 #block-search-form .input-group { width: 250px; }
-#block-search-form input { width: 200px; }
+#block-search-form input { width: 210px; }
 
 div.workbench-info-block {
   clear:both;
@@ -48,7 +48,7 @@ div.workbench-info-block {
 #block-lang-dropdown-language {
     width: auto !important;
     float: right;
-    margin: 5px 0px;
+    margin: 4px 0px;
 }
 #lang_dropdown_select_language_chosen {
     width: 150px !important;
