@@ -14,6 +14,7 @@ function hwc_partner_default_fe_block_settings() {
 
   $export['hwc_partner-hwc_partner_private_link_0'] = array(
     'cache' => 8,
+    'css_class' => '',
     'custom' => 0,
     'delta' => 'hwc_partner_private_link_0',
     'i18n_block_language' => array(),
@@ -42,6 +43,7 @@ function hwc_partner_default_fe_block_settings() {
 
   $export['hwc_partner-hwc_partner_private_link_1'] = array(
     'cache' => 8,
+    'css_class' => '',
     'custom' => 0,
     'delta' => 'hwc_partner_private_link_1',
     'i18n_block_language' => array(),
@@ -70,6 +72,7 @@ function hwc_partner_default_fe_block_settings() {
 
   $export['hwc_partner-hwc_partner_private_link_2'] = array(
     'cache' => 8,
+    'css_class' => '',
     'custom' => 0,
     'delta' => 'hwc_partner_private_link_2',
     'i18n_block_language' => array(),
