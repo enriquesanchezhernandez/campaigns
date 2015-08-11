@@ -1714,11 +1714,17 @@
 }
 /*fin become*/
 /*Partners public profile*/
+.container{
+	.panel-separator{
+		display: none;
+	}
+}
 .pane-hwc-partner-hwc-partner-private-link-0, .pane-hwc-partner-hwc-partner-private-link-1,
 .pane-hwc-partner-hwc-partner-private-link-2, .pane-node-profile-update-link{
 	.pane-content{
 		border: 1px dotted @color3;
-		height: 200px;
+		min-height: 180px;
+		max-height: 180px;
 		text-align: center;
 		padding: 20px 10px !important;
 		margin:10px;
@@ -1735,6 +1741,13 @@
 				&:before{
 					content: "> ";
 				}
+			}
+		}
+		.hwc-partner-private-link-block-description{
+			a{
+				color: @color5;
+				font-weight: bold;
+				font-style: italic;
 			}
 		}
 	}
@@ -1754,7 +1767,76 @@
 	}
 }
 
+.pane-entity-field{
+	.field-name-title-field{
+		h1{
+			border-bottom: none;
+			color: @color5;
+			font-size: @size1;
+			font-style: normal;
+			font-weight: bold;
+		}
+	}
+}
+.pane-node-field-orgtype, .pane-node-field-bussines-sector, .pane-node-field-website{
+	display: inline;
+}
 /*fin partners public profile*/
+/*create event*/
+.page-node-add-events{
+	.node-events-form{
+		label{
+			color: @color5;
+			font-weight: bold;
+			font-size: @size7;
+		}
+		input{
+			height: 30px;
+		}
+		.form-wrapper{
+			border: none;
+			box-shadow: none;
+			-webkit-box-shadow: none;
+			.panel-heading{
+				display: none;
+			}
+			.date-float{
+				display: none;
+			}
+			.panel-body{
+				padding: 0px;
+			}
+			label[for="edit-field-start-date-und-0-value2"]{
+				display: none;
+			}
+			.date-padding{
+				padding: 0px;
+				div[class="form-item-field-start-date-und-0-value-date"]{
+					input{
+						height: 50px;
+						background: url("../images/content/input-calendar.png");
+						&:after{
+							content: " ";
+							background: url("../images/content/input-calendar.png");
+							height: 30px;
+							width: 20px;
+							background-color: red;
+						}
+					}
+				}
+				div[class*="-time"]{
+					label{
+						display: none;
+					}
+					input{
+						margin-top: 30px;
+					}
+				}
+			}
+		}
+	}
+}
+/*fin create event*/
 
 /*HOME*/
 #block-nodeblock-29{//to do wendsday, referenciar mejor, solo para spring1
