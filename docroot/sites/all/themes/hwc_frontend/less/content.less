@@ -1713,9 +1713,48 @@
 	}
 }
 /*fin become*/
-/*Partners*/
+/*Partners public profile*/
+.pane-hwc-partner-hwc-partner-private-link-0, .pane-hwc-partner-hwc-partner-private-link-1,
+.pane-hwc-partner-hwc-partner-private-link-2, .pane-node-profile-update-link{
+	.pane-content{
+		border: 1px dotted @color3;
+		height: 200px;
+		text-align: center;
+		padding: 20px 10px !important;
+		margin:10px;
+		&:hover{
+			background-color: @color8;
+		}
+		.hwc-partner-private-link-block-title{
+			margin-bottom: 15px;
+			a{
+				color: @color3;
+				font-weight: bold;
+				font-style: italic;
+				font-size: @size2;
+				&:before{
+					content: "> ";
+				}
+			}
+		}
+	}
+}
+.pane-node-profile-update-link{
+	.pane-content{
+		a:first-child{
+			color: @color3;
+			font-weight: bold;
+			font-style: italic;
+			margin-bottom: 15px;
+			font-size: @size2;
+			&:before{
+				content: "> ";
+			}
+		}
+	}
+}
 
-/*fin partners*/
+/*fin partners public profile*/
 
 /*HOME*/
 #block-nodeblock-29{//to do wendsday, referenciar mejor, solo para spring1

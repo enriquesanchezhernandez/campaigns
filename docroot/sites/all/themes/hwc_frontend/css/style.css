@@ -9065,8 +9065,55 @@ div[class*='node-'] .more-link {
   content: "> ";
 }
 /*fin become*/
-/*Partners*/
-/*fin partners*/
+/*Partners public profile*/
+.pane-hwc-partner-hwc-partner-private-link-0 .pane-content,
+.pane-hwc-partner-hwc-partner-private-link-1 .pane-content,
+.pane-hwc-partner-hwc-partner-private-link-2 .pane-content,
+.pane-node-profile-update-link .pane-content {
+  border: 1px dotted #749b00;
+  height: 200px;
+  text-align: center;
+  padding: 20px 10px !important;
+  margin: 10px;
+}
+.pane-hwc-partner-hwc-partner-private-link-0 .pane-content:hover,
+.pane-hwc-partner-hwc-partner-private-link-1 .pane-content:hover,
+.pane-hwc-partner-hwc-partner-private-link-2 .pane-content:hover,
+.pane-node-profile-update-link .pane-content:hover {
+  background-color: #e2e2e3;
+}
+.pane-hwc-partner-hwc-partner-private-link-0 .pane-content .hwc-partner-private-link-block-title,
+.pane-hwc-partner-hwc-partner-private-link-1 .pane-content .hwc-partner-private-link-block-title,
+.pane-hwc-partner-hwc-partner-private-link-2 .pane-content .hwc-partner-private-link-block-title,
+.pane-node-profile-update-link .pane-content .hwc-partner-private-link-block-title {
+  margin-bottom: 15px;
+}
+.pane-hwc-partner-hwc-partner-private-link-0 .pane-content .hwc-partner-private-link-block-title a,
+.pane-hwc-partner-hwc-partner-private-link-1 .pane-content .hwc-partner-private-link-block-title a,
+.pane-hwc-partner-hwc-partner-private-link-2 .pane-content .hwc-partner-private-link-block-title a,
+.pane-node-profile-update-link .pane-content .hwc-partner-private-link-block-title a {
+  color: #749b00;
+  font-weight: bold;
+  font-style: italic;
+  font-size: 20px;
+}
+.pane-hwc-partner-hwc-partner-private-link-0 .pane-content .hwc-partner-private-link-block-title a:before,
+.pane-hwc-partner-hwc-partner-private-link-1 .pane-content .hwc-partner-private-link-block-title a:before,
+.pane-hwc-partner-hwc-partner-private-link-2 .pane-content .hwc-partner-private-link-block-title a:before,
+.pane-node-profile-update-link .pane-content .hwc-partner-private-link-block-title a:before {
+  content: "> ";
+}
+.pane-node-profile-update-link .pane-content a:first-child {
+  color: #749b00;
+  font-weight: bold;
+  font-style: italic;
+  margin-bottom: 15px;
+  font-size: 20px;
+}
+.pane-node-profile-update-link .pane-content a:first-child:before {
+  content: "> ";
+}
+/*fin partners public profile*/
 /*HOME*/
 #block-nodeblock-29 .addtoany_list {
   display: none;
