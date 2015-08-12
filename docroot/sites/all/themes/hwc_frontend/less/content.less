@@ -1036,6 +1036,23 @@
 
 
 /* -----------ENDIKA------------ */
+/*HOME*/
+#block-nodeblock-29{//to do wendsday, referenciar mejor, solo para spring1
+	.addtoany_list{
+		display: none;
+	}
+	.list-inline{
+		display: none;
+	}
+	.hwc-share-widget{
+		display: none;
+	}
+	h1{
+		border-bottom: none;
+	}
+}
+/*fin Home*/
+
 /*share line*/
 .a2a_kit.a2a_target.addtoany_list{
 	width: 100%;
@@ -1291,7 +1308,7 @@
 	}
 }
 
-//articulos
+//articulos pressroom
 .view-press-releases {
 	.views-row{
 		border-bottom: 1px dotted @color3;
@@ -1468,7 +1485,7 @@
 }
 /*Fin events*/
 
-/*Articles endika*/
+/*Articles*/
 .node-type-article{
 	article{
 		//margin: 0px 135px; quitado para responsive
@@ -1713,76 +1730,180 @@
 	}
 }
 /*fin become*/
+
 /*Partners public profile*/
 .container{
 	.panel-separator{
 		display: none;
 	}
 }
-.pane-hwc-partner-hwc-partner-private-link-0, .pane-hwc-partner-hwc-partner-private-link-1,
-.pane-hwc-partner-hwc-partner-private-link-2, .pane-node-profile-update-link{
-	.pane-content{
-		border: 1px dotted @color3;
-		min-height: 180px;
-		max-height: 180px;
-		text-align: center;
-		padding: 20px 10px !important;
-		margin:10px;
-		&:hover{
-			background-color: @color8;
+.profile-edit-links-container{
+	.pane-hwc-partner-hwc-partner-private-link-0, .pane-hwc-partner-hwc-partner-private-link-1,
+	.pane-hwc-partner-hwc-partner-private-link-2, .pane-node-profile-update-link{
+		.pane-content{
+			border: 1px dotted @color3;
+			min-height: 180px;
+			max-height: 180px;
+			text-align: center;
+			padding: 20px 10px !important;
+			margin:10px;
+			&:hover{
+				background-color: @color8;
+			}
+			.hwc-partner-private-link-block-title{
+				margin-bottom: 15px;
+				a{
+					color: @color3;
+					font-weight: bold;
+					font-style: italic;
+					font-size: @size2;
+					&:before{
+						content: "> ";
+					}
+				}
+			}
+			.hwc-partner-private-link-block-description{
+				a{
+					color: @color5;
+					font-weight: bold;
+					font-style: italic;
+				}
+			}
 		}
-		.hwc-partner-private-link-block-title{
-			margin-bottom: 15px;
-			a{
+	}
+	.pane-node-profile-update-link{
+		.pane-content{
+			a:first-child{
 				color: @color3;
 				font-weight: bold;
 				font-style: italic;
+				margin-bottom: 15px;
 				font-size: @size2;
 				&:before{
 					content: "> ";
 				}
 			}
 		}
-		.hwc-partner-private-link-block-description{
-			a{
+	}
+}
+.profile-title-type-container{
+	margin-bottom: 90px !important;
+	.pane-entity-field{
+		.field-name-title-field{
+			h1{
+				border-bottom: none;
 				color: @color5;
+				font-size: @size1;
+				font-style: normal;
 				font-weight: bold;
-				font-style: italic;
 			}
 		}
 	}
-}
-.pane-node-profile-update-link{
-	.pane-content{
-		a:first-child{
-			color: @color3;
-			font-weight: bold;
-			font-style: italic;
-			margin-bottom: 15px;
-			font-size: @size2;
-			&:before{
-				content: "> ";
-			}
-		}
+	.profile-inline-field{
+		display: inline-block;
+  		text-align: center;
+    	width: 33%;
+    	font-weight: bold;
+    	a{
+    		font-style: italic;
+    	}
 	}
 }
 
-.pane-entity-field{
-	.field-name-title-field{
-		h1{
-			border-bottom: none;
-			color: @color5;
-			font-size: @size1;
-			font-style: normal;
+.profile-ceo-container{
+		background: url("../images/content/bg-campaign-partner.png");
+		background-size: cover;
+		margin-top: 3em !important;
+		margin-bottom: 3em !important;
+		padding-bottom: 4em !important;
+		text-align: center;
+		color: @color1;
+		.pane-node-field-ceo-photo{
+			margin-top: 3.5em;
+			color: @color1;
+			.field-name-field-ceo-photo{
+				width: 150px;
+			    height: 150px;
+			    margin: 0 auto;
+			    background-color: @color6;
+			    border-radius: 50%;
+			    overflow: hidden;
+			    img{
+			    	width: 100%;
+			    	height: 100%;
+			    	background-image: url("../images/content/imagen-prueba.jpg");
+			    	background-position: 50%;
+			    }
+			}
+		}
+		.field-name-field-ceo{
+			.field-item{
+				font-weight: 100;
+				font-style: italic;
+				font-size: 32px;
+				margin-top: 1em;
+				margin-bottom:1em;
+				
+			}
+		}
+		.pane-node-field-quote{
+			font-style: italic;
 			font-weight: bold;
+			.quottes-left{
+				height: 50px;
+				background: url("../images/content/quottes.png") center no-repeat;
+			}
+			.quottes-right{
+				height: 50px;
+				background: url("../images/content/quottes.png") center no-repeat;
+				transform: rotate(180deg);
+			}
 		}
 	}
+.profile-2-cols-container-1{
+	border-bottom: 1px dotted @color3;
+	padding-bottom: 70px !important;
+	margin-bottom: 50px !important;
+	.field-label{
+		color: @color3;
+		font-size: @size2;
+		font-weight: bold;
+	}
+	.field-item{
+		
+	}
 }
-.pane-node-field-orgtype, .pane-node-field-bussines-sector, .pane-node-field-website{
-	display: inline;
+.profile-4-cols-container-2{
+	border-bottom: 1px dotted @color3;
+	padding-bottom: 70px !important;
+	margin-bottom: 50px !important;
+	.profile-col-left-2, .profile-col-left-middle-2{
+		margin-right: 60px;
+		img{
+			margin-left: 40px;
+		}
+		.panels-flexible-region-new-left_-inside{
+			.pane-node-title-field{
+				font-weight: bold;
+				margin-bottom: 20px;
+			}
+		}
+		
+	}
+	.profile-col-middle-right-2{
+			.field-item.even{
+				margin-bottom: 20px;
+				a{
+					font-weight: bold;
+					font-style: italic;
+				}
+			}
+	}
+	
 }
 /*fin partners public profile*/
-/*create event*/
+
+/*create event --> dentro de public profile*/
 .page-node-add-events{
 	.node-events-form{
 		label{
@@ -1836,24 +1957,115 @@
 		}
 	}
 }
+#edit-body{
+	tr.mceFirst{
+		display: none;
+	}
+	tr.mceLast{
+		display: none;
+	}
+	.wysiwyg-toggle-wrapper{
+		display: none;
+	}
+	.mceIframeContainer{
+		border:1px solid @color2;
+		padding-left: 10px;
+		padding-right: 10px; 
+	}
+}
 /*fin create event*/
 
-/*HOME*/
-#block-nodeblock-29{//to do wendsday, referenciar mejor, solo para spring1
-	.addtoany_list{
-		display: none;
-	}
-	.list-inline{
-		display: none;
-	}
+/*Private area for partner*/
+#private{
 	.hwc-share-widget{
 		display: none;
 	}
 	h1{
+		font-weight: 100;
+		font-style: italic;
+		font-size: @size1;
+		text-align: left;
 		border-bottom: none;
+		margin-top: 60px;
+	}
+	.pane-custom, p[id*="tmgmt"], ul{
+		border-bottom: 1px dotted @color3;
+		padding-bottom: 30px;
+		margin-top: 30px;
+		br{
+			display:none; 
+		}
+		a{
+			font-style: normal;
+			font-weight: bold;
+			font-size: @size7;
+			color: @color2;
+			margin-bottom: 20px;
+			display: block;
+			&:before{
+				content: "> ";
+			}
+		}
+	}
+	#tmgmt-5{
+		border: none;
+		padding-bottom: 0px;
+		span{
+			font-style: normal;
+			font-weight: bold;
+			font-size: @size7 !important;
+			display: block;
+			
+		}
+	}
+	#tmgmt-6{
+		margin-top: 20px;
+		list-style: none;
+		padding: 0;
+		padding-bottom: 30px;
+	}
+	.node-137{
+		h1{
+			text-align: center;
+			font-weight: bold;
+			font-style: normal;
+			&:before{
+				margin-bottom: 10px;
+				content: url("../images/content/contact.png");
+				display: block;
+			}
+		}
+		p{
+			border: none;
+			text-align: center;
+			margin-top: 10px;
+			a{
+				color: @color2;
+				font-weight: bold;
+				font-style: italic;
+				display: inline-block;
+				font-size: @size4;
+				margin-bottom: 0px;
+				&:before{
+					content: " ";
+				}
+			}
+		}
 	}
 }
-/*fin Home*/
+/*fin Private area for partner*/
+
+
+
+
+
+
+
+
+
+
+
+
 /*classes toda la pantalla*/
 #block-osha-newsletter-osha-newsletter-subscribe{
 	margin-right: -15px;
