@@ -14,3 +14,5 @@ features[fe_block_settings][] = menu-menu-footer-menu
 features[features_api][] = api:2
 features_exclude[dependencies][ctools] = ctools
 files[] = hwc_admin.pages.inc
+files[] = hwc.views.inc
+files[] = includes/hwc_quicktabs_style_plugin.inc

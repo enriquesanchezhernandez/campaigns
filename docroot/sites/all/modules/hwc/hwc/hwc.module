@@ -6,6 +6,15 @@ define('ROLE_CAMPAIGN_PARTNER', 'campaign partner');
 define('ROLE_SUPERVISOR', 'supervisor');
 
 /**
+ * Implementation of hook_views_api().
+ */
+function hwc_views_api() {
+  return array(
+    'api' => 3,
+  );
+}
+
+/**
  * Implements hook_permission().
  */
 function hwc_permission() {
