@@ -178,3 +178,18 @@ div.workbench-info-block {
     left: 0;
     z-index: 10;
 }
+
+.char-anchor {
+    width: 100%;
+    clear: both;
+    text-transform: uppercase;
+    border-bottom: 1px solid #ddd;
+}
+
+.hwc-char-link {
+    text-transform: uppercase;
+    padding: 5px 10px;
+}
+.hwc-char-link.disabled {
+    color: #ddd;
+}

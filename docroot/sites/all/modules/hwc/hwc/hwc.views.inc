@@ -21,3 +21,18 @@ function hwc_views_plugins() {
     ),
   );
 }
+
+/**
+ * Implements hook_views_pre_render().
+ */
+function hwc_views_pre_render(view &$view) {
+  // Add the alphabetical anchor javascript for views.
+  // It requires class hwc-alpha-pager-view on the view
+  // And hwc-alpha-pager-view-title-field on the field used as title.
+  // see hwc_alpha_pager.js
+  $class = $view->display_handler->get_option('css_class');
+  if (strpos('hwc-alpha-pager-view', $class) >= 0) {
+    $path = drupal_get_path('module', 'hwc');
+    drupal_add_js($path . '/js/hwc_alpha_pager.js');
+  }
+}

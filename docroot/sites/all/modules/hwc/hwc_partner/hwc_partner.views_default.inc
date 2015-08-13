@@ -285,6 +285,7 @@ function hwc_partner_views_default_views() {
   /* Display: Master */
   $handler = $view->new_display('default', 'Master', 'default');
   $handler->display->display_options['title'] = 'OCP list';
+  $handler->display->display_options['css_class'] = 'hwc-alpha-pager-view';
   $handler->display->display_options['use_more_always'] = FALSE;
   $handler->display->display_options['access']['type'] = 'perm';
   $handler->display->display_options['cache']['type'] = 'none';
@@ -300,14 +301,8 @@ function hwc_partner_views_default_views() {
     ),
   );
   $handler->display->display_options['style_options']['tab_title_field'] = 'field_orgtype';
+  $handler->display->display_options['style_options']['row_class'] = 'col-md-2';
   $handler->display->display_options['row_plugin'] = 'fields';
-  /* Field: Content: Title */
-  $handler->display->display_options['fields']['title']['id'] = 'title';
-  $handler->display->display_options['fields']['title']['table'] = 'node';
-  $handler->display->display_options['fields']['title']['field'] = 'title';
-  $handler->display->display_options['fields']['title']['label'] = '';
-  $handler->display->display_options['fields']['title']['alter']['word_boundary'] = FALSE;
-  $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
   /* Field: Content: Organisation type */
   $handler->display->display_options['fields']['field_orgtype']['id'] = 'field_orgtype';
   $handler->display->display_options['fields']['field_orgtype']['table'] = 'field_data_field_orgtype';
@@ -315,6 +310,14 @@ function hwc_partner_views_default_views() {
   $handler->display->display_options['fields']['field_orgtype']['label'] = '';
   $handler->display->display_options['fields']['field_orgtype']['exclude'] = TRUE;
   $handler->display->display_options['fields']['field_orgtype']['element_label_colon'] = FALSE;
+  /* Field: Content: Title */
+  $handler->display->display_options['fields']['title_field']['id'] = 'title_field';
+  $handler->display->display_options['fields']['title_field']['table'] = 'field_data_title_field';
+  $handler->display->display_options['fields']['title_field']['field'] = 'title_field';
+  $handler->display->display_options['fields']['title_field']['label'] = '';
+  $handler->display->display_options['fields']['title_field']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['title_field']['element_wrapper_class'] = 'hwc-alpha-pager-view-title-field';
+  $handler->display->display_options['fields']['title_field']['link_to_entity'] = 0;
   /* Field: Content: Logo */
   $handler->display->display_options['fields']['field_logo']['id'] = 'field_logo';
   $handler->display->display_options['fields']['field_logo']['table'] = 'field_data_field_logo';
