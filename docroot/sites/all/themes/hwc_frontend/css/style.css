@@ -9384,6 +9384,66 @@ div[class*='node-'] .more-link {
   content: " ";
 }
 /*fin Private area for partner*/
+/*campaign materials*/
+.page-campaign-materials .view-id-view_campaign_materials .views-row {
+  border-bottom: 1px dotted #749b00;
+  padding-bottom: 30px;
+  margin-top: 30px;
+}
+.page-campaign-materials .view-id-view_campaign_materials .views-row .views-field-field-image {
+  min-height: 150px;
+  margin-right: 50px;
+}
+.page-campaign-materials .view-id-view_campaign_materials .views-row h3 {
+  font-weight: bold;
+  margin-top: 0;
+  display: inline-block;
+  margin-bottom: 20px;
+}
+.page-campaign-materials .view-id-view_campaign_materials .views-row h3 a {
+  font-size: 20px;
+  font-weight: bold;
+}
+.page-campaign-materials .view-id-view_campaign_materials .views-row h3 a:before {
+  content: "> ";
+}
+.page-campaign-materials .view-id-view_campaign_materials .views-row .materials_date {
+  margin-left: 20px;
+}
+.page-campaign-materials .view-id-view_campaign_materials .views-row .views-field-body {
+  margin-bottom: 20px;
+}
+.page-campaign-materials .view-id-view_campaign_materials .views-row .views-field-body a:before {
+  content: "";
+}
+.page-campaign-materials .view-id-view_campaign_materials .views-row .views-field-field-related-documents .file_size {
+  float: left;
+  margin-top: 0px;
+  margin-right: 56px;
+  color: #333333;
+  font-style: normal;
+}
+.page-campaign-materials .view-id-view_campaign_materials .views-row .views-field-field-related-documents span {
+  float: initial;
+  font-weight: bold;
+  font-size: 16px;
+  color: #003399;
+  font-style: italic;
+}
+.page-campaign-materials .view-id-view_campaign_materials .views-row .views-field-field-related-documents .glyphicon {
+  display: none;
+}
+.page-campaign-materials .view-id-view_campaign_materials .views-row .views-field-field-related-documents a {
+  position: absolute;
+  margin-left: 10px;
+}
+.page-campaign-materials .view-id-view_campaign_materials .views-row .views-field-field-related-documents a:after {
+  content: url("../images/content/download.png");
+}
+.page-campaign-materials .view-id-view_campaign_materials .views-row .views-field-field-related-documents a img {
+  display: none;
+}
+/*fin campaign materials*/
 /*classes toda la pantalla*/
 #block-osha-newsletter-osha-newsletter-subscribe {
   margin-right: -15px;

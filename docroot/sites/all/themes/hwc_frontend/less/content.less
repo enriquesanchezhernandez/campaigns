@@ -2055,7 +2055,74 @@
 }
 /*fin Private area for partner*/
 
-
+/*campaign materials*/
+.page-campaign-materials{
+	.view-id-view_campaign_materials{
+		.views-row{
+			border-bottom: 1px dotted @color3;
+			padding-bottom: 30px;
+			margin-top: 30px;
+			.views-field-field-image{
+				min-height: 150px;
+			    margin-right: 50px;
+			}
+			h3{
+				font-weight: bold;
+				margin-top: 0;
+				display: inline-block;
+				margin-bottom: 20px;
+				a{
+					font-size: @size2;
+					font-weight: bold;
+					&:before{
+						content: "> "; 
+					}
+				}
+			}
+			.materials_date{
+				margin-left: 20px;
+			}
+			.views-field-body{
+				margin-bottom: 20px;
+				a{
+					&:before{
+						content:"";
+					}
+				}
+			}
+			.views-field-field-related-documents{
+				.file_size{
+					float: left;
+				    margin-top: 0px;
+				    margin-right: 56px;
+				    color: @colorNormalText;
+					font-style: normal;
+				}
+				span{
+					float: initial;
+					font-weight: bold;
+					font-size: @size6;
+					color: @color2;
+					font-style: italic;
+				}
+				.glyphicon{
+					display: none;
+				}
+				a{
+					position: absolute;
+					margin-left: 10px;
+					&:after{
+						content: url("../images/content/download.png");
+					}
+					img{
+						display: none;
+					}
+				}
+			}
+		}
+	}
+}
+/*fin campaign materials*/
 
 
 
