@@ -315,19 +315,31 @@ function hwc_partner_views_default_views() {
   $handler->display->display_options['fields']['title_field']['table'] = 'field_data_title_field';
   $handler->display->display_options['fields']['title_field']['field'] = 'title_field';
   $handler->display->display_options['fields']['title_field']['label'] = '';
+  $handler->display->display_options['fields']['title_field']['exclude'] = TRUE;
   $handler->display->display_options['fields']['title_field']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['title_field']['element_wrapper_class'] = 'hwc-alpha-pager-view-title-field';
   $handler->display->display_options['fields']['title_field']['link_to_entity'] = 0;
+  /* Field: Content: Nid */
+  $handler->display->display_options['fields']['nid']['id'] = 'nid';
+  $handler->display->display_options['fields']['nid']['table'] = 'node';
+  $handler->display->display_options['fields']['nid']['field'] = 'nid';
+  $handler->display->display_options['fields']['nid']['label'] = '';
+  $handler->display->display_options['fields']['nid']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['nid']['element_label_colon'] = FALSE;
   /* Field: Content: Logo */
   $handler->display->display_options['fields']['field_logo']['id'] = 'field_logo';
   $handler->display->display_options['fields']['field_logo']['table'] = 'field_data_field_logo';
   $handler->display->display_options['fields']['field_logo']['field'] = 'field_logo';
   $handler->display->display_options['fields']['field_logo']['label'] = '';
+  $handler->display->display_options['fields']['field_logo']['alter']['text'] = '<img src="[field_logo-fid]" title="[title_field]" alt="[title_field]" />';
+  $handler->display->display_options['fields']['field_logo']['alter']['make_link'] = TRUE;
+  $handler->display->display_options['fields']['field_logo']['alter']['path'] = 'node/[nid]';
+  $handler->display->display_options['fields']['field_logo']['alter']['alt'] = '[title_field]';
   $handler->display->display_options['fields']['field_logo']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['field_logo']['click_sort_column'] = 'fid';
   $handler->display->display_options['fields']['field_logo']['settings'] = array(
     'image_style' => 'medium',
-    'image_link' => 'content',
+    'image_link' => '',
   );
   /* Sort criterion: Content: Title */
   $handler->display->display_options['sorts']['title']['id'] = 'title';
@@ -363,6 +375,8 @@ function hwc_partner_views_default_views() {
     t('Sort by'),
     t('Asc'),
     t('Desc'),
+    t('<img src="[field_logo-fid]" title="[title_field]" alt="[title_field]" />'),
+    t('[title_field]'),
     t('Block'),
   );
   $export['partners_list'] = $view;
