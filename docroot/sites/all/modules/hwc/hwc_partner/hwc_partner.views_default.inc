@@ -285,7 +285,7 @@ function hwc_partner_views_default_views() {
   /* Display: Master */
   $handler = $view->new_display('default', 'Master', 'default');
   $handler->display->display_options['title'] = 'OCP list';
-  $handler->display->display_options['css_class'] = 'hwc-alpha-pager-view';
+  $handler->display->display_options['css_class'] = 'hwc-alpha-pager-view container';
   $handler->display->display_options['use_more_always'] = FALSE;
   $handler->display->display_options['access']['type'] = 'perm';
   $handler->display->display_options['cache']['type'] = 'none';
@@ -301,7 +301,7 @@ function hwc_partner_views_default_views() {
     ),
   );
   $handler->display->display_options['style_options']['tab_title_field'] = 'field_orgtype';
-  $handler->display->display_options['style_options']['row_class'] = 'col-md-2';
+  $handler->display->display_options['style_options']['row_class'] = 'col-md-2 col-sm-3 col-xs-6';
   $handler->display->display_options['row_plugin'] = 'fields';
   /* Field: Content: Organisation type */
   $handler->display->display_options['fields']['field_orgtype']['id'] = 'field_orgtype';
