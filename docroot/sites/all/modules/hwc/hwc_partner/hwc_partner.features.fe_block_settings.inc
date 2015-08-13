@@ -99,5 +99,34 @@ function hwc_partner_default_fe_block_settings() {
     'visibility' => 0,
   );
 
+  $export['views-partners_list-block'] = array(
+    'cache' => -1,
+    'css_class' => '',
+    'custom' => 0,
+    'delta' => 'partners_list-block',
+    'i18n_block_language' => array(),
+    'i18n_mode' => 0,
+    'module' => 'views',
+    'node_types' => array(),
+    'pages' => 'node/145',
+    'roles' => array(),
+    'themes' => array(
+      'hwc_frontend' => array(
+        'region' => 'content',
+        'status' => 1,
+        'theme' => 'hwc_frontend',
+        'weight' => 0,
+      ),
+      'seven' => array(
+        'region' => '',
+        'status' => 0,
+        'theme' => 'seven',
+        'weight' => 0,
+      ),
+    ),
+    'title' => '<none>',
+    'visibility' => 1,
+  );
+
   return $export;
 }
