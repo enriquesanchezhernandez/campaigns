@@ -1445,6 +1445,7 @@
 				//margin: 0px 135px; quitado para responsive
 				padding-top: 20px;
 				padding-bottom: 40px;
+				min-height: 230px;
 				border-bottom: 1px dotted @color3;
 				.views-field-field-start-date{
 					.field-content{
@@ -1523,8 +1524,24 @@
 			.field-name-field-summary{
 				font-weight: normal;
 			}
-			
 		}
+
+		.field-name-field-recommended-resources{
+			.field-item{
+				margin: 1em 0;
+    			padding: .5em 0;
+				a{
+					color: @color2;
+					font-weight: bold;
+					margin-bottom: 2em;
+					font-size: @size2;
+					&:before{
+						content: "> ";
+					}
+				}
+			}
+		}
+		
 		.list-inline{
 			display: none !important;//to do wendsday
 		}
@@ -2124,7 +2141,61 @@
 }
 /*fin campaign materials*/
 
+/*official campaign partners list*/
+.node-145{
+	.field-type-text-with-summary{
+		text-align: center;
+		font-weight: bold;
+		font-size: @size6;
+		margin-top: 40px;
+	}
+}
+#block-views-partners-list-block{
+	margin-top: 40px;
+	.view-id-partners_list{
+		color: @color2;
+		font-size: @size6;
+		font-weight: bold;
+		font-style: italic;
+		.quicktabs-tabs{
+			display: inline-block;
+			li{
+				border: 1px dotted @color3;
+				float: left;
+				padding: 15px 30px;
+				&.active{
+					border-bottom: none;
+				}
+			}
 
+		}
+		.quicktabs-tabpage{
+			.hwc-char-link{
+				padding: 0px 15px;
+			}
+			div[id*="hwc-char-"]{
+				margin-top: 2em;
+				margin-bottom: 0em;
+				display: inline-block;
+	    		border-bottom: 1px dotted @color3;
+	    		font-size: @size2;
+	    		font-style: normal;
+	    		color: @color3;
+			}
+			.quicktabs-views-group{
+				margin: 0;
+				padding: 30px;
+	   	 		border-bottom: 1px dotted @color3;
+	    		border-left: 1px dotted @color3;
+				.views-field-title-field{
+					display: none;
+				}
+			}
+		}
+	}
+}
+
+/*fin oficial campaign partners list*/
 
 
 

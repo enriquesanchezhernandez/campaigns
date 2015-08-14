@@ -8845,6 +8845,7 @@ div[class*='node-'] .more-link {
 .page-past-events .region-content #block-system-main .views-row {
   padding-top: 20px;
   padding-bottom: 40px;
+  min-height: 230px;
   border-bottom: 1px dotted #749b00;
 }
 .page-past-events .region-content #block-system-main .views-row .views-field-field-start-date .field-content .date-display-single {
@@ -8904,6 +8905,19 @@ div[class*='node-'] .more-link {
 }
 .node-type-article article .node-article .field-name-field-summary {
   font-weight: normal;
+}
+.node-type-article article .field-name-field-recommended-resources .field-item {
+  margin: 1em 0;
+  padding: .5em 0;
+}
+.node-type-article article .field-name-field-recommended-resources .field-item a {
+  color: #003399;
+  font-weight: bold;
+  margin-bottom: 2em;
+  font-size: 20px;
+}
+.node-type-article article .field-name-field-recommended-resources .field-item a:before {
+  content: "> ";
 }
 .node-type-article article .list-inline {
   display: none !important;
@@ -9444,6 +9458,55 @@ div[class*='node-'] .more-link {
   display: none;
 }
 /*fin campaign materials*/
+/*official campaign partners list*/
+.node-145 .field-type-text-with-summary {
+  text-align: center;
+  font-weight: bold;
+  font-size: 16px;
+  margin-top: 40px;
+}
+#block-views-partners-list-block {
+  margin-top: 40px;
+}
+#block-views-partners-list-block .view-id-partners_list {
+  color: #003399;
+  font-size: 16px;
+  font-weight: bold;
+  font-style: italic;
+}
+#block-views-partners-list-block .view-id-partners_list .quicktabs-tabs {
+  display: inline-block;
+}
+#block-views-partners-list-block .view-id-partners_list .quicktabs-tabs li {
+  border: 1px dotted #749b00;
+  float: left;
+  padding: 15px 30px;
+}
+#block-views-partners-list-block .view-id-partners_list .quicktabs-tabs li.active {
+  border-bottom: none;
+}
+#block-views-partners-list-block .view-id-partners_list .quicktabs-tabpage .hwc-char-link {
+  padding: 0px 15px;
+}
+#block-views-partners-list-block .view-id-partners_list .quicktabs-tabpage div[id*="hwc-char-"] {
+  margin-top: 2em;
+  margin-bottom: 0em;
+  display: inline-block;
+  border-bottom: 1px dotted #749b00;
+  font-size: 20px;
+  font-style: normal;
+  color: #749b00;
+}
+#block-views-partners-list-block .view-id-partners_list .quicktabs-tabpage .quicktabs-views-group {
+  margin: 0;
+  padding: 30px;
+  border-bottom: 1px dotted #749b00;
+  border-left: 1px dotted #749b00;
+}
+#block-views-partners-list-block .view-id-partners_list .quicktabs-tabpage .quicktabs-views-group .views-field-title-field {
+  display: none;
+}
+/*fin oficial campaign partners list*/
 /*classes toda la pantalla*/
 #block-osha-newsletter-osha-newsletter-subscribe {
   margin-right: -15px;
