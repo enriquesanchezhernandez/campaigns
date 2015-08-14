@@ -46,7 +46,7 @@
     }
     function hwc_alpha_pager_format_alphabet(chars, prefix) {
         var alphabet = "abcdefghijklmnopqrstuvwxyz".split("");
-        var output = '';
+        var output = '<div class="hwc-alphabet-container">';
         $.each(alphabet, function(idx, char) {
             if ($.inArray(char, chars) != -1) {
                 output += '<a class="hwc-char-link" href="#hwc-char-' + prefix + '-' + char + '">' + char + '</span>';
@@ -55,6 +55,7 @@
                 output += '<a class="hwc-char-link disabled" href="javascript:void(0);">' + char + '</span>';
             }
         });
+        output += '</div>';
         return output;
     }
 
