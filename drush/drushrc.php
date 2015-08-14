@@ -442,6 +442,10 @@ $options['init-modules'] = array(
   'context_layouts',
   'context_entity_field',
 
+  'image_url_formatter',
+  'views_data_export',
+  'phpexcel',
+
   // Captcha
  'recaptcha',
 
@@ -493,6 +497,7 @@ $options['init-modules'] = array(
   'shorten',
 
   'hwc',
+  'hwc_admin_reports',
   'hwc_homepage',
   'ncw_migration',
   'hwc_crm_migration',
