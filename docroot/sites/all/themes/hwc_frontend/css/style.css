@@ -8002,6 +8002,7 @@ div[class*='node-'] .more-link {
 .form-item-languages > label {
   font-size: 20px;
   font-weight: bold;
+  margin-bottom: 1.5em;
 }
 /* home news */
 #block-views-news-oshnews-latest h2 {
@@ -8387,14 +8388,47 @@ div[class*='node-'] .more-link {
 }
 /* Practical tools */
 .pane-hwc-practical-tool-hwc-practical-tool-listing h4 {
+  padding-top: 20px !important;
   font-size: 30px;
+  font-style: italic;
+  font-weight: 100;
 }
-.pane-hwc-practical-tool-hwc-practical-tool-listing .field-label-inline {
+.pane-hwc-practical-tool-hwc-practical-tool-listing .node-practical-tool {
+  border-bottom: 1px dotted #749b00;
+  padding-bottom: 15px !important;
+  margin-bottom: 15px !important;
+}
+.pane-hwc-practical-tool-hwc-practical-tool-listing .node-practical-tool h2 {
+  font-weight: bold;
+  font-style: normal;
+  font-size: 20px;
+}
+.pane-hwc-practical-tool-hwc-practical-tool-listing .node-practical-tool .field-label-inline {
   float: left;
   margin: 1em 1em 1em 0;
 }
-.pane-hwc-practical-tool-hwc-practical-tool-listing .field-type-text-with-summary {
+.pane-hwc-practical-tool-hwc-practical-tool-listing .node-practical-tool .field-type-text-with-summary {
   clear: both;
+}
+.pane-hwc-practical-tool-hwc-practical-tool-listing .node-practical-tool .field-type-text-with-summary span {
+  font-size: 14px !important;
+}
+.pane-hwc-practical-tool-hwc-practical-tool-listing .node-practical-tool .practical-tool-visit-tool-site {
+  clear: left;
+  margin: 1em 1em 1em 0;
+}
+.pane-hwc-practical-tool-hwc-practical-tool-listing .form-item-relevant-for {
+  border-top: 1px dotted #749b00;
+  margin-top: 1em;
+  padding-top: 1em;
+}
+.pane-hwc-practical-tool-hwc-practical-tool-listing .form-item-languages {
+  border-top: 1px dotted #749b00;
+  margin-top: 2em;
+  padding-top: 1em;
+  border-bottom: 1px dotted #749b00;
+  margin-bottom: 1em;
+  padding-bottom: 2em;
 }
 .pane-hwc-practical-tool-hwc-practical-tool-listing .link-wrapper ul li a {
   color: #003399;

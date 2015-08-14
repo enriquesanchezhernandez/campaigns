@@ -557,6 +557,7 @@
 	.form-item-relevant-for > label, .form-item-languages > label{
 		font-size: @size2;
 		font-weight: bold;
+		margin-bottom: 1.5em;
 	}
 	
 	/* home news */
@@ -920,15 +921,51 @@
 	/* Practical tools */
 	.pane-hwc-practical-tool-hwc-practical-tool-listing{
 		h4{
+			padding-top: 20px !important;
 			font-size: @size1;
+			font-style: italic;
+			font-weight: 100;
 		}
-		.field-label-inline{
-			float: left;
-			margin: 1em 1em 1em 0;
+		.node-practical-tool{
+			border-bottom: 1px dotted @color3;
+			padding-bottom: 15px !important;
+			margin-bottom: 15px !important;
+			h2{
+				font-weight: bold;
+				font-style: normal;
+				font-size: @size2;
+			}
+			.field-label-inline{
+				float: left;
+				margin: 1em 1em 1em 0;
+			}
+			.field-type-text-with-summary{
+				clear: both;
+				span{
+					font-size: @size4 !important;
+				}
+				
+			}
+			.practical-tool-visit-tool-site{
+				clear: left;
+				margin: 1em 1em 1em 0;
+			}
 		}
-		.field-type-text-with-summary{
-			clear: both;
+
+		.form-item-relevant-for{
+			border-top: 1px dotted @color3;
+			margin-top: 1em;
+			padding-top: 1em;
 		}
+		.form-item-languages{
+			border-top: 1px dotted @color3;
+			margin-top: 2em;
+			padding-top: 1em;
+			border-bottom: 1px dotted @color3;
+			margin-bottom: 1em;
+			padding-bottom: 2em;
+		}
+		
 		.link-wrapper ul li a{
 		    color: @text-color-2;
 			background-color: @color0;
