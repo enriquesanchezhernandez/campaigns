@@ -214,32 +214,3 @@ function osha_search_default_search_api_index() {
   }');
   return $items;
 }
-
-/**
- * Implements hook_default_search_api_server().
- */
-function osha_search_default_search_api_server() {
-  $items = array();
-  $items['solr_server'] = entity_import('search_api_server', '{
-    "name" : "Apache Solr server",
-    "machine_name" : "solr_server",
-    "description" : "",
-    "class" : "search_api_solr_service",
-    "options" : {
-      "scheme" : "http",
-      "host" : "localhost",
-      "port" : 8983,
-      "path" : "\\/solr\\/campaigns",
-      "http" : { "http_user" : "", "http_pass" : null },
-      "excerpt" : 1,
-      "retrieve_data" : 1,
-      "highlight_data" : 1,
-      "skip_schema_check" : null,
-      "solr_version" : "",
-      "http_method" : "AUTO"
-    },
-    "enabled" : "1",
-    "rdf_mapping" : []
-  }');
-  return $items;
-}
