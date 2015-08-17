@@ -218,6 +218,9 @@
 		width: 33.3%;
 		padding-right: 1em;
 		padding-left: 1em;
+		h1{
+			padding-bottom: 0;
+		}
 		h2{
 			color: @h1-default-color;
 			font-size: @h2-default-size;
@@ -255,6 +258,9 @@
 			border: none;
 			margin-top: 0;
 			margin-bottom: .5em;
+		}
+		.container{
+			width: auto;
 		}
 	}
 	.tools-and-resources-block{
@@ -553,6 +559,19 @@
 			font-size: @size3;
 		}
 	}
+	.form-item-relevant-for{
+		border-top: 1px dotted @color3;
+		margin-top: 0em;
+		padding-top: 1em;
+	}
+	.form-item-languages{
+		border-top: 1px dotted @color3;
+		margin-top: 0;
+		padding-top: 1em;
+		border-bottom: 1px dotted @color3;
+		margin-bottom: 1em;
+		padding-bottom: 2em;
+	}
 	
 	.form-item-relevant-for > label, .form-item-languages > label{
 		font-size: @size2;
@@ -577,7 +596,8 @@
 			padding-right: 0.35em;
 		}
 		.more-link{
-		    display: inline-table;
+		    /* display: inline-table; */
+			display: none;
 			margin-top: 1em;
 			a{
 				color: @color1;
@@ -654,7 +674,7 @@
 			    padding-right: 10px;
 			    height: 31px;
 			    margin-left: -3px;
-			    margin-top: -1px;
+			    margin-top: 0px;
 			}
 		}
 		#join_subscribers > img{
@@ -710,6 +730,9 @@
 				&:last-child{
 					border: none;
 				}
+				.field-content.random_partner_logo{
+					width: 100%;
+				}
 			}
 		}
 		.more-link{
@@ -735,7 +758,7 @@
 			width: 926px !important; 
 			border-bottom: 1px solid @border-default-color;
 			border-top: 1px solid @border-default-color;
-			margin: 0em auto 1em;
+			margin: 0em auto 3em;
 			#num_slides{
 				left: 5em;
 				top: 0em;
@@ -854,11 +877,16 @@
 	.pane-osha-publication-osha-publication-listing{
 		h4{
 			font-size: @size1;
+			margin-bottom: 1em;
+			padding-top: 20px !important;
+    		font-size: 30px;
+    		font-style: italic;
+    		font-weight: 100;
 		}
 	}
 	
 	#search{
-		margin: 1em 0;
+		margin: 0 0 1em 0;
 		padding: 1em 0 0;
 		border-top: 1px dotted @border-default-color;
 		border-bottom: 1px dotted @border-default-color;
@@ -886,6 +914,7 @@
 	.publication-item{
 		padding: 1em 0;
 		border-bottom: 1px dotted @border-default-color;
+		min-height: 285px;
 		h5{
 			color: @h5-default-color;
 			font-size: @h5-default-size;
@@ -897,6 +926,7 @@
 		.field-name-field-cover-image{
 			float: left;
 			margin-top: -80px;
+			min-height: 285px;
 			img{
 				width: 160px;
 				margin-right: 20px;
@@ -925,6 +955,7 @@
 			font-size: @size1;
 			font-style: italic;
 			font-weight: 100;
+			margin-bottom: 1em;
 		}
 		.node-practical-tool{
 			border-bottom: 1px dotted @color3;
@@ -952,19 +983,7 @@
 			}
 		}
 
-		.form-item-relevant-for{
-			border-top: 1px dotted @color3;
-			margin-top: 1em;
-			padding-top: 1em;
-		}
-		.form-item-languages{
-			border-top: 1px dotted @color3;
-			margin-top: 2em;
-			padding-top: 1em;
-			border-bottom: 1px dotted @color3;
-			margin-bottom: 1em;
-			padding-bottom: 2em;
-		}
+		
 		
 		.link-wrapper ul li a{
 		    color: @text-color-2;
@@ -1476,6 +1495,9 @@
 
 /* Events*/
 .page-past-events{
+	#block-views-events-block-1{
+
+	}
 	.region-content{
 		#block-system-main{
 			.views-row{
@@ -1530,25 +1552,42 @@
 		.field-name-title-field{
 			margin-bottom: 2em;
 		}
-		h2{
-			margin-top: 2em;
-			color: @color3;
-			font-style: normal;
-			font-weight: bold;
-			text-align: center;
+
+		.dot-separator.green{
 			border-top: 1px dotted @color3;
-			margin-bottom: 1em;
-			&:before{
+			margin-bottom: 30px;
+			margin-top: 30px;
+		}
+		.icon.recommended-resources{
+			background: url("../images/content/recommended-for-you.png") no-repeat;
+			background-size: cover;
+			width: 65px;
+			height: 65px;
+			margin: 0 auto;
+			margin-top: 1em;
+		}
+		
+		/*
+		&:before{
 				content: url("../images/content/recommended-for-you.png");
 				display:block;
 				text-align: center;
 				margin-top: 1em;
 				margin-bottom: .5em;
 			}
+		*/
+		h2{
+			margin-top: .5em;
+			color: @color3;
+			font-style: normal;
+			font-weight: bold;
+			text-align: center;
+			margin-bottom: 1em;
+			
 		}
 		.node-article{
 			border-bottom:none;
-			padding: .5em 0;
+			padding: 0;
 			.field-name-title-field{
 				a{
 					color: @color2;
@@ -1622,6 +1661,7 @@
 	.node-infographic{
 		.field-name-title-field{
 			margin-bottom: 30px;
+			clear: both;
 		}
 		.field-name-body{
 			margin-bottom: 30px;
@@ -2206,6 +2246,10 @@
 			}
 
 		}
+		.hwc-alphabet-container{
+			border-bottom: 1px dotted @color3;
+			padding-bottom: 1em;
+		}
 		.quicktabs-tabpage{
 			.hwc-char-link{
 				padding: 0px 15px;
@@ -2249,6 +2293,9 @@
 #block-osha-newsletter-osha-newsletter-image{
 	margin-right: -15px;
 	margin-left:  -15px;
+	#campaigns-newsletter-subscribe-form > div{
+		display: inline-flex;
+	}
 }
 .alert.alert-block.alert-danger { //to do wendsday, solo para spring1
     display: none;
