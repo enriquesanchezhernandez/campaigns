@@ -31,7 +31,7 @@ function hwc_views_pre_render(view &$view) {
   // And hwc-alpha-pager-view-title-field on the field used as title.
   // see hwc_alpha_pager.js
   $class = $view->display_handler->get_option('css_class');
-  if (strpos('hwc-alpha-pager-view', $class) >= 0) {
+  if (!empty($class) && strpos($class, 'hwc-alpha-pager-view') >= 0) {
     $path = drupal_get_path('module', 'hwc');
     drupal_add_js($path . '/js/hwc_alpha_pager.js');
   }
