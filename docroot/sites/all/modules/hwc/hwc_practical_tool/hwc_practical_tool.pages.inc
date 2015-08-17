@@ -107,13 +107,13 @@ function hwc_practical_tool_menu_tools_search_native($form_state) {
       foreach ($results['results'] as $result) {
         $restrict[] = $result['fields']['nid'];
       }
+      $restrict = array_unique($restrict);
     }
     else {
       return array(
         '#nids' => '',
       );
     }
-
   }
   $q = db_select('node', 'a')
     ->fields('a', array('nid', 'vid'))
@@ -122,6 +122,10 @@ function hwc_practical_tool_menu_tools_search_native($form_state) {
     ->orderBy('changed', 'DESC');
   if (!empty($restrict)) {
     $q->condition('a.nid', $restrict, 'IN');
+  }
+  if (!empty($languages)) {
+    $q->innerJoin('field_data_field_access_tool_link', 'fd', 'a.nid = fd.entity_id AND a.vid = fd.revision_id');
+    $q->condition('fd.language', $languages, 'IN');
   }
   $pnids = $q->execute()->fetchCol();
   $nids = array();
@@ -261,10 +265,7 @@ function hwc_practical_tool_menu_tools_search_related($form_state, $native_nids)
 }
 
 function hwc_practical_tool_menu_tools_get_query() {
-  module_load_include('inc', 'osha_search', 'osha_search.features');
-  $servers = osha_search_default_search_api_server();
-  reset($servers);
-  $server = search_api_server_load(key($servers));
+  $server = search_api_server_load('solr_server');
   $indexes = osha_search_default_search_api_index();
   reset($indexes);
   $index = search_api_index_load(key($indexes));
