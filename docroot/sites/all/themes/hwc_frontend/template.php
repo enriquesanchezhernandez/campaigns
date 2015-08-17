@@ -186,6 +186,10 @@ function hwc_frontend_preprocess_node(&$vars) {
   }
 }
 
+function hwc_frontend_preprocess_image_style(&$variables) {
+  $variables['attributes']['class'][] = 'img-responsive';
+}
+
 /**
  * Implements theme_on_the_web_image().
  *

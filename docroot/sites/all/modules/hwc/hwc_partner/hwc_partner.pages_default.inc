@@ -77,6 +77,8 @@ function hwc_partner_default_page_manager_handlers() {
           0 => 'center',
         ),
         'parent' => 'main',
+        'class' => 'profile-ceo-container',
+        'hide_empty' => 0,
       ),
       'center' => array(
         'type' => 'region',
@@ -95,7 +97,7 @@ function hwc_partner_default_page_manager_handlers() {
           1 => 'right',
         ),
         'parent' => 'main',
-        'class' => 'container',
+        'class' => 'container profile-2-cols-container-1',
         'hide_empty' => 0,
       ),
       'left' => array(
@@ -104,7 +106,7 @@ function hwc_partner_default_page_manager_handlers() {
         'width' => 50,
         'width_type' => '%',
         'parent' => '1',
-        'class' => 'col-sm-6',
+        'class' => 'col-sm-6 profile-col-left-1',
         'hide_empty' => 0,
       ),
       'right' => array(
@@ -113,7 +115,7 @@ function hwc_partner_default_page_manager_handlers() {
         'width' => 50,
         'width_type' => '%',
         'parent' => '1',
-        'class' => 'col-sm-6',
+        'class' => 'col-sm-6 profile-col-right-1',
         'hide_empty' => 0,
       ),
       2 => array(
@@ -126,7 +128,7 @@ function hwc_partner_default_page_manager_handlers() {
           3 => 'right___',
         ),
         'parent' => 'main',
-        'class' => 'container',
+        'class' => 'container profile-4-cols-container-2',
         'hide_empty' => 0,
       ),
       'left_' => array(
@@ -135,7 +137,7 @@ function hwc_partner_default_page_manager_handlers() {
         'width' => 25,
         'width_type' => '%',
         'parent' => '2',
-        'class' => 'col-sm-3',
+        'class' => 'col-sm-3 profile-col-left-middle-2',
         'hide_empty' => 0,
       ),
       'right_' => array(
@@ -144,7 +146,7 @@ function hwc_partner_default_page_manager_handlers() {
         'width' => 25,
         'width_type' => '%',
         'parent' => '2',
-        'class' => 'col-sm-3',
+        'class' => 'col-sm-3 profile-col-middle-right-2',
         'hide_empty' => 0,
       ),
       3 => array(
@@ -155,7 +157,7 @@ function hwc_partner_default_page_manager_handlers() {
           1 => 'right__',
         ),
         'parent' => 'main',
-        'class' => 'container',
+        'class' => 'container profile-2-cols-container-3',
         'hide_empty' => 0,
       ),
       'left__' => array(
@@ -164,7 +166,7 @@ function hwc_partner_default_page_manager_handlers() {
         'width' => '25.091027461588755',
         'width_type' => '%',
         'parent' => '3',
-        'class' => 'col-sm-6',
+        'class' => 'col-sm-6 profile-col-left-3',
         'hide_empty' => 0,
       ),
       'right__' => array(
@@ -173,7 +175,7 @@ function hwc_partner_default_page_manager_handlers() {
         'width' => '24.908972538411245',
         'width_type' => '%',
         'parent' => '3',
-        'class' => 'col-sm-6',
+        'class' => 'col-sm-6 profile-col-right-3',
         'hide_empty' => 0,
       ),
       4 => array(
@@ -183,7 +185,7 @@ function hwc_partner_default_page_manager_handlers() {
           0 => 'center_',
         ),
         'parent' => 'main',
-        'class' => 'container',
+        'class' => 'container profile-title-type-container',
         'hide_empty' => 0,
       ),
       'center_' => array(
@@ -202,7 +204,7 @@ function hwc_partner_default_page_manager_handlers() {
           0 => 'center__',
         ),
         'parent' => 'main',
-        'class' => 'container',
+        'class' => 'container profile-edit-links-container',
         'hide_empty' => 0,
       ),
       'center__' => array(
@@ -220,7 +222,7 @@ function hwc_partner_default_page_manager_handlers() {
         'width' => 25,
         'width_type' => '%',
         'parent' => '2',
-        'class' => 'col-sm-3',
+        'class' => 'col-sm-3 profile-col-left-2',
         'hide_empty' => 0,
       ),
       'right___' => array(
@@ -229,7 +231,7 @@ function hwc_partner_default_page_manager_handlers() {
         'width' => 25,
         'width_type' => '%',
         'parent' => '2',
-        'class' => 'col-sm-3',
+        'class' => 'col-sm-3 profile-col-right-2',
         'hide_empty' => 0,
       ),
     ),

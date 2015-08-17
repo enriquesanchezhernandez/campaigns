@@ -6,6 +6,15 @@ define('ROLE_CAMPAIGN_PARTNER', 'campaign partner');
 define('ROLE_SUPERVISOR', 'supervisor');
 
 /**
+ * Implementation of hook_views_api().
+ */
+function hwc_views_api() {
+  return array(
+    'api' => 3,
+  );
+}
+
+/**
  * Implements hook_permission().
  */
 function hwc_permission() {
@@ -297,11 +306,33 @@ function hwc_news_share_widget($node, $options = array()) {
  *
  */
 function hwc_workbench_access_node_element_alter(&$element, $form_state, $active) {
-  $allow_section_field = array('news','events');
+  $allow_section_field = _hwc_get_allowed_section_node_types();
   $form_id = $form_state['build_info']['form_id'];
   $form = drupal_retrieve_form($form_id, $form_state);
 
   if (!empty($form['#node_edit_form']) && !in_array($form['#node']->type, $allow_section_field)) {
     $element['#access'] = FALSE;
   }
+}
+
+/**
+ * Implements hook_node_presave().
+ */
+function hwc_node_presave($node) {
+  // Set section to default one for the nodes that have section field hidden.
+  $allow_section_field = _hwc_get_allowed_section_node_types();
+  if (!in_array($node->type, $allow_section_field) && variable_get('workbench_access_node_type_' . $node->type, FALSE)) {
+    if (empty($node->workbench_access)) {
+      $node->workbench_access['section'] = 'section';
+    }
+  }
+}
+
+/**
+ * Get array of node types that are allowed to be per section.
+ *
+ * @return array
+ */
+function _hwc_get_allowed_section_node_types() {
+  return array('news','events');
 }
