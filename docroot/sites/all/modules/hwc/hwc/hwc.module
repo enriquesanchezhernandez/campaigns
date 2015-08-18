@@ -172,6 +172,20 @@ function hwc_theme() {
 }
 
 /**
+ * Implements hook_entity_info_alter().
+ */
+function hwc_entity_info_alter(&$entity_info) {
+  $entity_info['node']['view modes']['title_body'] = array(
+    'label' => t('Title body'),
+    'custom settings' => TRUE,
+  );
+  $entity_info['node']['view modes']['body'] = array(
+    'label' => t('Body'),
+    'custom settings' => TRUE,
+  );
+}
+
+/**
 * Implements hook_field_formatter_view().
 */
 function hwc_field_formatter_view($entity_type, $entity, $field, $instance, $langcode, $items, $display) {

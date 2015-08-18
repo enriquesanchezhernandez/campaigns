@@ -181,9 +181,6 @@ function hwc_frontend_preprocess_node(&$vars) {
   $view_mode = $vars['view_mode'];
   $vars['theme_hook_suggestions'][] = 'node__' . $vars['node']->type . '__' . $view_mode;
   $vars['theme_hook_suggestions'][] = 'node__' . $vars['node']->nid . '__' . $view_mode;
-  if($vars['type'] == 'practical_tool') {
-    unset($vars['content']['links']);
-  }
 }
 
 function hwc_frontend_preprocess_image_style(&$variables) {

@@ -95,7 +95,11 @@
     </div>
   <?php endif; ?>
 
-  <div class="content clearfix"<?php print $content_attributes; ?>>
+  <?php if (!empty($content['title_field'])) {
+    render($content['title_field']);
+    }
+  ?>
+  <div class="content container clearfix"<?php print $content_attributes; ?>>
     <?php
       // We hide the comments and links now so that we can render them later.
       hide($content['comments']);

@@ -212,10 +212,7 @@ function osha_publication_menu_publications_search_related($form_state, $native_
 }
 
 function osha_publication_menu_publications_get_query() {
-  module_load_include('inc', 'osha_search', 'osha_search.features');
-  $servers = osha_search_default_search_api_server();
-  reset($servers);
-  $server = search_api_server_load(key($servers));
+  $server = search_api_server_load('solr_server');
   $indexes = osha_search_default_search_api_index();
   reset($indexes);
   $index = search_api_index_load(key($indexes));
