@@ -76,7 +76,7 @@ function hwc_practical_tool_strongarm() {
         'custom_settings' => TRUE,
       ),
       'osha_slideshow' => array(
-        'custom_settings' => TRUE,
+        'custom_settings' => FALSE,
       ),
       'highlights_item' => array(
         'custom_settings' => TRUE,
@@ -85,7 +85,7 @@ function hwc_practical_tool_strongarm() {
         'custom_settings' => TRUE,
       ),
       'pub_teaser' => array(
-        'custom_settings' => TRUE,
+        'custom_settings' => FALSE,
       ),
       'osha_resources' => array(
         'custom_settings' => TRUE,
@@ -109,6 +109,12 @@ function hwc_practical_tool_strongarm() {
         'custom_settings' => FALSE,
       ),
       'token' => array(
+        'custom_settings' => FALSE,
+      ),
+      'title_body' => array(
+        'custom_settings' => FALSE,
+      ),
+      'body' => array(
         'custom_settings' => FALSE,
       ),
     ),

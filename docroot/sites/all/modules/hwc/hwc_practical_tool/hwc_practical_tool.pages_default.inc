@@ -484,19 +484,22 @@ function hwc_practical_tool_default_page_manager_pages() {
       'nid' => '150',
       'links' => 0,
       'leave_node_title' => 0,
-      'identifier' => 'section_introduction',
-      'build_mode' => 'full',
+      'identifier' => '',
+      'build_mode' => 'body',
       'link_node_title' => 0,
       'override_title' => 1,
       'override_title_text' => '',
-      'override_title_heading' => 'h2',
+      'override_title_heading' => 'h1',
     );
     $pane->cache = array();
     $pane->style = array(
       'settings' => NULL,
       'style' => 'default',
     );
-    $pane->css = array();
+    $pane->css = array(
+      'css_id' => '',
+      'css_class' => 'section-introduction',
+    );
     $pane->extras = array();
     $pane->position = 0;
     $pane->locks = array();
@@ -526,7 +529,7 @@ function hwc_practical_tool_default_page_manager_pages() {
     $pane->uuid = '65a196f7-6a56-4168-94c7-f950af997e21';
     $display->content['new-65a196f7-6a56-4168-94c7-f950af997e21'] = $pane;
     $display->panels['middle'][1] = 'new-65a196f7-6a56-4168-94c7-f950af997e21';
-  $display->hide_title = PANELS_TITLE_FIXED;
+  $display->hide_title = PANELS_TITLE_PANE;
   $display->title_pane = 'new-84992a82-9ee8-44c2-8b19-f23a24a82abe';
   $handler->conf['display'] = $display;
   $page->default_handlers[$handler->name] = $handler;
