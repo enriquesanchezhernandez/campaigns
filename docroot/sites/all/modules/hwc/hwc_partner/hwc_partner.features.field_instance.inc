@@ -24,6 +24,13 @@ function hwc_partner_field_default_field_instances() {
         'type' => 'text_default',
         'weight' => 27,
       ),
+      'teaser' => array(
+        'label' => 'above',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 27,
+      ),
     ),
     'entity_type' => 'node',
     'field_name' => 'field_appform_status',
@@ -404,6 +411,13 @@ function hwc_partner_field_default_field_instances() {
     'description' => '',
     'display' => array(
       'default' => array(
+        'label' => 'above',
+        'module' => 'i18n_taxonomy',
+        'settings' => array(),
+        'type' => 'i18n_taxonomy_term_reference_link',
+        'weight' => 28,
+      ),
+      'teaser' => array(
         'label' => 'above',
         'module' => 'i18n_taxonomy',
         'settings' => array(),
@@ -1067,6 +1081,13 @@ function hwc_partner_field_default_field_instances() {
         'type' => 'text_default',
         'weight' => 25,
       ),
+      'teaser' => array(
+        'label' => 'above',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 25,
+      ),
     ),
     'entity_type' => 'node',
     'field_name' => 'field_organisation_rep',
@@ -1486,6 +1507,13 @@ function hwc_partner_field_default_field_instances() {
         'type' => 'text_default',
         'weight' => 26,
       ),
+      'teaser' => array(
+        'label' => 'above',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 26,
+      ),
     ),
     'entity_type' => 'node',
     'field_name' => 'field_position_identifier',
@@ -1602,6 +1630,13 @@ function hwc_partner_field_default_field_instances() {
     'description' => '',
     'display' => array(
       'default' => array(
+        'label' => 'above',
+        'module' => 'list',
+        'settings' => array(),
+        'type' => 'list_default',
+        'weight' => 24,
+      ),
+      'teaser' => array(
         'label' => 'above',
         'module' => 'list',
         'settings' => array(),
