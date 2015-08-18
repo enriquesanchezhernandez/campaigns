@@ -6655,6 +6655,10 @@ body .nav > li > a:hover,
 body .nav > li > a:focus {
   background-color: inherit;
 }
+body .dropdown-menu > li > a:hover,
+body .dropdown-menu > li > a:focus {
+  background-color: inherit;
+}
 body footer .nav-pills > li.active > a,
 body footer .nav-pills > li.active > a:hover,
 body footer .nav-pills > li.active > a:focus {
@@ -7208,6 +7212,15 @@ header.navbar-default .navbar-header img:nth-child(3) {
   padding-bottom: 15px;
   padding-right: 3em;
   border-right: 1px solid #003399;
+}
+header.navbar-default .navbar-header .header-text {
+  color: #003399;
+  font-size: 18px;
+  font-weight: bold;
+  width: 155px;
+  padding-top: 4em;
+  padding-left: 2em;
+  float: left;
 }
 header.navbar-default .navbar-header #block-lang-dropdown-language {
   float: right;
@@ -8158,6 +8171,9 @@ div[class*='node-'] .more-link {
 #block-views-frontpage-events-block .date-display-single {
   font-size: 12px;
 }
+#block-views-frontpage-events-block .views-row {
+  padding-bottom: 1em;
+}
 #block-views-partners-block-1 {
   padding-top: 1em;
   clear: both;
@@ -9031,6 +9047,16 @@ div[class*='node-'] .more-link {
 }
 .node-type-infographic .node-infographic .field-name-field-thumbnail {
   margin-bottom: 30px;
+}
+.node-type-infographic .node-infographic .field-name-field-image.field-type-image,
+.node-type-infographic .node-infographic .field-name-field-file.field-type-file,
+.node-type-infographic .node-infographic .link-wrapper {
+  float: none;
+  margin-left: 250px;
+  /*  */
+}
+.node-type-infographic .node-infographic .field-name-field-thumbnail.field-type-image {
+  margin-top: -50px;
 }
 /*fin infographics*/
 /*Become a media partner*/
