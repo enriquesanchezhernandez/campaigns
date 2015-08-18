@@ -24,11 +24,11 @@ function hwc_practical_tool_menu_tools_form($form, $form_state) {
     ),
     'left-column' => array(
       '#type' => 'container',
-      '#attributes' => array('class' => array('col col-md-4')),
+      '#attributes' => array('class' => array('col col-md-3')),
     ),
     'content' => array(
       '#type' => 'container',
-      '#attributes' => array('class' => array('col col-md-8')),
+      '#attributes' => array('class' => array('col col-md-9')),
     ),
   );
   $form['content']['text'] = array(

@@ -155,6 +155,12 @@ function osha_publication_strongarm() {
       'pub_teaser' => array(
         'custom_settings' => TRUE,
       ),
+      'title_body' => array(
+        'custom_settings' => FALSE,
+      ),
+      'body' => array(
+        'custom_settings' => FALSE,
+      ),
     ),
     'extra_fields' => array(
       'form' => array(

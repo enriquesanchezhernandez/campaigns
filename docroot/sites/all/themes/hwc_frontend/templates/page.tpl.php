@@ -135,7 +135,10 @@ $theme_dir = drupal_get_path('theme', 'hwc_frontend');
       <?php if (!empty($breadcrumb)): print $breadcrumb; endif;?>
       <a id="main-content"></a>
       <?php print render($title_prefix); ?>
-      <div class="col-sm-10 col-sm-offset-1">
+      <div>
+        <?php print render($page['above_title']); ?>
+      </div>
+      <div>
         <?php if (!empty($title)): ?>
           <h1 class="page-header"><?php print $title; ?></h1>
         <?php endif; ?>
@@ -151,9 +154,6 @@ $theme_dir = drupal_get_path('theme', 'hwc_frontend');
       <?php if (!empty($action_links)): ?>
         <ul class="action-links"><?php print render($action_links); ?></ul>
       <?php endif; ?>
-      <div class="col-sm-10 col-sm-offset-1">
-        <?php print render($page['above_title']); ?>
-      </div>
       <?php print render($page['content']); ?>
     </section>
     <?php if (!empty($page['sidebar_second'])): ?>
