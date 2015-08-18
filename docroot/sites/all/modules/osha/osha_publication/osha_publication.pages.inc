@@ -10,11 +10,11 @@ function osha_publication_menu_publications_form($form, $form_state) {
     '#method' => 'post',
     'left-column' => array(
       '#type' => 'container',
-      '#attributes' => array('class' => array('col col-md-4'))
+      '#attributes' => array('class' => array('col col-md-3'))
     ),
     'content' => array(
       '#type' => 'container',
-      '#attributes' => array('class' => array('col col-md-8')),
+      '#attributes' => array('class' => array('col col-md-9')),
     )
   );
   $form['content']['text'] = array(
@@ -31,6 +31,12 @@ function osha_publication_menu_publications_form($form, $form_state) {
     '#type' => 'submit',
     '#value' => t('Search'),
     '#suffix' => '</div>',
+  );
+  $form['left-column']['relevant_for'] = array(
+    '#type' => 'checkboxes',
+    '#options' => _hwc_segment_options_list(),
+    '#default_value' => array('0'),
+    '#title' => t('Relevant for:'),
   );
   $form['left-column']['languages'] = array(
     '#type' => 'checkboxes',
@@ -86,6 +92,12 @@ function osha_publication_menu_publications_search_native($form_state) {
       );
     }
   }
+  $relevant_for = $form_state['values']['relevant_for'];
+  foreach ($relevant_for as $relf) {
+    if ($relf) {
+      $relevant_for_ids[] = $relf;
+    }
+  }
   // Select all publications having field_file available in filtered languages.
   $q = db_select('node', 'a')
     ->fields('a', array('nid', 'vid'))
@@ -105,7 +117,22 @@ function osha_publication_menu_publications_search_native($form_state) {
     $q->condition('b.entity_id', $pnid);
     $q->condition('b.language', $languages, 'IN');
     $c = $q->countQuery()->execute()->fetchField();
-    if ($c >= count($languages)) {
+
+    if (!empty($relevant_for_ids)) {
+      // Check if the node is relevant for all selected 'relevant for' checkboxes.
+      $q2 = db_select('field_data_field_segment', 'b');
+      $q2->fields('b', array('entity_id'));
+      $q2->innerJoin('node', 'a', 'a.nid = b.entity_id');
+      $q2->condition('b.entity_id', $pnid);
+      $q2->condition('b.entity_type', 'node');
+      $q2->condition('b.field_segment_tid', $relevant_for_ids, 'IN');
+      $c2 = $q2->countQuery()->execute()->fetchField();
+    }
+    else {
+      // No 'relevant for' checkbox is selected, so let the node pass this check.
+      $c2 = 1;
+    }
+    if ($c >= count($languages) && $c2 >= count($relevant_for_ids)) {
       $nids[] = $pnid;
     }
   }
