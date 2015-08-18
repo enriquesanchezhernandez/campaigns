@@ -7215,10 +7215,10 @@ header.navbar-default .navbar-header img:nth-child(3) {
 }
 header.navbar-default .navbar-header .header-text {
   color: #003399;
-  font-size: 18px;
+  font-size: 24px;
   font-weight: bold;
-  width: 155px;
-  padding-top: 4em;
+  width: 185px;
+  padding-top: 2em;
   padding-left: 2em;
   float: left;
 }
@@ -8080,8 +8080,8 @@ div[class*='node-'] .more-link {
   clear: both;
   background: url("../images/content/bg-newsletter.png") no-repeat left top;
   background: url("../images/content/bg-campaign-partner.png") no-repeat left 20px;
-  height: 320px;
-  height: 380px !important;
+  min-height: 380px;
+  height: auto !important;
   margin: 20px 0 !important;
   text-align: center;
   color: #FFF;
@@ -8147,6 +8147,11 @@ div[class*='node-'] .more-link {
 #block-osha-newsletter-osha-newsletter-subscribe #join_subscribers > img,
 #block-osha-newsletter-osha-newsletter-image #join_subscribers > img {
   display: none;
+}
+#block-osha-newsletter-osha-newsletter-subscribe .captcha,
+#block-osha-newsletter-osha-newsletter-image .captcha {
+  margin-top: 25px !important;
+  margin-left: -300px;
 }
 /* home events */
 #block-views-frontpage-events-block {

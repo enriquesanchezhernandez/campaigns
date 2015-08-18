@@ -81,7 +81,7 @@ $theme_dir = drupal_get_path('theme', 'hwc_frontend');
     <div class="row">
       <div class="navbar-header">
         <div class="row">
-          <div class="col-xs-12 col-sm-6">
+          <div class="col-xs-12 col-sm-9">
             <a class="pull-left" href="<?php print $front_page; ?>" title="<?php print t('Home'); ?>">
               <img src="<?php print $logo; ?>" alt="<?php print t('Home'); ?>" />
             </a>
@@ -89,7 +89,7 @@ $theme_dir = drupal_get_path('theme', 'hwc_frontend');
             <img class="pull-left" src="/<?php print $theme_dir . '/logo-eu.png'; ?>" alt="<?php print t('EU logo'); ?>" />
 			<div class="header-text">Healthy Workplaces for All Ages</div>
           </div>
-          <div class="col-xs-12 col-sm-3 col-sm-offset-3">
+          <div class="col-xs-12 col-sm-3">
             <div class="header_top_bar">
               <div class="vertical-align">
                 <?php print render($page['above_header']); ?>
