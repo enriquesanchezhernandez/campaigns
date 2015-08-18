@@ -87,6 +87,7 @@ $theme_dir = drupal_get_path('theme', 'hwc_frontend');
             </a>
             <img class="pull-left" src="/<?php print $theme_dir . '/logo-osha.png'; ?>" alt="<?php print t('EU-OSHA logo'); ?>" />
             <img class="pull-left" src="/<?php print $theme_dir . '/logo-eu.png'; ?>" alt="<?php print t('EU logo'); ?>" />
+			<div class="header-text">Healthy Workplaces for All Ages</div>
           </div>
           <div class="col-xs-12 col-sm-3 col-sm-offset-3">
             <div class="header_top_bar">
