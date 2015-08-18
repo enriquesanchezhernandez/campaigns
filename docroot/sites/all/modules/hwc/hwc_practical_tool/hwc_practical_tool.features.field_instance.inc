@@ -1007,24 +1007,19 @@ function hwc_practical_tool_field_default_field_instances() {
     'workbench_access_field' => 0,
   );
 
-  // Exported field_instance: 'node-practical_tool-field_relevant_for'
-  $field_instances['node-practical_tool-field_relevant_for'] = array(
+  // Exported field_instance: 'node-practical_tool-field_segment'
+  $field_instances['node-practical_tool-field_segment'] = array(
     'bundle' => 'practical_tool',
     'default_value' => NULL,
     'deleted' => 0,
     'description' => '',
     'display' => array(
-      'body' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
       'default' => array(
         'label' => 'above',
+        'module' => 'i18n_taxonomy',
         'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 12,
+        'type' => 'i18n_taxonomy_term_reference_link',
+        'weight' => 14,
       ),
       'highlights_item' => array(
         'label' => 'above',
@@ -1044,25 +1039,7 @@ function hwc_practical_tool_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 0,
       ),
-      'osha_slideshow' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-      'pub_teaser' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 4,
-      ),
       'teaser' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 9,
-      ),
-      'title_body' => array(
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
@@ -1070,19 +1047,21 @@ function hwc_practical_tool_field_default_field_instances() {
       ),
     ),
     'entity_type' => 'node',
-    'field_name' => 'field_relevant_for',
-    'label' => 'Relevant for',
+    'field_name' => 'field_segment',
+    'label' => 'Segment',
     'required' => 0,
     'settings' => array(
       'entity_translation_sync' => FALSE,
       'user_register_form' => FALSE,
     ),
     'widget' => array(
-      'active' => 0,
-      'module' => 'multiple_selects',
-      'settings' => array(),
-      'type' => 'multiple_selects',
-      'weight' => 16,
+      'active' => 1,
+      'module' => 'options',
+      'settings' => array(
+        'apply_chosen' => '',
+      ),
+      'type' => 'options_select',
+      'weight' => 19,
     ),
     'workbench_access_field' => 0,
   );
@@ -1283,7 +1262,7 @@ function hwc_practical_tool_field_default_field_instances() {
   t('Languages');
   t('Objective');
   t('Provider');
-  t('Relevant for');
+  t('Segment');
   t('Tool name');
   t('Type');
 

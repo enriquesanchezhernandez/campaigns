@@ -1,9 +1,9 @@
 <?php
 
 function hwc_practical_tool_relevant_for_list() {
-  $vocabulary = taxonomy_vocabulary_machine_name_load('practical_tool_relevant_for');
+  $vocabulary = taxonomy_vocabulary_machine_name_load('field_segment');
   $terms = taxonomy_get_tree($vocabulary->vid);
-  $return = array('0' => 'All audience');
+  $return = array('0' => t('All audience'));
   foreach($terms as $key => $term) {
     $return[$term->tid] = $term->name;
   }
@@ -146,7 +146,7 @@ function hwc_practical_tool_menu_tools_search_native($form_state) {
       $q2->innerJoin('node', 'a', 'a.nid = b.entity_id');
       $q2->condition('b.entity_id', $pnid);
       $q2->condition('b.entity_type', 'node');
-      $q2->condition('b.field_relevant_for_tid', $relevant_for_ids, 'IN');
+      $q2->condition('b.field_segment', $relevant_for_ids, 'IN');
       $c2 = $q2->countQuery()->execute()->fetchField();
     }
     else {

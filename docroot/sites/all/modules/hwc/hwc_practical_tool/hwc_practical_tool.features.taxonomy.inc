@@ -9,9 +9,9 @@
  */
 function hwc_practical_tool_taxonomy_default_vocabularies() {
   return array(
-    'practical_tool_relevant_for' => array(
-      'name' => 'Practical tool relevant for',
-      'machine_name' => 'practical_tool_relevant_for',
+    'practical_tool_types' => array(
+      'name' => 'Practical tool types',
+      'machine_name' => 'practical_tool_types',
       'description' => '',
       'hierarchy' => 0,
       'module' => 'taxonomy',
@@ -34,9 +34,9 @@ function hwc_practical_tool_taxonomy_default_vocabularies() {
         ),
       ),
     ),
-    'practical_tool_types' => array(
-      'name' => 'Practical tool types',
-      'machine_name' => 'practical_tool_types',
+    'segment' => array(
+      'name' => 'Segment',
+      'machine_name' => 'segment',
       'description' => '',
       'hierarchy' => 0,
       'module' => 'taxonomy',
