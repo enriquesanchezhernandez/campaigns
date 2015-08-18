@@ -336,7 +336,7 @@ function osha_publication_default_page_manager_pages() {
       'link_node_title' => 0,
       'override_title' => 1,
       'override_title_text' => '',
-      'override_title_heading' => 'h2',
+      'override_title_heading' => 'h1',
     );
     $pane->cache = array();
     $pane->style = array(
@@ -410,7 +410,7 @@ function osha_publication_default_page_manager_pages() {
     $pane->uuid = 'f5de493b-9610-4004-94cd-4bdb77aebd96';
     $display->content['new-f5de493b-9610-4004-94cd-4bdb77aebd96'] = $pane;
     $display->panels['middle'][2] = 'new-f5de493b-9610-4004-94cd-4bdb77aebd96';
-  $display->hide_title = PANELS_TITLE_FIXED;
+  $display->hide_title = PANELS_TITLE_PANE;
   $display->title_pane = 'new-e7a9ab38-c830-4b2e-9e23-f49f161509c1';
   $handler->conf['display'] = $display;
   $page->default_handlers[$handler->name] = $handler;
