@@ -285,7 +285,16 @@ function osha_press_release_strongarm() {
         'custom_settings' => TRUE,
       ),
       'pub_teaser' => array(
-        'custom_settings' => TRUE,
+        'custom_settings' => FALSE,
+      ),
+      'title_body' => array(
+        'custom_settings' => FALSE,
+      ),
+      'body' => array(
+        'custom_settings' => FALSE,
+      ),
+      'revision' => array(
+        'custom_settings' => FALSE,
       ),
     ),
     'extra_fields' => array(

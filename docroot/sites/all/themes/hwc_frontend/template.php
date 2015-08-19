@@ -177,6 +177,32 @@ function hwc_frontend_preprocess_page(&$vars) {
   }
 }
 
+/**
+ * Theme flexible layout of panels.
+ * Copied the panels function and removed the css files.
+ */
+function hwc_frontend_panels_flexible($vars) {
+  $css_id = $vars['css_id'];
+  $content = $vars['content'];
+  $settings = $vars['settings'];
+  $display = $vars['display'];
+  $layout = $vars['layout'];
+  $handler = $vars['renderer'];
+
+  panels_flexible_convert_settings($settings, $layout);
+
+  $renderer = panels_flexible_create_renderer(FALSE, $css_id, $content, $settings, $display, $layout, $handler);
+
+  $output = "<div class=\"panel-flexible " . $renderer->base['canvas'] . " clearfix\" $renderer->id_str>\n";
+  $output .= "<div class=\"panel-flexible-inside " . $renderer->base['canvas'] . "-inside\">\n";
+
+  $output .= panels_flexible_render_items($renderer, $settings['items']['canvas']['children'], $renderer->base['canvas']);
+
+  // Wrap the whole thing up nice and snug
+  $output .= "</div>\n</div>\n";
+
+  return $output;
+}
 function hwc_frontend_preprocess_node(&$vars) {
   $view_mode = $vars['view_mode'];
   $vars['theme_hook_suggestions'][] = 'node__' . $vars['node']->type . '__' . $view_mode;

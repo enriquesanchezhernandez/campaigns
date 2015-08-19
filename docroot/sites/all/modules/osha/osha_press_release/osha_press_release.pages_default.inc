@@ -66,7 +66,7 @@ function osha_press_release_default_page_manager_pages() {
           1 => 1,
         ),
         'parent' => 'canvas',
-        'class' => 'col-sm-12',
+        'class' => '',
         'hide_empty' => 0,
       ),
       'main-row' => array(
@@ -76,7 +76,7 @@ function osha_press_release_default_page_manager_pages() {
           0 => 'center',
         ),
         'parent' => 'main',
-        'class' => 'col-md-12',
+        'class' => '',
         'hide_empty' => 0,
       ),
       'center' => array(
@@ -85,6 +85,8 @@ function osha_press_release_default_page_manager_pages() {
         'width' => 100,
         'width_type' => '%',
         'parent' => 'main-row',
+        'class' => '',
+        'hide_empty' => 0,
       ),
       1 => array(
         'type' => 'row',
@@ -93,7 +95,7 @@ function osha_press_release_default_page_manager_pages() {
           0 => 2,
         ),
         'parent' => 'main',
-        'class' => 'press-room-blocks-row',
+        'class' => 'press-room-blocks-row container',
         'hide_empty' => 0,
       ),
       2 => array(
@@ -117,7 +119,7 @@ function osha_press_release_default_page_manager_pages() {
           2 => 'right_content',
         ),
         'parent' => '2',
-        'class' => '',
+        'class' => 'row',
         'hide_empty' => 0,
       ),
       'content' => array(
@@ -126,7 +128,7 @@ function osha_press_release_default_page_manager_pages() {
         'width' => '33.38407910914351',
         'width_type' => '%',
         'parent' => '4',
-        'class' => 'press-room-blocks-left',
+        'class' => 'press-room-blocks-left col-md-4',
         'hide_empty' => 0,
       ),
       5 => array(
@@ -145,7 +147,7 @@ function osha_press_release_default_page_manager_pages() {
         'width' => 100,
         'width_type' => '%',
         'parent' => '5',
-        'class' => 'press-room-content-region',
+        'class' => 'press-room-content-region container',
         'hide_empty' => 0,
       ),
       'middle_content' => array(
@@ -154,7 +156,7 @@ function osha_press_release_default_page_manager_pages() {
         'width' => '33.35879372997227',
         'width_type' => '%',
         'parent' => '4',
-        'class' => '',
+        'class' => 'col-md-4',
         'hide_empty' => 0,
       ),
       'right_content' => array(
@@ -163,7 +165,7 @@ function osha_press_release_default_page_manager_pages() {
         'width' => '33.25712716088423',
         'width_type' => '%',
         'parent' => '4',
-        'class' => '',
+        'class' => 'col-md-4',
         'hide_empty' => 0,
       ),
     ),
@@ -195,8 +197,8 @@ function osha_press_release_default_page_manager_pages() {
       'nid' => '179',
       'links' => 0,
       'leave_node_title' => 0,
-      'identifier' => 'section_introduction',
-      'build_mode' => 'full',
+      'identifier' => '',
+      'build_mode' => 'body',
       'link_node_title' => 0,
       'override_title' => 1,
       'override_title_text' => '',
@@ -206,7 +208,10 @@ function osha_press_release_default_page_manager_pages() {
     $pane->style = array(
       'settings' => NULL,
     );
-    $pane->css = array();
+    $pane->css = array(
+      'css_id' => '',
+      'css_class' => 'section-introduction',
+    );
     $pane->extras = array();
     $pane->position = 0;
     $pane->locks = array();
@@ -329,8 +334,8 @@ function osha_press_release_default_page_manager_pages() {
     $pane->uuid = '5812975f-d6f9-4c73-9a5e-1f3c2d66dff8';
     $display->content['new-5812975f-d6f9-4c73-9a5e-1f3c2d66dff8'] = $pane;
     $display->panels['right_content'][0] = 'new-5812975f-d6f9-4c73-9a5e-1f3c2d66dff8';
-  $display->hide_title = PANELS_TITLE_FIXED;
-  $display->title_pane = '0';
+  $display->hide_title = PANELS_TITLE_PANE;
+  $display->title_pane = 'new-9d10b397-49da-4a63-ba51-0166313a0939';
   $handler->conf['display'] = $display;
   $page->default_handlers[$handler->name] = $handler;
   $pages['press_room'] = $page;
