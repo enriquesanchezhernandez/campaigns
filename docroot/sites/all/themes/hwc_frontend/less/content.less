@@ -24,6 +24,9 @@
 			border-color: @text-color-2;
 			border-radius: 0;
 		}
+		iframe{
+			border: 1px solid;
+		}
 	}
 /* FIN para toda la aplicacion */
 
@@ -72,6 +75,16 @@
 			font-weight: bold;
 			font-size: @size9;
 			font-family: garamond;
+		}
+		.glyphicon-chevron-right{
+			color: @text-color-2;
+			font-family: @font-family-base;
+			&:before {
+				content: ">";
+				font-weight: bold;
+				padding-left: 0.5em;
+				padding-right: 0.2em;
+			}
 		}
 	}
 	
@@ -282,20 +295,25 @@
 		margin-right: -15px;
 	}
 	#homepage_slider{
-		height: 321px !important;
-		background-color: #749b00;
+		height: 356px !important;
+		background: @color3 url("../images/content/bg-campaign-partner.png") no-repeat left 20px;
 		margin-bottom: 35px; //by endika
 		width: 100% !important;
+		> div{
+			width: 100% !important;
+		}
 		#num_slides{
 			margin: 0;
 			padding: 0;
-			width: 1139px !important; /*1296 ??*/
-			height: 320px !important;
+			width: 1139px;
+			width: 100% !important;
+			height: 356px !important;
 			> div{ /* .views-field.views-field-field-image */
-				width: 1139px !important;
-				height: 320px !important;
+				width: 1139px;
+				width: 100% !important;
+				height: 356px !important;
 				&.views-field.views-field-body{
-					height: 320px !important;
+					height: 356px !important;
 					margin-top: 4em;
 					div:empty{
 						height: 230px !important;
@@ -304,7 +322,8 @@
 				div{
 					margin: 0;
 					padding: 0;
-					width: 1139px !important;
+					width: 1139px;
+					width: 100% !important;
 					float: right;
 					a{
 						margin: 0;
@@ -318,7 +337,7 @@
 							padding: 0.5em;
 							margin-left: 1em;
 							position: absolute;
-							top: 2em;
+							bottom: 4em;
 							right: 20px;
 						}
 						&.more-link:before{
@@ -326,6 +345,7 @@
 						}
 						img{
 							width: 100%;
+							height: auto; /* para que no se deforme la img */
 						}
 					}
 					p{
@@ -352,6 +372,17 @@
 			}
 		}
 	}
+	@media screen and (-webkit-min-device-pixel-ratio:0) {
+		#homepage_slider .more-link{top: 2em;}
+	}
+	.node-frontpage-slider{
+		.field-name-body.field-type-text-with-summary{
+			position: absolute;
+			left: 45%;
+			margin-right: 2em;
+		}
+	}
+	
 	/* pagination */
 	.pagination{
 		border:none;
@@ -393,13 +424,19 @@
 	}
 	
 	/* user */
-	#block-system-main #views-exposed-form-search-site{
+	#block-system-main{
 		div div.form-type-textfield, div div.form-type-password{
-			width: auto;
 			margin-bottom: 1em;
 			display: table;
+			display: -moz-grid-group;
 			label{
 			    display: block;
+				.form-required{
+					margin-right: 0.5em;
+				}
+			}
+			input{
+				margin-right: 1em;
 			}
 			&.error label{
 			    padding: 0.2em 0 0 0.2em;
@@ -730,7 +767,7 @@
 			background: url("../images/content/partners.png") no-repeat center top;
 			padding-top: 70px;
 			padding-bottom: 0.5em;
-			margin-bottom: 0px;
+			margin-bottom: 1em;
 		}
 		.views-field-field-logo{
 			padding-top: 1em;
@@ -998,8 +1035,14 @@
 				margin: 1em 1em 1em 0;
 			}
 		}
-
 		
+		.field-name-field-country, .field-name-field-tool-type, .field-name-field-provider{
+			.field-label ~ .field-items:empty{
+				&:before{
+					content: " - ";
+				}
+			}
+		}
 		
 		.link-wrapper ul li a{
 		    color: @text-color-2;
@@ -1236,7 +1279,6 @@
 		}
 		.pull-right{
 			a{
-				margin-top: -20px;
 				background-color: #4c69ba;//color facebook
 				background: linear-gradient(#4c69ba, #3b55a0);
 				padding: 2px 5px;
@@ -1537,6 +1579,7 @@
 						    font-weight: bold;
 						    padding: 0px 50px;
 						    text-align: center;
+						    margin-bottom: 30px;
 						}
 					}
 				}
@@ -1551,10 +1594,57 @@
 						}
 					}
 				}
-				.views-field-field-start-date-1{
-					
+				.views-field-view-node{
+					float: left;
+					a{
+						font-weight: bold;
+						font-style: italic;
+						display: block;
+						margin-bottom: 20px;
+						&:before{
+							content: "> ";
+						}
+					}
 				}
-
+				.views-field-field-start-date-1{
+					font-size: @size3;
+				}
+				.views-field-field-country-code, .views-field-field-city{
+					font-weight: bold;
+					display: inline-block;
+				}
+				.views-field-field-city{
+					&:before{
+						content:" (";
+					}
+					&:after{
+						content:") ";
+					}
+				}
+				.views-field-body{
+					margin-top: 1em;
+					margin-bottom: 1em;
+				}
+				.views-field-field-website-of-event,  .views-field-view-node{
+					font-weight: bold;
+					font-style: italic;
+					&:before{
+						color: @color2;
+						content: ">";
+					}
+				}
+			}
+		}
+	}
+	form{
+		.views-exposed-form .views-exposed-widget{
+			padding-right: 0;
+			button.form-submit {
+				margin-top: 0em;
+				background: @bg-color-2 url("../images/content/search.png") no-repeat center;
+				height: 34px;
+				width: 30px;
+				color: @color0;
 			}
 		}
 	}
@@ -1566,7 +1656,7 @@
 	article{
 		//margin: 0px 135px; quitado para responsive
 		.field-name-title-field{
-			margin-bottom: 2em;
+			margin-bottom: 1em;
 		}
 
 		.dot-separator.green{
@@ -1718,11 +1808,13 @@
 				&:before{
 					content: " ";
 				    background: url("../images/content/icono-become-big.png") no-repeat center;
-				    margin-top: 0em;
+				    margin: 0 auto;
 				    margin-bottom: 20px;
 				    display: block;
 				    background-size: cover;
 				    min-height: 210px;
+				    width: 161px;
+    				min-height: 160px;
 				}
 			}
 		}
@@ -1969,14 +2061,31 @@
 		.pane-node-field-quote{
 			font-style: italic;
 			font-weight: bold;
-			.quottes-left{
+			position: relative;
+			&:before{
+				content:"";
+				margin-left: 15px;
+				width: 50px;
 				height: 50px;
+				float: left;
+				display: block;
 				background: url("../images/content/quottes.png") center no-repeat;
 			}
-			.quottes-right{
+			&:after{
+				content:"";
+				margin-right: 15px;
+				width: 50px;
 				height: 50px;
+				display: block;
 				background: url("../images/content/quottes.png") center no-repeat;
 				transform: rotate(180deg);
+				top: 0;
+			    right: 0;
+			    position: absolute;
+			    float: right;
+			}
+			.field-name-field-quote{
+				margin: 0px 70px;
 			}
 		}
 	}
@@ -2243,6 +2352,31 @@
 	}
 }
 /*fin campaign materials*/
+/*Publications detail*/
+.node-type-publication{
+	.pane-node-field-file{
+		padding-top: 1em;
+		clear: both;
+		.first.last{
+			display: inline-flex;
+    		font-weight: bold;
+    		font-style: italic;
+    		> div:first-child{
+    			a{
+    				color: @colorNormalText;
+    			}
+    		}
+    		ul{
+    			.first.last{
+    				a{
+    					margin-left: 1em;
+    				}
+    			}
+    		}
+		}
+	}
+}
+/*fin publications detail*/
 
 /*official campaign partners list*/
 .node-145{
