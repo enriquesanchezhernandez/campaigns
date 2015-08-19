@@ -114,21 +114,10 @@ function osha_press_release_default_page_manager_pages() {
         'type' => 'row',
         'contains' => 'region',
         'children' => array(
-          0 => 'content',
-          1 => 'middle_content',
-          2 => 'right_content',
+          0 => 'middle_content',
         ),
         'parent' => '2',
         'class' => 'row',
-        'hide_empty' => 0,
-      ),
-      'content' => array(
-        'type' => 'region',
-        'title' => 'Left content',
-        'width' => '33.38407910914351',
-        'width_type' => '%',
-        'parent' => '4',
-        'class' => 'press-room-blocks-left col-md-4',
         'hide_empty' => 0,
       ),
       5 => array(
@@ -153,19 +142,10 @@ function osha_press_release_default_page_manager_pages() {
       'middle_content' => array(
         'type' => 'region',
         'title' => 'Middle content',
-        'width' => '33.35879372997227',
+        'width' => 100,
         'width_type' => '%',
         'parent' => '4',
-        'class' => 'col-md-4',
-        'hide_empty' => 0,
-      ),
-      'right_content' => array(
-        'type' => 'region',
-        'title' => 'Right content',
-        'width' => '33.25712716088423',
-        'width_type' => '%',
-        'parent' => '4',
-        'class' => 'col-md-4',
+        'class' => '',
         'hide_empty' => 0,
       ),
     ),
@@ -219,48 +199,13 @@ function osha_press_release_default_page_manager_pages() {
     $display->content['new-9d10b397-49da-4a63-ba51-0166313a0939'] = $pane;
     $display->panels['center'][0] = 'new-9d10b397-49da-4a63-ba51-0166313a0939';
     $pane = new stdClass();
-    $pane->pid = 'new-1c60c9c7-6bf8-4bec-9bcd-43c25b6ba467';
-    $pane->panel = 'content';
-    $pane->type = 'block';
-    $pane->subtype = 'osha_press_release-osha_press_rel_become_partner';
-    $pane->shown = TRUE;
-    $pane->access = array();
-    $pane->configuration = array(
-      'override_title' => 0,
-      'override_title_text' => '',
-      'override_title_heading' => 'h2',
-    );
-    $pane->cache = array();
-    $pane->style = array(
-      'settings' => NULL,
-    );
-    $pane->css = array();
-    $pane->extras = array();
-    $pane->position = 0;
-    $pane->locks = array();
-    $pane->uuid = '1c60c9c7-6bf8-4bec-9bcd-43c25b6ba467';
-    $display->content['new-1c60c9c7-6bf8-4bec-9bcd-43c25b6ba467'] = $pane;
-    $display->panels['content'][0] = 'new-1c60c9c7-6bf8-4bec-9bcd-43c25b6ba467';
-    $pane = new stdClass();
-    $pane->pid = 'new-5ad04895-c00a-4843-b9ec-d0e132465985';
+    $pane->pid = 'new-9859b6ee-8b24-4df5-92eb-e866629be34d';
     $pane->panel = 'middle_content';
-    $pane->type = 'views';
-    $pane->subtype = 'press_contacts';
+    $pane->type = 'panels_mini';
+    $pane->subtype = 'press_room_blocks';
     $pane->shown = TRUE;
     $pane->access = array();
     $pane->configuration = array(
-      'override_pager_settings' => 0,
-      'use_pager' => 0,
-      'nodes_per_page' => '0',
-      'pager_id' => '0',
-      'offset' => '0',
-      'more_link' => 0,
-      'feed_icons' => 0,
-      'panel_args' => 0,
-      'link_to_view' => 0,
-      'args' => '',
-      'url' => '',
-      'display' => 'block',
       'override_title' => 0,
       'override_title_text' => '',
       'override_title_heading' => 'h2',
@@ -273,9 +218,9 @@ function osha_press_release_default_page_manager_pages() {
     $pane->extras = array();
     $pane->position = 0;
     $pane->locks = array();
-    $pane->uuid = '5ad04895-c00a-4843-b9ec-d0e132465985';
-    $display->content['new-5ad04895-c00a-4843-b9ec-d0e132465985'] = $pane;
-    $display->panels['middle_content'][0] = 'new-5ad04895-c00a-4843-b9ec-d0e132465985';
+    $pane->uuid = '9859b6ee-8b24-4df5-92eb-e866629be34d';
+    $display->content['new-9859b6ee-8b24-4df5-92eb-e866629be34d'] = $pane;
+    $display->panels['middle_content'][0] = 'new-9859b6ee-8b24-4df5-92eb-e866629be34d';
     $pane = new stdClass();
     $pane->pid = 'new-c79a41b1-35b5-4f7f-a5f5-c26d6c4892dd';
     $pane->panel = 'press_room_content';
@@ -311,29 +256,6 @@ function osha_press_release_default_page_manager_pages() {
     $pane->uuid = 'c79a41b1-35b5-4f7f-a5f5-c26d6c4892dd';
     $display->content['new-c79a41b1-35b5-4f7f-a5f5-c26d6c4892dd'] = $pane;
     $display->panels['press_room_content'][0] = 'new-c79a41b1-35b5-4f7f-a5f5-c26d6c4892dd';
-    $pane = new stdClass();
-    $pane->pid = 'new-5812975f-d6f9-4c73-9a5e-1f3c2d66dff8';
-    $pane->panel = 'right_content';
-    $pane->type = 'block';
-    $pane->subtype = 'osha_press_release-osha_press_kit';
-    $pane->shown = TRUE;
-    $pane->access = array();
-    $pane->configuration = array(
-      'override_title' => 0,
-      'override_title_text' => '',
-      'override_title_heading' => 'h2',
-    );
-    $pane->cache = array();
-    $pane->style = array(
-      'settings' => NULL,
-    );
-    $pane->css = array();
-    $pane->extras = array();
-    $pane->position = 0;
-    $pane->locks = array();
-    $pane->uuid = '5812975f-d6f9-4c73-9a5e-1f3c2d66dff8';
-    $display->content['new-5812975f-d6f9-4c73-9a5e-1f3c2d66dff8'] = $pane;
-    $display->panels['right_content'][0] = 'new-5812975f-d6f9-4c73-9a5e-1f3c2d66dff8';
   $display->hide_title = PANELS_TITLE_PANE;
   $display->title_pane = 'new-9d10b397-49da-4a63-ba51-0166313a0939';
   $handler->conf['display'] = $display;
