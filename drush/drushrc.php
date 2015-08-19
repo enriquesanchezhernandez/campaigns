@@ -367,6 +367,8 @@ $options['init-modules'] = array(
   'ds',
   'ds_ui',
   'ds_extras',
+  'field_formatter_settings',
+  'field_formatter_class',
 
   'views_slideshow',
   'views_slideshow_cycle',
