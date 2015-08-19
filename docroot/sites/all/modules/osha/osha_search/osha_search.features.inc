@@ -177,6 +177,7 @@ function osha_search_default_search_api_index() {
         "field_aditional_resources" : { "type" : "list\\u003Cinteger\\u003E", "entity_type" : "node" },
         "field_aditional_resources:body:summary" : { "type" : "list\\u003Ctext\\u003E" },
         "field_aditional_resources:body:value" : { "type" : "list\\u003Ctext\\u003E" },
+        "field_aditional_resources:field_publication_type" : { "type" : "list\\u003Cinteger\\u003E", "entity_type" : "taxonomy_term" },
         "field_aditional_resources:field_summary" : { "type" : "list\\u003Ctext\\u003E" },
         "field_aditional_resources:title" : { "type" : "list\\u003Ctext\\u003E" },
         "field_aditional_resources:title_field" : { "type" : "list\\u003Ctext\\u003E" },
