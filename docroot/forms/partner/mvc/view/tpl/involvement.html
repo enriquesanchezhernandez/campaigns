@@ -1,0 +1,61 @@
+{if $progressbar} {$progressbar} {/if}
+<div id="content">
+    {if $sidebar} {$sidebar} {/if}
+    <div id="form" class="main-form sidebar-border">
+        <form class="form-horizontal" method="post" action="{$appurl}&action=send">
+            <fieldset>
+                <!-- Form Name -->
+                <legend id="INVOLVEMENT">Your involvement in the campaign</legend>
+
+                {if empty($session_id) && !$mf}
+                <!-- Textarea -->
+                <div class="control-group">
+                    <label class="control-label" for="why_area">Why do you want to be an official campaign partner</label>
+
+                    <p class="help-block">Please indicate to us what motivates you to become an official campaign partner for the healthy campaign 2015/2016.</p>
+
+                    <div class="controls">
+                        <textarea {$disabled} id="why_area" name="why_area" placeholder="Please provide a short description of your motivations" data-section="INVOLVEMENT"></textarea>
+                    </div>
+                </div>
+
+
+                <!-- Textarea -->
+                <div class="control-group">
+                    <label class="control-label" for="how_area">How do you plan to promote and support the campaign via your corporate website</label>
+
+                    <p class="help-block">Tell us in short the healthy workplace will be promoted on your corporate website.
+                        When possible use links to show us the section of your website that will be used for the promotion.</p>
+
+                    <div class="controls">
+                        <textarea {$disabled} id="how_area" name="how_area" placeholder="Please provide a short description of your online support" data-section="INVOLVEMENT"></textarea>
+                    </div>
+                </div>
+                {/if}
+
+                <!-- Textarea -->
+                <div class="control-group">
+                    <label class="control-label" for="osh_campaignpledge">How does your organisation plan to contribute to making this Campaign a joint success? (Campaign Pledge)</label>
+
+                    <p class="help-block">Please describe how your organisation will help is co-create a successful campaign in the year 2015/2016.
+                        What do you pledge as part of your involvement with the healthy workplaces campaign.</p>
+
+                    <div class="controls">
+                        <textarea {$disabled} id="osh_campaignpledge" name="osh_campaignpledge" placeholder="Please provide us your contribution plans" data-section="INVOLVEMENT">{if !empty($attributes.osh_campaignpledge)}{$attributes.osh_campaignpledge}{/if}</textarea>
+                    </div>
+                </div>
+
+                <!-- Button (Double) -->
+                <div class="control-group">
+                    <label class="control-label" for="next"></label>
+                    <div class="controls">
+                        <button id="save" name="save" data-section="INVOLVEMENT">Save</button>
+                        <input id="next" name="next" value="Finalize your registration - Give us your primary contact information." type="submit" data-section="INVOLVEMENT"/>
+                    </div>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+</div>
+
+<div class="clear"></div>
