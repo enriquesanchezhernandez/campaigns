@@ -69,7 +69,7 @@ function campaign_materials_strongarm() {
         'custom_settings' => TRUE,
       ),
       'osha_slideshow' => array(
-        'custom_settings' => TRUE,
+        'custom_settings' => FALSE,
       ),
       'highlights_item' => array(
         'custom_settings' => TRUE,
@@ -102,7 +102,16 @@ function campaign_materials_strongarm() {
         'custom_settings' => FALSE,
       ),
       'pub_teaser' => array(
-        'custom_settings' => TRUE,
+        'custom_settings' => FALSE,
+      ),
+      'title_body' => array(
+        'custom_settings' => FALSE,
+      ),
+      'body' => array(
+        'custom_settings' => FALSE,
+      ),
+      'revision' => array(
+        'custom_settings' => FALSE,
       ),
     ),
     'extra_fields' => array(
