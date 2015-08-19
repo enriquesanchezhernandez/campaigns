@@ -364,6 +364,9 @@ $options['init-modules'] = array(
   'page_manager',
   'views_content',
   'i18n_panels',
+  'ds',
+  'ds_ui',
+  'ds_extras',
 
   'views_slideshow',
   'views_slideshow_cycle',
