@@ -17,6 +17,10 @@ function osha_publication_menu_publications_form($form, $form_state) {
       '#attributes' => array('class' => array('col col-md-9')),
     )
   );
+  $form['content']['slideshow'] = array(
+    '#type' => 'markup',
+    '#markup' => views_embed_view('publications_slideshow', 'slidehow'),
+  );
   $form['content']['text'] = array(
     '#type' => 'textfield',
     '#size' => 30,

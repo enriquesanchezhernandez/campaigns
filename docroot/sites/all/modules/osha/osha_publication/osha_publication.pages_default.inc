@@ -353,41 +353,6 @@ function osha_publication_default_page_manager_pages() {
     $display->content['new-e7a9ab38-c830-4b2e-9e23-f49f161509c1'] = $pane;
     $display->panels['middle'][0] = 'new-e7a9ab38-c830-4b2e-9e23-f49f161509c1';
     $pane = new stdClass();
-    $pane->pid = 'new-12c3f7f5-7fb9-43db-b7ae-40dfce911938';
-    $pane->panel = 'middle';
-    $pane->type = 'views';
-    $pane->subtype = 'publications_slideshow';
-    $pane->shown = TRUE;
-    $pane->access = array();
-    $pane->configuration = array(
-      'override_pager_settings' => 0,
-      'use_pager' => 0,
-      'nodes_per_page' => '4',
-      'pager_id' => '0',
-      'offset' => '0',
-      'more_link' => 0,
-      'feed_icons' => 0,
-      'panel_args' => 0,
-      'link_to_view' => 0,
-      'args' => '',
-      'url' => '',
-      'display' => 'slidehow',
-      'override_title' => 1,
-      'override_title_text' => '',
-      'override_title_heading' => 'h2',
-    );
-    $pane->cache = array();
-    $pane->style = array(
-      'settings' => NULL,
-    );
-    $pane->css = array();
-    $pane->extras = array();
-    $pane->position = 1;
-    $pane->locks = array();
-    $pane->uuid = '12c3f7f5-7fb9-43db-b7ae-40dfce911938';
-    $display->content['new-12c3f7f5-7fb9-43db-b7ae-40dfce911938'] = $pane;
-    $display->panels['middle'][1] = 'new-12c3f7f5-7fb9-43db-b7ae-40dfce911938';
-    $pane = new stdClass();
     $pane->pid = 'new-f5de493b-9610-4004-94cd-4bdb77aebd96';
     $pane->panel = 'middle';
     $pane->type = 'block';
@@ -405,11 +370,11 @@ function osha_publication_default_page_manager_pages() {
     );
     $pane->css = array();
     $pane->extras = array();
-    $pane->position = 2;
+    $pane->position = 1;
     $pane->locks = array();
     $pane->uuid = 'f5de493b-9610-4004-94cd-4bdb77aebd96';
     $display->content['new-f5de493b-9610-4004-94cd-4bdb77aebd96'] = $pane;
-    $display->panels['middle'][2] = 'new-f5de493b-9610-4004-94cd-4bdb77aebd96';
+    $display->panels['middle'][1] = 'new-f5de493b-9610-4004-94cd-4bdb77aebd96';
   $display->hide_title = PANELS_TITLE_PANE;
   $display->title_pane = 'new-e7a9ab38-c830-4b2e-9e23-f49f161509c1';
   $handler->conf['display'] = $display;
