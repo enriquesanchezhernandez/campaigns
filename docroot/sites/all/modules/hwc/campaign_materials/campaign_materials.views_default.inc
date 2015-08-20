@@ -111,11 +111,16 @@ function campaign_materials_views_default_views() {
   );
   $handler->display->display_options['fields']['field_related_documents']['delta_offset'] = '0';
   $handler->display->display_options['fields']['field_related_documents']['multi_type'] = 'ul';
-  /* Sort criterion: Content: Post date */
-  $handler->display->display_options['sorts']['created']['id'] = 'created';
-  $handler->display->display_options['sorts']['created']['table'] = 'node';
-  $handler->display->display_options['sorts']['created']['field'] = 'created';
-  $handler->display->display_options['sorts']['created']['order'] = 'DESC';
+  /* Sort criterion: Field: Publication date (field_publication_date) */
+  $handler->display->display_options['sorts']['field_publication_date_value']['id'] = 'field_publication_date_value';
+  $handler->display->display_options['sorts']['field_publication_date_value']['table'] = 'field_data_field_publication_date';
+  $handler->display->display_options['sorts']['field_publication_date_value']['field'] = 'field_publication_date_value';
+  $handler->display->display_options['sorts']['field_publication_date_value']['order'] = 'DESC';
+  $handler->display->display_options['filter_groups']['groups'] = array(
+    1 => 'AND',
+    2 => 'OR',
+    3 => 'OR',
+  );
   /* Filter criterion: Content: Published */
   $handler->display->display_options['filters']['status']['id'] = 'status';
   $handler->display->display_options['filters']['status']['table'] = 'node';
@@ -130,6 +135,39 @@ function campaign_materials_views_default_views() {
   $handler->display->display_options['filters']['type']['value'] = array(
     'campaign_materials' => 'campaign_materials',
   );
+  $handler->display->display_options['filters']['type']['group'] = 1;
+  /* Filter criterion: Field: Publication date (field_publication_date) */
+  $handler->display->display_options['filters']['field_publication_date_value']['id'] = 'field_publication_date_value';
+  $handler->display->display_options['filters']['field_publication_date_value']['table'] = 'field_data_field_publication_date';
+  $handler->display->display_options['filters']['field_publication_date_value']['field'] = 'field_publication_date_value';
+  $handler->display->display_options['filters']['field_publication_date_value']['operator'] = 'empty';
+  $handler->display->display_options['filters']['field_publication_date_value']['group'] = 2;
+  $handler->display->display_options['filters']['field_publication_date_value']['default_date'] = 'now';
+  /* Filter criterion: Field: Publication date (field_publication_date) */
+  $handler->display->display_options['filters']['field_publication_date_value_1']['id'] = 'field_publication_date_value_1';
+  $handler->display->display_options['filters']['field_publication_date_value_1']['table'] = 'field_data_field_publication_date';
+  $handler->display->display_options['filters']['field_publication_date_value_1']['field'] = 'field_publication_date_value';
+  $handler->display->display_options['filters']['field_publication_date_value_1']['operator'] = '<=';
+  $handler->display->display_options['filters']['field_publication_date_value_1']['group'] = 2;
+  $handler->display->display_options['filters']['field_publication_date_value_1']['granularity'] = 'minute';
+  $handler->display->display_options['filters']['field_publication_date_value_1']['default_date'] = 'now';
+  $handler->display->display_options['filters']['field_publication_date_value_1']['year_range'] = '-10:+10';
+  /* Filter criterion: Content: Expiration date (field_expiration_date) */
+  $handler->display->display_options['filters']['field_expiration_date_value']['id'] = 'field_expiration_date_value';
+  $handler->display->display_options['filters']['field_expiration_date_value']['table'] = 'field_data_field_expiration_date';
+  $handler->display->display_options['filters']['field_expiration_date_value']['field'] = 'field_expiration_date_value';
+  $handler->display->display_options['filters']['field_expiration_date_value']['operator'] = '>=';
+  $handler->display->display_options['filters']['field_expiration_date_value']['group'] = 3;
+  $handler->display->display_options['filters']['field_expiration_date_value']['granularity'] = 'minute';
+  $handler->display->display_options['filters']['field_expiration_date_value']['default_date'] = 'now';
+  $handler->display->display_options['filters']['field_expiration_date_value']['year_range'] = '-10:+10';
+  /* Filter criterion: Content: Expiration date (field_expiration_date) */
+  $handler->display->display_options['filters']['field_expiration_date_value_1']['id'] = 'field_expiration_date_value_1';
+  $handler->display->display_options['filters']['field_expiration_date_value_1']['table'] = 'field_data_field_expiration_date';
+  $handler->display->display_options['filters']['field_expiration_date_value_1']['field'] = 'field_expiration_date_value';
+  $handler->display->display_options['filters']['field_expiration_date_value_1']['operator'] = 'empty';
+  $handler->display->display_options['filters']['field_expiration_date_value_1']['group'] = 3;
+  $handler->display->display_options['filters']['field_expiration_date_value_1']['granularity'] = 'minute';
 
   /* Display: Block */
   $handler = $view->new_display('block', 'Block', 'block');
