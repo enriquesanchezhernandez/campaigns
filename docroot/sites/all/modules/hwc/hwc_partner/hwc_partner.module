@@ -179,7 +179,7 @@ function hwc_partner_block_view($delta = '') {
   else if ($delta == 'hwc_partner_profile_title') {
     // Did this to use it in panels.
     $block['title'] = '<none>';
-    $block['content'] = t('My public profile');
+    $block['content'] = '<h1>' . t('My public profile') . '</h1>';
   }
   return $block;
 }
