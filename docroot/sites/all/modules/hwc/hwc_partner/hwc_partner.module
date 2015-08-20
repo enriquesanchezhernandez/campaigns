@@ -11,6 +11,39 @@ define ('PARTNER_TYPE_OCP', '825c3b00-0dd2-4026-b292-bc76d6e49a70');
 define ('PARTNER_TYPE_MP', '8b662e6e-054a-4148-8495-490ac5858964');
 define ('PARTNER_TYPE_FOP', '1dca3546-7c11-49b5-b74f-a77f87f60d96');
 
+
+
+function hwc_partner_context_plugins() {
+  $plugins = array();
+  $plugins['hwc_context_condition_partner_page'] = array(
+    'handler' => array(
+      'path' => drupal_get_path('module', 'hwc_partner') .'/context',
+      'file' => 'hwc_context_condition_partner_page.inc',
+      'class' => 'hwc_context_condition_partner_page',
+      'parent' => 'context_condition',
+    ),
+  );
+  return $plugins;
+}
+
+function hwc_partner_context_registry() {
+  return array(
+    'conditions' => array(
+      'hwc_context_condition_partner_page' => array(
+        'title' => t('Page belongs to partner'),
+        'description' => t('Triggers context to check if page section is the same with current user section'),
+        'plugin' => 'hwc_context_condition_partner_page',
+      ),
+    ),
+  );
+}
+
+function hwc_partner_context_page_condition() {
+  if ($plugin = context_get_plugin('condition', 'hwc_context_condition_partner_page')) {
+    $plugin->execute();
+  }
+}
+
 /**
  * Implements hook_block_info().
  */
@@ -26,6 +59,13 @@ function hwc_partner_block_info() {
       'cache' => DRUPAL_CACHE_GLOBAL,
     );
   }
+  $blocks['hwc_partner_profile_title'] = array(
+    'info' => t('My public profile'),
+    'status' => 1,
+    'region' => '-1',
+    'visibility' => BLOCK_VISIBILITY_NOTLISTED,
+    'cache' => DRUPAL_CACHE_GLOBAL,
+  );
   return $blocks;
 }
 
@@ -48,36 +88,38 @@ function hwc_partner_field_extra_fields() {
  */
 function hwc_partner_block_configure($delta = '') {
   $form = array();
-  // Get the number of the block (0,1,2)
-  $it = substr($delta, -1);
-  $form['hwc_partner_private_link_' . $it . '_title'] = array(
-    '#type' => 'textfield',
-    '#title' => t('Link title'),
-    '#size' => 60,
-    '#description' => 'This text will appear at the top of the block.',
-    '#default_value' => variable_get('hwc_partner_private_link_' . $it . '_title', ''),
-  );
-  $form['hwc_partner_private_link_' . $it . '_description'] = array(
-    '#type' => 'textarea',
-    '#title' => t('Description'),
-    '#size' => 60,
-    '#description' => 'This text will appear as a description under the title.',
-    '#default_value' => variable_get('hwc_partner_private_link_' . $it . '_description', ''),
-  );
-  $form['hwc_partner_private_link_' . $it . '_link_text'] = array(
-    '#type' => 'textfield',
-    '#title' => t('Link text'),
-    '#size' => 60,
-    '#description' => 'This will appear after description. (e.g. "Click here").',
-    '#default_value' => variable_get('hwc_partner_private_link_' . $it . '_link_text', ''),
-  );
-  $form['hwc_partner_private_link_' . $it . '_url'] = array(
-    '#type' => 'textfield',
-    '#title' => t('Link URL'),
-    '#size' => 60,
-    '#description' => 'This will be the url of the private link.',
-    '#default_value' => variable_get('hwc_partner_private_link_' . $it . '_url', ''),
-  );
+  if (preg_match('/hwc_partner_private_link_[0-2]/', $delta)) {
+    // Get the number of the block (0,1,2)
+    $it = substr($delta, -1);
+    $form['hwc_partner_private_link_' . $it . '_title'] = array(
+      '#type' => 'textfield',
+      '#title' => t('Link title'),
+      '#size' => 60,
+      '#description' => 'This text will appear at the top of the block.',
+      '#default_value' => variable_get('hwc_partner_private_link_' . $it . '_title', ''),
+    );
+    $form['hwc_partner_private_link_' . $it . '_description'] = array(
+      '#type' => 'textarea',
+      '#title' => t('Description'),
+      '#size' => 60,
+      '#description' => 'This text will appear as a description under the title.',
+      '#default_value' => variable_get('hwc_partner_private_link_' . $it . '_description', ''),
+    );
+    $form['hwc_partner_private_link_' . $it . '_link_text'] = array(
+      '#type' => 'textfield',
+      '#title' => t('Link text'),
+      '#size' => 60,
+      '#description' => 'This will appear after description. (e.g. "Click here").',
+      '#default_value' => variable_get('hwc_partner_private_link_' . $it . '_link_text', ''),
+    );
+    $form['hwc_partner_private_link_' . $it . '_url'] = array(
+      '#type' => 'textfield',
+      '#title' => t('Link URL'),
+      '#size' => 60,
+      '#description' => 'This will be the url of the private link.',
+      '#default_value' => variable_get('hwc_partner_private_link_' . $it . '_url', ''),
+    );
+  }
   return $form;
 }
 
@@ -133,6 +175,11 @@ function hwc_partner_block_view($delta = '') {
         );
       }
     }
+  }
+  else if ($delta == 'hwc_partner_profile_title') {
+    // Did this to use it in panels.
+    $block['title'] = '<none>';
+    $block['content'] = t('My public profile');
   }
   return $block;
 }
