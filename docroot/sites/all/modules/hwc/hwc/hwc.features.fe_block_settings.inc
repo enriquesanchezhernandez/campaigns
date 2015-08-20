@@ -14,6 +14,7 @@ function hwc_default_fe_block_settings() {
 
   $export['menu-menu-footer-menu'] = array(
     'cache' => -1,
+    'css_class' => '',
     'custom' => 0,
     'delta' => 'menu-footer-menu',
     'i18n_block_language' => array(),
