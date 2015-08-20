@@ -2522,9 +2522,8 @@ function osha_press_release_field_default_field_instances() {
         'module' => 'text',
         'settings' => array(
           'field_formatter_class' => '',
-          'trim_length' => 600,
         ),
-        'type' => 'text_trimmed',
+        'type' => 'text_default',
         'weight' => 1,
       ),
     ),
