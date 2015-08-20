@@ -205,7 +205,7 @@ function hwc_partner_default_page_manager_handlers() {
           0 => 'center__',
         ),
         'parent' => 'main',
-        'class' => 'profile-edit-links-container',
+        'class' => '',
         'hide_empty' => 0,
       ),
       'center__' => array(
@@ -242,7 +242,7 @@ function hwc_partner_default_page_manager_handlers() {
           0 => 'my_title',
         ),
         'parent' => 'main',
-        'class' => '',
+        'class' => 'profile-edit-links-container',
         'hide_empty' => 0,
       ),
       'my_title' => array(
