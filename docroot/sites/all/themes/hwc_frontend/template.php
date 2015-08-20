@@ -144,6 +144,17 @@ function hwc_frontend_preprocess_page(&$vars) {
             '#prefix' => '<strong class="title-alt">', '#suffix' => '</strong>'
           );
           break;
+
+        case 'campaign_materials':
+          $link_title = t('Back to campaign materials list');
+          $link_href = 'campaign-materials';
+          $vars['page']['above_title']['title-alternative'] = array(
+            '#type' => 'item',
+            '#markup' => t('Campaign materials'),
+            '#prefix' => '<strong class="title-alt">', '#suffix' => '</strong>'
+          );
+          break;
+
       }
       if (isset($link_title)) {
         $vars['page']['above_title']['back-to-link'] = array(

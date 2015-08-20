@@ -62,6 +62,38 @@ function campaign_materials_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'exclude_node_title_content_type_modes_campaign_materials';
+  $strongarm->value = array(
+    'full' => 'full',
+    'teaser' => 'teaser',
+    'rss' => 0,
+    'search_index' => 0,
+    'search_result' => 0,
+    'diff_standard' => 0,
+    'title_body' => 0,
+    'body' => 0,
+    'osha_slideshow' => 0,
+    'highlights_item' => 0,
+    'newsletter_item' => 0,
+    'pub_teaser' => 0,
+    'osha_resources' => 0,
+    'print' => 0,
+    'token' => 0,
+    'revision' => 0,
+    'nodeform' => 0,
+  );
+  $export['exclude_node_title_content_type_modes_campaign_materials'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'exclude_node_title_content_type_value_campaign_materials';
+  $strongarm->value = 'all';
+  $export['exclude_node_title_content_type_value_campaign_materials'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'field_bundle_settings_node__campaign_materials';
   $strongarm->value = array(
     'view_modes' => array(

@@ -24,7 +24,7 @@ function campaign_materials_field_default_field_instances() {
           'field_formatter_class' => '',
         ),
         'type' => 'text_default',
-        'weight' => 0,
+        'weight' => 3,
       ),
       'highlights_item' => array(
         'label' => 'above',
@@ -109,7 +109,7 @@ function campaign_materials_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 9,
+        'weight' => 18,
       ),
       'highlights_item' => array(
         'label' => 'above',
@@ -179,7 +179,7 @@ function campaign_materials_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 11,
+        'weight' => 20,
       ),
       'highlights_item' => array(
         'label' => 'above',
@@ -259,7 +259,7 @@ function campaign_materials_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 6,
+        'weight' => 15,
       ),
       'highlights_item' => array(
         'label' => 'above',
@@ -330,7 +330,7 @@ function campaign_materials_field_default_field_instances() {
         'label' => 'hidden',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 3,
+        'weight' => 13,
       ),
       'highlights_item' => array(
         'label' => 'above',
@@ -400,7 +400,7 @@ function campaign_materials_field_default_field_instances() {
         'label' => 'hidden',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 7,
+        'weight' => 16,
       ),
       'highlights_item' => array(
         'label' => 'above',
@@ -471,7 +471,7 @@ function campaign_materials_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 8,
+        'weight' => 17,
       ),
       'highlights_item' => array(
         'label' => 'above',
@@ -551,7 +551,7 @@ function campaign_materials_field_default_field_instances() {
         'settings' => array(
           'field_formatter_class' => '',
           'image_link' => '',
-          'image_style' => '',
+          'image_style' => 'large',
         ),
         'type' => 'image',
         'weight' => 1,
@@ -653,7 +653,7 @@ function campaign_materials_field_default_field_instances() {
         'label' => 'hidden',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 14,
+        'weight' => 22,
       ),
       'highlights_item' => array(
         'label' => 'above',
@@ -729,7 +729,7 @@ function campaign_materials_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 10,
+        'weight' => 19,
       ),
       'highlights_item' => array(
         'label' => 'above',
@@ -798,9 +798,18 @@ function campaign_materials_field_default_field_instances() {
     'display' => array(
       'default' => array(
         'label' => 'hidden',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 5,
+        'module' => 'date',
+        'settings' => array(
+          'field_formatter_class' => '',
+          'format_type' => 'long',
+          'fromto' => 'both',
+          'multiple_from' => '',
+          'multiple_number' => '',
+          'multiple_to' => '',
+          'osha_date_theme' => '',
+        ),
+        'type' => 'date_default',
+        'weight' => 2,
       ),
       'highlights_item' => array(
         'label' => 'above',
@@ -893,7 +902,7 @@ function campaign_materials_field_default_field_instances() {
           'size' => 1,
         ),
         'type' => 'icon_file_formatter',
-        'weight' => 15,
+        'weight' => 4,
       ),
       'highlights_item' => array(
         'label' => 'above',
@@ -926,7 +935,7 @@ function campaign_materials_field_default_field_instances() {
         'weight' => 0,
       ),
       'teaser' => array(
-        'label' => 'above',
+        'label' => 'hidden',
         'module' => 'campaign_materials',
         'settings' => array(
           'description' => 0,
@@ -979,7 +988,7 @@ function campaign_materials_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 4,
+        'weight' => 14,
       ),
       'highlights_item' => array(
         'label' => 'above',
@@ -1055,7 +1064,7 @@ function campaign_materials_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 12,
+        'weight' => 21,
       ),
       'highlights_item' => array(
         'label' => 'above',
@@ -1122,10 +1131,16 @@ function campaign_materials_field_default_field_instances() {
     'description' => '',
     'display' => array(
       'default' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 13,
+        'label' => 'hidden',
+        'module' => 'title',
+        'settings' => array(
+          'field_formatter_class' => '',
+          'title_class' => '',
+          'title_link' => '',
+          'title_style' => 'h2',
+        ),
+        'type' => 'title_linked',
+        'weight' => 0,
       ),
       'highlights_item' => array(
         'label' => 'above',
