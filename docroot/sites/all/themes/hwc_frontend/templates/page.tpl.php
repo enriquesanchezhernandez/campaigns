@@ -127,8 +127,8 @@ $theme_dir = drupal_get_path('theme', 'hwc_frontend');
         <?php print render($page['sidebar_first']); ?>
       </aside>  <!-- /#sidebar-first -->
     <?php endif; ?>
-    <section class="<?php print $content_class; ?>">
-		<?php /* print $content_column_class; */ ?>
+    <section class="<?php print (!empty($content_class)) ? $content_class : ''; ?>"
+    <?php /* print $content_column_class; */ ?>
       <?php if (!empty($page['highlighted'])): ?>
         <div class="highlighted jumbotron"><?php print render($page['highlighted']); ?></div>
       <?php endif; ?>
