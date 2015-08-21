@@ -11,6 +11,146 @@ function hwc_homepage_views_default_views() {
   $export = array();
 
   $view = new view();
+  $view->name = 'content_selection_view';
+  $view->description = '';
+  $view->tag = 'default';
+  $view->base_table = 'node';
+  $view->human_name = 'Content selection view';
+  $view->core = 7;
+  $view->api_version = '3.0';
+  $view->disabled = FALSE; /* Edit this to true to make a default view disabled initially */
+
+  /* Display: Master */
+  $handler = $view->new_display('default', 'Master', 'default');
+  $handler->display->display_options['use_ajax'] = TRUE;
+  $handler->display->display_options['use_more_always'] = FALSE;
+  $handler->display->display_options['access']['type'] = 'perm';
+  $handler->display->display_options['cache']['type'] = 'none';
+  $handler->display->display_options['query']['type'] = 'views_query';
+  $handler->display->display_options['exposed_form']['type'] = 'basic';
+  $handler->display->display_options['pager']['type'] = 'full';
+  $handler->display->display_options['style_plugin'] = 'table';
+  /* Field: Entity Reference View Widget Checkbox: Content */
+  $handler->display->display_options['fields']['entityreference_view_widget']['id'] = 'entityreference_view_widget';
+  $handler->display->display_options['fields']['entityreference_view_widget']['table'] = 'node';
+  $handler->display->display_options['fields']['entityreference_view_widget']['field'] = 'entityreference_view_widget';
+  $handler->display->display_options['fields']['entityreference_view_widget']['label'] = '';
+  $handler->display->display_options['fields']['entityreference_view_widget']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['entityreference_view_widget']['ervw']['force_single'] = 0;
+  /* Field: Content: Type */
+  $handler->display->display_options['fields']['type']['id'] = 'type';
+  $handler->display->display_options['fields']['type']['table'] = 'node';
+  $handler->display->display_options['fields']['type']['field'] = 'type';
+  $handler->display->display_options['fields']['type']['exclude'] = TRUE;
+  /* Field: Content: Title */
+  $handler->display->display_options['fields']['title']['id'] = 'title';
+  $handler->display->display_options['fields']['title']['table'] = 'node';
+  $handler->display->display_options['fields']['title']['field'] = 'title';
+  $handler->display->display_options['fields']['title']['label'] = '';
+  $handler->display->display_options['fields']['title']['alter']['word_boundary'] = FALSE;
+  $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
+  /* Sort criterion: Content: Type */
+  $handler->display->display_options['sorts']['type']['id'] = 'type';
+  $handler->display->display_options['sorts']['type']['table'] = 'node';
+  $handler->display->display_options['sorts']['type']['field'] = 'type';
+  /* Filter criterion: Content: Published */
+  $handler->display->display_options['filters']['status']['id'] = 'status';
+  $handler->display->display_options['filters']['status']['table'] = 'node';
+  $handler->display->display_options['filters']['status']['field'] = 'status';
+  $handler->display->display_options['filters']['status']['value'] = 1;
+  $handler->display->display_options['filters']['status']['group'] = 1;
+  $handler->display->display_options['filters']['status']['expose']['operator'] = FALSE;
+  /* Filter criterion: Content: Type */
+  $handler->display->display_options['filters']['type']['id'] = 'type';
+  $handler->display->display_options['filters']['type']['table'] = 'node';
+  $handler->display->display_options['filters']['type']['field'] = 'type';
+  $handler->display->display_options['filters']['type']['value'] = array(
+    'article' => 'article',
+    'campaign_materials' => 'campaign_materials',
+    'events' => 'events',
+    'news' => 'news',
+    'note_to_editor' => 'note_to_editor',
+    'partner' => 'partner',
+    'practical_tool' => 'practical_tool',
+    'press_release' => 'press_release',
+    'publication' => 'publication',
+  );
+  $handler->display->display_options['filters']['type']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['type']['expose']['operator_id'] = 'type_op';
+  $handler->display->display_options['filters']['type']['expose']['label'] = 'Type';
+  $handler->display->display_options['filters']['type']['expose']['operator'] = 'type_op';
+  $handler->display->display_options['filters']['type']['expose']['identifier'] = 'type';
+  $handler->display->display_options['filters']['type']['expose']['required'] = TRUE;
+  $handler->display->display_options['filters']['type']['expose']['remember_roles'] = array(
+    2 => '2',
+    1 => 0,
+    3 => 0,
+    4 => 0,
+    5 => 0,
+    6 => 0,
+    7 => 0,
+    8 => 0,
+    9 => 0,
+    10 => 0,
+    11 => 0,
+    12 => 0,
+    13 => 0,
+  );
+  $handler->display->display_options['filters']['type']['expose']['reduce'] = TRUE;
+  /* Filter criterion: Content: Title */
+  $handler->display->display_options['filters']['title']['id'] = 'title';
+  $handler->display->display_options['filters']['title']['table'] = 'node';
+  $handler->display->display_options['filters']['title']['field'] = 'title';
+  $handler->display->display_options['filters']['title']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['title']['expose']['operator_id'] = 'title_op';
+  $handler->display->display_options['filters']['title']['expose']['label'] = 'Title';
+  $handler->display->display_options['filters']['title']['expose']['operator'] = 'title_op';
+  $handler->display->display_options['filters']['title']['expose']['identifier'] = 'title';
+  $handler->display->display_options['filters']['title']['expose']['remember_roles'] = array(
+    2 => '2',
+    1 => 0,
+    3 => 0,
+    4 => 0,
+    5 => 0,
+    6 => 0,
+    7 => 0,
+    8 => 0,
+    9 => 0,
+    10 => 0,
+    11 => 0,
+  );
+
+  /* Display: Entity Reference View Widget */
+  $handler = $view->new_display('entityreference_view_widget', 'Entity Reference View Widget', 'entityreference_view_widget_1');
+  $handler->display->display_options['defaults']['title'] = FALSE;
+  $handler->display->display_options['defaults']['use_ajax'] = FALSE;
+  $handler->display->display_options['defaults']['style_plugin'] = FALSE;
+  $handler->display->display_options['style_plugin'] = 'table';
+  $handler->display->display_options['defaults']['style_options'] = FALSE;
+  $handler->display->display_options['defaults']['row_plugin'] = FALSE;
+  $handler->display->display_options['defaults']['row_options'] = FALSE;
+  $translatables['content_selection_view'] = array(
+    t('Master'),
+    t('more'),
+    t('Apply'),
+    t('Reset'),
+    t('Sort by'),
+    t('Asc'),
+    t('Desc'),
+    t('Items per page'),
+    t('- All -'),
+    t('Offset'),
+    t('« first'),
+    t('‹ previous'),
+    t('next ›'),
+    t('last »'),
+    t('Type'),
+    t('Title'),
+    t('Entity Reference View Widget'),
+  );
+  $export['content_selection_view'] = $view;
+
+  $view = new view();
   $view->name = 'frontpage_events';
   $view->description = '';
   $view->tag = 'default';
@@ -134,6 +274,11 @@ function hwc_homepage_views_default_views() {
   $handler->display->display_options['style_options']['default_row_class'] = FALSE;
   $handler->display->display_options['style_options']['row_class_special'] = FALSE;
   $handler->display->display_options['row_plugin'] = 'fields';
+  /* Relationship: Entity Reference: Referenced Entity */
+  $handler->display->display_options['relationships']['field_content_reference_target_id']['id'] = 'field_content_reference_target_id';
+  $handler->display->display_options['relationships']['field_content_reference_target_id']['table'] = 'field_data_field_content_reference';
+  $handler->display->display_options['relationships']['field_content_reference_target_id']['field'] = 'field_content_reference_target_id';
+  $handler->display->display_options['relationships']['field_content_reference_target_id']['required'] = TRUE;
   /* Field: Content: Title */
   $handler->display->display_options['fields']['title']['id'] = 'title';
   $handler->display->display_options['fields']['title']['table'] = 'node';
@@ -163,6 +308,14 @@ function hwc_homepage_views_default_views() {
   /* Display: Frontpage Slider */
   $handler = $view->new_display('block', 'Frontpage Slider', 'block');
   $handler->display->display_options['defaults']['fields'] = FALSE;
+  /* Field: Content: Path */
+  $handler->display->display_options['fields']['path']['id'] = 'path';
+  $handler->display->display_options['fields']['path']['table'] = 'node';
+  $handler->display->display_options['fields']['path']['field'] = 'path';
+  $handler->display->display_options['fields']['path']['relationship'] = 'field_content_reference_target_id';
+  $handler->display->display_options['fields']['path']['label'] = '';
+  $handler->display->display_options['fields']['path']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['path']['element_label_colon'] = FALSE;
   /* Field: Content: Title */
   $handler->display->display_options['fields']['title_field']['id'] = 'title_field';
   $handler->display->display_options['fields']['title_field']['table'] = 'field_data_title_field';
@@ -178,7 +331,7 @@ function hwc_homepage_views_default_views() {
   $handler->display->display_options['fields']['field_image']['field'] = 'field_image';
   $handler->display->display_options['fields']['field_image']['label'] = '';
   $handler->display->display_options['fields']['field_image']['alter']['alter_text'] = TRUE;
-  $handler->display->display_options['fields']['field_image']['alter']['text'] = '<a href="[field_banner_link_1]">
+  $handler->display->display_options['fields']['field_image']['alter']['text'] = '<a href="[path]">
 <div class="views-field-title"><span>[title_field]</span></div>
 [field_image]
 </a>';
@@ -188,62 +341,20 @@ function hwc_homepage_views_default_views() {
   $handler->display->display_options['fields']['field_image']['settings'] = array(
     'image_style' => '',
     'image_link' => '',
+    'field_formatter_class' => '',
   );
-  /* Field: Content: Body */
-  $handler->display->display_options['fields']['body']['id'] = 'body';
-  $handler->display->display_options['fields']['body']['table'] = 'field_data_body';
-  $handler->display->display_options['fields']['body']['field'] = 'body';
-  $handler->display->display_options['fields']['body']['label'] = '';
-  $handler->display->display_options['fields']['body']['element_class'] = 'banner_more_button';
-  $handler->display->display_options['fields']['body']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['body']['type'] = 'smart_trim_format';
-  $handler->display->display_options['fields']['body']['settings'] = array(
-    'trim_link' => '0',
-    'trim_length' => '20',
-    'trim_type' => 'words',
-    'trim_suffix' => '...',
-    'more_link' => '1',
-    'more_text' => '> Find out more',
-    'summary_handler' => 'ignore',
-    'trim_options' => array(
-      'text' => 0,
-    ),
-    'trim_preserve_tags' => '',
-  );
-  /* Field: Content: All taxonomy terms */
-  $handler->display->display_options['fields']['term_node_tid']['id'] = 'term_node_tid';
-  $handler->display->display_options['fields']['term_node_tid']['table'] = 'node';
-  $handler->display->display_options['fields']['term_node_tid']['field'] = 'term_node_tid';
-  $handler->display->display_options['fields']['term_node_tid']['label'] = '';
-  $handler->display->display_options['fields']['term_node_tid']['element_class'] = 'banner_more_button';
-  $handler->display->display_options['fields']['term_node_tid']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['term_node_tid']['type'] = 'ul';
-  $handler->display->display_options['fields']['term_node_tid']['link_to_taxonomy'] = FALSE;
-  $handler->display->display_options['fields']['term_node_tid']['limit'] = TRUE;
-  $handler->display->display_options['fields']['term_node_tid']['vocabularies'] = array(
-    'frontpage_banner_links' => 'frontpage_banner_links',
-    'activity' => 0,
-    'article_types' => 0,
-    'esener' => 0,
-    'section' => 0,
-    'campaign_material_types' => 0,
-    'contact_topic' => 0,
-    'contact_type' => 0,
-    'contact_type_of_sender' => 0,
-    'country' => 0,
-    'country_status' => 0,
-    'flickr_tags' => 0,
-    'newsletter_sections' => 0,
-    'organised_by' => 0,
-    'partner_types' => 0,
-    'practical_tool_relevant_for' => 0,
-    'practical_tool_types' => 0,
-    'publication_types' => 0,
-    'tags' => 0,
-    'thesaurus' => 0,
-    'wg_category' => 0,
-    'wg_role_1' => 0,
-    'wg_role_2' => 0,
+  /* Field: Content: Find out more */
+  $handler->display->display_options['fields']['field_content_reference']['id'] = 'field_content_reference';
+  $handler->display->display_options['fields']['field_content_reference']['table'] = 'field_data_field_content_reference';
+  $handler->display->display_options['fields']['field_content_reference']['field'] = 'field_content_reference';
+  $handler->display->display_options['fields']['field_content_reference']['relationship'] = 'field_content_reference_target_id';
+  $handler->display->display_options['fields']['field_content_reference']['label'] = '';
+  $handler->display->display_options['fields']['field_content_reference']['alter']['make_link'] = TRUE;
+  $handler->display->display_options['fields']['field_content_reference']['alter']['path'] = '[path]';
+  $handler->display->display_options['fields']['field_content_reference']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_content_reference']['settings'] = array(
+    'link' => 0,
+    'field_formatter_class' => '',
   );
   $translatables['frontpage_slider'] = array(
     t('Master'),
@@ -253,8 +364,9 @@ function hwc_homepage_views_default_views() {
     t('Sort by'),
     t('Asc'),
     t('Desc'),
+    t('Content entity referenced from field_content_reference'),
     t('Frontpage Slider'),
-    t('<a href="[field_banner_link_1]">
+    t('<a href="[path]">
 <div class="views-field-title"><span>[title_field]</span></div>
 [field_image]
 </a>'),
