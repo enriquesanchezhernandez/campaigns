@@ -32,20 +32,30 @@ function hwc_homepage_views_default_views() {
   $handler->display->display_options['pager']['options']['items_per_page'] = '4';
   $handler->display->display_options['style_plugin'] = 'default';
   $handler->display->display_options['row_plugin'] = 'fields';
+  /* Field: Content: Nid */
+  $handler->display->display_options['fields']['nid']['id'] = 'nid';
+  $handler->display->display_options['fields']['nid']['table'] = 'node';
+  $handler->display->display_options['fields']['nid']['field'] = 'nid';
+  $handler->display->display_options['fields']['nid']['label'] = '';
+  $handler->display->display_options['fields']['nid']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['nid']['element_label_colon'] = FALSE;
   /* Field: Content: Start date */
   $handler->display->display_options['fields']['field_start_date']['id'] = 'field_start_date';
   $handler->display->display_options['fields']['field_start_date']['table'] = 'field_data_field_start_date';
   $handler->display->display_options['fields']['field_start_date']['field'] = 'field_start_date';
   $handler->display->display_options['fields']['field_start_date']['label'] = '';
+  $handler->display->display_options['fields']['field_start_date']['alter']['make_link'] = TRUE;
+  $handler->display->display_options['fields']['field_start_date']['alter']['path'] = 'node/[nid]';
   $handler->display->display_options['fields']['field_start_date']['element_class'] = 'featured_event';
   $handler->display->display_options['fields']['field_start_date']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['field_start_date']['settings'] = array(
-    'format_type' => 'day_month_year',
+    'format_type' => 'osha_day_only',
     'fromto' => 'value',
     'multiple_number' => '',
     'multiple_from' => '',
     'multiple_to' => '',
     'osha_date_theme' => '',
+    'field_formatter_class' => '',
   );
   /* Field: Content: Title */
   $handler->display->display_options['fields']['title_field']['id'] = 'title_field';
@@ -54,7 +64,10 @@ function hwc_homepage_views_default_views() {
   $handler->display->display_options['fields']['title_field']['label'] = '';
   $handler->display->display_options['fields']['title_field']['element_class'] = 'event-link-front';
   $handler->display->display_options['fields']['title_field']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['title_field']['link_to_entity'] = 1;
+  $handler->display->display_options['fields']['title_field']['settings'] = array(
+    'field_formatter_class' => '',
+  );
+  $handler->display->display_options['fields']['title_field']['link_to_entity'] = 0;
   /* Sort criterion: Content: Start date -  start date (field_start_date) */
   $handler->display->display_options['sorts']['field_start_date_value']['id'] = 'field_start_date_value';
   $handler->display->display_options['sorts']['field_start_date_value']['table'] = 'field_data_field_start_date';
