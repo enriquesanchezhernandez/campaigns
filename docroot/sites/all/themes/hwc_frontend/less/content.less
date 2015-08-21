@@ -667,7 +667,7 @@
 		min-height: 380px;
 		height: auto !important;
 		text-align: center;
-		color: #FFF;
+		color: @color1;
 		background-size: cover;
 		padding-bottom: 3em;
 		margin-top: 3em;
@@ -676,7 +676,7 @@
 			left: 0;
 		}
 		a{
-			color: #FFF;
+			color: @color1;
 		}
 		h2{
 			margin-top: 50px;
@@ -694,7 +694,7 @@
 			input{
 				color: @input-content-default-color;
 				width: 255px;
-				background-color: #FFF;
+				background-color: @bg-default-color;
 				border: none;
 				border-radius: 0px;
 				margin: auto;
@@ -800,6 +800,23 @@
 				&:before{
 					content: ">";
 					padding-right: 0.35em;
+				}
+			}
+		}
+		.view-display-id-attachment_1{
+			padding-top: 1em;
+			padding-bottom: 1em;
+			padding-right: 1em;
+			padding-left: 2em;
+			.views-field-field-logo{
+				float: left;
+    			margin-right: 100px;
+			}
+			.views-field-title{
+				font-size: @size8;
+				font-weight: bold;
+				a{
+					color: @color5;
 				}
 			}
 		}
@@ -954,6 +971,9 @@
 			width: 30px;
 			color: @color0;
 		}
+	}
+	#block-system-main div #search div.form-type-textfield input {
+		margin-right: 0em;
 	}
 	#views-exposed-form-search-site #search button {
 		margin-top: 0;
@@ -1261,8 +1281,8 @@
 		.hwc-share-widget-twitter, .napo-share-widget-linkedin{
 			
 			a{
-				background-color: #4c69ba;//color facebook
-				background: linear-gradient(#4c69ba, #3b55a0);
+				background-color: @colorFacebook;//color facebook
+				background: linear-gradient(@colorFacebook, @colorGradient);
 				padding: 2px 5px;
 				font-size: .8em;
 				color: white;
@@ -1279,8 +1299,8 @@
 		}
 		.pull-right{
 			a{
-				background-color: #4c69ba;//color facebook
-				background: linear-gradient(#4c69ba, #3b55a0);
+				background-color: @colorFacebook;//color facebook
+				background: linear-gradient(@colorFacebook, @colorGradient);
 				padding: 2px 5px;
 				font-size: .8em;
 				color: white;
@@ -1307,12 +1327,11 @@
 .field.field-name-field-image{
 	margin-right: 1.5em;
 	margin-bottom: 1em;
-	float: left;
 }
 .field.field-name-body{
 	p{
 		a{
-			background-color: transparent;
+			background-color: @color0;
 			color: @color2;
 			font-weight: bold;
 			font-style: italic;
@@ -1325,7 +1344,7 @@
 .field-name-field-aditional-resources{
 	.field-name-title-field{
 		a{
-			background-color: transparent;
+			background-color: @color0;
 			color: @color2;
 			font-weight: bold;
 			font-style: italic;
@@ -1353,75 +1372,75 @@
 	}
 }
 //tres bloques
-.press-room-blocks-row{
-	.panels-flexible-row-inside{
-		//margin: 0px 135px; quitado para responsive
+#mini-panel-press_room_blocks{
+	border-top: 1px dotted @color3;
+	padding-top: 5px;
+	margin-top: 2em;
+	.pane-osha-press-release-osha-press-rel-become-partner{
+		padding-right: 15px;
+		padding-left: 15px;
+		&:before{
+			display: block;
+			margin-top: 1.5em;
+		}
+		text-align: center;
+		#become-partner-link{
+			a{
+				margin-top: 1.5em;
+				font-weight: bold;
+				font-style: italic;
+				display: block;
+				&:before{
+					content: "> ";
+				}
+			}
+		}
 	}
-	> .panels-flexible-row-inside{
-		//border-top: 1px dotted @color3;//quitado para prueba
+	.pane-press-contacts{
+		padding-right: 15px;
+		padding-left: 15px;
+		&:before{
+			display: block;
+			margin-top: 1.5em;
+		}
+		text-align: center;
+		border-left: 1px dotted @color3;
+		border-right: 1px dotted @color3;
+		.views-field-field-press-contact-email{
+			margin-bottom: 2em;
+			a{
+				font-weight: bold;
+				font-style: italic;
+			}
+		}
 	}
-	.panels-flexible-row-first{
-		.pane-osha-press-release-osha-press-rel-become-partner{
-			&:before{
-				//content: url("../images/content/campaign-partner.png");
-				display: block;
+	.pane-osha-press-release-osha-press-kit{
+		padding-right: 15px;
+		padding-left: 15px;
+		&:before{
+			display: block;
+			margin-top: 1.5em;
+		}
+		text-align: center;
+		.osha-press-contact-block-link{
+			a{
 				margin-top: 1.5em;
-			}
-			text-align: center;
-			#become-partner-link{
-				a{
-					margin-top: 1.5em;
-					font-weight: bold;
-					font-style: italic;
-					display: block;
-					&:before{
-						content: "> ";
-					}
-				}
+				font-weight: bold;
+				font-style: italic;
+				display: inline-block;
 			}
 		}
-		.pane-press-contacts{
-			&:before{
-				//content: url("../images/content/campaign-partner.png");
-				display: block;
-				margin-top: 1.5em;
-			}
-			text-align: center;
-			border-left: 1px dotted @color3;
-			border-right: 1px dotted @color3;
-			.views-field-field-press-contact-email{
-				margin-bottom: 2em;
-				a{
-					font-weight: bold;
-					font-style: italic;
-				}
-			}
-		}
-		.pane-osha-press-release-osha-press-kit{
-			&:before{
-				//content: url("../images/content/campaign-partner.png");
-				display: block;
-				margin-top: 1.5em;
-			}
-			text-align: center;
-			.osha-press-contact-block-link{
-				a{
-					margin-top: 1.5em;
-					font-weight: bold;
-					font-style: italic;
-					display: inline-block;
-				}
-			}
-		}
-		.pane-title{
-			color: @color3;
-			font-size: @size8;
-			font-weight: bold;
-			font-style: normal;
-		}
+	}
+	.pane-title{
+		color: @color3;
+		font-size: @size8;
+		font-weight: bold;
+		font-style: normal;
 	}
 }
+.page-press-room{
 
+}
 //articulos pressroom
 .view-press-releases {
 	.views-row{
@@ -1471,85 +1490,7 @@
 		display: block;
 	}
 }
-.region-sidebar-second{
-	//margin: 0px 135px; quitado para responsive
-	padding-top: 1.5em;
-	border-top: 1px dotted @color3;
-	#block-osha-press-release-osha-press-rel-become-partner{
-		//float: left;
-		//width:33%;
-		padding: 0px 10px;
-		text-align: center;
-		&:before{
-			//content: url("../images/content/campaign-partner.png");
-			display: block;
-			margin-top: 1.5em;
-		}
-		h2{
-			margin-top: 1em;
-			margin-bottom: 1em;
-		}
-		#become-partner-link{
-			a{
-				margin-top: 1.5em;
-				font-weight: bold;
-				font-style: italic;
-				display: block;
-				&:before{
-					content: "> ";
-				}
-			}
-		}
-	}
-	#block-views-press-contacts-block{
-		//float: left;
-		//width:33%;
-		padding: 0px 10px;
-		text-align: center;
-		border-left: 1px dotted @color3;
-		border-right: 1px dotted @color3;
-		&:before{
-			//content: url("../images/content/campaign-partner.png");
-			display: block;
-			margin-top: 1.5em;
-		}
-		h2{
-			margin-top: 1em;
-			margin-bottom: 1em;
-		}
-		.views-field-field-press-contact-email{
-			margin-bottom: 2em;
-			a{
-				font-weight: bold;
-				font-style: italic;
-			}
-		}
-	}
-	#block-osha-press-release-osha-press-kit{
-		//float: left;
-		//width:33%;
-		padding: 0px 10px;
-		text-align: center;
-		&:before{
-			//content: url("../images/content/campaign-partner.png");
-			display: block;
-			margin-top: 1.5em;
-		}
-		h2{
-			margin-top: 1em;
-			margin-bottom: 1em;
-		}
-		.osha-press-contact-block-link{
-			a{
-				margin-top: 1.5em;
-				font-weight: bold;
-				font-style: italic;
-				display: inline-block;
-			}
-		}
-	}
-}
-/*fin pressroom*/
+/*fin pressroom */
 
 /* Events*/
 .page-past-events{
@@ -1646,6 +1587,124 @@
 				width: 30px;
 				color: @color0;
 			}
+		}
+	}
+	.block:first-child  h2.block-title{
+		float: left;
+		font-style: italic;
+		font-size: @size3;
+		color: @text-default-color;
+		margin-top: 1em;
+		
+		&:after{
+			content: ":";
+			padding-right: 1em;
+		}
+	}
+	#block-views-events-block-1{
+		border-top: 1px dotted @color3;
+		border-bottom: 1px dotted @color3;
+		clear: both;
+	}
+	.view-events{
+		float: left;
+		.events-filter-by-date{
+			h3{
+				margin: 0;
+				float: left;
+				font-style: italic;
+				font-size: @size3;
+				font-weight: bold;
+				color: @h3-default-color;
+				height: 41px;
+			    padding: 1em 0em 0 0;
+			}
+			ul, ul li{
+				padding: 0em 0.5em;
+				margin: 0;
+				float: left;
+				font-style: italic;
+				font-size: @size3;
+				font-weight: bold;
+				color: @text-color-2;
+				a.current_month{
+					color: @text-color-3;
+				}
+				.views-row-first, .views-row-last{
+					background: url("../images/content/calendar-filter.png") no-repeat top left;
+					padding-left: 1.5em;
+				}
+				.views-row-last{
+					background-position: top right;
+					padding-left: 0.5em;
+					padding-right: 1.5em;
+				}
+				li{
+					padding: 0.9em 0.5em 1.1em;
+				}
+			}
+		}
+	}
+}
+#block-system-main .view-events-search, .view-events-search{
+	div div.form-type-textfield{
+		input{
+			margin-right: 0em;
+		}
+	}
+}
+.views-exposed-form{
+	#edit-search-api-views-fulltext-wrapper{
+		padding-right: 0em;
+	}
+	.views-exposed-widget .form-submit{
+		margin-top: 0em;
+		background: @bg-color-2 url("../images/content/search.png") no-repeat center;
+		height: 34px;
+		width: 30px;
+		color: @color0;
+	}
+}
+#block-osha-events-events-links{
+	color: @color0;
+	a{
+		padding: 1.25em 0.5em 1.25em;
+		background: url("../images/content/arrow-down.png") no-repeat 15px 25px;
+		color: transparent;
+		border: 1px solid transparent;
+		&:hover{
+			color: @color2;
+			background-image: none;
+			background-color: @color4;
+			border: 1px solid @color3;
+			padding: 0.5em;
+			margin-left: 15px;
+			text-decoration: none;
+		}
+		/* &:after{
+			background: url("../images/content/arrow-down.png") no-repeat 15px 25px;
+			padding: 2em;
+			content:" ";
+		} */
+	}
+	a.active{
+		border: none;
+		width: auto;
+		background: none;
+		color: @h1-default-color;
+		font-size: @h1-default-size;
+		float: left;
+		padding: 0em 0em 1.25em;
+		font-weight: bold;
+		position: relative;
+		margin-top: 0em;
+		margin-left: 0em;
+		/* &:after{
+			background: none;
+			content: initial;
+		} */
+		&:hover{
+			text-decoration: none;
 		}
 	}
 }
@@ -1753,7 +1812,7 @@
 		.views-field-body{
 			.field-content{
 				a{
-					background: transparent;
+					background: @color0;
 					color:@color2;
 					font-weight: bold;
 					font-style: italic;
@@ -1808,13 +1867,15 @@
 				&:before{
 					content: " ";
 				    background: url("../images/content/icono-become-big.png") no-repeat center;
-				    margin: 0 auto;
 				    margin-bottom: 20px;
 				    display: block;
 				    background-size: cover;
-				    min-height: 210px;
-				    width: 161px;
-    				min-height: 160px;
+				    min-width: 166px;
+				    min-height: 165px;
+				    max-height: 210px;
+				    max-width: 150px;
+				    margin-left: auto;
+				    margin-right: auto;
 				}
 			}
 		}
@@ -1830,6 +1891,8 @@
 		margin-top: 3em;
 		margin-bottom: 3em;
 		padding-bottom: 4em;
+		margin-right: -15px;
+		margin-left: -15px;
 		.partner{
 			margin-top: 3.5em;
 			color: @color1;
@@ -2170,7 +2233,6 @@
 							background: url("../images/content/input-calendar.png");
 							height: 30px;
 							width: 20px;
-							background-color: red;
 						}
 					}
 				}
