@@ -14,6 +14,7 @@ function osha_infographics_default_fe_block_settings() {
 
   $export['views-infographic-block'] = array(
     'cache' => -1,
+    'css_class' => '',
     'custom' => 0,
     'delta' => 'infographic-block',
     'i18n_block_language' => array(),
@@ -42,6 +43,7 @@ function osha_infographics_default_fe_block_settings() {
 
   $export['views-infographic-block_1'] = array(
     'cache' => -1,
+    'css_class' => '',
     'custom' => 0,
     'delta' => 'infographic-block_1',
     'i18n_block_language' => array(),
@@ -70,6 +72,7 @@ function osha_infographics_default_fe_block_settings() {
 
   $export['views-infographic-block_2'] = array(
     'cache' => -1,
+    'css_class' => '',
     'custom' => 0,
     'delta' => 'infographic-block_2',
     'i18n_block_language' => array(),
