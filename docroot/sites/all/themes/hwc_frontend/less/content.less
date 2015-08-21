@@ -24,6 +24,9 @@
 			border-color: @text-color-2;
 			border-radius: 0;
 		}
+		iframe{
+			border: 1px solid;
+		}
 	}
 /* FIN para toda la aplicacion */
 
@@ -31,6 +34,9 @@
 	.main-container {
 		/* padding-left: 0;
 		padding-right: 0; */
+		h1{
+			margin-bottom: 1.5em;
+		}
 		h1, .title-alt{
 			color: @h1-default-color;
 			font-size: @h1-default-size;
@@ -72,6 +78,16 @@
 			font-weight: bold;
 			font-size: @size9;
 			font-family: garamond;
+		}
+		.glyphicon-chevron-right{
+			color: @text-color-2;
+			font-family: @font-family-base;
+			&:before {
+				content: ">";
+				font-weight: bold;
+				padding-left: 0.5em;
+				padding-right: 0.2em;
+			}
 		}
 	}
 	
@@ -218,6 +234,8 @@
 		width: 33.3%;
 		padding-right: 1em;
 		padding-left: 1em;
+		margin-bottom: 3em;
+    	margin-top: 2em;
 		h1{
 			padding-bottom: 0;
 		}
@@ -282,20 +300,25 @@
 		margin-right: -15px;
 	}
 	#homepage_slider{
-		height: 321px !important;
-		background-color: #749b00;
+		height: 356px !important;
+		background: @color3 url("../images/content/bg-campaign-partner.png") no-repeat left 20px;
 		margin-bottom: 35px; //by endika
 		width: 100% !important;
+		> div{
+			width: 100% !important;
+		}
 		#num_slides{
 			margin: 0;
 			padding: 0;
-			width: 1139px !important; /*1296 ??*/
-			height: 320px !important;
+			width: 1139px;
+			width: 100% !important;
+			height: 356px !important;
 			> div{ /* .views-field.views-field-field-image */
-				width: 1139px !important;
-				height: 320px !important;
+				width: 1139px;
+				width: 100% !important;
+				height: 356px !important;
 				&.views-field.views-field-body{
-					height: 320px !important;
+					height: 356px !important;
 					margin-top: 4em;
 					div:empty{
 						height: 230px !important;
@@ -304,7 +327,8 @@
 				div{
 					margin: 0;
 					padding: 0;
-					width: 1139px !important;
+					width: 1139px;
+					width: 100% !important;
 					float: right;
 					a{
 						margin: 0;
@@ -318,7 +342,7 @@
 							padding: 0.5em;
 							margin-left: 1em;
 							position: absolute;
-							top: 2em;
+							bottom: 4em;
 							right: 20px;
 						}
 						&.more-link:before{
@@ -326,6 +350,7 @@
 						}
 						img{
 							width: 100%;
+							height: auto; /* para que no se deforme la img */
 						}
 					}
 					p{
@@ -352,6 +377,17 @@
 			}
 		}
 	}
+	@media screen and (-webkit-min-device-pixel-ratio:0) {
+		#homepage_slider .more-link{top: 2em;}
+	}
+	.node-frontpage-slider{
+		.field-name-body.field-type-text-with-summary{
+			position: absolute;
+			left: 45%;
+			margin-right: 2em;
+		}
+	}
+	
 	/* pagination */
 	.pagination{
 		border:none;
@@ -359,6 +395,12 @@
 		li > a, li > span{
 			  color: @pagination-color;
 			  border: none;
+			  font-weight: bold;
+			  font-style: italic;
+		}
+		.pager-ellipsis span{
+			padding-left: 0;
+			padding-right: 0;
 		}
 		.active > a, .active > span, .active > a:hover, .active > span:hover, .active > a:focus, .active > span:focus{
 			background-color: white;
@@ -393,13 +435,19 @@
 	}
 	
 	/* user */
-	#block-system-main #views-exposed-form-search-site{
+	#block-system-main{
 		div div.form-type-textfield, div div.form-type-password{
-			width: auto;
 			margin-bottom: 1em;
 			display: table;
+			display: -moz-grid-group;
 			label{
 			    display: block;
+				.form-required{
+					margin-right: 0.5em;
+				}
+			}
+			input{
+				margin-right: 1em;
 			}
 			&.error label{
 			    padding: 0.2em 0 0 0.2em;
@@ -630,7 +678,7 @@
 		min-height: 380px;
 		height: auto !important;
 		text-align: center;
-		color: #FFF;
+		color: @color1;
 		background-size: cover;
 		padding-bottom: 3em;
 		margin-top: 3em;
@@ -639,7 +687,7 @@
 			left: 0;
 		}
 		a{
-			color: #FFF;
+			color: @color1;
 		}
 		h2{
 			margin-top: 50px;
@@ -657,7 +705,7 @@
 			input{
 				color: @input-content-default-color;
 				width: 255px;
-				background-color: #FFF;
+				background-color: @bg-default-color;
 				border: none;
 				border-radius: 0px;
 				margin: auto;
@@ -699,6 +747,8 @@
 	    float: left;
 		text-align: center;
 		width: 33.3%;
+		margin-bottom: 3em;
+    	margin-top: 2em;
 		h2{
 			margin: 20px 0;
 			padding-top: 70px;
@@ -730,7 +780,7 @@
 			background: url("../images/content/partners.png") no-repeat center top;
 			padding-top: 70px;
 			padding-bottom: 0.5em;
-			margin-bottom: 0px;
+			margin-bottom: 1em;
 		}
 		.views-field-field-logo{
 			padding-top: 1em;
@@ -763,6 +813,23 @@
 				&:before{
 					content: ">";
 					padding-right: 0.35em;
+				}
+			}
+		}
+		.view-display-id-attachment_1{
+			padding-top: 1em;
+			padding-bottom: 1em;
+			padding-right: 1em;
+			padding-left: 2em;
+			.views-field-field-logo{
+				float: left;
+    			margin-right: 100px;
+			}
+			.views-field-title{
+				font-size: @size8;
+				font-weight: bold;
+				a{
+					color: @color5;
 				}
 			}
 		}
@@ -918,6 +985,9 @@
 			color: @color0;
 		}
 	}
+	#block-system-main div #search div.form-type-textfield input {
+		margin-right: 0em;
+	}
 	#views-exposed-form-search-site #search button {
 		margin-top: 0;
 	}
@@ -936,6 +1006,7 @@
 			font-weight: bold;
 			:before{
 				content: ">";
+				padding-right: 5px;
 			}
 		}
 		.field-name-field-cover-image{
@@ -945,11 +1016,8 @@
 			margin-top: 15px;
 			img{
 				width: 160px;
-				margin-right: 20px;
+				margin-right: 50px;
 			}
-		}
-		.field-name-title-field, .field-name-field-publication-date{
-			margin-left: 180px;
 		}
 		.more-link, ul li a{
 			color: @btn-default-bg;
@@ -997,9 +1065,27 @@
 				clear: left;
 				margin: 1em 1em 1em 0;
 			}
+			ul.links{
+				clear: both;
+				.node-readmore{
+					font-weight: bold;
+					font-style: italic;
+					&:before{
+						content: ">";
+						padding-right: 0.35em;
+						color: @href-default-color;
+					}
+				}
+			}
 		}
-
 		
+		.field-name-field-country, .field-name-field-tool-type, .field-name-field-provider{
+			.field-label ~ .field-items:empty{
+				&:before{
+					content: " - ";
+				}
+			}
+		}
 		
 		.link-wrapper ul li a{
 		    color: @text-color-2;
@@ -1218,8 +1304,8 @@
 		.hwc-share-widget-twitter, .napo-share-widget-linkedin{
 			
 			a{
-				background-color: #4c69ba;//color facebook
-				background: linear-gradient(#4c69ba, #3b55a0);
+				background-color: @colorFacebook;//color facebook
+				background: linear-gradient(@colorFacebook, @colorGradient);
 				padding: 2px 5px;
 				font-size: .8em;
 				color: white;
@@ -1236,9 +1322,8 @@
 		}
 		.pull-right{
 			a{
-				margin-top: -20px;
-				background-color: #4c69ba;//color facebook
-				background: linear-gradient(#4c69ba, #3b55a0);
+				background-color: @colorFacebook;//color facebook
+				background: linear-gradient(@colorFacebook, @colorGradient);
 				padding: 2px 5px;
 				font-size: .8em;
 				color: white;
@@ -1265,12 +1350,11 @@
 .field.field-name-field-image{
 	margin-right: 1.5em;
 	margin-bottom: 1em;
-	float: left;
 }
 .field.field-name-body{
 	p{
 		a{
-			background-color: transparent;
+			background-color: @color0;
 			color: @color2;
 			font-weight: bold;
 			font-style: italic;
@@ -1283,7 +1367,7 @@
 .field-name-field-aditional-resources{
 	.field-name-title-field{
 		a{
-			background-color: transparent;
+			background-color: @color0;
 			color: @color2;
 			font-weight: bold;
 			font-style: italic;
@@ -1294,11 +1378,14 @@
 	}
 }
 
-.node-type-news{
-	#block-system-main { 
-	//margin: 0px 135px; quitado para responsive 
+	.node-type-news{
+		.field-type-image{
+			img{
+				margin-right: 3em;
+    			margin-bottom: 2em;
+			}
+		}
 	}
-} 
 /* fin news*/
 
 /* -Press Room- */
@@ -1311,75 +1398,86 @@
 	}
 }
 //tres bloques
-.press-room-blocks-row{
-	.panels-flexible-row-inside{
-		//margin: 0px 135px; quitado para responsive
-	}
-	> .panels-flexible-row-inside{
-		//border-top: 1px dotted @color3;//quitado para prueba
-	}
-	.panels-flexible-row-first{
-		.pane-osha-press-release-osha-press-rel-become-partner{
-			&:before{
-				//content: url("../images/content/campaign-partner.png");
-				display: block;
+#mini-panel-press_room_blocks{
+	border-top: 1px dotted @color3;
+	padding-top: 5px;
+	margin-top: 2em;
+	.pane-osha-press-release-osha-press-rel-become-partner{
+		padding-right: 15px;
+		padding-left: 15px;
+		&:before{
+			display: block;
+			margin-top: 1.5em;
+		}
+		text-align: center;
+		#become-partner-link{
+			a{
 				margin-top: 1.5em;
+				font-weight: bold;
+				font-style: italic;
+				display: block;
+				&:before{
+					content: "> ";
+				}
 			}
-			text-align: center;
-			#become-partner-link{
-				a{
-					margin-top: 1.5em;
-					font-weight: bold;
-					font-style: italic;
-					display: block;
-					&:before{
-						content: "> ";
+		}
+	}
+	.pane-press-contacts{
+		padding-right: 15px;
+		padding-left: 15px;
+		&:before{
+			display: block;
+			margin-top: 1.5em;
+		}
+		text-align: center;
+		border-left: 1px dotted @color3;
+		border-right: 1px dotted @color3;
+		.views-field-field-press-contact-email{
+			margin-bottom: 2em;
+			a{
+				font-weight: bold;
+				font-style: italic;
+			}
+		}
+	}
+	.pane-osha-press-release-osha-press-kit{
+		padding-right: 15px;
+		padding-left: 15px;
+		&:before{
+			display: block;
+			margin-top: 1.5em;
+		}
+		text-align: center;
+		.osha-press-contact-block-link{
+			a{
+				margin-top: 1.5em;
+				font-weight: bold;
+				font-style: italic;
+				display: inline-block;
+			}
+		}
+	}
+	.pane-title{
+		color: @color3;
+		font-size: @size8;
+		font-weight: bold;
+		font-style: normal;
+	}
+}
+.page-press-room{
+	.node-press-release{
+		.field-name-field-summary{
+			margin-top: 2em;
+			.field-item{
+				> p:first-child{
+					br{
+						display: none;
 					}
 				}
 			}
 		}
-		.pane-press-contacts{
-			&:before{
-				//content: url("../images/content/campaign-partner.png");
-				display: block;
-				margin-top: 1.5em;
-			}
-			text-align: center;
-			border-left: 1px dotted @color3;
-			border-right: 1px dotted @color3;
-			.views-field-field-press-contact-email{
-				margin-bottom: 2em;
-				a{
-					font-weight: bold;
-					font-style: italic;
-				}
-			}
-		}
-		.pane-osha-press-release-osha-press-kit{
-			&:before{
-				//content: url("../images/content/campaign-partner.png");
-				display: block;
-				margin-top: 1.5em;
-			}
-			text-align: center;
-			.osha-press-contact-block-link{
-				a{
-					margin-top: 1.5em;
-					font-weight: bold;
-					font-style: italic;
-					display: inline-block;
-				}
-			}
-		}
-		.pane-title{
-			color: @color3;
-			font-size: @size8;
-			font-weight: bold;
-			font-style: normal;
-		}
 	}
 }
-
 //articulos pressroom
 .view-press-releases {
 	.views-row{
@@ -1429,99 +1527,25 @@
 		display: block;
 	}
 }
-.region-sidebar-second{
-	//margin: 0px 135px; quitado para responsive
-	padding-top: 1.5em;
-	border-top: 1px dotted @color3;
-	#block-osha-press-release-osha-press-rel-become-partner{
-		//float: left;
-		//width:33%;
-		padding: 0px 10px;
-		text-align: center;
-		&:before{
-			//content: url("../images/content/campaign-partner.png");
-			display: block;
-			margin-top: 1.5em;
-		}
-		h2{
-			margin-top: 1em;
-			margin-bottom: 1em;
-		}
-		#become-partner-link{
-			a{
-				margin-top: 1.5em;
-				font-weight: bold;
-				font-style: italic;
-				display: block;
-				&:before{
-					content: "> ";
-				}
-			}
-		}
-	}
-	#block-views-press-contacts-block{
-		//float: left;
-		//width:33%;
-		padding: 0px 10px;
-		text-align: center;
-		border-left: 1px dotted @color3;
-		border-right: 1px dotted @color3;
-		&:before{
-			//content: url("../images/content/campaign-partner.png");
-			display: block;
-			margin-top: 1.5em;
-		}
-		h2{
-			margin-top: 1em;
-			margin-bottom: 1em;
-		}
-		.views-field-field-press-contact-email{
-			margin-bottom: 2em;
-			a{
-				font-weight: bold;
-				font-style: italic;
-			}
-		}
-	}
-	#block-osha-press-release-osha-press-kit{
-		//float: left;
-		//width:33%;
-		padding: 0px 10px;
-		text-align: center;
-		&:before{
-			//content: url("../images/content/campaign-partner.png");
-			display: block;
-			margin-top: 1.5em;
-		}
-		h2{
-			margin-top: 1em;
-			margin-bottom: 1em;
-		}
-		.osha-press-contact-block-link{
-			a{
-				margin-top: 1.5em;
-				font-weight: bold;
-				font-style: italic;
-				display: inline-block;
-			}
-		}
-	}
-}
-/*fin pressroom*/
+/*fin pressroom */
 
 /* Events*/
-.page-past-events{
+.page-past-events, .page-events{
+
 	#block-views-events-block-1{
 
 	}
 	.region-content{
+	
 		#block-system-main{
+		
 			.views-row{
 				//margin: 0px 135px; quitado para responsive
 				padding-top: 20px;
 				padding-bottom: 40px;
 				min-height: 230px;
 				border-bottom: 1px dotted @color3;
+
 				.views-field-field-start-date{
 					.field-content{
 						.date-display-single{
@@ -1537,6 +1561,7 @@
 						    font-weight: bold;
 						    padding: 0px 50px;
 						    text-align: center;
+						    margin-bottom: 30px;
 						}
 					}
 				}
@@ -1551,10 +1576,176 @@
 						}
 					}
 				}
-				.views-field-field-start-date-1{
-					
+				.views-field-field-website-of-event,  .views-field-view-node{
+					float: left;
+					a{
+						font-weight: bold;
+						font-style: italic;
+						display: block;
+						margin-bottom: 20px;
+						&:before{
+							content: "> ";
+						}
+					}
+				}
+				.views-field-field-website-of-event{
+					float: none;
 				}
 
+				.views-field-field-start-date-1{
+					font-size: @size3;
+				}
+				.views-field-field-country-code, .views-field-field-city{
+					font-weight: bold;
+					display: inline-block;
+				}
+				.views-field-field-city{
+					&:before{
+						content:" (";
+					}
+					&:after{
+						content:") ";
+					}
+				}
+				.views-field-body{
+					margin-top: 1em;
+					margin-bottom: 1em;
+				}
+			}
+		}
+	}
+	form{
+		.views-exposed-form .views-exposed-widget{
+			padding-right: 0;
+			button.form-submit {
+				margin-top: 0em;
+				background: @bg-color-2 url("../images/content/search.png") no-repeat center;
+				height: 34px;
+				width: 30px;
+				color: @color0;
+			}
+		}
+	}
+	#block-views-events-block-1{
+		border-top: 1px dotted @color3;
+		border-bottom: 1px dotted @color3;
+		clear: both;
+	}
+}
+
+#block-system-main .view-events-search, .view-events-search{
+	div div.form-type-textfield{
+		input{
+			margin-right: 0em;
+		}
+	}
+}
+.views-exposed-form{
+	#edit-search-api-views-fulltext-wrapper{
+		padding-right: 0em;
+	}
+	.views-exposed-widget .form-submit{
+		margin-top: 0em;
+		background: @bg-color-2 url("../images/content/search.png") no-repeat center;
+		height: 34px;
+		width: 30px;
+		color: @color0;
+	}
+}
+#block-osha-events-events-links{
+	color: @color0;
+	a{
+		padding: 1.25em 0.5em 1.25em;
+		background: url("../images/content/arrow-down.png") no-repeat 15px 25px;
+		color: transparent;
+		border: 1px solid transparent;
+		&:hover{
+			color: @color2;
+			background-image: none;
+			background-color: @color4;
+			border: 1px solid @color3;
+			padding: 0.5em;
+			margin-left: 15px;
+			text-decoration: none;
+		}
+		/* &:after{
+			background: url("../images/content/arrow-down.png") no-repeat 15px 25px;
+			padding: 2em;
+			content:" ";
+		} */
+	}
+	a.active{
+		border: none;
+		width: auto;
+		background: none;
+		color: @h1-default-color;
+		font-size: @h1-default-size;
+		float: left;
+		padding: 0em 0em 1.25em;
+		font-weight: bold;
+		position: relative;
+		margin-top: 0em;
+		margin-left: 0em;
+		/* &:after{
+			background: none;
+			content: initial;
+		} */
+		&:hover{
+			text-decoration: none;
+		}
+	}
+}
+#block-views-events-block-2, #block-views-events-block-1{
+
+	h2.block-title{
+		float: left;
+		font-style: italic;
+		font-size: @size3;
+		color: @text-default-color;
+		margin-top: 1em;
+		
+		&:after{
+			content: ":";
+			padding-right: 1em;
+		}
+	}
+	.view-events{
+		float: left;
+		.events-filter-by-date{
+			h3{
+				margin: 0;
+				float: left;
+				font-style: italic;
+				font-size: @size3;
+				font-weight: bold;
+				color: @h3-default-color;
+				height: 41px;
+			    padding: 1em 0em 0 0;
+				cursor: pointer;
+			}
+			ul, ul li{
+				padding: 0em 0.5em;
+				margin: 0;
+				float: left;
+				font-style: italic;
+				font-size: @size3;
+				font-weight: bold;
+				color: @text-color-2;
+				a.current_month{
+					color: @text-color-3;
+				}
+				.views-row-first, .views-row-last{
+					background: url("../images/content/calendar-filter.png") no-repeat top left;
+					padding-left: 1.5em;
+				}
+				.views-row-last{
+					background-position: top right;
+					padding-left: 0.5em;
+					padding-right: 1.5em;
+				}
+				li{
+					padding: 0.9em 0.5em 1.1em;
+				}
 			}
 		}
 	}
@@ -1566,7 +1757,7 @@
 	article{
 		//margin: 0px 135px; quitado para responsive
 		.field-name-title-field{
-			margin-bottom: 2em;
+			margin-bottom: 1em;
 		}
 
 		.dot-separator.green{
@@ -1663,7 +1854,7 @@
 		.views-field-body{
 			.field-content{
 				a{
-					background: transparent;
+					background: @color0;
 					color:@color2;
 					font-weight: bold;
 					font-style: italic;
@@ -1718,11 +1909,15 @@
 				&:before{
 					content: " ";
 				    background: url("../images/content/icono-become-big.png") no-repeat center;
-				    margin-top: 0em;
 				    margin-bottom: 20px;
 				    display: block;
 				    background-size: cover;
-				    min-height: 210px;
+				    min-width: 166px;
+				    min-height: 165px;
+				    max-height: 210px;
+				    max-width: 150px;
+				    margin-left: auto;
+				    margin-right: auto;
 				}
 			}
 		}
@@ -1738,6 +1933,8 @@
 		margin-top: 3em;
 		margin-bottom: 3em;
 		padding-bottom: 4em;
+		margin-right: -15px;
+		margin-left: -15px;
 		.partner{
 			margin-top: 3.5em;
 			color: @color1;
@@ -1969,14 +2166,31 @@
 		.pane-node-field-quote{
 			font-style: italic;
 			font-weight: bold;
-			.quottes-left{
+			position: relative;
+			&:before{
+				content:"";
+				margin-left: 15px;
+				width: 50px;
 				height: 50px;
+				float: left;
+				display: block;
 				background: url("../images/content/quottes.png") center no-repeat;
 			}
-			.quottes-right{
+			&:after{
+				content:"";
+				margin-right: 15px;
+				width: 50px;
 				height: 50px;
+				display: block;
 				background: url("../images/content/quottes.png") center no-repeat;
 				transform: rotate(180deg);
+				top: 0;
+			    right: 0;
+			    position: absolute;
+			    float: right;
+			}
+			.field-name-field-quote{
+				margin: 0px 70px;
 			}
 		}
 	}
@@ -2061,7 +2275,6 @@
 							background: url("../images/content/input-calendar.png");
 							height: 30px;
 							width: 20px;
-							background-color: red;
 						}
 					}
 				}
@@ -2243,6 +2456,57 @@
 	}
 }
 /*fin campaign materials*/
+/*Publications detail*/
+.node-type-publication{
+	.pane-node-field-cover-image{
+		margin-left: -15px;
+		margin-top: 1em;
+	}
+	.panels-flexible-region-container-title{
+		.pane-node-title-field{
+			display: inline-table;
+		}
+		.pane-node-field-publication-date{
+			display: inline-table;
+			margin-left: 1em;
+			margin-bottom: 15px;
+		}
+	}
+	.pane-node-field-publication-type{
+		    display: table-cell;
+		    background-color: #e2e2e3;
+		    color: #003399;
+		    font-style: italic;
+		    font-weight: bold;
+		    margin-right: 2em;
+		    padding: 0.5em 1.5em;
+	}
+	.panels-flexible-row-container-main-row{
+		margin-top: 3em;
+	}
+	.pane-node-field-file{
+		padding-top: 1em;
+		clear: both;
+		.first.last{
+			display: inline-flex;
+    		font-weight: bold;
+    		font-style: italic;
+    		> div:first-child{
+    			a{
+    				color: @colorNormalText;
+    			}
+    		}
+    		ul{
+    			.first.last{
+    				a{
+    					margin-left: 1em;
+    				}
+    			}
+    		}
+		}
+	}
+}
+/*fin publications detail*/
 
 /*official campaign partners list*/
 .node-145{

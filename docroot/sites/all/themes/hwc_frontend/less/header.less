@@ -213,8 +213,14 @@ header.navbar-default{
 						color: @menu-selected-color;
 						background-color: @menu-bg-color;
 					}
-					ul li a, ul li span, ul li.active-trail{
+					ul li a, ul li span{
 						color: white;
+					}
+					ul li.active-trail{
+						color: white;
+						a{
+							font-weight: bold;
+						}
 					}
 				}
 			}
@@ -255,25 +261,35 @@ header.navbar-default{
 	}
 	.block-on-the-web{
 		.otw-twitter{
+			a{
 			background: url('../images/header/twitter.png') no-repeat center bottom;
 			padding: 18px 16px 8px;
 			margin-left: 35px;
+			}
 		}
 		.otw-facebook{
+			a{
 			background: url('../images/header/facebook.png') no-repeat center bottom;
 			padding: 18px 16px 8px;
+			}
 		}
 		.otw-youtube{
+			a{
 			background: url('../images/header/youtube.png') no-repeat center bottom;
 			padding: 18px 16px 8px;
+			}
 		}
 		.otw-flickr{
+			a{
 			background: url('../images/header/flickr.png') no-repeat center bottom;
 			padding: 18px 16px 8px;
+			}
 		}
 		.otw-linkedin{
+			a{
 			background: url('../images/header/linkedin.png') no-repeat center bottom;
 			padding: 18px 0px 8px 32px;
+			}
 		}
 		a{
 			img{
