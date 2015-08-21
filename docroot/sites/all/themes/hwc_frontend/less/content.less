@@ -34,6 +34,9 @@
 	.main-container {
 		/* padding-left: 0;
 		padding-right: 0; */
+		h1{
+			margin-bottom: 1.5em;
+		}
 		h1, .title-alt{
 			color: @h1-default-color;
 			font-size: @h1-default-size;
@@ -231,6 +234,8 @@
 		width: 33.3%;
 		padding-right: 1em;
 		padding-left: 1em;
+		margin-bottom: 3em;
+    	margin-top: 2em;
 		h1{
 			padding-bottom: 0;
 		}
@@ -390,6 +395,12 @@
 		li > a, li > span{
 			  color: @pagination-color;
 			  border: none;
+			  font-weight: bold;
+			  font-style: italic;
+		}
+		.pager-ellipsis span{
+			padding-left: 0;
+			padding-right: 0;
 		}
 		.active > a, .active > span, .active > a:hover, .active > span:hover, .active > a:focus, .active > span:focus{
 			background-color: white;
@@ -736,6 +747,8 @@
 	    float: left;
 		text-align: center;
 		width: 33.3%;
+		margin-bottom: 3em;
+    	margin-top: 2em;
 		h2{
 			margin: 20px 0;
 			padding-top: 70px;
@@ -993,6 +1006,7 @@
 			font-weight: bold;
 			:before{
 				content: ">";
+				padding-right: 5px;
 			}
 		}
 		.field-name-field-cover-image{
@@ -1002,11 +1016,8 @@
 			margin-top: 15px;
 			img{
 				width: 160px;
-				margin-right: 20px;
+				margin-right: 50px;
 			}
-		}
-		.field-name-title-field, .field-name-field-publication-date{
-			margin-left: 180px;
 		}
 		.more-link, ul li a{
 			color: @btn-default-bg;
@@ -1053,6 +1064,18 @@
 			.practical-tool-visit-tool-site{
 				clear: left;
 				margin: 1em 1em 1em 0;
+			}
+			ul.links{
+				clear: both;
+				.node-readmore{
+					font-weight: bold;
+					font-style: italic;
+					&:before{
+						content: ">";
+						padding-right: 0.35em;
+						color: @href-default-color;
+					}
+				}
 			}
 		}
 		
@@ -1355,11 +1378,14 @@
 	}
 }
 
-.node-type-news{
-	#block-system-main { 
-	//margin: 0px 135px; quitado para responsive 
+	.node-type-news{
+		.field-type-image{
+			img{
+				margin-right: 3em;
+    			margin-bottom: 2em;
+			}
+		}
 	}
-} 
 /* fin news*/
 
 /* -Press Room- */
@@ -1439,7 +1465,18 @@
 	}
 }
 .page-press-room{
-
+	.node-press-release{
+		.field-name-field-summary{
+			margin-top: 2em;
+			.field-item{
+				> p:first-child{
+					br{
+						display: none;
+					}
+				}
+			}
+		}
+	}
 }
 //articulos pressroom
 .view-press-releases {
@@ -1493,18 +1530,22 @@
 /*fin pressroom */
 
 /* Events*/
-.page-past-events{
+.page-past-events, .page-events{
+
 	#block-views-events-block-1{
 
 	}
 	.region-content{
+	
 		#block-system-main{
+		
 			.views-row{
 				//margin: 0px 135px; quitado para responsive
 				padding-top: 20px;
 				padding-bottom: 40px;
 				min-height: 230px;
 				border-bottom: 1px dotted @color3;
+
 				.views-field-field-start-date{
 					.field-content{
 						.date-display-single{
@@ -1535,7 +1576,7 @@
 						}
 					}
 				}
-				.views-field-view-node{
+				.views-field-field-website-of-event,  .views-field-view-node{
 					float: left;
 					a{
 						font-weight: bold;
@@ -1547,6 +1588,10 @@
 						}
 					}
 				}
+				.views-field-field-website-of-event{
+					float: none;
+				}
+
 				.views-field-field-start-date-1{
 					font-size: @size3;
 				}
@@ -1566,14 +1611,6 @@
 					margin-top: 1em;
 					margin-bottom: 1em;
 				}
-				.views-field-field-website-of-event,  .views-field-view-node{
-					font-weight: bold;
-					font-style: italic;
-					&:before{
-						color: @color2;
-						content: ">";
-					}
-				}
 			}
 		}
 	}
@@ -1589,63 +1626,13 @@
 			}
 		}
 	}
-	.block:first-child  h2.block-title{
-		float: left;
-		font-style: italic;
-		font-size: @size3;
-		color: @text-default-color;
-		margin-top: 1em;
-		
-		&:after{
-			content: ":";
-			padding-right: 1em;
-		}
-	}
 	#block-views-events-block-1{
 		border-top: 1px dotted @color3;
 		border-bottom: 1px dotted @color3;
 		clear: both;
 	}
-	.view-events{
-		float: left;
-		.events-filter-by-date{
-			h3{
-				margin: 0;
-				float: left;
-				font-style: italic;
-				font-size: @size3;
-				font-weight: bold;
-				color: @h3-default-color;
-				height: 41px;
-			    padding: 1em 0em 0 0;
-			}
-			ul, ul li{
-				padding: 0em 0.5em;
-				margin: 0;
-				float: left;
-				font-style: italic;
-				font-size: @size3;
-				font-weight: bold;
-				color: @text-color-2;
-				a.current_month{
-					color: @text-color-3;
-				}
-				.views-row-first, .views-row-last{
-					background: url("../images/content/calendar-filter.png") no-repeat top left;
-					padding-left: 1.5em;
-				}
-				.views-row-last{
-					background-position: top right;
-					padding-left: 0.5em;
-					padding-right: 1.5em;
-				}
-				li{
-					padding: 0.9em 0.5em 1.1em;
-				}
-			}
-		}
-	}
 }
+
 #block-system-main .view-events-search, .view-events-search{
 	div div.form-type-textfield{
 		input{
@@ -1705,6 +1692,61 @@
 		} */
 		&:hover{
 			text-decoration: none;
+		}
+	}
+}
+#block-views-events-block-2, #block-views-events-block-1{
+
+	h2.block-title{
+		float: left;
+		font-style: italic;
+		font-size: @size3;
+		color: @text-default-color;
+		margin-top: 1em;
+		
+		&:after{
+			content: ":";
+			padding-right: 1em;
+		}
+	}
+	.view-events{
+		float: left;
+		.events-filter-by-date{
+			h3{
+				margin: 0;
+				float: left;
+				font-style: italic;
+				font-size: @size3;
+				font-weight: bold;
+				color: @h3-default-color;
+				height: 41px;
+			    padding: 1em 0em 0 0;
+				cursor: pointer;
+			}
+			ul, ul li{
+				padding: 0em 0.5em;
+				margin: 0;
+				float: left;
+				font-style: italic;
+				font-size: @size3;
+				font-weight: bold;
+				color: @text-color-2;
+				a.current_month{
+					color: @text-color-3;
+				}
+				.views-row-first, .views-row-last{
+					background: url("../images/content/calendar-filter.png") no-repeat top left;
+					padding-left: 1.5em;
+				}
+				.views-row-last{
+					background-position: top right;
+					padding-left: 0.5em;
+					padding-right: 1.5em;
+				}
+				li{
+					padding: 0.9em 0.5em 1.1em;
+				}
+			}
 		}
 	}
 }
@@ -2416,6 +2458,32 @@
 /*fin campaign materials*/
 /*Publications detail*/
 .node-type-publication{
+	.pane-node-field-cover-image{
+		margin-left: -15px;
+		margin-top: 1em;
+	}
+	.panels-flexible-region-container-title{
+		.pane-node-title-field{
+			display: inline-table;
+		}
+		.pane-node-field-publication-date{
+			display: inline-table;
+			margin-left: 1em;
+			margin-bottom: 15px;
+		}
+	}
+	.pane-node-field-publication-type{
+		    display: table-cell;
+		    background-color: #e2e2e3;
+		    color: #003399;
+		    font-style: italic;
+		    font-weight: bold;
+		    margin-right: 2em;
+		    padding: 0.5em 1.5em;
+	}
+	.panels-flexible-row-container-main-row{
+		margin-top: 3em;
+	}
 	.pane-node-field-file{
 		padding-top: 1em;
 		clear: both;
