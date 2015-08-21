@@ -46,7 +46,7 @@ function osha_publication_menu_publications_form($form, $form_state) {
     '#type' => 'checkboxes',
     '#options' => osha_language_list_options(),
     '#default_value' => $languages,
-    '#title' => t('This tool are available in various languages'),
+    '#title' => t('This tool is available in various languages'),
   );
   if (empty($form_state['input'])) {
     $form['content']['results-native'] = osha_publication_menu_publications_search_native($form_state);
