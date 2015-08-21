@@ -154,12 +154,15 @@ function osha_events_strongarm() {
     'search_index' => 0,
     'search_result' => 0,
     'diff_standard' => 0,
+    'title_body' => 0,
+    'body' => 0,
     'osha_slideshow' => 0,
     'highlights_item' => 0,
     'newsletter_item' => 0,
     'pub_teaser' => 0,
     'print' => 0,
     'token' => 0,
+    'revision' => 0,
     'nodeform' => 0,
   );
   $export['exclude_node_title_content_type_modes_events'] = $strongarm;
@@ -223,19 +226,19 @@ function osha_events_strongarm() {
     'extra_fields' => array(
       'form' => array(
         'metatags' => array(
-          'weight' => '0',
+          'weight' => '12',
         ),
         'title' => array(
           'weight' => '4',
         ),
         'path' => array(
-          'weight' => '1',
+          'weight' => '13',
         ),
         'redirect' => array(
-          'weight' => '2',
+          'weight' => '14',
         ),
         'workbench_access' => array(
-          'weight' => '4',
+          'weight' => '15',
         ),
         'language' => array(
           'weight' => '4',
