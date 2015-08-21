@@ -9,8 +9,9 @@
                     });
                 }
                 else {
-                    // TODO for non quictab views.
-                    //hwc_alpha_pager_parse_container(container)
+                    $('.hwc-alpha-pager-view').each(function(idx, container){
+                        hwc_alpha_pager_parse_container(container, idx, '.views-row');
+                    });
                 }
 
                 $('body').on('click', '.hwc-char-link', function(e) {
