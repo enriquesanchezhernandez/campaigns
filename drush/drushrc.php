@@ -368,6 +368,7 @@ $options['init-modules'] = array(
   'ds',
   'ds_ui',
   'ds_extras',
+  'ds_forms',
   'field_formatter_settings',
   'field_formatter_class',
 
@@ -503,6 +504,7 @@ $options['init-modules'] = array(
   'shorten',
 
   'hwc',
+  'hwc_workflow',
   'hwc_admin_reports',
   'hwc_homepage',
   'ncw_migration',

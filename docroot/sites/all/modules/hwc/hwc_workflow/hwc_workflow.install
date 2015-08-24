@@ -1,0 +1,13 @@
+<?php
+
+
+
+/**
+ * Increase module weight to execute after all other hooks (form editing)
+ */
+function hwc_workflow_update_7001() {
+  db_update('system')
+    ->fields(array('weight' => 10))
+    ->condition('name', 'hwc_workflow', '=')
+    ->execute();
+}

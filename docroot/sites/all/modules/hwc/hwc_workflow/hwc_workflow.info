@@ -1,0 +1,5 @@
+name = HWC Workflow
+core = 7.x
+package = HWC
+version = 7.x-0.1
+project = hwc_workflow
