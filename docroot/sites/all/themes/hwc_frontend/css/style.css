@@ -7832,6 +7832,7 @@ body iframe {
   margin-left: 1em;
   position: absolute;
   bottom: 4em;
+  top: 4em;
   right: 20px;
 }
 #homepage_slider #num_slides > div div a.more-link:before {
@@ -8073,11 +8074,25 @@ div[class*='node-'] .more-link {
   font-weight: bold;
   font-style: italic;
 }
-.field-name-field-publication-date {
+.field-name-field-publication-date,
+.field-type-datetime {
   margin-top: 1em;
 }
-.field-name-field-publication-date span {
+.field-name-field-publication-date span,
+.field-type-datetime span {
   font-size: 12px;
+}
+.field-name-field-country-code,
+.field-name-field-city {
+  font-weight: bold;
+  display: inline-flex;
+}
+.field-name-field-country-code:before {
+  content: " (";
+  padding-left: 5px;
+}
+.field-name-field-country-code:after {
+  content: ") ";
 }
 .form-item-relevant-for {
   border-top: 1px dotted #749b00;
@@ -8588,7 +8603,16 @@ div[class*='node-'] .more-link {
   font-weight: bold;
   float: left;
   margin-right: 2em;
+}
+.pane-node-field-free .field-item,
+.pane-node-field-country .field-item,
+.pane-node-field-tool-type .field-item {
   padding: 0.5em 1.5em;
+}
+.pane-node-field-free .field-item:empty,
+.pane-node-field-country .field-item:empty,
+.pane-node-field-tool-type .field-item:empty {
+  padding: 0;
 }
 .pane-node-field-provider,
 .pane-node-body,
@@ -8653,6 +8677,7 @@ div[class*='node-'] .more-link {
 }
 .panel-panel div .pane-node-field-access-tool-link:first-child {
   padding-top: 1em;
+  margin-bottom: 1.5em;
 }
 .panel-panel div .pane-node-field-access-tool-link:first-child a {
   font-size: 30px;
@@ -9782,18 +9807,18 @@ div[class*='node-'] .more-link {
 /*campaign materials*/
 .page-campaign-materials .view-id-view_campaign_materials .views-row {
   border-bottom: 1px dotted #749b00;
-  padding-bottom: 30px;
-  margin-top: 30px;
+  padding-bottom: 40px;
+  margin-top: 40px;
 }
-.page-campaign-materials .view-id-view_campaign_materials .views-row .views-field-field-image {
-  min-height: 150px;
-  margin-right: 50px;
+.page-campaign-materials .view-id-view_campaign_materials .views-row .field-name-field-image {
+  margin-top: 8px;
+  margin-right: 3.5em;
 }
 .page-campaign-materials .view-id-view_campaign_materials .views-row h3 {
   font-weight: bold;
   margin-top: 0;
   display: inline-block;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 }
 .page-campaign-materials .view-id-view_campaign_materials .views-row h3 a {
   font-size: 20px;
@@ -9801,6 +9826,9 @@ div[class*='node-'] .more-link {
 }
 .page-campaign-materials .view-id-view_campaign_materials .views-row h3 a:before {
   content: "> ";
+}
+.page-campaign-materials .view-id-view_campaign_materials .views-row .field.field-name-field-publication-date {
+  padding-top: 0px;
 }
 .page-campaign-materials .view-id-view_campaign_materials .views-row .materials_date {
   margin-left: 20px;
@@ -9811,31 +9839,71 @@ div[class*='node-'] .more-link {
 .page-campaign-materials .view-id-view_campaign_materials .views-row .views-field-body a:before {
   content: "";
 }
-.page-campaign-materials .view-id-view_campaign_materials .views-row .views-field-field-related-documents .file_size {
+.page-campaign-materials .view-id-view_campaign_materials .views-row .field-type-file {
+  margin-top: 1.5em;
+}
+.page-campaign-materials .view-id-view_campaign_materials .views-row .field-type-file .file_size {
   float: left;
   margin-top: 0px;
-  margin-right: 56px;
+  margin-right: 35px;
   color: #333333;
   font-style: normal;
 }
-.page-campaign-materials .view-id-view_campaign_materials .views-row .views-field-field-related-documents span {
+.page-campaign-materials .view-id-view_campaign_materials .views-row .field-type-file span {
   float: initial;
   font-weight: bold;
   font-size: 16px;
   color: #003399;
   font-style: italic;
 }
-.page-campaign-materials .view-id-view_campaign_materials .views-row .views-field-field-related-documents .glyphicon {
+.page-campaign-materials .view-id-view_campaign_materials .views-row .field-type-file .glyphicon {
   display: none;
 }
-.page-campaign-materials .view-id-view_campaign_materials .views-row .views-field-field-related-documents a {
+.page-campaign-materials .view-id-view_campaign_materials .views-row .field-type-file a {
   position: absolute;
   margin-left: 10px;
 }
-.page-campaign-materials .view-id-view_campaign_materials .views-row .views-field-field-related-documents a:after {
+.page-campaign-materials .view-id-view_campaign_materials .views-row .field-type-file a:after {
   content: url("../images/content/download.png");
 }
-.page-campaign-materials .view-id-view_campaign_materials .views-row .views-field-field-related-documents a img {
+.page-campaign-materials .view-id-view_campaign_materials .views-row .field-type-file a img {
+  display: none;
+}
+.node-type-campaign-materials .field-name-title-field {
+  margin-bottom: 2em;
+}
+.node-type-campaign-materials .field-name-field-image {
+  margin-top: 23px;
+  margin-right: 3.5em;
+}
+.node-type-campaign-materials .field-type-file {
+  margin-top: 1.5em;
+}
+.node-type-campaign-materials .field-type-file .file_size {
+  float: left;
+  margin-top: 0px;
+  margin-right: 35px;
+  color: #333333;
+  font-style: normal;
+}
+.node-type-campaign-materials .field-type-file span {
+  float: initial;
+  font-weight: bold;
+  font-size: 16px;
+  color: #003399;
+  font-style: italic;
+}
+.node-type-campaign-materials .field-type-file .glyphicon {
+  display: none;
+}
+.node-type-campaign-materials .field-type-file a {
+  position: absolute;
+  margin-left: 10px;
+}
+.node-type-campaign-materials .field-type-file a:after {
+  content: url("../images/content/download.png");
+}
+.node-type-campaign-materials .field-type-file a img {
   display: none;
 }
 /*fin campaign materials*/
@@ -9844,22 +9912,21 @@ div[class*='node-'] .more-link {
   margin-left: -15px;
   margin-top: 1em;
 }
-.node-type-publication .panels-flexible-region-container-title .pane-node-title-field {
-  display: inline-table;
-}
 .node-type-publication .panels-flexible-region-container-title .pane-node-field-publication-date {
-  display: inline-table;
-  margin-left: 1em;
-  margin-bottom: 15px;
+  margin-bottom: 25px;
 }
-.node-type-publication .pane-node-field-publication-type {
-  display: table-cell;
+.node-type-publication .pane-node-field-publication-type,
+.node-type-publication .pane-node-field-country,
+.node-type-publication .pane-node-field-free,
+.node-type-publication .pane-node-field-tool-type {
+  display: inline-block;
   background-color: #e2e2e3;
   color: #003399;
   font-style: italic;
   font-weight: bold;
   margin-right: 2em;
   padding: 0.5em 1.5em;
+  margin-bottom: 1.5em;
 }
 .node-type-publication .panels-flexible-row-container-main-row {
   margin-top: 3em;
@@ -9907,12 +9974,31 @@ div[class*='node-'] .more-link {
 #block-views-partners-list-block .view-id-partners_list .quicktabs-tabs li.active {
   border-bottom: none;
 }
+#block-views-partners-list-block .view-id-partners_list .quicktabs-tabs li.active a {
+  color: #749b00;
+  font-style: normal;
+}
+#block-views-partners-list-block .view-id-partners_list .quicktabs-tabs li.first {
+  border-left: none;
+}
+#block-views-partners-list-block .view-id-partners_list .quicktabs-tabs li.last {
+  border-right: none;
+}
 #block-views-partners-list-block .view-id-partners_list .hwc-alphabet-container {
   border-bottom: 1px dotted #749b00;
   padding-bottom: 1em;
 }
 #block-views-partners-list-block .view-id-partners_list .quicktabs-tabpage .hwc-char-link {
   padding: 0px 15px;
+}
+#block-views-partners-list-block .view-id-partners_list .quicktabs-tabpage .hwc-char-link.disabled {
+  cursor: text;
+}
+#block-views-partners-list-block .view-id-partners_list .quicktabs-tabpage .hwc-char-link.disabled:hover {
+  text-decoration: none;
+}
+#block-views-partners-list-block .view-id-partners_list .quicktabs-tabpage .hwc-char-link.active {
+  color: #749b00;
 }
 #block-views-partners-list-block .view-id-partners_list .quicktabs-tabpage div[id*="hwc-char-"] {
   margin-top: 2em;

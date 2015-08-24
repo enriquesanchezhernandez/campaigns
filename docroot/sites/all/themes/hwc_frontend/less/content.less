@@ -343,6 +343,7 @@
 							margin-left: 1em;
 							position: absolute;
 							bottom: 4em;
+							top: 4em;
 							right: 20px;
 						}
 						&.more-link:before{
@@ -606,10 +607,24 @@
 			font-style: italic;
 		}
 	}
-	.field-name-field-publication-date{
+	.field-name-field-publication-date, .field-type-datetime{
 		margin-top: 1em;
 		span{
 			font-size: @size3;
+		}
+	}
+	
+	.field-name-field-country-code, .field-name-field-city{
+		font-weight: bold;
+		display: inline-flex;
+	}
+	.field-name-field-country-code{
+		&:before{
+			content:" (";
+			padding-left: 5px;
+		}
+		&:after{
+			content:") ";
 		}
 	}
 	.form-item-relevant-for{
@@ -1105,7 +1120,12 @@
 		font-weight: bold;
 		float: left;
 		margin-right: 2em;
-		padding: 0.5em 1.5em;
+		.field-item{
+			padding: 0.5em 1.5em;
+		}
+		.field-item:empty{
+			padding: 0;
+		}
 	}
 	.pane-node-field-provider, .pane-node-body, .pane-node-field-implementation-steps, .pane-node-field-dissemination-used, .pane-node-field-access-tool-link,
 		.pane-hwc-practical-tool-hwc-practical-tool-language-list, .pane-node-field-external-urls{
@@ -1141,6 +1161,7 @@
 	}
 	.panel-panel div .pane-node-field-access-tool-link:first-child{
 		padding-top: 1em;
+		margin-bottom: 1.5em;
 		a{
 			font-size: 30px;
 			font-weight: normal;
@@ -2393,17 +2414,17 @@
 	.view-id-view_campaign_materials{
 		.views-row{
 			border-bottom: 1px dotted @color3;
-			padding-bottom: 30px;
-			margin-top: 30px;
-			.views-field-field-image{
-				min-height: 150px;
-			    margin-right: 50px;
+			padding-bottom: 40px;
+			margin-top: 40px;
+			.field-name-field-image{
+				margin-top: 8px;
+    			margin-right: 3.5em;
 			}
 			h3{
 				font-weight: bold;
 				margin-top: 0;
 				display: inline-block;
-				margin-bottom: 20px;
+				margin-bottom: 10px;
 				a{
 					font-size: @size2;
 					font-weight: bold;
@@ -2411,6 +2432,9 @@
 						content: "> "; 
 					}
 				}
+			}
+			.field.field-name-field-publication-date{
+				padding-top: 0px;
 			}
 			.materials_date{
 				margin-left: 20px;
@@ -2423,11 +2447,12 @@
 					}
 				}
 			}
-			.views-field-field-related-documents{
+			.field-type-file{
+				margin-top: 1.5em;
 				.file_size{
 					float: left;
 				    margin-top: 0px;
-				    margin-right: 56px;
+				    margin-right: 35px;
 				    color: @colorNormalText;
 					font-style: normal;
 				}
@@ -2455,6 +2480,47 @@
 		}
 	}
 }
+
+//materials detail
+.node-type-campaign-materials{
+	.field-name-title-field{
+		margin-bottom: 2em;
+	}
+	.field-name-field-image{
+		margin-top: 23px;
+		margin-right: 3.5em;
+	}
+	.field-type-file{
+		margin-top: 1.5em;
+		.file_size{
+			float: left;
+		    margin-top: 0px;
+		    margin-right: 35px;
+		    color: @colorNormalText;
+			font-style: normal;
+		}
+		span{
+			float: initial;
+			font-weight: bold;
+			font-size: @size6;
+			color: @color2;
+			font-style: italic;
+		}
+		.glyphicon{
+			display: none;
+		}
+		a{
+			position: absolute;
+			margin-left: 10px;
+			&:after{
+				content: url("../images/content/download.png");
+			}
+			img{
+				display: none;
+			}
+		}
+	}
+}
 /*fin campaign materials*/
 /*Publications detail*/
 .node-type-publication{
@@ -2464,22 +2530,20 @@
 	}
 	.panels-flexible-region-container-title{
 		.pane-node-title-field{
-			display: inline-table;
 		}
 		.pane-node-field-publication-date{
-			display: inline-table;
-			margin-left: 1em;
-			margin-bottom: 15px;
+			margin-bottom: 25px;
 		}
 	}
-	.pane-node-field-publication-type{
-		    display: table-cell;
+	.pane-node-field-publication-type, .pane-node-field-country, .pane-node-field-free, .pane-node-field-tool-type{
+		    display: inline-block;
 		    background-color: #e2e2e3;
 		    color: #003399;
 		    font-style: italic;
 		    font-weight: bold;
 		    margin-right: 2em;
 		    padding: 0.5em 1.5em;
+		    margin-bottom: 1.5em;
 	}
 	.panels-flexible-row-container-main-row{
 		margin-top: 3em;
@@ -2532,6 +2596,16 @@
 				padding: 15px 30px;
 				&.active{
 					border-bottom: none;
+					a{
+						color: @color3;
+						font-style: normal;
+					}
+				}
+				&.first{
+					border-left: none;
+				}
+				&.last{
+					border-right: none;
 				}
 			}
 
@@ -2543,6 +2617,15 @@
 		.quicktabs-tabpage{
 			.hwc-char-link{
 				padding: 0px 15px;
+				&.disabled {
+					cursor: text;
+					&:hover{
+						text-decoration: none;
+					}
+				}
+				&.active{
+					color: @color3;
+				}
 			}
 			div[id*="hwc-char-"]{
 				margin-top: 2em;
