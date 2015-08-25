@@ -61,10 +61,43 @@ function hwc_workflow_partner_content_cron() {
     }
   }
 }
+
+/**
+ * Implements hook_permission().
+ */
+function hwc_workflow_permission() {
+  $permissions = array();
+  $permissions['select content section'] = array('title' => t("Can select section of a content"));
+
+  return $permissions;
+}
+
+/**
+ * Implements hook_mail_alter().
+ */
+function hwc_workflow_mail_alter(&$message) {
+  if (strpos($message['key'], 'hwc_workflow')) {
+    // Block mails that are send for hwc workflow if user's preference.
+    $user = user_load_by_mail($message['to']);
+    $send_notif = variable_get('osha_workflow_send_mail', FALSE);
+    // when using rereoute mail, the to address is not of an user.
+    $usr_receive_notif = empty($user) || !empty($user->field_cmw_mail_notifications[LANGUAGE_NONE][0]['value']);
+    if (!$send_notif || !$usr_receive_notif) {
+      $message['send'] = FALSE;
+    }
+  }
+}
+
 /**
  * Implements hook_node_access().
  */
 function hwc_workflow_node_access($node, $op, $account) {
+  if (($op == 'update' || $op == 'delete')
+    && in_array($node->type, ncw_migration_get_migrated_bundles())
+    && $node->uid == 0) {
+    return NODE_ACCESS_DENY;
+  }
+
   // Do not allow media partners to create news
   if ($node == 'events' && $op == 'create' && in_array(ROLE_CAMPAIGN_PARTNER, $account->roles)) {
     $partner = hwc_partner_get_account_partner($account);
@@ -74,6 +107,16 @@ function hwc_workflow_node_access($node, $op, $account) {
     }
   }
   return NODE_ACCESS_IGNORE;
+}
+
+/**
+ * Implements hook_form_alter().
+ */
+function hwc_workflow_form_alter(&$form, &$form_state) {
+  // Implements permission select content section.
+  if (isset($form['#node_edit_form']) && !empty($form['workbench_access']['workbench_access'])) {
+    $form['workbench_access']['workbench_access']['#access'] = user_access('select content section');
+  }
 }
 
 /**
@@ -220,4 +263,24 @@ function _hwc_workflow_get_node_final_draft_time($node) {
 function _hwc_workflow_partner_content_get_time_limit() {
   $time_gap = (int) variable_get('hwc_workflow_partner_content_minutes_gap_autosubmit', 30);
   return time() - $time_gap * 60;
+}
+
+function _hwc_workflow_user_has_section($user, $section_id) {
+  foreach(array_keys($user->workbench_access) as $section_id) {
+    if (in_array($section_id, $user->workbench_access)) {
+      return TRUE;
+    }
+  }
+  return FALSE;
+}
+
+function _hwc_workflow_load_users_by_section($section_id) {
+  $uids = db_select('workbench_access_user', 'wau')
+    ->fields('wau', array('uid'))
+    ->condition('access_scheme', 'taxonomy')
+    ->condition('access_id', $section_id)
+    ->execute()
+    ->fetchAllKeyed();
+  $uids = array_keys($uids);
+  return user_load_multiple($uids);
 }
