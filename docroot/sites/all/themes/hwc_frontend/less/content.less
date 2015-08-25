@@ -46,7 +46,7 @@
 			border-bottom: 1px dotted @color3;
 			padding-bottom: 0.7em;
 			.form-item{
-				margin-top: 26px; //ENDIKA
+				margin-top: 26px;
 			}
 		
 		}
@@ -55,6 +55,7 @@
 			font-size: @h2-default-size-3;
 			font-weight: 100;
 			font-style: italic;
+			margin-top: 0px;
 			a:empty {
 				display: none;
 			}
@@ -112,6 +113,7 @@
 		label{
 			color: @text-color-2;
 			padding-left: 0;
+			font-family: @font-family-semibold;
 		}
 		label:before {
 			border: 2px solid @border-color-2;
@@ -136,6 +138,7 @@
 		label{
 			color: @text-color-2;
 			padding-left: 0;
+			font-family: @font-family-semibold;
 		}
 		label:before {
 			border: 2px solid @border-color-2;
@@ -302,7 +305,7 @@
 	#homepage_slider{
 		height: 356px !important;
 		background: @color3 url("../images/content/bg-campaign-partner.png") no-repeat left 20px;
-		margin-bottom: 35px; //by endika
+		margin-bottom: 35px;
 		width: 100% !important;
 		> div{
 			width: 100% !important;
@@ -324,6 +327,22 @@
 						height: 230px !important;
 					}
 				}
+				.views-field{
+					position: absolute;
+					z-index: 10;
+				}
+				.views-field.views-field-body{
+					color: white;
+					z-index: 100;
+					top: 6em;
+					div{
+						text-align: right;
+						margin-right: 20px;
+					}
+					div:empty{
+						
+					}
+				}
 				div{
 					margin: 0;
 					padding: 0;
@@ -343,11 +362,11 @@
 							margin-left: 1em;
 							position: absolute;
 							bottom: 4em;
-							top: 4em;
+							top: 10em;
 							right: 20px;
 						}
 						&.more-link:before{
-							content: "";
+							/* content: ""; */
 						}
 						img{
 							width: 100%;
@@ -356,7 +375,6 @@
 					}
 					p{
 						color: @slider-color;
-					
 						text-align: right;
 						padding-right: 20px;
 						margin-top: 40px;
@@ -466,9 +484,11 @@
 			height: 350px;
 			z-index: 22;
 			top: 68px;
+			top: 490px;
 			h1{
 				color: @color1;
 				padding-top: 230px;
+				border: none;
 			}
 		}
 		/* .field-name-field-image + .field-name-title-field h1{
@@ -525,15 +545,19 @@
 				height: auto;
 				top: 0;
 			}
-			.field-name-field-image{
-				float: left;
-				margin-right: 1em;
-			}
 			.addtoany_list{
 				border: none;
 				text-align: center;
 			}
 		}
+			.field-name-field-image{
+				float: left;
+				margin-right: 1em;
+				width: 100%;
+				img{
+					width: 100%;
+				}
+			}
 	}
 	
 	/* Infographics */
@@ -551,6 +575,11 @@
 	}
 	.node-infographic {
 		//margin: 0px 135px; quitado para responsive
+		.field-name-title-field{
+			h2{
+				margin-top: 0px;
+			}
+		}
 		.label_multilang_file{
 			padding-right: 3px;
 		}
@@ -831,20 +860,44 @@
 				}
 			}
 		}
-		.view-display-id-attachment_1{
-			padding-top: 1em;
-			padding-bottom: 1em;
-			padding-right: 1em;
-			padding-left: 2em;
-			.views-field-field-logo{
-				float: left;
-    			margin-right: 100px;
+		//home partners list
+		.view-display-id-block_1{
+			img{
+				width: 100%;
 			}
-			.views-field-title{
-				font-size: @size8;
-				font-weight: bold;
-				a{
-					color: @color5;
+			.view-display-id-attachment_1{
+				border-top: 1px dotted @color3;
+				min-height: 400px;
+				padding: 35px;
+			    padding-right: 50px;
+			    padding-left: 60px;
+				.view-content{
+					border: none;
+					.views-field-field-logo{
+						float: left;
+		    			margin-right: 100px;
+		    			padding-top: 0;
+		    			min-height: 280px;
+					}
+					.views-field-title{
+						font-size: @size8;
+						font-weight: bold;
+						a{
+							color: @color5;
+						}
+					}
+				}
+			}
+			.hidden-xs{
+				.views-field-field-logo{
+					padding-top: 0;
+					height: 200px;
+					border-top: 1px dotted @color3;
+					border-right: 1px dotted @color3;
+					padding: 25px;
+					img{
+						max-height: 150px;
+					}
 				}
 			}
 		}
@@ -982,6 +1035,15 @@
 		}
 	}
 	
+	/* pag Search */
+	.page-search{
+		#views-exposed-form-search-site .views-submit-button{
+			padding-top: 2.4em;
+			button {
+				background: @bg-color-2 url("../images/content/search.png") no-repeat center;
+			}
+		}
+	}
 	#search{
 		margin: 0 0 1em 0;
 		padding: 1em 0 0;
@@ -998,6 +1060,9 @@
 			height: 34px;
 			width: 30px;
 			color: @color0;
+			&:focus{
+				outline: 0;
+			}
 		}
 	}
 	#block-system-main div #search div.form-type-textfield input {
@@ -1485,6 +1550,7 @@
 		font-style: normal;
 	}
 }
+/* press-room */
 .page-press-room{
 	.node-press-release{
 		.field-name-field-summary{
@@ -1497,6 +1563,18 @@
 				}
 			}
 		}
+	}
+}
+/* H1 Exceptions */
+.page-press-room, .page-campaign-materials, .page-publications, .page-case-studies, .page-practical-tools{
+	h1{
+		border-bottom: none;
+		margin-bottom: 0em;
+	}
+}
+.page-press-room, .page-campaign-materials{
+	.section-introduction .field-type-text-with-summary{
+		padding-bottom: 0;
 	}
 }
 //articulos pressroom
@@ -1644,6 +1722,9 @@
 				height: 34px;
 				width: 30px;
 				color: @color0;
+				&:focus{
+					outline: 0;
+				}
 			}
 		}
 	}
@@ -1852,68 +1933,6 @@
 	}
 }
 /*Fin articles*/
-
-/*infographics*/
-#block-views-infographic-block-1{
-	.views-row{
-		overflow: hidden;
-		.views-field-title-field{
-			margin-bottom: 1.5em;
-			a{
-				color: @color2;
-				font-weight: bold;
-				&:before{
-					content: "> ";
-				}
-			}
-		}
-		.views-field-field-thumbnail{
-			float: left;
-			margin-right: 2em;
-			margin-bottom: 1em;
-		}
-		.views-field-body{
-			.field-content{
-				a{
-					background: @color0;
-					color:@color2;
-					font-weight: bold;
-					font-style: italic;
-				}
-			}
-		}
-	}	
-}
-/*infographics detail*/
-.node-type-infographic{
-	.node-infographic{
-		.field-name-title-field{
-			margin-bottom: 30px;
-			clear: both;
-		}
-		.field-name-body{
-			margin-bottom: 30px;
-		}
-		.field-name-field-image{
-
-		}
-		.field-name-field-twin-infographics{
-			margin-top:  30px;
-			margin-bottom: 30px;
-		}
-		.field-name-field-thumbnail{
-			margin-bottom: 30px;
-		}
-		.field-name-field-image.field-type-image, .field-name-field-file.field-type-file, .link-wrapper{
-			float: none;
-			margin-left: 250px;/*  */
-		}
-		.field-name-field-thumbnail.field-type-image{
-			margin-top: -50px;
-		}
-	}
-}
-/*fin infographics*/
 
 /*Become a media partner*/
 .become-partner{

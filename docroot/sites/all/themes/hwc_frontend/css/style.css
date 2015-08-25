@@ -7280,6 +7280,9 @@ header.navbar-default .navbar-header #block-search-form button {
   margin-top: 0px;
   background: #003399 url('../images/header/search.png') no-repeat center;
 }
+header.navbar-default .navbar-header #block-search-form button:focus {
+  outline: 0;
+}
 header.navbar-default .navbar-header #block-menu-menu-header-login {
   float: right;
   margin-left: 0px;
@@ -7456,6 +7459,11 @@ header.navbar-default .navbar-collapse nav ul.menu li.active-trail ul li.active-
 #views-exposed-form-search-site button {
   background-image: none;
 }
+#views-exposed-form-search-site .form-type-textfield:focus,
+#views-exposed-form-search-site input:focus,
+#views-exposed-form-search-site button:focus {
+  outline: 0;
+}
 /*----------Endika----------*/
 header.navbar-default .campaigns-header {
   padding: 0;
@@ -7539,6 +7547,7 @@ body iframe {
   font-size: 30px;
   font-weight: 100;
   font-style: italic;
+  margin-top: 0px;
 }
 .main-container h2 a:empty {
   display: none;
@@ -7593,6 +7602,7 @@ body iframe {
 .checkbox label {
   color: #003399;
   padding-left: 0;
+  font-family: 'Open Sans Semibold';
 }
 .checkbox label:before {
   border: 2px solid #003399;
@@ -7617,6 +7627,7 @@ body iframe {
 .radio label {
   color: #003399;
   padding-left: 0;
+  font-family: 'Open Sans Semibold';
 }
 .radio label:before {
   border: 2px solid #003399;
@@ -7811,6 +7822,19 @@ body iframe {
 #homepage_slider #num_slides > div.views-field.views-field-body div:empty {
   height: 230px !important;
 }
+#homepage_slider #num_slides > div .views-field {
+  position: absolute;
+  z-index: 10;
+}
+#homepage_slider #num_slides > div .views-field.views-field-body {
+  color: white;
+  z-index: 100;
+  top: 6em;
+}
+#homepage_slider #num_slides > div .views-field.views-field-body div {
+  text-align: right;
+  margin-right: 20px;
+}
 #homepage_slider #num_slides > div div {
   margin: 0;
   padding: 0;
@@ -7832,11 +7856,11 @@ body iframe {
   margin-left: 1em;
   position: absolute;
   bottom: 4em;
-  top: 4em;
+  top: 10em;
   right: 20px;
 }
 #homepage_slider #num_slides > div div a.more-link:before {
-  content: "";
+  /* content: ""; */
 }
 #homepage_slider #num_slides > div div a img {
   width: 100%;
@@ -7959,10 +7983,12 @@ body iframe {
   height: 350px;
   z-index: 22;
   top: 68px;
+  top: 490px;
 }
 .node-article .field-name-field-image + .field-name-title-field h1 {
   color: #ffffff;
   padding-top: 230px;
+  border: none;
 }
 .node-article .field-name-field-image + .field-name-title-field + .field-name-body {
   margin-top: 5em;
@@ -8009,13 +8035,17 @@ body iframe {
   height: auto;
   top: 0;
 }
-.node-article .node-article .field-name-field-image {
-  float: left;
-  margin-right: 1em;
-}
 .node-article .node-article .addtoany_list {
   border: none;
   text-align: center;
+}
+.node-article .field-name-field-image {
+  float: left;
+  margin-right: 1em;
+  width: 100%;
+}
+.node-article .field-name-field-image img {
+  width: 100%;
 }
 /* Infographics */
 .view-infographic .views-row {
@@ -8026,6 +8056,9 @@ body iframe {
 .view-infographic .views-row .views-field-title-field a {
   color: #575757;
   font-size: 20px;
+}
+.node-infographic .field-name-title-field h2 {
+  margin-top: 0px;
 }
 .node-infographic .label_multilang_file {
   padding-right: 3px;
@@ -8304,22 +8337,41 @@ div[class*='node-'] .more-link {
   content: ">";
   padding-right: 0.35em;
 }
-#block-views-partners-block-1 .view-display-id-attachment_1 {
-  padding-top: 1em;
-  padding-bottom: 1em;
-  padding-right: 1em;
-  padding-left: 2em;
+#block-views-partners-block-1 .view-display-id-block_1 img {
+  width: 100%;
 }
-#block-views-partners-block-1 .view-display-id-attachment_1 .views-field-field-logo {
+#block-views-partners-block-1 .view-display-id-block_1 .view-display-id-attachment_1 {
+  border-top: 1px dotted #749b00;
+  min-height: 400px;
+  padding: 35px;
+  padding-right: 50px;
+  padding-left: 60px;
+}
+#block-views-partners-block-1 .view-display-id-block_1 .view-display-id-attachment_1 .view-content {
+  border: none;
+}
+#block-views-partners-block-1 .view-display-id-block_1 .view-display-id-attachment_1 .view-content .views-field-field-logo {
   float: left;
   margin-right: 100px;
+  padding-top: 0;
+  min-height: 280px;
 }
-#block-views-partners-block-1 .view-display-id-attachment_1 .views-field-title {
+#block-views-partners-block-1 .view-display-id-block_1 .view-display-id-attachment_1 .view-content .views-field-title {
   font-size: 24px;
   font-weight: bold;
 }
-#block-views-partners-block-1 .view-display-id-attachment_1 .views-field-title a {
+#block-views-partners-block-1 .view-display-id-block_1 .view-display-id-attachment_1 .view-content .views-field-title a {
   color: #575757;
+}
+#block-views-partners-block-1 .view-display-id-block_1 .hidden-xs .views-field-field-logo {
+  padding-top: 0;
+  height: 200px;
+  border-top: 1px dotted #749b00;
+  border-right: 1px dotted #749b00;
+  padding: 25px;
+}
+#block-views-partners-block-1 .view-display-id-block_1 .hidden-xs .views-field-field-logo img {
+  max-height: 150px;
 }
 #block-views-publications-slideshow-slidehow #publications_slideshow,
 #block-system-main #publications_slideshow {
@@ -8472,6 +8524,13 @@ div[class*='node-'] .more-link {
   font-style: italic;
   font-weight: 100;
 }
+/* pag Search */
+.page-search #views-exposed-form-search-site .views-submit-button {
+  padding-top: 2.4em;
+}
+.page-search #views-exposed-form-search-site .views-submit-button button {
+  background: #003399 url("../images/content/search.png") no-repeat center;
+}
 #search {
   margin: 0 0 1em 0;
   padding: 1em 0 0;
@@ -8489,6 +8548,9 @@ div[class*='node-'] .more-link {
   height: 34px;
   width: 30px;
   color: transparent;
+}
+#search button:focus {
+  outline: 0;
 }
 #block-system-main div #search div.form-type-textfield input {
   margin-right: 0em;
@@ -8950,11 +9012,25 @@ div[class*='node-'] .more-link {
   font-weight: bold;
   font-style: normal;
 }
+/* press-room */
 .page-press-room .node-press-release .field-name-field-summary {
   margin-top: 2em;
 }
 .page-press-room .node-press-release .field-name-field-summary .field-item > p:first-child br {
   display: none;
+}
+/* H1 Exceptions */
+.page-press-room h1,
+.page-campaign-materials h1,
+.page-publications h1,
+.page-case-studies h1,
+.page-practical-tools h1 {
+  border-bottom: none;
+  margin-bottom: 0em;
+}
+.page-press-room .section-introduction .field-type-text-with-summary,
+.page-campaign-materials .section-introduction .field-type-text-with-summary {
+  padding-bottom: 0;
 }
 .view-press-releases .views-row {
   border-bottom: 1px dotted #749b00;
@@ -9089,6 +9165,10 @@ div[class*='node-'] .more-link {
   height: 34px;
   width: 30px;
   color: transparent;
+}
+.page-past-events form .views-exposed-form .views-exposed-widget button.form-submit:focus,
+.page-events form .views-exposed-form .views-exposed-widget button.form-submit:focus {
+  outline: 0;
 }
 .page-past-events #block-views-events-block-1,
 .page-events #block-views-events-block-1 {
@@ -9293,57 +9373,6 @@ div[class*='node-'] .more-link {
   display: none !important;
 }
 /*Fin articles*/
-/*infographics*/
-#block-views-infographic-block-1 .views-row {
-  overflow: hidden;
-}
-#block-views-infographic-block-1 .views-row .views-field-title-field {
-  margin-bottom: 1.5em;
-}
-#block-views-infographic-block-1 .views-row .views-field-title-field a {
-  color: #003399;
-  font-weight: bold;
-}
-#block-views-infographic-block-1 .views-row .views-field-title-field a:before {
-  content: "> ";
-}
-#block-views-infographic-block-1 .views-row .views-field-field-thumbnail {
-  float: left;
-  margin-right: 2em;
-  margin-bottom: 1em;
-}
-#block-views-infographic-block-1 .views-row .views-field-body .field-content a {
-  background: transparent;
-  color: #003399;
-  font-weight: bold;
-  font-style: italic;
-}
-/*infographics detail*/
-.node-type-infographic .node-infographic .field-name-title-field {
-  margin-bottom: 30px;
-  clear: both;
-}
-.node-type-infographic .node-infographic .field-name-body {
-  margin-bottom: 30px;
-}
-.node-type-infographic .node-infographic .field-name-field-twin-infographics {
-  margin-top: 30px;
-  margin-bottom: 30px;
-}
-.node-type-infographic .node-infographic .field-name-field-thumbnail {
-  margin-bottom: 30px;
-}
-.node-type-infographic .node-infographic .field-name-field-image.field-type-image,
-.node-type-infographic .node-infographic .field-name-field-file.field-type-file,
-.node-type-infographic .node-infographic .link-wrapper {
-  float: none;
-  margin-left: 250px;
-  /*  */
-}
-.node-type-infographic .node-infographic .field-name-field-thumbnail.field-type-image {
-  margin-top: -50px;
-}
-/*fin infographics*/
 /*Become a media partner*/
 .become-partner .coments {
   margin-top: 50px;
