@@ -7,7 +7,7 @@
 function hwc_workflow_cron_cronapi() {
   return array('hwc_workflow_partner_content_cron' => array(
     'description' => 'Set partners content from final draft to next state.',
-    'rule' => '0,15 * * * *',
+    'rule' => '0,5 * * * *',
   ));
 }
 
@@ -32,8 +32,7 @@ function hwc_workflow_partner_content_cron() {
   // Getting the nids that have passed the final draft state.
   $subquery = db_select('workbench_moderation_node_history', 'wm')
     ->fields('wm', array('nid'))
-    ->distinct()
-    ->condition('wm.state', array('draft', 'final_draft'), 'NOT IN')
+    ->condition('wm.state', 'final_draft')
     ->condition('wm.current', 1);
 
   $time_limit = _hwc_workflow_partner_content_get_time_limit();
@@ -43,7 +42,7 @@ function hwc_workflow_partner_content_cron() {
     ->distinct()
     ->condition('wmh.from_state', 'draft')
     ->condition('wmh.state', 'final_draft')
-    ->condition('wmh.nid', $subquery, 'NOT IN')
+    ->condition('wmh.nid', $subquery, 'IN')
     ->condition('wmh.uid', $uids, 'IN')
     ->condition('wmh.stamp', $time_limit, '<=')
     ->orderBy('wmh.hid', 'DESC')
