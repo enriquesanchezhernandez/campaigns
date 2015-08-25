@@ -451,8 +451,8 @@ function hwc_user_activate($mail) {
     }
   }
   else {
-    drupal_add_http_header('Status', '400 Missing user');
-    echo '400 Missing user';
+    drupal_add_http_header('Status', '404 User not found');
+    echo '404 User not found';
     drupal_exit();
     die();
   }
