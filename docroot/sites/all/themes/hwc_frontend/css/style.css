@@ -7592,6 +7592,7 @@ body iframe {
 .section-introduction p {
   text-align: center;
   font-weight: bold;
+  font-size: 16px;
 }
 .section-introduction p:last-child {
   margin-bottom: 10px;
@@ -8960,10 +8961,13 @@ div[class*='node-'] .more-link {
 .section-introduction .field-type-text-with-summary {
   padding-bottom: 2em;
 }
-#mini-panel-press_room_blocks {
+.node-type-press-release #mini-panel-press_room_blocks {
   border-top: 1px dotted #749b00;
+  padding-top: 1em;
+}
+#mini-panel-press_room_blocks {
   padding-top: 5px;
-  margin-top: 2em;
+  margin-top: 1em;
 }
 #mini-panel-press_room_blocks .pane-osha-press-release-osha-press-rel-become-partner {
   padding-right: 15px;
@@ -9040,7 +9044,8 @@ div[class*='node-'] .more-link {
 }
 .page-press-room .section-introduction .field-type-text-with-summary,
 .page-campaign-materials .section-introduction .field-type-text-with-summary {
-  padding-bottom: 0;
+  padding-bottom: 3em;
+  border-bottom: 1px dotted #749b00;
 }
 .view-press-releases .views-row {
   border-bottom: 1px dotted #749b00;
@@ -9191,14 +9196,46 @@ div[class*='node-'] .more-link {
   margin-right: 0em;
 }
 .node-events .field-name-field-city {
-  background: url("../images/content/location.png") no-repeat left center;
   color: #749b00;
   font-weight: bold;
+  width: 50%;
+  text-align: right;
+  display: inline-block;
+}
+.node-events .field-name-field-city .field-items {
+  width: auto;
+  text-align: right;
+  float: right;
+}
+.node-events .field-name-field-city .field-items .field-item {
   padding: 0.5em 0em 0.5em 2em;
+  width: auto;
+  background: url("../images/content/location.png") no-repeat left center;
 }
 .node-events .field-name-field-country-code {
   color: #749b00;
   font-weight: bold;
+  width: 50%;
+  display: inline-block;
+}
+.node-events .field-name-field-country-code:before {
+  content: "";
+  float: left;
+}
+.node-events .field-name-field-country-code:after {
+  content: "";
+}
+.node-events .field-name-field-country-code .field-items {
+  float: left;
+}
+.node-events .field-name-field-country-code .field-items .field-item {
+  padding: 0.5em 0em 0.5em 2em;
+}
+.node-events .field-name-field-country-code .field-items .field-item:before {
+  content: "(";
+}
+.node-events .field-name-field-country-code .field-items .field-item:after {
+  content: ")";
 }
 .node-events .field-name-field-start-date {
   color: #749b00;
@@ -9206,8 +9243,10 @@ div[class*='node-'] .more-link {
   border-top: 1px dotted #749b00;
   width: auto;
   padding: 4em 3em 3em;
-  /* margin: 0 auto; */
   background: url("../images/content/calendar.png") no-repeat center 1em;
+  width: 50%;
+  margin: 0 auto;
+  text-align: center;
 }
 .views-exposed-form #edit-search-api-views-fulltext-wrapper {
   padding-right: 0em;
