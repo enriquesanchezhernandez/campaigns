@@ -3,6 +3,7 @@
 /* Drupal bootstrap procedure */
 define('DRUPAL_ROOT', realpath(__DIR__ . '/../../'));
 require_once DRUPAL_ROOT . '/includes/bootstrap.inc';
+$base_url = 'http://' . $_SERVER['HTTP_HOST'];
 drupal_bootstrap(DRUPAL_BOOTSTRAP_FULL);
 global $user;
 print "<strong>You are currently logged as: <span style='color: red;'>{$user->mail} ($user->uid)</span></strong>";
