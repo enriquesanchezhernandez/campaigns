@@ -51,6 +51,7 @@ function hwc_workflow_permissions_role_supervisor() {
     'access content',
     'view revisions',
     'view all unpublished content',
+    'access workbench access by role',
   );
 }
 
