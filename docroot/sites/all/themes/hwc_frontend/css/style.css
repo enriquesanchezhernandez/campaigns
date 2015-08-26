@@ -10216,14 +10216,50 @@ div[class*='node-'] .more-link {
   }
 }
 @media only screen and (max-width: 992px) {
-  body {
-    background-color: blue;
-  }
   /* Article */
   .node-article .field-name-field-image + .field-name-title-field {
-    height: auto;
+    height: 300px;
+  }
+  .node-article .field-name-field-image + .field-name-title-field h1 {
+    padding-top: 190px;
   }
   .node-article .field.field-name-field-image img {
-    height: auto;
+    height: 300px;
+  }
+}
+@media only screen and (max-width: 767px) {
+  /* Article */
+  .node-article .field-name-field-image + .field-name-title-field {
+    height: 230px;
+  }
+  .node-article .field-name-field-image + .field-name-title-field h1 {
+    padding-top: 110px;
+  }
+  .node-article .field.field-name-field-image img {
+    height: 230px;
+  }
+}
+@media only screen and (max-width: 480px) {
+  /* Article */
+  .node-article .field-name-field-image + .field-name-title-field {
+    height: 145px;
+  }
+  .node-article .field-name-field-image + .field-name-title-field h1 {
+    padding-top: 60px;
+  }
+  .node-article .field.field-name-field-image img {
+    height: 145px;
+  }
+}
+@media only screen and (max-width: 320px) {
+  /* Article */
+  .node-article .field-name-field-image + .field-name-title-field {
+    height: 90px;
+  }
+  .node-article .field-name-field-image + .field-name-title-field h1 {
+    padding-top: 0px;
+  }
+  .node-article .field.field-name-field-image img {
+    height: 90px;
   }
 }
