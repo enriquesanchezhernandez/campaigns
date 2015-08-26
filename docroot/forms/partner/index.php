@@ -1,4 +1,13 @@
 <?php
+
+/* Drupal bootstrap procedure */
+define('DRUPAL_ROOT', realpath(__DIR__ . '/../../'));
+require_once DRUPAL_ROOT . '/includes/bootstrap.inc';
+drupal_bootstrap(DRUPAL_BOOTSTRAP_FULL);
+global $user;
+print "<strong>You are currently logged as: <span style='color: red;'>{$user->mail} ($user->uid)</span></strong>";
+
+
 // Enviroment constants
 define('APP_ROOT', dirname($_SERVER['SCRIPT_FILENAME']) . '/');
 $phpSelf = pathinfo($_SERVER['PHP_SELF']);
