@@ -396,6 +396,8 @@ $options['init-modules'] = array(
 
   'linkchecker',
 
+  'rules_admin',
+
   // Enable last (conflict with rules)
   'uuid',
 
