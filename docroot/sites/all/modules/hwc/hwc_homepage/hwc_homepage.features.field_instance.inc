@@ -17,10 +17,18 @@ function hwc_homepage_field_default_field_instances() {
     'deleted' => 0,
     'description' => '',
     'display' => array(
+      'body' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'default' => array(
         'label' => 'hidden',
         'module' => 'text',
-        'settings' => array(),
+        'settings' => array(
+          'field_formatter_class' => '',
+        ),
         'type' => 'text_default',
         'weight' => 0,
       ),
@@ -58,9 +66,16 @@ function hwc_homepage_field_default_field_instances() {
         'label' => 'hidden',
         'module' => 'text',
         'settings' => array(
+          'field_formatter_class' => '',
           'trim_length' => 600,
         ),
         'type' => 'text_summary_or_trimmed',
+        'weight' => 0,
+      ),
+      'title_body' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
         'weight' => 0,
       ),
     ),
@@ -85,19 +100,28 @@ function hwc_homepage_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-frontpage_slider-field_find_out_more_link'
-  $field_instances['node-frontpage_slider-field_find_out_more_link'] = array(
+  // Exported field_instance: 'node-frontpage_slider-field_content_reference'
+  $field_instances['node-frontpage_slider-field_content_reference'] = array(
     'bundle' => 'frontpage_slider',
     'default_value' => NULL,
     'deleted' => 0,
-    'description' => '',
+    'description' => 'Linked content to Find out more button',
     'display' => array(
-      'default' => array(
-        'label' => 'hidden',
-        'module' => 'taxonomy',
+      'body' => array(
+        'label' => 'above',
         'settings' => array(),
-        'type' => 'taxonomy_term_reference_link',
-        'weight' => 3,
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'default' => array(
+        'label' => 'above',
+        'module' => 'entityreference',
+        'settings' => array(
+          'field_formatter_class' => '',
+          'link' => FALSE,
+        ),
+        'type' => 'entityreference_label',
+        'weight' => 4,
       ),
       'highlights_item' => array(
         'label' => 'above',
@@ -135,10 +159,16 @@ function hwc_homepage_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 0,
       ),
+      'title_body' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
     ),
     'entity_type' => 'node',
-    'field_name' => 'field_find_out_more_link',
-    'label' => 'Find out more link',
+    'field_name' => 'field_content_reference',
+    'label' => 'Find out more',
     'required' => 1,
     'settings' => array(
       'entity_translation_sync' => FALSE,
@@ -146,12 +176,18 @@ function hwc_homepage_field_default_field_instances() {
     ),
     'widget' => array(
       'active' => 1,
-      'module' => 'options',
+      'module' => 'entityreference_view_widget',
       'settings' => array(
-        'apply_chosen' => '',
+        'allow_duplicates' => 0,
+        'close_modal' => 1,
+        'pass_argument' => 0,
+        'pass_arguments' => '',
+        'rendered_entity' => 0,
+        'view' => 'content_selection_view|entityreference_view_widget_1',
+        'view_mode' => 'full',
       ),
-      'type' => 'options_select',
-      'weight' => 43,
+      'type' => 'entityreference_view_widget',
+      'weight' => 44,
     ),
     'workbench_access_field' => 0,
   );
@@ -162,10 +198,17 @@ function hwc_homepage_field_default_field_instances() {
     'deleted' => 0,
     'description' => '',
     'display' => array(
+      'body' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'default' => array(
         'label' => 'hidden',
         'module' => 'image',
         'settings' => array(
+          'field_formatter_class' => '',
           'image_link' => '',
           'image_style' => '',
         ),
@@ -203,6 +246,12 @@ function hwc_homepage_field_default_field_instances() {
         'weight' => 0,
       ),
       'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'title_body' => array(
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
@@ -260,6 +309,12 @@ function hwc_homepage_field_default_field_instances() {
     'deleted' => 0,
     'description' => '',
     'display' => array(
+      'body' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'default' => array(
         'label' => 'above',
         'settings' => array(),
@@ -302,6 +357,12 @@ function hwc_homepage_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 0,
       ),
+      'title_body' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
     ),
     'entity_type' => 'node',
     'field_name' => 'title_field',
@@ -329,8 +390,9 @@ function hwc_homepage_field_default_field_instances() {
   // Translatables
   // Included for use with string extractors like potx.
   t('Body');
-  t('Find out more link');
+  t('Find out more');
   t('Image');
+  t('Linked content to Find out more button');
   t('Title');
 
   return $field_instances;

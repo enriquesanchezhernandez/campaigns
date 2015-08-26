@@ -14,6 +14,7 @@ function osha_search_default_fe_block_settings() {
 
   $export['menu-menu-search'] = array(
     'cache' => -1,
+    'css_class' => '',
     'custom' => 0,
     'delta' => 'menu-search',
     'i18n_block_language' => array(),
@@ -43,6 +44,7 @@ search/wiki',
 
   $export['osha_search-osha_search_clear_filters'] = array(
     'cache' => 8,
+    'css_class' => '',
     'custom' => 0,
     'delta' => 'osha_search_clear_filters',
     'i18n_block_language' => array(),
@@ -77,6 +79,7 @@ legislation/guidelines/*',
 
   $export['search-form'] = array(
     'cache' => -1,
+    'css_class' => '',
     'custom' => 0,
     'delta' => 'form',
     'i18n_block_language' => array(),
@@ -90,7 +93,7 @@ legislation/guidelines/*',
         'region' => 'header',
         'status' => 1,
         'theme' => 'hwc_frontend',
-        'weight' => 0,
+        'weight' => -61,
       ),
       'seven' => array(
         'region' => '',
@@ -105,6 +108,7 @@ legislation/guidelines/*',
 
   $export['views--exp-search-site'] = array(
     'cache' => -1,
+    'css_class' => '',
     'custom' => 0,
     'delta' => '-exp-search-site',
     'i18n_block_language' => array(),
@@ -118,7 +122,7 @@ legislation/guidelines/*',
         'region' => 'content',
         'status' => 1,
         'theme' => 'hwc_frontend',
-        'weight' => -54,
+        'weight' => -61,
       ),
       'seven' => array(
         'region' => '',

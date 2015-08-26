@@ -217,13 +217,13 @@ function hwc_practical_tool_field_default_field_bases() {
     'type' => 'text',
   );
 
-  // Exported field_base: 'field_relevant_for'
-  $field_bases['field_relevant_for'] = array(
+  // Exported field_base: 'field_segment'
+  $field_bases['field_segment'] = array(
     'active' => 1,
-    'cardinality' => -1,
+    'cardinality' => 1,
     'deleted' => 0,
     'entity_types' => array(),
-    'field_name' => 'field_relevant_for',
+    'field_name' => 'field_segment',
     'indexes' => array(
       'tid' => array(
         0 => 'tid',
@@ -234,7 +234,7 @@ function hwc_practical_tool_field_default_field_bases() {
     'settings' => array(
       'allowed_values' => array(
         0 => array(
-          'vocabulary' => 'practical_tool_relevant_for',
+          'vocabulary' => 'segment',
           'parent' => 0,
         ),
       ),

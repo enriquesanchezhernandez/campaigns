@@ -47,10 +47,11 @@ function osha_search_default_search_api_index() {
             "bundles" : {
               "article" : "article",
               "campaign_materials" : "campaign_materials",
+              "event_speaker" : "event_speaker",
               "events" : "events",
-              "infographic" : "infographic",
               "news" : "news",
               "note_to_editor" : "note_to_editor",
+              "partner" : "partner",
               "practical_tool" : "practical_tool",
               "press_release" : "press_release",
               "publication" : "publication"
@@ -176,6 +177,7 @@ function osha_search_default_search_api_index() {
         "field_aditional_resources" : { "type" : "list\\u003Cinteger\\u003E", "entity_type" : "node" },
         "field_aditional_resources:body:summary" : { "type" : "list\\u003Ctext\\u003E" },
         "field_aditional_resources:body:value" : { "type" : "list\\u003Ctext\\u003E" },
+        "field_aditional_resources:field_publication_type" : { "type" : "list\\u003Cinteger\\u003E", "entity_type" : "taxonomy_term" },
         "field_aditional_resources:field_summary" : { "type" : "list\\u003Ctext\\u003E" },
         "field_aditional_resources:title" : { "type" : "list\\u003Ctext\\u003E" },
         "field_aditional_resources:title_field" : { "type" : "list\\u003Ctext\\u003E" },
@@ -199,6 +201,7 @@ function osha_search_default_search_api_index() {
         "source" : { "type" : "integer", "entity_type" : "node" },
         "status" : { "type" : "integer" },
         "title" : { "type" : "text", "boost" : "2.0" },
+        "title2" : { "type" : "string" },
         "title_field" : { "type" : "text", "boost" : "2.0" },
         "type" : { "type" : "string" },
         "url" : { "type" : "uri" },
@@ -208,38 +211,6 @@ function osha_search_default_search_api_index() {
     },
     "enabled" : "1",
     "read_only" : "0",
-    "rdf_mapping" : []
-  }');
-  return $items;
-}
-
-/**
- * Implements hook_default_search_api_server().
- */
-function osha_search_default_search_api_server() {
-  $items = array();
-  $items['solr_server'] = entity_import('search_api_server', '{
-    "name" : "Solr server",
-    "machine_name" : "solr_server",
-    "description" : "",
-    "class" : "search_api_solr_service",
-    "options" : {
-      "clean_ids" : true,
-      "site_hash" : true,
-      "scheme" : "http",
-      "host" : "localhost",
-      "port" : "8983",
-      "path" : "\\/solr\\/campaigns",
-      "http_user" : "admin",
-      "http_pass" : "password",
-      "excerpt" : 1,
-      "retrieve_data" : 1,
-      "highlight_data" : 1,
-      "skip_schema_check" : 0,
-      "solr_version" : "",
-      "http_method" : "AUTO"
-    },
-    "enabled" : "1",
     "rdf_mapping" : []
   }');
   return $items;

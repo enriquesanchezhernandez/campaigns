@@ -28,13 +28,30 @@ function osha_authentication_cron() {
   osha_authentication_ldap_sync($ldap_server);
 }
 
-
 /**
  * Implements hook_form_FORM_ID_alter().
  */
 function osha_authentication_form_user_login_alter(&$form, &$form_state) {
-  $form['name']['#title'] = 'E-mail';
+  $form['name']['#title'] = t('E-mail');
   array_unshift($form['#validate'], 'osha_authentication_user_login_validate');
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function osha_authentication_form_user_pass_alter(&$form, &$form_state) {
+  $form['name']['#title'] = t('E-mail');
+}
+
+function hwc_frontend_menu_local_tasks_alter(&$data) {
+  if (!empty($data['tabs'][0]['output']) && is_array($data['tabs'][0]['output'])) {
+    foreach($data['tabs'][0]['output'] as &$tab) {
+      if ($tab['#link']['path'] == 'user/password') {
+        $tab['#link']['title'] = t('Forgot password?');
+      }
+    }
+
+  }
 }
 
 /**

@@ -75,25 +75,26 @@
 $theme_dir = drupal_get_path('theme', 'hwc_frontend');
 ?>
 <?php if (!empty($page['above_header'])): ?>
-  <div class="header_top_bar container">
-    <div class="row vertical-align">
-      <?php print render($page['above_header']); ?>
-    </div>
-  </div>
 <?php endif; ?>
 <header id="navbar" role="banner" class="navbar navbar-default container-fluid"><!--<?php print $navbar_classes; ?>-->
   <div class="container-fluid campaigns-header">
     <div class="row">
       <div class="navbar-header">
         <div class="row">
-          <div class="col-xs-12 col-sm-6">
+          <div class="col-xs-12 col-sm-9">
             <a class="pull-left" href="<?php print $front_page; ?>" title="<?php print t('Home'); ?>">
               <img src="<?php print $logo; ?>" alt="<?php print t('Home'); ?>" />
             </a>
-            <img class="pull-left" src="/<?php print $theme_dir . '/logo-osha.png'; ?>" alt="<?php print t('EU-OSHA logo'); ?>" />
+            <a href="http://osha.europa.eu" title="EU-OSHA" target="_blank"><img class="pull-left" src="/<?php print $theme_dir . '/logo-osha.png'; ?>" alt="<?php print t('EU-OSHA logo'); ?>" /></a>
             <img class="pull-left" src="/<?php print $theme_dir . '/logo-eu.png'; ?>" alt="<?php print t('EU logo'); ?>" />
+			<div class="header-text">Healthy Workplaces for All Ages</div>
           </div>
-          <div class="col-xs-12 col-sm-6">
+          <div class="col-xs-12 col-sm-3">
+            <div class="header_top_bar">
+              <div class="vertical-align">
+                <?php print render($page['above_header']); ?>
+              </div>
+            </div>
             <?php print render($page['header']); ?>
           </div>
         </div>
@@ -118,25 +119,30 @@ $theme_dir = drupal_get_path('theme', 'hwc_frontend');
   </div>
 </header>
 
-<div class="main-container container">
+<div class="main-container container-fluid">
 
   <div class="row">
     <?php if (!empty($page['sidebar_first'])): ?>
-      <aside class="col-sm-3" role="complementary">
+      <aside class="col-sm-3 col-lg-12" role="complementary">
         <?php print render($page['sidebar_first']); ?>
       </aside>  <!-- /#sidebar-first -->
     <?php endif; ?>
-    <section class="col-sm-9">
-		<?php /* print $content_column_class; */ ?>
+    <section class="<?php print (!empty($content_class)) ? $content_class : ''; ?>">
+    <?php /* print $content_column_class; */ ?>
       <?php if (!empty($page['highlighted'])): ?>
         <div class="highlighted jumbotron"><?php print render($page['highlighted']); ?></div>
       <?php endif; ?>
       <?php if (!empty($breadcrumb)): print $breadcrumb; endif;?>
       <a id="main-content"></a>
       <?php print render($title_prefix); ?>
-      <?php if (!empty($title)): ?>
-        <h1 class="page-header"><?php print $title; ?></h1>
-      <?php endif; ?>
+      <div>
+        <?php print render($page['above_title']); ?>
+      </div>
+      <div>
+        <?php if (!empty($title)): ?>
+          <h1 class="page-header"><?php print $title; ?></h1>
+        <?php endif; ?>
+      </div>
       <?php print render($title_suffix); ?>
       <?php print $messages; ?>
       <?php if (!empty($tabs)): ?>
@@ -148,11 +154,10 @@ $theme_dir = drupal_get_path('theme', 'hwc_frontend');
       <?php if (!empty($action_links)): ?>
         <ul class="action-links"><?php print render($action_links); ?></ul>
       <?php endif; ?>
-      <?php print render($page['above_title']); ?>
       <?php print render($page['content']); ?>
     </section>
     <?php if (!empty($page['sidebar_second'])): ?>
-      <aside class="col-sm-3 col-lg-12" role="complementary">
+      <aside class="col-xs-12 col-sm-8 col-sm-offset-2" role="complementary">
         <?php print render($page['sidebar_second']); ?>
       </aside>  <!-- /#sidebar-second -->
     <?php endif; ?>

@@ -1,5 +1,5 @@
-namfiles[] = hwc_crm_migration.migrate.fop.inc
-e = hwc_crm_migration
+name = hwc_crm_migration
+files[] = hwc_crm_migration.migrate.fop.inc
 description = Import data periodically from CRM files
 core = 7.x
 package = HWC

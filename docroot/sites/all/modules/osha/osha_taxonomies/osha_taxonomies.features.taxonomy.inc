@@ -135,7 +135,7 @@ function osha_taxonomies_taxonomy_default_vocabularies() {
       ),
     ),
     'section' => array(
-      'name' => 'Section',
+      'name' => 'Partner',
       'machine_name' => 'section',
       'description' => 'Content section category',
       'hierarchy' => 0,

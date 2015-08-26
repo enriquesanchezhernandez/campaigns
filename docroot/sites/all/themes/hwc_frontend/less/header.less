@@ -13,24 +13,38 @@ header.navbar-default{
 		width: 100%;
 		a.pull-left{
 			border-right: 1px solid @border-header-color;
-			padding-right: 1em;
+			padding-right: 2em;
+			margin-right: 2em;
 		}
 		img.pull-left{
-			padding-top: 55px;
+			padding-top: 5px;
 		}
 		img:nth-child(3){
-			padding-top: 132px;
-			padding-right: 1em;
+			padding-top: 85px;
+    		padding-bottom: 15px;
+			padding-right: 3em;
 			border-right: 1px solid @border-header-color;
 		}
 		/* img:nth-child(3):after{
 			content: "";
 			color: black;
 		} */
+		.header-text{
+			color: @text-color-2;
+			font-size: @size8;
+			font-weight: bold;
+			width: 185px;
+			padding-top: 2em;
+			padding-left: 2em;
+			float: left;
+		}
 		
 		/* languages */
 		#block-lang-dropdown-language{
-			clear: both;
+			float: right;
+			    position: absolute;
+			    bottom: -9px;
+			    right: 0;
 		}
 		.lang-dropdown-select-element{
 			float: right;
@@ -81,7 +95,6 @@ header.navbar-default{
 		#block-search-form{
 			clear:both;
 			.input-group-btn{
-				float: left;
 			}
 			button{
 				color: @color0;
@@ -90,9 +103,24 @@ header.navbar-default{
 				margin-left: 0;
 				margin-top: 0px;
 				background: @color2 url('../images/header/search.png') no-repeat center;
+				&:focus{
+					outline: 0;
+				}
 			}
 		}
 		
+		/* login */
+		#block-menu-menu-header-login{
+			float: right;
+			margin-left: 0px;
+			padding-top: 9px;
+			padding-right: 175px;
+			a{
+				background: @bg-color-2 url('../images/header/login.png') no-repeat left center;
+				color: @color1;
+				padding: 3px 10px 2px 25px;
+			}
+		}
 	}
 	
 	/* menu */
@@ -188,8 +216,14 @@ header.navbar-default{
 						color: @menu-selected-color;
 						background-color: @menu-bg-color;
 					}
-					ul li a, ul li span, ul li.active-trail{
+					ul li a, ul li span{
 						color: white;
+					}
+					ul li.active-trail{
+						color: white;
+						a{
+							font-weight: bold;
+						}
 					}
 				}
 			}
@@ -199,9 +233,10 @@ header.navbar-default{
 .region-above-header.region{
 	float: right;
 	width: auto;
-	margin-top: 1em;
+	margin-bottom: 2em;
 	section {
 		float: left;
+		margin-right: -5px;
 	}
 	a#text_resize_increase, a#text_resize_decrease{
 		background: none;
@@ -229,25 +264,35 @@ header.navbar-default{
 	}
 	.block-on-the-web{
 		.otw-twitter{
+			a{
 			background: url('../images/header/twitter.png') no-repeat center bottom;
 			padding: 18px 16px 8px;
-			margin-left: 30px;
+			margin-left: 35px;
+			}
 		}
 		.otw-facebook{
+			a{
 			background: url('../images/header/facebook.png') no-repeat center bottom;
 			padding: 18px 16px 8px;
+			}
 		}
 		.otw-youtube{
+			a{
 			background: url('../images/header/youtube.png') no-repeat center bottom;
 			padding: 18px 16px 8px;
+			}
 		}
 		.otw-flickr{
+			a{
 			background: url('../images/header/flickr.png') no-repeat center bottom;
-			padding: 18px 17px 8px;
+			padding: 18px 16px 8px;
+			}
 		}
 		.otw-linkedin{
+			a{
 			background: url('../images/header/linkedin.png') no-repeat center bottom;
-			padding: 18px 16px 8px;
+			padding: 18px 0px 8px 32px;
+			}
 		}
 		a{
 			img{
@@ -258,17 +303,32 @@ header.navbar-default{
 }
 #views-exposed-form-search-site .form-type-textfield, #views-exposed-form-search-site input, #views-exposed-form-search-site button {
     background-image: none;
+	&:focus{
+		outline: 0;
+	}
 }
 
 /*----------Endika----------*/
 header.navbar-default{
 	.campaigns-header{
 		padding: 0;
+		.navbar-header{
+			img[alt="Home"]{
+				width: 150px;
+				height: 150px;
+				margin-left: 30px;
+			}
+			img[alt="EU-OSHA logo"]{
+				width: 160px;
+				height: 155px;
+			}
+			img[alt="EU logo"]{
+				width: 120px;
+				height: 150px;
+			}
+		}
 		.row:first-of-type{
 			padding: 15px;
-			.col-xs-12.col-sm-6:first-of-type{
-				margin-top: -55px;
-			}
 		}
 	}
 }

@@ -6,6 +6,15 @@ define('ROLE_CAMPAIGN_PARTNER', 'campaign partner');
 define('ROLE_SUPERVISOR', 'supervisor');
 
 /**
+ * Implementation of hook_views_api().
+ */
+function hwc_views_api() {
+  return array(
+    'api' => 3,
+  );
+}
+
+/**
  * Implements hook_permission().
  */
 function hwc_permission() {
@@ -30,6 +39,14 @@ function hwc_menu() {
     'access arguments' => array('administer site configuration'),
     'file' => 'hwc_admin.pages.inc',
     'type' => MENU_NORMAL_ITEM,
+  );
+  $items['user/activate/%'] = array(
+    'title' => 'Activate user',
+    'description' => 'Check if user was synchronized, if not trigger synchronization',
+    'page callback' => 'hwc_user_activate',
+    'page arguments' => array(2),
+    'access arguments' => array('access content'),
+    'type' => MENU_CALLBACK,
   );
   return $items;
 }
@@ -159,6 +176,20 @@ function hwc_theme() {
       ),
       'template' => 'templates/news_share_widget',
     ),
+  );
+}
+
+/**
+ * Implements hook_entity_info_alter().
+ */
+function hwc_entity_info_alter(&$entity_info) {
+  $entity_info['node']['view modes']['title_body'] = array(
+    'label' => t('Title body'),
+    'custom settings' => TRUE,
+  );
+  $entity_info['node']['view modes']['body'] = array(
+    'label' => t('Body'),
+    'custom settings' => TRUE,
   );
 }
 
@@ -297,11 +328,144 @@ function hwc_news_share_widget($node, $options = array()) {
  *
  */
 function hwc_workbench_access_node_element_alter(&$element, $form_state, $active) {
-  $allow_section_field = array('news','events');
+  $allow_section_field = _hwc_get_allowed_section_node_types();
   $form_id = $form_state['build_info']['form_id'];
   $form = drupal_retrieve_form($form_id, $form_state);
 
   if (!empty($form['#node_edit_form']) && !in_array($form['#node']->type, $allow_section_field)) {
     $element['#access'] = FALSE;
+  }
+}
+
+/**
+ * Implements hook_node_presave().
+ */
+function hwc_node_presave($node) {
+  // Set section to default one for the nodes that have section field hidden.
+  $allow_section_field = _hwc_get_allowed_section_node_types();
+  if (!in_array($node->type, $allow_section_field) && variable_get('workbench_access_node_type_' . $node->type, FALSE)) {
+    if (empty($node->workbench_access)) {
+      $node->workbench_access['section'] = 'section';
+    }
+  }
+}
+
+/**
+ * Get array of node types that are allowed to be per section.
+ *
+ * @return array
+ */
+function _hwc_get_allowed_section_node_types() {
+  return array('news','events');
+}
+
+function _hwc_segment_options_list() {
+  $return = array('0' => t('All audience'));
+  $vocabulary = taxonomy_vocabulary_machine_name_load('segment');
+  if (!empty($vocabulary)) {
+    $terms = taxonomy_get_tree($vocabulary->vid);
+    foreach($terms as $key => $term) {
+      $return[$term->tid] = $term->name;
+    }
+  }
+  return $return;
+}
+
+/**
+ * Hook menu to trigger user synchronization
+ * @param $email
+ */
+function hwc_user_activate($mail) {
+  if (empty($_GET['token']) || variable_get('hwc_user_activate_token') != $_GET['token']) {
+    drupal_add_http_header('Status', '400 Missing token');
+    echo '400 Missing token';
+    drupal_exit();
+    die();
+  }
+
+  // Check the user
+  $query = new EntityFieldQuery();
+  $query->entityCondition('entity_type', 'user')
+    ->propertyCondition('mail', $mail)
+    ->count();
+  $count = $query->execute();
+  if ($count > 0) {
+    drupal_add_http_header('Status', '400 User already exists');
+    echo '400 User already exists';
+    drupal_exit();
+    die();
+  }
+
+  // Lookup the record
+  $ldap_account = NULL;
+  if ($auth_conf = ldap_authentication_get_valid_conf()) {
+    /**
+     * @var string $sid
+     * @var LdapServer $ldap_server
+     */
+    foreach ($auth_conf->enabledAuthenticationServers as $sid => $ldap_server) {
+      if ($result = $ldap_server->search('ou=people,dc=osha,dc=europa,dc=eu', 'mail=' . $mail, array('uid'))) {
+        if (!empty($result[0]['uid'][0])) {
+          $uid = $result[0]['uid'][0];
+          $dn = $result[0]['dn'];
+          require_once DRUPAL_ROOT . '/' . variable_get('password_inc', 'includes/password.inc');
+          $ldap_account = (object) array(
+            'dn' => $dn,
+            'name' => $uid,
+            'mail' => $mail,
+            'status' => 1,
+            'created' => REQUEST_TIME,
+            'access' => REQUEST_TIME,
+            'login' => REQUEST_TIME,
+            'is_new' => TRUE,
+          );
+          break;
+        }
+      }
+    }
+  }
+  if ($ldap_account) {
+    if ($account = user_save($ldap_account)) {
+
+      $edit['pass'] = user_password(32);
+      user_save($account, $edit);
+
+      watchdog('hwc', 'Activating Drupal account <em>!uid</em> from LDAP dn: !dn', array(
+        '!dn' => $ldap_account->dn,
+        '!uid' => $ldap_account->name
+      ), WATCHDOG_WARNING);
+      // Generate one time password reset link
+      print user_pass_reset_url($account);
+      drupal_exit();
+      die();
+    }
+    else {
+      watchdog('hwc', 'Failed to activate new Drupal account <em>!uid</em> from LDAP dn: !dn', array(
+        '!dn' => $ldap_account->dn,
+        '!uid' => $ldap_account->name
+      ), WATCHDOG_ERROR);
+      drupal_add_http_header('Status', '500 Failed to save the user');
+      print '500 Failed to save the user';
+      drupal_exit();
+      die();
+    }
+  }
+  else {
+    drupal_add_http_header('Status', '404 User not found');
+    echo '404 User not found';
+    drupal_exit();
+    die();
+  }
+}
+
+/**
+ * Implements hook_pathologic_alter().
+ *
+ * Some links such as FOP, are starting with fop/ and do need to be "fixed"
+ * due to HTTP server redirects.
+ */
+function osha_pathologic_alter(&$url_params, $parts, $settings) {
+  if (preg_match('/^forms\/partner\//m', $url_params['path'])) {
+    $url_params['options']['use_original'] = TRUE;
   }
 }

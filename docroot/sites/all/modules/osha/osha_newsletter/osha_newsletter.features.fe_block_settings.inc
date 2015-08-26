@@ -14,7 +14,7 @@ function osha_newsletter_default_fe_block_settings() {
 
   $export['osha_newsletter-osha_newsletter_image'] = array(
     'cache' => 8,
-    'css_class' => 'col-md-12',
+    'css_class' => '',
     'custom' => 0,
     'delta' => 'osha_newsletter_image',
     'i18n_block_language' => array(),

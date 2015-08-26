@@ -42,32 +42,50 @@ function hwc_homepage_field_default_field_bases() {
     'type' => 'entityreference',
   );
 
-  // Exported field_base: 'field_find_out_more_link'
-  $field_bases['field_find_out_more_link'] = array(
+  // Exported field_base: 'field_content_reference'
+  $field_bases['field_content_reference'] = array(
     'active' => 1,
     'cardinality' => 1,
     'deleted' => 0,
     'entity_types' => array(),
-    'field_name' => 'field_find_out_more_link',
+    'field_name' => 'field_content_reference',
     'indexes' => array(
-      'tid' => array(
-        0 => 'tid',
+      'target_id' => array(
+        0 => 'target_id',
       ),
     ),
     'locked' => 0,
-    'module' => 'taxonomy',
+    'module' => 'entityreference',
     'settings' => array(
-      'allowed_values' => array(
-        0 => array(
-          'vocabulary' => 'frontpage_banner_links',
-          'parent' => 0,
+      'entity_translation_sync' => FALSE,
+      'handler' => 'base',
+      'handler_settings' => array(
+        'behaviors' => array(
+          'views-select-list' => array(
+            'status' => 0,
+          ),
+        ),
+        'sort' => array(
+          'direction' => 'ASC',
+          'property' => 'title',
+          'type' => 'property',
+        ),
+        'target_bundles' => array(
+          'article' => 'article',
+          'campaign_materials' => 'campaign_materials',
+          'events' => 'events',
+          'news' => 'news',
+          'note_to_editor' => 'note_to_editor',
+          'partner' => 'partner',
+          'practical_tool' => 'practical_tool',
+          'press_release' => 'press_release',
+          'publication' => 'publication',
         ),
       ),
-      'entity_translation_sync' => FALSE,
-      'options_list_callback' => 'i18n_taxonomy_allowed_values',
+      'target_type' => 'node',
     ),
     'translatable' => 0,
-    'type' => 'taxonomy_term_reference',
+    'type' => 'entityreference',
   );
 
   return $field_bases;
