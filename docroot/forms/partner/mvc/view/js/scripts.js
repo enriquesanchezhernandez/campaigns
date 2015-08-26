@@ -1,4 +1,6 @@
 $(document).ready(function() {
+    var buttonPressed;
+
     /**
      * Retrieve an URL parameter
      * @param key
@@ -23,7 +25,11 @@ $(document).ready(function() {
         };
         var urlParams = $.param(urlParamsArray);
         var url = window.location.href;
-        url += (url.indexOf("?") == -1) ? "?" + urlParams : "&" + urlParams;
+        if (url.indexOf("?") != -1) {
+            var pos = url.indexOf("?");
+            url = url.substr(0, pos);
+        }
+        url += "?" + urlParams;
         $.get(url, function (data, status) {
             var response = jQuery.parseJSON(data);
             if (response.status) {
@@ -43,29 +49,35 @@ $(document).ready(function() {
     }
 
     /**
+     * Confirms validations of Email
+     * @param field
+     */
+    function validateEmail(field) {
+        if ($("#contact_osh_mainemail").val() != $(field).val()) {
+            $("#contact_osh_mainemail").addClass("error");
+        } else {
+            $("#contact_osh_mainemail").removeClass("error");
+        }
+    }
+
+    /**
      * Check all sections to find validation errors
      */
     function checkSections() {
         var ret = true;
-        $("#sidebar .section").each(function (id, item) {
-            var elemId = $(item).attr("id");
+        $("#sidebar-top .section").each(function (id, item) {
+            var elemId = $(item).attr("data-section");
             if (!checkSingleSection(elemId)) {
-                $("#" + elemId).addClass("sidebar-error");
+                $("." + elemId).addClass("sidebar-error");
                 ret = false;
             } else {
-                $("#" + elemId).removeClass("sidebar-error");
+                $("." + elemId).removeClass("sidebar-error");
             }
         });
         if (ret) {
             $(".main-form").removeClass("error-form");
-            $(".main-form #save").removeAttr("disabled");
-            $(".main-form #next").removeAttr("disabled");
-            $(".main-form #finish").removeAttr("disabled");
         } else {
             $(".main-form").addClass("error-form");
-            $(".main-form #save").attr("disabled", "disabled");
-            $(".main-form #next").attr("disabled", "disabled");
-            $(".main-form #finish").attr("disabled", "disabled");
         }
     }
 
@@ -87,38 +99,163 @@ $(document).ready(function() {
             validateField(this);
         }
     });
+    $(".main-form textarea").on({
+        change: function () {
+            validateField(this);
+        }, blur: function () {
+            validateField(this);
+        }
+    });
+
+    $("#contact_osh_confirm_mainemail").on({
+        change: function () {
+            validateEmail(this);
+        }, blur: function () {
+            validateEmail(this);
+        }
+    });
 
     /**
      * If there are errors, the form cannot be submitted
      */
     $(".main-form").on({
         submit: function (e) {
-            if ($(".main-form input[data-error='true']").length) {
-                e.preventDefault();
-                return false;
+            if (buttonPressed == "next") {
+                if ($(".main-form input[data-error='true']").length ||
+                    $(".main-form").hasClass("error-form")) {
+                    alert("Error: Some fields contain errors");
+                    e.preventDefault();
+                    return false;
+                } else if (!checkRequiredFields()) {
+                    alert("Error: You must fill all the required fields");
+                    e.preventDefault();
+                    return false;
+                } else if ($('#form form').hasClass("current") && $('#form form input:enabled').length) {
+                    if (!confirm("There are fields unconfirmed. Do you want to continue?")) {
+                        e.preventDefault();
+                    }
+                }
             }
         }
     });
 
     /**
+     * Check that all the required fields are filled
+     * @returns {boolean}
+     */
+    function checkRequiredFields() {
+        var ret = true;
+        var field;
+        $("#form form .required .controls").each(function (id, item) {
+            if (field = $(item).find("input[type=text]")) {
+                if ($(field).attr("data-section") && !$(field).val()) {
+                    ret = false;
+                    return false;
+                }
+            } else if (field = $(item).find("textarea")) {
+                if ($(field).attr("data-section") && !$(field).val()) {
+                    ret = false;
+                    return false;
+                }
+            } else if (field = $(item).find("select")) {
+                if ($(field).attr("data-section") && !$(field).val()) {
+                    ret = false;
+                    return false;
+                }
+            }
+        });
+        return ret;
+    }
+
+    /**
      * Add repeated blocks of information
      */
-    $(".repeatable-section").on("click", ".add_user", function(e) {
-        var clonedFieldset = $(this).parent().clone(true, true);
-        var clonedFieldsetId = $(clonedFieldset).attr("id");
-        var clonedFieldsetClass = $(clonedFieldset).attr("class");
-        var items = $("." + clonedFieldsetClass).length;
+    $("#form").on("click", ".repeatable-button", function(e) {
+        var clonedElementId = $(this).attr("data-element");
+        var clonedElement = $("#" + clonedElementId).clone(true, true);
+        var targetId = $(this).attr("data-target");
+        var targetElement = $("#" + targetId);
+        var clonedFieldsetClass = $(clonedElement).attr("class");
+        var items = $("#" + targetId + " ." + clonedFieldsetClass).length;
         if (items < 5) {
-            $(clonedFieldset).insertAfter($(this).parent());
+            $(clonedElement).children().find("input").each(function (id, item) {
+                $(item).attr("id", $(item).attr("id") + "_" + items);
+                $(item).attr("name", $(item).attr("name") + "_" + items);
+            });
+            $(clonedElement).attr("id", clonedElementId + "_" + items);
+            $(targetElement).append(clonedElement);
         }
         if (items >= 4) {
-            $(".repeatable-section .add_user").hide();
+            $(this).hide();
         }
         e.preventDefault();
+    });
+
+    /**
+     * Validation widget
+     */
+    $(".validation").click(function(e) {
+        var dataSection = $(this).attr("data-section");
+        if ($(this).hasClass("validation-pressed")) {
+            $('#form form :input[data-section="' + dataSection + '"]').prop("disabled", false);
+            $(this).removeClass("validation-pressed");
+        } else {
+            $('#form form :input[data-section="' + dataSection + '"]').prop("disabled", "disabled");
+            $(this).addClass("validation-pressed");
+        }
+    });
+
+    /**
+     * Save action
+     */
+    $("#save").click(function(e) {
+        buttonPressed = "save";
+        var url = $("#form form").attr("action");
+        var tmpRegex = new RegExp("(action=)[a-z]+", 'ig');
+        var newVal = "save";
+        var newAction = url.replace(tmpRegex, '$1' + newVal);
+        $("#form form").attr("action", newAction);
+        $("#form form").submit();
+    });
+
+    /**
+     * Next action
+     */
+    $("#next").click(function(e) {
+        buttonPressed = "next";
+    });
+
+    /**
+     * Enable all fields before submitting the form
+     */
+    $("#form form").submit(function(e) {
+        $("#form form :input").prop("disabled", false);
     });
 
     /**
      * Trigger the section validation
      */
     setInterval(checkSections, 2000);
+
+    /**
+     * Dropdown multiple
+     */
+    $(".dropdown-multiple").select2();
+
+    $("#refresh").click(function (e) {
+        $("#captcha").attr("src", 'lib/securimage/securimage_show.php?' + Math.random());
+        return false;
+    });
+
+    if (!$('#contact_osh_otherusername2').val() && !$('#contact_osh_otherusermail2').val()) {
+        $('#contact_osh_otherusername2').closest('#other-users-repeteable').css({
+            'display': 'none'
+        });
+    }
+    if (!$('#contact_osh_otherusername3').val() && !$('#contact_osh_otherusermail3').val()) {
+        $('#contact_osh_otherusername3').closest('#other-users-repeteable').css({
+            'display': 'none'
+        });
+    }
+
 });

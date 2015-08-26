@@ -1,62 +1,20 @@
 {
   "defaultRoute": "company",
-  "viewPath": "mvc/view/tpl/",
-  "cssPath": "mvc/view/css/",
-  "jsPath": "mvc/view/js/",
-  "tempPath": "tmp/",
-  "imagePath": "mvc/view/img/",
-  "htmlHeaderTpl": "html_header.html",
-  "htmlFooterTpl": "html_footer.html",
-  "headerTpl": "header.html",
-  "footerTpl": "footer.html",
+  "defaultEntity": "ocp",
+  "defaultPartnerType": "new",
+  "defaultBundle": "MaintenanceForm",
+  "maintenanceRoute": "MaintenanceForm",
   "title": "OSHA",
-  "errorMessages": {
-    "not_null": "the field is required",
-    "numeric": "the field must be numeric",
-    "size": "the maximum size of this field is ",
-    "email": "the field must be an email address"
-  },
+  "pdfFilename": "osha",
   "pdfcommand": "\"C:/Program Files/wkhtmltopdf/bin/wkhtmltopdf.exe\" --load-error-handling ignore --encoding utf-8 --header-spacing 10 --footer-spacing 10",
-  "url_params": {
+  "lang": "en",
+  "urlParams": {
     "session_id": "session_id",
-    "manteinance_mode": "mf"
-  },
-  "cdb": {
-    "host": "http://crm-dev-svr",
-    "port": "8081",
-    "resource": "/OshaService/ServiceApp.svc/",
-    "debug": "true",
-    "dropdown_methods": {
-      "getOptionSetsForAppFrom": {
-        "method": "getOptionSetsForAppFrom",
-        "data": "getOptionSetsForAppFromResult"
-      },
-      "getCountries": {
-        "method": "getCountries",
-        "data": "getCountriesResult",
-        "fields": ["org_country", "osh_countries"]
-      }
-    },
-    "map": {
-      "osh_address": "osh_address",
-      "osh_addressextra": "osh_addressextra",
-      "osh_bussinessector": "osh_bussinessector",
-      "osh_campaignpledge": "osh_campaignpledge",
-      "osh_ceo": "osh_ceo",
-      "osh_city": "osh_city",
-      "osh_conferenceactivity": "osh_conferenceactivity",
-      "osh_country": "osh_country",
-      "osh_emailrepresentative": "osh_emailrepresentative",
-      "osh_generalemail":"osh_generalemail",
-      "osh_generalphone":"osh_generalphone",
-      "osh_maincontactperson": "osh_maincontactperson",
-      "osh_mainemail": "osh_mainemail",
-      "osh_mainphone": "osh_mainphone",
-      "osh_phonerepresentative": "osh_phonerepresentative",
-      "osh_yourmissionstatement": "osh_yourmissionstatement",
-      "osh_zipcode": "osh_zipcode",
-      "org_name": "osh_orgname",
-      "org_countries": "osh_countries"
-    }
+    "entity": "osh_category",
+    "entity_mf": "memberof.osh_categoryid",
+    "partner_type": "osh_leads",
+    "status_code": "statuscode",
+    "maintenance_mode": "mf",
+    "locked": "locked"
   }
 }

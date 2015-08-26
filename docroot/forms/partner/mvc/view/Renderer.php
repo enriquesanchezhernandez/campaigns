@@ -15,10 +15,13 @@ class Renderer {
     private $footerTpl;
     private $bodyTpl;
     private $includeHeaderFooter;
+    private $htmlPath;
+    private $tempPath;
 
     /**
      * Class constructor
      * @param $view
+     * @param bool|true $includeHeaderFooter
      */
     public function __construct($view, $includeHeaderFooter = true) {
         $params = Parameters::getInstance();
@@ -34,6 +37,33 @@ class Renderer {
         $this->headerTpl = $params->get('headerTpl');
         $this->footerTpl = $params->get('footerTpl');
         $this->bodyTpl = strtolower($view . '.html');
+        $this->htmlPath = $params->get('htmlPath');
+        $this->tempPath = $params->get('tempPath');
+        $this->includeHeaderFooter = $includeHeaderFooter;
+    }
+
+    /**
+     * Set the view path
+     * @param $viewPath
+     */
+    public function setViewPath($viewPath) {
+        $this->basePath = APP_ROOT . $viewPath;
+        $this->baseUrl = APP_URL . $viewPath;
+    }
+
+    /**
+     * Set the current view
+     * @param $view
+     */
+    public function setView($view) {
+        $this->bodyTpl = strtolower($view . '.html');
+    }
+
+    /**
+     * Set the include header/footer mode
+     * @param $includeHeaderFooter
+     */
+    public function setIncludeHeaderFooter($includeHeaderFooter) {
         $this->includeHeaderFooter = $includeHeaderFooter;
     }
 
@@ -41,10 +71,11 @@ class Renderer {
      * Generate the header/footer
      * @param $dwoo
      * @param $tpl
-     * @return bool|string
+     * @param $contentArray
+     * @return mixed
      */
-    private function renderPart($dwoo, $tpl) {
-        return $dwoo->get($this->basePath . $tpl);
+    private function renderPart($dwoo, $tpl, $contentArray) {
+        return $dwoo->get($this->basePath . $tpl, $contentArray);
     }
 
     /**
@@ -54,9 +85,11 @@ class Renderer {
      * @return mixed
      */
     private function renderHtmlHeader($dwoo, $printable = false) {
+        $params = Parameters::getInstance();
         $content = array(
             'css' => File::browseDirectory($this->cssPath, '.css', $this->cssUrl),
-            'js' => File::browseDirectory($this->jsPath, '.js', $this->jsUrl)
+            'js' => File::browseDirectory($this->jsPath, '.js', $this->jsUrl),
+            'nonce' => $params->get('nonce'),
         );
         if (!$printable) {
             $value = $this->cssUrl . 'print.css';
@@ -103,24 +136,33 @@ class Renderer {
      * @return string
      */
     public function render($contentArray = null) {
+        // Clear the output folder
+        File::clearFolder($this->tempPath . '*.pdf');
+        File::clearFolder($this->tempPath . '*.html');
         // Register Dwoo namespace and register autoloader
         $dwoo = new Dwoo();
         if (isset($contentArray)) {
             if (is_array($contentArray)) {
                 foreach ($contentArray as $key => &$value) {
-                    $value = $this->utf8Encode($value);
+                    if (!is_array($value) && !mb_detect_encoding($value, 'UTF-8')) {
+                        $value = $this->utf8Encode($value);
+                    }
                 }
             } else {
-                $contentArray = $this->utf8Encode($contentArray);
+                if (!mb_detect_encoding($contentArray, 'UTF-8')) {
+                    $contentArray = $this->utf8Encode($contentArray);
+                }
             }
             $content = $dwoo->get($this->basePath . $this->bodyTpl, $contentArray);
         }
         if ($this->includeHeaderFooter) {
-            $printable = isset($contentArray['print']) || isset($contentArray['pdf']) ? true : false;
+            $this->setViewPath($this->htmlPath);
+            $printable = (isset($contentArray['printable']) && $contentArray['printable']) ||
+                (isset($contentArray['pdf']) && $contentArray['pdf']) ? true : false;
             $htmlHeader = $this->renderHtmlHeader($dwoo, $printable);
             $htmlFooter = $this->renderHtmlFooter($dwoo);
-            $header = $this->renderPart($dwoo, $this->headerTpl);
-            $footer = $this->renderPart($dwoo, $this->footerTpl);
+            $header = $this->renderPart($dwoo, $this->headerTpl, $contentArray);
+            $footer = $this->renderPart($dwoo, $this->footerTpl, $contentArray);
         } else {
             $htmlHeader = $htmlFooter = $header = $footer = '';
         }

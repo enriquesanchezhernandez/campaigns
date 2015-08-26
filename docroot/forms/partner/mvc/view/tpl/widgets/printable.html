@@ -1,0 +1,14 @@
+{if $image}
+<div><strong>{if !empty($fieldLabel)}{$fieldLabel}{/if}:</strong></div>
+<div class="image-printable"><img src="{$fieldValue}"/></div>
+{else}
+    {if is_array($fieldValue)}
+        {foreach from=$fieldValue key=id item=value}
+            {if !empty($selectedValue) && ($selectedValue == $value || $selectedValue == $id)}
+            <div><strong>{if !empty($fieldLabel)}{$fieldLabel}{/if}:</strong>&nbsp;{$value}</div>
+            {/if}
+        {/foreach}
+    {else}
+    <div><strong>{if !empty($fieldLabel)}{$fieldLabel}{/if}:</strong>{if !empty($fieldValue)}&nbsp;{$fieldValue}{/if}</div>
+    {/if}
+{/if}

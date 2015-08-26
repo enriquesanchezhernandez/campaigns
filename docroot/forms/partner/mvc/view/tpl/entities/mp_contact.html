@@ -1,0 +1,23 @@
+<fieldset>
+    <legend id="PRIMARY_CONTACT">
+        Your Primary Contact
+        <div data-section="PRIMARY_CONTACT" class="validation"></div>
+    </legend>
+    <div class="float-left">
+        {$attributes.contact_osh_maincontactpersonfirstname}
+        {$attributes.contact_osh_maincontactpersonlastname}
+        {$attributes.contact_osh_positionmaincontactperson}
+    </div>
+    <div class="float-right">
+        {$attributes.contact_osh_mainphone}
+        {$attributes.contact_osh_mainemail}
+        {if $partner_type != "current" && !$mf}
+        <div class="control-group">
+            <label class="control-label" for="osh_mainemailconfirm">Confirm primary contact's email address</label>
+            <div class="controls">
+                <input id="osh_mainemailconfirm" name="osh_mainemailconfirm" placeholder="Confirm primary contact's email address" class="input-large" type="text">
+            </div>
+        </div>
+        {/if}
+    </div>
+</fieldset>

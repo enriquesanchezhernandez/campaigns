@@ -1,0 +1,69 @@
+{
+  "cdb": {
+    "host": "http://crm-dev-svr",
+    "port": ":8081",
+    "resource": "/OshaService/ServiceApp.svc/",
+    "debug": "false",
+    "debug_folder": "mvc/model/cdb/",
+    "dropdown_methods": {
+      "getOptionSetsForAppFrom": {
+        "method": "getOptionSetsForAppFrom",
+        "data": "getOptionSetsForAppFromResult"
+      },
+      "getCountries": {
+        "method": "getCountries",
+        "data": "getCountriesResult",
+        "fields": [
+          "company_osh_osh_appform_osh_country",
+          "company_osh_country"
+        ]
+      }
+    },
+    "regular_methods": {
+      "read": {
+        "name": "getAppForm",
+        "idParam": "id",
+        "response": "getAppFormResult"
+      },
+      "read_mf": {
+        "name": "getMantenainceProfile",
+        "idParam": "id",
+        "response": "getMantenainceProfileResult"
+      },
+      "update": "updateAppForm",
+      "update_mf": "updateMantenainceProfile"
+    },
+    "category": {
+      "official": "ocp",
+      "media": "mp",
+      "focal": "fop"
+    },
+    "statusCodesTemplate": {
+      "863680000": "Invitation sent",
+      "863680001": "Pending validation",
+      "863680002": "Validated",
+      "863680005": "Published",
+      "863680006": "Rejected",
+      "863680007": "Rejected Mostra",
+      "863680008": "No response",
+      "863680009": "In progress",
+      "863680011": "Pending publish",
+      "863680012": "Grace period"
+    },
+    "locked": [
+      "863680002",
+      "863680011",
+      "863680005",
+      "863680001",
+      "863680008",
+      "863680006",
+      "863680007"
+    ],
+    "sent": "863680000",
+    "maintenanceAcceptedCodes": {
+      "863680002": "Validated",
+      "863680005": "Published",
+      "863680011": "Pending publish"
+    }
+  }
+}

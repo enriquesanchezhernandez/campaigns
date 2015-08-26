@@ -1,0 +1,10 @@
+<div class="control-group {$required}">
+    <label class="control-label screen-left" for="{$fieldName}">{$fieldLabel}</label>
+    {if !empty($fieldPublicProfile)}<img src="{$appurl}mvc/view/img/screen.png" class="screen-right"/>{/if}
+    {if !empty($fieldHelpText)}
+    <p class="help-block">{$fieldHelpText}</p>
+    {/if}
+    <div class="controls">
+        <input {$disabled} id="{$fieldName}" name="{$fieldName}" placeholder="{$fieldPlaceholder}" type="text" data-section="{$fieldSection}" value="{if !empty($fieldValue)}{$fieldValue}{/if}">
+    </div>
+</div>
