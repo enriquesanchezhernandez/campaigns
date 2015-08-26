@@ -42,9 +42,12 @@ function hwc_workflow_permissions_role_supervisor() {
     'moderate content from needs_review to draft',
     'moderate content from needs_review to to_be_approved',
 
+    'view own unpublished content',
+
     'select content section',
 
     'view the administration theme',
+    'access toolbar',
     'access administration pages',
     'access dashboard',
     'access content overview',
@@ -53,6 +56,8 @@ function hwc_workflow_permissions_role_supervisor() {
     'view revisions',
     'view all unpublished content',
     'access workbench access by role',
+
+    'assign cpm to node',
   );
 }
 
