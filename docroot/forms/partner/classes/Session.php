@@ -63,4 +63,50 @@ final class Session {
         }
         return $ret;
     }
+
+    /**
+     * Retrieve the session token
+     * @return string
+     */
+    public function getSessionToken() {
+        $params = Parameters::getInstance();
+        $sessionToken = $params->getUrlParamValue('session_id') . '_' . $params->get('route');
+        return $sessionToken;
+    }
+
+    /**
+     * Retrieve an attribute from the session
+     * @param $name
+     * @return bool
+     */
+    public function getAttribute($name) {
+        $params = Parameters::getInstance();
+        $name = $this->getSessionToken() . '_' . $name;
+        $value = $params->get($name);
+        return $value;
+    }
+
+    /**
+     * Set a parameter in the current session
+     * @param $name
+     * @param $value
+     */
+    public function setAttribute($name, $value) {
+        $params = Parameters::getInstance();
+        $name = $this->getSessionToken() . '_' . $name;
+        $params->set($name, $value, true);
+    }
+
+    /**
+     * Tell if the session is loaded for the current context or not
+     * @return bool
+     */
+    public function isSessionReady() {
+        $params = Parameters::getInstance();
+        $name = $this->getSessionToken() . '_' . self::STORED_IN_SESSION;
+        $value = $params->get($name) ? true : false;
+        // Store the session ID in SESSION
+        $params->setUrlParamValue('session_id', $params->getUrlParamValue('session_id'));
+        return $value;
+    }
 }

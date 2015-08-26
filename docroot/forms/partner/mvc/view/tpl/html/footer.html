@@ -1,0 +1,16 @@
+{if !$printable}
+            {if empty($hideButtons) && !$locked}
+            <div class="control-group">
+                <label class="control-label" for="next"></label>
+                <div class="controls">
+                    <input id="next" name="next" value="{$submit_text}" type="submit" />
+                </div>
+            </div>
+            {/if}
+        {if !$locked}
+        </form>
+        {/if}
+    </div>
+</div>
+<div class="clear"></div>
+{/if}

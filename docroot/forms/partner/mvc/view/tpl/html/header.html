@@ -1,0 +1,12 @@
+{if !$printable}
+{if $progressbar}{$progressbar}{/if}
+{if $partner_type == "current"}
+<!--<div class="review-fields">Please make sure that you thoroughly check, whether all your information is still valid and indicate this by checking the button next to each section</div>-->
+{/if}
+<div id="content">
+    {if $sidebar}{$sidebar}{/if}
+    <div id="form" class="main-form sidebar-border">
+        {if !$locked}
+        <form class="form-horizontal {if !empty($partner_type)}{$partner_type}{/if} {if $mf}mf{/if}" method="post" action="{$appurl}&action=send">
+        {/if}
+{/if}

@@ -8,11 +8,12 @@ drupal_bootstrap(DRUPAL_BOOTSTRAP_FULL);
 global $user;
 print "<strong>You are currently logged as: <span style='color: red;'>{$user->name}, {$user->mail} ($user->uid)</span></strong>";
 
-
+//error_reporting(E_ERROR | E_WARNING | E_PARSE);
 // Enviroment constants
 define('APP_ROOT', dirname($_SERVER['SCRIPT_FILENAME']) . '/');
 $phpSelf = pathinfo($_SERVER['PHP_SELF']);
 define('APP_URL', 'http://'.$_SERVER['HTTP_HOST'] . $phpSelf['dirname'] . '/');
+define('APP_PORT', intval($_SERVER['SERVER_PORT']) != 80 ? ':' . $_SERVER['SERVER_PORT'] : '');
 define('APP_CONFIG', APP_ROOT . 'config/');
 // Autoloader
 require(APP_ROOT . 'lib/dwoo/lib/dwooAutoload.php');
@@ -20,6 +21,10 @@ require(APP_ROOT . 'Autoloader.php');
 // Session start
 $session = Session::getInstance();
 $session->start();
+// Security nonce
+$nonce = chr(mt_rand(97, 122)) . substr(md5(time()), 1);
+$params = Parameters::getInstance();
+$params->set('nonce', $nonce);
 // Dispatcher
 $dispatcher = new Dispatcher();
 $dispatcher->dispatch();

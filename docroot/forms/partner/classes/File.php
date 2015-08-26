@@ -82,6 +82,14 @@ class File {
     }
 
     /**
+     * Clear a folder
+     * @param $path
+     */
+    public static function clearFolder($path) {
+        array_map('unlink', glob($path));
+    }
+
+    /**
      * Browse a directory and return the content
      *
      * @param string $path

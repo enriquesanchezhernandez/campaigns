@@ -30,8 +30,12 @@ final class Parameters {
             $class = __CLASS__;
             $inst = new $class();
             // Load the configuration
-            if ($config = file_get_contents(APP_CONFIG . 'config.json')) {
-                $inst->params = json_decode($config, true);
+            $inst->params = array();
+            $configFiles = glob(APP_CONFIG . '*.json');
+            foreach ($configFiles as $configFile) {
+                if ($config = file_get_contents($configFile)) {
+                    $inst->params = array_merge($inst->params, json_decode($config, true));
+                }
             }
         }
         return $inst;
@@ -56,13 +60,34 @@ final class Parameters {
     }
 
     /**
+     * Retrieve the name of an URL parameter through its configuration key
+     * @param $name
+     * @return bool
+     */
+    public function getUrlParam($name) {
+        $key = $this->get('urlParams')[$name];
+        return $key;
+    }
+
+    /**
      * Retrieve the value of an URL parameter through its configuration key
      * @param $name
      * @return bool
      */
     public function getUrlParamValue($name) {
-        $key = $this->get('url_params')[$name];
-        return $this->get($key);
+        $key = $this->getUrlParam($name);
+        $value = $this->get($key);
+        return $value;
+    }
+
+    /**
+     * Set the value of an URL parameter
+     * @param $name
+     * @param $value
+     */
+    public function setUrlParamValue($name, $value) {
+        $key = $this->getUrlParam($name);
+        $this->set($key, $value, true);
     }
 
     /**

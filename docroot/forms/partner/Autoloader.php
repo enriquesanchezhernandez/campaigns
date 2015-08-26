@@ -45,6 +45,8 @@ class Autoloader {
             require_once(APP_ROOT . 'classes/exceptions/' . $className);
         } else if (is_readable(APP_ROOT . 'mvc/controller/' . $className)) {
             require_once(APP_ROOT . 'mvc/controller/' . $className);
+        } else if (is_readable(APP_ROOT . 'mvc/controller/entities/' . $className)) {
+            require_once(APP_ROOT . 'mvc/controller/entities/' . $className);
         } else if (is_readable(APP_ROOT . 'mvc/model/' . $className)) {
             require_once(APP_ROOT . 'mvc/model/' . $className);
         } else if (is_readable(APP_ROOT . 'mvc/view/' . $className)) {
