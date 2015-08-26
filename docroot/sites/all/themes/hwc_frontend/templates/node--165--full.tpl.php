@@ -30,7 +30,7 @@
     print render($content['body']);
   ?>
 
-  <div>
+  <div class="container">
     <?php
     print render($content['share_widget']);
     // Additional resources
