@@ -1048,19 +1048,46 @@ function osha_newsletter_entity_insert($entity_collection, $type) {
       );
     }
 
+    $custom_order_bundles = array('news', 'events');
+
+    $ordinary_order_bundles = array_diff($allowed_bundles, $custom_order_bundles);
+
     // Select latest published content and attach it to the newsletter.
     if (!empty($entity_collection->field_newsletter_content_after[LANGUAGE_NONE][0]['value'])) {
       $after = $entity_collection->field_newsletter_content_after[LANGUAGE_NONE][0]['value'];
       $after = strtotime($after);
-      $query = new EntityFieldQuery();
-      $rows = $query->entityCondition('entity_type', 'node')
-        ->entityCondition('bundle', $allowed_bundles, 'IN')
+      $result = array();
+
+      if (!empty($ordinary_order_bundles)) {
+        $query = new EntityFieldQuery();
+        $items = $query->entityCondition('entity_type', 'node')
+          ->entityCondition('bundle', $ordinary_order_bundles, 'IN')
+          ->propertyCondition('created', $after, '>=')
+          ->propertyCondition('status', NODE_PUBLISHED)
+          ->execute();
+        $result = isset($items['node']) ? array_keys($items['node']) : $result;
+      }
+
+      $query_news = new EntityFieldQuery();
+      $news = $query_news->entityCondition('entity_type', 'node')
+        ->entityCondition('bundle', 'news')
         ->propertyCondition('created', $after, '>=')
         ->propertyCondition('status', NODE_PUBLISHED)
+        ->fieldOrderBy('field_publication_date', 'value', 'DESC')
         ->execute();
+      $result = isset($news['node']) ? array_merge($result, array_keys($news['node'])) : $result;
 
-      if (isset($rows['node'])) {
-        $nodes = node_load_multiple(array_keys($rows['node']));
+      $query_events = new EntityFieldQuery();
+      $events = $query_events->entityCondition('entity_type', 'node')
+        ->entityCondition('bundle', 'events')
+        ->propertyCondition('created', $after, '>=')
+        ->propertyCondition('status', NODE_PUBLISHED)
+        ->fieldOrderBy('field_start_date', 'value', 'ASC')
+        ->execute();
+      $result = isset($events['node']) ? array_merge($result, array_keys($events['node'])) : $result;
+
+      if (!empty($result)) {
+        $nodes = node_load_multiple($result);
         foreach ($nodes as $nid => $node) {
           // Don't add any more nodes if already max_nodes for section.
           if (isset($term_ct_map[$node->type]) && isset($weights[$term_ct_map[$node->type]]) &&

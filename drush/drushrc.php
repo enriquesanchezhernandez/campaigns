@@ -364,6 +364,13 @@ $options['init-modules'] = array(
   'page_manager',
   'views_content',
   'i18n_panels',
+  'panels_mini',
+  'ds',
+  'ds_ui',
+  'ds_extras',
+  'ds_forms',
+  'field_formatter_settings',
+  'field_formatter_class',
 
   'views_slideshow',
   'views_slideshow_cycle',
@@ -388,6 +395,8 @@ $options['init-modules'] = array(
   'smtp',
 
   'linkchecker',
+
+  'rules_admin',
 
   // Enable last (conflict with rules)
   'uuid',
@@ -442,6 +451,10 @@ $options['init-modules'] = array(
   'context_layouts',
   'context_entity_field',
 
+  'image_url_formatter',
+  'views_data_export',
+  'phpexcel',
+
   // Captcha
  'recaptcha',
 
@@ -493,6 +506,8 @@ $options['init-modules'] = array(
   'shorten',
 
   'hwc',
+  'hwc_workflow',
+  'hwc_admin_reports',
   'hwc_homepage',
   'ncw_migration',
   'hwc_crm_migration',

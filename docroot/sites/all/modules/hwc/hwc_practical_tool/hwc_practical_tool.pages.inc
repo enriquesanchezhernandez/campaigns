@@ -1,15 +1,5 @@
 <?php
 
-function hwc_practical_tool_relevant_for_list() {
-  $vocabulary = taxonomy_vocabulary_machine_name_load('practical_tool_relevant_for');
-  $terms = taxonomy_get_tree($vocabulary->vid);
-  $return = array('0' => 'All audience');
-  foreach($terms as $key => $term) {
-    $return[$term->tid] = $term->name;
-  }
-  return $return;
-}
-
 function hwc_practical_tool_menu_tools_form($form, $form_state) {
   drupal_set_title(t('Practical tools'));
   global $language;
@@ -24,11 +14,11 @@ function hwc_practical_tool_menu_tools_form($form, $form_state) {
     ),
     'left-column' => array(
       '#type' => 'container',
-      '#attributes' => array('class' => array('col col-md-4')),
+      '#attributes' => array('class' => array('col col-md-3')),
     ),
     'content' => array(
       '#type' => 'container',
-      '#attributes' => array('class' => array('col col-md-8')),
+      '#attributes' => array('class' => array('col col-md-9')),
     ),
   );
   $form['content']['text'] = array(
@@ -48,7 +38,7 @@ function hwc_practical_tool_menu_tools_form($form, $form_state) {
   );
   $form['left-column']['relevant_for'] = array(
     '#type' => 'checkboxes',
-    '#options' => hwc_practical_tool_relevant_for_list(),
+    '#options' => _hwc_segment_options_list(),
     '#default_value' => array('0'),
     '#title' => t('Relevant for:'),
   );
@@ -87,14 +77,7 @@ function hwc_practical_tool_menu_tools_search_native($form_state) {
   $text = hwc_req_param($form_state, 'text');
   $is_search = !empty($text);
   $restrict = array();
-  $relevant_for_ids = array();
   if ($is_search) {
-    $relevant_for = $form_state['values']['relevant_for'];
-    foreach ($relevant_for as $relf) {
-      if ($relf) {
-        $relevant_for_ids[] = $relf;
-      }
-    }
     /** @var SearchApiQuery $query */
     /** @var SearchApiSolrService $server */
     list($server, $query) = hwc_practical_tool_menu_tools_get_query();
@@ -107,13 +90,20 @@ function hwc_practical_tool_menu_tools_search_native($form_state) {
       foreach ($results['results'] as $result) {
         $restrict[] = $result['fields']['nid'];
       }
+      $restrict = array_unique($restrict);
     }
     else {
       return array(
         '#nids' => '',
       );
     }
-
+  }
+  $relevant_for_ids = array();
+  $relevant_for = $form_state['values']['relevant_for'];
+  foreach ($relevant_for as $relf) {
+    if ($relf) {
+      $relevant_for_ids[] = $relf;
+    }
   }
   $q = db_select('node', 'a')
     ->fields('a', array('nid', 'vid'))
@@ -122,6 +112,10 @@ function hwc_practical_tool_menu_tools_search_native($form_state) {
     ->orderBy('changed', 'DESC');
   if (!empty($restrict)) {
     $q->condition('a.nid', $restrict, 'IN');
+  }
+  if (!empty($languages)) {
+    $q->innerJoin('field_data_field_access_tool_link', 'fd', 'a.nid = fd.entity_id AND a.vid = fd.revision_id');
+    $q->condition('fd.language', $languages, 'IN');
   }
   $pnids = $q->execute()->fetchCol();
   $nids = array();
@@ -137,12 +131,12 @@ function hwc_practical_tool_menu_tools_search_native($form_state) {
 
     if (!empty($relevant_for_ids)) {
       // Check if the node is relevant for all selected 'relevant for' checkboxes.
-      $q2 = db_select('field_data_field_relevant_for', 'b');
+      $q2 = db_select('field_data_field_segment', 'b');
       $q2->fields('b', array('entity_id'));
       $q2->innerJoin('node', 'a', 'a.nid = b.entity_id');
       $q2->condition('b.entity_id', $pnid);
       $q2->condition('b.entity_type', 'node');
-      $q2->condition('b.field_relevant_for_tid', $relevant_for_ids, 'IN');
+      $q2->condition('b.field_segment_tid', $relevant_for_ids, 'IN');
       $c2 = $q2->countQuery()->execute()->fetchField();
     }
     else {
@@ -261,10 +255,7 @@ function hwc_practical_tool_menu_tools_search_related($form_state, $native_nids)
 }
 
 function hwc_practical_tool_menu_tools_get_query() {
-  module_load_include('inc', 'osha_search', 'osha_search.features');
-  $servers = osha_search_default_search_api_server();
-  reset($servers);
-  $server = search_api_server_load(key($servers));
+  $server = search_api_server_load('solr_server');
   $indexes = osha_search_default_search_api_index();
   reset($indexes);
   $index = search_api_index_load(key($indexes));

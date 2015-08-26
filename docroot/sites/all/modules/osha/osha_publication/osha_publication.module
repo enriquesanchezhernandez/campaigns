@@ -20,6 +20,14 @@ function osha_publication_block_info() {
     'visibility' => BLOCK_VISIBILITY_NOTLISTED,
     'cache' => DRUPAL_CACHE_GLOBAL,
   );
+
+  $blocks['osha_case_studies_listing'] = array(
+    'info' => t('Case studies listing'),
+    'status' => 1,
+    'region' => '-1',
+    'visibility' => BLOCK_VISIBILITY_NOTLISTED,
+    'cache' => DRUPAL_CACHE_GLOBAL,
+  );
   return $blocks;
 }
 
@@ -31,6 +39,10 @@ function osha_publication_block_view($delta = '') {
   if ($delta == 'osha_publication_listing') {
     module_load_include('inc', 'osha_publication', 'osha_publication.pages');
     $block['content'] = drupal_get_form('osha_publication_menu_publications_form');
+  }
+  if ($delta == 'osha_case_studies_listing') {
+    module_load_include('inc', 'osha_publication', 'osha_publication.pages');
+    $block['content'] = drupal_get_form('osha_publication_menu_case_studies_form');
   }
   return $block;
 }

@@ -14,6 +14,7 @@ function osha_press_release_default_fe_block_settings() {
 
   $export['osha_press_release-osha_press_kit'] = array(
     'cache' => 8,
+    'css_class' => '',
     'custom' => 0,
     'delta' => 'osha_press_kit',
     'i18n_block_language' => array(),
@@ -26,8 +27,8 @@ function osha_press_release_default_fe_block_settings() {
     'roles' => array(),
     'themes' => array(
       'hwc_frontend' => array(
-        'region' => 'sidebar_second',
-        'status' => 1,
+        'region' => '',
+        'status' => 0,
         'theme' => 'hwc_frontend',
         'weight' => -49,
       ),
@@ -44,6 +45,7 @@ function osha_press_release_default_fe_block_settings() {
 
   $export['osha_press_release-osha_press_rel_become_partner'] = array(
     'cache' => 8,
+    'css_class' => '',
     'custom' => 0,
     'delta' => 'osha_press_rel_become_partner',
     'i18n_block_language' => array(),
@@ -56,8 +58,8 @@ function osha_press_release_default_fe_block_settings() {
     'roles' => array(),
     'themes' => array(
       'hwc_frontend' => array(
-        'region' => 'sidebar_second',
-        'status' => 1,
+        'region' => '',
+        'status' => 0,
         'theme' => 'hwc_frontend',
         'weight' => -51,
       ),
@@ -74,6 +76,7 @@ function osha_press_release_default_fe_block_settings() {
 
   $export['osha_press_release-osha_press_rel_join_list'] = array(
     'cache' => 8,
+    'css_class' => '',
     'custom' => 0,
     'delta' => 'osha_press_rel_join_list',
     'i18n_block_language' => array(),
@@ -100,8 +103,40 @@ function osha_press_release_default_fe_block_settings() {
     'visibility' => 0,
   );
 
+  $export['panels_mini-press_room_blocks'] = array(
+    'cache' => -1,
+    'css_class' => 'container',
+    'custom' => 0,
+    'delta' => 'press_room_blocks',
+    'i18n_block_language' => array(),
+    'i18n_mode' => 0,
+    'module' => 'panels_mini',
+    'node_types' => array(
+      0 => 'press_release',
+    ),
+    'pages' => '',
+    'roles' => array(),
+    'themes' => array(
+      'hwc_frontend' => array(
+        'region' => 'content',
+        'status' => 1,
+        'theme' => 'hwc_frontend',
+        'weight' => 0,
+      ),
+      'seven' => array(
+        'region' => '',
+        'status' => 0,
+        'theme' => 'seven',
+        'weight' => 0,
+      ),
+    ),
+    'title' => '<none>',
+    'visibility' => 0,
+  );
+
   $export['views-press_contacts-block'] = array(
     'cache' => -1,
+    'css_class' => 'col-sm-3',
     'custom' => 0,
     'delta' => 'press_contacts-block',
     'i18n_block_language' => array(),
@@ -114,8 +149,8 @@ function osha_press_release_default_fe_block_settings() {
     'roles' => array(),
     'themes' => array(
       'hwc_frontend' => array(
-        'region' => 'sidebar_second',
-        'status' => 1,
+        'region' => '',
+        'status' => 0,
         'theme' => 'hwc_frontend',
         'weight' => -50,
       ),
@@ -132,6 +167,7 @@ function osha_press_release_default_fe_block_settings() {
 
   $export['views-press_releases-block'] = array(
     'cache' => -1,
+    'css_class' => '',
     'custom' => 0,
     'delta' => 'press_releases-block',
     'i18n_block_language' => array(),

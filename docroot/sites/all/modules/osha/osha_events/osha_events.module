@@ -47,6 +47,18 @@ function osha_events_form_views_exposed_form_alter(&$form, &$form_state) {
       // See ticket CW-1438 and Drupal bug: www.drupal.org/node/1415306
       $_GET['field_start_date_value']['date'] = $date->format('d/m/Y');
     }
+  }elseif($form['#id'] == 'views-exposed-form-events-search-page-1' || $form['#id'] == 'views-exposed-form-events-search-page') {
+    // Add Events Calendar filter just after search exposed filter
+    if($form['#id'] == 'views-exposed-form-events-search-page-1'){
+      $block = block_load('views','events-block_1');
+    }elseif($form['#id'] == 'views-exposed-form-events-search-page'){
+      $block = block_load('views','events-block_2');
+    }
+    $events_calendar = drupal_render(_block_get_renderable_array(_block_render_blocks(array($block))));
+    $form['events_calendar'] = array(
+      '#type' => 'markup',
+      '#markup' => $events_calendar,
+    );
   }
 }
 
@@ -171,13 +183,25 @@ function osha_events_views_pre_render(&$view) {
 
       $path = $view->current_display == 'block_1'? 'past-events':'events';
 
+      // Add a css class to selected month
+      $class = '';
+      $url_params = drupal_get_query_parameters($_GET, array('search_api_views_fulltext', 'q'));
+      if(isset($url_params['f'][0]) && strpos($url_params['f'][0], 'field_start_date') !== FALSE){
+        if(substr($url_params['f'][0],  -7) == $row_year . '-' . $row_month_raw){
+          $class = 'current_month';
+        }
+      }
+
+
       $result->field_field_start_date[0]['rendered']['#markup']
         = l($row_month, $path, array(
-          'query' =>
-            array('f' => array(
+          'query' => array('f' => array(
                 0 => urlencode('field_start_date:') . 'value:' . $row_year . '-' . $row_month_raw,
               )
-            )
+            ),
+           'attributes' => array(
+             'class' => array($class),
+           ),
           )
         );
     }
@@ -220,43 +244,4 @@ function osha_events_get_view_title($title) {
     $title = t('@data events', array('@data' => $title));
   }
   return $title;
-}
-
-/**
- * Implements hook_block_info().
- */
-function osha_events_block_info() {
-  $blocks = array();
-  $blocks['events_links'] = array(
-    'info' => t('Upcoming/Past events links'),
-  );
-
-  return $blocks;
-}
-
-/**
- * Implements hook_block_view().
- */
-function osha_events_block_view($delta = '') {
-  $block = array();
-
-  switch($delta) {
-    case 'events_links' :
-      $block['content'] = theme('events_links');
-      break;
-  }
-
-  return $block;
-}
-
-/**
- * Implements hook_theme().
- */
-function osha_events_theme() {
-  return array(
-    'events_links' => array(
-      'variables' => array(),
-      'template' => 'theme/events_links'
-    ),
-  );
 }

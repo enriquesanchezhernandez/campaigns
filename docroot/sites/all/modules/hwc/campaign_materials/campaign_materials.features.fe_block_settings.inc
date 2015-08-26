@@ -14,6 +14,7 @@ function campaign_materials_default_fe_block_settings() {
 
   $export['views-view_campaign_materials-block'] = array(
     'cache' => -1,
+    'css_class' => '',
     'custom' => 0,
     'delta' => 'view_campaign_materials-block',
     'i18n_block_language' => array(),

@@ -1,0 +1,392 @@
+body {
+    font-family : Trebuchet MS, Tahoma, Verdana, Arial, sans-serif;
+    margin      : 0;
+    font-size : 1vw;
+}
+a {
+    text-decoration : none;
+    color           : black;
+}
+label {
+    font-weight : bold;
+    display     : block;
+    clear: both;
+    margin-bottom: 0.4vw;
+}
+.clear {
+    clear : both;
+}
+
+#footer {
+}
+#form {
+    float: right;
+    width   : 70%;
+}
+.progress {
+    margin-bottom : 0;
+    padding       : 0;
+}
+.control-group, .controls {
+    margin-bottom : 1vw;
+    clear         : both;
+}
+input.error {
+    border : 0.2vw solid red;
+}
+.error-msg, .sidebar-error {
+    color       : red;
+    font-weight : bold;
+    font-size: 0.8vw;
+    padding: 0vw 1.5vw 0 !important;
+    margin: 0.5vw 0 0 !important;
+}
+.col-md-4 {
+    text-align  : center;
+    font-weight : bolder;
+}
+.progress-bar-striped {
+    min-width : 2em;
+}
+.thank-you {
+    text-align  : center;
+    font-weight : bolder;
+}
+
+.print {
+    background: url(../img/print.png) no-repeat;
+    padding-left: 2vw !important;
+    padding-bottom: 0.4vw !important;
+    background-size: 1.5vw;
+    background-position: 0vw 0.2vw;
+}
+.export-pdf {
+    background: url(../img/pdf.png) no-repeat;
+    padding-left: 2vw !important;
+    padding-bottom: 0.4vw !important;
+    background-size: 2vw;
+    background-position: 0vw 0.2vw;
+}
+.print a, .export-pdf a {
+    color: #003399 !important;
+}
+.export-pdf {
+    margin-top : 20px;
+}
+.center {
+    text-align : center;
+}
+/**********************/
+input[type=text], select, textarea {
+    border : 0.1vw solid #003399;
+    color  : #003399;
+}
+input[type=submit], button {
+    border           : none;
+    background-color : #003399;
+    color            : #ffffff;
+    padding: 0.2vw 0.5vw 0.2vw 0.5vw;
+    font-size: 1vw;
+}
+input[type=text], select {
+    padding : 2px;
+    width   : 100%;
+}
+input[type=radio] {
+    width: 1.5vw;
+    height: 1.5vw;
+}
+textarea {
+    padding: 1px;
+    width   : 100%;
+    height  : 200px;
+}
+fieldset {
+    border         : none;
+    border-bottom  : 0.1vw dotted #c1e000;
+    padding-bottom: 2vw;
+    margin-bottom: 3vw;
+}
+legend {
+    font-weight   : normal !important;
+    font-size: 1.5vw;
+    color         : #749b00;
+    font-style    : italic;
+    margin-bottom : 0.5vw;
+}
+select[disabled] {
+    background-color: #e3e3e4;
+}
+.imageBox {
+    width: 100% !important;
+}
+.control-group {
+    margin-bottom : 5vw;
+}
+.float-left {
+    float        : left;
+    width        : 40%;
+    margin-right : 20px;
+}
+.float-right {
+    float : right;
+    width : 40%;
+}
+.repeatable-section {
+    margin-bottom  : 50px;
+    padding-bottom : 40px;
+    border-bottom  : 0.1vw solid #c1e000;
+}
+.controls {
+    float : left;
+    width : 100%;
+}
+.validation {
+    float: right;
+    width: 1.2vw;
+    height: 1.2vw;
+    cursor: pointer;
+    margin-left: 1vw;
+    margin-top: 0.5vw;
+    background: url(../img/validation-check.png);
+    background-size: 1.2vw;
+}
+.validation-pressed {
+    opacity: 0.6;
+}
+.div-checkbox {
+    width : 25%;
+}
+#sidebar {
+    /* font-size: 1.1vw;  Viewport 'vw' units*/
+}
+
+#sidebar-top {
+    padding-left: 1vw;
+}
+
+.nav-side-menu .separator {
+    border-bottom: 0.1vw dotted #c1e000;
+    margin-bottom: 1.5vw;
+}
+
+#sidebar-bottom {
+    margin-top: 1vw;
+    margin-bottom: 1vw;
+}
+
+#sidebar-top .section-title {
+    margin-top: 1.2vw;
+    margin-bottom: 0.5vw;
+}
+
+#sidebar-top .section-title a {
+    color: #749b00;
+    font-size: 1vw !important;
+    font-weight: bold;
+}
+
+#sidebar-top .section {
+    background: url(../img/green-tick.png) no-repeat;
+    padding-left: 2vw;
+    background-size: 1.5vw;
+    background-position: 0vw 0.2vw;
+}
+
+#sidebar-top .sidebar-error {
+    background: url(../img/red-cross.png) no-repeat;
+    padding-left: 2vw !important;
+    padding-top: 0 !important;
+    padding-bottom: 0.4vw !important;
+    background-size: 1.5vw !important;
+    margin-top: 0.5vw !important;
+}
+#progressbar .row {
+    margin-left: 0;
+    margin-right: 0;
+}
+.progressbar-text {
+    background-repeat: no-repeat;
+    background-size: 100%;
+    width: 33%;
+    float: left;
+    line-height   : 350%;
+    color: #fff;
+    margin-bottom: 2vw;
+}
+.progressbar-text {
+    background-image: url(../img/blue-section.png);
+}
+.progressbar-active {
+    background-image: url(../img/green-section.png);
+}
+.progressbar-first {
+    background-image: url(../img/blue-section-first.png);
+}
+.progressbar-first-active {
+    background-image: url(../img/green-section-first.png);
+}
+.progressbar-last {
+    background-image: url(../img/blue-section-last.png);
+}
+.progressbar-last-active {
+    background-image: url(../img/green-section-last.png);
+}
+.review-fields {
+    background-color: #e3e3e4;
+    padding: 30px;
+    padding-left: 120px;
+    padding-right: 120px;
+    text-align: center;
+    font-weight: bold;
+    color: #1e47a6;
+}
+.action {
+    width: 100%;
+}
+#next {
+    margin-left: 0.8vw;
+}
+#menu-content li a {
+    font-size: 0.8vw;
+}
+
+#general-text {
+    display: inline-block;
+}
+
+.screen-left{
+    float : left;
+}
+.screen-right{
+    float : right;
+    width: 1vw;
+    height: auto;
+    margin-right: 2.5vw;
+}
+form.new .validation, form.mf .validation {
+    display : none;
+}
+.required-fields-box {
+    padding: 0.5vw !important;
+    margin-bottom: 1vw !important;
+    border: 0.1vw solid red;
+    color: red;
+    width: 10vw;
+    font-size: 0.8vw;
+    text-align: center;
+}
+.fields-campaign {
+    font-size: 0.8vw;
+    width: 16vw;
+}
+.screen {
+    background: url(../img/screen.png) no-repeat;
+    background-size: 1vw;
+    width: 1vw;
+    display: block;
+    float: right;
+    height: 1vw;
+}
+.help-block {
+    clear: both;
+}
+
+.required label, .required input,
+.required textarea, .required select,
+.select2-container--default
+.select2-selection--multiple {
+    border-color: red;
+    color: red;
+}
+
+.print-finish {
+    margin-top: 3vw;
+    text-align: center;
+}
+.print-finish div {
+    margin-bottom : 1vw;
+}
+
+@media (max-width : 767px) {
+    .float-left, .float-right {
+        float : none;
+        width : 100%;
+    }
+
+    #form {
+        float       : none;
+        width       : 100%;
+        margin-left : 0;
+    }
+
+    .nav-side-menu {
+        float: none;
+    }
+}
+
+@media only screen and (max-width : 480px) {
+    body {
+        font-size : 3vw;
+    }
+
+    input[type=submit], button {
+        font-size : 3vw;
+    }
+
+    legend {
+        font-size : 5vw;
+    }
+
+    #sidebar-top .section-title a {
+        font-size : 4vw !important;
+    }
+
+    #menu-content li a {
+        font-size : 3vw;
+    }
+
+    .nav-side-menu {
+        margin-bottom : 10vw !important;
+    }
+
+    .progressbar-text {
+        line-height : 5vw;
+        font-size   : 2vw;
+    }
+
+    .error-msg {
+        font-size : 2vw;
+    }
+
+    .required-fields-box {
+        font-size : 2vw;
+        width     : 15vw;
+    }
+
+    .fields-campaign {
+        font-size : 2vw;
+        width     : 35vw;
+    }
+
+    .print, .export-pdf, #sidebar-top .section, #sidebar-top .sidebar-error {
+        background-size     : 3vw;
+        padding-left        : 5vw;
+        background-position : 0 1vw;
+    }
+
+    .screen, .screen-right {
+        width           : 3vw;
+        height          : 3vw;
+        background-size : 3vw;
+    }
+
+    .print, .export-pdf {
+        padding-left : 5vw !important;
+    }
+
+    input[type=radio] {
+        width  : 3vw;
+        height : 3vw;
+    }
+}

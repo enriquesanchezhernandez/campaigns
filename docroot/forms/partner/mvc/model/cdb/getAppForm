@@ -1,0 +1,98 @@
+{
+    "getAppFormResult": {
+        "osh_lastname": "PRUEBA",
+        "owningbusinessunit": {
+            "LogicalName": "businessunit",
+            "Id": "320ca1af-4e81-e411-9418-f8b156da446b",
+            "Name": null
+        },
+        "statuscode": 863680000,
+        "osh_publicationtv": false,
+        "osh_appformtype": 0,
+        "osh_category": {
+            "LogicalName": "osh_category",
+            "Id": "923d9ff0-611e-e511-93fd-000c293f1c16",
+            "Name": "OfficialCampaignPartners"
+        },
+        "createdon": "2015-08-11T12: 58: 43Z",
+        "osh_maincontactchange": false,
+        "statecode": 0,
+        "osh_role1": {
+            "LogicalName": "osh_wgrol",
+            "Id": "c9d50f39-c615-e511-93fd-000c293f1c16",
+            "Name": "MainContact"
+        },
+        "osh_workinggroup": {
+            "LogicalName": "osh_workinggroup",
+            "Id": "7449d6eb-3f1b-e511-93fd-000c293f1c16",
+            "Name": "HealthyWorkplacesCampaign2016/2017"
+        },
+        "osh_readershipeuinstitutions": false,
+        "osh_socialdialoguepartner": false,
+        "osh_publicationprint": false,
+        "ownerid": {
+            "LogicalName": "systemuser",
+            "Id": "19b09930-f5d1-e411-93ef-000c293f1c16",
+            "Name": "AdministratorOSHA"
+        },
+        "osh_orgname": "Prueba1PHP",
+        "modifiedon": "2015-08-11T12: 58: 43Z",
+        "osh_readershipspecialist": false,
+        "osh_appformid": "3c33a3b1-2840-e511-9404-000c293f1c16",
+        "osh_firstname": "PHP1",
+        "osh_name": "AppForm-PHP1PRUEBA",
+        "osh_mainemail": "pruebaphp1@prueba.com",
+        "osh_city": "Barcelona",
+        "modifiedby": {
+            "LogicalName": "systemuser",
+            "Id": "19b09930-f5d1-e411-93ef-000c293f1c16",
+            "Name": "AdministratorOSHA"
+        },
+        "osh_publicationonline": false,
+        "osh_publicationother": false,
+        "osh_readershiposhcommunity": false,
+        "osh_generalemail": "emailorgphp1@prueba.com",
+        "osh_zipcode": "08038",
+        "osh_contactdetail": {
+            "LogicalName": "contact",
+            "Id": "a63d365c-1d40-e511-9404-000c293f1c16",
+            "Name": "PHP1PRUEBA"
+        },
+        "osh_memberof": {
+            "LogicalName": "osh_memberof",
+            "Id": "1cf1e344-2140-e511-9404-000c293f1c16",
+            "Name": "PHP1PRUEBA/HealthyWorkplacesCampaign2016/2017"
+        },
+        "osh_publicationradio": false,
+        "createdby": {
+            "LogicalName": "systemuser",
+            "Id": "19b09930-f5d1-e411-93ef-000c293f1c16",
+            "Name": "AdministratorOSHA"
+        },
+        "osh_readershiptrade": false,
+        "osh_hastobevalidated": false,
+        "osh_publicationnewsletter": false,
+        "osh_invited": true,
+        "osh_readershipsmes": false,
+        "owninguser": {
+            "LogicalName": "systemuser",
+            "Id": "19b09930-f5d1-e411-93ef-000c293f1c16",
+            "Name": null
+        },
+        "osh_readershipacademics": false,
+        "osh_organization": {
+            "LogicalName": "account",
+            "Id": "4a43af55-1d40-e511-9404-000c293f1c16",
+            "Name": "Prueba1PHP"
+        },
+        "osh_country": {
+            "LogicalName": "osh_country",
+            "Id": "8880a52d-7b92-e411-80c3-005056ba4e5c",
+            "Name": "SPAIN"
+        }
+    },
+    "returnPaises": {},
+    "returnCode": 1,
+    "returnName": "OK",
+    "returnMessage": "OK"
+}

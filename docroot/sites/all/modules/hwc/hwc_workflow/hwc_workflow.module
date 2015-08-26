@@ -1,0 +1,286 @@
+<?php
+
+
+/**
+ * Implements Elysia hook_cronapi().
+ */
+function hwc_workflow_cron_cronapi() {
+  return array('hwc_workflow_partner_content_cron' => array(
+    'description' => 'Set partners content from final draft to next state.',
+    'rule' => '0,5 * * * *',
+  ));
+}
+
+/**
+ * Implements hook_cron().
+ */
+function hwc_workflow_cron() {
+  hwc_workflow_partner_content_cron();
+}
+
+/**
+ * Cron callback to auto moderate partners' content.
+ */
+function hwc_workflow_partner_content_cron() {
+  // Moderate content created by a partner, that is in Final Draft for some time.
+  $users = OshaWorkflowPermissions::getUsersByRole(ROLE_CAMPAIGN_PARTNER);
+  $uids = array();
+  foreach ($users as $usr) {
+    $uids[] = $usr->uid;
+  }
+
+  // Getting the nids that have passed the final draft state.
+  $subquery = db_select('workbench_moderation_node_history', 'wm')
+    ->fields('wm', array('nid'))
+    ->condition('wm.state', 'final_draft')
+    ->condition('wm.current', 1);
+
+  $time_limit = _hwc_workflow_partner_content_get_time_limit();
+  // Getting content that needs to be auto moderated.
+  $query = db_select('workbench_moderation_node_history', 'wmh')
+    ->fields('wmh', array('nid'))
+    ->distinct()
+    ->condition('wmh.from_state', 'draft')
+    ->condition('wmh.state', 'final_draft')
+    ->condition('wmh.nid', $subquery, 'IN')
+    ->condition('wmh.uid', $uids, 'IN')
+    ->condition('wmh.stamp', $time_limit, '<=')
+    ->orderBy('wmh.hid', 'DESC')
+    ->execute();
+
+  while ($row = $query->fetchAssoc()) {
+    $node = node_load($row['nid']);
+    if (!empty($node)) {
+      $current_node = workbench_moderation_node_current_load($node);
+      if (!empty($current_node->workbench_moderation['current'])
+        && $current_node->workbench_moderation['current']->state == 'final_draft') {
+        // Moderate the content.
+        workbench_moderation_moderate($current_node, OSHA_WORKFLOW_STATE_TO_BE_REVIEWED);
+        watchdog('hwc_workflow', 'Node !title automoderated to !state', array('!title' => $current_node->title, '!state' => OSHA_WORKFLOW_STATE_TO_BE_REVIEWED), WATCHDOG_INFO);
+      }
+    }
+  }
+}
+
+/**
+ * Implements hook_permission().
+ */
+function hwc_workflow_permission() {
+  $permissions = array();
+  $permissions['select content section'] = array('title' => t("Can select section of a content"));
+
+  return $permissions;
+}
+
+/**
+ * Implements hook_mail_alter().
+ */
+function hwc_workflow_mail_alter(&$message) {
+  if (strpos($message['key'], 'hwc_workflow')) {
+    // Block mails that are send for hwc workflow if user's preference.
+    $user = user_load_by_mail($message['to']);
+    $send_notif = variable_get('osha_workflow_send_mail', FALSE);
+    // when using rereoute mail, the to address is not of an user.
+    $usr_receive_notif = empty($user) || !empty($user->field_cmw_mail_notifications[LANGUAGE_NONE][0]['value']);
+    if (!$send_notif || !$usr_receive_notif) {
+      $message['send'] = FALSE;
+    }
+  }
+}
+
+/**
+ * Implements hook_node_access().
+ */
+function hwc_workflow_node_access($node, $op, $account) {
+  if (($op == 'update' || $op == 'delete')
+    && in_array($node->type, ncw_migration_get_migrated_bundles())
+    && $node->uid == 0) {
+    return NODE_ACCESS_DENY;
+  }
+
+  // Do not allow media partners to create news
+  if ($node == 'events' && $op == 'create' && in_array(ROLE_CAMPAIGN_PARTNER, $account->roles)) {
+    $partner = hwc_partner_get_account_partner($account);
+    if (hwc_partner_is_mp($partner)) {
+      // drupal_set_message('Partners are not allowed to create events.', 'error');
+      return NODE_ACCESS_DENY;
+    }
+  }
+  return NODE_ACCESS_IGNORE;
+}
+
+/**
+ * Implements hook_form_alter().
+ */
+function hwc_workflow_form_alter(&$form, &$form_state) {
+  // Implements permission select content section.
+  if (isset($form['#node_edit_form']) && !empty($form['workbench_access']['workbench_access'])) {
+    $form['workbench_access']['workbench_access']['#access'] = user_access('select content section');
+  }
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function hwc_workflow_form_news_node_form_alter(&$form, &$form_state) {
+  global $user;
+  if (in_array(ROLE_CAMPAIGN_PARTNER, $user->roles) && count($user->roles) == 2) {
+    foreach($user->workbench_access as $user_id_section => $value) {
+      foreach($form['workbench_access']['workbench_access']['#options'] as $wb_id_section => $label) {
+        if ($user_id_section == $wb_id_section) {
+          $form['workbench_access']['workbench_access']['#default_value'] = $user_id_section;
+          $form['workbench_access']['workbench_access']['#access'] = FALSE;
+          break;
+        }
+      }
+    }
+    if (empty($form['workbench_access']['workbench_access']['#default_value'])) {
+      drupal_goto('<front>');
+    }
+    $form['field_summary']['#access'] = FALSE;
+    $form['field_expiration_date']['#access'] = FALSE;
+    $form['field_tags']['#access'] = FALSE;
+    $form['field_activity']['#access'] = FALSE;
+    $form['#after_build'][] = 'hwc_workflow_node_form_after_build_hide_hints';
+
+    _hwc_workflow_partner_node_form_alter($form, $form_state);
+  }
+  else if (count(array_intersect(array('administrator', ROLE_SUPERVISOR), $user->roles))) {
+    if (!empty($_GET['workbench_access']) && intval($_GET['workbench_access'])) {
+      $form['workbench_access']['workbench_access']['#default_value'] = intval($_GET['workbench_access']);
+    }
+  }
+  if (!empty($form['workbench_access']['workbench_access']['#options']['section'])) {
+    $form['workbench_access']['workbench_access']['#title'] = 'Partner';
+    $form['workbench_access']['workbench_access']['#options']['section'] = 'All partners';
+  }
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function hwc_workflow_form_events_node_form_alter(&$form, &$form_state) {
+  global $user;
+  if (in_array(ROLE_CAMPAIGN_PARTNER, $user->roles) && count($user->roles) == 2) {
+    foreach($user->workbench_access as $user_id_section => $value) {
+      foreach($form['workbench_access']['workbench_access']['#options'] as $wb_id_section => $label) {
+        if ($user_id_section == $wb_id_section) {
+          $form['workbench_access']['workbench_access']['#default_value'] = $user_id_section;
+          $form['workbench_access']['workbench_access']['#access'] = FALSE;
+          break;
+        }
+      }
+    }
+    if (empty($form['workbench_access']['workbench_access']['#default_value'])) {
+      drupal_goto('<front>');
+    }
+    $form['field_partner_id']['#access'] = FALSE;
+    $form['field_schedule']['#access'] = FALSE;
+    $form['field_speaker']['#access'] = FALSE;
+    $form['field_activity']['#access'] = FALSE;
+    $form['#after_build'][] = 'hwc_workflow_node_form_after_build_hide_hints';
+
+    _hwc_workflow_partner_node_form_alter($form, $form_state);
+  }
+  else if (count(array_intersect(array('administrator', ROLE_SUPERVISOR), $user->roles))) {
+    if (!empty($_GET['workbench_access']) && intval($_GET['workbench_access'])) {
+      $form['workbench_access']['workbench_access']['#default_value'] = intval($_GET['workbench_access']);
+    }
+  }
+  if (!empty($form['workbench_access']['workbench_access']['#options']['section'])) {
+    $form['workbench_access']['workbench_access']['#title'] = 'Partner';
+    $form['workbench_access']['workbench_access']['#options']['section'] = 'All partners';
+  }
+}
+
+function hwc_workflow_node_form_after_build_hide_hints($form, &$form_state) {
+  $key = array_pop(element_children($form['body']));
+  if ($key && !empty($form['body'][$key][0]['format'])) {
+    $form['body'][$key][0]['format']['#attributes']['class'][] = 'hidden';
+  }
+  return ($form);
+}
+
+/**
+ * Adds and hides elements on node add/edit for partners.
+ */
+function _hwc_workflow_partner_node_form_alter(&$form, &$form_state) {
+  $form['revision_information']['#access'] = FALSE;
+  if (!empty($form['workbench_moderation_state_current']['#value']) && $form['workbench_moderation_state_current']['#value'] == 'draft') {
+    $form['actions']['submit']['#access'] = FALSE;
+    $form['actions']['save_preview'] = array(
+      '#type' => 'submit',
+      '#value' => t('Preview this !type item', array('!type' => $form['type']['#value'])),
+      '#submit' => array('hwc_workflow_node_form_submit_preview'),
+    );
+    $form['actions']['send_for_approval'] = array(
+      '#type' => 'submit',
+      '#value' => t('Submit news item for validation'),
+      '#submit' => array('hwc_workflow_node_form_submit_send'),
+    );
+  }
+  if (!empty($form['actions']['preview_changes'])) {
+    $form['actions']['preview_changes']['#access'] = FALSE;
+  }
+}
+
+/**
+ * Submit callback for Partner's Preview button.
+ */
+function hwc_workflow_node_form_submit_preview($form, &$form_state) {
+  $form_state['values']['workbench_moderation_state_new'] = 'draft';
+  $form_state['input']['workbench_moderation_state_new'] = 'draft';
+  node_form_submit($form, $form_state);
+}
+
+/**
+ * Submit callback for Partner's Send to approve button.
+ */
+function hwc_workflow_node_form_submit_send($form, &$form_state) {
+  $form_state['values']['workbench_moderation_state_new'] = 'final_draft';
+  $form_state['input']['workbench_moderation_state_new'] = 'final_draft';
+  node_form_submit($form, $form_state);
+}
+
+function _hwc_workflow_get_node_final_draft_time($node) {
+  $transition = db_select('workbench_moderation_node_history', 'wmh')
+    ->condition('wmh.nid', $node->nid)
+    ->condition('wmh.from_state', 'draft')
+    ->condition('wmh.state', 'final_draft')
+    ->orderBy('wmh.hid', 'DESC')
+    ->execute()
+    ->fetchAssoc();
+  if (!empty($transition)) {
+    return $transition['stamp'];
+  }
+  return FALSE;
+}
+
+/**
+ * Get the relative time limit that a partner content should should be auto
+ * moderated to to be reviewed.
+ */
+function _hwc_workflow_partner_content_get_time_limit() {
+  $time_gap = (int) variable_get('hwc_workflow_partner_content_minutes_gap_autosubmit', 30);
+  return time() - $time_gap * 60;
+}
+
+function _hwc_workflow_user_has_section($user, $section_id) {
+  foreach(array_keys($user->workbench_access) as $section_id) {
+    if (in_array($section_id, $user->workbench_access)) {
+      return TRUE;
+    }
+  }
+  return FALSE;
+}
+
+function _hwc_workflow_load_users_by_section($section_id) {
+  $uids = db_select('workbench_access_user', 'wau')
+    ->fields('wau', array('uid'))
+    ->condition('access_scheme', 'taxonomy')
+    ->condition('access_id', $section_id)
+    ->execute()
+    ->fetchAllKeyed();
+  $uids = array_keys($uids);
+  return user_load_multiple($uids);
+}

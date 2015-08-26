@@ -1,0 +1,25 @@
+{
+  "routes": {
+    "company": {
+      "index": "1",
+      "internal": "company",
+      "label": "Company",
+      "next": "Involvement",
+      "submitText": "Next - Tell us about your campaign involvement"
+    },
+    "involvement": {
+      "index": "2",
+      "internal": "involvement",
+      "label": "Involvement",
+      "next": "Contact",
+      "submitText": "Finalize your registration - Give us your primary contact information"
+    },
+    "contact": {
+      "index": "3",
+      "internal": "contact",
+      "label": "Contact",
+      "next": "Congrats",
+      "submitText": "Submit your registration"
+    }
+  }
+}

@@ -932,8 +932,9 @@ function _search_and_replace_get_set_fields() {
 function _search_and_replace_get_text_fields() {
   $fields = field_info_fields();
   $text_fields = array();
+  $allowed_fields = array('text', 'text_with_summary', 'text_long');
   foreach ($fields as $field_name => $field) {
-    $is_text = $field['type'] == 'text' || $field['type'] == 'text_with_summary';
+    $is_text = in_array($field['type'], $allowed_fields);
     $is_for_nodes = !empty($field['bundles']['node']);
     if ($is_for_nodes && $is_text) {
       $text_fields[$field_name] = $field;

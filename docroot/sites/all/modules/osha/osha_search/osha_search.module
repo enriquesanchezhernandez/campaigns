@@ -134,6 +134,7 @@ function osha_search_form_alter(&$form, &$form_state, $form_id) {
   if ($form['#id'] == 'views-exposed-form-search-site') {
     if (!empty($form['sort_by'])) {
       $form['sort_by']['#type'] = 'radios';
+      $form['sort_by']['#default_value'] = 'search_api_relevance';
       $form['sort_order']['#access'] = FALSE;
     }
   }

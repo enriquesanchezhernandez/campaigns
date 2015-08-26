@@ -831,7 +831,7 @@ el.remove();
         'custom_settings' => FALSE,
       ),
       'osha_slideshow' => array(
-        'custom_settings' => TRUE,
+        'custom_settings' => FALSE,
       ),
       'newsletter_item' => array(
         'custom_settings' => TRUE,
@@ -849,6 +849,12 @@ el.remove();
         'custom_settings' => TRUE,
       ),
       'pub_teaser' => array(
+        'custom_settings' => FALSE,
+      ),
+      'title_body' => array(
+        'custom_settings' => TRUE,
+      ),
+      'body' => array(
         'custom_settings' => TRUE,
       ),
     ),
@@ -875,6 +881,14 @@ el.remove();
           'default' => array(
             'weight' => '3',
             'visible' => TRUE,
+          ),
+          'body' => array(
+            'weight' => '1',
+            'visible' => FALSE,
+          ),
+          'title_body' => array(
+            'weight' => '2',
+            'visible' => FALSE,
           ),
         ),
       ),

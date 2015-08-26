@@ -99,6 +99,14 @@ function hwc_frontend_menu_link(array $variables) {
 }
 
 function hwc_frontend_preprocess_page(&$vars) {
+    // Change Events page title
+    if(!empty($vars['theme_hook_suggestions']['0']) && in_array($vars['theme_hook_suggestions']['0'], array('page__events', 'page__past_events'))){
+      $title = '<div id="block-osha-events-events-links">';
+      $title .= l(t('Upcoming events'), 'events') . ' / ' . l(t('Past events'), 'past-events');
+      $title .= '</div>';
+      drupal_set_title($title, PASS_THROUGH);
+    }
+
     if (drupal_is_front_page()) {
         unset($vars['page']['content']['system_main']['default_message']);
         drupal_set_title('');
@@ -144,6 +152,17 @@ function hwc_frontend_preprocess_page(&$vars) {
             '#prefix' => '<strong class="title-alt">', '#suffix' => '</strong>'
           );
           break;
+
+        case 'campaign_materials':
+          $link_title = t('Back to campaign materials list');
+          $link_href = 'campaign-materials';
+          $vars['page']['above_title']['title-alternative'] = array(
+            '#type' => 'item',
+            '#markup' => t('Campaign materials'),
+            '#prefix' => '<strong class="title-alt">', '#suffix' => '</strong>'
+          );
+          break;
+
       }
       if (isset($link_title)) {
         $vars['page']['above_title']['back-to-link'] = array(
@@ -177,13 +196,45 @@ function hwc_frontend_preprocess_page(&$vars) {
   }
 }
 
+/**
+ * Theme flexible layout of panels.
+ * Copied the panels function and removed the css files.
+ */
+function hwc_frontend_panels_flexible($vars) {
+  $css_id = $vars['css_id'];
+  $content = $vars['content'];
+  $settings = $vars['settings'];
+  $display = $vars['display'];
+  $layout = $vars['layout'];
+  $handler = $vars['renderer'];
+
+  panels_flexible_convert_settings($settings, $layout);
+
+  $renderer = panels_flexible_create_renderer(FALSE, $css_id, $content, $settings, $display, $layout, $handler);
+
+  $output = "<div class=\"panel-flexible " . $renderer->base['canvas'] . " clearfix\" $renderer->id_str>\n";
+  $output .= "<div class=\"panel-flexible-inside " . $renderer->base['canvas'] . "-inside\">\n";
+
+  $output .= panels_flexible_render_items($renderer, $settings['items']['canvas']['children'], $renderer->base['canvas']);
+
+  // Wrap the whole thing up nice and snug
+  $output .= "</div>\n</div>\n";
+
+  return $output;
+}
 function hwc_frontend_preprocess_node(&$vars) {
+  if (isset($vars['content']['links']['node']['#links']['node-readmore'])) {
+    $vars['content']['links']['node']['#links']['node-readmore']['title'] = t('See more');
+  }
+
   $view_mode = $vars['view_mode'];
+  $vars['theme_hook_suggestions'][] = 'node__' . $view_mode;
   $vars['theme_hook_suggestions'][] = 'node__' . $vars['node']->type . '__' . $view_mode;
   $vars['theme_hook_suggestions'][] = 'node__' . $vars['node']->nid . '__' . $view_mode;
-  if($vars['type'] == 'practical_tool') {
-    unset($vars['content']['links']);
-  }
+}
+
+function hwc_frontend_preprocess_image_style(&$variables) {
+  $variables['attributes']['class'][] = 'img-responsive';
 }
 
 /**
