@@ -50,7 +50,7 @@ function osha_publication_field_default_field_instances() {
         'settings' => array(
           'field_formatter_class' => '',
           'more_link' => 0,
-          'more_text' => 'Read more',
+          'more_text' => 'See more',
           'summary_handler' => 'trim',
           'trim_length' => 150,
           'trim_link' => FALSE,

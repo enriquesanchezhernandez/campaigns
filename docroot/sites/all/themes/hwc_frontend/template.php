@@ -215,6 +215,10 @@ function hwc_frontend_panels_flexible($vars) {
   return $output;
 }
 function hwc_frontend_preprocess_node(&$vars) {
+  if (isset($vars['content']['links']['node']['#links']['node-readmore'])) {
+    $vars['content']['links']['node']['#links']['node-readmore']['title'] = t('See more');
+  }
+
   $view_mode = $vars['view_mode'];
   $vars['theme_hook_suggestions'][] = 'node__' . $view_mode;
   $vars['theme_hook_suggestions'][] = 'node__' . $vars['node']->type . '__' . $view_mode;
