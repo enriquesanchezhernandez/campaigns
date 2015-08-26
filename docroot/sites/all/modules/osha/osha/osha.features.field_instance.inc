@@ -381,7 +381,7 @@ function osha_field_default_field_instances() {
         'module' => 'smart_trim',
         'settings' => array(
           'more_link' => 0,
-          'more_text' => 'Read more',
+          'more_text' => 'See more',
           'summary_handler' => 'ignore',
           'trim_length' => 300,
           'trim_link' => 0,
@@ -1521,7 +1521,7 @@ function osha_field_default_field_instances() {
         'module' => 'smart_trim',
         'settings' => array(
           'more_link' => FALSE,
-          'more_text' => 'Read more',
+          'more_text' => 'See more',
           'summary_handler' => 'full',
           'trim_length' => 300,
           'trim_link' => FALSE,
@@ -1749,7 +1749,7 @@ function osha_field_default_field_instances() {
         'module' => 'smart_trim',
         'settings' => array(
           'more_link' => FALSE,
-          'more_text' => 'Read more',
+          'more_text' => 'See more',
           'summary_handler' => 'full',
           'trim_length' => 300,
           'trim_link' => FALSE,

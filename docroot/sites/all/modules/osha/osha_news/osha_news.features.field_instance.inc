@@ -32,7 +32,7 @@ function osha_news_field_default_field_instances() {
         'settings' => array(
           'field_formatter_class' => '',
           'more_link' => FALSE,
-          'more_text' => 'Read more',
+          'more_text' => 'See more',
           'summary_handler' => 'full',
           'trim_length' => 300,
           'trim_link' => FALSE,
@@ -989,7 +989,7 @@ function osha_news_field_default_field_instances() {
         'settings' => array(
           'field_formatter_class' => '',
           'more_link' => 0,
-          'more_text' => 'Read more',
+          'more_text' => 'See more',
           'summary_handler' => 'full',
           'trim_length' => 250,
           'trim_link' => FALSE,
