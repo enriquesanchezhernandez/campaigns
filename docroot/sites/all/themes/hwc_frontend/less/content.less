@@ -46,7 +46,7 @@
 			border-bottom: 1px dotted @color3;
 			padding-bottom: 0.7em;
 			.form-item{
-				margin-top: 26px; //ENDIKA
+				margin-top: 26px;
 			}
 		
 		}
@@ -55,6 +55,7 @@
 			font-size: @h2-default-size-3;
 			font-weight: 100;
 			font-style: italic;
+			margin-top: 0px;
 			a:empty {
 				display: none;
 			}
@@ -101,6 +102,7 @@
 	.section-introduction p{
 		text-align: center;
 		font-weight: bold;
+		font-size: @size6;
 		&:last-child {
 			margin-bottom: 10px;
 		}
@@ -112,6 +114,7 @@
 		label{
 			color: @text-color-2;
 			padding-left: 0;
+			font-family: @font-family-semibold;
 		}
 		label:before {
 			border: 2px solid @border-color-2;
@@ -136,6 +139,7 @@
 		label{
 			color: @text-color-2;
 			padding-left: 0;
+			font-family: @font-family-semibold;
 		}
 		label:before {
 			border: 2px solid @border-color-2;
@@ -302,7 +306,7 @@
 	#homepage_slider{
 		height: 356px !important;
 		background: @color3 url("../images/content/bg-campaign-partner.png") no-repeat left 20px;
-		margin-bottom: 35px; //by endika
+		margin-bottom: 35px;
 		width: 100% !important;
 		> div{
 			width: 100% !important;
@@ -324,6 +328,22 @@
 						height: 230px !important;
 					}
 				}
+				.views-field{
+					position: absolute;
+					z-index: 10;
+				}
+				.views-field.views-field-body{
+					color: white;
+					z-index: 100;
+					top: 6em;
+					div{
+						text-align: right;
+						margin-right: 20px;
+					}
+					div:empty{
+						
+					}
+				}
 				div{
 					margin: 0;
 					padding: 0;
@@ -343,10 +363,11 @@
 							margin-left: 1em;
 							position: absolute;
 							bottom: 4em;
+							top: 10em;
 							right: 20px;
 						}
 						&.more-link:before{
-							content: "";
+							/* content: ""; */
 						}
 						img{
 							width: 100%;
@@ -355,7 +376,6 @@
 					}
 					p{
 						color: @slider-color;
-					
 						text-align: right;
 						padding-right: 20px;
 						margin-top: 40px;
@@ -464,10 +484,13 @@
 			width: 100%;
 			height: 350px;
 			z-index: 22;
-			top: 68px;
+			/* top: 68px;
+			top: 462px; */
+			margin-top: 38px;
 			h1{
 				color: @color1;
 				padding-top: 230px;
+				border: none;
 			}
 		}
 		/* .field-name-field-image + .field-name-title-field h1{
@@ -524,14 +547,25 @@
 				height: auto;
 				top: 0;
 			}
-			.field-name-field-image{
-				float: left;
-				margin-right: 1em;
-			}
 			.addtoany_list{
 				border: none;
 				text-align: center;
 			}
+		}
+		.field.field-name-field-image{
+			float: left;
+			margin-right: 1em;
+			margin-bottom: 4em;
+			width: 100%;
+			img{
+				width: 100%;
+				img{
+					width: 100%;
+				}
+			}
+		}
+		.hwc-share-widget{
+			border: none;
 		}
 	}
 	
@@ -550,6 +584,11 @@
 	}
 	.node-infographic {
 		//margin: 0px 135px; quitado para responsive
+		.field-name-title-field{
+			h2{
+				margin-top: 0px;
+			}
+		}
 		.label_multilang_file{
 			padding-right: 3px;
 		}
@@ -606,10 +645,24 @@
 			font-style: italic;
 		}
 	}
-	.field-name-field-publication-date{
+	.field-name-field-publication-date, .field-type-datetime{
 		margin-top: 1em;
 		span{
 			font-size: @size3;
+		}
+	}
+	
+	.field-name-field-country-code, .field-name-field-city{
+		font-weight: bold;
+		display: inline-flex;
+	}
+	.field-name-field-country-code{
+		&:before{
+			content:" (";
+			padding-left: 5px;
+		}
+		&:after{
+			content:") ";
 		}
 	}
 	.form-item-relevant-for{
@@ -803,7 +856,7 @@
 		.more-link{
 			clear: both;
 			width: 100%;
-			margin: 2em auto 0;
+			margin: 3.5em auto 0;
 			float: left;
 			text-align: center;
 			background-color: @color0;
@@ -816,20 +869,44 @@
 				}
 			}
 		}
-		.view-display-id-attachment_1{
-			padding-top: 1em;
-			padding-bottom: 1em;
-			padding-right: 1em;
-			padding-left: 2em;
-			.views-field-field-logo{
-				float: left;
-    			margin-right: 100px;
+		//home partners list
+		.view-display-id-block_1{
+			img{
+				width: 100%;
 			}
-			.views-field-title{
-				font-size: @size8;
-				font-weight: bold;
-				a{
-					color: @color5;
+			.view-display-id-attachment_1{
+				border-top: 1px dotted @color3;
+				min-height: 400px;
+				padding: 35px;
+			    padding-right: 50px;
+			    padding-left: 60px;
+				.view-content{
+					border: none;
+					.views-field-field-logo{
+						float: left;
+		    			margin-right: 100px;
+		    			padding-top: 0;
+		    			min-height: 280px;
+					}
+					.views-field-title{
+						font-size: @size8;
+						font-weight: bold;
+						a{
+							color: @color5;
+						}
+					}
+				}
+			}
+			.hidden-xs{
+				.views-field-field-logo{
+					padding-top: 0;
+					height: 200px;
+					border-top: 1px dotted @color3;
+					border-right: 1px dotted @color3;
+					padding: 25px;
+					img{
+						max-height: 150px;
+					}
 				}
 			}
 		}
@@ -967,6 +1044,15 @@
 		}
 	}
 	
+	/* pag Search */
+	.page-search{
+		#views-exposed-form-search-site .views-submit-button{
+			padding-top: 2.4em;
+			button {
+				background: @bg-color-2 url("../images/content/search.png") no-repeat center;
+			}
+		}
+	}
 	#search{
 		margin: 0 0 1em 0;
 		padding: 1em 0 0;
@@ -983,6 +1069,9 @@
 			height: 34px;
 			width: 30px;
 			color: @color0;
+			&:focus{
+				outline: 0;
+			}
 		}
 	}
 	#block-system-main div #search div.form-type-textfield input {
@@ -1105,7 +1194,12 @@
 		font-weight: bold;
 		float: left;
 		margin-right: 2em;
-		padding: 0.5em 1.5em;
+		.field-item{
+			padding: 0.5em 1.5em;
+		}
+		.field-item:empty{
+			padding: 0;
+		}
 	}
 	.pane-node-field-provider, .pane-node-body, .pane-node-field-implementation-steps, .pane-node-field-dissemination-used, .pane-node-field-access-tool-link,
 		.pane-hwc-practical-tool-hwc-practical-tool-language-list, .pane-node-field-external-urls{
@@ -1141,6 +1235,7 @@
 	}
 	.panel-panel div .pane-node-field-access-tool-link:first-child{
 		padding-top: 1em;
+		margin-bottom: 1.5em;
 		a{
 			font-size: 30px;
 			font-weight: normal;
@@ -1230,6 +1325,7 @@
 	.views-row {
 		border-bottom: 1px dotted @color3;
 		padding-bottom: 1em;
+		padding-top: 1em;
 		//margin: 0px 135px; quitado para responsive
 		min-height: 180px;
 		overflow: hidden;
@@ -1237,6 +1333,7 @@
 			font-size: @size2;
 			font-weight: bold;
 			font-style: normal;
+			margin-top: 10px;
 		}
 		.field-name-field-summary{
 			font-weight: bold;
@@ -1398,10 +1495,15 @@
 	}
 }
 //tres bloques
+.node-type-press-release{
+	#mini-panel-press_room_blocks{
+		border-top: 1px dotted @color3;
+		padding-top: 1em;
+	}
+}
 #mini-panel-press_room_blocks{
-	border-top: 1px dotted @color3;
 	padding-top: 5px;
-	margin-top: 2em;
+	margin-top: 1em;
 	.pane-osha-press-release-osha-press-rel-become-partner{
 		padding-right: 15px;
 		padding-left: 15px;
@@ -1464,6 +1566,7 @@
 		font-style: normal;
 	}
 }
+/* press-room */
 .page-press-room{
 	.node-press-release{
 		.field-name-field-summary{
@@ -1476,6 +1579,19 @@
 				}
 			}
 		}
+	}
+}
+/* H1 Exceptions */
+.page-press-room, .page-campaign-materials, .page-publications, .page-case-studies, .page-practical-tools{
+	h1{
+		border-bottom: none;
+		margin-bottom: 0em;
+	}
+}
+.page-press-room, .page-campaign-materials{
+	.section-introduction .field-type-text-with-summary{
+		padding-bottom: 3em;
+		border-bottom: 1px dotted @color3;
 	}
 }
 //articulos pressroom
@@ -1623,6 +1739,9 @@
 				height: 34px;
 				width: 30px;
 				color: @color0;
+				&:focus{
+					outline: 0;
+				}
 			}
 		}
 	}
@@ -1640,6 +1759,65 @@
 		}
 	}
 }
+.node-events{
+	.field-name-field-city{
+		color: @text-color-3;
+		font-weight: bold;
+		width: 50%;
+		text-align: right;
+		display: inline-block;
+		.field-items{
+			width: auto;
+			text-align: right;
+			float: right;
+
+			.field-item{
+				padding: 0.5em 0em 0.5em 2em;
+				width: auto;
+				background: url("../images/content/location.png") no-repeat left center;
+			}
+		}
+	}
+	.field-name-field-country-code{
+		color: @text-color-3;
+		font-weight: bold;
+		width: 50%;
+		display: inline-block;
+		&:before{
+			content: "";
+			float: left;
+		}
+		&:after{
+			content: "";
+		}
+		.field-items{
+			float: left;
+			.field-item{
+				padding: 0.5em 0em 0.5em 2em;
+				&:before{
+					content: "(";
+				}
+				&:after{
+					content: ")";
+				}
+			}
+		}
+	}
+	.field-name-field-start-date{
+		color: @text-color-3;
+		font-weight: bold;
+		border-top: 1px dotted @border-default-color;
+		width: auto;
+		padding: 4em 3em 3em;
+		background: url("../images/content/calendar.png") no-repeat center 1em;
+
+		width: 50%;
+		margin: 0 auto;
+		text-align: center;
+
+	}
+}
+
 .views-exposed-form{
 	#edit-search-api-views-fulltext-wrapper{
 		padding-right: 0em;
@@ -1756,6 +1934,8 @@
 .node-type-article{
 	article{
 		//margin: 0px 135px; quitado para responsive
+		margin-left: -15px;
+		margin-right: -15px;
 		.field-name-title-field{
 			margin-bottom: 1em;
 		}
@@ -1831,68 +2011,6 @@
 	}
 }
 /*Fin articles*/
-
-/*infographics*/
-#block-views-infographic-block-1{
-	.views-row{
-		overflow: hidden;
-		.views-field-title-field{
-			margin-bottom: 1.5em;
-			a{
-				color: @color2;
-				font-weight: bold;
-				&:before{
-					content: "> ";
-				}
-			}
-		}
-		.views-field-field-thumbnail{
-			float: left;
-			margin-right: 2em;
-			margin-bottom: 1em;
-		}
-		.views-field-body{
-			.field-content{
-				a{
-					background: @color0;
-					color:@color2;
-					font-weight: bold;
-					font-style: italic;
-				}
-			}
-		}
-	}	
-}
-/*infographics detail*/
-.node-type-infographic{
-	.node-infographic{
-		.field-name-title-field{
-			margin-bottom: 30px;
-			clear: both;
-		}
-		.field-name-body{
-			margin-bottom: 30px;
-		}
-		.field-name-field-image{
-
-		}
-		.field-name-field-twin-infographics{
-			margin-top:  30px;
-			margin-bottom: 30px;
-		}
-		.field-name-field-thumbnail{
-			margin-bottom: 30px;
-		}
-		.field-name-field-image.field-type-image, .field-name-field-file.field-type-file, .link-wrapper{
-			float: none;
-			margin-left: 250px;/*  */
-		}
-		.field-name-field-thumbnail.field-type-image{
-			margin-top: -50px;
-		}
-	}
-}
-/*fin infographics*/
 
 /*Become a media partner*/
 .become-partner{
@@ -2009,6 +2127,25 @@
 					padding-top: 1em;
 					border-top: 1px dotted @color3;
 				}
+			}
+		}
+		.more-resources{
+			ul{
+				list-style: none;
+				margin-bottom: 40px;
+    			padding: 0px;
+    			li{
+    				margin-bottom: 20px;
+    				a{
+						font-style: normal;
+						font-weight: bold;
+						font-size: @size2;
+						
+						&:before{
+							content:"> ";
+						}
+					}
+    			}
 			}
 		}
 		.more-links{
@@ -2393,17 +2530,17 @@
 	.view-id-view_campaign_materials{
 		.views-row{
 			border-bottom: 1px dotted @color3;
-			padding-bottom: 30px;
-			margin-top: 30px;
-			.views-field-field-image{
-				min-height: 150px;
-			    margin-right: 50px;
+			padding-bottom: 40px;
+			margin-top: 40px;
+			.field-name-field-image{
+				margin-top: 8px;
+    			margin-right: 3.5em;
 			}
 			h3{
 				font-weight: bold;
 				margin-top: 0;
 				display: inline-block;
-				margin-bottom: 20px;
+				margin-bottom: 10px;
 				a{
 					font-size: @size2;
 					font-weight: bold;
@@ -2411,6 +2548,9 @@
 						content: "> "; 
 					}
 				}
+			}
+			.field.field-name-field-publication-date{
+				padding-top: 0px;
 			}
 			.materials_date{
 				margin-left: 20px;
@@ -2423,11 +2563,12 @@
 					}
 				}
 			}
-			.views-field-field-related-documents{
+			.field-type-file{
+				margin-top: 1.5em;
 				.file_size{
 					float: left;
 				    margin-top: 0px;
-				    margin-right: 56px;
+				    margin-right: 35px;
 				    color: @colorNormalText;
 					font-style: normal;
 				}
@@ -2455,6 +2596,47 @@
 		}
 	}
 }
+
+//materials detail
+.node-type-campaign-materials{
+	.field-name-title-field{
+		margin-bottom: 2em;
+	}
+	.field-name-field-image{
+		margin-top: 23px;
+		margin-right: 3.5em;
+	}
+	.field-type-file{
+		margin-top: 1.5em;
+		.file_size{
+			float: left;
+		    margin-top: 0px;
+		    margin-right: 35px;
+		    color: @colorNormalText;
+			font-style: normal;
+		}
+		span{
+			float: initial;
+			font-weight: bold;
+			font-size: @size6;
+			color: @color2;
+			font-style: italic;
+		}
+		.glyphicon{
+			display: none;
+		}
+		a{
+			position: absolute;
+			margin-left: 10px;
+			&:after{
+				content: url("../images/content/download.png");
+			}
+			img{
+				display: none;
+			}
+		}
+	}
+}
 /*fin campaign materials*/
 /*Publications detail*/
 .node-type-publication{
@@ -2464,22 +2646,20 @@
 	}
 	.panels-flexible-region-container-title{
 		.pane-node-title-field{
-			display: inline-table;
 		}
 		.pane-node-field-publication-date{
-			display: inline-table;
-			margin-left: 1em;
-			margin-bottom: 15px;
+			margin-bottom: 25px;
 		}
 	}
-	.pane-node-field-publication-type{
-		    display: table-cell;
+	.pane-node-field-publication-type, .pane-node-field-country, .pane-node-field-free, .pane-node-field-tool-type{
+		    display: inline-block;
 		    background-color: #e2e2e3;
 		    color: #003399;
 		    font-style: italic;
 		    font-weight: bold;
 		    margin-right: 2em;
 		    padding: 0.5em 1.5em;
+		    margin-bottom: 1.5em;
 	}
 	.panels-flexible-row-container-main-row{
 		margin-top: 3em;
@@ -2532,6 +2712,16 @@
 				padding: 15px 30px;
 				&.active{
 					border-bottom: none;
+					a{
+						color: @color3;
+						font-style: normal;
+					}
+				}
+				&.first{
+					border-left: none;
+				}
+				&.last{
+					border-right: none;
 				}
 			}
 
@@ -2543,6 +2733,15 @@
 		.quicktabs-tabpage{
 			.hwc-char-link{
 				padding: 0px 15px;
+				&.disabled {
+					cursor: text;
+					&:hover{
+						text-decoration: none;
+					}
+				}
+				&.active{
+					color: @color3;
+				}
 			}
 			div[id*="hwc-char-"]{
 				margin-top: 2em;
@@ -2567,6 +2766,7 @@
 }
 
 /*fin oficial campaign partners list*/
+
 
 
 
