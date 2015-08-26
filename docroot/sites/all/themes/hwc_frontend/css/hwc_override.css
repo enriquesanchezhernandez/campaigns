@@ -178,14 +178,22 @@ div.workbench-info-block {
     left: 0;
     z-index: 10;
 }
-
+.page-node-add-news #views-form-aditional-resources-entityreference-view-widget-1 .form-type-checkbox label {
+    visibility: hidden;
+    font-size: 0;
+    position: relative !important;
+    overflow: visible;
+}
+.page-node-add-news #views-form-aditional-resources-entityreference-view-widget-1 .form-type-checkbox label:before {
+    visibility: visible;
+    font-size: 16px;
+}
 .char-anchor {
     width: 100%;
     clear: both;
     text-transform: uppercase;
     border-bottom: 1px solid #ddd;
 }
-
 .hwc-char-link {
     text-transform: uppercase;
     padding: 5px 10px;
