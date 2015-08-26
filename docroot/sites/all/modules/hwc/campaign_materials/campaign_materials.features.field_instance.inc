@@ -328,8 +328,12 @@ function campaign_materials_field_default_field_instances() {
     'display' => array(
       'default' => array(
         'label' => 'hidden',
-        'settings' => array(),
-        'type' => 'hidden',
+        'module' => 'shs',
+        'settings' => array(
+          'field_formatter_class' => '',
+          'linked' => FALSE,
+        ),
+        'type' => 'shs_default',
         'weight' => 13,
       ),
       'highlights_item' => array(
@@ -363,9 +367,13 @@ function campaign_materials_field_default_field_instances() {
         'weight' => 0,
       ),
       'teaser' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
+        'label' => 'hidden',
+        'module' => 'shs',
+        'settings' => array(
+          'field_formatter_class' => '',
+          'linked' => FALSE,
+        ),
+        'type' => 'shs_default',
         'weight' => 16,
       ),
     ),

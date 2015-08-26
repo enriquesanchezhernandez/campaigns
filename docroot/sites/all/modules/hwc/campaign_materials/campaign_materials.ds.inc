@@ -29,6 +29,7 @@ function campaign_materials_ds_layout_settings_info() {
         2 => 'field_publication_date',
         3 => 'body',
         4 => 'field_related_documents',
+        5 => 'field_campaign_material_type',
       ),
     ),
     'fields' => array(
@@ -37,6 +38,7 @@ function campaign_materials_ds_layout_settings_info() {
       'field_publication_date' => 'right',
       'body' => 'right',
       'field_related_documents' => 'right',
+      'field_campaign_material_type' => 'right',
     ),
     'classes' => array(
       'layout_class' => array(
@@ -81,6 +83,7 @@ function campaign_materials_ds_layout_settings_info() {
         2 => 'field_publication_date',
         3 => 'body',
         4 => 'field_related_documents',
+        5 => 'field_campaign_material_type',
       ),
     ),
     'fields' => array(
@@ -89,6 +92,7 @@ function campaign_materials_ds_layout_settings_info() {
       'field_publication_date' => 'right',
       'body' => 'right',
       'field_related_documents' => 'right',
+      'field_campaign_material_type' => 'right',
     ),
     'classes' => array(
       'layout_class' => array(
