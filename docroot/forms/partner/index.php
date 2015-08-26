@@ -6,7 +6,7 @@ require_once DRUPAL_ROOT . '/includes/bootstrap.inc';
 $base_url = 'http://' . $_SERVER['HTTP_HOST'];
 drupal_bootstrap(DRUPAL_BOOTSTRAP_FULL);
 global $user;
-print "<strong>You are currently logged as: <span style='color: red;'>{$user->mail} ($user->uid)</span></strong>";
+print "<strong>You are currently logged as: <span style='color: red;'>{$user->name}, {$user->mail} ($user->uid)</span></strong>";
 
 
 // Enviroment constants
