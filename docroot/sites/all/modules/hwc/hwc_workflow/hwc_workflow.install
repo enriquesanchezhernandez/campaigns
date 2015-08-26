@@ -18,3 +18,19 @@ function hwc_workflow_install() {
   $role = user_role_load_by_name(ROLE_CAMPAIGN_PARTNER);
   user_role_grant_permissions($role->rid, hwc_workflow_permissions_role_partner());
 }
+
+/**
+ * Permissions fixes for roles.
+ */
+function hwc_workflow_update_7001() {
+  // Assign permissions.
+  module_load_include('inc', 'hwc_workflow', 'hwc_workflow.permissions');
+  $role = user_role_load_by_name(OSHA_WORKFLOW_ROLE_REVIEW_MANAGER);
+  user_role_grant_permissions($role->rid, hwc_workflow_permission_role_review_manager());
+
+  $role = user_role_load_by_name(ROLE_SUPERVISOR);
+  user_role_grant_permissions($role->rid, hwc_workflow_permissions_role_supervisor());
+
+  $role = user_role_load_by_name(ROLE_CAMPAIGN_PARTNER);
+  user_role_grant_permissions($role->rid, hwc_workflow_permissions_role_partner());
+}

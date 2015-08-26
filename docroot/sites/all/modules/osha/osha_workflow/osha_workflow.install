@@ -102,6 +102,19 @@ function osha_workflow_schema() {
         'unsigned' => TRUE,
         'not null' => TRUE,
       ),
+      'approved' => array(
+        'description' => 'NULL not voted, approved or rejected',
+        'type' => 'varchar',
+        'length' => 64,
+        'default' => NULL,
+        'not null' => FALSE,
+      ),
+      'weight' => array(
+        'description' => 'Order of moderation, lowest first',
+        'type' => 'int',
+        'default' => 0,
+        'not null' => TRUE,
+      ),
     ),
     'primary key' => array('npmid'),
     'indexes' => array(
@@ -394,5 +407,15 @@ function osha_workflow_disable_workbench_views() {
     $status = variable_get('views_defaults', array());
     $status['workbench_recent_content'] = TRUE;
     variable_set('views_defaults', $status);
+  }
+}
+
+function osha_workflow_update_7002() {
+  $schema = osha_workflow_schema();
+  if (!db_field_exists('osha_workflow_node_project_managers', 'approved')) {
+    db_add_field('osha_workflow_node_project_managers', 'approved', $schema['osha_workflow_node_project_managers']['fields']['approved']);
+  }
+  if (!db_field_exists('osha_workflow_node_project_managers', 'weight')) {
+    db_add_field('osha_workflow_node_project_managers', 'weight', $schema['osha_workflow_node_project_managers']['fields']['weight']);
   }
 }
