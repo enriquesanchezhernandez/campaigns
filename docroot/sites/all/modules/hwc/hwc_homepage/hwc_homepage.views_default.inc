@@ -702,7 +702,7 @@ function hwc_homepage_views_default_views() {
     'trim_type' => 'chars',
     'trim_suffix' => '...',
     'more_link' => '1',
-    'more_text' => 'Read more',
+    'more_text' => 'See more',
     'trim_options' => array(
       'text' => 0,
     ),
