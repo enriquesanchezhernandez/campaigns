@@ -236,7 +236,7 @@ function hwc_workflow_form_alter(&$form, &$form_state, $form_id) {
     $form['hwc_workflow_partner_content_minutes_gap_autosubmit'] = array(
       '#type' => 'textfield',
       '#title' => 'How many minutes can the partner still edit the node?',
-      '#default_value' => variable_get('hwc_workflow_partner_content_minutes_gap_autosubmit', 60),
+      '#default_value' => variable_get('hwc_workflow_partner_content_minutes_gap_autosubmit', 30),
       '#attributes' => array('size' => 5),
       '#description' => "After partner submits the content, he can still edit for this amount of time"
     );
