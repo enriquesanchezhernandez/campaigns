@@ -80,6 +80,8 @@ function hwc_workflow_permission_role_cpm() {
     'moderate content from to_be_approved to published',
     'moderate content from to_be_approved to needs_review',
 
+    'access hwc review tab',
+
     'view own unpublished content',
 
     'view the administration theme',
