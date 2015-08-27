@@ -8357,16 +8357,30 @@ div[class*='node-'] .more-link {
 }
 #block-views-partners-block-1 .view-display-id-block_1 .view-display-id-attachment_1 .view-content .views-field-field-logo {
   float: left;
-  margin-right: 100px;
+  margin-right: 70px;
+  margin-top: 15px;
   padding-top: 0;
   min-height: 280px;
 }
 #block-views-partners-block-1 .view-display-id-block_1 .view-display-id-attachment_1 .view-content .views-field-title {
   font-size: 24px;
   font-weight: bold;
+  margin-bottom: 1em;
+  color: #575757;
 }
 #block-views-partners-block-1 .view-display-id-block_1 .view-display-id-attachment_1 .view-content .views-field-title a {
-  color: #575757;
+  color: #575757 !important;
+}
+#block-views-partners-block-1 .view-display-id-block_1 .view-display-id-attachment_1 .view-content .field-content a {
+  clear: none;
+  margin: 0;
+  margin-top: 1em;
+  float: none;
+  display: block;
+  text-align: left;
+  background-color: transparent;
+  color: #003399;
+  font-weight: bold;
 }
 #block-views-partners-block-1 .view-display-id-block_1 .hidden-xs .views-field-field-logo {
   padding-top: 0;
@@ -9183,8 +9197,6 @@ div[class*='node-'] .more-link {
 }
 .page-past-events #block-views-events-block-1,
 .page-events #block-views-events-block-1 {
-  border-top: 1px dotted #749b00;
-  border-bottom: 1px dotted #749b00;
   clear: both;
 }
 #block-system-main .view-events-search div div.form-type-textfield input,
@@ -9297,6 +9309,11 @@ div[class*='node-'] .more-link {
 #block-osha-events-events-links a.active:hover {
   text-decoration: none;
 }
+#block-views-events-block-2,
+#block-views-events-block-1 {
+  border-top: 1px dotted #749b00;
+  border-bottom: 1px dotted #749b00;
+}
 #block-views-events-block-2 h2.block-title,
 #block-views-events-block-1 h2.block-title {
   float: left;
@@ -9327,6 +9344,10 @@ div[class*='node-'] .more-link {
   cursor: pointer;
 }
 #block-views-events-block-2 .view-events .events-filter-by-date ul,
+#block-views-events-block-1 .view-events .events-filter-by-date ul {
+  background: url("../images/content/calendar-filter.png") no-repeat top left;
+}
+#block-views-events-block-2 .view-events .events-filter-by-date ul,
 #block-views-events-block-1 .view-events .events-filter-by-date ul,
 #block-views-events-block-2 .view-events .events-filter-by-date ul li,
 #block-views-events-block-1 .view-events .events-filter-by-date ul li {
@@ -9344,24 +9365,19 @@ div[class*='node-'] .more-link {
 #block-views-events-block-1 .view-events .events-filter-by-date ul li a.current_month {
   color: #749b00;
 }
+#block-views-events-block-2 .view-events .events-filter-by-date ul .views-row-last,
+#block-views-events-block-1 .view-events .events-filter-by-date ul .views-row-last,
+#block-views-events-block-2 .view-events .events-filter-by-date ul li .views-row-last,
+#block-views-events-block-1 .view-events .events-filter-by-date ul li .views-row-last {
+  background: url("../images/content/calendar-filter.png") no-repeat top right;
+  padding-left: 0.5em;
+  padding-right: 1.5em;
+}
 #block-views-events-block-2 .view-events .events-filter-by-date ul .views-row-first,
 #block-views-events-block-1 .view-events .events-filter-by-date ul .views-row-first,
 #block-views-events-block-2 .view-events .events-filter-by-date ul li .views-row-first,
-#block-views-events-block-1 .view-events .events-filter-by-date ul li .views-row-first,
-#block-views-events-block-2 .view-events .events-filter-by-date ul .views-row-last,
-#block-views-events-block-1 .view-events .events-filter-by-date ul .views-row-last,
-#block-views-events-block-2 .view-events .events-filter-by-date ul li .views-row-last,
-#block-views-events-block-1 .view-events .events-filter-by-date ul li .views-row-last {
-  background: url("../images/content/calendar-filter.png") no-repeat top left;
-  padding-left: 1.5em;
-}
-#block-views-events-block-2 .view-events .events-filter-by-date ul .views-row-last,
-#block-views-events-block-1 .view-events .events-filter-by-date ul .views-row-last,
-#block-views-events-block-2 .view-events .events-filter-by-date ul li .views-row-last,
-#block-views-events-block-1 .view-events .events-filter-by-date ul li .views-row-last {
-  background-position: top right;
-  padding-left: 0.5em;
-  padding-right: 1.5em;
+#block-views-events-block-1 .view-events .events-filter-by-date ul li .views-row-first {
+  padding-left: 1em;
 }
 #block-views-events-block-2 .view-events .events-filter-by-date ul li,
 #block-views-events-block-1 .view-events .events-filter-by-date ul li,
