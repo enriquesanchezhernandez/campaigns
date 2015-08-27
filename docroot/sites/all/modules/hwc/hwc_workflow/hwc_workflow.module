@@ -201,6 +201,7 @@ function hwc_workflow_node_access($node, $op, $account) {
  * Implements hook_form_alter().
  */
 function hwc_workflow_form_alter(&$form, &$form_state, $form_id) {
+  global $user;
 
   if ($form_id == 'hwc_admin_config_form') {
     $form['hwc_workflow_partner_content_minutes_gap_autosubmit'] = array(
@@ -210,6 +211,18 @@ function hwc_workflow_form_alter(&$form, &$form_state, $form_id) {
       '#attributes' => array('size' => 5),
       '#description' => "After partner submits the content, he can still edit for this amount of time"
     );
+  }
+  if (in_array($form_id, array('events_node_form', 'news_node_form'))) {
+    $node = $form_state['node'];
+    $can_delete = user_access("delete any {$node->type} content") || user_access("delete own {$user->type} content");
+    if ($can_delete && in_array(ROLE_CAMPAIGN_PARTNER, $user->roles)) {
+      $form['actions']['delete'] = array(
+        '#type' => 'submit',
+        '#value' => t('Delete'),
+        '#weight' => 19,
+        '#submit' => array('node_form_delete_submit')
+      );
+    }
   }
 
   // Implements permission select content section.
