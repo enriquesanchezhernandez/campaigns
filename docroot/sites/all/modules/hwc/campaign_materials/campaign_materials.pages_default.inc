@@ -114,7 +114,7 @@ function campaign_materials_default_page_manager_pages() {
         'width' => 100,
         'width_type' => '%',
         'parent' => '1',
-        'class' => '',
+        'class' => 'container',
         'hide_empty' => 1,
       ),
     ),
