@@ -136,29 +136,54 @@ function hwc_workflow_mail_alter(&$message) {
   }
 }
 
+/**
+ * Implements hook_workbench_moderation_transition().
+ */
 function hwc_workflow_workbench_moderation_transition($node, $old, $new) {
   module_load_include('inc', 'hwc_workflow', 'hwc_workflow.cpm');
   if ($old == OSHA_WORKFLOW_STATE_FINAL_DRAFT && $new == OSHA_WORKFLOW_STATE_TO_BE_REVIEWED) {
     $existing_cpms = _hwc_workflow_get_project_managers_entries($node->nid);
     if (empty($existing_cpms)) {
-      // Set default cpms list.
-      $default_cpms = _hwc_workflow_get_default_cpm();
-      $weight = 0;
-      foreach ($default_cpms as $cpm) {
-        $row = array(
-          'uid' => $cpm->uid,
-          'weight' => $weight,
-          'nid' => $node->nid,
-        );
-        _hwc_workflow_admin_approvers_save_row($row);
-        $weight++;
-      }
+      hwc_workflow_assign_default_cpm($node);
     }
   }
   if ($old != OSHA_WORKFLOW_STATE_TO_BE_APPROVED && $new == OSHA_WORKFLOW_STATE_TO_BE_APPROVED) {
-    // Reset approver votes (if node rejected and it's second time reviewed).
-    _hwc_workflow_cpm_reset_votes($node->nid);
+    // If to be reviewed it's skipped, no default cpms.
+    $existing_cpms = _hwc_workflow_get_project_managers_entries($node->nid);
+    if (empty($existing_cpms)) {
+      $approvers = hwc_workflow_assign_default_cpm($node);
+      reset($approvers);
+      $next_approver  = current($approvers);
+    }
+    else {
+      // Reset approver votes (if node rejected and it's second time reviewed).
+      _hwc_workflow_cpm_reset_votes($node->nid);
+      $next_approver = _hwc_workflow_get_current_cpm_approver($node->nid);
+    }
+    // Invoke rule for approval.
+    if (!empty($next_approver)) {
+      rules_invoke_event('node_to_be_approved', $node, $next_approver);
+    }
   }
+}
+
+/**
+ *  Set default cpms list for a node.
+ */
+function hwc_workflow_assign_default_cpm($node) {
+  $default_cpms = _hwc_workflow_get_default_cpm();
+  $weight = 0;
+  foreach ($default_cpms as $cpm) {
+    $row = array(
+      'uid' => $cpm->uid,
+      'weight' => $weight,
+      'nid' => $node->nid,
+    );
+    _hwc_workflow_admin_approvers_save_row($row);
+    $weight++;
+  }
+  drupal_set_message('Default Campaign Project Managers were set for this node');
+  return $default_cpms;
 }
 
 /**

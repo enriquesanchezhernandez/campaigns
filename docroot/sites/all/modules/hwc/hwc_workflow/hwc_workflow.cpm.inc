@@ -164,11 +164,15 @@ function hwc_workflow_cpm_approve_submit($form, &$form_submit) {
     $row->message = $message;
     _hwc_workflow_admin_approvers_save_row($row);
 
-    // In not any next approver, moderate it to published.
     $next_approver = _hwc_workflow_get_current_cpm_approver($form['#node']->nid);
     if (empty($next_approver)) {
+      // If no any approver, publish the content.
       workbench_moderation_moderate($form['#node'], 'published');
       drupal_set_message(t('The content has been published'));
+    }
+    else {
+      // Invoke the rule event
+      rules_invoke_event('node_cpm_approve', $form['#node'], $next_approver);
     }
   }
   else {
@@ -333,6 +337,19 @@ function _hwc_workflow_get_current_cpm_approver_entry($nid) {
     if (empty($entry->approved)) {
       return $entry;
     }
+  }
+  return NULL;
+}
+
+function _hwc_workflow_get_remaining_cpm_approvers($nid) {
+  $remaining = db_select('osha_workflow_node_project_managers', 'pm')
+    ->fields('pm')
+    ->condition('nid', $nid)
+    ->isNull('approved')
+    ->execute()
+    ->fetchAllAssoc('uid');
+  if (!empty($remaining)) {
+    return user_load_multiple(array_keys($remaining));
   }
   return NULL;
 }
