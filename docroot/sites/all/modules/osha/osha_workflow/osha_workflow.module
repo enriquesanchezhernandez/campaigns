@@ -691,6 +691,10 @@ function osha_workflow_bundle_section_map() {
  * Implements hook_workbench_access_node_element_alter().
  */
 function osha_workflow_workbench_access_node_element_alter(&$element, $form_state, $active) {
+
+  return;
+  /** @todo: this code is from NCW */
+
   // Unset sections that don't belongs to the user (PM, RM, Editor).
   global $user;
   if (!OshaWorkflowPermissions::userHasRole(OSHA_WORKFLOW_ROLE_ADMINISTRATOR, $user)
