@@ -11,7 +11,7 @@ function hwc_workflow_node_cpm_assign_form($form, &$form_state, $node) {
   }
   $can_edit = OshaWorkflowPermissions::userCanEditApprovers($node);
   $form['#node'] = $node;
-  $users = OshaWorkflowPermissions::getUsersByRole(OSHA_WORKFLOW_ROLE_PROJECT_MANAGER);
+  $users = OshaWorkflowPermissions::getUsersByRole(HWC_CAMPAIGN_PROJECT_MANAGER);
   $options = array('' => t('-- Please select --'));
   foreach ($users as $uid => $user) {
     $options[$uid] = $user->name;
@@ -152,12 +152,16 @@ function _hwc_workflow_get_project_managers($nid) {
  * Get database entries for a node from osha_workflow_node_project_managers.
  */
 function _hwc_workflow_get_project_managers_entries($nid) {
-  return db_select('osha_workflow_node_project_managers', 'p')
-    ->fields('p')
-    ->condition('nid', $nid)
-    ->orderBy('weight', 'ASC')
-    ->execute()
-    ->fetchAllAssoc('uid');
+  $data = &drupal_static(__FUNCTION__);
+  if (!isset($data[$nid])) {
+    $data[$nid] = db_select('osha_workflow_node_project_managers', 'p')
+      ->fields('p')
+      ->condition('nid', $nid)
+      ->orderBy('weight', 'ASC')
+      ->execute()
+      ->fetchAllAssoc('uid');
+  }
+  return $data[$nid];
 }
 
 /**

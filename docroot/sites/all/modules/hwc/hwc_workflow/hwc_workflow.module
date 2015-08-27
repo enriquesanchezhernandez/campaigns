@@ -6,6 +6,8 @@
 
 include_once 'hwc_workflow.features.inc';
 
+define('HWC_CAMPAIGN_PROJECT_MANAGER', 'Campaign Project Manager');
+
 /**
  * Implements hook_menu_alter().
  */
@@ -164,6 +166,25 @@ function hwc_workflow_node_access($node, $op, $account) {
     return NODE_ACCESS_DENY;
   }
 
+  // Administrators skip further validations
+  if (in_array(OSHA_WORKFLOW_ROLE_ADMINISTRATOR, $account->roles)) {
+    return NODE_ACCESS_IGNORE;
+  }
+
+  // Review Managers have access based on perm
+  // skip additional validations..
+  if (in_array(OSHA_WORKFLOW_ROLE_REVIEW_MANAGER, $account->roles)) {
+    return NODE_ACCESS_IGNORE;
+  }
+
+  // Don't allow CPM if not assign to node.
+  if ($op == 'update' && in_array(HWC_CAMPAIGN_PROJECT_MANAGER, $account->roles)) {
+    $cpms = _hwc_workflow_get_project_managers_entries($node->nid);
+    if (!in_array($cpms->uid, array_keys($cpms))) {
+      return NODE_ACCESS_DENY;
+    }
+  }
+
   // Do not allow media partners to create news
   if ($node == 'events' && $op == 'create' && in_array(ROLE_CAMPAIGN_PARTNER, $account->roles)) {
     $partner = hwc_partner_get_account_partner($account);
@@ -186,7 +207,7 @@ function hwc_workflow_form_alter(&$form, &$form_state, $form_id) {
   if ($form_id == 'entity_collection_content_add_form') {
     if ($collection = $form_state['entity_collection']) {
       if ($collection->bundle == 'campaigns_partner_list') {
-        $options = osha_workflow_users_get_users_from_role_as_options(OSHA_WORKFLOW_ROLE_PROJECT_MANAGER);
+        $options = osha_workflow_users_get_users_from_role_as_options(HWC_CAMPAIGN_PROJECT_MANAGER);
         $users = array();
         foreach ($options as $uid => $account) {
           $users['user:' . $uid] = $account;

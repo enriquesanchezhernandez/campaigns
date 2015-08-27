@@ -66,3 +66,31 @@ function hwc_workflow_permission_role_review_manager() {
     'use workbench_moderation needs review tab',
   );
 }
+
+function hwc_workflow_permission_role_cpm() {
+  return array(
+    'edit own news content',
+    'edit any news content',
+
+    'edit own events content',
+    'edit any events content',
+
+    'edit any content in to_be_approved',
+
+    'moderate content from to_be_approved to published',
+    'moderate content from to_be_approved to needs_review',
+
+    'view own unpublished content',
+
+    'view the administration theme',
+    'access toolbar',
+    'access administration pages',
+    'access dashboard',
+    'access content overview',
+
+    'access content',
+    'view revisions',
+    'view all unpublished content',
+    'access workbench access by role',
+  );
+}
