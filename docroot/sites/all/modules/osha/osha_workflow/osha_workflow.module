@@ -313,16 +313,14 @@ function osha_workflow_node_access($node, $operation, $user) {
   if ($operation == 'view') {
     return NODE_ACCESS_IGNORE;
   }
-
-  $is_moderated = workbench_moderation_node_moderated($node);
-  $state = NULL;
-  if ($is_moderated) {
-    $state = $node->workbench_moderation['current']->state;
-  }
-  // Deny access if doesn't have the perm to edit in current state.
-  if ($operation == 'update' && $is_moderated && variable_get('workbench_moderation_per_node_type', FALSE)) {
-    if (!user_access('edit any content in ' . $state, $user)) {
-      return NODE_ACCESS_DENY;
+  if ($operation == 'update') {
+    $is_moderated = workbench_moderation_node_moderated($node);
+    // Deny access if doesn't have the perm to edit in current state.
+    if ($is_moderated && variable_get('workbench_moderation_per_node_type', FALSE)) {
+      $state = $node->workbench_moderation['current']->state;
+      if (!user_access('edit any content in ' . $state, $user)) {
+        return NODE_ACCESS_DENY;
+      }
     }
   }
 
