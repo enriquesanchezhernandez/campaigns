@@ -6,7 +6,7 @@
 
 include_once 'hwc_workflow.features.inc';
 
-define('HWC_CAMPAIGN_PROJECT_MANAGER', 'Campaign Project Manager');
+define('HWC_ROLE_CAMPAIGN_PROJECT_MANAGER', 'Campaign Project Manager');
 
 /**
  * Implements hook_menu_alter().
@@ -26,7 +26,7 @@ function hwc_workflow_menu() {
     'type' => MENU_LOCAL_TASK,
     'page callback' => 'drupal_get_form',
     'page arguments' => array('hwc_workflow_node_cpm_assign_form', 1),
-    'access arguments' => 'assign cpm to node',
+    'access arguments' => array('access hwc review tab'),
     'file' => 'hwc_workflow.cpm.inc',
     'weight' => 9,
   );
@@ -115,6 +115,7 @@ function hwc_workflow_permission() {
   $permissions = array();
   $permissions['select content section'] = array('title' => t("Can select section of a content"));
   $permissions['assign cpm to node'] = array('title' => t("Assign CPMs to a node"));
+  $permissions['access hwc review tab'] = array('title' => t("Access Review tab on a node"));
 
   return $permissions;
 }
@@ -136,8 +137,8 @@ function hwc_workflow_mail_alter(&$message) {
 }
 
 function hwc_workflow_workbench_moderation_transition($node, $old, $new) {
+  module_load_include('inc', 'hwc_workflow', 'hwc_workflow.cpm');
   if ($old == OSHA_WORKFLOW_STATE_FINAL_DRAFT && $new == OSHA_WORKFLOW_STATE_TO_BE_REVIEWED) {
-    module_load_include('inc', 'hwc_workflow', 'hwc_workflow.cpm');
     $existing_cpms = _hwc_workflow_get_project_managers_entries($node->nid);
     if (empty($existing_cpms)) {
       // Set default cpms list.
@@ -153,6 +154,10 @@ function hwc_workflow_workbench_moderation_transition($node, $old, $new) {
         $weight++;
       }
     }
+  }
+  if ($old != OSHA_WORKFLOW_STATE_TO_BE_APPROVED && $new == OSHA_WORKFLOW_STATE_TO_BE_APPROVED) {
+    // Reset approver votes (if node rejected and it's second time reviewed).
+    _hwc_workflow_cpm_reset_votes($node->nid);
   }
 }
 
@@ -178,10 +183,9 @@ function hwc_workflow_node_access($node, $op, $account) {
   }
 
   // Don't allow CPM if not assign to node.
-  if ($op == 'update' && in_array(HWC_CAMPAIGN_PROJECT_MANAGER, $account->roles)) {
+  if ($op == 'update' && in_array(HWC_ROLE_CAMPAIGN_PROJECT_MANAGER, $account->roles)) {
     module_load_include('inc', 'hwc_workflow', 'hwc_workflow.cpm');
-    $cpms = _hwc_workflow_get_project_managers_entries($node->nid);
-    if (!in_array($cpms->uid, array_keys($cpms))) {
+    if (!_hwc_workflow_node_has_cmp($node, $account)) {
       return NODE_ACCESS_DENY;
     }
   }
@@ -232,7 +236,7 @@ function hwc_workflow_form_alter(&$form, &$form_state, $form_id) {
   if ($form_id == 'entity_collection_content_add_form') {
     if ($collection = $form_state['entity_collection']) {
       if ($collection->bundle == 'campaigns_partner_list') {
-        $options = osha_workflow_users_get_users_from_role_as_options(HWC_CAMPAIGN_PROJECT_MANAGER);
+        $options = osha_workflow_users_get_users_from_role_as_options(HWC_ROLE_CAMPAIGN_PROJECT_MANAGER);
         $users = array();
         foreach ($options as $uid => $account) {
           $users['user:' . $uid] = $account;

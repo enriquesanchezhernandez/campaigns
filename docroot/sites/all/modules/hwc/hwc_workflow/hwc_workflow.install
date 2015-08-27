@@ -18,7 +18,7 @@ function hwc_workflow_install() {
   $role = user_role_load_by_name(ROLE_CAMPAIGN_PARTNER);
   user_role_grant_permissions($role->rid, hwc_workflow_permissions_role_partner());
 
-  $role = user_role_load_by_name(HWC_CAMPAIGN_PROJECT_MANAGER);
+  $role = user_role_load_by_name(HWC_ROLE_CAMPAIGN_PROJECT_MANAGER);
   user_role_grant_permissions($role->rid, hwc_workflow_permission_role_cpm());
 }
 
@@ -53,7 +53,7 @@ function hwc_workflow_update_7002() {
   $role = user_role_load_by_name(ROLE_CAMPAIGN_PARTNER);
   user_role_grant_permissions($role->rid, hwc_workflow_permissions_role_partner());
 
-  $role = user_role_load_by_name(HWC_CAMPAIGN_PROJECT_MANAGER);
+  $role = user_role_load_by_name(HWC_ROLE_CAMPAIGN_PROJECT_MANAGER);
   user_role_grant_permissions($role->rid, hwc_workflow_permission_role_cpm());
 }
 
