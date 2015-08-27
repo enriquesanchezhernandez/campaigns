@@ -179,6 +179,7 @@ function hwc_workflow_node_access($node, $op, $account) {
 
   // Don't allow CPM if not assign to node.
   if ($op == 'update' && in_array(HWC_CAMPAIGN_PROJECT_MANAGER, $account->roles)) {
+    module_load_include('inc', 'hwc_workflow', 'hwc_workflow.cpm');
     $cpms = _hwc_workflow_get_project_managers_entries($node->nid);
     if (!in_array($cpms->uid, array_keys($cpms))) {
       return NODE_ACCESS_DENY;
