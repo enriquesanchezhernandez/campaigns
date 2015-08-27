@@ -1515,7 +1515,7 @@ function osha_press_release_field_default_field_instances() {
         'settings' => array(
           'field_formatter_class' => '',
           'more_link' => 1,
-          'more_text' => 'Continue reading',
+          'more_text' => 'See more',
           'summary_handler' => 'ignore',
           'trim_length' => 350,
           'trim_link' => 0,

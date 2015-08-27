@@ -99,6 +99,14 @@ function hwc_frontend_menu_link(array $variables) {
 }
 
 function hwc_frontend_preprocess_page(&$vars) {
+    // Change Events page title
+    if(!empty($vars['theme_hook_suggestions']['0']) && in_array($vars['theme_hook_suggestions']['0'], array('page__events', 'page__past_events'))){
+      $title = '<div id="block-osha-events-events-links">';
+      $title .= l(t('Upcoming events'), 'events') . ' / ' . l(t('Past events'), 'past-events');
+      $title .= '</div>';
+      drupal_set_title($title, PASS_THROUGH);
+    }
+
     if (drupal_is_front_page()) {
         unset($vars['page']['content']['system_main']['default_message']);
         drupal_set_title('');
@@ -215,6 +223,10 @@ function hwc_frontend_panels_flexible($vars) {
   return $output;
 }
 function hwc_frontend_preprocess_node(&$vars) {
+  if (isset($vars['content']['links']['node']['#links']['node-readmore'])) {
+    $vars['content']['links']['node']['#links']['node-readmore']['title'] = t('See more');
+  }
+
   $view_mode = $vars['view_mode'];
   $vars['theme_hook_suggestions'][] = 'node__' . $view_mode;
   $vars['theme_hook_suggestions'][] = 'node__' . $vars['node']->type . '__' . $view_mode;

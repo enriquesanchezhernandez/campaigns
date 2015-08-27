@@ -1,0 +1,59 @@
+{
+  "sections": {
+    "title": "2. About your involvement",
+    "sections": {
+        "INVOLVEMENT": "Your involvement in the campaign"
+    }
+  },
+  "attributes": {
+    "involvement_osh_tobeanocponhwc": {
+      "name": "involvement_osh_tobeanocponhwc",
+      "label": "Why do you want to become a partner?",
+      "helpText": "Please indicate to us what motivates you to become an official campaign partner for the healthy campaign 2015/2016.",
+      "placeholder": "Please provide a short description of your motivations",
+      "section": "INVOLVEMENT",
+      "type": "textarea",
+      "validator": "not_null"
+    },
+    "involvement_osh_promoteandsupportcampaign": {
+      "name": "involvement_osh_promoteandsupportcampaign",
+      "label": "How do you plan to promote and support the campaign via your website and other electronic means?",
+      "helpText": "Tell us in short the healthy workplace will be promoted on your corporate website. <br/>When possible use links to show us the section of your website that will be used for the promotion.",
+      "placeholder": "Please provide a short description of your online support",
+      "section": "INVOLVEMENT",
+      "type": "textarea"
+    },
+    "involvement_osh_campaignpledge": {
+      "name": "involvement_osh_campaignpledge",
+      "label": "How does your organisation to contribute to making this Campaign a joint success? (Campaign Pledge)",
+      "helpText": "Please describe how your organisation will help is co-create a successful campaign in the year 2015/2016. <br/>What do you pledge as part of your involvement with the healthy workplaces campaign.",
+      "placeholder": "Please provide us your contribution plans",
+      "publicProfile": "publicProfile",
+      "section": "INVOLVEMENT",
+      "type": "textarea",
+      "validator": "not_null"
+    },
+    "involvement_osh_category": {
+      "name": "involvement_osh_category",
+      "type": "text"
+    },
+    "involvement_osh_leads": {
+      "name": "involvement_osh_leads",
+      "type": "text"
+    }
+  },
+  "map": {
+    "involvement_osh_tobeanocponhwc": "osh_tobeanocponhwc",
+    "involvement_osh_promoteandsupportcampaign": "osh_promoteandsupportcampaign",
+    "involvement_osh_campaignpledge": "osh_campaignpledge",
+    "involvement_osh_category": "osh_category",
+    "involvement_osh_leads": "osh_leads"
+  },
+  "map_mf": {
+    "involvement_osh_tobeanocponhwc": "osh_tobeanocp",
+    "involvement_osh_promoteandsupportcampaign": "osh_questionpromoteandsupport",
+    "involvement_osh_campaignpledge": "osh_campaignpledge",
+    "involvement_osh_category": "osh_category",
+    "involvement_osh_leads": "osh_leads"
+  }
+}

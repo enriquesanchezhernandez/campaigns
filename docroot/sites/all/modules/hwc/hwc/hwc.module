@@ -451,9 +451,21 @@ function hwc_user_activate($mail) {
     }
   }
   else {
-    drupal_add_http_header('Status', '400 Missing user');
-    echo '400 Missing user';
+    drupal_add_http_header('Status', '404 User not found');
+    echo '404 User not found';
     drupal_exit();
     die();
+  }
+}
+
+/**
+ * Implements hook_pathologic_alter().
+ *
+ * Some links such as FOP, are starting with fop/ and do need to be "fixed"
+ * due to HTTP server redirects.
+ */
+function osha_pathologic_alter(&$url_params, $parts, $settings) {
+  if (preg_match('/^forms\/partner\//m', $url_params['path'])) {
+    $url_params['options']['use_original'] = TRUE;
   }
 }

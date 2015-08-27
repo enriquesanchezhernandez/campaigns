@@ -473,6 +473,7 @@ function osha_resources_views_default_views() {
   $handler->display->display_options['fields']['entityreference_view_widget']['label'] = '';
   $handler->display->display_options['fields']['entityreference_view_widget']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['entityreference_view_widget']['ervw']['force_single'] = 0;
+  $handler->display->display_options['fields']['entityreference_view_widget']['ervw']['label_display'] = 'after';
   /* Field: Content: Type */
   $handler->display->display_options['fields']['type']['id'] = 'type';
   $handler->display->display_options['fields']['type']['table'] = 'node';

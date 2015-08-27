@@ -4,8 +4,9 @@ input[type=file],
 #progressbar,
 #sidebar,
 .help-block,
-.add_user,
-.captcha {
+.repeatable-button,
+.captcha,
+.validation {
     display: none !important;
 }
 input[type=text], select, textarea {
@@ -16,7 +17,7 @@ input[type=text], select, textarea {
 select {
     -webkit-appearance: none;
     -moz-appearance: none;
-    text-indent: 1px;
+    text-indent: 0.1vw;
     text-overflow: '';
 }
 textarea {
@@ -25,8 +26,8 @@ textarea {
 .sidebar-border {
     border: none !important;
 }
-/*
-input:not(:checked) {
-    display: none;
+
+.image-printable {
+    margin-top    : 0.5vw;
+    margin-bottom : 0.5vw;
 }
-*/

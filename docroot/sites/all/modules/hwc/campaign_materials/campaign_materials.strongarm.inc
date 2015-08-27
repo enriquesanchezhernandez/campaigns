@@ -149,16 +149,16 @@ function campaign_materials_strongarm() {
     'extra_fields' => array(
       'form' => array(
         'metatags' => array(
-          'weight' => '6',
+          'weight' => '13',
         ),
         'title' => array(
           'weight' => '-5',
         ),
         'path' => array(
-          'weight' => '3',
+          'weight' => '2',
         ),
         'redirect' => array(
-          'weight' => '4',
+          'weight' => '3',
         ),
         'workbench_access' => array(
           'weight' => '1',
@@ -198,7 +198,8 @@ function campaign_materials_strongarm() {
   $strongarm->api_version = 1;
   $strongarm->name = 'node_options_campaign_materials';
   $strongarm->value = array(
-    0 => 'status',
+    0 => 'moderation',
+    1 => 'revision',
   );
   $export['node_options_campaign_materials'] = $strongarm;
 
