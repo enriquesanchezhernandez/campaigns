@@ -133,6 +133,7 @@ function hwc_workflow_rules_condition_node_has_partner_section($node) {
  */
 function hwc_workflow_rules_mail_to_partners($node, $subject, $message, $settings, RulesState $state, RulesPlugin $element) {
   if (!empty($node->workbench_access)) {
+    reset($node->workbench_access);
     $section_id = current($node->workbench_access);
     // If it's a partner section.
     if ($section_id != 'section') {

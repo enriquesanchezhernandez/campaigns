@@ -10,7 +10,7 @@ function hwc_workflow_node_cpm_assign_form($form, &$form_state, $node) {
     drupal_set_message('No section assigned to the node.');
     return $form;
   }
-  $can_edit = _hwc_workflow_can_edit_cpm();
+  $can_edit = _hwc_workflow_can_edit_cpm($node);
   $form['#node'] = $node;
   $form['#can_edit'] = $can_edit;
   $cpms = OshaWorkflowPermissions::getUsersByRole(HWC_ROLE_CAMPAIGN_PROJECT_MANAGER);
@@ -315,7 +315,10 @@ function _hwc_workflow_node_has_cmp($node, $account) {
   return in_array($account->uid, array_keys($cpms));
 }
 
-function _hwc_workflow_can_edit_cpm($account = NULL) {
+function _hwc_workflow_can_edit_cpm($node, $account = NULL) {
+  if (!empty($node->workbench_moderation['current']) && $node->workbench_moderation['current']->state != OSHA_WORKFLOW_STATE_TO_BE_REVIEWED) {
+    return FALSE;
+  }
   if (empty($account)) {
     global $user;
     $account = $user;
@@ -374,7 +377,9 @@ function _hwc_workflow_can_approve($node, $account = NULL) {
     || $node->workbench_moderation['current']->state != OSHA_WORKFLOW_STATE_TO_BE_APPROVED) {
     return FALSE;
   }
-  if (OshaWorkflowPermissions::userHasRole(OSHA_WORKFLOW_ROLE_ADMINISTRATOR, $account)) {
+  $is_admin = OshaWorkflowPermissions::userHasRole(OSHA_WORKFLOW_ROLE_ADMINISTRATOR, $account);
+  $is_rm = OshaWorkflowPermissions::userHasRole(OSHA_WORKFLOW_ROLE_REVIEW_MANAGER, $account);
+  if ($is_rm || $is_admin) {
     return TRUE;
   }
   if (OshaWorkflowPermissions::userHasRole(HWC_ROLE_CAMPAIGN_PROJECT_MANAGER, $account)

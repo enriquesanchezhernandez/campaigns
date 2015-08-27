@@ -141,14 +141,19 @@ function hwc_workflow_mail_alter(&$message) {
  */
 function hwc_workflow_workbench_moderation_transition($node, $old, $new) {
   module_load_include('inc', 'hwc_workflow', 'hwc_workflow.cpm');
-  if ($old == OSHA_WORKFLOW_STATE_FINAL_DRAFT && $new == OSHA_WORKFLOW_STATE_TO_BE_REVIEWED) {
+
+  // Assign default cpms list
+  $from_fdraft_to_review = $old == OSHA_WORKFLOW_STATE_FINAL_DRAFT && $new == OSHA_WORKFLOW_STATE_TO_BE_REVIEWED;
+  $from_draft_to_review = $old == OSHA_WORKFLOW_STATE_DRAFT && $new == OSHA_WORKFLOW_STATE_TO_BE_REVIEWED;
+  if ($from_fdraft_to_review || $from_draft_to_review) {
     $existing_cpms = _hwc_workflow_get_project_managers_entries($node->nid);
     if (empty($existing_cpms)) {
       hwc_workflow_assign_default_cpm($node);
     }
   }
+
   if ($old != OSHA_WORKFLOW_STATE_TO_BE_APPROVED && $new == OSHA_WORKFLOW_STATE_TO_BE_APPROVED) {
-    // If to be reviewed it's skipped, no default cpms.
+    // If to be reviewed it's skipped - assign default cpms.
     $existing_cpms = _hwc_workflow_get_project_managers_entries($node->nid);
     if (empty($existing_cpms)) {
       $approvers = hwc_workflow_assign_default_cpm($node);
@@ -160,7 +165,7 @@ function hwc_workflow_workbench_moderation_transition($node, $old, $new) {
       _hwc_workflow_cpm_reset_votes($node->nid);
       $next_approver = _hwc_workflow_get_current_cpm_approver($node->nid);
     }
-    // Invoke rule for approval.
+    // Invoke rule for node_to_be_approved.
     if (!empty($next_approver)) {
       rules_invoke_event('node_to_be_approved', $node, $next_approver);
     }

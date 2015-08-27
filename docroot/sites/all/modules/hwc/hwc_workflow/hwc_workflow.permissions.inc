@@ -57,6 +57,7 @@ function hwc_workflow_permissions_role_supervisor() {
     'view all unpublished content',
     'access workbench access by role',
 
+    'access hwc review tab',
     'assign cpm to node',
   );
 }
@@ -64,6 +65,7 @@ function hwc_workflow_permissions_role_supervisor() {
 function hwc_workflow_permission_role_review_manager() {
   return hwc_workflow_permissions_role_supervisor() + array(
     'use workbench_moderation needs review tab',
+    'access hwc review tab'
   );
 }
 
