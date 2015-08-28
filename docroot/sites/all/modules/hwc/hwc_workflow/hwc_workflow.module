@@ -50,10 +50,10 @@ function hwc_workflow_theme() {
 /**
  * Implements Elysia hook_cronapi().
  */
-function hwc_workflow_cron_cronapi() {
+function hwc_workflow_cronapi() {
   return array('hwc_workflow_partner_content_cron' => array(
     'description' => 'Set partners content from final draft to next state.',
-    'rule' => '0,5 * * * *',
+    'rule' => '*/5 * * * *',
   ));
 }
 
