@@ -939,43 +939,7 @@ function osha_workflow_form_alter(&$form, &$form_state, $form_id) {
       }
     }
   }
-  if ($form_id == 'workbench_moderation_moderate_form' && isset($form['node']['#value'])) {
-    $node = $form['node']['#value'];
-    $state = $node->workbench_moderation['current']->state;
-    $form['#validate'][] = 'osha_workflow_workbench_moderation_approval_form_validate';
-    if ($state == OSHA_WORKFLOW_STATE_TO_BE_APPROVED) {
-      $is_workflow_admin = user_access('moderate content from approved to ready_to_publish');
-      $next = osha_workflow_get_next_approver($node->nid);
-      global $user;
-      if (!osha_workflow_needs_last_approver($node)) {
-        // If next approver or administrator.
-        if ($next || $is_workflow_admin) {
-          if ($user->uid == $next->uid
-            || $is_workflow_admin) {
-            // Hijack the form & add Done button.
-            $form['submit'] = array(
-              '#type' => 'submit',
-              '#value' => t('Done'),
-              '#submit' => array('osha_workflow_form_moderate_approve_submit'),
-            );
-            if ($is_workflow_admin && $next->uid != $user->uid) {
-              $form['submit']['#prefix'] = t('Approve instead of @user',
-                array('@user' => $next->name));
-            }
-            hide($form['state']);
-          }
-        }
-      }
-      else {
-        // If last approver.
-        if ($is_workflow_admin && $next->uid != $user->uid) {
-          $form['state']['#prefix'] = t('Approve instead of @user',
-            array('@user' => $next->name));
-        }
-      }
-    }
-  }
-  elseif ($form_id == 'views_exposed_form' && $form_state['view']->name == 'osh_workflow_admin'
+  if ($form_id == 'views_exposed_form' && $form_state['view']->name == 'osh_workflow_admin'
     && $form_state['view']->current_display == 'content') {
 //    $form['access_id']['#multiple'] = TRUE;
 //    $form['access_id']['#size'] = 1;
@@ -1021,6 +985,9 @@ function osha_workflow_form_views_exposed_form_alter(&$form, &$form_state) {
  * Implements hook_form_BASE_FORM_ID_alter().
  */
 function osha_workflow_form_node_form_alter(&$form, $form_state) {
+  return;
+  // @TODO - remove this if not necessary.
+
   // This must be a node form and a node that has moderation enabled.
   // Extended to include moderation check on the individual node.
   if (!workbench_moderation_node_moderated($form['#node'])) {
