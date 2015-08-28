@@ -74,3 +74,20 @@ function hwc_workflow_update_7003() {
   user_role_grant_permissions($role->rid, hwc_workflow_permission_role_cpm());
 }
 
+/**
+ * Permissions fixes for roles.
+ */
+function hwc_workflow_update_7004() {
+  module_load_include('inc', 'hwc_workflow', 'hwc_workflow.permissions');
+  $role = user_role_load_by_name(OSHA_WORKFLOW_ROLE_REVIEW_MANAGER);
+  user_role_grant_permissions($role->rid, hwc_workflow_permission_role_review_manager());
+
+  $role = user_role_load_by_name(ROLE_SUPERVISOR);
+  user_role_grant_permissions($role->rid, hwc_workflow_permissions_role_supervisor());
+
+  $role = user_role_load_by_name(ROLE_CAMPAIGN_PARTNER);
+  user_role_grant_permissions($role->rid, hwc_workflow_permissions_role_partner());
+
+  $role = user_role_load_by_name(HWC_ROLE_CAMPAIGN_PROJECT_MANAGER);
+  user_role_grant_permissions($role->rid, hwc_workflow_permission_role_cpm());
+}
