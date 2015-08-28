@@ -30,7 +30,11 @@ function hwc_workflow_rules_event_info() {
         ),
         'user' => array(
           'type' => 'user',
-          'label' => t('Next approver'),
+          'label' => t('Next CPM'),
+        ),
+        'users' => array(
+          'type' => 'list<user>',
+          'label' => t('Remaining CPMs'),
         ),
       ),
       'access callback' => 'rules_node_integration_access',
@@ -66,29 +70,6 @@ function hwc_workflow_rules_action_info() {
         ),
       ),
       'base' => 'hwc_workflow_rules_mail_to_partners',
-      'access callback' => 'rules_system_integration_access',
-    ),
-    'hwc_mail_to_remaining_cpm_approvers' => array(
-      'label' => t('Send mail to all remaining approvers'),
-      'group' => t('HWC workflow'),
-      'parameter' => array(
-        'node' => array(
-          'type' => 'node',
-          'label' => t('Node'),
-          'description' => t("The current node"),
-        ),
-        'subject' => array(
-          'type' => 'text',
-          'label' => t('Subject'),
-          'description' => t("The mail's subject."),
-        ),
-        'message' => array(
-          'type' => 'text',
-          'label' => t('Message'),
-          'description' => t("The mail's message body."),
-        ),
-      ),
-      'base' => 'hwc_mail_to_remaining_cpm_approvers',
       'access callback' => 'rules_system_integration_access',
     ),
   );
@@ -163,37 +144,5 @@ function hwc_workflow_rules_mail_to_partners($node, $subject, $message, $setting
         watchdog('rules', 'Successfully sent email to the users of the partner %partner.', array('%partner' => $section_id));
       }
     }
-  }
-}
-
-/**
- * Action: Send mail to remaining CPMs users for a node.
- */
-function hwc_mail_to_remaining_cpm_approvers($node, $subject, $message, $settings, RulesState $state, RulesPlugin $element) {
-  // If it's a partner section.
-  $cpms = _hwc_workflow_get_remaining_cpm_approvers($node->nid);
-  $params = array(
-    'subject' => $subject,
-    'message' => $message,
-  );
-  // Set a unique key for this mail.
-  $name = isset($element->root()->name) ? $element->root()->name : 'unnamed';
-  $key = 'rules_action_hwc_mail_to_remaining_cpm_approvers_' . $name . '_' . $element->elementId();  $languages = language_list();
-
-  $message = array('result' => TRUE);
-  foreach ($cpms as $cpm) {
-    $message = drupal_mail('rules', $key, $cpm->mail, language_default(), $params);
-    // If $message['result'] is FALSE, then it's likely that email sending is
-    // failing at the moment, and we should just abort sending any more. If
-    // however, $mesage['result'] is NULL, then it's likely that a module has
-    // aborted sending this particular email to this particular user, and we
-    // should just keep on sending emails to the other users.
-    // For more information on the result value, see drupal_mail().
-    if ($message['result'] === FALSE) {
-      break;
-    }
-  }
-  if ($message['result'] !== FALSE) {
-    watchdog('rules', 'Successfully sent email to the remaining approvers of node !node.', array('!node' => $node->title));
   }
 }

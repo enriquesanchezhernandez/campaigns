@@ -171,8 +171,11 @@ function hwc_workflow_cpm_approve_submit($form, &$form_submit) {
       drupal_set_message(t('The content has been published'));
     }
     else {
+      $remaining_approvers = _hwc_workflow_get_remaining_cpm_approvers($form['#node']->nid);
+      reset($remaining_approvers);
+      $next_approver = array_shift($remaining_approvers);
       // Invoke the rule event
-      rules_invoke_event('node_cpm_approve', $form['#node'], $next_approver);
+      rules_invoke_event('node_cpm_approve', $form['#node'], $next_approver, $remaining_approvers);
     }
   }
   else {
@@ -379,7 +382,8 @@ function _hwc_workflow_can_approve($node, $account = NULL) {
   }
   $is_admin = OshaWorkflowPermissions::userHasRole(OSHA_WORKFLOW_ROLE_ADMINISTRATOR, $account);
   $is_rm = OshaWorkflowPermissions::userHasRole(OSHA_WORKFLOW_ROLE_REVIEW_MANAGER, $account);
-  if ($is_rm || $is_admin) {
+  $is_supervisor = OshaWorkflowPermissions::userHasRole(ROLE_SUPERVISOR, $account);
+  if ($is_rm || $is_admin || $is_supervisor) {
     return TRUE;
   }
   if (OshaWorkflowPermissions::userHasRole(HWC_ROLE_CAMPAIGN_PROJECT_MANAGER, $account)

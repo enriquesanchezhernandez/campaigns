@@ -156,18 +156,20 @@ function hwc_workflow_workbench_moderation_transition($node, $old, $new) {
     // If to be reviewed it's skipped - assign default cpms.
     $existing_cpms = _hwc_workflow_get_project_managers_entries($node->nid);
     if (empty($existing_cpms)) {
-      $approvers = hwc_workflow_assign_default_cpm($node);
-      reset($approvers);
-      $next_approver  = current($approvers);
+      $remaining_approvers = hwc_workflow_assign_default_cpm($node);
+      reset($remaining_approvers);
+      $next_approver  = array_shift($remaining_approvers);
     }
     else {
       // Reset approver votes (if node rejected and it's second time reviewed).
       _hwc_workflow_cpm_reset_votes($node->nid);
-      $next_approver = _hwc_workflow_get_current_cpm_approver($node->nid);
+      $remaining_approvers = _hwc_workflow_get_remaining_cpm_approvers($node->nid);
+      reset($remaining_approvers);
+      $next_approver = array_shift($remaining_approvers);
     }
     // Invoke rule for node_to_be_approved.
     if (!empty($next_approver)) {
-      rules_invoke_event('node_to_be_approved', $node, $next_approver);
+      rules_invoke_event('node_to_be_approved', $node, $next_approver, $remaining_approvers);
     }
   }
 }
@@ -383,12 +385,12 @@ function _hwc_workflow_partner_node_form_alter(&$form, &$form_state) {
     $form['actions']['submit']['#access'] = FALSE;
     $form['actions']['save_preview'] = array(
       '#type' => 'submit',
-      '#value' => t('Preview this !type item', array('!type' => $form['type']['#value'])),
+      '#value' => t('Save this !type item as draft', array('!type' => $form['type']['#value'])),
       '#submit' => array('hwc_workflow_node_form_submit_preview'),
     );
     $form['actions']['send_for_approval'] = array(
       '#type' => 'submit',
-      '#value' => t('Submit news item for validation'),
+      '#value' => t('Submit !type item for validation', array('!type' => $form['type']['#value'])),
       '#submit' => array('hwc_workflow_node_form_submit_send'),
     );
   }

@@ -16,10 +16,25 @@ function hwc_workflow_default_rules_configuration() {
       "REQUIRES" : [ "rules", "hwc_workflow" ],
       "ON" : { "node_cpm_approve" : [] },
       "DO" : [
-        { "hwc_mail_to_remaining_cpm_approvers" : {
-            "node" : [ "node" ],
-            "subject" : "Content needs approval",
-            "message" : "This content needs approval: \\u003Ca href=\\u0022[node:url]\\u0022\\u003E[node:title]\\u003C\\/a\\u003E\\r\\nNext person to approve is [user:name]."
+        { "LOOP" : {
+            "USING" : { "list" : [ "users" ] },
+            "ITEM" : { "list_item" : "Current list item" },
+            "DO" : [
+              { "mail" : {
+                  "to" : [ "list-item:mail" ],
+                  "subject" : "HWC Workflow - Content needs CPM approval: [node:title]",
+                  "message" : "\\u003Cp\\u003EDear [list_item:name],\\u003C\\/p\\u003E\\r\\n\\u003Cp\\u003E[user:name] should approve this content \\u003Ca href=\\u0022[node:url]\\u0022\\u003E[node:title]\\u003C\\/a\\u003E\\u003C\\/p\\u003E",
+                  "language" : [ "" ]
+                }
+              }
+            ]
+          }
+        },
+        { "mail" : {
+            "to" : [ "user:mail" ],
+            "subject" : "HWC Workflow - Content needs your approval: [node:title]",
+            "message" : "\\u003Cp\\u003EDear [user:name],\\u003C\\/p\\u003E\\r\\n\\u003Cp\\u003EA content item should be approved by you: \\u003Ca href=\\u0022[node:url]\\u0022\\u003E[node:title]\\u003C\\/a\\u003E\\u003C\\/p\\u003E",
+            "language" : [ "" ]
           }
         }
       ]
@@ -42,8 +57,8 @@ function hwc_workflow_default_rules_configuration() {
       "DO" : [
         { "hwc_mail_to_users_of_partner" : {
             "node" : [ "node" ],
-            "subject" : "HWC Workflow: New content created for you company",
-            "message" : "New content has been created for your company: \\u003Ca href=\\u0022[node:url]\\u0022\\u003E[node:title]\\u003C\\/a\\u003E"
+            "subject" : "HWC Workflow - New content added for your company",
+            "message" : "\\u003Cp\\u003EDear partner,\\u003C\\/p\\u003E\\r\\n\\u003Cp\\u003ENew content has been added on behalf of your company: \\u003Ca href=\\u0022[node:url]\\u0022\\u003E[node:title]\\u003C\\/a\\u003E\\u003C\\/p\\u003E"
           }
         }
       ]
@@ -88,10 +103,25 @@ function hwc_workflow_default_rules_configuration() {
       "REQUIRES" : [ "rules", "hwc_workflow" ],
       "ON" : { "node_to_be_approved" : [] },
       "DO" : [
-        { "hwc_mail_to_remaining_cpm_approvers" : {
-            "node" : [ "node" ],
-            "subject" : "Content needs approval",
-            "message" : "This content needs approval: \\u003Ca href=\\u0022[node:url]\\u0022\\u003E[node:title]\\u003C\\/a\\u003E\\r\\nNext person to approve is [user:name]."
+        { "LOOP" : {
+            "USING" : { "list" : [ "users" ] },
+            "ITEM" : { "list_item" : "Current list item" },
+            "DO" : [
+              { "mail" : {
+                  "to" : [ "list-item:mail" ],
+                  "subject" : "HWC Workflow - Content needs CPM approval: [node:title]",
+                  "message" : "\\u003Cp\\u003EDear [list_item:name],\\u003C\\/p\\u003E\\r\\n\\u003Cp\\u003E[user:name] should approve this content \\u003Ca href=\\u0022[node:url]\\u0022\\u003E[node:title]\\u003C\\/a\\u003E\\u003C\\/p\\u003E",
+                  "language" : [ "" ]
+                }
+              }
+            ]
+          }
+        },
+        { "mail" : {
+            "to" : [ "user:mail" ],
+            "subject" : "HWC Workflow - Content needs your approval: [node:title]",
+            "message" : "\\u003Cp\\u003EDear [user:name],\\u003C\\/p\\u003E\\r\\n\\u003Cp\\u003EA content item should be approved by you: \\u003Ca href=\\u0022[node:url]\\u0022\\u003E[node:title]\\u003C\\/a\\u003E\\u003C\\/p\\u003E",
+            "language" : [ "" ]
           }
         }
       ]
