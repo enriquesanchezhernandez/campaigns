@@ -315,7 +315,7 @@ function osha_workflow_node_access($node, $operation, $user) {
   }
   if ($operation == 'update') {
     $is_moderated = workbench_moderation_node_moderated($node);
-    // Deny access if doesn't have the perm to edit in current state.
+    // Deny access if doesn't have the perm toq edit in current state.
     if ($is_moderated && variable_get('workbench_moderation_per_node_type', FALSE)) {
       $state = $node->workbench_moderation['current']->state;
       if (!user_access('edit any content in ' . $state, $user)) {
@@ -773,37 +773,6 @@ function osha_workflow_get_default_section($node) {
  * {@inheritdoc}
  */
 function osha_workflow_workbench_moderation_transition($node, $old, $new) {
-  // Review workflow.
-//  if ($old == OSHA_WORKFLOW_STATE_DRAFT && $new == OSHA_WORKFLOW_STATE_FINAL_DRAFT) {
-//    // Assign the default PM, if none assigned.
-//    if (!osha_workflow_get_project_manager($node->nid)) {
-//      reset($node->workbench_access);
-//      $section = current($node->workbench_access);
-//      $pms = osha_workflow_access_get_section_pm($section);
-//      if (!empty($pms)) {
-//        $pm = current($pms);
-//        drupal_set_message(
-//          strtr('Assigned default project manager of this section (!name) to the review process', array('!name' => $pm->name))
-//        );
-//        osha_workflow_set_project_manager($node->nid, $pm->uid);
-//      }
-//      else {
-//        drupal_set_message('No default project manager was found. Please select one manually.');
-//      }
-//    }
-//    // Assign the default approver list, if none assigned.
-//    if (!osha_workflow_get_node_approvers($node->nid, FALSE)) {
-//      $approvers = osha_workflow_get_node_approvers($node->nid);
-//      if ($approvers) {
-//        drupal_set_message('Assigned the default list of approvers for the approval process');
-//        osha_workflow_set_node_approvers($node->nid, array_keys($approvers));
-//      }
-//      else {
-//        drupal_set_message('No default approvers defined. Ask administrator to define the default list of approvers.');
-//      }
-//    }
-//  }
-
   // Reindex all published translations
   if( !empty($node->translations->data)) {
     foreach ($node->translations->data as $language => $tr) {
@@ -841,71 +810,7 @@ function osha_workflow_workbench_moderation_access_alter(&$access, $op, $node) {
     $access = 1;
     return NULL;
   }
-
-  if ($op == 'update') {
-    $is_rm = OshaWorkflowPermissions::userHasRole(OSHA_WORKFLOW_ROLE_REVIEW_MANAGER, $user);
-    $is_pm = OshaWorkflowPermissions::userHasRole(OSHA_WORKFLOW_ROLE_PROJECT_MANAGER, $user);
-    $is_editor = OshaWorkflowPermissions::userHasRole(OSHA_WORKFLOW_ROLE_EDITOR, $user);
-
-    $node_in_rm_section = osha_workflow_node_in_rm_section($node, $user);
-    $node_in_editor_section = osha_workflow_node_in_editor_section($node, $user);
-    $node_in_pm_section = osha_workflow_node_in_pm_section($node, $user);
-
-    $access = FALSE;
-    $state = $node->workbench_moderation['current']->state;
-
-    /* Project manager */
-    // Allow moderation of nodes for PM assigned to a node.
-    if ($is_pm && osha_workflow_is_assigned_project_manager($node->nid)) {
-      $access = TRUE;
-      return NULL;
-    }
-
-    /* Review manager and Editor */
-    if ($node_in_rm_section || $node_in_editor_section) {
-      $access = 1;
-      return NULL;
-    }
-
-    /* Approver */
-    // Allow next approver permission
-    if ($state == OSHA_WORKFLOW_STATE_TO_BE_APPROVED) {
-      $next_approver = osha_workflow_get_next_approver($node->nid);
-      $is_next_approver = isset($next_approver->uid) && $user->uid == $next_approver->uid;
-      // Check the user is next to take action. Otherwise deny change.
-      if ($is_next_approver) {
-        $access = TRUE;
-        return NULL;
-      }
-    }
-  }
   return NULL;
-}
-
-/**
- * Implements hook_workbench_moderation_states_next_alter().
- *
- * {@inheritdoc}
- */
-function osha_workflow_workbench_moderation_states_next_alter(&$access, $op, $node) {
-  $the_node = $node['node'];
-  $the_user = $node['account'];
-  if(isset($the_node->workbench_moderation['current']->state)) {
-    $state = $the_node->workbench_moderation['current']->state;
-    if ($state == OSHA_WORKFLOW_STATE_TO_BE_APPROVED) {
-      $is_workflow_admin = user_access('moderate content from approved to ready_to_publish');
-      if (!$is_workflow_admin && osha_workflow_has_approved($the_node->nid, $the_user->uid)) {
-        $access = array();
-      }
-      else {
-        // Hard code this states to force power users to follow workflow.
-        // i.e current user is RM on other section but last approver here
-        //     -> without this would have multiple state available in drop-down.
-        $approver_states = drupal_map_assoc(array(OSHA_WORKFLOW_STATE_APPROVED, OSHA_WORKFLOW_STATE_REJECTED));
-        $access = array_intersect_key($access, $approver_states);
-      }
-    }
-  }
 }
 
 /**
@@ -951,19 +856,6 @@ function osha_workflow_form_alter(&$form, &$form_state, $form_id) {
       '#default_value' => variable_get('osha_workflow_send_mail'),
     );
   }
-  if (isset($form_state['node'])) {
-    $node = $form_state['node'];
-    $to_be_approved = isset($node->workbench_moderation['current']) && $node->workbench_moderation['current']->state == OSHA_WORKFLOW_STATE_TO_BE_APPROVED;
-    if (!empty($node->nid) && $to_be_approved ) {
-      $next_aprover = osha_workflow_is_next_approver($node->nid);
-      if ($next_aprover && $form_id == $node->type . '_node_form') {
-        reset($node->workbench_access);
-        $ai = current($node->workbench_access);
-        $tai = taxonomy_term_load($ai);
-        $form['workbench_access']['workbench_access']['#options'] = array($ai => $tai->name);
-      }
-    }
-  }
 }
 
 /**
@@ -985,24 +877,6 @@ function osha_workflow_form_views_exposed_form_alter(&$form, &$form_state) {
  * Implements hook_form_BASE_FORM_ID_alter().
  */
 function osha_workflow_form_node_form_alter(&$form, $form_state) {
-  return;
-  // @TODO - remove this if not necessary.
-
-  // This must be a node form and a node that has moderation enabled.
-  // Extended to include moderation check on the individual node.
-  if (!workbench_moderation_node_moderated($form['#node'])) {
-    return;
-  }
-  if (isset($form['#node']->workbench_moderation['current']->state)) {
-    global $user;
-    $node = $form['#node'];
-    $state = $form['#node']->workbench_moderation['current']->state;
-    if ($state == OSHA_WORKFLOW_STATE_TO_BE_APPROVED) {
-      if (osha_workflow_is_next_approver($node->nid) && OshaWorkflowPermissions::userHasRole(OSHA_WORKFLOW_ROLE_APPROVER, $user)) {
-        $form['revision_information']['workbench_moderation_state_new']['#access'] = FALSE;
-      }
-    }
-  }
 }
 
 /**

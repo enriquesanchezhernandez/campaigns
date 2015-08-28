@@ -366,6 +366,15 @@ function hwc_workflow_node_form_after_build_hide_hints($form, &$form_state) {
 }
 
 /**
+ * Implements hook_workbench_moderation_access_alter().
+ *
+ * @TODO implement this
+ */
+function hwc_workflow_workbench_moderation_access_alter(&$access, $op, $node) {
+
+}
+
+/**
  * Adds and hides elements on node add/edit for partners.
  */
 function _hwc_workflow_partner_node_form_alter(&$form, &$form_state) {
