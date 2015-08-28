@@ -71,6 +71,12 @@ function hwc_workflow_default_rules_configuration() {
             "subject" : "HWC Workflow: New content has been published for your company",
             "message" : "New content has been published for your company: \\u003Ca href=\\u0022[node:url]\\u0022\\u003E[node:title]\\u003C\\/a\\u003E"
           }
+        },
+        { "mail_to_users_of_role" : {
+            "roles" : { "value" : { "13" : "13", "14" : "14" } },
+            "subject" : "New content has been published",
+            "message" : "This content has been published: \\u003Ca href=\\u0022[node:url]\\u0022\\u003E[node:title]\\u003C\\/a\\u003E"
+          }
         }
       ]
     }
