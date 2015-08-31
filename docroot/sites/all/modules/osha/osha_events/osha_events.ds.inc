@@ -37,20 +37,22 @@ function osha_events_ds_layout_settings_info() {
         10 => 'field_partner_id',
         11 => 'field_activity',
         12 => 'metatags',
-        13 => 'path',
-        14 => 'redirect',
-        15 => 'workbench_access',
-      ),
-      'left2' => array(
-        16 => 'field_contact_name',
-        17 => 'field_contact_phone',
-      ),
-      'right2' => array(
-        18 => 'field_contact_email',
-        19 => 'field_website_of_event',
+        14 => 'path',
+        15 => 'redirect',
+        16 => 'workbench_access',
       ),
       'hidden' => array(
-        20 => '_add_existing_field',
+        13 => 'group_contact',
+        21 => 'field_tags',
+        22 => '_add_existing_field',
+      ),
+      'left2' => array(
+        17 => 'field_contact_name',
+        18 => 'field_contact_phone',
+      ),
+      'right2' => array(
+        19 => 'field_contact_email',
+        20 => 'field_website_of_event',
       ),
     ),
     'fields' => array(
@@ -67,6 +69,7 @@ function osha_events_ds_layout_settings_info() {
       'field_partner_id' => 'center',
       'field_activity' => 'center',
       'metatags' => 'center',
+      'group_contact' => 'hidden',
       'path' => 'center',
       'redirect' => 'center',
       'workbench_access' => 'center',
@@ -74,11 +77,15 @@ function osha_events_ds_layout_settings_info() {
       'field_contact_phone' => 'left2',
       'field_contact_email' => 'right2',
       'field_website_of_event' => 'right2',
+      'field_tags' => 'hidden',
       '_add_existing_field' => 'hidden',
     ),
     'classes' => array(
       'layout_class' => array(
         'container' => 'container',
+      ),
+      'header' => array(
+        'col-sm-12' => 'col-sm-12',
       ),
       'left' => array(
         'col-sm-6' => 'col-sm-6',
