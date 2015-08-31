@@ -251,7 +251,7 @@ function hwc_workflow_form_alter(&$form, &$form_state, $form_id) {
   if (in_array($form_id, array('events_node_form', 'news_node_form'))) {
     $node = $form_state['node'];
     $can_delete = user_access("delete any {$node->type} content") || user_access("delete own {$user->type} content");
-    if ($can_delete && in_array(ROLE_CAMPAIGN_PARTNER, $user->roles)) {
+    if (!empty($node->nid) && $can_delete && in_array(ROLE_CAMPAIGN_PARTNER, $user->roles)) {
       $form['actions']['delete'] = array(
         '#type' => 'submit',
         '#value' => t('Delete'),
