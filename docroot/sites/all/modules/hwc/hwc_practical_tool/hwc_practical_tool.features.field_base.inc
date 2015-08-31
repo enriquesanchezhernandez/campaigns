@@ -40,6 +40,27 @@ function hwc_practical_tool_field_default_field_bases() {
     'type' => 'link_field',
   );
 
+  // Exported field_base: 'field_additional_information'
+  $field_bases['field_additional_information'] = array(
+    'active' => 1,
+    'cardinality' => 1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'field_additional_information',
+    'indexes' => array(
+      'format' => array(
+        0 => 'format',
+      ),
+    ),
+    'locked' => 0,
+    'module' => 'text',
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+    ),
+    'translatable' => 1,
+    'type' => 'text_long',
+  );
+
   // Exported field_base: 'field_available_languages'
   $field_bases['field_available_languages'] = array(
     'active' => 1,
@@ -68,27 +89,6 @@ function hwc_practical_tool_field_default_field_bases() {
     ),
     'translatable' => 0,
     'type' => 'language_field',
-  );
-
-  // Exported field_base: 'field_dissemination_used'
-  $field_bases['field_dissemination_used'] = array(
-    'active' => 1,
-    'cardinality' => 1,
-    'deleted' => 0,
-    'entity_types' => array(),
-    'field_name' => 'field_dissemination_used',
-    'indexes' => array(
-      'format' => array(
-        0 => 'format',
-      ),
-    ),
-    'locked' => 0,
-    'module' => 'text',
-    'settings' => array(
-      'entity_translation_sync' => FALSE,
-    ),
-    'translatable' => 1,
-    'type' => 'text_long',
   );
 
   // Exported field_base: 'field_external_urls'
@@ -151,27 +151,6 @@ function hwc_practical_tool_field_default_field_bases() {
     ),
     'translatable' => 0,
     'type' => 'list_boolean',
-  );
-
-  // Exported field_base: 'field_implementation_steps'
-  $field_bases['field_implementation_steps'] = array(
-    'active' => 1,
-    'cardinality' => 1,
-    'deleted' => 0,
-    'entity_types' => array(),
-    'field_name' => 'field_implementation_steps',
-    'indexes' => array(
-      'format' => array(
-        0 => 'format',
-      ),
-    ),
-    'locked' => 0,
-    'module' => 'text',
-    'settings' => array(
-      'entity_translation_sync' => FALSE,
-    ),
-    'translatable' => 1,
-    'type' => 'text_long',
   );
 
   // Exported field_base: 'field_objective'
