@@ -91,7 +91,13 @@ function hwc_workflow_node_cpm_assign_form($form, &$form_state, $node) {
     ),
   );
 
-//  $can_approve = $node->workbench_
+  hwc_workflow_node_cpm_actions_append($form, $node);
+
+  return $form;
+}
+
+function hwc_workflow_node_cpm_actions_append(&$form, $node) {
+  global $user;
   if ($current_approver = _hwc_workflow_get_current_cpm_approver($node->nid)) {
     // Approval settings.
     $form['cpm_actions'] = array(
@@ -113,8 +119,6 @@ function hwc_workflow_node_cpm_assign_form($form, &$form_state, $node) {
       '#access' => $current_approver->uid == $user->uid,
     );
   }
-
-  return $form;
 }
 
 function hwc_workflow_node_cpm_assign_form_submit($form, $form_state) {

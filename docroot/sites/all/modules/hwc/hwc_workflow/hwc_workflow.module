@@ -261,6 +261,21 @@ function hwc_workflow_form_alter(&$form, &$form_state, $form_id) {
     }
   }
 
+  if ($form_id == 'workbench_moderation_moderate_form' && isset($form['node']['#value'])) {
+    // Append the approval buttons in workbench moderation (on node view).q
+    module_load_include('inc', 'hwc_workflow', 'hwc_workflow.cpm');
+    $form['#node'] = $form['node']['#value'];
+    hwc_workflow_node_cpm_actions_append($form, $form['node']['#value']);
+    if (!empty($form['cpm_actions'])) {
+      $form['review'] = array(
+        '#type' => 'markup',
+        '#markup' => '<p>You can Review the content using the Review tab or using the buttons below.</p>',
+        '#weight' => 5,
+      );
+      $form['cpm_actions']['#weight'] = 6;
+    }
+  }
+
   // Implements permission select content section.
   if (isset($form['#node_edit_form']) && !empty($form['workbench_access']['workbench_access'])) {
     $form['workbench_access']['workbench_access']['#access'] = user_access('select content section');
