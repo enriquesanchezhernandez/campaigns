@@ -246,6 +246,7 @@ function hwc_form_chosen_admin_settings_alter(&$form, $form_state) {
  * Implements hook_form_alter().
  */
 function hwc_form_alter(&$form, &$form_state, $form_id) {
+  global $user;
   if (isset($form['field_activity'])
     && !empty($form['#node'])
     && empty($form['#node']->nid)
@@ -257,6 +258,33 @@ function hwc_form_alter(&$form, &$form_state, $form_id) {
   }
   if (isset($form['field_activity'])) {
     $form['field_activity'][LANGUAGE_NONE]['#multiple'] = FALSE;
+  }
+  if (in_array($form_id, array('events_node_form', 'news_node_form'))) {
+    if ($user->uid != 1) {
+      $form['field_tags']['#access'] = FALSE;
+    }
+  }
+}
+
+/**
+ * Implements hook_node_submit().
+ */
+function hwc_field_attach_submit($entity_type, $entity, $form, &$form_state) {
+  if ($entity_type == 'node') {
+    // Attach the current campaign tags to the created news and events (HCW-350)
+    $new = empty($entity->nid);
+    $news_event = in_array($entity->type, array('news', 'events'));
+    if ($new && $news_event && $curr_tags = variable_get('hwc_current_campaign_tags')) {
+      $tags = field_get_items('node', $entity, 'field_tags');
+      if (empty($tags)) {
+        $existing_tags = taxonomy_term_load_multiple($curr_tags);
+        if (!empty($existing_tags)) {
+          foreach (array_keys($existing_tags) as $tid) {
+            $entity->field_tags[LANGUAGE_NONE][] = array('tid' => $tid);
+          }
+        }
+      }
+    }
   }
 }
 
