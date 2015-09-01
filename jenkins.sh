@@ -2,6 +2,8 @@
 
 # Go to docroot/
 cd docroot/
+# Drupal breaks permissions for sites/default and jenkins fails
+chmod u+w sites/default
 
 # Drop all tables (including non-drupal)
 drush sql-drop -y
