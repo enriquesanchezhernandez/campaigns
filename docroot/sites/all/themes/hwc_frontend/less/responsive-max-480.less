@@ -2,9 +2,222 @@
 
 @media only screen and (max-width : 480px) {
 
+/*header*/
+.header-text, .header_top_bar, #block-lang-dropdown-language, #block-menu-menu-header-login{
+	display: none;
+}
+.navbar-header .row{
+	/* margin-left: -15px;
+	margin-right: -15px; */
+	padding-left: 0px;
+	padding-right: 0px;
+}
+header.navbar-default .campaigns-header .row:first-of-type {
+	padding-left: 0px;
+	padding-right: 0px;
+	padding-bottom: 10px;
+}
+header.navbar-default{
+	margin-left: 0;
+	margin-right: 0;
+	width: auto;
+	.campaigns-header .navbar-header{
+		[class*=col-sm-], [class*=col-lg-] {
+			/* padding-left: 15px;
+			padding-right: 15px; */
+		}
+		img[alt="Home"]{
+			margin-left: 5px;
+		}
+		img:nth-child(3){
+			border-right: none;
+			padding: 95px 0 0;
+			width: 65px;
+			height: auto;
+		}
+	}
+	.navbar-header{
+		a.pull-left{
+			margin-right: 0.5em;
+			padding-right: 0.5em;
+		}
+	}
+	.navbar-collapse{
+		&.in {
+			overflow-y: visible;
+		}
+		nav{
+			margin-top: -10px;
+			ul.menu.nav.navbar-nav{
+				margin-left: 0;
+				margin-right: 0;
+				li{
+					width: 100%;
+					span{
+						text-align: left;
+						&:before{
+							content: ">";
+							padding-right: 0.5em;
+						}
+						span.caret{
+							display: none;
+						}
+					}
+					ul.dropdown-menu{
+						list-style: initial;
+						list-style-type: disc;
+						padding-top: 0;
+						padding-bottom: 0;
+						li{
+							padding-left: 2em;
+							list-style: initial;
+							list-style-type: disc;
+							list-style-position: inside;
+							&:before{
+								content: "";
+								padding:0;
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+.xs-menu{
+	background-color: @bg-color-2;
+	padding-left: 15px;
+    padding-right: 15px;
+	#block-search-form{
+		float: left;
+		margin-left: 15%;
+	}
+	.navbar-toggle{
+		border: none;
+		&:hover, &:focus{
+			background-color: @bg-color-2;
+		}
+		.icon-bar{
+			background-color: @body-bg;
+		}
+	}
+}
+/*FIN header*/
+
+/*footer*/
+.footer{
+	min-height: 1px;
+    height: auto;
+	padding-top: 1em;
+	padding-bottom: 1em;
+	padding-left: 0;
+	.region.region-footer, h3, p{
+		display: none;
+	}
+	div.on-the-web{
+		display: table;
+		text-align: left;
+		width: auto;
+		margin: 0 auto;
+	}
+}
+/*FIN footer*/
+
+/*container*/
+	.breadcrumb{
+		display: none;
+	}
+	.main-container h1, .main-container .title-alt{
+		margin-top: 0px;
+		padding-bottom: 0em;
+	}
+	/*home Slider*/
+	#homepage_slider{
+		background: none;
+		margin-bottom: 0;
+		height: 300px !important;
+	}
+	/*FIN home Slider*/
+	
+	/*home*/
+	.tools-and-resources-block, #block-views-news-oshnews-latest, #block-views-frontpage-events-block{
+		width: 100%;
+		text-align: left;
+		border: none;
+		padding-right: 0;
+		padding-left: 0;
+		padding-bottom: 1em;
+		margin-bottom: 0em;
+		margin-top: 0em;
+		border-bottom: 1px dotted @border-default-color;
+		> div{		
+			padding-right: 0;
+			padding-left: 0;
+		}
+		h2{
+		    text-align: center;
+		}
+		a{
+			clear:both;
+		    float: left;
+			margin-left: 0.7em;
+			&:before{
+				padding-right: 0.35em;
+				margin-left: -0.7em;
+			}
+		}
+		span.date-display-single {
+			margin-left: 11px;
+			clear:both;
+		}
+		a span.date-display-single {
+			margin-left: 0px;
+		}
+		.field-content.event-link-front{
+			clear: both;
+			margin-left: 11px;
+		}
+	}	
+	#block-views-partners-block-1{
+		.view-display-id-block_1 .view-display-id-attachment_1{
+			border: none;
+			padding-top: 0;
+			padding-right: 0;
+			padding-left: 0;
+			.view-content .views-field-field-logo{
+				min-height: 0;
+				width: 100%;
+				margin: 0 auto;
+				img{
+				    width: auto;
+					text-align: center;
+					margin: 0 auto;
+				}
+			}
+		}
+		div.more-link{
+			margin-top: 0;
+			background-color: @bg-color-2;
+			padding: 15px;
+			&:before{
+				content: "";
+			}
+		}
+	}
+	#campaigns-newsletter-subscribe-form{
+		text-align: left;
+		#edit-email{
+			margin-left: 15px;
+		}
+	}
+	#block-osha-newsletter-osha-newsletter-subscribe .captcha, #block-osha-newsletter-osha-newsletter-image .captcha{
+		margin-left: -338px;
+	}
+	/*FIN home*/
+
 	/* Article */
 	.node-article{
-		.field-name-field-image + .field-name-title-field{
+		/* .field-name-field-image + .field-name-title-field{
 			height: 145px;
 			h1{
 				padding-top: 60px;
@@ -14,6 +227,65 @@
 			img{
 				height: 145px;
 			}
+		} */
+		
+		.field-name-field-image + .field-name-title-field{
+			height: 321px;
+			position: relative;
+			h1{
+				padding-top: 180px;
+			}
+		}
+		.field.field-name-field-image{
+			width: 100%;
+			margin: 0px;
+			padding: 0px;
+			position: absolute;
+			top: 329px;
+			left: 0px;
+			z-index: -1;
+			height: 345px;
+			overflow: hidden;
+			div, img{
+				height:100%;
+			}
 		}
 	}
+	/*FIN Article */
+	
+	/*Practical tools*/
+	.page-practical-tools{
+		.content{
+			display: none;
+		}
+		.form-type-checkbox{
+			float: left;
+			width: 50%;
+		}
+	}
+	.form-item-relevant-for, .form-item-languages{
+		border-top: none;
+		border-bottom: none;
+		clear: both;
+		margin-bottom: 2em;
+		> label{
+			width: 100%;
+			padding: 0.2em 1em;
+			background-color: @bg-color-3;
+			&:after{
+				color: @text-color-2;
+				content: ">>";
+				float: right;
+			}
+		}
+	}
+	#search{
+		margin-top: 1.5em;
+		margin-bottom: 0em;
+		border-top: none;
+		border-bottom: none;
+	}
+	/*FIN Practical tools*/
+	
 }
+/*FIn container*/

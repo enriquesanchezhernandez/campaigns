@@ -2255,7 +2255,325 @@
 		}
 	}
 }
-/*fin become*/
+/*fin become a media partner*/
+
+/*Employers plantilla*/
+.employers-section{
+	button{
+		background-color: @color2;
+		outline: none;
+		border: none;
+		color: @color1;
+		padding: 5px 40px;
+		font-weight: bold;
+		margin-bottom: 10px;
+		font-size: @size4;
+		margin-top: 1.5em;
+		&:before{
+			content: "> ";
+		}
+	}
+	.introduction-section{
+		margin-bottom: 4em;
+		p{
+			font-weight: bold;
+			font-size: @size6;
+		}
+		.btn-1-normal{
+			margin-top: 2em;
+			&:before{
+				content: "";
+			}
+			.btn-1-acent{
+				font-style: italic;
+				&:before{
+					content: "> ";
+				}
+			}
+		}
+	}
+	.recomended-resources-for-you{
+		background: url("../images/content/bg-campaign-partner.png");
+		background-size: cover;
+		margin-bottom: 2em;
+		margin-left: -15px;
+		margin-right: -15px;
+		p{
+			color: @color1;
+			font-size: @size1;
+			font-style: italic;
+			margin-top: 1.5em;
+			margin-bottom: 1.5em;
+			font-weight: 100;
+		}
+	}
+	.recomended-container-section{
+		border-bottom: 1px dotted @color3;
+		padding-bottom: 3em;
+		padding-top: 3em;
+	}
+	.news-events-section{
+		padding-bottom: 3em;
+		padding-top: 3em;
+	}
+	.healthy-workplaces, .other-practical-tools, .news-section{
+		border-right: 1px dotted @color3;
+		padding-left: 15px;
+		padding-right: 30px;
+	}
+	.e-guide, .case-studies, .events-section{
+		padding-left: 30px;
+		padding-right: 15px;
+	}
+	h3{ 
+		color: @color3;
+		font-style: normal;
+		font-weight: bold;
+		font-size: @size1;
+		margin-bottom: 1em;
+		margin-top: 0;
+	}
+	.healthy-workplaces{
+		h3{
+			&:before{
+				content: url("../images/content/awards.png");
+				display:block;
+				padding-bottom: 10px;
+			}
+		}
+	}
+	.e-guide{
+		h3{
+			margin-bottom: 2em;
+			&:before{
+				content: url("../images/content/e-guide.png");
+				display:block;
+				padding-bottom: 10px;
+			}
+		}
+	}
+	.other-practical-tools{
+		h3{
+			&:before{
+				content: url("../images/content/tools-and-resources.png");
+				display:block;
+				padding-bottom: 10px;
+			}
+		}
+	}
+	.case-studies{
+		h3{
+			&:before{
+				content: url("../images/content/case-studies.png");
+				display:block;
+				padding-bottom: 10px;
+			}
+		}
+	}
+	.other-relevant-resources{
+		h3{
+			&:before{
+				content: url("../images/content/additional-resources.png");
+				display:block;
+				padding-bottom: 10px;
+			}
+		}
+		.relevant-resources-section{
+			.revelant-resource{
+				img{
+					min-width: 120px;
+					max-width: 75%;
+					min-height: 120px;
+					display: block;
+					margin: 30px auto 15px auto;
+				}
+				a{
+					font-weight: bold;
+					font-style: italic;
+					&:before{
+						content: "> ";
+					}
+				}
+			}
+		}
+	}
+	.news-section{
+		h3{
+			&:before{
+				content: url("../images/content/news.png");
+				display:block;
+				padding-bottom: 10px;
+			}
+		}
+	}
+	.events-section{
+		h3{
+			&:before{
+				content: url("../images/content/events.png");
+				display:block;
+				padding-bottom: 10px;
+			}
+		}
+	}
+
+	.other-practical-tools, .case-studies{
+		.one-resource{
+			background-color: @color8;
+			margin: 30px 0px;
+			padding: 25px 15px;
+			padding-bottom: 35px;
+			h4{
+				color: @color2;
+				font-size: @size8;
+				font-weight: bold;
+				margin-bottom: 0.2em;
+				&:before{
+					content: "> ";
+				}
+			}
+			.date{
+				font-size: @size3;
+			}
+			img{
+				min-width: 120px;
+				max-width: 75%;
+				min-height: 120px;
+				margin-bottom: 10px;
+				margin-top: 10px;
+			}
+			.description{
+				a{
+					&:before{
+						content: "> ";
+					}
+				}
+			}
+			.download{
+				margin-top: 20px;
+				.size{
+					font-weight: bold;
+				}
+				p{
+					a{
+						position: relative;
+						&:after{
+							content: url("../images/content/download.png");
+							position: absolute;
+							padding: 0px 15px;
+						}
+					}
+				}
+			}
+		}
+	}
+	.news-events-section{
+		.news-section{
+			.news-content{
+				.one-new{
+					margin-bottom: 1em;
+					a{
+						font-weight: bold;
+						font-style: italic;
+						&:before{
+							content: "> ";
+						}
+					}
+				}
+			}
+		}
+		.events-section{
+			.events-content{
+				.one-event{
+					margin-bottom: 1em;
+					a{
+						font-weight: bold;
+						font-style: italic;
+						&:before{
+							content: "> ";
+						}
+					}
+				}
+			}
+		}
+	}
+}
+/*fin employers*/
+
+/*Get involved plantilla*/
+.get-involved-section{
+	.h1-subtitle{
+		p{
+			color:@color3;
+			font-size: @size4;
+			font-weight: bold;
+		}
+	}
+	.introduction{
+		margin: 2.5em 0;
+		font-weight: bold;
+		font-size: @size7;
+	}
+	.texts{
+		margin-bottom: 1em;
+		.text-block{
+			padding:0px 20px;
+			p{
+				margin-bottom: 1.5em;
+	    		position: relative;
+	   			padding-left: 7px;
+				margin: 0px 0px 1.5em 0px;
+				&:before{
+					content: url("../images/content/ok-2.png");
+					position: absolute;
+	    			padding-top: 2px;
+	    			margin-left: -20px;
+				}
+			}
+		}
+		
+	}
+	.information-tailored{
+		text-align: center;
+		h3{
+			font-weight: bold;
+			color: @color3;
+			font-size: @size1;
+			&:before{
+				content: url("../images/content/recommended-for-you.png");
+				display:block;
+				padding-bottom: 10px;
+			}
+		}
+		.images-section{
+			.image-block{
+				
+				padding:15px;
+				max-width: 350px;
+				overflow: hidden;
+				margin: 0 auto;
+				img{
+					background-color: @color2;
+					width: 100%;
+					min-width: 200px;
+					height: 80%;
+					min-height: 200px;
+				}
+				.link{
+					padding: 2em 0;
+					background-color: @color2;
+					a{
+						color: @color1;
+						font-weight: bold;
+						&:before{
+							content:"> ";					
+						}
+					}
+				}
+			}
+		}
+	}
+}
+/*fin get  involved*/
 
 /*Partners public profile*/
 .container{
