@@ -579,12 +579,14 @@ function osha_publication_twin_publications_formatter($items) {
             ),
           ));
           $files[] = $link;
+          $size = round($file['filesize']/1000000,1) . 'MB';
+          $extension = strtoupper(pathinfo($file['uri'], PATHINFO_EXTENSION));
         }
       }
     };
     $render = array(
       'title' => array('#type' => 'item', '#markup' => l($title, 'node/' . $meta['target_id'])),
-      'files' => array('#type' => 'item', '#markup' => theme('item_list', array('items' => $files)), '#title' => t('Download in:')),
+      'files' => array('#type' => 'item', '#markup' => theme('item_list', array('items' => $files)), '#title' => t('Download ') . $extension . ' (' . $size . ') ' . t('in:')),
     );
     $ret[] = drupal_render($render);
   }
