@@ -38,20 +38,20 @@ function osha_press_release_post_features_enable_feature($component) {
  */
 function osha_press_release_node_view($node, $view_mode, $langcode) {
   if ($node->type == 'press_release' && $view_mode == 'full') {
-    $output = field_view_field('node', $node, 'field_publication_date');
-    if (!empty($node->field_pr_embargo_date)) {
-      $embargo_date = strtotime($node->field_pr_embargo_date[LANGUAGE_NONE][0]['value']);
-      $str_embargo_date = format_date($embargo_date, 'short_date_eu');
-      if ($embargo_date - strtotime('now') > 0) {
-        $message = t('HOLD ON FOR PRESS RELEASE UNTIL').' '.$str_embargo_date;
-      }
-    }
-    if (!isset($message)) {
-      $publication_date = strtotime($node->field_publication_date[LANGUAGE_NONE][0]['value']);
-      $str_publication_date = format_date($publication_date, 'short_date_eu');
-      $message = t('FOR IMMEDIATE RELEASE').' - '.$str_publication_date;
-    }
-    $node->content['field_publication_date'][0]['#markup'] = '<span class="press-release-date">'.$message.'</span>';
+//    $output = field_view_field('node', $node, 'field_publication_date');
+//    if (!empty($node->field_pr_embargo_date)) {
+//      $embargo_date = strtotime($node->field_pr_embargo_date[LANGUAGE_NONE][0]['value']);
+//      $str_embargo_date = format_date($embargo_date, 'short_date_eu');
+//      if ($embargo_date - strtotime('now') > 0) {
+//        $message = t('HOLD ON FOR PRESS RELEASE UNTIL').' '.$str_embargo_date;
+//      }
+//    }
+//    if (!isset($message)) {
+//      $publication_date = strtotime($node->field_publication_date[LANGUAGE_NONE][0]['value']);
+//      $str_publication_date = format_date($publication_date, 'short_date_eu');
+//      $message = t('FOR IMMEDIATE RELEASE').' - '.$str_publication_date;
+//    }
+//    $node->content['field_publication_date'][0]['#markup'] = '<span class="press-release-date">'.$message.'</span>';
 
     // Add a css class for quotes field if image field is empty
     if (!empty($node->content['field_quote'])) {

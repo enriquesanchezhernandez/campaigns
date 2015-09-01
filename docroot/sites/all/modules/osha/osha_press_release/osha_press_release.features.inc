@@ -93,7 +93,7 @@ function osha_press_release_fe_nodequeue_export_fields() {
 function osha_press_release_node_info() {
   $items = array(
     'press_contact' => array(
-      'name' => t('Contact'),
+      'name' => t('Press contact'),
       'base' => 'node_content',
       'description' => t('Contacts (extended old Press contacts)  - used for Press contacts, Focal Points, Board Members etc.'),
       'has_title' => '1',

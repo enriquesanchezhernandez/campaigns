@@ -47,6 +47,7 @@ function osha_search_default_search_api_index() {
             "bundles" : {
               "article" : "article",
               "campaign_materials" : "campaign_materials",
+              "press_contact" : "press_contact",
               "event_speaker" : "event_speaker",
               "events" : "events",
               "news" : "news",

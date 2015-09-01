@@ -141,12 +141,15 @@ function osha_press_release_strongarm() {
     'search_index' => 0,
     'search_result' => 0,
     'diff_standard' => 0,
+    'title_body' => 0,
+    'body' => 0,
     'osha_slideshow' => 0,
     'highlights_item' => 0,
     'newsletter_item' => 0,
     'pub_teaser' => 0,
     'print' => 0,
     'token' => 0,
+    'revision' => 0,
     'nodeform' => 0,
   );
   $export['exclude_node_title_content_type_modes_press_release'] = $strongarm;
@@ -198,6 +201,21 @@ function osha_press_release_strongarm() {
         'custom_settings' => TRUE,
       ),
       'print' => array(
+        'custom_settings' => FALSE,
+      ),
+      'title_body' => array(
+        'custom_settings' => TRUE,
+      ),
+      'body' => array(
+        'custom_settings' => TRUE,
+      ),
+      'highlights_item' => array(
+        'custom_settings' => TRUE,
+      ),
+      'pub_teaser' => array(
+        'custom_settings' => TRUE,
+      ),
+      'revision' => array(
         'custom_settings' => FALSE,
       ),
     ),
