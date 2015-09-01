@@ -45,7 +45,7 @@ function osha_authentication_get_role_and_section_from_dn($group_dn) {
     $role = OSHA_WORKFLOW_ROLE_LAYOUT_VALIDATOR;
   }
   else if ($group_dn == 'cn=NEW&EVEN_EDT,ou=HWC,ou=Sites,dc=osha,dc=europa,dc=eu') {
-    $role = OSHA_WORKFLOW_ROLE_PROJECT_MANAGER;
+    $role = HWC_ROLE_CAMPAIGN_PROJECT_MANAGER;
   }
   else if ($group_dn == 'cn=NEW&EVEN_SUP,ou=HWC,ou=Sites,dc=osha,dc=europa,dc=eu') {
     $role = ROLE_SUPERVISOR;
