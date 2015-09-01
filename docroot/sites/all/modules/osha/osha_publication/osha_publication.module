@@ -599,6 +599,7 @@ function osha_publication_file_all_group_mimetype_formatter($items) {
   }
   $ret = array();
   $groups = array();
+  $sizes = array();
   foreach ($items as $langcode => $files) {
     if (!in_array($langcode, $languages)) {
       continue;
@@ -607,6 +608,7 @@ function osha_publication_file_all_group_mimetype_formatter($items) {
       $mime = $file['filemime'];
       $groups[$mime][$langcode][] = $file;
     }
+    $sizes[$mime] = round($files[0]['filesize']/1000000,1) . 'MB';
   }
   foreach ($groups as $mime => $value) {
     $links = array();
@@ -620,7 +622,7 @@ function osha_publication_file_all_group_mimetype_formatter($items) {
           )));
       }
     }
-    $title = t('Download !mime in:', array('!mime' => hwc_mime_friendly_acronym($mime)));
+    $title = t('Download !mime (!size) in:', array('!mime' => hwc_mime_friendly_acronym($mime), '!size' => $sizes[$mime]));
     $render = array(
       'title' => array('#type' => 'item', '#markup' => l($title, '<front>')),
       'files' => array('#type' => 'item', '#markup' => theme('item_list', array('items' => $links))),
