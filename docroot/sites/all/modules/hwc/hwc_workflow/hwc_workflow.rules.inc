@@ -17,6 +17,10 @@ function hwc_workflow_rules_event_info() {
           'type' => 'user',
           'label' => t('Next approver'),
         ),
+        'users' => array(
+          'type' => 'list<user>',
+          'label' => t('Remaining CPMs'),
+        ),
       ),
       'access callback' => 'rules_node_integration_access',
     ),
