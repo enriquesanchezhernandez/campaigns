@@ -94,6 +94,7 @@ features[page_manager_pages][] = mop_listing
 features[page_manager_pages][] = official_campaign_partners
 features[page_manager_pages][] = partner_private_area
 features[page_manager_pages][] = partner_public_profile
+features[page_manager_pages][] = private_area_for_partners
 features[taxonomy][] = partner_types
 features[variable][] = comment_anonymous_partner
 features[variable][] = comment_default_mode_partner
