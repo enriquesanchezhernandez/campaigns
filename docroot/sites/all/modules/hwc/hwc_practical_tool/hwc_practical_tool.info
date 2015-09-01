@@ -6,7 +6,6 @@ project = hwc_practical_tool
 dependencies[] = ctools
 dependencies[] = entityreference
 dependencies[] = features
-dependencies[] = hwc_practical_tool
 dependencies[] = i18n_taxonomy
 dependencies[] = languagefield
 dependencies[] = link
