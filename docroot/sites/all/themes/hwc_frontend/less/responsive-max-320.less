@@ -1,6 +1,51 @@
 //rewrite styles for responsive design
 
 @media only screen and (max-width : 320px) {
+/*header*/
+header.navbar-default .campaigns-header .navbar-header{
+	img[alt="Home"] {
+		height: auto;
+		width: 105px;
+	}
+	img[alt="EU-OSHA logo"] {
+		height: auto;
+		width: 115px;
+	}
+	img:nth-child(3) {
+		padding-top: 60px;
+		height: auto;
+		width: 35px;
+	}
+}
+.xs-menu{
+	padding-left: 5px;
+    padding-right: 5px;
+	#block-search-form{
+		margin-left: 5px;
+		.input-group{
+			width: 200px;
+		}
+		input{
+			width: 170px;
+		}
+	}
+}
+/*FIN header*/
+
+/*home*/
+#block-osha-newsletter-osha-newsletter-subscribe, #block-osha-newsletter-osha-newsletter-image{
+	padding-right: 15px;
+	padding-left: 15px;
+	#edit-email{
+		width: 175px;
+		margin-left: 0px;
+	}
+	.captcha{
+		margin-left: -260px;
+	}
+}
+/*FIN home*/
+
 	/* Article */
 	.node-article{
 		.field-name-field-image + .field-name-title-field{

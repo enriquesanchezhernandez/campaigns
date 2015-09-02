@@ -10588,6 +10588,75 @@ div[class*='node-'] .more-link {
   }
 }
 @media only screen and (max-width: 992px) {
+  /*Header*/
+  header.navbar-default .campaigns-header .navbar-header .row {
+    padding: 0px;
+  }
+  header.navbar-default .campaigns-header .navbar-header .row img[alt="Home"] {
+    margin-left: 0px;
+  }
+  header.navbar-default .campaigns-header .navbar-header a.pull-left {
+    padding-right: 1em;
+    margin-right: 1em;
+  }
+  header.navbar-default .campaigns-header .navbar-header a.pull-left img[alt="Home"] {
+    width: 130px;
+    height: 130px;
+  }
+  header.navbar-default .campaigns-header .navbar-header img[alt="EU-OSHA logo"] {
+    width: 150px;
+    height: 140px;
+    padding-top: 10px;
+  }
+  header.navbar-default .campaigns-header .navbar-header img[alt="EU logo"] {
+    width: 70px;
+    height: 137px;
+    padding-right: 1em !important;
+  }
+  header.navbar-default .campaigns-header .navbar-header .header-text {
+    font-size: 18px;
+    width: 120px;
+    padding-top: 3em;
+    padding-left: 0.8em;
+  }
+  header.navbar-default .campaigns-header .navbar-header .header_top_bar .region-above-header {
+    display: none;
+  }
+  header.navbar-default .campaigns-header .navbar-header .region-header #block-search-form {
+    margin-top: 2em;
+  }
+  header.navbar-default .campaigns-header .navbar-header .region-header #block-search-form .input-group {
+    width: inherit;
+  }
+  header.navbar-default .campaigns-header .navbar-header .region-header #block-search-form .input-group input {
+    width: 150px;
+    float: right;
+  }
+  header.navbar-default .campaigns-header .navbar-header .region-header #block-menu-menu-header-login {
+    float: right;
+    margin-left: 0px;
+    padding-top: 5px;
+    padding-right: 125px;
+  }
+  header.navbar-default .campaigns-header .navbar-header .region-header #block-lang-dropdown-language {
+    float: right;
+    right: 0;
+    padding-right: 46px;
+    position: initial;
+  }
+  /*fin header*/
+  /*footer*/
+  .footer ul li a {
+    color: #ffffff;
+    padding-left: 0;
+    font-size: 12px;
+  }
+  .footer h3 {
+    max-width: 75%;
+  }
+  /*fin footer*/
+  /*home*/
+  /*fin home*/
   /* Article */
   .node-article .field-name-field-image + .field-name-title-field {
     height: 300px;
@@ -10600,6 +10669,68 @@ div[class*='node-'] .more-link {
   }
 }
 @media only screen and (max-width: 767px) {
+  /*Header*/
+  header.navbar-default .campaigns-header .navbar-header .row {
+    padding: 0px;
+  }
+  header.navbar-default .campaigns-header .navbar-header .row img[alt="Home"] {
+    margin-left: 0px;
+  }
+  header.navbar-default .campaigns-header .navbar-header a.pull-left {
+    padding-right: 1em;
+    margin-right: 1em;
+  }
+  header.navbar-default .campaigns-header .navbar-header a.pull-left img[alt="Home"] {
+    width: 130px;
+    height: 130px;
+  }
+  header.navbar-default .campaigns-header .navbar-header img[alt="EU-OSHA logo"] {
+    width: 150px;
+    height: 140px;
+    padding-top: 10px;
+  }
+  header.navbar-default .campaigns-header .navbar-header img[alt="EU logo"] {
+    width: 70px;
+    height: 137px;
+    padding-right: 1em !important;
+  }
+  header.navbar-default .campaigns-header .navbar-header .header-text {
+    font-size: 18px;
+    width: 120px;
+    padding-top: 3em;
+    padding-left: 0.8em;
+  }
+  header.navbar-default .campaigns-header .navbar-header .header_top_bar .region-above-header {
+    display: none;
+  }
+  header.navbar-default .campaigns-header .navbar-header .region-header #block-search-form {
+    margin-top: 2em;
+  }
+  header.navbar-default .campaigns-header .navbar-header .region-header #block-search-form .input-group {
+    width: inherit;
+  }
+  header.navbar-default .campaigns-header .navbar-header .region-header #block-search-form .input-group input {
+    width: 150px;
+    float: right;
+  }
+  header.navbar-default .campaigns-header .navbar-header .region-header #block-menu-menu-header-login {
+    float: right;
+    margin-left: 0px;
+    padding-top: 5px;
+    padding-right: 125px;
+  }
+  header.navbar-default .campaigns-header .navbar-header .region-header #block-lang-dropdown-language {
+    float: right;
+    right: 0;
+    padding-right: 46px;
+    position: initial;
+  }
+  /*fin header*/
+  /*footer*/
+  /*fin footer*/
+  /*home*/
+  /*fin home*/
+  /* Article */
   /* Article */
   .node-article .field-name-field-image + .field-name-title-field {
     height: 230px;
@@ -10696,6 +10827,7 @@ div[class*='node-'] .more-link {
     background-color: #003399;
     padding-left: 15px;
     padding-right: 15px;
+    margin-top: 1em;
   }
   .xs-menu #block-search-form {
     float: left;
@@ -10739,7 +10871,12 @@ div[class*='node-'] .more-link {
   .main-container h1,
   .main-container .title-alt {
     margin-top: 0px;
+    margin-bottom: 0px;
     padding-bottom: 0em;
+    border-bottom: none;
+  }
+  .list-inline {
+    margin-left: 0;
   }
   /*home Slider*/
   #homepage_slider {
@@ -10888,7 +11025,7 @@ div[class*='node-'] .more-link {
     border-top: none;
     border-bottom: none;
     clear: both;
-    margin-bottom: 2em;
+    /* margin-bottom: 2em; */
   }
   .form-item-relevant-for > label,
   .form-item-languages > label {
@@ -10899,8 +11036,17 @@ div[class*='node-'] .more-link {
   .form-item-relevant-for > label:after,
   .form-item-languages > label:after {
     color: #003399;
-    content: ">>";
+    content: "\e258";
+    font-family: 'Glyphicons Halflings';
     float: right;
+  }
+  .form-item-relevant-for > label.closeLabel,
+  .form-item-languages > label.closeLabel {
+    margin-bottom: 0;
+  }
+  .form-item-relevant-for > label.closeLabel:after,
+  .form-item-languages > label.closeLabel:after {
+    content: "\e259";
   }
   #search {
     margin-top: 1.5em;
@@ -10908,9 +11054,89 @@ div[class*='node-'] .more-link {
     border-top: none;
     border-bottom: none;
   }
+  /*detail*/
+  /* border-bottom: 1px dotted @border-default-color; */
+  .pane-node-field-access-tool-link:first-child {
+    padding-top: 0 !important;
+    border-top: none;
+    border-bottom: none;
+  }
+  .field-label-inline .field-label,
+  .field-label-inline .field-items {
+    float: none;
+    width: 95%;
+  }
+  .pane-node-field-access-tool-link .field-label-inline .field-label,
+  .pane-node-field-external-urls .field-label-inline .field-label,
+  .pane-node-field-access-tool-link .field-label-inline .field-items,
+  .pane-node-field-external-urls .field-label-inline .field-items {
+    float: left;
+    width: 50%;
+  }
+  /*FIN detail*/
   /*FIN Practical tools*/
+  /*Publications*/
+  .page-publications .content {
+    display: none;
+  }
+  #edit-relevant-for .form-item,
+  #edit-languages .form-item {
+    float: left;
+    width: 50%;
+  }
+  #publications_slideshow {
+    display: none;
+  }
+  .publication-item .field-name-field-cover-image {
+    display: none;
+  }
+  /*FIN Publications*/
 }
 @media only screen and (max-width: 320px) {
+  /*header*/
+  header.navbar-default .campaigns-header .navbar-header img[alt="Home"] {
+    height: auto;
+    width: 105px;
+  }
+  header.navbar-default .campaigns-header .navbar-header img[alt="EU-OSHA logo"] {
+    height: auto;
+    width: 115px;
+  }
+  header.navbar-default .campaigns-header .navbar-header img:nth-child(3) {
+    padding-top: 60px;
+    height: auto;
+    width: 35px;
+  }
+  .xs-menu {
+    padding-left: 5px;
+    padding-right: 5px;
+  }
+  .xs-menu #block-search-form {
+    margin-left: 5px;
+  }
+  .xs-menu #block-search-form .input-group {
+    width: 200px;
+  }
+  .xs-menu #block-search-form input {
+    width: 170px;
+  }
+  /*FIN header*/
+  /*home*/
+  #block-osha-newsletter-osha-newsletter-subscribe,
+  #block-osha-newsletter-osha-newsletter-image {
+    padding-right: 15px;
+    padding-left: 15px;
+  }
+  #block-osha-newsletter-osha-newsletter-subscribe #edit-email,
+  #block-osha-newsletter-osha-newsletter-image #edit-email {
+    width: 175px;
+    margin-left: 0px;
+  }
+  #block-osha-newsletter-osha-newsletter-subscribe .captcha,
+  #block-osha-newsletter-osha-newsletter-image .captcha {
+    margin-left: -260px;
+  }
+  /*FIN home*/
   /* Article */
   .node-article .field-name-field-image + .field-name-title-field {
     height: 90px;

@@ -88,6 +88,7 @@ header.navbar-default{
 	background-color: @bg-color-2;
 	padding-left: 15px;
     padding-right: 15px;
+    margin-top: 1em;
 	#block-search-form{
 		float: left;
 		margin-left: 15%;
@@ -129,7 +130,12 @@ header.navbar-default{
 	}
 	.main-container h1, .main-container .title-alt{
 		margin-top: 0px;
+		margin-bottom: 0px;
 		padding-bottom: 0em;
+		border-bottom: none;
+	}
+	.list-inline{
+		margin-left: 0;
 	}
 	/*home Slider*/
 	#homepage_slider{
@@ -267,15 +273,22 @@ header.navbar-default{
 		border-top: none;
 		border-bottom: none;
 		clear: both;
-		margin-bottom: 2em;
+		/* margin-bottom: 2em; */
 		> label{
 			width: 100%;
 			padding: 0.2em 1em;
 			background-color: @bg-color-3;
 			&:after{
 				color: @text-color-2;
-				content: ">>";
+				content: "\e258";
+				font-family: 'Glyphicons Halflings';
 				float: right;
+			}
+			&.closeLabel{
+				margin-bottom: 0;
+				&:after{
+					content: "\e259";
+				}
 			}
 		}
 	}
@@ -285,7 +298,46 @@ header.navbar-default{
 		border-top: none;
 		border-bottom: none;
 	}
+		/*detail*/
+		/* border-bottom: 1px dotted @border-default-color; */
+		.pane-node-field-access-tool-link{
+			&:first-child{
+				padding-top: 0 !important;
+				border-top: none;
+				border-bottom: none;
+			}
+		}
+		.field-label-inline .field-label, .field-label-inline .field-items{
+			float: none;
+			width: 95%;
+		}
+		.pane-node-field-access-tool-link, .pane-node-field-external-urls{
+			.field-label-inline .field-label, .field-label-inline .field-items{
+				float: left;
+				width: 50%;
+			}
+		}
+		/*FIN detail*/
 	/*FIN Practical tools*/
 	
+	/*Publications*/
+	.page-publications{
+		.content{
+			display: none;
+		}
+	}
+	#edit-relevant-for, #edit-languages{
+		.form-item{
+			float: left;
+			width: 50%;
+		}
+	}
+	#publications_slideshow{
+		display: none;
+	}
+	.publication-item .field-name-field-cover-image{
+		display: none;
+	}
+	/*FIN Publications*/
 }
 /*FIn container*/
