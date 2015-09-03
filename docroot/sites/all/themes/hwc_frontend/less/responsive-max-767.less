@@ -1,90 +1,326 @@
 //rewrite styles for responsive design
 
 @media only screen and (max-width : 767px) {
-
 /*Header*/
-	header{
-		&.navbar-default {
-			.campaigns-header {
-				.navbar-header{
-					.row{
-						padding: 0px;
-						img[alt="Home"]{
-							margin-left: 0px;
+header{
+	&.navbar-default {
+		.campaigns-header {
+			.navbar-header{
+				.row{
+					padding: 0px;
+					img[alt="Home"]{
+						margin-left: 0px;
+					}
+				}
+				a.pull-left{
+					padding-right: 1em;
+					margin-right: 1em;
+					img[alt="Home"]{
+						margin-left: 15px;
+						width: 130px;
+						height: 130px;
+					}
+				}
+				img[alt="EU-OSHA logo"]{
+					width: 150px;
+					height: 140px;
+					padding-top: 10px; 
+				}
+				img[alt="EU logo"]{
+					width: 55px;
+					height: 137px;
+					padding-right: 0em !important;
+				    border-right: none;
+				}
+				.header-text{
+				    font-size: @size6;
+				    width: 120px;
+				    padding-top: 2.5em;
+				    padding-left: 0.8em;
+				}
+				.header_top_bar{
+					.region-above-header{
+						display: none;
+					}
+				}
+				.region-header{
+					#block-search-form{
+						margin-top:0.5em;
+						margin-bottom: 0.5em;
+						.input-group{
+							width: inherit;
+							input{
+								width: 150px;
+								float: right;
+								height: 25px;
+							}
+							button{
+								height: 25px;
+								width: 25px;
+							}
 						}
 					}
-					a.pull-left{
-						padding-right: 1em;
-    					margin-right: 1em;
-    					img[alt="Home"]{
-							width: 130px;
-							height: 130px;
+					#block-menu-menu-header-login{
+						float: right;
+					    margin-left: 0px;
+					    padding-top: 5px;
+					    padding-right: 116px;
+					    ul{
+					    	li{
+					    		a{
+					    			min-width: 80px;
+					    		}
+					    	}
+					    }
+					}
+					#block-lang-dropdown-language{
+						float: right;
+					    right: 0;
+					    padding-right: 46px;
+					    position: initial;
+					    
+					}
+
+				}
+			}
+		}
+	}
+}
+
+.header-text, .header_top_bar, #block-lang-dropdown-language, #block-menu-menu-header-login{
+	display: none;
+}
+.navbar-header .row{
+	/* margin-left: -15px;
+	margin-right: -15px; */
+	padding-left: 0px;
+	padding-right: 0px;
+}
+header.navbar-default .campaigns-header .row:first-of-type {
+	padding-left: 0px;
+	padding-right: 0px;
+	padding-bottom: 10px;
+}
+header.navbar-default{
+	margin-left: 0;
+	margin-right: 0;
+	width: auto;
+	
+	.navbar-collapse{
+		&.in {
+			overflow-y: visible;
+		}
+		nav{
+			margin-top: -10px;
+			ul.menu.nav.navbar-nav{
+				margin-left: 0;
+				margin-right: 0;
+				li{
+					width: 100%;
+					span{
+						text-align: left;
+						&:before{
+							content: ">";
+							padding-right: 0.5em;
 						}
-					}
-					img[alt="EU-OSHA logo"]{
-						width: 150px;
-    					height: 140px;
-    					padding-top: 10px; 
-					}
-					img[alt="EU logo"]{
-						width: 70px;
-    					height: 137px;
-    					padding-right: 1em !important;
-					}
-					.header-text{
-					    font-size: @size7;
-					    width: 120px;
-					    padding-top: 3em;
-					    padding-left: 0.8em;
-					}
-					.header_top_bar{
-						.region-above-header{
+						span.caret{
 							display: none;
 						}
 					}
-					.region-header{
-						#block-search-form{
-							margin-top:2em;
-							.input-group{
-								width: inherit;
-								input{
-									width: 150px;
-									float: right;
-								}
+					ul.dropdown-menu{
+						list-style: initial;
+						list-style-type: disc;
+						padding-top: 0;
+						padding-bottom: 0;
+						li{
+							padding-left: 2em;
+							list-style: initial;
+							list-style-type: disc;
+							list-style-position: inside;
+							&:before{
+								content: "";
+								padding:0;
 							}
 						}
-						#block-menu-menu-header-login{
-							float: right;
-						    margin-left: 0px;
-						    padding-top: 5px;
-						    padding-right: 125px;
-						}
-						#block-lang-dropdown-language{
-							float: right;
-						    right: 0;
-						    padding-right: 46px;
-						    position: initial;
-						}
-
 					}
 				}
 			}
 		}
 	}
+}
+.xs-menu{
+	background-color: @bg-color-2;
+	padding-left: 15px;
+    padding-right: 15px;
+    margin-top: 1em;
+	#block-search-form{
+    	display: inline-table;
+    	float: left;
+    	margin-left: 40%;
+	}
+	.navbar-toggle{
+		border: none;
+		margin-top: 0.2em;
+		margin-bottom: 0;
+		padding: 9px 0px;
+		&:hover, &:focus{
+			background-color: @bg-color-2;
+		}
+		.icon-bar{
+			background-color: @color1;
+		}
+
+	}
+}
+.navbar-toggle .icon-bar:nth-of-type(2) {
+}
+.navbar-toggle .icon-bar {
+    position: relative;
+    transition: all 500ms ease;
+}
+.navbar-toggle.active .icon-bar:nth-of-type(1) {
+    top: 6px;
+    transform: rotate(45deg);
+    background-color: orange;
+}
+.navbar-toggle.active .icon-bar:nth-of-type(3) {
+    background-color: transparent;
+    opacity: 0;
+}
+.navbar-toggle.active .icon-bar:nth-of-type(2) {
+    top: 6px;
+    transform: rotate(-45deg);
+    background-color: #fff;
+}
+.navbar-toggle.active .icon-bar:nth-of-type(4) {
+    top: -6px;
+    transform: rotate(45deg);
+    background-color: #fff;
+}
 	/*fin header*/
 
 	/*footer*/
-
+.footer{
+	min-height: 1px;
+    height: auto;
+	padding-top: 1em;
+	padding-bottom: 1em;
+	padding-left: 0;
+	.region.region-footer, h3, p{
+		display: none;
+	}
+	div.on-the-web{
+		display: table;
+		text-align: left;
+		width: auto;
+		margin: 0 auto;
+		span:last-child{
+			margin-right: 0;
+		}
+	}
+}
 	/*fin footer*/
 
+/*container*/
+	.breadcrumb{
+		display: none;
+	}
+	.main-container h1, .main-container .title-alt{
+		margin-top: 0px;
+		margin-bottom: 0px;
+		padding-bottom: 0em;
+		border-bottom: none;
+	}
+	.list-inline{
+		margin-left: 0;
+	}
+	
 	/*home*/
-
+		/*home Slider*/
+		#homepage_slider{
+			background: none;
+			margin-bottom: 0;
+			height: 300px !important;
+		}
+		/*FIN home Slider*/
+	.tools-and-resources-block, #block-views-news-oshnews-latest, #block-views-frontpage-events-block{
+		width: 100%;
+		text-align: left;
+		border: none;
+		padding-right: 0;
+		padding-left: 0;
+		padding-bottom: 1em;
+		margin-bottom: 0em;
+		margin-top: 0em;
+		border-bottom: 1px dotted @border-default-color;
+		> div{		
+			padding-right: 0;
+			padding-left: 0;
+		}
+		h2{
+		    text-align: center;
+		}
+		a{
+			clear:both;
+		    float: left;
+			margin-left: 0.7em;
+			&:before{
+				padding-right: 0.35em;
+				margin-left: -0.7em;
+			}
+		}
+		span.date-display-single {
+			margin-left: 11px;
+			clear:both;
+		}
+		a span.date-display-single {
+			margin-left: 0px;
+		}
+		.field-content.event-link-front{
+			clear: both;
+			margin-left: 11px;
+		}
+	}	
+	#block-views-partners-block-1{
+		.view-display-id-block_1 .view-display-id-attachment_1{
+			border: none;
+			padding-top: 0;
+			padding-right: 0;
+			padding-left: 0;
+			.view-content .views-field-field-logo{
+				min-height: 0;
+				width: 100%;
+				margin: 0 auto;
+				img{
+				    width: auto;
+					text-align: center;
+					margin: 0 auto;
+				}
+			}
+		}
+		div.more-link{
+			margin-top: 0;
+			background-color: @bg-color-2;
+			padding: 15px;
+			&:before{
+				content: "";
+			}
+		}
+	}
+	#campaigns-newsletter-subscribe-form{
+		text-align: left;
+		#edit-email{
+			margin-left: 15px;
+		}
+	}
+	#block-osha-newsletter-osha-newsletter-subscribe .captcha, #block-osha-newsletter-osha-newsletter-image .captcha{
+		margin-left: -338px;
+	}
 	/*fin home*/
 
 	/* Article */
-	/* Article */
 	.node-article{
-		.field-name-field-image + .field-name-title-field{
+		/* .field-name-field-image + .field-name-title-field{
 			height: 230px;
 			h1{
 				padding-top: 110px;
@@ -94,6 +330,136 @@
 			img{
 				height: 230px;
 			}
+		} */
+		
+		/* .field-name-field-image + .field-name-title-field{
+			height: 321px;
+			position: relative;
+			h1{
+				padding-top: 180px;
+			}
+		}
+		.field.field-name-field-image{
+			width: 100%;
+			margin: 0px;
+			padding: 0px;
+			position: absolute;
+			top: 329px;
+			left: 0px;
+			z-index: -1;
+			height: 345px;
+			overflow: hidden;
+			div, img{
+				height:100%;
+			}
+		} */
+		.field-name-field-image + .field-name-title-field{
+			height: 345px;
+			position: absolute;
+			top: 220px;
+			h1{
+				padding-top: 180px;
+			}
+		}
+		.field.field-name-field-image{
+			width: 100%;
+			margin: 0px;
+			padding: 0px;
+			position: absolute;
+			top: 220px;
+			left: 0px;
+			z-index: -1;
+			height: 345px;
+			overflow: hidden;
+			div, img{
+				height:100%;
+			}
+		}
+		.container{
+			margin-top: 370px;
 		}
 	}
-}
+	/*fin Article */
+	
+	/*Practical tools*/
+	.page-practical-tools{
+		.content{
+			display: none;
+		}
+		.form-type-checkbox{
+			float: left;
+			width: 50%;
+		}
+	}
+	.form-item-relevant-for, .form-item-languages{
+		border-top: none;
+		border-bottom: none;
+		clear: both;
+		/* margin-bottom: 2em; */
+		> label{
+			width: 100%;
+			padding: 0.2em 1em;
+			background-color: @bg-color-3;
+			&:after{
+				color: @text-color-2;
+				content: "\e258";
+				font-family: 'Glyphicons Halflings';
+				float: right;
+			}
+			&.closeLabel{
+				margin-bottom: 0;
+				&:after{
+					content: "\e259";
+				}
+			}
+		}
+	}
+	#search{
+		margin-top: 1.5em;
+		margin-bottom: 0em;
+		border-top: none;
+		border-bottom: none;
+	}
+		/*detail*/
+		/* border-bottom: 1px dotted @border-default-color; */
+		.pane-node-field-access-tool-link{
+			&:first-child{
+				padding-top: 0 !important;
+				border-top: none;
+				border-bottom: none;
+			}
+		}
+		.field-label-inline .field-label, .field-label-inline .field-items{
+			float: none;
+			width: 95%;
+		}
+		.pane-node-field-access-tool-link, .pane-node-field-external-urls{
+			.field-label-inline .field-label, .field-label-inline .field-items{
+				float: left;
+				width: 50%;
+			}
+		}
+		/*FIN detail*/
+	/*FIN Practical tools*/
+	
+	/*Publications*/
+	.page-publications{
+		.content{
+			display: none;
+		}
+	}
+	#edit-relevant-for, #edit-languages{
+		.form-item{
+			float: left;
+			width: 50%;
+		}
+	}
+	#publications_slideshow{
+		display: none;
+	}
+	.publication-item .field-name-field-cover-image{
+		display: none;
+	}
+	/*FIN Publications*/
+/*FIn container*/
+}}

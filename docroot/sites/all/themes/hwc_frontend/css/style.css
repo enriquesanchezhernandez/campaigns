@@ -10587,6 +10587,36 @@ div[class*='node-'] .more-link {
     width: 100%;
   }
 }
+@media only screen and (max-width: 1200px) {
+  header.navbar-default .campaigns-header .navbar-header a.pull-left {
+    padding-right: 1em;
+    margin-right: 1em;
+  }
+  header.navbar-default .campaigns-header .navbar-header a.pull-left img[alt="Home"] {
+    width: 140px;
+    height: 140px;
+  }
+  header.navbar-default .campaigns-header .navbar-header img[alt="EU-OSHA logo"] {
+    width: 150px;
+    height: 140px;
+    padding-top: 10px;
+  }
+  header.navbar-default .campaigns-header .navbar-header img[alt="EU logo"] {
+    width: 70px;
+    height: 137px;
+    padding-right: 1em !important;
+  }
+  header.navbar-default .campaigns-header .navbar-header .header-text {
+    font-size: 20px;
+    width: 150px;
+    padding-top: 2.5em;
+    padding-left: 0.8em;
+  }
+  header.navbar-default .campaigns-header .navbar-header .header_top_bar .region-above-header {
+    min-width: 250px;
+  }
+  /*fin header*/
+}
 @media only screen and (max-width: 992px) {
   /*Header*/
   header.navbar-default .campaigns-header .navbar-header .row {
@@ -10631,18 +10661,23 @@ div[class*='node-'] .more-link {
   header.navbar-default .campaigns-header .navbar-header .region-header #block-search-form .input-group input {
     width: 150px;
     float: right;
+    padding: 0px 12px;
   }
   header.navbar-default .campaigns-header .navbar-header .region-header #block-menu-menu-header-login {
     float: right;
     margin-left: 0px;
     padding-top: 5px;
-    padding-right: 125px;
+    padding-right: 116px;
+  }
+  header.navbar-default .campaigns-header .navbar-header .region-header #block-menu-menu-header-login ul li a {
+    min-width: 80px;
   }
   header.navbar-default .campaigns-header .navbar-header .region-header #block-lang-dropdown-language {
     float: right;
     right: 0;
     padding-right: 46px;
     position: initial;
+    position: inherit;
   }
   /*fin header*/
   /*footer*/
@@ -10681,6 +10716,7 @@ div[class*='node-'] .more-link {
     margin-right: 1em;
   }
   header.navbar-default .campaigns-header .navbar-header a.pull-left img[alt="Home"] {
+    margin-left: 15px;
     width: 130px;
     height: 130px;
   }
@@ -10690,21 +10726,23 @@ div[class*='node-'] .more-link {
     padding-top: 10px;
   }
   header.navbar-default .campaigns-header .navbar-header img[alt="EU logo"] {
-    width: 70px;
+    width: 55px;
     height: 137px;
-    padding-right: 1em !important;
+    padding-right: 0em !important;
+    border-right: none;
   }
   header.navbar-default .campaigns-header .navbar-header .header-text {
-    font-size: 18px;
+    font-size: 16px;
     width: 120px;
-    padding-top: 3em;
+    padding-top: 2.5em;
     padding-left: 0.8em;
   }
   header.navbar-default .campaigns-header .navbar-header .header_top_bar .region-above-header {
     display: none;
   }
   header.navbar-default .campaigns-header .navbar-header .region-header #block-search-form {
-    margin-top: 2em;
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
   }
   header.navbar-default .campaigns-header .navbar-header .region-header #block-search-form .input-group {
     width: inherit;
@@ -10712,12 +10750,20 @@ div[class*='node-'] .more-link {
   header.navbar-default .campaigns-header .navbar-header .region-header #block-search-form .input-group input {
     width: 150px;
     float: right;
+    height: 25px;
+  }
+  header.navbar-default .campaigns-header .navbar-header .region-header #block-search-form .input-group button {
+    height: 25px;
+    width: 25px;
   }
   header.navbar-default .campaigns-header .navbar-header .region-header #block-menu-menu-header-login {
     float: right;
     margin-left: 0px;
     padding-top: 5px;
-    padding-right: 125px;
+    padding-right: 116px;
+  }
+  header.navbar-default .campaigns-header .navbar-header .region-header #block-menu-menu-header-login ul li a {
+    min-width: 80px;
   }
   header.navbar-default .campaigns-header .navbar-header .region-header #block-lang-dropdown-language {
     float: right;
@@ -10725,25 +10771,6 @@ div[class*='node-'] .more-link {
     padding-right: 46px;
     position: initial;
   }
-  /*fin header*/
-  /*footer*/
-  /*fin footer*/
-  /*home*/
-  /*fin home*/
-  /* Article */
-  /* Article */
-  .node-article .field-name-field-image + .field-name-title-field {
-    height: 230px;
-  }
-  .node-article .field-name-field-image + .field-name-title-field h1 {
-    padding-top: 110px;
-  }
-  .node-article .field.field-name-field-image img {
-    height: 230px;
-  }
-}
-@media only screen and (max-width: 480px) {
-  /*header*/
   .header-text,
   .header_top_bar,
   #block-lang-dropdown-language,
@@ -10765,24 +10792,6 @@ div[class*='node-'] .more-link {
     margin-left: 0;
     margin-right: 0;
     width: auto;
-  }
-  header.navbar-default .campaigns-header .navbar-header [class*=col-sm-],
-  header.navbar-default .campaigns-header .navbar-header [class*=col-lg-] {
-    /* padding-left: 15px;
-			padding-right: 15px; */
-  }
-  header.navbar-default .campaigns-header .navbar-header img[alt="Home"] {
-    margin-left: 5px;
-  }
-  header.navbar-default .campaigns-header .navbar-header img:nth-child(3) {
-    border-right: none;
-    padding: 95px 0 0;
-    width: 65px;
-    height: auto;
-  }
-  header.navbar-default .navbar-header a.pull-left {
-    margin-right: 0.5em;
-    padding-right: 0.5em;
   }
   header.navbar-default .navbar-collapse.in {
     overflow-y: visible;
@@ -10830,11 +10839,15 @@ div[class*='node-'] .more-link {
     margin-top: 1em;
   }
   .xs-menu #block-search-form {
+    display: inline-table;
     float: left;
-    margin-left: 15%;
+    margin-left: 40%;
   }
   .xs-menu .navbar-toggle {
     border: none;
+    margin-top: 0.2em;
+    margin-bottom: 0;
+    padding: 9px 0px;
   }
   .xs-menu .navbar-toggle:hover,
   .xs-menu .navbar-toggle:focus {
@@ -10843,7 +10856,30 @@ div[class*='node-'] .more-link {
   .xs-menu .navbar-toggle .icon-bar {
     background-color: #ffffff;
   }
-  /*FIN header*/
+  .navbar-toggle .icon-bar {
+    position: relative;
+    transition: all 500ms ease;
+  }
+  .navbar-toggle.active .icon-bar:nth-of-type(1) {
+    top: 6px;
+    transform: rotate(45deg);
+    background-color: orange;
+  }
+  .navbar-toggle.active .icon-bar:nth-of-type(3) {
+    background-color: transparent;
+    opacity: 0;
+  }
+  .navbar-toggle.active .icon-bar:nth-of-type(2) {
+    top: 6px;
+    transform: rotate(-45deg);
+    background-color: #fff;
+  }
+  .navbar-toggle.active .icon-bar:nth-of-type(4) {
+    top: -6px;
+    transform: rotate(45deg);
+    background-color: #fff;
+  }
+  /*fin header*/
   /*footer*/
   .footer {
     min-height: 1px;
@@ -10863,7 +10899,10 @@ div[class*='node-'] .more-link {
     width: auto;
     margin: 0 auto;
   }
-  /*FIN footer*/
+  .footer div.on-the-web span:last-child {
+    margin-right: 0;
+  }
+  /*fin footer*/
   /*container*/
   .breadcrumb {
     display: none;
@@ -10878,6 +10917,7 @@ div[class*='node-'] .more-link {
   .list-inline {
     margin-left: 0;
   }
+  /*home*/
   /*home Slider*/
   #homepage_slider {
     background: none;
@@ -10885,7 +10925,6 @@ div[class*='node-'] .more-link {
     height: 300px !important;
   }
   /*FIN home Slider*/
-  /*home*/
   .tools-and-resources-block,
   #block-views-news-oshnews-latest,
   #block-views-frontpage-events-block {
@@ -10974,24 +11013,46 @@ div[class*='node-'] .more-link {
   #block-osha-newsletter-osha-newsletter-image .captcha {
     margin-left: -338px;
   }
-  /*FIN home*/
+  /*fin home*/
   /* Article */
   .node-article {
     /* .field-name-field-image + .field-name-title-field{
-			height: 145px;
+			height: 230px;
 			h1{
-				padding-top: 60px;
+				padding-top: 110px;
 			}
 		}
 		.field.field-name-field-image{
 			img{
-				height: 145px;
+				height: 230px;
+			}
+		} */
+    /* .field-name-field-image + .field-name-title-field{
+			height: 321px;
+			position: relative;
+			h1{
+				padding-top: 180px;
+			}
+		}
+		.field.field-name-field-image{
+			width: 100%;
+			margin: 0px;
+			padding: 0px;
+			position: absolute;
+			top: 329px;
+			left: 0px;
+			z-index: -1;
+			height: 345px;
+			overflow: hidden;
+			div, img{
+				height:100%;
 			}
 		} */
   }
   .node-article .field-name-field-image + .field-name-title-field {
-    height: 321px;
-    position: relative;
+    height: 345px;
+    position: absolute;
+    top: 220px;
   }
   .node-article .field-name-field-image + .field-name-title-field h1 {
     padding-top: 180px;
@@ -11001,7 +11062,7 @@ div[class*='node-'] .more-link {
     margin: 0px;
     padding: 0px;
     position: absolute;
-    top: 329px;
+    top: 220px;
     left: 0px;
     z-index: -1;
     height: 345px;
@@ -11011,7 +11072,10 @@ div[class*='node-'] .more-link {
   .node-article .field.field-name-field-image img {
     height: 100%;
   }
-  /*FIN Article */
+  .node-article .container {
+    margin-top: 370px;
+  }
+  /*fin Article */
   /*Practical tools*/
   .page-practical-tools .content {
     display: none;
@@ -11091,34 +11155,133 @@ div[class*='node-'] .more-link {
     display: none;
   }
   /*FIN Publications*/
+  /*FIn container*/
+}
+@media only screen and (max-width: 480px) {
+  /*Header*/
+  header.navbar-default .campaigns-header .navbar-header .row {
+    padding: 0px;
+  }
+  header.navbar-default .campaigns-header .navbar-header .row img[alt="Home"] {
+    margin-left: 15px;
+  }
+  header.navbar-default .campaigns-header .navbar-header a.pull-left {
+    padding-right: .5em;
+    margin-right: .5em;
+  }
+  header.navbar-default .campaigns-header .navbar-header a.pull-left img[alt="Home"] {
+    width: 95px;
+    height: 95px;
+  }
+  header.navbar-default .campaigns-header .navbar-header img[alt="EU-OSHA logo"] {
+    width: 125px;
+    height: 100px;
+    padding-top: 10px;
+  }
+  header.navbar-default .campaigns-header .navbar-header img[alt="EU logo"] {
+    width: 40px;
+    height: 90px;
+    padding: 63px 0 0;
+  }
+  header.navbar-default .campaigns-header .navbar-header .header-text {
+    font-size: 18px;
+    width: 120px;
+    padding-top: 3em;
+    padding-left: 0.8em;
+  }
+  header.navbar-default .campaigns-header .navbar-header .header_top_bar .region-above-header {
+    display: none;
+  }
+  header.navbar-default .campaigns-header .navbar-header .region-header #block-search-form {
+    margin-top: 0.5em;
+  }
+  header.navbar-default .campaigns-header .navbar-header .region-header #block-search-form .input-group {
+    width: inherit;
+  }
+  header.navbar-default .campaigns-header .navbar-header .region-header #block-search-form .input-group input {
+    width: 150px;
+    float: right;
+    height: 25px;
+  }
+  header.navbar-default .campaigns-header .navbar-header .region-header #block-search-form .input-group button {
+    height: 25px;
+  }
+  .xs-menu {
+    background-color: #003399;
+    padding-left: 15px;
+    padding-right: 15px;
+    margin-top: 1em;
+  }
+  .xs-menu #block-search-form {
+    display: inline-table;
+    float: left;
+    margin-left: 30%;
+  }
+  /*FIN header*/
+  /*container*/
+  /*home*/
+  /*FIN home*/
+  /* Article */
+  .node-article {
+    /* height: 145px; */
+  }
+  /*FIN Article */
 }
 @media only screen and (max-width: 320px) {
   /*header*/
-  header.navbar-default .campaigns-header .navbar-header img[alt="Home"] {
-    height: auto;
-    width: 105px;
+  header.navbar-default .campaigns-header .navbar-header .row {
+    padding: 0px;
+  }
+  header.navbar-default .campaigns-header .navbar-header .row img[alt="Home"] {
+    margin-left: 15px;
+  }
+  header.navbar-default .campaigns-header .navbar-header a.pull-left {
+    padding-right: .5em;
+    margin-right: .5em;
+  }
+  header.navbar-default .campaigns-header .navbar-header a.pull-left img[alt="Home"] {
+    width: 90px;
+    height: 90px;
   }
   header.navbar-default .campaigns-header .navbar-header img[alt="EU-OSHA logo"] {
-    height: auto;
-    width: 115px;
+    width: 120px;
+    height: 95px;
+    padding-top: 10px;
   }
-  header.navbar-default .campaigns-header .navbar-header img:nth-child(3) {
-    padding-top: 60px;
-    height: auto;
-    width: 35px;
+  header.navbar-default .campaigns-header .navbar-header img[alt="EU logo"] {
+    width: 40px;
+    height: 90px;
+    padding: 63px 0 0;
+  }
+  header.navbar-default .campaigns-header .navbar-header .header-text {
+    font-size: 18px;
+    width: 120px;
+    padding-top: 3em;
+    padding-left: 0.8em;
+  }
+  header.navbar-default .campaigns-header .navbar-header .header_top_bar .region-above-header {
+    display: none;
+  }
+  header.navbar-default .campaigns-header .navbar-header .region-header #block-search-form {
+    margin-top: .5em;
+  }
+  header.navbar-default .campaigns-header .navbar-header .region-header #block-search-form .input-group {
+    width: inherit;
+  }
+  header.navbar-default .campaigns-header .navbar-header .region-header #block-search-form .input-group input {
+    width: 150px;
+    float: right;
   }
   .xs-menu {
-    padding-left: 5px;
-    padding-right: 5px;
+    background-color: #003399;
+    padding-left: 15px;
+    padding-right: 15px;
+    margin-top: 1em;
   }
   .xs-menu #block-search-form {
-    margin-left: 5px;
-  }
-  .xs-menu #block-search-form .input-group {
-    width: 200px;
-  }
-  .xs-menu #block-search-form input {
-    width: 170px;
+    display: inline-table;
+    float: left;
+    margin-left: 20%;
   }
   /*FIN header*/
   /*home*/
@@ -11138,13 +11301,7 @@ div[class*='node-'] .more-link {
   }
   /*FIN home*/
   /* Article */
-  .node-article .field-name-field-image + .field-name-title-field {
-    height: 90px;
-  }
-  .node-article .field-name-field-image + .field-name-title-field h1 {
-    padding-top: 0px;
-  }
-  .node-article .field.field-name-field-image img {
-    height: 90px;
+  .node-article {
+    /* height: 90px; */
   }
 }

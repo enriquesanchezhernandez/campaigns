@@ -8,4 +8,9 @@ jQuery(document).ready(function() {
 		jQuery(this).toggleClass("closeLabel")
 		jQuery("#edit-languages").toggle();
 	});
+
+	/*by endika*/
+	jQuery(".navbar-toggle").on("click", function () {
+    	jQuery(this).toggleClass("active");
+	});
 });
