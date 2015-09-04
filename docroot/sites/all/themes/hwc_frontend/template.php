@@ -223,6 +223,16 @@ function hwc_frontend_panels_flexible($vars) {
   return $output;
 }
 function hwc_frontend_preprocess_node(&$vars) {
+  if ($vars['view_mode'] == 'full' && $vars['type'] == 'events') {
+    if (isset($vars['field_start_date'])) {
+      $end_date = $vars['field_start_date'][0]['value2'];
+      $date_diff = strtotime($end_date) - strtotime('now');
+      if ($date_diff < 0 ) {
+        $vars['classes_array'][] = 'page-past-event';
+      }
+    }
+  }
+
   if (isset($vars['content']['links']['node']['#links']['node-readmore'])) {
     $vars['content']['links']['node']['#links']['node-readmore']['title'] = t('See more');
   }
