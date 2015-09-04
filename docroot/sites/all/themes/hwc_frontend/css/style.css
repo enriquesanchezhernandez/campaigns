@@ -7229,6 +7229,11 @@ header.navbar-default .navbar-header #block-lang-dropdown-language {
   bottom: -9px;
   right: 0;
 }
+header.navbar-default .navbar-header #block-lang-dropdown-language select {
+  background-color: #c1e000;
+  color: #003399;
+  border: none;
+}
 header.navbar-default .navbar-header .lang-dropdown-select-element {
   float: right;
   box-shadow: inset 0 0px 0px rgba(0, 0, 0, 0);
@@ -7523,6 +7528,13 @@ body select {
 }
 body iframe {
   border: 1px solid;
+}
+body a {
+  text-decoration: none;
+}
+body a:hover,
+body a:focus {
+  text-decoration: none !important;
 }
 /* FIN para toda la aplicacion */
 /* contenedor principal */
@@ -9314,11 +9326,92 @@ div[class*='node-'] .more-link {
   font-weight: bold;
   border-top: 1px dotted #749b00;
   width: auto;
+  width: 50%;
   padding: 4em 3em 3em;
   background: url("../images/content/calendar.png") no-repeat center 1em;
-  width: 50%;
   margin: 0 auto;
   text-align: center;
+}
+.node-events .field-name-field-speaker {
+  border-top: 1px dotted #749b00;
+  margin-top: 2em;
+  padding-top: 2em;
+}
+.node-events .field-name-field-speaker > .field-label {
+  color: #749b00;
+  margin-bottom: 2em;
+}
+.node-events .field-name-field-speaker > .field-items > .field-item {
+  width: 20%;
+  float: left;
+}
+.node-events .field-name-field-speaker > .field-items > .field-item h2 {
+  display: none;
+}
+.node-events .field-name-field-speaker > .field-items > .field-item .field-name-title-field {
+  font-weight: bold;
+  margin-bottom: 0.5em;
+}
+.node-events .field-collection-container {
+  clear: both;
+  margin-bottom: 2em;
+  padding-bottom: 2em;
+}
+.node-events .field-collection-container .field-name-field-schedule {
+  border-top: 1px dotted #749b00;
+  margin-top: 2em;
+  padding-top: 2em;
+}
+.node-events .field-collection-container .field-name-field-schedule > .field-label {
+  color: #749b00;
+  margin-bottom: 2em;
+}
+.node-events .field-collection-container .field-name-field-schedule > .field-items > .field-item {
+  background-color: #e2e2e3;
+}
+.node-events .field-collection-container .field-name-field-schedule > .field-items > .field-item .field-collection-view {
+  border: none;
+}
+.node-events .field-collection-container .field-name-field-schedule .field-name-field-talking-date {
+  width: 20%;
+  float: left;
+}
+.node-events .field-collection-container .field-name-field-schedule .field-name-field-talking-date .field-label {
+  width: 100%;
+}
+.node-events .field-collection-container .field-name-field-schedule .field-name-field-talking-speaker {
+  float: left;
+}
+.node-events .field-collection-container .field-name-field-schedule .field-name-field-talking-speaker h2 {
+  display: none;
+}
+.node-events .field-collection-container .field-name-field-schedule .field-name-field-talking-title,
+.node-events .field-collection-container .field-name-field-schedule .field-name-field-talking-files {
+  float: left;
+  width: 65%;
+}
+.node-events .field-collection-container .field-name-field-schedule .field-name-field-venue {
+  float: left;
+}
+.node-events .field-name-field-related-documents,
+.node-events .field-name-field-contact-name,
+.node-events .field-name-field-contact-email,
+.node-events .field-name-field-organizer,
+.node-events .field-name-field-location {
+  clear: both;
+  padding-bottom: 1.5em;
+}
+.node-events .field-name-field-related-documents .field-label,
+.node-events .field-name-field-contact-name .field-label,
+.node-events .field-name-field-contact-email .field-label,
+.node-events .field-name-field-organizer .field-label,
+.node-events .field-name-field-location .field-label,
+.node-events .field-name-field-related-documents .field-items,
+.node-events .field-name-field-contact-name .field-items,
+.node-events .field-name-field-contact-email .field-items,
+.node-events .field-name-field-organizer .field-items,
+.node-events .field-name-field-location .field-items {
+  float: left;
 }
 .views-exposed-form #edit-search-api-views-fulltext-wrapper {
   padding-right: 0em;
@@ -10692,6 +10785,49 @@ div[class*='node-'] .more-link {
   /*fin footer*/
   /*home*/
   /*fin home*/
+  /*Practical tools*/
+  .page-practical-tools .content p {
+    display: none;
+  }
+  .page-practical-tools .form-type-checkbox {
+    float: left;
+    width: 20%;
+  }
+  .page-practical-tools .form-type-checkbox label {
+    white-space: nowrap;
+    font-size: 12px;
+  }
+  .page-practical-tools .form-type-checkbox label:before {
+    margin-right: 3px;
+  }
+  .form-item-relevant-for,
+  .form-item-languages {
+    border-top: none;
+    border-bottom: none;
+    clear: both;
+    /* margin-bottom: 2em; */
+  }
+  .form-item-relevant-for > label,
+  .form-item-languages > label {
+    width: 100%;
+    padding: 0.2em 2em 0.2em 1em;
+    background: #e2e2e3 url("../images/content/slideDown.png") no-repeat 95% center;
+    /* &:after{
+				color: @text-color-2;
+				content: "\e258";
+				font-family: 'Glyphicons Halflings';
+				float: right;
+			} */
+  }
+  .form-item-relevant-for > label.closeLabel,
+  .form-item-languages > label.closeLabel {
+    margin-bottom: 0;
+    background-image: url("../images/content/slideUp.png");
+    /* &:after{
+					content: "\e259";
+				} */
+  }
+  /*FIN Practical tools*/
   /* Article */
   .node-article .field-name-field-image + .field-name-title-field {
     height: 300px;
@@ -10701,6 +10837,74 @@ div[class*='node-'] .more-link {
   }
   .node-article .field.field-name-field-image img {
     height: 300px;
+  }
+  /*fin article*/
+  /*events*/
+  .node-events .field-name-field-speaker > .field-items > .field-item {
+    width: 25%;
+  }
+  /*Press room*/
+  .view-press-releases .views-row {
+    padding: 0.5em 30px 2em 30px;
+  }
+  #mini-panel-press_room_blocks {
+    padding: 5px 30px;
+  }
+  .node-type-press-release .title-alt .form-item {
+    padding-right: 15px;
+    padding-left: 15px;
+  }
+  .node-type-press-release #block-system-main .node-press-release {
+    padding-right: 30px;
+    padding-left: 30px;
+  }
+  .node-type-press-release #block-system-main .node-press-release iframe {
+    width: 60%;
+    margin-bottom: 30px;
+  }
+  .node-type-press-release #mini-panel-press_room_blocks {
+    border: none;
+  }
+  .node-type-press-release #mini-panel-press_room_blocks .pane-osha-press-release-osha-press-kit {
+    display: block;
+    border-top: none;
+  }
+  /*end press room*/
+  /*news*/
+  .view-news .views-row {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+  .node-type-news .node-news {
+    padding-left: 30px;
+    padding-right: 30px;
+  }
+  /*end news*/
+  /*clases para toda la web*/
+  .container {
+    width: 100%;
+    padding-left: 0px;
+    padding-right: 0px;
+  }
+  .container-fluid {
+    padding-right: 0px;
+    padding-left: 0px;
+  }
+  .section-introduction .field-type-text-with-summary {
+    padding-right: 30px;
+    padding-left: 30px;
+  }
+  .breadcrumb {
+    padding-right: 30px;
+    padding-left: 30px;
+  }
+  h1 {
+    padding-right: 15px;
+    padding-left: 15px;
+  }
+  .back-to-link {
+    padding-right: 40px;
+    padding-left: 30px;
   }
 }
 @media only screen and (max-width: 767px) {
@@ -11050,6 +11254,7 @@ div[class*='node-'] .more-link {
 		} */
   }
   .node-article .field-name-field-image + .field-name-title-field {
+    z-index: -1;
     height: 345px;
     position: absolute;
     top: 220px;
@@ -11064,7 +11269,7 @@ div[class*='node-'] .more-link {
     position: absolute;
     top: 220px;
     left: 0px;
-    z-index: -1;
+    z-index: -2;
     height: 345px;
     overflow: hidden;
   }
@@ -11072,45 +11277,19 @@ div[class*='node-'] .more-link {
   .node-article .field.field-name-field-image img {
     height: 100%;
   }
-  .node-article .container {
+  .node-article .field-name-field-image + .field-name-title-field + .container {
     margin-top: 370px;
+  }
+  .node-article .field-name-field-image + .field-name-title-field + .container.active {
+    margin-top: 150px;
   }
   /*fin Article */
   /*Practical tools*/
-  .page-practical-tools .content {
-    display: none;
-  }
   .page-practical-tools .form-type-checkbox {
-    float: left;
     width: 50%;
   }
-  .form-item-relevant-for,
-  .form-item-languages {
-    border-top: none;
-    border-bottom: none;
-    clear: both;
-    /* margin-bottom: 2em; */
-  }
-  .form-item-relevant-for > label,
-  .form-item-languages > label {
-    width: 100%;
-    padding: 0.2em 1em;
-    background-color: #e2e2e3;
-  }
-  .form-item-relevant-for > label:after,
-  .form-item-languages > label:after {
-    color: #003399;
-    content: "\e258";
-    font-family: 'Glyphicons Halflings';
-    float: right;
-  }
-  .form-item-relevant-for > label.closeLabel,
-  .form-item-languages > label.closeLabel {
-    margin-bottom: 0;
-  }
-  .form-item-relevant-for > label.closeLabel:after,
-  .form-item-languages > label.closeLabel:after {
-    content: "\e259";
+  .page-practical-tools .form-type-checkbox label {
+    font-size: 14px;
   }
   #search {
     margin-top: 1.5em;
@@ -11128,7 +11307,11 @@ div[class*='node-'] .more-link {
   .field-label-inline .field-label,
   .field-label-inline .field-items {
     float: none;
-    width: 95%;
+  }
+  .field-name-field-country .field-label ~ .field-items:before,
+  .field-name-field-tool-type .field-label ~ .field-items:before,
+  .field-name-field-provider .field-label ~ .field-items:before {
+    content: "" !important;
   }
   .pane-node-field-access-tool-link .field-label-inline .field-label,
   .pane-node-field-external-urls .field-label-inline .field-label,
@@ -11155,7 +11338,142 @@ div[class*='node-'] .more-link {
     display: none;
   }
   /*FIN Publications*/
+  /*events*/
+  .node-events .field-name-field-speaker > .field-items > .field-item {
+    width: 100%;
+  }
+  .node-events .field-name-field-speaker img {
+    display: none;
+  }
   /*FIn container*/
+  /*Press room*/
+  .page-press-room .section-introduction {
+    display: none;
+  }
+  .page-press-room .node-press-release h3 a:before {
+    content: "> ";
+  }
+  .view-press-releases .views-row {
+    padding: 0.5em 15px 2em 15px;
+    border-bottom: none;
+  }
+  .view-press-releases .views-row:first-child {
+    border-top: none;
+  }
+  #mini-panel-press_room_blocks {
+    padding: 5px 0px 0px 0px;
+  }
+  #mini-panel-press_room_blocks .pane-osha-press-release,
+  #mini-panel-press_room_blocks .pane-press-contacts,
+  #mini-panel-press_room_blocks .pane-osha-press-release-osha-press-kit {
+    padding-top: 25px;
+    padding-bottom: 25px;
+    padding-right: 15px;
+    padding-left: 15px;
+    border: none;
+    border-bottom: 1px dotted #749b00;
+  }
+  #mini-panel-press_room_blocks .pane-osha-press-release {
+    border-top: 1px dotted #749b00;
+  }
+  #mini-panel-press_room_blocks .pane-osha-press-release-osha-press-kit {
+    display: none;
+  }
+  .node-type-press-release .title-alt .form-item {
+    padding-right: 15px;
+    padding-left: 15px;
+  }
+  .node-type-press-release #block-system-main .node-press-release {
+    padding-right: 15px;
+    padding-left: 15px;
+  }
+  .node-type-press-release #block-system-main .node-press-release h2 {
+    text-align: center;
+    margin-bottom: 2em;
+  }
+  .node-type-press-release #block-system-main .node-press-release iframe {
+    width: 100%;
+    height: 280px;
+  }
+  .node-type-press-release #mini-panel-press_room_blocks .pane-osha-press-release,
+  .node-type-press-release #mini-panel-press_room_blocks .pane-press-contacts,
+  .node-type-press-release #mini-panel-press_room_blocks .pane-osha-press-release-osha-press-kit {
+    padding-top: 25px;
+    padding-bottom: 0px;
+    padding-right: 15px;
+    padding-left: 15px;
+    border: none;
+  }
+  .node-type-press-release #mini-panel-press_room_blocks .pane-osha-press-release h2,
+  .node-type-press-release #mini-panel-press_room_blocks .pane-press-contacts h2,
+  .node-type-press-release #mini-panel-press_room_blocks .pane-osha-press-release-osha-press-kit h2 {
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: -15px;
+    margin-left: -15px;
+    text-align: left;
+    background-color: #e2e2e3;
+    transition: all 500ms ease;
+    position: relative;
+    cursor: pointer;
+  }
+  .node-type-press-release #mini-panel-press_room_blocks .pane-osha-press-release h2:before,
+  .node-type-press-release #mini-panel-press_room_blocks .pane-press-contacts h2:before,
+  .node-type-press-release #mini-panel-press_room_blocks .pane-osha-press-release-osha-press-kit h2:before {
+    content: url("../images/content/slideDown.png");
+    display: inline-block;
+    float: right;
+    margin-top: 3px;
+  }
+  .node-type-press-release #mini-panel-press_room_blocks .pane-osha-press-release .pane-content,
+  .node-type-press-release #mini-panel-press_room_blocks .pane-press-contacts .pane-content,
+  .node-type-press-release #mini-panel-press_room_blocks .pane-osha-press-release-osha-press-kit .pane-content {
+    display: none;
+  }
+  /*end press room*/
+  /*news*/
+  .page-news .main-container h1 {
+    border-bottom: 1px dotted #749b00;
+    padding-bottom: 0.7em;
+  }
+  .page-news .view-news .views-row {
+    padding-left: 0px;
+    padding-right: 0px;
+  }
+  .page-news .view-news .views-row .field-name-field-image {
+    display: none;
+  }
+  .page-news .view-news .views-row .more-link {
+    display: inline-block;
+    padding-left: 0;
+  }
+  .node-type-news .node-news {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+  .node-type-news h2 {
+    text-align: center;
+  }
+  .node-type-news .field-type-image {
+    margin-right: 0em;
+    margin-bottom: 1em;
+  }
+  .node-type-news .field-type-image img {
+    width: 100%;
+    display: block;
+    padding: 0 7em;
+  }
+  /*end news*/
+  /*clases para toda la web*/
+  .section-introduction .field-type-text-with-summary {
+    padding-right: 15px;
+    padding-left: 15px;
+  }
+  .back-to-link {
+    border: none;
+  }
 }
 @media only screen and (max-width: 480px) {
   /*Header*/
@@ -11226,6 +11544,11 @@ div[class*='node-'] .more-link {
     /* height: 145px; */
   }
   /*FIN Article */
+  /*news*/
+  .node-type-news .field-type-image img {
+    padding: 0 3em;
+  }
+  /*end news*/
 }
 @media only screen and (max-width: 320px) {
   /*header*/

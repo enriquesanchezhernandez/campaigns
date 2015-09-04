@@ -42,16 +42,21 @@ header.navbar-default{
 		/* languages */
 		#block-lang-dropdown-language{
 			float: right;
-			    position: absolute;
-			    bottom: -9px;
-			    right: 0;
+			position: absolute;
+			bottom: -9px;
+			right: 0;
+			select{
+				background-color: @input-language-default-bg;
+				color: @input-language-default-color;
+				border: none;
+			}
 		}
 		.lang-dropdown-select-element{
 			float: right;
 			box-shadow: inset 0 0px 0px rgba(0, 0, 0, 0);
 			border: none;
 			ul.chosen-results{
-			font-size: @input-language-default-size;
+				font-size: @input-language-default-size;
 			}
 			.chosen-single{
 				border-radius: 0;

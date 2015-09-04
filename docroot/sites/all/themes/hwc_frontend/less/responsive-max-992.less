@@ -99,6 +99,49 @@ header{
 
 /*fin home*/
 
+	/*Practical tools*/
+	.page-practical-tools{
+		.content p{
+			display: none;
+		}
+		.form-type-checkbox{
+			float: left;
+			width: 20%;
+			label{
+				white-space: nowrap;
+				font-size: @size3;
+				&:before{
+					margin-right: 3px;
+				}
+			}
+		}
+	}
+	.form-item-relevant-for, .form-item-languages{
+		border-top: none;
+		border-bottom: none;
+		clear: both;
+		/* margin-bottom: 2em; */
+		> label{
+			width: 100%;
+			padding: 0.2em 2em 0.2em 1em;
+			background: @bg-color-3 url("../images/content/slideDown.png") no-repeat 95% center;
+			/* &:after{
+				color: @text-color-2;
+				content: "\e258";
+				font-family: 'Glyphicons Halflings';
+				float: right;
+			} */
+			&.closeLabel{
+				margin-bottom: 0;
+				background-image: url("../images/content/slideUp.png");
+				/* &:after{
+					content: "\e259";
+				} */
+			}
+		}
+	}
+	/*FIN Practical tools*/
+	
 /* Article */
 .node-article{
 	.field-name-field-image + .field-name-title-field{
@@ -112,6 +155,97 @@ header{
 			height: 300px;
 		}
 	}
+}
+/*fin article*/
+/*events*/
+.node-events{
+	.field-name-field-speaker{
+		> .field-items > .field-item{
+			width: 25%;
+		}
+	}
+}
+
+/*Press room*/
+.view-press-releases {
+	.views-row {
+	    padding: 0.5em 30px 2em 30px;
+	}
+}
+#mini-panel-press_room_blocks {
+    padding: 5px 30px;
+}
+//detail
+.node-type-press-release{
+	.title-alt{
+		.form-item{
+			padding-right: 15px;
+			padding-left: 15px;
+		}
+	}
+	#block-system-main{
+		.node-press-release{
+			padding-right: 30px;
+			padding-left: 30px;
+			iframe{
+				width: 60%;
+				margin-bottom: 30px; 
+			}
+		}
+	}
+	#mini-panel-press_room_blocks{
+		border: none;
+		.pane-osha-press-release-osha-press-kit{
+    		display: block;
+    		border-top: none;
+    	}
+	}
+}
+/*end press room*/
+
+/*news*/
+.view-news{
+	.views-row{
+		padding-left: 15px;
+    	padding-right: 15px;
+	}
+}
+//detail
+.node-type-news{
+	.node-news {
+	    padding-left: 30px;
+	    padding-right: 30px;
+	}
+}
+/*end news*/
+
+/*clases para toda la web*/
+.container{
+	width: 100%;
+	padding-left: 0px;
+    padding-right: 0px;
+}
+.container-fluid{
+	padding-right: 0px;
+	padding-left: 0px;
+}
+.section-introduction{
+	.field-type-text-with-summary{
+		padding-right: 30px;
+		padding-left: 30px;
+	}
+}
+.breadcrumb{
+	padding-right: 30px;
+	padding-left: 30px;
+}
+h1{
+	padding-right: 15px;
+	padding-left: 15px;
+}
+.back-to-link {
+	padding-right: 40px;
+	padding-left: 30px;
 }
 
 }//end media

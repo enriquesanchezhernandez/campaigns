@@ -27,6 +27,12 @@
 		iframe{
 			border: 1px solid;
 		}
+		a{
+			text-decoration: none;
+			&:hover, &:focus{
+				text-decoration: none !important;
+			}
+		}
 	}
 /* FIN para toda la aplicacion */
 
@@ -1860,13 +1866,78 @@
 		font-weight: bold;
 		border-top: 1px dotted @border-default-color;
 		width: auto;
+		width: 50%;
 		padding: 4em 3em 3em;
 		background: url("../images/content/calendar.png") no-repeat center 1em;
-
-		width: 50%;
 		margin: 0 auto;
 		text-align: center;
-
+	}
+	.field-name-field-speaker{
+		border-top: 1px dotted @border-default-color;
+		margin-top: 2em;
+		padding-top: 2em;
+		> .field-label{
+			color: @text-color-3;
+			margin-bottom: 2em;
+		}
+		> .field-items > .field-item{
+			width: 20%;
+			float: left;
+			h2{
+				display: none;
+			}
+			.field-name-title-field{
+				font-weight: bold;
+				margin-bottom: 0.5em;
+			}
+		}
+	}
+	.field-collection-container{
+		clear: both;			
+		margin-bottom: 2em;
+		padding-bottom: 2em;
+		.field-name-field-schedule{
+			border-top: 1px dotted @border-default-color;
+			margin-top: 2em;
+			padding-top: 2em;
+			> .field-label{
+				color: @text-color-3;
+				margin-bottom: 2em;
+			}
+			> .field-items > .field-item{
+				background-color: @bg-color-3;
+				.field-collection-view{
+					border: none;
+				}
+			}
+			.field-name-field-talking-date{
+				width: 20%;
+				float: left;
+				.field-label{
+					width: 100%;
+				}
+			}
+			.field-name-field-talking-speaker{
+			    float: left;
+				h2{
+					display: none;
+				}
+			}
+			.field-name-field-talking-title, .field-name-field-talking-files{
+				float: left;
+				width: 65%;
+			}
+			.field-name-field-venue{
+				float: left;
+			}
+		}
+	}
+	.field-name-field-related-documents, .field-name-field-contact-name, .field-name-field-contact-email, .field-name-field-organizer, .field-name-field-location{
+		clear: both;
+		padding-bottom: 1.5em;
+		.field-label, .field-items{
+			float: left;
+		}
 	}
 }
 
