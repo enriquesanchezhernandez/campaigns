@@ -115,7 +115,7 @@ div.workbench-info-block {
 #block-osha-newsletter-osha-newsletter-image .form-item-captcha-response input {
     max-width: 50px;
 }
-.captcha {
+#campaigns-newsletter-subscribe-form .captcha {
     display: none;
     z-index: 100;
 }
