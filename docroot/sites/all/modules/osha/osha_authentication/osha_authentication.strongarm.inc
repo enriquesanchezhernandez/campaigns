@@ -84,6 +84,22 @@ function osha_authentication_strongarm() {
     'manualAccountConflict' => '1',
     'acctCreation' => 4,
     'ldapUserSynchMappings' => array(
+      1 => array(
+        '[field.field_crm_guid]' => array(
+          'ldap_attr' => '[loginshell]',
+          'user_attr' => '[field.field_crm_guid]',
+          'convert' => 0,
+          'direction' => '1',
+          'user_tokens' => NULL,
+          'config_module' => 'ldap_user',
+          'prov_module' => 'ldap_user',
+          'enabled' => 1,
+          'prov_events' => array(
+            0 => 2,
+            1 => 1,
+          ),
+        ),
+      ),
       2 => array(
         '[userPassword]' => array(
           'ldap_attr' => '[userPassword]',
