@@ -24,7 +24,7 @@ header{
 				img[alt="EU-OSHA logo"]{
 					width: 150px;
 					height: 140px;
-					padding-top: 10px; 
+					padding-top: 10px;
 				}
 				img[alt="EU logo"]{
 					width: 55px;
@@ -383,6 +383,16 @@ header.navbar-default{
 			}
 		}
 	}
+	.node-type-article article{
+		.field-name-body{
+			padding-right: 15px;
+			padding-left: 15px;
+		}
+	}
+	.field-name-field-recommended-articles, .field-name-field-recommended-resources{
+		padding-right: 15px;
+		padding-left: 15px;
+	}
 	/*fin Article */
 	
 	/*Practical tools*/
@@ -401,7 +411,6 @@ header.navbar-default{
 		border-bottom: none;
 	}
 		/*detail*/
-		/* border-bottom: 1px dotted @border-default-color; */
 		.pane-node-field-access-tool-link{
 			&:first-child{
 				padding-top: 0 !important;
@@ -423,6 +432,15 @@ header.navbar-default{
 			.field-label-inline .field-label, .field-label-inline .field-items{
 				float: left;
 				width: 50%;
+			}
+		}
+		.node-type-practical-tool{
+			.panel-1col .panel-col .panel-pane:last-child{
+				border-bottom: 1px dotted @border-default-color;
+				padding-bottom: 2em;
+			}
+			.pane-node-field-provider .field-items, .pane-node-body .field-items, .pane-node-field-implementation-steps .field-items, .pane-node-field-dissemination-used .field-items, .pane-node-field-access-tool-link .field-items, .pane-hwc-practical-tool-hwc-practical-tool-language-list .field-items, .pane-node-field-external-urls .field-items, .pane-node-field-provider .field-label, .pane-node-body .field-label, .pane-node-field-implementation-steps .field-label, .pane-node-field-dissemination-used .field-label, .pane-node-field-access-tool-link .field-label, .pane-hwc-practical-tool-hwc-practical-tool-language-list .field-label, .pane-node-field-external-urls .field-label{
+				width: 95%;
 			}
 		}
 		/*FIN detail*/
@@ -548,7 +566,7 @@ header.navbar-default{
 					content: url("../images/content/slideDown.png");
 					display: inline-block;
 					float: right;
-					margin-top: 3px; 
+					margin-top: 3px;
 				}
 			}
 			.pane-content{
@@ -602,6 +620,26 @@ header.navbar-default{
 }
 /*end news*/
 
+/*infographics*/
+.view-infographic{
+	.views-row {
+		padding-right: 15px;
+		padding-left: 15px;
+		.field-type-image{
+			display: none;//hacemos desaparecer las imagenes de infographics
+		}
+	}
+}
+/*end infographics*/
+
+/*videos*/
+.page-node-108{
+	iframe{
+		width: 100%;
+	}
+}
+/*fin videos*/
+
 /*clases para toda la web*/
 .section-introduction{
 	.field-type-text-with-summary{
@@ -612,5 +650,6 @@ header.navbar-default{
 .back-to-link {
 	border: none;
 }
+
 
 }

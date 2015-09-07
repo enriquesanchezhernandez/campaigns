@@ -769,7 +769,7 @@ pre code {
     width: 750px;
   }
 }
-@media (min-width: 992px) {
+@media (min-width: 993px) {
   .container {
     width: 970px;
   }
@@ -1109,7 +1109,7 @@ pre code {
     margin-left: 0%;
   }
 }
-@media (min-width: 992px) {
+@media (min-width: 993px) {
   .col-md-1, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9, .col-md-10, .col-md-11, .col-md-12 {
     float: left;
   }
@@ -5799,7 +5799,7 @@ button.close {
     width: 300px;
   }
 }
-@media (min-width: 992px) {
+@media (min-width: 993px) {
   .modal-lg {
     width: 900px;
   }
@@ -6388,7 +6388,7 @@ button.close {
     display: inline-block !important;
   }
 }
-@media (min-width: 768px) and (max-width: 991px) {
+@media (min-width: 768px) and (max-width: 992px) {
   .visible-sm {
     display: block !important;
   }
@@ -6403,22 +6403,22 @@ button.close {
     display: table-cell !important;
   }
 }
-@media (min-width: 768px) and (max-width: 991px) {
+@media (min-width: 768px) and (max-width: 992px) {
   .visible-sm-block {
     display: block !important;
   }
 }
-@media (min-width: 768px) and (max-width: 991px) {
+@media (min-width: 768px) and (max-width: 992px) {
   .visible-sm-inline {
     display: inline !important;
   }
 }
-@media (min-width: 768px) and (max-width: 991px) {
+@media (min-width: 768px) and (max-width: 992px) {
   .visible-sm-inline-block {
     display: inline-block !important;
   }
 }
-@media (min-width: 992px) and (max-width: 1199px) {
+@media (min-width: 993px) and (max-width: 1199px) {
   .visible-md {
     display: block !important;
   }
@@ -6433,17 +6433,17 @@ button.close {
     display: table-cell !important;
   }
 }
-@media (min-width: 992px) and (max-width: 1199px) {
+@media (min-width: 993px) and (max-width: 1199px) {
   .visible-md-block {
     display: block !important;
   }
 }
-@media (min-width: 992px) and (max-width: 1199px) {
+@media (min-width: 993px) and (max-width: 1199px) {
   .visible-md-inline {
     display: inline !important;
   }
 }
-@media (min-width: 992px) and (max-width: 1199px) {
+@media (min-width: 993px) and (max-width: 1199px) {
   .visible-md-inline-block {
     display: inline-block !important;
   }
@@ -6483,12 +6483,12 @@ button.close {
     display: none !important;
   }
 }
-@media (min-width: 768px) and (max-width: 991px) {
+@media (min-width: 768px) and (max-width: 992px) {
   .hidden-sm {
     display: none !important;
   }
 }
-@media (min-width: 992px) and (max-width: 1199px) {
+@media (min-width: 993px) and (max-width: 1199px) {
   .hidden-md {
     display: none !important;
   }
@@ -6675,7 +6675,7 @@ body .ui-theme-basic-green.ui-autocomplete-input {
     max-width: 720px;
   }
 }
-@media screen and (min-width: 992px) {
+@media screen and (min-width: 993px) {
   .navbar.container {
     max-width: 940px;
   }
@@ -6761,7 +6761,7 @@ form#search-block-form {
   float: none;
   margin: 5px 0 5px 5px;
 }
-@media screen and (min-width: 992px) {
+@media screen and (min-width: 993px) {
   .navbar #block-search-form {
     float: right;
   }
@@ -10772,6 +10772,9 @@ div[class*='node-'] .more-link {
     position: initial;
     position: inherit;
   }
+  header.navbar-default .navbar-collapse nav ul.menu li > span.dropdown-toggle {
+    padding: 8px;
+  }
   /*fin header*/
   /*footer*/
   .footer ul li a {
@@ -10785,6 +10788,19 @@ div[class*='node-'] .more-link {
   /*fin footer*/
   /*home*/
   /*fin home*/
+  .node-type-article article {
+    margin-left: 0px;
+    margin-right: 0px;
+  }
+  .node-type-article article .field-name-body {
+    padding-right: 30px;
+    padding-left: 30px;
+  }
+  .field-name-field-recommended-articles,
+  .field-name-field-recommended-resources {
+    padding-right: 30px;
+    padding-left: 30px;
+  }
   /*Practical tools*/
   .page-practical-tools .content p {
     display: none;
@@ -10813,19 +10829,51 @@ div[class*='node-'] .more-link {
     padding: 0.2em 2em 0.2em 1em;
     background: #e2e2e3 url("../images/content/slideDown.png") no-repeat 95% center;
     /* &:after{
-				color: @text-color-2;
-				content: "\e258";
-				font-family: 'Glyphicons Halflings';
-				float: right;
-			} */
+			color: @text-color-2;
+			content: "\e258";
+			font-family: 'Glyphicons Halflings';
+			float: right;
+		} */
   }
   .form-item-relevant-for > label.closeLabel,
   .form-item-languages > label.closeLabel {
     margin-bottom: 0;
     background-image: url("../images/content/slideUp.png");
     /* &:after{
-					content: "\e259";
-				} */
+				content: "\e259";
+			} */
+  }
+  .form-item-relevant-for #edit-relevant-for,
+  .form-item-languages #edit-relevant-for,
+  .form-item-relevant-for #edit-languages,
+  .form-item-languages #edit-languages {
+    margin-left: 15px;
+    margin-right: 15px;
+  }
+  #edit-content {
+    padding-left: 0px;
+    padding-right: 0px;
+  }
+  #edit-content #search div {
+    margin-left: 15px;
+  }
+  .pane-hwc-practical-tool-hwc-practical-tool-listing h4,
+  div.panel-pane div.node.node-practical-tool {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+  .node-type-practical-tool .pane-node-field-available-languages {
+    clear: both;
+  }
+  .node-type-practical-tool .panel-1col .panel-col .panel-pane {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+  .node-type-practical-tool .pane-node-field-free,
+  .node-type-practical-tool .pane-node-field-country,
+  .node-type-practical-tool .pane-node-field-tool-type {
+    margin-left: 15px;
+    margin-right: 0.5em;
   }
   /*FIN Practical tools*/
   /* Article */
@@ -10880,6 +10928,18 @@ div[class*='node-'] .more-link {
     padding-right: 30px;
   }
   /*end news*/
+  /*infographics*/
+  .view-infographic .views-row {
+    padding-right: 30px;
+    padding-left: 30px;
+  }
+  /*end infographics*/
+  /*videos*/
+  .page-node-108 iframe {
+    display: block;
+    margin: 0 auto;
+  }
+  /*fin videos*/
   /*clases para toda la web*/
   .container {
     width: 100%;
@@ -11283,6 +11343,15 @@ div[class*='node-'] .more-link {
   .node-article .field-name-field-image + .field-name-title-field + .container.active {
     margin-top: 150px;
   }
+  .node-type-article article .field-name-body {
+    padding-right: 15px;
+    padding-left: 15px;
+  }
+  .field-name-field-recommended-articles,
+  .field-name-field-recommended-resources {
+    padding-right: 15px;
+    padding-left: 15px;
+  }
   /*fin Article */
   /*Practical tools*/
   .page-practical-tools .form-type-checkbox {
@@ -11298,7 +11367,6 @@ div[class*='node-'] .more-link {
     border-bottom: none;
   }
   /*detail*/
-  /* border-bottom: 1px dotted @border-default-color; */
   .pane-node-field-access-tool-link:first-child {
     padding-top: 0 !important;
     border-top: none;
@@ -11319,6 +11387,26 @@ div[class*='node-'] .more-link {
   .pane-node-field-external-urls .field-label-inline .field-items {
     float: left;
     width: 50%;
+  }
+  .node-type-practical-tool .panel-1col .panel-col .panel-pane:last-child {
+    border-bottom: 1px dotted #749b00;
+    padding-bottom: 2em;
+  }
+  .node-type-practical-tool .pane-node-field-provider .field-items,
+  .node-type-practical-tool .pane-node-body .field-items,
+  .node-type-practical-tool .pane-node-field-implementation-steps .field-items,
+  .node-type-practical-tool .pane-node-field-dissemination-used .field-items,
+  .node-type-practical-tool .pane-node-field-access-tool-link .field-items,
+  .node-type-practical-tool .pane-hwc-practical-tool-hwc-practical-tool-language-list .field-items,
+  .node-type-practical-tool .pane-node-field-external-urls .field-items,
+  .node-type-practical-tool .pane-node-field-provider .field-label,
+  .node-type-practical-tool .pane-node-body .field-label,
+  .node-type-practical-tool .pane-node-field-implementation-steps .field-label,
+  .node-type-practical-tool .pane-node-field-dissemination-used .field-label,
+  .node-type-practical-tool .pane-node-field-access-tool-link .field-label,
+  .node-type-practical-tool .pane-hwc-practical-tool-hwc-practical-tool-language-list .field-label,
+  .node-type-practical-tool .pane-node-field-external-urls .field-label {
+    width: 95%;
   }
   /*FIN detail*/
   /*FIN Practical tools*/
@@ -11466,6 +11554,20 @@ div[class*='node-'] .more-link {
     padding: 0 7em;
   }
   /*end news*/
+  /*infographics*/
+  .view-infographic .views-row {
+    padding-right: 15px;
+    padding-left: 15px;
+  }
+  .view-infographic .views-row .field-type-image {
+    display: none;
+  }
+  /*end infographics*/
+  /*videos*/
+  .page-node-108 iframe {
+    width: 100%;
+  }
+  /*fin videos*/
   /*clases para toda la web*/
   .section-introduction .field-type-text-with-summary {
     padding-right: 15px;
