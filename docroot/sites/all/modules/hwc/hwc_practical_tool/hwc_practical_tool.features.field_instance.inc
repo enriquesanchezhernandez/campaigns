@@ -81,14 +81,13 @@ function hwc_practical_tool_field_default_field_instances() {
     'display' => array(
       'default' => array(
         'label' => 'above',
-        'module' => 'languagefield',
+        'module' => 'hwc_practical_tool',
         'settings' => array(
           'field_formatter_class' => '',
-          'format' => array(
-            'name' => 'name',
-          ),
+          'link_label' => 'Visit tool in:',
+          'link_separator' => '',
         ),
-        'type' => 'language_default',
+        'type' => 'link_tool_language_list_formatter',
         'weight' => 1,
       ),
     ),
