@@ -537,8 +537,6 @@ $command_specific['devify'] = array(
   'enable-modules' => array(
     'reroute_email',
     'simpletest',
-    'devel',
-    'devel_node_access',
     'stage_file_proxy',
   ),
   'delete-variables' => array('googleanalytics_account'),
@@ -563,6 +561,11 @@ $command_specific['devify_solr'] = array(
 $command_specific['devify_ldap'] = array(
   'ldap-read' => (array) $cfg->ldap_read,
   'ldap-write' => (array) $cfg->ldap_write,
+);
+
+$command_specific['devify']['enable-modules'] = array_merge(
+  $command_specific['devify']['enable-modules'],
+  $cfg->devify_enable_modules
 );
 
 if (file_exists(dirname(__FILE__) . '/drushrc.local.php')) {
