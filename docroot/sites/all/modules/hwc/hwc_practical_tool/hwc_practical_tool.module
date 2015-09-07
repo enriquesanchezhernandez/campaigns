@@ -281,8 +281,9 @@ function theme_link_tool_language_list_formatter($element) {
       }
     }
 
-    foreach($items as $key => $lang) {
-      $language = (object) $lang;
+    $languages = language_list();
+    foreach($external_links as $key => $lang) {
+      $language = $languages[$key];
       $langcode = $language->langcode;
 
       $output .= '<span class="glyphicon glyphicon-chevron-right"></span>';
