@@ -36,8 +36,31 @@ function hwc_practical_tool_field_default_field_bases() {
       'title_value' => '',
       'url' => 0,
     ),
-    'translatable' => 1,
+    'translatable' => 0,
     'type' => 'link_field',
+  );
+
+  // Exported field_base: 'field_access_tool_link_fc'
+  $field_bases['field_access_tool_link_fc'] = array(
+    'active' => 1,
+    'cardinality' => -1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'field_access_tool_link_fc',
+    'indexes' => array(
+      'revision_id' => array(
+        0 => 'revision_id',
+      ),
+    ),
+    'locked' => 0,
+    'module' => 'field_collection',
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+      'hide_blank_items' => 1,
+      'path' => '',
+    ),
+    'translatable' => 0,
+    'type' => 'field_collection',
   );
 
   // Exported field_base: 'field_additional_information'
@@ -64,7 +87,7 @@ function hwc_practical_tool_field_default_field_bases() {
   // Exported field_base: 'field_available_languages'
   $field_bases['field_available_languages'] = array(
     'active' => 1,
-    'cardinality' => -1,
+    'cardinality' => 1,
     'deleted' => 0,
     'entity_types' => array(),
     'field_name' => 'field_available_languages',
@@ -89,6 +112,27 @@ function hwc_practical_tool_field_default_field_bases() {
     ),
     'translatable' => 0,
     'type' => 'language_field',
+  );
+
+  // Exported field_base: 'field_dissemination_used'
+  $field_bases['field_dissemination_used'] = array(
+    'active' => 1,
+    'cardinality' => 1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'field_dissemination_used',
+    'indexes' => array(
+      'format' => array(
+        0 => 'format',
+      ),
+    ),
+    'locked' => 0,
+    'module' => 'text',
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+    ),
+    'translatable' => 1,
+    'type' => 'text_long',
   );
 
   // Exported field_base: 'field_external_urls'
@@ -151,6 +195,27 @@ function hwc_practical_tool_field_default_field_bases() {
     ),
     'translatable' => 0,
     'type' => 'list_boolean',
+  );
+
+  // Exported field_base: 'field_implementation_steps'
+  $field_bases['field_implementation_steps'] = array(
+    'active' => 1,
+    'cardinality' => 1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'field_implementation_steps',
+    'indexes' => array(
+      'format' => array(
+        0 => 'format',
+      ),
+    ),
+    'locked' => 0,
+    'module' => 'text',
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+    ),
+    'translatable' => 1,
+    'type' => 'text_long',
   );
 
   // Exported field_base: 'field_objective'

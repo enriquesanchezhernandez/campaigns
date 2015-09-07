@@ -114,40 +114,15 @@ function hwc_practical_tool_menu_tools_search_native($form_state) {
     $q->condition('a.nid', $restrict, 'IN');
   }
   if (!empty($languages)) {
-    $q->innerJoin('field_data_field_access_tool_link', 'fd', 'a.nid = fd.entity_id AND a.vid = fd.revision_id');
-    $q->condition('fd.language', $languages, 'IN');
+    $q->innerJoin('field_data_field_access_tool_link_fc', 'fc', 'a.nid = fc.entity_id AND a.vid = fc.revision_id');
+    $q->innerJoin('field_data_field_available_languages', 'al', 'fc.field_access_tool_link_fc_value = al.entity_id AND fc.field_access_tool_link_fc_revision_id = al.revision_id');
+    $q->condition('al.field_available_languages_value', $languages, 'IN');
   }
-  $pnids = $q->execute()->fetchCol();
-  $nids = array();
-  foreach ($pnids as $pnid) {
-    // Check if the node is translated in all selected languages.
-    $q = db_select('entity_translation', 'b');
-    $q->fields('b', array('entity_id'));
-    $q->innerJoin('node', 'a', 'a.nid = b.entity_id');
-    $q->condition('b.entity_id', $pnid);
-    $q->condition('b.entity_type', 'node');
-    $q->condition('b.language', $languages, 'IN');
-    $c = $q->countQuery()->execute()->fetchField();
-
-    if (!empty($relevant_for_ids)) {
-      // Check if the node is relevant for all selected 'relevant for' checkboxes.
-      $q2 = db_select('field_data_field_segment', 'b');
-      $q2->fields('b', array('entity_id'));
-      $q2->innerJoin('node', 'a', 'a.nid = b.entity_id');
-      $q2->condition('b.entity_id', $pnid);
-      $q2->condition('b.entity_type', 'node');
-      $q2->condition('b.field_segment_tid', $relevant_for_ids, 'IN');
-      $c2 = $q2->countQuery()->execute()->fetchField();
-    }
-    else {
-      // No 'relevant for' checkbox is selected, so let the node pass this check.
-      $c2 = 1;
-    }
-
-    if ($c >= count($languages) && $c2 >= count($relevant_for_ids)) {
-      $nids[] = $pnid;
-    }
+  if (!empty($relevant_for_ids)) {
+    $q->innerJoin('field_data_field_segment', 'fs', 'fs.entity_id = a.nid AND fs.revision_id = a.vid');
+    $q->condition('fs.field_segment_tid', $relevant_for_ids, 'IN');
   }
+  $nids = $q->execute()->fetchCol();
   $nids = array_unique($nids);
   if (empty($nids)) {
     return array(
@@ -200,7 +175,6 @@ function hwc_practical_tool_menu_tools_search_related($form_state, $native_nids)
   list($server, $query) = hwc_practical_tool_menu_tools_get_query();
   $query->condition('status', 1);
   $query->condition('type', 'practical_tool');
-  $query->condition('language', 'en');
   if (!empty($sort)) {
     $query->sort($sort, $direction);
   }
@@ -225,6 +199,25 @@ function hwc_practical_tool_menu_tools_search_related($form_state, $native_nids)
   if (empty($nids)) {
     return array();
   }
+
+  $q = db_select('node', 'a')
+    ->fields('a', array('nid', 'vid'))
+    ->condition('type', 'practical_tool')
+    ->condition('status', 1)
+    ->orderBy('changed', 'DESC');
+  $q->innerJoin('field_data_field_access_tool_link_fc', 'fc', 'a.nid = fc.entity_id AND a.vid = fc.revision_id');
+  $q->innerJoin('field_data_field_available_languages', 'al', 'fc.field_access_tool_link_fc_value = al.entity_id AND fc.field_access_tool_link_fc_revision_id = al.revision_id');
+  $q->condition('al.field_available_languages_value', 'en');
+  if (!empty($relevant_for_ids)) {
+    $q->innerJoin('field_data_field_segment', 'fs', 'fs.entity_id = a.nid AND fs.revision_id = a.vid');
+    $q->condition('fs.field_segment_tid', $relevant_for_ids, 'IN');
+  }
+  $pnids = $q->execute()->fetchCol();
+  $pnids = array_unique($pnids);
+
+  $nids = array_intersect($nids, $pnids);
+
+
   $per_page = 2;
   $current_page = pager_default_initialize(count($nids), $per_page, 1);
   $page = array_chunk($nids, $per_page, TRUE);

@@ -257,7 +257,7 @@ function theme_language_list_formatter($element) {
  */
 function theme_link_tool_language_list_formatter($element) {
   $entity = $element['entity'];
-  $field_name = 'field_access_tool_link';
+  $field_name = 'field_access_tool_link_fc';
   $items = $element['items'];
   $label = $element['link_label'];
   $separator = $element['link_separator'];
@@ -271,10 +271,13 @@ function theme_link_tool_language_list_formatter($element) {
       $output .= '<b>' . t($label) . '</b> ';
     }
 
-    if (isset($entity->$field_name) && !empty($entity->$field_name)) {
-      $item = $entity->$field_name;
-      foreach($item as $key => $link) {
-        $external_links[$key] = $link[0]['url'];
+    if (!empty($entity->{$field_name}[LANGUAGE_NONE])) {
+      foreach($entity->{$field_name}[LANGUAGE_NONE] as $key => $field_coll_val) {
+        $field_coll = field_collection_item_load($field_coll_val['value']);
+        if (!empty($field_coll->field_access_tool_link[LANGUAGE_NONE][0]['url'])
+          && !empty($field_coll->field_available_languages[LANGUAGE_NONE][0]['value'])) {
+          $external_links[$field_coll->field_available_languages[LANGUAGE_NONE][0]['value']] = $field_coll->field_access_tool_link[LANGUAGE_NONE][0]['url'];
+        }
       }
     }
 
