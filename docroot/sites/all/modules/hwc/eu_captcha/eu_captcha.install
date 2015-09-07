@@ -6,6 +6,13 @@
  */
 
 /**
+ * Implements hook_module_install().
+ */
+function eu_captcha_install() {
+  variable_set('captcha_default_challenge', 'eu_captcha/EUCAPTCHA');
+}
+
+/**
  * On uninstall: remove module variables and clear variable cache
  */
 function eu_captcha_uninstall() {

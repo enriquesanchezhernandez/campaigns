@@ -31,7 +31,6 @@ function eu_captcha_captcha($op, $captcha_type = '') {
 
     case 'generate':
       if ($captcha_type == 'EUCAPTCHA') {
-
         $eu_captcha_type = variable_get('eu_captcha_type', 'string');
 
         $result = array();
