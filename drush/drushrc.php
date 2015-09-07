@@ -283,8 +283,6 @@ $options['init-modules'] = array(
   'varnish',
   'elysia_cron',
 
-  'devel',
-  'devel_node_access',
   'diff',
   'update',
 
