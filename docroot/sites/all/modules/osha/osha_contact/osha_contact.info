@@ -1,7 +1,6 @@
-name = Osha Content
+name = Osha Contact
 description = Extend Core Contact form
 core = 7.x
 package = OSHA
 version = 7.x-1.x
 project = osha_contact
-dependencies[] = captcha
