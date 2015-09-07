@@ -89,22 +89,22 @@ $theme_dir = drupal_get_path('theme', 'hwc_frontend');
             <img class="pull-left" src="/<?php print $theme_dir . '/logo-eu.png'; ?>" alt="<?php print t('EU logo'); ?>" />
 			<div class="header-text">Healthy Workplaces for All Ages</div>
           </div>
-          <div class="col-xs-12 col-sm-3">
+          <div class="col-xs-12 col-sm-3 xs-menu">
             <div class="header_top_bar">
               <div class="vertical-align">
                 <?php print render($page['above_header']); ?>
               </div>
             </div>
             <?php print render($page['header']); ?>
+			<!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+			  <span class="sr-only">Toggle navigation</span>
+			  <span class="icon-bar"></span>
+			  <span class="icon-bar"></span>
+			  <span class="icon-bar"></span>
+			</button>
           </div>
         </div>
-        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
-        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-          <span class="sr-only">Toggle navigation</span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
       </div>
     </div>
     <div class="row">

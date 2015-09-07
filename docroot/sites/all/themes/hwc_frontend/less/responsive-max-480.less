@@ -1,0 +1,103 @@
+//rewrite styles for responsive design
+
+@media only screen and (max-width : 480px) {
+
+/*Header*/
+header{
+	&.navbar-default {
+		.campaigns-header {
+			.navbar-header{
+				.row{
+					padding: 0px;
+					img[alt="Home"]{
+						margin-left: 15px;
+					}
+				}
+				a.pull-left{
+					padding-right: .5em;
+					margin-right: .5em;
+					img[alt="Home"]{
+						width: 95px;
+						height: 95px;
+					}
+				}
+				img[alt="EU-OSHA logo"]{
+					width: 125px;
+					height: 100px;
+					padding-top: 10px; 
+				}
+				img[alt="EU logo"]{
+					width: 40px;
+				    height: 90px;
+				    padding: 63px 0 0;
+				}
+				
+				.header-text{
+				    font-size: @size7;
+				    width: 120px;
+				    padding-top: 3em;
+				    padding-left: 0.8em;
+				}
+				.header_top_bar{
+					.region-above-header{
+						display: none;
+					}
+				}
+				.region-header{
+					#block-search-form{
+						margin-top:0.5em;
+						.input-group{
+							width: inherit;
+							input{
+								width: 150px;
+								float: right;
+								height: 25px;
+							}
+							button{
+								height: 25px;
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+.xs-menu{
+	background-color: @bg-color-2;
+	padding-left: 15px;
+    padding-right: 15px;
+    margin-top: 1em;
+	#block-search-form{
+    	display: inline-table;
+    	float: left;
+    	margin-left: 30%;
+	}
+}
+/*FIN header*/
+
+
+/*container*/
+	
+	/*home*/
+	/*FIN home*/
+
+	/* Article */
+	.node-article{
+		/* height: 145px; */
+	}
+	/*FIN Article */
+
+/*news*/
+//detail
+.node-type-news{
+	.field-type-image {
+		img {
+	    	padding: 0 3em;
+		}
+	}
+}
+/*end news*/
+	
+}
+/*FIn container*/

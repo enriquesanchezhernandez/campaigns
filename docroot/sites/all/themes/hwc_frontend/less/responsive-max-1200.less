@@ -1,0 +1,42 @@
+//rewrite styles for responsive design
+
+@media only screen and (max-width : 1200px) {
+	header{
+		&.navbar-default {
+			.campaigns-header {
+				.navbar-header{
+					a.pull-left{
+						padding-right: 1em;
+    					margin-right: 1em;
+    					img[alt="Home"]{
+							width: 140px;
+							height: 140px;
+						}
+					}
+					img[alt="EU-OSHA logo"]{
+						width: 150px;
+    					height: 140px;
+    					padding-top: 10px; 
+					}
+					img[alt="EU logo"]{
+						width: 70px;
+    					height: 137px;
+    					padding-right: 1em !important;
+					}
+					.header-text{
+					    font-size: @size2;
+					    width: 150px;
+					    padding-top: 2.5em;
+					    padding-left: 0.8em;
+					}
+					.header_top_bar{
+						.region-above-header{
+							min-width: 250px;
+						}
+					}
+				}
+			}
+		}
+	}
+	/*fin header*/
+}

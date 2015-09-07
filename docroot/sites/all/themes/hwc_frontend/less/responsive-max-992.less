@@ -1,0 +1,314 @@
+//rewrite styles for responsive design
+
+@media only screen and (max-width : 992px) {
+
+/*Header*/
+header{
+	&.navbar-default {
+		.campaigns-header {
+			.navbar-header{
+				.row{
+					padding: 0px;
+					img[alt="Home"]{
+						margin-left: 0px;
+					}
+				}
+				a.pull-left{
+					padding-right: 1em;
+					margin-right: 1em;
+					img[alt="Home"]{
+						width: 130px;
+						height: 130px;
+					}
+				}
+				img[alt="EU-OSHA logo"]{
+					width: 150px;
+					height: 140px;
+					padding-top: 10px; 
+				}
+				img[alt="EU logo"]{
+					width: 70px;
+					height: 137px;
+					padding-right: 1em !important;
+				}
+				.header-text{
+				    font-size: @size7;
+				    width: 120px;
+				    padding-top: 3em;
+				    padding-left: 0.8em;
+				}
+				.header_top_bar{
+					.region-above-header{
+						display: none;
+					}
+				}
+				.region-header{
+					#block-search-form{
+						margin-top:2em;
+						.input-group{
+							width: inherit;
+							input{
+								width: 150px;
+								float: right;
+								padding: 0px 12px;
+							}
+						}
+					}
+					#block-menu-menu-header-login{
+						float: right;
+					    margin-left: 0px;
+					    padding-top: 5px;
+					    padding-right: 116px;
+					    ul{
+					    	li{
+					    		a{
+					    			min-width: 80px;
+					    		}
+					    	}
+					    }
+					}
+					#block-lang-dropdown-language{
+						float: right;
+					    right: 0;
+					    padding-right: 46px;
+					    position: initial;
+					    position: inherit;
+					}
+
+				}
+			}
+		}
+		.navbar-collapse nav ul.menu li > span.dropdown-toggle{
+			padding: 8px;
+		}
+	}
+}
+/*fin header*/
+
+/*footer*/
+.footer {
+	ul li a {
+	    color: #ffffff;
+	    padding-left: 0;
+	    font-size: @size3;
+	}
+	h3{
+		max-width: 75%;
+	}
+}
+/*fin footer*/
+
+/*home*/
+
+/*fin home*/
+.node-type-article article{
+	margin-left: 0px;
+	margin-right: 0px;
+	.field-name-body{
+		padding-right: 30px;
+		padding-left: 30px;
+	}
+}
+.field-name-field-recommended-articles, .field-name-field-recommended-resources{
+	padding-right: 30px;
+	padding-left: 30px;
+}
+
+/*Practical tools*/
+.page-practical-tools{
+	.content p{
+		display: none;
+	}
+	.form-type-checkbox{
+		float: left;
+		width: 20%;
+		label{
+			white-space: nowrap;
+			font-size: @size3;
+			&:before{
+				margin-right: 3px;
+			}
+		}
+	}
+}
+.form-item-relevant-for, .form-item-languages{
+	border-top: none;
+	border-bottom: none;
+	clear: both;
+	/* margin-bottom: 2em; */
+	> label{
+		width: 100%;
+		padding: 0.2em 2em 0.2em 1em;
+		background: @bg-color-3 url("../images/content/slideDown.png") no-repeat 95% center;
+		/* &:after{
+			color: @text-color-2;
+			content: "\e258";
+			font-family: 'Glyphicons Halflings';
+			float: right;
+		} */
+		&.closeLabel{
+			margin-bottom: 0;
+			background-image: url("../images/content/slideUp.png");
+			/* &:after{
+				content: "\e259";
+			} */
+		}
+	}
+
+		 #edit-relevant-for, #edit-languages{
+			margin-left: 15px;
+			margin-right: 15px;
+		}
+	}
+	#edit-content {
+		padding-left: 0px;
+		padding-right: 0px;
+		#search div{
+			margin-left: 15px;
+		}
+	}
+	.pane-hwc-practical-tool-hwc-practical-tool-listing h4, div.panel-pane div.node.node-practical-tool{
+		padding-left: 15px;
+		padding-right: 15px;
+	}
+	.node-type-practical-tool{
+		.pane-node-field-available-languages{
+			clear: both;
+		}
+		.panel-1col .panel-col .panel-pane {
+			padding-left: 15px;
+			padding-right: 15px;
+		}
+		.pane-node-field-free, .pane-node-field-country, .pane-node-field-tool-type{
+			margin-left: 15px;
+			margin-right: 0.5em;
+		}
+	}
+/*FIN Practical tools*/
+	
+/* Article */
+.node-article{
+	.field-name-field-image + .field-name-title-field{
+		height: 300px;
+		h1{
+			padding-top: 190px;
+		}
+	}
+	.field.field-name-field-image{
+		img{
+			height: 300px;
+		}
+	}
+}
+/*fin article*/
+/*events*/
+.node-events{
+	.field-name-field-speaker{
+		> .field-items > .field-item{
+			width: 25%;
+		}
+	}
+}
+
+/*Press room*/
+.view-press-releases {
+	.views-row {
+	    padding: 0.5em 30px 2em 30px;
+	}
+}
+#mini-panel-press_room_blocks {
+    padding: 5px 30px;
+}
+//detail
+.node-type-press-release{
+	.title-alt{
+		.form-item{
+			padding-right: 15px;
+			padding-left: 15px;
+		}
+	}
+	#block-system-main{
+		.node-press-release{
+			padding-right: 30px;
+			padding-left: 30px;
+			iframe{
+				width: 60%;
+				margin-bottom: 30px; 
+			}
+		}
+	}
+	#mini-panel-press_room_blocks{
+		border: none;
+		.pane-osha-press-release-osha-press-kit{
+    		display: block;
+    		border-top: none;
+    	}
+	}
+}
+/*end press room*/
+
+/*news*/
+.view-news{
+	.views-row{
+		padding-left: 15px;
+    	padding-right: 15px;
+	}
+}
+//detail
+.node-type-news{
+	.node-news {
+	    padding-left: 30px;
+	    padding-right: 30px;
+	}
+}
+/*end news*/
+
+/*infographics*/
+.view-infographic{
+	.views-row {
+		padding-right: 30px;
+		padding-left: 30px;
+	}
+}
+/*end infographics*/
+
+/*videos*/
+.page-node-108{
+	iframe{
+		display: block;
+		margin: 0 auto;
+	}
+}
+/*fin videos*/
+
+/*clases para toda la web*/
+.container{
+	width: 100%;
+	padding-left: 0px;
+    padding-right: 0px;
+}
+.container-fluid{
+	padding-right: 0px;
+	padding-left: 0px;
+}
+.section-introduction{
+	.field-type-text-with-summary{
+		padding-right: 30px;
+		padding-left: 30px;
+	}
+}
+.breadcrumb{
+	padding-right: 30px;
+	padding-left: 30px;
+}
+h1{
+	padding-right: 15px;
+	padding-left: 15px;
+}
+.back-to-link {
+	padding-right: 40px;
+	padding-left: 30px;
+}
+
+
+}//end media
