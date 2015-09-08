@@ -5,7 +5,7 @@
 /*Header*/
 header{
 	&.navbar-default {
-		.campaigns-header {
+		.campaigns-header { 
 			.navbar-header{
 				.row{
 					padding: 0px;
@@ -78,11 +78,25 @@ header{
 				}
 			}
 		}
-		.navbar-collapse nav ul.menu li > span.dropdown-toggle{
-			padding: 8px;
+		.navbar-collapse nav ul.menu {
+			li span.dropdown-toggle{
+				padding-left: 5px;
+				padding-right: 2px;
+			}
+			li a .caret,  li span .caret{
+				width: 2px;
+				margin-left: 2px;
+			}
+			li.last.expanded.dropdown > ul{
+				margin-left: -4em;
+			}
 		}
 	}
 }
+		header.navbar-default .campaigns-header .row:first-of-type{
+			padding-left: 14px;
+			padding-right: 14px;
+		}
 /*fin header*/
 
 /*footer*/
@@ -99,8 +113,62 @@ header{
 /*fin footer*/
 
 /*home*/
+.front{
+	//slider
+	#block-views-frontpage-slider-block{
+		margin-left: 0px;
+    	margin-right: 0px;
+	}
+	#homepage_slider{
+		margin-bottom: 0;
+	}
+	//fin slider
+	
+	.tools-and-resources-block{
+		width: 100%;
+		text-align: left;
+		padding-right: 30px;
+		padding-left: 30px;
+		margin-bottom: 0;
+		.field-name-title-field{
+			h1{
+				margin: 20px 0;
+			    padding-top: 15px;
+			    padding-bottom: 15px;
+			    
+			    text-align: left;
+			    padding-left: 78px;
+			    background: url("../images/content/tools-and-resources.png") no-repeat;
+			}
+		}
+		#block-menu-block-1{
+			
+
+			.menu{
+				padding-bottom: 2em;
+				border-bottom: 1px dotted @color3;
+				li{
+					display: inline-block;
+					margin-right: 40px;
+					width: 150px;
+				}
+			}
+		}
+	}
+	#block-views-news-oshnews-latest, #block-views-frontpage-events-block{
+		width: 50%;
+		border-left: none;
+	}
+
+	#block-osha-newsletter-osha-newsletter-image {
+	    margin-right: 0px;
+	    margin-left: 0px;
+	}
+}
 
 /*fin home*/
+
+/*articles*/
 .node-type-article article{
 	margin-left: 0px;
 	margin-right: 0px;
@@ -113,23 +181,28 @@ header{
 	padding-right: 30px;
 	padding-left: 30px;
 }
+/*fin articles*/
 
 /*Practical tools*/
 .page-practical-tools{
 	.content p{
 		display: none;
 	}
-	.form-type-checkbox{
-		float: left;
-		width: 20%;
-		label{
-			white-space: nowrap;
-			font-size: @size3;
-			&:before{
-				margin-right: 3px;
-			}
+}
+.form-type-checkbox{
+	float: left;
+	width: 20%;
+	label{
+		white-space: nowrap;
+		font-size: @size3;
+		&:before{
+			margin-right: 3px;
 		}
 	}
+}
+#edit-left-column{
+	padding-right: 0px;
+	padding-left: 0px;
 }
 .form-item-relevant-for, .form-item-languages{
 	border-top: none;
@@ -280,6 +353,85 @@ header{
 	}
 }
 /*fin videos*/
+
+/*case studies*/
+.section-introduction{
+	.field-type-text-with-summary{
+		display: none;
+	}
+}
+/* .page-case-studies{
+	.form-type-checkbox{
+		width: 25%;
+		float: left;
+		label{
+		    white-space: nowrap;
+			font-size: 12px;
+		}
+	}
+	#edit-left-column{
+		padding-right: 0px;
+		padding-left: 0px;
+	}
+} */
+/*fin case studies*/
+
+/*publications*/
+#publications_slideshow{
+	display: none;
+}
+.page-publications h4, .publication-item{
+    padding-left: 15px;
+    padding-right: 15px;
+}
+.node-type-publication{
+	.pane-node-title-field, .pane-node-field-publication-date, .pane-node-field-publication-type{
+		margin-left: 15px;
+		margin-right: 15px;
+	}
+	.pane-node-field-cover-image{
+		display: none;
+	}
+	.panels-flexible-row-container-main-row{
+		margin-top: 1em;
+	}
+}
+/*Fin publications*/
+
+/* pag Search */
+.page-search{
+	.region-sidebar-first{
+		border: none;
+		h2{
+		    padding: 0.5em 2em 0.5em 15px;
+			background: #e2e2e3 url("../images/content/slideDown.png") no-repeat 95% center;
+		}
+		.facetapi-facetapi-checkbox-links{
+			padding-left: 15px;
+			li{
+				float: left;
+				width: 20%;
+			}
+		}
+	}
+	#views-exposed-form-search-site{
+		padding-left: 15px;
+		padding-right: 15px;
+	}
+	.region.region-content{
+		float: left;
+		width: 100%;
+		margin-left: 0;
+		.view-search .view-content .views-row{
+			padding-left: 15px;
+			padding-right: 15px;
+		}
+		.result_summary{
+			padding-left: 15px;
+		}
+	}
+}
+/*Fin pag Search */
 
 /*clases para toda la web*/
 .container{

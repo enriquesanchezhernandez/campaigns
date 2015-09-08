@@ -8210,7 +8210,7 @@ div[class*='node-'] .more-link {
   clear: both;
   background: url("../images/content/bg-newsletter.png") no-repeat left top;
   background: url("../images/content/bg-campaign-partner.png") no-repeat left 20px;
-  min-height: 380px;
+  min-height: 300px;
   height: auto !important;
   text-align: center;
   color: #ffffff;
@@ -8565,11 +8565,114 @@ div[class*='node-'] .more-link {
   font-weight: 100;
 }
 /* pag Search */
+.page-search h1 {
+  border-bottom: none;
+  padding-bottom: 0;
+  margin-bottom: 1em;
+}
+.page-search #views-exposed-form-search-site {
+  margin-top: 0;
+}
 .page-search #views-exposed-form-search-site .views-submit-button {
   padding-top: 2.4em;
 }
 .page-search #views-exposed-form-search-site .views-submit-button button {
-  background: #003399 url("../images/content/search.png") no-repeat center;
+  background: #003399 url("../images/content/search.png") no-repeat left;
+  padding-left: 2em;
+  width: auto;
+  color: #ffffff;
+}
+.page-search .region-sidebar-first {
+  background-color: transparent;
+  border-radius: 0;
+  border-right: none;
+  border-left: none;
+  border-top: 1px dotted #749b00;
+  border-bottom: 1px dotted #749b00;
+  padding-left: 0px;
+  padding-right: 0px;
+  -webkit-box-shadow: inset 0 0px 0px rgba(255, 255, 255, 0);
+  -moz-box-shadow: inset 0 0px 0px rgba(255, 255, 255, 0);
+  box-shadow: inset 0 0px 0px rgba(255, 255, 255, 0);
+  /* .facetapi-facetapi-checkbox-links li{
+					input[type="checkbox"]{
+						display: none;
+					}
+					> label{
+						color: @text-color-2;
+						padding-left: 0;
+						font-family: @font-family-semibold;
+					}
+					> label:before {
+						border: 2px solid @border-color-2;
+						content: "\2716";
+						padding: 0px 4px 0px 10px;
+						padding: 0px 1px 0px 3px;
+						margin-right: 10px;
+						color: @color1;
+					}
+					input[type=checkbox]:checked + label:before {
+						content: "\2713";
+						color: @text-color-2;
+						font-weight: bold;
+					}
+				} */
+}
+.page-search .region-sidebar-first h2 {
+  color: #333333;
+  font-size: 20px;
+}
+.page-search .region-sidebar-first .facetapi-facetapi-checkbox-links li input[type="checkbox"] {
+  margin-right: 0.5em;
+}
+.page-search .region-sidebar-first .facetapi-facetapi-checkbox-links li a {
+  font-family: 'Open Sans Semibold';
+}
+.page-search .region.region-content {
+  float: left;
+  width: 73%;
+  margin-left: 2%;
+}
+.page-search .region.region-content #block-views-exp-search-site {
+  border-top: 1px dotted #749b00;
+  border-bottom: 1px dotted #749b00;
+}
+.page-search .region.region-content .view-search h3 {
+  display: none;
+}
+.page-search .region.region-content .view-search .view-content .views-row {
+  border-bottom: 1px dotted #749b00;
+  padding-bottom: 2em;
+  padding-top: 2em;
+}
+.page-search .region.region-content .view-search .view-content .views-row .views-field-title-field {
+  color: #003399;
+  font-weight: bold;
+  font-size: 20px;
+  padding-bottom: 1em;
+}
+.page-search .region.region-content .view-search .view-content .views-row .views-field-title-field span:before {
+  content: ">";
+  padding-right: 0.5em;
+}
+.page-search .region.region-content .view-search .view-content .views-row .views-field-url {
+  /* float: left; */
+}
+.page-search .region.region-content .view-search .view-content .views-row .views-field-url a {
+  font-weight: bold;
+}
+.page-search .region.region-content .view-search .view-content .views-row .views-field-url a:before {
+  content: ">";
+  padding-right: 0.5em;
+}
+.page-search .region.region-content .view-search .view-content .views-row .views-field-field-publication-date {
+  font-size: 12px;
+}
+.page-search .region.region-content .view-search .view-content .views-row .views-field-field-publication-date,
+.page-search .region.region-content .view-search .view-content .views-row .views-field-field-image,
+.page-search .region.region-content .view-search .view-content .views-row .views-field-field-cover-image {
+  /*confirmar que esto tiene que ser asi*/
+  display: none;
 }
 #search {
   margin: 0 0 1em 0;
@@ -8818,6 +8921,12 @@ div[class*='node-'] .more-link {
 /* Search page */
 .form-type-radio.form-item-sort-by.form-item.radio {
   display: inline;
+  margin-right: 1.5em;
+  padding-top: 0.5em;
+  float: left;
+}
+.form-type-radio.form-item-sort-by.form-item.radio:last-child {
+  margin-right: 0.5em;
 }
 /* FIN contenedor principal */
 /* -----------ENDIKA------------ */
@@ -9632,6 +9741,11 @@ div[class*='node-'] .more-link {
   display: none !important;
 }
 /*Fin articles*/
+/*case-studies*/
+.pane-osha-publication-osha-case-studies-listing.container {
+  width: 100%;
+}
+/*Fin case-studies*/
 /*Become a media partner*/
 .become-partner .coments {
   margin-top: 50px;
@@ -10681,6 +10795,7 @@ div[class*='node-'] .more-link {
   }
 }
 @media only screen and (max-width: 1200px) {
+  /*header*/
   header.navbar-default .campaigns-header .navbar-header a.pull-left {
     padding-right: 1em;
     margin-right: 1em;
@@ -10709,6 +10824,12 @@ div[class*='node-'] .more-link {
     min-width: 250px;
   }
   /*fin header*/
+  /*publications*/
+  #publications_slideshow {
+    width: 800px !important;
+    max-width: 100%;
+  }
+  /*publications*/
 }
 @media only screen and (max-width: 992px) {
   /*Header*/
@@ -10772,8 +10893,21 @@ div[class*='node-'] .more-link {
     position: initial;
     position: inherit;
   }
-  header.navbar-default .navbar-collapse nav ul.menu li > span.dropdown-toggle {
-    padding: 8px;
+  header.navbar-default .navbar-collapse nav ul.menu li span.dropdown-toggle {
+    padding-left: 5px;
+    padding-right: 2px;
+  }
+  header.navbar-default .navbar-collapse nav ul.menu li a .caret,
+  header.navbar-default .navbar-collapse nav ul.menu li span .caret {
+    width: 2px;
+    margin-left: 2px;
+  }
+  header.navbar-default .navbar-collapse nav ul.menu li.last.expanded.dropdown > ul {
+    margin-left: -4em;
+  }
+  header.navbar-default .campaigns-header .row:first-of-type {
+    padding-left: 14px;
+    padding-right: 14px;
   }
   /*fin header*/
   /*footer*/
@@ -10787,7 +10921,48 @@ div[class*='node-'] .more-link {
   }
   /*fin footer*/
   /*home*/
+  .front #block-views-frontpage-slider-block {
+    margin-left: 0px;
+    margin-right: 0px;
+  }
+  .front #homepage_slider {
+    margin-bottom: 0;
+  }
+  .front .tools-and-resources-block {
+    width: 100%;
+    text-align: left;
+    padding-right: 30px;
+    padding-left: 30px;
+    margin-bottom: 0;
+  }
+  .front .tools-and-resources-block .field-name-title-field h1 {
+    margin: 20px 0;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    text-align: left;
+    padding-left: 78px;
+    background: url("../images/content/tools-and-resources.png") no-repeat;
+  }
+  .front .tools-and-resources-block #block-menu-block-1 .menu {
+    padding-bottom: 2em;
+    border-bottom: 1px dotted #749b00;
+  }
+  .front .tools-and-resources-block #block-menu-block-1 .menu li {
+    display: inline-block;
+    margin-right: 40px;
+    width: 150px;
+  }
+  .front #block-views-news-oshnews-latest,
+  .front #block-views-frontpage-events-block {
+    width: 50%;
+    border-left: none;
+  }
+  .front #block-osha-newsletter-osha-newsletter-image {
+    margin-right: 0px;
+    margin-left: 0px;
+  }
   /*fin home*/
+  /*articles*/
   .node-type-article article {
     margin-left: 0px;
     margin-right: 0px;
@@ -10801,20 +10976,25 @@ div[class*='node-'] .more-link {
     padding-right: 30px;
     padding-left: 30px;
   }
+  /*fin articles*/
   /*Practical tools*/
   .page-practical-tools .content p {
     display: none;
   }
-  .page-practical-tools .form-type-checkbox {
+  .form-type-checkbox {
     float: left;
     width: 20%;
   }
-  .page-practical-tools .form-type-checkbox label {
+  .form-type-checkbox label {
     white-space: nowrap;
     font-size: 12px;
   }
-  .page-practical-tools .form-type-checkbox label:before {
+  .form-type-checkbox label:before {
     margin-right: 3px;
+  }
+  #edit-left-column {
+    padding-right: 0px;
+    padding-left: 0px;
   }
   .form-item-relevant-for,
   .form-item-languages {
@@ -10940,6 +11120,79 @@ div[class*='node-'] .more-link {
     margin: 0 auto;
   }
   /*fin videos*/
+  /*case studies*/
+  .section-introduction .field-type-text-with-summary {
+    display: none;
+  }
+  /* .page-case-studies{
+	.form-type-checkbox{
+		width: 25%;
+		float: left;
+		label{
+		    white-space: nowrap;
+			font-size: 12px;
+		}
+	}
+	#edit-left-column{
+		padding-right: 0px;
+		padding-left: 0px;
+	}
+} */
+  /*fin case studies*/
+  /*publications*/
+  #publications_slideshow {
+    display: none;
+  }
+  .page-publications h4,
+  .publication-item {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+  .node-type-publication .pane-node-title-field,
+  .node-type-publication .pane-node-field-publication-date,
+  .node-type-publication .pane-node-field-publication-type {
+    margin-left: 15px;
+    margin-right: 15px;
+  }
+  .node-type-publication .pane-node-field-cover-image {
+    display: none;
+  }
+  .node-type-publication .panels-flexible-row-container-main-row {
+    margin-top: 1em;
+  }
+  /*Fin publications*/
+  /* pag Search */
+  .page-search .region-sidebar-first {
+    border: none;
+  }
+  .page-search .region-sidebar-first h2 {
+    padding: 0.5em 2em 0.5em 15px;
+    background: #e2e2e3 url("../images/content/slideDown.png") no-repeat 95% center;
+  }
+  .page-search .region-sidebar-first .facetapi-facetapi-checkbox-links {
+    padding-left: 15px;
+  }
+  .page-search .region-sidebar-first .facetapi-facetapi-checkbox-links li {
+    float: left;
+    width: 20%;
+  }
+  .page-search #views-exposed-form-search-site {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+  .page-search .region.region-content {
+    float: left;
+    width: 100%;
+    margin-left: 0;
+  }
+  .page-search .region.region-content .view-search .view-content .views-row {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+  .page-search .region.region-content .result_summary {
+    padding-left: 15px;
+  }
+  /*Fin pag Search */
   /*clases para toda la web*/
   .container {
     width: 100%;
@@ -11151,6 +11404,7 @@ div[class*='node-'] .more-link {
     padding-top: 1em;
     padding-bottom: 1em;
     padding-left: 0;
+    margin-top: 30px;
   }
   .footer .region.region-footer,
   .footer h3,
@@ -11182,100 +11436,246 @@ div[class*='node-'] .more-link {
     margin-left: 0;
   }
   /*home*/
-  /*home Slider*/
-  #homepage_slider {
-    background: none;
+  .front #block-views-frontpage-slider-block img {
+    display: none;
+  }
+  .front #homepage_slider {
+    background: url("../images/content/bg-campaign-partner.png") no-repeat left;
     margin-bottom: 0;
     height: 300px !important;
   }
-  /*FIN home Slider*/
-  .tools-and-resources-block,
-  #block-views-news-oshnews-latest,
-  #block-views-frontpage-events-block {
+  .front #homepage_slider > div {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+  .front #homepage_slider .views-field-body {
+    top: 150px !important;
+    float: left !important;
+  }
+  .front #homepage_slider .views-field-body .field-content {
+    text-align: left !important;
+    margin-right: 0px !important;
+    float: left !important;
+    padding: 0 0px !important;
+  }
+  .front #homepage_slider .views-field-title {
+    margin: 0 -20px !important;
+    padding: 0 0px !important;
+  }
+  .front #homepage_slider .views-field-title span {
+    float: left !important;
+  }
+  .front #homepage_slider .views-field-field-content-reference a {
+    width: 100% !important;
+    margin-left: 0px !important;
+    margin-right: 0px !important;
+    bottom: 1em !important;
+    height: 3.5em !important;
+    padding: 1em !important;
+    top: 230px !important;
+    right: initial !important;
+    text-align: center;
+  }
+  .front .tools-and-resources-block {
     width: 100%;
     text-align: left;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-bottom: 0;
+    border-bottom: 1px dotted #749b00;
+    padding-bottom: 2em;
+  }
+  .front .tools-and-resources-block .field-name-title-field h1 {
+    margin: 20px 0;
+    padding-top: 8px;
+    padding-bottom: 22px;
+    text-align: left;
+    padding-left: 78px;
+    background: url("../images/content/tools-and-resources.png") no-repeat;
+  }
+  .front .tools-and-resources-block #block-menu-block-1 .menu {
+    padding-bottom: 0;
     border: none;
+  }
+  .front .tools-and-resources-block #block-menu-block-1 .menu li {
+    display: inline-block;
+    margin-right: 40px;
+    width: 150px;
+  }
+  .front #block-views-news-oshnews-latest {
+    width: 100%;
+    border-left: none;
+    padding-right: 15px;
+    padding-left: 15px;
+    border-bottom: 1px dotted #749b00;
+  }
+  .front #block-views-news-oshnews-latest h2 {
+    margin: 20px 0;
+    padding-top: 8px;
+    padding-bottom: 22px;
+    text-align: left;
+    padding-left: 78px;
+    background: url("../images/content/news.png") no-repeat;
+  }
+  .front #block-views-news-oshnews-latest .view-news .views-row {
     padding-right: 0;
     padding-left: 0;
+  }
+  .front #block-views-frontpage-events-block {
+    width: 100%;
+    border-left: none;
+    padding-right: 15px;
+    padding-left: 15px;
+  }
+  .front #block-views-frontpage-events-block h2 {
+    margin: 20px 0;
+    padding-top: 8px;
+    padding-bottom: 22px;
+    text-align: left;
+    padding-left: 78px;
+    background: url("../images/content/events.png") no-repeat;
+  }
+  .front .tools-and-resources-block,
+  .front #block-views-news-oshnews-latest,
+  .front #block-views-frontpage-events-block {
+    width: 100%;
+    text-align: left;
     padding-bottom: 1em;
     margin-bottom: 0em;
     margin-top: 0em;
-    border-bottom: 1px dotted #749b00;
+    border-right: none;
   }
-  .tools-and-resources-block > div,
-  #block-views-news-oshnews-latest > div,
-  #block-views-frontpage-events-block > div {
+  .front .tools-and-resources-block > div,
+  .front #block-views-news-oshnews-latest > div,
+  .front #block-views-frontpage-events-block > div {
     padding-right: 0;
     padding-left: 0;
   }
-  .tools-and-resources-block h2,
-  #block-views-news-oshnews-latest h2,
-  #block-views-frontpage-events-block h2 {
-    text-align: center;
+  .front .tools-and-resources-block h2,
+  .front #block-views-news-oshnews-latest h2,
+  .front #block-views-frontpage-events-block h2 {
+    text-align: left;
   }
-  .tools-and-resources-block a,
-  #block-views-news-oshnews-latest a,
-  #block-views-frontpage-events-block a {
+  .front .tools-and-resources-block a,
+  .front #block-views-news-oshnews-latest a,
+  .front #block-views-frontpage-events-block a {
     clear: both;
     float: left;
     margin-left: 0.7em;
   }
-  .tools-and-resources-block a:before,
-  #block-views-news-oshnews-latest a:before,
-  #block-views-frontpage-events-block a:before {
+  .front .tools-and-resources-block a:before,
+  .front #block-views-news-oshnews-latest a:before,
+  .front #block-views-frontpage-events-block a:before {
     padding-right: 0.35em;
     margin-left: -0.7em;
   }
-  .tools-and-resources-block span.date-display-single,
-  #block-views-news-oshnews-latest span.date-display-single,
-  #block-views-frontpage-events-block span.date-display-single {
+  .front .tools-and-resources-block span.date-display-single,
+  .front #block-views-news-oshnews-latest span.date-display-single,
+  .front #block-views-frontpage-events-block span.date-display-single {
     margin-left: 11px;
     clear: both;
   }
-  .tools-and-resources-block a span.date-display-single,
-  #block-views-news-oshnews-latest a span.date-display-single,
-  #block-views-frontpage-events-block a span.date-display-single {
+  .front .tools-and-resources-block a span.date-display-single,
+  .front #block-views-news-oshnews-latest a span.date-display-single,
+  .front #block-views-frontpage-events-block a span.date-display-single {
     margin-left: 0px;
   }
-  .tools-and-resources-block .field-content.event-link-front,
-  #block-views-news-oshnews-latest .field-content.event-link-front,
-  #block-views-frontpage-events-block .field-content.event-link-front {
+  .front .tools-and-resources-block .field-content.event-link-front,
+  .front #block-views-news-oshnews-latest .field-content.event-link-front,
+  .front #block-views-frontpage-events-block .field-content.event-link-front {
     clear: both;
     margin-left: 11px;
+  }
+  #block-osha-newsletter-osha-newsletter-subscribe .captcha,
+  #block-osha-newsletter-osha-newsletter-image .captcha {
+    margin-left: -257px;
+  }
+  #block-osha-newsletter-osha-newsletter-image {
+    padding-right: 15px;
+    padding-left: 15px;
+    background-position: right center;
+    margin-bottom: 0;
+  }
+  #block-osha-newsletter-osha-newsletter-image h2 {
+    margin: 40px 0  30px 0;
+    padding-top: 8px;
+    padding-bottom: 22px;
+    padding-left: 72px;
+    text-align: left !important;
+    background: url("../images/content/newsletter.png") no-repeat;
+  }
+  #block-osha-newsletter-osha-newsletter-image #campaigns-newsletter-subscribe-form {
+    text-align: center;
+  }
+  #block-osha-newsletter-osha-newsletter-image #campaigns-newsletter-subscribe-form #edit-email {
+    width: 175px;
+    margin-left: 0px;
+  }
+  #block-views-partners-block-1 {
+    padding-top: 0;
+  }
+  #block-views-partners-block-1 h2 {
+    margin: 20px 0  20px 0;
+    padding-top: 8px;
+    padding-bottom: 22px;
+    padding-left: 72px;
+    text-align: left !important;
+    background: url("../images/content/partners.png") no-repeat;
+  }
+  #block-views-partners-block-1 .views-field-title {
+    float: left;
+    clear: both;
+    top: 0;
+    position: absolute;
+  }
+  #block-views-partners-block-1 .views-field-field-logo {
+    margin: 0 auto 20px auto;
+    margin-top: 80px !important;
   }
   #block-views-partners-block-1 .view-display-id-block_1 .view-display-id-attachment_1 {
     border: none;
     padding-top: 0;
     padding-right: 0;
     padding-left: 0;
+    padding-bottom: 0;
   }
   #block-views-partners-block-1 .view-display-id-block_1 .view-display-id-attachment_1 .view-content .views-field-field-logo {
     min-height: 0;
     width: 100%;
-    margin: 0 auto;
   }
   #block-views-partners-block-1 .view-display-id-block_1 .view-display-id-attachment_1 .view-content .views-field-field-logo img {
     width: auto;
     text-align: center;
     margin: 0 auto;
   }
-  #block-views-partners-block-1 div.more-link {
+  #block-views-partners-block-1 a.more-link {
     margin-top: 0;
     background-color: #003399;
     padding: 15px;
+    font-style: italic;
+    padding: 0;
+  }
+  #block-views-partners-block-1 a.more-link:before {
+    content: "> ";
+  }
+  #block-views-partners-block-1 div.more-link {
+    width: 100%;
+    margin: 0;
+    padding: 0;
   }
   #block-views-partners-block-1 div.more-link:before {
     content: "";
+    display: none;
   }
-  #campaigns-newsletter-subscribe-form {
-    text-align: left;
+  #block-views-partners-block-1 div.more-link a {
+    width: 100% !important;
+    height: 3.5em;
+    padding: 1em;
+    margin-top: 1em;
+    display: block;
   }
-  #campaigns-newsletter-subscribe-form #edit-email {
-    margin-left: 15px;
-  }
-  #block-osha-newsletter-osha-newsletter-subscribe .captcha,
-  #block-osha-newsletter-osha-newsletter-image .captcha {
-    margin-left: -338px;
+  #block-views-partners-block-1 div.more-link a:before {
+    content: "> ";
   }
   /*fin home*/
   /* Article */
@@ -11347,6 +11747,43 @@ div[class*='node-'] .more-link {
     padding-right: 15px;
     padding-left: 15px;
   }
+  .node-type-article article h2 {
+    text-align: left;
+    margin-right: 15px;
+    margin-left: 15px;
+    margin-bottom: 1em;
+  }
+  .node-type-article article .icon.recommended-resources {
+    float: left;
+    margin-top: 0;
+    margin-right: 15px;
+    margin-left: 15px;
+  }
+  .node-type-article article .field-name-field-recommended-articles .node-article {
+    margin: 0;
+  }
+  .node-type-article article .field-name-field-recommended-articles .node-article h2 {
+    display: none;
+  }
+  .node-type-article article .field-name-field-recommended-articles .node-article .content .field-name-title-field {
+    margin-bottom: 0;
+  }
+  .node-type-article article .field-name-field-recommended-articles .node-article .content .field-name-title-field a {
+    font-size: 18px;
+  }
+  .node-type-article article .field-name-field-recommended-articles .node-article .content .field-name-field-summary {
+    display: none;
+  }
+  .node-type-article article .field-name-field-recommended-resources .field-item {
+    margin: 0;
+    padding: 0;
+  }
+  .node-type-article article .field-name-field-recommended-resources .field-item a {
+    font-size: 18px;
+  }
+  .node-type-article article .field-name-field-recommended-resources .field-item .field-type-text-with-summary {
+    display: none;
+  }
   .field-name-field-recommended-articles,
   .field-name-field-recommended-resources {
     padding-right: 15px;
@@ -11406,7 +11843,7 @@ div[class*='node-'] .more-link {
   .node-type-practical-tool .pane-node-field-access-tool-link .field-label,
   .node-type-practical-tool .pane-hwc-practical-tool-hwc-practical-tool-language-list .field-label,
   .node-type-practical-tool .pane-node-field-external-urls .field-label {
-    width: 95%;
+    width: 99%;
   }
   /*FIN detail*/
   /*FIN Practical tools*/
@@ -11568,6 +12005,14 @@ div[class*='node-'] .more-link {
     width: 100%;
   }
   /*fin videos*/
+  /* pag Search */
+  .page-search .region-sidebar-first .facetapi-facetapi-checkbox-links li {
+    width: 50%;
+  }
+  .page-search .views-widget-sort-by {
+    clear: both;
+  }
+  /*Fin pag Search */
   /*clases para toda la web*/
   .section-introduction .field-type-text-with-summary {
     padding-right: 15px;

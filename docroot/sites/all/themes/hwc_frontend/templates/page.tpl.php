@@ -122,11 +122,6 @@ $theme_dir = drupal_get_path('theme', 'hwc_frontend');
 <div class="main-container container-fluid">
 
   <div class="row">
-    <?php if (!empty($page['sidebar_first'])): ?>
-      <aside class="col-sm-3 col-lg-12" role="complementary">
-        <?php print render($page['sidebar_first']); ?>
-      </aside>  <!-- /#sidebar-first -->
-    <?php endif; ?>
     <section class="<?php print (!empty($content_class)) ? $content_class : ''; ?>">
     <?php /* print $content_column_class; */ ?>
       <?php if (!empty($page['highlighted'])): ?>
@@ -154,8 +149,16 @@ $theme_dir = drupal_get_path('theme', 'hwc_frontend');
       <?php if (!empty($action_links)): ?>
         <ul class="action-links"><?php print render($action_links); ?></ul>
       <?php endif; ?>
+	  
+	  <?php if (!empty($page['sidebar_first'])): ?>
+		  <aside class="col-xs-12 col-sm-12 col-md-3" role="complementary">
+			<?php print render($page['sidebar_first']); ?>
+		  </aside>  <!-- /#sidebar-first -->
+	  <?php endif; ?>
+	
       <?php print render($page['content']); ?>
     </section>
+	
     <?php if (!empty($page['sidebar_second'])): ?>
       <aside class="col-xs-12 col-sm-8 col-sm-offset-2" role="complementary">
         <?php print render($page['sidebar_second']); ?>
