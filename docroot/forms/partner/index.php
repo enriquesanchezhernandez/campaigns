@@ -6,7 +6,17 @@ require_once DRUPAL_ROOT . '/includes/bootstrap.inc';
 $base_url = 'http://' . $_SERVER['HTTP_HOST'];
 drupal_bootstrap(DRUPAL_BOOTSTRAP_FULL);
 global $user;
-print "<strong>You are currently logged as: <span style='color: red;'>{$user->name}, {$user->mail} ($user->uid)</span></strong>";
+$wrapper = entity_metadata_wrapper('user', $user);
+$guid = $wrapper->field_crm_guid->value();
+if (!empty($_GET['debug'])) {
+print "<pre>
+Account information:
+* Username: {$user->name}
+* Mail:     {$user->mail}
+* UID:      {$user->uid}
+* GUID:     {$guid}
+<pre>";
+}
 
 //error_reporting(E_ERROR | E_WARNING | E_PARSE);
 // Enviroment constants
