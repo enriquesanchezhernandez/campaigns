@@ -78,7 +78,6 @@ header{
 					    right: 0;
 					    padding-right: 46px;
 					    position: initial;
-					    
 					}
 
 				}
@@ -119,6 +118,7 @@ header.navbar-default{
 					width: 100%;
 					span{
 						text-align: left;
+						padding-left: 15px;
 						&:before{
 							content: ">";
 							padding-right: 0.5em;
@@ -132,6 +132,10 @@ header.navbar-default{
 						list-style-type: disc;
 						padding-top: 0;
 						padding-bottom: 0;
+						width: 100%;
+						min-width: 100%;
+						margin-left: 0em;
+						display: block;
 						li{
 							padding-left: 2em;
 							list-style: initial;
@@ -206,6 +210,7 @@ header.navbar-default{
 	padding-top: 1em;
 	padding-bottom: 1em;
 	padding-left: 0;
+	margin-top: 30px;
 	.region.region-footer, h3, p{
 		display: none;
 	}
@@ -236,61 +241,216 @@ header.navbar-default{
 	}
 	
 	/*home*/
-		/*home Slider*/
-		#homepage_slider{
-			background: none;
-			margin-bottom: 0;
-			height: 300px !important;
-		}
-		/*FIN home Slider*/
-	.tools-and-resources-block, #block-views-news-oshnews-latest, #block-views-frontpage-events-block{
-		width: 100%;
-		text-align: left;
-		border: none;
-		padding-right: 0;
-		padding-left: 0;
-		padding-bottom: 1em;
-		margin-bottom: 0em;
-		margin-top: 0em;
-		border-bottom: 1px dotted @border-default-color;
-		> div{		
-			padding-right: 0;
-			padding-left: 0;
-		}
-		h2{
-		    text-align: center;
-		}
-		a{
-			clear:both;
-		    float: left;
-			margin-left: 0.7em;
-			&:before{
-				padding-right: 0.35em;
-				margin-left: -0.7em;
+
+
+	.front{
+		//slider
+		#block-views-frontpage-slider-block{
+			img{
+				display: none;
 			}
 		}
-		span.date-display-single {
-			margin-left: 11px;
-			clear:both;
+		#homepage_slider{
+			> div{
+				padding-left: 15px;
+    			padding-right: 15px;
+			}
+			background: url("../images/content/bg-campaign-partner.png") no-repeat left;
+			margin-bottom: 0;
+			height: 300px !important;
+			.views-field-body{
+				top:150px !important;
+				float: left !important;
+				.field-content{
+					text-align: left !important;
+					margin-right: 0px !important;
+					float: left !important;
+					padding: 0 0px !important;
+				}
+			}
+			.views-field-title{
+				margin: 0 -20px !important;
+    			padding: 0 0px !important;
+    			span{
+    				float: left !important;
+    			}
+			}
+			.views-field-field-content-reference{
+				a{
+					width: 100% !important;
+				    margin-left: 0px !important;
+				    margin-right: 0px !important;
+					bottom: 1em !important;
+					height: 3.5em !important;
+					padding: 1em !important;
+					top: 230px !important;
+					right: initial !important;
+					text-align: center;
+				}
+			}
 		}
-		a span.date-display-single {
-			margin-left: 0px;
+		//fin slider
+		.tools-and-resources-block{
+			width: 100%;
+			text-align: left;
+			padding-right: 15px;
+			padding-left: 15px;
+			margin-bottom: 0;
+			border-bottom: 1px dotted @color3;
+			padding-bottom: 2em;
+			.field-name-title-field{
+				h1{
+					margin: 20px 0;
+				    padding-top: 8px;
+    				padding-bottom: 22px;
+				    text-align: left;
+				    padding-left: 78px;
+				    background: url("../images/content/tools-and-resources.png") no-repeat;
+				}
+			}
+			#block-menu-block-1{
+				.menu{
+					padding-bottom: 0;
+					border: none;
+					li{
+						display: inline-block;
+						margin-right: 40px;
+						width: 150px;
+					}
+				}
+			}
 		}
-		.field-content.event-link-front{
-			clear: both;
-			margin-left: 11px;
+		#block-views-news-oshnews-latest{
+			width: 100%;
+			border-left: none;
+			padding-right: 15px;
+			padding-left: 15px;
+			border-bottom: 1px dotted @border-default-color;
+			h2{
+				margin: 20px 0;
+			    padding-top: 8px;
+    			padding-bottom: 22px;
+			    text-align: left;
+			    padding-left: 78px;
+			    background: url("../images/content/news.png") no-repeat;
+			}
+			.view-news{
+				.views-row {
+    				padding-right: 0;
+    				padding-left: 0;
+    			}
+    		}
 		}
-	}	
+		#block-views-frontpage-events-block{
+			width: 100%;
+			border-left: none;
+			padding-right: 15px;
+			padding-left: 15px;
+			h2{
+				margin: 20px 0;
+			    padding-top: 8px;
+    			padding-bottom: 22px;
+			    text-align: left;
+			    padding-left: 78px;
+			    background: url("../images/content/events.png") no-repeat;
+			}
+		}
+		.tools-and-resources-block, #block-views-news-oshnews-latest, #block-views-frontpage-events-block{
+			width: 100%;
+			text-align: left;
+			padding-bottom: 1em;
+			margin-bottom: 0em;
+			margin-top: 0em;
+			border-right: none;
+			> div{		
+				padding-right: 0;
+				padding-left: 0;
+			}
+			h2{
+			    text-align: left;
+			}
+			a{
+				clear:both;
+			    float: left;
+				margin-left: 0.7em;
+				&:before{
+					padding-right: 0.35em;
+					margin-left: -0.7em;
+				}
+			}
+			span.date-display-single {
+				margin-left: 11px;
+				clear:both;
+			}
+			a span.date-display-single {
+				margin-left: 0px;
+			}
+			.field-content.event-link-front{
+				clear: both;
+				margin-left: 11px;
+			}
+		}
+	}
+	
+	
+	
+	#block-osha-newsletter-osha-newsletter-subscribe .captcha, #block-osha-newsletter-osha-newsletter-image .captcha{
+		margin-left: -257px;
+	}
+
+	//subscribe newsletter
+	#block-osha-newsletter-osha-newsletter-image{
+		padding-right: 15px;
+		padding-left: 15px;
+		background-position: right center;
+		margin-bottom: 0;
+		h2{
+			margin: 40px 0  30px 0;
+		    padding-top: 8px;
+			padding-bottom: 22px;
+			padding-left: 72px;
+		    text-align: left !important;
+		    background: url("../images/content/newsletter.png") no-repeat;
+		}
+		#campaigns-newsletter-subscribe-form{
+			text-align: center;
+			#edit-email {
+			    width: 175px;
+			    margin-left: 0px;
+			}
+		}
+	}
+	//principal partner
 	#block-views-partners-block-1{
+		padding-top: 0;
+		h2{
+			margin: 20px 0  20px 0;
+		    padding-top: 8px;
+			padding-bottom: 22px;
+			padding-left: 72px;
+		    text-align: left !important;
+		    background: url("../images/content/partners.png") no-repeat;
+		}
+		.views-field-title{
+		    float: left;
+		    clear: both;
+		    top: 0;
+		    position: absolute;
+		}
+		.views-field-field-logo{
+			
+			margin: 0 auto 20px auto;
+			margin-top: 80px !important;
+		}
 		.view-display-id-block_1 .view-display-id-attachment_1{
 			border: none;
 			padding-top: 0;
 			padding-right: 0;
 			padding-left: 0;
+			padding-bottom: 0;
 			.view-content .views-field-field-logo{
 				min-height: 0;
 				width: 100%;
-				margin: 0 auto;
 				img{
 				    width: auto;
 					text-align: center;
@@ -298,24 +458,39 @@ header.navbar-default{
 				}
 			}
 		}
-		div.more-link{
+		a.more-link{
 			margin-top: 0;
 			background-color: @bg-color-2;
 			padding: 15px;
+			font-style: italic;
+			padding: 0;
 			&:before{
-				content: "";
+				content: "> ";
 			}
 		}
-	}
-	#campaigns-newsletter-subscribe-form{
-		text-align: left;
-		#edit-email{
-			margin-left: 15px;
+		div.more-link{
+			width: 100%;
+			margin: 0; 
+			padding: 0;
+			&:before{
+				content: "";
+				display: none;
+			}
+			a{
+				width: 100% !important;
+				height: 3.5em;
+				padding: 1em;
+				margin-top: 1em;
+				display: block; 
+				&:before{
+					content: "> ";
+
+				}
+			}
+			
 		}
 	}
-	#block-osha-newsletter-osha-newsletter-subscribe .captcha, #block-osha-newsletter-osha-newsletter-image .captcha{
-		margin-left: -338px;
-	}
+	
 	/*fin home*/
 
 	/* Article */
@@ -357,23 +532,29 @@ header.navbar-default{
 			z-index: -1;
 			height: 345px;
 			position: absolute;
-			top: 220px;
+			/* top: 220px; */
 			h1{
 				padding-top: 180px;
 			}
 		}
 		.field.field-name-field-image{
 			width: 100%;
-			margin: 0px;
 			padding: 0px;
 			position: absolute;
-			top: 220px;
+			/* top: 220px; */
 			left: 0px;
 			z-index: -2;
 			height: 345px;
 			overflow: hidden;
-			div, img{
+			div{
 				height:100%;
+			}
+			img{
+				height: 345px;
+				min-height: 345px;
+				min-width: 100%;
+				width: auto;
+				max-width: none;
 			}
 		}
 		.field-name-field-image + .field-name-title-field + .container{
@@ -388,10 +569,57 @@ header.navbar-default{
 			padding-right: 15px;
 			padding-left: 15px;
 		}
+		h2{
+			text-align: left;
+			margin-right: 15px;
+			margin-left: 15px;
+			margin-bottom: 1em;
+		}
+		.icon.recommended-resources{
+			float: left;
+			margin-top: 0;
+			margin-right: 15px;
+			margin-left: 15px;
+		}
+		.field-name-field-recommended-articles{
+			.node-article{
+				margin:0;
+				h2{
+					display: none;
+				}
+				.content{
+					.field-name-title-field{
+						margin-bottom: 0;
+						a{
+		    				font-size: @size7;
+		    			}
+					}
+					.field-name-field-summary{
+						display: none;
+					}
+				}
+			}
+		}
+		.field-name-field-recommended-resources{
+			.field-item{
+				margin: 0;
+    			padding: 0;
+    			a{
+    				font-size: @size7;
+    			}
+				.field-type-text-with-summary{
+					display: none;
+				}
+			}
+			
+		}		
 	}
 	.field-name-field-recommended-articles, .field-name-field-recommended-resources{
 		padding-right: 15px;
 		padding-left: 15px;
+		.node-article .field.field-name-field-image {
+			display: none;
+		}
 	}
 	/*fin Article */
 	
@@ -440,7 +668,7 @@ header.navbar-default{
 				padding-bottom: 2em;
 			}
 			.pane-node-field-provider .field-items, .pane-node-body .field-items, .pane-node-field-implementation-steps .field-items, .pane-node-field-dissemination-used .field-items, .pane-node-field-access-tool-link .field-items, .pane-hwc-practical-tool-hwc-practical-tool-language-list .field-items, .pane-node-field-external-urls .field-items, .pane-node-field-provider .field-label, .pane-node-body .field-label, .pane-node-field-implementation-steps .field-label, .pane-node-field-dissemination-used .field-label, .pane-node-field-access-tool-link .field-label, .pane-hwc-practical-tool-hwc-practical-tool-language-list .field-label, .pane-node-field-external-urls .field-label{
-				width: 95%;
+				width: 99%;
 			}
 		}
 		/*FIN detail*/
@@ -467,6 +695,82 @@ header.navbar-default{
 	/*FIN Publications*/
 	
 	/*events*/
+	.page-past-events, .page-events{
+		h1.page-header{
+			margin-bottom: 1em;
+		}
+		.views-exposed-widgets{
+			padding-top: 2em;
+			padding-bottom: 4em;
+			#edit-search-api-views-fulltext-wrapper{
+				margin-left: 15px;
+			}
+			#block-views-events-block-1, #block-views-events-block-2{
+				width: 95%;
+				position: absolute;
+				left: 15px;
+				margin-top: 3em;
+				.view-events{
+					float: right;
+					.events-filter-by-date{
+						h3{
+							background-image: none;
+						}
+						ul{
+							position: absolute;
+							margin-top: 3em;
+							margin-left: -0.5em;
+							background-color: @bg-default-color;
+							border: 1px solid @bg-color-2;
+							overflow: visible !important;
+							display: none;
+							&:before{
+								bottom: 100%;
+								left: 50%;
+								content: " ";
+								height: 0;
+								width: 0;
+								position: absolute;
+								pointer-events: none;
+								border: solid transparent;
+								border-color: transparent;
+								border-bottom-color: @bg-color-2;
+								border-width: 10px;
+								margin-left: -10px;
+							}
+							&:after{
+								bottom: 100%;
+								left: 50%;
+								content: " ";
+								height: 0;
+								width: 0;
+								position: absolute;
+								pointer-events: none;
+								border: solid transparent;
+								border-color: transparent;
+								border-bottom-color: white;
+								border-width: 8px;
+								margin-left: -8px;
+							}
+							li{
+								float: none;
+								position: relative;
+								&.views-row-last{
+									background-image: none;
+								}
+							}
+						}
+						h3 ~ ul{
+							display: none !important;
+						}
+						h3.expand ~ ul{
+							display: block !important;
+						}
+					}
+				}
+			}
+		}
+	}
 	.node-events{
 		.field-name-field-speaker{
 			> .field-items > .field-item{
@@ -477,6 +781,8 @@ header.navbar-default{
 			}
 		}
 	}
+	/*Fin events*/
+	
 /*FIn container*/
 
 /*Press room*/
@@ -639,6 +945,48 @@ header.navbar-default{
 	}
 }
 /*fin videos*/
+
+/* pag Search */
+.page-search{
+	.region-sidebar-first{
+		.facetapi-facetapi-checkbox-links{
+			li{
+				width: 50%;
+			}
+		}
+	}
+	.views-widget-sort-by{
+		clear: both;
+	}
+}
+/*Fin pag Search */
+
+/*Private area*/
+.private-area{
+	h1.page-header{
+			border-bottom: 1px dotted @color3;
+			padding-bottom: 0.8em;
+			margin-bottom: 1em;
+		}
+	#private{
+		
+		.pane-custom, p[id*="tmgmt"], ul{
+			padding-left: 15px !important;
+			padding-right: 15px !important;
+		}
+		.section-introduction{
+			p[id*="tmgmt"]{
+				padding-left: 0px !important;
+				padding-right: 0px !important;
+			}
+		}
+		h2{
+			padding-left: 15px;
+			padding-right: 15px;
+			margin-top: 30px;
+		}
+	}
+}
 
 /*clases para toda la web*/
 .section-introduction{

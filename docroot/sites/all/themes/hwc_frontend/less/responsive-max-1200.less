@@ -1,6 +1,7 @@
 //rewrite styles for responsive design
 
 @media only screen and (max-width : 1200px) {
+	/*header*/
 	header{
 		&.navbar-default {
 			.campaigns-header {
@@ -39,4 +40,33 @@
 		}
 	}
 	/*fin header*/
+	
+	/*publications*/
+		#publications_slideshow{
+			width: 800px !important;
+			max-width: 100%;
+		}
+	/*publications*/
+	
+	/*Articles*/
+	.node-article{
+		.field.field-name-field-image img {
+			width: 100%;
+			height: auto;
+			min-height: 360px;
+			max-width: none;
+			width: auto;
+			min-width: 100%;
+		}
+		.node-article{
+			.field.field-name-field-image img {
+				height: auto;
+				min-height: 0;
+				max-width: none;
+				width: auto;
+				min-width: 0;
+			}
+		}
+	}
+	/*Fin Articles*/
 }
