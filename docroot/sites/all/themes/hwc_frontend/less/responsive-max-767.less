@@ -78,7 +78,6 @@ header{
 					    right: 0;
 					    padding-right: 46px;
 					    position: initial;
-					    
 					}
 
 				}
@@ -119,6 +118,7 @@ header.navbar-default{
 					width: 100%;
 					span{
 						text-align: left;
+						padding-left: 15px;
 						&:before{
 							content: ">";
 							padding-right: 0.5em;
@@ -132,6 +132,10 @@ header.navbar-default{
 						list-style-type: disc;
 						padding-top: 0;
 						padding-bottom: 0;
+						width: 100%;
+						min-width: 100%;
+						margin-left: 0em;
+						display: block;
 						li{
 							padding-left: 2em;
 							list-style: initial;
@@ -528,23 +532,29 @@ header.navbar-default{
 			z-index: -1;
 			height: 345px;
 			position: absolute;
-			top: 220px;
+			/* top: 220px; */
 			h1{
 				padding-top: 180px;
 			}
 		}
 		.field.field-name-field-image{
 			width: 100%;
-			margin: 0px;
 			padding: 0px;
 			position: absolute;
-			top: 220px;
+			/* top: 220px; */
 			left: 0px;
 			z-index: -2;
 			height: 345px;
 			overflow: hidden;
-			div, img{
+			div{
 				height:100%;
+			}
+			img{
+				height: 345px;
+				min-height: 345px;
+				min-width: 100%;
+				width: auto;
+				max-width: none;
 			}
 		}
 		.field-name-field-image + .field-name-title-field + .container{
@@ -602,13 +612,14 @@ header.navbar-default{
 				}
 			}
 			
-		}
-		
-		
+		}		
 	}
 	.field-name-field-recommended-articles, .field-name-field-recommended-resources{
 		padding-right: 15px;
 		padding-left: 15px;
+		.node-article .field.field-name-field-image {
+			display: none;
+		}
 	}
 	/*fin Article */
 	
@@ -684,6 +695,82 @@ header.navbar-default{
 	/*FIN Publications*/
 	
 	/*events*/
+	.page-past-events, .page-events{
+		h1.page-header{
+			margin-bottom: 1em;
+		}
+		.views-exposed-widgets{
+			padding-top: 2em;
+			padding-bottom: 4em;
+			#edit-search-api-views-fulltext-wrapper{
+				margin-left: 15px;
+			}
+			#block-views-events-block-1, #block-views-events-block-2{
+				width: 95%;
+				position: absolute;
+				left: 15px;
+				margin-top: 3em;
+				.view-events{
+					float: right;
+					.events-filter-by-date{
+						h3{
+							background-image: none;
+						}
+						ul{
+							position: absolute;
+							margin-top: 3em;
+							margin-left: -0.5em;
+							background-color: @bg-default-color;
+							border: 1px solid @bg-color-2;
+							overflow: visible !important;
+							display: none;
+							&:before{
+								bottom: 100%;
+								left: 50%;
+								content: " ";
+								height: 0;
+								width: 0;
+								position: absolute;
+								pointer-events: none;
+								border: solid transparent;
+								border-color: transparent;
+								border-bottom-color: @bg-color-2;
+								border-width: 10px;
+								margin-left: -10px;
+							}
+							&:after{
+								bottom: 100%;
+								left: 50%;
+								content: " ";
+								height: 0;
+								width: 0;
+								position: absolute;
+								pointer-events: none;
+								border: solid transparent;
+								border-color: transparent;
+								border-bottom-color: white;
+								border-width: 8px;
+								margin-left: -8px;
+							}
+							li{
+								float: none;
+								position: relative;
+								&.views-row-last{
+									background-image: none;
+								}
+							}
+						}
+						h3 ~ ul{
+							display: none !important;
+						}
+						h3.expand ~ ul{
+							display: block !important;
+						}
+					}
+				}
+			}
+		}
+	}
 	.node-events{
 		.field-name-field-speaker{
 			> .field-items > .field-item{
@@ -694,6 +781,8 @@ header.navbar-default{
 			}
 		}
 	}
+	/*Fin events*/
+	
 /*FIn container*/
 
 /*Press room*/
@@ -871,6 +960,33 @@ header.navbar-default{
 	}
 }
 /*Fin pag Search */
+
+/*Private area*/
+.private-area{
+	h1.page-header{
+			border-bottom: 1px dotted @color3;
+			padding-bottom: 0.8em;
+			margin-bottom: 1em;
+		}
+	#private{
+		
+		.pane-custom, p[id*="tmgmt"], ul{
+			padding-left: 15px !important;
+			padding-right: 15px !important;
+		}
+		.section-introduction{
+			p[id*="tmgmt"]{
+				padding-left: 0px !important;
+				padding-right: 0px !important;
+			}
+		}
+		h2{
+			padding-left: 15px;
+			padding-right: 15px;
+			margin-top: 30px;
+		}
+	}
+}
 
 /*clases para toda la web*/
 .section-introduction{

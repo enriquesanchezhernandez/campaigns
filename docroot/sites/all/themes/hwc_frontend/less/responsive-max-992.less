@@ -272,8 +272,18 @@ header{
 			height: 300px;
 		}
 	}
+	.hwc-share-widget{
+		padding-left: 30px;
+		padding-right: 30px;
+	}
+	.field-name-field-recommended-articles, .field-name-field-recommended-resources{
+		.field.field-name-field-image img{
+			height: auto;
+		}
+	}
 }
 /*fin article*/
+
 /*events*/
 .node-events{
 	.field-name-field-speaker{
@@ -282,6 +292,7 @@ header{
 		}
 	}
 }
+/*fin events*/
 
 /*Press room*/
 .view-press-releases {
@@ -411,6 +422,10 @@ header{
 			li{
 				float: left;
 				width: 20%;
+				white-space: nowrap;
+				input[type="checkbox"]{
+					margin-right: 0.1em;
+				}
 			}
 		}
 	}
@@ -432,6 +447,26 @@ header{
 	}
 }
 /*Fin pag Search */
+
+/*Private area*/
+.private-area{
+	#private{
+		.section-introduction{
+			.field-label-hidden{
+				display: block;
+			}
+		}
+		.pane-custom, p[id*="tmgmt"], ul{
+			padding-left: 30px !important;
+			padding-right: 30px !important;
+		}
+		h2{
+			padding-left: 30px;
+			padding-right: 30px;
+		}
+	}
+}
+/*fin private area*/
 
 /*clases para toda la web*/
 .container{
