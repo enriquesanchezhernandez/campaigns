@@ -10876,6 +10876,21 @@ div[class*='node-'] .more-link {
   }
   /*publications*/
   /*Articles*/
+  .node-article .field.field-name-field-image img {
+    width: 100%;
+    height: auto;
+    min-height: 360px;
+    max-width: none;
+    width: auto;
+    min-width: 100%;
+  }
+  .node-article .node-article .field.field-name-field-image img {
+    height: auto;
+    min-height: 0;
+    max-width: none;
+    width: auto;
+    min-width: 0;
+  }
   /*Fin Articles*/
 }
 @media only screen and (max-width: 992px) {
@@ -11110,8 +11125,12 @@ div[class*='node-'] .more-link {
   .node-article .field-name-field-image + .field-name-title-field h1 {
     padding-top: 190px;
   }
+  .node-article .field.field-name-field-image {
+    height: 300px;
+  }
   .node-article .field.field-name-field-image img {
     height: 300px;
+    min-height: 300px;
   }
   .node-article .hwc-share-widget {
     padding-left: 30px;
