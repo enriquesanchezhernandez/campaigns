@@ -119,7 +119,7 @@ function osha_news_field_default_field_instances() {
         'summary_rows' => 5,
       ),
       'type' => 'text_textarea_with_summary',
-      'weight' => 7,
+      'weight' => 8,
     ),
   );
 
@@ -182,7 +182,7 @@ function osha_news_field_default_field_instances() {
         'apply_chosen' => '',
       ),
       'type' => 'options_select',
-      'weight' => 5,
+      'weight' => 12,
     ),
     'workbench_access_field' => 0,
   );
@@ -507,7 +507,7 @@ function osha_news_field_default_field_instances() {
         'year_range' => '-3:+3',
       ),
       'type' => 'date_select',
-      'weight' => 13,
+      'weight' => 10,
     ),
     'workbench_access_field' => 0,
   );
@@ -612,7 +612,7 @@ function osha_news_field_default_field_instances() {
     ),
     'widget' => array(
       'active' => 1,
-      'module' => 'media',
+      'module' => 'image',
       'settings' => array(
         'allowed_schemes' => array(
           'public' => 'public',
@@ -630,9 +630,11 @@ function osha_news_field_default_field_instances() {
           'media_default--media_browser_my_files' => 0,
           'upload' => 'upload',
         ),
+        'preview_image_style' => 'thumbnail',
+        'progress_indicator' => 'throbber',
       ),
-      'type' => 'media_generic',
-      'weight' => 8,
+      'type' => 'image_image',
+      'weight' => 6,
     ),
     'workbench_access_field' => 0,
   );
@@ -705,7 +707,7 @@ function osha_news_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 9,
+      'weight' => 7,
     ),
     'workbench_access_field' => 0,
   );
@@ -917,7 +919,7 @@ function osha_news_field_default_field_instances() {
         'year_range' => '-3:+3',
       ),
       'type' => 'date_select',
-      'weight' => 12,
+      'weight' => 9,
     ),
     'workbench_access_field' => 0,
   );
@@ -1020,7 +1022,7 @@ function osha_news_field_default_field_instances() {
         'rows' => 10,
       ),
       'type' => 'text_textarea',
-      'weight' => 6,
+      'weight' => 5,
     ),
   );
 
@@ -1101,7 +1103,7 @@ function osha_news_field_default_field_instances() {
         'apply_chosen' => 1,
       ),
       'type' => 'options_select',
-      'weight' => 10,
+      'weight' => 13,
     ),
     'workbench_access_field' => 0,
   );
@@ -1223,7 +1225,7 @@ function osha_news_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 3,
+      'weight' => 4,
     ),
   );
 

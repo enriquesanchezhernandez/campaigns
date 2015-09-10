@@ -12,6 +12,84 @@ function osha_news_ds_layout_settings_info() {
 
   $ds_layout = new stdClass();
   $ds_layout->api_version = 1;
+  $ds_layout->id = 'node|news|form';
+  $ds_layout->entity_type = 'node';
+  $ds_layout->bundle = 'news';
+  $ds_layout->view_mode = 'form';
+  $ds_layout->layout = 'hwc_2col_stacked_2col';
+  $ds_layout->settings = array(
+    'regions' => array(
+      'header' => array(
+        0 => 'metatags',
+        1 => 'path',
+        2 => 'redirect',
+        3 => 'workbench_access',
+      ),
+      'center' => array(
+        4 => 'title_field',
+        5 => 'field_summary',
+        6 => 'field_image',
+        7 => 'field_image_caption',
+        8 => 'body',
+        9 => 'field_publication_date',
+        10 => 'field_expiration_date',
+        11 => 'field_aditional_resources',
+      ),
+      'footer' => array(
+        12 => 'field_activity',
+        13 => 'field_tags',
+        14 => 'field_page_count',
+        15 => 'field_character_count',
+        16 => 'field_archived',
+      ),
+      'hidden' => array(
+        17 => '_add_existing_field',
+      ),
+    ),
+    'fields' => array(
+      'metatags' => 'header',
+      'path' => 'header',
+      'redirect' => 'header',
+      'workbench_access' => 'header',
+      'title_field' => 'center',
+      'field_summary' => 'center',
+      'field_image' => 'center',
+      'field_image_caption' => 'center',
+      'body' => 'center',
+      'field_publication_date' => 'center',
+      'field_expiration_date' => 'center',
+      'field_aditional_resources' => 'center',
+      'field_activity' => 'footer',
+      'field_tags' => 'footer',
+      'field_page_count' => 'footer',
+      'field_character_count' => 'footer',
+      'field_archived' => 'footer',
+      '_add_existing_field' => 'hidden',
+    ),
+    'classes' => array(
+      'layout_class' => array(
+        '' => '',
+      ),
+    ),
+    'wrappers' => array(
+      'header' => 'div',
+      'left' => 'div',
+      'right' => 'div',
+      'center' => 'div',
+      'left2' => 'div',
+      'right2' => 'div',
+      'footer' => 'div',
+    ),
+    'layout_wrapper' => 'div',
+    'layout_attributes' => '',
+    'layout_attributes_merge' => 1,
+    'layout_link_attribute' => '',
+    'layout_link_custom' => '',
+  );
+  $export['node|news|form'] = $ds_layout;
+
+  $ds_layout = new stdClass();
+  $ds_layout->api_version = 1;
   $ds_layout->id = 'node|news|teaser';
   $ds_layout->entity_type = 'node';
   $ds_layout->bundle = 'news';

@@ -174,7 +174,7 @@ function osha_news_strongarm() {
           'weight' => '1',
         ),
         'workbench_access' => array(
-          'weight' => '4',
+          'weight' => '3',
         ),
         'language' => array(
           'weight' => '1',
