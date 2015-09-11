@@ -129,11 +129,11 @@ $theme_dir = drupal_get_path('theme', 'hwc_frontend');
       <?php endif; ?>
       <?php if (!empty($breadcrumb)): print $breadcrumb; endif;?>
       <a id="main-content"></a>
-      <?php print render($title_prefix); ?>
+		<?php print render($title_prefix); ?>
       <div>
         <?php print render($page['above_title']); ?>
       </div>
-      <div>
+      <div class="page_title">
         <?php if (!empty($title)): ?>
           <h1 class="page-header"><?php print $title; ?></h1>
         <?php endif; ?>

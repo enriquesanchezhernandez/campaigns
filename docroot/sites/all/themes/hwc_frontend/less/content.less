@@ -1072,7 +1072,9 @@
 					/* float: left;
 					margin-left: 20px; */
 
-					margin-top: 12px;
+					padding-top: 0px;
+					margin-top: 0px;
+					margin-bottom: 0.2em;
 					margin-left: 6em;
 					span{
 						font-size: @size3;
@@ -1104,6 +1106,9 @@
 				}
 				.publication-item{
 					border-bottom: none;
+					h5{
+						margin-top: 0;
+					}
 				}
 			}
 			.jssora03l, .jssora03r{
@@ -1242,7 +1247,7 @@
 				} */
 		}
 		.region.region-content{
-			float: left;
+			float: right;
 			width: 73%;
 			margin-left: 2%;
 			#block-views-exp-search-site{
@@ -1250,6 +1255,9 @@
 				border-bottom: 1px dotted @border-default-color;
 			}
 			.view-search{
+				.view-empty{
+					margin-top: 1em;
+				}
 				h3{
 					display: none;
 				}
@@ -1353,6 +1361,12 @@
 			list-style: none;
 			margin-top: 1em;
 			padding-left: 0;
+			li{
+				font-weight: bold;
+				a{
+					padding-left: 1em;
+				}
+			}
 		}
 	}
 	
@@ -2794,8 +2808,8 @@
 	.pane-hwc-partner-hwc-partner-private-link-2, .pane-node-profile-update-link{
 		.pane-content{
 			border: 1px dotted @color3;
-			min-height: 180px;
-			max-height: 180px;
+			min-height: 190px;
+			max-height: 190px;
 			text-align: center;
 			padding: 20px 10px !important;
 			margin:10px;
@@ -2852,7 +2866,7 @@
 		}
 	}
 	.profile-inline-field{
-		display: inline-block;
+		display: inline-table;
   		text-align: center;
     	width: 33%;
     	font-weight: bold;
@@ -2949,9 +2963,9 @@
 	padding-bottom: 70px !important;
 	margin-bottom: 50px !important;
 	.profile-col-left-2, .profile-col-left-middle-2{
-		margin-right: 60px;
+		margin-right: 20px;
 		img{
-			margin-left: 40px;
+			margin-left: 0px;
 		}
 		.panels-flexible-region-new-left_-inside{
 			.pane-node-title-field{
@@ -2971,6 +2985,30 @@
 			}
 	}
 	
+}
+
+.profile-2-cols-container-3{
+	h2{
+		color: @color3;
+		font-weight: bold;
+		font-style: normal;
+		margin-bottom: 1em;
+	}
+	.views-row{
+		margin-bottom: 1em;
+		a{
+			display: block;
+			font-weight: bold;
+			color: @color2;
+			font-style: italic;
+			&:before{
+				content: "> ";
+			}
+		}
+		span{
+
+		}
+	}
 }
 /*fin partners public profile*/
 
@@ -3289,7 +3327,7 @@
 		clear: both;
 		.first.last{
 			display: inline-flex;
-    		font-weight: bold;
+    		/* font-weight: bold; */
     		font-style: italic;
     		> div:first-child{
     			a{
@@ -3300,9 +3338,49 @@
     			.first.last{
     				a{
     					margin-left: 1em;
+						font-weight: bold;
     				}
     			}
     		}
+		}
+	}
+	.pane-node-field-related-publications{
+		padding-top: 1em;
+		padding-bottom: 1em;
+		margin-top: 1em;
+		margin-bottom: 1em;
+		border-top: 1px dotted @border-default-color;
+		label{
+			float: left;
+			margin-right: 0.5em;
+			padding-bottom: 1em;
+		}
+		ul{
+			float: left;
+			margin-right: 0.5em;
+			padding-top: 1em;
+			border-bottom: 1px dotted @border-default-color;
+			width: 100%;
+			font-style: italic;
+			li{
+				float: left;
+				margin-right: 0.5em;
+				width: 100%;
+				a{
+					font-weight: bold;
+				}
+				ul{
+					width: auto;
+					border-bottom: none;
+					margin-right: 0;
+					padding-top: 0em;
+					padding-bottom: 0em;
+					li{
+						margin-right: 0;
+						width: auto;
+					}
+				}
+			}
 		}
 	}
 }
@@ -3387,13 +3465,63 @@
 
 /*fin oficial campaign partners list*/
 
+/*pag National focal points*/
+/* .page-national-focal-points, .page-official-campaign-partners, .page-campaign-media-partners */
+.page-national-focal-points, .page-official-campaign-partners, .page-campaign-media-partners{
+	.main-container {
+		padding: 0;
+		> .row{
+		    margin-left: 0px;
+			margin-right: 0px;
+			div.page_title{
+				background: @color3 url("../images/content/bg/page-national-focal-points.jpg") no-repeat center 0px;
+				background-size: cover;
+				z-index: -1;
+				width: 100%;
+				height: 360px;
+				margin-left: 0px;
+				margin-right: 0px;
+				margin-bottom: 4em;
+				h1{
+					width: 100%;
+					margin-top: 0px;
+					border-bottom: none;
+					color: @color1;
+					padding-top: 250px;
+					height: 360px;
+					background: url("../images/content/image-shadow.png") no-repeat center 0px;
+					background-size: cover;
+					z-index: 100;
+				}
+			}
+		}
+		.breadcrumb{
+			padding-left: 15px;
+			padding-right: 15px;
+		}
+		.node.node-article{
+			padding-left: 15px;
+			padding-right: 15px;
+		}
+	}
+}
+.page-official-campaign-partners{
+	.main-container > .row div.page_title{
+		background-image: url("../images/content/bg/page-official-campaign-partners.jpg");
+	}
+}
+.page-campaign-media-partners{
+	.main-container > .row div.page_title{
+		background-image: url("../images/content/bg/page-campaign-media-partners.jpg");
+	}
+}
+/*Fin pag National focal points*/
 
-
-
-
-
-
-
+/*pag error*/
+.maintenance-page{
+	padding: 15px;
+}
+/*Fin pag error*/
 
 /*classes toda la pantalla*/
 #block-osha-newsletter-osha-newsletter-subscribe{
