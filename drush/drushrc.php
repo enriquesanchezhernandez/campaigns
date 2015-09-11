@@ -444,6 +444,7 @@ $options['init-modules'] = array(
   'field_collection',
   'webform',
   'webform_localization',
+  'webform2pdf',
   'fapi_validation',
 
   'context_layouts',
@@ -516,6 +517,7 @@ $options['init-modules'] = array(
   'hwc_feeds',
   'eu_captcha',
   'hwc_social_sprites',
+  'hwc_certificates_form',
 
   'search_api_title2',
 
