@@ -454,12 +454,9 @@ function osha_field_default_field_instances() {
       ),
       'default' => array(
         'label' => 'above',
-        'module' => 'i18n_taxonomy',
-        'settings' => array(
-          'field_formatter_class' => '',
-        ),
-        'type' => 'i18n_taxonomy_term_reference_link',
-        'weight' => 6,
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 7,
       ),
       'highlights_item' => array(
         'label' => 'above',
@@ -545,7 +542,7 @@ function osha_field_default_field_instances() {
           'view_mode' => 'osha_resources',
         ),
         'type' => 'entityreference_entity_view',
-        'weight' => 7,
+        'weight' => 6,
       ),
       'highlights_item' => array(
         'label' => 'above',

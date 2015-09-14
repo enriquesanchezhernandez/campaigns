@@ -857,6 +857,9 @@ el.remove();
       'body' => array(
         'custom_settings' => TRUE,
       ),
+      'revision' => array(
+        'custom_settings' => FALSE,
+      ),
     ),
     'extra_fields' => array(
       'form' => array(
