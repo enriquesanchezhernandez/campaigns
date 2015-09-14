@@ -7550,6 +7550,15 @@ body a:focus {
   text-decoration: none !important;
 }
 /* FIN para toda la aplicacion */
+/*no deberian aparecer en la aplicacion*/
+.not-logged-in ul.tabs--primary.nav.nav-tabs {
+  display: none;
+}
+.field-name-field-activity,
+.field-type-taxonomy-term-reference {
+  display: none;
+}
+/*Fin */
 /* contenedor principal */
 .main-container {
   /* padding-left: 0;
@@ -8524,7 +8533,10 @@ div[class*='node-'] .more-link {
 #block-views-partners-block-1 .view-display-id-block_1 .hidden-xs .views-field-field-logo img {
   max-height: 150px;
   max-width: 125px;
-  margin: 0 auto;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 #block-views-publications-slideshow-slidehow #publications_slideshow,
 #block-system-main #publications_slideshow {
@@ -9140,7 +9152,13 @@ div[class*='node-'] .more-link {
   margin-right: 1em;
   margin-bottom: 1em;
 }
+.node-news .group-left {
+  padding-left: 0;
+}
 /* News-detail */
+article .hwc-share-widget ul {
+  text-align: center;
+}
 .hwc-share-widget {
   border-top: 1px dotted #749b00;
   border-bottom: 1px dotted #749b00;
@@ -9152,40 +9170,99 @@ div[class*='node-'] .more-link {
 .hwc-share-widget ul {
   margin-bottom: 0px;
   position: relative;
+  text-align: left;
+  /*
+		.hwc-share-widget-twitter, .napo-share-widget-linkedin{
+			
+			a{
+				background-color: @colorFacebook;//color facebook
+				background: linear-gradient(@colorFacebook, @colorGradient);
+				padding: 2px 5px;
+				font-size: .8em;
+				color: white;
+				font-weight: 600;
+				margin-left: 0px;
+				border-radius: 2px;
+				width: 30px;
+				height: 30px;
+				&:before{
+					background: url("../images/content/facebook.png") no-repeat center;
+					background-position: center !important;
+					height: 30px;
+					width: 30px;
+				}
+			}
+		}
+		.pull-right{
+			a{
+				background-color: @colorFacebook;//color facebook
+				background: linear-gradient(@colorFacebook, @colorGradient);
+				padding: 2px 5px;
+				font-size: .8em;
+				color: white;
+				font-weight: 600;
+				margin-left: 10px;
+				border-radius: 2px;
+				position: absolute;
+				right: 0;
+			}
+		}
+		*/
+}
+.hwc-share-widget ul:before {
+  content: "Share this article: ";
+  color: #003399;
+  font-weight: bold;
+  font-style: italic;
 }
 .hwc-share-widget ul li {
   display: inline;
   list-style-type: none;
 }
-.hwc-share-widget ul .hwc-share-widget-twitter a,
-.hwc-share-widget ul .napo-share-widget-linkedin a {
-  background-color: #4c69ba;
-  background: linear-gradient(#4c69ba, #3b55a0);
-  padding: 2px 5px;
-  font-size: .8em;
-  color: white;
-  font-weight: 600;
+.hwc-share-widget ul li[id*="twitter-share-button-"] {
+  background: url("../images/content/twitter.png") no-repeat;
   margin-left: 10px;
-  border-radius: 2px;
+  width: 25px;
+  height: 25px;
+  display: inline-table;
+  overflow: hidden;
+  background-size: cover;
 }
-.hwc-share-widget ul .hwc-share-widget-twitter a:before,
-.hwc-share-widget ul .napo-share-widget-linkedin a:before {
-  background: url("../images/content/facebook.png") no-repeat center;
-  background-position: center !important;
-  height: 21px;
-  width: 21px;
+.hwc-share-widget ul li[id*="twitter-share-button-"] a {
+  width: 25px;
+  height: 25px;
+  padding-left: 25px;
+  display: block;
 }
-.hwc-share-widget ul .pull-right a {
-  background-color: #4c69ba;
-  background: linear-gradient(#4c69ba, #3b55a0);
-  padding: 2px 5px;
-  font-size: .8em;
-  color: white;
-  font-weight: 600;
+.hwc-share-widget ul li[id*="linked-in-"] {
+  background: url("../images/content/linkedin.png") no-repeat;
   margin-left: 10px;
-  border-radius: 2px;
-  position: absolute;
-  right: 0;
+  width: 25px;
+  height: 25px;
+  display: inline-table;
+  overflow: hidden;
+  background-size: cover;
+}
+.hwc-share-widget ul li[id*="linked-in-"] a {
+  width: 25px;
+  height: 25px;
+  padding-left: 25px;
+  display: block;
+}
+.hwc-share-widget ul li[class="pull-right"] {
+  background: url("../images/content/rss.png") no-repeat;
+  margin-left: 10px;
+  width: 25px;
+  height: 25px;
+  display: inline-table;
+  overflow: hidden;
+  background-size: cover;
+}
+.hwc-share-widget ul li[class="pull-right"] a {
+  width: 25px;
+  height: 25px;
+  padding-left: 25px;
+  display: block;
 }
 .back-to-link {
   border-bottom: 1px dotted #749b00;
@@ -9199,7 +9276,7 @@ div[class*='node-'] .more-link {
   margin-bottom: 1em;
 }
 .field.field-name-field-image {
-  margin-right: 1.5em;
+  /* margin-right: 1.5em; */
   margin-bottom: 1em;
 }
 .field.field-name-body p a {
@@ -9222,13 +9299,27 @@ div[class*='node-'] .more-link {
   margin-bottom: 2em;
 }
 /* fin news*/
-/* -Press Room- */
+/*texto introduccion*/
 .section-introduction {
   /* border-bottom: 1px dotted @color3; */
 }
 .section-introduction .field-type-text-with-summary {
   padding-bottom: 2em;
+  padding-right: 125px;
+  padding-left: 125px;
 }
+.page-national-focal-points .main-container .section-introduction .node.node-article .field-type-text-with-summary,
+.page-official-campaign-partners .main-container .section-introduction .node.node-article .field-type-text-with-summary,
+.page-campaign-media-partners .main-container .section-introduction .node.node-article .field-type-text-with-summary {
+  padding-right: 110px;
+  padding-left: 110px;
+}
+.container-fluid .section-introduction .field-type-text-with-summary {
+  padding-right: 110px;
+  padding-left: 110px;
+}
+/*texto introduccion*/
+/* -Press Room- */
 .node-type-press-release #mini-panel-press_room_blocks {
   border-top: 1px dotted #749b00;
   padding-top: 1em;
@@ -9802,6 +9893,7 @@ div[class*='node-'] .more-link {
 /*case-studies*/
 .pane-osha-publication-osha-case-studies-listing.container {
   width: 100%;
+  padding-left: 0;
 }
 /*Fin case-studies*/
 /*Become a media partner*/
@@ -9944,7 +10036,8 @@ div[class*='node-'] .more-link {
 .become-partner .see-also .media-outlet p {
   font-weight: bold;
 }
-.become-partner button {
+.become-partner button,
+.become-partner a.btn-become-a-campaign-partner {
   background-color: #003399;
   outline: none;
   border: none;
@@ -9953,8 +10046,12 @@ div[class*='node-'] .more-link {
   font-weight: bold;
   margin-bottom: 10px;
 }
-.become-partner button:before {
+.become-partner button:before,
+.become-partner a.btn-become-a-campaign-partner:before {
   content: "> ";
+}
+.become-partner .boton-become p {
+  margin-top: 1em;
 }
 /*fin become a media partner*/
 /*Employers plantilla*/
@@ -11118,7 +11215,7 @@ div[class*='node-'] .more-link {
     margin-left: 2px;
   }
   header.navbar-default .navbar-collapse nav ul.menu li.last.expanded.dropdown > ul {
-    margin-left: -4em;
+    margin-left: -4.5em;
   }
   /*fin header*/
   /*footer*/

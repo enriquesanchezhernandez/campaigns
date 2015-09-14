@@ -36,6 +36,15 @@
 	}
 /* FIN para toda la aplicacion */
 
+/*no deberian aparecer en la aplicacion*/
+.not-logged-in  ul.tabs--primary.nav.nav-tabs{
+	display: none;
+}
+.field-name-field-activity, .field-type-taxonomy-term-reference{
+	display: none;
+}
+/*Fin */
+
 /* contenedor principal */
 	.main-container {
 		/* padding-left: 0;
@@ -1035,7 +1044,10 @@
 					img{
 						max-height: 150px;
 						max-width: 125px;
-    					margin: 0 auto;
+    					position: absolute;
+					    top: 50%;
+					    left: 50%;
+					    transform: translate(-50%, -50%);
 					}
 				}
 			}
@@ -1636,8 +1648,18 @@
 		margin-right: 1em;
 		margin-bottom: 1em;
 	}
+	.group-left{
+		padding-left: 0;
+	}
 }
 /* News-detail */
+article{
+	.hwc-share-widget{
+		ul{
+			text-align: center;
+		}
+	}
+}
 .hwc-share-widget{
 	border-top: 1px dotted @color3;
 	border-bottom: 1px dotted @color3;
@@ -1648,11 +1670,67 @@
 	ul{
 		margin-bottom: 0px;
 		position: relative;
+		text-align: left;
+		&:before{
+				content: "Share this article: ";
+				color: @color2;
+				font-weight: bold;
+				font-style: italic;
+			}
 		li{
 			display: inline;
 			list-style-type: none;
 			
 		}
+		#fb-buttons{
+
+		}
+		li[id*="twitter-share-button-"]{
+			background: url("../images/content/twitter.png") no-repeat;
+			margin-left: 10px;
+		    width: 25px;
+		    height: 25px;
+		    display: inline-table;
+		    overflow: hidden;
+		    background-size: cover;
+		    a{
+		    	width: 25px;
+		    	height: 25px;
+				padding-left: 25px;
+				display: block;
+		    }
+		}
+		li[id*="linked-in-"]{
+			background: url("../images/content/linkedin.png") no-repeat;
+			margin-left: 10px;
+		    width: 25px;
+		    height: 25px;
+		    display: inline-table;
+		    overflow: hidden;
+		    background-size: cover;
+		    a{
+		    	width: 25px;
+		    	height: 25px;
+				padding-left: 25px;
+				display: block;
+		    }
+		}
+		li[class="pull-right"]{
+			background: url("../images/content/rss.png") no-repeat;
+			margin-left: 10px;
+		    width: 25px;
+		    height: 25px;
+		    display: inline-table;
+		    overflow: hidden;
+		    background-size: cover;
+		    a{
+		    	width: 25px;
+		    	height: 25px;
+				padding-left: 25px;
+				display: block;
+		    }
+		}
+		/*
 		.hwc-share-widget-twitter, .napo-share-widget-linkedin{
 			
 			a{
@@ -1662,13 +1740,15 @@
 				font-size: .8em;
 				color: white;
 				font-weight: 600;
-				margin-left: 10px;
+				margin-left: 0px;
 				border-radius: 2px;
+				width: 30px;
+				height: 30px;
 				&:before{
 					background: url("../images/content/facebook.png") no-repeat center;
 					background-position: center !important;
-					height: 21px;
-					width: 21px;
+					height: 30px;
+					width: 30px;
 				}
 			}
 		}
@@ -1686,6 +1766,7 @@
 				right: 0;
 			}
 		}
+		*/
 	}
 }
 .back-to-link{
@@ -1700,7 +1781,7 @@
 	margin-bottom: 1em;
 }
 .field.field-name-field-image{
-	margin-right: 1.5em;
+	/* margin-right: 1.5em; */
 	margin-bottom: 1em;
 }
 .field.field-name-body{
@@ -1740,15 +1821,32 @@
 	}
 /* fin news*/
 
-/* -Press Room- */
-//texto introduccion
+/*texto introduccion*/
 .section-introduction{
 	/* border-bottom: 1px dotted @color3; */
 	.field-type-text-with-summary{
-		//margin: 0px 135px; quitado para responsive
 		padding-bottom: @padding-bottom-introduction-text;
+		padding-right: 125px;
+		padding-left: 125px;
 	}
 }
+.page-national-focal-points .main-container .section-introduction .node.node-article, .page-official-campaign-partners .main-container .section-introduction .node.node-article, .page-campaign-media-partners .main-container .section-introduction .node.node-article{
+	.field-type-text-with-summary{
+		padding-right: 110px;
+		padding-left: 110px;
+	}
+}
+.container-fluid{
+	.section-introduction{
+		.field-type-text-with-summary{
+			padding-right: 110px;
+			padding-left: 110px;
+		}
+	}
+}
+/*texto introduccion*/
+
+/* -Press Room- */
 //tres bloques
 .node-type-press-release{
 	#mini-panel-press_room_blocks{
@@ -2305,6 +2403,7 @@
 /*case-studies*/
 .pane-osha-publication-osha-case-studies-listing.container{
 	width: 100%;
+	padding-left: 0;
 }
 /*Fin case-studies*/
 
@@ -2464,7 +2563,7 @@
 			}
 		}
 	}
-	button{
+	button, a.btn-become-a-campaign-partner{
 		background-color: @color2;
 		outline: none;
 		border: none;
@@ -2475,6 +2574,9 @@
 		&:before{
 			content: "> ";
 		}
+	}
+	.boton-become p{
+		margin-top: 1em;
 	}
 }
 /*fin become a media partner*/
