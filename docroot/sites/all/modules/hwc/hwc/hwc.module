@@ -505,3 +505,40 @@ function osha_pathologic_alter(&$url_params, $parts, $settings) {
     $url_params['options']['use_original'] = TRUE;
   }
 }
+
+
+/**
+ * Retrieve configuration parameter for the form applications.
+ *
+ * @return array
+ *   Returns an array having the following keys:
+ *   <ul>
+ *     <li>appform_id - GUID received from the 'id' parameter when partner register</li>
+ *    <li>mf - TRUE if we are editing the partner profile, FALSE when registering</li>
+ *    <li>user_guid - User's GUID stored in LDAP, useful when editing partner profile</li>
+ */
+function hwc_get_forms_parameters() {
+  global $user;
+
+  $ret = array(
+    'appform_id' => NULL,
+    'mf' => FALSE,
+    'partner_guid' => NULL,
+  );
+
+  try {
+    $wrapper = entity_metadata_wrapper('user', $user);
+    $ret['user_guid'] = $wrapper->field_crm_guid->value();
+  }
+  catch(Exception $e) {}
+
+  if (!empty($_SESSION['appform_id'])) {
+    $ret['appform_id'] = $_SESSION['appform_id'];
+  }
+
+  if (!empty($_SESSION['mf'])) {
+    $ret['mf'] = $_SESSION['mf'];
+  }
+
+  return $ret;
+}
