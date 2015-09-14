@@ -380,9 +380,7 @@ function hwc_workflow_form_events_node_form_alter(&$form, &$form_state) {
  */
 function hwc_workflow_js_alter(&$javascript) {
   global $user;
-
-  $events_path = strpos(request_uri(), 'node/add/events');
-  if (in_array(ROLE_CAMPAIGN_PARTNER, $user->roles) && count($user->roles) == 2 && $events_path !== FALSE) {
+  if (in_array(ROLE_CAMPAIGN_PARTNER, $user->roles) && count($user->roles) == 2 && current_path() == 'node/add/events') {
     $js_path = drupal_get_path('module', 'text') . '/text.js';
 
     if (isset($javascript[$js_path])) {
