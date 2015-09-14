@@ -890,6 +890,10 @@ el.remove();
             'weight' => '2',
             'visible' => FALSE,
           ),
+          'osha_resources' => array(
+            'weight' => '0',
+            'visible' => TRUE,
+          ),
         ),
       ),
     ),

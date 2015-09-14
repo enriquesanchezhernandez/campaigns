@@ -42,23 +42,17 @@ function osha_image_default_styles() {
   $styles['article_image'] = array(
     'label' => 'Article image',
     'effects' => array(
-      1 => array(
-        'name' => 'image_scale',
+      4 => array(
+        'name' => 'manualcrop_crop_and_scale',
         'data' => array(
-          'width' => 1140,
-          'height' => '',
-          'upscale' => 1,
+          'width' => 1920,
+          'height' => 595,
+          'upscale' => 0,
+          'respectminimum' => 1,
+          'onlyscaleifcrop' => 0,
+          'style_name' => 'article_image',
         ),
-        'weight' => 1,
-      ),
-      2 => array(
-        'name' => 'image_crop',
-        'data' => array(
-          'width' => 1140,
-          'height' => 350,
-          'anchor' => 'center-top',
-        ),
-        'weight' => 2,
+        'weight' => 0,
       ),
     ),
   );

@@ -16,6 +16,7 @@ features[ctools][] = strongarm:strongarm:1
 features[fe_block_settings][] = menu-menu-footer-menu
 features[features_api][] = api:2
 features[image][] = medium_large
+features[image][] = small_thumbnail_mc_150_150
 features[variable][] = ds_classes_fields
 features[variable][] = ds_classes_regions
 features_exclude[dependencies][ctools] = ctools

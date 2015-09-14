@@ -38,5 +38,24 @@ function hwc_image_default_styles() {
     ),
   );
 
+  // Exported image style: small_thumbnail_mc_150_150.
+  $styles['small_thumbnail_mc_150_150'] = array(
+    'label' => 'Small Thumbnail Manual Crop (150X150)',
+    'effects' => array(
+      3 => array(
+        'name' => 'manualcrop_crop_and_scale',
+        'data' => array(
+          'width' => 150,
+          'height' => 150,
+          'upscale' => 0,
+          'respectminimum' => 1,
+          'onlyscaleifcrop' => 0,
+          'style_name' => 'small_thumbnail_mc_150_150',
+        ),
+        'weight' => 0,
+      ),
+    ),
+  );
+
   return $styles;
 }
