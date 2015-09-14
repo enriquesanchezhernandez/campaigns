@@ -373,6 +373,22 @@ function hwc_workflow_form_events_node_form_alter(&$form, &$form_state) {
   }
 }
 
+/**
+ * Implements hook_js_alter().
+ *
+ * Make summary always expanded for field of "Long text and summary" type.
+ */
+function hwc_workflow_js_alter(&$javascript) {
+  global $user;
+  if (in_array(ROLE_CAMPAIGN_PARTNER, $user->roles) && count($user->roles) == 2 && current_path() == 'node/add/events') {
+    $js_path = drupal_get_path('module', 'text') . '/text.js';
+
+    if (isset($javascript[$js_path])) {
+      unset($javascript[$js_path]);
+    }
+  }
+}
+
 function hwc_workflow_node_form_after_build_hide_hints($form, &$form_state) {
   $key = array_pop(element_children($form['body']));
   if ($key && !empty($form['body'][$key][0]['format'])) {
