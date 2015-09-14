@@ -7836,7 +7836,7 @@ body a:focus {
 }
 #homepage_slider {
   height: 356px !important;
-  background: #749b00 url("../images/content/bg-campaign-partner.png") no-repeat left 20px;
+  /* background: @color3 url("../images/content/bg-campaign-partner.png") no-repeat left 20px; */
   margin-bottom: 35px;
   width: 100% !important;
 }
@@ -7870,11 +7870,12 @@ body a:focus {
 #homepage_slider #num_slides > div .views-field.views-field-body {
   color: white;
   z-index: 100;
-  top: 6em;
+  top: 13em;
 }
 #homepage_slider #num_slides > div .views-field.views-field-body div {
   text-align: right;
   margin-right: 20px;
+  width: 30% !important;
 }
 #homepage_slider #num_slides > div div {
   margin: 0;
@@ -7897,7 +7898,7 @@ body a:focus {
   margin-left: 1em;
   position: absolute;
   bottom: 4em;
-  top: 10em;
+  top: 16.5em;
   right: 20px;
 }
 #homepage_slider #num_slides > div div a.more-link:before {
@@ -7917,14 +7918,16 @@ body a:focus {
 #homepage_slider .views-field-title {
   font-size: 39px;
   position: absolute;
-  top: 20px;
+  top: 10px;
   right: 20px;
   color: #ffffff;
   z-index: 2;
   float: right;
   font-weight: bold;
+  text-align: right;
 }
 #homepage_slider .views-field-title span {
+  width: 30% !important;
   float: right;
 }
 @media screen and (-webkit-min-device-pixel-ratio: 0) {
