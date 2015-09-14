@@ -202,6 +202,7 @@ function hwc_frontend_preprocess_page(&$vars) {
       switch(current_path()){
         case 'node/add/events':
         case 'node/add/news':
+        case 'private':
           $link_title = t('Back to homepage');
           $link_href = 'node/'.$partner->nid;
           break;
