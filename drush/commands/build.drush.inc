@@ -114,13 +114,18 @@ function _drush_devify() {
     variable_set($name, $value);
   }
 
-  if ($r = user_role_load_by_name('anonymous user')) {
-    user_role_grant_permissions($r->rid, array('access devel information'));
+  // If development, enable devel and set devel access for all users
+  // On staging we use divify, but devel is requested to be off.
+  if (!empty($variables['environment']) && $variables['environment'] == 'development') {
+    module_enable(array('devel'));
+    if ($r = user_role_load_by_name('anonymous user')) {
+      user_role_grant_permissions($r->rid, array('access devel information'));
+    }
+    if ($r1 = user_role_load_by_name('authenticated user')) {
+      user_role_grant_permissions($r1->rid, array('access devel information'));
+    }
+    drush_log('Granted access to developer information for anonymous/authenticated', 'success');
   }
-  if ($r1 = user_role_load_by_name('authenticated user')) {
-    user_role_grant_permissions($r1->rid, array('access devel information'));
-  }
-  drush_log('Granted access to developer information for anonymous/authenticated', 'success');
 
   // Sanitize database.
   // @see sql_drush_sql_sync_sanitize() to add your sanitize queries.
