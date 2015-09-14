@@ -205,13 +205,19 @@ function hwc_frontend_preprocess_page(&$vars) {
         case 'private':
           $link_title = t('Back to homepage');
           $link_href = 'node/'.$partner->nid;
+          $vars['page']['above_title']['title-alternative'] = array(
+              '#type' => 'item',
+              '#markup' => drupal_get_title(),
+              '#prefix' => '<strong class="title-alt">', '#suffix' => '</strong>'
+          );
+          drupal_set_title('');
           break;
       }
 
       if (isset($link_title)) {
-        $vars['page']['below_title']['back-to-link'] = array(
+        $vars['page']['above_title']['back-to-link'] = array(
             '#type' => 'item',
-            '#markup' => l($link_title, $link_href, array('attributes' => array('class' => array('back-to-link-below-title pull-right')))),
+            '#markup' => l($link_title, $link_href, array('attributes' => array('class' => array('back-to-link pull-right')))),
         );
       }
     }
