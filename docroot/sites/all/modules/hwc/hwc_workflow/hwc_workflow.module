@@ -318,7 +318,6 @@ function hwc_workflow_form_news_node_form_alter(&$form, &$form_state) {
     if (empty($form['workbench_access']['workbench_access']['#default_value'])) {
       drupal_goto('<front>');
     }
-    $form['field_summary']['#access'] = FALSE;
     $form['field_expiration_date']['#access'] = FALSE;
     $form['field_tags']['#access'] = FALSE;
     $form['field_activity']['#access'] = FALSE;
@@ -379,6 +378,13 @@ function hwc_workflow_node_form_after_build_hide_hints($form, &$form_state) {
   if ($key && !empty($form['body'][$key][0]['format'])) {
     $form['body'][$key][0]['format']['#attributes']['class'][] = 'hidden';
   }
+  if (!empty($form['field_summary'])) {
+    $key = array_pop(element_children($form['field_summary']));
+    if ($key && !empty($form['field_summary'][$key][0]['format'])) {
+      $form['field_summary'][$key][0]['format']['#attributes']['class'][] = 'hidden';
+    }
+  }
+
   return ($form);
 }
 

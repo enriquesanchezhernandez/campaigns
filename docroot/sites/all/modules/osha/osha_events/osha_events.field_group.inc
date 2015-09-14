@@ -21,12 +21,8 @@ function osha_events_field_group_info() {
   $field_group->parent_name = '';
   $field_group->data = array(
     'label' => 'Contact',
-    'weight' => '13',
-    'children' => array(
-      0 => 'field_contact_email',
-      1 => 'field_contact_name',
-      2 => 'field_contact_phone',
-    ),
+    'weight' => '20',
+    'children' => array(),
     'format_type' => 'fieldset',
     'format_settings' => array(
       'label' => 'Contact',
