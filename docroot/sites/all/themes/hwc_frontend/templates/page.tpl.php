@@ -135,10 +135,7 @@ $theme_dir = drupal_get_path('theme', 'hwc_frontend');
       </div>
       <div>
         <?php if (!empty($title)): ?>
-          <h1 class="page-header">
-            <?php print $title; ?>
-            <div><?php print render($page['below_title']); ?></div>
-          </h1>
+          <h1 class="page-header"><?php print $title; ?></h1>
         <?php endif; ?>
       </div>
       <?php print render($title_suffix); ?>
