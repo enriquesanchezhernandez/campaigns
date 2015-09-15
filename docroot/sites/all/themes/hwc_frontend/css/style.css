@@ -7861,7 +7861,10 @@ body a:focus {
   margin-top: 4em;
 }
 #homepage_slider #num_slides > div.views-field.views-field-body div:empty {
-  height: 230px !important;
+  text-align: right;
+  margin-top: 20px;
+  width: 240px !important;
+  margin-right: 60px;
 }
 #homepage_slider #num_slides > div .views-field {
   position: absolute;
@@ -7874,8 +7877,9 @@ body a:focus {
 }
 #homepage_slider #num_slides > div .views-field.views-field-body div {
   text-align: right;
-  margin-right: 20px;
-  width: 30% !important;
+  margin-top: 20px;
+  width: 240px !important;
+  margin-right: 60px;
 }
 #homepage_slider #num_slides > div div {
   margin: 0;
@@ -7898,8 +7902,9 @@ body a:focus {
   margin-left: 1em;
   position: absolute;
   bottom: 4em;
-  top: 16.5em;
+  top: 20.5em;
   right: 20px;
+  margin-right: 40px;
 }
 #homepage_slider #num_slides > div div a.more-link:before {
   /* content: ""; */
@@ -7908,6 +7913,7 @@ body a:focus {
   width: 100%;
   height: auto;
   /* para que no se deforme la img */
+  min-height: 356px;
 }
 #homepage_slider #num_slides > div div p {
   color: #ffffff;
@@ -7927,8 +7933,10 @@ body a:focus {
   text-align: right;
 }
 #homepage_slider .views-field-title span {
-  width: 30% !important;
+  width: 240px !important;
   float: right;
+  margin-right: 40px;
+  margin-top: 10px;
 }
 @media screen and (-webkit-min-device-pixel-ratio: 0) {
   #homepage_slider .more-link {
@@ -8127,6 +8135,7 @@ body a:focus {
   float: left;
   margin-right: 1em;
   margin-bottom: 4em;
+  margin-bottom: 1em;
   width: auto;
   height: auto;
   overflow: hidden;
@@ -9163,6 +9172,7 @@ article .hwc-share-widget ul {
   text-align: center;
 }
 .hwc-share-widget {
+  display: none;
   border-top: 1px dotted #749b00;
   border-bottom: 1px dotted #749b00;
   padding-top: 10px;
@@ -11118,6 +11128,13 @@ article .hwc-share-widget ul {
     min-width: 250px;
   }
   /*fin header*/
+  /*homepage slider*/
+  .front #block-views-frontpage-slider-block #homepage_slider img {
+    position: absolute;
+    width: initial;
+    right: -127px;
+  }
+  /*fin homepage slider*/
   /*publications*/
   #publications_slideshow {
     width: 800px !important;
@@ -11239,6 +11256,9 @@ article .hwc-share-widget ul {
   }
   .front #homepage_slider {
     margin-bottom: 0;
+  }
+  .front #homepage_slider img {
+    right: -216px !important;
   }
   .front .tools-and-resources-block {
     width: 100%;
