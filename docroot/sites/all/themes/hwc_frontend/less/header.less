@@ -42,6 +42,9 @@ header.navbar-default{
 		/* languages */
 		#block-lang-dropdown-language{
 			float: right;
+		}
+		#block-menu-menu-header-login ~ #block-lang-dropdown-language{
+			float: right;
 			position: absolute;
 			bottom: -9px;
 			right: 0;
@@ -147,6 +150,7 @@ header.navbar-default{
 				li{
 					color: @menu-color;
 					width: 20%;
+					cursor: pointer;
 					a, > span{
 						color: @menu-color;
 						text-align: center;
@@ -159,6 +163,9 @@ header.navbar-default{
 							width: 9px;
 							height: 24px;
 							margin-left: 2px;
+							position: absolute;
+						    top: 9px;
+						    right: 0px;
 						}
 					}
 					&.last{
@@ -168,12 +175,12 @@ header.navbar-default{
 					}
 					&.first{
 						.dropdown-menu{
-							min-width: 130%;
+							min-width: 280px;
 						}
 					}
 					&:nth-child(3), &:nth-child(4){
 						.dropdown-menu{
-							min-width: 110%;
+							min-width: 270px;
 						}
 					}
 					.dropdown-toggle:hover{
@@ -181,7 +188,7 @@ header.navbar-default{
 					}
 					.dropdown-menu{
 						padding: 0;
-						min-width: 100%;
+						min-width: 270px;
 						box-shadow: 0 0px 0px rgba(0, 0, 0, 0);
 						border: none;
 						background-color: @menu-bg-color;
@@ -218,7 +225,11 @@ header.navbar-default{
 				
 				}
 				li.last{
-				
+					.dropdown-menu{
+						min-width: 100%;
+						position: absolute;
+    					right: 0px;
+					}
 				}
 				li.active-trail{
 					font-weight: bold;

@@ -5,7 +5,11 @@
 /*Header*/
 header{
 	&.navbar-default {
-		.campaigns-header { 
+		.campaigns-header {
+			.row:first-of-type{
+				padding-left: 14px;
+				padding-right: 14px;
+			}
 			.navbar-header{
 				.row{
 					padding: 0px;
@@ -83,20 +87,18 @@ header{
 				padding-left: 5px;
 				padding-right: 2px;
 			}
-			li a .caret,  li span .caret{
+			li a .caret, li span .caret{
 				width: 2px;
 				margin-left: 2px;
 			}
-			li.last.expanded.dropdown > ul{
-				margin-left: -4em;
+			li.last.expanded.dropdown{
+				> ul{
+					margin-left: -4.5em;
+				}
 			}
 		}
 	}
 }
-		header.navbar-default .campaigns-header .row:first-of-type{
-			padding-left: 14px;
-			padding-right: 14px;
-		}
 /*fin header*/
 
 /*footer*/
@@ -108,6 +110,7 @@ header{
 	}
 	h3{
 		max-width: 75%;
+		margin-right: 25%;
 	}
 }
 /*fin footer*/
@@ -121,6 +124,9 @@ header{
 	}
 	#homepage_slider{
 		margin-bottom: 0;
+		img{
+			right: -216px !important;
+		}
 	}
 	//fin slider
 	
@@ -389,13 +395,15 @@ header{
 } */
 /*fin case studies*/
 
-/*publications*/
+/*pag publications*/
 #publications_slideshow{
 	display: none;
 }
 .page-publications h4, .publication-item{
     padding-left: 15px;
     padding-right: 15px;
+	min-height: 0;
+	margin-bottom: 0;
 }
 .node-type-publication{
 	.pane-node-title-field, .pane-node-field-publication-date, .pane-node-field-publication-type{
@@ -408,8 +416,18 @@ header{
 	.panels-flexible-row-container-main-row{
 		margin-top: 1em;
 	}
+	.field-name-field-related-publications, .field-type-entityreference{
+		> .field-label, li{
+			padding-right: 15px;
+			padding-left: 15px;
+			li{
+				padding-right: 0px;
+				padding-left: 0px;
+			}
+		}
+	}
 }
-/*Fin publications*/
+/*Fin pag publications*/
 
 /* pag Search */
 .page-search{
@@ -469,6 +487,85 @@ header{
 	}
 }
 /*fin private area*/
+
+/*pag National focal points*/
+/* .page-national-focal-points, .page-official-campaign-partners, .page-campaign-media-partners */
+.page-national-focal-points, .page-official-campaign-partners, .page-campaign-media-partners{
+	.section-introduction .field-type-text-with-summary {
+		display: block;
+	}
+}
+/*Fin pag National focal points*/
+
+/*partner profile*/
+.profile-edit-links-container{
+	padding-right: 30px;
+	padding-left: 30px;
+	.col-sm-3{
+		width: 100%;
+	}
+	.pane-node-profile-update-link{
+		a{
+			font-size: @size8;
+		}
+	}
+	.pane-hwc-partner-hwc-partner-private-link-0, .pane-hwc-partner-hwc-partner-private-link-1,
+	.pane-hwc-partner-hwc-partner-private-link-2, .pane-node-profile-update-link{
+		
+		.pane-content{
+			min-height: 120px;
+			max-height: 120px;
+			text-align: left;
+			padding: 40px 20px !important;
+			margin-left: 0px !important;
+			margin-right: 0px !important;
+			
+			.hwc-partner-private-link-block-title{
+				float: left;
+				min-width: 35%;
+				a{
+					font-size: @size8;
+				}
+			}
+		}
+	}
+}
+.profile-ceo-container{
+	margin-left: 0px !important;
+	margin-right: 0px !important;
+	.pane-node-field-quote{
+		padding-left: 30px;
+		padding-right: 30px;
+		&:before{
+			margin-left: 0px;
+		}
+		&:after{
+			margin-right: 30px;
+		}
+	}
+}
+
+.profile-2-cols-container-1{
+	padding-bottom: 30px !important;
+	margin-bottom: 30px !important;
+	padding-left: 30px !important;
+	padding-right: 30px !important;
+	.col-sm-6{
+		width: 100%;
+	}
+	.field-item{
+		margin-bottom: 20px;
+	}
+}
+
+.profile-4-cols-container-2{
+	border-bottom: 1px dotted @color3;
+	padding-bottom: 50px !important;
+	margin-bottom: 50px !important;
+	padding-left: 30px !important;
+	padding-right: 30px !important;	
+}
+/*fin partner profile*/
 
 /*clases para toda la web*/
 .container{
