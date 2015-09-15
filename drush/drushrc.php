@@ -517,6 +517,7 @@ $options['init-modules'] = array(
   'hwc_feeds',
   'eu_captcha',
   'hwc_social_sprites',
+  'hwc_gallery',
 
   'search_api_title2',
 

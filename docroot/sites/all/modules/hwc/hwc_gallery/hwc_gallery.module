@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the HWC gallery feature.
+ */
+
+include_once 'hwc_gallery.features.inc';
