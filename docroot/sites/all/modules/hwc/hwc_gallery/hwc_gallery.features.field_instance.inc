@@ -113,7 +113,7 @@ function hwc_gallery_field_default_field_instances() {
         'weight' => 0,
       ),
       'default' => array(
-        'label' => 'above',
+        'label' => 'hidden',
         'module' => 'image',
         'settings' => array(
           'field_formatter_class' => '',

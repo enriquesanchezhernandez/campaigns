@@ -1,0 +1,181 @@
+<?php
+
+/**
+ * Implements hook_menu().
+ */
+function osha_gallery_menu() {
+  $items = array();
+  $items['node/%node/bulk_upload'] = array(
+    'title' => 'Bulk Upload',
+    'description' => 'Provides a form to bulk upload images to node field_images',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('osha_gallery_bulk_upload_form', 1),
+    'type' => MENU_LOCAL_TASK,
+    'access callback' => 'osha_gallery_bulk_upload_access_callback',
+    'access arguments' => array(1),
+  );
+  $items['admin/config/content/osha_gallery'] = array(
+    'title' => 'Gallery Configuration',
+    'description' => 'Configure parameters for the HWC website',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('osha_gallery_config_form'),
+    'access arguments' => array('administer site configuration'),
+    'type' => MENU_NORMAL_ITEM,
+  );
+  return $items;
+}
+
+function osha_gallery_config_form($form, &$form_state) {
+  $form = array();
+  $fields = field_info_fields();
+  $options = array();
+  foreach ($fields as $field_name => $field_instance) {
+    if ($field_instance['type'] == 'image' && $field_instance['cardinality'] == -1) {
+      foreach ($field_instance['bundles']['node'] as $bundle) {
+        $options[$bundle . '|' . $field_name] = $bundle . '-' . $field_name;
+      }
+    }
+  }
+
+  $form['osha_gallery_usable_fields_bundles'] = array(
+    '#title' => 'Usable fields',
+    '#type' => 'select',
+    '#options' => $options,
+    '#multiple' => TRUE,
+    '#default_value' => variable_get('osha_gallery_usable_fields_bundles', array()),
+  );
+
+  return system_settings_form($form);
+}
+
+function osha_gallery_get_usable_bundle_fields() {
+  $options = variable_get('osha_gallery_usable_fields_bundles', array());
+  $fields = array();
+  foreach ($options as  $option) {
+    list($bundle, $field) = explode('|', $option);
+    $fields[$bundle] = $field;
+  }
+  return $fields;
+}
+
+/**
+ * Implements hook_form_alter().
+ */
+function osha_gallery_form_alter(&$form, &$form_state, $form_id) {
+  if (isset($form['#node_edit_form']) && empty($form_state['node']->nid)) {
+    // Create node form
+    $node = $form_state['node'];
+    $fields = osha_gallery_get_usable_bundle_fields();
+    if (array_key_exists($node->type, $fields)) {
+      if (!empty($form[$fields[$node->type]])) {
+        hide($form[$fields[$node->type]]);
+        $form['actions']['submit']['#submit'][] = 'osha_gallery_node_form_submit_callback';
+      }
+    }
+  }
+
+}
+
+/**
+ * Callback after gallery create to redirect to bulk upload.
+ */
+function osha_gallery_node_form_submit_callback($form, &$form_state) {
+  $node = $form_state['node'];
+  $form_state['redirect'] = 'node/' . $node->nid . '/bulk_upload';
+}
+
+function osha_gallery_bulk_upload_access_callback($node) {
+  $fields = osha_gallery_get_usable_bundle_fields();
+  if (array_key_exists($node->type, $fields) && user_access('use hwc gallery bulk upload')) {
+    return TRUE;
+  }
+  return FALSE;
+}
+
+/**
+ * Bulk upload form - callback for menu "Bulk Upload".
+ */
+function osha_gallery_bulk_upload_form($form, &$form_state, $node) {
+  $form = array();
+  $form['#node'] = $node;
+  $form['description'] = array(
+    '#type' => 'item',
+    '#markup' => 'You can upload multiple images to this gallery.'
+  );
+  $form['field_images'] = array(
+    '#type' => 'plupload',
+    '#title' => t('Upload files'),
+    '#autoupload' => TRUE,
+    '#upload_validators' => array(
+      'file_validate_extensions' => array('jpg jpeg gif png'),
+    ),
+    '#plupload_settings' => array(
+      'runtimes' => 'html5',
+      'chunk_size' => '1mb',
+    ),
+  );
+  $form['overwrite'] = array(
+    '#title' => 'Overwrite existing images',
+    '#type' => 'checkbox',
+    '#default_value' => FALSE,
+  );
+  $form['submit'] = array(
+    '#type' => 'submit',
+    '#value' => 'Save',
+  );
+
+  return $form;
+}
+
+/**
+ * Submit callback for bulk upload.
+ */
+function osha_gallery_bulk_upload_form_submit($form, &$form_state) {
+  $node = $form['#node'];
+  $saved_files = array();
+  $failed_files = array();
+  $usable_fields = osha_gallery_get_usable_bundle_fields();
+  if (!array_key_exists($node->type, $usable_fields)) {
+    //
+  }
+  $gallery_field_name = $usable_fields[$node->type];
+  if (!isset($node->{$gallery_field_name})) {
+    //
+  }
+  if (!empty($form_state['values']['field_images'])) {
+    foreach ($form_state['values']['field_images'] as $uploaded_file) {
+      $destination = 'public://osha_gallery/node_' . $node->nid;
+      if ($uploaded_file['status'] == 'done') {
+        $source = $uploaded_file['tmppath'];
+        file_prepare_directory($destination, FILE_CREATE_DIRECTORY);
+        $destination = file_stream_wrapper_uri_normalize($destination . '/' . $uploaded_file['name']);
+        $destination = file_unmanaged_move($source, $destination, FILE_EXISTS_RENAME);
+        if (empty($destination)) {
+          $failed_files[] = $uploaded_file['name'];
+          continue;
+        }
+        $file = plupload_file_uri_to_object($destination);
+        file_save($file);
+        $file->display = 1;
+        $file->description = '';
+        $saved_files[] = (array) $file;
+      }
+    }
+  }
+  if (!empty($failed_files)) {
+    drupal_set_message(t('The file @file could not be saved due to internal error. Please contact site administrator.', array('@file' => implode(', ', $failed_files))), 'warning');
+  }
+
+  $wrapper = entity_metadata_wrapper('node', $node);
+
+  if (!empty($form_state['values']['overwrite'])) {
+    $wrapper->{$gallery_field_name}->set($saved_files);
+  }
+  else {
+    foreach ($saved_files as $file) {
+      $wrapper->{$gallery_field_name}[] = $file;
+    }
+  }
+  $wrapper->save();
+  $form_state['redirect'] = 'node/' . $node->nid;
+}

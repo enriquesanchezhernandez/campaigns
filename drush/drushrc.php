@@ -453,6 +453,7 @@ $options['init-modules'] = array(
   'image_url_formatter',
   'views_data_export',
   'phpexcel',
+  'plupload',
 
   // Captcha
  'recaptcha',
@@ -517,6 +518,7 @@ $options['init-modules'] = array(
   'hwc_feeds',
   'eu_captcha',
   'hwc_social_sprites',
+  'osha_gallery',
   'hwc_gallery',
 
   'search_api_title2',

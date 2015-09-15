@@ -62,6 +62,93 @@ function hwc_gallery_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'diff_enable_revisions_page_node_hwc_gallery';
+  $strongarm->value = 1;
+  $export['diff_enable_revisions_page_node_hwc_gallery'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'diff_show_preview_changes_node_hwc_gallery';
+  $strongarm->value = 1;
+  $export['diff_show_preview_changes_node_hwc_gallery'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'diff_view_mode_preview_node_hwc_gallery';
+  $strongarm->value = 'full';
+  $export['diff_view_mode_preview_node_hwc_gallery'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'entity_translation_comment_filter_hwc_gallery';
+  $strongarm->value = 0;
+  $export['entity_translation_comment_filter_hwc_gallery'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'entity_translation_hide_translation_links_hwc_gallery';
+  $strongarm->value = 1;
+  $export['entity_translation_hide_translation_links_hwc_gallery'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'entity_translation_node_metadata_hwc_gallery';
+  $strongarm->value = '0';
+  $export['entity_translation_node_metadata_hwc_gallery'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'entity_translation_settings_node__hwc_gallery';
+  $strongarm->value = array(
+    'default_language' => 'xx-et-default',
+    'hide_language_selector' => 1,
+    'exclude_language_none' => 1,
+    'lock_language' => 1,
+    'shared_fields_original_only' => 1,
+  );
+  $export['entity_translation_settings_node__hwc_gallery'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'exclude_node_title_content_type_modes_hwc_gallery';
+  $strongarm->value = array(
+    'full' => 'full',
+    'teaser' => 'teaser',
+    'search_index' => 'search_index',
+    'osha_resources' => 'osha_resources',
+    'rss' => 0,
+    'search_result' => 0,
+    'diff_standard' => 0,
+    'title_body' => 0,
+    'body' => 0,
+    'osha_slideshow' => 0,
+    'highlights_item' => 0,
+    'newsletter_item' => 0,
+    'pub_teaser' => 0,
+    'print' => 0,
+    'token' => 0,
+    'revision' => 0,
+    'nodeform' => 0,
+  );
+  $export['exclude_node_title_content_type_modes_hwc_gallery'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'exclude_node_title_content_type_value_hwc_gallery';
+  $strongarm->value = 'all';
+  $export['exclude_node_title_content_type_value_hwc_gallery'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'field_bundle_settings_node__hwc_gallery';
   $strongarm->value = array(
     'view_modes' => array(
