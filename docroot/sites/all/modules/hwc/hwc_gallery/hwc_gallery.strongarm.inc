@@ -270,5 +270,12 @@ function hwc_gallery_strongarm() {
   $strongarm->value = 0;
   $export['node_submitted_hwc_gallery'] = $strongarm;
 
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'pathauto_node_hwc_gallery_pattern';
+  $strongarm->value = 'media-center/photo-gallery/[node:title]';
+  $export['pathauto_node_hwc_gallery_pattern'] = $strongarm;
+
   return $export;
 }
