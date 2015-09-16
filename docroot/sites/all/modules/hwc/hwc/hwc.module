@@ -142,6 +142,26 @@ function hwc_mime_friendly_acronym($mime) {
   return $mime;
 }
 
+function hwc_mime_friendly_name($mime) {
+  $mappings = array(
+    'application/msword' => t('Word Document'),
+    'application/vnd.openxmlformats-officedocument.wordprocessingml.document' => t('Word Document'),
+    'application/vnd.ms-excel' => t('Spreadsheet'),
+    'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' => t('Spreadsheet'),
+    'application/vnd.ms-powerpoint' => t('Powerpoint'),
+    'application/vnd.openxmlformats-officedocument.presentationml.presentation'  => t('Powerpoint'),
+    'application/pdf' => t('Adobe Portable Document Format'),
+    'image/jpeg' => t('JPEG Image'),
+    'image/png' => t('Portable Network Graphics'),
+    'image/gif' => t('Graphics Interchange Format'),
+    'text/plain' => t('Text File'),
+  );
+  if (array_key_exists($mime, $mappings)) {
+    return $mappings[$mime];
+  }
+  return $mime;
+}
+
 
 /**
 * Implements hook_field_formatter_info().
