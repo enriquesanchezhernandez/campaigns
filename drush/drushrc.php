@@ -427,6 +427,7 @@ $options['init-modules'] = array(
   'flickr_block',
   'flickrfield',
   'chosen',
+  'colorbox',
 
   // cookie privacy
   'eu_cookie_compliance',
