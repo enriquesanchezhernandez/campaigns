@@ -25,6 +25,30 @@ function osha_gallery_menu() {
   return $items;
 }
 
+
+/**
+ * Implements hook_field_formatter_info_alter().
+ */
+function osha_gallery_field_formatter_info_alter(&$info) {
+  // Define extra fields for settings form to save them.
+  $info['colorbox']['settings']['use_image_caption_field'] = FALSE;
+}
+
+/**
+ * Implements hook_field_formatter_settings_form_alter().
+ */
+function osha_gallery_field_formatter_settings_form_alter(array &$settings_form, array $context) {
+  if ($context['module'] == 'colorbox') {
+    // Add extra field on colorbox formatter so that colorbox uses field caption.
+    $settings = $context['formatter']['settings'];
+    $settings_form['use_image_caption_field'] = array(
+      '#type' => 'checkbox',
+      '#title' => t('Use image field caption'),
+      '#default_value' => $settings['use_image_caption_field'],
+    );
+  }
+}
+
 function osha_gallery_config_form($form, &$form_state) {
   $form = array();
   $fields = field_info_fields();

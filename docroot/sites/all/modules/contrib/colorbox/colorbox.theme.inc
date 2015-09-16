@@ -22,7 +22,6 @@ function theme_colorbox_image_formatter($variables) {
   $entity = $variables['entity'];
   $field = $variables['field'];
   $settings = $variables['display_settings'];
-  dpm($variables);
 
   $image = array(
     'path' => $item['uri'],
