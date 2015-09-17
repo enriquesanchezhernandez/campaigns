@@ -115,7 +115,7 @@ function campaign_materials_field_formatter_view($entity_type, $entity, $field, 
  */
 function theme_icon_file_formatter($element) {
   $file = (object) $element['file'];
-  $icon_directory = drupal_get_path('theme', 'hwc_frontend') . '/images/file_icons';
+//  $icon_directory = drupal_get_path('theme', 'hwc_frontend') . '/images/file_icons';
   $name = ($file->description != NULL) ? $file->description : $file->filename;
   $label = $element['label'];
   $description = $element['description'];
@@ -126,22 +126,28 @@ function theme_icon_file_formatter($element) {
     $output .= '<span>' . t($label) . '</span>';
   }
 
+  $file_size = @filesize($file->uri);
+
+  if ($show_size && $file_size) {
+    $output .= '<span class="file_size">' . format_size($file_size) . '</span>';
+  }
+
+  $mime_name = hwc_mime_friendly_name($file->filemime);
+  $output .= '<span class="file_size">' . $mime_name . '</span>';
+
   $output .= '<a href="' . file_create_url($file->uri) . '">';
-  $output .= theme('file_icon', array(
-    'file' => $file,
-    'icon_directory' => $icon_directory
-  ));
+//  $output .= theme('file_icon', array(
+//    'file' => $file,
+//    'icon_directory' => $icon_directory
+//  ));
+  $extension = strtoupper(end(explode('.', $file->filename)));
+  $output .= '<span>' . $extension . '</span>&nbsp;';
 
   if ($description) {
     $output .= '<span>' . $name . '</span>';
   }
 
   $output .= '</a>';
-
-  $file_size = @filesize($file->uri);
-  if ($show_size && $file_size) {
-    $output .= '<span class="file_size">(' . format_size($file_size) . ')</span>';
-  }
 
   $output .= '<span class="glyphicon glyphicon-chevron-right"></span>';
 

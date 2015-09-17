@@ -171,29 +171,56 @@ function hwc_frontend_preprocess_page(&$vars) {
         );
       }
     }
-  if ($node = menu_get_object()) {
-    if ($node->type == 'publication') {
-      ctools_include('plugins');
-      ctools_include('context');
-      $pb = path_breadcrumbs_load_by_name('publications_detail_page');
-      $breadcrumbs = _path_breadcrumbs_build_breadcrumbs($pb);
-      drupal_set_breadcrumb($breadcrumbs);
+
+    if ($node = menu_get_object()) {
+      if ($node->type == 'publication') {
+        ctools_include('plugins');
+        ctools_include('context');
+        $pb = path_breadcrumbs_load_by_name('publications_detail_page');
+        $breadcrumbs = _path_breadcrumbs_build_breadcrumbs($pb);
+        drupal_set_breadcrumb($breadcrumbs);
+      }
+      if ($node->type == 'practical_tool') {
+        ctools_include('plugins');
+        ctools_include('context');
+        $pb = path_breadcrumbs_load_by_name('practical_tools_details_page');
+        $breadcrumbs = _path_breadcrumbs_build_breadcrumbs($pb);
+        drupal_set_breadcrumb($breadcrumbs);
+      }
+      if ($node->type == 'campaign_materials') {
+        ctools_include('plugins');
+        ctools_include('context');
+        $pb = path_breadcrumbs_load_by_name('campaign_materials_details_page');
+        $breadcrumbs = _path_breadcrumbs_build_breadcrumbs($pb);
+        drupal_set_breadcrumb($breadcrumbs);
+      }
     }
-    if ($node->type == 'practical_tool') {
-      ctools_include('plugins');
-      ctools_include('context');
-      $pb = path_breadcrumbs_load_by_name('practical_tools_details_page');
-      $breadcrumbs = _path_breadcrumbs_build_breadcrumbs($pb);
-      drupal_set_breadcrumb($breadcrumbs);
+
+    // Add back link (e.g. 'Back to homepage') for Partners pages
+    $partner = hwc_partner_get_account_partner();
+    if(is_object($partner)){
+      switch(current_path()){
+        case 'node/add/events':
+        case 'node/add/news':
+        case 'private':
+          $link_title = t('Back to homepage');
+          $link_href = 'node/'.$partner->nid;
+          $vars['page']['above_title']['title-alternative'] = array(
+              '#type' => 'item',
+              '#markup' => drupal_get_title(),
+              '#prefix' => '<strong class="title-alt">', '#suffix' => '</strong>'
+          );
+          drupal_set_title('');
+          break;
+      }
+
+      if (isset($link_title)) {
+        $vars['page']['above_title']['back-to-link'] = array(
+            '#type' => 'item',
+            '#markup' => l($link_title, $link_href, array('attributes' => array('class' => array('back-to-link pull-right')))),
+        );
+      }
     }
-    if ($node->type == 'campaign_materials') {
-      ctools_include('plugins');
-      ctools_include('context');
-      $pb = path_breadcrumbs_load_by_name('campaign_materials_details_page');
-      $breadcrumbs = _path_breadcrumbs_build_breadcrumbs($pb);
-      drupal_set_breadcrumb($breadcrumbs);
-    }
-  }
 }
 
 /**
@@ -256,6 +283,18 @@ function hwc_frontend_preprocess_image_style(&$variables) {
  * @return
  *   HTML for a social media icon.
  */
+ 
+/**
++ * Implements theme_pager().
++ */
+function hwc_frontend_pager($variables) {
+  // Overwrite pager links.
+  $variables['tags'][0] = '«';
+  $variables['tags'][1] = '‹';
+  $variables['tags'][3] = '›';
+  $variables['tags'][4] = '»';
+  return theme_pager($variables);
+}
 
 function hwc_frontend_on_the_web_image($variables) {
   $service = $variables['service'];

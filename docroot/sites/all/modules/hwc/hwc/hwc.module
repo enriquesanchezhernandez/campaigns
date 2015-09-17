@@ -142,6 +142,26 @@ function hwc_mime_friendly_acronym($mime) {
   return $mime;
 }
 
+function hwc_mime_friendly_name($mime) {
+  $mappings = array(
+    'application/msword' => t('Word Document'),
+    'application/vnd.openxmlformats-officedocument.wordprocessingml.document' => t('Word Document'),
+    'application/vnd.ms-excel' => t('Spreadsheet'),
+    'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' => t('Spreadsheet'),
+    'application/vnd.ms-powerpoint' => t('Powerpoint'),
+    'application/vnd.openxmlformats-officedocument.presentationml.presentation'  => t('Powerpoint'),
+    'application/pdf' => t('Adobe Portable Document Format'),
+    'image/jpeg' => t('JPEG Image'),
+    'image/png' => t('Portable Network Graphics'),
+    'image/gif' => t('Graphics Interchange Format'),
+    'text/plain' => t('Text File'),
+  );
+  if (array_key_exists($mime, $mappings)) {
+    return $mappings[$mime];
+  }
+  return $mime;
+}
+
 
 /**
 * Implements hook_field_formatter_info().
@@ -504,4 +524,41 @@ function osha_pathologic_alter(&$url_params, $parts, $settings) {
   if (preg_match('/^forms\/partner\//m', $url_params['path'])) {
     $url_params['options']['use_original'] = TRUE;
   }
+}
+
+
+/**
+ * Retrieve configuration parameter for the form applications.
+ *
+ * @return array
+ *   Returns an array having the following keys:
+ *   <ul>
+ *     <li>appform_id - GUID received from the 'id' parameter when partner register</li>
+ *    <li>mf - TRUE if we are editing the partner profile, FALSE when registering</li>
+ *    <li>user_guid - User's GUID stored in LDAP, useful when editing partner profile</li>
+ */
+function hwc_get_forms_parameters() {
+  global $user;
+
+  $ret = array(
+    'appform_id' => NULL,
+    'mf' => FALSE,
+    'partner_guid' => NULL,
+  );
+
+  try {
+    $wrapper = entity_metadata_wrapper('user', $user);
+    $ret['user_guid'] = $wrapper->field_crm_guid->value();
+  }
+  catch(Exception $e) {}
+
+  if (!empty($_SESSION['appform_id'])) {
+    $ret['appform_id'] = $_SESSION['appform_id'];
+  }
+
+  if (!empty($_SESSION['mf'])) {
+    $ret['mf'] = $_SESSION['mf'];
+  }
+
+  return $ret;
 }

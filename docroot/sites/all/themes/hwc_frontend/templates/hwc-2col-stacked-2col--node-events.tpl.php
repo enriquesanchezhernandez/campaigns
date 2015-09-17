@@ -3,7 +3,7 @@
 <?php if (isset($title_suffix['contextual_links'])): ?>
   <?php print render($title_suffix['contextual_links']); ?>
 <?php endif; ?>
-<h2 class="node-edit-form-heading"><?php t('General information'); ?></h2>
+<h2 class="node-edit-form-heading"><?php print t('General information'); ?></h2>
 <<?php print $header_wrapper ?> class="group-header<?php print $header_classes; ?>">
 <?php print $header; ?>
 </<?php print $header_wrapper ?>>
@@ -20,7 +20,7 @@
 <?php print $center; ?>
 </<?php print $center_wrapper ?>>
 
-<h2 class="node-edit-form-heading"><?php t('Further information'); ?></h2>
+<h2 class="node-edit-form-heading"><?php print t('Further information'); ?></h2>
 
 <<?php print $left2_wrapper ?> class="group-left2<?php print $left2_classes; ?>">
 <?php print $left2; ?>
