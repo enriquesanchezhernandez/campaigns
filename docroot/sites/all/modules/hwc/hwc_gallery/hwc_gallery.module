@@ -5,3 +5,20 @@
  */
 
 include_once 'hwc_gallery.features.inc';
+
+/**
+ * Implements hook_node_view().
+ */
+function hwc_gallery_node_view($node, $view_mode, $langcode) {
+  if ($node->type == 'hwc_gallery' && $view_mode == 'full') {
+    $wrapper = entity_metadata_wrapper('node', $node);
+    $first_image = $wrapper->field_images->value()[0];
+    if (!empty($first_image)) {
+      $url = image_style_url('article_image', $first_image['uri']);
+      $node->content['cover_image'] = array(
+        '#markup' => '<img class="img-responsive" src="' . $url . '"/>',
+        '#weight' => 0,
+      );
+    }
+  }
+}

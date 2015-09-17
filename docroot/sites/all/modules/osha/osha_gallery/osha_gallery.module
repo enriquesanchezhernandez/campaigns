@@ -14,6 +14,15 @@ function osha_gallery_menu() {
     'access callback' => 'osha_gallery_bulk_upload_access_callback',
     'access arguments' => array(1),
   );
+  $items['node/%node/reorder_files'] = array(
+    'title' => 'Reorder files',
+    'description' => 'Provides an interface for reordering files',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('osha_gallery_reorder_files_form', 1),
+    'type' => MENU_LOCAL_TASK,
+    'access callback' => 'osha_gallery_bulk_upload_access_callback',
+    'access arguments' => array(1),
+  );
   $items['admin/config/content/osha_gallery'] = array(
     'title' => 'Gallery Configuration',
     'description' => 'Configure parameters for the HWC website',
@@ -54,7 +63,9 @@ function osha_gallery_config_form($form, &$form_state) {
   $fields = field_info_fields();
   $options = array();
   foreach ($fields as $field_name => $field_instance) {
-    if ($field_instance['type'] == 'image' && $field_instance['cardinality'] == -1) {
+    $multiple_images = $field_instance['type'] == 'image' && $field_instance['cardinality'] == -1;
+    // TODO: implement for videos.
+    if ($multiple_images) {
       foreach ($field_instance['bundles']['node'] as $bundle) {
         $options[$bundle . '|' . $field_name] = $bundle . '-' . $field_name;
       }
@@ -77,7 +88,8 @@ function osha_gallery_get_usable_bundle_fields() {
   $fields = array();
   foreach ($options as  $option) {
     list($bundle, $field) = explode('|', $option);
-    $fields[$bundle] = $field;
+    $info = field_info_instance('node', $field, $bundle);
+    $fields[$bundle][] = $info['label'];
   }
   return $fields;
 }
@@ -126,7 +138,13 @@ function osha_gallery_bulk_upload_form($form, &$form_state, $node) {
     '#type' => 'item',
     '#markup' => 'You can upload multiple images to this gallery.'
   );
-  $form['field_images'] = array(
+  $usable_fields = osha_gallery_get_usable_bundle_fields();
+  $form['to_field'] = array(
+    '#title' => 'Upload files to field',
+    '#type' => 'select',
+    '#options' => $usable_fields[$node->type],
+  );
+  $form['field_files'] = array(
     '#type' => 'plupload',
     '#title' => t('Upload files'),
     '#autoupload' => TRUE,
@@ -152,22 +170,26 @@ function osha_gallery_bulk_upload_form($form, &$form_state, $node) {
 }
 
 /**
+ * Validation callback.
+ */
+function osha_gallery_bulk_upload_form_validate($form, &$form_state) {
+  $node = $form['#node'];
+  $gallery_field_name = $form_state['values']['to_field'];
+  if (!isset($node->{$gallery_field_name})) {
+    form_set_error('to_field', 'The selected field is not available for this node.');
+  }
+}
+
+/**
  * Submit callback for bulk upload.
  */
 function osha_gallery_bulk_upload_form_submit($form, &$form_state) {
   $node = $form['#node'];
   $saved_files = array();
   $failed_files = array();
-  $usable_fields = osha_gallery_get_usable_bundle_fields();
-  if (!array_key_exists($node->type, $usable_fields)) {
-    //
-  }
-  $gallery_field_name = $usable_fields[$node->type];
-  if (!isset($node->{$gallery_field_name})) {
-    //
-  }
-  if (!empty($form_state['values']['field_images'])) {
-    foreach ($form_state['values']['field_images'] as $uploaded_file) {
+  $gallery_field_name = $form_state['values']['to_field'];
+  if (!empty($form_state['values']['field_files'])) {
+    foreach ($form_state['values']['field_files'] as $uploaded_file) {
       $destination = 'public://osha_gallery/node_' . $node->nid;
       if ($uploaded_file['status'] == 'done') {
         $source = $uploaded_file['tmppath'];

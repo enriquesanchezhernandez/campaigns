@@ -204,6 +204,7 @@ function hwc_gallery_field_default_field_instances() {
         'manualcrop_maximize_default_crop_area' => 0,
         'manualcrop_require_cropping' => array(),
         'manualcrop_styles_list' => array(
+          'article_image' => 'article_image',
           'medium_thumbnail_mc' => 'medium_thumbnail_mc',
         ),
         'manualcrop_styles_mode' => 'include',
