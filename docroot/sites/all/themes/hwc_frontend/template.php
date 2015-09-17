@@ -307,3 +307,15 @@ function hwc_frontend_on_the_web_image($variables) {
   );
   return theme('image', $variables);
 }
+
+/**
+ * Implements theme_pager().
+ */
+function hwc_frontend_pager($variables) {
+  // Overwrite pager links.
+  $variables['tags'][0] = '«';
+  $variables['tags'][1] = '‹';
+  $variables['tags'][3] = '›';
+  $variables['tags'][4] = '»';
+  return theme_pager($variables);
+}
