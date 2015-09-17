@@ -1,0 +1,13 @@
+.osha-gallery-reorder-field {
+    width: 220px;
+    height: 220px;
+    overflow: hidden;
+    padding: 10px;
+    margin: 10px;
+    display: inline-block;
+    background: #ddd;
+}
+.osha-gallery-reorder-field img {
+    max-width: 100%;
+    height: auto;
+}

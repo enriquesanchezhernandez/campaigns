@@ -57,6 +57,38 @@ function hwc_gallery_default_page_manager_pages() {
   $display->content = array();
   $display->panels = array();
     $pane = new stdClass();
+    $pane->pid = 'new-ec013956-6cd0-4b7d-b279-f3c1dc11daf2';
+    $pane->panel = 'center';
+    $pane->type = 'node';
+    $pane->subtype = 'node';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'nid' => '237',
+      'links' => 0,
+      'leave_node_title' => 0,
+      'identifier' => '',
+      'build_mode' => 'body',
+      'link_node_title' => 0,
+      'override_title' => 1,
+      'override_title_text' => '',
+      'override_title_heading' => 'h2',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array(
+      'css_id' => '',
+      'css_class' => 'section-introduction"',
+    );
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = 'ec013956-6cd0-4b7d-b279-f3c1dc11daf2';
+    $display->content['new-ec013956-6cd0-4b7d-b279-f3c1dc11daf2'] = $pane;
+    $display->panels['center'][0] = 'new-ec013956-6cd0-4b7d-b279-f3c1dc11daf2';
+    $pane = new stdClass();
     $pane->pid = 'new-cbfd7b45-80b6-4996-af95-f5b964bb7cab';
     $pane->panel = 'center';
     $pane->type = 'views';
@@ -84,15 +116,18 @@ function hwc_gallery_default_page_manager_pages() {
     $pane->style = array(
       'settings' => NULL,
     );
-    $pane->css = array();
+    $pane->css = array(
+      'css_id' => '',
+      'css_class' => 'container',
+    );
     $pane->extras = array();
-    $pane->position = 0;
+    $pane->position = 1;
     $pane->locks = array();
     $pane->uuid = 'cbfd7b45-80b6-4996-af95-f5b964bb7cab';
     $display->content['new-cbfd7b45-80b6-4996-af95-f5b964bb7cab'] = $pane;
-    $display->panels['center'][0] = 'new-cbfd7b45-80b6-4996-af95-f5b964bb7cab';
+    $display->panels['center'][1] = 'new-cbfd7b45-80b6-4996-af95-f5b964bb7cab';
   $display->hide_title = PANELS_TITLE_PANE;
-  $display->title_pane = 'new-cbfd7b45-80b6-4996-af95-f5b964bb7cab';
+  $display->title_pane = 'new-ec013956-6cd0-4b7d-b279-f3c1dc11daf2';
   $handler->conf['display'] = $display;
   $page->default_handlers[$handler->name] = $handler;
   $pages['photo_gallery'] = $page;

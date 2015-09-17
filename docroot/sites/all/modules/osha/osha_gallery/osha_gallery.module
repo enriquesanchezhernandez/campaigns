@@ -89,7 +89,7 @@ function osha_gallery_get_usable_bundle_fields() {
   foreach ($options as  $option) {
     list($bundle, $field) = explode('|', $option);
     $info = field_info_instance('node', $field, $bundle);
-    $fields[$bundle][] = $info['label'];
+    $fields[$bundle][$field] = $info['label'];
   }
   return $fields;
 }
@@ -224,4 +224,141 @@ function osha_gallery_bulk_upload_form_submit($form, &$form_state) {
   }
   $wrapper->save();
   $form_state['redirect'] = 'node/' . $node->nid;
+}
+
+/**
+ * From for reordering the files form a field configured with osha_gallery.
+ * 2 steps form
+ * 1. If multiples fields as gallery, pick one.
+ * 2. Reorder the files of the field.
+ */
+function osha_gallery_reorder_files_form($form, &$form_state, $node) {
+  $usable_fields = osha_gallery_get_usable_bundle_fields();
+  $form = array();
+  $form['#nid'] = $node->nid;
+
+  if (!empty($form_state['values']['reorder_field'])) {
+    // If comes from first step of the form.
+    $field_name = $form_state['values']['reorder_field'];
+  }
+  elseif (count($usable_fields[$node->type]) == 1) {
+    // Skip the first step if only one field.
+    $field_name = current(array_keys($usable_fields[$node->type]));
+  }
+  else{
+    $field_name = '';
+  }
+  if (empty($field_name)) {
+    // First step.
+    $form['reorder_field'] = array(
+      '#title' => 'Reorder this field',
+      '#type' => 'select',
+      '#required' => TRUE,
+      '#options' => $usable_fields[$node->type],
+    );
+    $form['select'] = array(
+      '#type' => 'submit',
+      '#value' => 'Next',
+    );
+  }
+  else {
+    // Second step - reorder.
+    $form['#field_name'] = $field_name;
+    $info = field_info_instance('node', $field_name, $node->type);
+    $wrapper = entity_metadata_wrapper('node', $node);
+    $files = $wrapper->{$field_name}->value();
+    $form['fids'] = array(
+      '#type' => 'container',
+      '#attributes' => array(
+        'id' => 'osha_gallery_files_sort_container',
+      ),
+      '#tree' => TRUE,
+    );
+
+
+
+    // Render files thumbnails in sort
+    foreach ($files as $file) {
+      $thumb = _osha_gallery_get_display_settings_field($file, $info);
+      $form['fids'][] = array(
+        '#type' => 'hidden',
+        '#value' => $file['fid'],
+        '#attributes' => array(
+          'name' => 'fids[]'
+        ),
+        '#prefix' => '<span class="osha-gallery-reorder-field">' . $thumb,
+        '#suffix' => '</span>',
+      );
+    }
+    $path = drupal_get_path('module', 'osha_gallery');
+    $form['#attached']['library'][] = array('system', 'ui.sortable');
+    $form['#attached']['js'][$path . '/js/osha_gallery_reorder.js'] = array('type' => 'file');
+    $form['#attached']['css'][$path . '/css/osha_gallery_reorder.css'] = array('type' => 'file');
+
+
+    $form['save'] = array(
+      '#type' => 'submit',
+      '#value' => 'Save',
+      '#submit' => array('osha_gallery_reorder_files_form_reorder_submit'),
+      '#validate' => array('osha_gallery_reorder_files_form_reorder_validate'),
+    );
+  }
+  return $form;
+}
+
+/**
+ *
+ */
+function osha_gallery_reorder_files_form_submit($form, &$form_state) {
+  // Just rebuild to go to step 2.
+  $form_state['rebuild'] = TRUE;
+}
+
+/**
+ * Validation of the reordering form.
+ */
+function osha_gallery_reorder_files_form_reorder_validate($form, &$form_state) {
+  $node = node_load($form['#nid']);
+  $field_name = $form['#field_name'];
+  $wrapper = entity_metadata_wrapper('node', $node);
+  $files = $wrapper->{$field_name}->value();
+  $reordered_files = $form_state['input']['fids'];
+  // Images might have been changed since the user opened the form.
+  foreach ($files as $file) {
+    if (!in_array($file['fid'], $reordered_files)) {
+      form_set_error('submit', 'Images have changed since you opened this form');
+      break;
+    }
+  }
+}
+
+/**
+ * Callback for the reorder step 2 form.
+ */
+function osha_gallery_reorder_files_form_reorder_submit($form, &$form_state) {
+  $node = node_load($form['#nid']);
+  $field_name = $form['#field_name'];
+  $wrapper = entity_metadata_wrapper('node', $node);
+  $files = $wrapper->{$field_name}->value();
+  $reordered_files = array();
+  $reordered_fids = array_keys(array_flip($form_state['input']['fids']));
+  foreach ($files as $file) {
+    $delta = array_search($file['fid'], $reordered_fids);
+    $reordered_files[$delta] = $file;
+  }
+  ksort($reordered_files);
+  $wrapper->{$field_name}->set($reordered_files);
+  $wrapper->save();
+  drupal_set_message('The images have been reordered.');
+  $form_state['redirect'] = 'node/' . $node->nid;
+}
+
+function _osha_gallery_get_display_settings_field($file, $field_instance) {
+  // @TODO handle other types of files and settings.
+  $html = $file['fid'];
+  if (!empty($field_instance['display']['default']['settings']['colorbox_node_style'])) {
+    $img_style = $field_instance['display']['default']['settings']['colorbox_node_style'];
+    $html = '<img src="' . image_style_url($img_style, $file['uri']) . '" />';
+  }
+  return $html;
 }
