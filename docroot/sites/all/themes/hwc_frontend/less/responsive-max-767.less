@@ -98,7 +98,7 @@ header{
 header.navbar-default .campaigns-header .row:first-of-type {
 	padding-left: 0px;
 	padding-right: 0px;
-	padding-bottom: 10px;
+	padding-bottom: 0px;
 }
 header.navbar-default{
 	margin-left: 0;
@@ -247,18 +247,32 @@ header.navbar-default{
 	.front{
 		//slider
 		#block-views-frontpage-slider-block{
+			margin-left: 0px;
+    		margin-right: 0px;
 			img{
-				display: none;
+				right: -608px !important;
 			}
 		}
 		#homepage_slider{
-			> div{
-				padding-left: 15px;
-    			padding-right: 15px;
+
+			#num_slides{
+				> div{
+					div{
+						padding-left: 7px !important;
+    					padding-right: 22px !important;
+					}
+				}
 			}
-			background: url("../images/content/bg-campaign-partner.png") no-repeat left;
+			> div{
+				padding-left: 0px;
+    			padding-right: 0px;
+    			.homepage_slider{
+			
+    			}
+			}
+			//background: url("../images/content/bg-campaign-partner.png") no-repeat left;
 			margin-bottom: 0;
-			height: 300px !important;
+			height: 356px !important;
 			.views-field-body{
 				top:150px !important;
 				float: left !important;
@@ -267,11 +281,13 @@ header.navbar-default{
 					margin-right: 0px !important;
 					float: left !important;
 					padding: 0 0px !important;
+					margin-top: 50px !important;
 				}
 			}
 			.views-field-title{
-				margin: 0 -20px !important;
+				margin: 0 -13px !important;
     			padding: 0 0px !important;
+    			text-align: left !important;
     			span{
     				float: left !important;
     			}
@@ -284,7 +300,7 @@ header.navbar-default{
 					bottom: 1em !important;
 					height: 3.5em !important;
 					padding: 1em !important;
-					top: 230px !important;
+					top: 20.5em !important;
 					right: initial !important;
 					text-align: center;
 				}
