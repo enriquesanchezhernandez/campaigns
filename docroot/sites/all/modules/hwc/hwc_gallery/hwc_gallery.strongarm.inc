@@ -273,9 +273,32 @@ function hwc_gallery_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'osha_gallery_usable_fields_bundles';
+  $strongarm->value = array(
+    'hwc_gallery|field_images' => 'hwc_gallery|field_images',
+  );
+  $export['osha_gallery_usable_fields_bundles'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'pathauto_node_hwc_gallery_pattern';
   $strongarm->value = 'media-center/photo-gallery/[node:title]';
   $export['pathauto_node_hwc_gallery_pattern'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'workbench_access_node_type_hwc_gallery';
+  $strongarm->value = 0;
+  $export['workbench_access_node_type_hwc_gallery'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'workbench_moderation_default_state_hwc_gallery';
+  $strongarm->value = 'draft';
+  $export['workbench_moderation_default_state_hwc_gallery'] = $strongarm;
 
   return $export;
 }

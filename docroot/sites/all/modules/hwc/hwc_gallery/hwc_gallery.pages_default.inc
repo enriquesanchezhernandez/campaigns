@@ -16,7 +16,10 @@ function hwc_gallery_default_page_manager_pages() {
   $page->admin_title = 'Photo gallery';
   $page->admin_description = '';
   $page->path = 'media-center/photo-gallery';
-  $page->access = array();
+  $page->access = array(
+    'type' => 'none',
+    'settings' => NULL,
+  );
   $page->menu = array();
   $page->arguments = array();
   $page->conf = array(
