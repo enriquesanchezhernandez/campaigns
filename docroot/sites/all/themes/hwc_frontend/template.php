@@ -174,10 +174,18 @@ function hwc_frontend_preprocess_page(&$vars) {
           if ($date < $now) {
             $link_title = t('Back to past events list');
             $link_href = 'past-events';
+            $vars['page']['above_title']['events-page-title'] = array(
+              '#type' => 'item',
+              '#markup' => '<h1>' . t('Past events') . '</h1>',
+            );
             break;
           }
           $link_title = t('Back to events list');
           $link_href = 'events';
+          $vars['page']['above_title']['events-page-title'] = array(
+            '#type' => 'item',
+            '#markup' => '<h1>' . t('Upcoming events') . '</h1>',
+          );
           break;
 
 
