@@ -168,6 +168,19 @@ function hwc_frontend_preprocess_page(&$vars) {
           $link_href = 'practical-tools';
           break;
 
+        case 'events':
+          $date = new DateTime($node->field_start_date['und'][0]['value']);
+          $now = new DateTime();
+          if ($date < $now) {
+            $link_title = t('Back to past events list');
+            $link_href = 'past-events';
+            break;
+          }
+          $link_title = t('Back to events list');
+          $link_href = 'events';
+          break;
+
+
       }
       if (isset($link_title)) {
         $vars['page']['above_title']['back-to-link'] = array(
