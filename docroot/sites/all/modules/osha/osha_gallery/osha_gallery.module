@@ -15,7 +15,7 @@ function osha_gallery_menu() {
     'access arguments' => array(1),
   );
   $items['node/%node/reorder_files'] = array(
-    'title' => 'Reorder files',
+    'title' => 'Reorder images',
     'description' => 'Provides an interface for reordering files',
     'page callback' => 'drupal_get_form',
     'page arguments' => array('osha_gallery_reorder_files_form', 1),
@@ -102,11 +102,17 @@ function osha_gallery_form_alter(&$form, &$form_state, $form_id) {
     // Create node form
     $node = $form_state['node'];
     $fields = osha_gallery_get_usable_bundle_fields();
+    $alter = FALSE;
     if (array_key_exists($node->type, $fields)) {
-      if (!empty($form[$fields[$node->type]])) {
-        hide($form[$fields[$node->type]]);
-        $form['actions']['submit']['#submit'][] = 'osha_gallery_node_form_submit_callback';
+      foreach($fields[$node->type] as $field_name => $label) {
+        if (!empty($form[$field_name])) {
+          hide($form[$field_name]);
+          $alter = TRUE;
+        }
       }
+    }
+    if ($alter) {
+      $form['actions']['submit']['#submit'][] = 'osha_gallery_node_form_submit_callback';
     }
   }
 
@@ -136,7 +142,7 @@ function osha_gallery_bulk_upload_form($form, &$form_state, $node) {
   $form['#node'] = $node;
   $form['description'] = array(
     '#type' => 'item',
-    '#markup' => 'You can upload multiple images to this gallery.'
+    '#markup' => t('You can upload multiple images to this gallery.')
   );
   $usable_fields = osha_gallery_get_usable_bundle_fields();
   $form['to_field'] = array(
@@ -157,7 +163,7 @@ function osha_gallery_bulk_upload_form($form, &$form_state, $node) {
     ),
   );
   $form['overwrite'] = array(
-    '#title' => 'Overwrite existing images',
+    '#title' => t('Replace existing files'),
     '#type' => 'checkbox',
     '#default_value' => FALSE,
   );
