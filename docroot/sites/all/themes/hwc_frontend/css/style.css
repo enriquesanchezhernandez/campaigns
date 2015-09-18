@@ -7570,7 +7570,7 @@ body a:focus {
 .main-container h1,
 .main-container .title-alt {
   color: #749b00;
-  font-size: 30px;
+  font-size: 35px;
   font-weight: bold;
   text-align: center;
   margin-top: 26px;
@@ -7848,6 +7848,7 @@ body a:focus {
   width: 100% !important;
 }
 #homepage_slider #num_slides {
+  cursor: auto;
   margin: 0;
   padding: 0;
   width: 1139px;
@@ -7856,6 +7857,7 @@ body a:focus {
 }
 #homepage_slider #num_slides > div {
   /* .views-field.views-field-field-image */
+  background-color: #456E00;
   width: 1139px;
   width: 100% !important;
   height: 356px !important;
@@ -7914,10 +7916,14 @@ body a:focus {
   /* content: ""; */
 }
 #homepage_slider #num_slides > div div a img {
+  margin: 0 auto;
+  display: block;
   width: 100%;
+  width: auto;
   height: auto;
   /* para que no se deforme la img */
-  min-height: 356px;
+  /* min-height: 356px; */
+  max-height: 356px;
 }
 #homepage_slider #num_slides > div div p {
   color: #ffffff;
@@ -8005,7 +8011,7 @@ body a:focus {
   font-style: italic;
   font-weight: normal;
   color: #575757;
-  font-size: 30px;
+  font-size: 35px;
 }
 .node-news .field-name-field-image img {
   float: left;
@@ -8213,7 +8219,7 @@ body a:focus {
   display: none !important;
 }
 /*Fin articles*/
-/* Infographics */
+/* pag Infographics */
 .view-infographic .views-row {
   border-bottom: 1px dotted #749b00;
   padding-top: 2em;
@@ -8222,6 +8228,9 @@ body a:focus {
 .view-infographic .views-row .views-field-title-field a {
   color: #575757;
   font-size: 20px;
+}
+.node-infographic .group-left {
+  padding-right: 1em;
 }
 .node-infographic .field-name-title-field h2 {
   margin-top: 0px;
@@ -8241,6 +8250,7 @@ body a:focus {
   padding-right: 0.35em;
   margin-left: 1em;
 }
+/* Fin Infographics */
 /* Press Room */
 .node-press-release h3 a {
   background: url("../images/content/continue-reading.png") no-repeat right center;
@@ -8262,7 +8272,7 @@ div[class*='node-'] h1 {
   font-style: italic;
   font-weight: lighter;
   color: #575757;
-  font-size: 30px;
+  font-size: 35px;
 }
 div[class*='node-'] .field-name-field-summary {
   font-weight: bold;
@@ -9148,7 +9158,6 @@ div[class*='node-'] .more-link {
   border-bottom: 1px dotted #749b00;
   padding-bottom: 1em;
   padding-top: 1em;
-  min-height: 180px;
   overflow: hidden;
 }
 .view-news .views-row h2 {
@@ -9190,7 +9199,7 @@ div[class*='node-'] .more-link {
   font-style: italic;
   font-weight: normal;
   color: #575757;
-  font-size: 30px;
+  font-size: 35px;
 }
 .node-news .field-name-field-image img {
   float: left;
@@ -9201,7 +9210,6 @@ div[class*='node-'] .more-link {
 .node-news .group-left {
   padding-left: 0;
   padding-right: 30px;
-  min-height: 230px;
 }
 /* News-detail */
 article .hwc-share-widget ul {
@@ -9986,8 +9994,8 @@ article .hwc-share-widget ul {
   margin-top: 3em;
   margin-bottom: 3em;
   padding-bottom: 4em;
-  margin-right: -15px;
-  margin-left: -15px;
+  /* margin-right: -15px;
+		margin-left: -15px; */
 }
 .become-partner .partners .partner {
   margin-top: 3.5em;
@@ -10443,7 +10451,7 @@ article .hwc-share-widget ul {
 .profile-title-type-container .pane-entity-field .field-name-title-field h1 {
   border-bottom: none;
   color: #575757;
-  font-size: 30px;
+  font-size: 35px;
   font-style: normal;
   font-weight: bold;
 }
@@ -10577,94 +10585,219 @@ article .hwc-share-widget ul {
 }
 /*fin partners public profile*/
 /*create event --> dentro de public profile*/
-.page-node-add-events .node-events-form .form-control {
+.page-node-add-events .node-events-form .form-control,
+.page-node-add-news .node-events-form .form-control,
+.page-node-add-events .node-news-form .form-control,
+.page-node-add-news .node-news-form .form-control {
   width: 100% !important;
 }
-.page-node-add-events .node-events-form .form-type-textfield {
+.page-node-add-events .node-events-form .form-type-textfield,
+.page-node-add-news .node-events-form .form-type-textfield,
+.page-node-add-events .node-news-form .form-type-textfield,
+.page-node-add-news .node-news-form .form-type-textfield {
   padding-right: 2em;
   display: block !important;
 }
-.page-node-add-events .node-events-form .date-no-float {
+.page-node-add-events .node-events-form .date-no-float,
+.page-node-add-news .node-events-form .date-no-float,
+.page-node-add-events .node-news-form .date-no-float,
+.page-node-add-news .node-news-form .date-no-float {
   width: 100% !important;
 }
-.page-node-add-events .node-events-form .field-type-datetime .help-block {
-  display: initial;
+.page-node-add-events .node-events-form #edit-field-summary-und-0-value_tbl .mceIframeContainer,
+.page-node-add-news .node-events-form #edit-field-summary-und-0-value_tbl .mceIframeContainer,
+.page-node-add-events .node-news-form #edit-field-summary-und-0-value_tbl .mceIframeContainer,
+.page-node-add-news .node-news-form #edit-field-summary-und-0-value_tbl .mceIframeContainer {
+  border: 1px solid #003399;
+  height: 150px;
+  padding: 10px;
 }
-.page-node-add-events .node-events-form .field-type-datetime #edit-field-start-date-und-0-value .form-item-field-start-date-und-0-value-date {
-  padding-right: 1em;
-  max-width: 160px;
+.page-node-add-events .node-events-form #edit-field-summary-und-0-value_tbl .mceFirst .mceToolbar,
+.page-node-add-news .node-events-form #edit-field-summary-und-0-value_tbl .mceFirst .mceToolbar,
+.page-node-add-events .node-news-form #edit-field-summary-und-0-value_tbl .mceFirst .mceToolbar,
+.page-node-add-news .node-news-form #edit-field-summary-und-0-value_tbl .mceFirst .mceToolbar {
+  display: none;
 }
-.page-node-add-events .node-events-form .field-type-datetime #edit-field-start-date-und-0-value .form-item-field-start-date-und-0-value-date .date-clear {
-  background: url('../images/content/input-calendar.png') no-repeat right top;
-  background-size: 28px 28px;
+.page-node-add-events .node-events-form #edit-field-summary-und-0-value_tbl .mceLast .mceStatusbar,
+.page-node-add-news .node-events-form #edit-field-summary-und-0-value_tbl .mceLast .mceStatusbar,
+.page-node-add-events .node-news-form #edit-field-summary-und-0-value_tbl .mceLast .mceStatusbar,
+.page-node-add-news .node-news-form #edit-field-summary-und-0-value_tbl .mceLast .mceStatusbar {
+  display: none;
 }
-.page-node-add-events .node-events-form .field-type-datetime #edit-field-start-date-und-0-value .form-item-field-start-date-und-0-value-date label[for="edit-field-start-date-und-0-value-datepicker-popup-0"]:before {
-  content: "Start ";
+.page-node-add-events .node-events-form .wysiwyg-toggle-wrapper,
+.page-node-add-news .node-events-form .wysiwyg-toggle-wrapper,
+.page-node-add-events .node-news-form .wysiwyg-toggle-wrapper,
+.page-node-add-news .node-news-form .wysiwyg-toggle-wrapper {
+  display: none;
 }
-.page-node-add-events .node-events-form .field-type-datetime #edit-field-start-date-und-0-value .form-item-field-start-date-und-0-value-time {
-  padding-right: 0em;
-  max-width: 70px;
-}
-.page-node-add-events .node-events-form .field-type-datetime #edit-field-start-date-und-0-value2 .form-item-field-start-date-und-0-value2-date {
-  padding-right: 1em;
-  max-width: 160px;
-}
-.page-node-add-events .node-events-form .field-type-datetime #edit-field-start-date-und-0-value2 .form-item-field-start-date-und-0-value2-date .date-clear {
-  background: url('../images/content/input-calendar.png') no-repeat right top;
-  background-size: 28px 28px;
-}
-.page-node-add-events .node-events-form .field-type-datetime #edit-field-start-date-und-0-value2 .form-item-field-start-date-und-0-value2-date label[for="edit-field-start-date-und-0-value2-datepicker-popup-0"]:before {
-  content: "End ";
-}
-.page-node-add-events .node-events-form .field-type-datetime #edit-field-start-date-und-0-value2 .form-item-field-start-date-und-0-value2-time {
-  padding-right: 0em;
-  max-width: 70px;
-}
-.page-node-add-events .node-events-form .text-summary-wrapper .form-textarea-wrapper {
+.page-node-add-events .node-events-form .field-type-entityreference,
+.page-node-add-news .node-events-form .field-type-entityreference,
+.page-node-add-events .node-news-form .field-type-entityreference,
+.page-node-add-news .node-news-form .field-type-entityreference {
   padding-right: 2em;
 }
-.page-node-add-events .node-events-form .field-name-field-related-documents {
+.page-node-add-events .node-events-form .field-type-entityreference .tabledrag-toggle-weight-wrapper,
+.page-node-add-news .node-events-form .field-type-entityreference .tabledrag-toggle-weight-wrapper,
+.page-node-add-events .node-news-form .field-type-entityreference .tabledrag-toggle-weight-wrapper,
+.page-node-add-news .node-news-form .field-type-entityreference .tabledrag-toggle-weight-wrapper {
+  display: none;
+}
+.page-node-add-events .node-events-form .field-type-entityreference .tabledrag-hide,
+.page-node-add-news .node-events-form .field-type-entityreference .tabledrag-hide,
+.page-node-add-events .node-news-form .field-type-entityreference .tabledrag-hide,
+.page-node-add-news .node-news-form .field-type-entityreference .tabledrag-hide {
+  display: none;
+}
+.page-node-add-events .node-events-form .field-type-datetime .help-block,
+.page-node-add-news .node-events-form .field-type-datetime .help-block,
+.page-node-add-events .node-news-form .field-type-datetime .help-block,
+.page-node-add-news .node-news-form .field-type-datetime .help-block {
+  display: initial;
+}
+.page-node-add-events .node-events-form .field-type-datetime #edit-field-start-date-und-0-value .form-item-field-start-date-und-0-value-date,
+.page-node-add-news .node-events-form .field-type-datetime #edit-field-start-date-und-0-value .form-item-field-start-date-und-0-value-date,
+.page-node-add-events .node-news-form .field-type-datetime #edit-field-start-date-und-0-value .form-item-field-start-date-und-0-value-date,
+.page-node-add-news .node-news-form .field-type-datetime #edit-field-start-date-und-0-value .form-item-field-start-date-und-0-value-date {
+  padding-right: 1em;
+  max-width: 160px;
+}
+.page-node-add-events .node-events-form .field-type-datetime #edit-field-start-date-und-0-value .form-item-field-start-date-und-0-value-date .date-clear,
+.page-node-add-news .node-events-form .field-type-datetime #edit-field-start-date-und-0-value .form-item-field-start-date-und-0-value-date .date-clear,
+.page-node-add-events .node-news-form .field-type-datetime #edit-field-start-date-und-0-value .form-item-field-start-date-und-0-value-date .date-clear,
+.page-node-add-news .node-news-form .field-type-datetime #edit-field-start-date-und-0-value .form-item-field-start-date-und-0-value-date .date-clear {
+  background: url('../images/content/input-calendar.png') no-repeat right top;
+  background-size: 28px 28px;
+}
+.page-node-add-events .node-events-form .field-type-datetime #edit-field-start-date-und-0-value .form-item-field-start-date-und-0-value-date label[for="edit-field-start-date-und-0-value-datepicker-popup-0"]:before,
+.page-node-add-news .node-events-form .field-type-datetime #edit-field-start-date-und-0-value .form-item-field-start-date-und-0-value-date label[for="edit-field-start-date-und-0-value-datepicker-popup-0"]:before,
+.page-node-add-events .node-news-form .field-type-datetime #edit-field-start-date-und-0-value .form-item-field-start-date-und-0-value-date label[for="edit-field-start-date-und-0-value-datepicker-popup-0"]:before,
+.page-node-add-news .node-news-form .field-type-datetime #edit-field-start-date-und-0-value .form-item-field-start-date-und-0-value-date label[for="edit-field-start-date-und-0-value-datepicker-popup-0"]:before {
+  content: "Start ";
+}
+.page-node-add-events .node-events-form .field-type-datetime #edit-field-start-date-und-0-value .form-item-field-start-date-und-0-value-time,
+.page-node-add-news .node-events-form .field-type-datetime #edit-field-start-date-und-0-value .form-item-field-start-date-und-0-value-time,
+.page-node-add-events .node-news-form .field-type-datetime #edit-field-start-date-und-0-value .form-item-field-start-date-und-0-value-time,
+.page-node-add-news .node-news-form .field-type-datetime #edit-field-start-date-und-0-value .form-item-field-start-date-und-0-value-time {
+  padding-right: 0em;
+  max-width: 70px;
+}
+.page-node-add-events .node-events-form .field-type-datetime #edit-field-start-date-und-0-value2 .form-item-field-start-date-und-0-value2-date,
+.page-node-add-news .node-events-form .field-type-datetime #edit-field-start-date-und-0-value2 .form-item-field-start-date-und-0-value2-date,
+.page-node-add-events .node-news-form .field-type-datetime #edit-field-start-date-und-0-value2 .form-item-field-start-date-und-0-value2-date,
+.page-node-add-news .node-news-form .field-type-datetime #edit-field-start-date-und-0-value2 .form-item-field-start-date-und-0-value2-date {
+  padding-right: 1em;
+  max-width: 160px;
+}
+.page-node-add-events .node-events-form .field-type-datetime #edit-field-start-date-und-0-value2 .form-item-field-start-date-und-0-value2-date .date-clear,
+.page-node-add-news .node-events-form .field-type-datetime #edit-field-start-date-und-0-value2 .form-item-field-start-date-und-0-value2-date .date-clear,
+.page-node-add-events .node-news-form .field-type-datetime #edit-field-start-date-und-0-value2 .form-item-field-start-date-und-0-value2-date .date-clear,
+.page-node-add-news .node-news-form .field-type-datetime #edit-field-start-date-und-0-value2 .form-item-field-start-date-und-0-value2-date .date-clear {
+  background: url('../images/content/input-calendar.png') no-repeat right top;
+  background-size: 28px 28px;
+}
+.page-node-add-events .node-events-form .field-type-datetime #edit-field-start-date-und-0-value2 .form-item-field-start-date-und-0-value2-date label[for="edit-field-start-date-und-0-value2-datepicker-popup-0"]:before,
+.page-node-add-news .node-events-form .field-type-datetime #edit-field-start-date-und-0-value2 .form-item-field-start-date-und-0-value2-date label[for="edit-field-start-date-und-0-value2-datepicker-popup-0"]:before,
+.page-node-add-events .node-news-form .field-type-datetime #edit-field-start-date-und-0-value2 .form-item-field-start-date-und-0-value2-date label[for="edit-field-start-date-und-0-value2-datepicker-popup-0"]:before,
+.page-node-add-news .node-news-form .field-type-datetime #edit-field-start-date-und-0-value2 .form-item-field-start-date-und-0-value2-date label[for="edit-field-start-date-und-0-value2-datepicker-popup-0"]:before {
+  content: "End ";
+}
+.page-node-add-events .node-events-form .field-type-datetime #edit-field-start-date-und-0-value2 .form-item-field-start-date-und-0-value2-time,
+.page-node-add-news .node-events-form .field-type-datetime #edit-field-start-date-und-0-value2 .form-item-field-start-date-und-0-value2-time,
+.page-node-add-events .node-news-form .field-type-datetime #edit-field-start-date-und-0-value2 .form-item-field-start-date-und-0-value2-time,
+.page-node-add-news .node-news-form .field-type-datetime #edit-field-start-date-und-0-value2 .form-item-field-start-date-und-0-value2-time {
+  padding-right: 0em;
+  max-width: 70px;
+}
+.page-node-add-events .node-events-form .text-summary-wrapper .form-textarea-wrapper,
+.page-node-add-news .node-events-form .text-summary-wrapper .form-textarea-wrapper,
+.page-node-add-events .node-news-form .text-summary-wrapper .form-textarea-wrapper,
+.page-node-add-news .node-news-form .text-summary-wrapper .form-textarea-wrapper {
+  padding-right: 2em;
+}
+.page-node-add-events .node-events-form .field-name-field-related-documents,
+.page-node-add-news .node-events-form .field-name-field-related-documents,
+.page-node-add-events .node-news-form .field-name-field-related-documents,
+.page-node-add-news .node-news-form .field-name-field-related-documents {
   margin-top: 40px;
 }
-.page-node-add-events .node-events-form .field-name-field-related-documents .form-file {
+.page-node-add-events .node-events-form .field-name-field-related-documents .form-file,
+.page-node-add-news .node-events-form .field-name-field-related-documents .form-file,
+.page-node-add-events .node-news-form .field-name-field-related-documents .form-file,
+.page-node-add-news .node-news-form .field-name-field-related-documents .form-file {
   max-width: 500px;
   height: 36px !important;
 }
-.page-node-add-events .node-events-form .field-name-field-related-documents .input-group-btn {
+.page-node-add-events .node-events-form .field-name-field-related-documents .input-group-btn,
+.page-node-add-news .node-events-form .field-name-field-related-documents .input-group-btn,
+.page-node-add-events .node-news-form .field-name-field-related-documents .input-group-btn,
+.page-node-add-news .node-news-form .field-name-field-related-documents .input-group-btn {
   display: block;
 }
-.page-node-add-events .node-events-form .field-name-field-related-documents .input-group-btn .btn-default {
+.page-node-add-events .node-events-form .field-name-field-related-documents .input-group-btn .btn-default,
+.page-node-add-news .node-events-form .field-name-field-related-documents .input-group-btn .btn-default,
+.page-node-add-events .node-news-form .field-name-field-related-documents .input-group-btn .btn-default,
+.page-node-add-news .node-news-form .field-name-field-related-documents .input-group-btn .btn-default {
   padding: 8px;
 }
-.page-node-add-events .node-events-form #edit-field-website-of-event .tabledrag-toggle-weight-wrapper {
+.page-node-add-events .node-events-form #edit-field-website-of-event .tabledrag-toggle-weight-wrapper,
+.page-node-add-news .node-events-form #edit-field-website-of-event .tabledrag-toggle-weight-wrapper,
+.page-node-add-events .node-news-form #edit-field-website-of-event .tabledrag-toggle-weight-wrapper,
+.page-node-add-news .node-news-form #edit-field-website-of-event .tabledrag-toggle-weight-wrapper {
   display: none;
 }
-.page-node-add-events .node-events-form #edit-field-website-of-event .tabledrag-hide {
+.page-node-add-events .node-events-form #edit-field-website-of-event .tabledrag-hide,
+.page-node-add-news .node-events-form #edit-field-website-of-event .tabledrag-hide,
+.page-node-add-events .node-news-form #edit-field-website-of-event .tabledrag-hide,
+.page-node-add-news .node-news-form #edit-field-website-of-event .tabledrag-hide {
   display: none;
 }
-.page-node-add-events .node-events-form #edit-field-website-of-event .field-multiple-drag {
+.page-node-add-events .node-events-form #edit-field-website-of-event .field-multiple-drag,
+.page-node-add-news .node-events-form #edit-field-website-of-event .field-multiple-drag,
+.page-node-add-events .node-news-form #edit-field-website-of-event .field-multiple-drag,
+.page-node-add-news .node-news-form #edit-field-website-of-event .field-multiple-drag {
   display: none;
 }
-.page-node-add-events .node-events-form #edit-field-website-of-event .draggable {
+.page-node-add-events .node-events-form #edit-field-website-of-event .draggable,
+.page-node-add-news .node-events-form #edit-field-website-of-event .draggable,
+.page-node-add-events .node-news-form #edit-field-website-of-event .draggable,
+.page-node-add-news .node-news-form #edit-field-website-of-event .draggable {
   background-color: transparent !important;
 }
-.page-node-add-events .node-events-form #edit-field-website-of-event .draggable td {
+.page-node-add-events .node-events-form #edit-field-website-of-event .draggable td,
+.page-node-add-news .node-events-form #edit-field-website-of-event .draggable td,
+.page-node-add-events .node-news-form #edit-field-website-of-event .draggable td,
+.page-node-add-news .node-news-form #edit-field-website-of-event .draggable td {
   padding: 0;
 }
-.page-node-add-events .node-events-form #edit-field-website-of-event .field-add-more-submit {
+.page-node-add-events .node-events-form #edit-field-website-of-event .field-add-more-submit,
+.page-node-add-news .node-events-form #edit-field-website-of-event .field-add-more-submit,
+.page-node-add-events .node-news-form #edit-field-website-of-event .field-add-more-submit,
+.page-node-add-news .node-news-form #edit-field-website-of-event .field-add-more-submit {
   display: none;
 }
 .page-node-add-events .node-events-form #edit-field-website-of-event td,
-.page-node-add-events .node-events-form #edit-field-website-of-event th {
+.page-node-add-news .node-events-form #edit-field-website-of-event td,
+.page-node-add-events .node-news-form #edit-field-website-of-event td,
+.page-node-add-news .node-news-form #edit-field-website-of-event td,
+.page-node-add-events .node-events-form #edit-field-website-of-event th,
+.page-node-add-news .node-events-form #edit-field-website-of-event th,
+.page-node-add-events .node-news-form #edit-field-website-of-event th,
+.page-node-add-news .node-news-form #edit-field-website-of-event th {
   border: none;
 }
-.page-node-add-events .node-events-form #edit-actions .btn-primary {
+.page-node-add-events .node-events-form #edit-actions .btn-primary,
+.page-node-add-news .node-events-form #edit-actions .btn-primary,
+.page-node-add-events .node-news-form #edit-actions .btn-primary,
+.page-node-add-news .node-news-form #edit-actions .btn-primary {
   margin: 0 auto;
   display: block;
   height: 3.5em;
   padding: 1em;
 }
-.page-node-add-events .node-events-form #edit-actions #edit-save-preview {
+.page-node-add-events .node-events-form #edit-actions #edit-save-preview,
+.page-node-add-news .node-events-form #edit-actions #edit-save-preview,
+.page-node-add-events .node-news-form #edit-actions #edit-save-preview,
+.page-node-add-news .node-news-form #edit-actions #edit-save-preview {
   background-color: transparent;
   margin-top: 3em;
   color: #003399;
@@ -10674,19 +10807,31 @@ article .hwc-share-widget ul {
   display: block;
   font-weight: bold;
 }
-.page-node-add-events .node-events-form #edit-actions #edit-save-preview:before {
+.page-node-add-events .node-events-form #edit-actions #edit-save-preview:before,
+.page-node-add-news .node-events-form #edit-actions #edit-save-preview:before,
+.page-node-add-events .node-news-form #edit-actions #edit-save-preview:before,
+.page-node-add-news .node-news-form #edit-actions #edit-save-preview:before {
   content: url('../images/content/preview.png');
   display: block;
 }
-.page-node-add-events .node-events-form #edit-actions #edit-send-for-approval {
+.page-node-add-events .node-events-form #edit-actions #edit-send-for-approval,
+.page-node-add-news .node-events-form #edit-actions #edit-send-for-approval,
+.page-node-add-events .node-news-form #edit-actions #edit-send-for-approval,
+.page-node-add-news .node-news-form #edit-actions #edit-send-for-approval {
   width: 90%;
   position: relative;
   font-weight: bold;
 }
-.page-node-add-events .node-events-form #edit-actions #edit-send-for-approval:before {
+.page-node-add-events .node-events-form #edit-actions #edit-send-for-approval:before,
+.page-node-add-news .node-events-form #edit-actions #edit-send-for-approval:before,
+.page-node-add-events .node-news-form #edit-actions #edit-send-for-approval:before,
+.page-node-add-news .node-news-form #edit-actions #edit-send-for-approval:before {
   content: "> ";
 }
-.page-node-add-events .node-events-form #edit-actions #edit-send-for-approval:after {
+.page-node-add-events .node-events-form #edit-actions #edit-send-for-approval:after,
+.page-node-add-news .node-events-form #edit-actions #edit-send-for-approval:after,
+.page-node-add-events .node-news-form #edit-actions #edit-send-for-approval:after,
+.page-node-add-news .node-news-form #edit-actions #edit-send-for-approval:after {
   content: url('../images/content/arrow-right-blue-h49px.png');
   display: inline-block;
   background-size: cover;
@@ -10694,68 +10839,118 @@ article .hwc-share-widget ul {
   right: -16px;
   top: 0px;
 }
-.page-node-add-events .node-events-form table.mceLayout {
+.page-node-add-events .node-events-form table.mceLayout,
+.page-node-add-news .node-events-form table.mceLayout,
+.page-node-add-events .node-news-form table.mceLayout,
+.page-node-add-news .node-news-form table.mceLayout {
   padding-right: 2em;
   border: none;
   height: auto !important;
 }
-.page-node-add-events .node-events-form label {
+.page-node-add-events .node-events-form label,
+.page-node-add-news .node-events-form label,
+.page-node-add-events .node-news-form label,
+.page-node-add-news .node-news-form label {
   color: #575757;
   font-weight: bold;
   font-size: 18px;
 }
-.page-node-add-events .node-events-form input {
+.page-node-add-events .node-events-form input,
+.page-node-add-news .node-events-form input,
+.page-node-add-events .node-news-form input,
+.page-node-add-news .node-news-form input {
   height: 30px;
 }
-.page-node-add-events .node-events-form .form-wrapper {
+.page-node-add-events .node-events-form .form-wrapper,
+.page-node-add-news .node-events-form .form-wrapper,
+.page-node-add-events .node-news-form .form-wrapper,
+.page-node-add-news .node-news-form .form-wrapper {
   border: none;
   box-shadow: none;
   -webkit-box-shadow: none;
 }
-.page-node-add-events .node-events-form .form-wrapper .panel-heading {
+.page-node-add-events .node-events-form .form-wrapper .panel-heading,
+.page-node-add-news .node-events-form .form-wrapper .panel-heading,
+.page-node-add-events .node-news-form .form-wrapper .panel-heading,
+.page-node-add-news .node-news-form .form-wrapper .panel-heading {
   display: none;
 }
-.page-node-add-events .node-events-form .form-wrapper .date-float {
+.page-node-add-events .node-events-form .form-wrapper .date-float,
+.page-node-add-news .node-events-form .form-wrapper .date-float,
+.page-node-add-events .node-news-form .form-wrapper .date-float,
+.page-node-add-news .node-news-form .form-wrapper .date-float {
   display: none;
 }
-.page-node-add-events .node-events-form .form-wrapper .panel-body {
+.page-node-add-events .node-events-form .form-wrapper .panel-body,
+.page-node-add-news .node-events-form .form-wrapper .panel-body,
+.page-node-add-events .node-news-form .form-wrapper .panel-body,
+.page-node-add-news .node-news-form .form-wrapper .panel-body {
   padding: 0px;
 }
-.page-node-add-events .node-events-form .form-wrapper label[for="edit-field-start-date-und-0-value2"] {
+.page-node-add-events .node-events-form .form-wrapper label[for="edit-field-start-date-und-0-value2"],
+.page-node-add-news .node-events-form .form-wrapper label[for="edit-field-start-date-und-0-value2"],
+.page-node-add-events .node-news-form .form-wrapper label[for="edit-field-start-date-und-0-value2"],
+.page-node-add-news .node-news-form .form-wrapper label[for="edit-field-start-date-und-0-value2"] {
   display: none;
 }
-.page-node-add-events .node-events-form .form-wrapper .date-padding {
+.page-node-add-events .node-events-form .form-wrapper .date-padding,
+.page-node-add-news .node-events-form .form-wrapper .date-padding,
+.page-node-add-events .node-news-form .form-wrapper .date-padding,
+.page-node-add-news .node-news-form .form-wrapper .date-padding {
   padding: 0px;
 }
-.page-node-add-events .node-events-form .form-wrapper .date-padding div[class="form-item-field-start-date-und-0-value-date"] input {
+.page-node-add-events .node-events-form .form-wrapper .date-padding div[class="form-item-field-start-date-und-0-value-date"] input,
+.page-node-add-news .node-events-form .form-wrapper .date-padding div[class="form-item-field-start-date-und-0-value-date"] input,
+.page-node-add-events .node-news-form .form-wrapper .date-padding div[class="form-item-field-start-date-und-0-value-date"] input,
+.page-node-add-news .node-news-form .form-wrapper .date-padding div[class="form-item-field-start-date-und-0-value-date"] input {
   height: 50px;
   background: url("../images/content/input-calendar.png");
 }
-.page-node-add-events .node-events-form .form-wrapper .date-padding div[class="form-item-field-start-date-und-0-value-date"] input:after {
+.page-node-add-events .node-events-form .form-wrapper .date-padding div[class="form-item-field-start-date-und-0-value-date"] input:after,
+.page-node-add-news .node-events-form .form-wrapper .date-padding div[class="form-item-field-start-date-und-0-value-date"] input:after,
+.page-node-add-events .node-news-form .form-wrapper .date-padding div[class="form-item-field-start-date-und-0-value-date"] input:after,
+.page-node-add-news .node-news-form .form-wrapper .date-padding div[class="form-item-field-start-date-und-0-value-date"] input:after {
   content: " ";
   background: url("../images/content/input-calendar.png");
   height: 30px;
   width: 20px;
 }
-.page-node-add-events .node-events-form .form-wrapper .date-padding div[class*="-time"] label {
+.page-node-add-events .node-events-form .form-wrapper .date-padding div[class*="-time"] label,
+.page-node-add-news .node-events-form .form-wrapper .date-padding div[class*="-time"] label,
+.page-node-add-events .node-news-form .form-wrapper .date-padding div[class*="-time"] label,
+.page-node-add-news .node-news-form .form-wrapper .date-padding div[class*="-time"] label {
   display: none;
 }
-.page-node-add-events .node-events-form .form-wrapper .date-padding div[class*="-time"] input {
+.page-node-add-events .node-events-form .form-wrapper .date-padding div[class*="-time"] input,
+.page-node-add-news .node-events-form .form-wrapper .date-padding div[class*="-time"] input,
+.page-node-add-events .node-news-form .form-wrapper .date-padding div[class*="-time"] input,
+.page-node-add-news .node-news-form .form-wrapper .date-padding div[class*="-time"] input {
   margin-top: 0px;
 }
-#edit-body tr.mceFirst {
+.page-node-add-events .node-events-form #edit-body tr.mceFirst,
+.page-node-add-news .node-events-form #edit-body tr.mceFirst,
+.page-node-add-events .node-news-form #edit-body tr.mceFirst,
+.page-node-add-news .node-news-form #edit-body tr.mceFirst {
   display: none;
 }
-#edit-body tr.mceLast {
+.page-node-add-events .node-events-form #edit-body tr.mceLast,
+.page-node-add-news .node-events-form #edit-body tr.mceLast,
+.page-node-add-events .node-news-form #edit-body tr.mceLast,
+.page-node-add-news .node-news-form #edit-body tr.mceLast {
   display: none;
 }
-#edit-body .wysiwyg-toggle-wrapper {
+.page-node-add-events .node-events-form #edit-body .wysiwyg-toggle-wrapper,
+.page-node-add-news .node-events-form #edit-body .wysiwyg-toggle-wrapper,
+.page-node-add-events .node-news-form #edit-body .wysiwyg-toggle-wrapper,
+.page-node-add-news .node-news-form #edit-body .wysiwyg-toggle-wrapper {
   display: none;
 }
-#edit-body .mceIframeContainer {
+.page-node-add-events .node-events-form #edit-body .mceIframeContainer,
+.page-node-add-news .node-events-form #edit-body .mceIframeContainer,
+.page-node-add-events .node-news-form #edit-body .mceIframeContainer,
+.page-node-add-news .node-news-form #edit-body .mceIframeContainer {
   border: 1px solid #003399;
-  padding-left: 10px;
-  padding-right: 10px;
+  padding: 10px;
 }
 /*fin create event*/
 /*Private area for partner*/
@@ -11319,8 +11514,8 @@ article .hwc-share-widget ul {
 @media only screen and (max-width: 992px) {
   /*Header*/
   header.navbar-default .campaigns-header .row:first-of-type {
-    padding-left: 14px;
-    padding-right: 14px;
+    padding-left: 30px;
+    padding-right: 30px;
   }
   header.navbar-default .campaigns-header .navbar-header .row {
     padding: 0px;
@@ -11375,12 +11570,12 @@ article .hwc-share-widget ul {
   header.navbar-default .campaigns-header .navbar-header .region-header #block-menu-menu-header-login ul li a {
     min-width: 80px;
   }
-  header.navbar-default .campaigns-header .navbar-header .region-header #block-lang-dropdown-language {
-    float: right;
+  header.navbar-default .campaigns-header .navbar-header .region-header #block-lang-dropdown-language,
+  header.navbar-default .campaigns-header .navbar-header .region-header #block-menu-menu-header-login ~ #block-lang-dropdown-language {
+    float: none;
     right: 0;
     padding-right: 46px;
-    position: initial;
-    position: inherit;
+    position: relative;
   }
   header.navbar-default .navbar-collapse nav ul.menu li span.dropdown-toggle {
     padding-left: 5px;
@@ -11641,6 +11836,12 @@ article .hwc-share-widget ul {
 	}
 } */
   /*fin case studies*/
+  /*pag Become a media partner*/
+  .become-partner .partners {
+    margin-right: -30px;
+    margin-left: -30px;
+  }
+  /*fin become a media partner*/
   /*pag publications*/
   #publications_slideshow {
     display: none;
@@ -12740,6 +12941,12 @@ article .hwc-share-widget ul {
     padding: 0 7em;
   }
   /*end news*/
+  /*pag Become a media partner*/
+  .become-partner .partners {
+    margin-right: -15px;
+    margin-left: -15px;
+  }
+  /*fin become a media partner*/
   /*infographics*/
   .view-infographic .views-row {
     padding-right: 15px;
