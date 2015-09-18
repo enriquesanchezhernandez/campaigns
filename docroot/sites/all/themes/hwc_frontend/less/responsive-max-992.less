@@ -7,8 +7,8 @@ header{
 	&.navbar-default {
 		.campaigns-header {
 			.row:first-of-type{
-				padding-left: 14px;
-				padding-right: 14px;
+				padding-left: @margin-tablet;
+				padding-right: @margin-tablet;
 			}
 			.navbar-header{
 				.row{
@@ -71,17 +71,17 @@ header{
 					    	}
 					    }
 					}
-					#block-lang-dropdown-language{
-						float: right;
+					#block-lang-dropdown-language, #block-menu-menu-header-login ~ #block-lang-dropdown-language{
+						float: none;
 					    right: 0;
 					    padding-right: 46px;
-					    position: initial;
-					    position: inherit;
+					    position: relative;
 					}
 
 				}
 			}
 		}
+		
 		.navbar-collapse nav ul.menu {
 			li span.dropdown-toggle{
 				padding-left: 5px;
@@ -394,6 +394,15 @@ header{
 	}
 } */
 /*fin case studies*/
+
+/*pag Become a media partner*/
+.become-partner{
+	.partners{
+		margin-right: -30px;
+		margin-left: -30px;
+	}
+}
+/*fin become a media partner*/
 
 /*pag publications*/
 #publications_slideshow{
