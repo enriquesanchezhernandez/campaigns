@@ -35,7 +35,7 @@ function hwc_social_sprites_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'on_the_web_flickr_page';
-  $strongarm->value = '';
+  $strongarm->value = 'https://www.flickr.com/photos/euosha/';
   $export['on_the_web_flickr_page'] = $strongarm;
 
   $strongarm = new stdClass();
