@@ -10011,7 +10011,7 @@ article .hwc-share-widget ul {
 }
 .become-partner .partners .partner .partner-image img {
   width: 100%;
-  height: 100%;
+  /* height: 100%; */
   background-image: url("../images/content/imagen-prueba.jpg");
   background-position: 50%;
 }
@@ -11111,9 +11111,9 @@ article .hwc-share-widget ul {
 .page-campaign-materials .view-id-view_campaign_materials .views-row .field-type-file a:after {
   content: url("../images/content/download.png");
 }
-/*.page-campaign-materials .view-id-view_campaign_materials .views-row .field-type-file a img {*/
-  /*display: none;*/
-/*}*/
+.page-campaign-materials .view-id-view_campaign_materials .views-row .field-type-file a img {
+  display: none;
+}
 .node-type-campaign-materials .field-name-title-field {
   margin-bottom: 2em;
 }
@@ -11148,9 +11148,9 @@ article .hwc-share-widget ul {
 .node-type-campaign-materials .field-type-file a:after {
   content: url("../images/content/download.png");
 }
-/*.node-type-campaign-materials .field-type-file a img {*/
-  /*display: none;*/
-/*}*/
+.node-type-campaign-materials .field-type-file a img {
+  display: none;
+}
 /*fin campaign materials*/
 /*Publications detail*/
 .node-type-publication .pane-node-field-cover-image {
