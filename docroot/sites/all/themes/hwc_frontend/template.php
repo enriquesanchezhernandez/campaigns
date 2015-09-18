@@ -166,10 +166,6 @@ function hwc_frontend_preprocess_page(&$vars) {
         case 'practical_tool':
           $link_title = t('Back to practical tools list');
           $link_href = 'practical-tools';
-          $vars['page']['above_title']['back-to-link'] = array(
-            '#type' => 'item',
-            '#markup' => l($link_title, $link_href, array('attributes' => array('class' => array('back-to-link pull-right')))),
-          );
           break;
 
       }
