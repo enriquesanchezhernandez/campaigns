@@ -44,10 +44,10 @@ function osha_news_ds_layout_settings_info() {
   $ds_layout->settings = array(
     'regions' => array(
       'ds_content' => array(
-        0 => 'title_field',
-        1 => 'share_widget',
-        2 => 'field_summary',
-        3 => 'field_publication_date',
+        0 => 'field_publication_date',
+        1 => 'title_field',
+        2 => 'share_widget',
+        3 => 'field_summary',
         4 => 'field_image',
         5 => 'field_image_caption',
         6 => 'body',
@@ -56,10 +56,10 @@ function osha_news_ds_layout_settings_info() {
       ),
     ),
     'fields' => array(
+      'field_publication_date' => 'ds_content',
       'title_field' => 'ds_content',
       'share_widget' => 'ds_content',
       'field_summary' => 'ds_content',
-      'field_publication_date' => 'ds_content',
       'field_image' => 'ds_content',
       'field_image_caption' => 'ds_content',
       'body' => 'ds_content',
