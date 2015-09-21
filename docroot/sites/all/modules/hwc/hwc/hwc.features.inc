@@ -8,6 +8,9 @@
  * Implements hook_ctools_plugin_api().
  */
 function hwc_ctools_plugin_api($module = NULL, $api = NULL) {
+  if ($module == "ds" && $api == "ds") {
+    return array("version" => "1");
+  }
   if ($module == "linkit" && $api == "linkit_profiles") {
     return array("version" => "1");
   }
