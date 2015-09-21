@@ -277,6 +277,7 @@ function hwc_frontend_panels_flexible($vars) {
 }
 function hwc_frontend_preprocess_node(&$vars) {
   if ($vars['view_mode'] == 'full' && $vars['type'] == 'events') {
+    $vars['classes_array'][] = 'container';
     if (isset($vars['field_start_date'])) {
       $end_date = $vars['field_start_date'][0]['value2'];
       $date_diff = strtotime($end_date) - strtotime('now');
