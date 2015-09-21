@@ -1226,6 +1226,7 @@ function osha_events_views_default_views() {
   $handler->display->display_options['pager']['type'] = 'full';
   $handler->display->display_options['pager']['options']['items_per_page'] = '10';
   $handler->display->display_options['style_plugin'] = 'default';
+  $handler->display->display_options['style_options']['row_class'] = 'container';
   $handler->display->display_options['row_plugin'] = 'fields';
   /* Field: Indexed Multilingual Node: Start date */
   $handler->display->display_options['fields']['field_start_date']['id'] = 'field_start_date';

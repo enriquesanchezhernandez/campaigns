@@ -168,6 +168,27 @@ function hwc_frontend_preprocess_page(&$vars) {
           $link_href = 'practical-tools';
           break;
 
+        case 'events':
+          $date = new DateTime($node->field_start_date['und'][0]['value']);
+          $now = new DateTime();
+          if ($date < $now) {
+            $link_title = t('Back to past events list');
+            $link_href = 'past-events';
+            $vars['page']['above_title']['events-page-title'] = array(
+              '#type' => 'item',
+              '#markup' => '<h1>' . t('Past events') . '</h1>',
+            );
+            break;
+          }
+          $link_title = t('Back to events list');
+          $link_href = 'events';
+          $vars['page']['above_title']['events-page-title'] = array(
+            '#type' => 'item',
+            '#markup' => '<h1>' . t('Upcoming events') . '</h1>',
+          );
+          break;
+
+
       }
       if (isset($link_title)) {
         $vars['page']['above_title']['back-to-link'] = array(
@@ -256,6 +277,7 @@ function hwc_frontend_panels_flexible($vars) {
 }
 function hwc_frontend_preprocess_node(&$vars) {
   if ($vars['view_mode'] == 'full' && $vars['type'] == 'events') {
+    $vars['classes_array'][] = 'container';
     if (isset($vars['field_start_date'])) {
       $end_date = $vars['field_start_date'][0]['value2'];
       $date_diff = strtotime($end_date) - strtotime('now');
