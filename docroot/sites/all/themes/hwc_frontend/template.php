@@ -295,6 +295,8 @@ function hwc_frontend_preprocess_node(&$vars) {
   $vars['theme_hook_suggestions'][] = 'node__' . $view_mode;
   $vars['theme_hook_suggestions'][] = 'node__' . $vars['node']->type . '__' . $view_mode;
   $vars['theme_hook_suggestions'][] = 'node__' . $vars['node']->nid . '__' . $view_mode;
+
+  hwc_frontend_top_anchor($vars);
 }
 
 function hwc_frontend_preprocess_image_style(&$variables) {
@@ -333,4 +335,20 @@ function hwc_frontend_on_the_web_image($variables) {
     'title' => $title
   );
   return theme('image', $variables);
+}
+
+/**
+ * Anchor to top of the page
+ */
+function hwc_frontend_top_anchor(&$vars) {
+  $options = array(
+      'attributes' => array(
+          'class' => 'top_anchor',
+      ),
+      'external' => TRUE,
+      'fragment' => 'top',
+      'html' => TRUE,
+  );
+
+  $vars['top_anchor'] = l('<img src="'.file_create_url(path_to_theme().'/images/anchor-top.png').'" />', '', $options);
 }
