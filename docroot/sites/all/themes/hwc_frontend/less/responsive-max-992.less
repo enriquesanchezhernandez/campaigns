@@ -2,6 +2,21 @@
 
 @media only screen and (max-width : 992px) {
 
+/* contenedor principal */
+.main-container {
+	h1{
+		padding-left: @margin-tablet;
+		padding-right: @margin-tablet;
+		margin-left: 0;
+		margin-right: 0;
+	}
+	.above_title{
+		margin-left: 0;
+		margin-right: 0;
+	}
+}
+/*Fin contenedor principal */
+
 /*Header*/
 header{
 	&.navbar-default {
@@ -36,9 +51,9 @@ header{
 					padding-right: 1em !important;
 				}
 				.header-text{
-				    font-size: @size7;
+				    font-size: @size6;
 				    width: 120px;
-				    padding-top: 3em;
+				    padding-top: 4em;
 				    padding-left: 0.8em;
 				}
 				.header_top_bar{
@@ -103,6 +118,8 @@ header{
 
 /*footer*/
 .footer {
+	padding-left: @margin-tablet;
+	padding-right: @margin-tablet;
 	ul li a {
 	    color: #ffffff;
 	    padding-left: 0;
@@ -111,6 +128,9 @@ header{
 	h3{
 		max-width: 75%;
 		margin-right: 25%;
+	}
+	div.on-the-web span:last-child {
+		margin-right: 0px;
 	}
 }
 /*fin footer*/
@@ -126,6 +146,12 @@ header{
 		margin-bottom: 0;
 		img{
 			right: -216px !important;
+		}
+		.views-field-title span{
+			margin-right: @margin-tablet1;
+		}
+		#num_slides > div .views-field.views-field-body div, #num_slides > div div a.more-link{
+			margin-right: @margin-tablet;
 		}
 	}
 	//fin slider
@@ -170,6 +196,11 @@ header{
 	    margin-right: 0px;
 	    margin-left: 0px;
 	}
+	/* home partners */
+	#block-views-partners-block-1{
+		padding-right: @margin-tablet;
+		padding-left: @margin-tablet;
+	}
 }
 
 /*fin home*/
@@ -182,10 +213,14 @@ header{
 		padding-right: 30px;
 		padding-left: 30px;
 	}
+	.dot-separator.green{
+		/* margin-left: @margin-tablet;
+		margin-right: @margin-tablet; */
+	}
 }
 .field-name-field-recommended-articles, .field-name-field-recommended-resources{
-	padding-right: 30px;
-	padding-left: 30px;
+	padding-right: @margin-tablet;
+	padding-left: @margin-tablet;
 }
 /*fin articles*/
 
@@ -217,7 +252,7 @@ header{
 	/* margin-bottom: 2em; */
 	> label{
 		width: 100%;
-		padding: 0.2em 2em 0.2em 1em;
+		padding: 0.2em @margin-tablet;
 		background: @bg-color-3 url("../images/content/slideDown.png") no-repeat 95% center;
 		/* &:after{
 			color: @text-color-2;
@@ -234,33 +269,33 @@ header{
 		}
 	}
 
-		 #edit-relevant-for, #edit-languages{
-			margin-left: 15px;
-			margin-right: 15px;
-		}
+	 #edit-relevant-for, #edit-languages{
+		margin-left: @margin-tablet;
+		margin-right: @margin-tablet;
 	}
+}
 	#edit-content {
 		padding-left: 0px;
 		padding-right: 0px;
 		#search div{
-			margin-left: 15px;
+			margin-left: @margin-tablet;
 		}
 	}
 	.pane-hwc-practical-tool-hwc-practical-tool-listing h4, div.panel-pane div.node.node-practical-tool{
-		padding-left: 15px;
-		padding-right: 15px;
+		padding-left: @margin-tablet;
+		padding-right: @margin-tablet;
 	}
 	.node-type-practical-tool{
 		.pane-node-field-available-languages{
 			clear: both;
 		}
 		.panel-1col .panel-col .panel-pane {
-			padding-left: 15px;
-			padding-right: 15px;
+			padding-left: @margin-tablet;
+			padding-right: @margin-tablet;
 		}
 		.pane-node-field-free, .pane-node-field-country, .pane-node-field-tool-type{
-			margin-left: 15px;
-			margin-right: 0.5em;
+			margin-left: @margin-tablet;
+			margin-right: @margin-tablet;
 		}
 	}
 /*FIN Practical tools*/
@@ -342,15 +377,19 @@ header{
 /*news*/
 .view-news{
 	.views-row{
-		padding-left: 15px;
-    	padding-right: 15px;
+		padding-left: @margin-tablet;
+    	padding-right: @margin-tablet;
 	}
 }
 //detail
 .node-type-news{
 	.node-news {
-	    padding-left: 30px;
-	    padding-right: 30px;
+	    padding-left: @margin-tablet;
+	    padding-right: @margin-tablet;
+		.node-news {
+			padding-left: 0;
+			padding-right: 0;
+		}
 	}
 }
 /*end news*/
@@ -398,8 +437,22 @@ header{
 /*pag Become a media partner*/
 .become-partner{
 	.partners{
-		margin-right: -30px;
-		margin-left: -30px;
+		margin-right: -@margin-tablet;
+		margin-left: -@margin-tablet;
+		.partner-name, .partner-opinion{
+			margin-right: @margin-tablet2;
+			margin-left: @margin-tablet2;
+		}
+	}
+	.description .col-md-12, .see-also-title{
+		padding-left: 0px;
+		padding-right: 0px;
+	}
+	.see-also-title{
+		padding-left: 0px;
+		padding-right: 0px;
+		margin-right: -@margin-tablet;
+		margin-left: -@margin-tablet;
 	}
 }
 /*fin become a media partner*/
@@ -409,15 +462,22 @@ header{
 	display: none;
 }
 .page-publications h4, .publication-item{
-    padding-left: 15px;
-    padding-right: 15px;
+    padding-left: @margin-tablet;
+    padding-right: @margin-tablet;
 	min-height: 0;
 	margin-bottom: 0;
 }
+	.publication-item{
+		clear: both;
+	}
 .node-type-publication{
 	.pane-node-title-field, .pane-node-field-publication-date, .pane-node-field-publication-type{
-		margin-left: 15px;
-		margin-right: 15px;
+		margin-left: @margin-tablet;
+		margin-right: @margin-tablet;
+	}
+	.panels-flexible-region-container-center{
+		padding-right: @margin-tablet;
+		padding-left: @margin-tablet;
 	}
 	.pane-node-field-cover-image{
 		display: none;
@@ -483,6 +543,13 @@ header{
 }
 /*Fin pag Search */
 
+/*campaign-materials*/
+.node-campaign-materials, div.panel-pane div.node.node-campaign-materials, .node-campaign-materials.container{
+	padding-left: @margin-tablet;
+	padding-right: @margin-tablet;
+}
+/*Fin campaign-materials*/
+
 /*Private area*/
 .private-area{
 	#private{
@@ -505,10 +572,19 @@ header{
 
 /*pag National focal points*/
 /* .page-national-focal-points, .page-official-campaign-partners, .page-campaign-media-partners */
-.page-national-focal-points, .page-official-campaign-partners, .page-campaign-media-partners{
-	.section-introduction .field-type-text-with-summary {
-		display: block;
+.page-national-focal-points, .page-official-campaign-partners, .page-campaign-media-partners, .page-campaign-materials{
+	.section-introduction, .main-container .section-introduction .node.node-article, .main-container .section-introduction .node.node-article{
+		 .field-type-text-with-summary{
+			display: block;
+			padding-right: @margin-tablet;
+			padding-left: @margin-tablet;
+			margin: 0px;
+		}
 	}
+}
+#block-views-partners-list-block{
+	margin-right: @margin-tablet;
+	margin-left: @margin-tablet;
 }
 /*Fin pag National focal points*/
 
@@ -561,10 +637,10 @@ header{
 }
 
 .profile-2-cols-container-1{
-	padding-bottom: 30px !important;
-	margin-bottom: 30px !important;
-	padding-left: 30px !important;
-	padding-right: 30px !important;
+	padding-bottom: @margin-tablet !important;
+	margin-bottom: @margin-tablet !important;
+	padding-left: @margin-tablet !important;
+	padding-right: @margin-tablet !important;
 	.col-sm-6{
 		width: 100%;
 	}
@@ -577,10 +653,62 @@ header{
 	border-bottom: 1px dotted @color3;
 	padding-bottom: 50px !important;
 	margin-bottom: 50px !important;
-	padding-left: 30px !important;
-	padding-right: 30px !important;	
+	padding-left: @margin-tablet !important;
+	padding-right: @margin-tablet !important;
+}
+.profile-2-cols-container-3, .container.profile-2-cols-container-3{
+	padding-left: @margin-tablet;
+	padding-right: @margin-tablet;
+	.profile-col-left-3{
+		padding-right: 15px;
+	}
 }
 /*fin partner profile*/
+
+/*create events & news*/
+.page-node-add-events, .page-node-add-news{
+	.node-events-form, .node-news-form{
+		.hwc-2col-stacked-2col{
+			padding: 0 30px;
+		}
+		.form-type-textfield, {
+			padding-right: 0em;
+			max-width: 416px;
+		}
+		.form-select{
+			width: 100% !important;
+			max-width: 416px !important;
+			display: inline-block;
+		}
+		.panel, .form-group{
+			margin-bottom: 0;
+		}
+		.group-left, .group-right,.group-left2,.group-right2{
+			width: 100%;
+		}
+		.group-center{
+			.form-textarea-wrapper{
+				padding-right: 0em;
+			}
+			.form-type-managed-file{
+				padding-bottom: 2em;
+			}
+			.field-name-field-related-documents{
+				    padding-bottom: 2em;
+				    margin-left: -30px;
+				    margin-right: -30px;
+				    padding: 0 30px 2em 30px;
+				    border-bottom: 1px dotted @color3;
+			}
+		}
+		#edit-save-preview{
+			margin-bottom: 1em !important;
+			margin-top: 0em !important;
+		}
+
+	}
+}
+/*fin create events & news*/
 
 /*clases para toda la web*/
 .container{
@@ -607,9 +735,8 @@ h1{
 	padding-left: 15px;
 }
 .back-to-link {
-	padding-right: 40px;
-	padding-left: 30px;
+	padding-right: @margin-tablet;
+	padding-left: @margin-tablet;
 }
-
 
 }//end media
