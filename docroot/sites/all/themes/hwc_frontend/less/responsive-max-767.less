@@ -86,14 +86,23 @@ header{
 	}
 }
 
-.header-text, .header_top_bar, #block-lang-dropdown-language, #block-menu-menu-header-login{
-	display: none;
-}
-.navbar-header .row{
-	/* margin-left: -15px;
-	margin-right: -15px; */
-	padding-left: 0px;
-	padding-right: 0px;
+.navbar-header{
+	.row{
+		/* margin-left: -15px;
+		margin-right: -15px; */
+		padding-left: 0px;
+		padding-right: 0px;
+	}
+	.header-text{
+		display: none;
+	}		/* display: none; */
+	.header_top_bar, #block-lang-dropdown-language, #block-menu-menu-header-login{
+
+	}
+	.region-header{
+		clear: both;
+		float: left;
+	}
 }
 header.navbar-default .campaigns-header .row:first-of-type {
 	padding-left: 0px;
@@ -103,8 +112,22 @@ header.navbar-default .campaigns-header .row:first-of-type {
 header.navbar-default{
 	margin-left: 0;
 	margin-right: 0;
+    margin-bottom: 5px;
 	width: auto;
-	
+	.campaigns-header .navbar-header .region-header{
+		background: @bg-default-color url(../images/header/bg-menu.png) repeat-x center top;
+		#block-lang-dropdown-language, #block-menu-menu-header-login ~ #block-lang-dropdown-language{
+			position: absolute;
+			background-color: @bg-default-color;
+			padding-right: @margin-movil;
+		}
+		#block-menu-menu-header-login{
+			float: left;
+			background-color: @bg-default-color;
+			padding-left: @margin-movil;
+			padding-right: 0;
+		}
+	}
 	.navbar-collapse{
 		&.in {
 			overflow-y: visible;
@@ -114,6 +137,7 @@ header.navbar-default{
 			ul.menu.nav.navbar-nav{
 				margin-left: 0;
 				margin-right: 0;
+				margin-top: 15px;
 				li{
 					width: 100%;
 					span{
@@ -231,11 +255,17 @@ header.navbar-default{
 	.breadcrumb{
 		display: none;
 	}
-	.main-container h1, .main-container .title-alt{
-		margin-top: 0px;
-		margin-bottom: 0px;
-		padding-bottom: 0em;
-		border-bottom: none;
+	.main-container{
+		h1, .title-alt{
+			margin-top: 0px;
+			margin-bottom: 0px;
+			padding-bottom: 0em;
+			border-bottom: none;
+		}
+		h2{
+			margin-left: @margin-movil;
+			margin-right: @margin-movil;
+		}
 	}
 	.list-inline{
 		margin-left: 0;
@@ -258,8 +288,13 @@ header.navbar-default{
 			#num_slides{
 				> div{
 					div{
-						padding-left: 7px !important;
-    					padding-right: 22px !important;
+						padding-left: @margin-movil !important;
+    					padding-right: @margin-movil !important;
+
+						&.field-content, &.views-field-title{
+							padding-left: 0 !important;
+							padding-right: 0 !important;
+						}
 					}
 				}
 			}
@@ -285,10 +320,12 @@ header.navbar-default{
 				}
 			}
 			.views-field-title{
-				margin: 0 -13px !important;
+				margin: 0 !important;
     			padding: 0 0px !important;
     			text-align: left !important;
+				right:0;
     			span{
+					margin-right: 0px;
     				float: left !important;
     			}
 			}
@@ -438,8 +475,10 @@ header.navbar-default{
 		}
 	}
 	//principal partner
-	#block-views-partners-block-1{
+	#block-views-partners-block-1, .front #block-views-partners-block-1{
 		padding-top: 0;
+		padding-right: @margin-movil;
+		padding-left: @margin-movil;
 		h2{
 			margin: 20px 0  20px 0;
 		    padding-top: 8px;
@@ -512,46 +551,13 @@ header.navbar-default{
 
 	/* Article */
 	.node-article{
-		/* .field-name-field-image + .field-name-title-field{
-			height: 230px;
-			h1{
-				padding-top: 110px;
-			}
-		}
-		.field.field-name-field-image{
-			img{
-				height: 230px;
-			}
-		} */
-		
-		/* .field-name-field-image + .field-name-title-field{
-			height: 321px;
-			position: relative;
-			h1{
-				padding-top: 180px;
-			}
-		}
-		.field.field-name-field-image{
-			width: 100%;
-			margin: 0px;
-			padding: 0px;
-			position: absolute;
-			top: 329px;
-			left: 0px;
-			z-index: -1;
-			height: 345px;
-			overflow: hidden;
-			div, img{
-				height:100%;
-			}
-		} */
 		.field-name-field-image + .field-name-title-field{
 			z-index: -1;
 			height: 345px;
 			position: absolute;
 			/* top: 220px; */
 			h1{
-				padding-top: 180px;
+				padding-top: 150px;
 			}
 		}
 		.field.field-name-field-image{
@@ -649,11 +655,35 @@ header.navbar-default{
 			}
 		}
 	}
-	#search{
+	.pane-hwc-practical-tool-hwc-practical-tool-listing h4{
+		padding-left: @margin-movil;
+		padding-right: @margin-movil;
+	}
+	div.panel-pane div.node.node-practical-tool{
+		padding-left: @margin-movil;
+		padding-right: @margin-movil;
+		h2 {
+			margin-left: 0;
+			margin-right: 0;
+		}
+	}
+	.form-item-relevant-for, .form-item-languages{
+		> label{
+			padding-left: @margin-movil;
+			padding-right: @margin-movil;
+		}
+		#edit-relevant-for, #edit-languages{
+			margin-left: @margin-movil;
+			margin-right: @margin-movil;
+		}
+	}
+	#search, #edit-content #search{
 		margin-top: 1.5em;
 		margin-bottom: 0em;
 		border-top: none;
-		border-bottom: none;
+		div{
+			margin-left: @margin-movil;
+		}
 	}
 		/*detail*/
 		.pane-node-field-access-tool-link{
@@ -681,8 +711,8 @@ header.navbar-default{
 		}
 		.node-type-practical-tool{
 			.panel-1col .panel-col .panel-pane:last-child{
-				border-bottom: 1px dotted @border-default-color;
-				padding-bottom: 2em;
+				/* border-bottom: 1px dotted @border-default-color;
+				padding-bottom: 2em; */
 			}
 			.pane-node-field-provider .field-items, .pane-node-body .field-items, .pane-node-field-implementation-steps .field-items, .pane-node-field-dissemination-used .field-items, .pane-node-field-access-tool-link .field-items, .pane-hwc-practical-tool-hwc-practical-tool-language-list .field-items, .pane-node-field-external-urls .field-items, .pane-node-field-provider .field-label, .pane-node-body .field-label, .pane-node-field-implementation-steps .field-label, .pane-node-field-dissemination-used .field-label, .pane-node-field-access-tool-link .field-label, .pane-hwc-practical-tool-hwc-practical-tool-language-list .field-label, .pane-node-field-external-urls .field-label{
 				width: 99%;
@@ -696,6 +726,10 @@ header.navbar-default{
 		.content{
 			display: none;
 		}
+		h4{
+			padding-left: @margin-movil;
+			padding-right: @margin-movil;
+		}
 	}
 	#edit-relevant-for, #edit-languages{
 		.form-item{
@@ -706,8 +740,29 @@ header.navbar-default{
 	#publications_slideshow{
 		display: none;
 	}
-	.publication-item .field-name-field-cover-image{
-		display: none;
+	.publication-item{
+		padding-left: @margin-movil;
+		padding-right: @margin-movil;
+		.field-name-field-cover-image{
+			display: none;
+		}
+	}
+	.node-type-publication{
+		.pane-node-title-field, .pane-node-field-publication-date, .pane-node-field-publication-type{
+			margin-left: @margin-movil;
+			margin-right: @margin-movil;
+			h2{
+				margin-left: 0;
+				margin-right: 0;
+			}
+		}
+		.panels-flexible-region-container-center{
+			padding-right: @margin-movil;
+			padding-left: @margin-movil;
+			.field-items{
+				width: 100%;
+			}
+		}
 	}
 	/*FIN Publications*/
 	
@@ -949,17 +1004,35 @@ header.navbar-default{
 		margin-right: -15px;
 		margin-left: -15px;
 	}
+	.coments .col{
+		padding-right: 0;
+		padding-left: 0;
+		padding-bottom: 1em;
+		margin-bottom: 1em;
+		border-bottom: 1px solid @border-default-color;
+		border-left: none;
+		border-right: none;
+	}
+}
+.node-type-article .become-partner h2{
+	text-align: center;
+	margin-right: 0;
+	margin-left: 0;
 }
 /*fin become a media partner*/
 
 /*infographics*/
 .view-infographic{
 	.views-row {
-		padding-right: 15px;
-		padding-left: 15px;
+		padding-right: @margin-movil;
+		padding-left: @margin-movil;
 		.field-type-image{
 			display: none;//hacemos desaparecer las imagenes de infographics
 		}
+	}
+	h2{
+		margin-right: 0;
+		margin-left: 0;
 	}
 }
 /*end infographics*/
@@ -1161,26 +1234,56 @@ header.navbar-default{
 		}
 		.group-center{
 			.field-name-field-related-documents{
-				    padding-bottom: 2em;
-				    margin-left: -15px;
-				    margin-right: -15px;
-				    padding: 0 15px 2em 15px;
-				    border-bottom: 1px dotted @color3;
+				padding-bottom: 2em;
+				margin-left: -15px;
+				margin-right: -15px;
+				padding: 0 15px 2em 15px;
+				border-bottom: 1px dotted @color3;
+			}
+			textarea{
+				height: 150px;
+			}
+			textarea.text-summary{
+				height: 100px;
 			}
 		}
 	}
 }
 /*fin create events & news*/
 
+/*pag campaign-materials*/
+.page-campaign-materials .field-name-field-image{
+	display:none;
+}
+.node-campaign-materials, div.panel-pane div.node.node-campaign-materials, .node-campaign-materials.container{
+    padding-left: @margin-movil;
+    padding-right: @margin-movil;
+	h2 {
+		margin-left: 0;
+		margin-right: 0;
+	}
+}
+/*FIN pag campaign-materials*/
+
 /*clases para toda la web*/
 .section-introduction{
 	.field-type-text-with-summary{
-		padding-right: 15px;
-		padding-left: 15px;
+		padding-right: @margin-movil;
+		padding-left: @margin-movil;
+	}
+}
+.page-national-focal-points, .page-official-campaign-partners, .page-campaign-media-partners, .page-campaign-materials{
+	.main-container .section-introduction .node.node-article, .section-introduction{
+		.field-type-text-with-summary{
+			padding-right: @margin-movil;
+			padding-left: @margin-movil;
+		}
 	}
 }
 .back-to-link {
 	border: none;
+    padding-right: @margin-movil;
+    padding-left: @margin-movil;
 }
 
 
