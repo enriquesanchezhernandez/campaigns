@@ -473,6 +473,29 @@ function hwc_practical_tool_default_page_manager_handlers() {
     $pane->uuid = 'ae6519dd-fdf0-4243-85d0-31800a0b5d40';
     $display->content['new-ae6519dd-fdf0-4243-85d0-31800a0b5d40'] = $pane;
     $display->panels['middle'][12] = 'new-ae6519dd-fdf0-4243-85d0-31800a0b5d40';
+    $pane = new stdClass();
+    $pane->pid = 'new-ab72fb60-1cc4-4d94-80b7-9c3c9ed56e24';
+    $pane->panel = 'middle';
+    $pane->type = 'block';
+    $pane->subtype = 'hwc_practical_tool-hwc_practical_tool_language_list';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'override_title' => 0,
+      'override_title_text' => '',
+      'override_title_heading' => 'h2',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 13;
+    $pane->locks = array();
+    $pane->uuid = 'ab72fb60-1cc4-4d94-80b7-9c3c9ed56e24';
+    $display->content['new-ab72fb60-1cc4-4d94-80b7-9c3c9ed56e24'] = $pane;
+    $display->panels['middle'][13] = 'new-ab72fb60-1cc4-4d94-80b7-9c3c9ed56e24';
   $display->hide_title = PANELS_TITLE_FIXED;
   $display->title_pane = '0';
   $handler->conf['display'] = $display;
