@@ -41,6 +41,8 @@ jQuery(document).ready(function() {
 			//funcion para el menu, convertir las rayas en x
 			jQuery(".navbar-toggle").on("click", function () {
 		    	jQuery(this).toggleClass("active");
+
+				jQuery("#block-menu-menu-header-login").css("visibility", "hidden");
 			});
 
 			//funciones para desplegables detalle press room
@@ -64,21 +66,26 @@ jQuery(document).ready(function() {
 		jQuery(".dropdown-menu").hide();
 		jQuery(".expanded.dropdown").removeClass('active-trail');
 		jQuery(".expanded.dropdown").on("click", function(){
+			
 			if (!jQuery(this).hasClass("active-trail")) {
+				
 				jQuery(this).addClass('active-trail');
 				jQuery(this).siblings().removeClass("active-trail");
 				jQuery(this).children('ul').children('li').removeClass("active-trail");
 				jQuery(".dropdown-menu").slideUp();
 				jQuery(this).children('ul').slideDown();
 			}else{
+
 				jQuery(this).removeClass('active-trail');
 				jQuery(this).children('ul').slideUp();
 			};
 		});
 
 		jQuery(".dropdown-menu > li").on("click", function(){
+
 			if (!jQuery(this).hasClass("active-trail")) {
 				jQuery(this).addClass('active-trail');
+
 			}else{
 				jQuery(this).removeClass('active-trail');
 			};
