@@ -201,3 +201,7 @@ div.workbench-info-block {
 .hwc-char-link.disabled {
     color: #ddd;
 }
+
+#hwc-practical-tool-menu-tools-form div.practical-tool-item ul.links.list-inline{
+    display: none;
+}
