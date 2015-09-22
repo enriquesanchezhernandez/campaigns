@@ -72,6 +72,8 @@ function osha_publication_menu_publications_form_submit($form, &$form_state) {
 function osha_publication_menu_publications_search_native($form_state) {
   global $language;
   $languages = hwc_req_param($form_state, 'languages', array($language->language));
+  if(!$languages)
+    $languages = array($language->language);
   $text = hwc_req_param($form_state, 'text');
   $is_search = !empty($text);
   $restrict = array();
