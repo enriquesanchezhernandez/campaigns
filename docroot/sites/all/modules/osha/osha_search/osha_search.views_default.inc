@@ -226,7 +226,7 @@ function osha_search_views_default_views() {
   $handler->display->display_options['fields']['search_api_excerpt']['field'] = 'search_api_excerpt';
   $handler->display->display_options['fields']['search_api_excerpt']['label'] = '';
   $handler->display->display_options['fields']['search_api_excerpt']['alter']['alter_text'] = TRUE;
-  $handler->display->display_options['fields']['search_api_excerpt']['alter']['text'] = '[search_api_excerpt] <a href=\'[url]\'>see more</a>';
+  $handler->display->display_options['fields']['search_api_excerpt']['alter']['text'] = '[search_api_excerpt] <a href=\'[url]\'>See more</a>';
   $handler->display->display_options['fields']['search_api_excerpt']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['search_api_excerpt']['link_to_entity'] = 0;
   $handler->display->display_options['defaults']['sorts'] = FALSE;
@@ -358,7 +358,7 @@ function osha_search_views_default_views() {
     t('No results'),
     t('Relevance'),
     t('Site search'),
-    t('[search_api_excerpt] <a href=\'[url]\'>see more</a>'),
+    t('[search_api_excerpt] <a href=\'[url]\'>See more</a>'),
     t('Publication date'),
     t('Title'),
   );
