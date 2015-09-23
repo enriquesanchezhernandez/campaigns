@@ -60,22 +60,11 @@ function hwc_practical_tool_block_view($delta = '') {
  */
 function hwc_practical_tool_field_formatter_info() {
   $info = array(
-    'language_list_formatter' => array(
-      'label' => t('Language list'),
-      'field types' => array('language_field'),
-      'description' => 'Displays available languages list - ex.:[label] English (EN)',
+    'access_tool_link_and_language' => array(
+      'label' => t('Access tool link and language'),
+      'field types' => array('field_collection'),
       'settings' => array(
-        'label' => t('Languages:'),
-        'separator' => ','
-      ),
-    ),
-    'link_tool_language_list_formatter' => array(
-      'label' => t('Language list - link to external tool site'),
-      'field types' => array('language_field'),
-      'description' => 'Displays links to external tool site in selected languages - ex.:[label]> English (link to external site)',
-      'settings' => array(
-        'link_label' => t('Visit tool in:'),
-        'link_separator' => ''
+        'label' => t('Visit tool in:'),
       ),
     ),
   );
@@ -95,94 +84,15 @@ function hwc_practical_tool_theme() {
     ),
     'path' => $path . '/templates',
   );
-  $theme['language_list_formatter'] = array(
+  $theme['access_tool_link_and_language'] = array(
+    'template' => 'hwc_practical_tool_access_tool_link_and_language',
     'variables' => array(
       'items' => NULL,
       'label' => NULL,
-      'separator' => NULL,
     ),
-  );
-  $theme['link_tool_language_list_formatter'] = array(
-    'variables' => array(
-      'entity' => NULL,
-      'items' => NULL,
-      'link_label' => NULL,
-      'link_separator' => NULL,
-    ),
+    'path' => $path . '/templates',
   );
   return $theme;
-}
-
-/**
- * Implements hook_field_formatter_settings_form().
- */
-function hwc_practical_tool_field_formatter_settings_form($field, $instance, $view_mode, $form, &$form_state) {
-  $display = $instance['display'][$view_mode];
-  $settings = $display['settings'];
-
-  $element = array();
-
-  switch ($display['type']) {
-    case 'language_list_formatter':
-      $element['label'] = array(
-        '#type'           => 'textfield',
-        '#title'          => t('Label'),
-        '#description'    => t('Displays text in front'),
-        '#default_value'  => $settings['label'],
-      );
-
-      $element['separator'] = array(
-        '#type'           => 'textfield',
-        '#title'          => t('Separator'),
-        '#description'    => t('Choose a separator for the elements of the list.'),
-        '#default_value'  => $settings['separator'],
-      );
-
-      break;
-    case 'link_tool_language_list_formatter':
-      $element['link_label'] = array(
-        '#type'           => 'textfield',
-        '#title'          => t('Label'),
-        '#description'    => t('Displays text in front'),
-        '#default_value'  => $settings['link_label'],
-      );
-
-      $element['link_separator'] = array(
-        '#type'           => 'textfield',
-        '#title'          => t('Separator'),
-        '#description'    => t('Choose a separator for the elements of the list.'),
-        '#default_value'  => $settings['link_separator'],
-      );
-
-      break;
-  }
-
-  return $element;
-}
-
-/**
- * Implements hook_field_formatter_settings_summary().
- */
-function hwc_practical_tool_field_formatter_settings_summary($field, $instance, $view_mode) {
-  $display = $instance['display'][$view_mode];
-  $settings = $display['settings'];
-
-  $summary = '';
-
-  switch ($display['type']) {
-    case 'language_list_formatter':
-      $summary = t('Use "@separator" separator.', array(
-        '@separator' => $settings['separator'],
-      ));
-
-      break;
-    case 'link_tool_language_list_formatter':
-      $summary = t("Displays links to external tool site in selected languages<br/> - ex.:[label]> English (link to external site)");
-
-      break;
-  }
-
-  return $summary;
 }
 
 /**
@@ -191,30 +101,15 @@ function hwc_practical_tool_field_formatter_settings_summary($field, $instance, 
 function hwc_practical_tool_field_formatter_view($entity_type, $entity, $field, $instance, $langcode, $items, $display) {
   $element = array();
   switch ($display['type']) {
-    case 'language_list_formatter':
+    case 'access_tool_link_and_language':
       $settings = $display['settings'];
       $label = trim($settings['label']);
-      $separator = $settings['separator'];
+      dpm($display);
 
       $element = array(
-        '#theme' => 'language_list_formatter',
+        '#theme' => 'access_tool_link_and_language',
         '#items' => $items,
         '#label' => $label,
-        '#separator' => $separator,
-      );
-
-      break;
-    case 'link_tool_language_list_formatter':
-      $settings = $display['settings'];
-      $label = trim($settings['link_label']);
-      $separator = $settings['link_separator'];
-
-      $element = array(
-        '#theme' => 'link_tool_language_list_formatter',
-        '#entity' => $entity,
-        '#items' => $items,
-        '#link_label' => $label,
-        '#link_separator' => $separator,
       );
 
       break;
