@@ -180,11 +180,11 @@ function osha_resources_field_default_field_instances() {
       ),
       'default' => array(
         'label' => 'hidden',
-        'module' => 'link',
+        'module' => 'osha_resources',
         'settings' => array(
           'field_formatter_class' => '',
         ),
-        'type' => 'link_default',
+        'type' => 'external_url_link',
         'weight' => 1,
       ),
       'highlights_item' => array(
@@ -201,11 +201,11 @@ function osha_resources_field_default_field_instances() {
       ),
       'osha_resources' => array(
         'label' => 'hidden',
-        'module' => 'link',
+        'module' => 'osha_resources',
         'settings' => array(
           'field_formatter_class' => '',
         ),
-        'type' => 'link_default',
+        'type' => 'external_url_link',
         'weight' => 0,
       ),
       'osha_slideshow' => array(
@@ -228,11 +228,11 @@ function osha_resources_field_default_field_instances() {
       ),
       'teaser' => array(
         'label' => 'hidden',
-        'module' => 'link',
+        'module' => 'osha_resources',
         'settings' => array(
           'field_formatter_class' => '',
         ),
-        'type' => 'link_default',
+        'type' => 'external_url_link',
         'weight' => 0,
       ),
       'title_body' => array(
@@ -556,6 +556,18 @@ function osha_resources_field_default_field_instances() {
           'media_default--media_browser_my_files' => 0,
           'upload' => 0,
         ),
+        'manualcrop_crop_info' => TRUE,
+        'manualcrop_default_crop_area' => TRUE,
+        'manualcrop_enable' => FALSE,
+        'manualcrop_inline_crop' => FALSE,
+        'manualcrop_instant_crop' => FALSE,
+        'manualcrop_instant_preview' => TRUE,
+        'manualcrop_keyboard' => TRUE,
+        'manualcrop_maximize_default_crop_area' => FALSE,
+        'manualcrop_require_cropping' => array(),
+        'manualcrop_styles_list' => array(),
+        'manualcrop_styles_mode' => 'include',
+        'manualcrop_thumblist' => FALSE,
       ),
       'type' => 'media_generic',
       'weight' => 42,
