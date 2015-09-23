@@ -1,17 +1,3 @@
-
-.panel-1col {
-/*  overflow: hidden;  */
-}
-
-.panel-2col .panel-col-first .inside {
-  margin: 0;
-}
-
-
-.panel-1col .panel-col {
-  width: 100%;
-}
-
 #panels-edit-display .panel-pane,
 #panels-edit-display .helperclass {
   margin: .5em;
