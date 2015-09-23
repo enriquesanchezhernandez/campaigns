@@ -25,6 +25,7 @@ $entities = entity_load('field_collection_item', $entities_to_load);
           ?>
           <a href="<?php print $link; ?>" class="access-tool-link">
             <?php print $node->title->value(); ?>
+            <i class="glyphicon glyphicon-new-window"></i>
           </a>
         <?php endif; ?>
     <?php endforeach; ?>
@@ -32,10 +33,12 @@ $entities = entity_load('field_collection_item', $entities_to_load);
       <?php if ($en_link): ?>
         <a href="<?php print $en_link; ?>" class="access-tool-link">
           <?php print $node->title->value(); ?>
+          <i class="glyphicon glyphicon-new-window"></i>
         </a>
       <?php else: ?>
         <a href="<?php print reset($entities)->field_access_tool_link['und'][0]['url']; ?>" class="access-tool-link">
           <?php print $node->title->value(); ?>
+          <i class="glyphicon glyphicon-new-window"></i>
         </a>
       <?php endif; ?>
     <?php endif; ?>
