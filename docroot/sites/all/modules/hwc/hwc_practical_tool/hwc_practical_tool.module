@@ -67,6 +67,14 @@ function hwc_practical_tool_field_formatter_info() {
         'label' => t('Visit tool in:'),
       ),
     ),
+    'access_tool_link_details' => array(
+      'label' => t('Access tool link for practical tool details'),
+      'field types' => array('field_collection'),
+      'settings' => array(
+        'label_1' => t('Access tool:'),
+        'label_2' => t('Languages:'),
+      ),
+    ),
   );
   return $info;
 }
@@ -92,6 +100,16 @@ function hwc_practical_tool_theme() {
     ),
     'path' => $path . '/templates',
   );
+  $theme['access_tool_link_details'] = array(
+    'template' => 'hwc_practical_tool_access_tool_link_details',
+    'variables' => array(
+      'items' => NULL,
+      'label_1' => NULL,
+      'label_2' => NULL,
+      'node' => NULL,
+    ),
+    'path' => $path . '/templates',
+  );
   return $theme;
 }
 
@@ -104,15 +122,26 @@ function hwc_practical_tool_field_formatter_view($entity_type, $entity, $field, 
     case 'access_tool_link_and_language':
       $settings = $display['settings'];
       $label = trim($settings['label']);
-      dpm($display);
-
       $element = array(
         '#theme' => 'access_tool_link_and_language',
         '#items' => $items,
         '#label' => $label,
       );
-
       break;
+
+    case 'access_tool_link_details':
+      $settings = $display['settings'];
+      $label_1 = trim($settings['label_1']);
+      $label_2 = trim($settings['label_2']);
+      $element = array(
+        '#theme' => 'access_tool_link_details',
+        '#items' => $items,
+        '#label_1' => $label_1,
+        '#label_2' => $label_2,
+        '#node' => entity_metadata_wrapper('node', $entity),
+      );
+      break;
+
   }
   return $element;
 }
