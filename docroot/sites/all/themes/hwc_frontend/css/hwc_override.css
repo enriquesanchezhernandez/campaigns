@@ -216,3 +216,12 @@ div.workbench-info-block {
     content: ">";
     padding-right: 0.0em;
 }
+.node-type-practical-tool .page_title .page-header {
+    color: #003399;
+    border: none;
+    text-align: left;
+    font-weight: normal;
+    font-size: 30px;
+    font-style: italic;
+    margin-bottom: 0;
+}

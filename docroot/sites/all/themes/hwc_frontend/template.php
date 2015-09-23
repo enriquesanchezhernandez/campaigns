@@ -166,6 +166,10 @@ function hwc_frontend_preprocess_page(&$vars) {
         case 'practical_tool':
           $link_title = t('Back to practical tools list');
           $link_href = 'practical-tools';
+          $vars['page']['above_title']['practical-tool-page-title'] = array(
+            '#type' => 'item',
+            '#markup' => '<h1>' . t('Practical tools') . '</h1>',
+          );
           break;
 
         case 'events':
