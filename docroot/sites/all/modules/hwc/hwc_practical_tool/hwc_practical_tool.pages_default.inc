@@ -386,7 +386,7 @@ function hwc_practical_tool_default_page_manager_handlers() {
     $pane->access = array();
     $pane->configuration = array(
       'label' => 'inline',
-      'formatter' => 'field_collection_list',
+      'formatter' => 'access_tool_link_details',
       'delta_limit' => '0',
       'delta_offset' => '0',
       'delta_reversed' => 0,
