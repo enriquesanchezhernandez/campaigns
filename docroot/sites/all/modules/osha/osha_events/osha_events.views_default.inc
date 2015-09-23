@@ -546,7 +546,7 @@ function osha_events_views_default_views() {
     0 => array(
       'field' => 'field_start_date_1',
       'rendered' => 1,
-      'rendered_strip' => 1,
+      'rendered_strip' => 0,
     ),
   );
   $handler->display->display_options['style_options']['wrapper_class'] = 'events-filter-by-date';
@@ -632,7 +632,7 @@ function osha_events_views_default_views() {
     0 => array(
       'field' => 'field_start_date_1',
       'rendered' => 1,
-      'rendered_strip' => 1,
+      'rendered_strip' => 0,
     ),
   );
   $handler->display->display_options['style_options']['wrapper_class'] = 'events-filter-by-date';
@@ -673,6 +673,7 @@ function osha_events_views_default_views() {
     'multiple_from' => '',
     'multiple_to' => '',
     'osha_date_theme' => '',
+    'field_formatter_class' => '',
   );
   $handler->display->display_options['defaults']['sorts'] = FALSE;
   /* Sort criterion: Content: Start date -  start date (field_start_date) */
