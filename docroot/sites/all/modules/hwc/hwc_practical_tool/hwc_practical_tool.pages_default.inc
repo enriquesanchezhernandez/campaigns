@@ -346,6 +346,42 @@ function hwc_practical_tool_default_page_manager_handlers() {
     $display->content['new-5191f675-de94-4325-99c9-a1eb9598fe75'] = $pane;
     $display->panels['middle'][8] = 'new-5191f675-de94-4325-99c9-a1eb9598fe75';
     $pane = new stdClass();
+    $pane->pid = 'new-ae6519dd-fdf0-4243-85d0-31800a0b5d40';
+    $pane->panel = 'middle';
+    $pane->type = 'entity_field';
+    $pane->subtype = 'node:field_access_tool_link_fc';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'label' => 'inline',
+      'formatter' => 'access_tool_link_details',
+      'delta_limit' => '0',
+      'delta_offset' => '0',
+      'delta_reversed' => 0,
+      'formatter_settings' => array(
+        'edit' => '',
+        'delete' => '',
+        'add' => '',
+        'description' => 1,
+        'field_formatter_class' => '',
+      ),
+      'context' => 'argument_entity_id:node_1',
+      'override_title' => 0,
+      'override_title_text' => '',
+      'override_title_heading' => 'h2',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 9;
+    $pane->locks = array();
+    $pane->uuid = 'ae6519dd-fdf0-4243-85d0-31800a0b5d40';
+    $display->content['new-ae6519dd-fdf0-4243-85d0-31800a0b5d40'] = $pane;
+    $display->panels['middle'][9] = 'new-ae6519dd-fdf0-4243-85d0-31800a0b5d40';
+    $pane = new stdClass();
     $pane->pid = 'new-4ea61eda-ab16-477e-849f-d1b59140cfa6';
     $pane->panel = 'middle';
     $pane->type = 'entity_field';
@@ -372,11 +408,11 @@ function hwc_practical_tool_default_page_manager_handlers() {
     );
     $pane->css = array();
     $pane->extras = array();
-    $pane->position = 9;
+    $pane->position = 10;
     $pane->locks = array();
     $pane->uuid = '4ea61eda-ab16-477e-849f-d1b59140cfa6';
     $display->content['new-4ea61eda-ab16-477e-849f-d1b59140cfa6'] = $pane;
-    $display->panels['middle'][9] = 'new-4ea61eda-ab16-477e-849f-d1b59140cfa6';
+    $display->panels['middle'][10] = 'new-4ea61eda-ab16-477e-849f-d1b59140cfa6';
   $display->hide_title = PANELS_TITLE_FIXED;
   $display->title_pane = '0';
   $handler->conf['display'] = $display;

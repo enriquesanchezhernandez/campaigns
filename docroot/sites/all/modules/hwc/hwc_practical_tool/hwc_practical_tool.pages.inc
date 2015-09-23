@@ -143,7 +143,7 @@ function hwc_practical_tool_menu_tools_search_native($form_state) {
   $ret = array(
     '#nids' => $nids,
     '#prefix' => '<h4>' . t('Practical tools available in national languages') . '</h4>',
-    'results-native' => node_view_multiple($nodes, 'teaser', 0, $language->language),
+    'results-native' => node_view_multiple($nodes, 'pub_teaser', 0, $language->language),
     '#suffix' => theme('pager', array(
       'tags' => array('<', '<', '', '>', '>'),
       'quantity' => count($nodes),
@@ -236,7 +236,7 @@ function hwc_practical_tool_menu_tools_search_related($form_state, $native_nids)
   }
   $ret = array(
     '#prefix' => '<h4>' . t('Other relevant practical tools in English') . '</h4>',
-    'results-related' => node_view_multiple($nodes, 'teaser', 0, $language->language),
+    'results-related' => node_view_multiple($nodes, 'pub_teaser', 0, $language->language),
     '#suffix' => theme('pager', array(
       'tags' => array('<', '<', '', '>', '>'),
       'quantity' => count($nodes),

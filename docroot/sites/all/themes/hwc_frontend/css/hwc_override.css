@@ -201,3 +201,27 @@ div.workbench-info-block {
 .hwc-char-link.disabled {
     color: #ddd;
 }
+
+#hwc-practical-tool-menu-tools-form div.practical-tool-item ul.links.list-inline{
+    display: none;
+}
+
+.pane-hwc-practical-tool-hwc-practical-tool-listing .access-tool-link, .node-type-practical-tool .access-tool-link {
+    color: #003399;
+    background-color: transparent;
+    font-weight: bold;
+    font-style: italic;
+}
+.pane-hwc-practical-tool-hwc-practical-tool-listing .access-tool-link:before {
+    content: ">";
+    padding-right: 0.0em;
+}
+.node-type-practical-tool .page_title .page-header {
+    color: #003399;
+    border: none;
+    text-align: left;
+    font-weight: normal;
+    font-size: 30px;
+    font-style: italic;
+    margin-bottom: 0;
+}
