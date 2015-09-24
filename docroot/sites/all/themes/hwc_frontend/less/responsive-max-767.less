@@ -290,16 +290,23 @@ header.navbar-default{
 			}
 		}
 		#homepage_slider{
-
 			#num_slides{
 				> div{
 					div{
-						padding-left: @margin-movil !important;
+						margin-left: @margin-movil !important;
     					padding-right: @margin-movil !important;
-
 						&.field-content, &.views-field-title{
+							margin-left: 0 !important;
 							padding-left: 0 !important;
 							padding-right: 0 !important;
+						}
+						&.views-field.views-field-field-content-reference{
+							position: relative;
+							padding-right: @margin-movil !important;
+							padding-left: @margin-movil !important;
+							a.more-link{
+								position: relative;
+							}
 						}
 					}
 				}
@@ -307,15 +314,11 @@ header.navbar-default{
 			> div{
 				padding-left: 0px;
     			padding-right: 0px;
-    			.homepage_slider{
-			
-    			}
 			}
-			//background: url("../images/content/bg-campaign-partner.png") no-repeat left;
 			margin-bottom: 0;
 			height: 356px !important;
 			.views-field-body{
-				top:150px !important;
+				top: 150px !important;
 				float: left !important;
 				.field-content{
 					text-align: left !important;
@@ -612,16 +615,9 @@ header.navbar-default{
 			padding-left: 15px;
 		}
 		h2{
-			text-align: left;
 			margin-right: 15px;
 			margin-left: 15px;
 			margin-bottom: 1em;
-		}
-		.icon.recommended-resources{
-			float: left;
-			margin-top: 0;
-			margin-right: 15px;
-			margin-left: 15px;
 		}
 		.field-name-field-recommended-articles{
 			.node-article{
@@ -632,6 +628,7 @@ header.navbar-default{
 				.content{
 					.field-name-title-field{
 						margin-bottom: 0;
+						z-index:1000;
 						a{
 		    				font-size: @size7;
 		    			}
@@ -1393,5 +1390,8 @@ header.navbar-default{
 	visibility: hidden;
 }
 
+.separator_recomended_resources_home{
+	display: none;
+}
 
 }
