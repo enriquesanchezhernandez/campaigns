@@ -68,7 +68,7 @@ function osha_news_ds_layout_settings_info() {
     ),
     'classes' => array(
       'layout_class' => array(
-        '' => '',
+        'container' => 'container',
       ),
     ),
     'wrappers' => array(

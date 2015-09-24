@@ -1115,7 +1115,7 @@ function osha_news_field_default_field_instances() {
         'label' => 'hidden',
         'module' => 'title',
         'settings' => array(
-          'field_formatter_class' => 'container',
+          'field_formatter_class' => '',
           'title_class' => '',
           'title_link' => '',
           'title_style' => 'h2',
