@@ -520,6 +520,8 @@ $options['init-modules'] = array(
 
   'search_api_title2',
 
+  'webform2pdf',
+
 );
 
 
