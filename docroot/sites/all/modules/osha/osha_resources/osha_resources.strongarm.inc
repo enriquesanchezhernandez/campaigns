@@ -575,6 +575,21 @@ function osha_resources_strongarm() {
       'osha_resources' => array(
         'custom_settings' => TRUE,
       ),
+      'title_body' => array(
+        'custom_settings' => TRUE,
+      ),
+      'body' => array(
+        'custom_settings' => TRUE,
+      ),
+      'highlights_item' => array(
+        'custom_settings' => TRUE,
+      ),
+      'pub_teaser' => array(
+        'custom_settings' => TRUE,
+      ),
+      'revision' => array(
+        'custom_settings' => FALSE,
+      ),
     ),
     'extra_fields' => array(
       'form' => array(
