@@ -225,3 +225,6 @@ div.workbench-info-block {
     font-style: italic;
     margin-bottom: 0;
 }
+.no-margin-bottom {
+    margin-bottom: 0px;
+}
