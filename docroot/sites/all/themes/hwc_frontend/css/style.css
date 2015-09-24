@@ -13683,7 +13683,7 @@ article .hwc-share-widget ul {
     padding-left: 15px;
   }
   .visibility {
-    visibility: hidden;
+    display: none !important;
   }
   .separator_recomended_resources_home {
     display: none;
