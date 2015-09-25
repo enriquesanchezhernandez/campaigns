@@ -23,10 +23,16 @@ $rss_url = !empty($options['rss_url']) ? $options['rss_url'] : url('rss-feeds/la
 $rss_hide = !empty($options['rss_hide']);
 // ToDo: make action for like button.
 // ToDo: create counters.
-$fb_api = file_get_contents('http://graph.facebook.com/?id=' . $url);
-$fb_api_decode = json_decode($fb_api);
-$fb_share_count = isset($fb_api_decode->shares) ? $fb_api_decode->shares : 0;
 
+// FB share counter.
+$api = file_get_contents('http://graph.facebook.com/?id=' . $url);
+$count = json_decode($api);
+$fb_share_count = isset($count->shares) ? $count->shares : 0;
+
+// Twitter share counter.
+$api = file_get_contents( 'https://cdn.api.twitter.com/1/urls/count.json?url=' . $url );
+$count = json_decode( $api );
+$twitter_share_count = isset($count->count) ? $count->count : 0;
 ?>
 <div class="hwc-share-widget">
   <ul>
@@ -40,13 +46,13 @@ $fb_share_count = isset($fb_api_decode->shares) ? $fb_api_decode->shares : 0;
       <a href="<?php print $url ?>">Facebook</a>
     </li>
     <li class="label">
-      <?php print t('Share'); ?> <span id="fb-share-counter">(<?php print $fb_share_count ?>)</span>
+      <?php print t('Share'); ?> <span>(<?php print $fb_share_count ?>)</span>
     </li>
     <li id="twitter-share-button-<?php print $node->nid; ?>" class="hwc-share-widget-button hwc-share-widget-twitter">
       <a href="<?php print $tweet_url; ?>">Twitter</a>
     </li>
     <li class="label">
-      <?php print t('Tweet'); ?>
+      <?php print t('Tweet'); ?> <span>(<?php print $twitter_share_count ?>)</span>
     </li>
     <li id="linked-in-<?php print $node->nid; ?>" class="napo-share-widget-button napo-share-widget-linkedin">
       <a href="https://www.linkedin.com/shareArticle?mini=true&url=<?php print $url; ?>">Linked in</a>
