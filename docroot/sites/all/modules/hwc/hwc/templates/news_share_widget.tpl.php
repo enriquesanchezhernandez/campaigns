@@ -22,7 +22,7 @@
 $rss_url = !empty($options['rss_url']) ? $options['rss_url'] : url('rss-feeds/latest/news.xml', array('absolute' => TRUE));
 $rss_hide = !empty($options['rss_hide']);
 ?>
-<div class="hwc-share-widget">
+<div class="hwc-share-widget hwc-share-widget-news">
   <ul>
     <li id="facebook-share-button-<?php print $node->nid; ?>"  class="hwc-share-widget-button hwc-share-widget-facebook" data-href="">
       <a href="<?php print $url ?>">Facebook</a>

@@ -16,12 +16,6 @@
  * @see template_process()
  */
 ?>
-<?php
-/** @var string $tweet_url */
-/** @var array $options */
-$rss_url = !empty($options['rss_url']) ? $options['rss_url'] : url('rss-feeds/latest/news.xml', array('absolute' => TRUE));
-$rss_hide = !empty($options['rss_hide']);
-?>
 <div class="hwc-share-widget">
   <ul>
     <li id="facebook-share-button-<?php print $node->nid; ?>"  class="hwc-share-widget-button hwc-share-widget-facebook" data-href="">
@@ -33,11 +27,6 @@ $rss_hide = !empty($options['rss_hide']);
     <li id="linked-in-<?php print $node->nid; ?>" class="napo-share-widget-button napo-share-widget-linkedin">
       <a href="https://www.linkedin.com/shareArticle?mini=true&url=<?php print $url; ?>">Linked in</a>
     </li>
-    <?php if (!$rss_hide): ?>
-    <li class="pull-right">
-      <a href="<?php print $rss_url; ?>">RSS</a>
-    </li>
-    <?php endif; ?>
   </ul>
 </div>
 <script>
