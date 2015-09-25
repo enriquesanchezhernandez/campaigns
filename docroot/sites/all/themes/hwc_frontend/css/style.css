@@ -9298,6 +9298,21 @@ article .hwc-share-widget ul {
   display: inline;
   list-style-type: none;
 }
+.hwc-share-widget ul li[id*="facebook-share-button-"] {
+  background: url("../images/content/facebook.png") no-repeat;
+  margin-left: 10px;
+  width: 25px;
+  height: 25px;
+  display: inline-table;
+  overflow: hidden;
+  background-size: cover;
+}
+.hwc-share-widget ul li[id*="facebook-share-button-"] a {
+  width: 25px;
+  height: 25px;
+  padding-left: 25px;
+  display: block;
+}
 .hwc-share-widget ul li[id*="twitter-share-button-"] {
   background: url("../images/content/twitter.png") no-repeat;
   margin-left: 10px;
