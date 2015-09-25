@@ -9289,7 +9289,6 @@ article .hwc-share-widget ul {
 		*/
 }
 .hwc-share-widget ul:before {
-  content: "Share this article: ";
   color: #003399;
   font-weight: bold;
   font-style: italic;
@@ -9298,6 +9297,11 @@ article .hwc-share-widget ul {
   display: inline;
   list-style-type: none;
   position: relative
+}
+.hwc-share-widget ul .share-this-article {
+  color: #003399;
+  font-weight: bold;
+  font-style: italic;
 }
 .hwc-share-widget ul .label {
   color: #003399;

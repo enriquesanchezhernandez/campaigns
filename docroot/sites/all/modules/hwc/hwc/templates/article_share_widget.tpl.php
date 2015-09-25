@@ -18,6 +18,9 @@
 ?>
 <div class="hwc-share-widget">
   <ul>
+    <li class="share-this-article">
+      <?php print t('Share this article:'); ?>
+    </li>
     <li id="facebook-share-button-<?php print $node->nid; ?>"  class="hwc-share-widget-button hwc-share-widget-facebook" data-href="">
       <a href="<?php print $url ?>">Facebook</a>
     </li>
