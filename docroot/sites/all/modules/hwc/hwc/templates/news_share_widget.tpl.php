@@ -21,8 +21,7 @@
 /** @var array $options */
 $rss_url = !empty($options['rss_url']) ? $options['rss_url'] : url('rss-feeds/latest/news.xml', array('absolute' => TRUE));
 $rss_hide = !empty($options['rss_hide']);
-// ToDo: make action for like button.
-// ToDo: create counters.
+// ToDo: make action and counter for facebook 'like' button
 
 // FB share counter.
 $api = file_get_contents('http://graph.facebook.com/?id=' . $url);
@@ -30,9 +29,15 @@ $count = json_decode($api);
 $fb_share_count = isset($count->shares) ? $count->shares : 0;
 
 // Twitter share counter.
-$api = file_get_contents( 'https://cdn.api.twitter.com/1/urls/count.json?url=' . $url );
-$count = json_decode( $api );
+$api = file_get_contents('https://cdn.api.twitter.com/1/urls/count.json?url=' . $url);
+$count = json_decode($api);
 $twitter_share_count = isset($count->count) ? $count->count : 0;
+
+// LinkedIn share counter.
+$api = file_get_contents('https://www.linkedin.com/countserv/count/share?url=' . $url . '&format=json');
+$count = json_decode($api);
+$linkedin_share_count = isset($count->count) ? $count->count : 0;
+
 ?>
 <div class="hwc-share-widget">
   <ul>
@@ -58,7 +63,7 @@ $twitter_share_count = isset($count->count) ? $count->count : 0;
       <a href="https://www.linkedin.com/shareArticle?mini=true&url=<?php print $url; ?>">Linked in</a>
     </li>
     <li class="label">
-      <?php print t('Share'); ?>
+      <?php print t('Share'); ?> <span>(<?php print $linkedin_share_count ?>)</span>
     </li>
     <?php if (!$rss_hide): ?>
       <li class="label label-rss pull-right">
