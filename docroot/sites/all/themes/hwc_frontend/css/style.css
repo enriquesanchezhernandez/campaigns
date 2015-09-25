@@ -9297,8 +9297,21 @@ article .hwc-share-widget ul {
 .hwc-share-widget ul li {
   display: inline;
   list-style-type: none;
+  position: relative
 }
-.hwc-share-widget ul li[id*="facebook-share-button-"] {
+.hwc-share-widget ul .label {
+  color: #003399;
+  font-weight: bold;
+  font-style: italic;
+  font-size: 14px;
+  padding: 0;
+  height: 25px !important;
+  line-height: 25px;
+}
+.hwc-share-widget ul .label-rss {
+  padding-left: 5px;
+}
+.hwc-share-widget ul li[id*="facebook-share-button-"], .hwc-share-widget ul li[id*="facebook-like-button-"] {
   background: url("../images/content/facebook.png") no-repeat;
   margin-left: 10px;
   width: 25px;
@@ -9307,7 +9320,7 @@ article .hwc-share-widget ul {
   overflow: hidden;
   background-size: cover;
 }
-.hwc-share-widget ul li[id*="facebook-share-button-"] a {
+.hwc-share-widget ul li[id*="facebook-share-button-"] a, .hwc-share-widget ul li[id*="facebook-like-button-"] a {
   width: 25px;
   height: 25px;
   padding-left: 25px;

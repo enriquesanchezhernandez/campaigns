@@ -21,19 +21,39 @@
 /** @var array $options */
 $rss_url = !empty($options['rss_url']) ? $options['rss_url'] : url('rss-feeds/latest/news.xml', array('absolute' => TRUE));
 $rss_hide = !empty($options['rss_hide']);
+//ToDo: make action for like button
+//ToDo: create counters
 ?>
-<div class="hwc-share-widget hwc-share-widget-news">
+<div class="hwc-share-widget">
   <ul>
+    <li id="facebook-like-button-<?php print $node->nid; ?>"  class="hwc-share-widget-button hwc-share-widget-facebook" data-href="">
+      <a href="<?php print $url ?>">Facebook</a>
+    </li>
+    <li class="label">
+      <?php print t('Like'); ?>
+    </li>
     <li id="facebook-share-button-<?php print $node->nid; ?>"  class="hwc-share-widget-button hwc-share-widget-facebook" data-href="">
       <a href="<?php print $url ?>">Facebook</a>
+    </li>
+    <li class="label">
+      <?php print t('Share'); ?>
     </li>
     <li id="twitter-share-button-<?php print $node->nid; ?>" class="hwc-share-widget-button hwc-share-widget-twitter">
       <a href="<?php print $tweet_url; ?>">Twitter</a>
     </li>
+    <li class="label">
+      <?php print t('Tweet'); ?>
+    </li>
     <li id="linked-in-<?php print $node->nid; ?>" class="napo-share-widget-button napo-share-widget-linkedin">
       <a href="https://www.linkedin.com/shareArticle?mini=true&url=<?php print $url; ?>">Linked in</a>
     </li>
+    <li class="label">
+      <?php print t('Share'); ?>
+    </li>
     <?php if (!$rss_hide): ?>
+      <li class="label label-rss pull-right">
+        <?php print t('RSS'); ?>
+      </li>
     <li class="pull-right">
       <a href="<?php print $rss_url; ?>">RSS</a>
     </li>
