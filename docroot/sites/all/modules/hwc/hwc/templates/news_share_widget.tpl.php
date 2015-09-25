@@ -21,8 +21,12 @@
 /** @var array $options */
 $rss_url = !empty($options['rss_url']) ? $options['rss_url'] : url('rss-feeds/latest/news.xml', array('absolute' => TRUE));
 $rss_hide = !empty($options['rss_hide']);
-//ToDo: make action for like button
-//ToDo: create counters
+// ToDo: make action for like button.
+// ToDo: create counters.
+$fb_api = file_get_contents('http://graph.facebook.com/?id=' . $url);
+$fb_api_decode = json_decode($fb_api);
+$fb_share_count = isset($fb_api_decode->shares) ? $fb_api_decode->shares : 0;
+
 ?>
 <div class="hwc-share-widget">
   <ul>
@@ -36,7 +40,7 @@ $rss_hide = !empty($options['rss_hide']);
       <a href="<?php print $url ?>">Facebook</a>
     </li>
     <li class="label">
-      <?php print t('Share'); ?>
+      <?php print t('Share'); ?> <span id="fb-share-counter">(<?php print $fb_share_count ?>)</span>
     </li>
     <li id="twitter-share-button-<?php print $node->nid; ?>" class="hwc-share-widget-button hwc-share-widget-twitter">
       <a href="<?php print $tweet_url; ?>">Twitter</a>
