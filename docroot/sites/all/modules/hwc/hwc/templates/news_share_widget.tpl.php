@@ -41,17 +41,17 @@ $linkedin_share_count = isset($count->count) ? $count->count : 0;
 ?>
 <div class="hwc-share-widget">
   <ul>
-    <li id="facebook-like-button-<?php print $node->nid; ?>"  class="hwc-share-widget-button hwc-share-widget-facebook" data-href="">
-      <a href="<?php print $url ?>">Facebook</a>
-    </li>
-    <li class="label">
-      <?php print t('Like'); ?>
-    </li>
     <li id="facebook-share-button-<?php print $node->nid; ?>"  class="hwc-share-widget-button hwc-share-widget-facebook" data-href="">
       <a href="<?php print $url ?>">Facebook</a>
     </li>
     <li class="label">
       <?php print t('Share'); ?> <span>(<?php print $fb_share_count ?>)</span>
+    </li>
+    <li id="facebook-like-button-<?php print $node->nid; ?>"  class="hwc-share-widget-button hwc-share-widget-facebook" data-href="">
+      <a href="<?php print $url ?>">Facebook</a>
+    </li>
+    <li class="label">
+      <?php print t('Like'); ?>
     </li>
     <li id="twitter-share-button-<?php print $node->nid; ?>" class="hwc-share-widget-button hwc-share-widget-twitter">
       <a href="<?php print $tweet_url; ?>">Twitter</a>
