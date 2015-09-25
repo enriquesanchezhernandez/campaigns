@@ -231,3 +231,12 @@ div.workbench-info-block {
 .no-margin-bottom {
     margin-bottom: 0px;
 }
+.node-external-url .field-name-field-image {
+    float: left;
+    width: auto !important;
+    height: auto !important;
+}
+.node-external-url .field-name-field-image img {
+    width: auto !important;
+    height: auto !important;
+}
