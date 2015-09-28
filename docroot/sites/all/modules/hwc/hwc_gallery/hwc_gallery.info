@@ -9,6 +9,7 @@ features[ctools][] = page_manager:pages_default:1
 features[ctools][] = strongarm:strongarm:1
 features[ctools][] = views:views_default:3.0
 features[features_api][] = api:2
+features[field_base][] = field_gallery
 features[field_base][] = field_images
 features[field_instance][] = node-hwc_gallery-body
 features[field_instance][] = node-hwc_gallery-field_images
