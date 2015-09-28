@@ -296,6 +296,7 @@ function hwc_form_alter(&$form, &$form_state, $form_id) {
   }
 }
 
+
 /**
  * Implements hook_node_submit().
  */
@@ -313,6 +314,28 @@ function hwc_field_attach_submit($entity_type, $entity, $form, &$form_state) {
             $entity->field_tags[LANGUAGE_NONE][] = array('tid' => $tid);
           }
         }
+      }
+    }
+  }
+}
+
+/**
+ * Implements hook_field_widget_form_alter().
+ */
+function hwc_field_widget_form_alter(&$element, &$form_state, $context) {
+  $is_event_form = isset($context['form']['#node_edit_form']) &&
+    $context['form']['#node_edit_form'] == TRUE &&
+    $context['form']['type']['#value'] == 'events';
+  if ($is_event_form) {
+    if (isset($element['value'])) {
+      if ($element['value']['#type'] == 'textfield') {
+        $placeholder = '';
+        switch ($element['#field_name']) {
+          case 'title_field':
+            $placeholder = t('Event title');
+            break;
+        }
+        $element['value']['#attributes']['placeholder'] = $placeholder;
       }
     }
   }
