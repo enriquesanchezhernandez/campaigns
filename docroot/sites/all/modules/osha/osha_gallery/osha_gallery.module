@@ -150,6 +150,10 @@ function osha_gallery_bulk_upload_form($form, &$form_state, $node) {
     '#type' => 'select',
     '#options' => $usable_fields[$node->type],
   );
+  if (count($usable_fields[$node->type]) <= 1) {
+    $form['to_field']['#type'] = 'hidden';
+    $form['to_field']['#value'] = current(array_keys($form['to_field']['#options']));
+  }
   $form['field_files'] = array(
     '#type' => 'plupload',
     '#title' => t('Upload files'),
@@ -270,6 +274,14 @@ function osha_gallery_reorder_files_form($form, &$form_state, $node) {
   else {
     // Second step - reorder.
     $form['#field_name'] = $field_name;
+    $form['help_text'] = array(
+      '#type' => 'item',
+      '#markup' => t('Please drag and drop to reorder the images and then press "Save".')
+    );
+    $form['help_text2'] = array(
+      '#type' => 'item',
+      '#markup' => t('The cover image of the gallery it\'s the first image. You can use the "Make first" link to move the image on the first position and than press "Save" to save your ordering')
+    );
     $info = field_info_instance('node', $field_name, $node->type);
     $wrapper = entity_metadata_wrapper('node', $node);
     $files = $wrapper->{$field_name}->value();
@@ -281,19 +293,17 @@ function osha_gallery_reorder_files_form($form, &$form_state, $node) {
       '#tree' => TRUE,
     );
 
-
-
     // Render files thumbnails in sort
     foreach ($files as $file) {
-      $thumb = _osha_gallery_get_display_settings_field($file, $info);
+      $thumb = _osha_gallery_get_display_settings_field($file, $info, $node);
       $form['fids'][] = array(
         '#type' => 'hidden',
         '#value' => $file['fid'],
         '#attributes' => array(
           'name' => 'fids[]'
         ),
-        '#prefix' => '<span class="osha-gallery-reorder-field">' . $thumb,
-        '#suffix' => '</span>',
+        '#prefix' => '<div class="osha-gallery-reorder-field">' . drupal_render($thumb),
+        '#suffix' => '</div>',
       );
     }
     $path = drupal_get_path('module', 'osha_gallery');
@@ -339,6 +349,29 @@ function osha_gallery_reorder_files_form_reorder_validate($form, &$form_state) {
 }
 
 /**
+ * Implements hook_field_widget_form_alter().
+ *
+ * Add an anchor on the edit form of the node.
+ * @see manualcrop_field_widget_form_alter
+ */
+function osha_gallery_field_widget_form_alter(&$element, &$form_state, $context) {
+  if (user_access('use manualcrop')) {
+    $widget = $context['instance']['widget'];
+    if (manualcrop_supported_widgets($widget['type'])) {
+      if (!empty($widget['settings']['manualcrop_enable'])) {
+        foreach (element_children($element) as $key) {
+          $element[$key]['osha_gallery_edit_anchor'] = array(
+            '#type' => 'item',
+            '#markup' => '<span id="' . $element[$key]['#field_name'] . '-' . $element[$key]['#default_value']['fid'] . '"></span>',
+            '#weight' => -1,
+          );
+        }
+      }
+    }
+  }
+}
+
+/**
  * Callback for the reorder step 2 form.
  */
 function osha_gallery_reorder_files_form_reorder_submit($form, &$form_state) {
@@ -359,12 +392,29 @@ function osha_gallery_reorder_files_form_reorder_submit($form, &$form_state) {
   $form_state['redirect'] = 'node/' . $node->nid;
 }
 
-function _osha_gallery_get_display_settings_field($file, $field_instance) {
+function _osha_gallery_get_display_settings_field($file, $field_instance, $node) {
   // @TODO handle other types of files and settings.
-  $html = $file['fid'];
+  $html = array();
   if (!empty($field_instance['display']['default']['settings']['colorbox_node_style'])) {
     $img_style = $field_instance['display']['default']['settings']['colorbox_node_style'];
-    $html = '<img src="' . image_style_url($img_style, $file['uri']) . '" />';
+    $html['image'] = array(
+      '#type' => 'item',
+      '#theme' => 'image',
+      '#path' => image_style_url($img_style, $file['uri']),
+    );
+    $html['edit_link'] = array(
+      '#type' => 'markup',
+      '#markup' => l(t('Edit'), 'node/' . $node->nid . '/edit', array(
+        'fragment' => $field_instance['field_name'] . '-' . $file['fid'],
+        'attributes' => array('class' => array('osha-gallery-action-link')),
+      )),
+    );
+    $html['make_first'] = array(
+      '#theme' => 'html_tag',
+      '#tag' => 'span',
+      '#value' => t('Make first'),
+      '#attributes' => array('class' => array('osha-gallery-make-first-button', 'osha-gallery-action-link')),
+    );
   }
   return $html;
 }
