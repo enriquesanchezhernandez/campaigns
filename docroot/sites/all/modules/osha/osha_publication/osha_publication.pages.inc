@@ -72,6 +72,8 @@ function osha_publication_menu_publications_form_submit($form, &$form_state) {
 function osha_publication_menu_publications_search_native($form_state) {
   global $language;
   $languages = hwc_req_param($form_state, 'languages', array($language->language));
+  if(!$languages)
+    $languages = array($language->language);
   $text = hwc_req_param($form_state, 'text');
   $is_search = !empty($text);
   $restrict = array();
@@ -171,8 +173,9 @@ function osha_publication_menu_publications_search_native($form_state) {
 function osha_publication_menu_publications_search_related($form_state, $native_nids) {
   global $language;
   $ret = array();
-  if($form_state['input']) {
-    if (($form_state['input']['languages']['en'] !== NULL)) {
+  $languages = hwc_req_param($form_state, 'languages', array($language->language));
+  if(!empty($languages)) {
+    if (in_array('en', $languages)) {
       return $ret;
     }
   }
@@ -220,7 +223,6 @@ function osha_publication_menu_publications_search_related($form_state, $native_
   $current_page = pager_default_initialize(count($nids), $per_page, 1);
   $page = array_chunk($nids, $per_page, TRUE);
   $nodes = node_load_multiple($page[$current_page]);
-  $languages = hwc_req_param($form_state, 'languages', array($language->language));
   foreach($nodes as $node) {
     $node->filter_languages = $languages;
   }

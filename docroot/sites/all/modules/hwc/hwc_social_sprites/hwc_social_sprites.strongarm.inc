@@ -28,14 +28,14 @@ function hwc_social_sprites_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'on_the_web_facebook_page';
-  $strongarm->value = 'https://www.facebook.com/oshnapo';
+  $strongarm->value = 'https://www.facebook.com/EuropeanAgencyforSafetyandHealthatWork';
   $export['on_the_web_facebook_page'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'on_the_web_flickr_page';
-  $strongarm->value = 'http://www.flickr.com/photos/euosha/';
+  $strongarm->value = 'https://www.flickr.com/photos/euosha/';
   $export['on_the_web_flickr_page'] = $strongarm;
 
   $strongarm = new stdClass();
@@ -119,7 +119,7 @@ function hwc_social_sprites_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'on_the_web_youtube_page';
-  $strongarm->value = 'https://www.youtube.com/user/napofilms';
+  $strongarm->value = 'https://www.youtube.com/user/EUOSHA';
   $export['on_the_web_youtube_page'] = $strongarm;
 
   $strongarm = new stdClass();

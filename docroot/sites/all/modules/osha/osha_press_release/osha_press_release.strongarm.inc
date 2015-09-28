@@ -434,34 +434,6 @@ function osha_press_release_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
-  $strongarm->name = 'osha_press_kit_intro_text';
-  $strongarm->value = 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.';
-  $export['osha_press_kit_intro_text'] = $strongarm;
-
-  $strongarm = new stdClass();
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
-  $strongarm->name = 'osha_press_kit_link_label';
-  $strongarm->value = 'Download';
-  $export['osha_press_kit_link_label'] = $strongarm;
-
-  $strongarm = new stdClass();
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
-  $strongarm->name = 'osha_press_kit_link_url';
-  $strongarm->value = '';
-  $export['osha_press_kit_link_url'] = $strongarm;
-
-  $strongarm = new stdClass();
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
-  $strongarm->name = 'osha_press_kit_title';
-  $strongarm->value = 'Press kit';
-  $export['osha_press_kit_title'] = $strongarm;
-
-  $strongarm = new stdClass();
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
   $strongarm->name = 'print_comments';
   $strongarm->value = 0;
   $export['print_comments'] = $strongarm;
