@@ -66,36 +66,7 @@ function hwc_homepage_default_fe_block_settings() {
         'weight' => 0,
       ),
     ),
-    'title' => '<none>',
-    'visibility' => 1,
-  );
-
-  $export['nodeblock-29'] = array(
-    'cache' => 1,
-    'css_class' => '',
-    'custom' => 0,
-    'delta' => 29,
-    'i18n_block_language' => array(),
-    'i18n_mode' => 0,
-    'module' => 'nodeblock',
-    'node_types' => array(),
-    'pages' => '<front>',
-    'roles' => array(),
-    'themes' => array(
-      'hwc_frontend' => array(
-        'region' => 'blockgroup_tools_and_resources_block_g',
-        'status' => 1,
-        'theme' => 'hwc_frontend',
-        'weight' => 0,
-      ),
-      'seven' => array(
-        'region' => '',
-        'status' => 0,
-        'theme' => 'seven',
-        'weight' => 0,
-      ),
-    ),
-    'title' => '<none>',
+    'title' => 'Tools and resources',
     'visibility' => 1,
   );
 
