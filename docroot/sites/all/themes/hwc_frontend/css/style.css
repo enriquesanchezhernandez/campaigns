@@ -12629,13 +12629,22 @@ article .hwc-share-widget ul {
     height: 356px !important;
   }
   .front #homepage_slider #num_slides > div div {
-    padding-left: 15px !important;
+    margin-left: 15px !important;
     padding-right: 15px !important;
   }
   .front #homepage_slider #num_slides > div div.field-content,
   .front #homepage_slider #num_slides > div div.views-field-title {
+    margin-left: 0 !important;
     padding-left: 0 !important;
     padding-right: 0 !important;
+  }
+  .front #homepage_slider #num_slides > div div.views-field.views-field-field-content-reference {
+    position: relative;
+    padding-right: 15px !important;
+    padding-left: 15px !important;
+  }
+  .front #homepage_slider #num_slides > div div.views-field.views-field-field-content-reference a.more-link {
+    position: relative;
   }
   .front #homepage_slider > div {
     padding-left: 0px;
@@ -12943,16 +12952,9 @@ article .hwc-share-widget ul {
     padding-left: 15px;
   }
   .node-type-article article h2 {
-    text-align: left;
     margin-right: 15px;
     margin-left: 15px;
     margin-bottom: 1em;
-  }
-  .node-type-article article .icon.recommended-resources {
-    float: left;
-    margin-top: 0;
-    margin-right: 15px;
-    margin-left: 15px;
   }
   .node-type-article article .field-name-field-recommended-articles .node-article {
     margin: 0;
@@ -12962,6 +12964,7 @@ article .hwc-share-widget ul {
   }
   .node-type-article article .field-name-field-recommended-articles .node-article .content .field-name-title-field {
     margin-bottom: 0;
+    z-index: 1000;
   }
   .node-type-article article .field-name-field-recommended-articles .node-article .content .field-name-title-field a {
     font-size: 18px;
@@ -13711,7 +13714,10 @@ article .hwc-share-widget ul {
     padding-left: 15px;
   }
   .visibility {
-    visibility: hidden;
+    display: none !important;
+  }
+  .separator_recomended_resources_home {
+    display: none;
   }
 }
 @media only screen and (max-width: 480px) {
@@ -13764,15 +13770,18 @@ article .hwc-share-widget ul {
     height: 25px;
   }
   .xs-menu {
-    /* background-color: @bg-color-2; */
-    padding-left: 15px;
-    padding-right: 15px;
     margin-top: 1em;
   }
   .xs-menu #block-search-form {
-    display: inline-table;
+    display: block;
     float: left;
-    margin-left: 30%;
+    padding-left: 0;
+    margin-left: 0;
+    width: 180px;
+  }
+  .xs-menu #block-menu-menu-header-login {
+    display: block;
+    clear: both;
   }
   /*FIN header*/
   .front #block-views-frontpage-slider-block {
@@ -13851,17 +13860,6 @@ article .hwc-share-widget ul {
   header.navbar-default .campaigns-header .navbar-header .region-header #block-search-form .input-group input {
     width: 150px;
     float: right;
-  }
-  .xs-menu {
-    background-color: #003399;
-    padding-left: 15px;
-    padding-right: 15px;
-    margin-top: 1em;
-  }
-  .xs-menu #block-search-form {
-    display: inline-table;
-    float: left;
-    margin-left: 20%;
   }
   /*FIN header*/
   /*home*/
