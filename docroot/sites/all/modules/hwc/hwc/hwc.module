@@ -323,20 +323,53 @@ function hwc_field_attach_submit($entity_type, $entity, $form, &$form_state) {
  * Implements hook_field_widget_form_alter().
  */
 function hwc_field_widget_form_alter(&$element, &$form_state, $context) {
-  $is_event_form = isset($context['form']['#node_edit_form']) &&
+  $is_events_form = isset($context['form']['#node_edit_form']) &&
     $context['form']['#node_edit_form'] == TRUE &&
     $context['form']['type']['#value'] == 'events';
-  if ($is_event_form) {
-    if (isset($element['value'])) {
-      if ($element['value']['#type'] == 'textfield') {
-        $placeholder = '';
-        switch ($element['#field_name']) {
-          case 'title_field':
-            $placeholder = t('Event title');
-            break;
-        }
+  
+  if ($is_events_form) {
+    $placeholder = '';
+    switch ($element['#field_name']) {
+      case 'title_field':
+        $placeholder = t('Event title');
         $element['value']['#attributes']['placeholder'] = $placeholder;
-      }
+        break;
+
+      case 'field_city':
+        $placeholder = t('Event city');
+        $element['value']['#attributes']['placeholder'] = $placeholder;
+        break;
+
+      case 'field_contact_name':
+        $placeholder = t('Contact person name');
+        $element['value']['#attributes']['placeholder'] = $placeholder;
+        break;
+
+      case 'field_contact_phone':
+        $placeholder = t('Contact person phone number');
+        $element['value']['#attributes']['placeholder'] = $placeholder;
+        break;
+
+      case 'field_organizer':
+        $placeholder = t('Event organizer');
+        $element['value']['#attributes']['placeholder'] = $placeholder;
+        break;
+
+      case 'field_location':
+        $placeholder = t('Event location');
+        $element['value']['#attributes']['placeholder'] = $placeholder;
+        break;
+
+//      case 'field_website_of_event':
+//        $placeholder = t('Website of event');
+//        $element['_weight']['#attributes']['placeholder'] = $placeholder;
+//        break;
+
+      case 'field_contact_email':
+        $placeholder = t('Contact person e-mail');
+        $element['email']['#attributes']['placeholder'] = $placeholder;
+        break;
+
     }
   }
 }
