@@ -323,12 +323,16 @@ function hwc_field_attach_submit($entity_type, $entity, $form, &$form_state) {
  * Implements hook_field_widget_form_alter().
  */
 function hwc_field_widget_form_alter(&$element, &$form_state, $context) {
-  $is_events_form = isset($context['form']['#node_edit_form']) &&
-    $context['form']['#node_edit_form'] == TRUE &&
+  $is_edit_form = isset($context['form']['#node_edit_form']) &&
+    $context['form']['#node_edit_form'] == TRUE;
+
+  $is_events_form = $is_edit_form &&
     $context['form']['type']['#value'] == 'events';
-  
+
+  $is_news_form = $is_edit_form &&
+    $context['form']['type']['#value'] == 'news';
+
   if ($is_events_form) {
-    $placeholder = '';
     switch ($element['#field_name']) {
       case 'title_field':
         $placeholder = t('Event title');
@@ -368,6 +372,20 @@ function hwc_field_widget_form_alter(&$element, &$form_state, $context) {
       case 'field_contact_email':
         $placeholder = t('Contact person e-mail');
         $element['email']['#attributes']['placeholder'] = $placeholder;
+        break;
+
+    }
+  }
+  elseif ($is_news_form) {
+    switch ($element['#field_name']) {
+      case 'title_field':
+        $placeholder = t('News title');
+        $element['value']['#attributes']['placeholder'] = $placeholder;
+        break;
+
+      case 'field_image_caption':
+        $placeholder = t('Image caption');
+        $element['value']['#attributes']['placeholder'] = $placeholder;
         break;
 
     }
