@@ -8,7 +8,7 @@ class NCWSingleArticleMigration extends AbstractNCWNodeMigration {
   public function __construct($arguments, $nid = NULL) {
     $content_type = 'article';
     $source = 'NCWSingleArticleSource';
-    parent::__construct($arguments, $source, $content_type, '/this/needs/to/be/here');
+    parent::__construct($arguments, $source, $content_type);
     if (defined('SINGLE_NODE_MIGRATION_NID')) {
       $url = ncw_migration_datasource_url() . '/export/node/' . SINGLE_NODE_MIGRATION_NID;
       $node = ncw_migration_file_get_contents($url);

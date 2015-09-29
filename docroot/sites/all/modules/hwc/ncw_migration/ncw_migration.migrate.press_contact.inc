@@ -8,7 +8,7 @@
 class NCWPressContactMigration extends AbstractNCWNodeMigration {
 
   public function __construct($arguments) {
-    parent::__construct($arguments, 'NCWPressContactSource', 'press_contact', '/export/presscontact');
+    parent::__construct($arguments, 'NCWPressContactSource', 'press_contact');
     $this->description = 'Import press contacts from NCW';
   }
 
