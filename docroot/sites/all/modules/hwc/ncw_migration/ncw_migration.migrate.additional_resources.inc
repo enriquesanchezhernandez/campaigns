@@ -8,7 +8,6 @@
 class NCWAdditionalResourcesHighlightsMigration extends NCWHighlightMigration {
 
   public function __construct($arguments) {
-    $arguments['url'] = '/export/list-additional-resources/women_and_osh';
     $arguments['source_klass'] = 'NCWAdditionalResourcesNewsSource';
     parent::__construct($arguments);
     /** @var NCWAdditionalResourcesBaseSource content_type */
@@ -26,7 +25,6 @@ class NCWAdditionalResourcesHighlightsMigration extends NCWHighlightMigration {
 class NCWAdditionalResourcesNewsMigration extends NCWHighlightMigration {
 
   public function __construct($arguments) {
-    $arguments['url'] = '/export/list-additional-resources/women_and_osh';
     $arguments['source_klass'] = 'NCWAdditionalResourcesNewsSource';
     parent::__construct($arguments);
     /** @var NCWAdditionalResourcesBaseSource content_type */
@@ -44,7 +42,6 @@ class NCWAdditionalResourcesNewsMigration extends NCWHighlightMigration {
 class NCWAdditionalResourcesPressReleasesMigration extends NCWHighlightMigration {
 
   public function __construct($arguments) {
-    $arguments['url'] = '/export/list-additional-resources/women_and_osh';
     $arguments['source_klass'] = 'NCWAdditionalResourcesPressReleasesSource';
     parent::__construct($arguments);
     /** @var NCWAdditionalResourcesBaseSource content_type */
@@ -61,7 +58,6 @@ class NCWAdditionalResourcesPressReleasesMigration extends NCWHighlightMigration
 class NCWAdditionalResourcesPublicationsMigration extends NCWHighlightMigration {
 
   public function __construct($arguments) {
-    $arguments['url'] = '/export/list-additional-resources/women_and_osh';
     $arguments['source_klass'] = 'NCWAdditionalResourcesPublicationsSource';
     parent::__construct($arguments);
     /** @var NCWAdditionalResourcesBaseSource content_type */

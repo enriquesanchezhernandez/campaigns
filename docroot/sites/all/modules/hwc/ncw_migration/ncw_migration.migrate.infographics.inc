@@ -8,7 +8,7 @@
 class NCWInfographicsMigration extends AbstractNCWNodeMigration {
 
   public function __construct($arguments) {
-    parent::__construct($arguments, 'NCWInfographicsSource', 'infographic', '/export/list/infographic/psychosocial_risks_and_stress');
+    parent::__construct($arguments, 'NCWInfographicsSource', 'infographic');
     $this->description = 'Import infographics from NCW';
   }
 

@@ -35,4 +35,7 @@ function hwc_views_pre_render(view &$view) {
     $path = drupal_get_path('module', 'hwc');
     drupal_add_js($path . '/js/hwc_alpha_pager.js');
   }
+
+  // Add JS to create a select list from tabs
+  drupal_add_js(drupal_get_path('module', 'hwc') . '/js/hwc_tabs_to_select_list.js');
 }

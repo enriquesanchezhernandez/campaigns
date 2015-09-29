@@ -31,6 +31,7 @@ function drush_ncw_migration_hwc_migrate_all() {
     'tax_publication_types',
     'tax_tags',
 
+    'infographics',
     'events',
     'publications',
     'news',
