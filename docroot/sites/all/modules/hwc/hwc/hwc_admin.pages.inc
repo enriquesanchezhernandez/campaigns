@@ -55,6 +55,7 @@ function hwc_admin_config_form() {
             '#type' => 'textfield',
             '#title' => ucfirst(str_replace('_', ' ', $machine_name)) . ' endpoint URL',
             '#default_value' => variable_get("hwc_migration_${machine_name}_url", ''),
+            '#size' => 90,
           );
         }
       }
