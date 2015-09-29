@@ -214,9 +214,9 @@ function hwc_partner_node_view($node, $view_mode, $langcode) {
       $node->content['profile_update_link'] = array(
         '#theme' => 'link',
         '#text' => t('Update profile'),
-        '#path' => 'node/' . $node->nid . '/edit',
+        '#path' => 'private/profile/update',
         '#options' => array(
-          'attributes' => array('onclick' => "alert('@todo: Waiting for the profile edit link ... now move along!'); return false;"),
+          'attributes' => array(),
           'html' => TRUE,
         ),
       );
