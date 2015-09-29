@@ -48,7 +48,6 @@
     }
     ?>
     <tr>
-    <?php /*
     <!--   <td align="left" width="5%" style="padding-left: 0px; padding-right: 0px; vertical-align: top; padding-top: 5px;">
         <?php
           $directory = drupal_get_path('module','osha_newsletter');
@@ -65,7 +64,6 @@
         ));
         ?>
       </td> -->
-    */ ?>
        <td style="text-align: left; padding-top: 5px;">
         <?php
         if (isset($variables['elements']['#campaign_id'])) {
