@@ -43,7 +43,7 @@ function hwc_admin_config_form() {
     $form['migration']['note'] = array(
       '#type' => 'item',
       '#markup' => $note,
-      '#weight' => 90,
+      '#weight' => -1,
     );
 
     foreach(migrate_migrations() as $machine_name => $meta) {
@@ -55,7 +55,6 @@ function hwc_admin_config_form() {
             '#type' => 'textfield',
             '#title' => ucfirst(str_replace('_', ' ', $machine_name)) . ' endpoint URL',
             '#default_value' => variable_get("hwc_migration_${machine_name}_url", ''),
-            '#weight' => 100,
           );
         }
       }
