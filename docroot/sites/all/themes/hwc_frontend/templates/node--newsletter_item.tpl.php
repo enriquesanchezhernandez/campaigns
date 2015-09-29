@@ -40,7 +40,7 @@
       $city_location = (isset($field_city) && !empty($field_city)) ? $field_city[0]['safe_value'] : '';
       ?>
       <tr>
-        <td colspan="2" style="font-family: Arial, sans-serif; font-size: 14px; padding-left: 14px;">
+         <td style="font-family: Arial, sans-serif; font-size: 12px;">
           <span class="item-date"><?php print format_date($date, 'custom', 'M d, Y'); ?></span>
         </td>
       </tr>
@@ -48,7 +48,8 @@
     }
     ?>
     <tr>
-      <td align="left" width="5%" style="padding-left: 0px; padding-right: 0px; vertical-align: top; padding-top: 5px;">
+    <?php /*
+    <!--   <td align="left" width="5%" style="padding-left: 0px; padding-right: 0px; vertical-align: top; padding-top: 5px;">
         <?php
           $directory = drupal_get_path('module','osha_newsletter');
           global $base_url; // TODO: should link to node
@@ -63,8 +64,9 @@
           'external' => TRUE
         ));
         ?>
-      </td>
-      <td align="right" width="95%" style="text-align: left; padding-top: 5px; padding-bottom: 10px;">
+      </td> -->
+    */ ?>
+       <td style="text-align: left; padding-top: 5px;">
         <?php
         if (isset($variables['elements']['#campaign_id'])) {
           $url_query = array('pk_campaign' => $variables['elements']['#campaign_id']);
@@ -88,7 +90,7 @@
       </td>
     </tr>
     <tr>
-      <td colspan="2" style="font-family: Arial, sans-serif; font-size: 14px; padding-left: 14px;">
+      <td colspan="2" style="font-family: Arial, sans-serif; font-size: 14px;">
         <?php
         if($node->type == 'events'){
           ?>
@@ -99,7 +101,7 @@
       </td>
     </tr>
     <tr>
-      <td colspan="2" style="border-bottom:2px dotted #CFDDEE;padding-top:0px;"></td>
+      <td colspan="2" style="border-bottom: 1px dotted #749b00; padding-top:0px;"></td>
     </tr>
     <tr>
       <td colspan="2" style="padding-bottom: 10px;" class="space-beyond-dotted-line"></td>
