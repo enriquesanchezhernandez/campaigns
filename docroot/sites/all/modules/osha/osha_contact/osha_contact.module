@@ -57,6 +57,7 @@ function osha_contact_form_contact_site_form_alter(&$form, &$form_state){
   $form['mail']['#weight'] = 4;
   $form['country']['#weight'] = 5;
   $form['message']['#weight'] = 6;
+  $form['#attributes']['class'][] = 'container';
 
   $form['#submit'][] = 'contact_form_send';
 }
