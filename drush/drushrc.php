@@ -428,6 +428,7 @@ $options['init-modules'] = array(
   'flickrfield',
   'chosen',
   'colorbox',
+  'galleryformatter',
 
   // cookie privacy
   'eu_cookie_compliance',
