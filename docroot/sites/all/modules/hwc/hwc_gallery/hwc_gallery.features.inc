@@ -24,6 +24,74 @@ function hwc_gallery_views_api($module = NULL, $api = NULL) {
 }
 
 /**
+ * Implements hook_image_default_styles().
+ */
+function hwc_gallery_image_default_styles() {
+  $styles = array();
+
+  // Exported image style: medium_thumbnail_mc_340.
+  $styles['medium_thumbnail_mc_340'] = array(
+    'label' => 'Medium thumbnail manual crop (340 X 220)',
+    'effects' => array(
+      4 => array(
+        'name' => 'manualcrop_crop_and_scale',
+        'data' => array(
+          'width' => 340,
+          'height' => 220,
+          'upscale' => 0,
+          'respectminimum' => 1,
+          'onlyscaleifcrop' => 0,
+          'style_name' => 'medium_thumbnail_mc_340',
+        ),
+        'weight' => 0,
+      ),
+    ),
+  );
+
+  // Exported image style: small_thumb_from_medium_crop.
+  $styles['small_thumb_from_medium_crop'] = array(
+    'label' => 'Small thumb from medium crop (110px wide)',
+    'effects' => array(
+      2 => array(
+        'name' => 'manualcrop_reuse',
+        'data' => array(
+          'reuse_crop_style' => 'medium_thumbnail_mc',
+          'apply_all_effects' => 0,
+        ),
+        'weight' => 0,
+      ),
+      3 => array(
+        'name' => 'image_scale',
+        'data' => array(
+          'width' => 110,
+          'height' => '',
+          'upscale' => 0,
+        ),
+        'weight' => 2,
+      ),
+    ),
+  );
+
+  // Exported image style: xl_image.
+  $styles['xl_image'] = array(
+    'label' => 'XL image (1200px wide)',
+    'effects' => array(
+      5 => array(
+        'name' => 'image_scale',
+        'data' => array(
+          'width' => 1200,
+          'height' => '',
+          'upscale' => 0,
+        ),
+        'weight' => 1,
+      ),
+    ),
+  );
+
+  return $styles;
+}
+
+/**
  * Implements hook_node_info().
  */
 function hwc_gallery_node_info() {

@@ -51,10 +51,10 @@ function hwc_gallery_field_default_field_instances() {
         'weight' => 0,
       ),
       'osha_slideshow' => array(
-        'label' => 'above',
+        'label' => 'hidden',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 0,
+        'weight' => 2,
       ),
       'pub_teaser' => array(
         'label' => 'above',
@@ -149,9 +149,19 @@ function hwc_gallery_field_default_field_instances() {
         'weight' => 0,
       ),
       'osha_slideshow' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
+        'label' => 'hidden',
+        'module' => 'galleryformatter',
+        'settings' => array(
+          'field_formatter_class' => '',
+          'link_to_full' => 1,
+          'link_to_full_style' => 'xl_image',
+          'linking_method' => 'onclick_full',
+          'modal' => 'colorbox',
+          'slide_style' => 'medium_thumbnail_mc_340',
+          'style' => 'Hwc_gallery',
+          'thumb_style' => 'small_thumb_from_medium_crop',
+        ),
+        'type' => 'galleryformatter_default',
         'weight' => 0,
       ),
       'pub_teaser' => array(
@@ -205,7 +215,7 @@ function hwc_gallery_field_default_field_instances() {
         'manualcrop_require_cropping' => array(),
         'manualcrop_styles_list' => array(
           'article_image' => 'article_image',
-          'medium_thumbnail_mc' => 'medium_thumbnail_mc',
+          'medium_thumbnail_mc_340' => 'medium_thumbnail_mc_340',
         ),
         'manualcrop_styles_mode' => 'include',
         'manualcrop_thumblist' => 0,
@@ -262,10 +272,10 @@ function hwc_gallery_field_default_field_instances() {
         'weight' => 0,
       ),
       'osha_slideshow' => array(
-        'label' => 'above',
+        'label' => 'hidden',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 0,
+        'weight' => 1,
       ),
       'pub_teaser' => array(
         'label' => 'above',

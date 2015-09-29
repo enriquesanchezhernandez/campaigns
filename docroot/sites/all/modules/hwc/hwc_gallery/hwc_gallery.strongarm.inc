@@ -156,25 +156,25 @@ function hwc_gallery_strongarm() {
         'custom_settings' => TRUE,
       ),
       'title_body' => array(
-        'custom_settings' => TRUE,
+        'custom_settings' => FALSE,
       ),
       'body' => array(
-        'custom_settings' => TRUE,
+        'custom_settings' => FALSE,
       ),
       'osha_slideshow' => array(
         'custom_settings' => TRUE,
       ),
       'highlights_item' => array(
-        'custom_settings' => TRUE,
+        'custom_settings' => FALSE,
       ),
       'newsletter_item' => array(
-        'custom_settings' => TRUE,
+        'custom_settings' => FALSE,
       ),
       'pub_teaser' => array(
-        'custom_settings' => TRUE,
+        'custom_settings' => FALSE,
       ),
       'osha_resources' => array(
-        'custom_settings' => TRUE,
+        'custom_settings' => FALSE,
       ),
       'full' => array(
         'custom_settings' => FALSE,
