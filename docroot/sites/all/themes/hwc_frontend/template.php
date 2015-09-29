@@ -163,36 +163,6 @@ function hwc_frontend_preprocess_page(&$vars) {
           );
           break;
 
-        case 'practical_tool':
-          $link_title = t('Back to practical tools list');
-          $link_href = 'practical-tools';
-          $vars['page']['above_title']['practical-tool-page-title'] = array(
-            '#type' => 'item',
-            '#markup' => '<h1>' . t('Practical tools') . '</h1>',
-          );
-          break;
-
-        case 'events':
-          $date = new DateTime($node->field_start_date['und'][0]['value']);
-          $now = new DateTime();
-          if ($date < $now) {
-            $link_title = t('Back to past events list');
-            $link_href = 'past-events';
-            $vars['page']['above_title']['events-page-title'] = array(
-              '#type' => 'item',
-              '#markup' => '<h1>' . t('Past events') . '</h1>',
-            );
-            break;
-          }
-          $link_title = t('Back to events list');
-          $link_href = 'events';
-          $vars['page']['above_title']['events-page-title'] = array(
-            '#type' => 'item',
-            '#markup' => '<h1>' . t('Upcoming events') . '</h1>',
-          );
-          break;
-
-
       }
       if (isset($link_title)) {
         $vars['page']['above_title']['back-to-link'] = array(
@@ -281,7 +251,6 @@ function hwc_frontend_panels_flexible($vars) {
 }
 function hwc_frontend_preprocess_node(&$vars) {
   if ($vars['view_mode'] == 'full' && $vars['type'] == 'events') {
-    $vars['classes_array'][] = 'container';
     if (isset($vars['field_start_date'])) {
       $end_date = $vars['field_start_date'][0]['value2'];
       $date_diff = strtotime($end_date) - strtotime('now');
@@ -299,8 +268,6 @@ function hwc_frontend_preprocess_node(&$vars) {
   $vars['theme_hook_suggestions'][] = 'node__' . $view_mode;
   $vars['theme_hook_suggestions'][] = 'node__' . $vars['node']->type . '__' . $view_mode;
   $vars['theme_hook_suggestions'][] = 'node__' . $vars['node']->nid . '__' . $view_mode;
-
-  hwc_frontend_top_anchor($vars);
 }
 
 function hwc_frontend_preprocess_image_style(&$variables) {
@@ -339,20 +306,4 @@ function hwc_frontend_on_the_web_image($variables) {
     'title' => $title
   );
   return theme('image', $variables);
-}
-
-/**
- * Anchor to top of the page
- */
-function hwc_frontend_top_anchor(&$vars) {
-  $options = array(
-      'attributes' => array(
-          'class' => 'top_anchor',
-      ),
-      'external' => TRUE,
-      'fragment' => 'top',
-      'html' => TRUE,
-  );
-
-  $vars['top_anchor'] = l('<img src="'.file_create_url(path_to_theme().'/images/anchor-top.png').'" />', '', $options);
 }

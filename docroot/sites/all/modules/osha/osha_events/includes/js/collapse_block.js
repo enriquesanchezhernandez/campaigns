@@ -18,7 +18,8 @@ function osha_events_hide_date_filters(initial_load){
     {
         if(!initial_load){ // onclick phase
             jQuery(this).hide();
-        }else if(!jQuery(this).find('a.current_month').length && !jQuery(this).parent().find('a.current_year').length){ // init phase
+        }
+        else if(!jQuery(this).find('a.current_month').length){ // init phase
             jQuery(this).hide();
         }
     });

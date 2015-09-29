@@ -33,7 +33,6 @@ col-md-2
 col-md-4
 col-md-6
 col-sm-4
-container
 col-sm-6
 col-md-12
 container

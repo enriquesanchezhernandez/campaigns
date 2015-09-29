@@ -12,35 +12,6 @@ function osha_search_default_fe_block_settings() {
 
   $export['version'] = '2.0';
 
-  $export['facetapi-bhmRHTzU2n0ejKZP9wDI0S1oi2DgbSDm'] = array(
-    'cache' => -1,
-    'css_class' => '',
-    'custom' => 0,
-    'delta' => 'bhmRHTzU2n0ejKZP9wDI0S1oi2DgbSDm',
-    'i18n_block_language' => array(),
-    'i18n_mode' => 0,
-    'module' => 'facetapi',
-    'node_types' => array(),
-    'pages' => 'search',
-    'roles' => array(),
-    'themes' => array(
-      'hwc_frontend' => array(
-        'region' => 'sidebar_first',
-        'status' => 1,
-        'theme' => 'hwc_frontend',
-        'weight' => 0,
-      ),
-      'seven' => array(
-        'region' => '',
-        'status' => 0,
-        'theme' => 'seven',
-        'weight' => 0,
-      ),
-    ),
-    'title' => 'Show:',
-    'visibility' => 1,
-  );
-
   $export['menu-menu-search'] = array(
     'cache' => -1,
     'css_class' => '',

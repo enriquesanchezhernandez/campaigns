@@ -134,7 +134,7 @@ function osha_news_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 17,
+        'weight' => 8,
       ),
       'highlights_item' => array(
         'label' => 'above',
@@ -287,7 +287,7 @@ function osha_news_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 20,
+        'weight' => 11,
       ),
       'highlights_item' => array(
         'label' => 'above',
@@ -362,7 +362,7 @@ function osha_news_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 21,
+        'weight' => 12,
       ),
       'highlights_item' => array(
         'label' => 'above',
@@ -438,7 +438,7 @@ function osha_news_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 19,
+        'weight' => 10,
       ),
       'highlights_item' => array(
         'label' => 'above',
@@ -719,7 +719,7 @@ function osha_news_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 22,
+        'weight' => 13,
       ),
       'highlights_item' => array(
         'label' => 'above',
@@ -804,7 +804,7 @@ function osha_news_field_default_field_instances() {
           'osha_date_theme' => '',
         ),
         'type' => 'date_default',
-        'weight' => 0,
+        'weight' => 3,
       ),
       'highlights_item' => array(
         'label' => 'above',
@@ -934,7 +934,7 @@ function osha_news_field_default_field_instances() {
           'field_formatter_class' => '',
         ),
         'type' => 'text_default',
-        'weight' => 3,
+        'weight' => 2,
       ),
       'highlights_item' => array(
         'label' => 'above',
@@ -1033,7 +1033,7 @@ function osha_news_field_default_field_instances() {
         'label' => 'hidden',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 18,
+        'weight' => 9,
       ),
       'highlights_item' => array(
         'label' => 'above',
@@ -1115,13 +1115,13 @@ function osha_news_field_default_field_instances() {
         'label' => 'hidden',
         'module' => 'title',
         'settings' => array(
-          'field_formatter_class' => '',
+          'field_formatter_class' => 'container',
           'title_class' => '',
           'title_link' => '',
           'title_style' => 'h2',
         ),
         'type' => 'title_linked',
-        'weight' => 1,
+        'weight' => 0,
       ),
       'highlights_item' => array(
         'label' => 'hidden',

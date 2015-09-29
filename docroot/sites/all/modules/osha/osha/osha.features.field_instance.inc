@@ -1121,7 +1121,6 @@ function osha_field_default_field_instances() {
         'manualcrop_require_cropping' => array(),
         'manualcrop_styles_list' => array(
           'article_image' => 'article_image',
-          'small_thumbnail_mc_150_150' => 'small_thumbnail_mc_150_150',
         ),
         'manualcrop_styles_mode' => 'include',
         'manualcrop_thumblist' => 0,

@@ -189,7 +189,7 @@ function osha_news_strongarm() {
       'display' => array(
         'share_widget' => array(
           'default' => array(
-            'weight' => '2',
+            'weight' => '1',
             'visible' => TRUE,
           ),
           'teaser' => array(
