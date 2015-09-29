@@ -9,7 +9,7 @@
  * @see template_process()
  */
 ?>
-<table id="node-<?php print $node->nid; ?>" border="0" cellpadding="0" cellspacing="0" width="100%" style="padding-top: 15px;">
+<table id="node-<?php print $node->nid; ?>" border="0" cellpadding="0" cellspacing="0" width="100%" style="padding-top: 0px; margin-bottom: 20px; border-bottom: 1px dotted #749b00;">
   <tbody>
     <tr>
       <td>
@@ -40,7 +40,7 @@
               </td>
             </tr>
             <tr>
-              <td style="font-size: 16px;">
+              <td style="font-size: 12px;">
                 <?php
                 $date = (isset($field_publication_date) && !empty($field_publication_date)) ? strtotime($field_publication_date[0]['value']) : '';
                 print format_date($date, 'custom', 'M d, Y');
@@ -50,7 +50,7 @@
           </tbody>
         </table>
         <table border="0" cellpadding="0" cellspacing="0" class="item-summary" width="100%" style="padding-bottom: 10px;">
-          <tbody >
+          <tbody>
             <tr>
               <td style="width: 100%; font-size: 13px; font-family: Arial, sans-serif; color: #000000;">
                 <?php
@@ -59,18 +59,18 @@
                   'path' => (isset($field_image) && !empty($field_image)) ? $field_image[0]['uri'] : '',
                   'width' => 150,
                   'alt' => (isset($field_image) && !empty($field_image)) ? $field_image[0]['alt'] : '',
-                  'attributes' => array('style' => 'border: 0px; float: left; margin-right: 5px; margin-bottom: 5px;')
+                  'attributes' => array('style' => 'width: 150px; heigth: auto; border: 0px; float: left; margin-right: 20px; margin-bottom:20px;')
                 )), url('node/' . $node->nid, array('absolute' => TRUE)), array(
                   'html' => TRUE,
                   'external' => TRUE
                 ));
                 ?>
-
+		
                 <?php if (isset($body) && is_array($body)) {
                   if (!empty($body)) {
-                    if (isset($body[0]['safe_value'])) {
-                      print($body[0]['safe_value']);
-                    }
+                    if (isset($body[0]['safe_value'])) { ?>
+                     <div class="safe_value"> <?php print($body[0]['safe_value']); ?> </div>
+              <?php }
                   }
                 }?>
               </td>

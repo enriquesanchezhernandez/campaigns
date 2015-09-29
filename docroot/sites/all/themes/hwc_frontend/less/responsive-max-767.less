@@ -258,7 +258,7 @@ header.navbar-default{
 	}
 	.main-container{
 		h1, .title-alt{
-			margin-top: 0px;
+			margin-top: @margin-movil;
 			margin-bottom: 0px;
 			padding-bottom: 0em;
 			border-bottom: none;
@@ -267,6 +267,9 @@ header.navbar-default{
 		}
 		strong.title-alt{
 			padding: 0;
+			.form-item{
+				margin-top: @margin-movil;
+			}
 		}
 		h2{
 			margin-left: @margin-movil;
@@ -276,9 +279,13 @@ header.navbar-default{
 	.list-inline{
 		margin-left: 0;
 	}
+	body .top_anchor{
+		display: block;
+		position: absolute;
+		right: 0;
+	}
 	
 	/*home*/
-
 
 	.front{
 		//slider
@@ -290,6 +297,8 @@ header.navbar-default{
 			}
 		}
 		#homepage_slider{
+			margin-bottom: 0;
+			height: 356px !important;
 			#num_slides{
 				> div{
 					div{
@@ -309,14 +318,16 @@ header.navbar-default{
 							}
 						}
 					}
+					.views-field.views-field-body div {
+						width: 60% !important;
+						min-width: 240px !important;
+					}
 				}
 			}
 			> div{
 				padding-left: 0px;
     			padding-right: 0px;
 			}
-			margin-bottom: 0;
-			height: 356px !important;
 			.views-field-body{
 				top: 150px !important;
 				float: left !important;
@@ -336,6 +347,8 @@ header.navbar-default{
     			span{
 					margin-right: 0px;
     				float: left !important;
+					width: 60% !important;
+					min-width: 240px !important;
     			}
 			}
 			.views-field-field-content-reference{
@@ -459,8 +472,6 @@ header.navbar-default{
 			}
 		}
 	}
-	
-	
 	
 	#block-osha-newsletter-osha-newsletter-subscribe .captcha, #block-osha-newsletter-osha-newsletter-image .captcha{
 		margin-left: -257px;
@@ -599,6 +610,8 @@ header.navbar-default{
 				min-height: 345px;
 				min-width: 100%;
 				width: auto;
+				position: absolute;
+				left: -50%;
 				max-width: none;
 			}
 		}
@@ -734,9 +747,9 @@ header.navbar-default{
 			}
 		}
 		.node-type-practical-tool{
-			.panel-1col .panel-col .panel-pane:last-child{
-				/* border-bottom: 1px dotted @border-default-color;
-				padding-bottom: 2em; */
+			.panel-1col .panel-col .panel-pane{
+				padding-left: @margin-movil;
+				padding-right: @margin-movil;
 			}
 			.pane-node-field-provider .field-items, .pane-node-body .field-items, .pane-node-field-implementation-steps .field-items, .pane-node-field-dissemination-used .field-items, .pane-node-field-access-tool-link .field-items, .pane-hwc-practical-tool-hwc-practical-tool-language-list .field-items, .pane-node-field-external-urls .field-items, .pane-node-field-provider .field-label, .pane-node-body .field-label, .pane-node-field-implementation-steps .field-label, .pane-node-field-dissemination-used .field-label, .pane-node-field-access-tool-link .field-label, .pane-hwc-practical-tool-hwc-practical-tool-language-list .field-label, .pane-node-field-external-urls .field-label{
 				width: 99%;
@@ -887,6 +900,11 @@ header.navbar-default{
 			img{
 				display: none;
 			}
+		}
+	}
+	.node-type-events{
+		.back-to-link{
+			display: none;
 		}
 	}
 	/*Fin events*/
@@ -1360,6 +1378,50 @@ header.navbar-default{
 	}
 }
 /*FIN pag campaign-materials*/
+
+/*Get involved plantilla*/
+.get-involved-section{
+	.image-block{
+		padding:0px 0px 20px 0px !important;
+	}
+}
+/*fin get involved plantilla*/
+
+/*Plantilla employers*/
+.employers-section{
+	h3{
+		margin-top: 30px;
+	}
+	.recomended-container-section{
+		padding-bottom: 0em;
+		padding-top: 0;
+		border-bottom: none;
+	}
+	.news-events-section {
+	    padding-bottom: 0em;
+	    padding-top: 0;
+	}
+	.recomended-resources-for-you{
+		margin-left: -15px;
+		margin-right: -15px;
+		margin-bottom: 0;
+	}
+	.healthy-workplaces, .other-practical-tools, .news-section{
+		border-right: none;
+		padding-left: 0px;
+		padding-right: 0px;
+	}
+	.e-guide, .case-studies, .events-section{
+		padding-left: 0px;
+		padding-right: 0px;
+	}
+	.e-guide {
+		h3{
+			margin-bottom: 1em;
+		}
+	}
+}
+/*fin plantilla employers*/
 
 /*clases para toda la web*/
 .section-introduction{
