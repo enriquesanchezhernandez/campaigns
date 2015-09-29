@@ -8,7 +8,7 @@
 class NCWNewsMigration extends AbstractNCWNodeMigration {
 
   public function __construct($arguments) {
-    parent::__construct($arguments, 'NCWNewsSource', 'news', '/export/list/news/women_and_osh');
+    parent::__construct($arguments, 'NCWNewsSource', 'news');
     $this->description = 'Import news from NCW';
   }
 

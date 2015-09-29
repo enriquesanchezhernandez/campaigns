@@ -122,11 +122,11 @@ function ncw_migration_migrate_api() {
         'dependencies' => array(),
         'class_name' => 'NCWTaxonomyTagsMigration',
       ),
-      'article' => array(
-        'group_name' => 'ncw',
-        'dependencies' => array(),
-        'class_name' => 'NCWSingleArticleMigration',
-      ),
+//      'article' => array(
+//        'group_name' => 'ncw',
+//        'dependencies' => array(),
+//        'class_name' => 'NCWSingleArticleMigration',
+//      ),
     ),
   );
 }
@@ -142,14 +142,14 @@ abstract class AbstractNCWNodeMigration extends Migration {
   protected $bundle = NULL;
   protected $missingUrl = TRUE;
 
-  public function __construct($arguments, $source_klass, $bundle, $url_suffix) {
+  public function __construct($arguments, $source_klass, $bundle) {
     parent::__construct($arguments);
 
     $this->bundle = $bundle;
     if (!empty($arguments['dependencies'])) {
       $this->dependencies = $arguments['dependencies'];
     }
-    $this->endpoint_url = $this->getMigrationURL($url_suffix);
+    $this->endpoint_url = $this->getMigrationURL();
     if ($this->validateEndpointURL()) {
       $this->missingUrl = FALSE;
     }
@@ -167,6 +167,7 @@ abstract class AbstractNCWNodeMigration extends Migration {
       array('track_last_imported' => TRUE)
     );
     $this->source = new $source_klass(array(
+      'cache_counts' => FALSE,
       'endpoint_url' => $this->endpoint_url,
       'track_changes' => TRUE,
     ));
@@ -334,20 +335,15 @@ abstract class AbstractNCWNodeMigration extends Migration {
     }
   }
 
-  public function getMigrationURL($suffix = '') {
-    $ret = '';
+  public function getMigrationURL() {
     $variable = 'hwc_migration_' . $this->getMachineName() . '_url';
-    $value = variable_get($variable);
-    if (empty($value)) {
-      return ncw_migration_datasource_url() . $suffix;
-    }
-    return $ret;
+    return variable_get($variable);
   }
 
   public function validateEndpointURL() {
     if(empty($this->endpoint_url)) {
       $variable = 'hwc_migration_' . $this->getMachineName() . '_url';
-      drupal_set_message($this->getMachineName() . " migration has incorrect URL, set '$variable' or 'hwc_migration_root_url", 'error');
+      // drupal_set_message($this->getMachineName() . " migration has incorrect URL, set '$variable' or 'hwc_migration_root_url", 'error');
       return FALSE;
     }
     return TRUE;
@@ -522,8 +518,8 @@ abstract class AbstractNCWNodeSource extends MigrateSource {
  */
 abstract class AbstractNCWTaxonomyTermMigration extends AbstractNCWNodeMigration {
 
-  public function __construct($arguments, $source_klass, $bundle, $url_suffix) {
-    parent::__construct($arguments, $source_klass, $bundle, $url_suffix);
+  public function __construct($arguments, $source_klass, $bundle) {
+    parent::__construct($arguments, $source_klass, $bundle);
     $this->bundle = $bundle;
     if (!empty($arguments['dependencies'])) {
       $this->dependencies = $arguments['dependencies'];
@@ -541,7 +537,7 @@ abstract class AbstractNCWTaxonomyTermMigration extends AbstractNCWNodeMigration
     );
     $this->source = new $source_klass(array(
       'endpoint_url' => $this->endpoint_url,
-      'track_changes' => TRUE
+      'track_changes' => TRUE,
     ));
     $this->destination = new MigrateDestinationTerm($bundle, array('language' => 'en'));
     $this->ignoreMetatagMigration();

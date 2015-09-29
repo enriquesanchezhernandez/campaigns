@@ -3,7 +3,7 @@
 class NCWTaxonomyCountryMigration extends AbstractNCWTaxonomyTermMigration {
 
   public function __construct($arguments) {
-    parent::__construct($arguments, 'CountryNCWTaxonomyTermSource', 'country', '/export/taxonomy/country');
+    parent::__construct($arguments, 'CountryNCWTaxonomyTermSource', 'country');
     $this->description = 'Import taxonomy "country" from NCW';
   }
 }
@@ -11,7 +11,7 @@ class NCWTaxonomyCountryMigration extends AbstractNCWTaxonomyTermMigration {
 class NCWTaxonomyCountryStatusMigration extends AbstractNCWTaxonomyTermMigration {
 
   public function __construct($arguments) {
-    parent::__construct($arguments, 'SimpleNCWTaxonomyTermSource', 'country_status', '/export/taxonomy/country_status');
+    parent::__construct($arguments, 'SimpleNCWTaxonomyTermSource', 'country_status');
     $this->description = 'Import taxonomy "country_status" from NCW';
   }
 }
@@ -19,7 +19,7 @@ class NCWTaxonomyCountryStatusMigration extends AbstractNCWTaxonomyTermMigration
 class NCWTaxonomyFOPLinkSectionsMigration extends AbstractNCWTaxonomyTermMigration {
 
   public function __construct($arguments) {
-    parent::__construct($arguments, 'SimpleNCWTaxonomyTermSource', 'fop_link_sections', '/export/taxonomy/fop_link_sections');
+    parent::__construct($arguments, 'SimpleNCWTaxonomyTermSource', 'fop_link_sections');
     $this->description = 'Import taxonomy "fop_link_sections" from NCW';
   }
 }
@@ -27,7 +27,7 @@ class NCWTaxonomyFOPLinkSectionsMigration extends AbstractNCWTaxonomyTermMigrati
 class NCWTaxonomyNewsletterSectionsMigration extends AbstractNCWTaxonomyTermMigration {
 
   public function __construct($arguments) {
-    parent::__construct($arguments, 'SimpleNCWTaxonomyTermSource', 'newsletter_sections', '/export/taxonomy/newsletter_sections');
+    parent::__construct($arguments, 'SimpleNCWTaxonomyTermSource', 'newsletter_sections');
     $this->description = 'Import taxonomy "newsletter_sections" from NCW';
   }
 }
@@ -35,7 +35,7 @@ class NCWTaxonomyNewsletterSectionsMigration extends AbstractNCWTaxonomyTermMigr
 class NCWTaxonomyPublicationTypeMigration extends AbstractNCWTaxonomyTermMigration {
 
   public function __construct($arguments) {
-    parent::__construct($arguments, 'PublicationTypeNCWTaxonomyTermSource', 'publication_types', '/export/taxonomy/publication_types');
+    parent::__construct($arguments, 'PublicationTypeNCWTaxonomyTermSource', 'publication_types');
     $this->description = 'Import taxonomy "publication_types" from NCW';
   }
 }
@@ -43,7 +43,7 @@ class NCWTaxonomyPublicationTypeMigration extends AbstractNCWTaxonomyTermMigrati
 class NCWTaxonomyTagsMigration extends AbstractNCWTaxonomyTermMigration {
 
   public function __construct($arguments) {
-    parent::__construct($arguments, 'TagsNCWTaxonomyTermSource', 'tags', '/export/taxonomy/tags');
+    parent::__construct($arguments, 'TagsNCWTaxonomyTermSource', 'tags');
     $this->description = 'Import taxonomy "tags" from NCW';
   }
 }

@@ -28,5 +28,41 @@ function hwc_admin_config_form() {
     '#default_value' => variable_get('hwc_current_campaign_tags', array()),
   );
 
-  return system_settings_form($form);
+  // NCW migration
+  if (module_exists('migrate')) {
+    $form['migration'] = array(
+      '#type' => 'fieldset',
+      '#title' => 'Corporate content migration',
+      '#collapsible' => TRUE,
+      '#weight' => 100,
+    );
+    $note = 'To disable one of the migrations set the URL empty then Save. Endpoints should expose JSON data';
+    if (module_exists('migrate_ui')) {
+      $note .= ' ' . l('Visit migration status overview', 'admin/content/migrate/groups/ncw');
+    }
+    $form['migration']['note'] = array(
+      '#type' => 'item',
+      '#markup' => $note,
+      '#weight' => -1,
+    );
+
+    foreach(migrate_migrations() as $machine_name => $meta) {
+      $migration = MigrationBase::getInstance($machine_name);
+      if ($group = $migration->getGroup()) {
+        // Filter all migrations from NCW group
+        if ('ncw' == $group->getName()) {
+          $form['migration']["hwc_migration_${machine_name}_url"] = array(
+            '#type' => 'textfield',
+            '#title' => ucfirst(str_replace('_', ' ', $machine_name)) . ' endpoint URL',
+            '#default_value' => variable_get("hwc_migration_${machine_name}_url", ''),
+            '#size' => 90,
+          );
+        }
+      }
+      uksort($form['migration'], 'strcmp');
+    }
+  }
+  $form = system_settings_form($form);
+  $form['actions']['#weight'] = 150;
+  return $form;
 }

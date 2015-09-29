@@ -99,158 +99,167 @@ function hwc_frontend_menu_link(array $variables) {
 }
 
 function hwc_frontend_preprocess_page(&$vars) {
-    // Change Events page title
-    if(!empty($vars['theme_hook_suggestions']['0']) && in_array($vars['theme_hook_suggestions']['0'], array('page__events', 'page__past_events'))){
-      $title = '<div id="block-osha-events-events-links">';
-      $title .= l(t('Upcoming events'), 'events') . ' / ' . l(t('Past events'), 'past-events');
-      $title .= '</div>';
-      drupal_set_title($title, PASS_THROUGH);
-    }
+  // Change Events page title
+  if(!empty($vars['theme_hook_suggestions']['0']) && in_array($vars['theme_hook_suggestions']['0'], array('page__events', 'page__past_events'))){
+    $title = '<div id="block-osha-events-events-links">';
+    $title .= l(t('Upcoming events'), 'events') . ' / ' . l(t('Past events'), 'past-events');
+    $title .= '</div>';
+    drupal_set_title($title, PASS_THROUGH);
+  }
 
-    if (drupal_is_front_page()) {
-        unset($vars['page']['content']['system_main']['default_message']);
-        drupal_set_title('');
-    }
+  if (drupal_is_front_page()) {
+      unset($vars['page']['content']['system_main']['default_message']);
+      drupal_set_title('');
+  }
 
-    // add back to links (e.g. Back to news)
-    if (isset($vars['node'])) {
-      $node = $vars['node'];
-      switch ($node->type) {
-        case 'publication':
-          $link_title = t('Back to publications list');
-          $link_href = 'publications';
-          $vars['page']['above_title']['title-alternative'] = array(
-            '#type' => 'item',
-            '#markup' => t('Publications'),
-            '#prefix' => '<strong class="title-alt">', '#suffix' => '</strong>'
-          );
-          break;
-        case 'press_release':
-          $link_title = t('Back to press releases list');
-          $link_href = 'press-room';
-          $vars['page']['above_title']['title-alternative'] = array(
-            '#type' => 'item',
-            '#markup' => t('Press releases'),
-            '#prefix' => '<strong class="title-alt">', '#suffix' => '</strong>'
-          );
-          break;
-        case 'news':
-          $link_title = t('Back to news');
-          $link_href = 'news';
-          $vars['page']['above_title']['title-alternative'] = array(
-            '#type' => 'item',
-            '#markup' => t('News'),
-            '#prefix' => '<strong class="title-alt">', '#suffix' => '</strong>'
-          );
-          break;
-        case 'infographic':
-          $link_title = t('Back to infographics list');
-          $link_href = 'infographics';
-          $vars['page']['above_title']['title-alternative'] = array(
-            '#type' => 'item',
-            '#markup' => t('Infographics'),
-            '#prefix' => '<strong class="title-alt">', '#suffix' => '</strong>'
-          );
-          break;
+  // add back to links (e.g. Back to news)
+  if (isset($vars['node'])) {
+    $node = $vars['node'];
+    switch ($node->type) {
+      case 'publication':
+        $link_title = t('Back to publications list');
+        $link_href = 'publications';
+        $vars['page']['above_title']['title-alternative'] = array(
+          '#type' => 'item',
+          '#markup' => t('Publications'),
+          '#prefix' => '<strong class="title-alt">', '#suffix' => '</strong>'
+        );
+        break;
+      case 'press_release':
+        $link_title = t('Back to press releases list');
+        $link_href = 'press-room';
+        $vars['page']['above_title']['title-alternative'] = array(
+          '#type' => 'item',
+          '#markup' => t('Press releases'),
+          '#prefix' => '<strong class="title-alt">', '#suffix' => '</strong>'
+        );
+        break;
+      case 'news':
+        $link_title = t('Back to news');
+        $link_href = 'news';
+        $vars['page']['above_title']['title-alternative'] = array(
+          '#type' => 'item',
+          '#markup' => t('News'),
+          '#prefix' => '<strong class="title-alt">', '#suffix' => '</strong>'
+        );
+        break;
+      case 'infographic':
+        $link_title = t('Back to infographics list');
+        $link_href = 'infographics';
+        $vars['page']['above_title']['title-alternative'] = array(
+          '#type' => 'item',
+          '#markup' => t('Infographics'),
+          '#prefix' => '<strong class="title-alt">', '#suffix' => '</strong>'
+        );
+        break;
 
-        case 'campaign_materials':
-          $link_title = t('Back to campaign materials list');
-          $link_href = 'campaign-materials';
-          $vars['page']['above_title']['title-alternative'] = array(
-            '#type' => 'item',
-            '#markup' => t('Campaign materials'),
-            '#prefix' => '<strong class="title-alt">', '#suffix' => '</strong>'
-          );
-          break;
+      case 'campaign_materials':
+        $link_title = t('Back to campaign materials list');
+        $link_href = 'campaign-materials';
+        $vars['page']['above_title']['title-alternative'] = array(
+          '#type' => 'item',
+          '#markup' => t('Campaign materials'),
+          '#prefix' => '<strong class="title-alt">', '#suffix' => '</strong>'
+        );
+        break;
 
-        case 'practical_tool':
-          $link_title = t('Back to practical tools list');
-          $link_href = 'practical-tools';
-          $vars['page']['above_title']['practical-tool-page-title'] = array(
-            '#type' => 'item',
-            '#markup' => '<h1>' . t('Practical tools') . '</h1>',
-          );
-          break;
+      case 'practical_tool':
+        $link_title = t('Back to practical tools list');
+        $link_href = 'practical-tools';
+        $vars['page']['above_title']['practical-tool-page-title'] = array(
+          '#type' => 'item',
+          '#markup' => '<h1>' . t('Practical tools') . '</h1>',
+        );
+        break;
 
-        case 'events':
-          $date = new DateTime($node->field_start_date['und'][0]['value']);
-          $now = new DateTime();
-          if ($date < $now) {
-            $link_title = t('Back to past events list');
-            $link_href = 'past-events';
-            $vars['page']['above_title']['events-page-title'] = array(
-              '#type' => 'item',
-              '#markup' => '<h1>' . t('Past events') . '</h1>',
-            );
-            break;
-          }
-          $link_title = t('Back to events list');
-          $link_href = 'events';
+      case 'events':
+        $date = new DateTime($node->field_start_date['und'][0]['value']);
+        $now = new DateTime();
+        if ($date < $now) {
+          $link_title = t('Back to past events list');
+          $link_href = 'past-events';
           $vars['page']['above_title']['events-page-title'] = array(
             '#type' => 'item',
-            '#markup' => '<h1>' . t('Upcoming events') . '</h1>',
+            '#markup' => '<h1>' . t('Past events') . '</h1>',
           );
           break;
-
-
-      }
-      if (isset($link_title)) {
-        $vars['page']['above_title']['back-to-link'] = array(
-            '#type' => 'item',
-            '#markup' => l($link_title, $link_href, array('attributes' => array('class' => array('back-to-link pull-right')))),
+        }
+        $link_title = t('Back to events list');
+        $link_href = 'events';
+        $vars['page']['above_title']['events-page-title'] = array(
+          '#type' => 'item',
+          '#markup' => '<h1>' . t('Upcoming events') . '</h1>',
         );
-      }
+        break;
+
+
     }
-
-    if ($node = menu_get_object()) {
-      if ($node->type == 'publication') {
-        ctools_include('plugins');
-        ctools_include('context');
-        $pb = path_breadcrumbs_load_by_name('publications_detail_page');
-        $breadcrumbs = _path_breadcrumbs_build_breadcrumbs($pb);
-        drupal_set_breadcrumb($breadcrumbs);
-      }
-      if ($node->type == 'practical_tool') {
-        ctools_include('plugins');
-        ctools_include('context');
-        $pb = path_breadcrumbs_load_by_name('practical_tools_details_page');
-        $breadcrumbs = _path_breadcrumbs_build_breadcrumbs($pb);
-        drupal_set_breadcrumb($breadcrumbs);
-      }
-      if ($node->type == 'campaign_materials') {
-        ctools_include('plugins');
-        ctools_include('context');
-        $pb = path_breadcrumbs_load_by_name('campaign_materials_details_page');
-        $breadcrumbs = _path_breadcrumbs_build_breadcrumbs($pb);
-        drupal_set_breadcrumb($breadcrumbs);
-      }
+    if (isset($link_title)) {
+      $vars['page']['above_title']['back-to-link'] = array(
+          '#type' => 'item',
+          '#markup' => l($link_title, $link_href, array('attributes' => array('class' => array('back-to-link pull-right')))),
+      );
     }
+  }
 
-    // Add back link (e.g. 'Back to homepage') for Partners pages
-    $partner = hwc_partner_get_account_partner();
-    if(is_object($partner)){
-      switch(current_path()){
-        case 'node/add/events':
-        case 'node/add/news':
-        case 'private':
-          $link_title = t('Back to homepage');
-          $link_href = 'node/'.$partner->nid;
-          $vars['page']['above_title']['title-alternative'] = array(
-              '#type' => 'item',
-              '#markup' => drupal_get_title(),
-              '#prefix' => '<strong class="title-alt">', '#suffix' => '</strong>'
-          );
-          drupal_set_title('');
-          break;
-      }
+  if ($node = menu_get_object()) {
+    if ($node->type == 'publication') {
+      ctools_include('plugins');
+      ctools_include('context');
+      $pb = path_breadcrumbs_load_by_name('publications_detail_page');
+      $breadcrumbs = _path_breadcrumbs_build_breadcrumbs($pb);
+      drupal_set_breadcrumb($breadcrumbs);
+    }
+    if ($node->type == 'practical_tool') {
+      ctools_include('plugins');
+      ctools_include('context');
+      $pb = path_breadcrumbs_load_by_name('practical_tools_details_page');
+      $breadcrumbs = _path_breadcrumbs_build_breadcrumbs($pb);
+      drupal_set_breadcrumb($breadcrumbs);
+    }
+    if ($node->type == 'campaign_materials') {
+      ctools_include('plugins');
+      ctools_include('context');
+      $pb = path_breadcrumbs_load_by_name('campaign_materials_details_page');
+      $breadcrumbs = _path_breadcrumbs_build_breadcrumbs($pb);
+      drupal_set_breadcrumb($breadcrumbs);
+    }
+  }
 
-      if (isset($link_title)) {
-        $vars['page']['above_title']['back-to-link'] = array(
+  // Add back link (e.g. 'Back to homepage') for Partners pages
+  $partner = hwc_partner_get_account_partner();
+  if(is_object($partner)){
+    switch(current_path()){
+      case 'node/add/events':
+      case 'node/add/news':
+      case 'private':
+        $link_title = t('Back to homepage');
+        $link_href = 'node/'.$partner->nid;
+        $vars['page']['above_title']['title-alternative'] = array(
             '#type' => 'item',
-            '#markup' => l($link_title, $link_href, array('attributes' => array('class' => array('back-to-link pull-right')))),
+            '#markup' => drupal_get_title(),
+            '#prefix' => '<strong class="title-alt">', '#suffix' => '</strong>'
         );
-      }
+        drupal_set_title('');
+        break;
     }
+
+    if (isset($link_title)) {
+      $vars['page']['above_title']['back-to-link'] = array(
+          '#type' => 'item',
+          '#markup' => l($link_title, $link_href, array('attributes' => array('class' => array('back-to-link pull-right')))),
+      );
+    }
+  }
+  // Add class container to user pages.
+  $user_page = isset($vars['page']['content']['system_main']['#bundle']) && $vars['page']['content']['system_main']['#bundle'] == 'user';
+  $user_login = isset($vars['page']['content']['system_main']['#form_id']) && $vars['page']['content']['system_main']['#form_id'] == 'user_login';
+  if ($user_page && !empty($vars['page']['content']['system_main']['#block'])) {
+    $vars['page']['content']['system_main']['#block']->css_class = 'container';
+  }
+  elseif ($user_login) {
+    $vars['page']['content']['system_main']['#attributes']['class'][] = 'container';
+  }
 }
 
 /**
