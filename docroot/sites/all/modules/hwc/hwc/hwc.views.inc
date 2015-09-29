@@ -37,7 +37,5 @@ function hwc_views_pre_render(view &$view) {
   }
 
   // Add JS to create a select list from tabs
-  if($view->name == 'partners_list' && $view->current_display == 'block'){
-    drupal_add_js(drupal_get_path('module', 'hwc') . '/js/hwc_tabs_to_select_list.js');
-  }
+  drupal_add_js(drupal_get_path('module', 'hwc') . '/js/hwc_tabs_to_select_list.js');
 }
