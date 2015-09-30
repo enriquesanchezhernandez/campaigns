@@ -51,7 +51,6 @@ function osha_search_default_search_api_index() {
               "event_speaker" : "event_speaker",
               "events" : "events",
               "news" : "news",
-              "note_to_editor" : "note_to_editor",
               "partner" : "partner",
               "practical_tool" : "practical_tool",
               "press_release" : "press_release",
