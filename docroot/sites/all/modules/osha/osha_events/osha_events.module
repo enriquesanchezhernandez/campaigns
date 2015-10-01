@@ -12,6 +12,7 @@ include_once 'osha_events.features.inc';
 
 function osha_events_form_alter(&$form, &$form_state, $form_id) {
   if ($form_id == 'events_node_form') {
+    $form['#validate'][] = 'osha_events_form_validate';
     $form['actions']['#attributes']['class'] = array('container');
     // Activity field changes
     if (isset($form['field_activity'][LANGUAGE_NONE][0])) {
@@ -29,6 +30,35 @@ function osha_events_form_alter(&$form, &$form_state, $form_id) {
       $field['#element_validate'] = array('options_field_widget_validate');
 
       $form['field_activity'][LANGUAGE_NONE] = $field;
+    }
+  }
+}
+
+/**
+ * Validate event speakers
+ *
+ * @param $form
+ * @param $form_state
+ */
+function osha_events_form_validate($form, $form_state) {
+  $values = $form_state['values'];
+  $start = $values['field_start_date'][LANGUAGE_NONE][0]['value'];
+  $end = $values['field_start_date'][LANGUAGE_NONE][0]['value2'];
+  if (!empty($start) || !empty($end)) {
+    $start = !empty($start) ? strtotime($start) : -9999999999; // Accept talking date
+    $end = !empty($end) ? strtotime($end) : 9999999999; // Accept talking date
+    if ($end == $start) {
+      $end = 9999999999; // End is empty ...
+    }
+    foreach ($values['field_schedule'][LANGUAGE_NONE] as $k => $row) {
+      if (is_numeric($k) && !empty($row['field_talking_date'][LANGUAGE_NONE][0]['value'])) {
+        $talk_date = $row['field_talking_date'][LANGUAGE_NONE][0]['value'];
+        if (!empty($talk_date) && $talk_date = strtotime($talk_date)) {
+          if ($talk_date < $start || $talk_date > $end) {
+            form_set_error("field_schedule][und][${k}][field_talking_date][und][0", t('Schedule event outside of event dates, please review'));
+          }
+        }
+      }
     }
   }
 }
