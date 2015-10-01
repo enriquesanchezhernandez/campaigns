@@ -69,7 +69,7 @@ class HwcCrmMigration extends Migration {
     $this->addFieldMapping('uid')->defaultValue(0);
     $this->addFieldMapping('comment')->defaultValue(0);
     $this->addFieldMapping('title', 'title');
-    $this->addFieldMapping('workbench_access')->defaultValue(1); // Assign default section
+    $this->addFieldMapping('workbench_access', 'workbench_access')->defaultValue('section'); // Assign default section
 
     // Handle field migration in a generic way
     $fields = field_info_instances('node', $this->bundle);
@@ -85,7 +85,7 @@ class HwcCrmMigration extends Migration {
           $this->addFieldMapping("$field_name:ignore_case")->defaultValue(TRUE);
         }
         if ($fi['type'] == 'file' || $fi['type'] == 'image') {
-          $this->addFieldMapping("$field_name:file_replace")->defaultValue(0);
+          $this->addFieldMapping("$field_name:file_replace")->defaultValue(FILE_EXISTS_REPLACE);
           $this->addFieldMapping("$field_name:file_class")->defaultValue('MigrateFileBlob');
           $this->addFieldMapping("$field_name:value", $field_name);
           $this->addFieldMapping("$field_name:destination_file", $field_name . "_file");

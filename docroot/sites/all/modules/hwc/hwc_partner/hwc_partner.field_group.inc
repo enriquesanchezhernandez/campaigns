@@ -26,6 +26,7 @@ function hwc_partner_field_group_info() {
       0 => 'field_partner_type',
       1 => 'field_quote',
       2 => 'field_social_dialog_partner',
+      3 => 'field_pledge',
     ),
     'format_type' => 'fieldset',
     'format_settings' => array(
@@ -117,9 +118,9 @@ function hwc_partner_field_group_info() {
       4 => 'field_guid_organisation',
       5 => 'field_logo',
       6 => 'field_mission_statement',
-      7 => 'field_orgtype',
-      8 => 'field_website',
-      9 => 'title_field',
+      7 => 'field_website',
+      8 => 'title_field',
+      9 => 'field_orgtype',
     ),
     'format_type' => 'fieldset',
     'format_settings' => array(

@@ -48,11 +48,17 @@ class PartnerMigration extends HwcCrmMigration {
       'field_ceo_photo',
       'field_category',
       'field_social_dialog_partner',
+      'field_pledge',
       'field_quote',
       'field_partner_type',
       'field_organisation_rep',
       'field_position_identifier',
       'field_appform_status',
+      'field_facebook_profile',
+      'field_twitter_profile',
+      'field_youtube_profile',
+      'field_slideshare_profile',
+      'field_linkedin_profile',
     );
   }
 }
@@ -70,37 +76,71 @@ class PartnerMigrateListXml extends AbstractCrmMigrateListXml {
       foreach ($xml->xpath('//Details') as $item) {
         $data = new stdClass();
         $attributes = $item->attributes();
-        $data->field_guid_organisation = (string) $attributes['Table0_Details1'];
         $data->title = (string) $attributes['Textbox1'];
         $data->title_field = (string) $attributes['Textbox1'];
+
+        $data->field_guid_organisation = (string) $attributes['Table0_Details1'];
+        $term = osha_workflow_get_section_term_by_crm_guid($data->field_guid_organisation);
+        if (!empty($term->tid)) {
+          $data->workbench_access[$term->tid] = $term->tid;
+        }
+        else {
+          watchdog('hwc_crm_migration', 'Could not find the section guid @guid for organisation @organisation',
+            array('@guid' => $data->field_guid_organisation, '@organisation' => $data->title), WATCHDOG_WARNING);
+        }
+
         $data->field_general_email = (string) $attributes['Textbox2'];
         $data->field_general_phone = (string) $attributes['Textbox3'];
         $data->field_website = (string) $attributes['Textbox4'];
         $data->field_orgtype = (string) $attributes['Textbox5'];
         $data->field_bussines_sector = (string) $attributes['Textbox6'];
         $data->field_mission_statement = (string) $attributes['Textbox7'];
-        $data->field_logo = base64_decode((string) $attributes['Textbox8']);
+
+        $logo_image = base64_decode((string) $attributes['Textbox8']);
+        $logo_ext = (string) $attributes['Textbox9'];
+        if (!empty($logo_image) && !empty($logo_ext)) {
+          $data->field_logo = $logo_image;
+          $data->field_logo_file = file_munge_filename($data->title . '.' . $logo_ext, '');
+        }
+
         $data->field_logo_mime = (string) $attributes['Textbox9'];
         $data->field_logo_file = $data->title . '.jpg';
         $data->field_campaign_website = (string) $attributes['Textbox10'];
-        $data->field_ph_address = (string) $attributes['Table0_Details2'];
-        $data->field_ph_cp = (string) $attributes['Textbox11'];
-        $data->field_country = (string) $attributes['Textbox12'];
+
+        $data->field_facebook_profile = (string) $attributes['Textbox11'];
+        $data->field_twitter_profile = (string) $attributes['Textbox12'];
+        $data->field_youtube_profile = (string) $attributes['Textbox13'];
+        $data->field_slideshare_profile = (string) $attributes['Textbox14'];
+        $data->field_linkedin_profile = (string) $attributes['Textbox15'];
+
+        $data->field_ph_address = (string) $attributes['Textbox16'];
+        $data->field_ph_cp = (string) $attributes['Textbox17'];
+        $data->field_country = (string) $attributes['Textbox18'];
         $data->field_ph_address_extra = (string) $attributes['Textbox13'];
-        $data->field_guid_main_contact = (string) $attributes['Table0_Details3'];
-        $data->field_main_contact = (string) $attributes['Textbox14'];
-        $data->field_main_contact_email = (string) $attributes['Textbox15'];
+        $data->field_guid_main_contact = (string) $attributes['Textbox20'];
+        $data->field_main_contact = trim((string) $attributes['Textbox21'] . ' ' . (string) $attributes['Textbox22']);
+        $data->field_main_contact_email = (string) $attributes['Textbox23'];
 
-        $data->field_ceo = (string) $attributes['Table0_Details4'];
-        $data->field_ceo_photo = base64_decode((string) $attributes['Textbox16']);
-        $data->field_ceo_photo_file = $data->field_ceo . '.jpg';
-        if (empty($data->field_ceo)) {
-          $data->field_ceo_photo_file = $data->title . '_ceo.jpg';
+        $data->field_ceo = trim((string) $attributes['Textbox24'] . ' ' . (string) $attributes['Textbox25']);
+        $ceo_image = base64_decode((string) $attributes['Textbox26']);
+        $ceo_image_ext = (string) $attributes['Textbox27'];
+        if (!empty($ceo_image) && !empty($ceo_image_ext)) {
+          $data->field_ceo_photo = $ceo_image;
+          $data->field_ceo_photo_file = file_munge_filename($data->title . '_ceo.' . $ceo_image_ext, '');
         }
-        $data->field_ceo_photo_mime = (string) $attributes['Textbox17'];
-        $data->field_partner_type = (string) $attributes['Table0_Details5'];
 
-        $data->field_social_dialog_partner = (string) $attributes['Textbox18'];
+        // Try to assign a valid partner type term
+        $partner_type = (string) $attributes['Textbox28'];
+        $term = taxonomy_get_term_by_name($partner_type);
+        if (!empty($term)) {
+          $data->field_partner_type = (string) $attributes['Textbox28'];
+        }
+        else {
+          watchdog('hwc_crm_migration', 'Could not find the partner type @type in the vocabulary for organisation @organisation',
+            array('@type' => $partner_type, '@organisation' => $data->title), WATCHDOG_WARNING);
+        }
+
+        $data->field_social_dialog_partner = (string) $attributes['Textbox29'];
         if (strtolower($data->field_social_dialog_partner) == 'false') {
           $data->field_social_dialog_partner = 0;
         }
@@ -108,11 +148,11 @@ class PartnerMigrateListXml extends AbstractCrmMigrateListXml {
           $data->field_social_dialog_partner = 1;
         }
 
-        $data->field_quote = (string) $attributes['Textbox19'];
-//        $data->field_quote = (string) $attributes['Textbox20'];
-        $data->field_organisation_rep = (string) $attributes['Textbox21'];
-        $data->field_position_identifier = (string) $attributes['Textbox22'];
-        $data->field_appform_status = (string) $attributes['Textbox23'];
+        $data->field_quote = (string) $attributes['Textbox30'];
+        $data->field_pledge = (string) $attributes['Textbox31'];
+        $data->field_organisation_rep = trim((string) $attributes['Textbox32'] . ' ' . (string) $attributes['Textbox33']);
+        $data->field_position_identifier = (string) $attributes['Textbox34'];
+        $data->field_appform_status = (string) $attributes['Textbox35'];
         if (empty(self::$data[$data->field_guid_organisation])) {
           self::$data[$data->field_guid_organisation] = $data;
         }

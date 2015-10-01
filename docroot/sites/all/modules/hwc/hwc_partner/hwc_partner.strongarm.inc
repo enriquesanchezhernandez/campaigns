@@ -171,7 +171,6 @@ function hwc_partner_strongarm() {
   $strongarm->name = 'node_options_partner';
   $strongarm->value = array(
     0 => 'status',
-    1 => 'promote',
   );
   $export['node_options_partner'] = $strongarm;
 
