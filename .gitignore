@@ -11,6 +11,18 @@ phpunit.xml
 results/*
 tmp
 
+docroot/CHANGELOG.txt
+docroot/COPYRIGHT.txt
+docroot/INSTALL.mysql.txt
+docroot/INSTALL.pgsql.txt
+docroot/INSTALL.sqlite.txt
+docroot/INSTALL.txt
+docroot/LICENSE.txt
+docroot/MAINTAINERS.txt
+docroot/README.txt
+docroot/UPGRADE.txt
+docroot/readme.md
+
 
 # User Generated Content #
 ##########################
