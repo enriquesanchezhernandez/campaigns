@@ -52,15 +52,15 @@ function hwc_gallery_image_default_styles() {
   $styles['small_thumb_from_medium_crop'] = array(
     'label' => 'Small thumb from medium crop (110px wide)',
     'effects' => array(
-      2 => array(
+      1 => array(
         'name' => 'manualcrop_reuse',
         'data' => array(
-          'reuse_crop_style' => 'medium_thumbnail_mc',
+          'reuse_crop_style' => 'medium_thumbnail_mc_340',
           'apply_all_effects' => 0,
         ),
         'weight' => 0,
       ),
-      3 => array(
+      2 => array(
         'name' => 'image_scale',
         'data' => array(
           'width' => 110,
