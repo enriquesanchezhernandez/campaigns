@@ -211,7 +211,6 @@ function osha_events_views_pre_render(&$view) {
         continue;
       }
       $month = $row_month;
-
       $path = $view->current_display == 'block_1'? 'past-events':'events';
 
       // Add a css class to selected month
