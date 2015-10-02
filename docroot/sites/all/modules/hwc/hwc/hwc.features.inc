@@ -44,6 +44,25 @@ function hwc_image_default_styles() {
     ),
   );
 
+  // Exported image style: medium_thumbnail_mc.
+  $styles['medium_thumbnail_mc'] = array(
+    'label' => 'Medium thumbnail manual crop (350 X 350)',
+    'effects' => array(
+      5 => array(
+        'name' => 'manualcrop_crop_and_scale',
+        'data' => array(
+          'width' => 350,
+          'height' => 350,
+          'upscale' => 0,
+          'respectminimum' => 1,
+          'onlyscaleifcrop' => 0,
+          'style_name' => 'medium_thumbnail_mc',
+        ),
+        'weight' => 0,
+      ),
+    ),
+  );
+
   // Exported image style: small_thumbnail_mc_150_150.
   $styles['small_thumbnail_mc_150_150'] = array(
     'label' => 'Small Thumbnail Manual Crop (150X150)',

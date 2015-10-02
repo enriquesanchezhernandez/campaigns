@@ -7,6 +7,14 @@ When patching a contrib module, the following steps should be followed:
 
 List of patches (most recent first)
 
+* flickr
+  * Fix js error on flickr with colorbox
+  * check_for_class_colorbox_plus_respect_colorbox_path_settings-2301681-10.patch
+  * https://www.drupal.org/node/2301681
+
+* manualcrop
+  * Fix js selector bug for multiple images fields
+
 * ldap_user
   * Disable the watchdog successful messages
   * /patches/ldap/ldap_user/disable-watchdg.patch

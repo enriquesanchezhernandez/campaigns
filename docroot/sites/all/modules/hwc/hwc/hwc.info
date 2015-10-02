@@ -21,6 +21,7 @@ features[ds_fields][] = top_anchor
 features[fe_block_settings][] = menu-menu-footer-menu
 features[features_api][] = api:2
 features[image][] = medium_large
+features[image][] = medium_thumbnail_mc
 features[image][] = small_thumbnail_mc_150_150
 features[page_manager_pages][] = get_your_certificate_page
 features[variable][] = ds_classes_fields
