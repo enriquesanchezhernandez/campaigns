@@ -8171,6 +8171,42 @@ body .top_anchor {
 .node-article .field-name-field-recommended-articles .node-article .field.field-name-field-image a:before {
   content: "";
 }
+.node-article .node-infographic .field.field-name-field-image {
+  width: auto;
+  height: auto;
+  max-height: 150px;
+  overflow: hidden;
+  margin-bottom: 0em;
+}
+.node-article .node-infographic .field.field-name-field-image img {
+  height: auto;
+  width: 150px;
+}
+.node-article .node-infographic .field-name-field-image + .field-name-title-field {
+  position: relative;
+  background-image: none;
+  height: auto;
+  width: auto;
+}
+.node-article .node-infographic .field-name-field-image + .field-name-title-field h1 {
+  padding-top: 0;
+  height: auto;
+  width: auto;
+  margin-left: 0px;
+  margin-right: 0px;
+}
+.node-article .node-infographic .field-name-field-image + .field-name-title-field a {
+  float: left;
+}
+.node-article .node-external-url a.external-link {
+  color: #003399;
+  font-weight: bold;
+  font-style: italic;
+  font-size: 20px;
+}
+.node-article .node-external-url a.external-link:before {
+  content: "> ";
+}
 /*Articles*/
 .node-type-article article {
   margin-left: -15px;
@@ -8794,36 +8830,34 @@ div[class*='node-'] .more-link {
   -webkit-box-shadow: inset 0 0px 0px rgba(255, 255, 255, 0);
   -moz-box-shadow: inset 0 0px 0px rgba(255, 255, 255, 0);
   box-shadow: inset 0 0px 0px rgba(255, 255, 255, 0);
-  /* .facetapi-facetapi-checkbox-links li{
-					input[type="checkbox"]{
-						display: none;
-					}
-					> label{
-						color: @text-color-2;
-						padding-left: 0;
-						font-family: @font-family-semibold;
-					}
-					> label:before {
-						border: 2px solid @border-color-2;
-						content: "\2716";
-						padding: 0px 4px 0px 10px;
-						padding: 0px 1px 0px 3px;
-						margin-right: 10px;
-						color: @color1;
-					}
-					input[type=checkbox]:checked + label:before {
-						content: "\2713";
-						color: @text-color-2;
-						font-weight: bold;
-					}
-				} */
 }
 .page-search .region-sidebar-first h2 {
   color: #333333;
   font-size: 20px;
 }
+.page-search .region-sidebar-first .facetapi-facetapi-checkbox-links li {
+  margin-bottom: 10px;
+}
 .page-search .region-sidebar-first .facetapi-facetapi-checkbox-links li input[type="checkbox"] {
   margin-right: 0.5em;
+  margin-right: 15px;
+}
+.page-search .region-sidebar-first .facetapi-facetapi-checkbox-links li input[type="checkbox"]:before {
+  border: 2px solid #003399;
+  content: "\2716";
+  padding: 0px 1px 0px 3px;
+  margin-right: 10px;
+  color: #ffffff;
+  width: 20px;
+  height: 20px;
+  background-color: white;
+}
+.page-search .region-sidebar-first .facetapi-facetapi-checkbox-links li input[type="checkbox"]:checked:before {
+  content: "\2713";
+  color: #003399;
+}
+.page-search .region-sidebar-first .facetapi-facetapi-checkbox-links li #facetapi-link--all--checkbox {
+  margin-right: 11px;
 }
 .page-search .region-sidebar-first .facetapi-facetapi-checkbox-links li a {
   font-family: 'Open Sans Semibold';
@@ -11690,6 +11724,24 @@ article .hwc-share-widget ul {
     min-width: 0;
   }
   /*Fin Articles*/
+  /* pag Search */
+  .page-search .views-exposed-form .views-widget-sort-order {
+    padding: 0;
+  }
+  .page-search .views-exposed-form .views-widget-sort-by {
+    padding-right: 0.5em;
+  }
+  .page-search .views-exposed-form .views-widget-sort-by > .form-item-sort-by > label {
+    margin-right: 1em;
+  }
+  .page-search .views-submit-button {
+    padding-left: 0;
+    padding-right: 0;
+  }
+  .page-search .views-submit-button button {
+    margin-left: 0;
+  }
+  /*Fin pag Search */
 }
 @media only screen and (max-width: 992px) {
   /* contenedor principal */
@@ -12163,13 +12215,14 @@ article .hwc-share-widget ul {
     padding-bottom: 0;
   }
   .page-search .region-sidebar-first h2 {
-    padding: 0.5em 30px;
+    padding: 0.5em 30px 0;
     float: left;
     /* background: #e2e2e3 url("../images/content/slideDown.png") no-repeat 95% center; */
+    margin-bottom: 0;
   }
   .page-search .region-sidebar-first .facetapi-facetapi-checkbox-links {
-    padding-left: 15px;
-    display: inline-flex;
+    padding-left: 30px;
+    display: inline-block;
     padding-top: 0.7em;
   }
   .page-search .region-sidebar-first .facetapi-facetapi-checkbox-links li {
@@ -12180,9 +12233,9 @@ article .hwc-share-widget ul {
     margin-right: 1em;
   }
   .page-search .region-sidebar-first .facetapi-facetapi-checkbox-links li input[type="checkbox"] {
-    margin-right: 0.1em;
+    /* margin-right: 0.1em; */
   }
-  .page-search .views-exposed-form .views-exposed-widget {
+  .page-search .views-exposed-form {
     padding-left: 15px;
   }
   .page-search #views-exposed-form-search-site {
@@ -13563,8 +13616,13 @@ article .hwc-share-widget ul {
   /*fin videos*/
   /* pag Search */
   .page-search .region-sidebar-first h2 {
+    margin-left: 15px;
+    margin-right: 0;
     padding-left: 0;
     padding-right: 0;
+  }
+  .page-search .region-sidebar-first .facetapi-facetapi-checkbox-links {
+    padding-left: 15px;
   }
   .page-search .region-sidebar-first .facetapi-facetapi-checkbox-links li {
     /* width: 50%; */
@@ -13572,8 +13630,12 @@ article .hwc-share-widget ul {
   .page-search .views-widget-sort-by {
     clear: both;
   }
+  .page-search .views-exposed-form {
+    padding-left: 0;
+  }
   .page-search .views-exposed-form .views-exposed-widget {
     padding-left: 0;
+    padding-bottom: 0.5em;
   }
   .page-search .region.region-content .view-search .view-content .views-row {
     padding-left: 15px;
@@ -13848,6 +13910,51 @@ article .hwc-share-widget ul {
   .page-campaign-media-partners .section-introduction .field-type-text-with-summary {
     padding-right: 0;
     padding-left: 0;
+  }
+  .page-national-focal-points #block-views-partners-list-block,
+  .page-official-campaign-partners #block-views-partners-list-block,
+  .page-campaign-media-partners #block-views-partners-list-block {
+    border-top: 1px dotted #749b00;
+    margin-top: 20px;
+    padding-top: 20px;
+  }
+  .page-national-focal-points #quicktabs-view__partners_list__block,
+  .page-official-campaign-partners #quicktabs-view__partners_list__block,
+  .page-campaign-media-partners #quicktabs-view__partners_list__block {
+    position: relative;
+    display: inline-block;
+    width: 95%;
+  }
+  .page-national-focal-points #quicktabs-view__partners_list__block:after,
+  .page-official-campaign-partners #quicktabs-view__partners_list__block:after,
+  .page-campaign-media-partners #quicktabs-view__partners_list__block:after {
+    width: 30px;
+    height: 23px;
+    display: block;
+    content: '';
+    position: absolute;
+    top: 0px;
+    right: 0;
+    pointer-events: none;
+    background: #003399 url("../images/content/arrow-down.png") no-repeat right top;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+  }
+  .page-national-focal-points #quicktabs-view__partners_list__block select,
+  .page-official-campaign-partners #quicktabs-view__partners_list__block select,
+  .page-campaign-media-partners #quicktabs-view__partners_list__block select {
+    font-style: normal;
+    font-weight: normal;
+    line-height: 100%;
+    appearance: none;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    width: 100%;
+    height: 23px;
   }
   #block-views-partners-list-block {
     margin-right: 15px;

@@ -537,13 +537,14 @@ header{
 		padding-top: 0;
 		padding-bottom: 0;
 		h2{
-		    padding: 0.5em @margin-tablet;
+		    padding: 0.5em @margin-tablet 0;
 			float: left;
 			/* background: #e2e2e3 url("../images/content/slideDown.png") no-repeat 95% center; */
+			margin-bottom: 0;
 		}
 		.facetapi-facetapi-checkbox-links{
-			padding-left: 15px;
-			display: inline-flex;
+			padding-left: @margin-tablet;
+			display: inline-block;
 			padding-top: 0.7em;
 			li{
 				float: left;
@@ -552,12 +553,12 @@ header{
 				white-space: nowrap;
 				margin-right: 1em;
 				input[type="checkbox"]{
-					margin-right: 0.1em;
+					/* margin-right: 0.1em; */
 				}
 			}
 		}
 	}
-	.views-exposed-form .views-exposed-widget{
+	.views-exposed-form{
 		padding-left: @margin-tablet2;
 	}
 	#views-exposed-form-search-site{

@@ -645,8 +645,50 @@
 			}
 		}
 		
-	}
+		.node-infographic{
+			.field.field-name-field-image {
+				width: auto;
+				height: auto;
+				max-height: 150px;
+				overflow: hidden;
+				margin-bottom: 0em;
+				img {
+					height: auto;
+					width: 150px;
+				}
+			}
+			.field-name-field-image + .field-name-title-field {
+				position: relative;
+				background-image: none;
+				height: auto;
+				width: auto;
+				h1 {
+					padding-top: 0;
+					height: auto;
+					width: auto;
+					margin-left: 0px;
+					margin-right: 0px;
+				}
+				a {
+					float: left;
+				}
+			}
+		}
 	
+		.node-external-url{
+			a.external-link {
+			  color: #003399;
+			  font-weight: bold;
+			  font-style: italic;
+			  font-size: 20px;
+			  &:before {
+				  content: "> ";
+				}
+			}
+		}
+	}
+
+
 	/*Articles*/
 	.node-type-article{
 		article{
@@ -1289,37 +1331,41 @@
 				font-size: @size2;
 			}
 			.facetapi-facetapi-checkbox-links li{
+				margin-bottom: 10px;
 				input[type="checkbox"]{
 					margin-right: 0.5em;
+					margin-right: 15px;
+					&:before {
+						border: 2px solid #003399;
+						content: "\2716";
+						padding: 0px 1px 0px 3px;
+						margin-right: 10px;
+						color: #ffffff;
+						width: 20px;
+						height: 20px;
+						background-color: white;
+					}
+					&:checked:before {
+						content: "\2713";
+						color: #003399;
+					}
+				}
+				#facetapi-link--all--checkbox {
+					margin-right: 11px;
 				}
 				a{
 					font-family: @font-family-semibold;
 				}
 			}
-				/* .facetapi-facetapi-checkbox-links li{
-					input[type="checkbox"]{
-						display: none;
-					}
-					> label{
-						color: @text-color-2;
-						padding-left: 0;
-						font-family: @font-family-semibold;
-					}
-					> label:before {
-						border: 2px solid @border-color-2;
-						content: "\2716";
-						padding: 0px 4px 0px 10px;
-						padding: 0px 1px 0px 3px;
-						margin-right: 10px;
-						color: @color1;
-					}
-					input[type=checkbox]:checked + label:before {
-						content: "\2713";
-						color: @text-color-2;
-						font-weight: bold;
-					}
-				} */
 		}
+
+
+
+
+
+
+
+
 		.region.region-content{
 			float: right;
 			width: 71%;
