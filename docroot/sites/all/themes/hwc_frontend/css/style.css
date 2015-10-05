@@ -8384,10 +8384,12 @@ body .top_anchor {
 }
 /* Node-XXX */
 div[class*='node-'] h1 {
+  text-align: center;
   font-style: italic;
   font-weight: lighter;
   color: #575757;
   font-size: 35px;
+  border-bottom: none;
 }
 div[class*='node-'] .field-name-field-summary {
   font-weight: bold;
@@ -9160,6 +9162,11 @@ div[class*='node-'] .more-link {
   content: ">";
   padding-right: 0.35em;
 }
+.node-type-practical-tool .main-container h1 {
+  border-bottom: none;
+  padding-bottom: 0;
+  margin-bottom: 0;
+}
 /*margins: practical-tools and publications*/
 #edit-left-column {
   padding-left: 25px;
@@ -9921,6 +9928,7 @@ article .hwc-share-widget ul {
   font-size: 14px;
   margin-top: 1em;
   margin-bottom: 1em;
+  text-align: left;
 }
 .node-events .field-name-field-city {
   color: #749b00;
@@ -10025,23 +10033,55 @@ article .hwc-share-widget ul {
 }
 .node-events .field-collection-container .field-name-field-schedule .field-name-field-talking-speaker {
   float: left;
+  margin-right: 1em;
 }
 .node-events .field-collection-container .field-name-field-schedule .field-name-field-talking-speaker h2 {
   display: none;
 }
-.node-events .field-collection-container .field-name-field-schedule .field-name-field-talking-title,
-.node-events .field-collection-container .field-name-field-schedule .field-name-field-talking-files {
+.node-events .field-collection-container .field-name-field-schedule .field-name-field-talking-title {
   float: left;
   width: 65%;
 }
+.node-events .field-collection-container .field-name-field-schedule .field-name-field-talking-title .field-label {
+  display: none;
+}
+.node-events .field-collection-container .field-name-field-schedule .field-name-field-talking-title .field-items,
+.node-events .field-collection-container .field-name-field-schedule .field-name-field-talking-title .field-item {
+  font-weight: bold;
+}
+.node-events .field-collection-container .field-name-field-schedule .field-name-field-talking-files {
+  float: left;
+  width: 65%;
+  margin-top: 0.5em;
+  font-style: italic;
+}
+.node-events .field-collection-container .field-name-field-schedule .field-name-field-talking-files div {
+  width: auto;
+  float: left;
+  font-weight: bold;
+}
+.node-events .field-collection-container .field-name-field-schedule .field-name-field-talking-files div .field-item img {
+  display: none;
+}
+.node-events .field-collection-container .field-name-field-schedule .field-name-field-talking-files div .field-item a {
+  background: url("../images/content/download.png") no-repeat right;
+  padding-right: 25px;
+  margin-right: 5px;
+}
 .node-events .field-collection-container .field-name-field-schedule .field-name-field-venue {
+  float: left;
+}
+.node-events .field-collection-container .field-name-field-schedule .field-name-field-venue div {
+  width: auto;
   float: left;
 }
 .node-events .field-name-field-related-documents,
 .node-events .field-name-field-contact-name,
 .node-events .field-name-field-contact-email,
 .node-events .field-name-field-organizer,
-.node-events .field-name-field-location {
+.node-events .field-name-field-location,
+.node-events .field-name-field-contact-phone,
+.node-events .field-name-field-website-of-event {
   clear: both;
   padding-bottom: 1.5em;
 }
@@ -10050,12 +10090,20 @@ article .hwc-share-widget ul {
 .node-events .field-name-field-contact-email .field-label,
 .node-events .field-name-field-organizer .field-label,
 .node-events .field-name-field-location .field-label,
+.node-events .field-name-field-contact-phone .field-label,
+.node-events .field-name-field-website-of-event .field-label,
 .node-events .field-name-field-related-documents .field-items,
 .node-events .field-name-field-contact-name .field-items,
 .node-events .field-name-field-contact-email .field-items,
 .node-events .field-name-field-organizer .field-items,
-.node-events .field-name-field-location .field-items {
+.node-events .field-name-field-location .field-items,
+.node-events .field-name-field-contact-phone .field-items,
+.node-events .field-name-field-website-of-event .field-items {
   float: left;
+}
+.node-events .field-name-field-contact-email .field-items,
+.node-events .field-name-field-website-of-event .field-items {
+  font-style: italic;
 }
 .views-exposed-form #edit-search-api-views-fulltext-wrapper {
   padding-right: 0em;
@@ -10187,6 +10235,12 @@ article .hwc-share-widget ul {
   max-width: 150px;
   margin-left: auto;
   margin-right: auto;
+}
+.become-partner .coments .col h2.present-yourself:before {
+  background-image: url("../images/content/icono-present-yourself-big.png");
+}
+.become-partner .coments .col h2.networking:before {
+  background-image: url("../images/content/icono-networking-big.png");
 }
 .become-partner .coments .col-2 {
   border-left: 1px dotted #749b00;
@@ -10829,6 +10883,7 @@ article .hwc-share-widget ul {
   color: #749b00;
   margin-bottom: 1.5em;
   margin-top: 1.5em;
+  text-align: left;
 }
 .page-node-add-events .node-events-form th.field-label,
 .page-node-add-news .node-events-form th.field-label,
@@ -11681,6 +11736,7 @@ article .hwc-share-widget ul {
   width: 50%;
 }
 #block-osha-newsletter-osha-newsletter-latest #latest-newsletters-block h2 {
+  text-align: left;
   margin-right: 50px;
   background-color: #003399;
 }

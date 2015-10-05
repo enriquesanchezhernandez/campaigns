@@ -895,10 +895,12 @@
 	/* Node-XXX */
 	div[class*='node-']{
 		h1{
+			text-align: center;
 			font-style: italic;
 			font-weight: lighter;
 			color: @h1-color-2;
 			font-size: @h1-size-2;
+			border-bottom: none;
 		}
 		.field-name-field-summary{
 			font-weight: bold;
@@ -1659,8 +1661,7 @@
 					}
 				}
 			}
-		}
-		
+		}		
 		.field-name-field-country, .field-name-field-tool-type, .field-name-field-provider{
 			.field-label ~ .field-items:empty{
 				&:before{
@@ -1679,16 +1680,23 @@
 				padding-right: 0.35em;
 			}
 		}
-
 	}
-		/*margins: practical-tools and publications*/
-		#edit-left-column{
-			padding-left: @margin1;
+	.node-type-practical-tool{
+		.main-container h1{
+			border-bottom: none;
+			padding-bottom: 0;
+			margin-bottom: 0;
 		}
-		#edit-content{
-			padding-right: @margin1;
-		
-		}
+	}
+	
+	/*margins: practical-tools and publications*/
+	#edit-left-column{
+		padding-left: @margin1;
+	}
+	#edit-content{
+		padding-right: @margin1;
+	
+	}
 	.pane-node-field-free, .pane-node-field-country, .pane-node-field-tool-type{
 		background-color: @color8;
 		color: @text-color-2;
@@ -2457,6 +2465,7 @@ article{
 		font-size: @size4;
 		margin-top: 1em;
 		margin-bottom: 1em;
+		text-align: left;
 	}
 	.field-name-field-city{
 		color: @text-color-3;
@@ -2533,7 +2542,7 @@ article{
 		}
 	}
 	.field-collection-container{
-		clear: both;			
+		clear: both;
 		margin-bottom: 2em;
 		padding-bottom: 2em;
 		.field-name-field-schedule{
@@ -2560,24 +2569,62 @@ article{
 			}
 			.field-name-field-talking-speaker{
 			    float: left;
+				margin-right: 1em;
 				h2{
 					display: none;
 				}
 			}
-			.field-name-field-talking-title, .field-name-field-talking-files{
+			.field-name-field-talking-title{
 				float: left;
 				width: 65%;
+				.field-label{
+					display: none;
+				}
+				.field-items, .field-item{
+					font-weight: bold;
+				}
+			}
+			
+			.field-name-field-talking-files{
+				float: left;
+				width: 65%;
+				margin-top: 0.5em;
+				font-style: italic;
+				div{
+					width: auto;
+					float: left;
+					font-weight: bold;
+					.field-item{
+						img{
+							display: none;
+						}
+						a{
+							background: url("../images/content/download.png") no-repeat right;
+							padding-right: 25px;
+							margin-right: 5px;
+						}
+					}
+				}
 			}
 			.field-name-field-venue{
 				float: left;
+				div{
+					width: auto;
+					float: left;
+				}
 			}
 		}
 	}
-	.field-name-field-related-documents, .field-name-field-contact-name, .field-name-field-contact-email, .field-name-field-organizer, .field-name-field-location{
+	.field-name-field-related-documents, .field-name-field-contact-name, .field-name-field-contact-email, .field-name-field-organizer, .field-name-field-location, .field-name-field-contact-phone, .field-name-field-website-of-event{
 		clear: both;
 		padding-bottom: 1.5em;
 		.field-label, .field-items{
 			float: left;
+		}
+	}
+	.field-name-field-contact-email, .field-name-field-website-of-event{
+		.field-items{
+			font-style: italic;
 		}
 	}
 }
@@ -2697,6 +2744,12 @@ article{
 				    margin-left: auto;
 				    margin-right: auto;
 				}
+			}
+			h2.present-yourself:before{
+				background-image: url("../images/content/icono-present-yourself-big.png");
+			}
+			h2.networking:before{
+				background-image: url("../images/content/icono-networking-big.png");
 			}
 		}
 		.col-2{
@@ -3405,6 +3458,7 @@ article{
 			color: @color3;
 			margin-bottom: 1.5em;
 			margin-top: 1.5em;
+			text-align: left;
 		}
 		th.field-label{
 			padding: 0 !important;
@@ -4148,6 +4202,7 @@ article{
 	#latest-newsletters-block{
 		width: 50%;
 		h2{
+			text-align: left;
 			margin-right: 50px;
 			background-color: @bg-color-2;
 			a{
