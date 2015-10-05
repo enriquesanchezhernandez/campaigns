@@ -7595,6 +7595,7 @@ body .top_anchor {
   font-weight: 100;
   font-style: italic;
   margin-top: 0px;
+  text-align: center;
 }
 .main-container h2 a:empty {
   display: none;
@@ -8346,6 +8347,7 @@ body .top_anchor {
   padding-right: 1em;
 }
 .node-infographic .field-name-title-field h2 {
+  text-align: left;
   margin-top: 0px;
 }
 .node-infographic .label_multilang_file {
@@ -9111,6 +9113,7 @@ div[class*='node-'] .more-link {
   margin-bottom: 15px !important;
 }
 .pane-hwc-practical-tool-hwc-practical-tool-listing .node-practical-tool h2 {
+  text-align: left;
   font-weight: bold;
   font-style: normal;
   font-size: 20px;
@@ -9361,6 +9364,7 @@ div[class*='node-'] .more-link {
   font-weight: bold;
   font-style: normal;
   margin-top: 10px;
+  text-align: left;
 }
 .view-news .views-row .field-name-field-summary {
   font-weight: bold;
@@ -11419,6 +11423,9 @@ article .hwc-share-widget ul {
 }
 /*fin campaign materials*/
 /*Publications detail*/
+.node-type-publication h2 {
+  text-align: center;
+}
 .node-type-publication .pane-node-field-cover-image {
   margin-left: -15px;
   margin-top: 1em;
