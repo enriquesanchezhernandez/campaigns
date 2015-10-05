@@ -31,7 +31,7 @@ global $base_url;
 
 
 
-      <td style="background: url('/sites/all/modules/osha/osha_newsletter/images/footer-newsleter.png') no-repeat; width:800px; height: 88px; padding-left: 10px;" class="social">
+      <td style="background: url('/sites/all/modules/osha/osha_newsletter/images/footer-newsletter.png') no-repeat; width:800px; height: 88px; padding-left: 10px;" class="social">
 			<h2 style="color: #ffffff; display: inline; margin-right: 20px; vertical-align: top; font-weight: bold; font-size: 17px; font-style: normal;">Follow us on:</h2>
 			<?php
 			  $social = array(

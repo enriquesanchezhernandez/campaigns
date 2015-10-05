@@ -1,4 +1,4 @@
-<table border="0" cellpadding="28" cellspacing="0" width="800" style="font-family: Oswald, Arial,sans-serif; margin-bottom: 40px; background-repeat: no-repeat;" height="300" background="/sites/all/modules/osha/osha_newsletter/images/header-newsleter.png">
+<table border="0" cellpadding="28" cellspacing="0" width="800" style="font-family: Oswald, Arial,sans-serif; margin-bottom: 40px; background-repeat: no-repeat;" height="300" background="/sites/all/modules/osha/osha_newsletter/images/header-newsletter.png">
 
 
 
