@@ -8244,6 +8244,9 @@ body .top_anchor {
   text-align: center;
   margin-bottom: 1em;
 }
+.node-type-article article .field-name-field-aditional-resources {
+  border: none;
+}
 .node-type-article article .node-article {
   border-bottom: none;
   padding: 0;
@@ -8261,7 +8264,25 @@ body .top_anchor {
 .node-type-article article .list-inline {
   display: none !important;
 }
-.node-type-article article .field.field-name-field-aditional-resources .node-events .field-name-field-start-date {
+/*Fin articles*/
+.field.field-name-field-aditional-resources {
+  margin-top: 1em;
+  padding-top: 1em;
+  border-top: 1px dotted #749b00;
+  clear: both;
+}
+.field.field-name-field-aditional-resources > .field-label {
+  color: #749b00;
+  font-style: normal;
+  font-weight: bold;
+  text-align: center;
+  font-size: 30px;
+  background: url("../images/content/additional-resources.png") no-repeat center top;
+  width: 100%;
+  margin: 1em auto;
+  padding-top: 65px;
+}
+.field.field-name-field-aditional-resources .node-events .field-name-field-start-date {
   border-top: none !important;
   font-weight: bold;
   width: 150px;
@@ -8275,11 +8296,42 @@ body .top_anchor {
   overflow: hidden;
   margin-right: 15px;
 }
-.node-type-article article .field.field-name-field-aditional-resources .node-events .field-name-field-start-date span {
+.field.field-name-field-aditional-resources .node-events .field-name-field-start-date span {
   font-size: 35px;
   color: #ffffff;
 }
-/*Fin articles*/
+.field.field-name-field-aditional-resources .field-name-field-external-url.field-type-link-field a {
+  color: #003399;
+  font-weight: bold;
+  font-style: italic;
+  font-size: 20px;
+}
+.field.field-name-field-aditional-resources .field-name-field-external-url.field-type-link-field a:before {
+  content: "> ";
+}
+.field.field-name-field-aditional-resources .node-infographic .field-name-title-field {
+  float: left;
+}
+.field.field-name-field-aditional-resources .node-infographic .field-name-title-field a {
+  font-size: 20px;
+}
+.field.field-name-field-aditional-resources .node-infographic .field-name-title-field h1 {
+  border-bottom: none;
+}
+.field.field-name-field-aditional-resources .node-infographic .field.field-name-field-image {
+  height: auto;
+  max-height: 150px;
+  overflow: hidden;
+  margin-bottom: 0em;
+  float: left;
+  margin-right: 1em !important;
+}
+.field.field-name-field-aditional-resources .node-infographic .field.field-name-field-image img {
+  height: auto;
+  width: 150px;
+  margin-right: 0em;
+}
+/*fin aditional resources*/
 /* pag Infographics */
 .view-infographic .views-row {
   border-bottom: 1px dotted #749b00;
