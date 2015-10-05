@@ -11571,6 +11571,69 @@ article .hwc-share-widget ul {
   background-image: url("../images/content/bg/page-campaign-media-partners.jpg");
 }
 /*Fin pag National focal points*/
+/*pag Newsletter*/
+#block-osha-newsletter-osha-newsletter-subscribe-extra h2 {
+  background-color: #003399;
+  font-style: italic;
+  font-weight: normal;
+  text-align: center;
+  color: #ffffff;
+  padding: 20px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  margin-left: -15px;
+  margin-right: -15px;
+}
+#block-osha-newsletter-osha-newsletter-subscribe {
+  background: none;
+}
+#block-osha-newsletter-osha-newsletter-subscribe h2 {
+  /* background: url("../images/content/newsletter.png") no-repeat center 20px; */
+  background: url("../images/content/bg-campaign-partner.png") no-repeat left top;
+  background-size: cover;
+  padding-top: 50px;
+  padding-bottom: 50px;
+  margin-top: 0px;
+  font-style: italic;
+  font-weight: normal;
+}
+#block-osha-newsletter-osha-newsletter-subscribe div {
+  color: #333333;
+  font-weight: bold;
+}
+#block-osha-newsletter-osha-newsletter-subscribe div#newsletter-subscription-form-wrapper {
+  text-align: left;
+}
+#block-osha-newsletter-osha-newsletter-subscribe div#newsletter-subscription-form-wrapper form input {
+  border: 1px solid #003399;
+  color: #003399;
+  font-weight: normal;
+}
+#block-osha-newsletter-osha-newsletter-latest {
+  border-top: 1px dotted #749b00;
+}
+#block-osha-newsletter-osha-newsletter-latest h2.block-title {
+  font-style: italic;
+  font-weight: normal;
+  text-align: center;
+  margin: 20px 0;
+}
+#block-osha-newsletter-osha-newsletter-latest #latest-newsletters-block {
+  width: 50%;
+}
+#block-osha-newsletter-osha-newsletter-latest #latest-newsletters-block h2 {
+  margin-right: 50px;
+  background-color: #003399;
+}
+#block-osha-newsletter-osha-newsletter-latest #latest-newsletters-block h2 a {
+  color: #ffffff !important;
+  padding-left: 10px;
+  padding-right: 10px;
+  font-size: 18px;
+  width: 100%;
+  line-height: 25px;
+}
+/*Fin pag Newsletter*/
 /*pag error*/
 .maintenance-page {
   padding: 15px;
