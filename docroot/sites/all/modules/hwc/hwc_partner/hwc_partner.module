@@ -198,7 +198,7 @@ function hwc_partner_block_view($delta = '') {
         if ($partner = hwc_partner_by_section_id_load($id_section)) {
           // Did this to use it in panels.
           $block['title'] = '<none>';
-          $block['content'] = l('Back to HomePage', 'node/' . $partner->nid);
+          $block['content'] = l(t('Back to HomePage'), 'node/' . $partner->nid);
           break;
         }
       }
