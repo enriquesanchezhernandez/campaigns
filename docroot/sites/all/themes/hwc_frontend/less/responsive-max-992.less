@@ -569,9 +569,14 @@ header{
 		float: left;
 		width: 100%;
 		margin-left: 0;
-		.view-search .view-content .views-row{
-			padding-left: @margin-tablet;
-			padding-right: @margin-tablet;
+		.view-search{
+			.view-content .views-row{
+				padding-left: @margin-tablet;
+				padding-right: @margin-tablet;
+			}
+			.view-empty{
+				margin-left: @margin-tablet;
+			}
 		}
 		.result_summary{
 			padding-left: 15px;

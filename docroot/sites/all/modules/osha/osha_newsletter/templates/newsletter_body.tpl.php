@@ -22,23 +22,9 @@ table, tr, td{
  <?php print($newsletter_intro);?>
 <?php } ?> -->
 
-
-
-
-		
-
-
-
-
-
-<table border="0" cellpadding="20" cellspacing="0" width="800">
+<table border="0" cellpadding="20" cellspacing="0" width="800" style="margin-left: 25px;">
   <tbody>
 	<tr>
-
-
-
-
-
 	   <td width="550" style="padding-top: 0px; vertical-align: top; padding-right: 50px;" class="left-column">
 
 

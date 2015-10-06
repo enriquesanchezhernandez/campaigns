@@ -11686,22 +11686,39 @@ article .hwc-share-widget ul {
 }
 /*Fin pag National focal points*/
 /*pag Newsletter*/
-#block-osha-newsletter-osha-newsletter-subscribe-extra h2 {
+.page-node-129 h1 {
+  border-bottom: none;
+  background: url("../images/content/mail-newsletter.png") no-repeat center top;
+  padding-top: 85px;
+  padding-bottom: 0em;
+}
+.page-node-129 #block-osha-newsletter-osha-newsletter-subscribe-extra h2 {
   background-color: #003399;
+  background: url("../images/content/bg-campaign-partner.png") no-repeat left top;
+  background-size: cover;
   font-style: italic;
   font-weight: normal;
   text-align: center;
   color: #ffffff;
-  padding: 20px;
+  padding: 50px;
   margin-top: 20px;
   margin-bottom: 20px;
   margin-left: -15px;
   margin-right: -15px;
 }
-#block-osha-newsletter-osha-newsletter-subscribe {
+.page-node-129 #block-osha-newsletter-osha-newsletter-subscribe-extra #subscribe-extra {
+  font-weight: bold;
+}
+.page-node-129 #block-osha-newsletter-osha-newsletter-subscribe-extra #subscribe-extra input {
+  font-weight: normal;
+}
+.page-node-129 #block-osha-newsletter-osha-newsletter-subscribe-extra #subscribe-extra label {
+  font-weight: bold;
+}
+.page-node-129 #block-osha-newsletter-osha-newsletter-subscribe {
   background: none;
 }
-#block-osha-newsletter-osha-newsletter-subscribe h2 {
+.page-node-129 #block-osha-newsletter-osha-newsletter-subscribe h2 {
   /* background: url("../images/content/newsletter.png") no-repeat center 20px; */
   background: url("../images/content/bg-campaign-partner.png") no-repeat left top;
   background-size: cover;
@@ -11711,42 +11728,49 @@ article .hwc-share-widget ul {
   font-style: italic;
   font-weight: normal;
 }
-#block-osha-newsletter-osha-newsletter-subscribe div {
+.page-node-129 #block-osha-newsletter-osha-newsletter-subscribe div {
   color: #333333;
   font-weight: bold;
 }
-#block-osha-newsletter-osha-newsletter-subscribe div#newsletter-subscription-form-wrapper {
+.page-node-129 #block-osha-newsletter-osha-newsletter-subscribe div#newsletter-subscription-form-wrapper {
   text-align: left;
 }
-#block-osha-newsletter-osha-newsletter-subscribe div#newsletter-subscription-form-wrapper form input {
+.page-node-129 #block-osha-newsletter-osha-newsletter-subscribe div#newsletter-subscription-form-wrapper form input {
   border: 1px solid #003399;
   color: #003399;
   font-weight: normal;
 }
-#block-osha-newsletter-osha-newsletter-latest {
+.page-node-129 #block-osha-newsletter-osha-newsletter-latest {
   border-top: 1px dotted #749b00;
 }
-#block-osha-newsletter-osha-newsletter-latest h2.block-title {
+.page-node-129 #block-osha-newsletter-osha-newsletter-latest h2.block-title {
   font-style: italic;
   font-weight: normal;
   text-align: center;
-  margin: 20px 0;
+  margin: 50px 0;
 }
-#block-osha-newsletter-osha-newsletter-latest #latest-newsletters-block {
+.page-node-129 #block-osha-newsletter-osha-newsletter-latest #latest-newsletters-block {
   width: 50%;
 }
-#block-osha-newsletter-osha-newsletter-latest #latest-newsletters-block h2 {
+.page-node-129 #block-osha-newsletter-osha-newsletter-latest #latest-newsletters-block h2 {
   text-align: left;
   margin-right: 50px;
   background-color: #003399;
 }
-#block-osha-newsletter-osha-newsletter-latest #latest-newsletters-block h2 a {
+.page-node-129 #block-osha-newsletter-osha-newsletter-latest #latest-newsletters-block h2 a {
   color: #ffffff !important;
   padding-left: 10px;
   padding-right: 10px;
   font-size: 18px;
   width: 100%;
   line-height: 25px;
+}
+.taxonomy-term,
+.vocabulary-newsletter-sections {
+  color: #749b00;
+  font-weight: bold;
+  font-size: 20px;
+  padding-bottom: 10px;
 }
 /*Fin pag Newsletter*/
 /*pag error*/
@@ -12428,6 +12452,9 @@ article .hwc-share-widget ul {
   .page-search .region.region-content .view-search .view-content .views-row {
     padding-left: 30px;
     padding-right: 30px;
+  }
+  .page-search .region.region-content .view-search .view-empty {
+    margin-left: 30px;
   }
   .page-search .region.region-content .result_summary {
     padding-left: 15px;
@@ -13817,6 +13844,9 @@ article .hwc-share-widget ul {
   }
   .page-search .region.region-content .view-search .view-content .views-row {
     padding-left: 15px;
+  }
+  .page-search .region.region-content .view-search .view-empty {
+    margin-left: 15px;
   }
   /*Fin pag Search */
   /*Private area*/

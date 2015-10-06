@@ -8,29 +8,9 @@ global $base_url;
   }
   ?>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<table border="0" cellpadding="0" cellspacing="0" width="800">
+<table border="0" cellpadding="0" cellspacing="0" width="800" style="margin-left: 25px;">
   <tbody>
     <tr>
-
-
-
-
       <td style="background: url('/sites/all/modules/osha/osha_newsletter/images/footer-newsletter.png') no-repeat; width:800px; height: 88px; padding-left: 10px;" class="social">
 			<h2 style="color: #ffffff; display: inline; margin-right: 20px; vertical-align: top; font-weight: bold; font-size: 17px; font-style: normal;">Follow us on:</h2>
 			<?php
@@ -47,10 +27,6 @@ global $base_url;
 				  'path' => 'https://www.linkedin.com/company/european-agency-for-safety-and-health-at-work',
 				  'alt' => t('LinkedIn')
 				),
-
-
-
-
 				'youtube' => array(
 				  'path' => 'https://www.youtube.com/user/EUOSHA',
 				  'alt' => t('Youtube')
