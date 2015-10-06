@@ -71,7 +71,13 @@
 			.form-item{
 				margin-top: 26px;
 			}
-		
+		}
+		.title-alt{
+			float: left;
+			width: 100%;
+			margin-bottom: 0;
+			margin-top: 0;
+			padding-bottom: 0em;
 		}
 		h2{
 			color: @h2-default-color-3;
@@ -1387,6 +1393,7 @@
 			h2{
 				color: @colorNormalText;
 				font-size: @size2;
+				text-align: left;
 			}
 			.facetapi-facetapi-checkbox-links li{
 				margin-bottom: 10px;
@@ -1416,13 +1423,6 @@
 				}
 			}
 		}
-
-
-
-
-
-
-
 
 		.region.region-content{
 			float: right;
@@ -3226,7 +3226,15 @@ article{
 		display: none;
 	}
 }
+.node-type-partner{
+	.panels-flexible-row-new-5{
+		margin-left: @margin1;
+		margin-right: @margin1;
+	}
+}
 .profile-edit-links-container{
+	margin-left: @margin2;
+	margin-right: @margin2;
 	.pane-hwc-partner-hwc-partner-private-link-0, .pane-hwc-partner-hwc-partner-private-link-1,
 	.pane-hwc-partner-hwc-partner-private-link-2, .pane-node-profile-update-link{
 		.pane-content{
@@ -3705,8 +3713,15 @@ article{
 			}
 		}
 	}
+	.back-to-link{
+		display: none;
+	}
 }
-
+.private-area{
+	.back-to-link{
+		display: none;
+	}
+}
 /*fin create event*/
 
 /*Private area for partner*/
@@ -3861,7 +3876,7 @@ article{
 				span{
 					float: initial;
 					font-weight: bold;
-					font-size: @size6;
+					font-size: @size4;
 					color: @color2;
 					font-style: italic;
 				}
@@ -3873,6 +3888,10 @@ article{
 					margin-left: 10px;
 					&:after{
 						content: url("../images/content/download.png");
+						vertical-align: sub;
+						content: "";
+						background: url("../images/content/download.png") no-repeat center;
+						padding: 4px 10px 0px;/*  */
 					}
 					img{
 						display: none;
@@ -4159,7 +4178,6 @@ article{
 	}
 	#block-osha-newsletter-osha-newsletter-subscribe-extra{
 		h2{
-			background-color: @bg-color-2;
 			background: url("../images/content/bg-campaign-partner.png") no-repeat left top;
 			background-size: cover;
 			font-style: italic;
@@ -4249,6 +4267,90 @@ article{
 	padding: @margin2;
 }
 /*Fin pag error*/
+
+/*pag get-your-certificate*/
+.page-get-your-certificate{
+	.chosen-container{
+		.chosen-drop, .chosen-search input[type="text"]{
+			border-color: @text-color-2;
+		}
+		.chosen-results {
+			color: @text-color-2;
+		}
+	}
+	form.webform-client-form {
+		clear:both;
+		float: left;
+		margin-top: 3em;
+		margin-left: -@margin1;
+		label{
+			font-weight: bold;
+		}
+		.form-item, .webform-component {
+			margin-bottom: 2em;
+		}
+		.form-control, .chosen-single span{
+			color: @text-color-2;
+		}
+		.webform-component--activities{
+			margin-bottom: 0em;
+		}
+		.form-checkboxes{
+			margin-top: 2em;
+			.form-item, .webform-component {
+				margin-bottom: 1em;
+			}
+		}
+		.webform-component--other-activities{
+			label{
+				margin-left: 35px;
+				float: left;
+			}
+			input{
+				width: auto;
+				float: left;
+			}
+		}
+		button{
+			margin-left: @margin2;
+			width: 97%;
+		}
+		
+		.form-select {
+			position: relative;
+			display: inline-block;
+			width: 95%;
+			&:after {
+				width: 30px;
+				height: 32px;
+				display: block;
+				content: '';
+				position: absolute;
+				top: 0px;
+				right: 0;
+				pointer-events: none;
+				background: @bg-color-2 url("../images/content/arrow-down.png") no-repeat right center;
+				-moz-box-sizing: border-box;
+				-webkit-box-sizing: border-box;
+				box-sizing: border-box;
+			}
+			select {
+				font-style: normal;
+				font-weight: normal;
+				line-height: 100%;
+				appearance: none;
+				-moz-appearance: none;
+				-webkit-appearance: none;
+				-moz-box-sizing: border-box;
+				-webkit-box-sizing: border-box;
+				box-sizing: border-box;
+				width: 100%;
+				height: 23px;
+			}
+		}
+	}
+}
+/*Fin pag get-your-certificate*/
 
 /*classes toda la pantalla*/
 #block-osha-newsletter-osha-newsletter-subscribe{

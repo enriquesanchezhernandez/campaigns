@@ -7199,6 +7199,7 @@ header.navbar-default .navbar-header {
   /* languages */
   /* search */
   /* login */
+  /*back to private zone*/
 }
 header.navbar-default .navbar-header a.pull-left {
   border-right: 1px solid #003399;
@@ -7307,6 +7308,19 @@ header.navbar-default .navbar-header #block-menu-menu-header-login a.contextual-
   background-image: none;
   background-color: transparent;
   padding: 0;
+}
+header.navbar-default .navbar-header #block-block-1,
+header.navbar-default .navbar-header #block-hwc-partner-hwc-partner-back-to-profile {
+  position: absolute;
+  right: 0;
+  top: 160px;
+  font-weight: bold;
+  font-style: italic;
+}
+header.navbar-default .navbar-header #block-block-1 a:before,
+header.navbar-default .navbar-header #block-hwc-partner-hwc-partner-back-to-profile a:before {
+  content: ">";
+  padding-right: 5px;
 }
 header.navbar-default .navbar-collapse {
   padding: 0;
@@ -7588,6 +7602,13 @@ body .top_anchor {
 .main-container h1 .form-item,
 .main-container .title-alt .form-item {
   margin-top: 26px;
+}
+.main-container .title-alt {
+  float: left;
+  width: 100%;
+  margin-bottom: 0;
+  margin-top: 0;
+  padding-bottom: 0em;
 }
 .main-container h2 {
   color: #575757;
@@ -8890,6 +8911,7 @@ div[class*='node-'] .more-link {
 .page-search .region-sidebar-first h2 {
   color: #333333;
   font-size: 20px;
+  text-align: left;
 }
 .page-search .region-sidebar-first .facetapi-facetapi-checkbox-links li {
   margin-bottom: 10px;
@@ -10655,6 +10677,14 @@ article .hwc-share-widget ul {
 .container .panel-separator {
   display: none;
 }
+.node-type-partner .panels-flexible-row-new-5 {
+  margin-left: 25px;
+  margin-right: 25px;
+}
+.profile-edit-links-container {
+  margin-left: 15px;
+  margin-right: 15px;
+}
 .profile-edit-links-container .pane-hwc-partner-hwc-partner-private-link-0 .pane-content,
 .profile-edit-links-container .pane-hwc-partner-hwc-partner-private-link-1 .pane-content,
 .profile-edit-links-container .pane-hwc-partner-hwc-partner-private-link-2 .pane-content,
@@ -11270,6 +11300,13 @@ article .hwc-share-widget ul {
   border: 1px solid #003399;
   padding: 10px;
 }
+.page-node-add-events .back-to-link,
+.page-node-add-news .back-to-link {
+  display: none;
+}
+.private-area .back-to-link {
+  display: none;
+}
 /*fin create event*/
 /*Private area for partner*/
 .private-area #private {
@@ -11419,7 +11456,7 @@ article .hwc-share-widget ul {
 .page-campaign-materials .view-id-view_campaign_materials .views-row .field-type-file span {
   float: initial;
   font-weight: bold;
-  font-size: 16px;
+  font-size: 14px;
   color: #003399;
   font-style: italic;
 }
@@ -11432,6 +11469,11 @@ article .hwc-share-widget ul {
 }
 .page-campaign-materials .view-id-view_campaign_materials .views-row .field-type-file a:after {
   content: url("../images/content/download.png");
+  vertical-align: sub;
+  content: "";
+  background: url("../images/content/download.png") no-repeat center;
+  padding: 4px 10px 0px;
+  /*  */
 }
 .page-campaign-materials .view-id-view_campaign_materials .views-row .field-type-file a img {
   display: none;
@@ -11693,7 +11735,6 @@ article .hwc-share-widget ul {
   padding-bottom: 0em;
 }
 .page-node-129 #block-osha-newsletter-osha-newsletter-subscribe-extra h2 {
-  background-color: #003399;
   background: url("../images/content/bg-campaign-partner.png") no-repeat left top;
   background-size: cover;
   font-style: italic;
@@ -11778,6 +11819,86 @@ article .hwc-share-widget ul {
   padding: 15px;
 }
 /*Fin pag error*/
+/*pag get-your-certificate*/
+.page-get-your-certificate .chosen-container .chosen-drop,
+.page-get-your-certificate .chosen-container .chosen-search input[type="text"] {
+  border-color: #003399;
+}
+.page-get-your-certificate .chosen-container .chosen-results {
+  color: #003399;
+}
+.page-get-your-certificate form.webform-client-form {
+  clear: both;
+  float: left;
+  margin-top: 3em;
+  margin-left: -25px;
+}
+.page-get-your-certificate form.webform-client-form label {
+  font-weight: bold;
+}
+.page-get-your-certificate form.webform-client-form .form-item,
+.page-get-your-certificate form.webform-client-form .webform-component {
+  margin-bottom: 2em;
+}
+.page-get-your-certificate form.webform-client-form .form-control,
+.page-get-your-certificate form.webform-client-form .chosen-single span {
+  color: #003399;
+}
+.page-get-your-certificate form.webform-client-form .webform-component--activities {
+  margin-bottom: 0em;
+}
+.page-get-your-certificate form.webform-client-form .form-checkboxes {
+  margin-top: 2em;
+}
+.page-get-your-certificate form.webform-client-form .form-checkboxes .form-item,
+.page-get-your-certificate form.webform-client-form .form-checkboxes .webform-component {
+  margin-bottom: 1em;
+}
+.page-get-your-certificate form.webform-client-form .webform-component--other-activities label {
+  margin-left: 35px;
+  float: left;
+}
+.page-get-your-certificate form.webform-client-form .webform-component--other-activities input {
+  width: auto;
+  float: left;
+}
+.page-get-your-certificate form.webform-client-form button {
+  margin-left: 15px;
+  width: 97%;
+}
+.page-get-your-certificate form.webform-client-form .form-select {
+  position: relative;
+  display: inline-block;
+  width: 95%;
+}
+.page-get-your-certificate form.webform-client-form .form-select:after {
+  width: 30px;
+  height: 32px;
+  display: block;
+  content: '';
+  position: absolute;
+  top: 0px;
+  right: 0;
+  pointer-events: none;
+  background: #003399 url("../images/content/arrow-down.png") no-repeat right center;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+.page-get-your-certificate form.webform-client-form .form-select select {
+  font-style: normal;
+  font-weight: normal;
+  line-height: 100%;
+  appearance: none;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  width: 100%;
+  height: 23px;
+}
+/*Fin pag get-your-certificate*/
 /*classes toda la pantalla*/
 #block-osha-newsletter-osha-newsletter-subscribe {
   margin-right: -15px;
@@ -11996,6 +12117,9 @@ article .hwc-share-widget ul {
   header.navbar-default .campaigns-header .navbar-header .header_top_bar .region-above-header {
     display: none;
   }
+  header.navbar-default .campaigns-header .navbar-header .region-header {
+    /*back to private zone*/
+  }
   header.navbar-default .campaigns-header .navbar-header .region-header #block-search-form {
     margin-top: 2em;
   }
@@ -12022,6 +12146,10 @@ article .hwc-share-widget ul {
     right: 0;
     padding-right: 46px;
     position: relative;
+  }
+  header.navbar-default .campaigns-header .navbar-header .region-header #block-block-1,
+  header.navbar-default .campaigns-header .navbar-header .region-header #block-hwc-partner-hwc-partner-back-to-profile {
+    top: 140px;
   }
   header.navbar-default .navbar-collapse nav ul.menu li span.dropdown-toggle {
     padding-left: 5px;
@@ -12743,6 +12871,9 @@ article .hwc-share-widget ul {
   header.navbar-default .campaigns-header .navbar-header .header_top_bar .region-above-header {
     display: none;
   }
+  header.navbar-default .campaigns-header .navbar-header .region-header {
+    /*back to private zone*/
+  }
   header.navbar-default .campaigns-header .navbar-header .region-header #block-search-form {
     margin-top: 0.5em;
     margin-bottom: 0.5em;
@@ -12773,6 +12904,11 @@ article .hwc-share-widget ul {
     right: 0;
     padding-right: 46px;
     position: initial;
+  }
+  header.navbar-default .campaigns-header .navbar-header .region-header #block-block-1,
+  header.navbar-default .campaigns-header .navbar-header .region-header #block-hwc-partner-hwc-partner-back-to-profile {
+    top: -30px;
+    right: 15px;
   }
   .navbar-header {
     /* display: none; */
