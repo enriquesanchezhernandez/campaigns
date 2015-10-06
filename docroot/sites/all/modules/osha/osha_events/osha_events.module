@@ -7,30 +7,31 @@
 include_once 'osha_events.features.inc';
 
 /**
- * Implements hook_form_alter().
+ * Implements hook_form_FORM_ID_alter().
  */
 
-function osha_events_form_alter(&$form, &$form_state, $form_id) {
-  if ($form_id == 'events_node_form') {
-    $form['#validate'][] = 'osha_events_form_validate';
-    $form['actions']['#attributes']['class'] = array('container');
-    // Activity field changes
-    if (isset($form['field_activity'][LANGUAGE_NONE][0])) {
-      unset($form['field_activity'][LANGUAGE_NONE]['add_more']);
-      // Extract the field field tree to change cardinality
-      $field = $form['field_activity'][LANGUAGE_NONE][0]['tid'];
+function osha_events_form_events_node_form_alter(&$form, &$form_state) {
+  $form['#validate'][] = 'osha_events_form_validate';
+  $form['actions']['#attributes']['class'] = array('container');
+  // Activity field changes
+  if (isset($form['field_activity'][LANGUAGE_NONE][0])) {
+    unset($form['field_activity'][LANGUAGE_NONE]['add_more']);
+    // Extract the field field tree to change cardinality
+    $field = $form['field_activity'][LANGUAGE_NONE][0]['tid'];
 
-      // Show the label as usual
-      unset($field['#title_display']);
+    // Show the label as usual
+    unset($field['#title_display']);
 
-      // Field is not required, so add also an empty option.
-      $field['#required'] = FALSE;
-      $field['#options'] = array('' => t('- None -')) + $field['#options'];
-      // Switch validator
-      $field['#element_validate'] = array('options_field_widget_validate');
+    // Field is not required, so add also an empty option.
+    $field['#required'] = FALSE;
+    $field['#options'] = array('' => t('- None -')) + $field['#options'];
+    // Switch validator
+    $field['#element_validate'] = array('options_field_widget_validate');
 
-      $form['field_activity'][LANGUAGE_NONE] = $field;
-    }
+    $form['field_activity'][LANGUAGE_NONE] = $field;
+  }
+  if (isset($form['field_related_documents'][LANGUAGE_NONE]['#file_upload_title'])) {
+    $form['field_related_documents'][LANGUAGE_NONE]['#file_upload_title'] = t('Upload extra files');
   }
 }
 
@@ -211,7 +212,6 @@ function osha_events_views_pre_render(&$view) {
         continue;
       }
       $month = $row_month;
-
       $path = $view->current_display == 'block_1'? 'past-events':'events';
 
       // Add a css class to selected month

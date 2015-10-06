@@ -264,3 +264,6 @@ div.workbench-info-block {
     height: auto !important;
 }
 
+.view-display-id-block_2 {
+    display: none;
+}

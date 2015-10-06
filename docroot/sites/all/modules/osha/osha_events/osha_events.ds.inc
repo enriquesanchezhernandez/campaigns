@@ -12,6 +12,78 @@ function osha_events_ds_layout_settings_info() {
 
   $ds_layout = new stdClass();
   $ds_layout->api_version = 1;
+  $ds_layout->id = 'node|events|default';
+  $ds_layout->entity_type = 'node';
+  $ds_layout->bundle = 'events';
+  $ds_layout->view_mode = 'default';
+  $ds_layout->layout = 'hwc_2col_stacked_2col';
+  $ds_layout->settings = array(
+    'regions' => array(
+      'header' => array(
+        0 => 'title_field',
+        1 => 'share_widget',
+        2 => 'field_city',
+        3 => 'field_country_code',
+        4 => 'field_start_date',
+        5 => 'body',
+        6 => 'field_gallery',
+        7 => 'field_speaker',
+        8 => 'field_schedule',
+        9 => 'field_related_documents',
+        10 => 'field_contact_name',
+        11 => 'field_contact_email',
+        12 => 'field_contact_phone',
+        13 => 'field_website_of_event',
+        14 => 'field_partner_id',
+        15 => 'field_organizer',
+        16 => 'field_location',
+        17 => 'field_tags',
+      ),
+    ),
+    'fields' => array(
+      'title_field' => 'header',
+      'share_widget' => 'header',
+      'field_city' => 'header',
+      'field_country_code' => 'header',
+      'field_start_date' => 'header',
+      'body' => 'header',
+      'field_gallery' => 'header',
+      'field_speaker' => 'header',
+      'field_schedule' => 'header',
+      'field_related_documents' => 'header',
+      'field_contact_name' => 'header',
+      'field_contact_email' => 'header',
+      'field_contact_phone' => 'header',
+      'field_website_of_event' => 'header',
+      'field_partner_id' => 'header',
+      'field_organizer' => 'header',
+      'field_location' => 'header',
+      'field_tags' => 'header',
+    ),
+    'classes' => array(
+      'layout_class' => array(
+        '' => '',
+      ),
+    ),
+    'wrappers' => array(
+      'header' => 'div',
+      'left' => 'div',
+      'right' => 'div',
+      'center' => 'div',
+      'left2' => 'div',
+      'right2' => 'div',
+      'footer' => 'div',
+    ),
+    'layout_wrapper' => 'div',
+    'layout_attributes' => '',
+    'layout_attributes_merge' => 1,
+    'layout_link_attribute' => '',
+    'layout_link_custom' => '',
+  );
+  $export['node|events|default'] = $ds_layout;
+
+  $ds_layout = new stdClass();
+  $ds_layout->api_version = 1;
   $ds_layout->id = 'node|events|form';
   $ds_layout->entity_type = 'node';
   $ds_layout->bundle = 'events';

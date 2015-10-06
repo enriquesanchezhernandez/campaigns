@@ -79,6 +79,7 @@
 			font-weight: 100;
 			font-style: italic;
 			margin-top: 0px;
+			text-align: center;
 			a:empty {
 				display: none;
 			}
@@ -645,8 +646,50 @@
 			}
 		}
 		
-	}
+		.node-infographic{
+			.field.field-name-field-image {
+				width: auto;
+				height: auto;
+				max-height: 150px;
+				overflow: hidden;
+				margin-bottom: 0em;
+				img {
+					height: auto;
+					width: 150px;
+				}
+			}
+			.field-name-field-image + .field-name-title-field {
+				position: relative;
+				background-image: none;
+				height: auto;
+				width: auto;
+				h1 {
+					padding-top: 0;
+					height: auto;
+					width: auto;
+					margin-left: 0px;
+					margin-right: 0px;
+				}
+				a {
+					float: left;
+				}
+			}
+		}
 	
+		.node-external-url{
+			a.external-link {
+			  color: #003399;
+			  font-weight: bold;
+			  font-style: italic;
+			  font-size: 20px;
+			  &:before {
+				  content: "> ";
+				}
+			}
+		}
+	}
+
+
 	/*Articles*/
 	.node-type-article{
 		article{
@@ -686,7 +729,9 @@
 				font-weight: bold;
 				text-align: center;
 				margin-bottom: 1em;
-				
+			}
+			.field-name-field-aditional-resources{
+				border: none;
 			}
 			.node-article{
 				border-bottom:none;
@@ -707,32 +752,84 @@
 			.list-inline{
 				display: none !important;//to do wendsday
 			}
-			//article aditional resources
-			.field.field-name-field-aditional-resources{
-				.node-events{
-					.field-name-field-start-date{					
-						border-top: none !important;
-						font-weight: bold;
-						width: 150px;
-						height: 150px;
-						padding: 0;
-						background-color: @color3;
-						background-image: none;
-						margin: 0;
-						text-align: center;
-						float: left;
-						overflow: hidden;
-						margin-right: 15px;
-						span{
-							font-size: @size0;
-							color: @color1;
-						}
-					}
+		}
+	}
+	/*Fin articles*/
+		
+	//article aditional resources
+	.field.field-name-field-aditional-resources{
+		margin-top: 1em;
+		padding-top: 1em;
+		border-top: 1px dotted @border-default-color;
+		clear: both;
+		> .field-label{
+			color: #749b00;
+			font-style: normal;
+			font-weight: bold;
+			text-align: center;
+			font-size: @h2-default-size;
+			background: url("../images/content/additional-resources.png") no-repeat center top;
+			width: 100%;
+			margin: 1em auto;
+			padding-top: 65px;
+		}
+		.node-events{
+			.field-name-field-start-date{					
+				border-top: none !important;
+				font-weight: bold;
+				width: 150px;
+				height: 150px;
+				padding: 0;
+				background-color: @color3;
+				background-image: none;
+				margin: 0;
+				text-align: center;
+				float: left;
+				overflow: hidden;
+				margin-right: 15px;
+				span{
+					font-size: @size0;
+					color: @color1;
+				}
+			}
+		}
+		.field-name-field-external-url.field-type-link-field{
+			a{
+				color: #003399;
+				font-weight: bold;
+				font-style: italic;
+				font-size: @size2;
+				&:before {
+					content: "> ";
+				}
+			}
+		}
+		.node-infographic{
+			.field-name-title-field{
+				float: left;
+				a {
+					font-size: @size2;
+				}
+				h1{
+					border-bottom: none;
+				}
+			}
+			.field.field-name-field-image{
+				height: auto;
+				max-height: 150px;
+				overflow: hidden;
+				margin-bottom: 0em;
+				float: left;
+				margin-right: 1em !important;
+				img {
+					height: auto;
+					width: 150px;
+					margin-right: 0em;
 				}
 			}
 		}
 	}
-	/*Fin articles*/
+	/*fin aditional resources*/
 	
 	/* pag Infographics */
 	.view-infographic{
@@ -752,6 +849,7 @@
 		}
 		.field-name-title-field{
 			h2{
+				text-align: left;
 				margin-top: 0px;
 			}
 		}
@@ -797,10 +895,12 @@
 	/* Node-XXX */
 	div[class*='node-']{
 		h1{
+			text-align: center;
 			font-style: italic;
 			font-weight: lighter;
 			color: @h1-color-2;
 			font-size: @h1-size-2;
+			border-bottom: none;
 		}
 		.field-name-field-summary{
 			font-weight: bold;
@@ -1289,37 +1389,41 @@
 				font-size: @size2;
 			}
 			.facetapi-facetapi-checkbox-links li{
+				margin-bottom: 10px;
 				input[type="checkbox"]{
 					margin-right: 0.5em;
+					margin-right: 15px;
+					&:before {
+						border: 2px solid #003399;
+						content: "\2716";
+						padding: 0px 1px 0px 3px;
+						margin-right: 10px;
+						color: #ffffff;
+						width: 20px;
+						height: 20px;
+						background-color: white;
+					}
+					&:checked:before {
+						content: "\2713";
+						color: #003399;
+					}
+				}
+				#facetapi-link--all--checkbox {
+					margin-right: 11px;
 				}
 				a{
 					font-family: @font-family-semibold;
 				}
 			}
-				/* .facetapi-facetapi-checkbox-links li{
-					input[type="checkbox"]{
-						display: none;
-					}
-					> label{
-						color: @text-color-2;
-						padding-left: 0;
-						font-family: @font-family-semibold;
-					}
-					> label:before {
-						border: 2px solid @border-color-2;
-						content: "\2716";
-						padding: 0px 4px 0px 10px;
-						padding: 0px 1px 0px 3px;
-						margin-right: 10px;
-						color: @color1;
-					}
-					input[type=checkbox]:checked + label:before {
-						content: "\2713";
-						color: @text-color-2;
-						font-weight: bold;
-					}
-				} */
 		}
+
+
+
+
+
+
+
+
 		.region.region-content{
 			float: right;
 			width: 71%;
@@ -1524,6 +1628,7 @@
 			padding-bottom: 15px !important;
 			margin-bottom: 15px !important;
 			h2{
+				text-align: left;
 				font-weight: bold;
 				font-style: normal;
 				font-size: @size2;
@@ -1556,8 +1661,7 @@
 					}
 				}
 			}
-		}
-		
+		}		
 		.field-name-field-country, .field-name-field-tool-type, .field-name-field-provider{
 			.field-label ~ .field-items:empty{
 				&:before{
@@ -1576,16 +1680,23 @@
 				padding-right: 0.35em;
 			}
 		}
-
 	}
-		/*margins: practical-tools and publications*/
-		#edit-left-column{
-			padding-left: @margin1;
+	.node-type-practical-tool{
+		.main-container h1{
+			border-bottom: none;
+			padding-bottom: 0;
+			margin-bottom: 0;
 		}
-		#edit-content{
-			padding-right: @margin1;
-		
-		}
+	}
+	
+	/*margins: practical-tools and publications*/
+	#edit-left-column{
+		padding-left: @margin1;
+	}
+	#edit-content{
+		padding-right: @margin1;
+	
+	}
 	.pane-node-field-free, .pane-node-field-country, .pane-node-field-tool-type{
 		background-color: @color8;
 		color: @text-color-2;
@@ -1747,6 +1858,7 @@
 			font-weight: bold;
 			font-style: normal;
 			margin-top: 10px;
+			text-align: left;
 		}
 		.field-name-field-summary{
 			font-weight: bold;
@@ -2353,6 +2465,7 @@ article{
 		font-size: @size4;
 		margin-top: 1em;
 		margin-bottom: 1em;
+		text-align: left;
 	}
 	.field-name-field-city{
 		color: @text-color-3;
@@ -2429,7 +2542,7 @@ article{
 		}
 	}
 	.field-collection-container{
-		clear: both;			
+		clear: both;
 		margin-bottom: 2em;
 		padding-bottom: 2em;
 		.field-name-field-schedule{
@@ -2456,24 +2569,62 @@ article{
 			}
 			.field-name-field-talking-speaker{
 			    float: left;
+				margin-right: 1em;
 				h2{
 					display: none;
 				}
 			}
-			.field-name-field-talking-title, .field-name-field-talking-files{
+			.field-name-field-talking-title{
 				float: left;
 				width: 65%;
+				.field-label{
+					display: none;
+				}
+				.field-items, .field-item{
+					font-weight: bold;
+				}
+			}
+			
+			.field-name-field-talking-files{
+				float: left;
+				width: 65%;
+				margin-top: 0.5em;
+				font-style: italic;
+				div{
+					width: auto;
+					float: left;
+					font-weight: bold;
+					.field-item{
+						img{
+							display: none;
+						}
+						a{
+							background: url("../images/content/download.png") no-repeat right;
+							padding-right: 25px;
+							margin-right: 5px;
+						}
+					}
+				}
 			}
 			.field-name-field-venue{
 				float: left;
+				div{
+					width: auto;
+					float: left;
+				}
 			}
 		}
 	}
-	.field-name-field-related-documents, .field-name-field-contact-name, .field-name-field-contact-email, .field-name-field-organizer, .field-name-field-location{
+	.field-name-field-related-documents, .field-name-field-contact-name, .field-name-field-contact-email, .field-name-field-organizer, .field-name-field-location, .field-name-field-contact-phone, .field-name-field-website-of-event{
 		clear: both;
 		padding-bottom: 1.5em;
 		.field-label, .field-items{
 			float: left;
+		}
+	}
+	.field-name-field-contact-email, .field-name-field-website-of-event{
+		.field-items{
+			font-style: italic;
 		}
 	}
 }
@@ -2593,6 +2744,12 @@ article{
 				    margin-left: auto;
 				    margin-right: auto;
 				}
+			}
+			h2.present-yourself:before{
+				background-image: url("../images/content/icono-present-yourself-big.png");
+			}
+			h2.networking:before{
+				background-image: url("../images/content/icono-networking-big.png");
 			}
 		}
 		.col-2{
@@ -3301,6 +3458,7 @@ article{
 			color: @color3;
 			margin-bottom: 1.5em;
 			margin-top: 1.5em;
+			text-align: left;
 		}
 		th.field-label{
 			padding: 0 !important;
@@ -3771,6 +3929,9 @@ article{
 /*fin campaign materials*/
 /*Publications detail*/
 .node-type-publication{
+	h2 {
+		text-align: center;
+	}
 	.pane-node-field-cover-image{
 		margin-left: -15px;
 		margin-top: 1em;
@@ -3988,20 +4149,115 @@ article{
 }
 /*Fin pag National focal points*/
 
+/*pag Newsletter*/
+.page-node-129{
+	h1{
+		border-bottom: none;
+		background: url("../images/content/mail-newsletter.png") no-repeat center top;
+		padding-top: 85px;
+		padding-bottom: 0em;
+	}
+	#block-osha-newsletter-osha-newsletter-subscribe-extra{
+		h2{
+			background-color: @bg-color-2;
+			background: url("../images/content/bg-campaign-partner.png") no-repeat left top;
+			background-size: cover;
+			font-style: italic;
+			font-weight: normal;
+			text-align: center;
+			color: @h2-default-color;
+			padding: 50px;
+			margin-top: 20px;
+			margin-bottom: 20px;
+			margin-left: -@margin2;
+			margin-right: -@margin2;
+		}
+		#subscribe-extra{
+			font-weight: bold;
+			input{
+				font-weight: normal;
+			}
+			label{
+				font-weight: bold;
+			}
+		}
+	}
+	#block-osha-newsletter-osha-newsletter-subscribe{
+		background: none;
+		h2{
+			/* background: url("../images/content/newsletter.png") no-repeat center 20px; */
+			background: url("../images/content/bg-campaign-partner.png") no-repeat left top;
+			background-size: cover;
+			padding-top: 50px;
+			padding-bottom: 50px;
+			margin-top: 0px;
+			font-style: italic;
+			font-weight: normal;
+		}
+		div{
+			color: @colorNormalText;
+			font-weight: bold;
+		}
+		div#newsletter-subscription-form-wrapper{
+			text-align: left;
+			form{
+				input{
+					border: 1px solid @border-color-2;
+					color: @text-color-2;
+					font-weight: normal;
+				}
+			}
+		}
+	}
+	#block-osha-newsletter-osha-newsletter-latest{
+		border-top: 1px dotted @border-default-color;
+		h2.block-title{
+			font-style: italic;
+			font-weight: normal;
+			text-align: center;
+			margin: 50px 0;
+		}
+		#latest-newsletters-block{
+			width: 50%;
+			h2{
+				text-align: left;
+				margin-right: 50px;
+				background-color: @bg-color-2;
+				a{
+					color: @color1 !important;
+					padding-left: 10px;
+					padding-right: 10px;
+					font-size: @size7;
+					width: 100%;
+					line-height: 25px;
+				}
+			}
+		}
+	}
+}
+
+.taxonomy-term, .vocabulary-newsletter-sections{
+	color: #749b00;
+	font-weight: bold;
+	font-size: 20px;
+	padding-bottom: 10px;
+}
+/*Fin pag Newsletter*/
+
 /*pag error*/
 .maintenance-page{
-	padding: 15px;
+	padding: @margin2;
 }
 /*Fin pag error*/
 
 /*classes toda la pantalla*/
 #block-osha-newsletter-osha-newsletter-subscribe{
-	margin-right: -15px;
-	margin-left:  -15px;
+	margin-right: -@margin2;
+	margin-left:  -@margin2;
 }
 #block-osha-newsletter-osha-newsletter-image{
-	margin-right: -15px;
-	margin-left:  -15px;
+	margin-right: -@margin2;
+	margin-left:  -@margin2;
 	#campaigns-newsletter-subscribe-form > div{
 		display: inline-flex;
 	}
