@@ -49,10 +49,17 @@ function osha_events_field_group_info() {
     'label' => 'Description',
     'weight' => '17',
     'children' => array(),
-    'format_type' => 'hidden',
+    'format_type' => 'html-element',
     'format_settings' => array(
       'formatter' => '',
-      'instance_settings' => array(),
+      'instance_settings' => array(
+        'element' => 'div',
+        'show_label' => 0,
+        'label_element' => 'div',
+        'classes' => '',
+        'attributes' => '',
+        'required_fields' => 1,
+      ),
     ),
   );
   $export['group_events_description|node|events|default'] = $field_group;
@@ -70,10 +77,17 @@ function osha_events_field_group_info() {
     'label' => 'Event details',
     'weight' => '16',
     'children' => array(),
-    'format_type' => 'hidden',
+    'format_type' => 'html-element',
     'format_settings' => array(
       'formatter' => '',
-      'instance_settings' => array(),
+      'instance_settings' => array(
+        'element' => 'div',
+        'show_label' => 0,
+        'label_element' => 'div',
+        'classes' => '',
+        'attributes' => '',
+        'required_fields' => 1,
+      ),
     ),
   );
   $export['group_events_event_details|node|events|default'] = $field_group;
@@ -91,7 +105,7 @@ function osha_events_field_group_info() {
     'label' => 'Links',
     'weight' => '18',
     'children' => array(),
-    'format_type' => 'hidden',
+    'format_type' => 'html-element',
     'format_settings' => array(
       'label' => 'Links',
       'instance_settings' => array(
@@ -102,6 +116,9 @@ function osha_events_field_group_info() {
         'label_element' => 'h3',
         'effect' => 'none',
         'speed' => 'fast',
+        'element' => 'div',
+        'attributes' => '',
+        'required_fields' => 1,
       ),
       'formatter' => 'open',
     ),
@@ -121,7 +138,7 @@ function osha_events_field_group_info() {
     'label' => 'Related documents',
     'weight' => '15',
     'children' => array(),
-    'format_type' => 'hidden',
+    'format_type' => 'html-element',
     'format_settings' => array(
       'label' => 'Related documents',
       'instance_settings' => array(
@@ -132,6 +149,9 @@ function osha_events_field_group_info() {
         'label_element' => 'h3',
         'effect' => 'none',
         'speed' => 'fast',
+        'element' => 'div',
+        'attributes' => '',
+        'required_fields' => 1,
       ),
       'formatter' => 'open',
     ),

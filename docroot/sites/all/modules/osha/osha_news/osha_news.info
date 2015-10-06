@@ -30,6 +30,7 @@ features[ctools][] = views:views_default:3.0
 features[ds_field_settings][] = node|news|default
 features[ds_layout_settings][] = node|news|default
 features[ds_layout_settings][] = node|news|form
+features[ds_layout_settings][] = node|news|osha_resources
 features[ds_layout_settings][] = node|news|teaser
 features[fe_block_settings][] = views-news-oshnews_latest
 features[features_api][] = api:2

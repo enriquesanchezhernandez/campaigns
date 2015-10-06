@@ -196,6 +196,10 @@ function osha_news_strongarm() {
             'weight' => '12',
             'visible' => FALSE,
           ),
+          'osha_resources' => array(
+            'weight' => '12',
+            'visible' => FALSE,
+          ),
         ),
       ),
     ),

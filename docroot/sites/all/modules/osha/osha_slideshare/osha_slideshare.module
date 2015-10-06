@@ -1,4 +1,10 @@
 <?php
+/**
+ * @file
+ * Code for the Slideshare Field feature.
+ */
+
+include_once 'osha_slideshare.features.inc';
 
 /**
  * Implements hook_field_info().

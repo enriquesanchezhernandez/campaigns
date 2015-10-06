@@ -183,6 +183,56 @@ function osha_news_ds_layout_settings_info() {
 
   $ds_layout = new stdClass();
   $ds_layout->api_version = 1;
+  $ds_layout->id = 'node|news|osha_resources';
+  $ds_layout->entity_type = 'node';
+  $ds_layout->bundle = 'news';
+  $ds_layout->view_mode = 'osha_resources';
+  $ds_layout->layout = 'ds_2col';
+  $ds_layout->settings = array(
+    'regions' => array(
+      'left' => array(
+        0 => 'field_image',
+      ),
+      'right' => array(
+        1 => 'field_publication_date',
+        2 => 'title_field',
+        3 => 'field_summary',
+        4 => 'body',
+      ),
+    ),
+    'fields' => array(
+      'field_image' => 'left',
+      'field_publication_date' => 'right',
+      'title_field' => 'right',
+      'field_summary' => 'right',
+      'body' => 'right',
+    ),
+    'classes' => array(
+      'layout_class' => array(
+        'row' => 'row',
+      ),
+      'left' => array(
+        'col-sm-2' => 'col-sm-2',
+      ),
+      'right' => array(
+        'col-sm-10' => 'col-sm-10',
+      ),
+    ),
+    'wrappers' => array(
+      'left' => 'div',
+      'right' => 'div',
+    ),
+    'layout_wrapper' => 'div',
+    'layout_attributes' => '',
+    'layout_attributes_merge' => 1,
+    'layout_link_attribute' => '',
+    'layout_link_custom' => '',
+    'layout_disable_css' => 1,
+  );
+  $export['node|news|osha_resources'] = $ds_layout;
+
+  $ds_layout = new stdClass();
+  $ds_layout->api_version = 1;
   $ds_layout->id = 'node|news|teaser';
   $ds_layout->entity_type = 'node';
   $ds_layout->bundle = 'news';
@@ -213,6 +263,9 @@ function osha_news_ds_layout_settings_info() {
       ),
       'left' => array(
         'col-md-2' => 'col-md-2',
+      ),
+      'right' => array(
+        'col-sm-10' => 'col-sm-10',
       ),
     ),
     'wrappers' => array(

@@ -15,13 +15,20 @@ function hwc_strongarm() {
   $strongarm->api_version = 1;
   $strongarm->name = 'ds_classes_fields';
   $strongarm->value = 'col-md-2
-col-md-2
+col-sm-2
+col-md-3
+col-sm-3
 col-md-4
-col-md-6
 col-sm-4
+col-md-6
 col-sm-6
+col-md-8
+col-sm-8
+col-md-10
+col-sm-10
 col-md-12
-row';
+row
+container';
   $export['ds_classes_fields'] = $strongarm;
 
   $strongarm = new stdClass();
@@ -29,15 +36,20 @@ row';
   $strongarm->api_version = 1;
   $strongarm->name = 'ds_classes_regions';
   $strongarm->value = 'col-md-2
-col-md-2
+col-sm-2
+col-md-3
+col-sm-3
 col-md-4
-col-md-6
 col-sm-4
-container
+col-md-6
 col-sm-6
+col-md-8
+col-sm-8
+col-md-10
+col-sm-10
 col-md-12
-container
-row';
+row
+container';
   $export['ds_classes_regions'] = $strongarm;
 
   return $export;

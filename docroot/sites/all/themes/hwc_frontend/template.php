@@ -288,6 +288,15 @@ function hwc_frontend_panels_flexible($vars) {
 
   return $output;
 }
+
+function hwc_frontend_preprocess_field(&$variables) {
+  // Add theme suggestion for field based on field name and view mode.
+  if (!empty($variables['element']['#view_mode'])) {
+    $variables['theme_hook_suggestions'][] = 'field__' . $variables['element']['#field_name'] . '__' . $variables['element']['#view_mode'];
+  }
+}
+
+
 function hwc_frontend_preprocess_node(&$vars) {
   if ($vars['view_mode'] == 'full' && $vars['type'] == 'events') {
     $vars['classes_array'][] = 'container';
