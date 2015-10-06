@@ -1,11 +1,4 @@
-<table border="0" cellpadding="28" cellspacing="0" width="800" style="font-family: Oswald, Arial,sans-serif; margin-bottom: 40px; background-repeat: no-repeat;" height="300" background="/sites/all/modules/osha/osha_newsletter/images/header-newsleter.png">
-
-
-
-
-
-
-
+<table border="0" cellpadding="28" cellspacing="0" width="800" style="font-family: Oswald, Arial,sans-serif; margin-left: 25px; margin-bottom: 40px; background-repeat: no-repeat;" height="300" background="/sites/all/modules/osha/osha_newsletter/images/header-newsletter.png">
 
   <tbody>
     <tr>
@@ -32,10 +25,6 @@
               theme(
                 'image',
                 array(
-
-
-
-
                   'path' => $directory . '/images/Osha-EU-logos.png',
                   'width' => 105,
                   'alt' => 'Osha logo',
@@ -56,9 +45,6 @@
               theme(
                 'image',
                 array(
-
-
-
                   'path' => $directory . '/images/logo-eu.png',
                   'width' => 50,
                   'alt' => 'Osha logo',
@@ -74,8 +60,6 @@
           ?>
         </div>
         <div style="float: left; padding-top: 13px; margin-left: 20px;">
-
-
 
         <?php
             print l(
@@ -107,7 +91,7 @@
     </tr>
 	<tr><td style="vertical-align: top; padding-top: 10px; padding-left: 50%;">
 		<h1 style="font-size: 3em; color: #FFF; border: none; padding: 0; margin: 0; text-align: left; line-height: 46px;"><?php print $newsletter_title ?></h1>
-		<h2 style="font-style: italic; font-weight: normal; font-size: 2.2em; color: #FFF; padding: 0; margin: 0;"><?php print $newsletter_ready_date ?></h2>
+		<h2 style="font-style: italic; font-weight: normal; font-size: 2.2em; color: #FFF; padding: 0; margin: 0; text-align: left;"><?php print $newsletter_ready_date ?></h2>
 		<br />
             <?php if(!empty($newsletter_intro)){ ?>
 				<p style="font-style: italic; color: #FFF;"><?php print($newsletter_intro);?></p>
@@ -115,27 +99,6 @@
 	</td></tr>
   </tbody>
 </table>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     <!-- <?php
 	 if ($languages) {
@@ -152,20 +115,4 @@
 	   <a href="<?php echo url('entity-collection/' . $newsletter_id, array('absolute' => TRUE, 'language' => $last_lang, 'query' => $url_query));?>" style="text-decoration: none; color: #003399;"><?php print $last_lang->native;?></a>
 	 <?php
 	 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 	?> -->
