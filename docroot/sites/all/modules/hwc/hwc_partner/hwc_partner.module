@@ -66,6 +66,14 @@ function hwc_partner_block_info() {
     'visibility' => BLOCK_VISIBILITY_NOTLISTED,
     'cache' => DRUPAL_CACHE_GLOBAL,
   );
+  $blocks['hwc_partner_back_to_profile'] = array(
+    'info' => t('Back to profile link'),
+    'status' => 1,
+    'region' => 'header',
+    'visibility' => BLOCK_VISIBILITY_NOTLISTED,
+    'cache' => DRUPAL_CACHE_PER_USER,
+    'weight' => 50,
+  );
   return $blocks;
 }
 
@@ -180,6 +188,21 @@ function hwc_partner_block_view($delta = '') {
     // Did this to use it in panels.
     $block['title'] = '<none>';
     $block['content'] = '<h1>' . t('My public profile') . '</h1>';
+  }
+  else if ($delta == 'hwc_partner_back_to_profile') {
+    global $user;
+    $link = NULL;
+    if (in_array(ROLE_CAMPAIGN_PARTNER, $user->roles) && !empty($user->workbench_access)) {
+      $sections = array_keys($user->workbench_access);
+      foreach($sections as $id_section) {
+        if ($partner = hwc_partner_by_section_id_load($id_section)) {
+          // Did this to use it in panels.
+          $block['title'] = '<none>';
+          $block['content'] = l('Back to HomePage', 'node/' . $partner->nid);
+          break;
+        }
+      }
+    }
   }
   return $block;
 }
