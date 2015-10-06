@@ -298,6 +298,10 @@ function hwc_workflow_form_alter(&$form, &$form_state, $form_id) {
       }
     }
   }
+  if (!empty($form['workbench_access']['workbench_access']['#options']['section'])) {
+    $form['workbench_access']['workbench_access']['#title'] = 'Partner';
+    $form['workbench_access']['workbench_access']['#options']['section'] = 'All partners';
+  }
 }
 
 /**
@@ -329,10 +333,6 @@ function hwc_workflow_form_news_node_form_alter(&$form, &$form_state) {
     if (!empty($_GET['workbench_access']) && intval($_GET['workbench_access'])) {
       $form['workbench_access']['workbench_access']['#default_value'] = intval($_GET['workbench_access']);
     }
-  }
-  if (!empty($form['workbench_access']['workbench_access']['#options']['section'])) {
-    $form['workbench_access']['workbench_access']['#title'] = 'Partner';
-    $form['workbench_access']['workbench_access']['#options']['section'] = 'All partners';
   }
 }
 
