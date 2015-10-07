@@ -10,9 +10,8 @@ class PartnerMigration extends HwcCrmMigration {
    * {@inheritdoc}
    */
   public function __construct($arguments) {
-    $source_file = PartnerMigrateListXml::getSourceFile($arguments);
     $this->source = new MigrateSourceList(
-      new PartnerMigrateListXml($source_file),
+      new PartnerMigrateListXml(),
       new PartnerContentItemXML(),
       $this->exposedFields()
     );
@@ -66,9 +65,15 @@ class PartnerMigration extends HwcCrmMigration {
 
 class PartnerMigrateListXml extends AbstractCrmMigrateListXml {
 
+  public function __construct() {
+    $file = variable_get('hwc_crm_data_dir', '') . '/PublicProfile.xml';
+    parent::__construct($file);
+  }
+
   protected function parseSourceFile() {
     self::$data = array();
     if (!is_readable($this->file)) {
+      drupal_set_message(strtr('Cannot find migration files: !file', array('!file' => $this->file)), 'error');
       return;
     }
     if ($xml = simplexml_load_file($this->file, 'SimpleXMLElement', LIBXML_COMPACT | LIBXML_PARSEHUGE)) {
