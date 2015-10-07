@@ -31,10 +31,6 @@ class HwcCrmMigration extends Migration {
   public function __construct($arguments) {
     parent::__construct($arguments);
 
-    /* Remove limits on time/memory, slower machines will fail */
-    $this->timeLimit = 0;
-    $this->memoryLimit = PHP_INT_MAX;
-
     $this->map = new MigrateSQLMap($this->machineName,
       array(
         'id' => array(
