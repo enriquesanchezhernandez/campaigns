@@ -7549,6 +7549,7 @@ body .more-link:before {
 }
 body input[type="text"],
 body textarea,
+body textarea.form-control,
 body select {
   color: #003399;
   border-color: #003399;
@@ -7566,6 +7567,12 @@ body a:focus {
 }
 body .top_anchor {
   display: none;
+}
+body .modal-content {
+  height: 100%;
+}
+body .modal-content .views-submit-button {
+  margin-top: 1.8em;
 }
 /* FIN para toda la aplicacion */
 /*no deberian aparecer en la aplicacion*/
@@ -10259,10 +10266,10 @@ article .hwc-share-widget ul {
   margin-right: auto;
 }
 .become-partner .coments .col h2.present-yourself:before {
-  background-image: url("../images/content/icono-present-yourself-big.png");
+  background-image: url("../images/content/icono-present-yourself-big.jpg");
 }
 .become-partner .coments .col h2.networking:before {
-  background-image: url("../images/content/icono-networking-big.png");
+  background-image: url("../images/content/icono-networking-big.jpg");
 }
 .become-partner .coments .col-2 {
   border-left: 1px dotted #749b00;
@@ -10884,6 +10891,10 @@ article .hwc-share-widget ul {
 }
 /*fin partners public profile*/
 /*create event --> dentro de public profile*/
+.page-node-add-events #views-form-aditional-resources-entityreference-view-widget-1 .form-type-checkbox label,
+.page-node-add-news #views-form-aditional-resources-entityreference-view-widget-1 .form-type-checkbox label {
+  visibility: visible !important;
+}
 .page-node-add-events .node-events-form .form-control,
 .page-node-add-news .node-events-form .form-control,
 .page-node-add-events .node-news-form .form-control,
@@ -10970,6 +10981,46 @@ article .hwc-share-widget ul {
 .page-node-add-events .node-news-form .field-type-entityreference .tabledrag-hide,
 .page-node-add-news .node-news-form .field-type-entityreference .tabledrag-hide {
   display: none;
+}
+.page-node-add-events .node-events-form .form-type-select,
+.page-node-add-news .node-events-form .form-type-select,
+.page-node-add-events .node-news-form .form-type-select,
+.page-node-add-news .node-news-form .form-type-select {
+  position: relative;
+  display: inline-block;
+  width: 95%;
+}
+.page-node-add-events .node-events-form .form-type-select:after,
+.page-node-add-news .node-events-form .form-type-select:after,
+.page-node-add-events .node-news-form .form-type-select:after,
+.page-node-add-news .node-news-form .form-type-select:after {
+  width: 30px;
+  height: 32px;
+  display: block;
+  content: '';
+  position: absolute;
+  bottom: 1px;
+  right: 0;
+  pointer-events: none;
+  background: #003399 url("../images/content/arrow-down.png") no-repeat right center;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+.page-node-add-events .node-events-form .form-type-select select,
+.page-node-add-news .node-events-form .form-type-select select,
+.page-node-add-events .node-news-form .form-type-select select,
+.page-node-add-news .node-news-form .form-type-select select {
+  font-style: normal;
+  font-weight: normal;
+  line-height: 100%;
+  appearance: none;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  width: 100%;
 }
 .page-node-add-events .node-events-form .field-type-datetime .help-block,
 .page-node-add-news .node-events-form .field-type-datetime .help-block,
@@ -11086,6 +11137,18 @@ article .hwc-share-widget ul {
 .page-node-add-events .node-news-form .group-center .field-name-field-related-documents .input-group-btn .btn-default,
 .page-node-add-news .node-news-form .group-center .field-name-field-related-documents .input-group-btn .btn-default {
   padding: 8px;
+}
+.page-node-add-events .node-events-form div.image-widget-data,
+.page-node-add-news .node-events-form div.image-widget-data,
+.page-node-add-events .node-news-form div.image-widget-data,
+.page-node-add-news .node-news-form div.image-widget-data {
+  display: inline-flex;
+}
+.page-node-add-events .node-events-form div.image-widget-data input,
+.page-node-add-news .node-events-form div.image-widget-data input,
+.page-node-add-events .node-news-form div.image-widget-data input,
+.page-node-add-news .node-news-form div.image-widget-data input {
+  height: 35px;
 }
 .page-node-add-events .node-events-form #edit-field-website-of-event .tabledrag-toggle-weight-wrapper,
 .page-node-add-news .node-events-form #edit-field-website-of-event .tabledrag-toggle-weight-wrapper,
@@ -11241,39 +11304,59 @@ article .hwc-share-widget ul {
 .page-node-add-news .node-news-form .form-wrapper label[for="edit-field-start-date-und-0-value2"] {
   display: none;
 }
-.page-node-add-events .node-events-form .form-wrapper .date-padding,
-.page-node-add-news .node-events-form .form-wrapper .date-padding,
-.page-node-add-events .node-news-form .form-wrapper .date-padding,
-.page-node-add-news .node-news-form .form-wrapper .date-padding {
+.page-node-add-events .node-events-form .form-wrapper .form-type-date-select,
+.page-node-add-news .node-events-form .form-wrapper .form-type-date-select,
+.page-node-add-events .node-news-form .form-wrapper .form-type-date-select,
+.page-node-add-news .node-news-form .form-wrapper .form-type-date-select {
+  width: 100%;
+}
+.page-node-add-events .node-events-form .form-wrapper .form-type-date-select .date-padding,
+.page-node-add-news .node-events-form .form-wrapper .form-type-date-select .date-padding,
+.page-node-add-events .node-news-form .form-wrapper .form-type-date-select .date-padding,
+.page-node-add-news .node-news-form .form-wrapper .form-type-date-select .date-padding {
+  width: 100%;
   padding: 0px;
 }
-.page-node-add-events .node-events-form .form-wrapper .date-padding div[class="form-item-field-start-date-und-0-value-date"] input,
-.page-node-add-news .node-events-form .form-wrapper .date-padding div[class="form-item-field-start-date-und-0-value-date"] input,
-.page-node-add-events .node-news-form .form-wrapper .date-padding div[class="form-item-field-start-date-und-0-value-date"] input,
-.page-node-add-news .node-news-form .form-wrapper .date-padding div[class="form-item-field-start-date-und-0-value-date"] input {
+.page-node-add-events .node-events-form .form-wrapper .form-type-date-select .date-padding div[class="form-item-field-start-date-und-0-value-date"] input,
+.page-node-add-news .node-events-form .form-wrapper .form-type-date-select .date-padding div[class="form-item-field-start-date-und-0-value-date"] input,
+.page-node-add-events .node-news-form .form-wrapper .form-type-date-select .date-padding div[class="form-item-field-start-date-und-0-value-date"] input,
+.page-node-add-news .node-news-form .form-wrapper .form-type-date-select .date-padding div[class="form-item-field-start-date-und-0-value-date"] input {
   height: 50px;
   background: url("../images/content/input-calendar.png");
 }
-.page-node-add-events .node-events-form .form-wrapper .date-padding div[class="form-item-field-start-date-und-0-value-date"] input:after,
-.page-node-add-news .node-events-form .form-wrapper .date-padding div[class="form-item-field-start-date-und-0-value-date"] input:after,
-.page-node-add-events .node-news-form .form-wrapper .date-padding div[class="form-item-field-start-date-und-0-value-date"] input:after,
-.page-node-add-news .node-news-form .form-wrapper .date-padding div[class="form-item-field-start-date-und-0-value-date"] input:after {
+.page-node-add-events .node-events-form .form-wrapper .form-type-date-select .date-padding div[class="form-item-field-start-date-und-0-value-date"] input:after,
+.page-node-add-news .node-events-form .form-wrapper .form-type-date-select .date-padding div[class="form-item-field-start-date-und-0-value-date"] input:after,
+.page-node-add-events .node-news-form .form-wrapper .form-type-date-select .date-padding div[class="form-item-field-start-date-und-0-value-date"] input:after,
+.page-node-add-news .node-news-form .form-wrapper .form-type-date-select .date-padding div[class="form-item-field-start-date-und-0-value-date"] input:after {
   content: " ";
   background: url("../images/content/input-calendar.png");
   height: 30px;
   width: 20px;
 }
-.page-node-add-events .node-events-form .form-wrapper .date-padding div[class*="-time"] label,
-.page-node-add-news .node-events-form .form-wrapper .date-padding div[class*="-time"] label,
-.page-node-add-events .node-news-form .form-wrapper .date-padding div[class*="-time"] label,
-.page-node-add-news .node-news-form .form-wrapper .date-padding div[class*="-time"] label {
+.page-node-add-events .node-events-form .form-wrapper .form-type-date-select .date-padding div[class*="-time"] label,
+.page-node-add-news .node-events-form .form-wrapper .form-type-date-select .date-padding div[class*="-time"] label,
+.page-node-add-events .node-news-form .form-wrapper .form-type-date-select .date-padding div[class*="-time"] label,
+.page-node-add-news .node-news-form .form-wrapper .form-type-date-select .date-padding div[class*="-time"] label {
   display: none;
 }
-.page-node-add-events .node-events-form .form-wrapper .date-padding div[class*="-time"] input,
-.page-node-add-news .node-events-form .form-wrapper .date-padding div[class*="-time"] input,
-.page-node-add-events .node-news-form .form-wrapper .date-padding div[class*="-time"] input,
-.page-node-add-news .node-news-form .form-wrapper .date-padding div[class*="-time"] input {
+.page-node-add-events .node-events-form .form-wrapper .form-type-date-select .date-padding div[class*="-time"] input,
+.page-node-add-news .node-events-form .form-wrapper .form-type-date-select .date-padding div[class*="-time"] input,
+.page-node-add-events .node-news-form .form-wrapper .form-type-date-select .date-padding div[class*="-time"] input,
+.page-node-add-news .node-news-form .form-wrapper .form-type-date-select .date-padding div[class*="-time"] input {
   margin-top: 0px;
+}
+.page-node-add-events .node-events-form .form-wrapper .form-type-date-select .date-padding .form-item,
+.page-node-add-news .node-events-form .form-wrapper .form-type-date-select .date-padding .form-item,
+.page-node-add-events .node-news-form .form-wrapper .form-type-date-select .date-padding .form-item,
+.page-node-add-news .node-news-form .form-wrapper .form-type-date-select .date-padding .form-item {
+  margin-right: 1em;
+}
+.page-node-add-events .node-events-form .form-wrapper .form-type-date-select .form-type-select,
+.page-node-add-news .node-events-form .form-wrapper .form-type-date-select .form-type-select,
+.page-node-add-events .node-news-form .form-wrapper .form-type-date-select .form-type-select,
+.page-node-add-news .node-news-form .form-wrapper .form-type-date-select .form-type-select {
+  width: 8%;
+  min-width: 90px;
 }
 .page-node-add-events .node-events-form #edit-body tr.mceFirst,
 .page-node-add-news .node-events-form #edit-body tr.mceFirst,
@@ -11304,17 +11387,37 @@ article .hwc-share-widget ul {
 .page-node-add-news .back-to-link {
   display: none;
 }
+.page-node-add-events .chosen-container-single .chosen-single,
+.page-node-add-news .chosen-container-single .chosen-single {
+  border: none;
+  background-color: #fff;
+  background-image: none;
+  box-shadow: 0 0 0px white inset, 0 0px 0px rgba(0, 0, 0, 0);
+}
+.page-node-add-events .chosen-container-single .chosen-single span,
+.page-node-add-news .chosen-container-single .chosen-single span {
+  color: #003399;
+}
+.page-node-add-events .chosen-container-single .chosen-drop,
+.page-node-add-news .chosen-container-single .chosen-drop {
+  border-color: #003399;
+}
 .private-area .back-to-link {
   display: none;
 }
 /*fin create event*/
 /*Private area for partner*/
+.private-area h1.page-header {
+  margin-bottom: 0em;
+}
 .private-area #private {
   /*
 		.hwc-share-widget{
 			display: none;
 		}
 		*/
+  margin-left: 25px;
+  margin-right: 25px;
 }
 .private-area #private .section-introduction {
   border-bottom: 1px dotted #749b00;
@@ -11394,7 +11497,8 @@ article .hwc-share-widget ul {
 .private-area #private .pane-node:last-child p {
   border: none;
   text-align: center;
-  margin-top: 30px;
+  padding-top: 30px;
+  clear: both;
 }
 .private-area #private .pane-node:last-child p a {
   color: #003399;
@@ -11730,7 +11834,8 @@ article .hwc-share-widget ul {
 /*pag Newsletter*/
 .page-node-129 h1 {
   border-bottom: none;
-  background: url("../images/content/mail-newsletter.png") no-repeat center top;
+  background: url("../images/content/mail-newsletter-big.jpg") no-repeat center top;
+  background-size: 61px;
   padding-top: 85px;
   padding-bottom: 0em;
 }

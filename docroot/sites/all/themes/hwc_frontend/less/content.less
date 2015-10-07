@@ -19,7 +19,7 @@
 			content: ">";
 			padding-right: 0.35em;
 		}
-		input[type="text"], textarea, select{
+		input[type="text"], textarea, textarea.form-control, select{
 			color: @text-color-2;
 			border-color: @text-color-2;
 			border-radius: 0;
@@ -35,6 +35,12 @@
 		}
 		.top_anchor{
 			display: none;
+		}
+		.modal-content{
+			height: 100%;
+			.views-submit-button{
+				margin-top: 1.8em;
+			}
 		}
 	}
 /* FIN para toda la aplicacion */
@@ -2746,10 +2752,10 @@ article{
 				}
 			}
 			h2.present-yourself:before{
-				background-image: url("../images/content/icono-present-yourself-big.png");
+				background-image: url("../images/content/icono-present-yourself-big.jpg");
 			}
 			h2.networking:before{
-				background-image: url("../images/content/icono-networking-big.png");
+				background-image: url("../images/content/icono-networking-big.jpg");
 			}
 		}
 		.col-2{
@@ -3445,9 +3451,11 @@ article{
 	}
 }
 /*fin partners public profile*/
-
 /*create event --> dentro de public profile*/
 .page-node-add-events, .page-node-add-news{
+	#views-form-aditional-resources-entityreference-view-widget-1 .form-type-checkbox label{
+		visibility: visible !important;
+	}
 	.node-events-form, .node-news-form{
 		.form-control{
 			width: 100% !important;
@@ -3504,6 +3512,39 @@ article{
 				display: none;
 			}
 		}
+		
+		.form-type-select {
+			position: relative;
+			display: inline-block;
+			width: 95%;
+			&:after {
+				width: 30px;
+				height: 32px;
+				display: block;
+				content: '';
+				position: absolute;
+				bottom: 1px;
+				right: 0;
+				pointer-events: none;
+				background: @bg-color-2 url("../images/content/arrow-down.png") no-repeat right center;
+				-moz-box-sizing: border-box;
+				-webkit-box-sizing: border-box;
+				box-sizing: border-box;
+			}
+			select {
+				font-style: normal;
+				font-weight: normal;
+				line-height: 100%;
+				appearance: none;
+				-moz-appearance: none;
+				-webkit-appearance: none;
+				-moz-box-sizing: border-box;
+				-webkit-box-sizing: border-box;
+				box-sizing: border-box;
+				width: 100%;
+			}
+		}
+			
 		.field-type-datetime{
 			.help-block{
 				display: initial;
@@ -3561,12 +3602,12 @@ article{
 				}
 			}
 			.field-name-field-related-documents{
-					margin-top: 1em;
-				    padding-bottom: 2em;
-				    margin-left: 0px;
-				    margin-right: 15px;
-				    padding: 0 0px 2em 0px;
-				    border-bottom: 1px dotted @color3;
+				margin-top: 1em;
+				padding-bottom: 2em;
+				margin-left: 0px;
+				margin-right: 15px;
+				padding: 0 0px 2em 0px;
+				border-bottom: 1px dotted @color3;
 				.form-file{
 					max-width: 500px;
 					height: 36px !important;
@@ -3577,6 +3618,12 @@ article{
 						padding: 8px;
 					}
 				}
+			}
+		}
+		div.image-widget-data{
+			display: inline-flex;
+			input{
+				height: 35px;
 			}
 		}
 		
@@ -3673,27 +3720,38 @@ article{
 			label[for="edit-field-start-date-und-0-value2"]{
 				display: none;
 			}
-			.date-padding{
-				padding: 0px;
-				div[class="form-item-field-start-date-und-0-value-date"]{
-					input{
-						height: 50px;
-						background: url("../images/content/input-calendar.png");
-						&:after{
-							content: " ";
+			.form-type-date-select{
+				width: 100%;
+				.date-padding {
+					width: 100%;
+					padding: 0px;
+					div[class="form-item-field-start-date-und-0-value-date"]{
+						input{
+							height: 50px;
 							background: url("../images/content/input-calendar.png");
-							height: 30px;
-							width: 20px;
+							&:after{
+								content: " ";
+								background: url("../images/content/input-calendar.png");
+								height: 30px;
+								width: 20px;
+							}
 						}
 					}
+					div[class*="-time"]{
+						label{
+							display: none;
+						}
+						input{
+							margin-top: 0px;
+						}
+					}
+					.form-item{
+						margin-right: 1em;
+					}
 				}
-				div[class*="-time"]{
-					label{
-						display: none;
-					}
-					input{
-						margin-top: 0px;
-					}
+				.form-type-select {
+					width: 8%;
+					min-width: 90px;
 				}
 			}
 		}
@@ -3716,6 +3774,20 @@ article{
 	.back-to-link{
 		display: none;
 	}
+	.chosen-container-single{
+		.chosen-single {
+			border: none;
+			background-color:#fff;
+			background-image:none;
+			box-shadow: 0 0 0px white inset, 0 0px 0px rgba(0, 0, 0, 0);
+			span{
+				color: @text-color-2;
+			}
+		}
+		.chosen-drop{
+			border-color: @text-color-2;
+		}
+	}
 }
 .private-area{
 	.back-to-link{
@@ -3726,12 +3798,18 @@ article{
 
 /*Private area for partner*/
 .private-area{
+	h1.page-header{
+		margin-bottom: 0em;
+	}
 	#private{
 		/*
 		.hwc-share-widget{
 			display: none;
 		}
 		*/
+		
+		margin-left: @margin1;
+		margin-right: @margin1;
 		.section-introduction{
 			border-bottom: 1px dotted @color3;
 			h2{
@@ -3785,7 +3863,6 @@ article{
 				font-weight: bold;
 				font-size: @size7 !important;
 				display: block;
-				
 			}
 		}
 		#tmgmt-6{
@@ -3808,7 +3885,8 @@ article{
 			p{
 				border: none;
 				text-align: center;
-				margin-top: 30px;
+				padding-top: 30px;
+				clear: both;
 				a{
 					color: @color2;
 					font-weight: bold;
@@ -4172,7 +4250,8 @@ article{
 .page-node-129{
 	h1{
 		border-bottom: none;
-		background: url("../images/content/mail-newsletter.png") no-repeat center top;
+		background: url("../images/content/mail-newsletter-big.jpg") no-repeat center top;
+		background-size: 61px;
 		padding-top: 85px;
 		padding-bottom: 0em;
 	}
