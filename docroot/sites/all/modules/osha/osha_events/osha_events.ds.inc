@@ -153,9 +153,6 @@ function osha_events_ds_layout_settings_info() {
       '_add_existing_field' => 'hidden',
     ),
     'classes' => array(
-      'layout_class' => array(
-        'container' => 'container',
-      ),
       'left' => array(
         'col-sm-6' => 'col-sm-6',
       ),

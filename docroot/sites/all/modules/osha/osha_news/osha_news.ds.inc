@@ -139,9 +139,6 @@ function osha_news_ds_layout_settings_info() {
       '_add_existing_field' => 'hidden',
     ),
     'classes' => array(
-      'layout_class' => array(
-        'container' => 'container',
-      ),
       'header' => array(
         'col-md-12' => 'col-md-12',
       ),

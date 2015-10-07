@@ -12,7 +12,8 @@ include_once 'osha_events.features.inc';
 
 function osha_events_form_events_node_form_alter(&$form, &$form_state) {
   $form['#validate'][] = 'osha_events_form_validate';
-  $form['actions']['#attributes']['class'] = array('container');
+  $form['#attributes']['class'][] = 'container';
+  //$form['actions']['#attributes']['class'] = array('container');
   // Activity field changes
   if (isset($form['field_activity'][LANGUAGE_NONE][0])) {
     unset($form['field_activity'][LANGUAGE_NONE]['add_more']);
