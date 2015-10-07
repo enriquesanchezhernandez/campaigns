@@ -213,6 +213,7 @@ function osha_authentication_ldap_sync($ldap_server) {
       // Set a random password
       $ldap_account->password = user_password(32);
       $ldap_account->status = 1;
+      $ldap_account->timezone = NULL;
       if ($account = user_save($ldap_account)) {
         watchdog('osha_authentication', 'Creating Drupal account <em>!uid</em> from LDAP dn: !dn', array(
           '!dn' => $ldap_account->dn,

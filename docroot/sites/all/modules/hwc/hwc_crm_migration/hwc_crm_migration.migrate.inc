@@ -53,6 +53,13 @@ class HwcCrmMigration extends Migration {
   public function postImport() {
     parent::postImport();
     $this->removeNeedsUpdateItems();
+    watchdog('hwc_crm_migration', 'Triggering LDAP synchronization', array(), WATCHDOG_DEBUG);
+    // Trigger LDAP sync to update users, if there were new sections
+    module_load_include('inc', 'osha_authentication', 'osha_authentication.admin');
+    $ldap_servers = ldap_servers_get_servers('osha');
+    $ldap_server = $ldap_servers['osha'];
+    osha_authentication_ldap_sync($ldap_server);
+
   }
 
   /**
