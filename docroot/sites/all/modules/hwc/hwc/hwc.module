@@ -242,6 +242,40 @@ function hwc_field_formatter_view($entity_type, $entity, $field, $instance, $lan
   return $element;
 }
 
+/**
+ * Implements hook_field_formatter_info_alter().
+ */
+function hwc_field_formatter_info_alter(&$info) {
+  // Define extra fields for settings form to save them.
+  foreach ($info as &$formatter) {
+    if ($formatter['module'] == 'flickrfield') {
+      $formatter['settings']['image_class'] = '';
+      $formatter['settings']['images_shown'] = 5;
+    }
+  }
+
+}
+
+/**
+ * Implements hook_field_formatter_settings_form_alter().
+ */
+function hwc_field_formatter_settings_form_alter(array &$settings_form, array $context) {
+  if ($context['module'] == 'flickrfield') {
+    // Add extra field on colorbox formatter so that colorbox uses field caption.
+    $settings = $context['formatter']['settings'];
+    $settings_form['image_class'] = array(
+      '#type' => 'textfield',
+      '#title' => t('Image css class'),
+      '#default_value' => $settings['image_class'],
+    );
+    $settings_form['images_shown'] = array(
+      '#type' => 'textfield',
+      '#title' => t('Number of images'),
+      '#default_value' => $settings['images_shown'],
+    );
+  }
+}
+
 /*
 * Formats the related resources (attached files) as icon and description/filename
 */

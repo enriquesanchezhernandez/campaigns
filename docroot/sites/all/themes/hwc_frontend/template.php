@@ -500,6 +500,70 @@ function hwc_frontend_colorbox_image_formatter($variables) {
 }
 
 /**
+ * @see theme_flickr_photoset.
+ */
+function hwc_frontend_flickr_photoset($variables) {
+  $photoset = $variables['photoset'];
+  $owner = $variables['owner'];
+  $size = $variables['size'];
+  $media = isset($variables['media']) ? $variables['media'] : 'photos';
+  $attribs = $variables['attribs'];
+  $min_title = $variables['min_title'];
+  $min_metadata = $variables['min_metadata'];
+  $settings = $variables['settings'];
+  $wrapper_class = $settings['image_class'];
+  $variables['wrapper_class'] = $settings['image_class'];
+  $output = '';
+
+  if (module_exists('flickr_sets')) {
+    $output = "<div class='flickr-photoset'>\n";
+    $per_page = $settings['images_shown'];
+
+    $photos = flickr_photosets_getphotos($photoset['id'], array(
+      'per_page' => $per_page,
+      'media' => $media,
+    ));
+    if ($photos['photoset']['total']) {
+      foreach ((array) $photos['photoset']['photo'] as $photo) {
+        // Insert owner into $photo because theme_flickr_photo needs it.
+        $photo['owner'] = $owner;
+        $output .= theme('flickr_photo', array(
+          'photo' => $photo,
+          'size' => $size,
+          'format' => NULL,
+          'attribs' => $attribs,
+          'min_title' => $variables['min_title'],
+          'min_metadata' => $variables['min_metadata'],
+          'wrapper_class' => $wrapper_class,
+        ));
+      }
+      if ($photos['photoset']['total'] > count($photos['photoset']['photo'])) {
+        $output .= l(t('View all'), flickr_photoset_page_url($owner, $photoset['id']), array('attributes' => array('target' => '_blank')));
+      }
+    }
+    else {
+      $output .= t('No media in this set.');
+    }
+  }
+  else {
+    $img = flickr_img($photoset, $size, $attribs);
+    $output = theme('pager');
+    $photo_url = flickr_photoset_page_url($owner, $photoset['id']);
+    $output .= "<div class='flickr-photoset" . $wrapper_class . "'>";
+    $title = is_array($photoset['title']) ? $photoset['title']['_content'] : $photoset['title'];
+    return l($img, $photo_url, array(
+      'attributes' => array(
+        'title' => $title),
+      'absolute' => TRUE,
+      'html' => TRUE,
+    ));
+  }
+  $output .= '</div>';
+  return $output;
+}
+
+
+/**
  * Anchor to top of the page
  */
 function hwc_frontend_top_anchor(&$vars) {
