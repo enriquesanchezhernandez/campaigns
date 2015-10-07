@@ -24,14 +24,11 @@ class Validator
      */
     const VALIDATION_EMAIL = 'email';
     /**
-     * Constant for confirmation of the EMAIL
-     */
-    const CONFIRMATION_EMAIL = 'email_confirm';
-    /**
      * Constant for URL validation
      */
     const VALIDATION_URL = 'url';
-    private $mainEmail;
+    /** Constant for captcha validation */
+    const VALIDATION_CAPTCHA = 'captcha';
     /**
      * @var array Validation types
      */
@@ -41,6 +38,7 @@ class Validator
         self::VALIDATION_SIZE,
         self::VALIDATION_EMAIL,
         self::VALIDATION_URL,
+        self::VALIDATION_CAPTCHA,
     );
 
     /**
@@ -56,9 +54,6 @@ class Validator
         $validationType = $attribute->getValidator();
         if (is_array($validationType)) {
             foreach ($validationType as $singleValidationType) {
-                if ($attribute->getName() === "contact_osh_mainemail") {
-                    $this->mainEmail = $attribute;
-                }
                 $ret = $this->singleValidation($attribute, $singleValidationType);
                 if (! $ret) {
                     break;
@@ -111,19 +106,18 @@ class Validator
                         $messageBus->put($attribute->getName(), $lang->get($validationType));
                     }
                     break;
-                case
-                self::CONFIRMATION_EMAIL:
-                    if (! ($ret = $this->confirmEmail($value))) {
+                case self::VALIDATION_URL:
+                    if (! ($ret = $this->validateURL($value))) {
                         $messageBus = MessageBus::getInstance();
                         $messageBus->put($attribute->getName(), $lang->get($validationType));
                     }
                     break;
-                case self::VALIDATION_URL:
-                    if (! ($ret = $this->validateURL($value))) {
+                case self::VALIDATION_CAPTCHA:
+                    if (! ($ret = $this->validateCaptcha($value))) {
                         $messageBus = MessageBus::getInstance();
-                        $messageBus->put($attribute->getName(), $lang->get[$validationType]);
+                        $messageBus->put($attribute->getName(), $lang->get($validationType));
                     }
-                    break;
+                break;
             }
         }
 
@@ -151,6 +145,16 @@ class Validator
         }
     }
 
+    /**
+     * Validate The value received is the one rendered in the captcha
+     * @param $value
+     *
+     * @return bool
+     */
+    private function validateCaptcha($value)
+    {
+        return ($_SESSION['securimage_code_value']['default'] === strtolower($value));
+    }
     /**
      * Validate the value is not null
      *
@@ -197,24 +201,6 @@ class Validator
     private function validateEmail($value)
     {
         return filter_var($value, FILTER_VALIDATE_EMAIL);
-    }
-
-    /**
-     * Validate the value is a valid email address
-     *
-     * @param $value
-     *
-     * @return mixed
-     */
-    private function confirmEmail($value)
-    {
-        if (filter_var($value, FILTER_VALIDATE_EMAIL)) {
-            if ($this->mainEmail->getValue() === $value) {
-                return true;
-            }
-        }
-
-        return false;
     }
 
     /**

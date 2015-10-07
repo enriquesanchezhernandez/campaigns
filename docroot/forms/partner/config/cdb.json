@@ -3,7 +3,7 @@
     "host": "http://crm-dev-svr",
     "port": ":8081",
     "resource": "/OshaService/ServiceApp.svc/",
-    "debug": "true",
+    "debug": "false",
     "debug_folder": "mvc/model/cdb/",
     "dropdown_methods": {
       "getOptionSetsForAppFrom": {
@@ -23,20 +23,22 @@
       "read": {
         "name": "getAppForm",
         "idParam": "id",
-        "response": "getAppFormResult"
+        "response": "getAppFormResult",
+        "countries": "returnPaises"
       },
       "read_mf": {
         "name": "getMantenainceProfile",
         "idParam": "id",
         "response": "getMantenainceProfileResult"
       },
-      "update": "updateAppForm",
-      "update_mf": "updateMantenainceProfile"
+      "update": "UpdateAppForm",
+      "update_mf": "UpdateMantenainceProfile"
     },
     "category": {
       "official": "ocp",
       "media": "mp",
-      "focal": "fop"
+      "focal": "fop",
+      "potential": "pcp"
     },
     "statusCodesTemplate": {
       "863680000": "Invitation sent",
@@ -50,6 +52,9 @@
       "863680011": "Pending publish",
       "863680012": "Grace period"
     },
+    "graceperiod": [
+      "863680012"
+    ],
     "locked": [
       "863680002",
       "863680011",
@@ -64,6 +69,13 @@
       "863680002": "Validated",
       "863680005": "Published",
       "863680011": "Pending publish"
-    }
+    },
+    "social_media_profiles": [
+      "company_osh_facebookprofile",
+      "company_osh_twitterprofile",
+      "company_osh_youtubeprofile",
+      "company_osh_linkedinprofile",
+      "company_osh_slideshareprofile"
+    ]
   }
 }

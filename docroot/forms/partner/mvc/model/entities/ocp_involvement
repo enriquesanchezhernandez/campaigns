@@ -2,34 +2,41 @@
   "sections": {
     "title": "2. About your involvement",
     "sections": {
-        "INVOLVEMENT": "Your involvement in the campaign"
-    }
+        "BECOME": "Why do you want to become a partner?",
+        "INVOLVEMENT": "Your involvement in the campaign",
+        "PLEDGE": "Your campaign Pledge"
+    },
+    "sections_mf": {
+            "BECOME": "Why do you want to become a partner?",
+            "INVOLVEMENT": "Your support for the campaign",
+            "PLEDGE": "Your campaign Pledge"
+        }
   },
   "attributes": {
     "involvement_osh_tobeanocponhwc": {
       "name": "involvement_osh_tobeanocponhwc",
-      "label": "Why do you want to become a partner?",
-      "helpText": "Please indicate to us what motivates you to become an official campaign partner for the healthy campaign 2015/2016.",
+      "label": "Why do you want to be an Official Campaign Partner of the Healthy Workplaces Campaign 2016-17 on ‘Healthy Workplaces for All Ages’?",
+      "helpText": "Please explain briefly what motivates you to become a partner of the campaign.",
       "placeholder": "Please provide a short description of your motivations",
-      "section": "INVOLVEMENT",
+      "section": "BECOME",
       "type": "textarea",
       "validator": "not_null"
     },
     "involvement_osh_promoteandsupportcampaign": {
       "name": "involvement_osh_promoteandsupportcampaign",
-      "label": "How do you plan to promote and support the campaign via your website and other electronic means?",
-      "helpText": "Tell us in short the healthy workplace will be promoted on your corporate website. <br/>When possible use links to show us the section of your website that will be used for the promotion.",
+      "label": "How do you plan to promote and support the campaign via your website and other electronic means  (Intranet, Newsletter, social media etc.)?",
+      "helpText": "Please explain in short your plans for promotion and support and, when possible, include some link(s) to your website and social media accounts to show the section(s) that will be used for this promotion.",
       "placeholder": "Please provide a short description of your online support",
       "section": "INVOLVEMENT",
       "type": "textarea"
     },
     "involvement_osh_campaignpledge": {
       "name": "involvement_osh_campaignpledge",
-      "label": "How does your organisation to contribute to making this Campaign a joint success? (Campaign Pledge)",
-      "helpText": "Please describe how your organisation will help is co-create a successful campaign in the year 2015/2016. <br/>What do you pledge as part of your involvement with the healthy workplaces campaign.",
+      "label": "How does your organisation to contribute to making this campaign a joint success? (Campaign Pledge)",
+      "helpText": "Please summarise briefly the support that you will provide to the Healthy Workplaces Campaign 2016-17 for later publication on the website. ",
       "placeholder": "Please provide us your contribution plans",
       "publicProfile": "publicProfile",
-      "section": "INVOLVEMENT",
+      "section": "PLEDGE",
       "type": "textarea",
       "validator": "not_null"
     },
@@ -40,6 +47,48 @@
     "involvement_osh_leads": {
       "name": "involvement_osh_leads",
       "type": "text"
+    },
+    "involvement_osh_conferenceactivity": {
+      "name": "involvement_osh_conferenceactivity",
+      "label": "Conferences, seminars or workshops exclusively or partly dedicated to the campaign topic",
+      "helpText": "Please provide some information on topic, main objectives, profile of participants, etc.",
+      "section": "INVOLVEMENT",
+      "type": "combined_checkbox"
+    },
+    "involvement_osh_trainingsessions": {
+      "name": "involvement_osh_trainingsessions",
+      "label": "Training sessions",
+      "helpText": "Please provide some information on topic, main objectives, profile of participants, etc.",
+      "section": "INVOLVEMENT",
+      "type": "combined_checkbox"
+    },
+    "involvement_osh_partnershipswithotherorganisations": {
+      "name": "involvement_osh_partnershipswithotherorganisations",
+      "label": "Partnerships with other organisations and schools / colleges / training centres",
+      "helpText": "Please provide some information on planned activities",
+      "section": "INVOLVEMENT",
+      "type": "combined_checkbox"
+    },
+    "involvement_osh_promotioninthemedia": {
+      "name": "involvement_osh_promotioninthemedia",
+      "label": "Promotion in the media (press release, press conference, advertorials, etc.).",
+      "helpText": "Please provide some information on planned activities",
+      "section": "INVOLVEMENT",
+      "type": "combined_checkbox"
+    },
+    "involvement_osh_bestpractice": {
+      "name": "involvement_osh_bestpractice",
+      "label": "Best practice competition / activities",
+      "helpText": "Please provide some information on planned activities",
+      "section": "INVOLVEMENT",
+      "type": "combined_checkbox"
+    },
+    "involvement_osh_otheractivities": {
+      "name": "involvement_osh_otheractivities",
+      "label": "Other activities",
+      "helpText": "Please provide some information on planned activities",
+      "section": "INVOLVEMENT",
+      "type": "combined_checkbox"
     }
   },
   "map": {
@@ -47,13 +96,25 @@
     "involvement_osh_promoteandsupportcampaign": "osh_promoteandsupportcampaign",
     "involvement_osh_campaignpledge": "osh_campaignpledge",
     "involvement_osh_category": "osh_category",
-    "involvement_osh_leads": "osh_leads"
+    "involvement_osh_leads": "osh_leads",
+    "involvement_osh_conferenceactivity": "osh_conferenceactivity",
+    "involvement_osh_trainingsessions": "osh_trainingsessions",
+    "involvement_osh_partnershipswithotherorganisations": "osh_partnershipswithotherorganisations",
+    "involvement_osh_promotioninthemedia": "osh_promotioninthemedia",
+    "involvement_osh_bestpractice": "osh_bestpractice",
+    "involvement_osh_otheractivities": "osh_otheractivities"
   },
   "map_mf": {
     "involvement_osh_tobeanocponhwc": "osh_tobeanocp",
     "involvement_osh_promoteandsupportcampaign": "osh_questionpromoteandsupport",
     "involvement_osh_campaignpledge": "osh_campaignpledge",
     "involvement_osh_category": "osh_category",
-    "involvement_osh_leads": "osh_leads"
+    "involvement_osh_leads": "osh_leads",
+    "involvement_osh_conferenceactivity": "osh_conferenceactivity",
+    "involvement_osh_trainingsessions": "osh_trainingsessions",
+    "involvement_osh_partnershipswithotherorganisations": "osh_partnershipswithotherorganisations",
+    "involvement_osh_promotioninthemedia": "osh_promotioninmedia",
+    "involvement_osh_bestpractice": "osh_bestpractice",
+    "involvement_osh_otheractivities": "osh_otheractivities"
   }
 }

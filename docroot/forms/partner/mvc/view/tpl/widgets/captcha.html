@@ -1,9 +1,9 @@
-<div class="control-group captcha" nonce="{$nonce}">
+<div class="control-group captcha required" nonce="{$nonce}">
     <label class="control-label" for="captcha"></label>
     <div class="controls">
-        <img id="captcha" src="lib/securimage/securimage_show.php" alt="CAPTCHA Image"/>
+        <img id="captcha" src="lib/securimage/securimage_show.php" alt="CAPTCHA Image">
         <p class="help-block">Please copy the characters from the image into the field below</p>
-        <input {$disabled} type="text" name="captcha_code" size="10" maxlength="6"/>
+        <input {$disabled} class="field" type="text" id="contact_osh_captcha" name="captcha_code" size="10" maxlength="6" data-section="{$fieldSection}">
         <a href="#" id="refresh">Refresh</a>
     </div>
 </div>

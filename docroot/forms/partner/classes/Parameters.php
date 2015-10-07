@@ -65,7 +65,7 @@ final class Parameters {
      * @return bool
      */
     public function getUrlParam($name) {
-        $key = $this->get('urlParams')[$name];
+        $key = (isset($this->get('urlParams')[$name])) ? $this->get('urlParams')[$name] : '';
         return $key;
     }
 

@@ -51,12 +51,21 @@ final class Session {
 
     /**
      * Destroy an existing session
+     * @param string $sessionToken
+     *
      * @return bool
      */
-    public function destroy() {
+    public function destroy($sessionToken = '') {
         if ($this->status !== false) {
-            $this->status = !session_destroy();
-            unset($_SESSION);
+            $this->status = false;
+            if (!$sessionToken) {
+                $sessionToken = $this->getSessionToken();
+            }
+            foreach ($_SESSION as $key => $value) {
+                if (strpos($key, $sessionToken) !== false) {
+                    unset($_SESSION[$key]);
+                }
+            }
             $ret = !$this->status;
         } else {
             $ret = false;
@@ -70,7 +79,8 @@ final class Session {
      */
     public function getSessionToken() {
         $params = Parameters::getInstance();
-        $sessionToken = $params->getUrlParamValue('session_id') . '_' . $params->get('route');
+        $sessionToken = $params->getUrlParamValue('session_id');
+
         return $sessionToken;
     }
 
@@ -103,7 +113,7 @@ final class Session {
      */
     public function isSessionReady() {
         $params = Parameters::getInstance();
-        $name = $this->getSessionToken() . '_' . self::STORED_IN_SESSION;
+        $name = $this->getSessionToken() . '_' . $params->get('route') . '_' . self::STORED_IN_SESSION;
         $value = $params->get($name) ? true : false;
         // Store the session ID in SESSION
         $params->setUrlParamValue('session_id', $params->getUrlParamValue('session_id'));

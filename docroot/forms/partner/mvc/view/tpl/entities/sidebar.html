@@ -1,8 +1,8 @@
 <div class="nav-side-menu">
     <div id="sidebar-top" class="menu-list">
         <ul id="menu-content" class="menu-content collapse out">
-            <li class="print"><a href="{$appurl}&action=printable" target="_blank"> &gt;Print</a></li>
-            <li class="export-pdf"><a href="{$appurl}&action=pdf"> &gt;PDF</a></li>
+            <li class="print"><a class="action-print" data-href="{$appurl}&action=printable" href="#"> &gt;Print</a></li>
+            <li class="export-pdf"><a class="action-pdf" data-href="{$appurl}&action=pdf" href="#"> &gt;PDF</a></li>
             <li class="separator">&nbsp;</li>
             <li class="required-fields-box">Required fields</li>
             <li class="fields-campaign">Fields displayed on campaign site<div class="screen"></div></li>
@@ -11,17 +11,18 @@
                 <li class="section-title"><a href="{$appurlsidebar}?route={$section.route}">{$section.title}</a></li>
                 {foreach from=$section.sections key=subsectionKey item=subsection}
             {if $subsectionKey != "OTHER_USERS"}
-                <li class="section {$subsectionKey}" data-section="{$subsectionKey}">
-                    <a href="{$appurlsidebar}?route={$section.route}#{$subsectionKey}">{$subsection}</a>
-                </li>
+            <li class="section {$subsectionKey} {if $sections_validated.$subsectionKey == "0"}sidebar-error{/if}" data-section="{$subsectionKey}">
+                <a href="{$appurlsidebar}?route={$section.route}#{$subsectionKey}">{$subsection}</a>
+            </li>
             {elseif $subsectionKey == "OTHER_USERS" && $mf == "mf"}
             <li class="section OTHER_USERS" data-section="OTHER_USERS">
                 <a href="{$appurlsidebar}?route=contact#OTHER_USERS">Other users</a>
-                </li>
-                {/if}
+            </li>
+            {/if}
                 {/foreach}
             {/foreach}
-            {if $partner_type == "current" && $mf != "mf"}
+
+            {if $partner_type != "current" && !$mf}
             <li><div class="alert error-msg">Please make sure you thoroughly check, whether all your information is still valid
                 and indicate this by checking the button next to the appropiate fields</div>
             </li>
@@ -29,7 +30,7 @@
             <li class="separator">&nbsp;</li>
             {if $locked != "locked"}
             <li id="sidebar-bottom" class="menu-list">
-                <button id="save" name="save">Save</button>
+                <button id="save" name="save" {if $graceperiod}class="hidden"{/if}>Save</button>
             </li>
             {/if}
         </ul>

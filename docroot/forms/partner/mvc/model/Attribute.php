@@ -1,81 +1,52 @@
 <?php
+
 /**
  * Attribute.php
  * Class for storing attribute values
  * @author Eduardo Martos (eduardo.martos.gomez@everis.com)
  */
-class Attribute {
-    /**
-     * Constant for dropdown type
-     */
+class Attribute
+{
+    /** Constant for dropDown type */
     const TYPE_DROPDOWN = 'dropdown';
-    /**
-     * Constant for dropdown multiple type
-     */
+    /** Constant for dropDown multiple type */
     const TYPE_DROPDOWN_MULTIPLE = 'dropdown_multiple';
-    /**
-     * Constant for email type
-     */
+    /** Constant for email type */
     const TYPE_EMAIL = 'email';
-    /**
-     * Constant for URL type
-     */
+    /** Constant for URL type */
     const TYPE_URL = 'url';
-    /**
-     * Constant for image type
-     */
+    /** Constant for image type */
     const TYPE_IMAGE = 'image';
-    /**
-     * @var Name
-     */
+    /** Constant for radio type */
+    const TYPE_RADIO = 'radio';
+    /** Constant for checkbox type */
+    const TYPE_CHECKBOX = 'checkbox';
+
+    /** @var string Name */
     protected $name;
-    /**
-     * @var Section this attribute belongs to
-     */
+    /** @var string Section this attribute belongs to */
     protected $section;
-    /**
-     * @var Callback method associated to this attribute
-     */
+    /** @var Callback method associated to this attribute */
     protected $callback;
-    /**
-     * @var Validator associated to this attribute
-     */
+    /** @var Validator associated to this attribute */
     protected $validator;
-    /**
-     * @var Type of field
-     */
+    /** @var string Type of field */
     protected $type;
-    /**
-     * @var Label of the field
-     */
+    /** @var string Label of the field */
     protected $label;
-    /**
-     * @var Placeholder of the text
-     */
+    /** @var string Placeholder of the text */
     protected $placeholder;
-    /**
-     * @var Public Profile of the element
-     */
+    /** @var bool Public Profile of the element */
     protected $publicProfile;
-    /**
-     * @var Help text for the field
-     */
+    /** @var string Help text for the field */
     protected $helpText;
-    /**
-     * @var Value
-     */
+    /** @var string Value */
     protected $value;
-    /**
-     * @var $extended Extended attributes
-     */
+    /** @var $extended string Extended attributes */
     protected $extended;
-    /**
-     * @var $selectedValues array
-     */
+    /** @var $selectedValues array */
     protected $selectedValues;
-    /**
-     * @var $validation Switch to show/hide the validation widget
-     */
+    /** @var $validation bool Switch to show/hide the validation widget */
     protected $validation;
 
     /**
@@ -99,11 +70,14 @@ class Attribute {
 
     /**
      * Safe assignment of properties
+     *
      * @param $container
      * @param $name
+     *
      * @return string
      */
-    private function assignProperty($container, $name) {
+    private function assignProperty($container, $name)
+    {
         return isset($container[$name]) ? $container[$name] : '';
     }
 
@@ -111,111 +85,150 @@ class Attribute {
      * Retrieve the selected values
      * @return array
      */
-    public function getSelectedValues() {
+    public function getSelectedValues()
+    {
         return $this->selectedValues;
     }
 
     /**
      * Set the selected values
+     *
      * @param array $selectedValues
      */
-    public function setSelectedValues($selectedValues) {
-        $this->selectedValues = $selectedValues;
+    public function setSelectedValues($selectedValues)
+    {
+        if ($this->type == self::TYPE_DROPDOWN_MULTIPLE && $selectedValues) {
+            foreach ($selectedValues as $selectedValue) {
+                if (isset($this->value[$selectedValue])) {
+                    $this->selectedValues[$selectedValue] = $this->value[$selectedValue];
+                } else {
+                    if ($key = array_search($selectedValue, $this->value)) {
+                        $this->selectedValues[$key] = $selectedValue;
+                    }
+                }
+            }
+        } else {
+            $this->selectedValues = $selectedValues;
+        }
     }
 
     /**
      * Retrieve the name of the attribute
-     * @return Name
+     *
+     * @return string
      */
-    public function getName() {
+    public function getName()
+    {
         return $this->name;
     }
 
     /**
      * Set the name of the attribute
-     * @param Name $name
+     *
+     * @param string $name
      */
-    public function setName($name) {
+    public function setName($name)
+    {
         $this->name = $name;
     }
 
     /**
      * Retrieve the section of the attribute
-     * @return Section
+     *
+     * @return string
      */
-    public function getSection() {
+    public function getSection()
+    {
         return $this->section;
     }
 
     /**
      * Set the section of the attribute
-     * @param Section $section
+     *
+     * @param string $section
      */
-    public function setSection($section) {
+    public function setSection($section)
+    {
         $this->section = $section;
     }
 
     /**
      * Retrieve the callback of the attribute
+     *
      * @return callable
      */
-    public function getCallback() {
+    public function getCallback()
+    {
         return $this->callback;
     }
 
     /**
      * Set the callback of the attribute
+     *
      * @param callable $callback
      */
-    public function setCallback($callback) {
+    public function setCallback($callback)
+    {
         $this->callback = $callback;
     }
 
     /**
      * Retrieve the validator of the attribute
+     *
      * @return Validator
      */
-    public function getValidator() {
+    public function getValidator()
+    {
         return $this->validator;
     }
 
     /**
      * Set the validator of the attribute
+     *
      * @param Validator $validator
      */
-    public function setValidator($validator) {
+    public function setValidator($validator)
+    {
         $this->validator = $validator;
     }
 
     /**
      * Retrieve the type of the attribute
-     * @return Type
+     *
+     * @return string
      */
-    public function getType() {
+    public function getType()
+    {
         return $this->type;
     }
 
     /**
      * Set the type of the attribute
-     * @param Type $type
+     *
+     * @param string $type
      */
-    public function setType($type) {
+    public function setType($type)
+    {
         $this->type = $type;
     }
 
     /**
      * Retrieve the value of the attribute
-     * @return Value
+     *
+     * @return string
      */
-    public function getValue() {
+    public function getValue()
+    {
         return $this->value;
     }
 
     /**
      * Set the value of the attribute
-     * @param Value $value
+     *
+     * @param string $value
      */
-    public function setValue($value) {
+    public function setValue($value)
+    {
         if (is_array($value)) {
             if (array_key_exists('selected', $value)) {
                 $this->selectedValues = $value['selected'];
@@ -225,95 +238,125 @@ class Attribute {
             }
         } else {
             $value = trim($value);
+            // Convert the data:image/type;base64=,... to an array
+            if ($this->type == self::TYPE_IMAGE) {
+                $value = explode(';', $value);
+                if (is_array($value) && count($value) > 1) {
+                    $mimeType = str_replace('data:', '', $value[0]);
+                    $data     = explode(',', $value[1]);
+                    if (is_array($data) && count($data) > 1) {
+                        $data  = $data[1];
+                        $value = array(
+                            'mime'    => $mimeType,
+                            'content' => $data,
+                        );
+                    }
+                }
+            }
         }
         $this->value = $value;
     }
 
     /**
      * Retrieve an extended attribute
+     *
      * @param $key
+     *
      * @return string
      */
-    public function getExtended($key) {
+    public function getExtended($key)
+    {
         return isset($this->extended[$key]) ? $this->extended[$key] : '';
     }
 
     /**
      * Set extended attributes
+     *
      * @param $key
      * @param $value
      */
-    public function setExtended($key, $value) {
+    public function setExtended($key, $value)
+    {
         $this->extended[$key] = $value;
     }
 
     /**
-     * @return Label
+     * @return string
      */
-    public function getLabel() {
+    public function getLabel()
+    {
         return $this->label;
     }
 
     /**
-     * @param Label $label
+     * @param string $label
      */
-    public function setLabel($label) {
+    public function setLabel($label)
+    {
         $this->label = $label;
     }
 
     /**
-     * @return Placeholder
+     * @return string
      */
-    public function getPlaceholder() {
+    public function getPlaceholder()
+    {
         return $this->placeholder;
     }
 
     /**
-     * @param Placeholder $placeholder
+     * @param string $placeholder
      */
-    public function setPlaceholder($placeholder) {
+    public function setPlaceholder($placeholder)
+    {
         $this->placeholder = $placeholder;
     }
 
     /**
-     * @return PublicProfile
+     * @return bool
      */
-    public function getPublicProfile() {
+    public function getPublicProfile()
+    {
         return $this->publicProfile;
     }
 
     /**
-     * @param PublicProfile $publicProfile
+     * @param bool $publicProfile
      */
-    public function setPublicProfile($publicProfile) {
+    public function setPublicProfile($publicProfile)
+    {
         $this->publicProfile = $publicProfile;
     }
 
     /**
-     * @return Help
+     * @return string
      */
-    public function getHelpText() {
+    public function getHelpText()
+    {
         return $this->helpText;
     }
 
     /**
-     * @param Help $helpText
+     * @param string $helpText
      */
-    public function setHelpText($helpText) {
+    public function setHelpText($helpText)
+    {
         $this->helpText = $helpText;
     }
 
     /**
-     * @return Help
+     * @return string
      */
-    public function getValidation() {
+    public function getValidation()
+    {
         return $this->validation;
     }
 
     /**
-     * @param Help $validation
+     * @param string $validation
      */
-    public function setValidation($validation) {
+    public function setValidation($validation)
+    {
         $this->validation = $validation;
     }
 }

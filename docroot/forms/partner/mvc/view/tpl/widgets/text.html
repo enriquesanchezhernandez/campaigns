@@ -5,6 +5,6 @@
     <p class="help-block">{$fieldHelpText}</p>
     {/if}
     <div class="controls">
-        <input {$disabled} id="{$fieldName}" name="{$fieldName}" placeholder="{$fieldPlaceholder}" type="text" data-section="{$fieldSection}" value="{if !empty($fieldValue)}{$fieldValue}{/if}">
+        <input {$disabled} class="field" id="{$fieldName}" name="{$fieldName}" placeholder="{$fieldPlaceholder}" type="text" data-section="{$fieldSection}" value="{if !empty($fieldValue)}{$fieldValue}{/if}">
     </div>
 </div>

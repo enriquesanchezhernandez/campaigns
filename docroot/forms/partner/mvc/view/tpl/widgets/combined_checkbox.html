@@ -1,0 +1,11 @@
+<div class="control-group {$required}">
+    <label class="control-label screen-left" for="{$fieldName}">{$fieldLabel}</label>
+    {if !empty($fieldPublicProfile)}<img src="{$appurl}mvc/view/img/screen.png" class="screen-right"/>{/if}
+    {if !empty($fieldHelpText)}
+    <p class="help-block">{$fieldHelpText}</p>
+    {/if}
+    <div class="controls">
+        <input {$disabled} type="checkbox" class="combined-checkbox" data-target="{$fieldName}" data-section="{$fieldSection}" {if $fieldValue} checked="true" {/if}/>
+        <input {$disabled} class="field combined-textbox" {if empty($fieldValue)}style="display:none;"{/if} id="{$fieldName}" name="{$fieldName}" placeholder="{$fieldPlaceholder}" type="text" data-section="{$fieldSection}" value="{if !empty($fieldValue)}{$fieldValue}{/if}">
+    </div>
+</div>

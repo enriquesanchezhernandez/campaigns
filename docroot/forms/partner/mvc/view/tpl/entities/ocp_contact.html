@@ -1,46 +1,53 @@
 <fieldset>
     <legend id="PRIMARY_CONTACT">
-        Your Primary Contact
-        <div data-section="PRIMARY_CONTACT" class="validation"></div>
+        Primary Contact
+        <div data-section="PRIMARY_CONTACT" class="validation{$locked}"></div>
     </legend>
-    <div class="float-left">
-    {$attributes.contact_osh_maincontactpersonfirstname}
-    {$attributes.contact_osh_maincontactpersonlastname}
-    {$attributes.contact_osh_mainphone}
-    </div>
-    <div class="float-right">
-    {$attributes.contact_osh_mainemail}
-    {$attributes.contact_osh_confirm_mainemail}
-    {$attributes.contact_osh_positionmaincontactperson}
-    {if $partner_type != "current"}
-    {$attributes.contact_osh_captcha}
-    {/if}
+    {if !mf && $partner_type == "current"}<div>{$attributes.contact_osh_maincontactchange}</div>{/if}
+    <div class="main-contact-change">
+        <div class="float-left">
+            {$attributes.contact_osh_maincontactpersonfirstname}
+            {$attributes.contact_osh_maincontactpersonlastname}
+            {$attributes.contact_osh_positionmaincontactperson}
+            {if !$mf && $partner_type != "current"}
+            {$attributes.contact_osh_captcha}
+            {/if}
+        </div>
+        <div class="float-right">
+            {$attributes.contact_osh_mainemail}
+            {$attributes.contact_osh_confirm_mainemail}
+            {$attributes.contact_osh_mainphone}
+        </div>
     </div>
 </fieldset>
 {if $mf}
 <fieldset id="osh_otheruser">
     <legend id="OTHER_USERS">
         Other users
-        <div data-section="OTHER_USERS" class="validation"></div>
+        <div data-section="OTHER_USERS" class="validation{$locked}"></div>
     </legend>
     <div id="other-users-repeteable-wrapper">
         <div id="other-users-repeteable" class="repeatable-section">
             {$attributes.contact_osh_otherusername1}
             {$attributes.contact_osh_otherusermail1}
             {$attributes.contact_osh_otheruserphone1}
+            <div class="clear ">
+                <button class="repeatable-button-remove clear" data-element="other-users-repeteable" data-target="other-users-repeteable-wrapper"
+                        type="button">Remove user
+                </button>
+            </div>
         </div>
-        <div id="other-users-repeteable" class="repeatable-section">
-            {$attributes.contact_osh_otherusername2}
-            {$attributes.contact_osh_otherusermail2}
-            {$attributes.contact_osh_otheruserphone2}
-        </div>
-        <div id="other-users-repeteable" class="repeatable-section">
-            {$attributes.contact_osh_otherusername3}
-            {$attributes.contact_osh_otherusermail3}
-            {$attributes.contact_osh_otheruserphone3}
-        </div>
-
     </div>
-    <button class="repeatable-button" data-element="other-users-repeteable" data-target="other-users-repeteable-wrapper" type="button">Add user</button>
+    <button class="repeatable-button-add" data-element="other-users-repeteable" data-target="other-users-repeteable-wrapper"
+            type="button">Add user
+    </button>
 </fieldset>
+{/if}
+{if $partner_type == "new"}
+<div class="div_disclaimer">
+    <div id="div_disclaimer_text" class="hidden">
+        TEXT TO BE CHANGED
+    </div>
+    <a id="a_disclaimer">Show/Hide Disclaimer</a>
+</div>
 {/if}

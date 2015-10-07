@@ -70,7 +70,7 @@
                 el.css({
                     'background-image': 'url(' + obj.image.src + ')',
                     'background-size': w + 'px ' + h + 'px',
-                    'background-position': 'center',
+                    'background-position': pw + 'px ' + ph + 'px',
                     'background-repeat': 'no-repeat'
                 });
             },
@@ -104,9 +104,9 @@
                 obj.state.dragable = false;
             },
             zoomImage = function (e) {
-                /*e.originalEvent.wheelDelta > 0 || e.originalEvent.detail < 0 ? obj.ratio *= 1.1 : obj.ratio *= 0.9;
-                 setBackground();*/
-            };
+                e.originalEvent.wheelDelta > 0 || e.originalEvent.detail < 0 ? obj.ratio *= 1.1 : obj.ratio *= 0.9;
+                setBackground();
+            }
 
         obj.spinner.show();
         obj.image.onload = function () {

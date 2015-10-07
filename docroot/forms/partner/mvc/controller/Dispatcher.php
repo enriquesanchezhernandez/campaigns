@@ -9,14 +9,12 @@ class Dispatcher {
      * Route the execution
      */
     public function dispatch() {
-        // Check the session ID
-        $sessionID = $this->checkSessionID();
         // Set the route
         $route = $this->setRoute();
         if (class_exists($route) || class_exists(ucfirst(($route)))) {
             try {
-                // Set the current partner category
-                CDB::getInstance(null, $sessionID);
+                // Set the application context
+                $this->setContext();
                 // Execute the controller
                 $controller = new $route();
                 if (method_exists($controller, 'executeAction')) {
@@ -31,28 +29,88 @@ class Dispatcher {
         }
     }
 
+    private function setContext() {
+        $params = Parameters::getInstance();
+        // Check the session ID
+        $sessionID = $this->checkSessionID();
+        // SessionID provided: set the context via CDB
+        if ($sessionID && !$params->getUrlParamValue('no_session_id')) {
+            CDB::getInstance(null, $sessionID);
+        // SessionID not provided: set the context by default
+        } else {
+            // Grace period does not apply
+            $params->setUrlParamValue('graceperiod', false);
+            // As requested, the default entity is OCP
+            $params->setUrlParamValue('entity', 'ocp');
+            // When no SessionID provided, it is a New Applicant
+            $params->setUrlParamValue('partner_type', 'new');
+            // When no SessionID provided, it cannot be a Maintenance Profile
+            $params->setUrlParamValue('maintenance_mode', false);
+            // When no SessionID provided, the form cannot be locked
+            $params->setUrlParamValue('locked', false);
+            // When no SessionID provided, the application cannot guess if it is a Potential Partner
+            $params->setUrlParamValue('potential', false);
+        }
+    }
+
     /**
      * Check the session ID and retrieve it if defined
      * @return bool|string
      */
     private function checkSessionID() {
+        // If there is a previous session ID different than the current one, reset the session
+        $this->resetSession();
         // Check if session ID is defined
         $params = Parameters::getInstance();
         if ($params->get('cdb')['debug'] == 'true') {
             if (!$ret = $params->getUrlParamValue('session_id')) {
                 $ret = uniqid();
-                $params->setUrlParamValue('session_id', $ret, true);
+                $params->setUrlParamValue('session_id', $ret);
             }
         } else {
+            // If no SessionID provided, the application set a random one
             if (!$params->getUrlParamValue('session_id')) {
-                $errorMessage = isset($params->get('errorMessages')['session_not_defined']) ?
-                    $params->get('errorMessages')['session_not_defined'] : 'Fatal system error';
-                print $errorMessage;
-                die;
+                $ret = uniqid('', true);
+                $params->setUrlParamValue('session_id', $ret);
+                // Set a switch to avoid the query to the CDB
+                $params->setUrlParamValue('no_session_id', true);
+            } else {
+                $ret = $params->getUrlParamValue('session_id');
             }
-            $ret = $params->getUrlParamValue('session_id');
         }
         return $ret;
+    }
+
+    private function resetSession()
+    {
+        $params          = Parameters::getInstance();
+        $key             = $params->getUrlParam('session_id');
+        $cachedSessionID = isset($_SESSION[$key]) ? $_SESSION[$key] : false;
+        if ($cachedSessionID) {
+            $sessionID = $params->get($key);
+            if ($cachedSessionID != $sessionID) {
+                $session = Session::getInstance();
+                $session->destroy($cachedSessionID);
+                if (isset($_SESSION['osh_category'])) {
+                    unset($_SESSION['osh_category']);
+                }
+                if (isset($_SESSION['osh_leads'])) {
+                    unset($_SESSION['osh_leads']);
+                }
+                if (isset($_SESSION['session_id'])) {
+                    unset($_SESSION['session_id']);
+                }
+                if (isset($_SESSION['locked'])) {
+                    unset($_SESSION['locked']);
+                }
+                if (isset($_SESSION['mf'])) {
+                    unset($_SESSION['mf']);
+                }
+                if (isset($_SESSION['potential'])) {
+                    unset($_SESSION['potential']);
+                }
+            }
+        }
     }
 
     /**

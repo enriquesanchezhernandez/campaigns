@@ -5,13 +5,13 @@
     <p class="help-block">{$fieldHelpText}</p>
     {/if}
     <div class="controls">
-        <select {$disabled} class="dropdown-multiple" id="{$fieldName}" name="{$fieldName}"
+        <select {$disabled} class="field dropdown-multiple" id="{$fieldName}" name="{$fieldName}[]"
                 data-section="{$fieldSection}" multiple="multiple">
             {foreach from=$fieldValue key=id item=value}
-                {if $selectedValue == $value || $selectedValue == $id}
-                <option value="{$id}" selected="selected">{$value}</option>
+            {if $value.selected}
+            <option value="{$value.id}" selected="selected">{$value.name}</option>
                 {else}
-                <option value="{$id}">{$value}</option>
+            <option value="{$value.id}">{$value.name}</option>
                 {/if}
             {/foreach}
         </select>

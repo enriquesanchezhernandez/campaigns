@@ -29,10 +29,12 @@ class Congrats extends Controller implements IController, IForm {
         $renderer = new Renderer(__CLASS__);
         $renderer->setViewPath($params->get('viewEntitiesPath'));
         $contentArray = array(
-            'appurl' => APP_URL,
+            'appurl' => APP_URL . '?route=' . $params->get('route'),
+            'homeurl' => APP_URL,
             'title' => $params->get('title'),
             'hideButtons' => true,
-            'printable' => true,
+            'fullwidth' => true,
+            'printable' => false,
             'category' => $params->getUrlParamValue('entity')
         );
         $content = $renderer->render($contentArray);
@@ -55,8 +57,9 @@ class Congrats extends Controller implements IController, IForm {
 
     /**
      * Send action
+     * @param bool $save
      */
-    public function send() {
+    public function send($save = false) {
         header('Location: ' . APP_URL);
         die;
     }
