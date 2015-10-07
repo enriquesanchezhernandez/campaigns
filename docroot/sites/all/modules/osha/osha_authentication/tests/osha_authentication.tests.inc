@@ -558,27 +558,4 @@ class OSHALDAPTests {
     var_dump($ldapu['mail']);
 
   }
-
-  function test_osha_authentication_sync_ldap_sections() {
-    $ldap_section['dn'] = 'cn=TEST2_EDT,ou=MainSite,ou=Sites,dc=osha,dc=europa,dc=eu';
-    $ldap_section['cn'] = 'TEST2_EDT';
-    $ldap_section['objectClass'] = array('posixGroup', 'top');
-    $ldap_section['gidNumber'] = array(9999);
-    $ldap_section['description'] = array('Test sync ldap sections');
-    $result = $this->ldap_server->search('ou=MainSite,ou=Sites,dc=osha,dc=europa,dc=eu', 'cn=TEST2_EDT');
-    $section = osha_workflow_get_section_term_by_ldap_id('TEST');
-    if (!empty($section)) {
-      taxonomy_term_delete($section->tid);
-    }
-    if ($result['count']) {
-      $this->ldap_server->delete($ldap_section['dn']);
-    }
-    drush_log('@todo: Disabled createLdapEntry($ldap_section);', 'error');
-    //$this->ldap_server->createLdapEntry($ldap_section);
-    osha_authentication_sync_ldap_sections($this->ldap_server);
-    $section = osha_workflow_get_section_term_by_ldap_id('TEST2');
-    if (empty($section)) {
-      throw new Exception('Section was not imported.');
-    }
-  }
 }

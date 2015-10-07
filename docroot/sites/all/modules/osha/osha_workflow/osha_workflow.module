@@ -457,7 +457,7 @@ function osha_workflow_user_has_access_to_bundle($bundle, $user) {
   $bundle_section_map = osha_workflow_bundle_section_map();
   if (!empty($bundle_section_map[$bundle])) {
     // Check if the bundle is in user's sections.
-    $term = osha_workflow_get_section_term_by_ldap_id($bundle_section_map[$bundle]);
+    $term = osha_workflow_get_partner_section_by_guid($bundle_section_map[$bundle]);
     if (!empty($term)) {
       return in_array($term->tid, $users_sections);
     }
@@ -507,7 +507,7 @@ function osha_workflow_bundle_in_rm_section($bundle, $user) {
   $bundle_section_map = osha_workflow_bundle_section_map();
   if (!empty($bundle_section_map[$bundle])) {
     // Check if the bundle is in user's sections.
-    $term = osha_workflow_get_section_term_by_ldap_id($bundle_section_map[$bundle]);
+    $term = osha_workflow_get_partner_section_by_guid($bundle_section_map[$bundle]);
     if (!empty($term)) {
       return in_array($term->tid, $users_sections);
     }
@@ -555,7 +555,7 @@ function osha_workflow_bundle_in_pm_section($bundle, $user) {
   $bundle_section_map = osha_workflow_bundle_section_map();
   if (!empty($bundle_section_map[$bundle])) {
     // Check if the bundle is in user's sections.
-    $term = osha_workflow_get_section_term_by_ldap_id($bundle_section_map[$bundle]);
+    $term = osha_workflow_get_partner_section_by_guid($bundle_section_map[$bundle]);
     if (!empty($term)) {
       return in_array($term->tid, $users_sections);
     }
@@ -590,7 +590,7 @@ function osha_workflow_bundle_in_editor_section($bundle, $user) {
   $bundle_section_map = osha_workflow_bundle_section_map();
   if (!empty($bundle_section_map[$bundle])) {
     // Check if the bundle is in user's sections.
-    $term = osha_workflow_get_section_term_by_ldap_id($bundle_section_map[$bundle]);
+    $term = osha_workflow_get_partner_section_by_guid($bundle_section_map[$bundle]);
     if (!empty($term)) {
       return in_array($term->tid, $users_sections);
     }
@@ -653,23 +653,6 @@ function osha_workflow_theme() {
       'file' => 'osha_workflow.review_manager.inc',
     ),
   );
-}
-
-/**
- * Get the section term that has the LDAP section code.
- */
-function osha_workflow_get_section_term_by_ldap_id($section) {
-  $query = new EntityFieldQuery();
-  $query->entityCondition('entity_type', 'taxonomy_term')
-    ->entityCondition('bundle', array('section'))
-    ->fieldCondition('field_ldap_section_code', 'value', $section);
-  $result = $query->execute();
-  if (!empty($result['taxonomy_term'])) {
-    $term = array_keys($result['taxonomy_term']);
-    $term = taxonomy_term_load(current($term));
-    return $term;
-  }
-  return NULL;
 }
 
 /**
@@ -796,7 +779,7 @@ function osha_workflow_get_default_section($node) {
   $bundle_section_map = osha_workflow_bundle_section_map();
   if (empty($node->workbench_access)
     && !empty($bundle_section_map[$node->type])
-    && $term = osha_workflow_get_section_term_by_ldap_id($bundle_section_map[$node->type])) {
+    && $term = osha_workflow_get_partner_section_by_guid($bundle_section_map[$node->type])) {
     return $term;
   }
   return NULL;
