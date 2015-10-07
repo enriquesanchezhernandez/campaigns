@@ -52,7 +52,6 @@ function osha_authentication_get_role_from_dn($group_dn) {
   else if (
     in_array($group_dn,
       array(
-        'cn=NEWS_EVEN_EDT,ou=HWC,ou=Sites,dc=osha,dc=europa,dc=eu',
         'cn=OCP,ou=HWC,ou=Sites,dc=osha,dc=europa,dc=eu',
         'cn=FOP,ou=HWC,ou=Sites,dc=osha,dc=europa,dc=eu',
         'cn=MP,ou=HWC,ou=Sites,dc=osha,dc=europa,dc=eu',
@@ -69,7 +68,7 @@ function osha_authentication_get_role_from_dn($group_dn) {
   else if ($group_dn == 'cn=TRLMN,ou=HWC,ou=Sites,dc=osha,dc=europa,dc=eu') {
     $role = OSHA_WORKFLOW_ROLE_TRANSLATION_MANAGER;
   }
-  // Either CV or PARTNER
+  // Handle content validators (CV) & unknown values
   else {
     $ldap_group_cn = NULL;
     // _CV
