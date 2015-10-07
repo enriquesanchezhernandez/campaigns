@@ -16,36 +16,14 @@ function hwc_crm_migration_cronapi() {
 function hwc_crm_migration_cron() {
   module_load_include('inc', 'migrate_ui', 'migrate_ui.pages');
   module_load_include('inc', 'hwc_crm_migration', 'hwc_crm_migration.migrate');
-  $migrations = hwc_crm_migration_migrate_api();
-  migrate_static_registration(array_keys($migrations['migrations']));
-  foreach ($migrations['migrations'] as $migration_name => $migration) {
-    $file = $migration['file_name'];
-    $filemtime = filemtime($file);
-    if ($filemtime === FALSE) {
-      watchdog('hwc_crm_migration', 'File @file not found!', array('@file' => $file), WATCHDOG_WARNING);
-      return;
-    }
-    else {
-      $var_name = 'hwc_crm_migration_import_file_modify_time_' . $migration_name;
-      $last_modification = variable_get($var_name, 0);
-      if ($filemtime > $last_modification) {
-        hwc_crm_migration_migrate($migration_name);
-        variable_set($var_name, $filemtime);
-      }
-    }
-  }
-}
 
-/**
- * Triggers Import of a migration by name.
- */
-function hwc_crm_migration_migrate($machine_name) {
-  $migration = Migration::getInstance($machine_name);
-  $migration->prepareUpdate();
-  $total = $migration->sourceCount();
-  watchdog('osha_press_contact', 'Starting Import @migration',
-    array('@migration' => $machine_name), WATCHDOG_INFO);
-  $result = $migration->processImport(array('limit' => $total, 'force' => FALSE));
-  watchdog('osha_press_contact', 'Imported @migration with result: @result',
-    array('@migration' => $machine_name, '@result' => $result), WATCHDOG_INFO);
+  $migration = Migration::getInstance('partner');
+  $migration->processImport(array('update' => TRUE));
+
+  // Trigger LDAP sync after partner migration to update users sections
+  watchdog('hwc_crm_migration', 'CRM partner migration triggered LDAP synchronization', array(), WATCHDOG_DEBUG);
+  module_load_include('inc', 'osha_authentication', 'osha_authentication.admin');
+  $ldap_servers = ldap_servers_get_servers('osha');
+  $ldap_server = $ldap_servers['osha'];
+  osha_authentication_ldap_sync($ldap_server);
 }
