@@ -226,6 +226,7 @@ function flickrfield_field_formatter_view($entity_type, $entity, $field, $instan
       '#item' => $item,
       '#formatter' => $display['type'],
       '#field_name' => $field['field_name'],
+      '#settings' => $display['settings'],
     );
     $element[$delta]['#markup'] = theme('flickrfield_formatter_' . $display['type'], $variables);
   }
@@ -318,6 +319,8 @@ function theme_flickrfield_field_formatter($element) {
         'attribs' => NULL,
         'size' => $formatter,
         'photo' => $photo_data,
+        'settings' => $element['#settings'],
+        'wrapper_class' => !empty($element['#settings']['image_class']) ? $element['#settings']['image_class'] : '',
       ));
 
     case 'id':
@@ -328,6 +331,7 @@ function theme_flickrfield_field_formatter($element) {
         'size' => $formatter,
         'photoset' => $photo_data,
         'per_page' => variable_get('flickr_sets_photos_per_set', 6),
+        'settings' => $element['#settings'],
       ));
   }
 }
