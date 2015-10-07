@@ -99,6 +99,20 @@ function osha_authentication_strongarm() {
             1 => 1,
           ),
         ),
+        '[field.field_user_partner_guid]' => array(
+          'ldap_attr' => '[gecos]',
+          'user_attr' => '[field.field_user_partner_guid]',
+          'convert' => 0,
+          'direction' => '1',
+          'user_tokens' => NULL,
+          'config_module' => 'ldap_user',
+          'prov_module' => 'ldap_user',
+          'enabled' => 1,
+          'prov_events' => array(
+            0 => 2,
+            1 => 1,
+          ),
+        ),
       ),
       2 => array(
         '[userPassword]' => array(
