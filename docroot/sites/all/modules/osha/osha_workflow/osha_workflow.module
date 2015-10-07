@@ -675,11 +675,11 @@ function osha_workflow_get_section_term_by_ldap_id($section) {
 /**
  * Get the section term that has the LDAP section code.
  */
-function osha_workflow_get_section_term_by_crm_guid($section) {
+function osha_workflow_get_partner_section_by_guid($partner_guid) {
   $query = new EntityFieldQuery();
   $query->entityCondition('entity_type', 'taxonomy_term')
     ->entityCondition('bundle', array('section'))
-    ->fieldCondition('field_crm_guid', 'value', $section);
+    ->fieldCondition('field_ldap_section_code', 'value', $partner_guid);
   $result = $query->execute();
   if (!empty($result['taxonomy_term'])) {
     $term = array_keys($result['taxonomy_term']);
@@ -687,6 +687,24 @@ function osha_workflow_get_section_term_by_crm_guid($section) {
     return $term;
   }
   return NULL;
+}
+
+function osha_workflow_create_section($title, $partner_guid) {
+  $voc = taxonomy_vocabulary_machine_name_load('section');
+  $term = (object) array(
+    'name' => $title,
+    'vid' => $voc->vid,
+    'vocabulary_machine_name' => 'section',
+    'field_ldap_section_code' => array(
+      LANGUAGE_NONE => array(
+        0 => array(
+          'value' => $partner_guid
+        )
+      )
+    )
+  );
+  taxonomy_term_save($term);
+  return $term;
 }
 
 /**

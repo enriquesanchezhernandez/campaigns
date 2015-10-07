@@ -73,7 +73,7 @@ class PartnerMigrateListXml extends AbstractCrmMigrateListXml {
   protected function parseSourceFile() {
     self::$data = array();
     if (!is_readable($this->file)) {
-      drupal_set_message(strtr('Cannot find migration files: !file', array('!file' => $this->file)), 'error');
+      watchdog('hwc_crm_migration', 'Cannot find migration files: @file', array('@file' => $this->file), WATCHDOG_WARNING);
       return;
     }
     if ($xml = simplexml_load_file($this->file, 'SimpleXMLElement', LIBXML_COMPACT | LIBXML_PARSEHUGE)) {
@@ -83,15 +83,21 @@ class PartnerMigrateListXml extends AbstractCrmMigrateListXml {
         $attributes = $item->attributes();
         $data->title = (string) $attributes['Textbox1'];
         $data->title_field = (string) $attributes['Textbox1'];
-
         $data->field_guid_organisation = (string) $attributes['Table0_Details1'];
-        $term = osha_workflow_get_section_term_by_crm_guid($data->field_guid_organisation);
-        if (!empty($term->tid)) {
+        /** @var stdClass $term */
+        if ($term = osha_workflow_get_partner_section_by_guid($data->field_guid_organisation)) {
           $data->workbench_access[$term->tid] = $term->tid;
         }
         else {
-          watchdog('hwc_crm_migration', 'Could not find the section guid @guid for organisation @organisation',
-            array('@guid' => $data->field_guid_organisation, '@organisation' => $data->title), WATCHDOG_WARNING);
+          watchdog('hwc_crm_migration', 'Creating new section with GUID: !guid for partner \'!partner\'',
+            array('@guid' => $data->field_guid_organisation, '!organisation' => $data->title), WATCHDOG_INFO);
+          if ($term = osha_workflow_create_section($data->title, $data->field_guid_organisation)) {
+            $data->workbench_access[$term->tid] = $term->tid;
+          }
+          else {
+            watchdog('hwc_crm_migration', 'Unable to create new section with GUID: !guid for partner \'!partner\'',
+              array('@guid' => $data->field_guid_organisation, '!organisation' => $data->title), WATCHDOG_ERROR);
+          }
         }
 
         $data->field_general_email = (string) $attributes['Textbox2'];
