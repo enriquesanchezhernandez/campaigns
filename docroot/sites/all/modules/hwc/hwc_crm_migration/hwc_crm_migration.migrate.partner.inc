@@ -74,7 +74,7 @@ class PartnerMigrateListXml extends AbstractCrmMigrateListXml {
     self::$data = array();
     if (!is_readable($this->file)) {
       watchdog('hwc_crm_migration', 'Cannot find migration files: @file', array('@file' => $this->file), WATCHDOG_WARNING);
-      return;
+      throw new MigrateException(strtr('Cannot find migration files: @file', array('@file' => $this->file)));
     }
     if ($xml = simplexml_load_file($this->file, 'SimpleXMLElement', LIBXML_COMPACT | LIBXML_PARSEHUGE)) {
       // Contact fields are attributes of Detail.
@@ -89,14 +89,20 @@ class PartnerMigrateListXml extends AbstractCrmMigrateListXml {
           $data->workbench_access[$term->tid] = $term->tid;
         }
         else {
-          watchdog('hwc_crm_migration', 'Creating new section with GUID: !guid for partner \'!partner\'',
-            array('@guid' => $data->field_guid_organisation, '!organisation' => $data->title), WATCHDOG_INFO);
+          watchdog('hwc_crm_migration', 'Creating new section with GUID: @guid for partner \'@partner\'',
+            array(
+              '@guid' => $data->field_guid_organisation,
+              '@partner' => $data->title
+            ), WATCHDOG_INFO);
           if ($term = osha_workflow_create_section($data->title, $data->field_guid_organisation)) {
             $data->workbench_access[$term->tid] = $term->tid;
           }
           else {
             watchdog('hwc_crm_migration', 'Unable to create new section with GUID: !guid for partner \'!partner\'',
-              array('@guid' => $data->field_guid_organisation, '!organisation' => $data->title), WATCHDOG_ERROR);
+              array(
+                '@guid' => $data->field_guid_organisation,
+                '!organisation' => $data->title
+              ), WATCHDOG_ERROR);
           }
         }
 
@@ -148,7 +154,10 @@ class PartnerMigrateListXml extends AbstractCrmMigrateListXml {
         }
         else {
           watchdog('hwc_crm_migration', 'Could not find the partner type @type in the vocabulary for organisation @organisation',
-            array('@type' => $partner_type, '@organisation' => $data->title), WATCHDOG_WARNING);
+            array(
+              '@type' => $partner_type,
+              '@organisation' => $data->title
+            ), WATCHDOG_WARNING);
         }
 
         $data->field_social_dialog_partner = (string) $attributes['Textbox29'];

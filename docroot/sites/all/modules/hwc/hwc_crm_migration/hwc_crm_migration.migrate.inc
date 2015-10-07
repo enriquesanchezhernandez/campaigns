@@ -102,12 +102,14 @@ class HwcCrmMigration extends Migration {
     // Remove non-existing sources.
     $removed = $this->getMap()->getRowsNeedingUpdate(10000);
     if (!empty($removed)) {
-      $nodes = array();
       foreach ($removed as $to_remove) {
-        $nodes[] = $to_remove->destid1;
-        $this->getMap()->delete(array($to_remove->sourceid1));
+        if ($node = node_load($to_remove->destid1)) {
+          $node->status = 0;
+          node_save($node);
+          watchdog('hwc_crm_migration', 'Unpublishing partner nid: !nid, \'!partner\'',
+            array('!nid' => $node->nid, '!partner' => $node->title), WATCHDOG_INFO);
+        }
       }
-      node_delete_multiple($nodes);
     }
   }
 }
