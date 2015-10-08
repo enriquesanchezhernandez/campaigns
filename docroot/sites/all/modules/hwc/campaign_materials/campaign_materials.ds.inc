@@ -20,22 +20,22 @@ function campaign_materials_ds_layout_settings_info() {
   $ds_layout->settings = array(
     'regions' => array(
       'header' => array(
-        0 => 'title_field',
+        0 => 'field_publication_date',
+        1 => 'title_field',
       ),
       'left' => array(
-        1 => 'field_image',
+        2 => 'field_image',
       ),
       'right' => array(
-        2 => 'field_publication_date',
         3 => 'body',
         4 => 'field_related_documents',
         5 => 'field_campaign_material_type',
       ),
     ),
     'fields' => array(
+      'field_publication_date' => 'header',
       'title_field' => 'header',
       'field_image' => 'left',
-      'field_publication_date' => 'right',
       'body' => 'right',
       'field_related_documents' => 'right',
       'field_campaign_material_type' => 'right',
