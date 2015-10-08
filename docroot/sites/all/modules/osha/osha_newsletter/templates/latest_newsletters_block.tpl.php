@@ -10,7 +10,8 @@
           )); ?></h2>
         <?php
         foreach($item['items'] as $element){
-          print(render($element));
+          $node = $element['#node'];
+          print '<div class="newsletter_items"> > '.l($node->title, url('node/'.$node->nid, array('absolute' => TRUE))).'</div>';
         }
       }
     } else {
