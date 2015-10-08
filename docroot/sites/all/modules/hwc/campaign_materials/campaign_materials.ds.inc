@@ -79,8 +79,8 @@ function campaign_materials_ds_layout_settings_info() {
         0 => 'field_image',
       ),
       'right' => array(
-        1 => 'title_field',
-        2 => 'field_publication_date',
+        1 => 'field_publication_date',
+        2 => 'title_field',
         3 => 'body',
         4 => 'field_related_documents',
         5 => 'field_campaign_material_type',
@@ -88,8 +88,8 @@ function campaign_materials_ds_layout_settings_info() {
     ),
     'fields' => array(
       'field_image' => 'left',
-      'title_field' => 'right',
       'field_publication_date' => 'right',
+      'title_field' => 'right',
       'body' => 'right',
       'field_related_documents' => 'right',
       'field_campaign_material_type' => 'right',
