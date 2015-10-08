@@ -27,6 +27,18 @@ function hwc_admin_config_form() {
     '#options' => $options,
     '#default_value' => variable_get('hwc_current_campaign_tags', array()),
   );
+  $form['hwc_partner_registration_deadline'] = array(
+    '#title' => 'Campaign partners registration deadline',
+    '#description' => 'Starting from 12:00 AM of the date selected here, the registration is no longer visible',
+    '#type' => 'date',
+    '#default_value' => variable_get('hwc_partner_registration_deadline', ''),
+  );
+  $form['hwc_partner_registration_deadline_message'] = array(
+    '#title' => 'Message to show after the registration deadline is over',
+    '#description' => '',
+    '#type' => 'textfield',
+    '#default_value' => variable_get('hwc_partner_registration_deadline_message', ''),
+  );
 
   // NCW migration
   if (module_exists('migrate')) {
