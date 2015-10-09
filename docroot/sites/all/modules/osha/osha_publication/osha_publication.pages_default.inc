@@ -611,9 +611,9 @@ function osha_publication_default_page_manager_handlers() {
     $pane->shown = TRUE;
     $pane->access = array();
     $pane->configuration = array(
-      'admin_title' => 'Additional resources label',
+      'admin_title' => 'publication_additional_resources_title',
       'title' => '',
-      'body' => '<h3>Additional resources</h3>',
+      'body' => '<p>DO NOT CHANGE ADMINISTRATIVE TITLE</p><p>This content will not be rendered.</p>',
       'format' => 'full_html',
       'substitute' => 1,
     );
