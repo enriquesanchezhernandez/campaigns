@@ -187,6 +187,8 @@ function hwc_partner_block_view($delta = '') {
             'hwc_partner_private_link_title' => l(t(variable_get('hwc_partner_private_link_' . $it . '_title')), $url, $url_options),
             'hwc_partner_private_link_description' => t(variable_get('hwc_partner_private_link_' . $it . '_description')),
             'hwc_partner_private_link_link_text' => l(t(variable_get('hwc_partner_private_link_' . $it . '_link_text')), $url),
+            'node' => $node,
+            'delta' => $delta,
           )
         );
       }
@@ -234,6 +236,8 @@ function hwc_partner_theme() {
         'hwc_partner_private_link_title' => NULL,
         'hwc_partner_private_link_description' => NULL,
         'hwc_partner_private_link_url' => NULL,
+        'node' => NULL,
+        'delta' => NULL,
       ),
       'path' => $path . '/templates',
     );
