@@ -8697,10 +8697,12 @@ div[class*='node-'] .more-link {
 }
 #block-views-publications-slideshow-slidehow #publications_slideshow,
 #block-system-main #publications_slideshow {
-  width: 926px !important;
+  /*width: 926px !important;*/
   border-bottom: 1px solid #749b00;
   border-top: 1px solid #749b00;
-  margin: 0em auto 3em;
+  /*margin: 0em auto 3em;*/
+  margin: 0;
+  width: 100%;
 }
 #block-views-publications-slideshow-slidehow #publications_slideshow #num_slides,
 #block-system-main #publications_slideshow #num_slides {

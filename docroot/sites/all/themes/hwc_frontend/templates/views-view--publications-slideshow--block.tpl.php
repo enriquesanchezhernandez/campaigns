@@ -38,7 +38,7 @@ jQuery(document).ready(function ($) {
     $AutoPlay: false,
     $AutoPlaySteps: 1,
     $SlideDuration: 160,
-    $SlideWidth: 800,
+//    $SlideWidth: 800,
     $SlideHeight: 230,
     $SlideSpacing: 1,
     $DisplayPieces: 1,
