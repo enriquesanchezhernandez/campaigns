@@ -43,7 +43,7 @@ function osha_authentication_get_role_from_dn($group_dn) {
   else if ($group_dn == 'cn=LAYVAL,ou=HWC,ou=Sites,dc=osha,dc=europa,dc=eu') {
     $role = OSHA_WORKFLOW_ROLE_LAYOUT_VALIDATOR;
   }
-  else if ($group_dn == 'cn=NEW&EVEN_EDT,ou=HWC,ou=Sites,dc=osha,dc=europa,dc=eu') {
+  else if ($group_dn == 'cn=NEWS_EVEN_EDT,ou=HWC,ou=Sites,dc=osha,dc=europa,dc=eu') {
     $role = HWC_ROLE_CAMPAIGN_PROJECT_MANAGER;
   }
   else if ($group_dn == 'cn=NEWS_EVEN_SUP,ou=HWC,ou=Sites,dc=osha,dc=europa,dc=eu') {
