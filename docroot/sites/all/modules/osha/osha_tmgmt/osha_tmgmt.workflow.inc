@@ -674,7 +674,6 @@ function osha_tmgmt_translation_validators_accept($form, &$form_state) {
       $validator[1]->approved = OSHA_TMGMT_CONTENT_VALIDATOR_STATUS_APPROVED;
       $validator[1]->next = 0;
       entity_save('translation_validator', $validator[1]);
-      drupal_set_message(t('You have validated this translation.'));
       if ($next_validator = current($validators)) {
         $next_validator->next = 1;
         entity_save('translation_validator', $next_validator);
