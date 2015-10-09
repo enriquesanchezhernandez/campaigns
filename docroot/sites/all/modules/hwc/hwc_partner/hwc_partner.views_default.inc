@@ -308,24 +308,17 @@ function hwc_partner_views_default_views() {
   $handler->display->display_options['fields']['state']['field'] = 'state';
   $handler->display->display_options['fields']['state']['label'] = 'Status';
   $handler->display->display_options['fields']['state']['machine_name'] = 0;
-  /* Field: Content revision: Updated date */
-  $handler->display->display_options['fields']['timestamp']['id'] = 'timestamp';
-  $handler->display->display_options['fields']['timestamp']['table'] = 'node_revision';
-  $handler->display->display_options['fields']['timestamp']['field'] = 'timestamp';
-  $handler->display->display_options['fields']['timestamp']['label'] = 'Last update';
-  $handler->display->display_options['fields']['timestamp']['date_format'] = 'day_month_year';
-  $handler->display->display_options['fields']['timestamp']['second_date_format'] = 'year';
   /* Field: Content: Edit link */
   $handler->display->display_options['fields']['edit_node']['id'] = 'edit_node';
   $handler->display->display_options['fields']['edit_node']['table'] = 'views_entity_node';
   $handler->display->display_options['fields']['edit_node']['field'] = 'edit_node';
   $handler->display->display_options['fields']['edit_node']['label'] = 'Edit';
   $handler->display->display_options['fields']['edit_node']['text'] = 'Edit';
-  /* Sort criterion: Content: Post date */
-  $handler->display->display_options['sorts']['created']['id'] = 'created';
-  $handler->display->display_options['sorts']['created']['table'] = 'node';
-  $handler->display->display_options['sorts']['created']['field'] = 'created';
-  $handler->display->display_options['sorts']['created']['order'] = 'DESC';
+  /* Sort criterion: Content revision: Updated date */
+  $handler->display->display_options['sorts']['timestamp']['id'] = 'timestamp';
+  $handler->display->display_options['sorts']['timestamp']['table'] = 'node_revision';
+  $handler->display->display_options['sorts']['timestamp']['field'] = 'timestamp';
+  $handler->display->display_options['sorts']['timestamp']['order'] = 'DESC';
   /* Contextual filter: Workbench Access: Access filter */
   $handler->display->display_options['arguments']['access_id']['id'] = 'access_id';
   $handler->display->display_options['arguments']['access_id']['table'] = 'workbench_access';
@@ -375,6 +368,11 @@ function hwc_partner_views_default_views() {
     'draft' => 'draft',
     'final_draft' => 'final_draft',
   );
+  /* Filter criterion: Workbench Moderation: Current */
+  $handler->display->display_options['filters']['current']['id'] = 'current';
+  $handler->display->display_options['filters']['current']['table'] = 'workbench_moderation_node_history';
+  $handler->display->display_options['filters']['current']['field'] = 'current';
+  $handler->display->display_options['filters']['current']['value'] = '1';
 
   /* Display: Draft events */
   $handler = $view->new_display('block', 'Draft events', 'block_partner_draft_events');
@@ -389,6 +387,13 @@ function hwc_partner_views_default_views() {
   $handler->display->display_options['filters']['type']['value'] = array(
     'events' => 'events',
   );
+  $handler->display->display_options['filters']['type']['group'] = 1;
+  /* Filter criterion: Workbench Moderation: Current */
+  $handler->display->display_options['filters']['current']['id'] = 'current';
+  $handler->display->display_options['filters']['current']['table'] = 'workbench_moderation_node_history';
+  $handler->display->display_options['filters']['current']['field'] = 'current';
+  $handler->display->display_options['filters']['current']['value'] = '1';
+  $handler->display->display_options['filters']['current']['group'] = 1;
   /* Filter criterion: Workbench Moderation: State */
   $handler->display->display_options['filters']['state']['id'] = 'state';
   $handler->display->display_options['filters']['state']['table'] = 'workbench_moderation_node_history';
@@ -397,6 +402,7 @@ function hwc_partner_views_default_views() {
     'draft' => 'draft',
     'final_draft' => 'final_draft',
   );
+  $handler->display->display_options['filters']['state']['group'] = 1;
   $translatables['partner_draft_content'] = array(
     t('Master'),
     t('Not published events'),
@@ -409,7 +415,6 @@ function hwc_partner_views_default_views() {
     t('Displaying @start - @end of @total.  Add new <a href="/node/add/events">event</a> or <a href="/node/add/news">news</a>.'),
     t('There is no content to be published.  Add new <a href="/node/add/events">event</a> or <a href="/node/add/news">news</a>.'),
     t('Status'),
-    t('Last update'),
     t('Edit'),
     t('All'),
     t('Draft news'),
