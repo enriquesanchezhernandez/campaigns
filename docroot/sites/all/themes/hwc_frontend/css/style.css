@@ -8430,6 +8430,7 @@ div[class*='node-'] .more-link {
   margin-bottom: 45px;
   /* padding-top: 58px; */
   background: url("../images/content/newsletter.png") no-repeat center 20px;
+  /* background: url("../images/content/mail-newsletter-big.png") no-repeat center 20px; */
   color: #ffffff;
 }
 #block-osha-newsletter-osha-newsletter-subscribe p,
@@ -12102,6 +12103,17 @@ article .hwc-share-widget ul {
 .field.field-name-field-aditional-resources .node-publication {
   clear: both;
 }
+.field-name-field-recommended-resources .node-infographic h1,
+.field-name-field-recommended-articles .node-infographic h1,
+.field.field-name-field-aditional-resources .node-infographic h1,
+.field-name-field-recommended-resources .node-news h1,
+.field-name-field-recommended-articles .node-news h1,
+.field.field-name-field-aditional-resources .node-news h1,
+.field-name-field-recommended-resources .node-publication h1,
+.field-name-field-recommended-articles .node-publication h1,
+.field.field-name-field-aditional-resources .node-publication h1 {
+  margin-top: 0;
+}
 .field-name-field-recommended-resources .node-infographic .field-name-title-field,
 .field-name-field-recommended-articles .node-infographic .field-name-title-field,
 .field.field-name-field-aditional-resources .node-infographic .field-name-title-field,
@@ -12135,6 +12147,17 @@ article .hwc-share-widget ul {
 .field.field-name-field-aditional-resources .node-publication .field-name-title-field h1 {
   border-bottom: none;
 }
+.field-name-field-recommended-resources .node-infographic .field-name-field-summary,
+.field-name-field-recommended-articles .node-infographic .field-name-field-summary,
+.field.field-name-field-aditional-resources .node-infographic .field-name-field-summary,
+.field-name-field-recommended-resources .node-news .field-name-field-summary,
+.field-name-field-recommended-articles .node-news .field-name-field-summary,
+.field.field-name-field-aditional-resources .node-news .field-name-field-summary,
+.field-name-field-recommended-resources .node-publication .field-name-field-summary,
+.field-name-field-recommended-articles .node-publication .field-name-field-summary,
+.field.field-name-field-aditional-resources .node-publication .field-name-field-summary {
+  clear: both;
+}
 .field-name-field-recommended-resources .node-infographic .field.field-name-field-image,
 .field-name-field-recommended-articles .node-infographic .field.field-name-field-image,
 .field.field-name-field-aditional-resources .node-infographic .field.field-name-field-image,
@@ -12154,7 +12177,7 @@ article .hwc-share-widget ul {
 .field-name-field-recommended-articles .node-publication .field-type-image,
 .field.field-name-field-aditional-resources .node-publication .field-type-image {
   height: auto;
-  max-height: 150px;
+  /* max-height: 150px; */
   overflow: hidden;
   margin-bottom: 0em;
   float: left;
@@ -12244,6 +12267,16 @@ article .hwc-share-widget ul {
 .field.field-name-field-aditional-resources .node-publication .group-left {
   width: auto;
   padding-right: 0;
+}
+.field-name-field-recommended-resources .node-external-url .field.field-name-field-image,
+.field-name-field-recommended-articles .node-external-url .field.field-name-field-image,
+.field.field-name-field-aditional-resources .node-external-url .field.field-name-field-image {
+  margin-bottom: 0;
+}
+.field-name-field-recommended-resources .node-external-url .field.field-name-field-image img,
+.field-name-field-recommended-articles .node-external-url .field.field-name-field-image img,
+.field.field-name-field-aditional-resources .node-external-url .field.field-name-field-image img {
+  width: 150px !important;
 }
 .field-name-field-recommended-resources .node-youtube,
 .field-name-field-recommended-articles .node-youtube,

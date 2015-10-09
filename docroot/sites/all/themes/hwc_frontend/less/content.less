@@ -654,12 +654,12 @@
 	
 		.node-external-url{
 			a.external-link {
-			  color: #003399;
-			  font-weight: bold;
-			  font-style: italic;
-			  font-size: 20px;
-			  &:before {
-				  content: "> ";
+				color: #003399;
+				font-weight: bold;
+				font-style: italic;
+				font-size: 20px;
+				&:before {
+					content: "> ";
 				}
 			}
 		}
@@ -920,6 +920,7 @@
 			margin-bottom: 45px;
 			/* padding-top: 58px; */
 			background: url("../images/content/newsletter.png") no-repeat center 20px;
+			/* background: url("../images/content/mail-newsletter-big.png") no-repeat center 20px; */
 			color: @h2-default-color;
 		}
 		p{
@@ -4473,6 +4474,9 @@ article{
 		}
 		.node-infographic, .node-news, .node-publication {
 			clear: both;
+			h1{
+				margin-top: 0;
+			}
 			.field-name-title-field{
 				float: left;
 				a {
@@ -4482,9 +4486,12 @@ article{
 					border-bottom: none;
 				}
 			}
+			.field-name-field-summary{
+				clear: both;
+			}
 			.field.field-name-field-image, .field-type-image{
 				height: auto;
-				max-height: 150px;
+				/* max-height: 150px; */
 				overflow: hidden;
 				margin-bottom: 0em;
 				float: left;
@@ -4507,6 +4514,14 @@ article{
 			.group-left{
 				width: auto;
 				padding-right: 0;
+			}
+		}
+		.node-external-url{
+			.field.field-name-field-image{
+				margin-bottom: 0;
+				img {
+					width: 150px !important;
+				}
 			}
 		}
 		 .node-youtube {
