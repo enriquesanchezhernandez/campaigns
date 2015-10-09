@@ -2661,6 +2661,29 @@ foreach( $contexts[\'argument_entity_id:node_1\']->data->field_users[\'und\'] as
     $display->content['new-15064475-1885-47e1-89dd-3cab3b7305a4'] = $pane;
     $display->panels['center'][6] = 'new-15064475-1885-47e1-89dd-3cab3b7305a4';
     $pane = new stdClass();
+    $pane->pid = 'new-0138946a-50ca-4699-a497-d7559f36c514';
+    $pane->panel = 'center';
+    $pane->type = 'block';
+    $pane->subtype = 'hwc_partner-hwc_partner_user_account_edit';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'override_title' => 1,
+      'override_title_text' => 'Your account',
+      'override_title_heading' => 'h2',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 7;
+    $pane->locks = array();
+    $pane->uuid = '0138946a-50ca-4699-a497-d7559f36c514';
+    $display->content['new-0138946a-50ca-4699-a497-d7559f36c514'] = $pane;
+    $display->panels['center'][7] = 'new-0138946a-50ca-4699-a497-d7559f36c514';
+    $pane = new stdClass();
     $pane->pid = 'new-9bf21a4c-e961-4544-acb9-e6cfcac8fec6';
     $pane->panel = 'center_';
     $pane->type = 'node';

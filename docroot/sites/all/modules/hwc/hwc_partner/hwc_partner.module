@@ -74,6 +74,14 @@ function hwc_partner_block_info() {
     'cache' => DRUPAL_CACHE_PER_USER,
     'weight' => 50,
   );
+  $blocks['hwc_partner_user_account_edit'] = array(
+    'info' => t('User account edit link'),
+    'status' => 1,
+    'region' => 'content',
+    'visibility' => BLOCK_VISIBILITY_LISTED,
+    'cache' => DRUPAL_CACHE_PER_USER,
+    'weight' => 60,
+  );
   return $blocks;
 }
 
@@ -188,6 +196,12 @@ function hwc_partner_block_view($delta = '') {
     // Did this to use it in panels.
     $block['title'] = '<none>';
     $block['content'] = '<h1>' . t('My public profile') . '</h1>';
+  }
+  else if ($delta == 'hwc_partner_user_account_edit') {
+    global $user;
+    // Did this to use it in panels.
+    $block['title'] = '<none>';
+    $block['content'] = l(t('Change password'), 'user/' . $user->uid . '/edit');
   }
   else if ($delta == 'hwc_partner_back_to_profile') {
     global $user;
