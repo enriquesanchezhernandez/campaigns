@@ -8161,45 +8161,6 @@ body .modal-content .views-submit-button {
 .node-article .hwc-share-widget {
   border: none;
 }
-.node-article .field-name-field-recommended-resources .field-item,
-.node-article .field-name-field-recommended-articles .field-item {
-  margin: 1em 0;
-  padding: .5em 0;
-  margin: 0.5em 0 0;
-  padding: 0;
-}
-.node-article .field-name-field-recommended-resources .field-item a,
-.node-article .field-name-field-recommended-articles .field-item a {
-  color: #003399;
-  font-weight: bold;
-  margin-bottom: 2em;
-  font-size: 20px;
-}
-.node-article .field-name-field-recommended-resources .field-item a:before,
-.node-article .field-name-field-recommended-articles .field-item a:before {
-  content: "> ";
-}
-.node-article .field-name-field-recommended-resources .node-article .field-name-field-image + .field-name-title-field,
-.node-article .field-name-field-recommended-articles .node-article .field-name-field-image + .field-name-title-field {
-  position: relative;
-  background-image: none;
-  width: auto;
-  height: auto;
-}
-.node-article .field-name-field-recommended-resources .node-article .field.field-name-field-image,
-.node-article .field-name-field-recommended-articles .node-article .field.field-name-field-image {
-  float: left;
-  margin-right: 1em;
-  margin-bottom: 4em;
-  margin-bottom: 1em;
-  width: auto;
-  height: auto;
-  overflow: hidden;
-}
-.node-article .field-name-field-recommended-resources .node-article .field.field-name-field-image a:before,
-.node-article .field-name-field-recommended-articles .node-article .field.field-name-field-image a:before {
-  content: "";
-}
 .node-article .node-infographic .field.field-name-field-image {
   width: auto;
   height: auto;
@@ -8294,73 +8255,6 @@ body .modal-content .views-submit-button {
   display: none !important;
 }
 /*Fin articles*/
-.field.field-name-field-aditional-resources {
-  margin-top: 1em;
-  padding-top: 1em;
-  border-top: 1px dotted #749b00;
-  clear: both;
-}
-.field.field-name-field-aditional-resources > .field-label {
-  color: #749b00;
-  font-style: normal;
-  font-weight: bold;
-  text-align: center;
-  font-size: 30px;
-  background: url("../images/content/additional-resources.png") no-repeat center top;
-  width: 100%;
-  margin: 1em auto;
-  padding-top: 65px;
-}
-.field.field-name-field-aditional-resources .node-events .field-name-field-start-date {
-  border-top: none !important;
-  font-weight: bold;
-  width: 150px;
-  height: 150px;
-  padding: 0;
-  background-color: #749b00;
-  background-image: none;
-  margin: 0;
-  text-align: center;
-  float: left;
-  overflow: hidden;
-  margin-right: 15px;
-}
-.field.field-name-field-aditional-resources .node-events .field-name-field-start-date span {
-  font-size: 35px;
-  color: #ffffff;
-}
-.field.field-name-field-aditional-resources .field-name-field-external-url.field-type-link-field a {
-  color: #003399;
-  font-weight: bold;
-  font-style: italic;
-  font-size: 20px;
-}
-.field.field-name-field-aditional-resources .field-name-field-external-url.field-type-link-field a:before {
-  content: "> ";
-}
-.field.field-name-field-aditional-resources .node-infographic .field-name-title-field {
-  float: left;
-}
-.field.field-name-field-aditional-resources .node-infographic .field-name-title-field a {
-  font-size: 20px;
-}
-.field.field-name-field-aditional-resources .node-infographic .field-name-title-field h1 {
-  border-bottom: none;
-}
-.field.field-name-field-aditional-resources .node-infographic .field.field-name-field-image {
-  height: auto;
-  max-height: 150px;
-  overflow: hidden;
-  margin-bottom: 0em;
-  float: left;
-  margin-right: 1em !important;
-}
-.field.field-name-field-aditional-resources .node-infographic .field.field-name-field-image img {
-  height: auto;
-  width: 150px;
-  margin-right: 0em;
-}
-/*fin aditional resources*/
 /* pag Infographics */
 .view-infographic .views-row {
   border-bottom: 1px dotted #749b00;
@@ -8725,82 +8619,89 @@ div[class*='node-'] .more-link {
 }
 #block-views-publications-slideshow-slidehow #publications_slideshow,
 #block-system-main #publications_slideshow {
-  width: 926px !important;
+  /* width: 926px !important;  */
+  width: 100% !important;
   border-bottom: 1px solid #749b00;
   border-top: 1px solid #749b00;
   margin: 0em auto 3em;
+}
+#block-views-publications-slideshow-slidehow #publications_slideshow > div,
+#block-system-main #publications_slideshow > div {
+  width: 100% !important;
 }
 #block-views-publications-slideshow-slidehow #publications_slideshow #num_slides,
 #block-system-main #publications_slideshow #num_slides {
   left: 5em;
   top: 0em;
+  width: 85% !important;
 }
-#block-views-publications-slideshow-slidehow #publications_slideshow #num_slides .field-name-title-field,
-#block-system-main #publications_slideshow #num_slides .field-name-title-field {
+#block-views-publications-slideshow-slidehow #publications_slideshow #num_slides > div,
+#block-system-main #publications_slideshow #num_slides > div {
+  width: 100% !important;
+}
+#block-views-publications-slideshow-slidehow #publications_slideshow #num_slides .publication-item,
+#block-system-main #publications_slideshow #num_slides .publication-item {
+  border-bottom: none;
+  min-height: 225px;
+  max-height: 225px;
+}
+#block-views-publications-slideshow-slidehow #publications_slideshow #num_slides .publication-item .field-name-title-field,
+#block-system-main #publications_slideshow #num_slides .publication-item .field-name-title-field {
   float: left;
   margin-left: 6em;
   width: auto;
 }
-#block-views-publications-slideshow-slidehow #publications_slideshow #num_slides .field-name-title-field h5,
-#block-system-main #publications_slideshow #num_slides .field-name-title-field h5 {
+#block-views-publications-slideshow-slidehow #publications_slideshow #num_slides .publication-item .field-name-title-field h5,
+#block-system-main #publications_slideshow #num_slides .publication-item .field-name-title-field h5 {
   font-size: 20px;
   font-weight: bold;
+  margin-top: 0;
 }
-#block-views-publications-slideshow-slidehow #publications_slideshow #num_slides .field-name-title-field h5 :before,
-#block-system-main #publications_slideshow #num_slides .field-name-title-field h5 :before {
+#block-views-publications-slideshow-slidehow #publications_slideshow #num_slides .publication-item .field-name-title-field h5 :before,
+#block-system-main #publications_slideshow #num_slides .publication-item .field-name-title-field h5 :before {
   content: ">";
   padding-right: 0.5em;
   color: #003399;
 }
-#block-views-publications-slideshow-slidehow #publications_slideshow #num_slides .field-name-field-publication-date,
-#block-system-main #publications_slideshow #num_slides .field-name-field-publication-date {
-  /* float: left;
-					margin-left: 20px; */
+#block-views-publications-slideshow-slidehow #publications_slideshow #num_slides .publication-item .field-name-field-publication-date,
+#block-system-main #publications_slideshow #num_slides .publication-item .field-name-field-publication-date {
+  clear: both;
   padding-top: 0px;
   margin-top: 0px;
   margin-bottom: 0.2em;
   margin-left: 6em;
 }
-#block-views-publications-slideshow-slidehow #publications_slideshow #num_slides .field-name-field-publication-date span,
-#block-system-main #publications_slideshow #num_slides .field-name-field-publication-date span {
+#block-views-publications-slideshow-slidehow #publications_slideshow #num_slides .publication-item .field-name-field-publication-date span,
+#block-system-main #publications_slideshow #num_slides .publication-item .field-name-field-publication-date span {
   font-size: 12px;
 }
-#block-views-publications-slideshow-slidehow #publications_slideshow #num_slides .field-name-body,
-#block-system-main #publications_slideshow #num_slides .field-name-body {
+#block-views-publications-slideshow-slidehow #publications_slideshow #num_slides .publication-item .field-name-body,
+#block-system-main #publications_slideshow #num_slides .publication-item .field-name-body {
   clear: both;
   margin-left: 6em;
 }
-#block-views-publications-slideshow-slidehow #publications_slideshow #num_slides .field-name-field-cover-image,
-#block-system-main #publications_slideshow #num_slides .field-name-field-cover-image {
-  /* float: left; */
+#block-views-publications-slideshow-slidehow #publications_slideshow #num_slides .publication-item .field-name-field-cover-image,
+#block-system-main #publications_slideshow #num_slides .publication-item .field-name-field-cover-image {
   position: absolute;
   top: 1em;
   margin-top: 0;
 }
-#block-views-publications-slideshow-slidehow #publications_slideshow #num_slides .field-name-field-cover-image img,
-#block-system-main #publications_slideshow #num_slides .field-name-field-cover-image img {
+#block-views-publications-slideshow-slidehow #publications_slideshow #num_slides .publication-item .field-name-field-cover-image img,
+#block-system-main #publications_slideshow #num_slides .publication-item .field-name-field-cover-image img {
   width: auto;
 }
-#block-views-publications-slideshow-slidehow #publications_slideshow #num_slides ul,
-#block-system-main #publications_slideshow #num_slides ul {
+#block-views-publications-slideshow-slidehow #publications_slideshow #num_slides .publication-item ul,
+#block-system-main #publications_slideshow #num_slides .publication-item ul {
   margin-top: 1em;
   margin-left: 6em;
   list-style: none;
   padding-bottom: 0em;
   border-bottom: none;
 }
-#block-views-publications-slideshow-slidehow #publications_slideshow #num_slides ul a,
-#block-system-main #publications_slideshow #num_slides ul a {
+#block-views-publications-slideshow-slidehow #publications_slideshow #num_slides .publication-item ul a,
+#block-system-main #publications_slideshow #num_slides .publication-item ul a {
   font-style: italic;
   font-weight: bold;
-}
-#block-views-publications-slideshow-slidehow #publications_slideshow #num_slides .publication-item,
-#block-system-main #publications_slideshow #num_slides .publication-item {
-  border-bottom: none;
-}
-#block-views-publications-slideshow-slidehow #publications_slideshow #num_slides .publication-item h5,
-#block-system-main #publications_slideshow #num_slides .publication-item h5 {
-  margin-top: 0;
 }
 #block-views-publications-slideshow-slidehow #publications_slideshow .jssora03l,
 #block-system-main #publications_slideshow .jssora03l,
@@ -11713,53 +11614,51 @@ article .hwc-share-widget ul {
   font-size: 16px;
   margin-top: 40px;
 }
-#block-views-partners-list-block {
-  margin: 40px;
-}
-#block-views-partners-list-block .view-id-partners_list {
+.view-id-partners_list {
+  margin: 25px;
   color: #003399;
   font-size: 16px;
   font-weight: bold;
   font-style: italic;
 }
-#block-views-partners-list-block .view-id-partners_list .quicktabs-tabs {
+.view-id-partners_list .quicktabs-tabs {
   display: inline-block;
 }
-#block-views-partners-list-block .view-id-partners_list .quicktabs-tabs li {
+.view-id-partners_list .quicktabs-tabs li {
   border: 1px dotted #749b00;
   float: left;
   padding: 15px 30px;
 }
-#block-views-partners-list-block .view-id-partners_list .quicktabs-tabs li.active {
+.view-id-partners_list .quicktabs-tabs li.active {
   border-bottom: none;
 }
-#block-views-partners-list-block .view-id-partners_list .quicktabs-tabs li.active a {
+.view-id-partners_list .quicktabs-tabs li.active a {
   color: #749b00;
   font-style: normal;
 }
-#block-views-partners-list-block .view-id-partners_list .quicktabs-tabs li.first {
+.view-id-partners_list .quicktabs-tabs li.first {
   border-left: none;
 }
-#block-views-partners-list-block .view-id-partners_list .quicktabs-tabs li.last {
+.view-id-partners_list .quicktabs-tabs li.last {
   border-right: none;
 }
-#block-views-partners-list-block .view-id-partners_list .hwc-alphabet-container {
+.view-id-partners_list .hwc-alphabet-container {
   border-bottom: 1px dotted #749b00;
   padding-bottom: 1em;
 }
-#block-views-partners-list-block .view-id-partners_list .quicktabs-tabpage .hwc-char-link {
+.view-id-partners_list .hwc-char-link {
   padding: 0px 15px;
 }
-#block-views-partners-list-block .view-id-partners_list .quicktabs-tabpage .hwc-char-link.disabled {
+.view-id-partners_list .hwc-char-link.disabled {
   cursor: text;
 }
-#block-views-partners-list-block .view-id-partners_list .quicktabs-tabpage .hwc-char-link.disabled:hover {
+.view-id-partners_list .hwc-char-link.disabled:hover {
   text-decoration: none;
 }
-#block-views-partners-list-block .view-id-partners_list .quicktabs-tabpage .hwc-char-link.active {
+.view-id-partners_list .hwc-char-link.active {
   color: #749b00;
 }
-#block-views-partners-list-block .view-id-partners_list .quicktabs-tabpage div[id*="hwc-char-"] {
+.view-id-partners_list div[id*="hwc-char-"] {
   margin-top: 2em;
   margin-bottom: 0em;
   display: inline-block;
@@ -11768,13 +11667,15 @@ article .hwc-share-widget ul {
   font-style: normal;
   color: #749b00;
 }
-#block-views-partners-list-block .view-id-partners_list .quicktabs-tabpage .quicktabs-views-group {
+.view-id-partners_list .quicktabs-views-group,
+.view-id-partners_list .views-row {
   margin: 0;
   padding: 30px;
   border-bottom: 1px dotted #749b00;
   border-left: 1px dotted #749b00;
 }
-#block-views-partners-list-block .view-id-partners_list .quicktabs-tabpage .quicktabs-views-group .views-field-title-field {
+.view-id-partners_list .quicktabs-views-group .views-field-title-field,
+.view-id-partners_list .views-row .views-field-title-field {
   display: none;
 }
 /*fin oficial campaign partners list*/
@@ -12004,6 +11905,358 @@ article .hwc-share-widget ul {
   height: 23px;
 }
 /*Fin pag get-your-certificate*/
+/* Block: recommended-articles and recommended-resources and article aditional resources*/
+/* .field-name-field-recommended-resources, .field-name-field-recommended-articles{
+		.field-item{
+			margin: 1em 0;
+			padding: .5em 0;
+			margin: 0.5em 0 0;
+			padding: 0;
+			a{
+				color: @color2;
+				font-weight: bold;
+				margin-bottom: 2em;
+				font-size: @size2;
+				&:before{
+					content: "> ";
+				}
+			}
+		}
+		.node-article .field-name-field-image + .field-name-title-field{
+			position: relative;
+			background-image: none;
+			width: auto;
+			height: auto;
+		}
+		.node-article .field.field-name-field-image {
+			float: left;
+			margin-right: 1em;
+			margin-bottom: 4em;
+			margin-bottom: 1em;
+			width: auto;
+			height: auto;
+			overflow: hidden;
+			a:before{
+				content:"";
+			}
+		}
+	} */
+.field-name-field-recommended-resources,
+.field-name-field-recommended-articles,
+.field.field-name-field-aditional-resources {
+  /* margin-top: 1em;
+		padding-top: 1em;
+		border-top: 1px dotted @border-default-color; */
+  clear: both;
+}
+.field-name-field-recommended-resources .field-item,
+.field-name-field-recommended-articles .field-item,
+.field.field-name-field-aditional-resources .field-item {
+  margin: 1em 0;
+  padding: .5em 0;
+  margin: 0.5em 0 0;
+  padding: 0;
+}
+.field-name-field-recommended-resources .field-item a,
+.field-name-field-recommended-articles .field-item a,
+.field.field-name-field-aditional-resources .field-item a {
+  color: #003399;
+  font-weight: bold;
+  margin-bottom: 2em;
+  font-size: 20px;
+}
+.field-name-field-recommended-resources .field-item a:before,
+.field-name-field-recommended-articles .field-item a:before,
+.field.field-name-field-aditional-resources .field-item a:before {
+  content: "> ";
+}
+.field-name-field-recommended-resources > .field-label,
+.field-name-field-recommended-articles > .field-label,
+.field.field-name-field-aditional-resources > .field-label {
+  color: #749b00;
+  font-style: normal;
+  font-weight: bold;
+  text-align: center;
+  font-size: 30px;
+  background: url("../images/content/additional-resources.png") no-repeat center top;
+  width: 100%;
+  margin: 1em auto;
+  padding-top: 65px;
+}
+.field-name-field-recommended-resources .field-name-field-external-url.field-type-link-field a,
+.field-name-field-recommended-articles .field-name-field-external-url.field-type-link-field a,
+.field.field-name-field-aditional-resources .field-name-field-external-url.field-type-link-field a {
+  color: #003399;
+  font-weight: bold;
+  font-style: italic;
+  font-size: 20px;
+}
+.field-name-field-recommended-resources .field-name-field-external-url.field-type-link-field a:before,
+.field-name-field-recommended-articles .field-name-field-external-url.field-type-link-field a:before,
+.field.field-name-field-aditional-resources .field-name-field-external-url.field-type-link-field a:before {
+  content: "> ";
+}
+.field-name-field-recommended-resources .node-article .field-name-field-image + .field-name-title-field,
+.field-name-field-recommended-articles .node-article .field-name-field-image + .field-name-title-field,
+.field.field-name-field-aditional-resources .node-article .field-name-field-image + .field-name-title-field {
+  position: relative;
+  background-image: none;
+  width: auto;
+  height: auto;
+}
+.field-name-field-recommended-resources .node-article .field.field-name-field-image,
+.field-name-field-recommended-articles .node-article .field.field-name-field-image,
+.field.field-name-field-aditional-resources .node-article .field.field-name-field-image {
+  float: left;
+  margin-right: 1em;
+  margin-bottom: 4em;
+  margin-bottom: 1em;
+  width: auto;
+  height: auto;
+  overflow: hidden;
+}
+.field-name-field-recommended-resources .node-article .field.field-name-field-image a:before,
+.field-name-field-recommended-articles .node-article .field.field-name-field-image a:before,
+.field.field-name-field-aditional-resources .node-article .field.field-name-field-image a:before {
+  content: "";
+}
+.field-name-field-recommended-resources .node-events .content,
+.field-name-field-recommended-articles .node-events .content,
+.field.field-name-field-aditional-resources .node-events .content {
+  display: inline-flex;
+}
+.field-name-field-recommended-resources .node-events .content .field,
+.field-name-field-recommended-articles .node-events .content .field,
+.field.field-name-field-aditional-resources .node-events .content .field,
+.field-name-field-recommended-resources .node-events .content ul,
+.field-name-field-recommended-articles .node-events .content ul,
+.field.field-name-field-aditional-resources .node-events .content ul,
+.field-name-field-recommended-resources .node-events .content .field-collection-container,
+.field-name-field-recommended-articles .node-events .content .field-collection-container,
+.field.field-name-field-aditional-resources .node-events .content .field-collection-container {
+  display: none;
+}
+.field-name-field-recommended-resources .node-events .content .field.field-name-field-start-date,
+.field-name-field-recommended-articles .node-events .content .field.field-name-field-start-date,
+.field.field-name-field-aditional-resources .node-events .content .field.field-name-field-start-date {
+  display: block;
+  border-top: none !important;
+  font-weight: bold;
+  width: 150px;
+  min-width: 150px;
+  max-width: 150px;
+  height: 150px;
+  padding: 0;
+  background-color: #749b00;
+  background-image: none;
+  margin: 0;
+  text-align: center;
+  float: left;
+  overflow: hidden;
+  margin-right: 15px;
+}
+.field-name-field-recommended-resources .node-events .content .field.field-name-field-start-date span,
+.field-name-field-recommended-articles .node-events .content .field.field-name-field-start-date span,
+.field.field-name-field-aditional-resources .node-events .content .field.field-name-field-start-date span {
+  font-size: 35px;
+  color: #ffffff;
+}
+.field-name-field-recommended-resources .node-events .content .field.field-name-title-field,
+.field-name-field-recommended-articles .node-events .content .field.field-name-title-field,
+.field.field-name-field-aditional-resources .node-events .content .field.field-name-title-field {
+  display: block;
+  float: left;
+}
+.field-name-field-recommended-resources .node-flickr span.flickr-wrap > a:before,
+.field-name-field-recommended-articles .node-flickr span.flickr-wrap > a:before,
+.field.field-name-field-aditional-resources .node-flickr span.flickr-wrap > a:before {
+  content: "";
+}
+.field-name-field-recommended-resources .node-flickr img,
+.field-name-field-recommended-articles .node-flickr img,
+.field.field-name-field-aditional-resources .node-flickr img {
+  width: 150px;
+  height: auto;
+  float: left;
+  margin-right: 15px;
+}
+.field-name-field-recommended-resources .node-flickr .flickr-credit,
+.field-name-field-recommended-articles .node-flickr .flickr-credit,
+.field.field-name-field-aditional-resources .node-flickr .flickr-credit {
+  width: auto !important;
+  float: left;
+}
+.field-name-field-recommended-resources .node-flickr .flickr-credit span.flickr-metadata,
+.field-name-field-recommended-articles .node-flickr .flickr-credit span.flickr-metadata,
+.field.field-name-field-aditional-resources .node-flickr .flickr-credit span.flickr-metadata {
+  display: none;
+}
+.field-name-field-recommended-resources .node-infographic,
+.field-name-field-recommended-articles .node-infographic,
+.field.field-name-field-aditional-resources .node-infographic,
+.field-name-field-recommended-resources .node-news,
+.field-name-field-recommended-articles .node-news,
+.field.field-name-field-aditional-resources .node-news,
+.field-name-field-recommended-resources .node-publication,
+.field-name-field-recommended-articles .node-publication,
+.field.field-name-field-aditional-resources .node-publication {
+  clear: both;
+}
+.field-name-field-recommended-resources .node-infographic .field-name-title-field,
+.field-name-field-recommended-articles .node-infographic .field-name-title-field,
+.field.field-name-field-aditional-resources .node-infographic .field-name-title-field,
+.field-name-field-recommended-resources .node-news .field-name-title-field,
+.field-name-field-recommended-articles .node-news .field-name-title-field,
+.field.field-name-field-aditional-resources .node-news .field-name-title-field,
+.field-name-field-recommended-resources .node-publication .field-name-title-field,
+.field-name-field-recommended-articles .node-publication .field-name-title-field,
+.field.field-name-field-aditional-resources .node-publication .field-name-title-field {
+  float: left;
+}
+.field-name-field-recommended-resources .node-infographic .field-name-title-field a,
+.field-name-field-recommended-articles .node-infographic .field-name-title-field a,
+.field.field-name-field-aditional-resources .node-infographic .field-name-title-field a,
+.field-name-field-recommended-resources .node-news .field-name-title-field a,
+.field-name-field-recommended-articles .node-news .field-name-title-field a,
+.field.field-name-field-aditional-resources .node-news .field-name-title-field a,
+.field-name-field-recommended-resources .node-publication .field-name-title-field a,
+.field-name-field-recommended-articles .node-publication .field-name-title-field a,
+.field.field-name-field-aditional-resources .node-publication .field-name-title-field a {
+  font-size: 20px;
+}
+.field-name-field-recommended-resources .node-infographic .field-name-title-field h1,
+.field-name-field-recommended-articles .node-infographic .field-name-title-field h1,
+.field.field-name-field-aditional-resources .node-infographic .field-name-title-field h1,
+.field-name-field-recommended-resources .node-news .field-name-title-field h1,
+.field-name-field-recommended-articles .node-news .field-name-title-field h1,
+.field.field-name-field-aditional-resources .node-news .field-name-title-field h1,
+.field-name-field-recommended-resources .node-publication .field-name-title-field h1,
+.field-name-field-recommended-articles .node-publication .field-name-title-field h1,
+.field.field-name-field-aditional-resources .node-publication .field-name-title-field h1 {
+  border-bottom: none;
+}
+.field-name-field-recommended-resources .node-infographic .field.field-name-field-image,
+.field-name-field-recommended-articles .node-infographic .field.field-name-field-image,
+.field.field-name-field-aditional-resources .node-infographic .field.field-name-field-image,
+.field-name-field-recommended-resources .node-news .field.field-name-field-image,
+.field-name-field-recommended-articles .node-news .field.field-name-field-image,
+.field.field-name-field-aditional-resources .node-news .field.field-name-field-image,
+.field-name-field-recommended-resources .node-publication .field.field-name-field-image,
+.field-name-field-recommended-articles .node-publication .field.field-name-field-image,
+.field.field-name-field-aditional-resources .node-publication .field.field-name-field-image,
+.field-name-field-recommended-resources .node-infographic .field-type-image,
+.field-name-field-recommended-articles .node-infographic .field-type-image,
+.field.field-name-field-aditional-resources .node-infographic .field-type-image,
+.field-name-field-recommended-resources .node-news .field-type-image,
+.field-name-field-recommended-articles .node-news .field-type-image,
+.field.field-name-field-aditional-resources .node-news .field-type-image,
+.field-name-field-recommended-resources .node-publication .field-type-image,
+.field-name-field-recommended-articles .node-publication .field-type-image,
+.field.field-name-field-aditional-resources .node-publication .field-type-image {
+  height: auto;
+  max-height: 150px;
+  overflow: hidden;
+  margin-bottom: 0em;
+  float: left;
+  margin-right: 1em !important;
+}
+.field-name-field-recommended-resources .node-infographic .field.field-name-field-image a:before,
+.field-name-field-recommended-articles .node-infographic .field.field-name-field-image a:before,
+.field.field-name-field-aditional-resources .node-infographic .field.field-name-field-image a:before,
+.field-name-field-recommended-resources .node-news .field.field-name-field-image a:before,
+.field-name-field-recommended-articles .node-news .field.field-name-field-image a:before,
+.field.field-name-field-aditional-resources .node-news .field.field-name-field-image a:before,
+.field-name-field-recommended-resources .node-publication .field.field-name-field-image a:before,
+.field-name-field-recommended-articles .node-publication .field.field-name-field-image a:before,
+.field.field-name-field-aditional-resources .node-publication .field.field-name-field-image a:before,
+.field-name-field-recommended-resources .node-infographic .field-type-image a:before,
+.field-name-field-recommended-articles .node-infographic .field-type-image a:before,
+.field.field-name-field-aditional-resources .node-infographic .field-type-image a:before,
+.field-name-field-recommended-resources .node-news .field-type-image a:before,
+.field-name-field-recommended-articles .node-news .field-type-image a:before,
+.field.field-name-field-aditional-resources .node-news .field-type-image a:before,
+.field-name-field-recommended-resources .node-publication .field-type-image a:before,
+.field-name-field-recommended-articles .node-publication .field-type-image a:before,
+.field.field-name-field-aditional-resources .node-publication .field-type-image a:before {
+  content: "";
+}
+.field-name-field-recommended-resources .node-infographic .field.field-name-field-image img,
+.field-name-field-recommended-articles .node-infographic .field.field-name-field-image img,
+.field.field-name-field-aditional-resources .node-infographic .field.field-name-field-image img,
+.field-name-field-recommended-resources .node-news .field.field-name-field-image img,
+.field-name-field-recommended-articles .node-news .field.field-name-field-image img,
+.field.field-name-field-aditional-resources .node-news .field.field-name-field-image img,
+.field-name-field-recommended-resources .node-publication .field.field-name-field-image img,
+.field-name-field-recommended-articles .node-publication .field.field-name-field-image img,
+.field.field-name-field-aditional-resources .node-publication .field.field-name-field-image img,
+.field-name-field-recommended-resources .node-infographic .field-type-image img,
+.field-name-field-recommended-articles .node-infographic .field-type-image img,
+.field.field-name-field-aditional-resources .node-infographic .field-type-image img,
+.field-name-field-recommended-resources .node-news .field-type-image img,
+.field-name-field-recommended-articles .node-news .field-type-image img,
+.field.field-name-field-aditional-resources .node-news .field-type-image img,
+.field-name-field-recommended-resources .node-publication .field-type-image img,
+.field-name-field-recommended-articles .node-publication .field-type-image img,
+.field.field-name-field-aditional-resources .node-publication .field-type-image img {
+  height: auto;
+  width: 150px;
+  margin-right: 0em;
+}
+.field-name-field-recommended-resources .node-infographic .field.field-name-field-publication-date,
+.field-name-field-recommended-articles .node-infographic .field.field-name-field-publication-date,
+.field.field-name-field-aditional-resources .node-infographic .field.field-name-field-publication-date,
+.field-name-field-recommended-resources .node-news .field.field-name-field-publication-date,
+.field-name-field-recommended-articles .node-news .field.field-name-field-publication-date,
+.field.field-name-field-aditional-resources .node-news .field.field-name-field-publication-date,
+.field-name-field-recommended-resources .node-publication .field.field-name-field-publication-date,
+.field-name-field-recommended-articles .node-publication .field.field-name-field-publication-date,
+.field.field-name-field-aditional-resources .node-publication .field.field-name-field-publication-date,
+.field-name-field-recommended-resources .node-infographic .field-name-body,
+.field-name-field-recommended-articles .node-infographic .field-name-body,
+.field.field-name-field-aditional-resources .node-infographic .field-name-body,
+.field-name-field-recommended-resources .node-news .field-name-body,
+.field-name-field-recommended-articles .node-news .field-name-body,
+.field.field-name-field-aditional-resources .node-news .field-name-body,
+.field-name-field-recommended-resources .node-publication .field-name-body,
+.field-name-field-recommended-articles .node-publication .field-name-body,
+.field.field-name-field-aditional-resources .node-publication .field-name-body {
+  clear: both;
+}
+.field-name-field-recommended-resources .node-infographic .more-link,
+.field-name-field-recommended-articles .node-infographic .more-link,
+.field.field-name-field-aditional-resources .node-infographic .more-link,
+.field-name-field-recommended-resources .node-news .more-link,
+.field-name-field-recommended-articles .node-news .more-link,
+.field.field-name-field-aditional-resources .node-news .more-link,
+.field-name-field-recommended-resources .node-publication .more-link,
+.field-name-field-recommended-articles .node-publication .more-link,
+.field.field-name-field-aditional-resources .node-publication .more-link {
+  font-size: 14px;
+}
+.field-name-field-recommended-resources .node-infographic .group-left,
+.field-name-field-recommended-articles .node-infographic .group-left,
+.field.field-name-field-aditional-resources .node-infographic .group-left,
+.field-name-field-recommended-resources .node-news .group-left,
+.field-name-field-recommended-articles .node-news .group-left,
+.field.field-name-field-aditional-resources .node-news .group-left,
+.field-name-field-recommended-resources .node-publication .group-left,
+.field-name-field-recommended-articles .node-publication .group-left,
+.field.field-name-field-aditional-resources .node-publication .group-left {
+  width: auto;
+  padding-right: 0;
+}
+.field-name-field-recommended-resources .node-youtube,
+.field-name-field-recommended-articles .node-youtube,
+.field.field-name-field-aditional-resources .node-youtube {
+  clear: both;
+}
+.field-name-field-recommended-resources .node-youtube .field.field-type-youtube a:before,
+.field-name-field-recommended-articles .node-youtube .field.field-type-youtube a:before,
+.field.field-name-field-aditional-resources .node-youtube .field.field-type-youtube a:before {
+  content: "";
+}
+/*fin aditional resources*/
+/* Fin Block: recommended-articles and recommended-resources */
 /*classes toda la pantalla*/
 #block-osha-newsletter-osha-newsletter-subscribe {
   margin-right: -15px;
@@ -12130,9 +12383,43 @@ article .hwc-share-widget ul {
   }
   /*fin homepage slider*/
   /*publications*/
-  #publications_slideshow {
-    width: 800px !important;
-    max-width: 100%;
+  #block-views-publications-slideshow-slidehow #publications_slideshow #num_slides,
+  #block-system-main #publications_slideshow #num_slides {
+    left: 5em;
+    max-width: 685px !important;
+    width: 80% !important;
+  }
+  #block-views-publications-slideshow-slidehow #publications_slideshow #num_slides > div,
+  #block-system-main #publications_slideshow #num_slides > div {
+    width: 100% !important;
+  }
+  #block-views-publications-slideshow-slidehow #publications_slideshow #num_slides > div .publication-item,
+  #block-system-main #publications_slideshow #num_slides > div .publication-item {
+    padding: 5px 0;
+  }
+  #block-views-publications-slideshow-slidehow #publications_slideshow #num_slides > div .publication-item .field-name-field-cover-image,
+  #block-system-main #publications_slideshow #num_slides > div .publication-item .field-name-field-cover-image {
+    top: 10px;
+  }
+  #block-views-publications-slideshow-slidehow #publications_slideshow #num_slides > div .publication-item .field-name-field-publication-date,
+  #block-system-main #publications_slideshow #num_slides > div .publication-item .field-name-field-publication-date {
+    margin-bottom: 2px;
+  }
+  #block-views-publications-slideshow-slidehow #publications_slideshow #num_slides > div .publication-item h5,
+  #block-system-main #publications_slideshow #num_slides > div .publication-item h5 {
+    margin-bottom: 5px;
+    max-height: 47px;
+    overflow: hidden;
+  }
+  #block-views-publications-slideshow-slidehow #publications_slideshow #num_slides > div .publication-item .field-type-text-with-summary,
+  #block-system-main #publications_slideshow #num_slides > div .publication-item .field-type-text-with-summary {
+    max-height: 100px;
+    overflow: hidden;
+  }
+  #block-views-publications-slideshow-slidehow #publications_slideshow #num_slides > div .publication-item ul,
+  #block-system-main #publications_slideshow #num_slides > div .publication-item ul {
+    margin-top: 5px;
+    margin-bottom: 5px;
   }
   /*publications*/
   /*Articles*/
