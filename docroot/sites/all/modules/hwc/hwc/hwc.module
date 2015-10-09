@@ -315,9 +315,9 @@ function hwc_form_user_profile_form_alter(&$form, $form_state) {
     // Hide Flickr tags in user profile
     $form['field_flickr_tags']['#access'] = FALSE;
     $form['field_cmw_mail_notifications']['#access'] = FALSE;
-    $form['field_crm_guid']['#access'] = FALSE;
-    $form['field_user_partner_guid']['#access'] = FALSE;
   }
+  $form['field_crm_guid']['#access'] = FALSE;
+  $form['field_user_partner_guid']['#access'] = FALSE;
 }
 
 /**
