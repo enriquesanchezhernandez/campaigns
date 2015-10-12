@@ -72,7 +72,7 @@ function hwc_practical_tool_field_formatter_info() {
       'field types' => array('field_collection'),
       'settings' => array(
         'label_1' => t('Access tool:'),
-        'label_2' => t('Languages:'),
+        'label_2' => t('Available in:'),
       ),
     ),
   );

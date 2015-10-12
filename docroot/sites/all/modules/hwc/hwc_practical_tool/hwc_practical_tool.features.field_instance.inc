@@ -262,12 +262,8 @@ function hwc_practical_tool_field_default_field_instances() {
       ),
       'teaser' => array(
         'label' => 'inline',
-        'module' => 'hwc_practical_tool',
-        'settings' => array(
-          'field_formatter_class' => 'access-tool-link',
-          'label' => 'Visit tool in:',
-        ),
-        'type' => 'access_tool_link_and_language',
+        'settings' => array(),
+        'type' => 'hidden',
         'weight' => 5,
       ),
     ),
@@ -751,12 +747,9 @@ function hwc_practical_tool_field_default_field_instances() {
       ),
       'teaser' => array(
         'label' => 'inline',
-        'module' => 'text',
-        'settings' => array(
-          'field_formatter_class' => '',
-        ),
-        'type' => 'text_default',
-        'weight' => 0,
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 4,
       ),
       'title_body' => array(
         'label' => 'above',

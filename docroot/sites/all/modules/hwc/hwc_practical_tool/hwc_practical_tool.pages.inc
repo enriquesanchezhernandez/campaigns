@@ -5,6 +5,7 @@ function hwc_practical_tool_menu_tools_form($form, $form_state) {
   global $language;
   $text = hwc_req_param($form_state, 'text');
   $languages = hwc_req_param($form_state, 'languages', array($language->language));
+  $sort = hwc_req_param($form_state, 'sort', 'date');
   $form = array(
     '#action' => 'practical-tools',
     '#method' => 'post',
@@ -35,6 +36,12 @@ function hwc_practical_tool_menu_tools_form($form, $form_state) {
     '#type' => 'submit',
     '#value' => t('Search'),
     '#suffix' => '</div>',
+  );
+  $form['content']['sort'] = array(
+    '#type' => 'radios',
+    '#title' => t('Sort by:'),
+    '#default_value' => $sort,
+    '#options' => array('date' => t('Date'), 'alphabetically' => t('Alphabetically')),
   );
   $form['left-column']['relevant_for'] = array(
     '#type' => 'checkboxes',
@@ -69,6 +76,34 @@ function hwc_practical_tool_menu_tools_form_submit($form, &$form_state) {
   $form_state['#results-related'] = hwc_practical_tool_menu_tools_search_related($form_state, $native_nids);
 }
 
+function _hwc_practical_tool_sort_nodes(&$nids) {
+  global $language;
+
+  $q = db_select('node', 'a');
+  $q->innerJoin('field_data_title_field', 'b', 'a.nid = b.entity_id');
+  $q->fields('a', array('nid'))
+    ->fields('b', array('title_field_value', 'language'))
+    ->condition('a.nid', $nids, 'IN')
+    ->condition('b.language', array('en', $language->language), 'IN')
+    ->orderBy('b.title_field_value');
+  $res = $q->execute()->fetchAll();
+  $added = array();
+  $nids = array();
+  foreach ($res as $item) {
+    $nid = $item->nid;
+    if (!isset($added[$nid])) {
+      $nids[] = $nid;
+      $added[$nid] = count($nids) - 1;
+      continue;
+    }
+    if ($item->language == 'en') {
+      // Node is already added in current language.
+      continue;
+    }
+    unset($nids[$added[$nid]]);
+    $nids[] = $nid;
+  }
+}
 function hwc_practical_tool_menu_tools_search_native($form_state) {
   global $language;
   $languages = hwc_req_param($form_state, 'languages', array($language->language));
@@ -129,14 +164,20 @@ function hwc_practical_tool_menu_tools_search_native($form_state) {
       '#nids' => '',
     );
   }
+
+  $sort = hwc_req_param($form_state, 'sort');
+  if ($sort == 'alphabetically') {
+    _hwc_practical_tool_sort_nodes($nids);
+  }
+
   $per_page = 4;
   $current_page = pager_default_initialize(count($nids), $per_page);
   $page = array_chunk($nids, $per_page, TRUE);
   $nodes = node_load_multiple($page[$current_page]);
-  foreach($nodes as $node) {
+  foreach ($nodes as $node) {
     $node->filter_languages = $languages;
   }
-  $pager_params = array('languages' => $languages);
+  $pager_params = array('languages' => $languages, 'sort' => $sort);
   if ($is_search) {
     $pager_params['text'] = $text;
   }
@@ -217,7 +258,11 @@ function hwc_practical_tool_menu_tools_search_related($form_state, $native_nids)
 
   $nids = array_intersect($nids, $pnids);
 
-
+  $sort = hwc_req_param($form_state, 'sort');
+  if ($sort == 'alphabetically') {
+    _hwc_practical_tool_sort_nodes($nids);
+  }
+  
   $per_page = 2;
   $current_page = pager_default_initialize(count($nids), $per_page, 1);
   $page = array_chunk($nids, $per_page, TRUE);
@@ -226,7 +271,7 @@ function hwc_practical_tool_menu_tools_search_related($form_state, $native_nids)
     return array();
   }
   $languages = hwc_req_param($form_state, 'languages', array($language->language));
-  foreach($nodes as $node) {
+  foreach ($nodes as $node) {
     $node->filter_languages = $languages;
   }
   $languages = hwc_req_param($form_state, 'languages', array($language->language));
@@ -242,7 +287,7 @@ function hwc_practical_tool_menu_tools_search_related($form_state, $native_nids)
       'quantity' => count($nodes),
       'parameters' => $pager_params,
       'element' => 1,
-    ))
+    )),
   );
   return $ret;
 }
