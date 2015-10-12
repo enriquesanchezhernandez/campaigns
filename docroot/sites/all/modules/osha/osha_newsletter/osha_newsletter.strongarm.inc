@@ -218,8 +218,7 @@ function osha_newsletter_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'subscribe_block_intro_text';
-  $strongarm->value = 'Once a month, OSHmail keeps you updated on occupational safety and health. <br>
-You cand sign up below:';
+  $strongarm->value = 'Once a month, OSHmail keeps you updated on occupational safety and health.';
   $export['subscribe_block_intro_text'] = $strongarm;
 
   $strongarm = new stdClass();
