@@ -115,60 +115,69 @@ function hwc_frontend_preprocess_page(&$vars) {
   // add back to links (e.g. Back to news)
   if (isset($vars['node'])) {
     $node = $vars['node'];
+    $tag_vars = array(
+      'element' => array (
+        '#tag' => 'h1',
+        '#attributes' => array(
+          'class' => array('page-header'),
+        ),
+      ),
+    );
     switch ($node->type) {
       case 'publication':
         $link_title = t('Back to publications list');
         $link_href = 'publications';
+        $tag_vars['element']['#value'] = t('Publications');
         $vars['page']['above_title']['title-alternative'] = array(
           '#type' => 'item',
-          '#markup' => t('Publications'),
-          '#prefix' => '<strong class="title-alt">', '#suffix' => '</strong>'
+          '#markup' => theme('html_tag', $tag_vars),
         );
         break;
       case 'press_release':
         $link_title = t('Back to press releases list');
         $link_href = 'press-room';
+        $tag_vars['element']['#value'] = t('Press releases');
         $vars['page']['above_title']['title-alternative'] = array(
           '#type' => 'item',
-          '#markup' => t('Press releases'),
-          '#prefix' => '<strong class="title-alt">', '#suffix' => '</strong>'
+          '#markup' => theme('html_tag', $tag_vars),
         );
         break;
       case 'news':
         $link_title = t('Back to news');
         $link_href = 'news';
+        $tag_vars['element']['#value'] = t('News');
         $vars['page']['above_title']['title-alternative'] = array(
           '#type' => 'item',
-          '#markup' => t('News'),
-          '#prefix' => '<strong class="title-alt">', '#suffix' => '</strong>'
+          '#markup' => theme('html_tag', $tag_vars),
         );
         break;
       case 'infographic':
         $link_title = t('Back to infographics list');
         $link_href = 'infographics';
+        $tag_vars['element']['#value'] = t('Infographics');
         $vars['page']['above_title']['title-alternative'] = array(
           '#type' => 'item',
-          '#markup' => t('Infographics'),
-          '#prefix' => '<strong class="title-alt">', '#suffix' => '</strong>'
+          '#markup' => theme('html_tag', $tag_vars),
         );
         break;
 
       case 'campaign_materials':
         $link_title = t('Back to campaign materials list');
         $link_href = 'campaign-materials';
+        $tag_vars['element']['#value'] = t('Campaign materials');
         $vars['page']['above_title']['title-alternative'] = array(
           '#type' => 'item',
-          '#markup' => t('Campaign materials'),
-          '#prefix' => '<strong class="title-alt">', '#suffix' => '</strong>'
+          '#markup' => theme('html_tag', $tag_vars),
         );
         break;
 
       case 'practical_tool':
         $link_title = t('Back to practical tools list');
         $link_href = 'practical-tools';
+        $tag_vars['element']['#value'] = t('Practical tools');
         $vars['page']['above_title']['practical-tool-page-title'] = array(
           '#type' => 'item',
-          '#markup' => '<h1>' . t('Practical tools') . '</h1>',
+          '#markup' => theme('html_tag', $tag_vars),
         );
         break;
 
@@ -178,20 +187,21 @@ function hwc_frontend_preprocess_page(&$vars) {
         if ($date < $now) {
           $link_title = t('Back to past events list');
           $link_href = 'past-events';
+          $tag_vars['element']['#value'] = t('Past events');
           $vars['page']['above_title']['events-page-title'] = array(
             '#type' => 'item',
-            '#markup' => '<h1>' . t('Past events') . '</h1>',
+            '#markup' => theme('html_tag', $tag_vars),
           );
-          break;
         }
-        $link_title = t('Back to events list');
-        $link_href = 'events';
-        $vars['page']['above_title']['events-page-title'] = array(
-          '#type' => 'item',
-          '#markup' => '<h1>' . t('Upcoming events') . '</h1>',
-        );
+        else {
+          $link_title = t('Back to events list');
+          $tag_vars['element']['#value'] = t('Upcoming events');
+          $vars['page']['above_title']['practical-tool-page-title'] = array(
+            '#type' => 'item',
+            '#markup' => theme('html_tag', $tag_vars),
+          );
+        }
         break;
-
 
     }
     if (isset($link_title)) {
