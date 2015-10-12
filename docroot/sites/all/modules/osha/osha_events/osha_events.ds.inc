@@ -121,10 +121,13 @@ function osha_events_ds_layout_settings_info() {
         18 => 'field_contact_email',
         19 => 'field_website_of_event',
       ),
+      'footer' => array(
+        20 => 'field_gallery',
+      ),
       'hidden' => array(
-        20 => 'group_contact',
-        21 => 'field_tags',
-        22 => '_add_existing_field',
+        21 => 'group_contact',
+        22 => 'field_tags',
+        23 => '_add_existing_field',
       ),
     ),
     'fields' => array(
@@ -148,6 +151,7 @@ function osha_events_ds_layout_settings_info() {
       'field_contact_phone' => 'left2',
       'field_contact_email' => 'right2',
       'field_website_of_event' => 'right2',
+      'field_gallery' => 'footer',
       'group_contact' => 'hidden',
       'field_tags' => 'hidden',
       '_add_existing_field' => 'hidden',
