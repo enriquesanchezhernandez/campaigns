@@ -420,7 +420,7 @@ function osha_events_field_default_field_instances() {
     'required' => 0,
     'settings' => array(
       'alt_field' => 0,
-      'default_image' => 489,
+      'default_image' => 2041,
       'entity_translation_sync' => 0,
       'file_directory' => 'speakers',
       'file_extensions' => 'png gif jpg jpeg',
