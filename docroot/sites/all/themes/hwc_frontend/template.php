@@ -333,6 +333,10 @@ function hwc_frontend_preprocess_node(&$vars) {
   $vars['theme_hook_suggestions'][] = 'node__' . $vars['node']->type . '__' . $view_mode;
   $vars['theme_hook_suggestions'][] = 'node__' . $vars['node']->nid . '__' . $view_mode;
 
+  if (context_isset('context', 'segmentation_page')) {
+    $vars['theme_hook_suggestions'][] = 'node__article_segment';
+  }
+
   hwc_frontend_top_anchor($vars);
 }
 
