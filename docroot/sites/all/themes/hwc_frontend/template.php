@@ -317,6 +317,9 @@ function hwc_frontend_preprocess_node(&$vars) {
         if ($date_diff < 0) {
           $vars['classes_array'][] = 'page-past-event';
         }
+        else {
+          $vars['classes_array'][] = 'page-upcoming-event';
+        }
       }
     }
   }
