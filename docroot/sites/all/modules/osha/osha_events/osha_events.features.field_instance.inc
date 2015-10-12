@@ -1335,7 +1335,7 @@ function osha_events_field_default_field_instances() {
         'view_mode' => 'full',
       ),
       'type' => 'options_select',
-      'weight' => 22,
+      'weight' => 20,
     ),
     'workbench_access_field' => 0,
   );
@@ -2148,7 +2148,7 @@ function osha_events_field_default_field_instances() {
         'apply_chosen' => '',
       ),
       'type' => 'options_select',
-      'weight' => 21,
+      'weight' => 22,
     ),
     'workbench_access_field' => 0,
   );
