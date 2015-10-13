@@ -19,7 +19,7 @@
 			content: ">";
 			padding-right: 0.35em;
 		}
-		input[type="text"], textarea, select{
+		input[type="text"], textarea, textarea.form-control, select{
 			color: @text-color-2;
 			border-color: @text-color-2;
 			border-radius: 0;
@@ -35,6 +35,12 @@
 		}
 		.top_anchor{
 			display: none;
+		}
+		.modal-content{
+			height: 100%;
+			.views-submit-button{
+				margin-top: 1.8em;
+			}
 		}
 	}
 /* FIN para toda la aplicacion */
@@ -71,7 +77,13 @@
 			.form-item{
 				margin-top: 26px;
 			}
-		
+		}
+		.title-alt{
+			float: left;
+			width: 100%;
+			margin-bottom: 0;
+			margin-top: 0;
+			padding-bottom: 0em;
 		}
 		h2{
 			color: @h2-default-color-3;
@@ -609,42 +621,6 @@
 		.hwc-share-widget{
 			border: none;
 		}
-
-		.field-name-field-recommended-resources, .field-name-field-recommended-articles{
-			.field-item{
-				margin: 1em 0;
-				padding: .5em 0;
-				margin: 0.5em 0 0;
-				padding: 0;
-				a{
-					color: @color2;
-					font-weight: bold;
-					margin-bottom: 2em;
-					font-size: @size2;
-					&:before{
-						content: "> ";
-					}
-				}
-			}
-			.node-article .field-name-field-image + .field-name-title-field{
-				position: relative;
-				background-image: none;
-				width: auto;
-				height: auto;
-			}
-			.node-article .field.field-name-field-image {
-				float: left;
-				margin-right: 1em;
-				margin-bottom: 4em;
-				margin-bottom: 1em;
-				width: auto;
-				height: auto;
-				overflow: hidden;
-				a:before{
-					content:"";
-				}
-			}
-		}
 		
 		.node-infographic{
 			.field.field-name-field-image {
@@ -678,12 +654,12 @@
 	
 		.node-external-url{
 			a.external-link {
-			  color: #003399;
-			  font-weight: bold;
-			  font-style: italic;
-			  font-size: 20px;
-			  &:before {
-				  content: "> ";
+				color: #003399;
+				font-weight: bold;
+				font-style: italic;
+				font-size: 20px;
+				&:before {
+					content: "> ";
 				}
 			}
 		}
@@ -755,81 +731,6 @@
 		}
 	}
 	/*Fin articles*/
-		
-	//article aditional resources
-	.field.field-name-field-aditional-resources{
-		margin-top: 1em;
-		padding-top: 1em;
-		border-top: 1px dotted @border-default-color;
-		clear: both;
-		> .field-label{
-			color: #749b00;
-			font-style: normal;
-			font-weight: bold;
-			text-align: center;
-			font-size: @h2-default-size;
-			background: url("../images/content/additional-resources.png") no-repeat center top;
-			width: 100%;
-			margin: 1em auto;
-			padding-top: 65px;
-		}
-		.node-events{
-			.field-name-field-start-date{					
-				border-top: none !important;
-				font-weight: bold;
-				width: 150px;
-				height: 150px;
-				padding: 0;
-				background-color: @color3;
-				background-image: none;
-				margin: 0;
-				text-align: center;
-				float: left;
-				overflow: hidden;
-				margin-right: 15px;
-				span{
-					font-size: @size0;
-					color: @color1;
-				}
-			}
-		}
-		.field-name-field-external-url.field-type-link-field{
-			a{
-				color: #003399;
-				font-weight: bold;
-				font-style: italic;
-				font-size: @size2;
-				&:before {
-					content: "> ";
-				}
-			}
-		}
-		.node-infographic{
-			.field-name-title-field{
-				float: left;
-				a {
-					font-size: @size2;
-				}
-				h1{
-					border-bottom: none;
-				}
-			}
-			.field.field-name-field-image{
-				height: auto;
-				max-height: 150px;
-				overflow: hidden;
-				margin-bottom: 0em;
-				float: left;
-				margin-right: 1em !important;
-				img {
-					height: auto;
-					width: 150px;
-					margin-right: 0em;
-				}
-			}
-		}
-	}
-	/*fin aditional resources*/
 	
 	/* pag Infographics */
 	.view-infographic{
@@ -1018,7 +919,9 @@
 			padding-top: 100px;
 			margin-bottom: 45px;
 			/* padding-top: 58px; */
-			background: url("../images/content/newsletter.png") no-repeat center 20px;
+			/* background: url("../images/content/newsletter.png") no-repeat center 20px; */
+			background: url("../images/content/mail-newsletter-big.png") no-repeat center 20px;
+			background-size: 61px;
 			color: @h2-default-color;
 		}
 		p{
@@ -1214,70 +1117,72 @@
 	
 	#block-views-publications-slideshow-slidehow, #block-system-main{
 		#publications_slideshow{
-			width: 100%;
+			/* width: 926px !important;  */
+			width: 100% !important;
 			border-bottom: 1px solid @border-default-color;
 			border-top: 1px solid @border-default-color;
-			margin: 0;
+			margin: 0em auto 3em;
+			> div{
+				width: 100% !important; //para que las flechas esten en el borde
+			}
 			#num_slides{
 				left: 5em;
 				top: 0em;
+				width: 85% !important;				
 				> div{
-				}
-	
-				.field-name-title-field{
-					float: left;
-					margin-left: 6em;
-					width: auto;
-					h5{
-						font-size: @h5-default-size;
-						font-weight: bold;
-						:before{
-							content: ">";
-							padding-right: 0.5em;
-							color: @text-color-2;
-						}
-					}
-				}
-				.field-name-field-publication-date{
-					/* float: left;
-					margin-left: 20px; */
-
-					padding-top: 0px;
-					margin-top: 0px;
-					margin-bottom: 0.2em;
-					margin-left: 6em;
-					span{
-						font-size: @size3;
-					}
-				}
-				.field-name-body{
-					  clear: both;
-					  margin-left: 6em;
-				}
-				.field-name-field-cover-image{
-					/* float: left; */
-					position: absolute;
-					top: 1em;
-					margin-top: 0;
-					img{
-						width: auto;
-					}
-				}
-				ul{
-					margin-top: 1em;
-					margin-left: 6em;
-					list-style: none;
-					padding-bottom: 0em;
-					border-bottom: none;
-					a{
-						font-style: italic;
-						font-weight: bold;
-					}
+					width: 100% !important;
 				}
 				.publication-item{
 					border-bottom: none;
-					h5{
+					min-height: 225px;
+					max-height: 225px;
+					.field-name-title-field{
+						float: left;
+						margin-left: 6em;
+						width: auto;
+						h5{
+							font-size: @h5-default-size;
+							font-weight: bold;
+							margin-top: 0;
+							:before{
+								content: ">";
+								padding-right: 0.5em;
+								color: @text-color-2;
+							}
+						}
+					}
+					.field-name-field-publication-date{
+						clear: both;
+						padding-top: 0px;
+						margin-top: 0px;
+						margin-bottom: 0.2em;
+						margin-left: 6em;
+						span{
+							font-size: @size3;
+						}
+					}
+					.field-name-body{
+						  clear: both;
+						  margin-left: 6em;
+					}
+					.field-name-field-cover-image{
+						position: absolute;
+						top: 1em;
 						margin-top: 0;
+						img{
+							width: auto;
+						}
+					}
+					ul{
+						margin-top: 1em;
+						margin-left: 6em;
+						list-style: none;
+						padding-bottom: 0em;
+						border-bottom: none;
+						a{
+							font-style: italic;
+							font-weight: bold;
+						}
 					}
 				}
 			}
@@ -1387,6 +1292,7 @@
 			h2{
 				color: @colorNormalText;
 				font-size: @size2;
+				text-align: left;
 			}
 			.facetapi-facetapi-checkbox-links li{
 				margin-bottom: 10px;
@@ -1416,13 +1322,6 @@
 				}
 			}
 		}
-
-
-
-
-
-
-
 
 		.region.region-content{
 			float: right;
@@ -2746,10 +2645,10 @@ article{
 				}
 			}
 			h2.present-yourself:before{
-				background-image: url("../images/content/icono-present-yourself-big.png");
+				background-image: url("../images/content/icono-present-yourself-big.jpg");
 			}
 			h2.networking:before{
-				background-image: url("../images/content/icono-networking-big.png");
+				background-image: url("../images/content/icono-networking-big.jpg");
 			}
 		}
 		.col-2{
@@ -3226,7 +3125,15 @@ article{
 		display: none;
 	}
 }
+.node-type-partner{
+	.panels-flexible-row-new-5{
+		margin-left: @margin1;
+		margin-right: @margin1;
+	}
+}
 .profile-edit-links-container{
+	margin-left: @margin2;
+	margin-right: @margin2;
 	.pane-hwc-partner-hwc-partner-private-link-0, .pane-hwc-partner-hwc-partner-private-link-1,
 	.pane-hwc-partner-hwc-partner-private-link-2, .pane-node-profile-update-link{
 		.pane-content{
@@ -3437,9 +3344,11 @@ article{
 	}
 }
 /*fin partners public profile*/
-
 /*create event --> dentro de public profile*/
 .page-node-add-events, .page-node-add-news{
+	#views-form-aditional-resources-entityreference-view-widget-1 .form-type-checkbox label{
+		visibility: visible !important;
+	}
 	.node-events-form, .node-news-form{
 		.form-control{
 			width: 100% !important;
@@ -3496,6 +3405,39 @@ article{
 				display: none;
 			}
 		}
+		
+		.form-type-select {
+			position: relative;
+			display: inline-block;
+			width: 95%;
+			&:after {
+				width: 30px;
+				height: 32px;
+				display: block;
+				content: '';
+				position: absolute;
+				bottom: 1px;
+				right: 0;
+				pointer-events: none;
+				background: @bg-color-2 url("../images/content/arrow-down.png") no-repeat right center;
+				-moz-box-sizing: border-box;
+				-webkit-box-sizing: border-box;
+				box-sizing: border-box;
+			}
+			select {
+				font-style: normal;
+				font-weight: normal;
+				line-height: 100%;
+				appearance: none;
+				-moz-appearance: none;
+				-webkit-appearance: none;
+				-moz-box-sizing: border-box;
+				-webkit-box-sizing: border-box;
+				box-sizing: border-box;
+				width: 100%;
+			}
+		}
+			
 		.field-type-datetime{
 			.help-block{
 				display: initial;
@@ -3553,12 +3495,12 @@ article{
 				}
 			}
 			.field-name-field-related-documents{
-					margin-top: 1em;
-				    padding-bottom: 2em;
-				    margin-left: 0px;
-				    margin-right: 15px;
-				    padding: 0 0px 2em 0px;
-				    border-bottom: 1px dotted @color3;
+				margin-top: 1em;
+				padding-bottom: 2em;
+				margin-left: 0px;
+				margin-right: 15px;
+				padding: 0 0px 2em 0px;
+				border-bottom: 1px dotted @color3;
 				.form-file{
 					max-width: 500px;
 					height: 36px !important;
@@ -3569,6 +3511,12 @@ article{
 						padding: 8px;
 					}
 				}
+			}
+		}
+		div.image-widget-data{
+			display: inline-flex;
+			input{
+				height: 35px;
 			}
 		}
 		
@@ -3665,27 +3613,38 @@ article{
 			label[for="edit-field-start-date-und-0-value2"]{
 				display: none;
 			}
-			.date-padding{
-				padding: 0px;
-				div[class="form-item-field-start-date-und-0-value-date"]{
-					input{
-						height: 50px;
-						background: url("../images/content/input-calendar.png");
-						&:after{
-							content: " ";
+			.form-type-date-select{
+				width: 100%;
+				.date-padding {
+					width: 100%;
+					padding: 0px;
+					div[class="form-item-field-start-date-und-0-value-date"]{
+						input{
+							height: 50px;
 							background: url("../images/content/input-calendar.png");
-							height: 30px;
-							width: 20px;
+							&:after{
+								content: " ";
+								background: url("../images/content/input-calendar.png");
+								height: 30px;
+								width: 20px;
+							}
 						}
 					}
+					div[class*="-time"]{
+						label{
+							display: none;
+						}
+						input{
+							margin-top: 0px;
+						}
+					}
+					.form-item{
+						margin-right: 1em;
+					}
 				}
-				div[class*="-time"]{
-					label{
-						display: none;
-					}
-					input{
-						margin-top: 0px;
-					}
+				.form-type-select {
+					width: 8%;
+					min-width: 90px;
 				}
 			}
 		}
@@ -3705,18 +3664,45 @@ article{
 			}
 		}
 	}
+	.back-to-link{
+		display: none;
+	}
+	.chosen-container-single{
+		.chosen-single {
+			border: none;
+			background-color:#fff;
+			background-image:none;
+			box-shadow: 0 0 0px white inset, 0 0px 0px rgba(0, 0, 0, 0);
+			span{
+				color: @text-color-2;
+			}
+		}
+		.chosen-drop{
+			border-color: @text-color-2;
+		}
+	}
 }
-
+.private-area{
+	.back-to-link{
+		display: none;
+	}
+}
 /*fin create event*/
 
 /*Private area for partner*/
 .private-area{
+	h1.page-header{
+		margin-bottom: 0em;
+	}
 	#private{
 		/*
 		.hwc-share-widget{
 			display: none;
 		}
 		*/
+		
+		margin-left: @margin1;
+		margin-right: @margin1;
 		.section-introduction{
 			border-bottom: 1px dotted @color3;
 			h2{
@@ -3770,7 +3756,6 @@ article{
 				font-weight: bold;
 				font-size: @size7 !important;
 				display: block;
-				
 			}
 		}
 		#tmgmt-6{
@@ -3793,7 +3778,8 @@ article{
 			p{
 				border: none;
 				text-align: center;
-				margin-top: 30px;
+				padding-top: 30px;
+				clear: both;
 				a{
 					color: @color2;
 					font-weight: bold;
@@ -3861,7 +3847,7 @@ article{
 				span{
 					float: initial;
 					font-weight: bold;
-					font-size: @size6;
+					font-size: @size4;
 					color: @color2;
 					font-style: italic;
 				}
@@ -3873,6 +3859,10 @@ article{
 					margin-left: 10px;
 					&:after{
 						content: url("../images/content/download.png");
+						vertical-align: sub;
+						content: "";
+						background: url("../images/content/download.png") no-repeat center;
+						padding: 4px 10px 0px;/*  */
 					}
 					img{
 						display: none;
@@ -4030,8 +4020,9 @@ article{
 	}
 }
 #block-views-partners-list-block{
-	margin: @margin;
+}
 	.view-id-partners_list{
+		margin: @margin1;
 		color: @color2;
 		font-size: @size6;
 		font-weight: bold;
@@ -4062,7 +4053,7 @@ article{
 			border-bottom: 1px dotted @color3;
 			padding-bottom: 1em;
 		}
-		.quicktabs-tabpage{
+		//.quicktabs-tabpage{
 			.hwc-char-link{
 				padding: 0px 15px;
 				&.disabled {
@@ -4084,7 +4075,7 @@ article{
 	    		font-style: normal;
 	    		color: @color3;
 			}
-			.quicktabs-views-group{
+			.quicktabs-views-group, .views-row {
 				margin: 0;
 				padding: 30px;
 	   	 		border-bottom: 1px dotted @color3;
@@ -4093,9 +4084,8 @@ article{
 					display: none;
 				}
 			}
-		}
+		//}
 	}
-}
 
 /*fin oficial campaign partners list*/
 
@@ -4153,13 +4143,13 @@ article{
 .page-node-129{
 	h1{
 		border-bottom: none;
-		background: url("../images/content/mail-newsletter.png") no-repeat center top;
+		background: url("../images/content/mail-newsletter-big.jpg") no-repeat center top;
+		background-size: 61px;
 		padding-top: 85px;
 		padding-bottom: 0em;
 	}
 	#block-osha-newsletter-osha-newsletter-subscribe-extra{
 		h2{
-			background-color: @bg-color-2;
 			background: url("../images/content/bg-campaign-partner.png") no-repeat left top;
 			background-size: cover;
 			font-style: italic;
@@ -4249,6 +4239,303 @@ article{
 	padding: @margin2;
 }
 /*Fin pag error*/
+
+/*pag get-your-certificate*/
+.page-get-your-certificate{
+	.chosen-container{
+		.chosen-drop, .chosen-search input[type="text"]{
+			border-color: @text-color-2;
+		}
+		.chosen-results {
+			color: @text-color-2;
+		}
+	}
+	form.webform-client-form {
+		clear:both;
+		float: left;
+		margin-top: 3em;
+		margin-left: -@margin1;
+		label{
+			font-weight: bold;
+		}
+		.form-item, .webform-component {
+			margin-bottom: 2em;
+		}
+		.form-control, .chosen-single span{
+			color: @text-color-2;
+		}
+		.webform-component--activities{
+			margin-bottom: 0em;
+		}
+		.form-checkboxes{
+			margin-top: 2em;
+			.form-item, .webform-component {
+				margin-bottom: 1em;
+			}
+		}
+		.webform-component--other-activities{
+			label{
+				margin-left: 35px;
+				float: left;
+			}
+			input{
+				width: auto;
+				float: left;
+			}
+		}
+		button{
+			margin-left: @margin2;
+			width: 97%;
+		}
+		
+		.form-select {
+			position: relative;
+			display: inline-block;
+			width: 95%;
+			&:after {
+				width: 30px;
+				height: 32px;
+				display: block;
+				content: '';
+				position: absolute;
+				top: 0px;
+				right: 0;
+				pointer-events: none;
+				background: @bg-color-2 url("../images/content/arrow-down.png") no-repeat right center;
+				-moz-box-sizing: border-box;
+				-webkit-box-sizing: border-box;
+				box-sizing: border-box;
+			}
+			select {
+				font-style: normal;
+				font-weight: normal;
+				line-height: 100%;
+				appearance: none;
+				-moz-appearance: none;
+				-webkit-appearance: none;
+				-moz-box-sizing: border-box;
+				-webkit-box-sizing: border-box;
+				box-sizing: border-box;
+				width: 100%;
+				height: 23px;
+			}
+		}
+	}
+}
+/*Fin pag get-your-certificate*/
+
+/* Block: recommended-articles and recommended-resources and article aditional resources*/
+	/* .field-name-field-recommended-resources, .field-name-field-recommended-articles{
+		.field-item{
+			margin: 1em 0;
+			padding: .5em 0;
+			margin: 0.5em 0 0;
+			padding: 0;
+			a{
+				color: @color2;
+				font-weight: bold;
+				margin-bottom: 2em;
+				font-size: @size2;
+				&:before{
+					content: "> ";
+				}
+			}
+		}
+		.node-article .field-name-field-image + .field-name-title-field{
+			position: relative;
+			background-image: none;
+			width: auto;
+			height: auto;
+		}
+		.node-article .field.field-name-field-image {
+			float: left;
+			margin-right: 1em;
+			margin-bottom: 4em;
+			margin-bottom: 1em;
+			width: auto;
+			height: auto;
+			overflow: hidden;
+			a:before{
+				content:"";
+			}
+		}
+	} */
+	
+	.field-name-field-recommended-resources, .field-name-field-recommended-articles, .field.field-name-field-aditional-resources{
+		/* margin-top: 1em;
+		padding-top: 1em;
+		border-top: 1px dotted @border-default-color; */
+		clear: both;
+		
+		.field-item{
+			margin: 1em 0;
+			padding: .5em 0;
+			margin: 0.5em 0 0;
+			padding: 0;
+			a{
+				color: @color2;
+				font-weight: bold;
+				margin-bottom: 2em;
+				font-size: @size2;
+				&:before{
+					content: "> ";
+				}
+			}
+		}
+		> .field-label{
+			color: #749b00;
+			font-style: normal;
+			font-weight: bold;
+			text-align: center;
+			font-size: @h2-default-size;
+			background: url("../images/content/additional-resources.png") no-repeat center top;
+			width: 100%;
+			margin: 1em auto;
+			padding-top: 65px;
+		}
+		.field-name-field-external-url.field-type-link-field{
+			a{
+				color: #003399;
+				font-weight: bold;
+				font-style: italic;
+				font-size: @size2;
+				&:before {
+					content: "> ";
+				}
+			}
+		}
+		.node-article .field-name-field-image + .field-name-title-field{
+			position: relative;
+			background-image: none;
+			width: auto;
+			height: auto;
+		}
+		.node-article .field.field-name-field-image {
+			float: left;
+			margin-right: 1em;
+			margin-bottom: 4em;
+			margin-bottom: 1em;
+			width: auto;
+			height: auto;
+			overflow: hidden;
+			a:before{
+				content:"";
+			}
+		}
+		.node-events{
+			.content{
+				display: inline-flex;
+				.field, ul, .field-collection-container{
+					display: none;
+				}
+				.field.field-name-field-start-date{
+					display: block;
+					border-top: none !important;
+					font-weight: bold;
+					width: 150px;
+					min-width: 150px;
+					max-width: 150px;
+					height: 150px;
+					padding: 0;
+					background-color: @color3;
+					background-image: none;
+					margin: 0;
+					text-align: center;
+					float: left;
+					overflow: hidden;
+					margin-right: 15px;
+					span{
+						font-size: @size0;
+						color: @color1;
+					}
+				}
+				.field.field-name-title-field{
+					display: block;
+					float: left;
+				}
+			}
+		}
+		.node-flickr{
+			span.flickr-wrap > a:before{
+				content: "";
+			}
+			img{
+				width: 150px;
+				height: auto;
+				float: left;
+				margin-right: 15px;
+			}
+			.flickr-credit{
+				width: auto !important;
+				float: left;
+				span.flickr-metadata{
+					display: none;
+				}
+			}
+		}
+		.node-infographic, .node-news, .node-publication {
+			clear: both;
+			h1{
+				margin-top: 0;
+			}
+			.field-name-title-field{
+				float: left;
+				a {
+					font-size: @size2;
+				}
+				h1{
+					border-bottom: none;
+				}
+			}
+			.field-name-field-summary{
+				clear: both;
+			}
+			.field.field-name-field-image, .field-type-image{
+				height: auto;
+				/* max-height: 150px; */
+				overflow: hidden;
+				margin-bottom: 0em;
+				float: left;
+				margin-right: 1em !important;
+				a:before{
+					content:"";
+				}
+				img {
+					height: auto;
+					width: 150px;
+					margin-right: 0em;
+				}
+			}
+			.field.field-name-field-publication-date, .field-name-body{
+				clear:both;
+			}
+			.more-link{
+				font-size: @size4;
+			}
+			.group-left{
+				width: auto;
+				padding-right: 0;
+			}
+		}
+		.node-external-url{
+			.field.field-name-field-image{
+				margin-bottom: 0;
+				img {
+					width: 150px !important;
+				}
+			}
+		}
+		 .node-youtube {
+			clear: both;
+			.field.field-type-youtube{
+				a:before{
+					content:"";
+				}
+			}
+		 }
+	}
+	/*fin aditional resources*/
+/* Fin Block: recommended-articles and recommended-resources */
 
 /*classes toda la pantalla*/
 #block-osha-newsletter-osha-newsletter-subscribe{

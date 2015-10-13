@@ -56,10 +56,40 @@
 	/*fin homepage slider*/
 	
 	/*publications*/
+	#block-views-publications-slideshow-slidehow, #block-system-main{
 		#publications_slideshow{
-			width: 800px !important;
-			max-width: 100%;
+			#num_slides{
+				left: 5em;
+				max-width: 685px !important;
+				width: 80% !important;
+				> div {
+					width: 100% !important;
+					.publication-item{
+						padding: 5px 0;
+						.field-name-field-cover-image{
+							top: 10px;
+						}
+						.field-name-field-publication-date{
+							margin-bottom: 2px;
+						}
+						h5{
+							margin-bottom: 5px;
+							max-height: 47px;
+							overflow: hidden;
+						}
+						.field-type-text-with-summary {
+							max-height: 100px;
+							overflow: hidden;
+						}
+						ul{
+							margin-top: 5px;
+							margin-bottom: 5px;
+						}
+					}
+				}
+			}
 		}
+	}
 	/*publications*/
 	
 	/*Articles*/
