@@ -9585,6 +9585,11 @@ article .hwc-share-widget ul {
 .field-name-field-aditional-resources .field-name-title-field a:before {
   content: "> ";
 }
+.node-type-news h1 {
+  margin-bottom: 0;
+  padding-bottom: 0;
+  border-bottom: none;
+}
 .node-type-news .field-type-image img {
   margin-right: 3em;
   margin-bottom: 2em;
@@ -9609,6 +9614,11 @@ article .hwc-share-widget ul {
 }
 /*texto introduccion*/
 /* -Press Room- */
+.node-type-press-release h1 {
+  margin-bottom: 0;
+  padding-bottom: 0;
+  border-bottom: none;
+}
 .node-type-press-release #mini-panel-press_room_blocks {
   border-top: 1px dotted #749b00;
   padding-top: 1em;
@@ -11040,6 +11050,12 @@ article .hwc-share-widget ul {
   padding-right: 0em;
   max-width: 70px;
 }
+.page-node-add-events .node-events-form .field-type-datetime .container-inline-date .date-padding,
+.page-node-add-news .node-events-form .field-type-datetime .container-inline-date .date-padding,
+.page-node-add-events .node-news-form .field-type-datetime .container-inline-date .date-padding,
+.page-node-add-news .node-news-form .field-type-datetime .container-inline-date .date-padding {
+  padding: 5px 0;
+}
 .page-node-add-events .node-events-form .group-center,
 .page-node-add-news .node-events-form .group-center,
 .page-node-add-events .node-news-form .group-center,
@@ -11095,6 +11111,13 @@ article .hwc-share-widget ul {
 .page-node-add-events .node-news-form .group-center .field-name-field-related-documents .input-group-btn .btn-default,
 .page-node-add-news .node-news-form .group-center .field-name-field-related-documents .input-group-btn .btn-default {
   padding: 8px;
+}
+.page-node-add-events .node-events-form .group-footer,
+.page-node-add-news .node-events-form .group-footer,
+.page-node-add-events .node-news-form .group-footer,
+.page-node-add-news .node-news-form .group-footer {
+  padding-left: 0;
+  padding-right: 0;
 }
 .page-node-add-events .node-events-form div.image-widget-data,
 .page-node-add-news .node-events-form div.image-widget-data,
@@ -11187,7 +11210,7 @@ article .hwc-share-widget ul {
 .page-node-add-news .node-events-form #edit-actions #edit-send-for-approval,
 .page-node-add-events .node-news-form #edit-actions #edit-send-for-approval,
 .page-node-add-news .node-news-form #edit-actions #edit-send-for-approval {
-  width: 90%;
+  width: 100%;
   position: relative;
   font-weight: bold;
 }
@@ -11540,6 +11563,11 @@ article .hwc-share-widget ul {
 .page-campaign-materials .view-id-view_campaign_materials .views-row .field-type-file a img {
   display: none;
 }
+.node-type-campaign-materials h1 {
+  margin-bottom: 0;
+  padding-bottom: 0;
+  border-bottom: none;
+}
 .node-type-campaign-materials .field-name-title-field {
   margin-bottom: 2em;
 }
@@ -11582,6 +11610,11 @@ article .hwc-share-widget ul {
 }
 /*fin campaign materials*/
 /*Publications detail*/
+.node-type-publication h1 {
+  margin-bottom: 0;
+  padding-bottom: 0;
+  border-bottom: none;
+}
 .node-type-publication h2 {
   text-align: center;
 }
