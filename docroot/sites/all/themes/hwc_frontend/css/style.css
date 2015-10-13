@@ -9094,6 +9094,61 @@ div[class*='node-'] .more-link {
   content: ">";
   padding-right: 0.35em;
 }
+.pane-hwc-practical-tool-hwc-practical-tool-listing #edit-content {
+  border-top: 1px dotted #749b00;
+  padding-left: 0;
+  padding-right: 0;
+  margin-left: 0;
+  margin-right: 25px;
+  width: 72%;
+  float: right;
+}
+.pane-hwc-practical-tool-hwc-practical-tool-listing #edit-content #search {
+  width: auto;
+  border-top: none;
+  border-bottom: none;
+  margin-bottom: 0em;
+}
+.pane-hwc-practical-tool-hwc-practical-tool-listing #edit-content .form-type-radios.form-item-sort {
+  float: right;
+  width: auto;
+  display: inline;
+  padding-top: 1em;
+}
+.pane-hwc-practical-tool-hwc-practical-tool-listing #edit-content .form-type-radios.form-item-sort > label {
+  font-style: italic;
+  padding-right: 0;
+}
+.pane-hwc-practical-tool-hwc-practical-tool-listing #edit-content .form-type-radios.form-item-sort label {
+  float: left;
+  margin-top: 0.5em;
+  margin-right: 2em;
+}
+.pane-hwc-practical-tool-hwc-practical-tool-listing #edit-content .form-type-radios.form-item-sort div {
+  display: inline;
+}
+.pane-hwc-practical-tool-hwc-practical-tool-listing #edit-content .radio label:before {
+  border: none;
+  content: "";
+  padding: 0;
+  margin-right: 0;
+}
+.pane-hwc-practical-tool-hwc-practical-tool-listing #edit-content .radio input[type=radio]:checked + label:before {
+  content: "";
+}
+.pane-hwc-practical-tool-hwc-practical-tool-listing #edit-content .radio input[type=radio] + label {
+  color: #575757;
+  font-family: 'Open Sans';
+  font-weight: normal;
+}
+.pane-hwc-practical-tool-hwc-practical-tool-listing #edit-content .radio input[type=radio]:checked + label {
+  color: #749b00;
+  font-weight: bold;
+}
+.pane-hwc-practical-tool-hwc-practical-tool-listing #edit-content h4 {
+  border-top: 1px dotted #749b00;
+  margin-top: 0 !important;
+}
 .node-type-practical-tool .main-container h1 {
   border-bottom: none;
   padding-bottom: 0;
@@ -11734,6 +11789,17 @@ article .hwc-share-widget ul {
   background-image: url("../images/content/bg/page-campaign-media-partners.jpg");
 }
 /*Fin pag National focal points*/
+/* view-partners */
+.view-partners .views-exposed-form .views-exposed-widget button,
+#block-system-main .view-partners .views-exposed-form .views-exposed-widget button {
+  margin-top: 1.7em;
+}
+.view-partners .more-link,
+#block-system-main .view-partners .more-link {
+  color: #ffffff;
+  background-color: #003399;
+}
+/* Fin view-partners */
 /*pag Newsletter*/
 .page-node-129 h1 {
   border-bottom: none;
@@ -11761,8 +11827,14 @@ article .hwc-share-widget ul {
 .page-node-129 #block-osha-newsletter-osha-newsletter-subscribe-extra #subscribe-extra input {
   font-weight: normal;
 }
-.page-node-129 #block-osha-newsletter-osha-newsletter-subscribe-extra #subscribe-extra label {
+.page-node-129 #block-osha-newsletter-osha-newsletter-subscribe-extra #subscribe-extra label,
+.page-node-129 #block-osha-newsletter-osha-newsletter-subscribe-extra #subscribe-extra span {
   font-weight: bold;
+  margin-right: 1em;
+}
+.page-node-129 #block-osha-newsletter-osha-newsletter-subscribe-extra #subscribe-extra hr {
+  color: white;
+  border-color: white;
 }
 .page-node-129 #block-osha-newsletter-osha-newsletter-subscribe {
   background: none;
@@ -11783,11 +11855,25 @@ article .hwc-share-widget ul {
 }
 .page-node-129 #block-osha-newsletter-osha-newsletter-subscribe div#newsletter-subscription-form-wrapper {
   text-align: left;
+  margin-top: 2em;
 }
-.page-node-129 #block-osha-newsletter-osha-newsletter-subscribe div#newsletter-subscription-form-wrapper form input {
+.page-node-129 #block-osha-newsletter-osha-newsletter-subscribe div#newsletter-subscription-form-wrapper form div div {
+  float: left;
+}
+.page-node-129 #block-osha-newsletter-osha-newsletter-subscribe div#newsletter-subscription-form-wrapper form div div label {
+  font-weight: bold;
+  /* float: left; */
+}
+.page-node-129 #block-osha-newsletter-osha-newsletter-subscribe div#newsletter-subscription-form-wrapper form div div input {
   border: 1px solid #003399;
   color: #003399;
   font-weight: normal;
+  /* float: left; */
+  height: 34px;
+}
+.page-node-129 #block-osha-newsletter-osha-newsletter-subscribe div#newsletter-subscription-form-wrapper form div button {
+  float: left;
+  margin-top: 1.8em;
 }
 .page-node-129 #block-osha-newsletter-osha-newsletter-latest {
   border-top: 1px dotted #749b00;
@@ -11805,6 +11891,7 @@ article .hwc-share-widget ul {
   text-align: left;
   margin-right: 50px;
   background-color: #003399;
+  line-height: 15px;
 }
 .page-node-129 #block-osha-newsletter-osha-newsletter-latest #latest-newsletters-block h2 a {
   color: #ffffff !important;
@@ -11812,7 +11899,11 @@ article .hwc-share-widget ul {
   padding-right: 10px;
   font-size: 18px;
   width: 100%;
-  line-height: 25px;
+  line-height: normal;
+}
+.page-node-129 #block-osha-newsletter-osha-newsletter-latest #latest-newsletters-block .newsletter_items {
+  color: #003399;
+  margin-bottom: 1em;
 }
 .taxonomy-term,
 .vocabulary-newsletter-sections {
@@ -12690,6 +12781,10 @@ article .hwc-share-widget ul {
   /*Practical tools*/
   .page-practical-tools .content p {
     display: none;
+  }
+  .page-practical-tools #edit-content {
+    width: 100%;
+    margin-right: 0;
   }
   .form-type-checkbox {
     float: left;

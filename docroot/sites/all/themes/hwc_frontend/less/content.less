@@ -1579,6 +1579,61 @@
 				padding-right: 0.35em;
 			}
 		}
+		#edit-content{
+			border-top: 1px dotted @border-default-color;
+			padding-left: 0;
+			padding-right: 0;
+			margin-left: 0;
+			margin-right: @margin1;
+			width: 72%;
+			float: right;
+			#search{
+				width: auto;
+				border-top: none;
+				border-bottom: none;
+				margin-bottom: 0em;
+			}
+			.form-type-radios.form-item-sort{
+				float: right;
+				width: auto;
+				display: inline;
+				padding-top: 1em;
+				> label{
+					font-style: italic;
+					padding-right: 0;
+				}
+				label{
+					float: left;
+					margin-top: 0.5em;
+					margin-right: 2em;
+				}
+				div{
+					display: inline;
+				}
+			}
+			.radio label:before{
+				border: none;
+				content: "";
+				padding: 0;
+				margin-right: 0;
+			}
+			.radio input[type=radio]:checked + label:before {
+				content: "";
+			}
+			.radio input[type=radio] + label{
+				color: @text-default-color;
+				font-family: @font-family-base;
+				font-weight: normal;
+			}
+			.radio input[type=radio]:checked + label{
+				color: @text-color-3;
+				font-weight: bold;
+			}
+			h4{
+				border-top: 1px dotted @border-default-color;
+				margin-top: 0 !important;
+			}
+		}
 	}
 	.node-type-practical-tool{
 		.main-container h1{
@@ -4139,6 +4194,19 @@ article{
 }
 /*Fin pag National focal points*/
 
+/* view-partners */
+.view-partners, #block-system-main .view-partners{
+	.views-exposed-form .views-exposed-widget{
+		button{
+			margin-top: 1.7em;
+		}
+	}
+	.more-link{
+		color: @btn-default-color;
+		background-color: @btn-default-bg;
+	}
+}
+/* Fin view-partners */
 /*pag Newsletter*/
 .page-node-129{
 	h1{
@@ -4167,8 +4235,13 @@ article{
 			input{
 				font-weight: normal;
 			}
-			label{
+			label, span{
 				font-weight: bold;
+				margin-right: 1em;
+			}
+			hr{
+				color: white;
+				border-color: white;
 			}
 		}
 	}
@@ -4190,11 +4263,27 @@ article{
 		}
 		div#newsletter-subscription-form-wrapper{
 			text-align: left;
+			margin-top: 2em;
 			form{
-				input{
-					border: 1px solid @border-color-2;
-					color: @text-color-2;
-					font-weight: normal;
+				div{
+					div{
+						float: left;
+						label{
+							font-weight: bold;
+							/* float: left; */
+						}
+						input{
+							border: 1px solid @border-color-2;
+							color: @text-color-2;
+							font-weight: normal;
+							/* float: left; */
+							height: 34px;
+						}
+					}
+					button{
+						float: left;
+						margin-top: 1.8em;
+					}
 				}
 			}
 		}
@@ -4213,14 +4302,19 @@ article{
 				text-align: left;
 				margin-right: 50px;
 				background-color: @bg-color-2;
+				line-height: 15px;
 				a{
 					color: @color1 !important;
 					padding-left: 10px;
 					padding-right: 10px;
 					font-size: @size7;
 					width: 100%;
-					line-height: 25px;
+					line-height: normal;
 				}
+			}
+			.newsletter_items{
+				color: @color2;
+				margin-bottom: 1em;
 			}
 		}
 	}
