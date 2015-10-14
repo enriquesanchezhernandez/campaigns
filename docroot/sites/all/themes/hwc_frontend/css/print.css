@@ -10,7 +10,8 @@
  * aggregated with other stylesheets, for improved front-end performance.
  */
 
-
+@media print {
+	
 /*Header*/
 #navbar{
 	display:block!important;
