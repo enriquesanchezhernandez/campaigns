@@ -33,6 +33,7 @@ files[] = theme/menu/menu.inc
 ;;;;;;;;;;;;;;;;;;;;;
 
 stylesheets[all][] = css/hwc_override.css
+stylesheets[all][] = css/print.css
 
 
 ; For information on choosing the desired method, please read the Drupal
