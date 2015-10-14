@@ -12069,15 +12069,23 @@ article .hwc-share-widget ul {
 	} */
 .field-name-field-recommended-resources,
 .field-name-field-recommended-articles,
-.field.field-name-field-aditional-resources {
+.field.field-name-field-aditional-resources,
+.panels-flexible-region-container-additional_resources {
   /* margin-top: 1em;
 		padding-top: 1em;
 		border-top: 1px dotted @border-default-color; */
   clear: both;
 }
+.field-name-field-recommended-resources h4.pane-title,
+.field-name-field-recommended-articles h4.pane-title,
+.field.field-name-field-aditional-resources h4.pane-title,
+.panels-flexible-region-container-additional_resources h4.pane-title {
+  font-weight: bold;
+}
 .field-name-field-recommended-resources .field-item,
 .field-name-field-recommended-articles .field-item,
-.field.field-name-field-aditional-resources .field-item {
+.field.field-name-field-aditional-resources .field-item,
+.panels-flexible-region-container-additional_resources .field-item {
   margin: 1em 0;
   padding: .5em 0;
   margin: 0.5em 0 0;
@@ -12085,7 +12093,8 @@ article .hwc-share-widget ul {
 }
 .field-name-field-recommended-resources .field-item a,
 .field-name-field-recommended-articles .field-item a,
-.field.field-name-field-aditional-resources .field-item a {
+.field.field-name-field-aditional-resources .field-item a,
+.panels-flexible-region-container-additional_resources .field-item a {
   color: #003399;
   font-weight: bold;
   margin-bottom: 2em;
@@ -12093,12 +12102,14 @@ article .hwc-share-widget ul {
 }
 .field-name-field-recommended-resources .field-item a:before,
 .field-name-field-recommended-articles .field-item a:before,
-.field.field-name-field-aditional-resources .field-item a:before {
+.field.field-name-field-aditional-resources .field-item a:before,
+.panels-flexible-region-container-additional_resources .field-item a:before {
   content: "> ";
 }
 .field-name-field-recommended-resources > .field-label,
 .field-name-field-recommended-articles > .field-label,
-.field.field-name-field-aditional-resources > .field-label {
+.field.field-name-field-aditional-resources > .field-label,
+.panels-flexible-region-container-additional_resources > .field-label {
   color: #749b00;
   font-style: normal;
   font-weight: bold;
@@ -12111,7 +12122,8 @@ article .hwc-share-widget ul {
 }
 .field-name-field-recommended-resources .field-name-field-external-url.field-type-link-field a,
 .field-name-field-recommended-articles .field-name-field-external-url.field-type-link-field a,
-.field.field-name-field-aditional-resources .field-name-field-external-url.field-type-link-field a {
+.field.field-name-field-aditional-resources .field-name-field-external-url.field-type-link-field a,
+.panels-flexible-region-container-additional_resources .field-name-field-external-url.field-type-link-field a {
   color: #003399;
   font-weight: bold;
   font-style: italic;
@@ -12119,12 +12131,14 @@ article .hwc-share-widget ul {
 }
 .field-name-field-recommended-resources .field-name-field-external-url.field-type-link-field a:before,
 .field-name-field-recommended-articles .field-name-field-external-url.field-type-link-field a:before,
-.field.field-name-field-aditional-resources .field-name-field-external-url.field-type-link-field a:before {
+.field.field-name-field-aditional-resources .field-name-field-external-url.field-type-link-field a:before,
+.panels-flexible-region-container-additional_resources .field-name-field-external-url.field-type-link-field a:before {
   content: "> ";
 }
 .field-name-field-recommended-resources .node-article .field-name-field-image + .field-name-title-field,
 .field-name-field-recommended-articles .node-article .field-name-field-image + .field-name-title-field,
-.field.field-name-field-aditional-resources .node-article .field-name-field-image + .field-name-title-field {
+.field.field-name-field-aditional-resources .node-article .field-name-field-image + .field-name-title-field,
+.panels-flexible-region-container-additional_resources .node-article .field-name-field-image + .field-name-title-field {
   position: relative;
   background-image: none;
   width: auto;
@@ -12132,7 +12146,8 @@ article .hwc-share-widget ul {
 }
 .field-name-field-recommended-resources .node-article .field.field-name-field-image,
 .field-name-field-recommended-articles .node-article .field.field-name-field-image,
-.field.field-name-field-aditional-resources .node-article .field.field-name-field-image {
+.field.field-name-field-aditional-resources .node-article .field.field-name-field-image,
+.panels-flexible-region-container-additional_resources .node-article .field.field-name-field-image {
   float: left;
   margin-right: 1em;
   margin-bottom: 4em;
@@ -12143,28 +12158,34 @@ article .hwc-share-widget ul {
 }
 .field-name-field-recommended-resources .node-article .field.field-name-field-image a:before,
 .field-name-field-recommended-articles .node-article .field.field-name-field-image a:before,
-.field.field-name-field-aditional-resources .node-article .field.field-name-field-image a:before {
+.field.field-name-field-aditional-resources .node-article .field.field-name-field-image a:before,
+.panels-flexible-region-container-additional_resources .node-article .field.field-name-field-image a:before {
   content: "";
 }
 .field-name-field-recommended-resources .node-events .content,
 .field-name-field-recommended-articles .node-events .content,
-.field.field-name-field-aditional-resources .node-events .content {
+.field.field-name-field-aditional-resources .node-events .content,
+.panels-flexible-region-container-additional_resources .node-events .content {
   display: inline-flex;
 }
 .field-name-field-recommended-resources .node-events .content .field,
 .field-name-field-recommended-articles .node-events .content .field,
 .field.field-name-field-aditional-resources .node-events .content .field,
+.panels-flexible-region-container-additional_resources .node-events .content .field,
 .field-name-field-recommended-resources .node-events .content ul,
 .field-name-field-recommended-articles .node-events .content ul,
 .field.field-name-field-aditional-resources .node-events .content ul,
+.panels-flexible-region-container-additional_resources .node-events .content ul,
 .field-name-field-recommended-resources .node-events .content .field-collection-container,
 .field-name-field-recommended-articles .node-events .content .field-collection-container,
-.field.field-name-field-aditional-resources .node-events .content .field-collection-container {
+.field.field-name-field-aditional-resources .node-events .content .field-collection-container,
+.panels-flexible-region-container-additional_resources .node-events .content .field-collection-container {
   display: none;
 }
 .field-name-field-recommended-resources .node-events .content .field.field-name-field-start-date,
 .field-name-field-recommended-articles .node-events .content .field.field-name-field-start-date,
-.field.field-name-field-aditional-resources .node-events .content .field.field-name-field-start-date {
+.field.field-name-field-aditional-resources .node-events .content .field.field-name-field-start-date,
+.panels-flexible-region-container-additional_resources .node-events .content .field.field-name-field-start-date {
   display: block;
   border-top: none !important;
   font-weight: bold;
@@ -12183,24 +12204,28 @@ article .hwc-share-widget ul {
 }
 .field-name-field-recommended-resources .node-events .content .field.field-name-field-start-date span,
 .field-name-field-recommended-articles .node-events .content .field.field-name-field-start-date span,
-.field.field-name-field-aditional-resources .node-events .content .field.field-name-field-start-date span {
+.field.field-name-field-aditional-resources .node-events .content .field.field-name-field-start-date span,
+.panels-flexible-region-container-additional_resources .node-events .content .field.field-name-field-start-date span {
   font-size: 35px;
   color: #ffffff;
 }
 .field-name-field-recommended-resources .node-events .content .field.field-name-title-field,
 .field-name-field-recommended-articles .node-events .content .field.field-name-title-field,
-.field.field-name-field-aditional-resources .node-events .content .field.field-name-title-field {
+.field.field-name-field-aditional-resources .node-events .content .field.field-name-title-field,
+.panels-flexible-region-container-additional_resources .node-events .content .field.field-name-title-field {
   display: block;
   float: left;
 }
 .field-name-field-recommended-resources .node-flickr span.flickr-wrap > a:before,
 .field-name-field-recommended-articles .node-flickr span.flickr-wrap > a:before,
-.field.field-name-field-aditional-resources .node-flickr span.flickr-wrap > a:before {
+.field.field-name-field-aditional-resources .node-flickr span.flickr-wrap > a:before,
+.panels-flexible-region-container-additional_resources .node-flickr span.flickr-wrap > a:before {
   content: "";
 }
 .field-name-field-recommended-resources .node-flickr img,
 .field-name-field-recommended-articles .node-flickr img,
-.field.field-name-field-aditional-resources .node-flickr img {
+.field.field-name-field-aditional-resources .node-flickr img,
+.panels-flexible-region-container-additional_resources .node-flickr img {
   width: 150px;
   height: auto;
   float: left;
@@ -12208,99 +12233,125 @@ article .hwc-share-widget ul {
 }
 .field-name-field-recommended-resources .node-flickr .flickr-credit,
 .field-name-field-recommended-articles .node-flickr .flickr-credit,
-.field.field-name-field-aditional-resources .node-flickr .flickr-credit {
+.field.field-name-field-aditional-resources .node-flickr .flickr-credit,
+.panels-flexible-region-container-additional_resources .node-flickr .flickr-credit {
   width: auto !important;
   float: left;
 }
 .field-name-field-recommended-resources .node-flickr .flickr-credit span.flickr-metadata,
 .field-name-field-recommended-articles .node-flickr .flickr-credit span.flickr-metadata,
-.field.field-name-field-aditional-resources .node-flickr .flickr-credit span.flickr-metadata {
+.field.field-name-field-aditional-resources .node-flickr .flickr-credit span.flickr-metadata,
+.panels-flexible-region-container-additional_resources .node-flickr .flickr-credit span.flickr-metadata {
   display: none;
 }
 .field-name-field-recommended-resources .node-infographic,
 .field-name-field-recommended-articles .node-infographic,
 .field.field-name-field-aditional-resources .node-infographic,
+.panels-flexible-region-container-additional_resources .node-infographic,
 .field-name-field-recommended-resources .node-news,
 .field-name-field-recommended-articles .node-news,
 .field.field-name-field-aditional-resources .node-news,
+.panels-flexible-region-container-additional_resources .node-news,
 .field-name-field-recommended-resources .node-publication,
 .field-name-field-recommended-articles .node-publication,
-.field.field-name-field-aditional-resources .node-publication {
+.field.field-name-field-aditional-resources .node-publication,
+.panels-flexible-region-container-additional_resources .node-publication {
   clear: both;
 }
 .field-name-field-recommended-resources .node-infographic h1,
 .field-name-field-recommended-articles .node-infographic h1,
 .field.field-name-field-aditional-resources .node-infographic h1,
+.panels-flexible-region-container-additional_resources .node-infographic h1,
 .field-name-field-recommended-resources .node-news h1,
 .field-name-field-recommended-articles .node-news h1,
 .field.field-name-field-aditional-resources .node-news h1,
+.panels-flexible-region-container-additional_resources .node-news h1,
 .field-name-field-recommended-resources .node-publication h1,
 .field-name-field-recommended-articles .node-publication h1,
-.field.field-name-field-aditional-resources .node-publication h1 {
+.field.field-name-field-aditional-resources .node-publication h1,
+.panels-flexible-region-container-additional_resources .node-publication h1 {
   margin-top: 0;
 }
 .field-name-field-recommended-resources .node-infographic .field-name-title-field,
 .field-name-field-recommended-articles .node-infographic .field-name-title-field,
 .field.field-name-field-aditional-resources .node-infographic .field-name-title-field,
+.panels-flexible-region-container-additional_resources .node-infographic .field-name-title-field,
 .field-name-field-recommended-resources .node-news .field-name-title-field,
 .field-name-field-recommended-articles .node-news .field-name-title-field,
 .field.field-name-field-aditional-resources .node-news .field-name-title-field,
+.panels-flexible-region-container-additional_resources .node-news .field-name-title-field,
 .field-name-field-recommended-resources .node-publication .field-name-title-field,
 .field-name-field-recommended-articles .node-publication .field-name-title-field,
-.field.field-name-field-aditional-resources .node-publication .field-name-title-field {
+.field.field-name-field-aditional-resources .node-publication .field-name-title-field,
+.panels-flexible-region-container-additional_resources .node-publication .field-name-title-field {
   float: left;
 }
 .field-name-field-recommended-resources .node-infographic .field-name-title-field a,
 .field-name-field-recommended-articles .node-infographic .field-name-title-field a,
 .field.field-name-field-aditional-resources .node-infographic .field-name-title-field a,
+.panels-flexible-region-container-additional_resources .node-infographic .field-name-title-field a,
 .field-name-field-recommended-resources .node-news .field-name-title-field a,
 .field-name-field-recommended-articles .node-news .field-name-title-field a,
 .field.field-name-field-aditional-resources .node-news .field-name-title-field a,
+.panels-flexible-region-container-additional_resources .node-news .field-name-title-field a,
 .field-name-field-recommended-resources .node-publication .field-name-title-field a,
 .field-name-field-recommended-articles .node-publication .field-name-title-field a,
-.field.field-name-field-aditional-resources .node-publication .field-name-title-field a {
+.field.field-name-field-aditional-resources .node-publication .field-name-title-field a,
+.panels-flexible-region-container-additional_resources .node-publication .field-name-title-field a {
   font-size: 20px;
 }
 .field-name-field-recommended-resources .node-infographic .field-name-title-field h1,
 .field-name-field-recommended-articles .node-infographic .field-name-title-field h1,
 .field.field-name-field-aditional-resources .node-infographic .field-name-title-field h1,
+.panels-flexible-region-container-additional_resources .node-infographic .field-name-title-field h1,
 .field-name-field-recommended-resources .node-news .field-name-title-field h1,
 .field-name-field-recommended-articles .node-news .field-name-title-field h1,
 .field.field-name-field-aditional-resources .node-news .field-name-title-field h1,
+.panels-flexible-region-container-additional_resources .node-news .field-name-title-field h1,
 .field-name-field-recommended-resources .node-publication .field-name-title-field h1,
 .field-name-field-recommended-articles .node-publication .field-name-title-field h1,
-.field.field-name-field-aditional-resources .node-publication .field-name-title-field h1 {
+.field.field-name-field-aditional-resources .node-publication .field-name-title-field h1,
+.panels-flexible-region-container-additional_resources .node-publication .field-name-title-field h1 {
   border-bottom: none;
 }
 .field-name-field-recommended-resources .node-infographic .field-name-field-summary,
 .field-name-field-recommended-articles .node-infographic .field-name-field-summary,
 .field.field-name-field-aditional-resources .node-infographic .field-name-field-summary,
+.panels-flexible-region-container-additional_resources .node-infographic .field-name-field-summary,
 .field-name-field-recommended-resources .node-news .field-name-field-summary,
 .field-name-field-recommended-articles .node-news .field-name-field-summary,
 .field.field-name-field-aditional-resources .node-news .field-name-field-summary,
+.panels-flexible-region-container-additional_resources .node-news .field-name-field-summary,
 .field-name-field-recommended-resources .node-publication .field-name-field-summary,
 .field-name-field-recommended-articles .node-publication .field-name-field-summary,
-.field.field-name-field-aditional-resources .node-publication .field-name-field-summary {
+.field.field-name-field-aditional-resources .node-publication .field-name-field-summary,
+.panels-flexible-region-container-additional_resources .node-publication .field-name-field-summary {
   clear: both;
 }
 .field-name-field-recommended-resources .node-infographic .field.field-name-field-image,
 .field-name-field-recommended-articles .node-infographic .field.field-name-field-image,
 .field.field-name-field-aditional-resources .node-infographic .field.field-name-field-image,
+.panels-flexible-region-container-additional_resources .node-infographic .field.field-name-field-image,
 .field-name-field-recommended-resources .node-news .field.field-name-field-image,
 .field-name-field-recommended-articles .node-news .field.field-name-field-image,
 .field.field-name-field-aditional-resources .node-news .field.field-name-field-image,
+.panels-flexible-region-container-additional_resources .node-news .field.field-name-field-image,
 .field-name-field-recommended-resources .node-publication .field.field-name-field-image,
 .field-name-field-recommended-articles .node-publication .field.field-name-field-image,
 .field.field-name-field-aditional-resources .node-publication .field.field-name-field-image,
+.panels-flexible-region-container-additional_resources .node-publication .field.field-name-field-image,
 .field-name-field-recommended-resources .node-infographic .field-type-image,
 .field-name-field-recommended-articles .node-infographic .field-type-image,
 .field.field-name-field-aditional-resources .node-infographic .field-type-image,
+.panels-flexible-region-container-additional_resources .node-infographic .field-type-image,
 .field-name-field-recommended-resources .node-news .field-type-image,
 .field-name-field-recommended-articles .node-news .field-type-image,
 .field.field-name-field-aditional-resources .node-news .field-type-image,
+.panels-flexible-region-container-additional_resources .node-news .field-type-image,
 .field-name-field-recommended-resources .node-publication .field-type-image,
 .field-name-field-recommended-articles .node-publication .field-type-image,
-.field.field-name-field-aditional-resources .node-publication .field-type-image {
+.field.field-name-field-aditional-resources .node-publication .field-type-image,
+.panels-flexible-region-container-additional_resources .node-publication .field-type-image {
   height: auto;
   /* max-height: 150px; */
   overflow: hidden;
@@ -12311,41 +12362,53 @@ article .hwc-share-widget ul {
 .field-name-field-recommended-resources .node-infographic .field.field-name-field-image a:before,
 .field-name-field-recommended-articles .node-infographic .field.field-name-field-image a:before,
 .field.field-name-field-aditional-resources .node-infographic .field.field-name-field-image a:before,
+.panels-flexible-region-container-additional_resources .node-infographic .field.field-name-field-image a:before,
 .field-name-field-recommended-resources .node-news .field.field-name-field-image a:before,
 .field-name-field-recommended-articles .node-news .field.field-name-field-image a:before,
 .field.field-name-field-aditional-resources .node-news .field.field-name-field-image a:before,
+.panels-flexible-region-container-additional_resources .node-news .field.field-name-field-image a:before,
 .field-name-field-recommended-resources .node-publication .field.field-name-field-image a:before,
 .field-name-field-recommended-articles .node-publication .field.field-name-field-image a:before,
 .field.field-name-field-aditional-resources .node-publication .field.field-name-field-image a:before,
+.panels-flexible-region-container-additional_resources .node-publication .field.field-name-field-image a:before,
 .field-name-field-recommended-resources .node-infographic .field-type-image a:before,
 .field-name-field-recommended-articles .node-infographic .field-type-image a:before,
 .field.field-name-field-aditional-resources .node-infographic .field-type-image a:before,
+.panels-flexible-region-container-additional_resources .node-infographic .field-type-image a:before,
 .field-name-field-recommended-resources .node-news .field-type-image a:before,
 .field-name-field-recommended-articles .node-news .field-type-image a:before,
 .field.field-name-field-aditional-resources .node-news .field-type-image a:before,
+.panels-flexible-region-container-additional_resources .node-news .field-type-image a:before,
 .field-name-field-recommended-resources .node-publication .field-type-image a:before,
 .field-name-field-recommended-articles .node-publication .field-type-image a:before,
-.field.field-name-field-aditional-resources .node-publication .field-type-image a:before {
+.field.field-name-field-aditional-resources .node-publication .field-type-image a:before,
+.panels-flexible-region-container-additional_resources .node-publication .field-type-image a:before {
   content: "";
 }
 .field-name-field-recommended-resources .node-infographic .field.field-name-field-image img,
 .field-name-field-recommended-articles .node-infographic .field.field-name-field-image img,
 .field.field-name-field-aditional-resources .node-infographic .field.field-name-field-image img,
+.panels-flexible-region-container-additional_resources .node-infographic .field.field-name-field-image img,
 .field-name-field-recommended-resources .node-news .field.field-name-field-image img,
 .field-name-field-recommended-articles .node-news .field.field-name-field-image img,
 .field.field-name-field-aditional-resources .node-news .field.field-name-field-image img,
+.panels-flexible-region-container-additional_resources .node-news .field.field-name-field-image img,
 .field-name-field-recommended-resources .node-publication .field.field-name-field-image img,
 .field-name-field-recommended-articles .node-publication .field.field-name-field-image img,
 .field.field-name-field-aditional-resources .node-publication .field.field-name-field-image img,
+.panels-flexible-region-container-additional_resources .node-publication .field.field-name-field-image img,
 .field-name-field-recommended-resources .node-infographic .field-type-image img,
 .field-name-field-recommended-articles .node-infographic .field-type-image img,
 .field.field-name-field-aditional-resources .node-infographic .field-type-image img,
+.panels-flexible-region-container-additional_resources .node-infographic .field-type-image img,
 .field-name-field-recommended-resources .node-news .field-type-image img,
 .field-name-field-recommended-articles .node-news .field-type-image img,
 .field.field-name-field-aditional-resources .node-news .field-type-image img,
+.panels-flexible-region-container-additional_resources .node-news .field-type-image img,
 .field-name-field-recommended-resources .node-publication .field-type-image img,
 .field-name-field-recommended-articles .node-publication .field-type-image img,
-.field.field-name-field-aditional-resources .node-publication .field-type-image img {
+.field.field-name-field-aditional-resources .node-publication .field-type-image img,
+.panels-flexible-region-container-additional_resources .node-publication .field-type-image img {
   height: auto;
   width: 150px;
   margin-right: 0em;
@@ -12353,64 +12416,80 @@ article .hwc-share-widget ul {
 .field-name-field-recommended-resources .node-infographic .field.field-name-field-publication-date,
 .field-name-field-recommended-articles .node-infographic .field.field-name-field-publication-date,
 .field.field-name-field-aditional-resources .node-infographic .field.field-name-field-publication-date,
+.panels-flexible-region-container-additional_resources .node-infographic .field.field-name-field-publication-date,
 .field-name-field-recommended-resources .node-news .field.field-name-field-publication-date,
 .field-name-field-recommended-articles .node-news .field.field-name-field-publication-date,
 .field.field-name-field-aditional-resources .node-news .field.field-name-field-publication-date,
+.panels-flexible-region-container-additional_resources .node-news .field.field-name-field-publication-date,
 .field-name-field-recommended-resources .node-publication .field.field-name-field-publication-date,
 .field-name-field-recommended-articles .node-publication .field.field-name-field-publication-date,
 .field.field-name-field-aditional-resources .node-publication .field.field-name-field-publication-date,
+.panels-flexible-region-container-additional_resources .node-publication .field.field-name-field-publication-date,
 .field-name-field-recommended-resources .node-infographic .field-name-body,
 .field-name-field-recommended-articles .node-infographic .field-name-body,
 .field.field-name-field-aditional-resources .node-infographic .field-name-body,
+.panels-flexible-region-container-additional_resources .node-infographic .field-name-body,
 .field-name-field-recommended-resources .node-news .field-name-body,
 .field-name-field-recommended-articles .node-news .field-name-body,
 .field.field-name-field-aditional-resources .node-news .field-name-body,
+.panels-flexible-region-container-additional_resources .node-news .field-name-body,
 .field-name-field-recommended-resources .node-publication .field-name-body,
 .field-name-field-recommended-articles .node-publication .field-name-body,
-.field.field-name-field-aditional-resources .node-publication .field-name-body {
+.field.field-name-field-aditional-resources .node-publication .field-name-body,
+.panels-flexible-region-container-additional_resources .node-publication .field-name-body {
   clear: both;
 }
 .field-name-field-recommended-resources .node-infographic .more-link,
 .field-name-field-recommended-articles .node-infographic .more-link,
 .field.field-name-field-aditional-resources .node-infographic .more-link,
+.panels-flexible-region-container-additional_resources .node-infographic .more-link,
 .field-name-field-recommended-resources .node-news .more-link,
 .field-name-field-recommended-articles .node-news .more-link,
 .field.field-name-field-aditional-resources .node-news .more-link,
+.panels-flexible-region-container-additional_resources .node-news .more-link,
 .field-name-field-recommended-resources .node-publication .more-link,
 .field-name-field-recommended-articles .node-publication .more-link,
-.field.field-name-field-aditional-resources .node-publication .more-link {
+.field.field-name-field-aditional-resources .node-publication .more-link,
+.panels-flexible-region-container-additional_resources .node-publication .more-link {
   font-size: 14px;
 }
 .field-name-field-recommended-resources .node-infographic .group-left,
 .field-name-field-recommended-articles .node-infographic .group-left,
 .field.field-name-field-aditional-resources .node-infographic .group-left,
+.panels-flexible-region-container-additional_resources .node-infographic .group-left,
 .field-name-field-recommended-resources .node-news .group-left,
 .field-name-field-recommended-articles .node-news .group-left,
 .field.field-name-field-aditional-resources .node-news .group-left,
+.panels-flexible-region-container-additional_resources .node-news .group-left,
 .field-name-field-recommended-resources .node-publication .group-left,
 .field-name-field-recommended-articles .node-publication .group-left,
-.field.field-name-field-aditional-resources .node-publication .group-left {
+.field.field-name-field-aditional-resources .node-publication .group-left,
+.panels-flexible-region-container-additional_resources .node-publication .group-left {
   width: auto;
   padding-right: 0;
 }
 .field-name-field-recommended-resources .node-external-url .field.field-name-field-image,
 .field-name-field-recommended-articles .node-external-url .field.field-name-field-image,
-.field.field-name-field-aditional-resources .node-external-url .field.field-name-field-image {
+.field.field-name-field-aditional-resources .node-external-url .field.field-name-field-image,
+.panels-flexible-region-container-additional_resources .node-external-url .field.field-name-field-image {
   margin-bottom: 0;
 }
 .field-name-field-recommended-resources .node-external-url .field.field-name-field-image img,
 .field-name-field-recommended-articles .node-external-url .field.field-name-field-image img,
-.field.field-name-field-aditional-resources .node-external-url .field.field-name-field-image img {
+.field.field-name-field-aditional-resources .node-external-url .field.field-name-field-image img,
+.panels-flexible-region-container-additional_resources .node-external-url .field.field-name-field-image img {
   width: 150px !important;
 }
 .field-name-field-recommended-resources .node-youtube,
 .field-name-field-recommended-articles .node-youtube,
-.field.field-name-field-aditional-resources .node-youtube {
+.field.field-name-field-aditional-resources .node-youtube,
+.panels-flexible-region-container-additional_resources .node-youtube {
   clear: both;
 }
 .field-name-field-recommended-resources .node-youtube .field.field-type-youtube a:before,
 .field-name-field-recommended-articles .node-youtube .field.field-type-youtube a:before,
-.field.field-name-field-aditional-resources .node-youtube .field.field-type-youtube a:before {
+.field.field-name-field-aditional-resources .node-youtube .field.field-type-youtube a:before,
+.panels-flexible-region-container-additional_resources .node-youtube .field.field-type-youtube a:before {
   content: "";
 }
 /*fin aditional resources*/
