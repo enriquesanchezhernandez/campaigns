@@ -336,6 +336,12 @@ function hwc_frontend_preprocess_node(&$vars) {
     $vars['theme_hook_suggestions'][] = 'node__article_segment';
   }
 
+  // Hide share widget
+  $exclude_nid = array('129');
+  if(in_array($vars['node']->nid, $exclude_nid)){
+    unset($vars['content']['share_widget']);
+  }
+
   hwc_frontend_top_anchor($vars);
 }
 
