@@ -1,9 +1,5 @@
 // Insert your styling here.
 
-img{
-	display:none;
-}
-
 	body{
 	/* para toda la aplicacion */
 		font-family: @font-family-base;
@@ -1696,13 +1692,23 @@ img{
 	.pane-node-field-file{
 		margin: @margin1;
 	}
-	.pane-node-field-access-tool-link, .pane-node-field-access-tool-link-fc{
+	.pane-node-field-access-tool-link{
 		border-top: 1px dotted @border-default-color;
 		padding-top: 1em;
 		a{
 			font-weight: bold;
 			font-style: italic;
 			background: url("../images/content/continue-reading.png") no-repeat right center;
+			padding-right: 20px;
+		}
+	}
+	.pane-node-field-access-tool-link-fc{
+		border-top: 1px dotted @border-default-color;
+		padding-top: 1em;
+		a{
+			font-weight: bold;
+			font-style: italic;
+			/* background: url("../images/content/continue-reading.png") no-repeat right center; */
 			padding-right: 20px;
 		}
 	}

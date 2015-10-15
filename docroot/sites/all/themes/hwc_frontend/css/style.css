@@ -9252,16 +9252,24 @@ div[class*='node-'] .more-link {
 .pane-node-field-file {
   margin: 25px;
 }
-.pane-node-field-access-tool-link,
+.pane-node-field-access-tool-link {
+  border-top: 1px dotted #749b00;
+  padding-top: 1em;
+}
+.pane-node-field-access-tool-link a {
+  font-weight: bold;
+  font-style: italic;
+  background: url("../images/content/continue-reading.png") no-repeat right center;
+  padding-right: 20px;
+}
 .pane-node-field-access-tool-link-fc {
   border-top: 1px dotted #749b00;
   padding-top: 1em;
 }
-.pane-node-field-access-tool-link a,
 .pane-node-field-access-tool-link-fc a {
   font-weight: bold;
   font-style: italic;
-  background: url("../images/content/continue-reading.png") no-repeat right center;
+  /* background: url("../images/content/continue-reading.png") no-repeat right center; */
   padding-right: 20px;
 }
 .panel-panel div .pane-node-field-access-tool-link:first-child {
