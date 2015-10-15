@@ -122,7 +122,7 @@ legislation/guidelines/*',
         'region' => 'header',
         'status' => 1,
         'theme' => 'hwc_frontend',
-        'weight' => -61,
+        'weight' => -65,
       ),
       'seven' => array(
         'region' => '',
