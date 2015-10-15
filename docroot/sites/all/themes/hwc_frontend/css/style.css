@@ -7575,10 +7575,12 @@ body .modal-content .views-submit-button {
   margin-top: 1.8em;
 }
 /* FIN para toda la aplicacion */
-/*no deberian aparecer en la aplicacion*/
-.not-logged-in ul.tabs--primary.nav.nav-tabs {
-  display: none;
+/*no deberian aparecer en la aplicacion
+.not-logged-in  ul.tabs--primary.nav.nav-tabs{
+	display: none;
 }
+En el apartado de user si, porque es el que tiene la opcion de "Forgot password"
+*/
 .field-name-field-activity,
 .field-type-taxonomy-term-reference {
   /* display: none; */
@@ -8651,6 +8653,7 @@ div[class*='node-'] .more-link {
 #block-system-main #publications_slideshow #num_slides .publication-item .field-name-title-field {
   float: left;
   margin-left: 6em;
+  margin-top: 0em;
   width: auto;
 }
 #block-views-publications-slideshow-slidehow #publications_slideshow #num_slides .publication-item .field-name-title-field h5,
@@ -8667,6 +8670,8 @@ div[class*='node-'] .more-link {
 }
 #block-views-publications-slideshow-slidehow #publications_slideshow #num_slides .publication-item .field-name-field-publication-date,
 #block-system-main #publications_slideshow #num_slides .publication-item .field-name-field-publication-date {
+  position: relative;
+  left: 0;
   clear: both;
   padding-top: 0px;
   margin-top: 0px;
@@ -8996,12 +9001,15 @@ div[class*='node-'] .more-link {
   min-height: 285px;
   display: inline-block;
 }
-.publication-item h5 {
+.publication-item .field-name-title-field {
+  margin-top: 3em;
+}
+.publication-item .field-name-title-field h5 {
   color: #003399;
   font-size: 20px;
   font-weight: bold;
 }
-.publication-item h5 :before {
+.publication-item .field-name-title-field h5 :before {
   content: ">";
   padding-right: 5px;
 }
@@ -9032,6 +9040,12 @@ div[class*='node-'] .more-link {
 }
 .publication-item ul li a {
   padding-left: 1em;
+}
+.publication-item .field-name-field-publication-date {
+  padding-top: 0em;
+  margin-top: 0.5em;
+  position: absolute;
+  left: 225px;
 }
 /* Practical tools */
 .pane-hwc-practical-tool-hwc-practical-tool-listing h4 {
@@ -9825,6 +9839,7 @@ article .hwc-share-widget ul {
 .page-past-events .region-content #block-system-main .views-row .views-field-field-start-date-1,
 .page-events .region-content #block-system-main .views-row .views-field-field-start-date-1 {
   font-size: 12px;
+  margin-bottom: 0.5em;
 }
 .page-past-events .region-content #block-system-main .views-row .views-field-field-country-code,
 .page-events .region-content #block-system-main .views-row .views-field-field-country-code,
@@ -10109,6 +10124,37 @@ article .hwc-share-widget ul {
 .node-events .field-name-field-contact-email .field-items,
 .node-events .field-name-field-website-of-event .field-items {
   font-style: italic;
+}
+.node-events.page-upcoming-event .field-name-field-speaker > .field-items > .field-item {
+  width: 100%;
+  float: none;
+}
+.node-events.page-upcoming-event .field-name-field-speaker > .field-items > .field-item .field.field-name-field-image {
+  display: none;
+}
+.node-events.page-upcoming-event .field-name-field-speaker > .field-items > .field-item .field-name-title-field,
+.node-events.page-upcoming-event .field-name-field-speaker > .field-items > .field-item .field-name-body {
+  float: left;
+}
+.node-events.page-upcoming-event .field-name-field-related-documents .field-label {
+  float: none;
+  color: #749b00;
+  margin-bottom: 2em;
+}
+.node-events.page-upcoming-event .field-name-field-related-documents .field-items {
+  width: 100%;
+}
+.node-events.page-upcoming-event .field-name-field-related-documents .field-items .field-item {
+  float: left;
+  width: 50%;
+}
+.node-events.page-upcoming-event .field-name-field-related-documents .field-items .field-item .file img {
+  display: none;
+}
+.node-events.page-upcoming-event .field-name-field-related-documents .field-items .field-item .file a:after {
+  content: " ";
+  background: url("../images/content/download.png") no-repeat center;
+  padding: 2px 15px;
 }
 .views-exposed-form #edit-search-api-views-fulltext-wrapper {
   padding-right: 0em;

@@ -45,10 +45,12 @@
 	}
 /* FIN para toda la aplicacion */
 
-/*no deberian aparecer en la aplicacion*/
+/*no deberian aparecer en la aplicacion
 .not-logged-in  ul.tabs--primary.nav.nav-tabs{
 	display: none;
 }
+En el apartado de user si, porque es el que tiene la opcion de "Forgot password"
+*/
 .field-name-field-activity, .field-type-taxonomy-term-reference{
 	/* display: none; */
 }
@@ -1139,6 +1141,7 @@
 					.field-name-title-field{
 						float: left;
 						margin-left: 6em;
+						margin-top: 0em;
 						width: auto;
 						h5{
 							font-size: @h5-default-size;
@@ -1152,6 +1155,8 @@
 						}
 					}
 					.field-name-field-publication-date{
+						position: relative;
+						left: 0;
 						clear: both;
 						padding-top: 0px;
 						margin-top: 0px;
@@ -1475,13 +1480,16 @@
 		border-bottom: 1px dotted @border-default-color;
 		min-height: 285px;
 		display: inline-block;
-		h5{
-			color: @h5-default-color;
-			font-size: @h5-default-size;
-			font-weight: bold;
-			:before{
-				content: ">";
-				padding-right: 5px;
+		.field-name-title-field{
+			margin-top: 3em;
+			h5{
+				color: @h5-default-color;
+				font-size: @h5-default-size;
+				font-weight: bold;
+				:before{
+					content: ">";
+					padding-right: 5px;
+				}
 			}
 		}
 		.field-name-field-cover-image{
@@ -1510,6 +1518,12 @@
 					padding-left: 1em;
 				}
 			}
+		}
+		.field-name-field-publication-date{
+		    padding-top: 0em;
+			margin-top: 0.5em;
+			position: absolute;
+			left: 225px;
 		}
 	}
 	
@@ -2336,6 +2350,7 @@ article{
 
 				.views-field-field-start-date-1{
 					font-size: @size3;
+					margin-bottom: 0.5em;
 				}
 				.views-field-field-country-code, .views-field-field-city{
 					font-weight: bold;
@@ -2601,6 +2616,49 @@ article{
 		.field-items{
 			font-style: italic;
 		}
+	}
+	//upcoming-event Detail
+	&.page-upcoming-event{
+		.field-name-field-speaker{
+			> .field-items > .field-item{
+				width: 100%;
+				float: none;
+				.field.field-name-field-image{
+					display: none;
+				}
+				.field-name-title-field, .field-name-body{
+					float: left;
+				}
+			}
+		}
+		.field-name-field-related-documents{
+			.field-label{
+				float: none;
+				color: @text-color-3;
+				margin-bottom: 2em;
+			}
+			.field-items{
+				width: 100%;
+				.field-item{
+					float: left;
+					width: 50%;
+					.file{
+						img{
+							display: none;
+						}
+						a:after {
+							content: " ";
+							background: url("../images/content/download.png") no-repeat center;
+							padding: 2px 15px;						
+						}
+					}
+				}
+			}
+		}
+	}
+	//past-event Detail
+	&.page-past-event{
+	
 	}
 }
 
