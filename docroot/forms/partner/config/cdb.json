@@ -3,7 +3,7 @@
     "host": "http://crm-dev-svr",
     "port": ":8081",
     "resource": "/OshaService/ServiceApp.svc/",
-    "debug": "false",
+    "debug": "true",
     "debug_folder": "mvc/model/cdb/",
     "dropdown_methods": {
       "getOptionSetsForAppFrom": {
