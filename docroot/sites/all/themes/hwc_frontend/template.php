@@ -195,6 +195,7 @@ function hwc_frontend_preprocess_page(&$vars) {
         }
         else {
           $link_title = t('Back to events list');
+          $link_href = 'events';
           $tag_vars['element']['#value'] = t('Upcoming events');
           $vars['page']['above_title']['practical-tool-page-title'] = array(
             '#type' => 'item',
