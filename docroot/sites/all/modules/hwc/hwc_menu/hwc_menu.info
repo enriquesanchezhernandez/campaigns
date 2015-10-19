@@ -21,5 +21,4 @@ features[variable][] = menu_block_2_title_link
 features_exclude[dependencies][context] = context
 features_exclude[dependencies][ctools] = ctools
 features_exclude[dependencies][fe_block] = fe_block
-features_exclude[dependencies][menu_block] = menu_block
 features_exclude[dependencies][strongarm] = strongarm
