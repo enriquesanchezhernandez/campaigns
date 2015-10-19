@@ -12281,6 +12281,16 @@ article .hwc-share-widget ul {
 .field.field-name-field-aditional-resources .node-external-url .field.field-name-field-image img {
   width: 150px !important;
 }
+.field-name-field-recommended-resources .node-internal-url .field.field-name-field-image,
+.field-name-field-recommended-articles .node-internal-url .field.field-name-field-image,
+.field.field-name-field-aditional-resources .node-internal-url .field.field-name-field-image {
+    margin-bottom: 0;
+}
+.field-name-field-recommended-resources .node-internal-url .field.field-name-field-image img,
+.field-name-field-recommended-articles .node-internal-url .field.field-name-field-image img,
+.field.field-name-field-aditional-resources .node-internal-url .field.field-name-field-image img {
+    width: 150px !important;
+}
 .field-name-field-recommended-resources .node-youtube,
 .field-name-field-recommended-articles .node-youtube,
 .field.field-name-field-aditional-resources .node-youtube {

@@ -81,6 +81,7 @@ function osha_resources_field_formatter_view($entity_type, $entity, $field, $ins
       $element = array(
         '#theme' => 'external_url_link',
         '#items' => $items,
+        '#entity' => $entity,
       );
       break;
   }
@@ -100,6 +101,7 @@ function osha_resources_theme() {
       'template' => 'osha_resources_external_url_link',
       'variables' => array(
         'items' => NULL,
+        'entity' => NULL,
       ),
       'path' => $path . '/templates',
     ),
