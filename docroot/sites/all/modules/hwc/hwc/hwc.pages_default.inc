@@ -57,6 +57,13 @@ function hwc_default_page_manager_pages() {
         'entity_id' => '240',
         'id' => 2,
       ),
+      2 => array(
+        'identifier' => 'Bottom text',
+        'keyword' => 'node',
+        'name' => 'entity:node',
+        'entity_id' => '365',
+        'id' => 3,
+      ),
     ),
     'relationships' => array(),
   );
@@ -191,6 +198,36 @@ function hwc_default_page_manager_pages() {
     $pane->uuid = '57b2ddd5-2735-4619-be9c-de992ec04f1e';
     $display->content['new-57b2ddd5-2735-4619-be9c-de992ec04f1e'] = $pane;
     $display->panels['middle'][3] = 'new-57b2ddd5-2735-4619-be9c-de992ec04f1e';
+    $pane = new stdClass();
+    $pane->pid = 'new-ea2c2eaa-3113-4264-bd15-53f2e6869b18';
+    $pane->panel = 'middle';
+    $pane->type = 'entity_field';
+    $pane->subtype = 'node:body';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'label' => 'hidden',
+      'formatter' => 'text_default',
+      'delta_limit' => 0,
+      'delta_offset' => '0',
+      'delta_reversed' => FALSE,
+      'formatter_settings' => array(),
+      'context' => 'context_entity:node_3',
+      'override_title' => 0,
+      'override_title_text' => '',
+      'override_title_heading' => 'h2',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 4;
+    $pane->locks = array();
+    $pane->uuid = 'ea2c2eaa-3113-4264-bd15-53f2e6869b18';
+    $display->content['new-ea2c2eaa-3113-4264-bd15-53f2e6869b18'] = $pane;
+    $display->panels['middle'][4] = 'new-ea2c2eaa-3113-4264-bd15-53f2e6869b18';
   $display->hide_title = PANELS_TITLE_FIXED;
   $display->title_pane = '0';
   $handler->conf['display'] = $display;
