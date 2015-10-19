@@ -850,7 +850,7 @@ header.navbar-default{
 							background-color: @bg-default-color;
 							border: 1px solid @bg-color-2;
 							overflow: visible !important;
-							display: none;
+							/* display: none; */
 							&:before{
 								bottom: 100%;
 								left: 50%;
@@ -885,10 +885,13 @@ header.navbar-default{
 								&.views-row-last{
 									background-image: none;
 								}
+								.views-field-field-start-date{
+									display: block;
+								}
 							}
 						}
 						h3 ~ ul{
-							display: none !important;
+							/* display: none !important; */
 						}
 						h3.expand ~ ul{
 							display: block !important;
@@ -896,6 +899,13 @@ header.navbar-default{
 					}
 				}
 			}
+		}
+		.views-field-field-start-date{
+			display: none;
+		}
+		.region-content #block-system-main .views-row .views-field-view-node{
+			margin-left: 0;
+			position: relative;
 		}
 	}
 	.node-events{
@@ -1493,6 +1503,69 @@ header.navbar-default{
 		}
 	}
 }
+
+/*pag get-your-certificate*/
+.page-get-your-certificate{
+	.container {
+		padding-left: @margin-movil;
+		padding-right: @margin-movil;
+		form.webform-client-form{
+			float: none;
+			margin-top: 0;
+			padding-top: 2em;
+			.form-type-checkbox label {
+				white-space: normal;
+				&:before {
+					margin-right: 5px;
+					float: left;
+				}
+			}
+			> div {
+				> div{
+					margin-left: 0%;
+					width: 100%;
+					float: none;
+				}
+				.webform-component-checkboxes{
+					margin-left: 0%;
+					width: 100%;
+					float: none;
+				}
+			}
+			.webform-component--other-activities{
+				display: inline-flex;
+				input{
+					width: 100%;
+				}
+			}
+
+		}
+	}
+	.pane-node-field-image, .pane-node-body{
+		margin-top: 1.5em;
+		float: none;
+		width: 100%;
+		max-width: 100%;
+		img{
+			margin: auto;
+			width: 95%;
+		}
+		.field-name-body .field-items{
+			width: 100%;
+			margin-left: 0;
+		}
+	}
+}
+/*fin pag get-your-certificate*/
+
+/*pag contact-form*/
+.contact-form.container{
+    input {
+		width: 100%;
+	}
+}
+/*fin pag contact-form*/
+
 #block-views-partners-list-block{
     margin-right: @margin-movil;
     margin-left: @margin-movil;

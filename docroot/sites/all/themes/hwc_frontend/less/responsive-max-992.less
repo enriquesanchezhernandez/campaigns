@@ -772,11 +772,79 @@ header{
 		background: url("../images/content/bg-campaign-partner.png");
 		background-size: cover;
 		margin-bottom: 2em;
-		margin-left: -30px;
-		margin-right: -30px;
+		margin-left: -@margin-tablet;
+		margin-right: -@margin-tablet;
 	}
 }
 /*fin plantilla employers*/
+
+/*pag get-your-certificate*/
+.page-get-your-certificate{
+	.container{
+		padding-left: @margin-tablet;
+		padding-right: @margin-tablet;
+		.container{
+			padding-left: 0;
+			padding-right: 0;
+			form{
+				margin-left: 0;
+				.form-item{
+					padding-left: 0px;
+					padding-right: 0px;
+				}
+				.form-checkboxes {
+					display: block;
+					.form-item{
+						width: 100%;
+						label{
+							font-size: @size4;
+						}
+					}
+					.form-type-checkbox label {
+						white-space: normal;
+						&:before{
+							float: left;
+						}
+					}
+				}
+				.webform-component--other-activities{
+					margin-bottom: 1em;
+					float: left;
+					label {
+						margin-left: 25px;
+					}
+					input{
+						width: 80%;
+					}
+					padding-bottom: 2em;
+				}
+				button {
+					margin-left: 0px;
+					width: 100%;
+				}
+				> div {
+					> div{
+						margin-left: 15%;
+						width: 60%;
+						float: none;
+					}
+					.webform-component-checkboxes{
+						margin-left: 15%;
+						width: 85%;
+						float: none;
+					}
+				}
+			}
+		}
+	}
+}
+/*Fin pag get-your-certificate*/
+
+/*pag contact-form*/
+.contact-form.container{
+    padding: 0 @margin-tablet;
+}
+/*fin pag contact-form*/
 
 /*clases para toda la web*/
 .container{
@@ -790,17 +858,17 @@ header{
 }
 .section-introduction{
 	.field-type-text-with-summary{
-		padding-right: 30px;
-		padding-left: 30px;
+		padding-right: @margin-tablet;
+		padding-left: @margin-tablet;
 	}
 }
 .breadcrumb{
-	padding-right: 30px;
-	padding-left: 30px;
+	padding-right: @margin-tablet;
+	padding-left: @margin-tablet;
 }
 h1{
-	padding-right: 15px;
-	padding-left: 15px;
+	padding-right: @margin-tablet2;
+	padding-left: @margin-tablet2;
 }
 .back-to-link {
 	padding-right: @margin-tablet;
