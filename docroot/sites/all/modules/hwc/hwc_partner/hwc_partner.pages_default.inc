@@ -1098,6 +1098,156 @@ function hwc_partner_default_page_manager_handlers() {
     $pane->uuid = '22050c50-2a04-49d6-b147-ee7e3f0b7183';
     $display->content['new-22050c50-2a04-49d6-b147-ee7e3f0b7183'] = $pane;
     $display->panels['right__'][0] = 'new-22050c50-2a04-49d6-b147-ee7e3f0b7183';
+    $pane = new stdClass();
+    $pane->pid = 'new-4aa2b7f8-2742-4819-8198-1451447d6d17';
+    $pane->panel = 'right___';
+    $pane->type = 'entity_field';
+    $pane->subtype = 'node:field_facebook_profile';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'label' => 'hidden',
+      'formatter' => 'link_url',
+      'delta_limit' => 0,
+      'delta_offset' => '0',
+      'delta_reversed' => FALSE,
+      'formatter_settings' => array(),
+      'context' => 'argument_entity_id:node_1',
+      'override_title' => 0,
+      'override_title_text' => '',
+      'override_title_heading' => 'h2',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = '4aa2b7f8-2742-4819-8198-1451447d6d17';
+    $display->content['new-4aa2b7f8-2742-4819-8198-1451447d6d17'] = $pane;
+    $display->panels['right___'][0] = 'new-4aa2b7f8-2742-4819-8198-1451447d6d17';
+    $pane = new stdClass();
+    $pane->pid = 'new-ec16d60a-9d23-4140-ab63-d2be45264ae1';
+    $pane->panel = 'right___';
+    $pane->type = 'entity_field';
+    $pane->subtype = 'node:field_twitter_profile';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'label' => 'hidden',
+      'formatter' => 'link_url',
+      'delta_limit' => 0,
+      'delta_offset' => '0',
+      'delta_reversed' => FALSE,
+      'formatter_settings' => array(),
+      'context' => 'argument_entity_id:node_1',
+      'override_title' => 0,
+      'override_title_text' => '',
+      'override_title_heading' => 'h2',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 1;
+    $pane->locks = array();
+    $pane->uuid = 'ec16d60a-9d23-4140-ab63-d2be45264ae1';
+    $display->content['new-ec16d60a-9d23-4140-ab63-d2be45264ae1'] = $pane;
+    $display->panels['right___'][1] = 'new-ec16d60a-9d23-4140-ab63-d2be45264ae1';
+    $pane = new stdClass();
+    $pane->pid = 'new-e2ca4501-827a-4e8d-8607-5c15b92cc80a';
+    $pane->panel = 'right___';
+    $pane->type = 'entity_field';
+    $pane->subtype = 'node:field_linkedin_profile';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'label' => 'hidden',
+      'formatter' => 'link_url',
+      'delta_limit' => 0,
+      'delta_offset' => '0',
+      'delta_reversed' => FALSE,
+      'formatter_settings' => array(),
+      'context' => 'argument_entity_id:node_1',
+      'override_title' => 0,
+      'override_title_text' => '',
+      'override_title_heading' => 'h2',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 2;
+    $pane->locks = array();
+    $pane->uuid = 'e2ca4501-827a-4e8d-8607-5c15b92cc80a';
+    $display->content['new-e2ca4501-827a-4e8d-8607-5c15b92cc80a'] = $pane;
+    $display->panels['right___'][2] = 'new-e2ca4501-827a-4e8d-8607-5c15b92cc80a';
+    $pane = new stdClass();
+    $pane->pid = 'new-ded8085b-914b-4ea5-9480-b2180cbe3902';
+    $pane->panel = 'right___';
+    $pane->type = 'entity_field';
+    $pane->subtype = 'node:field_youtube_profile';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'label' => 'hidden',
+      'formatter' => 'link_url',
+      'delta_limit' => 0,
+      'delta_offset' => '0',
+      'delta_reversed' => FALSE,
+      'formatter_settings' => array(),
+      'context' => 'argument_entity_id:node_1',
+      'override_title' => 0,
+      'override_title_text' => '',
+      'override_title_heading' => 'h2',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 3;
+    $pane->locks = array();
+    $pane->uuid = 'ded8085b-914b-4ea5-9480-b2180cbe3902';
+    $display->content['new-ded8085b-914b-4ea5-9480-b2180cbe3902'] = $pane;
+    $display->panels['right___'][3] = 'new-ded8085b-914b-4ea5-9480-b2180cbe3902';
+    $pane = new stdClass();
+    $pane->pid = 'new-7515db16-a606-4317-8f88-f4d324a87e4c';
+    $pane->panel = 'right___';
+    $pane->type = 'entity_field';
+    $pane->subtype = 'node:field_slideshare_profile';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'label' => 'hidden',
+      'formatter' => 'link_url',
+      'delta_limit' => 0,
+      'delta_offset' => '0',
+      'delta_reversed' => FALSE,
+      'formatter_settings' => array(),
+      'context' => 'argument_entity_id:node_1',
+      'override_title' => 0,
+      'override_title_text' => '',
+      'override_title_heading' => 'h2',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 4;
+    $pane->locks = array();
+    $pane->uuid = '7515db16-a606-4317-8f88-f4d324a87e4c';
+    $display->content['new-7515db16-a606-4317-8f88-f4d324a87e4c'] = $pane;
+    $display->panels['right___'][4] = 'new-7515db16-a606-4317-8f88-f4d324a87e4c';
   $display->hide_title = PANELS_TITLE_NONE;
   $display->title_pane = '0';
   $handler->conf['display'] = $display;
@@ -1390,6 +1540,8 @@ function hwc_partner_default_page_manager_pages() {
       ),
     ),
     'logic' => 'or',
+    'type' => 'none',
+    'settings' => NULL,
   );
   $page->menu = array();
   $page->arguments = array(
@@ -1549,6 +1701,8 @@ function hwc_partner_default_page_manager_pages() {
       ),
     ),
     'logic' => 'or',
+    'type' => 'none',
+    'settings' => NULL,
   );
   $page->menu = array();
   $page->arguments = array(
@@ -2673,6 +2827,8 @@ foreach( $contexts[\'argument_entity_id:node_1\']->data->field_users[\'und\'] as
       ),
     ),
     'logic' => 'or',
+    'type' => 'none',
+    'settings' => NULL,
   );
   $page->menu = array();
   $page->arguments = array();
