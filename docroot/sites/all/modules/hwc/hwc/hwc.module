@@ -53,6 +53,33 @@ function hwc_menu() {
 }
 
 /**
+ * Implements hook_block_info().
+ */
+function hwc_block_info() {
+  $blocks = array();
+  $blocks['page_share_widget'] = array(
+    'info' => t('Page share widget'),
+    'status' => 1,
+    'region' => '-1',
+    'visibility' => BLOCK_VISIBILITY_NOTLISTED,
+    'cache' => DRUPAL_CACHE_GLOBAL,
+  );
+  return $blocks;
+}
+
+/**
+ * Implements hook_block_view().
+ */
+function hwc_block_view($delta = '') {
+  $block = array();
+  if ($delta == 'page_share_widget') {
+    $block['title'] = '<none>';
+    $block['content'] = hwc_page_share_widget();
+  }
+  return $block;
+}
+
+/**
  * Implements hook_form_FORM_ID_alter().
  */
 function hwc_form_user_login_alter(&$form, &$form_state) {
@@ -517,14 +544,22 @@ function hwc_node_view($node, $view_mode, $langcode) {
 function hwc_news_share_widget($node, $options = array()) {
   global $language;
   /** @var stdClass $wrapper */
-  $wrapper = entity_metadata_wrapper('node', $node);
+  $type = 'other';
+  if ($options['page'] === TRUE) {
+    $url = url(current_path(), array('absolute' => TRUE));
+    $title = drupal_get_title();
+  }
+  else {
+    $url = url('/node/' . $node->nid, array('absolute' => TRUE));
+    $wrapper = entity_metadata_wrapper('node', $node);
+    $title = $wrapper->title_field->value();
+    $type = $node->type;
+  }
   // Add services javascript.
   drupal_add_js(drupal_get_path('module', 'hwc') . '/js/share_widget.js');
   // Add facebook app key.
   $fb_app_key = variable_get('fb_app_key', '');
   drupal_add_js(array('hwc' => array('fb_app_key' => $fb_app_key)), 'setting');
-  $url = url('/node/' . $node->nid, array('absolute' => TRUE));
-  $title = $wrapper->title_field->value();
   $site_name = variable_get('site_name', '');
   // Construct the tweet.
   $twitter_text = $title . ' | ' . $site_name;
@@ -542,10 +577,15 @@ function hwc_news_share_widget($node, $options = array()) {
     'language' => $language,
     'options' => $options,
   );
-  if ($node->type == 'article') {
+  if ($type == 'article') {
     return theme('article_share_widget', $vars);
   }
   return theme('news_share_widget', $vars);
+}
+
+function hwc_page_share_widget() {
+  $false_node = array('nid' => 0);
+  return hwc_news_share_widget((object) $false_node, array('page' => TRUE));
 }
 
 /**

@@ -5,7 +5,7 @@
  *
  * Available variables:
  * - $url: URL to the page
- * - $node: Current node
+ * - $node: Current node / A false node with nid=0 if the widget is for a page
  * - $tweet_url: Twitter share URL
  * - $language: Current language
  * - $options: Additional configuration options
