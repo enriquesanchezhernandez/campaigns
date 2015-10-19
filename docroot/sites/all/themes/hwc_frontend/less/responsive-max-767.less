@@ -823,8 +823,15 @@ header.navbar-default{
 	
 	/*events*/
 	.page-past-events, .page-events{
+		#block-system-main .view-events-search, .view-events-search {
+			margin: 0;
+		}
 		h1.page-header{
 			margin-bottom: 1em;
+		}		
+		h2{
+			margin-left: 0;
+			margin-right: 0;
 		}
 		.views-exposed-widgets{
 			padding-top: 2em;
@@ -842,6 +849,7 @@ header.navbar-default{
 					.events-filter-by-date{
 						h3{
 							background-image: none;
+							padding: 1em 0 1em 2em;
 						}
 						ul{
 							position: absolute;
@@ -903,9 +911,15 @@ header.navbar-default{
 		.views-field-field-start-date{
 			display: none;
 		}
-		.region-content #block-system-main .views-row .views-field-view-node{
-			margin-left: 0;
-			position: relative;
+		.region-content #block-system-main .views-row{
+			> div{
+				margin-left: @margin-movil;
+				margin-right: @margin-movil;
+			}
+			.views-field-view-node{
+				margin-left: @margin-movil;
+				position: relative;
+			}
 		}
 	}
 	.node-events{
@@ -916,6 +930,10 @@ header.navbar-default{
 			img{
 				display: none;
 			}
+		}
+		.field-name-body, .field-name-field-organizer, .field-name-field-location, .field-name-field-tags{
+			margin-left: @margin-movil;
+			margin-right: @margin-movil;
 		}
 	}
 	.node-type-events{

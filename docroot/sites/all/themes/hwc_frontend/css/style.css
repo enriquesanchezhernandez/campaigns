@@ -14522,9 +14522,20 @@ article .hwc-share-widget ul {
   }
   /*FIN Publications*/
   /*events*/
+  .page-past-events #block-system-main .view-events-search,
+  .page-events #block-system-main .view-events-search,
+  .page-past-events .view-events-search,
+  .page-events .view-events-search {
+    margin: 0;
+  }
   .page-past-events h1.page-header,
   .page-events h1.page-header {
     margin-bottom: 1em;
+  }
+  .page-past-events h2,
+  .page-events h2 {
+    margin-left: 0;
+    margin-right: 0;
   }
   .page-past-events .views-exposed-widgets,
   .page-events .views-exposed-widgets {
@@ -14555,6 +14566,7 @@ article .hwc-share-widget ul {
   .page-past-events .views-exposed-widgets #block-views-events-block-2 .view-events .events-filter-by-date h3,
   .page-events .views-exposed-widgets #block-views-events-block-2 .view-events .events-filter-by-date h3 {
     background-image: none;
+    padding: 1em 0 1em 2em;
   }
   .page-past-events .views-exposed-widgets #block-views-events-block-1 .view-events .events-filter-by-date ul,
   .page-events .views-exposed-widgets #block-views-events-block-1 .view-events .events-filter-by-date ul,
@@ -14637,9 +14649,14 @@ article .hwc-share-widget ul {
   .page-events .views-field-field-start-date {
     display: none;
   }
+  .page-past-events .region-content #block-system-main .views-row > div,
+  .page-events .region-content #block-system-main .views-row > div {
+    margin-left: 15px;
+    margin-right: 15px;
+  }
   .page-past-events .region-content #block-system-main .views-row .views-field-view-node,
   .page-events .region-content #block-system-main .views-row .views-field-view-node {
-    margin-left: 0;
+    margin-left: 15px;
     position: relative;
   }
   .node-events .field-name-field-speaker > .field-items > .field-item {
@@ -14647,6 +14664,13 @@ article .hwc-share-widget ul {
   }
   .node-events .field-name-field-speaker img {
     display: none;
+  }
+  .node-events .field-name-body,
+  .node-events .field-name-field-organizer,
+  .node-events .field-name-field-location,
+  .node-events .field-name-field-tags {
+    margin-left: 15px;
+    margin-right: 15px;
   }
   .node-type-events .back-to-link {
     display: none;
