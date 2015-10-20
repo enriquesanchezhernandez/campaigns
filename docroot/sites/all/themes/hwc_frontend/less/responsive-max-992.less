@@ -161,27 +161,25 @@ header{
 	}
 	//fin slider
 	
-	.tools-and-resources-block{
+	.tools-and-resources-block, .panels-flexible-column-new-main, .panels-flexible-column-first{
 		width: 100%;
 		text-align: left;
 		padding-right: 30px;
 		padding-left: 30px;
-		margin-bottom: 0;
-		
-			h2{
-				margin: 20px 0;
-			    padding-top: 15px;
-			    padding-bottom: 15px;
-			    
-			    text-align: left;
-			    padding-left: 78px;
-			    background: url("../images/content/tools-and-resources.png") no-repeat left;
-			}
-		
-		#block-menu-block-1{
+		margin-bottom: 0;		
+		h2{
+			margin: 20px 0;
+			padding-top: 15px;
+			padding-bottom: 15px;
 			
-
+			text-align: left;
+			padding-left: 78px;
+			background: url("../images/content/tools-and-resources.png") no-repeat left;
+		}
+		
+		//#block-menu-block-1{
 			.menu{
+				padding-top: 1em;
 				padding-bottom: 2em;
 				border-bottom: 1px dotted @color3;
 				li{
@@ -190,9 +188,9 @@ header{
 					width: 150px;
 				}
 			}
-		}
+		//}
 	}
-	#block-views-news-oshnews-latest, #block-views-frontpage-events-block{
+	#block-views-news-oshnews-latest, .panels-flexible-column-new-1, #block-views-frontpage-events-block, .panels-flexible-column-new-2, .panels-flexible-column-last{
 		width: 50%;
 		border-left: none;
 	}
@@ -750,18 +748,28 @@ header{
 				padding-bottom: 2em;
 			}
 			.field-name-field-related-documents{
-				    padding-bottom: 2em;
-				    margin-left: -30px;
-				    margin-right: -30px;
-				    padding: 0 30px 2em 30px;
-				    border-bottom: 1px dotted @color3;
+				padding-bottom: 2em;
+				margin-left: -30px;
+				margin-right: -30px;
+				padding: 0 30px 2em 30px;
+				border-bottom: 1px dotted @color3;
 			}
 		}
 		#edit-save-preview{
 			margin-bottom: 1em !important;
-			margin-top: 0em !important;
 		}
-
+		#edit-actions #edit-send-for-approval{
+			border-left: @margin-tablet solid white;
+			border-right: @margin-tablet solid white;
+			background: @bg-color-2 url('../images/content/arrow-right-blue-bg-white.png') no-repeat right center;
+			&:after{
+				content: "";
+			}
+		}
+		.form-type-select:after{
+			bottom: 0px;
+			height: 34px;
+		}
 	}
 }
 /*fin create events & news*/

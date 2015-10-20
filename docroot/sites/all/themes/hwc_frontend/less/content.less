@@ -288,14 +288,14 @@ ul.tabs--primary.nav.nav-tabs{
 			  width: 21px;
 		}
 	}
-	#block-views-news-oshnews-latest{
+	#block-views-news-oshnews-latest, .panels-flexible-column-new-1{
 		border-right: 1px dotted @border-default-color;
 		border-left: 1px dotted @border-default-color;
 	}
-	.tools-and-resources-block, #block-views-news-oshnews-latest{
+	.tools-and-resources-block, .panels-flexible-column-new-main, .panels-flexible-column-first, #block-views-news-oshnews-latest, .panels-flexible-column-new-1{
 		float: left;
 		text-align: center;
-		width: 33.3%;
+		/* width: 33.3%; */
 		padding-right: 1em;
 		padding-left: 1em;
 		margin-bottom: 3em;
@@ -346,11 +346,12 @@ ul.tabs--primary.nav.nav-tabs{
 			width: auto;
 		}
 	}
-	.tools-and-resources-block{
+	.tools-and-resources-block, .panels-flexible-column-new-main, .panels-flexible-column-first{
 		h2{
 			margin: 20px 0 !important;
 			padding-top: 70px;
 			background: url("../images/content/tools-and-resources.png") no-repeat center top;
+			font-style: normal;
 		}
 	}
 	.glyphicon-circle-arrow-down:before {
@@ -878,10 +879,11 @@ ul.tabs--primary.nav.nav-tabs{
 	}
 	
 	/* home news */
-	#block-views-news-oshnews-latest{
+	#block-views-news-oshnews-latest, .panels-flexible-column-new-1{
 		h2{
 			margin: 20px 0;
 			padding-top: 70px;
+			font-style: normal;
 			background: url("../images/content/news.png") no-repeat center top;
 		}
 		a{
@@ -895,7 +897,7 @@ ul.tabs--primary.nav.nav-tabs{
 		}
 		.more-link{
 		    /* display: inline-table; */
-			display: none;
+			/* display: none; */
 			margin-top: 1em;
 			a{
 				color: @color1;
@@ -939,6 +941,7 @@ ul.tabs--primary.nav.nav-tabs{
 			margin-top: 50px;
 			padding-top: 100px;
 			margin-bottom: 45px;
+			font-style: normal;
 			/* padding-top: 58px; */
 			/* background: url("../images/content/newsletter.png") no-repeat center 20px; */
 			background: url("../images/content/mail-newsletter-big.png") no-repeat center 20px;
@@ -991,13 +994,16 @@ ul.tabs--primary.nav.nav-tabs{
 
 	
 	/* home events */
-	#block-views-frontpage-events-block{
+	#block-views-frontpage-events-block, .panels-flexible-column-new-2, .panels-flexible-column-last{
 	    float: left;
 		text-align: center;
-		width: 33.3%;
+		/* width: 33.3%; */
 		margin-bottom: 3em;
     	margin-top: 2em;
 		h2{
+			color: @h1-default-color;
+			font-weight: bold;
+			font-style: normal;
 			margin: 20px 0;
 			padding-top: 70px;
 			background: url("../images/content/events.png") no-repeat center top;
@@ -3678,6 +3684,10 @@ article{
 		.group-footer{
 			padding-left:0;
 			padding-right:0;
+			width: 50%;
+			> div{
+				padding-right: 0;
+			}
 		}
 		div.image-widget-data{
 			display: inline-flex;
@@ -3929,6 +3939,23 @@ article{
 			list-style: none;
 			padding: 0;
 			padding-bottom: 30px;
+			li{
+				clear: both;
+				a{
+					display: inline;
+					font-style: italic;
+					font-size: inherit;
+					margin-left: 1em;
+					&:before{
+						content: "";
+					}
+					&:after{
+						content: url("../images/content/download.png");
+						vertical-align: sub;
+						padding: 4px 10px 0px;
+					}
+				}
+			}
 		}
 		.pane-node:last-child{
 			h2{
@@ -4106,18 +4133,21 @@ article{
 		.pane-node-title-field{
 		}
 		.pane-node-field-publication-date{
-			margin-bottom: 25px;
+			/* margin-bottom: 25px; */
+			.field.field-name-field-publication-date{
+				margin-bottom: 0.5em;
+			}
 		}
 	}
 	.pane-node-field-publication-type, .pane-node-field-country, .pane-node-field-free, .pane-node-field-tool-type{
-		    display: inline-block;
-		    background-color: #e2e2e3;
-		    color: #003399;
-		    font-style: italic;
-		    font-weight: bold;
-		    margin-right: 2em;
-		    padding: 0.5em 1.5em;
-		    margin-bottom: 1.5em;
+	    display: inline-block;
+		background-color: #e2e2e3;
+		color: #003399;
+		font-style: italic;
+		font-weight: bold;
+		margin-right: 2em;
+		padding: 0.5em 1.5em;
+		/* margin-bottom: 1.5em; */
 	}
 	.panels-flexible-row-container-main-row{
 		margin-top: 3em;
@@ -4125,6 +4155,7 @@ article{
 	.pane-node-field-file{
 		padding-top: 1em;
 		clear: both;
+		margin-left: 0px;
 		.first.last{
 			display: inline-flex;
     		/* font-weight: bold; */
