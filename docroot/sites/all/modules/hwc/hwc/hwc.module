@@ -437,6 +437,7 @@ function hwc_field_widget_form_alter(&$element, &$form_state, $context) {
         $element['#description_display'] = 'before';
         $element['summary']['#description_display'] = 'before';
         $element['summary']['#description'] = t('Write a short summary. This will appear on the homepage of the campaign site. Max 420 characters.');
+        $element['summary']['#maxlength'] = 420;
         break;
 
       case 'title_field':
