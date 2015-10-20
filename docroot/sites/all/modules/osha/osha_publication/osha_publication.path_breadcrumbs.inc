@@ -12,6 +12,28 @@ function osha_publication_path_breadcrumbs_settings_info() {
 
   $path_breadcrumb = new stdClass();
   $path_breadcrumb->api_version = 1;
+  $path_breadcrumb->machine_name = 'case_studies';
+  $path_breadcrumb->name = 'Case studies';
+  $path_breadcrumb->path = 'case-studies';
+  $path_breadcrumb->data = array(
+    'titles' => array(
+      0 => 'Tools and resources',
+      1 => '!page_title',
+    ),
+    'paths' => array(
+      0 => '<none>',
+      1 => '<none>',
+    ),
+    'home' => 1,
+    'translatable' => 1,
+    'arguments' => array(),
+    'access' => array(),
+  );
+  $path_breadcrumb->weight = 0;
+  $export['case_studies'] = $path_breadcrumb;
+
+  $path_breadcrumb = new stdClass();
+  $path_breadcrumb->api_version = 1;
   $path_breadcrumb->machine_name = 'publications_detail_page';
   $path_breadcrumb->name = 'Publications detail page';
   $path_breadcrumb->path = 'node/invalid/handled/from/code';
