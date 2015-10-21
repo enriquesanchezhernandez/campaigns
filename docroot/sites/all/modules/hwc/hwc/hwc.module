@@ -450,7 +450,7 @@ function theme_hwc_date_part_label_date($variables) {
     return t('Starting date and time') . '<span class="form-required" title="' . t('This field is required.') . '">*</span>';
   }
   else {
-    return theme('date_part_label_date', $variables);
+    return theme_date_part_label_date($variables);
   }
 }
 
