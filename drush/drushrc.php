@@ -457,6 +457,7 @@ $options['init-modules'] = array(
   'views_data_export',
   'phpexcel',
   'plupload',
+  'maxlength',
 
   // Captcha
  'recaptcha',
