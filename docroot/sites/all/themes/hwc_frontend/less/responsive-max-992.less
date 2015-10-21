@@ -353,6 +353,52 @@ header{
 			width: 25%;
 		}
 	}
+	&.page-past-event{
+		.field-name-field-speaker > .field-items > .field-item{
+			&:nth-child(5n+1){
+				clear: none;
+			}
+			&:nth-child(4n+1){
+				clear: both;
+			}
+		}
+	}
+	.group-header > div {
+		margin-left: @margin-tablet;
+		margin-right: @margin-tablet;
+		&.hwc-share-widget {
+			margin-left: 0;
+			margin-right: 0;
+			ul {
+				margin-left: @margin-tablet2;
+				margin-right: @margin-tablet2;
+			}
+		}
+		&.field-name-field-city, &.field-name-field-country-code, &.field-name-field-start-date{
+			margin-left: auto;
+			margin-right: auto;
+		}
+		&.field-name-field-speaker{
+			margin-left: 0;
+			margin-right: 0;
+			> div {
+				margin-left: @margin-tablet;
+				margin-right: @margin-tablet;
+			}
+		}
+		&.field-collection-container{
+			margin-left: 0;
+			margin-right: 0;
+			.field-name-field-schedule > div{
+				margin-left: @margin-tablet;
+				margin-right: @margin-tablet;
+			}
+		}
+	}
+	h2.node-edit-form-heading{
+		margin-left: @margin-tablet;
+		margin-right: @margin-tablet;
+	}
 }
 /*fin events*/
 

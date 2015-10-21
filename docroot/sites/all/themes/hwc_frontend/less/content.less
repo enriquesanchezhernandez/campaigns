@@ -896,11 +896,13 @@ ul.tabs--primary.nav.nav-tabs{
 			padding-right: 0.35em;
 		}
 		.more-link{
-		    /* display: inline-table; */
-			/* display: none; */
+		    /* display: none; */
+			display: inline-table;
 			margin-top: 1em;
 			a{
 				color: @color1;
+				font-style: normal;
+				font-weight: normal;
 				&:before{
 					content: "";
 					padding-right: 0.35em;
@@ -1016,6 +1018,20 @@ ul.tabs--primary.nav.nav-tabs{
 		a:before{
 			content: ">";
 			padding-right: 0.35em;
+		}
+		.more-link{
+		    /* display: none; */
+			display: inline-table;
+			margin-top: 1em;
+			a{
+				color: @color1;
+				font-style: normal;
+				font-weight: normal;
+				&:before{
+					content: "";
+					padding-right: 0.35em;
+				}
+			}
 		}
 		.date-display-single{
 			/* font-size: @size3; */
@@ -2487,6 +2503,8 @@ article{
 		margin-top: 1em;
 		margin-bottom: 1em;
 		text-align: left;
+		border-top: 1px dotted @color3;
+		padding-top: 1em;
 	}
 	.field-name-field-city{
 		color: @text-color-3;
@@ -2559,6 +2577,7 @@ article{
 			.field-name-title-field{
 				font-weight: bold;
 				margin-bottom: 0.5em;
+				margin-right: 0.5em;
 			}
 		}
 	}
@@ -2648,6 +2667,98 @@ article{
 			font-style: italic;
 		}
 	}
+	.field-collection-container{
+		border-bottom: 1px dotted @border-default-color;
+	}
+	//Gallery
+	.node-hwc-gallery{
+		margin-top: 1em;
+		padding-top: 1em;
+		border-top: 1px dotted @border-default-color;
+		h2, h2 a{
+			color: @h2-default-color-2;
+			font-weight: bold;
+			font-style: normal;
+			font-size: @size4;
+			margin-bottom: 1em;
+			text-align: left;
+			:before{
+				content: "";
+				padding-right: 0px;
+			}
+		}
+		.field-item{
+			padding: 1em;
+			background-color: @bg-color-3;
+			width: 100%;
+			margin-bottom: 1em;
+		}
+		.gallery-slides{
+			width: 400px !important;
+			height: 280px !important;
+			.slide-button{
+				height: 34px;
+				width: 15px;
+				color: @color0;
+				&.prev-slide{
+					background: url("../images/content/arrow-left-blue.png") no-repeat center;
+				}
+				&.next-slide{
+					background: url("../images/content/arrow-right-blue.png") no-repeat center;
+				}
+			}
+			.gallery-frame{
+				margin-left: 30px;
+				margin-right: 30px;
+				blockquote{
+					border-left: none;
+					text-align: center;
+					width: 340px;
+					span{
+						background-color: inherit !important;
+					}
+				}
+				.panel-overlay{
+					display: none;
+				}
+			}
+		}
+		.gallery-thumbs{
+			width: auto !important;
+			max-width: 100%;
+			margin-top: 2em;
+			padding-left: 20px;
+			padding-right: 20px;
+			ul{
+				li{
+					margin-left: 15px;
+					margin-right: 15px;
+					blockquote{
+						display: none;
+						border-left: none;
+						span{
+							background-color: inherit !important;
+						}
+					}
+				}
+			}
+			.arrow{
+				position: absolute;
+				top: 20px;
+				height: 34px;
+				width: 15px;
+				color: @color0;
+				&.back{
+					left: 0;
+					background: url("../images/content/arrow-left-blue.png") no-repeat center;
+				}
+				&.forward{
+					right: 0;
+					background: url("../images/content/arrow-right-blue.png") no-repeat center;
+				}
+			}
+		}
+	}
 	//upcoming-event Detail
 	&.page-upcoming-event{
 		.field-name-field-speaker{
@@ -2689,9 +2800,76 @@ article{
 	}
 	//past-event Detail
 	&.page-past-event{
-	
+		.field-name-field-speaker > .field-items > .field-item{
+			margin-bottom: 1.5em;
+			&:nth-child(5n+1){
+				clear: both;
+			}
+			.field-name-field-image{
+				width: 100px;
+				height: 100px;
+				overflow: hidden;
+				img{
+					min-height: 100px;
+					width: auto;
+					min-width: 100px;
+					height: auto;
+					max-width: 2000px;
+				}
+			}
+		}
 	}
 }
+/*fin Events*/
+
+/*gallery dialog*/
+#cboxWrapper{
+	border-radius: 0;
+	div:first-child{
+		display: none;
+	}
+	div{
+		#cboxMiddleLeft, #cboxMiddleRight{
+			display: none;
+		}
+		#cboxContent{
+			float: none !important;
+			margin: 12px auto;
+			padding: 30px;
+		}
+	}
+	#cboxTitle{
+		padding-left: 30px;
+		padding-right: 30px;
+		text-align: center;
+		display: block !important;
+	}
+	button#cboxPrevious{
+		left: 0;
+		top: 0px;
+	    height: 100%;
+		background: url("../images/content/arrow-left-blue.png") no-repeat center;
+	}
+	button#cboxNext{
+		right: 0;
+		left: auto;
+		top: 0px;
+	    height: 100%;
+		background: url("../images/content/arrow-right-blue.png") no-repeat center;
+	}
+	button#cboxClose{
+		top: 0;
+		right: 30px;
+		background: url("../images/content/close.png") no-repeat center;
+	}
+	button:focus{
+		outline: #FFF solid 0px;
+	}
+	#cboxCurrent{
+	    left: 15px;
+	}
+}
+/*fin gallery dialog*/
 
 .views-exposed-form{
 	#edit-search-api-views-fulltext-wrapper{
