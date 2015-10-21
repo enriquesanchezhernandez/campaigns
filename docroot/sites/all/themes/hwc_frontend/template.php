@@ -204,6 +204,16 @@ function hwc_frontend_preprocess_page(&$vars) {
         }
         break;
 
+      case 'hwc_gallery':
+        $link_title = t('Back to gallery');
+        $link_href = 'publications';
+        $tag_vars['element']['#value'] = t('Gallery');
+        $vars['page']['above_title']['title-alternative'] = array(
+          '#type' => 'item',
+          '#markup' => theme('html_tag', $tag_vars),
+        );
+        break;
+
     }
     if (isset($link_title)) {
       $vars['page']['above_title']['back-to-link'] = array(
@@ -520,6 +530,41 @@ function hwc_frontend_colorbox_image_formatter($variables) {
     'gid' => $gallery_id
   ));
 
+}
+
+/**
+ * @see theme_colorbox_imagefield().
+ */
+function hwc_frontend_colorbox_imagefield($variables) {
+  $class = array('colorbox');
+
+  if ($variables['image']['style_name'] == 'hide') {
+    $image = '';
+    $class[] = 'js-hide';
+  }
+  elseif (!empty($variables['image']['style_name'])) {
+    $image = theme('image_style', $variables['image']);
+  }
+  else {
+    $image = theme('image', $variables['image']);
+  }
+
+  $options = drupal_parse_url($variables['path']);
+  $options += array(
+    'html' => TRUE,
+    'attributes' => array(
+      'title' => $variables['title'],
+      'class' => $class,
+      'rel' => $variables['gid'],
+    ),
+    'language' => array('language' => NULL),
+  );
+
+  $output = l($image, $options['path'], $options);
+  if (!empty($variables['title'])) {
+    $output .= '<div class="gallery-thumb-caption">' . $variables['title'] . '</div>';
+  }
+  return $output;
 }
 
 /**
