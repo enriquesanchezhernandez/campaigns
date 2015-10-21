@@ -1,3 +1,10 @@
+{if $show_print_version || $show_pdf_version}
+<script nonce="{$nonce}">
+    $(document).ready(function() {
+        window.open("{$appurl}&action={if $show_print_version}printable{else}pdf{/if}", 'popup');
+    });
+</script>
+{/if}
 {if !$printable}
 {if $progressbar}{$progressbar}{/if}
 {if $partner_type == "current"}
@@ -5,8 +12,8 @@
 {/if}
 <div id="content">
     {if $sidebar}{$sidebar}{/if}
-    <div id="form" class="main-form sidebar-border">
+    {if !isset($fullwidth)}<div id="form" class="main-form sidebar-border">{/if}
         {if !$locked}
-        <form class="form-horizontal {if !empty($partner_type)}{$partner_type}{/if} {if $mf}mf{/if}" method="post" action="{$appurl}&action=send">
+    <form class="form-horizontal {if !empty($partner_type)}{$partner_type}{/if} {if $mf}mf{/if}" method="post" action="{$appurl}&action=send{if $actionType}&action_type={$actionType}{/if}" onload="checkAllfields()">
         {/if}
 {/if}

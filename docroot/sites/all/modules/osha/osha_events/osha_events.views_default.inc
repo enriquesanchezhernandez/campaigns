@@ -1414,6 +1414,11 @@ function osha_events_views_default_views() {
   $handler->display->display_options['fields']['view_node']['label'] = '';
   $handler->display->display_options['fields']['view_node']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['view_node']['text'] = 'See more';
+  $handler->display->display_options['defaults']['sorts'] = FALSE;
+  /* Sort criterion: Start date: Start date (indexed) */
+  $handler->display->display_options['sorts']['field_start_date_value']['id'] = 'field_start_date_value';
+  $handler->display->display_options['sorts']['field_start_date_value']['table'] = 'search_api_index_default_multilingual_node_index';
+  $handler->display->display_options['sorts']['field_start_date_value']['field'] = 'field_start_date_value';
   $handler->display->display_options['defaults']['arguments'] = FALSE;
   $handler->display->display_options['defaults']['filter_groups'] = FALSE;
   $handler->display->display_options['defaults']['filters'] = FALSE;

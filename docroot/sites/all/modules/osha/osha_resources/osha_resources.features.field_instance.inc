@@ -881,6 +881,8 @@ function osha_resources_field_default_field_instances() {
         'module' => 'flickrfield',
         'settings' => array(
           'field_formatter_class' => '',
+          'image_class' => '',
+          'images_shown' => 5,
         ),
         'type' => '-',
         'weight' => 1,
@@ -902,6 +904,8 @@ function osha_resources_field_default_field_instances() {
         'module' => 'flickrfield',
         'settings' => array(
           'field_formatter_class' => '',
+          'image_class' => '',
+          'images_shown' => 5,
         ),
         'type' => 'n',
         'weight' => 0,
@@ -929,6 +933,8 @@ function osha_resources_field_default_field_instances() {
         'module' => 'flickrfield',
         'settings' => array(
           'field_formatter_class' => '',
+          'image_class' => '',
+          'images_shown' => 5,
         ),
         'type' => 's',
         'weight' => 0,

@@ -16,7 +16,6 @@ dependencies[] = image
 dependencies[] = media
 dependencies[] = options
 dependencies[] = osha
-dependencies[] = osha_infographics
 dependencies[] = osha_publication
 dependencies[] = page_manager
 dependencies[] = strongarm

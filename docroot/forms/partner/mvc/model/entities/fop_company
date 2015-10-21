@@ -4,8 +4,7 @@
     "sections": {
         "ORGANISATION": "About your Organisation",
         "GENERAL_INFORMATION": "General Contact Information",
-        "CEO": "About your CEO",
-        "OSH": "Your OSH Representative"
+        "DESCRIPTION": "Description"
     }
   },
   "attributes": {
@@ -109,7 +108,7 @@
       "label": "What would you like to quote on the HWC site",
       "placeholder": "The quote by your CEO that will appear on the HWC website",
       "publicProfile": "publicProfile",
-      "section": "CEO",
+      "section": "DESCRIPTION",
       "type": "textarea",
       "validator": "not_null"
     },
@@ -136,32 +135,25 @@
     "company_osh_leads": "osh_leads"
   },
   "map_mf": {
+    "company_osh_orgname": "osh_name",
+    "company_osh_orgtype": "osh_orgtype",
     "company_osh_address": "osh_phaddress",
-    "company_osh_bussinessector": "osh_bussinessector",
-    "company_osh_ceo_firstname": "osh_ceo_firstname",
-    "company_osh_ceo_lastname": "osh_ceo_lastname",
     "company_osh_city": "osh_phtown",
-    "company_osh_conferenceactivity": "osh_conferenceactivity",
+    "company_osh_homepage": "osh_homepage",
     "company_osh_country": "osh_country",
-    "company_osh_organisationoshrepresentative_firstname": "osh_organisationoshrepresentative_firstname",
-    "company_osh_organisationoshrepresentative_lastname": "osh_organisationoshrepresentative_lastname",
-    "company_osh_emailrepresentative": "osh_emailaddressofoshrepresentative",
     "company_osh_mainemail": "osh_mainemail",
     "company_osh_mainphone": "telephone1",
-    "company_osh_phonerepresentative": "osh_telfnumberofoshrepresentative",
     "company_osh_yourmissionstatement": "osh_yourmissionstatement",
     "company_osh_zipcode": "osh_phcp",
-    "company_osh_orgname_ocp": "osh_companyorganisationname",
     "company_osh_osh_appform_osh_country": "osh_account_osh_country",
     "company_osh_othercountries": "osh_othercountries",
-    "company_osh_orgtype": "osh_orgtype",
     "company_osh_name": "osh_name",
     "company_osh_logoimage": "osh_logoimage",
     "company_osh_ceoimage": "osh_ceoimage",
     "company_osh_socialdialoguepartner": "osh_socialdialogpartner",
-    "company_osh_homepage": "osh_homepage",
-    "company_osh_dedicatedsite": "osh_dedicatedcampaignsite",
+    "company_osh_dedicatedsite": "osh_dedicatedsite",
     "company_osh_dedicatedcampaignsite": "osh_dedicatedcampaignsite",
+    "company_osh_description": "osh_description",
     "company_osh_facebookprofile": "osh_facebookprofile",
     "company_osh_twitterprofile": "osh_twitterprofile",
     "company_osh_youtubeprofile": "osh_youtubeprofile",

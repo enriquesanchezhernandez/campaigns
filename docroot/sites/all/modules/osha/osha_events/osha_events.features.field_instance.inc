@@ -420,7 +420,7 @@ function osha_events_field_default_field_instances() {
     'required' => 0,
     'settings' => array(
       'alt_field' => 0,
-      'default_image' => 489,
+      'default_image' => 2041,
       'entity_translation_sync' => 0,
       'file_directory' => 'speakers',
       'file_extensions' => 'png gif jpg jpeg',
@@ -1335,7 +1335,7 @@ function osha_events_field_default_field_instances() {
         'view_mode' => 'full',
       ),
       'type' => 'options_select',
-      'weight' => 22,
+      'weight' => 20,
     ),
     'workbench_access_field' => 0,
   );
@@ -2148,7 +2148,7 @@ function osha_events_field_default_field_instances() {
         'apply_chosen' => '',
       ),
       'type' => 'options_select',
-      'weight' => 21,
+      'weight' => 22,
     ),
     'workbench_access_field' => 0,
   );
@@ -2284,7 +2284,7 @@ function osha_events_field_default_field_instances() {
           'field_formatter_class' => '',
           'title_class' => '',
           'title_link' => '',
-          'title_style' => 'h1',
+          'title_style' => 'h2',
         ),
         'type' => 'title_linked',
         'weight' => 0,

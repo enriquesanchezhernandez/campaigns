@@ -1,4 +1,4 @@
-$(document).ready(function() {
+$(document).ready(function () {
     var buttonPressed;
 
     /**
@@ -19,6 +19,7 @@ $(document).ready(function() {
         var urlParamsArray = {
             route: getUrlVar("route"),
             ajax: true,
+            async: false,
             action: "validateAttribute",
             attribute: $(field).attr("id"),
             value: $(field).val()
@@ -49,36 +50,21 @@ $(document).ready(function() {
     }
 
     /**
-     * Confirms validations of Email
-     * @param field
-     */
-    function validateEmail(field) {
-        if ($("#contact_osh_mainemail").val() != $(field).val()) {
-            $("#contact_osh_mainemail").addClass("error");
-        } else {
-            $("#contact_osh_mainemail").removeClass("error");
-        }
-    }
-
-    /**
      * Check all sections to find validation errors
      */
     function checkSections() {
-        var ret = true;
+        var ret = false;
         $("#sidebar-top .section").each(function (id, item) {
             var elemId = $(item).attr("data-section");
-            if (!checkSingleSection(elemId)) {
-                $("." + elemId).addClass("sidebar-error");
-                ret = false;
-            } else {
-                $("." + elemId).removeClass("sidebar-error");
+            if ($("#" + elemId).length) {
+                if (!checkSingleSection(elemId)) {
+                    $("." + elemId).addClass("sidebar-error");
+                    ret = false;
+                } else {
+                    $("." + elemId).removeClass("sidebar-error");
+                }
             }
         });
-        if (ret) {
-            $(".main-form").removeClass("error-form");
-        } else {
-            $(".main-form").addClass("error-form");
-        }
     }
 
     /**
@@ -86,7 +72,7 @@ $(document).ready(function() {
      * @param section
      */
     function checkSingleSection(section) {
-        return !($(".main-form input[data-error='true'][data-section='" + section + "']").length);
+        return !($(".main-form *[data-error='true'][data-section='" + section + "']").length);
     }
 
     /**
@@ -107,13 +93,38 @@ $(document).ready(function() {
         }
     });
 
-    $("#contact_osh_confirm_mainemail").on({
-        change: function () {
-            validateEmail(this);
-        }, blur: function () {
-            validateEmail(this);
+    $("#contact_osh_mainemail").on({
+        blur: function () {
+            validateConfirmEmail(this);
         }
     });
+
+    $("#contact_osh_confirm_mainemail").on({
+        blur: function () {
+            validateConfirmEmail(this);
+        }
+    });
+
+    /**
+     * Validate confirmation email
+     */
+    function validateConfirmEmail() {
+        if ($("#contact_osh_mainemail").val() != $("#contact_osh_confirm_mainemail").val()) {
+            $("#contact_osh_mainemail").addClass("error");
+            $("#contact_osh_mainemail").attr("data-error", "true");
+            $("#contact_osh_confirm_mainemail").addClass("error");
+            $("#contact_osh_confirm_mainemail").attr("data-error", "true");
+            if (!$("#confirmemail_errormsg").length) {
+                $("#contact_osh_confirm_mainemail").parent().append('<div id="confirmemail_errormsg" class="error-msg">The email addresses must match</div>');
+            }
+        } else {
+            $("#contact_osh_mainemail").removeClass("error");
+            $("#contact_osh_mainemail").attr("data-error", "");
+            $("#contact_osh_confirm_mainemail").removeClass("error");
+            $("#contact_osh_confirm_mainemail").attr("data-error", "");
+            $("#confirmemail_errormsg").remove();
+        }
+    }
 
     /**
      * If there are errors, the form cannot be submitted
@@ -121,8 +132,10 @@ $(document).ready(function() {
     $(".main-form").on({
         submit: function (e) {
             if (buttonPressed == "next") {
+                validateConfirmEmail();
                 if ($(".main-form input[data-error='true']").length ||
-                    $(".main-form").hasClass("error-form")) {
+                    $(".main-form textarea[data-error='true']").length ||
+                    $(".main-form select[data-error='true']").length) {
                     alert("Error: Some fields contain errors");
                     e.preventDefault();
                     return false;
@@ -130,9 +143,16 @@ $(document).ready(function() {
                     alert("Error: You must fill all the required fields");
                     e.preventDefault();
                     return false;
-                } else if ($('#form form').hasClass("current") && $('#form form input:enabled').length) {
+                } else if ($('#form form').hasClass("current")
+                    && ($('#form form input[type=text]:enabled').length
+                    || $('#form form input[type=checkbox]:enabled').length
+                    || $('#form form input[type=radio]:enabled').length
+                    || $('#form form textarea:enabled').length
+                    || $('#form form select:enabled').length)) {
                     if (!confirm("There are fields unconfirmed. Do you want to continue?")) {
                         e.preventDefault();
+                    } else {
+                        $("#form form :input").prop("disabled", false);
                     }
                 }
             }
@@ -170,7 +190,7 @@ $(document).ready(function() {
     /**
      * Add repeated blocks of information
      */
-    $("#form").on("click", ".repeatable-button", function(e) {
+    $("#form").on("click", ".repeatable-button-add", function (e) {
         var clonedElementId = $(this).attr("data-element");
         var clonedElement = $("#" + clonedElementId).clone(true, true);
         var targetId = $(this).attr("data-target");
@@ -182,6 +202,8 @@ $(document).ready(function() {
                 $(item).attr("id", $(item).attr("id") + "_" + items);
                 $(item).attr("name", $(item).attr("name") + "_" + items);
             });
+            var buttonRemove = $(clonedElement).children().find(".repeatable-button-remove");
+            $(buttonRemove).attr("data-element", $(buttonRemove).attr("data-element") + "_" + items);
             $(clonedElement).attr("id", clonedElementId + "_" + items);
             $(targetElement).append(clonedElement);
         }
@@ -192,9 +214,29 @@ $(document).ready(function() {
     });
 
     /**
+     * Remove a repeated block of information
+     */
+    $("#form").on("click", ".repeatable-button-remove", function (e) {
+        var clonedElementId = $(this).attr("data-element");
+        var clonedElement = $("#" + clonedElementId).clone(true, true);
+        var targetId = $(this).attr("data-target");
+        var clonedFieldsetClass = $(clonedElement).attr("class");
+        var items = $("#" + targetId + " ." + clonedFieldsetClass).length;
+        if (items > 1) {
+            var containerId = "#" + $(this).attr("data-element");
+            $(containerId).remove();
+            items--;
+        }
+        if (items < 5 && $(".repeatable-button-add").is(":hidden")) {
+            $(".repeatable-button-add").show();
+        }
+        e.preventDefault();
+    });
+
+    /**
      * Validation widget
      */
-    $(".validation").click(function(e) {
+    $(".validation").click(function (e) {
         var dataSection = $(this).attr("data-section");
         if ($(this).hasClass("validation-pressed")) {
             $('#form form :input[data-section="' + dataSection + '"]').prop("disabled", false);
@@ -208,7 +250,7 @@ $(document).ready(function() {
     /**
      * Save action
      */
-    $("#save").click(function(e) {
+    $("#save").click(function (e) {
         buttonPressed = "save";
         var url = $("#form form").attr("action");
         var tmpRegex = new RegExp("(action=)[a-z]+", 'ig');
@@ -219,17 +261,23 @@ $(document).ready(function() {
     });
 
     /**
-     * Next action
+     * Save action
      */
-    $("#next").click(function(e) {
-        buttonPressed = "next";
+    $(".save_image").click(function (e) {
+        var targetElement = "." + $(this).attr("data-target");
+        var imageData = $(this).parent().find(".thumbBox").html();
+        $(targetElement).html(imageData);
+        e.preventDefault();
+        $.magnificPopup.close();
+        delete $.magnificPopup.instance.popupsCache[$(this).attr("data-cropperkey")];
+        $.magnificPopup.instance.popupsCache = {};
     });
 
     /**
-     * Enable all fields before submitting the form
+     * Next action
      */
-    $("#form form").submit(function(e) {
-        $("#form form :input").prop("disabled", false);
+    $("#next").click(function (e) {
+        buttonPressed = "next";
     });
 
     /**
@@ -258,4 +306,85 @@ $(document).ready(function() {
         });
     }
 
+    /**
+     * Show / Hide Disclaimer
+     */
+    $('#a_disclaimer').click(function () {
+        var div_class = $('#div_disclaimer_text');
+        if (div_class.hasClass('hidden')) {
+            div_class.removeClass('hidden');
+        } else {
+            div_class.addClass('hidden');
+        }
+    });
+
+    /**
+     * Save Data and Print
+     */
+    $('.action-print').click(function () {
+        if ($(".main-form form").length) {
+            var action = $(".main-form form").attr("action") + "&print=true";
+            $(".main-form form").attr("action", action);
+            if ($("#save").length) {
+                $("#save").trigger("click");
+            } else {
+                window.open($(this).attr("data-href"), 'popup');
+            }
+        } else {
+            window.open($(this).attr("data-href"), 'popup');
+        }
+    });
+    $('.action-pdf').click(function () {
+        if ($(".main-form form").length) {
+            var action = $(".main-form form").attr("action") + "&pdf=true";
+            $(".main-form form").attr("action", action);
+            if ($("#save").length) {
+                $("#save").trigger("click");
+            } else {
+                window.open($(this).attr("data-href"), 'popup');
+            }
+        } else {
+            window.open($(this).attr("data-href"), 'popup');
+        }
+    });
+
+    /**
+     * Main contact change functionality
+     */
+    $(".main-contact-change-checkbox").click(function () {
+        if ($(this).prop('checked')) {
+            var contactBackup = $(".main-contact-change").clone();
+            $(contactBackup).addClass("main-contact-change-backup");
+            $(".main-contact-change input").each(function (id, item) {
+                $(contactBackup).find("#" + $(item).attr("id")).val($(item).val());
+                $(item).val("");
+            });
+            $(contactBackup).appendTo(".main-contact-change");
+        } else {
+            $(".main-contact-change-backup input").each(function (id, item) {
+                $(".main-contact-change").find("#" + $(item).attr("id")).val($(item).val());
+            });
+            $(".main-contact-change").remove(".main-contact-change-backup");
+        }
+    });
+
+    /**
+     * Combined checkbox event
+     */
+    $(".combined-checkbox").click(function () {
+        var target = "#" + $(this).attr("data-target");
+        $(target).toggle();
+        if ($(target).is(":hidden")) {
+            $(target).val("");
+        }
+    });
+
+    /**
+     * Triggers the validations
+     */
+    $(".main-form .field").each(function (id, item) {
+        $(item).focus();
+        $(item).blur();
+    });
+    $(".main-form .field").first().focus();
 });

@@ -15,6 +15,21 @@
     "partner_type": "osh_leads",
     "status_code": "statuscode",
     "maintenance_mode": "mf",
-    "locked": "locked"
+    "locked": "locked",
+    "potential": "potential",
+    "graceperiod": "graceperiod"
+  },
+  "sections_validated": {
+    "ORGANISATION": true,
+    "GENERAL_INFORMATION": true,
+    "DESCRIPTION": true,
+    "CHIEF": true,
+    "CEO": true,
+    "OSH": true,
+    "BECOME": true,
+    "INVOLVEMENT": true,
+    "PLEDGE": true,
+    "PRIMARY_CONTACT": true,
+    "OTHER_USERS": true
   }
 }

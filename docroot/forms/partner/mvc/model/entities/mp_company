@@ -4,8 +4,7 @@
     "sections": {
         "ORGANISATION": "About your Organisation",
         "GENERAL_INFORMATION": "General Contact Information",
-        "CEO": "About your CEO",
-        "OSH": "Your OSH Representative"
+        "CHIEF": "Editor in Chief"
     }
   },
   "attributes": {
@@ -170,7 +169,7 @@
       "label": "Editor in chief",
       "placeholder": "Name of your editor in chief. ",
       "publicProfile": "publicProfile",
-      "section": "CEO",
+      "section": "CHIEF",
       "type": "text",
       "validator": "not_null"
     },
@@ -179,7 +178,7 @@
       "label": "Editor in chief",
       "placeholder": "Surname of your editor in chief. ",
       "publicProfile": "publicProfile",
-      "section": "CEO",
+      "section": "CHIEF",
       "type": "text",
       "validator": "not_null"
     },
@@ -229,8 +228,8 @@
   },
   "map": {
     "company_osh_address": "osh_address",
-    "company_osh_ceo_firtsname": "osh_ceo_firtsname",
-    "company_osh_ceo_lastname": "osh_ceo_lastname",
+    "company_osh_ceo_firstname": "osh_ceofirstname",
+    "company_osh_ceo_lastname": "osh_ceolastname",
     "company_osh_city": "osh_city",
     "company_osh_conferenceactivity": "osh_conferenceactivity",
     "company_osh_country": "osh_country",
@@ -250,17 +249,17 @@
     "company_osh_category": "osh_category",
     "company_osh_leads": "osh_leads",
     "company_osh_publicationonline": "osh_publicationonline",
-    "osh_publicationtv": "osh_publicationtv",
-    "osh_publicationother": "osh_publicationother",
-    "osh_publicationprint": "osh_publicationprint",
-    "osh_publicationnewsletter": "osh_publicationnewsletter",
-    "osh_publicationradio": "osh_publicationradio",
-    "osh_readershiposhcommunity": "osh_readershiposhcommunity",
-    "osh_readershipspecialist": "osh_readershipspecialist",
-    "osh_readershipsmes": "osh_readershipsmes",
-    "osh_readershipeuinstitutions": "osh_readershipeuinstitutions",
-    "osh_readershiptrade": "osh_readershiptrade",
-    "osh_readershipacademics": "osh_readershipacademics"
+    "company_osh_publicationtv": "osh_publicationtv",
+    "company_osh_publicationother": "osh_publicationother",
+    "company_osh_publicationprint": "osh_publicationprint",
+    "company_osh_publicationnewsletter": "osh_publicationnewsletter",
+    "company_osh_publicationradio": "osh_publicationradio",
+    "company_osh_readershiposhcommunity": "osh_readershiposhcommunity",
+    "company_osh_readershipspecialist": "osh_readershipspecialist",
+    "company_osh_readershipsmes": "osh_readershipsmes",
+    "company_osh_readershipeuinstitutions": "osh_readershipeuinstitutions",
+    "company_osh_readershiptrade": "osh_readershiptrade",
+    "company_osh_readershipacademics": "osh_readershipacademics"
   },
   "map_mf": {
     "company_osh_address": "osh_phaddress",
@@ -270,12 +269,8 @@
     "company_osh_city": "osh_phtown",
     "company_osh_conferenceactivity": "osh_conferenceactivity",
     "company_osh_country": "osh_country",
-    "company_osh_organisationoshrepresentative_firstname": "osh_organisationoshrepresentative_firstname",
-    "company_osh_organisationoshrepresentative_lastname": "osh_organisationoshrepresentative_lastname",
-    "company_osh_emailrepresentative": "osh_emailaddressofoshrepresentative",
     "company_osh_mainemail": "osh_mainemail",
     "company_osh_mainphone": "telephone1",
-    "company_osh_phonerepresentative": "osh_telfnumberofoshrepresentative",
     "company_osh_yourmissionstatement": "osh_yourmissionstatement",
     "company_osh_zipcode": "osh_phcp",
     "company_osh_orgname_ocp": "osh_companyorganisationname",
@@ -287,8 +282,6 @@
     "company_osh_ceoimage": "osh_ceoimage",
     "company_osh_socialdialoguepartner": "osh_socialdialogpartner",
     "company_osh_homepage": "osh_homepage",
-    "company_osh_dedicatedsite": "osh_dedicatedcampaignsite",
-    "company_osh_dedicatedcampaignsite": "osh_dedicatedcampaignsite",
     "company_osh_facebookprofile": "osh_facebookprofile",
     "company_osh_twitterprofile": "osh_twitterprofile",
     "company_osh_youtubeprofile": "osh_youtubeprofile",
@@ -297,16 +290,16 @@
     "company_osh_category": "osh_category",
     "company_osh_leads": "osh_leads",
     "company_osh_publicationonline": "osh_publicationonline",
-    "osh_publicationtv": "osh_publicationtv",
-    "osh_publicationother": "osh_publicationother",
-    "osh_publicationprint": "osh_publicationprint",
-    "osh_publicationnewsletter": "osh_publicationnewsletter",
-    "osh_publicationradio": "osh_publicationradio",
-    "osh_readershiposhcommunity": "osh_readershiposhcommunity",
-    "osh_readershipspecialist": "osh_readershipspecialist",
-    "osh_readershipsmes": "osh_readershipsmes",
-    "osh_readershipeuinstitutions": "osh_readershipeuinstitutions",
-    "osh_readershiptrade": "osh_readershiptrade",
-    "osh_readershipacademics": "osh_readershipacademics"
+    "company_osh_publicationtv": "osh_publicationtv",
+    "company_osh_publicationother": "osh_publicationother",
+    "company_osh_publicationprint": "osh_publicationprint",
+    "company_osh_publicationnewsletter": "osh_publicationnewsletter",
+    "company_osh_publicationradio": "osh_publicationradio",
+    "company_osh_readershiposhcommunity": "osh_readershiposhcommunity",
+    "company_osh_readershipspecialist": "osh_readershipspecialist",
+    "company_osh_readershipsmes": "osh_readershipsmes",
+    "company_osh_readershipeuinstitutions": "osh_readershipeuinstitutions",
+    "company_osh_readershiptrade": "osh_readershiptrade",
+    "company_osh_readershipacademics": "osh_readershipacademics"
   }
 }

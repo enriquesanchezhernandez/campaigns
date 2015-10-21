@@ -2,23 +2,23 @@
   "sections": {
     "title": "3. Contact information",
     "sections": {
-        "PRIMARY_CONTACT": "Your Primary Contact",
+        "PRIMARY_CONTACT": "Primary Contact",
         "OTHER_USERS": "Other users"
     }
   },
   "attributes": {
     "contact_osh_maincontactpersonfirstname": {
       "name": "contact_osh_maincontactpersonfirstname",
-      "label": "Your Primary Contact name",
+      "label": "Primary Contact name",
       "helpText": "Who will be the person responsible for handling the campaign cooperation?",
       "placeholder": "Please give us the name of the responsible person",
       "publicProfile": "publicProfile",
       "section": "PRIMARY_CONTACT",
       "type": "text"
     },
-    "contact_osh_maincontactpersonlasstname": {
+    "contact_osh_maincontactpersonlastname": {
       "name": "contact_osh_maincontactpersonlastname",
-      "label": "Your Primary Contact surname",
+      "label": "Primary Contact surname",
       "helpText": "Who will be the person responsible for handling the campaign cooperation?",
       "placeholder": "Please give us the surname of the responsible person",
       "publicProfile": "publicProfile",
@@ -49,27 +49,32 @@
     },
     "contact_osh_confirm_mainemail": {
       "name": "contact_osh_confirm_mainemail",
+      "label": "Confirm your email",
       "placeholder": "Re-confirm your email",
       "publicProfile": "publicProfile",
       "section": "PRIMARY_CONTACT",
       "type": "text",
       "validator": [
           "email",
-          "not_null"
+          "not_null",
+          "email_confirm"
        ]
      },
-    "contact_contact_osh_mainphone": {
+    "contact_osh_mainphone": {
       "name": "contact_osh_mainphone",
-      "label": "Primary contact's telephone number",
-      "helpText": "Primary contact's telephone number",
-      "placeholder": "Primary contact's phone number including country code",
+      "label": "Telephone number",
+      "placeholder": "Telephone number",
       "section": "PRIMARY_CONTACT",
       "type": "text"
     },
     "contact_osh_captcha": {
       "name": "contact_osh_captcha",
       "section": "PRIMARY_CONTACT",
-      "type": "captcha"
+      "type": "captcha",
+      "validator": [
+         "not_null",
+         "captcha"
+      ]
     },
     "contact_osh_otherusername1": {
       "name": "contact_osh_otherusername1",
@@ -144,16 +149,22 @@
     "contact_osh_leads": {
       "name": "contact_osh_leads",
       "type": "text"
+    },
+    "contact_osh_maincontactchange": {
+      "name": "contact_osh_maincontactchange",
+      "label": "Contact change",
+      "type": "contact_change"
     }
   },
   "map": {
-    "contact_osh_maincontactpersonfirstname": "osh_maincontactpersonfirstname",
-    "contact_osh_maincontactpersonlastname": "osh_maincontactpersonlastname",
+    "contact_osh_maincontactpersonfirstname": "osh_firstname",
+    "contact_osh_maincontactpersonlastname": "osh_lastname",
     "contact_osh_positionmaincontactperson": "osh_positionmaincontactperson",
     "contact_osh_mainemail": "osh_mainemail",
     "contact_osh_mainphone": "osh_mainphone",
     "contact_osh_category": "osh_category",
-    "contact_osh_leads": "osh_leads"
+    "contact_osh_leads": "osh_leads",
+    "contact_osh_maincontactchange": "osh_maincontactchange"
   },
   "map_mf": {
     "contact_osh_maincontactpersonfirstname": "osh_firstname",

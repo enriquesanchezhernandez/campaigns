@@ -334,7 +334,7 @@ ul.tabs--primary.nav.nav-tabs{
 		}
 		.view-news .views-row{
 			height: auto;
-			min-height: auto;
+			min-height: inherit;
 			padding-top: 0;
 		}
 		.a2a_kit.a2a_target.addtoany_list{
@@ -377,7 +377,6 @@ ul.tabs--primary.nav.nav-tabs{
 			cursor: auto;
 			margin: 0;
 			padding: 0;
-			width: 1139px;
 			width: 100% !important;
 			height: 356px !important;
 			> div{ /* .views-field.views-field-field-image */
@@ -852,7 +851,7 @@ ul.tabs--primary.nav.nav-tabs{
 	.field-name-field-country-code{
 		&:before{
 			content:"";
-			padding-left: px;
+			padding-left: 0px;
 		}
 		&:after{
 			content:"";
@@ -860,7 +859,7 @@ ul.tabs--primary.nav.nav-tabs{
 	}
 	.form-item-relevant-for{
 		border-top: 1px dotted @color3;
-		margin-top: 0em;
+		margin-top: 0;
 		padding-top: 1em;
 	}
 	.form-item-languages{
@@ -5035,7 +5034,15 @@ article{
 				}
 			}
 		}
-		.node-youtube {
+        .node-internal-url{
+          .field.field-name-field-image{
+            margin-bottom: 0;
+            img {
+              width: 150px !important;
+            }
+          }
+        }
+       .node-youtube {
 			clear: both;
 			.field.field-type-youtube{
 				a:before{

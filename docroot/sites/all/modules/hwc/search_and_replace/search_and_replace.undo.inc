@@ -7,9 +7,6 @@ function search_and_replace_undo_page($node = NULL) {
   if (!empty($node)) {
     $query->condition('sr.nid', $node->nid);
   }
-  else {
-    $query->condition('sr.nid', NULL);
-  }
   $results = $query->extend('PagerDefault')
     ->limit(25)
     ->orderBy('sr.id', 'desc')
@@ -21,8 +18,8 @@ function search_and_replace_undo_page($node = NULL) {
   while ($row = $results->fetchAssoc()) {
     $author = user_load($row['uid']);
     $table_rows[$row['id']] = array(
-      $row['search'],
-      $row['replaced'],
+      check_plain($row['search']),
+      check_plain($row['replaced']),
       _search_and_replace_settings_to_text((array) json_decode($row['options'])),
       $author->name,
       date('d-m-Y H:i', $row['created']),

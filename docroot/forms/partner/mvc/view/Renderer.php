@@ -87,8 +87,8 @@ class Renderer {
     private function renderHtmlHeader($dwoo, $printable = false) {
         $params = Parameters::getInstance();
         $content = array(
-            'css' => File::browseDirectory($this->cssPath, '.css', $this->cssUrl),
             'js' => File::browseDirectory($this->jsPath, '.js', $this->jsUrl),
+            'css' => File::browseDirectory($this->cssPath, '.css', $this->cssUrl),
             'nonce' => $params->get('nonce'),
         );
         if (!$printable) {

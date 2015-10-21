@@ -12,6 +12,10 @@ class MaintenanceForm extends Controller implements IController, IForm {
      */
     public function __construct($directOutput = true) {
         $this->directOutput = $directOutput;
+        $params = Parameters::getInstance();
+        $this->model = new Model(strtolower($params->getUrlParamValue('entity')));
+        $params = Parameters::getInstance();
+        $params->set('actionType', 'submit');
     }
 
     /**
@@ -55,7 +59,8 @@ class MaintenanceForm extends Controller implements IController, IForm {
         $content = '';
         $renderer = new Renderer('', false);
         foreach ($entities as $entity) {
-            $this->model = new Model($this->getEntityName($entity));
+            $this->model = new Model(strtolower($params->getUrlParamValue('entity') . '_' . ucfirst($entity)));
+            $params->set('route', $entity);
             $this->load();
             // Build the form
             $renderer->setView($this->getEntityName($entity));
@@ -65,6 +70,7 @@ class MaintenanceForm extends Controller implements IController, IForm {
                 'title' => $params->get('title'),
                 'attributes' => $this->transformAttributes(),
                 'session_id' => $params->getUrlParamValue('session_id'),
+                'locked' => $params->getUrlParamValue('locked'),
                 'mf' => true,
                 'disabled' => '',
             );
@@ -78,12 +84,16 @@ class MaintenanceForm extends Controller implements IController, IForm {
         $contentArray = array(
             'appurl' => APP_URL . '?route=' . $params->get('route'),
             'title' => $params->get('title'),
+            'nonce' => $params->get('nonce'),
             'sidebar' => $sidebarContent,
             'content' => $content,
             'session_id' => $params->getUrlParamValue('session_id'),
             'mf' => true,
             'printable' => $this->isPrintable(),
+            'show_print_version' => $params->get('print'),
+            'show_pdf_version' => $params->get('pdf'),
             'submit_text' => 'Submit',
+            'actionType' => $params->get('actionType'),
             'disabled' => '',
         );
         // PDF version
@@ -102,9 +112,88 @@ class MaintenanceForm extends Controller implements IController, IForm {
     }
 
     /**
-     * Send action
+     * Function validateAttribute
+     *
+     * @return bool
      */
-    public function send() {
+    protected function validateAttribute() {
+        $params = Parameters::getInstance();
+        if ($bundleData = File::read(APP_ROOT . $params->get('bundlesPath') . $params->get('defaultBundle'))) {
+            if ($bundle = json_decode($bundleData, true)) {
+                $entities = (isset($bundle['entities'])) ? $bundle['entities'] : false;
+                if ($entities) {
+                    $model = new Model('');
+                    foreach ($entities as $entity) {
+                        $entity = strtolower($params->getUrlParamValue('entity') . '_' . ucfirst($entity));
+                        $model->setEntity($entity);
+                        $model->load();
+                        $attribute = $params->get('attribute');
+                        $value     = $params->get('value');
+                        $model->set($attribute, $value);
+                        $ret = $model->validate($attribute);
+                        if ($params->get('ajax')) {
+                            $messageBus = MessageBus::getInstance();
+                            $response   = array(
+                                'status'  => $ret,
+                                'id'      => $attribute,
+                                'message' => $messageBus->getMessage($attribute),
+                            );
+                            print json_encode($response);
+                            die;
+                        } else {
+                            return $ret;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    /**
+     * Save action
+     */
+    public function save() {
+        $params = Parameters::getInstance();
+        if ($bundleData = File::read(APP_ROOT . $params->get('bundlesPath') . $params->get('defaultBundle'))) {
+            if ($bundle = json_decode($bundleData, true)) {
+                $entities = (isset($bundle['entities'])) ? $bundle['entities'] : false;
+                if ($entities) {
+                    $model = new Model('');
+                    foreach ($entities as $entity) {
+                        $entity = strtolower($params->getUrlParamValue('entity') . '_' . ucfirst($entity));
+                        $model->setEntity($entity);
+                        $model->load();
+                        $attributes = $model->getAttributes();
+                        foreach ($attributes as $attribute) {
+                            $name = $attribute->getName();
+                            if ($value = $params->get($name)) {
+                                if ($attribute->getType() == Attribute::TYPE_DROPDOWN ||
+                                    $attribute->getType() == Attribute::TYPE_DROPDOWN_MULTIPLE) {
+                                    $attribute->setSelectedValues($value);
+                                } else {
+                                    $attribute->setValue($value);
+                                }
+                                $model->setWholeAttribute($attribute);
+                            }
+                        }
+                        $model->saveSession();
+                    }
+                    // Perform the send to CDB
+                    if (! $params->get('print') && ! $params->get('pdf')) {
+                        $this->send(true, true);
+                    }
+                }
+            }
+        }
+    }
+
+    /**
+     * Send action
+     *
+     * @param string $type
+     */
+/*
+    public function send($type = 'submit') {
         $this->model = new Model('');
         $params = Parameters::getInstance();
         if ($bundleData = File::read(APP_ROOT . $params->get('bundlesPath') . $params->get('defaultBundle'))) {
@@ -124,7 +213,7 @@ class MaintenanceForm extends Controller implements IController, IForm {
                         }
                     }
                     array_filter($mapping);
-                    $paramRequest = $this->getBuiltURL($mapping);
+                    $paramRequest = $this->getBuiltURL($mapping, $type);
                     $this->model->saveToCDB($paramRequest);
                 }
             }
@@ -134,4 +223,5 @@ class MaintenanceForm extends Controller implements IController, IForm {
         header('Location: ' . APP_URL . '?route=' . $nextRoute);
         exit;
     }
+*/
 }

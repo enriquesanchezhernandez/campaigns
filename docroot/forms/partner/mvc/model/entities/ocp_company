@@ -4,8 +4,8 @@
     "sections": {
         "ORGANISATION": "About your Organisation",
         "GENERAL_INFORMATION": "General Contact Information",
-        "CEO": "About your CEO",
-        "OSH": "Your OSH Representative"
+        "CEO": "Information About your CEO",
+        "OSH": "Your organisation’s health and safety representative"
     }
   },
   "attributes": {
@@ -28,7 +28,7 @@
     },
     "company_osh_orgtype": {
       "name": "company_osh_orgtype",
-      "label": "Organisation Type",
+      "label": "Organization type",
       "helpText": "Please note that your organisation should be an international or European organisation with representation and/or network of members in several EU Member States.",
       "publicProfile": "publicProfile",
       "section": "ORGANISATION",
@@ -68,55 +68,59 @@
       "placeholder": "Please upload your company logo in .png or .jpg file format. The file size must not exceed than 1MB",
       "publicProfile": "publicProfile",
       "section": "ORGANISATION",
-      "type": "image",
-      "validator": [
-        "image",
-        "not_null"
-      ]
+      "type": "image"
     },
-    "company_osh_address": {
-      "name": "company_osh_address",
-      "label": "Address",
-      "placeholder": "Address field 1",
+    "company_osh_othercountries": {
+      "name": "company_osh_othercountries",
+      "label": "Other Countries",
+      "helpText" : "If your organisation is active in other countries that are note displayed in the list please indicate them in the following field.",
       "publicProfile": "publicProfile",
-      "section": "GENERAL_INFORMATION",
+      "section": "ORGANISATION",
       "type": "text"
     },
+    "company_osh_address": {
+        "name": "company_osh_address",
+        "label": "Address",
+        "placeholder": "Address field 1",
+        "publicProfile": "publicProfile",
+        "section": "GENERAL_INFORMATION",
+        "type": "text"
+    },
     "company_osh_city": {
-      "name": "company_osh_city",
-      "label": "City",
-      "publicProfile": "publicProfile",
-      "section": "GENERAL_INFORMATION",
-      "type": "text",
-      "validator": "not_null"
+        "name": "company_osh_city",
+        "label": "City",
+        "publicProfile": "publicProfile",
+        "section": "GENERAL_INFORMATION",
+        "type": "text",
+        "validator": "not_null"
     },
     "company_osh_zipcode": {
-      "name": "company_osh_zipcode",
-      "label": "Zip Code",
-      "placeholder": "Zip Code",
-      "publicProfile": "publicProfile",
-      "section": "GENERAL_INFORMATION",
-      "type": "text",
-      "validator": "not_null"
+        "name": "company_osh_zipcode",
+        "label": "Zip Code",
+        "placeholder": "Zip Code",
+        "publicProfile": "publicProfile",
+        "section": "GENERAL_INFORMATION",
+        "type": "text",
+        "validator": "not_null"
     },
     "company_osh_country": {
-      "name": "company_osh_country",
-      "label": "Country",
-      "publicProfile": "publicProfile",
-      "section": "GENERAL_INFORMATION",
-      "type": "dropdown"
+        "name": "company_osh_country",
+        "label": "Country",
+        "publicProfile": "publicProfile",
+        "section": "GENERAL_INFORMATION",
+        "type": "dropdown"
     },
     "company_osh_generalemail": {
-      "name": "company_osh_generalemail",
-      "label": "General Email Address",
-      "placeholder": "General Email Address",
-      "publicProfile": "publicProfile",
-      "section": "GENERAL_INFORMATION",
-      "type": "text",
-      "validator": [
-        "email",
-        "not_null"
-      ]
+        "name": "company_osh_generalemail",
+        "label": "General Email Address",
+        "placeholder": "General Email Address",
+        "publicProfile": "publicProfile",
+        "section": "GENERAL_INFORMATION",
+        "type": "text",
+        "validator": [
+            "email",
+            "not_null"
+            ]
     },
     "company_osh_generalphone": {
       "name": "company_osh_generalphone",
@@ -175,11 +179,7 @@
       "label": "Photo of your CEO, President, General Director or other.",
       "publicProfile": "publicProfile",
       "section": "CEO",
-      "type": "image",
-      "validator": [
-        "image",
-        "not_null"
-      ]
+      "type": "image"
     },
     "company_osh_positionid": {
       "name": "company_osh_positionid",
@@ -199,17 +199,17 @@
       "type": "textarea",
       "validator": "not_null"
     },
-    "company_osh_organisationoshrepresentative_firstname": {
-      "name": "company_osh_organisationoshrepresentative_firstname",
-      "label": "Your OSH representative",
+    "company_osh_representativeoshfirstname": {
+      "name": "company_osh_representativeoshfirstname",
+      "label": "Name",
       "placeholder": "What is the name of your OSH representative?",
       "publicProfile": "publicProfile",
       "section": "OSH",
       "type": "text"
     },
-    "company_osh_organisationoshrepresentative_lastname": {
-      "name": "company_osh_organisationoshrepresentative_lastname",
-      "label": "Your OSH representative",
+    "company_osh_representativeoshlastname": {
+      "name": "company_osh_representativeoshlastname",
+      "label": "Surname",
       "placeholder": "What is the surname of your OSH representative?",
       "publicProfile": "publicProfile",
       "section": "OSH",
@@ -282,8 +282,8 @@
     "company_osh_city": "osh_city",
     "company_osh_conferenceactivity": "osh_conferenceactivity",
     "company_osh_country": "osh_country",
-    "company_osh_organisationoshrepresentative_firstname": "osh_organisationoshrepresentative_firstname",
-    "company_osh_organisationoshrepresentative_lastname": "osh_organisationoshrepresentative_lastname",
+    "company_osh_representativeoshfirstname": "osh_representativeoshfirstname",
+    "company_osh_representativeoshlastname": "osh_representativeoshlastname",
     "company_osh_emailrepresentative": "osh_emailrepresentative",
     "company_osh_generalemail":"osh_generalemail",
     "company_osh_generalphone":"osh_generalphone",
@@ -291,7 +291,7 @@
     "company_osh_yourmissionstatement": "osh_yourmissionstatement",
     "company_osh_zipcode": "osh_zipcode",
     "company_osh_orgname_ocp": "osh_orgname",
-    "company_osh_osh_appform_osh_country": "osh_country",
+    "company_osh_osh_appform_osh_country": "returnPaises",
     "company_osh_othercountries": "osh_othercountries",
     "company_osh_orgtype": "osh_orgtype",
     "company_osh_name": "osh_name",
@@ -299,8 +299,7 @@
     "company_osh_ceoimage": "osh_ceoimage",
     "company_osh_socialdialoguepartner": "osh_socialdialoguepartner",
     "company_osh_homepage": "osh_homepage",
-    "company_osh_dedicatedsite": "osh_dedicatedsite",
-    "company_osh_dedicatedcampaignsite": "osh_dedicatedcampaignsite",
+    "company_osh_dedicatedcampaignsite": "osh_dedicatedsite",
     "company_osh_facebookprofile": "osh_facebookprofile",
     "company_osh_twitterprofile": "osh_twitterprofile",
     "company_osh_youtubeprofile": "osh_youtubeprofile",
@@ -314,19 +313,19 @@
   "map_mf": {
     "company_osh_address": "osh_phaddress",
     "company_osh_bussinessector": "osh_bussinessector",
-    "company_osh_ceo_firstname": "osh_ceo_firstname",
-    "company_osh_ceo_lastname": "osh_ceo_lastname",
+    "company_osh_ceo_firstname": "osh_firstname",
+    "company_osh_ceo_lastname": "osh_lastname",
     "company_osh_city": "osh_phtown",
     "company_osh_conferenceactivity": "osh_conferenceactivity",
     "company_osh_country": "osh_country",
-    "company_osh_organisationoshrepresentative_firstname": "osh_organisationoshrepresentative_firstname",
-    "company_osh_organisationoshrepresentative_lastname": "osh_organisationoshrepresentative_lastname",
+    "company_osh_representativeoshfirstname": "osh_firstname",
+    "company_osh_representativeoshlastname": "osh_lastname",
     "company_osh_emailrepresentative": "osh_emailaddressofoshrepresentative",
     "company_osh_phonerepresentative": "osh_telfnumberofoshrepresentative",
     "company_osh_yourmissionstatement": "osh_yourmissionstatement",
     "company_osh_zipcode": "osh_phcp",
     "company_osh_orgname_ocp": "osh_companyorganisationname",
-    "company_osh_osh_appform_osh_country": "osh_account_osh_country",
+    "company_osh_osh_appform_osh_country": "returnPaises",
     "company_osh_othercountries": "osh_othercountries",
     "company_osh_orgtype": "osh_orgtype",
     "company_osh_name": "osh_name",
@@ -334,7 +333,6 @@
     "company_osh_ceoimage": "osh_ceoimage",
     "company_osh_socialdialoguepartner": "osh_socialdialogpartner",
     "company_osh_homepage": "osh_homepage",
-    "company_osh_dedicatedsite": "osh_dedicatedcampaignsite",
     "company_osh_dedicatedcampaignsite": "osh_dedicatedcampaignsite",
     "company_osh_facebookprofile": "osh_facebookprofile",
     "company_osh_twitterprofile": "osh_twitterprofile",
@@ -343,6 +341,7 @@
     "company_osh_slideshareprofile": "osh_slideshareprofile",
     "company_osh_category": "osh_category",
     "company_osh_leads": "osh_leads",
-    "company_osh_quoteonhwc": "osh_quoteonhwc"
+    "company_osh_quoteonhwc": "osh_quoteonhwc",
+    "company_osh_positionid": "osh_positionid"
   }
 }

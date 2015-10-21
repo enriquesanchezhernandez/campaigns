@@ -367,10 +367,7 @@ function osha_publication_menu_case_studies_search_native($form_state) {
 
 function osha_publication_menu_publications_get_query() {
   $server = search_api_server_load('solr_server');
-  $indexes = osha_search_default_search_api_index();
-  reset($indexes);
-  $index = search_api_index_load(key($indexes));
-  // dpm($index->getFields());
+  $index = search_api_index_load(SOLR_SEARCH_INDEX);
   $query = new SearchApiQuery($index);
   $query->fields(array()); // Avoid PHP notice
   $solr = new SearchApiSolrService($server);

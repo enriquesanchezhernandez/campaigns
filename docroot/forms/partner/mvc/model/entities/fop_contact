@@ -2,8 +2,7 @@
   "sections": {
     "title": "3. Contact information",
     "sections": {
-        "PRIMARY_CONTACT": "Your Primary Contact",
-        "OTHER_USERS": "Other users"
+        "PRIMARY_CONTACT": "Your Primary Contact"
     }
   },
   "attributes": {
@@ -47,6 +46,19 @@
         "not_null"
       ]
     },
+    "contact_osh_confirm_mainemail": {
+      "name": "contact_osh_confirm_mainemail",
+      "label": "Confirm your email",
+      "placeholder": "Re-confirm your email",
+      "publicProfile": "publicProfile",
+      "section": "PRIMARY_CONTACT",
+      "type": "text",
+      "validator": [
+          "email",
+          "not_null",
+          "email_confirm"
+       ]
+     },
     "contact_osh_mainphone": {
       "name": "contact_osh_mainphone",
       "label": "Primary contact's telephone number",
@@ -62,16 +74,22 @@
     "contact_osh_leads": {
       "name": "contact_osh_leads",
       "type": "text"
+    },
+    "contact_osh_maincontactchange": {
+      "name": "contact_osh_maincontactchange",
+      "label": "Contact change",
+      "type": "contact_change"
     }
   },
   "map": {
     "contact_osh_maincontactpersonfirstname": "osh_maincontactpersonfirstname",
-    "contact_osh_maincontactpersonlasstname": "osh_maincontactpersonlasstname",
+    "contact_osh_maincontactpersonlastname": "osh_maincontactpersonlastname",
     "contact_osh_positionmaincontactperson": "osh_positionmaincontactperson",
     "contact_osh_mainphone": "osh_mainphone",
     "contact_osh_mainemail": "osh_mainemail",
     "contact_osh_category": "osh_category",
-    "contact_osh_leads": "osh_leads"
+    "contact_osh_leads": "osh_leads",
+    "contact_osh_maincontactchange": "osh_maincontactchange"
   },
   "map_mf": {
     "contact_osh_maincontactpersonfirstname": "osh_firstname",

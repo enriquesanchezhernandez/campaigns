@@ -74,6 +74,14 @@ function hwc_partner_block_info() {
     'cache' => DRUPAL_CACHE_PER_USER,
     'weight' => 50,
   );
+  $blocks['hwc_partner_user_account_edit'] = array(
+    'info' => t('User account edit link'),
+    'status' => 1,
+    'region' => 'content',
+    'visibility' => BLOCK_VISIBILITY_LISTED,
+    'cache' => DRUPAL_CACHE_PER_USER,
+    'weight' => 60,
+  );
   return $blocks;
 }
 
@@ -179,6 +187,8 @@ function hwc_partner_block_view($delta = '') {
             'hwc_partner_private_link_title' => l(t(variable_get('hwc_partner_private_link_' . $it . '_title')), $url, $url_options),
             'hwc_partner_private_link_description' => t(variable_get('hwc_partner_private_link_' . $it . '_description')),
             'hwc_partner_private_link_link_text' => l(t(variable_get('hwc_partner_private_link_' . $it . '_link_text')), $url),
+            'node' => $node,
+            'delta' => $delta,
           )
         );
       }
@@ -189,9 +199,19 @@ function hwc_partner_block_view($delta = '') {
     $block['title'] = '<none>';
     $block['content'] = '<h1>' . t('My public profile') . '</h1>';
   }
+  else if ($delta == 'hwc_partner_user_account_edit') {
+    global $user;
+    // Did this to use it in panels.
+    $block['title'] = '<none>';
+    $block['content'] = l(t('Change password'), 'user/' . $user->uid . '/edit');
+  }
   else if ($delta == 'hwc_partner_back_to_profile') {
     global $user;
     $link = NULL;
+    // Sometimes the $user->workbench_access is empty, force a load of WBA data.
+    if (empty($user->workbench_access)) {
+      workbench_access_user_load_data($user);
+    }
     if (in_array(ROLE_CAMPAIGN_PARTNER, $user->roles) && !empty($user->workbench_access)) {
       $sections = array_keys($user->workbench_access);
       foreach($sections as $id_section) {
@@ -220,6 +240,8 @@ function hwc_partner_theme() {
         'hwc_partner_private_link_title' => NULL,
         'hwc_partner_private_link_description' => NULL,
         'hwc_partner_private_link_url' => NULL,
+        'node' => NULL,
+        'delta' => NULL,
       ),
       'path' => $path . '/templates',
     );

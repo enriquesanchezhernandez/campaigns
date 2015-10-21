@@ -20,6 +20,7 @@ features[fe_block_settings][] = views-view_campaign_materials-block
 features[features_api][] = api:2
 features[field_base][] = field_campaign_material_type
 features[field_instance][] = node-campaign_materials-body
+features[field_instance][] = node-campaign_materials-field_activity
 features[field_instance][] = node-campaign_materials-field_aditional_resources
 features[field_instance][] = node-campaign_materials-field_campaign_material_type
 features[field_instance][] = node-campaign_materials-field_character_count

@@ -10,8 +10,8 @@ if [ ${ecode} != 0 ]; then
   exit ${ecode};
 fi
 
-pre_update=  post_update=
-while getopts b:a:f: opt; do
+pre_update=  post_update= files=
+while getopts b:a:f opt; do
   case $opt in
   b)
       pre_update=$OPTARG

@@ -1,6 +1,10 @@
 {if $image}
 <div><strong>{if !empty($fieldLabel)}{$fieldLabel}{/if}:</strong></div>
-<div class="image-printable"><img src="{$fieldValue}"/></div>
+{if !empty($fieldValue.content)}
+<div class="image-printable"><img src="data:{$fieldValue.mime};base64,{$fieldValue.content}"/></div>
+{else}
+<div>No image available</div>
+{/if}
 {else}
     {if is_array($fieldValue)}
         {foreach from=$fieldValue key=id item=value}

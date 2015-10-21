@@ -10,9 +10,8 @@ class PartnerMigration extends HwcCrmMigration {
    * {@inheritdoc}
    */
   public function __construct($arguments) {
-    $source_file = PartnerMigrateListXml::getSourceFile($arguments);
     $this->source = new MigrateSourceList(
-      new PartnerMigrateListXml($source_file),
+      new PartnerMigrateListXml(),
       new PartnerContentItemXML(),
       $this->exposedFields()
     );
@@ -66,10 +65,16 @@ class PartnerMigration extends HwcCrmMigration {
 
 class PartnerMigrateListXml extends AbstractCrmMigrateListXml {
 
+  public function __construct() {
+    $file = variable_get('hwc_crm_data_dir', '') . '/PublicProfile.xml';
+    parent::__construct($file);
+  }
+
   protected function parseSourceFile() {
     self::$data = array();
     if (!is_readable($this->file)) {
-      return;
+      watchdog('hwc_crm_migration', 'Cannot find migration files: @file', array('@file' => $this->file), WATCHDOG_WARNING);
+      throw new MigrateException(strtr('Cannot find migration files: @file', array('@file' => $this->file)));
     }
     if ($xml = simplexml_load_file($this->file, 'SimpleXMLElement', LIBXML_COMPACT | LIBXML_PARSEHUGE)) {
       // Contact fields are attributes of Detail.
@@ -78,15 +83,27 @@ class PartnerMigrateListXml extends AbstractCrmMigrateListXml {
         $attributes = $item->attributes();
         $data->title = (string) $attributes['Textbox1'];
         $data->title_field = (string) $attributes['Textbox1'];
-
         $data->field_guid_organisation = (string) $attributes['Table0_Details1'];
-        $term = osha_workflow_get_section_term_by_crm_guid($data->field_guid_organisation);
-        if (!empty($term->tid)) {
+        /** @var stdClass $term */
+        if ($term = osha_workflow_get_partner_section_by_guid($data->field_guid_organisation)) {
           $data->workbench_access[$term->tid] = $term->tid;
         }
         else {
-          watchdog('hwc_crm_migration', 'Could not find the section guid @guid for organisation @organisation',
-            array('@guid' => $data->field_guid_organisation, '@organisation' => $data->title), WATCHDOG_WARNING);
+          watchdog('hwc_crm_migration', 'Creating new section with GUID: @guid for partner \'@partner\'',
+            array(
+              '@guid' => $data->field_guid_organisation,
+              '@partner' => $data->title
+            ), WATCHDOG_INFO);
+          if ($term = osha_workflow_create_section($data->title, $data->field_guid_organisation)) {
+            $data->workbench_access[$term->tid] = $term->tid;
+          }
+          else {
+            watchdog('hwc_crm_migration', 'Unable to create new section with GUID: !guid for partner \'!partner\'',
+              array(
+                '@guid' => $data->field_guid_organisation,
+                '!organisation' => $data->title
+              ), WATCHDOG_ERROR);
+          }
         }
 
         $data->field_general_email = (string) $attributes['Textbox2'];
@@ -131,13 +148,16 @@ class PartnerMigrateListXml extends AbstractCrmMigrateListXml {
 
         // Try to assign a valid partner type term
         $partner_type = (string) $attributes['Textbox28'];
-        $term = taxonomy_get_term_by_name($partner_type);
+        $term = taxonomy_get_term_by_name($partner_type, 'partner_types');
         if (!empty($term)) {
           $data->field_partner_type = (string) $attributes['Textbox28'];
         }
         else {
           watchdog('hwc_crm_migration', 'Could not find the partner type @type in the vocabulary for organisation @organisation',
-            array('@type' => $partner_type, '@organisation' => $data->title), WATCHDOG_WARNING);
+            array(
+              '@type' => $partner_type,
+              '@organisation' => $data->title
+            ), WATCHDOG_WARNING);
         }
 
         $data->field_social_dialog_partner = (string) $attributes['Textbox29'];

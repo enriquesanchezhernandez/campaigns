@@ -438,7 +438,8 @@ function _osha_newsletter_latest_block_content(){
     for($i=0; $i<sizeof($collections); $i++){
       if ($newsletters_no - $count_newsletters > 0) {
         $item = $collections[$i];
-        $items[$item->name]['title'] = $item->title;
+        $sent_date = $item->field_newsletter_sent[LANGUAGE_NONE][0]['value'];
+        $items[$item->name]['title'] = empty($sent_date)? $item->title : $item->title.' - '.format_date(strtotime($sent_date), 'custom', 'F Y');
         $items[$item->name]['url'] = 'entity-collection/'.$item->eid;
 
         // retrive elements from collection if needed
@@ -583,17 +584,28 @@ function osha_newsletter_block_subscribe_form($form, &$form_state) {
   $form['email'] = array(
     '#type' => 'textfield',
     '#size' => 30,
+    '#title' => t('You cand sign up below:'),
     '#attributes' => array('placeholder' => t('E-mail address')),
   );
   $link_label = t(variable_get('subscribe_block_details_link_label', 'Privacy notice'));
   $link_url = variable_get('subscribe_block_details_link_url', OSHA_PRIVACY_PAGE_URL);
   $form['details_link'] = array(
-    '#markup' => '<a class="privacy-policy-oshmail" href='.url($link_url).'>'.$link_label.'</a><br/>',
+    '#markup' => '<a class="privacy-policy-oshmail" href='.url($link_url).'>'.$link_label.'</a>',
   );
   $form['submit'] = array(
     '#type' => 'submit',
     '#value' => t('Subscribe')
   );
+
+  $form['unsubscribe_text'] = array(
+      '#markup' => '<hr><span>'.t('Not interested anymore?').'</span>',
+  );
+  $form['unsubscribe'] = array(
+      '#type' => 'submit',
+      '#value' => t('Unsubscribe'),
+      '#submit' => array('osha_newsletter_unsubscribe_form_submit')
+  );
+
   $form['#validate'] = array('osha_newsletter_block_subscribe_captcha_form_validate');
   $form['#submit'] = array('osha_newsletter_block_subscribe_captcha_form_submit');
 
@@ -861,6 +873,11 @@ function osha_newsletter_form_alter(&$form, &$form_state, $form_id) {
           $form['#attached']['js'][] = drupal_get_path('module', 'osha_newsletter') . '/includes/js/collection_form.js';
         }
       }
+      break;
+
+    case  'osha_newsletter_subscribe_extra_form':
+    case  'osha_newsletter_block_subscribe_form':
+      $form['#attributes']['class'][] = 'container';
       break;
 
     case 'search_block_form':

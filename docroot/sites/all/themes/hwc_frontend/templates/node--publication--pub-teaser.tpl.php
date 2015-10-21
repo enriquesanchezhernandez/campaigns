@@ -16,8 +16,9 @@
 $content = $variables['content'];
 $node = $variables['node'];
 global $language;
+print render($content['field_publication_date']);
 foreach($content as $field_name => $field) {
-  if ($field_name != 'field_file') {
+  if (!in_array($field_name, array('field_file', 'field_publication_date'))) {
     print render($field);
   }
 }

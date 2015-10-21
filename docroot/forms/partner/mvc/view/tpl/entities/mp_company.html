@@ -1,7 +1,7 @@
 <fieldset>
     <legend id="ORGANISATION">
         About your organisation
-        <div data-section="ORGANISATION" class="validation"></div>
+        <div data-section="ORGANISATION" class="validation{$locked}"></div>
     </legend>
     <div class="float-left">
         {$attributes.company_osh_orgname}
@@ -9,7 +9,7 @@
     </div>
     <div>
         <div class="float-left div-checkbox">
-            <label>Publication Types</label>
+            <label>Type of publications</label>
             {$attributes.company_osh_publicationonline}
             {$attributes.company_osh_publicationprint}
             {$attributes.company_osh_publicationnewsletter}
@@ -18,7 +18,7 @@
             {$attributes.company_osh_publicationother}
         </div>
         <div class="float-right div-checkbox">
-            <label>Readerships</label>
+            <label>Readership</label>
             {$attributes.company_osh_readershiposhcommunity}
             {$attributes.company_osh_readershipsmes}
             {$attributes.company_osh_readershiptrade}
@@ -31,7 +31,7 @@
 <fieldset>
     <legend id="GENERAL_INFORMATION">
         General Contact Information
-        <div data-section="GENERAL_INFORMATION" class="validation"></div>
+        <div data-section="GENERAL_INFORMATION" class="validation{$locked}"></div>
     </legend>
     <div class="float-left">
         {$attributes.company_osh_address}
@@ -51,9 +51,9 @@
     </div>
 </fieldset>
 <fieldset>
-    <legend id="CEO">
+    <legend id="CHIEF">
         About your Editor
-        <div data-section="CEO" class="validation"></div>
+        <div data-section="CHIEF" class="validation{$locked}"></div>
     </legend>
     <div class="float-left">
         {$attributes.company_osh_ceo_firstname}

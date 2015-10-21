@@ -5,8 +5,8 @@
     <p class="help-block">{$fieldHelpText}</p>
     {/if}
     <div class="controls">
-        <select {$disabled} id="{$fieldName}" name="{$fieldName}" data-section="{$fieldSection}">
-            <option>Select an option</option>
+        <select {$disabled} class="field" id="{$fieldName}" name="{$fieldName}" data-section="{$fieldSection}">
+            <option value="-1">Select an option</option>
             {foreach from=$fieldValue key=id item=value}
                 {if !empty($selectedValue) && ($selectedValue == $value || $selectedValue == $id)}
                 <option value="{$id}" selected="selected">{$value}</option>

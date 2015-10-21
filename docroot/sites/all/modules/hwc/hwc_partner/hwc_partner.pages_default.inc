@@ -1098,6 +1098,156 @@ function hwc_partner_default_page_manager_handlers() {
     $pane->uuid = '22050c50-2a04-49d6-b147-ee7e3f0b7183';
     $display->content['new-22050c50-2a04-49d6-b147-ee7e3f0b7183'] = $pane;
     $display->panels['right__'][0] = 'new-22050c50-2a04-49d6-b147-ee7e3f0b7183';
+    $pane = new stdClass();
+    $pane->pid = 'new-4aa2b7f8-2742-4819-8198-1451447d6d17';
+    $pane->panel = 'right___';
+    $pane->type = 'entity_field';
+    $pane->subtype = 'node:field_facebook_profile';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'label' => 'hidden',
+      'formatter' => 'link_url',
+      'delta_limit' => 0,
+      'delta_offset' => '0',
+      'delta_reversed' => FALSE,
+      'formatter_settings' => array(),
+      'context' => 'argument_entity_id:node_1',
+      'override_title' => 0,
+      'override_title_text' => '',
+      'override_title_heading' => 'h2',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = '4aa2b7f8-2742-4819-8198-1451447d6d17';
+    $display->content['new-4aa2b7f8-2742-4819-8198-1451447d6d17'] = $pane;
+    $display->panels['right___'][0] = 'new-4aa2b7f8-2742-4819-8198-1451447d6d17';
+    $pane = new stdClass();
+    $pane->pid = 'new-ec16d60a-9d23-4140-ab63-d2be45264ae1';
+    $pane->panel = 'right___';
+    $pane->type = 'entity_field';
+    $pane->subtype = 'node:field_twitter_profile';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'label' => 'hidden',
+      'formatter' => 'link_url',
+      'delta_limit' => 0,
+      'delta_offset' => '0',
+      'delta_reversed' => FALSE,
+      'formatter_settings' => array(),
+      'context' => 'argument_entity_id:node_1',
+      'override_title' => 0,
+      'override_title_text' => '',
+      'override_title_heading' => 'h2',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 1;
+    $pane->locks = array();
+    $pane->uuid = 'ec16d60a-9d23-4140-ab63-d2be45264ae1';
+    $display->content['new-ec16d60a-9d23-4140-ab63-d2be45264ae1'] = $pane;
+    $display->panels['right___'][1] = 'new-ec16d60a-9d23-4140-ab63-d2be45264ae1';
+    $pane = new stdClass();
+    $pane->pid = 'new-e2ca4501-827a-4e8d-8607-5c15b92cc80a';
+    $pane->panel = 'right___';
+    $pane->type = 'entity_field';
+    $pane->subtype = 'node:field_linkedin_profile';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'label' => 'hidden',
+      'formatter' => 'link_url',
+      'delta_limit' => 0,
+      'delta_offset' => '0',
+      'delta_reversed' => FALSE,
+      'formatter_settings' => array(),
+      'context' => 'argument_entity_id:node_1',
+      'override_title' => 0,
+      'override_title_text' => '',
+      'override_title_heading' => 'h2',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 2;
+    $pane->locks = array();
+    $pane->uuid = 'e2ca4501-827a-4e8d-8607-5c15b92cc80a';
+    $display->content['new-e2ca4501-827a-4e8d-8607-5c15b92cc80a'] = $pane;
+    $display->panels['right___'][2] = 'new-e2ca4501-827a-4e8d-8607-5c15b92cc80a';
+    $pane = new stdClass();
+    $pane->pid = 'new-ded8085b-914b-4ea5-9480-b2180cbe3902';
+    $pane->panel = 'right___';
+    $pane->type = 'entity_field';
+    $pane->subtype = 'node:field_youtube_profile';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'label' => 'hidden',
+      'formatter' => 'link_url',
+      'delta_limit' => 0,
+      'delta_offset' => '0',
+      'delta_reversed' => FALSE,
+      'formatter_settings' => array(),
+      'context' => 'argument_entity_id:node_1',
+      'override_title' => 0,
+      'override_title_text' => '',
+      'override_title_heading' => 'h2',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 3;
+    $pane->locks = array();
+    $pane->uuid = 'ded8085b-914b-4ea5-9480-b2180cbe3902';
+    $display->content['new-ded8085b-914b-4ea5-9480-b2180cbe3902'] = $pane;
+    $display->panels['right___'][3] = 'new-ded8085b-914b-4ea5-9480-b2180cbe3902';
+    $pane = new stdClass();
+    $pane->pid = 'new-7515db16-a606-4317-8f88-f4d324a87e4c';
+    $pane->panel = 'right___';
+    $pane->type = 'entity_field';
+    $pane->subtype = 'node:field_slideshare_profile';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'label' => 'hidden',
+      'formatter' => 'link_url',
+      'delta_limit' => 0,
+      'delta_offset' => '0',
+      'delta_reversed' => FALSE,
+      'formatter_settings' => array(),
+      'context' => 'argument_entity_id:node_1',
+      'override_title' => 0,
+      'override_title_text' => '',
+      'override_title_heading' => 'h2',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 4;
+    $pane->locks = array();
+    $pane->uuid = '7515db16-a606-4317-8f88-f4d324a87e4c';
+    $display->content['new-7515db16-a606-4317-8f88-f4d324a87e4c'] = $pane;
+    $display->panels['right___'][4] = 'new-7515db16-a606-4317-8f88-f4d324a87e4c';
   $display->hide_title = PANELS_TITLE_NONE;
   $display->title_pane = '0';
   $handler->conf['display'] = $display;
@@ -1357,6 +1507,328 @@ function hwc_partner_default_page_manager_pages() {
   $handler->conf['display'] = $display;
   $page->default_handlers[$handler->name] = $handler;
   $pages['mop_listing'] = $page;
+
+  $page = new stdClass();
+  $page->disabled = FALSE; /* Edit this to true to make a default page disabled initially */
+  $page->api_version = 1;
+  $page->name = 'not_published_events';
+  $page->task = 'page';
+  $page->admin_title = 'Not published events';
+  $page->admin_description = 'List of draft events per partner';
+  $page->path = 'node/%node/events';
+  $page->access = array(
+    'plugins' => array(
+      0 => array(
+        'name' => 'role',
+        'settings' => array(
+          'rids' => array(
+            0 => 12,
+          ),
+        ),
+        'context' => 'logged-in-user',
+        'not' => FALSE,
+      ),
+      1 => array(
+        'name' => 'role',
+        'settings' => array(
+          'rids' => array(
+            0 => 3,
+          ),
+        ),
+        'context' => 'logged-in-user',
+        'not' => FALSE,
+      ),
+    ),
+    'logic' => 'or',
+    'type' => 'none',
+    'settings' => NULL,
+  );
+  $page->menu = array();
+  $page->arguments = array(
+    'node' => array(
+      'id' => 1,
+      'identifier' => 'Node: ID',
+      'name' => 'entity_id:node',
+      'settings' => array(),
+    ),
+  );
+  $page->conf = array(
+    'admin_paths' => FALSE,
+  );
+  $page->default_handlers = array();
+  $handler = new stdClass();
+  $handler->disabled = FALSE; /* Edit this to true to make a default handler disabled initially */
+  $handler->api_version = 1;
+  $handler->name = 'page_not_published_events__panel';
+  $handler->task = 'page';
+  $handler->subtask = 'not_published_events';
+  $handler->handler = 'panel_context';
+  $handler->weight = 0;
+  $handler->conf = array(
+    'title' => 'Panel',
+    'no_blocks' => 0,
+    'pipeline' => 'standard',
+    'body_classes_to_remove' => '',
+    'body_classes_to_add' => '',
+    'css_id' => '',
+    'css' => '',
+    'contexts' => array(),
+    'relationships' => array(),
+    'name' => 'panel',
+  );
+  $display = new panels_display();
+  $display->layout = 'flexible';
+  $display->layout_settings = array();
+  $display->panel_settings = array(
+    'style_settings' => array(
+      'default' => NULL,
+      'center' => NULL,
+    ),
+  );
+  $display->cache = array();
+  $display->title = '';
+  $display->uuid = 'e689fe20-80e7-4066-b9bf-07e64257e54c';
+  $display->content = array();
+  $display->panels = array();
+    $pane = new stdClass();
+    $pane->pid = 'new-82de0d01-543a-4f9f-aef5-7fc99c76fb68';
+    $pane->panel = 'center';
+    $pane->type = 'entity_field';
+    $pane->subtype = 'node:title_field';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'label' => 'hidden',
+      'formatter' => 'title_linked',
+      'delta_limit' => 0,
+      'delta_offset' => '0',
+      'delta_reversed' => FALSE,
+      'formatter_settings' => array(
+        'title_style' => 'h1',
+        'title_link' => 'content',
+        'title_class' => '',
+        'field_formatter_class' => '',
+      ),
+      'context' => 'argument_entity_id:node_1',
+      'override_title' => 0,
+      'override_title_text' => '',
+      'override_title_heading' => 'h2',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = '82de0d01-543a-4f9f-aef5-7fc99c76fb68';
+    $display->content['new-82de0d01-543a-4f9f-aef5-7fc99c76fb68'] = $pane;
+    $display->panels['center'][0] = 'new-82de0d01-543a-4f9f-aef5-7fc99c76fb68';
+    $pane = new stdClass();
+    $pane->pid = 'new-a6d1c39c-19a5-47b6-9aa7-d7fd6d6872cd';
+    $pane->panel = 'center';
+    $pane->type = 'views';
+    $pane->subtype = 'partner_draft_content';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'override_pager_settings' => 0,
+      'use_pager' => 0,
+      'nodes_per_page' => '0',
+      'pager_id' => '0',
+      'offset' => '0',
+      'more_link' => 0,
+      'feed_icons' => 0,
+      'panel_args' => 0,
+      'link_to_view' => 0,
+      'args' => '',
+      'url' => '',
+      'display' => 'block_1',
+      'context' => array(
+        0 => '',
+      ),
+      'override_title' => 0,
+      'override_title_text' => '',
+      'override_title_heading' => 'h2',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 1;
+    $pane->locks = array();
+    $pane->uuid = 'a6d1c39c-19a5-47b6-9aa7-d7fd6d6872cd';
+    $display->content['new-a6d1c39c-19a5-47b6-9aa7-d7fd6d6872cd'] = $pane;
+    $display->panels['center'][1] = 'new-a6d1c39c-19a5-47b6-9aa7-d7fd6d6872cd';
+  $display->hide_title = PANELS_TITLE_FIXED;
+  $display->title_pane = 'new-82de0d01-543a-4f9f-aef5-7fc99c76fb68';
+  $handler->conf['display'] = $display;
+  $page->default_handlers[$handler->name] = $handler;
+  $pages['not_published_events'] = $page;
+
+  $page = new stdClass();
+  $page->disabled = FALSE; /* Edit this to true to make a default page disabled initially */
+  $page->api_version = 1;
+  $page->name = 'not_published_news';
+  $page->task = 'page';
+  $page->admin_title = 'Not published news';
+  $page->admin_description = 'List of draft news per partner';
+  $page->path = 'node/%node/news';
+  $page->access = array(
+    'plugins' => array(
+      0 => array(
+        'name' => 'role',
+        'settings' => array(
+          'rids' => array(
+            0 => 12,
+          ),
+        ),
+        'context' => 'logged-in-user',
+        'not' => FALSE,
+      ),
+      1 => array(
+        'name' => 'role',
+        'settings' => array(
+          'rids' => array(
+            0 => 3,
+          ),
+        ),
+        'context' => 'logged-in-user',
+        'not' => FALSE,
+      ),
+    ),
+    'logic' => 'or',
+    'type' => 'none',
+    'settings' => NULL,
+  );
+  $page->menu = array();
+  $page->arguments = array(
+    'node' => array(
+      'id' => 1,
+      'identifier' => 'Node: ID',
+      'name' => 'entity_id:node',
+      'settings' => array(),
+    ),
+  );
+  $page->conf = array(
+    'admin_paths' => FALSE,
+  );
+  $page->default_handlers = array();
+  $handler = new stdClass();
+  $handler->disabled = FALSE; /* Edit this to true to make a default handler disabled initially */
+  $handler->api_version = 1;
+  $handler->name = 'page_not_published_news__panel';
+  $handler->task = 'page';
+  $handler->subtask = 'not_published_news';
+  $handler->handler = 'panel_context';
+  $handler->weight = 0;
+  $handler->conf = array(
+    'title' => 'Not published news panel page',
+    'no_blocks' => 0,
+    'pipeline' => 'standard',
+    'body_classes_to_remove' => '',
+    'body_classes_to_add' => '',
+    'css_id' => '',
+    'css' => '',
+    'contexts' => array(),
+    'relationships' => array(),
+    'name' => 'panel',
+  );
+  $display = new panels_display();
+  $display->layout = 'flexible';
+  $display->layout_settings = array();
+  $display->panel_settings = array(
+    'style_settings' => array(
+      'default' => NULL,
+      'center' => NULL,
+    ),
+  );
+  $display->cache = array();
+  $display->title = '';
+  $display->uuid = '25db9deb-a748-40fb-8efd-2aa2807aa2c6';
+  $display->content = array();
+  $display->panels = array();
+    $pane = new stdClass();
+    $pane->pid = 'new-43dc0335-e792-4884-9be8-0fe5bc86180d';
+    $pane->panel = 'center';
+    $pane->type = 'entity_field';
+    $pane->subtype = 'node:title_field';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'label' => 'hidden',
+      'formatter' => 'title_linked',
+      'delta_limit' => 0,
+      'delta_offset' => '0',
+      'delta_reversed' => FALSE,
+      'formatter_settings' => array(
+        'title_style' => 'h1',
+        'title_link' => 'content',
+        'title_class' => '',
+        'field_formatter_class' => '',
+      ),
+      'context' => 'argument_entity_id:node_1',
+      'override_title' => 0,
+      'override_title_text' => '',
+      'override_title_heading' => 'h2',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = '43dc0335-e792-4884-9be8-0fe5bc86180d';
+    $display->content['new-43dc0335-e792-4884-9be8-0fe5bc86180d'] = $pane;
+    $display->panels['center'][0] = 'new-43dc0335-e792-4884-9be8-0fe5bc86180d';
+    $pane = new stdClass();
+    $pane->pid = 'new-6bf8772d-426e-44c5-ae55-e79b6dc6aa4d';
+    $pane->panel = 'center';
+    $pane->type = 'views';
+    $pane->subtype = 'partner_draft_content';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'override_pager_settings' => 0,
+      'use_pager' => 0,
+      'nodes_per_page' => '5',
+      'pager_id' => '0',
+      'offset' => '0',
+      'more_link' => 0,
+      'feed_icons' => 0,
+      'panel_args' => 0,
+      'link_to_view' => 0,
+      'args' => '%1',
+      'url' => '',
+      'display' => 'block_partner_draft_news',
+      'context' => array(
+        0 => '',
+      ),
+      'override_title' => 0,
+      'override_title_text' => '',
+      'override_title_heading' => 'h2',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 1;
+    $pane->locks = array();
+    $pane->uuid = '6bf8772d-426e-44c5-ae55-e79b6dc6aa4d';
+    $display->content['new-6bf8772d-426e-44c5-ae55-e79b6dc6aa4d'] = $pane;
+    $display->panels['center'][1] = 'new-6bf8772d-426e-44c5-ae55-e79b6dc6aa4d';
+  $display->hide_title = PANELS_TITLE_FIXED;
+  $display->title_pane = 'new-6bf8772d-426e-44c5-ae55-e79b6dc6aa4d';
+  $handler->conf['display'] = $display;
+  $page->default_handlers[$handler->name] = $handler;
+  $pages['not_published_news'] = $page;
 
   $page = new stdClass();
   $page->disabled = FALSE; /* Edit this to true to make a default page disabled initially */
@@ -1648,7 +2120,7 @@ foreach( $contexts[\'argument_entity_id:node_1\']->data->field_users[\'und\'] as
     $pane->configuration = array(
       'admin_title' => 'Private links',
       'title' => '',
-      'body' => '<div class="row"><div class="col-xs-4 text-center"><a href="#">Create an event</a> <br> <span>Do you want to propose an event in the context of our current Healthy Workplaces Campaign? <a href="#">Click here</a></span></div><div class="col-xs-4 text-center"><a href="#">Create news</a> <br> <span>Do you want to share with us the latest news about our organisation in the context of our current Healthy Workplaces Campaign? <a href="#">Click here</a></span></div><div class="col-xs-4 text-center"><a href="partner-private-area">Private area</a> <br> <span>Find the latest files to help you engage in the Campaign.</span></div></div><div class="row"><div class="col-xs-12"><h2>Your public profile</h2><span class="pull-right"><a href="#">Update</a></span></div></div>',
+      'body' => '<div class="row"><div class="col-xs-4 text-center"><a href="#">Create an event</a> <br /> <span>Do you want to propose an event in the context of our current Healthy Workplaces Campaign? <a href="#">Click here</a></span><p><a href="events">Not published events</a></p></div><div class="col-xs-4 text-center"><a href="#">Create news</a> <br /> <span>Do you want to share with us the latest news about our organisation in the context of our current Healthy Workplaces Campaign? <a href="#">Click here</a></span><p><a href="news">Not published news</a></p></div><div class="col-xs-4 text-center"><a href="partner-private-area">Private area</a> <br /> <span>Find the latest files to help you engage in the Campaign.</span></div></div><div class="row"><div class="col-xs-12"><h2>Your public profile</h2><span class="pull-right"><a href="#">Update</a></span></div></div>',
       'format' => 'full_html',
       'substitute' => 0,
     );
@@ -2355,6 +2827,8 @@ foreach( $contexts[\'argument_entity_id:node_1\']->data->field_users[\'und\'] as
       ),
     ),
     'logic' => 'or',
+    'type' => 'none',
+    'settings' => NULL,
   );
   $page->menu = array();
   $page->arguments = array();
@@ -2660,6 +3134,29 @@ foreach( $contexts[\'argument_entity_id:node_1\']->data->field_users[\'und\'] as
     $pane->uuid = '15064475-1885-47e1-89dd-3cab3b7305a4';
     $display->content['new-15064475-1885-47e1-89dd-3cab3b7305a4'] = $pane;
     $display->panels['center'][6] = 'new-15064475-1885-47e1-89dd-3cab3b7305a4';
+    $pane = new stdClass();
+    $pane->pid = 'new-0138946a-50ca-4699-a497-d7559f36c514';
+    $pane->panel = 'center';
+    $pane->type = 'block';
+    $pane->subtype = 'hwc_partner-hwc_partner_user_account_edit';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'override_title' => 1,
+      'override_title_text' => 'Your account',
+      'override_title_heading' => 'h2',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 7;
+    $pane->locks = array();
+    $pane->uuid = '0138946a-50ca-4699-a497-d7559f36c514';
+    $display->content['new-0138946a-50ca-4699-a497-d7559f36c514'] = $pane;
+    $display->panels['center'][7] = 'new-0138946a-50ca-4699-a497-d7559f36c514';
     $pane = new stdClass();
     $pane->pid = 'new-9bf21a4c-e961-4544-acb9-e6cfcac8fec6';
     $pane->panel = 'center_';

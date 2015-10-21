@@ -12,6 +12,8 @@ class Involvement extends Controller implements IController, IForm {
     public function __construct($directOutput = true) {
         $this->directOutput = $directOutput;
         $this->model = new Model($this->getEntityName());
+        $params = Parameters::getInstance();
+        $params->set('actionType', 'next');
     }
 
     /**

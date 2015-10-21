@@ -27,16 +27,15 @@ function osha_authentication_extract_user_roles($proposed_roles) {
 }
 
 /**
- * Extract a single role and section from the DN of a group.
+ * Extract a single role from the DN of a group.
  *
  * @param string $group_dn
  *
  * @return array
- *  array with role and section. May be null
+ *  array with role, language. May be null
  */
-function osha_authentication_get_role_and_section_from_dn($group_dn) {
+function osha_authentication_get_role_from_dn($group_dn) {
   $role = NULL;
-  $section_id = NULL;
   $language = NULL;
   if ($group_dn == 'cn=ADMIN,ou=HWC,ou=Sites,dc=osha,dc=europa,dc=eu') {
     $role = OSHA_WORKFLOW_ROLE_ADMINISTRATOR;
@@ -44,11 +43,21 @@ function osha_authentication_get_role_and_section_from_dn($group_dn) {
   else if ($group_dn == 'cn=LAYVAL,ou=HWC,ou=Sites,dc=osha,dc=europa,dc=eu') {
     $role = OSHA_WORKFLOW_ROLE_LAYOUT_VALIDATOR;
   }
-  else if ($group_dn == 'cn=NEW&EVEN_EDT,ou=HWC,ou=Sites,dc=osha,dc=europa,dc=eu') {
+  else if ($group_dn == 'cn=NEWS_EVEN_EDT,ou=HWC,ou=Sites,dc=osha,dc=europa,dc=eu') {
     $role = HWC_ROLE_CAMPAIGN_PROJECT_MANAGER;
   }
-  else if ($group_dn == 'cn=NEW&EVEN_SUP,ou=HWC,ou=Sites,dc=osha,dc=europa,dc=eu') {
+  else if ($group_dn == 'cn=NEWS_EVEN_SUP,ou=HWC,ou=Sites,dc=osha,dc=europa,dc=eu') {
     $role = ROLE_SUPERVISOR;
+  }
+  else if (
+    in_array($group_dn,
+      array(
+        'cn=OCP,ou=HWC,ou=Sites,dc=osha,dc=europa,dc=eu',
+        'cn=FOP,ou=HWC,ou=Sites,dc=osha,dc=europa,dc=eu',
+        'cn=MP,ou=HWC,ou=Sites,dc=osha,dc=europa,dc=eu',
+      )
+    )) {
+    $role = ROLE_CAMPAIGN_PARTNER;
   }
   else if ($group_dn == 'cn=RVMN,ou=HWC,ou=Sites,dc=osha,dc=europa,dc=eu') {
     $role = OSHA_WORKFLOW_ROLE_REVIEW_MANAGER;
@@ -59,7 +68,7 @@ function osha_authentication_get_role_and_section_from_dn($group_dn) {
   else if ($group_dn == 'cn=TRLMN,ou=HWC,ou=Sites,dc=osha,dc=europa,dc=eu') {
     $role = OSHA_WORKFLOW_ROLE_TRANSLATION_MANAGER;
   }
-  // Either CV or PARTNER
+  // Handle content validators (CV) & unknown values
   else {
     $ldap_group_cn = NULL;
     // _CV
@@ -69,12 +78,6 @@ function osha_authentication_get_role_and_section_from_dn($group_dn) {
       $language = str_replace('cn=', '', $language);
       $role = OSHA_WORKFLOW_ROLE_CONTENT_VALIDATOR;
     }
-    // NEW&EVEN_EDT_PRT1
-    else if (preg_match('/^cn=NEW\&EVEN\_EDT\_/', $group_dn, $ldap_group_cn) && count($ldap_group_cn) == 1) {
-      $parts = explode(',', $group_dn);
-      $role = ROLE_CAMPAIGN_PARTNER;
-      $section_id = str_replace('cn=NEW&EVEN_EDT_', '', $parts[0]);
-    }
     else if ($group_dn == 'cn=READ,ou=HWC,ou=Sites,dc=osha,dc=europa,dc=eu') {
       // Do nothing ...
     }
@@ -82,7 +85,7 @@ function osha_authentication_get_role_and_section_from_dn($group_dn) {
       watchdog('osha_authentication', 'Unknown DN: !dn', array('!dn' => $group_dn), WATCHDOG_WARNING);
     }
   }
-  return array($role, $section_id, $language);
+  return array($role, $language);
 }
 
 function osha_authentication_ldap_fetch_user_groups($username, $ldap_server) {
@@ -95,46 +98,6 @@ function osha_authentication_ldap_fetch_user_groups($username, $ldap_server) {
   unset($ldap_groups['count']);
   foreach($ldap_groups as $group) {
     $ret[$group['dn']] = $group['dn'];
-  }
-  return $ret;
-}
-
-function osha_authentication_retrieve_ldap_sections($ldap_server) {
-  $ret = array();
-  $ldap_groups = array();
-  /** @var LDAPServer $ldap_server */
-  if ($ldap_groups_ocp = $ldap_server->search('ou=OCP,ou=HWC,ou=Sites,dc=osha,dc=europa,dc=eu', 'objectClass=posixGroup')) {
-    unset($ldap_groups_ocp['count']);
-    $ldap_groups = array_merge($ldap_groups, $ldap_groups_ocp);
-  }
-  if ($ldap_groups_mp = $ldap_server->search('ou=MP,ou=HWC,ou=Sites,dc=osha,dc=europa,dc=eu', 'objectClass=posixGroup')) {
-    unset($ldap_groups_mp['count']);
-    $ldap_groups = array_merge($ldap_groups, $ldap_groups_mp);
-  }
-  if ($ldap_groups_fop = $ldap_server->search('ou=FOP,ou=HWC,ou=Sites,dc=osha,dc=europa,dc=eu', 'objectClass=posixGroup')) {
-    unset($ldap_groups_fop['count']);
-    $ldap_groups = array_merge($ldap_groups, $ldap_groups_fop);
-  }
-  if (empty($ldap_groups)) {
-    return $ret;
-  }
-  unset($ldap_groups['count']);
-  foreach($ldap_groups as $ldap_group) {
-    $dn = $ldap_group['dn'];
-    // Do not parse Language skills groups
-    if(strpos($dn, 'ou=Languages') === FALSE) {
-      list($role, $section_id) = osha_authentication_get_role_and_section_from_dn($dn);
-      if ($section_id) {
-        $cn = NULL;
-        // Extract group cn
-        preg_match('/[A-Z\_]*/i', $dn, $cn, 0, 3);
-        // Ignore all groups ending in _PM and _RVM (handled by _EDT)
-        if (!preg_match('/\_PM$/', $cn[0]) && !preg_match('/\_RVMN$/', $cn[0])) {
-          $description = $ldap_group['description'][0];
-          $ret[$section_id] = trim($description);
-        }
-      }
-    }
   }
   return $ret;
 }
@@ -234,67 +197,11 @@ function osha_authentication_ldap_get_site_users($ldap_server) {
 }
 
 /**
- * Fetch LDAP data and check if there are new sections to import or update
- * @param stdClass $ldap_server
- *   Server to query
- * @param bool $test
- *   If TRUE do not commit changes to database
- *
- * @throws \EntityMetadataWrapperException
- */
-function osha_authentication_sync_ldap_sections($ldap_server, $test = FALSE) {
-  $voc = taxonomy_vocabulary_machine_name_load('section');
-  $ldap_sections = osha_authentication_retrieve_ldap_sections($ldap_server);
-  // Load all terms
-  $mappings = db_select('field_data_field_ldap_section_code', 'f')
-    ->fields('f', array('field_ldap_section_code_value', 'entity_id'))
-    ->execute()
-    ->fetchAllKeyed(0);
-  foreach($ldap_sections as $sid => $title) {
-    if (!array_key_exists($sid, $mappings)) {
-      // Save new section coming from LDAP
-      $wrapper = entity_property_values_create_entity('taxonomy_term', array(
-        'name' => $title,
-        'vocabulary' => $voc,
-        'field_ldap_section_code' => $sid,
-      ));
-      if (!$test) {
-        $wrapper->save();
-      }
-      watchdog(
-        'osha_authentication',
-        'LDAP provisioned new section <em>!section</em> (<b>!sid</b>)',
-        array('!section' => $title, '!sid' => $sid),
-        WATCHDOG_WARNING
-      );
-    }
-    else {
-      $term = entity_metadata_wrapper('taxonomy_term', $mappings[$sid]);
-      $old = $term->name->value();
-      if ($old != $title) {
-        $term->name->set($title);
-        if (!$test) {
-          $term->save();
-        }
-        watchdog(
-          'osha_authentication',
-          'Updated new section name from <em>!old</em> to <em>!new</em> (<b>!sid</b>)',
-          array('!old' => $old, '!new' => $title, '!sid' => $sid)
-        );
-      }
-    }
-  }
-}
-
-/**
  * Fetch LDAP accounts and membership and synchronize with Drupal accounts.
  * @param stdClass $ldap_server
  *   Server to query
  */
 function osha_authentication_ldap_sync($ldap_server) {
-  // Synchronize LDAP sections with Drupal sections
-  osha_authentication_sync_ldap_sections($ldap_server);
-
   // Handle LDAP accounts synchronization
   $accounts = osha_authentication_ldap_get_site_users($ldap_server);
 
@@ -306,6 +213,7 @@ function osha_authentication_ldap_sync($ldap_server) {
       // Set a random password
       $ldap_account->password = user_password(32);
       $ldap_account->status = 1;
+      $ldap_account->timezone = NULL;
       if ($account = user_save($ldap_account)) {
         watchdog('osha_authentication', 'Creating Drupal account <em>!uid</em> from LDAP dn: !dn', array(
           '!dn' => $ldap_account->dn,

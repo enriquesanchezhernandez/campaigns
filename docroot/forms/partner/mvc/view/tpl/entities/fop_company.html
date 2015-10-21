@@ -1,7 +1,7 @@
 <fieldset>
     <legend id="ORGANISATION">
         About your organisation
-        <div data-section="ORGANISATION" class="validation"></div>
+        <div data-section="ORGANISATION" class="validation{$locked}"></div>
     </legend>
     <div class="float-left">
         {$attributes.company_osh_orgname}
@@ -13,7 +13,7 @@
 <fieldset>
     <legend id="GENERAL_INFORMATION">
         General Contact Information
-        <div data-section="GENERAL_INFORMATION" class="validation"></div>
+        <div data-section="GENERAL_INFORMATION" class="validation{$locked}"></div>
     </legend>
     <div class="float-left">
         {$attributes.company_osh_address}
@@ -25,14 +25,18 @@
         {$attributes.company_osh_country}
         {$attributes.company_osh_generalemail}
         {$attributes.company_osh_generalphone}
+        {if $mf}
         {$attributes.company_osh_dedicatedcampaignsite}
+        {else}
+        {$attributes.company_osh_dedicatedsite}
+        {/if}
     </div>
 </fieldset>
 {if $partner_type != "current" && !$mf}
 <fieldset>
     <legend id="CEO">
         Description
-        <div data-section="CEO" class="validation"></div>
+        <div data-section="CEO" class="validation{$locked}"></div>
     </legend>
     <div class="float-left">
         {$attributes.company_osh_description}

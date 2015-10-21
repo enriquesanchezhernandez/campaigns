@@ -1,5 +1,6 @@
 <?php
 global $language;
+$language_list = language_list();
 $separator = ', ';
 $shown = FALSE;
 $en_link = FALSE;
@@ -51,8 +52,8 @@ $entities = entity_load('field_collection_item', $entities_to_load);
     <?php $key = 1; ?>
     <?php foreach ($entities as $entity): ?>
         <?php
-        $language_name = $entity->field_available_languages['und'][0]['name'];
-        $language_code = $entity->field_available_languages['und'][0]['langcode'];
+        $language_code = $entity->field_available_languages['und'][0]['value'];
+        $language_name = $language_list[$language_code]->name;
         ?>
         <span>
           <span class="access-tool-language-name">

@@ -2,17 +2,17 @@
   "sections": {
     "title": "2. About your involvement",
     "sections": {
-        "INVOLVEMENT": "Your Campaign Pledge"
+        "PLEDGE": "Your Contribution"
     }
   },
   "attributes": {
     "involvement_osh_campaignpledge": {
       "name": "involvement_osh_campaignpledge",
-      "label": "How does your organisation to contribute to making this Campaign a joint success? (Campaign Pledge)",
-      "helpText": "Please describe how your organisation will help is co-create a successful campaign in the year 2015/2016. <br/>What do you pledge as part of your involvement with the healthy workplaces campaign.",
+      "label": "How does your organisation to contribute to making this campaign a joint success? (Campaign Pledge)",
+      "helpText": "Please summarise briefly the support that you will provide to the Healthy Workplaces Campaign 2016-17 for later publication on the website. ",
       "placeholder": "Please provide us your contribution plans",
       "publicProfile": "publicProfile",
-      "section": "INVOLVEMENT",
+      "section": "PLEDGE",
       "type": "textarea",
       "validator": "not_null"
     },
@@ -23,16 +23,70 @@
     "involvement_osh_leads": {
       "name": "involvement_osh_leads",
       "type": "text"
+    },
+    "involvement_osh_conferenceactivity": {
+      "name": "involvement_osh_conferenceactivity",
+      "label": "Conferences, seminars or workshops exclusively or partly dedicated to the campaign topic",
+      "helpText": "Please provide some information on topic, main objectives, profile of participants, etc.",
+      "section": "INVOLVEMENT",
+      "type": "combined_checkbox"
+    },
+    "involvement_osh_trainingsessions": {
+      "name": "involvement_osh_trainingsessions",
+      "label": "Training sessions",
+      "helpText": "Please provide some information on topic, main objectives, profile of participants, etc.",
+      "section": "INVOLVEMENT",
+      "type": "combined_checkbox"
+    },
+    "involvement_osh_partnershipswithotherorganisations": {
+      "name": "involvement_osh_partnershipswithotherorganisations",
+      "label": "Partnerships with other organisations and schools / colleges / training centres",
+      "helpText": "Please provide some information on planned activities",
+      "section": "INVOLVEMENT",
+      "type": "combined_checkbox"
+    },
+    "involvement_osh_promotioninthemedia": {
+      "name": "involvement_osh_promotioninthemedia",
+      "label": "Promotion in the media (press release, press conference, advertorials, etc.).",
+      "helpText": "Please provide some information on planned activities",
+      "section": "INVOLVEMENT",
+      "type": "combined_checkbox"
+    },
+    "involvement_osh_bestpractice": {
+      "name": "involvement_osh_bestpractice",
+      "label": "Best practice competition / activities",
+      "helpText": "Please provide some information on planned activities",
+      "section": "INVOLVEMENT",
+      "type": "combined_checkbox"
+    },
+    "involvement_osh_otheractivities": {
+      "name": "involvement_osh_otheractivities",
+      "label": "Other activities",
+      "helpText": "Please provide some information on planned activities",
+      "section": "INVOLVEMENT",
+      "type": "combined_checkbox"
     }
   },
   "map": {
     "involvement_osh_campaignpledge": "osh_campaignpledge",
     "involvement_osh_category": "osh_category",
-    "involvement_osh_leads": "osh_leads"
+    "involvement_osh_leads": "osh_leads",
+    "involvement_osh_conferenceactivity": "osh_conferenceactivity",
+    "involvement_osh_trainingsessions": "osh_trainingsessions",
+    "involvement_osh_partnershipswithotherorganisations": "osh_partnershipswithotherorganisations",
+    "involvement_osh_promotioninthemedia": "osh_promotioninthemedia",
+    "involvement_osh_bestpractice": "osh_bestpractice",
+    "involvement_osh_otheractivities": "osh_otheractivities"
   },
   "map_mf": {
     "involvement_osh_campaignpledge": "osh_campaignpledge",
     "involvement_osh_category": "osh_category",
-    "involvement_osh_leads": "osh_leads"
+    "involvement_osh_leads": "osh_leads",
+    "involvement_osh_conferenceactivity": "osh_conferenceactivity",
+    "involvement_osh_trainingsessions": "osh_trainingsessions",
+    "involvement_osh_partnershipswithotherorganisations": "osh_partnershipswithotherorganisations",
+    "involvement_osh_promotioninthemedia": "osh_promotioninmedia",
+    "involvement_osh_bestpractice": "osh_bestpractice",
+    "involvement_osh_otheractivities": "osh_otheractivities"
   }
 }

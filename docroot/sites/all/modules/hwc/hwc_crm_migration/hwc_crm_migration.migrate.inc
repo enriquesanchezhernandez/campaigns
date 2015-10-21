@@ -1,7 +1,6 @@
 <?php
 
 function hwc_crm_migration_migrate_api() {
-  $crm_data_dir = variable_get('hwc_crm_data_dir', '');
   return array(
     'api' => 2,
     'groups' => array(
@@ -14,7 +13,6 @@ function hwc_crm_migration_migrate_api() {
         'group_name' => 'hwc_crm',
         'class_name' => 'PartnerMigration',
         'destination' => 'partner',
-        'file_name' => $crm_data_dir . '/PublicProfile.xml'
       ),
     ),
   );
@@ -30,10 +28,6 @@ class HwcCrmMigration extends Migration {
    */
   public function __construct($arguments) {
     parent::__construct($arguments);
-
-    /* Remove limits on time/memory, slower machines will fail */
-    $this->timeLimit = 0;
-    $this->memoryLimit = PHP_INT_MAX;
 
     $this->map = new MigrateSQLMap($this->machineName,
       array(
@@ -108,12 +102,14 @@ class HwcCrmMigration extends Migration {
     // Remove non-existing sources.
     $removed = $this->getMap()->getRowsNeedingUpdate(10000);
     if (!empty($removed)) {
-      $nodes = array();
       foreach ($removed as $to_remove) {
-        $nodes[] = $to_remove->destid1;
-        $this->getMap()->delete(array($to_remove->sourceid1));
+        if ($node = node_load($to_remove->destid1)) {
+          $node->status = 0;
+          node_save($node);
+          watchdog('hwc_crm_migration', 'Unpublishing partner nid: !nid, \'!partner\'',
+            array('!nid' => $node->nid, '!partner' => $node->title), WATCHDOG_INFO);
+        }
       }
-      node_delete_multiple($nodes);
     }
   }
 }
@@ -158,45 +154,5 @@ abstract class AbstractCrmMigrateListXml extends MigrateList {
    */
   public function computeCount() {
     return count(self::$data);
-  }
-
-  /**
-   * Extract source file for the migration.
-   *
-   * @param array $arguments
-   *   Migration arguments
-   *
-   * @return string
-   *   Path to the migration data file
-   * @throws Exception If the file is not accessible
-   */
-  public static function getSourceFile($arguments) {
-    $file = NULL;
-    if (isset($arguments['file_name'])) {
-      $file = $arguments['file_name'];
-      if (!file_exists($file) || !is_readable($file)) {
-        Migration::displayMessage(t('Cannot read migration file @file', array('@file' => $file)), 'error');
-      }
-    }
-    else {
-      Migration::displayMessage(t('Invalid migration setup: missing `file_name` parameter (source)'));
-    }
-    return $file;
-  }
-
-  public static function getSourceFileByKey($arguments, $key) {
-    $file = NULL;
-    if (isset($arguments[$key])) {
-      $file = $arguments[$key];
-      if (!file_exists($file) || !is_readable($file)) {
-        if (!file_exists($file) || !is_readable($file)) {
-          Migration::displayMessage(t('Cannot read migration file @file', array('@file' => $file)), 'error');
-        }
-      }
-    }
-    else {
-      Migration::displayMessage(t('Invalid migration setup: missing `'. $key. '` parameter (source)'));
-    }
-    return $file;
   }
 }
