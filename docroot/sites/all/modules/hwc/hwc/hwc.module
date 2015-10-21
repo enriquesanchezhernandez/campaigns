@@ -418,6 +418,41 @@ function _form_add_website_placeholder_after_build($form) {
   return $form;
 }
 
+
+/**
+ * Implements hook_theme_registry_alter().
+ */
+function hwc_theme_registry_alter(&$theme_registry) {
+  if (!empty($theme_registry['date_part_label_time'])) {
+    unset($theme_registry['date_part_label_time']['file']);
+    $theme_registry['date_part_label_time']['function'] = 'theme_hwc_date_part_label_time';
+  }
+  if (!empty($theme_registry['date_part_label_date'])) {
+    unset($theme_registry['date_part_label_date']['file']);
+    $theme_registry['date_part_label_date']['function'] = 'theme_hwc_date_part_label_date';
+  }
+}
+
+function theme_hwc_date_part_label_time($variables) {
+  if ($variables['element']['#instance']['field_name'] == 'field_start_date'
+      && $variables['element']['#instance']['bundle'] == 'events') {
+    return '';
+  }
+  else {
+    return theme('date_part_label_time', $variables);
+  }
+}
+
+function theme_hwc_date_part_label_date($variables) {
+  if ($variables['element']['#instance']['field_name'] == 'field_start_date'
+      && $variables['element']['#instance']['bundle'] == 'events') {
+    return t('Starting date and time') . '<span class="form-required" title="' . t('This field is required.') . '">*</span>';
+  }
+  else {
+    return theme('date_part_label_date', $variables);
+  }
+}
+
 /**
  * Implements hook_field_widget_form_alter().
  */
@@ -434,7 +469,7 @@ function hwc_field_widget_form_alter(&$element, &$form_state, $context) {
   if ($is_events_form) {
     switch ($element['#field_name']) {
       case 'title_field':
-        $placeholder = t('Event title');
+        $placeholder = t('Event title. Max 60 characters.');
         $element['value']['#attributes']['placeholder'] = $placeholder;
         break;
 
@@ -454,12 +489,12 @@ function hwc_field_widget_form_alter(&$element, &$form_state, $context) {
         break;
 
       case 'field_organizer':
-        $placeholder = t('Event organizer');
+        $placeholder = t('First name of contact person');
         $element['value']['#attributes']['placeholder'] = $placeholder;
         break;
 
       case 'field_location':
-        $placeholder = t('Event location');
+        $placeholder = t('Location of the event');
         $element['value']['#attributes']['placeholder'] = $placeholder;
         break;
 
