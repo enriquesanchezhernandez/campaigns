@@ -847,8 +847,6 @@ ul.tabs--primary.nav.nav-tabs{
 	.field-name-field-country-code{
 		font-weight: bold;
 		display: inline-flex;
-	}
-	.field-name-field-country-code{
 		&:before{
 			content:"";
 			padding-left: 0px;
@@ -875,6 +873,47 @@ ul.tabs--primary.nav.nav-tabs{
 		font-size: @size2;
 		font-weight: bold;
 		margin-bottom: 1.5em;
+	}
+	.page-node .node-news{
+		.field.field-name-field-image{
+			height: 220px;
+			width: 220px;
+			float: left;
+			overflow: hidden;
+			margin-right: 3em;
+			.field-items{
+				height: 100%;
+				div{
+					height: 100%;
+					background-color: @bg-color-3;
+					img{
+						margin-top: 0;
+						margin-bottom: 0em;
+						margin-right: 0em;
+						min-width: 100%;
+						height: auto;
+						min-height: 100%;
+						width: auto;
+						max-width: 9999px
+					}
+				}
+			}
+		}
+		.field-name-field-image-caption{
+			background-color: @bg-color-3;
+			padding: 1em;
+			text-align: center;
+			width: 220px;
+			float: left;
+			/* position: absolute; */
+			/* margin-top: 220px; */
+			margin-left: -262px;
+			z-index: -1;
+			margin-top: 220px;
+		}
+		.field-name-body {
+		    display: flex;
+		}
 	}
 	
 	/* home news */
@@ -2082,6 +2121,32 @@ article{
 		*/
 	}
 }
+/*gallery*/
+.page-media-center-photo-gallery{
+	.views-field-title-field{
+		background-color: @bg-color-2;
+		color: @color1;
+		padding: 1em;
+	}
+	.views-field-field-images{
+		blockquote.image-field-caption{
+			padding-left: 0px;
+			padding-right: 0px;
+			border-left: none;
+		}
+	}
+}
+/*fin gallery*/
+
+/*gallery Detail*/
+article.node-hwc-gallery {
+	img{
+		margin-left: auto;
+		margin-right: auto;
+	}
+}
+/*fin gallery Detail*/
+
 .above_title{
 	margin-left: @margin1;
 	margin-right: @margin1;
@@ -2841,7 +2906,7 @@ article{
 		padding-left: 30px;
 		padding-right: 30px;
 		text-align: center;
-		display: block !important;
+		/* display: block !important; */
 	}
 	button#cboxPrevious{
 		left: 0;
@@ -5047,6 +5112,32 @@ article{
 			.field.field-type-youtube{
 				a:before{
 					content:"";
+				}
+			}
+		}
+		.node-news{
+			.field.field-name-field-image{
+				height: auto;
+				width: auto;
+				float: none;
+				overflow: hidden;
+				margin-right: 0;
+				.field-items{
+					height: auto;
+					div{
+						height: auto;
+						background-color: white;
+						img{
+							margin-top: 1.5em;
+							margin-bottom: 2em;
+							margin-right: 0em;
+							min-width: 0;
+							height: auto;
+							min-height: 0;
+							width: 150px;
+							max-width: 100%
+						}
+					}
 				}
 			}
 		}

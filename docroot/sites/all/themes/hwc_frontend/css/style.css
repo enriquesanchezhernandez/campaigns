@@ -8425,6 +8425,45 @@ div[class*='node-'] .more-link {
   font-weight: bold;
   margin-bottom: 1.5em;
 }
+.page-node .node-news .field.field-name-field-image {
+  height: 220px;
+  width: 220px;
+  float: left;
+  overflow: hidden;
+  margin-right: 3em;
+}
+.page-node .node-news .field.field-name-field-image .field-items {
+  height: 100%;
+}
+.page-node .node-news .field.field-name-field-image .field-items div {
+  height: 100%;
+  background-color: #e2e2e3;
+}
+.page-node .node-news .field.field-name-field-image .field-items div img {
+  margin-top: 0;
+  margin-bottom: 0em;
+  margin-right: 0em;
+  min-width: 100%;
+  height: auto;
+  min-height: 100%;
+  width: auto;
+  max-width: 9999px;
+}
+.page-node .node-news .field-name-field-image-caption {
+  background-color: #e2e2e3;
+  padding: 1em;
+  text-align: center;
+  width: 220px;
+  float: left;
+  /* position: absolute; */
+  /* margin-top: 220px; */
+  margin-left: -262px;
+  z-index: -1;
+  margin-top: 220px;
+}
+.page-node .node-news .field-name-body {
+  display: flex;
+}
 /* home news */
 #block-views-news-oshnews-latest h2,
 .panels-flexible-column-new-1 h2 {
@@ -9685,6 +9724,24 @@ article .hwc-share-widget ul {
   padding-left: 25px;
   display: block;
 }
+/*gallery*/
+.page-media-center-photo-gallery .views-field-title-field {
+  background-color: #003399;
+  color: #ffffff;
+  padding: 1em;
+}
+.page-media-center-photo-gallery .views-field-field-images blockquote.image-field-caption {
+  padding-left: 0px;
+  padding-right: 0px;
+  border-left: none;
+}
+/*fin gallery*/
+/*gallery Detail*/
+article.node-hwc-gallery img {
+  margin-left: auto;
+  margin-right: auto;
+}
+/*fin gallery Detail*/
 .above_title {
   margin-left: 25px;
   margin-right: 25px;
@@ -10407,7 +10464,7 @@ article .hwc-share-widget ul {
   padding-left: 30px;
   padding-right: 30px;
   text-align: center;
-  display: block !important;
+  /* display: block !important; */
 }
 #cboxWrapper button#cboxPrevious {
   left: 0;
@@ -12965,6 +13022,42 @@ article .hwc-share-widget ul {
 .field.field-name-field-aditional-resources .node-youtube .field.field-type-youtube a:before,
 .panels-flexible-region-container-additional_resources .node-youtube .field.field-type-youtube a:before {
   content: "";
+}
+.field-name-field-recommended-resources .node-news .field.field-name-field-image,
+.field-name-field-recommended-articles .node-news .field.field-name-field-image,
+.field.field-name-field-aditional-resources .node-news .field.field-name-field-image,
+.panels-flexible-region-container-additional_resources .node-news .field.field-name-field-image {
+  height: auto;
+  width: auto;
+  float: none;
+  overflow: hidden;
+  margin-right: 0;
+}
+.field-name-field-recommended-resources .node-news .field.field-name-field-image .field-items,
+.field-name-field-recommended-articles .node-news .field.field-name-field-image .field-items,
+.field.field-name-field-aditional-resources .node-news .field.field-name-field-image .field-items,
+.panels-flexible-region-container-additional_resources .node-news .field.field-name-field-image .field-items {
+  height: auto;
+}
+.field-name-field-recommended-resources .node-news .field.field-name-field-image .field-items div,
+.field-name-field-recommended-articles .node-news .field.field-name-field-image .field-items div,
+.field.field-name-field-aditional-resources .node-news .field.field-name-field-image .field-items div,
+.panels-flexible-region-container-additional_resources .node-news .field.field-name-field-image .field-items div {
+  height: auto;
+  background-color: white;
+}
+.field-name-field-recommended-resources .node-news .field.field-name-field-image .field-items div img,
+.field-name-field-recommended-articles .node-news .field.field-name-field-image .field-items div img,
+.field.field-name-field-aditional-resources .node-news .field.field-name-field-image .field-items div img,
+.panels-flexible-region-container-additional_resources .node-news .field.field-name-field-image .field-items div img {
+  margin-top: 1.5em;
+  margin-bottom: 2em;
+  margin-right: 0em;
+  min-width: 0;
+  height: auto;
+  min-height: 0;
+  width: 150px;
+  max-width: 100%;
 }
 /*fin aditional resources*/
 /* Fin Block: recommended-articles and recommended-resources */
