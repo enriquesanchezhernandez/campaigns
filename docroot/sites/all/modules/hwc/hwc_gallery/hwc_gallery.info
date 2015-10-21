@@ -23,6 +23,7 @@ features[ctools][] = strongarm:strongarm:1
 features[ctools][] = views:views_default:3.0
 features[ds_fields][] = gallery_cover_image
 features[ds_layout_settings][] = node|hwc_gallery|default
+features[fe_nodequeue][] = featured_gallery
 features[features_api][] = api:2
 features[field_base][] = field_gallery
 features[field_base][] = field_images
