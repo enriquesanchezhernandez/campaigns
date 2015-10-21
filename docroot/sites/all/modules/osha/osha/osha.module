@@ -727,3 +727,91 @@ function osha_node_activity_name($node) {
   }
   return '';
 }
+
+/**
+ * Implements hook_node_update().
+ */
+function osha_node_update($node) {
+  osha_expire_node_page($node);
+}
+
+function osha_expire_node_page($node) {
+  $node_url = 'node/' . $node->nid;
+  $paths = array('/' . $node_url);
+
+  // Translations
+  $handler = entity_translation_get_handler('node', $node);
+  $translations = $handler->getTranslations();
+  if (!empty($translations->data) && is_array($translations->data)) {
+    foreach ($translations->data as $language => $t) {
+      $paths[] = '/' . $language . '/node/' . $node->nid;
+    }
+  }
+
+  // Redirects
+  $redirects = db_select('redirect')->fields(NULL, array('rid', 'source', 'language'))->condition('redirect', $node_url)->execute()->fetchAllAssoc('rid');
+  foreach($redirects as $row) {
+    if ($row->language == LANGUAGE_NONE) {
+      $url = '/' . $row->source;
+    }
+    else {
+      $url = '/' . $row->source . '/' . $row->source;
+    }
+    $paths[] = $url;
+  }
+
+  // Aliases
+  $aliases = db_select('url_alias')->fields(NULL, array('pid', 'alias', 'language'))->condition('source', $node_url)->execute()->fetchAllAssoc('pid');
+  foreach($aliases as $row) {
+    if ($row->language == LANGUAGE_NONE) {
+      $url = '/' . $row->alias;
+    }
+    else {
+      $url = '/' . $row->language . '/' . $row->alias;
+    }
+    $paths[] = $url;
+  }
+  if (!empty($paths)) {
+    foreach($paths as $path) {
+      osha_expire_page($path);
+    }
+  }
+}
+
+/**
+ * Expire a single path pattern from DrupalDatabaseCache and Varnish.
+ *
+ * @param string $path
+ *   Absolute path (ex. path/to/view) - no prefix slash!
+ */
+function osha_expire_view_page($path) {
+  if (module_exists('varnish')) {
+    global $base_root;
+    $host = _varnish_get_host();
+    /* Explicit expire of affected pages in cache_page */
+    // http://my.domain.com/LANG/path/to/page
+    foreach(language_list() as $language => $ob) {
+      cache_clear_all($base_root . '/' . $language . '/' . $path, 'cache_page');
+    }
+    // path/to/page
+    varnish_purge($host, $path);
+  }
+}
+
+/**
+ * Expire a single path pattern from DrupalDatabaseCache and Varnish.
+ *
+ * @param string $path
+ *   Absolute path (ex. /fr/node/1234)
+ */
+function osha_expire_page($path) {
+  if (module_exists('varnish')) {
+    global $base_root;
+    $host = _varnish_get_host();
+    /* Explicit expire of affected pages in cache_page */
+    // http://my.domain.com/path/to/page
+    cache_clear_all($base_root . $path, 'cache_page');
+    // /path/to/page
+    varnish_purge($host, $path);
+  }
+}
