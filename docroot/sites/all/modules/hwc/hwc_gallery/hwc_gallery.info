@@ -63,4 +63,4 @@ features[variable][] = osha_gallery_usable_fields_bundles
 features[variable][] = pathauto_node_hwc_gallery_pattern
 features[variable][] = workbench_access_node_type_hwc_gallery
 features[variable][] = workbench_moderation_default_state_hwc_gallery
-features[views_view][] = gallery
+features[views_view][] = photo_gallery
