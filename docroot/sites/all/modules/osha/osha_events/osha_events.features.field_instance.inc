@@ -566,7 +566,7 @@ function osha_events_field_default_field_instances() {
     'bundle' => 'events',
     'default_value' => NULL,
     'deleted' => 0,
-    'description' => '',
+    'description' => 'Write the general description of your event. This will appear in the body of your event\'s page.',
     'display' => array(
       'body' => array(
         'label' => 'above',
@@ -663,6 +663,12 @@ function osha_events_field_default_field_instances() {
       'active' => 1,
       'module' => 'text',
       'settings' => array(
+        'maxlength_js' => '',
+        'maxlength_js_enforce' => 0,
+        'maxlength_js_label' => '@remaining left',
+        'maxlength_js_label_summary' => '@remaining left',
+        'maxlength_js_summary' => 420,
+        'maxlength_js_truncate_html' => 0,
         'rows' => 20,
         'summary_rows' => 5,
       ),
@@ -2037,7 +2043,7 @@ function osha_events_field_default_field_instances() {
     ),
     'entity_type' => 'node',
     'field_name' => 'field_start_date',
-    'label' => 'Start date',
+    'label' => 'Starting date and time',
     'required' => 0,
     'settings' => array(
       'default_value' => 'now',
@@ -2471,7 +2477,7 @@ function osha_events_field_default_field_instances() {
   t('Related documents');
   t('Schedule');
   t('Speaker');
-  t('Start date');
+  t('Starting date and time');
   t('Tags');
   t('Talking date');
   t('Talking files');
@@ -2480,6 +2486,7 @@ function osha_events_field_default_field_instances() {
   t('Title');
   t('Venue');
   t('Website of event');
+  t('Write the general description of your event. This will appear in the body of your event\'s page.');
 
   return $field_instances;
 }
