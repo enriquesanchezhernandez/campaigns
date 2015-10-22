@@ -440,7 +440,7 @@ function theme_hwc_date_part_label_time($variables) {
     return '';
   }
   else {
-    return theme('date_part_label_time', $variables);
+    return theme_date_part_label_time($variables);
   }
 }
 
