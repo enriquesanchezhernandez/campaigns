@@ -1,10 +1,13 @@
 /* Menu dropdown */
-ul.nav li.dropdown:hover ul.dropdown-menu {
-    display: block;
+@media only screen and (min-width : 768px) {
+    ul.nav li.dropdown:hover ul.dropdown-menu {
+        display: block;
+    }
+    ul.nav li.dropdown ul.dropdown-menu {
+        margin-top: 0;
+    }
 }
-ul.nav li.dropdown ul.dropdown-menu {
-    margin-top: 0;
-}
+
 
 #block-search-form .input-group { width: 250px; }
 #block-search-form input { width: 210px; }
@@ -260,16 +263,6 @@ div.workbench-info-block {
     height: auto !important;
 }
 .node-external-url .field-name-field-image img {
-    width: auto !important;
-    height: auto !important;
-}
-
-.node-internal-url .field-name-field-image {
-    float: left;
-    width: auto !important;
-    height: auto !important;
-}
-.node-internal-url .field-name-field-image img {
     width: auto !important;
     height: auto !important;
 }
