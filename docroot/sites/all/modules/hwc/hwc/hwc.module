@@ -435,7 +435,7 @@ function hwc_theme_registry_alter(&$theme_registry) {
 }
 
 function theme_hwc_date_part_label_time($variables) {
-  if ($variables['element']['#instance']['field_name'] == 'field_start_date'
+  if (!empty($variables['element']['#instance']) && $variables['element']['#instance']['field_name'] == 'field_start_date'
       && $variables['element']['#instance']['bundle'] == 'events') {
     return '';
   }
@@ -445,7 +445,7 @@ function theme_hwc_date_part_label_time($variables) {
 }
 
 function theme_hwc_date_part_label_date($variables) {
-  if ($variables['element']['#instance']['field_name'] == 'field_start_date'
+  if (!empty($variables['element']['#instance']) && $variables['element']['#instance']['field_name'] == 'field_start_date'
       && $variables['element']['#instance']['bundle'] == 'events') {
     return t('Starting date and time') . '<span class="form-required" title="' . t('This field is required.') . '">*</span>';
   }
