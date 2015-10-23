@@ -29,9 +29,35 @@ function osha_path_breadcrumbs_settings_info() {
     'arguments' => array(
       'node' => array(
         'position' => 1,
+        'argument' => 'entity_id:node',
+        'settings' => array(
+          'identifier' => 'Node: ID',
+        ),
       ),
     ),
-    'access' => array(),
+    'access' => array(
+      'plugins' => array(
+        0 => array(
+          'name' => 'entity_bundle:node',
+          'settings' => array(
+            'type' => array(
+              'campaign_materials' => 'campaign_materials',
+              'events' => 'events',
+              'hwc_gallery' => 'hwc_gallery',
+              'infographic' => 'infographic',
+              'news' => 'news',
+              'partner' => 'partner',
+              'practical_tool' => 'practical_tool',
+              'press_release' => 'press_release',
+              'publication' => 'publication',
+            ),
+          ),
+          'context' => 'node',
+          'not' => TRUE,
+        ),
+      ),
+      'logic' => 'and',
+    ),
   );
   $path_breadcrumb->weight = 0;
   $export['node_breadcrumbs'] = $path_breadcrumb;
