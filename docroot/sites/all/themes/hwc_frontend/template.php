@@ -76,6 +76,10 @@ function hwc_frontend_menu_link(array $variables) {
       // when a submenu link is clicked.
 //      $element['#localized_options']['attributes']['data-target'] = '#';
       $element['#localized_options']['attributes']['class'][] = 'dropdown-toggle';
+      $element['#localized_options']['attributes']['data-toggle'] = 'dropdown';
+      $element['#localized_options']['attributes']['role'] = 'button';
+      $element['#localized_options']['attributes']['aria-haspopup'] = 'true';
+      $element['#localized_options']['attributes']['aria-expanded'] = 'false';
 //      $element['#localized_options']['attributes']['data-toggle'] = 'dropdown';
     }
   }
@@ -115,69 +119,60 @@ function hwc_frontend_preprocess_page(&$vars) {
   // add back to links (e.g. Back to news)
   if (isset($vars['node'])) {
     $node = $vars['node'];
-    $tag_vars = array(
-      'element' => array (
-        '#tag' => 'h1',
-        '#attributes' => array(
-          'class' => array('page-header'),
-        ),
-      ),
-    );
     switch ($node->type) {
       case 'publication':
         $link_title = t('Back to publications list');
         $link_href = 'publications';
-        $tag_vars['element']['#value'] = t('Publications');
         $vars['page']['above_title']['title-alternative'] = array(
           '#type' => 'item',
-          '#markup' => theme('html_tag', $tag_vars),
+          '#markup' => t('Publications'),
+          '#prefix' => '<strong class="title-alt">', '#suffix' => '</strong>'
         );
         break;
       case 'press_release':
         $link_title = t('Back to press releases list');
         $link_href = 'press-room';
-        $tag_vars['element']['#value'] = t('Press releases');
         $vars['page']['above_title']['title-alternative'] = array(
           '#type' => 'item',
-          '#markup' => theme('html_tag', $tag_vars),
+          '#markup' => t('Press releases'),
+          '#prefix' => '<strong class="title-alt">', '#suffix' => '</strong>'
         );
         break;
       case 'news':
         $link_title = t('Back to news');
         $link_href = 'news';
-        $tag_vars['element']['#value'] = t('News');
         $vars['page']['above_title']['title-alternative'] = array(
           '#type' => 'item',
-          '#markup' => theme('html_tag', $tag_vars),
+          '#markup' => t('News'),
+          '#prefix' => '<strong class="title-alt">', '#suffix' => '</strong>'
         );
         break;
       case 'infographic':
         $link_title = t('Back to infographics list');
         $link_href = 'infographics';
-        $tag_vars['element']['#value'] = t('Infographics');
         $vars['page']['above_title']['title-alternative'] = array(
           '#type' => 'item',
-          '#markup' => theme('html_tag', $tag_vars),
+          '#markup' => t('Infographics'),
+          '#prefix' => '<strong class="title-alt">', '#suffix' => '</strong>'
         );
         break;
 
       case 'campaign_materials':
         $link_title = t('Back to campaign materials list');
         $link_href = 'campaign-materials';
-        $tag_vars['element']['#value'] = t('Campaign materials');
         $vars['page']['above_title']['title-alternative'] = array(
           '#type' => 'item',
-          '#markup' => theme('html_tag', $tag_vars),
+          '#markup' => t('Campaign materials'),
+          '#prefix' => '<strong class="title-alt">', '#suffix' => '</strong>'
         );
         break;
 
       case 'practical_tool':
         $link_title = t('Back to practical tools list');
         $link_href = 'practical-tools';
-        $tag_vars['element']['#value'] = t('Practical tools');
         $vars['page']['above_title']['practical-tool-page-title'] = array(
           '#type' => 'item',
-          '#markup' => theme('html_tag', $tag_vars),
+          '#markup' => '<h1>' . t('Practical tools') . '</h1>',
         );
         break;
 
@@ -187,21 +182,18 @@ function hwc_frontend_preprocess_page(&$vars) {
         if ($date < $now) {
           $link_title = t('Back to past events list');
           $link_href = 'past-events';
-          $tag_vars['element']['#value'] = t('Past events');
           $vars['page']['above_title']['events-page-title'] = array(
             '#type' => 'item',
-            '#markup' => theme('html_tag', $tag_vars),
+            '#markup' => '<h1>' . t('Past events') . '</h1>',
           );
+          break;
         }
-        else {
-          $link_title = t('Back to events list');
-          $link_href = 'events';
-          $tag_vars['element']['#value'] = t('Upcoming events');
-          $vars['page']['above_title']['practical-tool-page-title'] = array(
-            '#type' => 'item',
-            '#markup' => theme('html_tag', $tag_vars),
-          );
-        }
+        $link_title = t('Back to events list');
+        $link_href = 'events';
+        $vars['page']['above_title']['events-page-title'] = array(
+          '#type' => 'item',
+          '#markup' => '<h1>' . t('Upcoming events') . '</h1>',
+        );
         break;
 
       case 'hwc_gallery':
@@ -213,7 +205,6 @@ function hwc_frontend_preprocess_page(&$vars) {
           '#markup' => theme('html_tag', $tag_vars),
         );
         break;
-
     }
     if (isset($link_title)) {
       $vars['page']['above_title']['back-to-link'] = array(
@@ -253,6 +244,7 @@ function hwc_frontend_preprocess_page(&$vars) {
     switch(current_path()){
       case 'node/add/events':
       case 'node/add/news':
+      case 'private':
         $link_title = t('Back to homepage');
         $link_href = 'node/'.$partner->nid;
         $vars['page']['above_title']['title-alternative'] = array(
@@ -327,9 +319,6 @@ function hwc_frontend_preprocess_node(&$vars) {
         if ($date_diff < 0) {
           $vars['classes_array'][] = 'page-past-event';
         }
-        else {
-          $vars['classes_array'][] = 'page-upcoming-event';
-        }
       }
     }
   }
@@ -342,16 +331,6 @@ function hwc_frontend_preprocess_node(&$vars) {
   $vars['theme_hook_suggestions'][] = 'node__' . $view_mode;
   $vars['theme_hook_suggestions'][] = 'node__' . $vars['node']->type . '__' . $view_mode;
   $vars['theme_hook_suggestions'][] = 'node__' . $vars['node']->nid . '__' . $view_mode;
-
-  if (context_isset('context', 'segmentation_page')) {
-    $vars['theme_hook_suggestions'][] = 'node__article_segment';
-  }
-
-  // Hide share widget
-  $exclude_nid = array('129');
-  if(in_array($vars['node']->nid, $exclude_nid)){
-    unset($vars['content']['share_widget']);
-  }
 
   hwc_frontend_top_anchor($vars);
 }

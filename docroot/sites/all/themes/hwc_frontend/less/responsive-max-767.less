@@ -8,34 +8,27 @@ header{
 			.navbar-header{
 				.row{
 					padding: 0px;
-					img[alt="Home"]{
-						margin-left: 0px;
-					}
 				}
 				a.pull-left{
 					padding-right: 1em;
 					margin-right: 1em;
-					img[alt="Home"]{
+					img{
 						margin-left: 15px;
 						width: 130px;
-						height: 130px;
 					}
 				}
-				img[alt="EU-OSHA logo"]{
-					width: 150px;
-					height: 140px;
-					padding-top: 10px;
+				a img.pull-left{
+					margin-top: 10px;
 				}
-				img[alt="EU logo"]{
+				img:nth-child(3){
 					width: 55px;
-					height: 137px;
 					padding-right: 0em !important;
 				    border-right: none;
 				}
 				.header-text{
 				    font-size: @size6;
 				    width: 120px;
-				    padding-top: 2.5em;
+				    padding-top: 2em;
 				    padding-left: 0.8em;
 				}
 				.header_top_bar{
@@ -119,6 +112,9 @@ header.navbar-default{
 	margin-right: 0;
     margin-bottom: 5px;
 	width: auto;
+	.navbar-nav .open .dropdown-menu>li>a{
+		color:#FFF;
+	}
 	.campaigns-header .navbar-header .region-header{
 		/* background: @bg-default-color url(../images/header/bg-menu.png) repeat-x center top; */
 		#block-lang-dropdown-language, #block-menu-menu-header-login ~ #block-lang-dropdown-language{
@@ -164,7 +160,6 @@ header.navbar-default{
 						width: 100%;
 						min-width: 100%;
 						margin-left: 0em;
-						display: block;
 						position: relative;
 						li{
 							padding-left: 2em;
