@@ -511,7 +511,7 @@ function hwc_field_widget_form_alter(&$element, &$form_state, $context) {
 
     }
   }
-  elseif ($is_news_form) {
+  elseif ($is_news_form && !empty($element['#field_name'])) {
     switch ($element['#field_name']) {
       case 'title_field':
         $placeholder = t('News title');
