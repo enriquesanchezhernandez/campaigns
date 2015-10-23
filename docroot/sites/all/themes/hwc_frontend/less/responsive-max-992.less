@@ -178,6 +178,9 @@ header{
 					display: inline-block;
 					margin-right: 40px;
 					width: 150px;
+					margin-right: 1%;
+					width: 30%;
+					vertical-align: text-top;
 				}
 			}
 		//}
@@ -747,6 +750,38 @@ header{
 	margin-bottom: 50px !important;
 	padding-left: @margin-tablet !important;
 	padding-right: @margin-tablet !important;
+	[class*="field-type-link"]{
+		&[class*="facebook"]{
+			background-position: left top;
+			padding-left: 0px;
+			padding-top: 3em;
+		}
+		&[class*="twitter"]{
+			background-position: left top;
+			padding-left: 0px;
+			padding-top: 3em;
+		}
+		&[class*="slideshare"]{
+			background-position: left top;
+			padding-left: 0px;
+			padding-top: 3em;
+		}
+		&[class*="youtube"]{
+			background-position: left top;
+			padding-left: 0px;
+			padding-top: 3em;
+		}
+		&[class*="linkedin"]{
+			background-position: left top;
+			padding-left: 0px;
+			padding-top: 3em;
+		}
+	}
+	.field-name-field-main-contact.field-label-inline{
+		.field-label, .field-items{
+			float: none;
+		}
+	}
 }
 .profile-2-cols-container-3, .container.profile-2-cols-container-3{
 	padding-left: @margin-tablet;
@@ -882,6 +917,9 @@ header{
 				}
 			}
 		}
+		>div>.pane-node-body:last-child{
+			margin-left: 0px;
+		}
 	}
 }
 /*Fin pag get-your-certificate*/
@@ -889,6 +927,12 @@ header{
 /*pag contact-form*/
 .contact-form.container{
     padding: 0 @margin-tablet;
+	div.form-group{
+		width: 100%;
+		textarea{
+			width: 100%;
+		}
+	}
 }
 /*fin pag contact-form*/
 

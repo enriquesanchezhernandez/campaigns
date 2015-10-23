@@ -1,7 +1,7 @@
 // Insert your styling here.
 
 	body{
-	/* para toda la aplicacion */
+	/* General */
 		font-family: @font-family-base;
 		.btn-default, .more-link, .btn-primary{
 			color: @btn-default-color;
@@ -44,7 +44,7 @@
 			}
 		}
 	}
-/* FIN para toda la aplicacion */
+	/* End General */
 
 /*no deberian aparecer en la aplicacion
 .not-logged-in  ul.tabs--primary.nav.nav-tabs{
@@ -77,9 +77,9 @@ ul.tabs--primary.nav.nav-tabs{
 		display: block;
 	}
 }
-/*Fin */
+/*End */
 
-/* contenedor principal */
+/* main-container */
 	.main-container {
 		/* padding-left: 0;
 		padding-right: 0; */
@@ -462,7 +462,7 @@ ul.tabs--primary.nav.nav-tabs{
 							display: block;
 							width: 100%;
 							width: auto;
-							height: auto; /* para que no se deforme la img */
+							height: auto; /* to make the image proportional  */
     						/* min-height: 356px; */
 							max-height: 356px;
 						}
@@ -542,7 +542,6 @@ ul.tabs--primary.nav.nav-tabs{
 		}
 	}
 	.node-news{
-		//margin: 0px 135px; quitado para responsive
 		h1{
 			font-style: italic;
 			font-weight: normal;
@@ -709,7 +708,6 @@ ul.tabs--primary.nav.nav-tabs{
 	/*Articles*/
 	.node-type-article{
 		article{
-			//margin: 0px 135px; quitado para responsive
 			margin-left: -15px;
 			margin-right: -15px;
 			.field-name-title-field{
@@ -770,7 +768,7 @@ ul.tabs--primary.nav.nav-tabs{
 			}
 		}
 	}
-	/*Fin articles*/
+	/*End articles*/
 	
 	/* pag Infographics */
 	.view-infographic{
@@ -810,7 +808,7 @@ ul.tabs--primary.nav.nav-tabs{
 			}
 		}
 	}
-	/* Fin Infographics */
+	/* End Infographics */
 	
 	/* Press Room */
 	.node-press-release {
@@ -973,6 +971,7 @@ ul.tabs--primary.nav.nav-tabs{
 			border: none;
 			.view-content{
 				height: 270px;
+				overflow: hidden;
 				.views-row {
 					border-bottom: none;
 					margin: 0;
@@ -1072,7 +1071,6 @@ ul.tabs--primary.nav.nav-tabs{
 			margin-left: -300px;
 		}
 	}
-
 	
 	/* home events */
 	#block-views-frontpage-events-block, .panels-flexible-column-new-2, .panels-flexible-column-last{
@@ -1117,6 +1115,7 @@ ul.tabs--primary.nav.nav-tabs{
 		}
 		.view-content{
 			height: 270px;
+			overflow: hidden;
 			.views-row{
 				padding-bottom: 1em;
 			}
@@ -1262,7 +1261,7 @@ ul.tabs--primary.nav.nav-tabs{
 			border-top: 1px solid @border-default-color;
 			margin: 0em auto 3em;
 			> div{
-				width: 100% !important; //para que las flechas esten en el borde
+				width: 100% !important; //Dates in border
 			}
 			#num_slides{
 				left: 5em;
@@ -1920,10 +1919,7 @@ ul.tabs--primary.nav.nav-tabs{
 			margin-right: 0.5em;
 		}
 	}
-/* FIN contenedor principal */
-
-
-
+/* End contenedor principal */
 
 /* -----------ENDIKA------------ */
 /*HOME*/
@@ -1944,7 +1940,7 @@ ul.tabs--primary.nav.nav-tabs{
 		font-size: @size1;
 	}
 }
-/*fin Home*/
+/*End Home*/
 
 /*share line*/
 .a2a_kit.a2a_target.addtoany_list{
@@ -1966,7 +1962,6 @@ ul.tabs--primary.nav.nav-tabs{
 		border-bottom: 1px dotted @color3;
 		padding-bottom: 1em;
 		padding-top: 1em;
-		//margin: 0px 135px; quitado para responsive
 		//min-height: 180px;
 		overflow: hidden;
 		h2{
@@ -1996,7 +1991,7 @@ ul.tabs--primary.nav.nav-tabs{
 			}
 		}
 		.left-column{
-			//para imagen articulos news
+			//article images - news
 			min-height: 250px;
 			float:left;
 			.field-name-field-image img{
@@ -2009,7 +2004,6 @@ ul.tabs--primary.nav.nav-tabs{
 	}
 }
 .node-news{
-	//margin: 0px 135px; quitado para responsive
 	h1{
 		font-style: italic;
 		font-weight: normal;
@@ -2140,43 +2134,6 @@ article{
 				display: block;
 		    }
 		}
-		/*
-		.hwc-share-widget-twitter, .napo-share-widget-linkedin{
-			
-			a{
-				background-color: @colorFacebook;//color facebook
-				background: linear-gradient(@colorFacebook, @colorGradient);
-				padding: 2px 5px;
-				font-size: .8em;
-				color: white;
-				font-weight: 600;
-				margin-left: 0px;
-				border-radius: 2px;
-				width: 30px;
-				height: 30px;
-				&:before{
-					background: url("../images/content/facebook.png") no-repeat center;
-					background-position: center !important;
-					height: 30px;
-					width: 30px;
-				}
-			}
-		}
-		.pull-right{
-			a{
-				background-color: @colorFacebook;//color facebook
-				background: linear-gradient(@colorFacebook, @colorGradient);
-				padding: 2px 5px;
-				font-size: .8em;
-				color: white;
-				font-weight: 600;
-				margin-left: 10px;
-				border-radius: 2px;
-				position: absolute;
-				right: 0;
-			}
-		}
-		*/
 	}
 }
 
@@ -2207,7 +2164,7 @@ article{
 		}
 	}
 }
-/*fin gallery*/
+/*End gallery*/
 
 /*gallery Detail*/
 .node-type-hwc-gallery{
@@ -2238,7 +2195,7 @@ article{
 		}
 	}
 }
-/*fin gallery Detail*/
+/*End gallery Detail*/
 
 .above_title{
 	margin-left: @margin1;
@@ -2300,7 +2257,7 @@ article{
 			}
 		}
 	}
-/* fin news*/
+/* End news*/
 
 /*texto introduccion*/
 .section-introduction{
@@ -2328,7 +2285,7 @@ article{
 /*texto introduccion*/
 
 /* -Press Room- */
-//tres bloques
+//3 blocks
 .node-type-press-release{
 	h1{
 		margin-bottom: 0;
@@ -2433,7 +2390,7 @@ article{
 		border-bottom: 1px dotted @color3;
 	}
 }
-//articulos pressroom
+//press-releases
 .view-press-releases {
 	.views-row{
 		border-bottom: 1px dotted @color3;
@@ -2465,7 +2422,6 @@ article{
 }
 /*pressroom detail*/
 .node-press-release{
-	//margin: 0px 135px; quitado para responsive
 	iframe{
 		margin-right: 1.5em;
 		margin-bottom: 1em;
@@ -2482,7 +2438,7 @@ article{
 		display: block;
 	}
 }
-/*fin pressroom */
+/*End pressroom */
 
 /* Events*/
 .page-past-events, .page-events{
@@ -2495,7 +2451,6 @@ article{
 		#block-system-main{
 		
 			.views-row{
-				//margin: 0px 135px; quitado para responsive
 				padding-top: 20px;
 				padding-bottom: 40px;
 				min-height: 230px;
@@ -2977,7 +2932,7 @@ article{
 		}
 	}
 }
-/*fin Events*/
+/*End Events*/
 
 /*gallery dialog*/
 #cboxWrapper{
@@ -3026,7 +2981,7 @@ article{
 	    left: 15px;
 	}
 }
-/*fin gallery dialog*/
+/*End gallery dialog*/
 
 .views-exposed-form{
 	#edit-search-api-views-fulltext-wrapper{
@@ -3109,14 +3064,14 @@ article{
 		}
 	}
 }
-/*Fin events*/
+/*End events*/
 
 /*case-studies*/
 .pane-osha-publication-osha-case-studies-listing.container{
 	width: 100%;
 	padding-left: 0;
 }
-/*Fin case-studies*/
+/*End case-studies*/
 
 /*Become a media partner*/
 .become-partner{
@@ -3149,6 +3104,15 @@ article{
 			}
 			h2.networking:before{
 				background-image: url("../images/content/icono-networking-big.jpg");
+			}
+			h2.reputation:before{
+				background-image: url("../images/content/icono-reputation-big.jpg");
+			}
+			h2.network:before{
+				background-image: url("../images/content/icono-networking-big.jpg");
+			}
+			h2.visibility:before{
+				background-image: url("../images/content/icono-visibility-big.jpg");
 			}
 		}
 		.col-2{
@@ -3296,7 +3260,7 @@ article{
 		margin-top: 1em;
 	}
 }
-/*fin become a media partner*/
+/*End become a media partner*/
 
 /*Employers plantilla*/
 .employers-section{
@@ -3539,7 +3503,7 @@ article{
 		}
 	}
 }
-/*fin employers*/
+/*End employers*/
 
 /*Get involved plantilla*/
 .get-involved-section{
@@ -3617,7 +3581,7 @@ article{
 		}
 	}
 }
-/*fin get  involved*/
+/*End get involved*/
 
 /*Partners public profile*/
 .container{
@@ -3707,74 +3671,74 @@ article{
 }
 
 .profile-ceo-container{
-		background: url("../images/content/bg-campaign-partner.png");
-		background-size: cover;
-		margin-top: 3em !important;
-		margin-bottom: 3em !important;
-		padding-bottom: 4em !important;
-		text-align: center;
+	background: url("../images/content/bg-campaign-partner.png");
+	background-size: cover;
+	margin-top: 3em !important;
+	margin-bottom: 3em !important;
+	padding-bottom: 4em !important;
+	text-align: center;
+	color: @color1;
+	margin-left: -15px !important;
+	margin-right: -15px !important;
+	.pane-node-field-ceo-photo{
+		margin-top: 3.5em;
 		color: @color1;
-		margin-left: -15px !important;
-    	margin-right: -15px !important;
-		.pane-node-field-ceo-photo{
-			margin-top: 3.5em;
-			color: @color1;
-			.field-name-field-ceo-photo{
-				width: 150px;
-			    height: 150px;
-			    margin: 0 auto;
-			    background-color: @color6;
-			    border-radius: 50%;
-			    overflow: hidden;
-			    img{
-			    	width: 100%;
-			    	height: 100%;
-			    	background-image: url("../images/content/imagen-prueba.jpg");
-			    	background-position: 50%;
-			    }
-			}
-		}
-		.field-name-field-ceo{
-			.field-item{
-				font-weight: 100;
-				font-style: italic;
-				font-size: 32px;
-				margin-top: 1em;
-				margin-bottom:1em;
-				
-			}
-		}
-		.pane-node-field-quote{
-			font-style: italic;
-			font-weight: bold;
-			position: relative;
-			&:before{
-				content:"";
-				margin-left: 15px;
-				width: 50px;
-				height: 50px;
-				float: left;
-				display: block;
-				background: url("../images/content/quottes.png") center no-repeat;
-			}
-			&:after{
-				content:"";
-				margin-right: 15px;
-				width: 50px;
-				height: 50px;
-				display: block;
-				background: url("../images/content/quottes.png") center no-repeat;
-				transform: rotate(180deg);
-				top: 0;
-			    right: 0;
-			    position: absolute;
-			    float: right;
-			}
-			.field-name-field-quote{
-				margin: 0px 70px;
+		.field-name-field-ceo-photo{
+			width: 150px;
+			height: 150px;
+			margin: 0 auto;
+			background-color: @color6;
+			border-radius: 50%;
+			overflow: hidden;
+			img{
+				width: 100%;
+				height: 100%;
+				background-image: url("../images/content/imagen-prueba.jpg");
+				background-position: 50%;
 			}
 		}
 	}
+	.field-name-field-ceo{
+		.field-item{
+			font-weight: 100;
+			font-style: italic;
+			font-size: 32px;
+			margin-top: 1em;
+			margin-bottom:1em;
+			
+		}
+	}
+	.pane-node-field-quote{
+		font-style: italic;
+		font-weight: bold;
+		position: relative;
+		&:before{
+			content:"";
+			margin-left: 15px;
+			width: 50px;
+			height: 50px;
+			float: left;
+			display: block;
+			background: url("../images/content/quottes.png") center no-repeat;
+		}
+		&:after{
+			content:"";
+			margin-right: 15px;
+			width: 50px;
+			height: 50px;
+			display: block;
+			background: url("../images/content/quottes.png") center no-repeat;
+			transform: rotate(180deg);
+			top: 0;
+			right: 0;
+			position: absolute;
+			float: right;
+		}
+		.field-name-field-quote{
+			margin: 0px 70px;
+		}
+	}
+}
 .profile-2-cols-container-1{
 	border-bottom: 1px dotted @color3;
 	padding-bottom: 70px !important;
@@ -3793,7 +3757,7 @@ article{
 	padding-bottom: 70px !important;
 	margin-bottom: 50px !important;
 	.profile-col-left-2, .profile-col-left-middle-2{
-		margin-right: 20px;
+		/* margin-right: 20px; */
 		img{
 			margin-left: 0px;
 		}
@@ -3814,7 +3778,35 @@ article{
 				}
 			}
 	}
-	
+	[class*="field-type-link"]{
+		font-weight: bold;
+		font-style: italic;
+		&[class*="facebook"]{
+			background: url("../images/content/facebook.png") no-repeat left center;
+			padding-left: 50px;
+			margin-bottom: 1em;
+		}
+		&[class*="twitter"]{
+			background: url("../images/content/twitter.png") no-repeat left center;
+			padding-left: 50px;
+			margin-bottom: 1em;
+		}
+		&[class*="slideshare"]{
+			background: url("../images/content/slideshare.png") no-repeat left center;
+			padding-left: 50px;
+			margin-bottom: 1em;
+		}
+		&[class*="youtube"]{
+			background: url("../images/content/youtube.png") no-repeat left center;
+			padding-left: 50px;
+			margin-bottom: 1em;
+		}
+		&[class*="linkedin"]{
+			background: url("../images/content/linkedin.png") no-repeat left center;
+			padding-left: 50px;
+			margin-bottom: 1em;
+		}
+	}
 }
 
 .profile-2-cols-container-3{
@@ -3843,7 +3835,8 @@ article{
 		}
 	}
 }
-/*fin partners public profile*/
+/*End partners public profile*/
+
 /*create event --> dentro de public profile*/
 .page-node-add-events, .page-node-add-news{
 	#views-form-aditional-resources-entityreference-view-widget-1 .form-type-checkbox label{
@@ -4198,7 +4191,7 @@ article{
 		display: none;
 	}
 }
-/*fin create event*/
+/*End create event*/
 
 /*Private area for partner*/
 .private-area{
@@ -4323,7 +4316,7 @@ article{
 		}
 	}
 }
-/*fin Private area for partner*/
+/*End Private area for partner*/
 
 /*campaign materials*/
 .page-campaign-materials{
@@ -4449,7 +4442,7 @@ article{
 		}
 	}
 }
-/*fin campaign materials*/
+/*End campaign materials*/
 /*Publications detail*/
 .node-type-publication{
 	h1{
@@ -4550,7 +4543,7 @@ article{
 		}
 	}
 }
-/*fin publications detail*/
+/*End publications detail*/
 
 /*official campaign partners list*/
 .node-145{
@@ -4629,7 +4622,7 @@ article{
 		//}
 	}
 
-/*fin oficial campaign partners list*/
+/*End oficial campaign partners list*/
 
 /*pag National focal points*/
 /* .page-national-focal-points, .page-official-campaign-partners, .page-campaign-media-partners */
@@ -4679,7 +4672,7 @@ article{
 		background-image: url("../images/content/bg/page-campaign-media-partners.jpg");
 	}
 }
-/*Fin pag National focal points*/
+/*End pag National focal points*/
 
 /* view-partners */
 .view-partners, #block-system-main .view-partners{
@@ -4693,7 +4686,7 @@ article{
 		background-color: @btn-default-bg;
 	}
 }
-/* Fin view-partners */
+/* End view-partners */
 /*pag Newsletter*/
 .page-node-129{
 	h1{
@@ -4813,13 +4806,13 @@ article{
 	font-size: 20px;
 	padding-bottom: 10px;
 }
-/*Fin pag Newsletter*/
+/*End pag Newsletter*/
 
 /*pag error*/
 .maintenance-page{
 	padding: @margin2;
 }
-/*Fin pag error*/
+/*End pag error*/
 
 /*pag get-your-certificate*/
 .page-get-your-certificate{
@@ -4867,6 +4860,8 @@ article{
 		button{
 			margin-left: @margin2;
 			width: 97%;
+			margin-left: 0;
+			width: 100%;
 		}
 		
 		.form-select {
@@ -4913,14 +4908,33 @@ article{
 			margin-left: 5%;
 		}
 	}
+	.container>div>.pane-node-body:last-child{
+		clear: both;
+		margin-top: 2em;
+		margin-left: -10px;
+		width: 100%;
+		max-width: 100%;
+		.field-items{
+			width: 100%;
+			margin-left: 0;
+		}
+	}
 }
-/*Fin pag get-your-certificate*/
+/*End pag get-your-certificate*/
 
 /*pag contact-form*/
 .contact-form.container{
     padding: 0 @margin-tablet;
 	.grippie{
 		display: none;
+	}
+	div.form-group{
+		width: 50%;
+		float: left;
+		margin-bottom: 1em;
+		label{
+			font-weight: bold;
+		}
 	}
 	.form-type-select {
 		position: relative;
@@ -4929,12 +4943,12 @@ article{
 		min-width: 200px; 
 		&:after {
 			width: 30px;
-			height: 32px;
+			height: 34px;
 			display: block;
 			content: '';
 			position: absolute;
-			bottom: 1px;
-			right: 0;
+			bottom: 0px;
+			left: 80%;
 			pointer-events: none;
 			background: @bg-color-2 url("../images/content/arrow-down.png") no-repeat right center;
 			-moz-box-sizing: border-box;
@@ -4951,48 +4965,29 @@ article{
 			-moz-box-sizing: border-box;
 			-webkit-box-sizing: border-box;
 			box-sizing: border-box;
-			width: 100%;
+			width: 80%;
 		}
 	}
+	button{
+		width: 100%;
+		background: @bg-color-2 url(../images/content/arrow-right-blue-bg-white.png) no-repeat right center;
+	}
 }
-/*fin pag contact-form*/
+fieldset.captcha {
+	clear: both;
+	border: none;
+	box-shadow: 0 0px 0px rgba(255, 255, 255, 0);
+	legend{
+		display: none;
+	}
+	div{
+	    padding-left: 0px;
+		padding-right: 0px;
+	}
+}
+/*End pag contact-form*/
 
 /* Block: recommended-articles and recommended-resources and article aditional resources*/
-	/* .field-name-field-recommended-resources, .field-name-field-recommended-articles{
-		.field-item{
-			margin: 1em 0;
-			padding: .5em 0;
-			margin: 0.5em 0 0;
-			padding: 0;
-			a{
-				color: @color2;
-				font-weight: bold;
-				margin-bottom: 2em;
-				font-size: @size2;
-				&:before{
-					content: "> ";
-				}
-			}
-		}
-		.node-article .field-name-field-image + .field-name-title-field{
-			position: relative;
-			background-image: none;
-			width: auto;
-			height: auto;
-		}
-		.node-article .field.field-name-field-image {
-			float: left;
-			margin-right: 1em;
-			margin-bottom: 4em;
-			margin-bottom: 1em;
-			width: auto;
-			height: auto;
-			overflow: hidden;
-			a:before{
-				content:"";
-			}
-		}
-	} */
 	
 	.field-name-field-recommended-resources, .field-name-field-recommended-articles, .field.field-name-field-aditional-resources, .panels-flexible-region-container-additional_resources{
 		//.panels-flexible-region-container-additional_resources esta puesto para Publications, 14/10/2015 quitar en cuanto se pueda
@@ -5235,8 +5230,8 @@ article{
 			}
 		}
 	}
-	/*fin aditional resources*/
-/* Fin Block: recommended-articles and recommended-resources */
+	/*End aditional resources*/
+/* End Block: recommended-articles and recommended-resources */
 
 /*classes toda la pantalla*/
 #block-osha-newsletter-osha-newsletter-subscribe{
