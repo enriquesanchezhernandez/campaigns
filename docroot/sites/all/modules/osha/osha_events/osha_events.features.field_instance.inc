@@ -1516,7 +1516,7 @@ function osha_events_field_default_field_instances() {
     ),
     'entity_type' => 'node',
     'field_name' => 'field_organizer',
-    'label' => 'Organizer',
+    'label' => 'Organiser',
     'required' => 0,
     'settings' => array(
       'entity_translation_sync' => FALSE,
@@ -2472,7 +2472,7 @@ function osha_events_field_default_field_instances() {
   t('Image');
   t('Location');
   t('Name');
-  t('Organizer');
+  t('Organiser');
   t('Partner ID');
   t('Related documents');
   t('Schedule');
