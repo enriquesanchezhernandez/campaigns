@@ -41,19 +41,19 @@ function hwc_gallery_ds_layout_settings_info() {
   $ds_layout->settings = array(
     'regions' => array(
       'ds_content' => array(
-        0 => 'share_widget',
+        0 => 'gallery_cover_image',
         1 => 'title_field',
-        2 => 'field_publication_date',
-        3 => 'gallery_cover_image',
+        2 => 'share_widget',
+        3 => 'field_publication_date',
         4 => 'body',
         5 => 'field_images',
       ),
     ),
     'fields' => array(
-      'share_widget' => 'ds_content',
-      'title_field' => 'ds_content',
-      'field_publication_date' => 'ds_content',
       'gallery_cover_image' => 'ds_content',
+      'title_field' => 'ds_content',
+      'share_widget' => 'ds_content',
+      'field_publication_date' => 'ds_content',
       'body' => 'ds_content',
       'field_images' => 'ds_content',
     ),

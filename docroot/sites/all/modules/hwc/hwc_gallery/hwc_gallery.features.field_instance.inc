@@ -247,7 +247,7 @@ function hwc_gallery_field_default_field_instances() {
           'osha_date_theme' => '',
         ),
         'type' => 'date_default',
-        'weight' => 2,
+        'weight' => 3,
       ),
       'osha_slideshow' => array(
         'label' => 'above',
