@@ -190,7 +190,7 @@ function hwc_frontend_preprocess_page(&$vars) {
         break;
       case 'hwc_gallery':
         $link_title = t('Back to gallery');
-        $link_href = 'publications';
+        $link_href = 'photo-gallery';
         $tag_vars['element']['#value'] = t('Photo gallery');
         $vars['page']['above_title']['title-alternative'] = array(
           '#type' => 'item',
