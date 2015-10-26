@@ -8256,8 +8256,6 @@ ul.tabs--primary.nav.nav-tabs > li.active > a:focus {
 .node-article .hwc-share-widget {
   border: none;
 }
-<<<<<<< Updated upstream
-=======
 .node-article .field-name-field-recommended-resources .field-item,
 .node-article .field-name-field-recommended-articles .field-item {
   margin: 1em 0;
@@ -8319,10 +8317,6 @@ ul.tabs--primary.nav.nav-tabs > li.active > a:focus {
 .node-article .field-name-field-recommended-articles .field-name-field-image a:before {
   content: "";
 }
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
 .node-article .node-infographic .field.field-name-field-image {
   width: auto;
   height: auto;
