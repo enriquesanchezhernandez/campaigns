@@ -94,6 +94,9 @@ function osha_events_form_views_exposed_form_alter(&$form, &$form_state) {
       '#type' => 'markup',
       '#markup' => $events_calendar,
     );
+
+    // Add placeholder for free text field
+    $form['search_api_views_fulltext']['#attributes'] = array('placeholder' => array(t('Free text filter')));
   }
 }
 
