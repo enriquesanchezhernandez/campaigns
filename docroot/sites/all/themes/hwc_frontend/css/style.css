@@ -8256,6 +8256,73 @@ ul.tabs--primary.nav.nav-tabs > li.active > a:focus {
 .node-article .hwc-share-widget {
   border: none;
 }
+<<<<<<< Updated upstream
+=======
+.node-article .field-name-field-recommended-resources .field-item,
+.node-article .field-name-field-recommended-articles .field-item {
+  margin: 1em 0;
+  padding: .5em 0;
+  margin: 0.5em 0 0;
+  padding: 0;
+}
+.node-article .field-name-field-recommended-resources .field-item a,
+.node-article .field-name-field-recommended-articles .field-item a {
+  color: #003399;
+  font-weight: bold;
+  margin-bottom: 2em;
+  font-size: 20px;
+}
+.node-article .field-name-field-recommended-resources .field-item a:before,
+.node-article .field-name-field-recommended-articles .field-item a:before {
+  content: "> ";
+}
+.node-article .field-name-field-recommended-resources .field-item a.more-link,
+.node-article .field-name-field-recommended-articles .field-item a.more-link {
+  font-size: 14px;
+}
+.node-article .field-name-field-recommended-resources .node-article .field-name-field-image + .field-name-title-field,
+.node-article .field-name-field-recommended-articles .node-article .field-name-field-image + .field-name-title-field {
+  position: relative;
+  background-image: none;
+  width: auto;
+  height: auto;
+}
+.node-article .field-name-field-recommended-resources .node-article .field.field-name-field-image,
+.node-article .field-name-field-recommended-articles .node-article .field.field-name-field-image {
+  float: left;
+  margin-right: 1em;
+  margin-bottom: 4em;
+  margin-bottom: 1em;
+  width: auto;
+  height: auto;
+  overflow: hidden;
+}
+.node-article .field-name-field-recommended-resources .node-article .field.field-name-field-image a:before,
+.node-article .field-name-field-recommended-articles .node-article .field.field-name-field-image a:before {
+  content: "";
+}
+.node-article .field-name-field-recommended-resources .node-news .group-left,
+.node-article .field-name-field-recommended-articles .node-news .group-left {
+  padding-right: 0px;
+  width: auto;
+}
+.node-article .field-name-field-recommended-resources .field.field-name-field-image,
+.node-article .field-name-field-recommended-articles .field.field-name-field-image {
+  height: auto;
+}
+.node-article .field-name-field-recommended-resources .field.field-name-field-image img,
+.node-article .field-name-field-recommended-articles .field.field-name-field-image img {
+  max-width: 150px;
+  margin-right: 0;
+}
+.node-article .field-name-field-recommended-resources .field-name-field-image a:before,
+.node-article .field-name-field-recommended-articles .field-name-field-image a:before {
+  content: "";
+}
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
 .node-article .node-infographic .field.field-name-field-image {
   width: auto;
   height: auto;
