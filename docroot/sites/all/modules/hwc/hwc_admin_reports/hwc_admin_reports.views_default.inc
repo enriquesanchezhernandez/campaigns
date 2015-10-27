@@ -473,10 +473,18 @@ function hwc_admin_reports_views_default_views() {
   $handler->display->display_options['filters']['rid']['table'] = 'users_roles';
   $handler->display->display_options['filters']['rid']['field'] = 'rid';
   $handler->display->display_options['filters']['rid']['relationship'] = 'uid';
+  $handler->display->display_options['filters']['rid']['value'] = array(
+    3 => '3',
+    8 => '8',
+    9 => '9',
+    12 => '12',
+    13 => '13',
+    15 => '15',
+  );
   $handler->display->display_options['filters']['rid']['group'] = 1;
   $handler->display->display_options['filters']['rid']['exposed'] = TRUE;
   $handler->display->display_options['filters']['rid']['expose']['operator_id'] = 'rid_op';
-  $handler->display->display_options['filters']['rid']['expose']['label'] = 'Author';
+  $handler->display->display_options['filters']['rid']['expose']['label'] = 'Author role';
   $handler->display->display_options['filters']['rid']['expose']['operator'] = 'rid_op';
   $handler->display->display_options['filters']['rid']['expose']['identifier'] = 'rid';
   $handler->display->display_options['filters']['rid']['expose']['remember_roles'] = array(
@@ -491,7 +499,12 @@ function hwc_admin_reports_views_default_views() {
     9 => 0,
     10 => 0,
     11 => 0,
+    12 => 0,
+    13 => 0,
+    14 => 0,
+    15 => 0,
   );
+  $handler->display->display_options['filters']['rid']['expose']['reduce'] = TRUE;
   /* Filter criterion: Workbench Access: Access filter */
   $handler->display->display_options['filters']['access_id']['id'] = 'access_id';
   $handler->display->display_options['filters']['access_id']['table'] = 'workbench_access';
