@@ -5,6 +5,51 @@
  */
 
 /**
+ * Implements hook_ds_field_settings_info().
+ */
+function osha_events_ds_field_settings_info() {
+  $export = array();
+
+  $ds_fieldsetting = new stdClass();
+  $ds_fieldsetting->api_version = 1;
+  $ds_fieldsetting->id = 'node|events|default';
+  $ds_fieldsetting->entity_type = 'node';
+  $ds_fieldsetting->bundle = 'events';
+  $ds_fieldsetting->view_mode = 'default';
+  $ds_fieldsetting->settings = array(
+    'event_location' => array(
+      'weight' => '2',
+      'label' => 'hidden',
+      'format' => 'default',
+    ),
+  );
+  $export['node|events|default'] = $ds_fieldsetting;
+
+  return $export;
+}
+
+/**
+ * Implements hook_ds_custom_fields_info().
+ */
+function osha_events_ds_custom_fields_info() {
+  $export = array();
+
+  $ds_field = new stdClass();
+  $ds_field->api_version = 1;
+  $ds_field->field = 'event_location';
+  $ds_field->label = 'event_location';
+  $ds_field->field_type = 3;
+  $ds_field->entities = array(
+    'node' => 'node',
+  );
+  $ds_field->ui_limit = 'events|*';
+  $ds_field->properties = array();
+  $export['event_location'] = $ds_field;
+
+  return $export;
+}
+
+/**
  * Implements hook_ds_layout_settings_info().
  */
 function osha_events_ds_layout_settings_info() {
@@ -22,43 +67,37 @@ function osha_events_ds_layout_settings_info() {
       'header' => array(
         0 => 'title_field',
         1 => 'share_widget',
-        2 => 'field_city',
-        3 => 'field_country_code',
-        4 => 'field_start_date',
-        5 => 'body',
-        6 => 'field_gallery',
-        7 => 'field_speaker',
-        8 => 'field_schedule',
-        9 => 'field_related_documents',
-        10 => 'field_contact_name',
-        11 => 'field_contact_email',
-        12 => 'field_contact_phone',
-        13 => 'field_website_of_event',
-        14 => 'field_partner_id',
-        15 => 'field_organizer',
-        16 => 'field_location',
-        17 => 'field_tags',
+        2 => 'event_location',
+        3 => 'field_start_date',
+        4 => 'body',
+        5 => 'field_gallery',
+        6 => 'field_speaker',
+        7 => 'field_schedule',
+      ),
+      'footer' => array(
+        8 => 'field_organizer',
+        9 => 'field_contact_name',
+        10 => 'field_contact_email',
+        11 => 'field_contact_phone',
+        12 => 'field_website_of_event',
+        13 => 'field_related_documents',
       ),
     ),
     'fields' => array(
       'title_field' => 'header',
       'share_widget' => 'header',
-      'field_city' => 'header',
-      'field_country_code' => 'header',
+      'event_location' => 'header',
       'field_start_date' => 'header',
       'body' => 'header',
       'field_gallery' => 'header',
       'field_speaker' => 'header',
       'field_schedule' => 'header',
-      'field_related_documents' => 'header',
-      'field_contact_name' => 'header',
-      'field_contact_email' => 'header',
-      'field_contact_phone' => 'header',
-      'field_website_of_event' => 'header',
-      'field_partner_id' => 'header',
-      'field_organizer' => 'header',
-      'field_location' => 'header',
-      'field_tags' => 'header',
+      'field_organizer' => 'footer',
+      'field_contact_name' => 'footer',
+      'field_contact_email' => 'footer',
+      'field_contact_phone' => 'footer',
+      'field_website_of_event' => 'footer',
+      'field_related_documents' => 'footer',
     ),
     'classes' => array(
       'layout_class' => array(

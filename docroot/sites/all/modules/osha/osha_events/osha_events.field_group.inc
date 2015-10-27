@@ -47,7 +47,7 @@ function osha_events_field_group_info() {
   $field_group->parent_name = '';
   $field_group->data = array(
     'label' => 'Description',
-    'weight' => '30',
+    'weight' => '31',
     'children' => array(),
     'format_type' => 'html-element',
     'format_settings' => array(
@@ -75,7 +75,7 @@ function osha_events_field_group_info() {
   $field_group->parent_name = '';
   $field_group->data = array(
     'label' => 'Event details',
-    'weight' => '29',
+    'weight' => '30',
     'children' => array(),
     'format_type' => 'html-element',
     'format_settings' => array(
@@ -103,7 +103,7 @@ function osha_events_field_group_info() {
   $field_group->parent_name = '';
   $field_group->data = array(
     'label' => 'Links',
-    'weight' => '31',
+    'weight' => '32',
     'children' => array(),
     'format_type' => 'html-element',
     'format_settings' => array(
@@ -136,7 +136,7 @@ function osha_events_field_group_info() {
   $field_group->parent_name = '';
   $field_group->data = array(
     'label' => 'Related documents',
-    'weight' => '28',
+    'weight' => '29',
     'children' => array(),
     'format_type' => 'html-element',
     'format_settings' => array(
