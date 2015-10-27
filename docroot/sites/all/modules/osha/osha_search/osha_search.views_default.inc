@@ -305,6 +305,17 @@ function osha_search_views_default_views() {
   $handler->display->display_options['fields']['field_contact_type']['link_to_entity'] = 0;
   $handler->display->display_options['fields']['field_contact_type']['view_mode'] = 'full';
   $handler->display->display_options['fields']['field_contact_type']['bypass_access'] = 0;
+  /* Field: Indexed Multilingual Node: File */
+  $handler->display->display_options['fields']['field_file']['id'] = 'field_file';
+  $handler->display->display_options['fields']['field_file']['table'] = 'search_api_index_default_multilingual_node_index';
+  $handler->display->display_options['fields']['field_file']['field'] = 'field_file';
+  $handler->display->display_options['fields']['field_file']['label'] = '';
+  $handler->display->display_options['fields']['field_file']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_file']['click_sort_column'] = 'fid';
+  $handler->display->display_options['fields']['field_file']['type'] = 'multilanguage_file';
+  $handler->display->display_options['fields']['field_file']['settings'] = array(
+    'field_formatter_class' => '',
+  );
   $handler->display->display_options['defaults']['sorts'] = FALSE;
   /* Sort criterion: Search: Relevance */
   $handler->display->display_options['sorts']['search_api_relevance']['id'] = 'search_api_relevance';
