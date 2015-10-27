@@ -257,92 +257,6 @@ function osha_events_field_default_field_instances() {
     'workbench_access_field' => 0,
   );
 
-  // Exported field_instance: 'node-event_speaker-body'
-  $field_instances['node-event_speaker-body'] = array(
-    'bundle' => 'event_speaker',
-    'default_value' => NULL,
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
-      'body' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-      'default' => array(
-        'label' => 'hidden',
-        'module' => 'text',
-        'settings' => array(
-          'field_formatter_class' => '',
-        ),
-        'type' => 'text_default',
-        'weight' => 2,
-      ),
-      'highlights_item' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-      'newsletter_item' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-      'osha_resources' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-      'osha_slideshow' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-      'pub_teaser' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-      'teaser' => array(
-        'label' => 'hidden',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 2,
-      ),
-      'title_body' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-    ),
-    'entity_type' => 'node',
-    'field_name' => 'body',
-    'label' => 'Body',
-    'required' => FALSE,
-    'settings' => array(
-      'display_summary' => TRUE,
-      'entity_translation_sync' => FALSE,
-      'text_processing' => 1,
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'module' => 'text',
-      'settings' => array(
-        'rows' => 20,
-        'summary_rows' => 5,
-      ),
-      'type' => 'text_textarea_with_summary',
-      'weight' => 5,
-    ),
-  );
-
   // Exported field_instance: 'node-event_speaker-field_image'
   $field_instances['node-event_speaker-field_image'] = array(
     'bundle' => 'event_speaker',
@@ -540,25 +454,34 @@ function osha_events_field_default_field_instances() {
     ),
     'entity_type' => 'node',
     'field_name' => 'title_field',
-    'label' => 'Title',
-    'required' => TRUE,
+    'label' => 'Name of the speaker',
+    'required' => 1,
     'settings' => array(
       'entity_translation_sync' => FALSE,
       'hide_label' => array(
-        'entity' => FALSE,
-        'page' => FALSE,
+        'entity' => 0,
+        'page' => 0,
+      ),
+      'linkit' => array(
+        'button_text' => 'Search',
+        'enable' => 0,
+        'profile' => '',
       ),
       'text_processing' => 0,
       'user_register_form' => FALSE,
     ),
     'widget' => array(
+      'active' => 1,
       'module' => 'text',
       'settings' => array(
+        'maxlength_js' => 0,
+        'maxlength_js_label' => 'Content limited to @limit characters, remaining: <strong>@remaining</strong>',
         'size' => 60,
       ),
       'type' => 'text_textfield',
       'weight' => 0,
     ),
+    'workbench_access_field' => 0,
   );
 
   // Exported field_instance: 'node-events-body'
@@ -2461,7 +2384,6 @@ function osha_events_field_default_field_instances() {
   // Translatables
   // Included for use with string extractors like potx.
   t('Activity');
-  t('Body');
   t('City');
   t('Contact Email');
   t('Contact Name');
@@ -2472,6 +2394,7 @@ function osha_events_field_default_field_instances() {
   t('Image');
   t('Location');
   t('Name');
+  t('Name of the speaker');
   t('Organiser');
   t('Partner ID');
   t('Related documents');

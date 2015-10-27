@@ -78,7 +78,6 @@ features[field_instance][] = field_collection_item-field_schedule-field_talking_
 features[field_instance][] = field_collection_item-field_schedule-field_talking_speaker
 features[field_instance][] = field_collection_item-field_schedule-field_talking_title
 features[field_instance][] = field_collection_item-field_schedule-field_venue
-features[field_instance][] = node-event_speaker-body
 features[field_instance][] = node-event_speaker-field_image
 features[field_instance][] = node-event_speaker-title_field
 features[field_instance][] = node-events-body
