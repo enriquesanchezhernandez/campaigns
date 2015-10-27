@@ -1051,7 +1051,7 @@ function osha_search_facetapi_default_facet_settings() {
   $facet->searcher = 'search_api@default_multilingual_node_index';
   $facet->realm = 'block';
   $facet->facet = 'search_api_language';
-  $facet->enabled = TRUE;
+  $facet->enabled = FALSE;
   $facet->settings = array(
     'weight' => 0,
     'widget' => 'facetapi_checkbox_links',
