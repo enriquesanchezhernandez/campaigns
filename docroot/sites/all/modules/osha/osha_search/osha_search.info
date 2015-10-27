@@ -62,6 +62,7 @@ features[facetapi][] = search_api@default_multilingual_node_index:block:type
 features[facetapi][] = search_api@default_multilingual_node_index:block:url
 features[facetapi][] = search_api@default_multilingual_node_index:block:uuid
 features[facetapi][] = search_api@default_multilingual_node_index:block:vid
+features[fe_block_settings][] = facetapi-11ABW7bHR7jxlsi7kP1x0I81mePGjicE
 features[fe_block_settings][] = facetapi-bhmRHTzU2n0ejKZP9wDI0S1oi2DgbSDm
 features[fe_block_settings][] = menu-menu-search
 features[fe_block_settings][] = osha_search-osha_search_clear_filters
