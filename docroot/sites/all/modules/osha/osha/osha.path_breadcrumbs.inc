@@ -12,6 +12,26 @@ function osha_path_breadcrumbs_settings_info() {
 
   $path_breadcrumb = new stdClass();
   $path_breadcrumb->api_version = 1;
+  $path_breadcrumb->machine_name = 'contact_page';
+  $path_breadcrumb->name = 'Contact Page';
+  $path_breadcrumb->path = 'contact';
+  $path_breadcrumb->data = array(
+    'titles' => array(
+      0 => '!page_title',
+    ),
+    'paths' => array(
+      0 => '<none>',
+    ),
+    'home' => 1,
+    'translatable' => 1,
+    'arguments' => array(),
+    'access' => array(),
+  );
+  $path_breadcrumb->weight = 0;
+  $export['contact_page'] = $path_breadcrumb;
+
+  $path_breadcrumb = new stdClass();
+  $path_breadcrumb->api_version = 1;
   $path_breadcrumb->machine_name = 'node_breadcrumbs';
   $path_breadcrumb->name = 'Node breadcrumbs';
   $path_breadcrumb->path = 'node/%node';
