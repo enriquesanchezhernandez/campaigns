@@ -7350,7 +7350,7 @@ header.navbar-default .navbar-collapse nav ul.menu {
 header.navbar-default .navbar-collapse nav ul.menu li {
   color: #ffffff;
   width: 20%;
-  cursor: pointer;
+  /* cursor: pointer; */
 }
 header.navbar-default .navbar-collapse nav ul.menu li a,
 header.navbar-default .navbar-collapse nav ul.menu li > span {
@@ -7370,6 +7370,9 @@ header.navbar-default .navbar-collapse nav ul.menu li > span .caret {
   position: absolute;
   top: 9px;
   right: 0px;
+}
+header.navbar-default .navbar-collapse nav ul.menu li > span[role="button"] {
+  cursor: auto;
 }
 header.navbar-default .navbar-collapse nav ul.menu li.last .caret {
   display: none;
@@ -9835,7 +9838,9 @@ article .hwc-share-widget ul {
 .page-media-center-photo-gallery .views-field-title-field,
 .view-photo-gallery .views-field-title-field,
 .page-media-center-photo-gallery .gallery_list_detail_container,
-.view-photo-gallery .gallery_list_detail_container {
+.view-photo-gallery .gallery_list_detail_container,
+.page-media-center-photo-gallery .attachment.attachment-before .views-field-nothing,
+.view-photo-gallery .attachment.attachment-before .views-field-nothing {
   background-color: #003399;
   color: #ffffff;
   padding: 1em;
@@ -9843,14 +9848,18 @@ article .hwc-share-widget ul {
 .page-media-center-photo-gallery .views-field-title-field a,
 .view-photo-gallery .views-field-title-field a,
 .page-media-center-photo-gallery .gallery_list_detail_container a,
-.view-photo-gallery .gallery_list_detail_container a {
+.view-photo-gallery .gallery_list_detail_container a,
+.page-media-center-photo-gallery .attachment.attachment-before .views-field-nothing a,
+.view-photo-gallery .attachment.attachment-before .views-field-nothing a {
   color: #ffffff;
   font-weight: bold;
 }
 .page-media-center-photo-gallery .views-field-title-field a:before,
 .view-photo-gallery .views-field-title-field a:before,
 .page-media-center-photo-gallery .gallery_list_detail_container a:before,
-.view-photo-gallery .gallery_list_detail_container a:before {
+.view-photo-gallery .gallery_list_detail_container a:before,
+.page-media-center-photo-gallery .attachment.attachment-before .views-field-nothing a:before,
+.view-photo-gallery .attachment.attachment-before .views-field-nothing a:before {
   content: ">";
   padding-right: 5px;
 }
@@ -9864,6 +9873,58 @@ article .hwc-share-widget ul {
   padding-right: 0px;
   border-left: none;
   margin-bottom: 0;
+}
+.page-media-center-photo-gallery .view-content .views-row.col-sm-4,
+.view-photo-gallery .view-content .views-row.col-sm-4 {
+  margin-bottom: 1em;
+}
+.page-media-center-photo-gallery .view-content .views-row.col-sm-4:nth-child(3n+1),
+.view-photo-gallery .view-content .views-row.col-sm-4:nth-child(3n+1) {
+  padding-right: 15px;
+  clear: both;
+}
+.page-media-center-photo-gallery .view-content .views-row.col-sm-4:nth-child(3n+2),
+.view-photo-gallery .view-content .views-row.col-sm-4:nth-child(3n+2) {
+  padding-right: 7px;
+  padding-left: 8px;
+}
+.page-media-center-photo-gallery .view-content .views-row.col-sm-4:nth-child(3n),
+.view-photo-gallery .view-content .views-row.col-sm-4:nth-child(3n) {
+  padding-left: 15px;
+}
+.page-media-center-photo-gallery .view-content .views-row.col-sm-4 blockquote.image-field-caption,
+.view-photo-gallery .view-content .views-row.col-sm-4 blockquote.image-field-caption {
+  display: none;
+}
+.page-media-center-photo-gallery .attachment.attachment-before,
+.view-photo-gallery .attachment.attachment-before {
+  padding-bottom: 2em;
+  border-bottom: 1px dotted #749b00;
+  margin-bottom: 2em;
+}
+.page-media-center-photo-gallery .attachment.attachment-before .container,
+.view-photo-gallery .attachment.attachment-before .container {
+  padding-left: 0;
+}
+.page-media-center-photo-gallery .attachment.attachment-before .container .view-content .views-row,
+.view-photo-gallery .attachment.attachment-before .container .view-content .views-row {
+  margin-right: 15px;
+}
+.page-media-center-photo-gallery .attachment.attachment-before .views-field-field-images blockquote,
+.view-photo-gallery .attachment.attachment-before .views-field-field-images blockquote {
+  display: none;
+}
+.page-media-center-photo-gallery .attachment.attachment-before .gallery_list_top_detail_container,
+.view-photo-gallery .attachment.attachment-before .gallery_list_top_detail_container {
+  display: list-item;
+}
+.page-media-center-photo-gallery .attachment.attachment-before .gallery_list_top_detail_container div,
+.view-photo-gallery .attachment.attachment-before .gallery_list_top_detail_container div {
+  float: left;
+}
+.page-media-center-photo-gallery .attachment.attachment-before .gallery_list_top_detail_container span.date-display-single,
+.view-photo-gallery .attachment.attachment-before .gallery_list_top_detail_container span.date-display-single {
+  float: right;
 }
 /*End gallery*/
 /*gallery Detail*/
@@ -9887,6 +9948,23 @@ article .hwc-share-widget ul {
 }
 .node-type-hwc-gallery .node-hwc-gallery .field-name-field-images.field-type-image .field-item img {
   margin-left: 0;
+}
+.node-type-hwc-gallery .node-hwc-gallery .field-items .field-item.col-sm-4 {
+  margin-bottom: 1em;
+}
+.node-type-hwc-gallery .node-hwc-gallery .field-items .field-item.col-sm-4:nth-child(3n+1) {
+  padding-right: 15px;
+  clear: both;
+}
+.node-type-hwc-gallery .node-hwc-gallery .field-items .field-item.col-sm-4:nth-child(3n+2) {
+  padding-right: 7px;
+  padding-left: 8px;
+}
+.node-type-hwc-gallery .node-hwc-gallery .field-items .field-item.col-sm-4:nth-child(3n) {
+  padding-left: 15px;
+}
+.node-type-hwc-gallery .node-hwc-gallery .field-items .field-item.col-sm-4 blockquote.image-field-caption {
+  display: none;
 }
 .node-type-hwc-gallery .node-hwc-gallery .pager {
   clear: both;
@@ -10920,7 +10998,7 @@ article .hwc-share-widget ul {
 /*End become a media partner*/
 /*Employers plantilla*/
 .employers-section {
-  margin-top: 370px;
+  top: 370px;
 }
 .employers-section button {
   background-color: #003399;
@@ -11127,7 +11205,7 @@ article .hwc-share-widget ul {
 /*End employers*/
 /*Get involved plantilla*/
 .get-involved-section {
-  margin-top: 370px;
+  top: 370px;
 }
 .get-involved-section .h1-subtitle p {
   color: #749b00;
@@ -14655,6 +14733,10 @@ fieldset.captcha div {
     position: absolute;
     right: 0;
     bottom: 53px;
+  }
+  body [class*=col-md-] {
+    padding-left: 0px;
+    padding-right: 0px;
   }
   /*home*/
   .front #block-views-frontpage-slider-block {

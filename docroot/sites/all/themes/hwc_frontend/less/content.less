@@ -2191,7 +2191,7 @@ article{
 
 /*gallery*/
 .page-media-center-photo-gallery, .view-photo-gallery{
-	.views-field-title-field, .gallery_list_detail_container{
+	.views-field-title-field, .gallery_list_detail_container, .attachment.attachment-before .views-field-nothing{
 		background-color: @bg-color-2;
 		color: @color1;
 		padding: 1em;
@@ -2213,6 +2213,48 @@ article{
 			padding-right: 0px;
 			border-left: none;
 			margin-bottom: 0;
+		}
+	}
+	.view-content .views-row.col-sm-4{
+		margin-bottom: 1em;
+		&:nth-child(3n+1){
+			padding-right: 15px;
+			clear: both;
+		}
+		&:nth-child(3n+2){
+			padding-right: 7px;
+			padding-left: 8px;
+		}
+		&:nth-child(3n){
+			padding-left: 15px;
+		}
+		blockquote.image-field-caption{
+			display: none;
+		}
+	}
+	.attachment.attachment-before{
+	    padding-bottom: 2em;
+		border-bottom: 1px dotted @border-default-color;
+		margin-bottom: 2em;
+		.container{
+			padding-left: 0;
+			.view-content .views-row{
+				margin-right: 15px;
+			}
+		}
+		.views-field-field-images{
+			blockquote{
+				display: none;
+			}
+		}
+		.gallery_list_top_detail_container{
+			display: list-item;
+			div{
+				float: left;
+			}
+			span.date-display-single{
+				float: right;
+			}
 		}
 	}
 }
@@ -2240,6 +2282,24 @@ article{
 				img{
 					margin-left: 0;
 				}
+			}
+		}
+		
+		.field-items .field-item.col-sm-4{
+			margin-bottom: 1em;
+			&:nth-child(3n+1){
+				padding-right: 15px;
+				clear: both;
+			}
+			&:nth-child(3n+2){
+				padding-right: 7px;
+				padding-left: 8px;
+			}
+			&:nth-child(3n){
+				padding-left: 15px;
+			}
+			blockquote.image-field-caption{
+				display: none;
 			}
 		}
 		.pager{
@@ -3316,7 +3376,7 @@ article{
 
 /*Employers plantilla*/
 .employers-section{
-	margin-top: 370px;
+	top: 370px;
 	button{
 		background-color: @color2;
 		outline: none;
@@ -3559,10 +3619,10 @@ article{
 
 /*Get involved plantilla*/
 .get-involved-section{
-	margin-top: 370px;
+	top: 370px;
 	.h1-subtitle{
 		p{
-			color:@color3;
+			color: @color3;
 			font-size: @size4;
 			font-weight: bold;
 		}

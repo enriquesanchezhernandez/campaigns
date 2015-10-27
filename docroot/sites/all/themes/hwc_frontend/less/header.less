@@ -177,7 +177,7 @@ header.navbar-default{
 				li{
 					color: @menu-color;
 					width: 20%;
-					cursor: pointer;
+					/* cursor: pointer; */
 					a, > span{
 						color: @menu-color;
 						text-align: center;
@@ -194,6 +194,9 @@ header.navbar-default{
 						    top: 9px;
 						    right: 0px;
 						}
+					}
+					> span[role="button"]{
+						cursor: auto;
 					}
 					&.last{
 						.caret{
