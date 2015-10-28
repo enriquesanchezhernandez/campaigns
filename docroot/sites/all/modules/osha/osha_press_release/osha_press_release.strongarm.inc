@@ -333,7 +333,14 @@ function osha_press_release_strongarm() {
           'weight' => '0',
         ),
       ),
-      'display' => array(),
+      'display' => array(
+        'share_widget' => array(
+          'default' => array(
+            'weight' => '2',
+            'visible' => TRUE,
+          ),
+        ),
+      ),
     ),
   );
   $export['field_bundle_settings_node__press_release'] = $strongarm;

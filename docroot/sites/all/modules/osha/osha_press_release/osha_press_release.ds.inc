@@ -22,13 +22,15 @@ function osha_press_release_ds_layout_settings_info() {
       'ds_content' => array(
         0 => 'field_publication_date',
         1 => 'title_field',
-        2 => 'field_summary',
-        3 => 'body',
+        2 => 'share_widget',
+        3 => 'field_summary',
+        4 => 'body',
       ),
     ),
     'fields' => array(
       'field_publication_date' => 'ds_content',
       'title_field' => 'ds_content',
+      'share_widget' => 'ds_content',
       'field_summary' => 'ds_content',
       'body' => 'ds_content',
     ),
