@@ -104,6 +104,7 @@ features[field_instance][] = node-article-field_summary
 features[field_instance][] = node-article-title_field
 features[field_instance][] = node-internal_url-body
 features[field_instance][] = node-internal_url-field_external_url
+features[field_instance][] = node-internal_url-field_image
 features[field_instance][] = node-internal_url-title_field
 features[field_instance][] = node-page-body
 features[field_instance][] = node-page-field_character_count
