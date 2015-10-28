@@ -229,6 +229,93 @@ function osha_search_views_default_views() {
   $handler->display->display_options['fields']['search_api_excerpt']['alter']['text'] = '[search_api_excerpt] <a href=\'[url]\'>See more</a>';
   $handler->display->display_options['fields']['search_api_excerpt']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['search_api_excerpt']['link_to_entity'] = 0;
+  /* Field: Indexed Multilingual Node: Country */
+  $handler->display->display_options['fields']['field_country']['id'] = 'field_country';
+  $handler->display->display_options['fields']['field_country']['table'] = 'search_api_index_default_multilingual_node_index';
+  $handler->display->display_options['fields']['field_country']['field'] = 'field_country';
+  $handler->display->display_options['fields']['field_country']['hide_empty'] = TRUE;
+  $handler->display->display_options['fields']['field_country']['link_to_entity'] = 0;
+  $handler->display->display_options['fields']['field_country']['view_mode'] = 'full';
+  $handler->display->display_options['fields']['field_country']['bypass_access'] = 0;
+  /* Field: Indexed Multilingual Node: Provider */
+  $handler->display->display_options['fields']['field_provider']['id'] = 'field_provider';
+  $handler->display->display_options['fields']['field_provider']['table'] = 'search_api_index_default_multilingual_node_index';
+  $handler->display->display_options['fields']['field_provider']['field'] = 'field_provider';
+  $handler->display->display_options['fields']['field_provider']['hide_empty'] = TRUE;
+  $handler->display->display_options['fields']['field_provider']['settings'] = array(
+    'field_formatter_class' => '',
+  );
+  /* Field: Indexed Multilingual Node: Article type */
+  $handler->display->display_options['fields']['field_article_type']['id'] = 'field_article_type';
+  $handler->display->display_options['fields']['field_article_type']['table'] = 'search_api_index_default_multilingual_node_index';
+  $handler->display->display_options['fields']['field_article_type']['field'] = 'field_article_type';
+  $handler->display->display_options['fields']['field_article_type']['label'] = 'Type';
+  $handler->display->display_options['fields']['field_article_type']['hide_empty'] = TRUE;
+  $handler->display->display_options['fields']['field_article_type']['link_to_entity'] = 0;
+  $handler->display->display_options['fields']['field_article_type']['view_mode'] = 'full';
+  $handler->display->display_options['fields']['field_article_type']['bypass_access'] = 0;
+  /* Field: Indexed Multilingual Node: Campaign material type */
+  $handler->display->display_options['fields']['field_campaign_material_type']['id'] = 'field_campaign_material_type';
+  $handler->display->display_options['fields']['field_campaign_material_type']['table'] = 'search_api_index_default_multilingual_node_index';
+  $handler->display->display_options['fields']['field_campaign_material_type']['field'] = 'field_campaign_material_type';
+  $handler->display->display_options['fields']['field_campaign_material_type']['label'] = 'Type';
+  $handler->display->display_options['fields']['field_campaign_material_type']['hide_empty'] = TRUE;
+  $handler->display->display_options['fields']['field_campaign_material_type']['link_to_entity'] = 0;
+  $handler->display->display_options['fields']['field_campaign_material_type']['view_mode'] = 'full';
+  $handler->display->display_options['fields']['field_campaign_material_type']['bypass_access'] = 0;
+  /* Field: Indexed Multilingual Node: Organisation type */
+  $handler->display->display_options['fields']['field_orgtype']['id'] = 'field_orgtype';
+  $handler->display->display_options['fields']['field_orgtype']['table'] = 'search_api_index_default_multilingual_node_index';
+  $handler->display->display_options['fields']['field_orgtype']['field'] = 'field_orgtype';
+  $handler->display->display_options['fields']['field_orgtype']['label'] = 'Type';
+  $handler->display->display_options['fields']['field_orgtype']['hide_empty'] = TRUE;
+  $handler->display->display_options['fields']['field_orgtype']['settings'] = array(
+    'field_formatter_class' => '',
+  );
+  /* Field: Indexed Multilingual Node: Publication Type */
+  $handler->display->display_options['fields']['field_publication_type']['id'] = 'field_publication_type';
+  $handler->display->display_options['fields']['field_publication_type']['table'] = 'search_api_index_default_multilingual_node_index';
+  $handler->display->display_options['fields']['field_publication_type']['field'] = 'field_publication_type';
+  $handler->display->display_options['fields']['field_publication_type']['label'] = 'Type';
+  $handler->display->display_options['fields']['field_publication_type']['hide_empty'] = TRUE;
+  $handler->display->display_options['fields']['field_publication_type']['link_to_entity'] = 0;
+  $handler->display->display_options['fields']['field_publication_type']['view_mode'] = 'full';
+  $handler->display->display_options['fields']['field_publication_type']['bypass_access'] = 0;
+  /* Field: Indexed Multilingual Node: Type */
+  $handler->display->display_options['fields']['field_tool_type']['id'] = 'field_tool_type';
+  $handler->display->display_options['fields']['field_tool_type']['table'] = 'search_api_index_default_multilingual_node_index';
+  $handler->display->display_options['fields']['field_tool_type']['field'] = 'field_tool_type';
+  $handler->display->display_options['fields']['field_tool_type']['hide_empty'] = TRUE;
+  $handler->display->display_options['fields']['field_tool_type']['link_to_entity'] = 0;
+  $handler->display->display_options['fields']['field_tool_type']['view_mode'] = 'full';
+  $handler->display->display_options['fields']['field_tool_type']['bypass_access'] = 0;
+  /* Field: Indexed Multilingual Node: Type */
+  $handler->display->display_options['fields']['field_partner_type']['id'] = 'field_partner_type';
+  $handler->display->display_options['fields']['field_partner_type']['table'] = 'search_api_index_default_multilingual_node_index';
+  $handler->display->display_options['fields']['field_partner_type']['field'] = 'field_partner_type';
+  $handler->display->display_options['fields']['field_partner_type']['hide_empty'] = TRUE;
+  $handler->display->display_options['fields']['field_partner_type']['link_to_entity'] = 0;
+  $handler->display->display_options['fields']['field_partner_type']['view_mode'] = 'full';
+  $handler->display->display_options['fields']['field_partner_type']['bypass_access'] = 0;
+  /* Field: Indexed Multilingual Node: Type */
+  $handler->display->display_options['fields']['field_contact_type']['id'] = 'field_contact_type';
+  $handler->display->display_options['fields']['field_contact_type']['table'] = 'search_api_index_default_multilingual_node_index';
+  $handler->display->display_options['fields']['field_contact_type']['field'] = 'field_contact_type';
+  $handler->display->display_options['fields']['field_contact_type']['hide_empty'] = TRUE;
+  $handler->display->display_options['fields']['field_contact_type']['link_to_entity'] = 0;
+  $handler->display->display_options['fields']['field_contact_type']['view_mode'] = 'full';
+  $handler->display->display_options['fields']['field_contact_type']['bypass_access'] = 0;
+  /* Field: Indexed Multilingual Node: File */
+  $handler->display->display_options['fields']['field_file']['id'] = 'field_file';
+  $handler->display->display_options['fields']['field_file']['table'] = 'search_api_index_default_multilingual_node_index';
+  $handler->display->display_options['fields']['field_file']['field'] = 'field_file';
+  $handler->display->display_options['fields']['field_file']['label'] = '';
+  $handler->display->display_options['fields']['field_file']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_file']['click_sort_column'] = 'fid';
+  $handler->display->display_options['fields']['field_file']['type'] = 'multilanguage_file';
+  $handler->display->display_options['fields']['field_file']['settings'] = array(
+    'field_formatter_class' => '',
+  );
   $handler->display->display_options['defaults']['sorts'] = FALSE;
   /* Sort criterion: Search: Relevance */
   $handler->display->display_options['sorts']['search_api_relevance']['id'] = 'search_api_relevance';
@@ -359,6 +446,9 @@ function osha_search_views_default_views() {
     t('Relevance'),
     t('Site search'),
     t('[search_api_excerpt] <a href=\'[url]\'>See more</a>'),
+    t('Country'),
+    t('Provider'),
+    t('Type'),
     t('Publication date'),
     t('Title'),
   );

@@ -48,7 +48,6 @@ function osha_path_breadcrumbs_settings_info() {
               'news' => 'news',
               'partner' => 'partner',
               'practical_tool' => 'practical_tool',
-              'press_release' => 'press_release',
               'publication' => 'publication',
             ),
           ),
