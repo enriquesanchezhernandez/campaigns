@@ -1833,7 +1833,7 @@ function osha_events_field_default_field_instances() {
     ),
     'entity_type' => 'node',
     'field_name' => 'field_speaker',
-    'label' => 'Speaker',
+    'label' => 'Speakers',
     'required' => 0,
     'settings' => array(
       'entity_translation_sync' => FALSE,
@@ -2384,7 +2384,7 @@ function osha_events_field_default_field_instances() {
   t('Partner ID');
   t('Related documents');
   t('Schedule');
-  t('Speaker');
+  t('Speakers');
   t('Starting date and time');
   t('Tags');
   t('Talking date');
