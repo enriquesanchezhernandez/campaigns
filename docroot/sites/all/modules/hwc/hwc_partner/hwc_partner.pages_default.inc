@@ -1528,7 +1528,7 @@ function hwc_partner_default_page_manager_handlers() {
         'width' => 50,
         'width_type' => '%',
         'parent' => '1',
-        'class' => 'col-sm-6 profile-col-left-1',
+        'class' => 'col-sm-3 profile-col-left-1',
         'hide_empty' => 0,
       ),
       'right' => array(
@@ -1537,7 +1537,7 @@ function hwc_partner_default_page_manager_handlers() {
         'width' => 50,
         'width_type' => '%',
         'parent' => '1',
-        'class' => 'col-sm-6 profile-col-right-1',
+        'class' => 'col-sm-9 profile-col-right-1',
         'hide_empty' => 0,
       ),
       2 => array(

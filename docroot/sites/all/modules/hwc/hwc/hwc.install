@@ -56,7 +56,10 @@ function hwc_add_menu_position_rules() {
   }
 }
 
-function hwc_update_7011() {
+/**
+ * Set flags for country terms.
+ */
+function hwc_update_7004() {
   // When saving a country term, attach the flag on field_flag.
   $voc = taxonomy_vocabulary_machine_name_load('country');
   $terms = taxonomy_term_load_multiple(array(), array('vid' => $voc->vid));

@@ -863,6 +863,9 @@ function hwc_partner_registration_allowed() {
   return $ret;
 }
 
+/**
+ * Implements hook_term_presave().
+ */
 function hwc_taxonomy_term_presave($term) {
   // When saving a country term, attach the flag on field_flag.
   $voc = taxonomy_vocabulary_machine_name_load('country');
