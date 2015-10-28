@@ -36,6 +36,16 @@ function hwc_update_7002() {
 }
 
 /**
+ * Add press release menu position rules
+ */
+function hwc_update_7003() {
+  if (module_exists('osha') && module_load_include('inc', 'osha', 'osha.utils')) {
+    $condition = array('content_type' => array('press_release' => 'press_release'));
+    osha_add_menu_position_rule('Press Release', '---- Press room', $condition);
+  }
+}
+
+/**
  * Add menu position rules for Get Involved Segments
  */
 function hwc_add_menu_position_rules() {
