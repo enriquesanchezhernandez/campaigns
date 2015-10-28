@@ -211,6 +211,11 @@ function hwc_field_formatter_info() {
       'field types' => array('file'),
       'description' => 'Displays default icon per file type and file description.',
     ),
+    'term_country_flag' => array(
+      'label' => 'Country flag',
+      'field types' => array('taxonomy_term_reference'),
+      'description' => 'Displays a country flag for terms with field_flag set.',
+    ),
   );
   return $info;
 }
@@ -274,6 +279,23 @@ function hwc_field_formatter_view($entity_type, $entity, $field, $instance, $lan
           '#file' => $item,
           '#delta' => $delta,
         );
+      }
+      break;
+    case 'term_country_flag':
+      foreach ($items as $delta => $item) {
+        $term = taxonomy_term_load($item['tid']);
+        $term_wrapper = entity_metadata_wrapper('taxonomy_term', $term);
+        if (!empty($term->field_flag)) {
+          $vars = array(
+            'style_name' => 'medium_large',
+            'path' => $term_wrapper->field_flag->value()['uri'],
+          );
+          $element[$delta] = array(
+            '#markup' => theme('image_style', $vars),
+            '#term' => $item,
+            '#delta' => $delta,
+          );
+        }
       }
       break;
   }
@@ -839,4 +861,41 @@ function hwc_partner_registration_allowed() {
     $ret = time() <= $time;
   }
   return $ret;
+}
+
+function hwc_taxonomy_term_presave($term) {
+  // When saving a country term, attach the flag on field_flag.
+  $voc = taxonomy_vocabulary_machine_name_load('country');
+  if ($term->vid == $voc->vid) {
+    $dir = 'public://flags';
+    if (!file_prepare_directory($dir)) {
+      drupal_set_message('Flags directory could not be created.', 'warning');
+      return;
+    }
+    $path = drupal_get_path('theme', 'hwc_frontend');
+    $images_dir = $path . '/images/iso2_flags';
+    if (!is_dir($images_dir)) {
+      drupal_set_message('Could not find the flags images source directory.', 'warning');
+    }
+    $iso2 = strtoupper($term->field_iso2[LANGUAGE_NONE][0]['value']);
+    $image_filename = $iso2 . '.gif';
+    $image_dest_dir = $dir . '/' . $image_filename;
+    $image_path = $images_dir . '/' . $image_filename;
+    $filepath = drupal_realpath($image_path);
+    if (is_file($filepath)) {
+      // Create managed File object and associate with Image field.
+      $file = (object) array(
+        'uid' => 1,
+        'uri' => $filepath,
+        'filemime' => file_get_mimetype($filepath),
+        'status' => 1,
+      );
+      if ($file = file_copy($file, $image_dest_dir)) {
+        $term->field_flag[LANGUAGE_NONE][0] = (array) $file;
+      }
+    }
+    else {
+      drupal_set_message(strtr('Flag not found for @country', array('@country' => $term->name)), 'warning');
+    }
+  }
 }
