@@ -3935,7 +3935,7 @@ function hwc_partner_default_page_manager_pages() {
       'links' => 1,
       'leave_node_title' => 0,
       'identifier' => '',
-      'build_mode' => 'body',
+      'build_mode' => 'full',
       'link_node_title' => 0,
       'override_title' => 1,
       'override_title_text' => '',
@@ -3990,7 +3990,7 @@ function hwc_partner_default_page_manager_pages() {
     $pane->uuid = '407b7c05-bbc4-4dde-bd2c-c3e85b46bbeb';
     $display->content['new-407b7c05-bbc4-4dde-bd2c-c3e85b46bbeb'] = $pane;
     $display->panels['center'][1] = 'new-407b7c05-bbc4-4dde-bd2c-c3e85b46bbeb';
-  $display->hide_title = PANELS_TITLE_PANE;
+  $display->hide_title = PANELS_TITLE_NONE;
   $display->title_pane = 'new-0c8d58fe-68d1-436a-b7f7-b75c6552e08a';
   $handler->conf['display'] = $display;
   $page->default_handlers[$handler->name] = $handler;
