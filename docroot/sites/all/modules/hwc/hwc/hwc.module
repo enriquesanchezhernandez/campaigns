@@ -585,8 +585,14 @@ function hwc_node_view($node, $view_mode, $langcode) {
       $_SESSION['mf'] = $_GET['mf'];
     }
   }
+
+  // Array of nids where to hide the share widget.
+  $no_share_widget = array(
+    162,
+  );
   if ($view_mode == 'full'
-    && in_array($node->type, array('news', 'events', 'article', 'hwc_gallery', 'press_release'))) {
+    && in_array($node->type, array('news', 'events', 'article', 'hwc_gallery', 'press_release'))
+    && !in_array($node->nid, $no_share_widget)) {
     $extra_fields = field_info_extra_fields('node', $node->type, 'display');
     if (!empty($extra_fields['share_widget']['display']['default']['visible'])) {
       $options = array();
