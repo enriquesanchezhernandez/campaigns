@@ -18,6 +18,36 @@ function osha_events_theme($existing, $type, $theme, $path) {
   );
 }
 
+/**
+ * Implements hook_field_formatter_info().
+ */
+function osha_events_field_formatter_info() {
+  $info = array(
+    'event_schedule' => array(
+      'label' => 'Event schedule view',
+      'field types' => array('field_collection'),
+      'description' => 'Display the field collection event schedule trough a view.',
+    ),
+  );
+  return $info;
+}
+
+/**
+ * Implements hook_field_formatter_view().
+ */
+function osha_events_field_formatter_view($entity_type, $entity, $field, $instance, $langcode, $items, $display) {
+  $element = array();
+  switch ($display['type']) {
+    case 'event_schedule':
+      $element[0] = array(
+        '#type' => 'markup',
+        '#markup' => views_embed_view('event_schedule'),
+      );
+      break;
+  }
+  return $element;
+}
+
 
 /**
  * Implements hook_form_FORM_ID_alter().

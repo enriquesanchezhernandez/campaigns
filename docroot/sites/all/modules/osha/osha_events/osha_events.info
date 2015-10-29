@@ -147,6 +147,7 @@ features[variable][] = node_preview_events
 features[variable][] = node_submitted_event_speaker
 features[variable][] = node_submitted_events
 features[variable][] = workbench_access_node_type_events
+features[views_view][] = event_schedule
 features[views_view][] = events
 features[views_view][] = events_index
 features[views_view][] = events_search

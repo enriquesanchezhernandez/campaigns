@@ -11,6 +11,152 @@ function osha_events_views_default_views() {
   $export = array();
 
   $view = new view();
+  $view->name = 'event_schedule';
+  $view->description = '';
+  $view->tag = 'default';
+  $view->base_table = 'field_collection_item';
+  $view->human_name = 'Event schedule';
+  $view->core = 7;
+  $view->api_version = '3.0';
+  $view->disabled = FALSE; /* Edit this to true to make a default view disabled initially */
+
+  /* Display: Master */
+  $handler = $view->new_display('default', 'Master', 'default');
+  $handler->display->display_options['use_more_always'] = FALSE;
+  $handler->display->display_options['access']['type'] = 'none';
+  $handler->display->display_options['cache']['type'] = 'none';
+  $handler->display->display_options['query']['type'] = 'views_query';
+  $handler->display->display_options['exposed_form']['type'] = 'basic';
+  $handler->display->display_options['pager']['type'] = 'none';
+  $handler->display->display_options['pager']['options']['offset'] = '0';
+  $handler->display->display_options['style_plugin'] = 'default';
+  $handler->display->display_options['style_options']['row_class'] = 'row';
+  $handler->display->display_options['row_plugin'] = 'fields';
+  /* Relationship: Field collection item: Entity with the Schedule (field_schedule) */
+  $handler->display->display_options['relationships']['field_schedule_node']['id'] = 'field_schedule_node';
+  $handler->display->display_options['relationships']['field_schedule_node']['table'] = 'field_collection_item';
+  $handler->display->display_options['relationships']['field_schedule_node']['field'] = 'field_schedule_node';
+  $handler->display->display_options['relationships']['field_schedule_node']['required'] = TRUE;
+  /* Field: Field collection item: Talking date */
+  $handler->display->display_options['fields']['field_talking_date']['id'] = 'field_talking_date';
+  $handler->display->display_options['fields']['field_talking_date']['table'] = 'field_data_field_talking_date';
+  $handler->display->display_options['fields']['field_talking_date']['field'] = 'field_talking_date';
+  $handler->display->display_options['fields']['field_talking_date']['label'] = '';
+  $handler->display->display_options['fields']['field_talking_date']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['field_talking_date']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_talking_date']['settings'] = array(
+    'format_type' => 'day_month_year',
+    'fromto' => 'both',
+    'multiple_number' => '',
+    'multiple_from' => '',
+    'multiple_to' => '',
+    'osha_date_theme' => '',
+    'field_formatter_class' => '',
+  );
+  $handler->display->display_options['fields']['field_talking_date']['field_api_classes'] = TRUE;
+  /* Field: Field collection item: Talking title */
+  $handler->display->display_options['fields']['field_talking_title']['id'] = 'field_talking_title';
+  $handler->display->display_options['fields']['field_talking_title']['table'] = 'field_data_field_talking_title';
+  $handler->display->display_options['fields']['field_talking_title']['field'] = 'field_talking_title';
+  $handler->display->display_options['fields']['field_talking_title']['label'] = '';
+  $handler->display->display_options['fields']['field_talking_title']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['field_talking_title']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_talking_title']['element_wrapper_type'] = 'div';
+  $handler->display->display_options['fields']['field_talking_title']['settings'] = array(
+    'field_formatter_class' => '',
+  );
+  $handler->display->display_options['fields']['field_talking_title']['field_api_classes'] = TRUE;
+  /* Field: Field collection item: Talking files */
+  $handler->display->display_options['fields']['field_talking_files']['id'] = 'field_talking_files';
+  $handler->display->display_options['fields']['field_talking_files']['table'] = 'field_data_field_talking_files';
+  $handler->display->display_options['fields']['field_talking_files']['field'] = 'field_talking_files';
+  $handler->display->display_options['fields']['field_talking_files']['label'] = '';
+  $handler->display->display_options['fields']['field_talking_files']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['field_talking_files']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_talking_files']['click_sort_column'] = 'fid';
+  $handler->display->display_options['fields']['field_talking_files']['type'] = 'file_rendered';
+  $handler->display->display_options['fields']['field_talking_files']['settings'] = array(
+    'file_view_mode' => 'teaser',
+    'field_formatter_class' => '',
+  );
+  $handler->display->display_options['fields']['field_talking_files']['delta_offset'] = '0';
+  $handler->display->display_options['fields']['field_talking_files']['field_api_classes'] = TRUE;
+  /* Field: Field collection item: Talking speaker */
+  $handler->display->display_options['fields']['field_talking_speaker']['id'] = 'field_talking_speaker';
+  $handler->display->display_options['fields']['field_talking_speaker']['table'] = 'field_data_field_talking_speaker';
+  $handler->display->display_options['fields']['field_talking_speaker']['field'] = 'field_talking_speaker';
+  $handler->display->display_options['fields']['field_talking_speaker']['label'] = '';
+  $handler->display->display_options['fields']['field_talking_speaker']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['field_talking_speaker']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_talking_speaker']['settings'] = array(
+    'link' => 0,
+    'field_formatter_class' => '',
+  );
+  $handler->display->display_options['fields']['field_talking_speaker']['field_api_classes'] = TRUE;
+  /* Field: Field collection item: Venue */
+  $handler->display->display_options['fields']['field_venue']['id'] = 'field_venue';
+  $handler->display->display_options['fields']['field_venue']['table'] = 'field_data_field_venue';
+  $handler->display->display_options['fields']['field_venue']['field'] = 'field_venue';
+  $handler->display->display_options['fields']['field_venue']['label'] = '';
+  $handler->display->display_options['fields']['field_venue']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['field_venue']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_venue']['type'] = 'text_plain';
+  $handler->display->display_options['fields']['field_venue']['settings'] = array(
+    'field_formatter_class' => '',
+  );
+  $handler->display->display_options['fields']['field_venue']['field_api_classes'] = TRUE;
+  /* Field: Global: Custom text */
+  $handler->display->display_options['fields']['nothing']['id'] = 'nothing';
+  $handler->display->display_options['fields']['nothing']['table'] = 'views';
+  $handler->display->display_options['fields']['nothing']['field'] = 'nothing';
+  $handler->display->display_options['fields']['nothing']['label'] = '';
+  $handler->display->display_options['fields']['nothing']['alter']['text'] = '<div class="col-md-3 col-sm-4 talking-date">
+[field_talking_date]
+</div>
+<div class="col-md-9 col-sm-8 talking-details">
+[field_talking_title]
+[field_talking_speaker]
+[field_venue]
+[field_talking_files]
+</div>';
+  $handler->display->display_options['fields']['nothing']['element_label_colon'] = FALSE;
+  /* Sort criterion: Field collection item: Talking date -  start date (field_talking_date) */
+  $handler->display->display_options['sorts']['field_talking_date_value']['id'] = 'field_talking_date_value';
+  $handler->display->display_options['sorts']['field_talking_date_value']['table'] = 'field_data_field_talking_date';
+  $handler->display->display_options['sorts']['field_talking_date_value']['field'] = 'field_talking_date_value';
+  /* Contextual filter: Content: Nid */
+  $handler->display->display_options['arguments']['nid']['id'] = 'nid';
+  $handler->display->display_options['arguments']['nid']['table'] = 'node';
+  $handler->display->display_options['arguments']['nid']['field'] = 'nid';
+  $handler->display->display_options['arguments']['nid']['relationship'] = 'field_schedule_node';
+  $handler->display->display_options['arguments']['nid']['default_action'] = 'default';
+  $handler->display->display_options['arguments']['nid']['default_argument_type'] = 'node';
+  $handler->display->display_options['arguments']['nid']['summary']['number_of_records'] = '0';
+  $handler->display->display_options['arguments']['nid']['summary']['format'] = 'default_summary';
+  $handler->display->display_options['arguments']['nid']['summary_options']['items_per_page'] = '25';
+  $translatables['event_schedule'] = array(
+    t('Master'),
+    t('more'),
+    t('Apply'),
+    t('Reset'),
+    t('Sort by'),
+    t('Asc'),
+    t('Desc'),
+    t('field_schedule'),
+    t('<div class="col-md-3 col-sm-4 talking-date">
+[field_talking_date]
+</div>
+<div class="col-md-9 col-sm-8 talking-details">
+[field_talking_title]
+[field_talking_speaker]
+[field_venue]
+[field_talking_files]
+</div>'),
+    t('All'),
+  );
+  $export['event_schedule'] = $view;
+
+  $view = new view();
   $view->name = 'events';
   $view->description = '';
   $view->tag = 'default';

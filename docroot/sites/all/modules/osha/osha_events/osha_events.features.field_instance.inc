@@ -49,6 +49,10 @@ function osha_events_field_default_field_instances() {
       'active' => 1,
       'module' => 'date',
       'settings' => array(
+        'date_single_day' => array(
+          'date_single_day' => 1,
+          'end_after_midnight' => 1,
+        ),
         'increment' => 15,
         'input_format' => 'd/m/Y - H:i:s',
         'input_format_custom' => '',
@@ -1680,16 +1684,11 @@ function osha_events_field_default_field_instances() {
       ),
       'default' => array(
         'label' => 'above',
-        'module' => 'field_collection',
+        'module' => 'osha_events',
         'settings' => array(
-          'add' => 'Add',
-          'delete' => 'Delete',
-          'description' => TRUE,
-          'edit' => 'Edit',
           'field_formatter_class' => '',
-          'view_mode' => 'full',
         ),
-        'type' => 'field_collection_view',
+        'type' => 'event_schedule',
         'weight' => 10,
       ),
       'highlights_item' => array(
@@ -1968,6 +1967,7 @@ function osha_events_field_default_field_instances() {
       'active' => 1,
       'module' => 'date',
       'settings' => array(
+        'date_single_day' => array(),
         'increment' => 15,
         'input_format' => 'd/m/Y - H:i:s',
         'input_format_custom' => '',

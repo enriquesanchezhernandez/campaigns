@@ -85,3 +85,11 @@ function osha_events_add_menu_position_rules() {
     osha_add_menu_position_rule('Events (menu position rule)', '---- Events', $condition);
   }
 }
+
+/**
+ * Remove talking dates to be able to make field modifications.
+ */
+function osha_events_update_7006() {
+  db_delete('field_data_field_talking_date')
+    ->execute();
+}
