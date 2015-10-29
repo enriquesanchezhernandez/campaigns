@@ -51,27 +51,15 @@ global $base_url;
 			?>  
       </td>
     </tr>
-
-
-
-
     <tr>
       <td style="text-align: left; width: 800px; font-family: Arial, sans-serif; font-size: 13px; padding-left: 10px;">
-
-
-
-
-			<?php
+	    <?php
 			  print t('This is a disclaimer lorem ipsum.');
 			  $url = url($base_url.'/en/healthy-workplaces-newsletter', array('query' => $url_query));
 			?>
 			<br />
 			<br />
 			<a href="<?php echo $url; ?>" style="@style; font-weight: bold; color: #003399">&gt; Unsubscribe.</a>
-
-
-
-
       </td>
     </tr>
   </tbody>
