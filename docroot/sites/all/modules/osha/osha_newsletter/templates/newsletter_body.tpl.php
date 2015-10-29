@@ -22,9 +22,9 @@ table, tr, td{
 }
 </style>
 
-<!-- <?php if(!empty($newsletter_intro)){ ?>
- <?php print($newsletter_intro);?>
-<?php } ?> -->
+<?php if(!empty($newsletter_intro)){ ?>
+ <div style="width: 400px; margin-top: -130px; margin-left: 420px; margin-bottom: 100px; color: white; font-style: italic;"> <?php print($newsletter_intro);?></div>
+<?php } ?>
 
 <table border="0" cellpadding="20" cellspacing="0" width="800" style="margin-left: 25px;">
   <tbody>
