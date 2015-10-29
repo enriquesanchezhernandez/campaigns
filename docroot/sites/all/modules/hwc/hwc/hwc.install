@@ -85,6 +85,7 @@ function hwc_update_7004() {
         'uri' => $filepath,
         'filemime' => file_get_mimetype($filepath),
         'status' => 1,
+        'type' => 'image',
       );
       if ($file = file_copy($file, $image_dest_dir)) {
         $term->field_flag[LANGUAGE_NONE][0] = (array) $file;
