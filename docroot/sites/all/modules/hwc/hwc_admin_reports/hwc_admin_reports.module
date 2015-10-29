@@ -34,12 +34,16 @@ function hwc_admin_reports_cron() {
 
   $filename = $dir . '/news.xls';
   if (-1 == hwc_admin_reports_export_news_excel($filename, $date)) {
-    unlink($filename);
+    if (file_exists(drupal_realpath($filename))) {
+      unlink($filename);
+    }
   }
 
   $filename = $dir . '/events.xls';
   if (-1 == hwc_admin_reports_export_events_excel($filename, $date)) {
-    unlink($filename);
+    if (file_exists(drupal_realpath($filename))) {
+      unlink($filename);
+    }
   }
 
   variable_set('hwc_admin_reports_last_export_time',  time());
