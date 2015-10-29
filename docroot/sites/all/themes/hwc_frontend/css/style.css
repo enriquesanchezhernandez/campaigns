@@ -7930,6 +7930,23 @@ ul.tabs--primary.nav.nav-tabs > li.active > a:focus {
   height: auto;
   min-height: inherit;
   padding-top: 0;
+  border-bottom: none;
+}
+.tools-and-resources-block .view-news .views-row a,
+.panels-flexible-column-new-main .view-news .views-row a,
+.panels-flexible-column-first .view-news .views-row a,
+#block-views-news-oshnews-latest .view-news .views-row a,
+.panels-flexible-column-new-1 .view-news .views-row a {
+  font-weight: bold;
+  font-style: italic;
+}
+.tools-and-resources-block .view-news .views-row a:before,
+.panels-flexible-column-new-main .view-news .views-row a:before,
+.panels-flexible-column-first .view-news .views-row a:before,
+#block-views-news-oshnews-latest .view-news .views-row a:before,
+.panels-flexible-column-new-1 .view-news .views-row a:before {
+  content: ">";
+  padding-right: 0.35em;
 }
 .tools-and-resources-block .a2a_kit.a2a_target.addtoany_list,
 .panels-flexible-column-new-main .a2a_kit.a2a_target.addtoany_list,
@@ -7980,6 +7997,11 @@ ul.tabs--primary.nav.nav-tabs > li.active > a:focus {
   padding-top: 70px;
   background: url("../images/content/tools-and-resources.png") no-repeat center top;
   font-style: normal;
+}
+.tools-and-resources-block .pane-news h2,
+.panels-flexible-column-new-main .pane-news h2,
+.panels-flexible-column-first .pane-news h2 {
+  background-image: url("../images/content/news.png");
 }
 .glyphicon-circle-arrow-down:before {
   content: " ";
@@ -8936,7 +8958,6 @@ div[class*='node-'] .more-link {
 }
 #block-views-publications-slideshow-slidehow #publications_slideshow,
 #block-system-main #publications_slideshow {
-  /* width: 926px !important;  */
   width: 100% !important;
   border-bottom: 1px solid #749b00;
   border-top: 1px solid #749b00;
@@ -8961,6 +8982,7 @@ div[class*='node-'] .more-link {
   border-bottom: none;
   min-height: 225px;
   max-height: 225px;
+  background-color: white;
 }
 #block-views-publications-slideshow-slidehow #publications_slideshow #num_slides .publication-item .field-name-title-field,
 #block-system-main #publications_slideshow #num_slides .publication-item .field-name-title-field {
@@ -9034,19 +9056,18 @@ div[class*='node-'] .more-link {
 #block-views-publications-slideshow-slidehow #publications_slideshow .jssora03l,
 #block-system-main #publications_slideshow .jssora03l {
   left: 0;
-  /* background-position: -3px 53px; */
   background: #003399 url("../images/content/slider-left.png") no-repeat center;
 }
 #block-views-publications-slideshow-slidehow #publications_slideshow .jssora03r,
 #block-system-main #publications_slideshow .jssora03r {
   right: 0px;
-  /* background-position: -63px 53px; */
   background: #003399 url("../images/content/slider-right.png") no-repeat center;
 }
 #block-views-publications-slideshow-slidehow #publications_slideshow .jssorb03,
 #block-system-main #publications_slideshow .jssorb03 {
   top: 200px;
   display: block !important;
+  left: 45% !important;
 }
 #block-views-publications-slideshow-slidehow #publications_slideshow .jssorb03 div,
 #block-system-main #publications_slideshow .jssorb03 div {
@@ -11037,7 +11058,7 @@ article .hwc-share-widget ul {
   margin-bottom: 4em;
 }
 .employers-section .introduction-section p {
-  font-weight: bold;
+  /* font-weight: bold; */
   font-size: 16px;
 }
 .employers-section .introduction-section .btn-1-normal {
@@ -11131,6 +11152,7 @@ article .hwc-share-widget ul {
   min-height: 120px;
   display: block;
   margin: 30px auto 15px auto;
+  height: 220px;
 }
 .employers-section .other-relevant-resources .relevant-resources-section .revelant-resource a {
   font-weight: bold;
@@ -11220,6 +11242,21 @@ article .hwc-share-widget ul {
 }
 .employers-section .news-events-section .events-section .events-content .one-event a:before {
   content: "> ";
+}
+.employers-section ul {
+  width: auto;
+  display: inline-block;
+  list-style: none;
+}
+.employers-section ul li {
+  width: auto;
+  list-style: none;
+}
+.employers-section ul li span {
+  background: url("../images/content/navigation-actual.png") no-repeat left center;
+  background-size: 6px;
+  padding-left: 15px;
+  text-decoration: underline;
 }
 /*End employers*/
 /*Get involved plantilla*/
@@ -13471,45 +13508,41 @@ fieldset.captcha div {
     right: -127px;
   }
   /*fin homepage slider*/
-  /*publications*/
-  #block-views-publications-slideshow-slidehow #publications_slideshow #num_slides,
-  #block-system-main #publications_slideshow #num_slides {
-    left: 5em;
-    max-width: 685px !important;
-    width: 80% !important;
-  }
-  #block-views-publications-slideshow-slidehow #publications_slideshow #num_slides > div,
-  #block-system-main #publications_slideshow #num_slides > div {
-    width: 100% !important;
-  }
-  #block-views-publications-slideshow-slidehow #publications_slideshow #num_slides > div .publication-item,
-  #block-system-main #publications_slideshow #num_slides > div .publication-item {
-    padding: 5px 0;
-  }
-  #block-views-publications-slideshow-slidehow #publications_slideshow #num_slides > div .publication-item .field-name-field-cover-image,
-  #block-system-main #publications_slideshow #num_slides > div .publication-item .field-name-field-cover-image {
-    top: 10px;
-  }
-  #block-views-publications-slideshow-slidehow #publications_slideshow #num_slides > div .publication-item .field-name-field-publication-date,
-  #block-system-main #publications_slideshow #num_slides > div .publication-item .field-name-field-publication-date {
-    margin-bottom: 2px;
-  }
-  #block-views-publications-slideshow-slidehow #publications_slideshow #num_slides > div .publication-item h5,
-  #block-system-main #publications_slideshow #num_slides > div .publication-item h5 {
-    margin-bottom: 5px;
-    max-height: 47px;
-    overflow: hidden;
-  }
-  #block-views-publications-slideshow-slidehow #publications_slideshow #num_slides > div .publication-item .field-type-text-with-summary,
-  #block-system-main #publications_slideshow #num_slides > div .publication-item .field-type-text-with-summary {
-    max-height: 100px;
-    overflow: hidden;
-  }
-  #block-views-publications-slideshow-slidehow #publications_slideshow #num_slides > div .publication-item ul,
-  #block-system-main #publications_slideshow #num_slides > div .publication-item ul {
-    margin-top: 5px;
-    margin-bottom: 5px;
-  }
+  /*publications
+	#block-views-publications-slideshow-slidehow, #block-system-main{
+		#publications_slideshow{
+			#num_slides{
+				left: 5em;
+				max-width: 685px !important;
+				width: 80% !important;
+				> div {
+					width: 100% !important;
+					.publication-item{
+						padding: 5px 0;
+						.field-name-field-cover-image{
+							top: 10px;
+						}
+						.field-name-field-publication-date{
+							margin-bottom: 2px;
+						}
+						h5{
+							margin-bottom: 5px;
+							max-height: 47px;
+							overflow: hidden;
+						}
+						.field-type-text-with-summary {
+							max-height: 100px;
+							overflow: hidden;
+						}
+						ul{
+							margin-top: 5px;
+							margin-bottom: 5px;
+						}
+					}
+				}
+			}
+		}
+	}*/
   /*publications*/
   /*Articles*/
   .node-article .field.field-name-field-image img {

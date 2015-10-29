@@ -8,7 +8,13 @@
  * @see template_process()
  */
 ?>
-<table id="node-<?php print $node->nid; ?>" border="0" cellpadding="0" cellspacing="0" width="100%" style="padding-top: 0px; margin-left: 10px;">
+<style>
+	.container-ppal a:before{
+		content: ">";
+		padding-right: 5px;
+	}
+</style>
+<table id="node-<?php print $node->nid; ?>" class="container-ppal" border="0" cellpadding="0" cellspacing="0" width="100%" style="padding-top: 0px; margin-left: 10px;">
   <tbody>
     <tr>
       <td>
@@ -39,7 +45,7 @@
               </td>
             </tr>
             <tr>
-              <td style="font-size: 12px;">
+              <td style="font-size: 12px; padding-bottom: 10px;">
                 <?php
                 $date = (isset($field_publication_date) && !empty($field_publication_date)) ? strtotime($field_publication_date[0]['value']) : '';
                 print format_date($date, 'custom', 'M d, Y');

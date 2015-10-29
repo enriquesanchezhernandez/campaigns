@@ -56,7 +56,7 @@ global $base_url;
 
 
     <tr>
-      <td style="text-align: left; width: 800px; font-family: Arial, sans-serif; font-size: 13px; padding-left: 10px;">
+      <td style="text-align: left; width: 800px; font-family: Arial, sans-serif; font-size: 13px; padding-left: 10px; padding-top: 10px;">
 
 
 

@@ -341,6 +341,15 @@ ul.tabs--primary.nav.nav-tabs{
 			height: auto;
 			min-height: inherit;
 			padding-top: 0;
+			border-bottom: none;
+			a{
+				font-weight: bold;
+				font-style: italic;
+				&:before{
+					content: ">";
+					padding-right: 0.35em;
+				}
+			}
 		}
 		.a2a_kit.a2a_target.addtoany_list{
 			border: none;
@@ -371,6 +380,9 @@ ul.tabs--primary.nav.nav-tabs{
 			padding-top: 70px;
 			background: url("../images/content/tools-and-resources.png") no-repeat center top;
 			font-style: normal;
+		}
+		.pane-news h2{
+			background-image: url("../images/content/news.png")
 		}
 	}
 	.glyphicon-circle-arrow-down:before {
@@ -1307,13 +1319,12 @@ ul.tabs--primary.nav.nav-tabs{
 	
 	#block-views-publications-slideshow-slidehow, #block-system-main{
 		#publications_slideshow{
-			/* width: 926px !important;  */
 			width: 100% !important;
 			border-bottom: 1px solid @border-default-color;
 			border-top: 1px solid @border-default-color;
 			margin: 0em auto 3em;
 			> div{
-				width: 100% !important; //Dates in border
+				width: 100% !important;
 			}
 			#num_slides{
 				left: 5em;
@@ -1326,6 +1337,7 @@ ul.tabs--primary.nav.nav-tabs{
 					border-bottom: none;
 					min-height: 225px;
 					max-height: 225px;
+					background-color: white;
 					.field-name-title-field{
 						float: left;
 						margin-left: 6em;
@@ -1386,17 +1398,16 @@ ul.tabs--primary.nav.nav-tabs{
 			}
 			.jssora03l{
 				left: 0;
-				/* background-position: -3px 53px; */
 				background: @bg-color-2 url("../images/content/slider-left.png") no-repeat center;
 			}
 			.jssora03r{
 				right: 0px;
-				/* background-position: -63px 53px; */
 				background: @bg-color-2 url("../images/content/slider-right.png") no-repeat center;
 			}
 			.jssorb03{
 				top: 200px;
 				display: block !important;
+				left: 45% !important;
 				div{
 					background: url("../images/content/navigation.png") no-repeat;
 					height: 20px;
@@ -3396,7 +3407,7 @@ article{
 	.introduction-section{
 		margin-bottom: 4em;
 		p{
-			font-weight: bold;
+			/* font-weight: bold; */
 			font-size: @size6;
 		}
 		.btn-1-normal{
@@ -3506,6 +3517,7 @@ article{
 					min-height: 120px;
 					display: block;
 					margin: 30px auto 15px auto;
+					height: 220px;
 				}
 				a{
 					font-weight: bold;
@@ -3613,6 +3625,21 @@ article{
 						}
 					}
 				}
+			}
+		}
+	}
+	ul{
+		width: auto;
+		display: inline-block;
+		list-style: none;
+		li{
+			width: auto;
+			list-style: none;
+			span{
+				background: url("../images/content/navigation-actual.png") no-repeat left center;
+				background-size: 6px;
+				padding-left: 15px;
+				text-decoration: underline;
 			}
 		}
 	}

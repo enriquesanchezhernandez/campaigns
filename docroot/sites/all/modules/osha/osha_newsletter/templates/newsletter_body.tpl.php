@@ -11,6 +11,10 @@ a{
 	text-decoration: none !important;
 	color: #003399 !important;
 }
+	a:before{
+		content: ">";
+		padding-left: 10px;
+	}
 
 table, tr, td{
 	border: 0px;
