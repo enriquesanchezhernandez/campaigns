@@ -18,18 +18,14 @@ table, tr, td{
 }
 </style>
 
-<!-- <?php if(!empty($newsletter_intro)){ ?>
- <?php print($newsletter_intro);?>
-<?php } ?> -->
+<?php if(!empty($newsletter_intro)){
+ print($newsletter_intro);
+}?>
 
 <table border="0" cellpadding="20" cellspacing="0" width="800" style="margin-left: 25px;">
   <tbody>
 	<tr>
 	   <td width="550" style="padding-top: 0px; vertical-align: top; padding-right: 50px;" class="left-column">
-
-
-
-
 		<?php
 		  $elements_no = sizeof($items);
 		  // Delete title 'News'.
@@ -78,20 +74,8 @@ table, tr, td{
 
 	  <td width="180" style="vertical-align: top; padding-top: 0px; padding-right: 0px;" class="right-column">
 		<?php
-		if (!empty($events) && sizeof($events) > 1) {?>
-
-
-
-
-
-
-
-
-
-
-			<?php
+		if (!empty($events) && sizeof($events) > 1) {
 			foreach ($events as $item) {
-
 			  print(render($item));
 			}?>
 			
@@ -100,11 +84,7 @@ table, tr, td{
 		  <tr>
 			<td style="font-family: Oswald, Arial, sans-serif; font-size: 16px; color: #003399; text-align: right; font-weight: bold">
 			  <span>
-				  <?php 
-
-
-
-
+				  <?php
 				  $directory = drupal_get_path('module','osha_newsletter');
 				  $site_url = variable_get('site_base_url', 'http://osha.europa.eu');
 				  /*print l(theme('image', array(
