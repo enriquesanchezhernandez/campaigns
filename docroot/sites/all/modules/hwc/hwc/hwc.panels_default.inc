@@ -346,7 +346,7 @@ function hwc_default_panels_mini() {
           0 => 'main-row',
         ),
         'parent' => 'canvas',
-        'class' => 'col-sm-6',
+        'class' => 'col-xs-12 col-sm-6',
         'hide_empty' => 0,
       ),
       'main-row' => array(
@@ -372,7 +372,7 @@ function hwc_default_panels_mini() {
         'children' => array(
           0 => 2,
         ),
-        'class' => 'col-sm-6',
+        'class' => 'col-xs-12 col-sm-6',
         'hide_empty' => 0,
       ),
       2 => array(
