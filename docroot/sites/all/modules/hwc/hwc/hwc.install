@@ -96,3 +96,46 @@ function hwc_update_7004() {
     }
   }
 }
+
+/**
+ * Set flags for country terms.
+ * - previous update function failed with file type bundle missing error.
+ */
+function hwc_update_7005() {
+  // When saving a country term, attach the flag on field_flag.
+  $voc = taxonomy_vocabulary_machine_name_load('country');
+  $terms = taxonomy_term_load_multiple(array(), array('vid' => $voc->vid));
+  $dir = 'public://flags';
+  if (!file_prepare_directory($dir)) {
+    throw new DrupalUpdateException('Flags directory could not be created.');
+  }
+  foreach ($terms as $term) {
+    $path = drupal_get_path('theme', 'hwc_frontend');
+    $images_dir = $path . '/images/iso2_flags';
+    if (!is_dir($images_dir)) {
+      throw new DrupalUpdateException('Could not find the flags images source directory.');
+    }
+    $iso2 = strtoupper($term->field_iso2[LANGUAGE_NONE][0]['value']);
+    $image_filename = $iso2 . '.gif';
+    $image_dest_dir = $dir . '/' . $image_filename;
+    $image_path = $images_dir . '/' . $image_filename;
+    $filepath = drupal_realpath($image_path);
+    if (is_file($filepath)) {
+      // Create managed File object and associate with Image field.
+      $file = (object) array(
+        'uid' => 1,
+        'uri' => $filepath,
+        'filemime' => file_get_mimetype($filepath),
+        'status' => 1,
+        'type' => 'image',
+      );
+      if ($file = file_copy($file, $image_dest_dir)) {
+        $term->field_flag[LANGUAGE_NONE][0] = (array) $file;
+      }
+      taxonomy_term_save($term);
+    }
+    else {
+      drupal_set_message(strtr('Flag not found for @country', array('@country' => $term->name)), 'warning');
+    }
+  }
+}
