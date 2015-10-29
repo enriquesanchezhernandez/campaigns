@@ -34,6 +34,17 @@ function osha_gallery_menu() {
   return $items;
 }
 
+/**
+ * Implements hook_permission().
+ */
+function osha_gallery_permission() {
+  return array(
+    'use hwc gallery bulk upload' => array(
+      'title' => t('Use gallery bulk upload tab'),
+      'description' => t('Can access bulk upload screen on nodes'),
+    ),
+  );
+}
 
 /**
  * Implements hook_field_formatter_info_alter().
