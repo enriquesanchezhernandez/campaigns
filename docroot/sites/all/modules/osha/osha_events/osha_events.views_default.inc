@@ -1371,6 +1371,8 @@ function osha_events_views_default_views() {
   $handler->display->display_options['query']['type'] = 'views_query';
   $handler->display->display_options['query']['options']['search_api_bypass_access'] = 0;
   $handler->display->display_options['exposed_form']['type'] = 'basic';
+  $handler->display->display_options['exposed_form']['options']['reset_button'] = TRUE;
+  $handler->display->display_options['exposed_form']['options']['reset_button_label'] = 'X';
   $handler->display->display_options['pager']['type'] = 'full';
   $handler->display->display_options['pager']['options']['items_per_page'] = '10';
   $handler->display->display_options['style_plugin'] = 'default';
@@ -1771,7 +1773,7 @@ function osha_events_views_default_views() {
     t('Past events'),
     t('more'),
     t('Apply'),
-    t('Reset'),
+    t('X'),
     t('Sort by'),
     t('Asc'),
     t('Desc'),
