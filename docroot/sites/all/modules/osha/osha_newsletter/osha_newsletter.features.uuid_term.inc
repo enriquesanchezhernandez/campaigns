@@ -62,13 +62,13 @@ function osha_newsletter_uuid_features_default_terms() {
     'name_field' => array(
       'en' => array(
         0 => array(
-          'value' => 'Events',
+          'value' => 'Upcoming events',
           'format' => NULL,
-          'safe_value' => 'Events',
+          'safe_value' => 'Upcoming events',
         ),
       ),
     ),
-    'name_original' => 'Events',
+    'name_original' => 'Upcoming events',
     'translations' => array(
       'original' => 'en',
       'data' => array(
