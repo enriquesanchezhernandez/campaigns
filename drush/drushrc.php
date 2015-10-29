@@ -458,6 +458,7 @@ $options['init-modules'] = array(
   'phpexcel',
   'plupload',
   'maxlength',
+  'date_single_day',
 
   // Captcha
  'recaptcha',
