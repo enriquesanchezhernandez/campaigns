@@ -646,9 +646,11 @@ function osha_publication_osha_tmgmt_i18n_string_list() {
  * Implements hook_panels_pane_content_alter().
  */
 function osha_publication_panels_pane_content_alter(&$content, &$pane, $args, $context) {
-  if ($pane->configuration['admin_title'] == 'publication_additional_resources_title') {
-    $node = reset($context)->data;
-    $title = '<h3>' . t('Additional resources') . '</h3>';
-    $content->content = !empty($node->field_aditional_resources) ? $title : '';
+  if (isset($pane->configuration['admin_title'])) {
+    if ($pane->configuration['admin_title'] == 'publication_additional_resources_title') {
+      $node = reset($context)->data;
+      $title = '<h3>' . t('Additional resources') . '</h3>';
+      $content->content = !empty($node->field_aditional_resources) ? $title : '';
+    }
   }
 }
