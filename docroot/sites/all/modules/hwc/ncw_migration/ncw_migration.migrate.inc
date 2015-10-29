@@ -59,7 +59,7 @@ function ncw_migration_migrate_api() {
         'dependencies' => array(
           'tax_tags', 'publications_add_res', 'news_add_res',
           'press_releases_add_res', 'press_releases_add_res',
-          'highlights_add_res'
+          'highlights_add_res', 'notes_to_editor'
         ),
         'class_name' => 'NCWPressMigration',
       ),
@@ -945,6 +945,20 @@ function ncw_migration_find_additional_resource($source_nid) {
       );
       return $destid1['destid1'];
     }
+  }
+  return NULL;
+}
+
+function ncw_migration_find_migrated_item_id($source_nid, $migration_name) {
+  $migration = Migration::getInstance($migration_name);
+  /** @var MigrateMap $map */
+  $map = $migration->getMap();
+  if ($destid1 = $map->lookupDestinationID(array($source_nid))) {
+    ncw_migration_debug(
+        'Linking additional resource from !machine (src=!src:dest=!dest',
+        array('!machine' => $migration_name, '!src' => $source_nid, '!dest' => $destid1['destid1'])
+    );
+    return $destid1['destid1'];
   }
   return NULL;
 }

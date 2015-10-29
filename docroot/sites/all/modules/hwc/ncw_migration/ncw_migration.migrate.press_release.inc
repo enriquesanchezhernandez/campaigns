@@ -19,6 +19,7 @@ class NCWPressMigration extends AbstractNCWNodeMigration {
     $this->addFieldMapping('field_tags:create_term')->defaultValue(FALSE);
     $this->addFieldMapping('field_tags', 'field_tags');
     $this->addFieldMapping('field_aditional_resources', 'field_aditional_resources');
+    $this->addFieldMapping('field_pr_notes_to_editor', 'field_pr_notes_to_editor');
 
     $this->addUnmigratedDestinations(array(
       'field_tags:ignore_case',
@@ -38,7 +39,7 @@ class NCWPressMigration extends AbstractNCWNodeMigration {
   }
 
   protected function getManuallyMigratedFields() {
-    return array('field_tags', 'field_aditional_resources');
+    return array('field_tags', 'field_aditional_resources', 'field_pr_notes_to_editor');
   }
 
   function prepareRow($row) {
@@ -53,6 +54,15 @@ class NCWPressMigration extends AbstractNCWNodeMigration {
     foreach ($additional_resources as $original_nid) {
       if ($destid1 = ncw_migration_find_additional_resource($original_nid)) {
         $row->field_aditional_resources[] = $destid1;
+      }
+    }
+
+    // field_pr_notes_to_editor
+    $source_press_releases = $row->field_pr_notes_to_editor[LANGUAGE_NONE];
+    $row->notes_to_editor = array();
+    foreach($source_press_releases as $original) {
+      if ($destid1 = ncw_migration_find_migrated_item_id($original['target_id'], 'notes_to_editor')) {
+        $row->field_pr_notes_to_editor[] = $destid1;
       }
     }
   }
@@ -93,7 +103,7 @@ class NCWPressSource extends AbstractNCWNodeSource {
       'field_archived',
       'field_character_count',
       'field_page_count',
-      //@todo: 'field_pr_notes_to_editor',
+      'field_pr_notes_to_editor',
       'field_aditional_resources',
     );
     return array_combine($fields, $fields);
