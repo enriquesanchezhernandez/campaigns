@@ -64,6 +64,12 @@ function hwc_block_info() {
     'visibility' => BLOCK_VISIBILITY_NOTLISTED,
     'cache' => DRUPAL_CACHE_GLOBAL,
   );
+  $blocks['hwc_print_friendly'] = array(
+    'info' => t('HWC Print friendly'),
+    'status' => 1,
+    'visibility' => BLOCK_VISIBILITY_NOTLISTED,
+    'region' => 'above_header',
+  );
   return $blocks;
 }
 
@@ -75,6 +81,10 @@ function hwc_block_view($delta = '') {
   if ($delta == 'page_share_widget') {
     $block['title'] = '<none>';
     $block['content'] = hwc_page_share_widget();
+  }
+  if ($delta == 'hwc_print_friendly') {
+    $block['subject'] = "<none>";
+    $block['content'] = theme('hwc_print_friendly_block');
   }
   return $block;
 }
@@ -249,6 +259,7 @@ function hwc_theme() {
       ),
       'template' => 'templates/article_share_widget',
     ),
+    'hwc_print_friendly_block' => array(),
   );
 }
 
@@ -907,4 +918,21 @@ function hwc_taxonomy_term_presave($term) {
       drupal_set_message(strtr('Flag not found for @country', array('@country' => $term->name)), 'warning');
     }
   }
+}
+
+function theme_hwc_print_friendly_block() {
+  // Add js and css
+  $content = array(
+    '#attached' => array(
+      'js' => array(
+        array(
+          'data' => drupal_get_path('module', 'hwc') . '/js/napo_print_friendly.js',
+          'type' => 'file',
+          'weight' => 10,
+        )
+      ),
+    ),
+  );
+  $content['#markup'] .= '<a href="javascript:if(window.print)window.print();" class="printfriendly"></a>';
+  return render($content);
 }
