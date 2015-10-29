@@ -84,6 +84,7 @@ function hwc_block_view($delta = '') {
  */
 function hwc_form_user_login_alter(&$form, &$form_state) {
   drupal_add_js('jQuery(document).ready(function () {jQuery("#edit-name").focus();});', 'inline');
+  $form['name']['#description'] = t('Enter your username.');
 }
 
 /**
@@ -151,6 +152,8 @@ function hwc_field_extra_fields() {
   $extra['node']['news'] = $share_widget;
   $extra['node']['events'] = $share_widget;
   $extra['node']['article'] = $share_widget;
+  $extra['node']['hwc_gallery'] = $share_widget;
+  $extra['node']['press_release'] = $share_widget;
   return $extra;
 }
 
@@ -207,6 +210,11 @@ function hwc_field_formatter_info() {
       'label' => 'Resource file formatter',
       'field types' => array('file'),
       'description' => 'Displays default icon per file type and file description.',
+    ),
+    'term_country_flag' => array(
+      'label' => 'Country flag',
+      'field types' => array('taxonomy_term_reference'),
+      'description' => 'Displays a country flag for terms with field_flag set.',
     ),
   );
   return $info;
@@ -271,6 +279,23 @@ function hwc_field_formatter_view($entity_type, $entity, $field, $instance, $lan
           '#file' => $item,
           '#delta' => $delta,
         );
+      }
+      break;
+    case 'term_country_flag':
+      foreach ($items as $delta => $item) {
+        $term = taxonomy_term_load($item['tid']);
+        $term_wrapper = entity_metadata_wrapper('taxonomy_term', $term);
+        if (!empty($term->field_flag)) {
+          $vars = array(
+            'style_name' => 'medium_large',
+            'path' => $term_wrapper->field_flag->value()['uri'],
+          );
+          $element[$delta] = array(
+            '#markup' => theme('image_style', $vars),
+            '#term' => $item,
+            '#delta' => $delta,
+          );
+        }
       }
       break;
   }
@@ -418,6 +443,41 @@ function _form_add_website_placeholder_after_build($form) {
   return $form;
 }
 
+
+/**
+ * Implements hook_theme_registry_alter().
+ */
+function hwc_theme_registry_alter(&$theme_registry) {
+  if (!empty($theme_registry['date_part_label_time'])) {
+    unset($theme_registry['date_part_label_time']['file']);
+    $theme_registry['date_part_label_time']['function'] = 'theme_hwc_date_part_label_time';
+  }
+  if (!empty($theme_registry['date_part_label_date'])) {
+    unset($theme_registry['date_part_label_date']['file']);
+    $theme_registry['date_part_label_date']['function'] = 'theme_hwc_date_part_label_date';
+  }
+}
+
+function theme_hwc_date_part_label_time($variables) {
+  if (!empty($variables['element']['#instance']) && $variables['element']['#instance']['field_name'] == 'field_start_date'
+      && $variables['element']['#instance']['bundle'] == 'events') {
+    return '';
+  }
+  else {
+    return theme_date_part_label_time($variables);
+  }
+}
+
+function theme_hwc_date_part_label_date($variables) {
+  if (!empty($variables['element']['#instance']) && $variables['element']['#instance']['field_name'] == 'field_start_date'
+      && $variables['element']['#instance']['bundle'] == 'events') {
+    return t('Starting date and time') . '<span class="form-required" title="' . t('This field is required.') . '">*</span>';
+  }
+  else {
+    return theme_date_part_label_date($variables);
+  }
+}
+
 /**
  * Implements hook_field_widget_form_alter().
  */
@@ -434,7 +494,7 @@ function hwc_field_widget_form_alter(&$element, &$form_state, $context) {
   if ($is_events_form) {
     switch ($element['#field_name']) {
       case 'title_field':
-        $placeholder = t('Event title');
+        $placeholder = t('Event title. Max 60 characters.');
         $element['value']['#attributes']['placeholder'] = $placeholder;
         break;
 
@@ -454,12 +514,12 @@ function hwc_field_widget_form_alter(&$element, &$form_state, $context) {
         break;
 
       case 'field_organizer':
-        $placeholder = t('Event organizer');
+        $placeholder = t('First name of contact person');
         $element['value']['#attributes']['placeholder'] = $placeholder;
         break;
 
       case 'field_location':
-        $placeholder = t('Event location');
+        $placeholder = t('Location of the event');
         $element['value']['#attributes']['placeholder'] = $placeholder;
         break;
 
@@ -475,7 +535,7 @@ function hwc_field_widget_form_alter(&$element, &$form_state, $context) {
 
     }
   }
-  elseif ($is_news_form) {
+  elseif ($is_news_form && !empty($element['#field_name'])) {
     switch ($element['#field_name']) {
       case 'title_field':
         $placeholder = t('News title');
@@ -526,16 +586,17 @@ function hwc_node_view($node, $view_mode, $langcode) {
     }
   }
   if ($view_mode == 'full'
-    && in_array($node->type, array('news', 'events', 'article'))) {
+    && in_array($node->type, array('news', 'events', 'article', 'hwc_gallery', 'press_release'))) {
     $extra_fields = field_info_extra_fields('node', $node->type, 'display');
     if (!empty($extra_fields['share_widget']['display']['default']['visible'])) {
       $options = array();
-      if ($node->type == 'article') {
+      if (in_array($node->type, array('article', 'hwc_gallery', 'press_release'))) {
         $options['rss_hide'] = 1;
       }
       if ($node->type == 'events') {
         $options['rss_url'] = url('rss-feeds/latest/events.xml', array('absolute' => TRUE));
       }
+
       $node->content['share_widget'] = array('#markup' => hwc_news_share_widget($node, $options));
     }
   }
@@ -800,4 +861,44 @@ function hwc_partner_registration_allowed() {
     $ret = time() <= $time;
   }
   return $ret;
+}
+
+/**
+ * Implements hook_term_presave().
+ */
+function hwc_taxonomy_term_presave($term) {
+  // When saving a country term, attach the flag on field_flag.
+  $voc = taxonomy_vocabulary_machine_name_load('country');
+  if ($term->vid == $voc->vid) {
+    $dir = 'public://flags';
+    if (!file_prepare_directory($dir)) {
+      drupal_set_message('Flags directory could not be created.', 'warning');
+      return;
+    }
+    $path = drupal_get_path('theme', 'hwc_frontend');
+    $images_dir = $path . '/images/iso2_flags';
+    if (!is_dir($images_dir)) {
+      drupal_set_message('Could not find the flags images source directory.', 'warning');
+    }
+    $iso2 = strtoupper($term->field_iso2[LANGUAGE_NONE][0]['value']);
+    $image_filename = $iso2 . '.gif';
+    $image_dest_dir = $dir . '/' . $image_filename;
+    $image_path = $images_dir . '/' . $image_filename;
+    $filepath = drupal_realpath($image_path);
+    if (is_file($filepath)) {
+      // Create managed File object and associate with Image field.
+      $file = (object) array(
+        'uid' => 1,
+        'uri' => $filepath,
+        'filemime' => file_get_mimetype($filepath),
+        'status' => 1,
+      );
+      if ($file = file_copy($file, $image_dest_dir)) {
+        $term->field_flag[LANGUAGE_NONE][0] = (array) $file;
+      }
+    }
+    else {
+      drupal_set_message(strtr('Flag not found for @country', array('@country' => $term->name)), 'warning');
+    }
+  }
 }

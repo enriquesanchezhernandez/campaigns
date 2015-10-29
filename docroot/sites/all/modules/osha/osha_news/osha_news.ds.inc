@@ -265,7 +265,7 @@ function osha_news_ds_layout_settings_info() {
         'col-md-2' => 'col-md-2',
       ),
       'right' => array(
-        'col-sm-10' => 'col-sm-10',
+        'col-md-10' => 'col-md-10',
       ),
     ),
     'wrappers' => array(

@@ -14,11 +14,31 @@ function hwc_gallery_node_view($node, $view_mode, $langcode) {
     $wrapper = entity_metadata_wrapper('node', $node);
     $first_image = $wrapper->field_images->value()[0];
     if (!empty($first_image)) {
-      $url = image_style_url('article_image', $first_image['uri']);
-      $node->content['cover_image'] = array(
-        '#markup' => '<img class="img-responsive" src="' . $url . '"/>',
-        '#weight' => 0,
+      $image_vars = array(
+        'style_name' => 'gallery_cover_image',
+        'path' => $first_image['uri'],
+        'alt' => $node->title,
       );
+      $node->content['gallery_cover_image'] = array('#markup' => theme('image_style', $image_vars));
+      if (!empty($node->content['field_images'])) {
+        $image_deltas = element_children($node->content['field_images']);
+        $total = count($image_deltas);
+        $per_page = 6;
+        if ($total > $per_page) {
+          $page = pager_default_initialize($total, $per_page);
+          if ($page > 0) {
+            hide($node->content['body']);
+            hide($node->content['gallery_cover_image']);
+          }
+          $offset = $per_page * $page;
+          $showing_deltas = range($offset, $offset + $per_page - 1);
+          $remove_deltas = array_diff($image_deltas, $showing_deltas);
+          foreach ($remove_deltas as $delta) {
+            unset($node->content['field_images'][$delta]);
+          }
+          $node->content['field_images']['#suffix'] = theme('pager');
+        }
+      }
     }
   }
 }

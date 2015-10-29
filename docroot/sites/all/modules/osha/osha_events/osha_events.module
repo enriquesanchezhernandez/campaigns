@@ -6,10 +6,22 @@
 
 include_once 'osha_events.features.inc';
 
+
+/**
+ * Implements hook_theme().
+ */
+function osha_events_theme($existing, $type, $theme, $path) {
+  return array(
+    'event_location' => array(
+      'variables' => array('location' => NULL, 'city' => NULL, 'country' => NULL,),
+    ),
+  );
+}
+
+
 /**
  * Implements hook_form_FORM_ID_alter().
  */
-
 function osha_events_form_events_node_form_alter(&$form, &$form_state) {
   $form['#validate'][] = 'osha_events_form_validate';
   $form['actions']['#attributes']['class'] = array('container');
@@ -30,9 +42,12 @@ function osha_events_form_events_node_form_alter(&$form, &$form_state) {
 
     $form['field_activity'][LANGUAGE_NONE] = $field;
   }
+  $form['body'][LANGUAGE_NONE][0]['summary']['#suffix'] = '<span class="">' . t('Write a short summary. This will appear on the homepage of the campaign site. <strong>Max 420 characters</strong>.') . '</span></div>';
   if (isset($form['field_related_documents'][LANGUAGE_NONE]['#file_upload_title'])) {
     $form['field_related_documents'][LANGUAGE_NONE]['#file_upload_title'] = t('Upload extra files');
   }
+  $form['title_field'][LANGUAGE_NONE][0]['value']['#maxlength'] = 60;
+  $form['title_field'][LANGUAGE_NONE][0]['value']['#attributes']['maxlength_js_label'][0] = '@remaining' . ' ' . t('left', array(), array('context' => 'characters left'));
 }
 
 /**
@@ -91,6 +106,9 @@ function osha_events_form_views_exposed_form_alter(&$form, &$form_state) {
       '#type' => 'markup',
       '#markup' => $events_calendar,
     );
+
+    // Add placeholder for free text field
+    $form['search_api_views_fulltext']['#attributes'] = array('placeholder' => array(t('Free text filter')));
   }
 }
 
@@ -108,6 +126,29 @@ function osha_events_element_info_alter(&$type) {
 function osha_events_popup_date_process($element, &$form_state, $form) {
   $element['#element_validate'] = array('osha_events_popup_date_validate');
   return $element;
+}
+
+/**
+ * Implements hook_node_view().
+ */
+function osha_events_node_view($node, $view_mode, $langcode) {
+  if ($node->type == 'events') {
+    $wrapper = entity_metadata_wrapper('node', $node);
+    if (!empty($node->preprocess_fields)) {
+      foreach ($node->preprocess_fields as $field_name) {
+        switch ($field_name) {
+          case 'event_location':
+            $location = $wrapper->field_location->value();
+            $city = $wrapper->field_city->value();
+            $country = $wrapper->field_country_code->label();
+            $node->content[$field_name] = array(
+              '#markup' => theme('event_location', array('location' => $location, 'city' => $city, 'country' => $country))
+            );
+            break;
+        }
+      }
+    }
+  }
 }
 
 
@@ -290,4 +331,21 @@ function osha_events_get_view_title($title) {
     $title = t('@data events', array('@data' => $title));
   }
   return $title;
+}
+
+function theme_event_location($vars) {
+  $output = '';
+  if (!empty($vars['location'])) {
+    $output .= '<span class="event-location-location">' .$vars['location'] .'</span>';
+  }
+  if (!empty($vars['city'])) {
+    $output .= '<span class="event-location-city">' .$vars['city'] .'</span>';
+  }
+  if (!empty($vars['country'])) {
+    $output .= '<span class="event-location-country">' .$vars['country'] .'</span>';
+  }
+  if (!empty($output)) {
+    $output = '<div class="event-location-container">' . $output . '</div>';
+  }
+  return $output;
 }

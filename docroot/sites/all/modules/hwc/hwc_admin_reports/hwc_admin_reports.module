@@ -6,77 +6,382 @@
 
 include_once 'hwc_admin_reports.features.inc';
 
-define('HWC_ADMIN_REPORT_PATH', 'public://views_data_export_xls');
+define('HWC_ADMIN_REPORTS_EXPORT_PATH', 'public://export-reports');
+
+
+
+/**
+ * Implements Elysia hook_cronapi().
+ */
+function hwc_admin_reports_cronapi() {
+  return array('hwc_admin_reports_cron' => array(
+    'description' => 'Export news & events in Excel format to disk',
+    'rule' => '0 23 * * *', // Once a day
+  ));
+}
 
 /**
  * Implements hook_cron().
  */
 function hwc_admin_reports_cron() {
-  // Remove old reports.
-  $files = file_scan_directory(HWC_ADMIN_REPORT_PATH, '/.*\.xls$/');
-  if (!empty($files)) {
-    foreach (array_keys($files) as $file) {
-      if (filemtime(drupal_realpath($file)) < strtotime("-1 day")) {
-        drupal_unlink($file);
+  $dir = HWC_ADMIN_REPORTS_EXPORT_PATH;
+  if (!file_prepare_directory($dir, FILE_CREATE_DIRECTORY)) {
+    watchdog('hwc_admin_reports', strtr('The @dir directory is not writable, aborting export', array('@dir' => $dir)), 'error');
+    return;
+  }
+  $last_export = variable_get('hwc_admin_reports_last_export_time');
+  $date = empty($last_export) ? NULL : date('Y-m-d H:i:s', $last_export);
+
+  $filename = $dir . '/news.xls';
+  if (-1 == hwc_admin_reports_export_news_excel($filename, $date)) {
+    if (file_exists(drupal_realpath($filename))) {
+      unlink($filename);
+    }
+  }
+
+  $filename = $dir . '/events.xls';
+  if (-1 == hwc_admin_reports_export_events_excel($filename, $date)) {
+    if (file_exists(drupal_realpath($filename))) {
+      unlink($filename);
+    }
+  }
+
+  variable_set('hwc_admin_reports_last_export_time',  time());
+}
+
+
+function hwc_admin_reports_export_news_excel($filename, $last_update = NULL) {
+  $headers = array(
+    'Title',
+    'Summary',
+    'Image',
+    'Image Caption',
+    'Publication date',
+    'Body',
+    'Tags',
+    'Attachments (URL)',
+    'Attachments (Title)',
+    'URL path',
+    'Author',
+    'Node ID',
+    'Partner',
+    'Status',
+  );
+  $data = array();
+  /** @var view $view */
+  $view = views_get_view('content_reports');
+  $view->set_display('news');
+  $view->set_items_per_page(0);
+  if (!empty($last_update)) {
+    // Get only the news since the last export
+    $filter = $view->get_item($view->current_display, 'filter', 'created');
+    $filter['value']['value'] = $last_update;
+    $view->set_item($view->current_display, 'filter', 'created', $filter);
+
+  }
+  $view->pre_execute();
+  $view->execute();
+  foreach ($view->result as $row) {
+    $node = node_load($row->nid);
+    $w = entity_metadata_wrapper('node', $node);
+    $d = array();
+    $d[] = $w->label();
+
+    $summary = $w->field_summary->value();
+    $d[] = !empty($summary['safe_value']) ? $summary['safe_value'] : '';
+
+    $image = $w->field_image->value();
+    $d[] = !empty($image['uri']) ? file_create_url($image['uri']) : '';
+
+    $image_caption = $w->field_image_caption->value();
+    $d[] = !empty($image_caption) ? $image_caption : '';
+
+    $publication_date = $w->field_publication_date->value();
+    $d[] = !empty($publication_date) ? date('Y-m-d H:i:s', $publication_date) : '';
+
+    $body = $w->body->value();
+    $d[] = !empty($body['safe_value']) ? $body['safe_value'] : '';
+
+    $tags = $w->field_tags->value();
+    $values = array();
+    if (!empty($tags)) {
+      foreach($tags as $tag) {
+        $values[] = $tag->name;
       }
     }
+    $d[] = implode('|', $values);
+
+    $resources = $w->field_aditional_resources->value();
+    $values = array();
+    if (!empty($resources)) {
+      foreach($resources as $resource) {
+        $values[] = url('node/' . $resource->nid, array('absolute' => TRUE));
+      }
+    }
+    $d[] = implode('|', $values);
+
+    $values = array();
+    if (!empty($resources)) {
+      foreach($resources as $resource) {
+        $values[] = $resource->title;
+      }
+    }
+    $d[] = implode('|', $values);
+
+    $d[] = url('node/' . $node->nid, array('absolute' => TRUE));
+    $d[] = $node->uid;
+    $d[] = $node->nid;
+
+    if(!empty($node->workbench_access)) {
+      $partner = hwc_partner_by_section_id_load(reset($node->workbench_access));
+      $d[] = $partner->title;
+    }
+    else {
+      $d[] = '';
+    }
+    // @todo: node.status or workbench_moderation_node status?
+    $d[] = $node->status;
+    $data[] = $d;
+  }
+  if (empty($data)) {
+    return -1;
+  }
+  module_load_include('inc', 'phpexcel', 'phpexcel');
+  phpexcel_export($headers, $data, $filename);
+}
+
+function hwc_admin_reports_export_events_excel($filename, $last_update = NULL) {
+  $headers = array(
+    'Title',
+    'Event start date',
+    'Event end date',
+    'Description',
+    'Country',
+    'City',
+    'Website',
+    'Category',
+    'Contact Name',
+    'Contact Email',
+    'Contact Phone',
+    'Speaker Name',
+    'Speaker Image',
+    'Speaker Description',
+    'Schedule - Title',
+    'Schedule - Date',
+    'Schedule - Speaker',
+    'Related documents (URLs)',
+    'Related documents (titles)',
+    'URL path',
+    'Author',
+    'Node ID',
+    'Partner',
+    'Status',
+  );
+  $data = array();
+  /** @var view $view */
+  $view = views_get_view('content_reports');
+  $view->set_display('events');
+  $view->set_items_per_page(0);
+  if (!empty($last_update)) {
+    // Get only the events since the last export
+    $filter = $view->get_item($view->current_display, 'filter', 'created');
+    $filter['value']['value'] = $last_update;
+    $view->set_item($view->current_display, 'filter', 'created', $filter);
+
+  }
+  $view->pre_execute();
+  $view->execute();
+  foreach ($view->result as $row) {
+    $node = node_load($row->nid);
+    $w = entity_metadata_wrapper('node', $node);
+    $d = array();
+    $d[] = $w->label();
+
+    $start_date = $w->field_start_date->value();
+    $d[] = !empty($start_date['value']) ? $start_date['value'] : '';
+    $d[] = !empty($start_date['value2']) ? $start_date['value2'] : '';
+
+    $body = $w->body->value();
+    $d[] = !empty($body['safe_value']) ? $body['safe_value'] : '';
+
+    $value = $w->field_country_code->value();
+    $d[] = !empty($value) ? $value : '';
+
+    $value = $w->field_city->value();
+    $d[] = !empty($value) ? $value : '';
+
+    $website = $w->field_website_of_event->value();
+    $d[] = !empty($website['url']) ? $website['url'] : '';
+
+    $tags = $w->field_tags->value();
+    $values = array();
+    if (!empty($tags)) {
+      foreach($tags as $tag) {
+        $values[] = $tag->name;
+      }
+    }
+    $d[] = implode('|', $values);
+
+    $d[] = $w->field_contact_name->value();
+    $d[] = $w->field_contact_email->value();
+    $d[] = $w->field_contact_phone->value();
+
+    $speakers = $w->field_speaker->value();
+    // Speaker Name
+    $values = array();
+    foreach($speakers as $speaker) {
+      $values[] = $speaker->title;
+    }
+    $d[] = implode('|', $values);
+
+    // Speaker Image
+    $values = array();
+    foreach($speakers as $speaker) {
+      $sw = entity_metadata_wrapper('node', $speaker);
+      if ($img = $sw->field_image->value()) {
+        $values[] = file_create_url($img['uri']);
+      }
+    }
+    $d[] = implode('|', $values);
+
+    // Speaker Description - body
+    $values = array();
+    foreach($speakers as $speaker) {
+      $sw = entity_metadata_wrapper('node', $speaker);
+      if ($body = $sw->body->value()) {
+        $values[] = $body['safe_value'];
+      }
+    }
+    $d[] = implode('|', $values);
+
+    // Schedule
+    $schedule = $w->field_schedule->value();
+    $sch_titles = array();
+    $sch_dates = array();
+    $sch_speaker = array();
+
+    foreach($schedule as $delta => $sch) {
+      $x = $w->field_schedule[$delta]->field_talking_title->value();
+      $sch_titles[] = !empty($x) ? $x : '';
+
+      $x = $w->field_schedule[$delta]->field_talking_date->value();
+      $sch_dates[] = !empty($x) ? date('Y-m-d H:i:s', $x) : '';
+
+      $x = $w->field_schedule[$delta]->field_talking_speaker->value();
+      $sch_speaker[] = !empty($x) ? $x->title : '';
+    }
+    $d[] = implode('|', $sch_titles);
+    $d[] = implode('|', $sch_dates);
+    $d[] = implode('|', $sch_speaker);
+
+    // Related documents
+    $documents = $w->field_related_documents->value();
+    $values = array();
+    foreach($documents as $dx) {
+      $url = file_create_url($dx['uri']);
+      $values[] = !empty($url) ? $url : '';
+    }
+    $d[] = implode('|', $values);
+
+    $values = array();
+    foreach($documents as $dx) {
+      $values[] = !empty($dx['description']) ? $dx['description'] : '';
+    }
+    $d[] = implode('|', $values);
+
+    $d[] = url('node/' . $node->nid, array('absolute' => TRUE));
+    $d[] = $node->uid;
+    $d[] = $node->nid;
+    if(!empty($node->workbench_access)) {
+      $partner = hwc_partner_by_section_id_load(reset($node->workbench_access));
+      $d[] = $partner->title;
+    }
+    else {
+      $d[] = '';
+    }
+    // @todo: node.status or workbench_moderation_node status?
+    $d[] = $node->status;
+
+    $data[] = $d;
+  }
+  if (empty($data)) {
+    return -1;
+  }
+  module_load_include('inc', 'phpexcel', 'phpexcel');
+  phpexcel_export($headers, $data, $filename);
+}
+
+
+/**
+ * Implements hook_form_views_exposed_form_alter().
+ */
+function hwc_admin_reports_form_views_exposed_form_alter(&$form, &$form_state) {
+  if ($form['#id'] == 'views-exposed-form-content-reports-news'
+      || $form['#id'] == 'views-exposed-form-content-reports-events') {
+    // Add date popup to 'Post date' filter
+    $form['created']['#title'] = '';
+    $form['created']['#type'] = 'date_popup';
+    $form['created']['#size'] = '20';
+    $form['created']['#default_value'] = NULL;
+    $form['created']['#date_format'] = 'd/m/Y';
+    $form['created']['#date_label_position'] = 'within';
+    $form['created']['#date_year_range'] = '-3:+3';
+    $form['created']['#process'][0] = 'date_popup_element_process';
+  }
+  if ($form['#id'] == 'views-exposed-form-content-reports-news') {
+    // Add filter by user as select instead of textfield
+    $users = hwc_admin_get_news_authors();
+    $user_options = array('' => '-- Please select --');
+    foreach ($users as $uid => $name) {
+      // $u = user_load($uid);
+      $label = $name;
+      if ($uid === 0) {
+        $name = 'Anonymous';
+        $label = 'Anonymous (imported)';
+      }
+
+      $user_options[$name] = $label;
+    }
+    $form['uid']['#type'] = 'select';
+    $form['uid']['#options'] = $user_options;
+  }
+  if ($form['#id'] == 'views-exposed-form-content-reports-events') {
+    // Add filter by user as select instead of textfield
+    $users = hwc_admin_get_events_authors();
+    $user_options = array('' => '-- Please select --');
+    foreach ($users as $uid => $name) {
+      // $u = user_load($uid);
+      $label = $name;
+      if ($uid === 0) {
+        $name = 'Anonymous';
+        $label = 'Anonymous (imported)';
+      }
+
+      $user_options[$name] = $label;
+    }
+    $form['uid']['#type'] = 'select';
+    $form['uid']['#options'] = $user_options;
   }
 }
 
-/**
- * Implements hook_views_plugins_alter().
- */
-function hwc_admin_reports_views_plugins_alter(&$plugins) {
-  if (!empty($plugins['display']['views_data_export'])) {
-    $module_path = drupal_get_path('module', 'hwc_admin_reports');
-    module_load_include('inc', 'phpexcel', 'phpexcel');
-    $style = $plugins['style']['views_data_export_xls'];
-    $style['name'] = 'views_data_export_xlsx';
-    $style['title'] = 'XLS excel file';
-    $style['path'] = $module_path;
-    $style['additional themes base'] = 'views_data_export_xlsx';
-
-    // Use template file from our module.
-    $style['theme path'] = $module_path . '/theme';
-    $style['theme file'] = 'hwc_admin_reports.theme.inc';
-    $style['theme'] = 'views_data_export_xlsx';
-
-    // Add the new plugin.
-    $plugins['style']['views_data_export_xlsx'] = $style;
-  }
+function hwc_admin_get_news_authors() {
+  $q = db_select('node', 'a');
+  $q->innerJoin('users', 'b', 'a.uid = b.uid');
+  $q->fields('a', array('uid'));
+  $q->fields('b', array('name'));
+  $q->condition('a.type', 'news');
+  $q->orderBy('b.name');
+  $q->groupBy('a.uid');
+  return $q->execute()->fetchAllKeyed();
 }
 
-/**
- * Preprocess XLS output template.
- */
-function template_preprocess_views_data_export_xlsx(&$vars) {
-  global $user;
-  $vars['header'] = $vars['rows']['header'];
-  $vars['body'] = "";
-  $vars['footer'] = $vars['rows']['footer'];
-  $view = $vars['view'];
-
-  if (!empty($view->style_plugin->rendered_fields)) {
-    $headers = array();
-    $field_names = array_keys($view->style_plugin->rendered_fields[0]);
-    foreach ($field_names as $field_name) {
-      $headers[] = $view->field[$field_name]->options['ui_name'];
-    }
-    $data = $view->style_plugin->rendered_fields;
-    foreach ($data as $key => $row) {
-      $data[$key] = array_values($row);
-    }
-
-    $excel_dir = HWC_ADMIN_REPORT_PATH;
-    $excel_filename = 'views_data_export_' . time() . '_' . $user->uid . '.xls';
-    if (!file_prepare_directory($excel_dir, FILE_CREATE_DIRECTORY)) {
-      drupal_set_message(strtr('The @dir directory could not be created or it is not writable', array('@dir' => $excel_dir)), 'error');
-      drupal_goto();
-    }
-    $path = drupal_realpath($excel_dir . '/' . $excel_filename);
-    module_load_include('inc', 'phpexcel', 'phpexcel');
-    phpexcel_export($headers, $data, $path);
-    $vars['body'] = file_get_contents($path);
-  }
-  return;
+function hwc_admin_get_events_authors() {
+  $q = db_select('node', 'a');
+  $q->innerJoin('users', 'b', 'a.uid = b.uid');
+  $q->fields('a', array('uid'));
+  $q->fields('b', array('name'));
+  $q->condition('a.type', 'events');
+  $q->orderBy('b.name');
+  $q->groupBy('a.uid');
+  return $q->execute()->fetchAllKeyed();
 }

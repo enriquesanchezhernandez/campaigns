@@ -122,13 +122,13 @@ function hwc_gallery_strongarm() {
     'full' => 'full',
     'teaser' => 'teaser',
     'search_index' => 'search_index',
+    'osha_slideshow' => 'osha_slideshow',
     'osha_resources' => 'osha_resources',
     'rss' => 0,
     'search_result' => 0,
     'diff_standard' => 0,
     'title_body' => 0,
     'body' => 0,
-    'osha_slideshow' => 0,
     'highlights_item' => 0,
     'newsletter_item' => 0,
     'pub_teaser' => 0,
@@ -204,22 +204,35 @@ function hwc_gallery_strongarm() {
     'extra_fields' => array(
       'form' => array(
         'metatags' => array(
-          'weight' => '40',
+          'weight' => '5',
         ),
         'title' => array(
           'weight' => '-5',
         ),
         'path' => array(
-          'weight' => '30',
+          'weight' => '2',
         ),
         'redirect' => array(
-          'weight' => '30',
+          'weight' => '1',
         ),
         'language' => array(
           'weight' => '5',
         ),
       ),
-      'display' => array(),
+      'display' => array(
+        'gallery_cover_image' => array(
+          'default' => array(
+            'weight' => '2',
+            'visible' => TRUE,
+          ),
+        ),
+        'share_widget' => array(
+          'default' => array(
+            'weight' => '2',
+            'visible' => TRUE,
+          ),
+        ),
+      ),
     ),
   );
   $export['field_bundle_settings_node__hwc_gallery'] = $strongarm;

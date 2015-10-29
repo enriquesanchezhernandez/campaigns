@@ -457,6 +457,7 @@ $options['init-modules'] = array(
   'views_data_export',
   'phpexcel',
   'plupload',
+  'maxlength',
 
   // Captcha
  'recaptcha',
@@ -570,10 +571,13 @@ $command_specific['devify_ldap'] = array(
   'ldap-write' => (array) $cfg->ldap_write,
 );
 
-$command_specific['devify']['enable-modules'] = array_merge(
-  $command_specific['devify']['enable-modules'],
-  $cfg->devify_enable_modules
-);
+if (!empty($cfg->devify_enable_modules)) {
+  $command_specific['devify']['enable-modules'] = array_merge(
+    $command_specific['devify']['enable-modules'],
+    $cfg->devify_enable_modules
+  );
+}
+
 
 if (file_exists(dirname(__FILE__) . '/drushrc.local.php')) {
   include dirname(__FILE__) . '/drushrc.local.php';
