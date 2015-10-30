@@ -1566,12 +1566,11 @@ function osha_events_field_default_field_instances() {
       ),
       'default' => array(
         'label' => 'above',
-        'module' => 'file_entity',
+        'module' => 'hwc',
         'settings' => array(
           'field_formatter_class' => '',
-          'text' => 'Download [file:name]',
         ),
-        'type' => 'file_download_link',
+        'type' => 'hwc_file_download_link',
         'weight' => 16,
       ),
       'highlights_item' => array(

@@ -1558,14 +1558,6 @@ function osha_events_views_default_views() {
   $handler->display->display_options['fields']['body']['field'] = 'body';
   $handler->display->display_options['fields']['body']['label'] = '';
   $handler->display->display_options['fields']['body']['element_label_colon'] = FALSE;
-  /* Field: Indexed Multilingual Node: Website of event */
-  $handler->display->display_options['fields']['field_website_of_event']['id'] = 'field_website_of_event';
-  $handler->display->display_options['fields']['field_website_of_event']['table'] = 'search_api_index_default_multilingual_node_index';
-  $handler->display->display_options['fields']['field_website_of_event']['field'] = 'field_website_of_event';
-  $handler->display->display_options['fields']['field_website_of_event']['label'] = '';
-  $handler->display->display_options['fields']['field_website_of_event']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['field_website_of_event']['click_sort_column'] = 'url';
-  $handler->display->display_options['fields']['field_website_of_event']['delta_offset'] = '0';
   /* Field: Content: Link */
   $handler->display->display_options['fields']['view_node']['id'] = 'view_node';
   $handler->display->display_options['fields']['view_node']['table'] = 'views_entity_node';
@@ -1698,14 +1690,6 @@ function osha_events_views_default_views() {
   $handler->display->display_options['fields']['body']['field'] = 'body';
   $handler->display->display_options['fields']['body']['label'] = '';
   $handler->display->display_options['fields']['body']['element_label_colon'] = FALSE;
-  /* Field: Indexed Multilingual Node: Website of event */
-  $handler->display->display_options['fields']['field_website_of_event']['id'] = 'field_website_of_event';
-  $handler->display->display_options['fields']['field_website_of_event']['table'] = 'search_api_index_default_multilingual_node_index';
-  $handler->display->display_options['fields']['field_website_of_event']['field'] = 'field_website_of_event';
-  $handler->display->display_options['fields']['field_website_of_event']['label'] = '';
-  $handler->display->display_options['fields']['field_website_of_event']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['field_website_of_event']['click_sort_column'] = 'url';
-  $handler->display->display_options['fields']['field_website_of_event']['delta_offset'] = '0';
   /* Field: Content: Link */
   $handler->display->display_options['fields']['view_node']['id'] = 'view_node';
   $handler->display->display_options['fields']['view_node']['table'] = 'views_entity_node';

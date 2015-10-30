@@ -226,6 +226,11 @@ function hwc_field_formatter_info() {
       'field types' => array('taxonomy_term_reference'),
       'description' => 'Displays a country flag for terms with field_flag set.',
     ),
+    'hwc_file_download_link' => array(
+        'label' => 'Generic download link',
+        'field types' => array('file'),
+        'description' => 'Display file name or description if the last one is not empty',
+    ),
   );
   return $info;
 }
@@ -307,6 +312,17 @@ function hwc_field_formatter_view($entity_type, $entity, $field, $instance, $lan
             '#delta' => $delta,
           );
         }
+      }
+      break;
+    case 'hwc_file_download_link':
+      foreach($items as $delta => $item){
+        $uri = file_entity_download_uri(file_load($item['fid']));
+        $link_name = $item['filename'];
+        if(!empty($item['description'])){
+          $link_name = $item['description'];
+        }
+        $link = l($link_name, $uri['path'], array('query' => $uri['options']['query']));
+        $element[$delta]['#markup'] = $link;
       }
       break;
   }
