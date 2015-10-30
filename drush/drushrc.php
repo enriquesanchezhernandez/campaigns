@@ -455,6 +455,8 @@ $options['init-modules'] = array(
 
   'image_url_formatter',
   'views_data_export',
+  'views_data_export_phpexcel',
+  'token_formatters',
   'phpexcel',
   'plupload',
   'maxlength',
