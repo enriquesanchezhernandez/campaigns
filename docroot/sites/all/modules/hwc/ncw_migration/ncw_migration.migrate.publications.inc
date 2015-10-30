@@ -72,7 +72,12 @@ class NCWPublicationsMigration extends AbstractNCWNodeMigration {
       $row->field_related_publications[] = $this->handleSourceMigration('publications', $original_nid);
     }
     $row->field_tags = osha_migration_normalize_migrated_term_reference($row->field_tags, 'tax_tags');
-    $row->field_publication_type = osha_migration_normalize_migrated_term_reference($row->field_publication_type, 'tax_publication_types');
+    if (empty($row->field_publication_type)) {
+      drupal_set_message('Skipping import of publication without type', 'error');
+      return FALSE;
+    }
+    $type = array($row->field_publication_type['tid']);
+    $row->field_publication_type = osha_migration_normalize_migrated_term_reference($type, 'tax_publication_types');
 
     // field_aditional_resources
     $fi = field_info_field('field_aditional_resources');

@@ -671,7 +671,6 @@ function osha_events_views_default_views() {
   );
   $handler->display->display_options['filters']['field_start_date_value2']['form_type'] = 'date_popup';
   $handler->display->display_options['path'] = 'admin/content/events';
-  $handler->display->display_options['menu']['type'] = 'tab';
   $handler->display->display_options['menu']['title'] = 'Events';
   $handler->display->display_options['menu']['weight'] = '0';
   $handler->display->display_options['menu']['context'] = 0;

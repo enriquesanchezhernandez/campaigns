@@ -5041,6 +5041,64 @@ article{
 			margin-left: 0;
 		}
 	}
+	.see-also{
+		margin-bottom: 2em;
+		.see-also-title{
+			p{
+				margin-top: 1em;
+				color: @color3;
+				font-style: normal;
+				font-weight: bold;
+				font-size: @size1;
+				margin-bottom: 1.5em;
+				&:before{
+					content: url("../images/content/see-also.png");
+					display:block;
+					margin-top: 1.5em;
+					padding-top: 1em;
+					border-top: 1px dotted @color3;
+				}
+			}
+		}
+		.more-resources{
+			ul{
+				list-style: none;
+				margin-bottom: 40px;
+				padding: 0px;
+				li{
+					margin-bottom: 20px;
+					a{
+						font-style: normal;
+						font-weight: bold;
+						font-size: @size2;
+
+						&:before{
+							content:"> ";
+						}
+					}
+				}
+			}
+		}
+		.more-links{
+			ul{
+				list-style: none;
+				margin-bottom: 40px;
+				padding: 0px;
+				a{
+					font-style: italic;
+					font-weight: bold;
+					&:before{
+						content:"> ";
+					}
+				}
+			}
+		}
+		.media-outlet{
+			p{
+				font-weight: bold;
+			}
+		}
+	}
 }
 /*End pag get-your-certificate*/
 

@@ -730,7 +730,7 @@ function osha_migration_normalize_field_list_text($row, $field_name) {
   if (!empty($row->{$field_name}) && is_array($row->{$field_name})) {
     foreach ($row->{$field_name} as $language => $values) {
       foreach($values as $v) {
-        $field[] = $v['value'];
+        $field[] = !empty($v['safe_value']) ? $v['safe_value'] : $v['value'];
       }
     }
   }
@@ -756,7 +756,7 @@ function osha_migration_normalize_field_text_long($row, $field_name) {
   if (!empty($row->{$field_name}) && is_array($row->{$field_name})) {
     foreach ($row->{$field_name} as $language => $values) {
       foreach($values as $v) {
-        $field[] = $v['value'];
+        $field[] = !empty($v['safe_value']) ? $v['safe_value'] : $v['value'];
         $languages[] = $language;
         $format[] = $v['format'];
       }
@@ -797,7 +797,7 @@ function osha_migration_normalize_field_text($row, $field_name, $field_info) {
   if (!empty($row->{$field_name}) && is_array($row->{$field_name})) {
     foreach ($row->{$field_name} as $language => $values) {
       foreach($values as $v) {
-        $field[] = $v['value'];
+        $field[] = !empty($v['safe_value']) ? $v['safe_value'] : $v['value'];
         $languages[] = $language;
       }
     }

@@ -275,6 +275,18 @@ List of patches (most recent first)
   * make text of link translatable
   * translatable_link_text.patch
 
+* smtp
+  * Sending attachments using modules smtp and mimemail
+  * https://www.drupal.org/node/1442514
+  * smtm/SMTP-1442514.patch
+
+* webform2pdf
+  * Undefined index: exclude_empty
+  * https://www.drupal.org/node/2499749
+  * webform2pdf/webform-exclude_empty-2499749-6.patch
+
+  * webform2pdf_correct-variable-and-theme_2446585-3.patch
+
 Patch documentation should be in the following format:
 
 * module name

@@ -12,9 +12,9 @@ configure = admin/config/content/webform2pdf
 files[] = webform2pdf.class.inc
 files[] = views/webform2pdf_handler_field_submission_download_pdf.inc
 
-; Information added by Drupal.org packaging script on 2015-04-07
-version = "7.x-4.0"
+; Information added by Drupal.org packaging script on 2015-04-24
+version = "7.x-4.0+1-dev"
 core = "7.x"
 project = "webform2pdf"
-datestamp = "1428434588"
+datestamp = "1429876984"
 
