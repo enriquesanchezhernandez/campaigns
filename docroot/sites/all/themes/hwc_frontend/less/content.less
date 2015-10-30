@@ -1568,6 +1568,10 @@ ul.tabs--primary.nav.nav-tabs{
 					.views-field-field-publication-date{
 						font-size: @size3;
 					}
+					.views-field-field-publication-date, .views-field-field-image, .views-field-field-cover-image{
+						/*confirmar que esto tiene que ser asi*/
+						display: none;
+					}
 					.views-field-search-api-excerpt{
 						a{
 							font-weight: bold;
@@ -2779,6 +2783,34 @@ article{
 				&:after{
 					content: ")";
 				}
+			}
+		}
+	}
+	.event-location-container{
+		color: @text-color-3;
+		font-weight: bold;
+		width: auto;
+		width: 50%;
+		margin: 0 auto;
+		text-align: center;
+		padding-bottom: 1em;
+		span.event-location-location{
+			padding: 3em 0em 3em 3em;
+			background: url("../images/content/location.png") no-repeat left center;
+			&:after{
+				content: ",";
+			}
+		}
+		span.event-location-city{
+			padding-left: 10px;
+			padding-right: 10px;
+		}
+		span.event-location-country{
+			&:before{
+				content: "(";
+			}
+			&:after{
+				content: ")";
 			}
 		}
 	}
