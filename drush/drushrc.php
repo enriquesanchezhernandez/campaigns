@@ -304,6 +304,7 @@ $options['init-modules'] = array(
 
   'mailsystem',
   'htmlmail',
+  'mimemail',
 
   'taxonomy_access_fix',
   'date',
