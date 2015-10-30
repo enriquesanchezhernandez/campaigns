@@ -63,9 +63,7 @@
  * Default images directory.
  * By default it is automatically set but you can also set it as a fixed string to improve performances.
  */
-$k_path_images_dir = DRUPAL_ROOT . '/sites/default/files/tcpdf/images/';
-define ('K_PATH_IMAGES', DRUPAL_ROOT . '/sites/default/files/tcpdf/images/');
-file_prepare_directory($k_path_images_dir, FILE_CREATE_DIRECTORY);
+//define ('K_PATH_IMAGES', '');
 
 /**
  * Deafult image logo used be the default Header() method.
@@ -191,7 +189,7 @@ define('HEAD_MAGNIFICATION', 1.1);
 /**
  * Height of cell respect font height.
  */
-define('K_CELL_HEIGHT_RATIO', 1.5);
+define('K_CELL_HEIGHT_RATIO', 1.25);
 
 /**
  * Title magnification respect main font size.
