@@ -9231,12 +9231,6 @@ div[class*='node-'] .more-link {
 .page-search .region.region-content .view-search .view-content .views-row .views-field-field-publication-date {
   font-size: 12px;
 }
-.page-search .region.region-content .view-search .view-content .views-row .views-field-field-publication-date,
-.page-search .region.region-content .view-search .view-content .views-row .views-field-field-image,
-.page-search .region.region-content .view-search .view-content .views-row .views-field-field-cover-image {
-  /*confirmar que esto tiene que ser asi*/
-  display: none;
-}
 .page-search .region.region-content .view-search .view-content .views-row .views-field-search-api-excerpt a {
   font-weight: bold;
 }
