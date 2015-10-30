@@ -538,7 +538,7 @@ $options['init-themes'] = array(
 );
 
 $options['disable-modules'] = array(
-  'varnish', 'memcache_storage', 'piwik', 'overlay',
+  'varnish', 'memcache_storage', 'overlay',
 );
 
 // Add specific settings for development or demo.
