@@ -926,7 +926,7 @@ function theme_hwc_print_friendly_block() {
     '#attached' => array(
       'js' => array(
         array(
-          'data' => drupal_get_path('module', 'hwc') . '/js/napo_print_friendly.js',
+          'data' => drupal_get_path('module', 'hwc') . '/js/print_friendly.js',
           'type' => 'file',
           'weight' => 10,
         )
