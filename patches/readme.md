@@ -7,6 +7,9 @@ When patching a contrib module, the following steps should be followed:
 
 List of patches (most recent first)
 
+* token_formatters
+  * Added support for field_collection
+
 * flickr
   * Fix js error on flickr with colorbox
   * check_for_class_colorbox_plus_respect_colorbox_path_settings-2301681-10.patch
