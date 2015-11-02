@@ -197,10 +197,16 @@ function hwc_workflow_assign_default_cpm($node) {
  * Implements hook_node_access().
  */
 function hwc_workflow_node_access($node, $op, $account) {
+  $type = is_string($node) ? $node : $node->type;
   if (($op == 'update' || $op == 'delete')
     && in_array($node->type, ncw_migration_get_migrated_bundles())
     && $node->uid == 0) {
     return NODE_ACCESS_DENY;
+  }
+
+  // Workflow validations are only for Events and News.
+  if (!in_array($type, array('events', 'news'))) {
+    return NODE_ACCESS_IGNORE;
   }
 
   // Administrators skip further validations
@@ -230,6 +236,7 @@ function hwc_workflow_node_access($node, $op, $account) {
       return NODE_ACCESS_DENY;
     }
   }
+
   return NODE_ACCESS_IGNORE;
 }
 
