@@ -253,6 +253,7 @@ function hwc_partner_theme() {
  * Implements hook_node_view().
  */
 function hwc_partner_node_view($node, $view_mode, $langcode) {
+  global $user;
   if ($node->type == 'partner' && $view_mode == 'full') {
     $user_is_partner = hwc_partner_match_user_partner($node);
     if ($user_is_partner) {
@@ -266,5 +267,10 @@ function hwc_partner_node_view($node, $view_mode, $langcode) {
         ),
       );
     }
+  }
+  if (in_array('campaign partner', $user->roles)
+  && $node->type == 'events'
+  && $view_mode == 'full') {
+    unset($node->content['field_schedule']);
   }
 }
