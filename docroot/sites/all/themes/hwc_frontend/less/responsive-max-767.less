@@ -1493,6 +1493,29 @@ header.navbar-default{
 		margin-right: 0;
 	}
 }
+
+.node-type-partner{
+	.profile-4-cols-container-2{
+		padding-left: @margin-movil !important;
+		.panels-flexible-column-new-8, .panels-flexible-column-first {
+			width: 100%;
+			> div{
+				.panels-flexible-region-first, .panels-flexible-region-last{
+					width: 100% !important;
+					text-align: center;
+				}
+			}
+		}
+		.panels-flexible-column-new-9, .panels-flexible-column-new-10{
+			width: 100%;
+			.panels-flexible-region-first{
+				p{
+					text-align: center;
+				}
+			}
+		}
+	}
+}
 /*fin partner profile*/
 
 /*create events & news*/
@@ -1672,6 +1695,75 @@ header.navbar-default{
 		}
 	}
 }
+
+/*pag Newsletter*/
+.page-node-129{
+	#block-osha-newsletter-osha-newsletter-subscribe{
+		h2{
+			padding: 10px;
+		}
+		> div{
+			padding-left: @margin-movil;
+			padding-right: @margin-movil;
+		}
+		div#newsletter-subscription-form-wrapper form > div{
+			padding-left: 0;
+			padding-right: 0;
+			div, button{
+				width: 100%;
+				input{
+					width: 100%;
+				}
+			}
+			button{
+				float: none;
+				margin-top: 0;
+			}
+		}
+	}
+	#block-osha-newsletter-osha-newsletter-subscribe-extra{
+		h2{
+			padding: 10px;
+		}
+		div form > div{
+			padding-left: @margin-movil;
+			padding-right: @margin-movil;
+		}
+		.form-item-subscribe-to-OSHMail-newsletter{
+			min-width: 0;
+			width: 100%;
+		}
+		button{
+			width: 100%;
+		}
+		#subscribe-extra .form-item-subscribe-to-OSHMail-newsletter{
+			label{
+				width: 100%;
+				margin-right: 0;
+				a{
+					margin-top: 2.5em;
+					float: right;
+				}
+			}
+		}
+	}
+	 #block-osha-newsletter-osha-newsletter-latest{
+		margin-left: @margin-movil;
+		margin-right: @margin-movil;
+		#latest-newsletters-block{
+			width: 100%;
+			h2{
+				width: 100%;
+				margin-left: 0px;
+				margin-right: 0px;
+			}
+			.newsletter_items{
+				width: 100%;
+			}
+		}
+	 }
+}
+/*End pag Newsletter*/
 
 /*pag get-your-certificate*/
 .page-get-your-certificate{

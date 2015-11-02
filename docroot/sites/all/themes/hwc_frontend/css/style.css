@@ -9231,6 +9231,12 @@ div[class*='node-'] .more-link {
 .page-search .region.region-content .view-search .view-content .views-row .views-field-field-publication-date {
   font-size: 12px;
 }
+.page-search .region.region-content .view-search .view-content .views-row .views-field-field-publication-date,
+.page-search .region.region-content .view-search .view-content .views-row .views-field-field-image,
+.page-search .region.region-content .view-search .view-content .views-row .views-field-field-cover-image {
+  /*confirmar que esto tiene que ser asi*/
+  display: none;
+}
 .page-search .region.region-content .view-search .view-content .views-row .views-field-search-api-excerpt a {
   font-weight: bold;
 }
@@ -9269,6 +9275,17 @@ div[class*='node-'] .more-link {
 }
 .page-search .views-widget-sort-by > .form-item-sort-by div {
   display: inline;
+}
+.page-search [class*="-type"] .views-label {
+  font-weight: bold;
+}
+.page-search .views-field-field-file span {
+  padding-right: 5px;
+  font-weight: bold;
+}
+.page-search .views-field-field-file a {
+  font-weight: bold;
+  font-style: italic;
 }
 .page-search .radio label:before {
   border: none;
@@ -10431,6 +10448,32 @@ article .hwc-share-widget ul {
 .node-events .field-name-field-country-code .field-items .field-item:after {
   content: ")";
 }
+.node-events .event-location-container {
+  color: #749b00;
+  font-weight: bold;
+  width: auto;
+  width: 50%;
+  margin: 0 auto;
+  text-align: center;
+  padding-bottom: 1em;
+}
+.node-events .event-location-container span.event-location-location {
+  padding: 3em 0em 3em 3em;
+  background: url("../images/content/location.png") no-repeat left center;
+}
+.node-events .event-location-container span.event-location-location:after {
+  content: ",";
+}
+.node-events .event-location-container span.event-location-city {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+.node-events .event-location-container span.event-location-country:before {
+  content: "(";
+}
+.node-events .event-location-container span.event-location-country:after {
+  content: ")";
+}
 .node-events .field-name-field-start-date {
   color: #749b00;
   font-weight: bold;
@@ -10593,66 +10636,74 @@ article .hwc-share-widget ul {
   width: 100%;
   margin-bottom: 1em;
 }
-.node-events .node-hwc-gallery .gallery-slides {
+.node-events .node-hwc-gallery .galleryformatter {
+  height: 400px;
+}
+.node-events .node-hwc-gallery .galleryformatter .gallery-slides {
   width: 400px !important;
   height: 280px !important;
 }
-.node-events .node-hwc-gallery .gallery-slides .slide-button {
+.node-events .node-hwc-gallery .galleryformatter .gallery-slides .slide-button {
   height: 34px;
   width: 15px;
   color: transparent;
 }
-.node-events .node-hwc-gallery .gallery-slides .slide-button.prev-slide {
+.node-events .node-hwc-gallery .galleryformatter .gallery-slides .slide-button.prev-slide {
   background: url("../images/content/arrow-left-blue.png") no-repeat center;
 }
-.node-events .node-hwc-gallery .gallery-slides .slide-button.next-slide {
+.node-events .node-hwc-gallery .galleryformatter .gallery-slides .slide-button.next-slide {
   background: url("../images/content/arrow-right-blue.png") no-repeat center;
 }
-.node-events .node-hwc-gallery .gallery-slides .gallery-frame {
+.node-events .node-hwc-gallery .galleryformatter .gallery-slides .gallery-frame {
   margin-left: 30px;
   margin-right: 30px;
 }
-.node-events .node-hwc-gallery .gallery-slides .gallery-frame blockquote {
+.node-events .node-hwc-gallery .galleryformatter .gallery-slides .gallery-frame blockquote {
   border-left: none;
   text-align: center;
   width: 340px;
 }
-.node-events .node-hwc-gallery .gallery-slides .gallery-frame blockquote span {
+.node-events .node-hwc-gallery .galleryformatter .gallery-slides .gallery-frame blockquote span {
   background-color: inherit !important;
 }
-.node-events .node-hwc-gallery .gallery-slides .gallery-frame .panel-overlay {
+.node-events .node-hwc-gallery .galleryformatter .gallery-slides .gallery-frame .panel-overlay {
   display: none;
 }
-.node-events .node-hwc-gallery .gallery-thumbs {
+.node-events .node-hwc-gallery .galleryformatter .gallery-thumbs {
+  position: absolute;
   width: auto !important;
+  width: 100% !important;
   max-width: 100%;
   margin-top: 2em;
   padding-left: 20px;
   padding-right: 20px;
+  height: 70px;
+  overflow: hidden;
 }
-.node-events .node-hwc-gallery .gallery-thumbs ul li {
+.node-events .node-hwc-gallery .galleryformatter .gallery-thumbs ul li {
   margin-left: 15px;
   margin-right: 15px;
+  margin-bottom: 15px;
 }
-.node-events .node-hwc-gallery .gallery-thumbs ul li blockquote {
+.node-events .node-hwc-gallery .galleryformatter .gallery-thumbs ul li blockquote {
   display: none;
   border-left: none;
 }
-.node-events .node-hwc-gallery .gallery-thumbs ul li blockquote span {
+.node-events .node-hwc-gallery .galleryformatter .gallery-thumbs ul li blockquote span {
   background-color: inherit !important;
 }
-.node-events .node-hwc-gallery .gallery-thumbs .arrow {
+.node-events .node-hwc-gallery .galleryformatter .gallery-thumbs .arrow {
   position: absolute;
   top: 20px;
   height: 34px;
   width: 15px;
   color: transparent;
 }
-.node-events .node-hwc-gallery .gallery-thumbs .arrow.back {
+.node-events .node-hwc-gallery .galleryformatter .gallery-thumbs .arrow.back {
   left: 0;
   background: url("../images/content/arrow-left-blue.png") no-repeat center;
 }
-.node-events .node-hwc-gallery .gallery-thumbs .arrow.forward {
+.node-events .node-hwc-gallery .galleryformatter .gallery-thumbs .arrow.forward {
   right: 0;
   background: url("../images/content/arrow-right-blue.png") no-repeat center;
 }
@@ -11166,29 +11217,34 @@ article .hwc-share-widget ul {
   padding-bottom: 10px;
 }
 .employers-section .other-practical-tools .one-resource,
-.employers-section .case-studies .one-resource {
+.employers-section .case-studies .one-resource,
+.employers-section .publications .one-resource {
   background-color: #e2e2e3;
   margin: 30px 0px;
   padding: 25px 15px;
   padding-bottom: 35px;
 }
 .employers-section .other-practical-tools .one-resource h4,
-.employers-section .case-studies .one-resource h4 {
+.employers-section .case-studies .one-resource h4,
+.employers-section .publications .one-resource h4 {
   color: #003399;
   font-size: 24px;
   font-weight: bold;
   margin-bottom: 0.2em;
 }
 .employers-section .other-practical-tools .one-resource h4:before,
-.employers-section .case-studies .one-resource h4:before {
+.employers-section .case-studies .one-resource h4:before,
+.employers-section .publications .one-resource h4:before {
   content: "> ";
 }
 .employers-section .other-practical-tools .one-resource .date,
-.employers-section .case-studies .one-resource .date {
+.employers-section .case-studies .one-resource .date,
+.employers-section .publications .one-resource .date {
   font-size: 12px;
 }
 .employers-section .other-practical-tools .one-resource img,
-.employers-section .case-studies .one-resource img {
+.employers-section .case-studies .one-resource img,
+.employers-section .publications .one-resource img {
   min-width: 120px;
   max-width: 75%;
   min-height: 120px;
@@ -11196,23 +11252,28 @@ article .hwc-share-widget ul {
   margin-top: 10px;
 }
 .employers-section .other-practical-tools .one-resource .description a:before,
-.employers-section .case-studies .one-resource .description a:before {
+.employers-section .case-studies .one-resource .description a:before,
+.employers-section .publications .one-resource .description a:before {
   content: "> ";
 }
 .employers-section .other-practical-tools .one-resource .download,
-.employers-section .case-studies .one-resource .download {
+.employers-section .case-studies .one-resource .download,
+.employers-section .publications .one-resource .download {
   margin-top: 20px;
 }
 .employers-section .other-practical-tools .one-resource .download .size,
-.employers-section .case-studies .one-resource .download .size {
+.employers-section .case-studies .one-resource .download .size,
+.employers-section .publications .one-resource .download .size {
   font-weight: bold;
 }
 .employers-section .other-practical-tools .one-resource .download p a,
-.employers-section .case-studies .one-resource .download p a {
+.employers-section .case-studies .one-resource .download p a,
+.employers-section .publications .one-resource .download p a {
   position: relative;
 }
 .employers-section .other-practical-tools .one-resource .download p a:after,
-.employers-section .case-studies .one-resource .download p a:after {
+.employers-section .case-studies .one-resource .download p a:after,
+.employers-section .publications .one-resource .download p a:after {
   content: url("../images/content/download.png");
   position: absolute;
   padding: 0px 15px;
@@ -11561,6 +11622,41 @@ article .hwc-share-widget ul {
 }
 .profile-2-cols-container-3 .views-row a:before {
   content: "> ";
+}
+.node-type-partner .profile-4-cols-container-2 .panels-flexible-column-new-8,
+.node-type-partner .profile-4-cols-container-2 .panels-flexible-column-first {
+  width: 50%;
+  float: left;
+  margin-top: 0em;
+}
+.node-type-partner .profile-4-cols-container-2 .panels-flexible-column-new-8 > div .panels-flexible-region-first,
+.node-type-partner .profile-4-cols-container-2 .panels-flexible-column-first > div .panels-flexible-region-first,
+.node-type-partner .profile-4-cols-container-2 .panels-flexible-column-new-8 > div .panels-flexible-region-last,
+.node-type-partner .profile-4-cols-container-2 .panels-flexible-column-first > div .panels-flexible-region-last {
+  width: 50% !important;
+  text-align: left;
+}
+.node-type-partner .profile-4-cols-container-2 .panels-flexible-column-new-8 > div .panels-flexible-region-first .pane-node-title-field,
+.node-type-partner .profile-4-cols-container-2 .panels-flexible-column-first > div .panels-flexible-region-first .pane-node-title-field,
+.node-type-partner .profile-4-cols-container-2 .panels-flexible-column-new-8 > div .panels-flexible-region-last .pane-node-title-field,
+.node-type-partner .profile-4-cols-container-2 .panels-flexible-column-first > div .panels-flexible-region-last .pane-node-title-field {
+  font-weight: bold;
+  margin-bottom: 1em;
+}
+.node-type-partner .profile-4-cols-container-2 .panels-flexible-column-new-9,
+.node-type-partner .profile-4-cols-container-2 .panels-flexible-column-new-10 {
+  width: 25%;
+  float: left;
+  margin-top: 0;
+}
+.node-type-partner .profile-4-cols-container-2 .panels-flexible-column-new-9 .panels-flexible-region-first,
+.node-type-partner .profile-4-cols-container-2 .panels-flexible-column-new-10 .panels-flexible-region-first {
+  width: 100% !important;
+}
+.node-type-partner .profile-4-cols-container-2 .panels-flexible-column-new-9 .panels-flexible-region-first p,
+.node-type-partner .profile-4-cols-container-2 .panels-flexible-column-new-10 .panels-flexible-region-first p {
+  text-align: left;
+  font-weight: bold;
 }
 /*End partners public profile*/
 /*create event --> dentro de public profile*/
@@ -12590,6 +12686,10 @@ article .hwc-share-widget ul {
 .page-node-129 #block-osha-newsletter-osha-newsletter-subscribe-extra #subscribe-extra {
   font-weight: bold;
 }
+.page-node-129 #block-osha-newsletter-osha-newsletter-subscribe-extra #subscribe-extra div form > div {
+  border-bottom: 1px dotted #749b00;
+  padding-bottom: 2em;
+}
 .page-node-129 #block-osha-newsletter-osha-newsletter-subscribe-extra #subscribe-extra input {
   font-weight: normal;
 }
@@ -12601,6 +12701,23 @@ article .hwc-share-widget ul {
 .page-node-129 #block-osha-newsletter-osha-newsletter-subscribe-extra #subscribe-extra hr {
   color: white;
   border-color: white;
+}
+.page-node-129 #block-osha-newsletter-osha-newsletter-subscribe-extra #subscribe-extra .form-item-subscribe-to-OSHMail-newsletter {
+  display: inline;
+  margin-right: 10px;
+  min-width: 245px;
+}
+.page-node-129 #block-osha-newsletter-osha-newsletter-subscribe-extra #subscribe-extra .form-item-subscribe-to-OSHMail-newsletter label a {
+  display: block;
+  margin-top: 1em;
+  margin-left: 30px;
+}
+.page-node-129 #block-osha-newsletter-osha-newsletter-subscribe-extra #subscribe-extra .form-item-subscribe-to-OSHMail-newsletter label a:before {
+  content: ">";
+  padding-right: 5px;
+}
+.page-node-129 #block-osha-newsletter-osha-newsletter-subscribe-extra #subscribe-extra button#edit-submit--4 {
+  margin-top: -3em;
 }
 .page-node-129 #block-osha-newsletter-osha-newsletter-subscribe {
   background: none;
@@ -12641,8 +12758,22 @@ article .hwc-share-widget ul {
   float: left;
   margin-top: 1.8em;
 }
+.page-node-129 #block-osha-newsletter-osha-newsletter-subscribe div#newsletter-subscription-form-wrapper form div hr {
+  clear: both;
+  color: #ffffff;
+  border-color: #ffffff;
+}
+.page-node-129 #block-osha-newsletter-osha-newsletter-subscribe div#newsletter-subscription-form-wrapper form div span {
+  float: left;
+  padding-top: 0.5em;
+  margin-right: 10px;
+  min-width: 245px;
+}
+.page-node-129 #block-osha-newsletter-osha-newsletter-subscribe div#newsletter-subscription-form-wrapper form div button#edit-unsubscribe {
+  margin-top: 0em;
+}
 .page-node-129 #block-osha-newsletter-osha-newsletter-latest {
-  border-top: 1px dotted #749b00;
+  /* 	border-top: 1px dotted @border-default-color; */
 }
 .page-node-129 #block-osha-newsletter-osha-newsletter-latest h2.block-title {
   font-style: italic;
@@ -12918,7 +13049,11 @@ fieldset.captcha div {
 .field-name-field-recommended-resources .field-name-field-external-url.field-type-link-field a,
 .field-name-field-recommended-articles .field-name-field-external-url.field-type-link-field a,
 .field.field-name-field-aditional-resources .field-name-field-external-url.field-type-link-field a,
-.panels-flexible-region-container-additional_resources .field-name-field-external-url.field-type-link-field a {
+.panels-flexible-region-container-additional_resources .field-name-field-external-url.field-type-link-field a,
+.field-name-field-recommended-resources #additional-resources-external_url-pane a,
+.field-name-field-recommended-articles #additional-resources-external_url-pane a,
+.field.field-name-field-aditional-resources #additional-resources-external_url-pane a,
+.panels-flexible-region-container-additional_resources #additional-resources-external_url-pane a {
   color: #003399;
   font-weight: bold;
   font-style: italic;
@@ -12927,7 +13062,11 @@ fieldset.captcha div {
 .field-name-field-recommended-resources .field-name-field-external-url.field-type-link-field a:before,
 .field-name-field-recommended-articles .field-name-field-external-url.field-type-link-field a:before,
 .field.field-name-field-aditional-resources .field-name-field-external-url.field-type-link-field a:before,
-.panels-flexible-region-container-additional_resources .field-name-field-external-url.field-type-link-field a:before {
+.panels-flexible-region-container-additional_resources .field-name-field-external-url.field-type-link-field a:before,
+.field-name-field-recommended-resources #additional-resources-external_url-pane a:before,
+.field-name-field-recommended-articles #additional-resources-external_url-pane a:before,
+.field.field-name-field-aditional-resources #additional-resources-external_url-pane a:before,
+.panels-flexible-region-container-additional_resources #additional-resources-external_url-pane a:before {
   content: "> ";
 }
 .field-name-field-recommended-resources .node-article .field-name-field-image + .field-name-title-field,
@@ -12960,27 +13099,121 @@ fieldset.captcha div {
 .field-name-field-recommended-resources .node-events .content,
 .field-name-field-recommended-articles .node-events .content,
 .field.field-name-field-aditional-resources .node-events .content,
-.panels-flexible-region-container-additional_resources .node-events .content {
+.panels-flexible-region-container-additional_resources .node-events .content,
+.field-name-field-recommended-resources #additional-resources-events-pane .content,
+.field-name-field-recommended-articles #additional-resources-events-pane .content,
+.field.field-name-field-aditional-resources #additional-resources-events-pane .content,
+.panels-flexible-region-container-additional_resources #additional-resources-events-pane .content,
+.field-name-field-recommended-resources .node-events .pane-content,
+.field-name-field-recommended-articles .node-events .pane-content,
+.field.field-name-field-aditional-resources .node-events .pane-content,
+.panels-flexible-region-container-additional_resources .node-events .pane-content,
+.field-name-field-recommended-resources #additional-resources-events-pane .pane-content,
+.field-name-field-recommended-articles #additional-resources-events-pane .pane-content,
+.field.field-name-field-aditional-resources #additional-resources-events-pane .pane-content,
+.panels-flexible-region-container-additional_resources #additional-resources-events-pane .pane-content {
   display: inline-flex;
 }
 .field-name-field-recommended-resources .node-events .content .field,
 .field-name-field-recommended-articles .node-events .content .field,
 .field.field-name-field-aditional-resources .node-events .content .field,
 .panels-flexible-region-container-additional_resources .node-events .content .field,
+.field-name-field-recommended-resources #additional-resources-events-pane .content .field,
+.field-name-field-recommended-articles #additional-resources-events-pane .content .field,
+.field.field-name-field-aditional-resources #additional-resources-events-pane .content .field,
+.panels-flexible-region-container-additional_resources #additional-resources-events-pane .content .field,
+.field-name-field-recommended-resources .node-events .pane-content .field,
+.field-name-field-recommended-articles .node-events .pane-content .field,
+.field.field-name-field-aditional-resources .node-events .pane-content .field,
+.panels-flexible-region-container-additional_resources .node-events .pane-content .field,
+.field-name-field-recommended-resources #additional-resources-events-pane .pane-content .field,
+.field-name-field-recommended-articles #additional-resources-events-pane .pane-content .field,
+.field.field-name-field-aditional-resources #additional-resources-events-pane .pane-content .field,
+.panels-flexible-region-container-additional_resources #additional-resources-events-pane .pane-content .field,
 .field-name-field-recommended-resources .node-events .content ul,
 .field-name-field-recommended-articles .node-events .content ul,
 .field.field-name-field-aditional-resources .node-events .content ul,
 .panels-flexible-region-container-additional_resources .node-events .content ul,
+.field-name-field-recommended-resources #additional-resources-events-pane .content ul,
+.field-name-field-recommended-articles #additional-resources-events-pane .content ul,
+.field.field-name-field-aditional-resources #additional-resources-events-pane .content ul,
+.panels-flexible-region-container-additional_resources #additional-resources-events-pane .content ul,
+.field-name-field-recommended-resources .node-events .pane-content ul,
+.field-name-field-recommended-articles .node-events .pane-content ul,
+.field.field-name-field-aditional-resources .node-events .pane-content ul,
+.panels-flexible-region-container-additional_resources .node-events .pane-content ul,
+.field-name-field-recommended-resources #additional-resources-events-pane .pane-content ul,
+.field-name-field-recommended-articles #additional-resources-events-pane .pane-content ul,
+.field.field-name-field-aditional-resources #additional-resources-events-pane .pane-content ul,
+.panels-flexible-region-container-additional_resources #additional-resources-events-pane .pane-content ul,
 .field-name-field-recommended-resources .node-events .content .field-collection-container,
 .field-name-field-recommended-articles .node-events .content .field-collection-container,
 .field.field-name-field-aditional-resources .node-events .content .field-collection-container,
-.panels-flexible-region-container-additional_resources .node-events .content .field-collection-container {
+.panels-flexible-region-container-additional_resources .node-events .content .field-collection-container,
+.field-name-field-recommended-resources #additional-resources-events-pane .content .field-collection-container,
+.field-name-field-recommended-articles #additional-resources-events-pane .content .field-collection-container,
+.field.field-name-field-aditional-resources #additional-resources-events-pane .content .field-collection-container,
+.panels-flexible-region-container-additional_resources #additional-resources-events-pane .content .field-collection-container,
+.field-name-field-recommended-resources .node-events .pane-content .field-collection-container,
+.field-name-field-recommended-articles .node-events .pane-content .field-collection-container,
+.field.field-name-field-aditional-resources .node-events .pane-content .field-collection-container,
+.panels-flexible-region-container-additional_resources .node-events .pane-content .field-collection-container,
+.field-name-field-recommended-resources #additional-resources-events-pane .pane-content .field-collection-container,
+.field-name-field-recommended-articles #additional-resources-events-pane .pane-content .field-collection-container,
+.field.field-name-field-aditional-resources #additional-resources-events-pane .pane-content .field-collection-container,
+.panels-flexible-region-container-additional_resources #additional-resources-events-pane .pane-content .field-collection-container {
   display: none;
+}
+.field-name-field-recommended-resources .node-events .content .views-row,
+.field-name-field-recommended-articles .node-events .content .views-row,
+.field.field-name-field-aditional-resources .node-events .content .views-row,
+.panels-flexible-region-container-additional_resources .node-events .content .views-row,
+.field-name-field-recommended-resources #additional-resources-events-pane .content .views-row,
+.field-name-field-recommended-articles #additional-resources-events-pane .content .views-row,
+.field.field-name-field-aditional-resources #additional-resources-events-pane .content .views-row,
+.panels-flexible-region-container-additional_resources #additional-resources-events-pane .content .views-row,
+.field-name-field-recommended-resources .node-events .pane-content .views-row,
+.field-name-field-recommended-articles .node-events .pane-content .views-row,
+.field.field-name-field-aditional-resources .node-events .pane-content .views-row,
+.panels-flexible-region-container-additional_resources .node-events .pane-content .views-row,
+.field-name-field-recommended-resources #additional-resources-events-pane .pane-content .views-row,
+.field-name-field-recommended-articles #additional-resources-events-pane .pane-content .views-row,
+.field.field-name-field-aditional-resources #additional-resources-events-pane .pane-content .views-row,
+.panels-flexible-region-container-additional_resources #additional-resources-events-pane .pane-content .views-row {
+  margin-bottom: 1em;
 }
 .field-name-field-recommended-resources .node-events .content .field.field-name-field-start-date,
 .field-name-field-recommended-articles .node-events .content .field.field-name-field-start-date,
 .field.field-name-field-aditional-resources .node-events .content .field.field-name-field-start-date,
-.panels-flexible-region-container-additional_resources .node-events .content .field.field-name-field-start-date {
+.panels-flexible-region-container-additional_resources .node-events .content .field.field-name-field-start-date,
+.field-name-field-recommended-resources #additional-resources-events-pane .content .field.field-name-field-start-date,
+.field-name-field-recommended-articles #additional-resources-events-pane .content .field.field-name-field-start-date,
+.field.field-name-field-aditional-resources #additional-resources-events-pane .content .field.field-name-field-start-date,
+.panels-flexible-region-container-additional_resources #additional-resources-events-pane .content .field.field-name-field-start-date,
+.field-name-field-recommended-resources .node-events .pane-content .field.field-name-field-start-date,
+.field-name-field-recommended-articles .node-events .pane-content .field.field-name-field-start-date,
+.field.field-name-field-aditional-resources .node-events .pane-content .field.field-name-field-start-date,
+.panels-flexible-region-container-additional_resources .node-events .pane-content .field.field-name-field-start-date,
+.field-name-field-recommended-resources #additional-resources-events-pane .pane-content .field.field-name-field-start-date,
+.field-name-field-recommended-articles #additional-resources-events-pane .pane-content .field.field-name-field-start-date,
+.field.field-name-field-aditional-resources #additional-resources-events-pane .pane-content .field.field-name-field-start-date,
+.panels-flexible-region-container-additional_resources #additional-resources-events-pane .pane-content .field.field-name-field-start-date,
+.field-name-field-recommended-resources .node-events .content .views-field-nothing .col-sm-2 span.date-display-single,
+.field-name-field-recommended-articles .node-events .content .views-field-nothing .col-sm-2 span.date-display-single,
+.field.field-name-field-aditional-resources .node-events .content .views-field-nothing .col-sm-2 span.date-display-single,
+.panels-flexible-region-container-additional_resources .node-events .content .views-field-nothing .col-sm-2 span.date-display-single,
+.field-name-field-recommended-resources #additional-resources-events-pane .content .views-field-nothing .col-sm-2 span.date-display-single,
+.field-name-field-recommended-articles #additional-resources-events-pane .content .views-field-nothing .col-sm-2 span.date-display-single,
+.field.field-name-field-aditional-resources #additional-resources-events-pane .content .views-field-nothing .col-sm-2 span.date-display-single,
+.panels-flexible-region-container-additional_resources #additional-resources-events-pane .content .views-field-nothing .col-sm-2 span.date-display-single,
+.field-name-field-recommended-resources .node-events .pane-content .views-field-nothing .col-sm-2 span.date-display-single,
+.field-name-field-recommended-articles .node-events .pane-content .views-field-nothing .col-sm-2 span.date-display-single,
+.field.field-name-field-aditional-resources .node-events .pane-content .views-field-nothing .col-sm-2 span.date-display-single,
+.panels-flexible-region-container-additional_resources .node-events .pane-content .views-field-nothing .col-sm-2 span.date-display-single,
+.field-name-field-recommended-resources #additional-resources-events-pane .pane-content .views-field-nothing .col-sm-2 span.date-display-single,
+.field-name-field-recommended-articles #additional-resources-events-pane .pane-content .views-field-nothing .col-sm-2 span.date-display-single,
+.field.field-name-field-aditional-resources #additional-resources-events-pane .pane-content .views-field-nothing .col-sm-2 span.date-display-single,
+.panels-flexible-region-container-additional_resources #additional-resources-events-pane .pane-content .views-field-nothing .col-sm-2 span.date-display-single {
   display: block;
   border-top: none !important;
   font-weight: bold;
@@ -12988,7 +13221,7 @@ fieldset.captcha div {
   min-width: 150px;
   max-width: 150px;
   height: 150px;
-  padding: 0;
+  padding: 0 30px;
   background-color: #749b00;
   background-image: none;
   margin: 0;
@@ -12996,89 +13229,269 @@ fieldset.captcha div {
   float: left;
   overflow: hidden;
   margin-right: 15px;
+  font-size: 35px;
+  color: #ffffff;
+  /* word-break: break-all; */
 }
 .field-name-field-recommended-resources .node-events .content .field.field-name-field-start-date span,
 .field-name-field-recommended-articles .node-events .content .field.field-name-field-start-date span,
 .field.field-name-field-aditional-resources .node-events .content .field.field-name-field-start-date span,
-.panels-flexible-region-container-additional_resources .node-events .content .field.field-name-field-start-date span {
+.panels-flexible-region-container-additional_resources .node-events .content .field.field-name-field-start-date span,
+.field-name-field-recommended-resources #additional-resources-events-pane .content .field.field-name-field-start-date span,
+.field-name-field-recommended-articles #additional-resources-events-pane .content .field.field-name-field-start-date span,
+.field.field-name-field-aditional-resources #additional-resources-events-pane .content .field.field-name-field-start-date span,
+.panels-flexible-region-container-additional_resources #additional-resources-events-pane .content .field.field-name-field-start-date span,
+.field-name-field-recommended-resources .node-events .pane-content .field.field-name-field-start-date span,
+.field-name-field-recommended-articles .node-events .pane-content .field.field-name-field-start-date span,
+.field.field-name-field-aditional-resources .node-events .pane-content .field.field-name-field-start-date span,
+.panels-flexible-region-container-additional_resources .node-events .pane-content .field.field-name-field-start-date span,
+.field-name-field-recommended-resources #additional-resources-events-pane .pane-content .field.field-name-field-start-date span,
+.field-name-field-recommended-articles #additional-resources-events-pane .pane-content .field.field-name-field-start-date span,
+.field.field-name-field-aditional-resources #additional-resources-events-pane .pane-content .field.field-name-field-start-date span,
+.panels-flexible-region-container-additional_resources #additional-resources-events-pane .pane-content .field.field-name-field-start-date span,
+.field-name-field-recommended-resources .node-events .content .views-field-nothing .col-sm-2 span.date-display-single span,
+.field-name-field-recommended-articles .node-events .content .views-field-nothing .col-sm-2 span.date-display-single span,
+.field.field-name-field-aditional-resources .node-events .content .views-field-nothing .col-sm-2 span.date-display-single span,
+.panels-flexible-region-container-additional_resources .node-events .content .views-field-nothing .col-sm-2 span.date-display-single span,
+.field-name-field-recommended-resources #additional-resources-events-pane .content .views-field-nothing .col-sm-2 span.date-display-single span,
+.field-name-field-recommended-articles #additional-resources-events-pane .content .views-field-nothing .col-sm-2 span.date-display-single span,
+.field.field-name-field-aditional-resources #additional-resources-events-pane .content .views-field-nothing .col-sm-2 span.date-display-single span,
+.panels-flexible-region-container-additional_resources #additional-resources-events-pane .content .views-field-nothing .col-sm-2 span.date-display-single span,
+.field-name-field-recommended-resources .node-events .pane-content .views-field-nothing .col-sm-2 span.date-display-single span,
+.field-name-field-recommended-articles .node-events .pane-content .views-field-nothing .col-sm-2 span.date-display-single span,
+.field.field-name-field-aditional-resources .node-events .pane-content .views-field-nothing .col-sm-2 span.date-display-single span,
+.panels-flexible-region-container-additional_resources .node-events .pane-content .views-field-nothing .col-sm-2 span.date-display-single span,
+.field-name-field-recommended-resources #additional-resources-events-pane .pane-content .views-field-nothing .col-sm-2 span.date-display-single span,
+.field-name-field-recommended-articles #additional-resources-events-pane .pane-content .views-field-nothing .col-sm-2 span.date-display-single span,
+.field.field-name-field-aditional-resources #additional-resources-events-pane .pane-content .views-field-nothing .col-sm-2 span.date-display-single span,
+.panels-flexible-region-container-additional_resources #additional-resources-events-pane .pane-content .views-field-nothing .col-sm-2 span.date-display-single span,
+.field-name-field-recommended-resources .node-events .content .field.field-name-field-start-date span.date-display-single,
+.field-name-field-recommended-articles .node-events .content .field.field-name-field-start-date span.date-display-single,
+.field.field-name-field-aditional-resources .node-events .content .field.field-name-field-start-date span.date-display-single,
+.panels-flexible-region-container-additional_resources .node-events .content .field.field-name-field-start-date span.date-display-single,
+.field-name-field-recommended-resources #additional-resources-events-pane .content .field.field-name-field-start-date span.date-display-single,
+.field-name-field-recommended-articles #additional-resources-events-pane .content .field.field-name-field-start-date span.date-display-single,
+.field.field-name-field-aditional-resources #additional-resources-events-pane .content .field.field-name-field-start-date span.date-display-single,
+.panels-flexible-region-container-additional_resources #additional-resources-events-pane .content .field.field-name-field-start-date span.date-display-single,
+.field-name-field-recommended-resources .node-events .pane-content .field.field-name-field-start-date span.date-display-single,
+.field-name-field-recommended-articles .node-events .pane-content .field.field-name-field-start-date span.date-display-single,
+.field.field-name-field-aditional-resources .node-events .pane-content .field.field-name-field-start-date span.date-display-single,
+.panels-flexible-region-container-additional_resources .node-events .pane-content .field.field-name-field-start-date span.date-display-single,
+.field-name-field-recommended-resources #additional-resources-events-pane .pane-content .field.field-name-field-start-date span.date-display-single,
+.field-name-field-recommended-articles #additional-resources-events-pane .pane-content .field.field-name-field-start-date span.date-display-single,
+.field.field-name-field-aditional-resources #additional-resources-events-pane .pane-content .field.field-name-field-start-date span.date-display-single,
+.panels-flexible-region-container-additional_resources #additional-resources-events-pane .pane-content .field.field-name-field-start-date span.date-display-single,
+.field-name-field-recommended-resources .node-events .content .views-field-nothing .col-sm-2 span.date-display-single span.date-display-single,
+.field-name-field-recommended-articles .node-events .content .views-field-nothing .col-sm-2 span.date-display-single span.date-display-single,
+.field.field-name-field-aditional-resources .node-events .content .views-field-nothing .col-sm-2 span.date-display-single span.date-display-single,
+.panels-flexible-region-container-additional_resources .node-events .content .views-field-nothing .col-sm-2 span.date-display-single span.date-display-single,
+.field-name-field-recommended-resources #additional-resources-events-pane .content .views-field-nothing .col-sm-2 span.date-display-single span.date-display-single,
+.field-name-field-recommended-articles #additional-resources-events-pane .content .views-field-nothing .col-sm-2 span.date-display-single span.date-display-single,
+.field.field-name-field-aditional-resources #additional-resources-events-pane .content .views-field-nothing .col-sm-2 span.date-display-single span.date-display-single,
+.panels-flexible-region-container-additional_resources #additional-resources-events-pane .content .views-field-nothing .col-sm-2 span.date-display-single span.date-display-single,
+.field-name-field-recommended-resources .node-events .pane-content .views-field-nothing .col-sm-2 span.date-display-single span.date-display-single,
+.field-name-field-recommended-articles .node-events .pane-content .views-field-nothing .col-sm-2 span.date-display-single span.date-display-single,
+.field.field-name-field-aditional-resources .node-events .pane-content .views-field-nothing .col-sm-2 span.date-display-single span.date-display-single,
+.panels-flexible-region-container-additional_resources .node-events .pane-content .views-field-nothing .col-sm-2 span.date-display-single span.date-display-single,
+.field-name-field-recommended-resources #additional-resources-events-pane .pane-content .views-field-nothing .col-sm-2 span.date-display-single span.date-display-single,
+.field-name-field-recommended-articles #additional-resources-events-pane .pane-content .views-field-nothing .col-sm-2 span.date-display-single span.date-display-single,
+.field.field-name-field-aditional-resources #additional-resources-events-pane .pane-content .views-field-nothing .col-sm-2 span.date-display-single span.date-display-single,
+.panels-flexible-region-container-additional_resources #additional-resources-events-pane .pane-content .views-field-nothing .col-sm-2 span.date-display-single span.date-display-single {
   font-size: 35px;
   color: #ffffff;
   word-break: break-all;
   padding-left: 5px;
   padding-right: 5px;
+  height: 150px;
+}
+.field-name-field-recommended-resources .node-events .content .col-sm-10 span.date-display-single,
+.field-name-field-recommended-articles .node-events .content .col-sm-10 span.date-display-single,
+.field.field-name-field-aditional-resources .node-events .content .col-sm-10 span.date-display-single,
+.panels-flexible-region-container-additional_resources .node-events .content .col-sm-10 span.date-display-single,
+.field-name-field-recommended-resources #additional-resources-events-pane .content .col-sm-10 span.date-display-single,
+.field-name-field-recommended-articles #additional-resources-events-pane .content .col-sm-10 span.date-display-single,
+.field.field-name-field-aditional-resources #additional-resources-events-pane .content .col-sm-10 span.date-display-single,
+.panels-flexible-region-container-additional_resources #additional-resources-events-pane .content .col-sm-10 span.date-display-single,
+.field-name-field-recommended-resources .node-events .pane-content .col-sm-10 span.date-display-single,
+.field-name-field-recommended-articles .node-events .pane-content .col-sm-10 span.date-display-single,
+.field.field-name-field-aditional-resources .node-events .pane-content .col-sm-10 span.date-display-single,
+.panels-flexible-region-container-additional_resources .node-events .pane-content .col-sm-10 span.date-display-single,
+.field-name-field-recommended-resources #additional-resources-events-pane .pane-content .col-sm-10 span.date-display-single,
+.field-name-field-recommended-articles #additional-resources-events-pane .pane-content .col-sm-10 span.date-display-single,
+.field.field-name-field-aditional-resources #additional-resources-events-pane .pane-content .col-sm-10 span.date-display-single,
+.panels-flexible-region-container-additional_resources #additional-resources-events-pane .pane-content .col-sm-10 span.date-display-single,
+.field-name-field-recommended-resources .node-events .content .col-sm-10 span.date-display-start,
+.field-name-field-recommended-articles .node-events .content .col-sm-10 span.date-display-start,
+.field.field-name-field-aditional-resources .node-events .content .col-sm-10 span.date-display-start,
+.panels-flexible-region-container-additional_resources .node-events .content .col-sm-10 span.date-display-start,
+.field-name-field-recommended-resources #additional-resources-events-pane .content .col-sm-10 span.date-display-start,
+.field-name-field-recommended-articles #additional-resources-events-pane .content .col-sm-10 span.date-display-start,
+.field.field-name-field-aditional-resources #additional-resources-events-pane .content .col-sm-10 span.date-display-start,
+.panels-flexible-region-container-additional_resources #additional-resources-events-pane .content .col-sm-10 span.date-display-start,
+.field-name-field-recommended-resources .node-events .pane-content .col-sm-10 span.date-display-start,
+.field-name-field-recommended-articles .node-events .pane-content .col-sm-10 span.date-display-start,
+.field.field-name-field-aditional-resources .node-events .pane-content .col-sm-10 span.date-display-start,
+.panels-flexible-region-container-additional_resources .node-events .pane-content .col-sm-10 span.date-display-start,
+.field-name-field-recommended-resources #additional-resources-events-pane .pane-content .col-sm-10 span.date-display-start,
+.field-name-field-recommended-articles #additional-resources-events-pane .pane-content .col-sm-10 span.date-display-start,
+.field.field-name-field-aditional-resources #additional-resources-events-pane .pane-content .col-sm-10 span.date-display-start,
+.panels-flexible-region-container-additional_resources #additional-resources-events-pane .pane-content .col-sm-10 span.date-display-start,
+.field-name-field-recommended-resources .node-events .content .col-sm-10 span.date-display-end,
+.field-name-field-recommended-articles .node-events .content .col-sm-10 span.date-display-end,
+.field.field-name-field-aditional-resources .node-events .content .col-sm-10 span.date-display-end,
+.panels-flexible-region-container-additional_resources .node-events .content .col-sm-10 span.date-display-end,
+.field-name-field-recommended-resources #additional-resources-events-pane .content .col-sm-10 span.date-display-end,
+.field-name-field-recommended-articles #additional-resources-events-pane .content .col-sm-10 span.date-display-end,
+.field.field-name-field-aditional-resources #additional-resources-events-pane .content .col-sm-10 span.date-display-end,
+.panels-flexible-region-container-additional_resources #additional-resources-events-pane .content .col-sm-10 span.date-display-end,
+.field-name-field-recommended-resources .node-events .pane-content .col-sm-10 span.date-display-end,
+.field-name-field-recommended-articles .node-events .pane-content .col-sm-10 span.date-display-end,
+.field.field-name-field-aditional-resources .node-events .pane-content .col-sm-10 span.date-display-end,
+.panels-flexible-region-container-additional_resources .node-events .pane-content .col-sm-10 span.date-display-end,
+.field-name-field-recommended-resources #additional-resources-events-pane .pane-content .col-sm-10 span.date-display-end,
+.field-name-field-recommended-articles #additional-resources-events-pane .pane-content .col-sm-10 span.date-display-end,
+.field.field-name-field-aditional-resources #additional-resources-events-pane .pane-content .col-sm-10 span.date-display-end,
+.panels-flexible-region-container-additional_resources #additional-resources-events-pane .pane-content .col-sm-10 span.date-display-end {
+  font-size: 12px;
+  line-height: 30px;
 }
 .field-name-field-recommended-resources .node-events .content .field.field-name-title-field,
 .field-name-field-recommended-articles .node-events .content .field.field-name-title-field,
 .field.field-name-field-aditional-resources .node-events .content .field.field-name-title-field,
-.panels-flexible-region-container-additional_resources .node-events .content .field.field-name-title-field {
+.panels-flexible-region-container-additional_resources .node-events .content .field.field-name-title-field,
+.field-name-field-recommended-resources #additional-resources-events-pane .content .field.field-name-title-field,
+.field-name-field-recommended-articles #additional-resources-events-pane .content .field.field-name-title-field,
+.field.field-name-field-aditional-resources #additional-resources-events-pane .content .field.field-name-title-field,
+.panels-flexible-region-container-additional_resources #additional-resources-events-pane .content .field.field-name-title-field,
+.field-name-field-recommended-resources .node-events .pane-content .field.field-name-title-field,
+.field-name-field-recommended-articles .node-events .pane-content .field.field-name-title-field,
+.field.field-name-field-aditional-resources .node-events .pane-content .field.field-name-title-field,
+.panels-flexible-region-container-additional_resources .node-events .pane-content .field.field-name-title-field,
+.field-name-field-recommended-resources #additional-resources-events-pane .pane-content .field.field-name-title-field,
+.field-name-field-recommended-articles #additional-resources-events-pane .pane-content .field.field-name-title-field,
+.field.field-name-field-aditional-resources #additional-resources-events-pane .pane-content .field.field-name-title-field,
+.panels-flexible-region-container-additional_resources #additional-resources-events-pane .pane-content .field.field-name-title-field {
   display: block;
   float: left;
 }
-.field-name-field-recommended-resources .node-flickr span.flickr-wrap,
-.field-name-field-recommended-articles .node-flickr span.flickr-wrap,
-.field.field-name-field-aditional-resources .node-flickr span.flickr-wrap,
-.panels-flexible-region-container-additional_resources .node-flickr span.flickr-wrap {
+.field-name-field-recommended-resources .node-events .content h4 a,
+.field-name-field-recommended-articles .node-events .content h4 a,
+.field.field-name-field-aditional-resources .node-events .content h4 a,
+.panels-flexible-region-container-additional_resources .node-events .content h4 a,
+.field-name-field-recommended-resources #additional-resources-events-pane .content h4 a,
+.field-name-field-recommended-articles #additional-resources-events-pane .content h4 a,
+.field.field-name-field-aditional-resources #additional-resources-events-pane .content h4 a,
+.panels-flexible-region-container-additional_resources #additional-resources-events-pane .content h4 a,
+.field-name-field-recommended-resources .node-events .pane-content h4 a,
+.field-name-field-recommended-articles .node-events .pane-content h4 a,
+.field.field-name-field-aditional-resources .node-events .pane-content h4 a,
+.panels-flexible-region-container-additional_resources .node-events .pane-content h4 a,
+.field-name-field-recommended-resources #additional-resources-events-pane .pane-content h4 a,
+.field-name-field-recommended-articles #additional-resources-events-pane .pane-content h4 a,
+.field.field-name-field-aditional-resources #additional-resources-events-pane .pane-content h4 a,
+.panels-flexible-region-container-additional_resources #additional-resources-events-pane .pane-content h4 a {
+  font-weight: bold;
+}
+.field-name-field-recommended-resources .node-events .content h4 a:before,
+.field-name-field-recommended-articles .node-events .content h4 a:before,
+.field.field-name-field-aditional-resources .node-events .content h4 a:before,
+.panels-flexible-region-container-additional_resources .node-events .content h4 a:before,
+.field-name-field-recommended-resources #additional-resources-events-pane .content h4 a:before,
+.field-name-field-recommended-articles #additional-resources-events-pane .content h4 a:before,
+.field.field-name-field-aditional-resources #additional-resources-events-pane .content h4 a:before,
+.panels-flexible-region-container-additional_resources #additional-resources-events-pane .content h4 a:before,
+.field-name-field-recommended-resources .node-events .pane-content h4 a:before,
+.field-name-field-recommended-articles .node-events .pane-content h4 a:before,
+.field.field-name-field-aditional-resources .node-events .pane-content h4 a:before,
+.panels-flexible-region-container-additional_resources .node-events .pane-content h4 a:before,
+.field-name-field-recommended-resources #additional-resources-events-pane .pane-content h4 a:before,
+.field-name-field-recommended-articles #additional-resources-events-pane .pane-content h4 a:before,
+.field.field-name-field-aditional-resources #additional-resources-events-pane .pane-content h4 a:before,
+.panels-flexible-region-container-additional_resources #additional-resources-events-pane .pane-content h4 a:before {
+  content: ">";
+  padding-right: 5px;
+}
+.field-name-field-recommended-resources #additional-resources-flickr-pane,
+.field-name-field-recommended-articles #additional-resources-flickr-pane,
+.field.field-name-field-aditional-resources #additional-resources-flickr-pane,
+.panels-flexible-region-container-additional_resources #additional-resources-flickr-pane {
+  border-bottom: 1px dotted #749b00;
+  margin-bottom: 1em;
+  padding-bottom: 1em;
+}
+.field-name-field-recommended-resources #additional-resources-flickr-pane h4,
+.field-name-field-recommended-articles #additional-resources-flickr-pane h4,
+.field.field-name-field-aditional-resources #additional-resources-flickr-pane h4,
+.panels-flexible-region-container-additional_resources #additional-resources-flickr-pane h4 {
+  color: #575757;
+  background: url("../images/content/more-resources-flickr.png") no-repeat left center;
+  padding-left: 30px;
+}
+.field-name-field-recommended-resources #additional-resources-flickr-pane span.flickr-wrap,
+.field-name-field-recommended-articles #additional-resources-flickr-pane span.flickr-wrap,
+.field.field-name-field-aditional-resources #additional-resources-flickr-pane span.flickr-wrap,
+.panels-flexible-region-container-additional_resources #additional-resources-flickr-pane span.flickr-wrap {
   width: 25%;
   margin-right: 0;
 }
-.field-name-field-recommended-resources .node-flickr span.flickr-wrap span.flickr-image,
-.field-name-field-recommended-articles .node-flickr span.flickr-wrap span.flickr-image,
-.field.field-name-field-aditional-resources .node-flickr span.flickr-wrap span.flickr-image,
-.panels-flexible-region-container-additional_resources .node-flickr span.flickr-wrap span.flickr-image {
+.field-name-field-recommended-resources #additional-resources-flickr-pane span.flickr-wrap span.flickr-image,
+.field-name-field-recommended-articles #additional-resources-flickr-pane span.flickr-wrap span.flickr-image,
+.field.field-name-field-aditional-resources #additional-resources-flickr-pane span.flickr-wrap span.flickr-image,
+.panels-flexible-region-container-additional_resources #additional-resources-flickr-pane span.flickr-wrap span.flickr-image {
   float: left;
   padding: 0 5%;
 }
-.field-name-field-recommended-resources .node-flickr span.flickr-wrap span.flickr-image a:before,
-.field-name-field-recommended-articles .node-flickr span.flickr-wrap span.flickr-image a:before,
-.field.field-name-field-aditional-resources .node-flickr span.flickr-wrap span.flickr-image a:before,
-.panels-flexible-region-container-additional_resources .node-flickr span.flickr-wrap span.flickr-image a:before {
+.field-name-field-recommended-resources #additional-resources-flickr-pane span.flickr-wrap span.flickr-image a:before,
+.field-name-field-recommended-articles #additional-resources-flickr-pane span.flickr-wrap span.flickr-image a:before,
+.field.field-name-field-aditional-resources #additional-resources-flickr-pane span.flickr-wrap span.flickr-image a:before,
+.panels-flexible-region-container-additional_resources #additional-resources-flickr-pane span.flickr-wrap span.flickr-image a:before {
   content: "";
 }
-.field-name-field-recommended-resources .node-flickr span.flickr-wrap span.flickr-image img,
-.field-name-field-recommended-articles .node-flickr span.flickr-wrap span.flickr-image img,
-.field.field-name-field-aditional-resources .node-flickr span.flickr-wrap span.flickr-image img,
-.panels-flexible-region-container-additional_resources .node-flickr span.flickr-wrap span.flickr-image img {
+.field-name-field-recommended-resources #additional-resources-flickr-pane span.flickr-wrap span.flickr-image img,
+.field-name-field-recommended-articles #additional-resources-flickr-pane span.flickr-wrap span.flickr-image img,
+.field.field-name-field-aditional-resources #additional-resources-flickr-pane span.flickr-wrap span.flickr-image img,
+.panels-flexible-region-container-additional_resources #additional-resources-flickr-pane span.flickr-wrap span.flickr-image img {
   width: 100%;
   height: auto;
   float: left;
   text-align: center;
 }
-.field-name-field-recommended-resources .node-flickr span.flickr-wrap .flickr-credit,
-.field-name-field-recommended-articles .node-flickr span.flickr-wrap .flickr-credit,
-.field.field-name-field-aditional-resources .node-flickr span.flickr-wrap .flickr-credit,
-.panels-flexible-region-container-additional_resources .node-flickr span.flickr-wrap .flickr-credit {
+.field-name-field-recommended-resources #additional-resources-flickr-pane span.flickr-wrap .flickr-credit,
+.field-name-field-recommended-articles #additional-resources-flickr-pane span.flickr-wrap .flickr-credit,
+.field.field-name-field-aditional-resources #additional-resources-flickr-pane span.flickr-wrap .flickr-credit,
+.panels-flexible-region-container-additional_resources #additional-resources-flickr-pane span.flickr-wrap .flickr-credit {
   display: none;
   width: auto !important;
   float: left;
 }
-.field-name-field-recommended-resources .node-flickr span.flickr-wrap .flickr-credit span.flickr-metadata,
-.field-name-field-recommended-articles .node-flickr span.flickr-wrap .flickr-credit span.flickr-metadata,
-.field.field-name-field-aditional-resources .node-flickr span.flickr-wrap .flickr-credit span.flickr-metadata,
-.panels-flexible-region-container-additional_resources .node-flickr span.flickr-wrap .flickr-credit span.flickr-metadata {
+.field-name-field-recommended-resources #additional-resources-flickr-pane span.flickr-wrap .flickr-credit span.flickr-metadata,
+.field-name-field-recommended-articles #additional-resources-flickr-pane span.flickr-wrap .flickr-credit span.flickr-metadata,
+.field.field-name-field-aditional-resources #additional-resources-flickr-pane span.flickr-wrap .flickr-credit span.flickr-metadata,
+.panels-flexible-region-container-additional_resources #additional-resources-flickr-pane span.flickr-wrap .flickr-credit span.flickr-metadata {
   display: none;
 }
-.field-name-field-recommended-resources .node-flickr span:nth-child(1) > span.flickr-image,
-.field-name-field-recommended-articles .node-flickr span:nth-child(1) > span.flickr-image,
-.field.field-name-field-aditional-resources .node-flickr span:nth-child(1) > span.flickr-image,
-.panels-flexible-region-container-additional_resources .node-flickr span:nth-child(1) > span.flickr-image {
+.field-name-field-recommended-resources #additional-resources-flickr-pane span:nth-child(1) > span.flickr-image,
+.field-name-field-recommended-articles #additional-resources-flickr-pane span:nth-child(1) > span.flickr-image,
+.field.field-name-field-aditional-resources #additional-resources-flickr-pane span:nth-child(1) > span.flickr-image,
+.panels-flexible-region-container-additional_resources #additional-resources-flickr-pane span:nth-child(1) > span.flickr-image {
   padding: 0 10% 0 0;
 }
-.field-name-field-recommended-resources .node-flickr span:nth-child(2) > span.flickr-image,
-.field-name-field-recommended-articles .node-flickr span:nth-child(2) > span.flickr-image,
-.field.field-name-field-aditional-resources .node-flickr span:nth-child(2) > span.flickr-image,
-.panels-flexible-region-container-additional_resources .node-flickr span:nth-child(2) > span.flickr-image {
+.field-name-field-recommended-resources #additional-resources-flickr-pane span:nth-child(2) > span.flickr-image,
+.field-name-field-recommended-articles #additional-resources-flickr-pane span:nth-child(2) > span.flickr-image,
+.field.field-name-field-aditional-resources #additional-resources-flickr-pane span:nth-child(2) > span.flickr-image,
+.panels-flexible-region-container-additional_resources #additional-resources-flickr-pane span:nth-child(2) > span.flickr-image {
   padding: 0 7% 0 3%;
 }
-.field-name-field-recommended-resources .node-flickr span:nth-child(3) > span.flickr-image,
-.field-name-field-recommended-articles .node-flickr span:nth-child(3) > span.flickr-image,
-.field.field-name-field-aditional-resources .node-flickr span:nth-child(3) > span.flickr-image,
-.panels-flexible-region-container-additional_resources .node-flickr span:nth-child(3) > span.flickr-image {
+.field-name-field-recommended-resources #additional-resources-flickr-pane span:nth-child(3) > span.flickr-image,
+.field-name-field-recommended-articles #additional-resources-flickr-pane span:nth-child(3) > span.flickr-image,
+.field.field-name-field-aditional-resources #additional-resources-flickr-pane span:nth-child(3) > span.flickr-image,
+.panels-flexible-region-container-additional_resources #additional-resources-flickr-pane span:nth-child(3) > span.flickr-image {
   padding: 0 3% 0 7%;
 }
-.field-name-field-recommended-resources .node-flickr span:nth-child(4) > span.flickr-image,
-.field-name-field-recommended-articles .node-flickr span:nth-child(4) > span.flickr-image,
-.field.field-name-field-aditional-resources .node-flickr span:nth-child(4) > span.flickr-image,
-.panels-flexible-region-container-additional_resources .node-flickr span:nth-child(4) > span.flickr-image {
+.field-name-field-recommended-resources #additional-resources-flickr-pane span:nth-child(4) > span.flickr-image,
+.field-name-field-recommended-articles #additional-resources-flickr-pane span:nth-child(4) > span.flickr-image,
+.field.field-name-field-aditional-resources #additional-resources-flickr-pane span:nth-child(4) > span.flickr-image,
+.panels-flexible-region-container-additional_resources #additional-resources-flickr-pane span:nth-child(4) > span.flickr-image {
   padding: 0 0 0 10%;
 }
 .field-name-field-recommended-resources .node-infographic,
@@ -13307,11 +13720,63 @@ fieldset.captcha div {
   width: auto;
   padding-right: 0;
 }
+@media (min-width: 768px) {
+  .field-name-field-recommended-resources .node-infographic .group-left.col-sm-2,
+  .field-name-field-recommended-articles .node-infographic .group-left.col-sm-2,
+  .field.field-name-field-aditional-resources .node-infographic .group-left.col-sm-2,
+  .panels-flexible-region-container-additional_resources .node-infographic .group-left.col-sm-2,
+  .field-name-field-recommended-resources .node-news .group-left.col-sm-2,
+  .field-name-field-recommended-articles .node-news .group-left.col-sm-2,
+  .field.field-name-field-aditional-resources .node-news .group-left.col-sm-2,
+  .panels-flexible-region-container-additional_resources .node-news .group-left.col-sm-2,
+  .field-name-field-recommended-resources .node-publication .group-left.col-sm-2,
+  .field-name-field-recommended-articles .node-publication .group-left.col-sm-2,
+  .field.field-name-field-aditional-resources .node-publication .group-left.col-sm-2,
+  .panels-flexible-region-container-additional_resources .node-publication .group-left.col-sm-2 {
+    width: 16.66666667%;
+  }
+}
+.field-name-field-recommended-resources #additional-resources-events-pane,
+.field-name-field-recommended-articles #additional-resources-events-pane,
+.field.field-name-field-aditional-resources #additional-resources-events-pane,
+.panels-flexible-region-container-additional_resources #additional-resources-events-pane,
+.field-name-field-recommended-resources #additional-resources-publications-pane,
+.field-name-field-recommended-articles #additional-resources-publications-pane,
+.field.field-name-field-aditional-resources #additional-resources-publications-pane,
+.panels-flexible-region-container-additional_resources #additional-resources-publications-pane,
+.field-name-field-recommended-resources #additional-resources-news-pane,
+.field-name-field-recommended-articles #additional-resources-news-pane,
+.field.field-name-field-aditional-resources #additional-resources-news-pane,
+.panels-flexible-region-container-additional_resources #additional-resources-news-pane,
+.field-name-field-recommended-resources #additional-resources-infographic-pane,
+.field-name-field-recommended-articles #additional-resources-infographic-pane,
+.field.field-name-field-aditional-resources #additional-resources-infographic-pane,
+.panels-flexible-region-container-additional_resources #additional-resources-infographic-pane,
+.field-name-field-recommended-resources #additional-resources-external_url-pane,
+.field-name-field-recommended-articles #additional-resources-external_url-pane,
+.field.field-name-field-aditional-resources #additional-resources-external_url-pane,
+.panels-flexible-region-container-additional_resources #additional-resources-external_url-pane,
+.field-name-field-recommended-resources #additional-resources-internal_url-pane,
+.field-name-field-recommended-articles #additional-resources-internal_url-pane,
+.field.field-name-field-aditional-resources #additional-resources-internal_url-pane,
+.panels-flexible-region-container-additional_resources #additional-resources-internal_url-pane {
+  border-bottom: 1px dotted #749b00;
+  margin-bottom: 1em;
+  padding-bottom: 1em;
+}
 .field-name-field-recommended-resources .node-external-url .field.field-name-field-image,
 .field-name-field-recommended-articles .node-external-url .field.field-name-field-image,
 .field.field-name-field-aditional-resources .node-external-url .field.field-name-field-image,
 .panels-flexible-region-container-additional_resources .node-external-url .field.field-name-field-image {
   margin-bottom: 0;
+}
+@media (min-width: 768px) {
+  .field-name-field-recommended-resources .node-external-url .field.field-name-field-image,
+  .field-name-field-recommended-articles .node-external-url .field.field-name-field-image,
+  .field.field-name-field-aditional-resources .node-external-url .field.field-name-field-image,
+  .panels-flexible-region-container-additional_resources .node-external-url .field.field-name-field-image {
+    width: 16.66666667% !important;
+  }
 }
 .field-name-field-recommended-resources .node-external-url .field.field-name-field-image img,
 .field-name-field-recommended-articles .node-external-url .field.field-name-field-image img,
@@ -13331,17 +13796,46 @@ fieldset.captcha div {
 .panels-flexible-region-container-additional_resources .node-internal-url .field.field-name-field-image img {
   width: 150px !important;
 }
-.field-name-field-recommended-resources .node-youtube,
-.field-name-field-recommended-articles .node-youtube,
-.field.field-name-field-aditional-resources .node-youtube,
-.panels-flexible-region-container-additional_resources .node-youtube {
+.field-name-field-recommended-resources #additional-resources-youtube-pane,
+.field-name-field-recommended-articles #additional-resources-youtube-pane,
+.field.field-name-field-aditional-resources #additional-resources-youtube-pane,
+.panels-flexible-region-container-additional_resources #additional-resources-youtube-pane {
   clear: both;
+  border-bottom: 1px dotted #749b00;
+  margin-bottom: 1em;
+  padding-bottom: 1em;
 }
-.field-name-field-recommended-resources .node-youtube .field.field-type-youtube a:before,
-.field-name-field-recommended-articles .node-youtube .field.field-type-youtube a:before,
-.field.field-name-field-aditional-resources .node-youtube .field.field-type-youtube a:before,
-.panels-flexible-region-container-additional_resources .node-youtube .field.field-type-youtube a:before {
+.field-name-field-recommended-resources #additional-resources-youtube-pane h4,
+.field-name-field-recommended-articles #additional-resources-youtube-pane h4,
+.field.field-name-field-aditional-resources #additional-resources-youtube-pane h4,
+.panels-flexible-region-container-additional_resources #additional-resources-youtube-pane h4 {
+  color: #575757;
+  background: url("../images/content/more-resources-youtube.png") no-repeat left center;
+  padding-left: 25px;
+}
+.field-name-field-recommended-resources #additional-resources-youtube-pane .field.field-type-youtube a:before,
+.field-name-field-recommended-articles #additional-resources-youtube-pane .field.field-type-youtube a:before,
+.field.field-name-field-aditional-resources #additional-resources-youtube-pane .field.field-type-youtube a:before,
+.panels-flexible-region-container-additional_resources #additional-resources-youtube-pane .field.field-type-youtube a:before {
   content: "";
+}
+.field-name-field-recommended-resources #additional-resources-slideshare-pane,
+.field-name-field-recommended-articles #additional-resources-slideshare-pane,
+.field.field-name-field-aditional-resources #additional-resources-slideshare-pane,
+.panels-flexible-region-container-additional_resources #additional-resources-slideshare-pane {
+  border-bottom: 1px dotted #749b00;
+  margin-bottom: 1em;
+  padding-bottom: 1em;
+}
+.field-name-field-recommended-resources #additional-resources-slideshare-pane h4,
+.field-name-field-recommended-articles #additional-resources-slideshare-pane h4,
+.field.field-name-field-aditional-resources #additional-resources-slideshare-pane h4,
+.panels-flexible-region-container-additional_resources #additional-resources-slideshare-pane h4 {
+  color: #575757;
+  background: url("../images/content/more-resources-slideshare.png") no-repeat left center;
+  padding-left: 25px;
+  padding-top: 1px;
+  padding-bottom: 1px;
 }
 .field-name-field-recommended-resources .node-news .field.field-name-field-image,
 .field-name-field-recommended-articles .node-news .field.field-name-field-image,
@@ -14357,6 +14851,52 @@ fieldset.captcha div {
   .container.profile-2-cols-container-3 .profile-col-left-3 {
     padding-right: 15px;
   }
+  .node-type-partner .profile-4-cols-container-2 {
+    padding-left: 10px !important;
+  }
+  .node-type-partner .profile-4-cols-container-2 .panels-flexible-column-new-8,
+  .node-type-partner .profile-4-cols-container-2 .panels-flexible-column-first {
+    width: 33%;
+    float: left;
+    margin-top: 0em;
+    margin-bottom: 0em;
+    padding-left: 0em;
+  }
+  .node-type-partner .profile-4-cols-container-2 .panels-flexible-column-new-8 > div .panels-flexible-region-first,
+  .node-type-partner .profile-4-cols-container-2 .panels-flexible-column-first > div .panels-flexible-region-first,
+  .node-type-partner .profile-4-cols-container-2 .panels-flexible-column-new-8 > div .panels-flexible-region-last,
+  .node-type-partner .profile-4-cols-container-2 .panels-flexible-column-first > div .panels-flexible-region-last {
+    width: 100% !important;
+    text-align: left;
+  }
+  .node-type-partner .profile-4-cols-container-2 .panels-flexible-column-new-8 > div .panels-flexible-region-first .pane-node-title-field,
+  .node-type-partner .profile-4-cols-container-2 .panels-flexible-column-first > div .panels-flexible-region-first .pane-node-title-field,
+  .node-type-partner .profile-4-cols-container-2 .panels-flexible-column-new-8 > div .panels-flexible-region-last .pane-node-title-field,
+  .node-type-partner .profile-4-cols-container-2 .panels-flexible-column-first > div .panels-flexible-region-last .pane-node-title-field {
+    font-weight: bold;
+    margin-bottom: 1em;
+  }
+  .node-type-partner .profile-4-cols-container-2 .panels-flexible-column-new-8 > div .panels-flexible-region-first img,
+  .node-type-partner .profile-4-cols-container-2 .panels-flexible-column-first > div .panels-flexible-region-first img,
+  .node-type-partner .profile-4-cols-container-2 .panels-flexible-column-new-8 > div .panels-flexible-region-last img,
+  .node-type-partner .profile-4-cols-container-2 .panels-flexible-column-first > div .panels-flexible-region-last img {
+    margin-bottom: 1em;
+  }
+  .node-type-partner .profile-4-cols-container-2 .panels-flexible-column-new-9,
+  .node-type-partner .profile-4-cols-container-2 .panels-flexible-column-new-10 {
+    width: 33%;
+    float: left;
+    margin-top: 0;
+  }
+  .node-type-partner .profile-4-cols-container-2 .panels-flexible-column-new-9 .panels-flexible-region-first,
+  .node-type-partner .profile-4-cols-container-2 .panels-flexible-column-new-10 .panels-flexible-region-first {
+    width: 100% !important;
+  }
+  .node-type-partner .profile-4-cols-container-2 .panels-flexible-column-new-9 .panels-flexible-region-first p,
+  .node-type-partner .profile-4-cols-container-2 .panels-flexible-column-new-10 .panels-flexible-region-first p {
+    text-align: left;
+    font-weight: bold;
+  }
   /*fin partner profile*/
   /*create events & news*/
   .page-node-add-events .node-events-form .hwc-2col-stacked-2col,
@@ -14467,6 +15007,51 @@ fieldset.captcha div {
     margin-right: -30px;
   }
   /*fin plantilla employers*/
+  /*pag Newsletter*/
+  .page-node-129 #block-osha-newsletter-osha-newsletter-subscribe {
+    margin-left: 0;
+    margin-right: 0;
+  }
+  .page-node-129 #block-osha-newsletter-osha-newsletter-subscribe h2 {
+    margin-left: 0;
+    margin-right: 0;
+  }
+  .page-node-129 #block-osha-newsletter-osha-newsletter-subscribe div form > div {
+    padding-left: 30px;
+    padding-right: 30px;
+  }
+  .page-node-129 #block-osha-newsletter-osha-newsletter-subscribe-extra {
+    margin-left: 0;
+    margin-right: 0;
+  }
+  .page-node-129 #block-osha-newsletter-osha-newsletter-subscribe-extra h2 {
+    margin-left: 0;
+    margin-right: 0;
+  }
+  .page-node-129 #block-osha-newsletter-osha-newsletter-subscribe-extra div form > div {
+    padding-left: 30px;
+    padding-right: 30px;
+  }
+  .page-node-129 #block-osha-newsletter-osha-newsletter-subscribe-extra .form-type-checkbox label {
+    font-size: 14px;
+  }
+  .page-node-129 #block-osha-newsletter-osha-newsletter-subscribe-extra hr {
+    clear: both;
+  }
+  .page-node-129 #block-osha-newsletter-osha-newsletter-subscribe-extra #subscribe-extra button#edit-submit--4 {
+    margin-top: 1em;
+  }
+  .page-node-129 #block-osha-newsletter-osha-newsletter-latest #latest-newsletters-block {
+    width: 100%;
+  }
+  .page-node-129 #block-osha-newsletter-osha-newsletter-latest #latest-newsletters-block h2 {
+    width: 75%;
+  }
+  .page-node-129 #block-osha-newsletter-osha-newsletter-latest #latest-newsletters-block .newsletter_items {
+    width: 85%;
+    margin-left: 10px;
+  }
+  /*End pag Newsletter*/
   /*pag get-your-certificate*/
   .page-get-your-certificate .container {
     padding-left: 30px;
@@ -16109,6 +16694,28 @@ fieldset.captcha div {
     margin-left: 0;
     margin-right: 0;
   }
+  .node-type-partner .profile-4-cols-container-2 {
+    padding-left: 15px !important;
+  }
+  .node-type-partner .profile-4-cols-container-2 .panels-flexible-column-new-8,
+  .node-type-partner .profile-4-cols-container-2 .panels-flexible-column-first {
+    width: 100%;
+  }
+  .node-type-partner .profile-4-cols-container-2 .panels-flexible-column-new-8 > div .panels-flexible-region-first,
+  .node-type-partner .profile-4-cols-container-2 .panels-flexible-column-first > div .panels-flexible-region-first,
+  .node-type-partner .profile-4-cols-container-2 .panels-flexible-column-new-8 > div .panels-flexible-region-last,
+  .node-type-partner .profile-4-cols-container-2 .panels-flexible-column-first > div .panels-flexible-region-last {
+    width: 100% !important;
+    text-align: center;
+  }
+  .node-type-partner .profile-4-cols-container-2 .panels-flexible-column-new-9,
+  .node-type-partner .profile-4-cols-container-2 .panels-flexible-column-new-10 {
+    width: 100%;
+  }
+  .node-type-partner .profile-4-cols-container-2 .panels-flexible-column-new-9 .panels-flexible-region-first p,
+  .node-type-partner .profile-4-cols-container-2 .panels-flexible-column-new-10 .panels-flexible-region-first p {
+    text-align: center;
+  }
   /*fin partner profile*/
   /*create events & news*/
   .page-node-add-events .node-events-form h2.node-edit-form-heading,
@@ -16241,6 +16848,9 @@ fieldset.captcha div {
   }
   /*fin get involved plantilla*/
   /*Plantilla employers*/
+  .employers-section {
+    margin-top: 370px;
+  }
   .employers-section h3 {
     margin-top: 30px;
   }
@@ -16273,6 +16883,13 @@ fieldset.captcha div {
   }
   .employers-section .e-guide h3 {
     margin-bottom: 1em;
+  }
+  .employers-section button {
+    width: 100%;
+  }
+  .panels-flexible-column-container-1 .more-link,
+  .panels-flexible-column-container-main .more-link {
+    display: block;
   }
   /*fin plantilla employers*/
   /*clases para toda la web*/
@@ -16334,6 +16951,68 @@ fieldset.captcha div {
     width: 100%;
     height: 23px;
   }
+  /*pag Newsletter*/
+  .page-node-129 #block-osha-newsletter-osha-newsletter-subscribe h2 {
+    padding: 10px;
+  }
+  .page-node-129 #block-osha-newsletter-osha-newsletter-subscribe > div {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+  .page-node-129 #block-osha-newsletter-osha-newsletter-subscribe div#newsletter-subscription-form-wrapper form > div {
+    padding-left: 0;
+    padding-right: 0;
+  }
+  .page-node-129 #block-osha-newsletter-osha-newsletter-subscribe div#newsletter-subscription-form-wrapper form > div div,
+  .page-node-129 #block-osha-newsletter-osha-newsletter-subscribe div#newsletter-subscription-form-wrapper form > div button {
+    width: 100%;
+  }
+  .page-node-129 #block-osha-newsletter-osha-newsletter-subscribe div#newsletter-subscription-form-wrapper form > div div input,
+  .page-node-129 #block-osha-newsletter-osha-newsletter-subscribe div#newsletter-subscription-form-wrapper form > div button input {
+    width: 100%;
+  }
+  .page-node-129 #block-osha-newsletter-osha-newsletter-subscribe div#newsletter-subscription-form-wrapper form > div button {
+    float: none;
+    margin-top: 0;
+  }
+  .page-node-129 #block-osha-newsletter-osha-newsletter-subscribe-extra h2 {
+    padding: 10px;
+  }
+  .page-node-129 #block-osha-newsletter-osha-newsletter-subscribe-extra div form > div {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+  .page-node-129 #block-osha-newsletter-osha-newsletter-subscribe-extra .form-item-subscribe-to-OSHMail-newsletter {
+    min-width: 0;
+    width: 100%;
+  }
+  .page-node-129 #block-osha-newsletter-osha-newsletter-subscribe-extra button {
+    width: 100%;
+  }
+  .page-node-129 #block-osha-newsletter-osha-newsletter-subscribe-extra #subscribe-extra .form-item-subscribe-to-OSHMail-newsletter label {
+    width: 100%;
+    margin-right: 0;
+  }
+  .page-node-129 #block-osha-newsletter-osha-newsletter-subscribe-extra #subscribe-extra .form-item-subscribe-to-OSHMail-newsletter label a {
+    margin-top: 2.5em;
+    float: right;
+  }
+  .page-node-129 #block-osha-newsletter-osha-newsletter-latest {
+    margin-left: 15px;
+    margin-right: 15px;
+  }
+  .page-node-129 #block-osha-newsletter-osha-newsletter-latest #latest-newsletters-block {
+    width: 100%;
+  }
+  .page-node-129 #block-osha-newsletter-osha-newsletter-latest #latest-newsletters-block h2 {
+    width: 100%;
+    margin-left: 0px;
+    margin-right: 0px;
+  }
+  .page-node-129 #block-osha-newsletter-osha-newsletter-latest #latest-newsletters-block .newsletter_items {
+    width: 100%;
+  }
+  /*End pag Newsletter*/
   /*pag get-your-certificate*/
   .page-get-your-certificate .container {
     padding-left: 15px;
