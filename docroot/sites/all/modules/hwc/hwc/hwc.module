@@ -937,18 +937,6 @@ function hwc_taxonomy_term_presave($term) {
 }
 
 function theme_hwc_print_friendly_block() {
-  // Add js and css
-  $content = array(
-    '#attached' => array(
-      'js' => array(
-        array(
-          'data' => drupal_get_path('module', 'hwc') . '/js/print_friendly.js',
-          'type' => 'file',
-          'weight' => 10,
-        )
-      ),
-    ),
-  );
   $content['#markup'] .= '<a href="javascript:if(window.print)window.print();" class="printfriendly"></a>';
   return render($content);
 }
