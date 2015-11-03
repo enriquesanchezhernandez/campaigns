@@ -159,11 +159,12 @@ class PartnerMigrateListXml extends AbstractCrmMigrateListXml {
           $data->field_partner_type = (string) $attributes['Textbox28'];
         }
         else {
-          watchdog('hwc_crm_migration', 'Could not find the partner type @type in the vocabulary for organisation @organisation',
+          watchdog('hwc_crm_migration', 'Ignoring partner with type @type in the vocabulary for organisation @organisation',
             array(
               '@type' => $partner_type,
               '@organisation' => $data->title
             ), WATCHDOG_WARNING);
+          continue;
         }
 
         $data->field_social_dialog_partner = (string) $attributes['Textbox29'];

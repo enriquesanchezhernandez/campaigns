@@ -274,3 +274,17 @@ function hwc_partner_node_view($node, $view_mode, $langcode) {
     unset($node->content['field_schedule']);
   }
 }
+
+/**
+ * Implements hook_node_delete().
+ */
+function hwc_partner_node_delete($node) {
+  if ($node->type == 'partner') {
+    $w = entity_metadata_wrapper('node', $node->nid);
+    if ($guid = $w->field_guid_organisation->value()) {
+      if ($term = osha_workflow_get_partner_section_by_guid($guid)) {
+        taxonomy_term_delete($term->tid);
+      }
+    }
+  }
+}
