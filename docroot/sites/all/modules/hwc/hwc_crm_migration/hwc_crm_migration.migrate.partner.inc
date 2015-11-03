@@ -60,6 +60,34 @@ class PartnerMigration extends HwcCrmMigration {
       'field_linkedin_profile',
     );
   }
+
+  public function prepareRow($row) {
+    /** @var stdClass $term */
+    if ($term = osha_workflow_get_partner_section_by_guid($row->field_guid_organisation)) {
+      $row->workbench_access[$term->tid] = $term->tid;
+    }
+    else {
+      if ($term = osha_workflow_create_section($row->title, $row->field_guid_organisation)) {
+        $this->currentMigration()->displayMessage(
+          strtr('Creating new section with GUID: @guid for partner \'@partner\'',
+            array('@guid' => $row->field_guid_organisation, '@partner' => $row->title)
+          ),
+          'warning'
+        );
+        $row->workbench_access[$term->tid] = $term->tid;
+      }
+      else {
+        $this->currentMigration()->displayMessage(
+            strtr('Unable to create new section with GUID: @guid for partner \'@partner\'',
+                array('@guid' => $row->field_guid_organisation, '@partner' => $row->title)
+            ),
+            'error'
+        );
+        return FALSE;
+      }
+    }
+    return TRUE;
+  }
 }
 
 
@@ -73,7 +101,7 @@ class PartnerMigrateListXml extends AbstractCrmMigrateListXml {
   protected function parseSourceFile() {
     self::$data = array();
     if (!is_readable($this->file)) {
-      watchdog('hwc_crm_migration', 'Cannot find migration files: @file', array('@file' => $this->file), WATCHDOG_WARNING);
+      watchdog('hwc_crm_migration', 'Cannot find migration files: @file (set `hwc_crm_data_dir` properly)', array('@file' => $this->file), WATCHDOG_WARNING);
       throw new MigrateException(strtr('Cannot find migration files: @file', array('@file' => $this->file)));
     }
     if ($xml = simplexml_load_file($this->file, 'SimpleXMLElement', LIBXML_COMPACT | LIBXML_PARSEHUGE)) {
@@ -84,28 +112,6 @@ class PartnerMigrateListXml extends AbstractCrmMigrateListXml {
         $data->title = (string) $attributes['Textbox1'];
         $data->title_field = (string) $attributes['Textbox1'];
         $data->field_guid_organisation = (string) $attributes['Table0_Details1'];
-        /** @var stdClass $term */
-        if ($term = osha_workflow_get_partner_section_by_guid($data->field_guid_organisation)) {
-          $data->workbench_access[$term->tid] = $term->tid;
-        }
-        else {
-          watchdog('hwc_crm_migration', 'Creating new section with GUID: @guid for partner \'@partner\'',
-            array(
-              '@guid' => $data->field_guid_organisation,
-              '@partner' => $data->title
-            ), WATCHDOG_INFO);
-          if ($term = osha_workflow_create_section($data->title, $data->field_guid_organisation)) {
-            $data->workbench_access[$term->tid] = $term->tid;
-          }
-          else {
-            watchdog('hwc_crm_migration', 'Unable to create new section with GUID: !guid for partner \'!partner\'',
-              array(
-                '@guid' => $data->field_guid_organisation,
-                '!organisation' => $data->title
-              ), WATCHDOG_ERROR);
-          }
-        }
-
         $data->field_general_email = (string) $attributes['Textbox2'];
         $data->field_general_phone = (string) $attributes['Textbox3'];
         $data->field_website = (string) $attributes['Textbox4'];
