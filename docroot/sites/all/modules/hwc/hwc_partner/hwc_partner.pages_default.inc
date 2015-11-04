@@ -3823,6 +3823,36 @@ function hwc_partner_default_page_manager_handlers() {
     $display->content['new-7515db16-a606-4317-8f88-f4d324a87e4c'] = $pane;
     $display->panels['region_3'][5] = 'new-7515db16-a606-4317-8f88-f4d324a87e4c';
     $pane = new stdClass();
+    $pane->pid = 'new-a41e4732-07fd-4b8a-badc-4362afc1bdf1';
+    $pane->panel = 'right';
+    $pane->type = 'entity_field';
+    $pane->subtype = 'node:field_pledge';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'label' => 'above',
+      'formatter' => 'text_default',
+      'delta_limit' => 0,
+      'delta_offset' => '0',
+      'delta_reversed' => FALSE,
+      'formatter_settings' => array(),
+      'context' => 'argument_entity_id:node_1',
+      'override_title' => 0,
+      'override_title_text' => '',
+      'override_title_heading' => 'h2',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = 'a41e4732-07fd-4b8a-badc-4362afc1bdf1';
+    $display->content['new-a41e4732-07fd-4b8a-badc-4362afc1bdf1'] = $pane;
+    $display->panels['right'][0] = 'new-a41e4732-07fd-4b8a-badc-4362afc1bdf1';
+    $pane = new stdClass();
     $pane->pid = 'new-22050c50-2a04-49d6-b147-ee7e3f0b7183';
     $pane->panel = 'right_';
     $pane->type = 'views';
