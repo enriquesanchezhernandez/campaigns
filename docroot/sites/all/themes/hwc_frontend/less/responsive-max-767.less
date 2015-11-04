@@ -93,7 +93,8 @@ header{
 	}
 	.header-text{
 		display: none;
-	}		/* display: none; */
+	}
+	/* display: none; */
 	.header_top_bar, #block-lang-dropdown-language, #block-menu-menu-header-login{
 
 	}
@@ -536,7 +537,6 @@ header.navbar-default{
 		    position: absolute;
 		}
 		.views-field-field-logo{
-			
 			margin: 0 auto 20px auto;
 			margin-top: 80px !important;
 		}
@@ -582,13 +582,10 @@ header.navbar-default{
 				display: block; 
 				&:before{
 					content: "> ";
-
 				}
 			}
-			
 		}
 	}
-	
 	/*fin home*/
 
 	/* Article */
@@ -632,7 +629,7 @@ header.navbar-default{
 				max-width: none;
 			}
 		}
-		.field-name-field-image + .field-name-title-field + .container{
+		.field-name-field-image + .field-name-title-field + .container, .field-name-field-image + .field-name-title-field + .field-name-body{
 			margin-top: 370px;
 			&.active{
 				margin-top: 150px;
@@ -688,17 +685,84 @@ header.navbar-default{
 					display: none;
 				}
 			}
-			
 		}		
 	}
-	.field-name-field-recommended-articles, .field-name-field-recommended-resources{
-		padding-right: 15px;
-		padding-left: 15px;
-		.node-article .field.field-name-field-image {
+	/* Block: recommended-articles and recommended-resources and article aditional resources*/
+	.field-name-field-recommended-articles, .field-name-field-recommended-resources, .field.field-name-field-aditional-resources, .field-name-field-aditional-resources, .panels-flexible-region-container-additional_resources{
+		padding-right: 0px;
+		padding-left: 0px;
+		.node-article .field.field-name-field-image, .field-type-image{
 			display: none;
 		}
+		/* .pane-additional-resources{
+			padding-right: @margin-movil;
+			padding-left: @margin-movil;
+		} */
+		.pane-additional-resources{
+			padding-right: 0px;
+			padding-left: 0px;
+			h4.pane-title{
+				padding: 0.5em @margin-movil;
+				background: @bg-color-3 url("../images/content/slideUp.png") no-repeat 95% center;
+			}
+			&#additional-resources-youtube-pane, &#additional-resources-slideshare-pane, &#additional-resources-flickr-pane{
+				border-bottom: none;
+				h4.pane-title{
+					background-color: @bg-color-3;
+					background-position: @margin-movil center;
+					padding: 0.5em 0 0.5em 40px;
+					&:after{
+						content: ".";
+						color: @color0;
+						display: block;
+						background: url("../images/content/slideUp.png") no-repeat 95% center;
+						margin-top: -20px;
+						/* display: block;
+						content: url("../images/content/slideUp.png");
+						text-align: right; */
+					}
+				}
+			}
+			.pane-content{
+				padding-right: @margin-movil;
+				padding-left: @margin-movil;
+				.views-row{
+				    border-bottom: none !important;
+				}
+			}
+			&#additional-resources-events-pane{
+				.col-sm-2 span.date-display-single{
+					display: none !important;
+				}
+			}
+		}
 	}
-	/*fin Article */
+	.field-name-field-recommended-resources{
+		.content{
+			padding-right: @margin-movil;
+			padding-left: @margin-movil;
+		}
+		.node{
+			.group-right > div {
+				padding-right: @margin-movil;
+				padding-left: @margin-movil;
+			}
+			&.node-slideshare .field-item{
+				padding-right: @margin-movil;
+				padding-left: @margin-movil;
+			}
+		}
+		.field-name-field-image + .field-name-title-field .field-items, .field-name-field-image + .field-name-title-field .field-items .field-item {
+			height: auto;
+			h1{
+				position: relative;
+				padding-left: 0;
+				bottom: auto;
+			}
+		}
+	}
+	/* End Block: recommended-articles and recommended-resources and article aditional resources*/
+/*End Article */
 	
 	/*Practical tools*/
 	.page-practical-tools{
@@ -1608,6 +1672,15 @@ header.navbar-default{
 		padding-bottom: 0em;
 		padding-top: 0;
 		border-bottom: none;
+		.col-sm-6:first-child div, .col-sm-6:last-child div{
+			border-right: none;
+			padding-left: 0px;
+			padding-right: 0px;
+			div.one-resource{
+				padding-left: @margin-movil;
+				padding-right: @margin-movil;
+			}
+		}
 	}
 	.news-events-section {
 	    padding-bottom: 0em;
@@ -1650,6 +1723,8 @@ header.navbar-default{
 		padding-left:0;
 	}
 }
+
+/*pag National focal points*/
 .page-national-focal-points, .page-official-campaign-partners, .page-campaign-media-partners{
 	.main-container .section-introduction .node.node-article, .section-introduction{
 		.field-type-text-with-summary{
@@ -1694,7 +1769,12 @@ header.navbar-default{
 			height: 23px;
 		}
 	}
+	.container{
+		padding-left: @margin-movil;
+		padding-right: @margin-movil;
+	}
 }
+/*End pag National focal points*/
 
 /*pag Newsletter*/
 .page-node-129{

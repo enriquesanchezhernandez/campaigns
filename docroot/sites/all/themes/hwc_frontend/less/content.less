@@ -798,6 +798,7 @@ ul.tabs--primary.nav.nav-tabs{
 				height: 65px;
 				margin: 0 auto;
 				margin-top: 1em;
+				clear: both;
 			}
 			
 			h2{
@@ -2708,6 +2709,9 @@ article{
 	    margin-bottom: 0;
 		.views-exposed-widget{
 			padding-top: 0;
+			&.views-reset-button{
+				display: none;
+			}
 		}
 	}
 	div div.form-type-textfield{
@@ -3464,7 +3468,7 @@ article{
 		.btn-1-normal{
 			margin-top: 2em;
 			&:before{
-				content: "";
+				content: " ";
 			}
 			.btn-1-acent{
 				font-style: italic;
@@ -3478,8 +3482,8 @@ article{
 		background: url("../images/content/bg-campaign-partner.png");
 		background-size: cover;
 		margin-bottom: 2em;
-		margin-left: -15px;
-		margin-right: -15px;
+		/* margin-left: -15px;
+		margin-right: -15px; */
 		p{
 			color: @color1;
 			font-size: @size1;
@@ -3493,6 +3497,22 @@ article{
 		border-bottom: 1px dotted @color3;
 		padding-bottom: 3em;
 		padding-top: 3em;
+		.col-sm-6:first-child{
+			div{
+				border-right: 1px dotted @border-default-color;
+				border-left: none;
+				padding-left: 15px;
+				padding-right: 30px;
+			}
+		}
+		.col-sm-6:last-child{
+			div{
+				border-left: none;
+				border-right: none;
+				padding-left: 30px;
+				padding-right: 15px;
+			}
+		}
 	}
 	.news-events-section{
 		padding-bottom: 3em;
@@ -3506,6 +3526,12 @@ article{
 	.e-guide, .case-studies, .events-section{
 		padding-left: 30px;
 		padding-right: 15px;
+	}
+	.col-sm-12{
+		> .e-guide, > .case-studies, > .events-section{
+			padding-left: 0px;
+			padding-right: 0px;
+		}
 	}
 	h3{ 
 		color: @color3;
@@ -3552,6 +3578,15 @@ article{
 			}
 		}
 	}
+	.publications{
+		h3{
+			&:before{
+				content: url("../images/content/publications.png");
+				display:block;
+				padding-bottom: 10px;
+			}
+		}
+	}
 	.other-relevant-resources{
 		h3{
 			&:before{
@@ -3568,7 +3603,8 @@ article{
 					min-height: 120px;
 					display: block;
 					margin: 30px auto 15px auto;
-					height: 220px;
+					/* height: 220px; */
+					height: auto;
 				}
 				a{
 					font-weight: bold;
@@ -3747,9 +3783,9 @@ article{
 			.image-block{
 				
 				padding:15px;
-				max-width: 350px;
 				overflow: hidden;
 				margin: 0 auto;
+				/* max-width: 350px;
 				img{
 					background-color: @color2;
 					width: 100%;
@@ -3757,6 +3793,11 @@ article{
 					height: 80%;
 					min-height: 200px;
 					max-height: 200px;
+				} */
+				img{
+					background-color: @color2;
+					width: 100%;
+					height: auto;
 				}
 				.link{
 					padding: 2em 0;
@@ -3973,6 +4014,7 @@ article{
 	[class*="field-type-link"]{
 		font-weight: bold;
 		font-style: italic;
+		text-align: left;
 		&[class*="facebook"]{
 			background: url("../images/content/facebook.png") no-repeat left center;
 			padding-left: 50px;
@@ -3997,6 +4039,10 @@ article{
 			background: url("../images/content/linkedin.png") no-repeat left center;
 			padding-left: 50px;
 			margin-bottom: 1em;
+		}
+		a:before{
+			content: "";
+			padding-right: 0;
 		}
 	}
 }
@@ -4053,6 +4099,7 @@ article{
 				p{
 					text-align: left;
 					font-weight: bold;
+					margin-bottom: 1em;
 				}
 			}
 		}
@@ -4813,7 +4860,7 @@ article{
 		}
 		//.quicktabs-tabpage{
 			.hwc-char-link{
-				padding: 0px 15px;
+				padding: 0px 13px;
 				&.disabled {
 					cursor: text;
 					&:hover{
@@ -4848,7 +4895,7 @@ article{
 /*End oficial campaign partners list*/
 
 /*pag National focal points*/
-/* .page-national-focal-points, .page-official-campaign-partners, .page-campaign-media-partners */
+/* .page-national-focal-points, .page-official-campaign-partners, .page-campaign-media-partners 
 .page-national-focal-points, .page-official-campaign-partners, .page-campaign-media-partners{
 	.main-container {
 		padding: 0;
@@ -4893,6 +4940,13 @@ article{
 .page-campaign-media-partners{
 	.main-container > .row div.page_title{
 		background-image: url("../images/content/bg/page-campaign-media-partners.jpg");
+	}
+}*/
+
+.page-national-focal-points, .page-official-campaign-partners, .page-campaign-media-partners{
+	article {
+		margin-left: -15px;
+		margin-right: -15px;
 	}
 }
 /*End pag National focal points*/
@@ -5270,8 +5324,12 @@ fieldset.captcha {
 				font-weight: bold;
 				margin-bottom: 2em;
 				font-size: @size2;
+				font-style: normal;
 				&:before{
 					content: "> ";
+				}
+				&.external-link{
+					font-style: normal;
 				}
 			}
 		}
@@ -5291,6 +5349,7 @@ fieldset.captcha {
 				color: #003399;
 				font-weight: bold;
 				font-style: italic;
+				font-style: normal;
 				font-size: @size2;
 				&:before {
 					content: "> ";
@@ -5408,15 +5467,60 @@ fieldset.captcha {
 			}
 			span:nth-child(1) > span.flickr-image{
 				padding: 0 10% 0 0;
+				img{
+					max-width: 100%;
+				}
 			}
 			span:nth-child(2) > span.flickr-image{
 				padding: 0 7% 0 3%;
+				img{
+					max-width: 100%;
+				}
 			}
 			span:nth-child(3) > span.flickr-image{
 				padding: 0 3% 0 7%;
+				img{
+					max-width: 100%;
+				}
 			}
 			span:nth-child(4) > span.flickr-image{
 				padding: 0 0 0 10%;
+				img{
+					max-width: 100%;
+				}
+			}
+		}
+		.node-flickr{
+			span.flickr-credit{
+				display: none
+			}
+			.flickr-image{
+				a:before{
+					content: "";
+				}
+			}
+			.flickr-photoset{
+				span.flickr-wrap{
+					width: 25%;
+					margin-right: 0px;
+					span.flickr-image{
+						img{
+							max-width: 90%;
+						}
+					}
+				}
+				span.flickr-wrap:nth-child(1) > span.flickr-image{
+					padding: 0 10% 0 0;
+				}
+				span.flickr-wrap:nth-child(2) > span.flickr-image{
+					padding: 0 7% 0 3%;
+				}
+				span.flickr-wrap:nth-child(3) > span.flickr-image{
+					padding: 0 3% 0 7%;
+				}
+				span.flickr-wrap:nth-child(4) > span.flickr-image{
+					padding: 0 0 0 10%;
+				}
 			}
 		}
 		.node-infographic, .node-news, .node-publication {
@@ -5454,6 +5558,7 @@ fieldset.captcha {
 					margin-right: 0em;
 				}
 			}
+			
 			.field.field-name-field-publication-date, .field-name-body{
 				clear:both;
 			}
@@ -5470,10 +5575,17 @@ fieldset.captcha {
 				}
 			}
 		}
+		@media (min-width: 768px){
+			.node-infographic .field.field-name-field-image{
+				width: 16.66666667% !important;
+			}
+		}
 		#additional-resources-events-pane, #additional-resources-publications-pane, #additional-resources-news-pane, #additional-resources-infographic-pane, #additional-resources-external_url-pane, #additional-resources-internal_url-pane{
-			border-bottom: 1px dotted @border-default-color;
-			margin-bottom: 1em;
-			padding-bottom: 1em;
+			.views-row{
+				border-bottom: 1px dotted @border-default-color;
+				margin-bottom: 1em;
+				padding-bottom: 1em;
+			}
 		}
 		.node-external-url{
 			.field.field-name-field-image{
@@ -5487,14 +5599,19 @@ fieldset.captcha {
 			}
 		}
         .node-internal-url{
-          .field.field-name-field-image{
-            margin-bottom: 0;
-            img {
-              width: 150px !important;
-            }
-          }
-        }
-       #additional-resources-youtube-pane {//.node-youtube
+			.content{
+				.field.field-name-field-image{
+					@media (min-width: 768px){
+						width: 16.66666667% !important;
+					}
+					margin-bottom: 0;
+					img {
+						width: 150px !important;
+					}
+				}
+			}
+		}
+		#additional-resources-youtube-pane {//.node-youtube
 			clear: both;
 			border-bottom: 1px dotted @border-default-color;
 			margin-bottom: 1em;
@@ -5510,7 +5627,14 @@ fieldset.captcha {
 				}
 			}
 		}
-       #additional-resources-slideshare-pane {
+		.node-youtube{
+			.field.field-type-youtube{
+				a:before{
+					color: white;
+				}
+			}
+		}
+		#additional-resources-slideshare-pane {
 			border-bottom: 1px dotted @border-default-color;
 			margin-bottom: 1em;
 			padding-bottom: 1em;
@@ -5547,6 +5671,29 @@ fieldset.captcha {
 					}
 				}
 			}
+		}
+	}
+	.field-name-field-recommended-resources{
+		.field-items > .field-item{
+			border-bottom: 1px dotted @border-default-color;
+			margin-bottom: 1em;
+			padding-bottom: 1em !important;
+			clear: both;
+			float: left;
+			width: 100%;
+			.field-items > .field-item{
+				border-bottom: none;
+				margin-bottom: 0em;
+				padding-bottom: 0em;
+				clear: none;
+				float: none;
+			}
+		}
+	}
+	.node-type-article article{
+		.field-name-field-recommended-resources ~ .dot-separator.green{
+			border-top: none;
+			margin-top: 0px;
 		}
 	}
 	/*End aditional resources*/
