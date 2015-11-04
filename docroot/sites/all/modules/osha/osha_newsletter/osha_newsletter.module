@@ -178,7 +178,7 @@ function osha_newsletter_block_configure($delta = '') {
         '#size' => 60,
         '#description' => 'This text will appear in the Subscription block before the e-mail field.',
         '#default_value' => variable_get('subscribe_block_intro_text',
-          'Get our monthly update on safety and health at work. <a href="@newsletter_page_url">See more info</a><br/>'),
+          'Once a month, OSHmail keeps you updated on occupational safety and health in general.'),
       );
       $form['subscribe_block_intro_text_second_line_start'] = array(
         '#type' => 'textarea',
@@ -248,7 +248,7 @@ function osha_newsletter_block_configure($delta = '') {
         '#title' => 'Block intro text',
         '#size' => 60,
         '#description' => 'This text will appear in the Subscription block before the e-mail field.',
-        '#default_value' => variable_get('subscribe_extra_block_intro_text', 'Keep you updated on...'),
+        '#default_value' => variable_get('subscribe_extra_block_intro_text', 'To get the latest news from the Healthy Workplaces Campaign 2016–17 direct to your inbox, sign up for our bimonthly newsletter. We’ll cover all the big events and key issues to keep you up to date.'),
       );
       $form['subscribe_extra_block_details_link_label'] = array(
         '#type' => 'textfield',
@@ -346,7 +346,7 @@ function osha_newsletter_block_view($delta = '') {
         $block['subject'] = t('OSHMail newsletter');
         // subscribe form
         $markup = '<div>';
-        $markup .= t(variable_get('subscribe_block_intro_text', 'Get our monthly update on safety and health at work. <a href="@newsletter_page_url">See more info</a><br/>'));
+        $markup .= t(variable_get('subscribe_block_intro_text', 'Once a month, OSHmail keeps you updated on occupational safety and health in general.'));
         $markup .= '<p style="color : #dc2f82;">';
         $markup .= t(variable_get('subscribe_block_intro_text_second_line_start', 'Join'));
         $markup .= ' ';
