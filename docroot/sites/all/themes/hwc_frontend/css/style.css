@@ -11477,16 +11477,6 @@ article .hwc-share-widget ul {
   font-weight: bold;
   font-style: italic;
 }
-.profile-edit-links-container .pane-node-profile-update-link .pane-content a:first-child {
-  color: #749b00;
-  font-weight: bold;
-  font-style: italic;
-  margin-bottom: 15px;
-  font-size: 20px;
-}
-.profile-edit-links-container .pane-node-profile-update-link .pane-content a:first-child:before {
-  content: "> ";
-}
 .profile-title-type-container {
   margin-bottom: 90px !important;
 }

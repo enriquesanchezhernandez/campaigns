@@ -257,14 +257,13 @@ function hwc_partner_node_view($node, $view_mode, $langcode) {
   if ($node->type == 'partner' && $view_mode == 'full') {
     $user_is_partner = hwc_partner_match_user_partner($node);
     if ($user_is_partner) {
+      $update_title = l(t('Update profile'), 'private/profile/update');
+      $update_content = t('Any modifications in your public profile? <a href="!link"> Click here to update it.</a>', array('!link' => url('private/profile/update')));
+      $update_title = '<div class="hwc-partner-private-link-block-title">' . $update_title . '</div>';
+      $update_content = '<div class="hwc-partner-private-link-block-description">' . $update_content . '</div>';
       $node->content['profile_update_link'] = array(
-        '#theme' => 'link',
-        '#text' => t('Update profile'),
-        '#path' => 'private/profile/update',
-        '#options' => array(
-          'attributes' => array(),
-          'html' => TRUE,
-        ),
+        '#type' => 'markup',
+        '#markup' => $update_title . $update_content,
       );
     }
   }
