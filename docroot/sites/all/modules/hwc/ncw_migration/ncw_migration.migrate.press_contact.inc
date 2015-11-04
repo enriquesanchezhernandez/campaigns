@@ -43,7 +43,7 @@ class NCWPressContactMigration extends AbstractNCWNodeMigration {
   /**
    * Implements Migration::complete() to configure translations
    */
-  public function complete($entity, $row) {
+  public function complete($entity, stdClass $row) {
     parent::complete($entity, $row);
     if (!empty($row->nodequeue_order)) {
       self::$nodequeue[$entity->nid] = $row->nodequeue_order;
