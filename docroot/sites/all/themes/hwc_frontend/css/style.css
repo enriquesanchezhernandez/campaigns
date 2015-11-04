@@ -16143,6 +16143,13 @@ fieldset.captcha div {
     padding: 0.5em 15px;
     background: #e2e2e3 url("../images/content/slideUp.png") no-repeat 95% center;
   }
+  .field-name-field-recommended-articles .pane-additional-resources h4.pane-title.closeLabel,
+  .field-name-field-recommended-resources .pane-additional-resources h4.pane-title.closeLabel,
+  .field.field-name-field-aditional-resources .pane-additional-resources h4.pane-title.closeLabel,
+  .field-name-field-aditional-resources .pane-additional-resources h4.pane-title.closeLabel,
+  .panels-flexible-region-container-additional_resources .pane-additional-resources h4.pane-title.closeLabel {
+    background-image: url("../images/content/slideDown.png") !important;
+  }
   .field-name-field-recommended-articles .pane-additional-resources#additional-resources-youtube-pane,
   .field-name-field-recommended-resources .pane-additional-resources#additional-resources-youtube-pane,
   .field.field-name-field-aditional-resources .pane-additional-resources#additional-resources-youtube-pane,
@@ -16202,6 +16209,61 @@ fieldset.captcha div {
     /* display: block;
 						content: url("../images/content/slideUp.png");
 						text-align: right; */
+  }
+  .field-name-field-recommended-articles .pane-additional-resources#additional-resources-youtube-pane h4.pane-title.closeLabel,
+  .field-name-field-recommended-resources .pane-additional-resources#additional-resources-youtube-pane h4.pane-title.closeLabel,
+  .field.field-name-field-aditional-resources .pane-additional-resources#additional-resources-youtube-pane h4.pane-title.closeLabel,
+  .field-name-field-aditional-resources .pane-additional-resources#additional-resources-youtube-pane h4.pane-title.closeLabel,
+  .panels-flexible-region-container-additional_resources .pane-additional-resources#additional-resources-youtube-pane h4.pane-title.closeLabel,
+  .field-name-field-recommended-articles .pane-additional-resources#additional-resources-slideshare-pane h4.pane-title.closeLabel,
+  .field-name-field-recommended-resources .pane-additional-resources#additional-resources-slideshare-pane h4.pane-title.closeLabel,
+  .field.field-name-field-aditional-resources .pane-additional-resources#additional-resources-slideshare-pane h4.pane-title.closeLabel,
+  .field-name-field-aditional-resources .pane-additional-resources#additional-resources-slideshare-pane h4.pane-title.closeLabel,
+  .panels-flexible-region-container-additional_resources .pane-additional-resources#additional-resources-slideshare-pane h4.pane-title.closeLabel,
+  .field-name-field-recommended-articles .pane-additional-resources#additional-resources-flickr-pane h4.pane-title.closeLabel,
+  .field-name-field-recommended-resources .pane-additional-resources#additional-resources-flickr-pane h4.pane-title.closeLabel,
+  .field.field-name-field-aditional-resources .pane-additional-resources#additional-resources-flickr-pane h4.pane-title.closeLabel,
+  .field-name-field-aditional-resources .pane-additional-resources#additional-resources-flickr-pane h4.pane-title.closeLabel,
+  .panels-flexible-region-container-additional_resources .pane-additional-resources#additional-resources-flickr-pane h4.pane-title.closeLabel {
+    background-image: initial !important;
+  }
+  .field-name-field-recommended-articles .pane-additional-resources#additional-resources-youtube-pane h4.pane-title.closeLabel:after,
+  .field-name-field-recommended-resources .pane-additional-resources#additional-resources-youtube-pane h4.pane-title.closeLabel:after,
+  .field.field-name-field-aditional-resources .pane-additional-resources#additional-resources-youtube-pane h4.pane-title.closeLabel:after,
+  .field-name-field-aditional-resources .pane-additional-resources#additional-resources-youtube-pane h4.pane-title.closeLabel:after,
+  .panels-flexible-region-container-additional_resources .pane-additional-resources#additional-resources-youtube-pane h4.pane-title.closeLabel:after,
+  .field-name-field-recommended-articles .pane-additional-resources#additional-resources-slideshare-pane h4.pane-title.closeLabel:after,
+  .field-name-field-recommended-resources .pane-additional-resources#additional-resources-slideshare-pane h4.pane-title.closeLabel:after,
+  .field.field-name-field-aditional-resources .pane-additional-resources#additional-resources-slideshare-pane h4.pane-title.closeLabel:after,
+  .field-name-field-aditional-resources .pane-additional-resources#additional-resources-slideshare-pane h4.pane-title.closeLabel:after,
+  .panels-flexible-region-container-additional_resources .pane-additional-resources#additional-resources-slideshare-pane h4.pane-title.closeLabel:after,
+  .field-name-field-recommended-articles .pane-additional-resources#additional-resources-flickr-pane h4.pane-title.closeLabel:after,
+  .field-name-field-recommended-resources .pane-additional-resources#additional-resources-flickr-pane h4.pane-title.closeLabel:after,
+  .field.field-name-field-aditional-resources .pane-additional-resources#additional-resources-flickr-pane h4.pane-title.closeLabel:after,
+  .field-name-field-aditional-resources .pane-additional-resources#additional-resources-flickr-pane h4.pane-title.closeLabel:after,
+  .panels-flexible-region-container-additional_resources .pane-additional-resources#additional-resources-flickr-pane h4.pane-title.closeLabel:after {
+    background-image: url("../images/content/slideDown.png") !important;
+  }
+  .field-name-field-recommended-articles .pane-additional-resources#additional-resources-youtube-pane h4.pane-title.closeLabel,
+  .field-name-field-recommended-resources .pane-additional-resources#additional-resources-youtube-pane h4.pane-title.closeLabel,
+  .field.field-name-field-aditional-resources .pane-additional-resources#additional-resources-youtube-pane h4.pane-title.closeLabel,
+  .field-name-field-aditional-resources .pane-additional-resources#additional-resources-youtube-pane h4.pane-title.closeLabel,
+  .panels-flexible-region-container-additional_resources .pane-additional-resources#additional-resources-youtube-pane h4.pane-title.closeLabel {
+    background-image: url("../images/content/more-resources-youtube.png") !important;
+  }
+  .field-name-field-recommended-articles .pane-additional-resources#additional-resources-slideshare-pane h4.pane-title.closeLabel,
+  .field-name-field-recommended-resources .pane-additional-resources#additional-resources-slideshare-pane h4.pane-title.closeLabel,
+  .field.field-name-field-aditional-resources .pane-additional-resources#additional-resources-slideshare-pane h4.pane-title.closeLabel,
+  .field-name-field-aditional-resources .pane-additional-resources#additional-resources-slideshare-pane h4.pane-title.closeLabel,
+  .panels-flexible-region-container-additional_resources .pane-additional-resources#additional-resources-slideshare-pane h4.pane-title.closeLabel {
+    background-image: url("../images/content/more-resources-slideshare.png") !important;
+  }
+  .field-name-field-recommended-articles .pane-additional-resources#additional-resources-flickr-pane h4.pane-title.closeLabel,
+  .field-name-field-recommended-resources .pane-additional-resources#additional-resources-flickr-pane h4.pane-title.closeLabel,
+  .field.field-name-field-aditional-resources .pane-additional-resources#additional-resources-flickr-pane h4.pane-title.closeLabel,
+  .field-name-field-aditional-resources .pane-additional-resources#additional-resources-flickr-pane h4.pane-title.closeLabel,
+  .panels-flexible-region-container-additional_resources .pane-additional-resources#additional-resources-flickr-pane h4.pane-title.closeLabel {
+    background-image: url("../images/content/more-resources-flickr.png") !important;
   }
   .field-name-field-recommended-articles .pane-additional-resources .pane-content,
   .field-name-field-recommended-resources .pane-additional-resources .pane-content,

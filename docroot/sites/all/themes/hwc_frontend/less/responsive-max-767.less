@@ -704,6 +704,9 @@ header.navbar-default{
 			h4.pane-title{
 				padding: 0.5em @margin-movil;
 				background: @bg-color-3 url("../images/content/slideUp.png") no-repeat 95% center;
+				&.closeLabel{
+					background-image: url("../images/content/slideDown.png") !important;
+				}
 			}
 			&#additional-resources-youtube-pane, &#additional-resources-slideshare-pane, &#additional-resources-flickr-pane{
 				border-bottom: none;
@@ -721,6 +724,27 @@ header.navbar-default{
 						content: url("../images/content/slideUp.png");
 						text-align: right; */
 					}
+					&.closeLabel{
+						background-image: initial !important;
+					}
+					&.closeLabel:after{
+						background-image: url("../images/content/slideDown.png") !important;
+					}
+				}
+			}
+			&#additional-resources-youtube-pane{
+				h4.pane-title.closeLabel{
+					background-image: url("../images/content/more-resources-youtube.png") !important;
+				}
+			}
+			&#additional-resources-slideshare-pane{
+				h4.pane-title.closeLabel{
+					background-image: url("../images/content/more-resources-slideshare.png") !important;
+				}
+			}
+			&#additional-resources-flickr-pane{
+				h4.pane-title.closeLabel{
+					background-image: url("../images/content/more-resources-flickr.png") !important;
 				}
 			}
 			.pane-content{
