@@ -64,25 +64,6 @@ class NCWPressContactMigration extends AbstractNCWNodeMigration {
       nodequeue_subqueue_remove_node(3, $nid);
       nodequeue_subqueue_add($nodequeue, $subq, $nid);
     }
-    // Remove the nodes non existing in the source.
-    $this->removeNeedsUpdateItems();
-  }
-
-  /**
-   * Remove non-existing sources.
-   */
-  public function removeNeedsUpdateItems() {
-    $removed = $this->getMap()->getRowsNeedingUpdate(10000);
-    if (!empty($removed)) {
-      foreach ($removed as $to_remove) {
-        if ($node = node_load($to_remove->destid1)) {
-          $node->status = 0;
-          node_delete($node->nid);
-          watchdog('ncw_migration', 'Deleting contact !contact with nid !nid.',
-            array('!nid' => $node->nid, '!contact' => $node->title), WATCHDOG_INFO);
-        }
-      }
-    }
   }
 
   function getManuallyMigratedFieldS() {

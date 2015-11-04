@@ -335,6 +335,10 @@ abstract class AbstractNCWNodeMigration extends Migration {
     }
   }
 
+  public function postImport() {
+    $this->removeNeedsUpdateItems();
+  }
+
   public function getMigrationURL() {
     $variable = 'hwc_migration_' . $this->getMachineName() . '_url';
     return variable_get($variable);
@@ -364,6 +368,23 @@ abstract class AbstractNCWNodeMigration extends Migration {
     }
     else {
       return FALSE;
+    }
+  }
+
+  /**
+   * Remove nodes that are not in the source anymore.
+   */
+  protected function removeNeedsUpdateItems() {
+    $removed = $this->getMap()->getRowsNeedingUpdate(10000);
+    $to_be_removed = array();
+    if (!empty($removed)) {
+      foreach ($removed as $to_remove) {
+        $to_be_removed[] =$to_remove->destid1;
+        $this->getMap()->delete(array($to_remove->sourceid1));
+      }
+      node_delete_multiple($to_be_removed);
+      watchdog('ncw_migration', 'Deleting records that are not in the source anymore: !nids.',
+        array('!nids' => implode('', $to_be_removed)), WATCHDOG_INFO);
     }
   }
 }
