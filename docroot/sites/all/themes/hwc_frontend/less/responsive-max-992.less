@@ -204,23 +204,50 @@ header{
 /*fin home*/
 
 /*articles*/
-.node-type-article article{
-	margin-left: 0px;
-	margin-right: 0px;
-	.field-name-body{
-		padding-right: 30px;
-		padding-left: 30px;
+.node-type-article{
+	article{
+		margin-left: 0px;
+		margin-right: 0px;
+		.field-name-body{
+			padding-right: 30px;
+			padding-left: 30px;
+		}
+		.dot-separator.green{
+			/* margin-left: @margin-tablet;
+			margin-right: @margin-tablet; */
+		}
 	}
-	.dot-separator.green{
-		/* margin-left: @margin-tablet;
-		margin-right: @margin-tablet; */
-	}
-}
-.field-name-field-recommended-articles, .field-name-field-recommended-resources{
-	padding-right: @margin-tablet;
-	padding-left: @margin-tablet;
 }
 /*fin articles*/
+
+/* Block: recommended-articles and recommended-resources and article aditional resources*/
+.field-name-field-recommended-articles, .field-name-field-recommended-resources, .field.field-name-field-aditional-resources, .field-name-field-aditional-resources, .panels-flexible-region-container-additional_resources{
+	padding-right: @margin-tablet;
+	padding-left: @margin-tablet;
+	h1{
+		padding-left: 0px;
+		padding-right: 0px;
+	}	
+	#additional-resources-events-pane .pane-content .views-field-nothing .col-sm-2{
+		span.date-display-single{
+			width: 130px;
+			min-width: 130px;
+			max-width: 130px;
+			min-width: 0px;
+			max-width: 95%;
+			padding: 0 20px;
+		}
+	}
+}
+.node-type-article article{
+	.field-name-field-recommended-articles, .field-name-field-recommended-resources, .field-name-field-aditional-resources{
+		.field-name-body {
+			padding-right: 0px;
+			padding-left: 0px;
+		}
+	}
+}
+/* End Block: recommended-articles and recommended-resources and article aditional resources*/
 
 /*Practical tools*/
 .page-practical-tools{
@@ -735,12 +762,19 @@ header{
 			margin: 0px;
 		}
 	}
+	article{
+	    margin-left: 0;
+		margin-right: 0;
+	}
+	.view-id-partners_list .hwc-char-link {
+		padding: 0px 18px 0px 0px;
+	}
 }
 #block-views-partners-list-block{
 	margin-right: @margin-tablet;
 	margin-left: @margin-tablet;
 }
-/*Fin pag National focal points*/
+/*End pag National focal points*/
 
 /*partner profile*/
 .profile-edit-links-container{
@@ -849,6 +883,44 @@ header{
 		padding-right: 15px;
 	}
 }
+
+.node-type-partner{
+	.profile-4-cols-container-2{
+		padding-left: @margin-tablet1 !important;
+		.panels-flexible-column-new-8, .panels-flexible-column-first {
+			width: 33%;
+			float: left;
+			margin-top: 0em;
+			margin-bottom: 0em;
+			padding-left: 0em;
+			> div{
+				.panels-flexible-region-first, .panels-flexible-region-last{
+					width: 100% !important;
+					text-align: left;
+					.pane-node-title-field{
+						font-weight: bold;
+						margin-bottom: 1em;
+					}
+					img{
+						margin-bottom: 1em;
+					}
+				}
+			}
+		}
+		.panels-flexible-column-new-9, .panels-flexible-column-new-10{
+			width: 33%;
+			float: left;
+			margin-top: 0;
+			.panels-flexible-region-first{
+				width: 100% !important;
+				p{
+					text-align: left;
+					font-weight: bold;
+				}
+			}
+		}
+	}
+}
 /*fin partner profile*/
 
 /*create events & news*/
@@ -917,6 +989,54 @@ header{
 	}
 }
 /*fin plantilla employers*/
+
+/*pag Newsletter*/
+.page-node-129{
+	#block-osha-newsletter-osha-newsletter-subscribe{
+		margin-left: 0;
+		margin-right: 0;
+		h2{
+			margin-left: 0;
+			margin-right: 0;
+		}
+		div form > div{
+			padding-left: @margin-tablet;
+			padding-right: @margin-tablet;
+		}
+	}
+	#block-osha-newsletter-osha-newsletter-subscribe-extra{
+		margin-left: 0;
+		margin-right: 0;
+		h2{
+			margin-left: 0;
+			margin-right: 0;
+		}
+		div form > div{
+			padding-left: @margin-tablet;
+			padding-right: @margin-tablet;
+		}
+		.form-type-checkbox label{
+			font-size: @size4;
+		}
+		hr{
+			clear: both;
+		}
+		#subscribe-extra button#edit-submit--4{
+			margin-top: 1em;
+		}
+	}
+	 #block-osha-newsletter-osha-newsletter-latest #latest-newsletters-block{
+		width: 100%;
+		h2{
+			width: 75%;
+		}
+		.newsletter_items{
+			width: 85%;
+			margin-left: 10px;
+		}
+	 }
+}
+/*End pag Newsletter*/
 
 /*pag get-your-certificate*/
 .page-get-your-certificate{
@@ -993,7 +1113,7 @@ header{
 		}
 	}
 }
-/*fin pag contact-form*/
+/*End pag contact-form*/
 
 /*clases para toda la web*/
 .container{
