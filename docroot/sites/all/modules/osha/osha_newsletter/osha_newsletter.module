@@ -1269,7 +1269,8 @@ function osha_newsletter_send_email($key, $to, $from, $form_values, $message) {
 
 function osha_newsletter_mail_alter(&$message) {
     if ($message['id'] == 'osha_newsletter_subscribe_email' ||
-      $message['id'] == 'osha_newsletter_unsubscribe_email') {
+      $message['id'] == 'osha_newsletter_unsubscribe_email' ||
+      $message['id'] == 'osha_newsletter_campaigns_subscribe_email') {
         $sender = $message['headers']['From'];
         $message['headers']['Sender'] = $sender;
         $message['headers']['Return-Path'] = $sender;
