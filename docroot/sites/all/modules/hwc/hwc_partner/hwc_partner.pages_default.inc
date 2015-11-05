@@ -3906,8 +3906,22 @@ function hwc_partner_default_page_manager_pages() {
     'body_classes_to_add' => '',
     'css_id' => '',
     'css' => '',
-    'contexts' => array(),
+    'contexts' => array(
+      0 => array(
+        'identifier' => 'Node',
+        'keyword' => 'node',
+        'name' => 'entity:node',
+        'entity_id' => '144',
+        'id' => 1,
+      ),
+    ),
     'relationships' => array(),
+    'panels_breadcrumbs_state' => 1,
+    'panels_breadcrumbs_titles' => 'Campaign partners
+%node:title',
+    'panels_breadcrumbs_paths' => '<none>
+<none>',
+    'panels_breadcrumbs_home' => 1,
   );
   $display = new panels_display();
   $display->layout = 'flexible';
@@ -3919,7 +3933,7 @@ function hwc_partner_default_page_manager_pages() {
     ),
   );
   $display->cache = array();
-  $display->title = '';
+  $display->title = 'National focal points';
   $display->uuid = '309b0809-de1a-4b4b-a6a2-c7348a10473e';
   $display->content = array();
   $display->panels = array();
@@ -3990,7 +4004,7 @@ function hwc_partner_default_page_manager_pages() {
     $pane->uuid = '407b7c05-bbc4-4dde-bd2c-c3e85b46bbeb';
     $display->content['new-407b7c05-bbc4-4dde-bd2c-c3e85b46bbeb'] = $pane;
     $display->panels['center'][1] = 'new-407b7c05-bbc4-4dde-bd2c-c3e85b46bbeb';
-  $display->hide_title = PANELS_TITLE_NONE;
+  $display->hide_title = PANELS_TITLE_FIXED;
   $display->title_pane = 'new-0c8d58fe-68d1-436a-b7f7-b75c6552e08a';
   $handler->conf['display'] = $display;
   $page->default_handlers[$handler->name] = $handler;
@@ -4030,8 +4044,22 @@ function hwc_partner_default_page_manager_pages() {
     'body_classes_to_add' => '',
     'css_id' => '',
     'css' => '',
-    'contexts' => array(),
+    'contexts' => array(
+      0 => array(
+        'identifier' => 'Node',
+        'keyword' => 'node',
+        'name' => 'entity:node',
+        'entity_id' => '146',
+        'id' => 1,
+      ),
+    ),
     'relationships' => array(),
+    'panels_breadcrumbs_state' => 1,
+    'panels_breadcrumbs_titles' => 'Campaign partners
+%node:title',
+    'panels_breadcrumbs_paths' => '<none>
+<none>',
+    'panels_breadcrumbs_home' => 1,
   );
   $display = new panels_display();
   $display->layout = 'flexible';
@@ -4043,7 +4071,7 @@ function hwc_partner_default_page_manager_pages() {
     ),
   );
   $display->cache = array();
-  $display->title = '';
+  $display->title = 'Campaign media partners';
   $display->uuid = 'da34706d-0794-448b-91af-d2a5aa21fbc9';
   $display->content = array();
   $display->panels = array();
@@ -4114,7 +4142,7 @@ function hwc_partner_default_page_manager_pages() {
     $pane->uuid = '016804e1-e5d1-47a6-b457-29c018a96f26';
     $display->content['new-016804e1-e5d1-47a6-b457-29c018a96f26'] = $pane;
     $display->panels['center'][1] = 'new-016804e1-e5d1-47a6-b457-29c018a96f26';
-  $display->hide_title = PANELS_TITLE_NONE;
+  $display->hide_title = PANELS_TITLE_FIXED;
   $display->title_pane = 'new-298c132d-2b95-4097-9630-de0ec0f29a56';
   $handler->conf['display'] = $display;
   $page->default_handlers[$handler->name] = $handler;
@@ -4476,8 +4504,22 @@ function hwc_partner_default_page_manager_pages() {
     'body_classes_to_add' => '',
     'css_id' => '',
     'css' => '',
-    'contexts' => array(),
+    'contexts' => array(
+      0 => array(
+        'identifier' => 'Node',
+        'keyword' => 'node',
+        'name' => 'entity:node',
+        'entity_id' => '145',
+        'id' => 1,
+      ),
+    ),
     'relationships' => array(),
+    'panels_breadcrumbs_state' => 1,
+    'panels_breadcrumbs_titles' => 'Campaign partners
+%node:title',
+    'panels_breadcrumbs_paths' => '<none>
+<none>',
+    'panels_breadcrumbs_home' => 1,
   );
   $display = new panels_display();
   $display->layout = 'flexible';
@@ -4489,7 +4531,7 @@ function hwc_partner_default_page_manager_pages() {
     ),
   );
   $display->cache = array();
-  $display->title = '';
+  $display->title = 'Official campaign partners';
   $display->uuid = '95b72608-23a5-4cbb-9515-c9630ab46b6d';
   $display->content = array();
   $display->panels = array();
@@ -4563,7 +4605,7 @@ function hwc_partner_default_page_manager_pages() {
     $pane->uuid = 'e74c6e69-67c7-41d8-8206-046d8e5dda78';
     $display->content['new-e74c6e69-67c7-41d8-8206-046d8e5dda78'] = $pane;
     $display->panels['center'][1] = 'new-e74c6e69-67c7-41d8-8206-046d8e5dda78';
-  $display->hide_title = PANELS_TITLE_NONE;
+  $display->hide_title = PANELS_TITLE_FIXED;
   $display->title_pane = 'new-de95302f-4ecf-4b9a-a105-e3a74864b930';
   $handler->conf['display'] = $display;
   $page->default_handlers[$handler->name] = $handler;
