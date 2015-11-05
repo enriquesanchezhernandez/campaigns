@@ -1187,7 +1187,7 @@ function osha_events_field_default_field_instances() {
         'weight' => 0,
       ),
       'default' => array(
-        'label' => 'hidden',
+        'label' => 'above',
         'module' => 'entityreference',
         'settings' => array(
           'field_formatter_class' => '',
@@ -1242,7 +1242,7 @@ function osha_events_field_default_field_instances() {
     ),
     'entity_type' => 'node',
     'field_name' => 'field_gallery',
-    'label' => 'Gallery',
+    'label' => 'Photo gallery',
     'required' => 0,
     'settings' => array(
       'entity_translation_sync' => FALSE,
@@ -2385,13 +2385,13 @@ function osha_events_field_default_field_instances() {
   t('Contact Phone');
   t('Country');
   t('Description');
-  t('Gallery');
   t('Image');
   t('Location');
   t('Name');
   t('Name of the speaker');
   t('Organiser');
   t('Partner ID');
+  t('Photo gallery');
   t('Related documents');
   t('Schedule');
   t('Speakers');
