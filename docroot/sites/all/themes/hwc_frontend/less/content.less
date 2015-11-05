@@ -112,7 +112,7 @@ ul.tabs--primary.nav.nav-tabs{
 			font-weight: 100;
 			font-style: italic;
 			margin-top: 0px;
-			text-align: center;
+			/* text-align: center; */
 			a:empty {
 				display: none;
 			}
@@ -164,6 +164,9 @@ ul.tabs--primary.nav.nav-tabs{
 		font-size: @size6;
 		&:last-child {
 			margin-bottom: 10px;
+		}
+		strong{
+			color: @text-color-3;
 		}
 	}
 	.checkbox{
@@ -806,7 +809,7 @@ ul.tabs--primary.nav.nav-tabs{
 				color: @color3;
 				font-style: normal;
 				font-weight: bold;
-				text-align: center;
+				/* text-align: center; */
 				margin-bottom: 1em;
 			}
 			.field-name-field-aditional-resources{
@@ -999,7 +1002,7 @@ ul.tabs--primary.nav.nav-tabs{
 	}
 	
 	/* home news */
-	#block-views-news-oshnews-latest, .panels-flexible-column-new-1{
+	#block-views-news-oshnews-latest, .panels-flexible-column-new-1, .panels-flexible-column-first{
 		h2{
 			margin: 20px 0;
 			padding-top: 70px;
@@ -3366,6 +3369,22 @@ article{
 			}
 		}
 	}
+	button, a.btn-become-a-campaign-partner{
+		background-color: @color2;
+		outline: none;
+		border: none;
+		color: @color1;
+		padding: 5px 40px;
+		font-weight: bold;
+		margin-bottom: 10px;
+		&:before{
+			content: "> ";
+		}
+	}
+	.boton-become p{
+		margin-top: 1em;
+	}
+}
 	.see-also{
 		margin-bottom: 2em;
 		.see-also-title{
@@ -3424,22 +3443,6 @@ article{
 			}
 		}
 	}
-	button, a.btn-become-a-campaign-partner{
-		background-color: @color2;
-		outline: none;
-		border: none;
-		color: @color1;
-		padding: 5px 40px;
-		font-weight: bold;
-		margin-bottom: 10px;
-		&:before{
-			content: "> ";
-		}
-	}
-	.boton-become p{
-		margin-top: 1em;
-	}
-}
 /*End become a media partner*/
 
 /*Employers plantilla*/
@@ -4123,6 +4126,24 @@ article{
 		}
 		.date-no-float{
 			width: 100% !important;
+			.form-type-date-popup{
+				width: 100%;
+				> div{
+					width: 100%;
+					> div[class*="-date"]{
+						max-width: 100% !important;
+						input{
+							width: auto;
+						}
+					}
+					> div[class*="-time"]{
+						margin-top: 3em;
+						input{
+							width: auto;
+						}
+					}
+				}
+			}
 		}
 		h2.node-edit-form-heading{
 			display: inline-block;
@@ -4557,7 +4578,7 @@ article{
 		}
 		.pane-node:last-child{
 			h2{
-				text-align: center;
+				/* text-align: center; */
 				font-weight: bold;
 				font-style: normal;
 				&:before{
@@ -4721,7 +4742,7 @@ article{
 		border-bottom: none;
 	}
 	h2 {
-		text-align: center;
+		/* text-align: center; */
 	}
 	.pane-node-field-cover-image{
 		margin-left: -15px;
