@@ -80,6 +80,14 @@ function hwc_admin_reports_views_default_views() {
       'empty_column' => 0,
     ),
   );
+  /* Header: Global: Text area */
+  $handler->display->display_options['header']['area']['id'] = 'area';
+  $handler->display->display_options['header']['area']['table'] = 'views';
+  $handler->display->display_options['header']['area']['field'] = 'area';
+  $handler->display->display_options['header']['area']['content'] = '<ul>
+<li>To filter the data imported from NCW, use "Author user" filter: Anonymous</li>
+</ul>';
+  $handler->display->display_options['header']['area']['format'] = 'full_html';
   /* Header: Global: Result summary */
   $handler->display->display_options['header']['result']['id'] = 'result';
   $handler->display->display_options['header']['result']['table'] = 'views';
@@ -403,6 +411,7 @@ function hwc_admin_reports_views_default_views() {
   $handler->display->display_options['filters']['uid']['exposed'] = TRUE;
   $handler->display->display_options['filters']['uid']['expose']['operator_id'] = 'uid_op';
   $handler->display->display_options['filters']['uid']['expose']['label'] = 'Author user';
+  $handler->display->display_options['filters']['uid']['expose']['use_operator'] = TRUE;
   $handler->display->display_options['filters']['uid']['expose']['operator'] = 'uid_op';
   $handler->display->display_options['filters']['uid']['expose']['identifier'] = 'uid';
   $handler->display->display_options['filters']['uid']['expose']['remember_roles'] = array(
@@ -573,6 +582,7 @@ function hwc_admin_reports_views_default_views() {
   $handler->display->display_options['filters']['uid']['exposed'] = TRUE;
   $handler->display->display_options['filters']['uid']['expose']['operator_id'] = 'uid_op';
   $handler->display->display_options['filters']['uid']['expose']['label'] = 'Author user';
+  $handler->display->display_options['filters']['uid']['expose']['use_operator'] = TRUE;
   $handler->display->display_options['filters']['uid']['expose']['operator'] = 'uid_op';
   $handler->display->display_options['filters']['uid']['expose']['identifier'] = 'uid';
   $handler->display->display_options['filters']['uid']['expose']['remember_roles'] = array(
@@ -1302,6 +1312,9 @@ function hwc_admin_reports_views_default_views() {
     t('‹ previous'),
     t('next ›'),
     t('last »'),
+    t('<ul>
+<li>To filter the data imported from NCW, use "Author user" filter: Anonymous</li>
+</ul>'),
     t('Displaying @start - @end of @total'),
     t('author'),
     t('Title'),
