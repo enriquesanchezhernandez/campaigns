@@ -404,6 +404,7 @@ $options['init-modules'] = array(
   'path_breadcrumbs',
   'path_breadcrumbs_ui',
   'path_breadcrumbs_i18n',
+  'panels_breadcrumbs',
 
   'jquery_update',
   'responsive_menus',
