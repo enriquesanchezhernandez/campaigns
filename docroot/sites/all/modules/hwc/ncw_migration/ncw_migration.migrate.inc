@@ -310,9 +310,7 @@ abstract class AbstractNCWNodeMigration extends Migration {
    * Implements Migration::prepare()
    */
   public function prepare($entity, stdClass $row) {
-    if(!empty($row->workbench_moderation)) {
-      $entity->workbench_moderation_state_new = $row->workbench_moderation['current']['state'];
-    }
+    $entity->workbench_moderation_state_new = OSHA_WORKFLOW_STATE_PUBLISHED;
   }
 
   /**
