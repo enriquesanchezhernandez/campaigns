@@ -1023,16 +1023,18 @@ header.navbar-default{
 	}
 	.node-events, .node-events.page-past-event{
 		.field-name-field-speaker{
-			> .field-items > .field-item{
-				width: 100%;
-				margin-bottom: 0;
-				.field-name-field-image{
+			> .field-items{
+				> .field-item{
 					width: 100%;
-					height:auto;
-					margin-bottom: 0em;
-				}
-				.field-name-title-field{
-					float: left;
+					margin-bottom: 0;
+					.field-name-field-image{
+						width: 100%;
+						height:auto;
+						margin-bottom: 0em;
+					}
+					.field-name-title-field{
+						float: left;
+					}
 				}
 			}
 			img{
@@ -1079,6 +1081,14 @@ header.navbar-default{
 		h2.node-edit-form-heading{
 			margin-left: @margin-movil;
 			margin-right: @margin-movil;
+		}	
+		.group-footer{
+			padding-left: @margin-movil;
+			padding-right: @margin-movil;
+			.field-name-field-organizer{
+				margin-left: 0px;
+				margin-right: 0px;
+			}
 		}
 	}
 	.node-type-events{
@@ -1089,12 +1099,15 @@ header.navbar-default{
 	
 	//Gallery
 	.node-events .node-hwc-gallery{
-		.field-item{
-			background-color: @bg-default-color;
-		}
-		.gallery-thumbs{
-			.wrapper ul li, a{
-				display: none;
+		.galleryformatter{
+			height: 300px;
+			.field-item{
+				background-color: @bg-default-color;
+			}
+			.gallery-thumbs{
+				.wrapper ul li, a{
+					display: none;
+				}
 			}
 		}
 	}
