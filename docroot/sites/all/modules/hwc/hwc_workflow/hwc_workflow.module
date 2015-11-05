@@ -429,7 +429,7 @@ function _hwc_workflow_partner_node_form_alter(&$form, &$form_state) {
     $form['actions']['submit']['#access'] = FALSE;
     $form['actions']['save_preview'] = array(
       '#type' => 'submit',
-      '#value' => t('Save this !type item as draft', array('!type' => $form['type']['#value'])),
+      '#value' => t('Save and preview this !type item', array('!type' => $form['type']['#value'])),
       '#submit' => array('hwc_workflow_node_form_submit_preview'),
     );
     $form['actions']['send_for_approval'] = array(
