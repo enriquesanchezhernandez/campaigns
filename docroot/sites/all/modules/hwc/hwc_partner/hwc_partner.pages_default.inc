@@ -3936,8 +3936,22 @@ function hwc_partner_default_page_manager_pages() {
     'body_classes_to_add' => '',
     'css_id' => '',
     'css' => '',
-    'contexts' => array(),
+    'contexts' => array(
+      0 => array(
+        'identifier' => 'Node',
+        'keyword' => 'node',
+        'name' => 'entity:node',
+        'entity_id' => '144',
+        'id' => 1,
+      ),
+    ),
     'relationships' => array(),
+    'panels_breadcrumbs_state' => 1,
+    'panels_breadcrumbs_titles' => 'Campaign partners
+%node:title',
+    'panels_breadcrumbs_paths' => '<none>
+<none>',
+    'panels_breadcrumbs_home' => 1,
   );
   $display = new panels_display();
   $display->layout = 'flexible';
@@ -4060,8 +4074,22 @@ function hwc_partner_default_page_manager_pages() {
     'body_classes_to_add' => '',
     'css_id' => '',
     'css' => '',
-    'contexts' => array(),
+    'contexts' => array(
+      0 => array(
+        'identifier' => 'Node',
+        'keyword' => 'node',
+        'name' => 'entity:node',
+        'entity_id' => '146',
+        'id' => 1,
+      ),
+    ),
     'relationships' => array(),
+    'panels_breadcrumbs_state' => 1,
+    'panels_breadcrumbs_titles' => 'Campaign partners
+%node:title',
+    'panels_breadcrumbs_paths' => '<none>
+<none>',
+    'panels_breadcrumbs_home' => 1,
   );
   $display = new panels_display();
   $display->layout = 'flexible';
@@ -4506,8 +4534,22 @@ function hwc_partner_default_page_manager_pages() {
     'body_classes_to_add' => '',
     'css_id' => '',
     'css' => '',
-    'contexts' => array(),
+    'contexts' => array(
+      0 => array(
+        'identifier' => 'Node',
+        'keyword' => 'node',
+        'name' => 'entity:node',
+        'entity_id' => '145',
+        'id' => 1,
+      ),
+    ),
     'relationships' => array(),
+    'panels_breadcrumbs_state' => 1,
+    'panels_breadcrumbs_titles' => 'Campaign partners
+%node:title',
+    'panels_breadcrumbs_paths' => '<none>
+<none>',
+    'panels_breadcrumbs_home' => 1,
   );
   $display = new panels_display();
   $display->layout = 'flexible';
