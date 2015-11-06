@@ -397,12 +397,14 @@ function hwc_workflow_js_alter(&$javascript) {
 }
 
 function hwc_workflow_node_form_after_build_hide_hints($form, &$form_state) {
-  $key = array_pop(element_children($form['body']));
+  $b = element_children($form['body']);
+  $key = array_pop($b);
   if ($key && !empty($form['body'][$key][0]['format'])) {
     $form['body'][$key][0]['format']['#attributes']['class'][] = 'hidden';
   }
   if (!empty($form['field_summary'])) {
-    $key = array_pop(element_children($form['field_summary']));
+    $sum = element_children($form['field_summary']);
+    $key = array_pop($sum);
     if ($key && !empty($form['field_summary'][$key][0]['format'])) {
       $form['field_summary'][$key][0]['format']['#attributes']['class'][] = 'hidden';
     }
