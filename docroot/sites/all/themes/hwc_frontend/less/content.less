@@ -1699,6 +1699,7 @@ ul.tabs--primary.nav.nav-tabs{
 		display: inline-block;
 		.field-name-title-field{
 			margin-top: 3em;
+			margin-left: 210px;
 			h5{
 				color: @h5-default-color;
 				font-size: @h5-default-size;
@@ -1708,6 +1709,9 @@ ul.tabs--primary.nav.nav-tabs{
 					padding-right: 5px;
 				}
 			}
+		}
+		.field-type-text-with-summary{
+			margin-left: 210px;
 		}
 		.field-name-field-cover-image{
 			float: left;
@@ -1729,6 +1733,7 @@ ul.tabs--primary.nav.nav-tabs{
 			list-style: none;
 			margin-top: 1em;
 			padding-left: 0;
+			margin-left: 210px;
 			li{
 				font-weight: bold;
 				a{
@@ -2876,6 +2881,27 @@ article{
 			}
 		}
 	}
+	.field-name-field-schedule{
+		clear: both;
+		border-top: 1px dotted @border-default-color;
+		padding-top: 2em;
+		padding-bottom: 1em;
+		.field-label{
+			color: @text-color-3;;
+			margin-bottom: 2em;
+		}
+		.views-row{
+			background-color: @bg-color-3;
+			margin-bottom: 1em;
+			padding: 1em;
+			.field-name-field-talking-title{
+				font-weight: bold;
+			}
+			.field-type-datetime{
+				margin-top: 0em;
+			}
+		}
+	}
 	.field-collection-container{
 		clear: both;
 		margin-bottom: 2em;
@@ -3331,8 +3357,9 @@ article{
 			    border-radius: 50%;
 			    overflow: hidden;
 			    img{
-			    	width: 100%;
+			    	width: 100% !important;
 			    	/* height: 100%; */
+					height: auto !important;
 			    	background-image: url("../images/content/imagen-prueba.jpg");
 			    	background-position: 50%;
 			    }
@@ -3756,11 +3783,12 @@ article{
 	}
 	.introduction{
 		margin: 2.5em 0;
+		margin: 0em 0 1.5em 0;
 		font-weight: bold;
 		font-size: @size7;
 	}
 	.texts{
-		margin-bottom: 1em;
+		/* margin-bottom: 1em; */
 		.text-block{
 			padding:0px 20px;
 			p{
@@ -3784,11 +3812,11 @@ article{
 			font-weight: bold;
 			color: @color3;
 			font-size: @size1;
-			&:before{
+		/*	&:before{
 				content: url("../images/content/recommended-for-you.png");
 				display:block;
 				padding-bottom: 10px;
-			}
+			} */
 		}
 		.images-section{
 			.image-block{
@@ -4992,9 +5020,20 @@ article{
 				font-weight: bold;
 				margin-right: 1em;
 			}
+			span{
+				width: 265px;
+				float: left;
+			}
+			span.captcha{
+				width: auto;
+				float: none;
+			}
 			hr{
 				color: white;
 				border-color: white;
+			}
+			.form-item-email {
+				margin-top: 1em;
 			}
 			.form-item-subscribe-to-OSHMail-newsletter{
 				display: inline;
@@ -5009,6 +5048,9 @@ article{
 						padding-right: 5px;
 					}
 				}
+			}
+			button#edit-submit--3{
+				margin-top: -2em;
 			}
 			button#edit-submit--4{
 				margin-top: -3em;
@@ -5065,7 +5107,7 @@ article{
 						margin-right: 10px;
 						min-width: 245px;
 					}
-					button#edit-unsubscribe{
+					button#edit-unsubscribe, button#edit-unsubscribe--2{
 						margin-top: 0em;
 					}
 				}
@@ -5761,8 +5803,8 @@ fieldset.captcha {
 		display: inline-flex;
 	}
 }
-.alert.alert-block.alert-danger { //to do wendsday, solo para spring1
-    display: none;
+.alert.alert-block.alert-danger {
+//to do wendsday, solo para sprint1 display: none;
 }
 
 /* ----------END ENDIKA--------- */
