@@ -650,7 +650,7 @@ function hwc_news_share_widget($node, $options = array()) {
   global $language;
   /** @var stdClass $wrapper */
   $type = 'other';
-  if (!empty($options['page'] && $options['page'] === TRUE)) {
+  if (!empty($options['page']) && $options['page'] === TRUE) {
     $url = url(current_path(), array('absolute' => TRUE));
     $title = drupal_get_title();
   }
@@ -848,7 +848,7 @@ function hwc_user_activate($mail) {
  * due to HTTP server redirects.
  */
 function osha_pathologic_alter(&$url_params, $parts, $settings) {
-  if (preg_match('/^forms\/partner\//m', $url_params['path'])) {
+  if (preg_match('/^\/partner\/forms\//m', $url_params['path'])) {
     $url_params['options']['use_original'] = TRUE;
   }
 }
