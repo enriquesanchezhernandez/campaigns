@@ -643,7 +643,7 @@ function hwc_news_share_widget($node, $options = array()) {
   global $language;
   /** @var stdClass $wrapper */
   $type = 'other';
-  if ($options['page'] === TRUE) {
+  if (!empty($options['page'] && $options['page'] === TRUE)) {
     $url = url(current_path(), array('absolute' => TRUE));
     $title = drupal_get_title();
   }
