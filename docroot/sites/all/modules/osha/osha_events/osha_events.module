@@ -39,10 +39,12 @@ function osha_events_field_formatter_view($entity_type, $entity, $field, $instan
   $element = array();
   switch ($display['type']) {
     case 'event_schedule':
-      $element[0] = array(
-        '#type' => 'markup',
-        '#markup' => views_embed_view('event_schedule'),
-      );
+      if (!empty($entity->{$field['field_name']})) {
+        $element[0] = array(
+          '#type' => 'markup',
+          '#markup' => views_embed_view('event_schedule'),
+        );
+      }
       break;
   }
   return $element;
