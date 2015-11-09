@@ -97,7 +97,7 @@ function hwc_partner_default_page_manager_handlers() {
         ),
         'parent' => 'main',
         'class' => 'profile-ceo-container',
-        'hide_empty' => 0,
+        'hide_empty' => 1,
       ),
       'center' => array(
         'type' => 'region',
@@ -106,7 +106,7 @@ function hwc_partner_default_page_manager_handlers() {
         'width_type' => '%',
         'parent' => 'main-row',
         'class' => 'container',
-        'hide_empty' => 0,
+        'hide_empty' => 1,
       ),
       1 => array(
         'type' => 'row',
@@ -1654,7 +1654,7 @@ function hwc_partner_default_page_manager_handlers() {
         ),
         'parent' => 'main',
         'class' => 'container profile-title-type-container',
-        'hide_empty' => 0,
+        'hide_empty' => 1,
       ),
       'center_' => array(
         'type' => 'region',
@@ -1663,7 +1663,7 @@ function hwc_partner_default_page_manager_handlers() {
         'width_type' => '%',
         'parent' => '4',
         'class' => 'col-md-12',
-        'hide_empty' => 0,
+        'hide_empty' => 1,
       ),
       5 => array(
         'type' => 'row',
@@ -2599,7 +2599,7 @@ function hwc_partner_default_page_manager_handlers() {
         ),
         'parent' => 'main',
         'class' => 'profile-ceo-container',
-        'hide_empty' => 0,
+        'hide_empty' => 1,
       ),
       'center' => array(
         'type' => 'region',
@@ -2608,7 +2608,7 @@ function hwc_partner_default_page_manager_handlers() {
         'width_type' => '%',
         'parent' => 'main-row',
         'class' => 'container',
-        'hide_empty' => 0,
+        'hide_empty' => 1,
       ),
       1 => array(
         'type' => 'row',
