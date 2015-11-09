@@ -63,6 +63,35 @@ header.navbar-default .navbar-header img:nth-child(3){
 	display:none;
 }
 
+#homepage_slider .views-field-title span{
+	width: 100%!important;
+    float: left!important;
+    padding-left: 25px;
+    text-align: left!important;
+}
+
+#homepage_slider #num_slides > div div a img{
+	display:none;
+}
+
+#homepage_slider #num_slides > div .views-field.views-field-body div{
+	width:100%!important;
+	text-align: left!important;
+	padding-left: 50px!important;
+}
+
+#homepage_slider {
+	height:130px!important;
+}
+
+#homepage_slider #num_slides > div{
+	height:130px!important;
+}
+
+#homepage_slider #num_slides > div .views-field.views-field-body{
+	top:6em!important;
+}
+
 #block-views-news-oshnews-latest, .panels-flexible-column-first, .panels-flexible-column-new-1, .panels-flexible-column-new-main, .tools-and-resources-block{
 	text-align: left!important;
 }
