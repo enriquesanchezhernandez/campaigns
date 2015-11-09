@@ -32,6 +32,7 @@ function osha_views_default_views() {
     8 => '8',
     14 => '14',
     11 => '11',
+    13 => '13',
     4 => '4',
   );
   $handler->display->display_options['cache']['type'] = 'none';
