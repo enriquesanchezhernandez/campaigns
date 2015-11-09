@@ -5811,7 +5811,10 @@ foreach( $contexts[\'argument_entity_id:node_1\']->data->field_users[\'und\'] as
     $pane->style = array(
       'settings' => NULL,
     );
-    $pane->css = array();
+    $pane->css = array(
+      'css_id' => 'contact-us',
+      'css_class' => '',
+    );
     $pane->extras = array();
     $pane->position = 6;
     $pane->locks = array();
