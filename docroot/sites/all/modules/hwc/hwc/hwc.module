@@ -941,3 +941,18 @@ function theme_hwc_print_friendly_block() {
   );
   return render($content);
 }
+
+
+/**
+ * Implements hook_form_alter().
+ */
+function hwc_form_search_block_form_alter(&$form) {
+  // Overwrite the search page default url.
+  // Unset the form elements - the search view needs just the search param.
+  $form['#action'] = url('search');
+  $form['#method'] = 'get';
+  unset($form['form_token']);
+  unset($form['#submit']);
+  unset($form['form_build_id']);
+  unset($form['form_id']);
+}
