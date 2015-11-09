@@ -283,6 +283,19 @@ function hwc_partner_node_view($node, $view_mode, $langcode) {
   }
 }
 
+
+/**
+ * Implements hook_pathologic_alter().
+ *
+ * Some links such as FOP, are starting with fop/ and do need to be "fixed"
+ * due to HTTP server redirects.
+ */
+function hwc_partner_pathologic_alter(&$url_params, $parts, $settings) {
+  if (preg_match('/^\/partner\/forms\//m', $url_params['path'])) {
+    $url_params['options']['use_original'] = TRUE;
+  }
+}
+
 /**
  * Implements hook_node_delete().
  */

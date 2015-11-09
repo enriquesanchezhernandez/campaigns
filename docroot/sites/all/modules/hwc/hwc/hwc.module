@@ -841,18 +841,6 @@ function hwc_user_activate($mail) {
   }
 }
 
-/**
- * Implements hook_pathologic_alter().
- *
- * Some links such as FOP, are starting with fop/ and do need to be "fixed"
- * due to HTTP server redirects.
- */
-function osha_pathologic_alter(&$url_params, $parts, $settings) {
-  if (preg_match('/^\/partner\/forms\//m', $url_params['path'])) {
-    $url_params['options']['use_original'] = TRUE;
-  }
-}
-
 
 /**
  * Retrieve configuration parameter for the form applications.
