@@ -3008,7 +3008,7 @@ function hwc_partner_default_page_manager_handlers() {
     $pane->access = array();
     $pane->configuration = array(
       'label' => 'hidden',
-      'formatter' => 'title_linked',
+      'formatter' => 'i18n_taxonomy_term_reference_plain',
       'delta_limit' => 0,
       'delta_offset' => '0',
       'delta_reversed' => FALSE,
@@ -3045,7 +3045,7 @@ function hwc_partner_default_page_manager_handlers() {
     $pane->access = array();
     $pane->configuration = array(
       'label' => 'hidden',
-      'formatter' => 'title_linked',
+      'formatter' => 'i18n_taxonomy_term_reference_plain',
       'delta_limit' => 0,
       'delta_offset' => '0',
       'delta_reversed' => FALSE,

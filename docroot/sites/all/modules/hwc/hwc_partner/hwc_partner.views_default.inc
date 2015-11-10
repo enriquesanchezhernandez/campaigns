@@ -456,13 +456,17 @@ function hwc_partner_views_default_views() {
   $handler->display->display_options['style_options']['tab_title_field'] = 'field_orgtype';
   $handler->display->display_options['style_options']['row_class'] = 'col-md-2 col-sm-3 col-xs-6';
   $handler->display->display_options['row_plugin'] = 'fields';
-  /* Field: Content: Organisation type */
+  /* Field: Content: Organisation Type */
   $handler->display->display_options['fields']['field_orgtype']['id'] = 'field_orgtype';
   $handler->display->display_options['fields']['field_orgtype']['table'] = 'field_data_field_orgtype';
   $handler->display->display_options['fields']['field_orgtype']['field'] = 'field_orgtype';
   $handler->display->display_options['fields']['field_orgtype']['label'] = '';
   $handler->display->display_options['fields']['field_orgtype']['exclude'] = TRUE;
   $handler->display->display_options['fields']['field_orgtype']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_orgtype']['type'] = 'i18n_taxonomy_term_reference_plain';
+  $handler->display->display_options['fields']['field_orgtype']['settings'] = array(
+    'field_formatter_class' => '',
+  );
   /* Field: Content: Title */
   $handler->display->display_options['fields']['title_field']['id'] = 'title_field';
   $handler->display->display_options['fields']['title_field']['table'] = 'field_data_title_field';
@@ -526,6 +530,21 @@ function hwc_partner_views_default_views() {
 
   /* Display: Block */
   $handler = $view->new_display('block', 'Block', 'block');
+  $handler->display->display_options['defaults']['relationships'] = FALSE;
+  /* Relationship: Content: Organisation Type (field_orgtype) */
+  $handler->display->display_options['relationships']['field_orgtype_tid']['id'] = 'field_orgtype_tid';
+  $handler->display->display_options['relationships']['field_orgtype_tid']['table'] = 'field_data_field_orgtype';
+  $handler->display->display_options['relationships']['field_orgtype_tid']['field'] = 'field_orgtype_tid';
+  $handler->display->display_options['defaults']['sorts'] = FALSE;
+  /* Sort criterion: Taxonomy term: Weight */
+  $handler->display->display_options['sorts']['weight']['id'] = 'weight';
+  $handler->display->display_options['sorts']['weight']['table'] = 'taxonomy_term_data';
+  $handler->display->display_options['sorts']['weight']['field'] = 'weight';
+  $handler->display->display_options['sorts']['weight']['relationship'] = 'field_orgtype_tid';
+  /* Sort criterion: Content: Title */
+  $handler->display->display_options['sorts']['title']['id'] = 'title';
+  $handler->display->display_options['sorts']['title']['table'] = 'node';
+  $handler->display->display_options['sorts']['title']['field'] = 'title';
 
   /* Display: Block */
   $handler = $view->new_display('block', 'Block', 'fop');
@@ -682,6 +701,7 @@ function hwc_partner_views_default_views() {
     t('<img src="[field_logo-fid]" title="[title_field]" alt="[title_field]" />'),
     t('[title_field]'),
     t('Block'),
+    t('term from field_orgtype'),
     t('FOP list'),
     t('MOP list'),
   );
