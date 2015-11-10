@@ -86,6 +86,36 @@ class PartnerMigration extends HwcCrmMigration {
         return FALSE;
       }
     }
+    if (!empty($row->field_orgtype)) {
+      $tid = _hwc_crm_migration_get_term_by_code('organisation_type', $row->field_orgtype);
+      if (!empty($tid)) {
+        $term = taxonomy_term_load($tid);
+        $row->field_orgtype = $term->name;
+      }
+      else {
+        $this->currentMigration()->displayMessage(
+          strtr('Could not find organisation_type term with code @code for partner \'@partner\'',
+            array('@code' => $row->field_orgtype, '@partner' => $row->title)
+          ),
+          'warning'
+        );
+      }
+    }
+    if (!empty($row->field_bussines_sector)) {
+      $tid = _hwc_crm_migration_get_term_by_code('bussines_sector', $row->field_bussines_sector);
+      if (!empty($tid)) {
+        $term = taxonomy_term_load($tid);
+        $row->field_bussines_sector = $term->name;
+      }
+      else {
+        $this->currentMigration()->displayMessage(
+          strtr('Could not find bussines_sector term with code @code for partner \'@partner\'',
+            array('@code' => $row->field_bussines_sector, '@partner' => $row->title)
+          ),
+          'warning'
+        );
+      }
+    }
     return TRUE;
   }
 }
