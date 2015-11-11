@@ -33,59 +33,58 @@
   </ul>
 </div>
 <script>
-  window.fbAsyncInit = function() {
-    FB.init({
-      appId      : Drupal.settings.hwc.fb_app_key,
-      xfbml      : true,
-      version    : 'v2.3'
-    });
-  };
-
-  (function(d, s, id){
-    var js, fjs = d.getElementsByTagName(s)[0];
-    if (d.getElementById(id)) {return;}
-    js = d.createElement(s); js.id = id;
-    js.src = "//connect.facebook.net/en_US/sdk.js";
-    fjs.parentNode.insertBefore(js, fjs);
-  }(document, 'script', 'facebook-jssdk'));
-
   (function($) {
-    $('#facebook-share-button-<?php print $node->nid; ?> a').click(function(e) {
-        e.preventDefault();
-        FB.ui({
-          method: 'share',
-          href: this.href
-        }, function (response) {
+    $(window).ready(function(){
+      window.fbAsyncInit = function() {
+        FB.init({
+          appId      : Drupal.settings.hwc.fb_app_key,
+          xfbml      : true,
+          version    : 'v2.3'
         });
-      }
-    );
-
-    $('#twitter-share-button-<?php print $node->nid; ?> a').click(function(event) {
-      var width  = 575,
-        height = 400,
-        left   = ($(window).width()  - width)  / 2,
-        top    = ($(window).height() - height) / 2,
-        opts   = 'status=1' +
-          ',width='  + width  +
-          ',height=' + height +
-          ',top='    + top    +
-          ',left='   + left;
-      window.open(this.href, 'twitter', opts);
-      return false;
-    });
-
-    $('#linked-in-<?php print $node->nid; ?> a').click(function() {
-      var width  = 575,
-        height = 400,
-        left   = ($(window).width()  - width)  / 2,
-        top    = ($(window).height() - height) / 2,
-        opts   = 'status=1' +
-          ',width='  + width  +
-          ',height=' + height +
-          ',top='    + top    +
-          ',left='   + left;
-      window.open(this.href, 'Linked In', opts);
-      return false;
+      };
+      (function(d, s, id){
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) {return;}
+        js = d.createElement(s); js.id = id;
+        js.src = "//connect.facebook.net/en_US/sdk.js";
+        fjs.parentNode.insertBefore(js, fjs);
+      }(document, 'script', 'facebook-jssdk'));
+        $('#facebook-share-button-<?php print $node->nid; ?> a').click(function(e) {
+            e.preventDefault();
+            FB.ui({
+              method: 'share',
+              href: this.href
+            }, function (response) {
+            });
+          }
+        );
+        $('#twitter-share-button-<?php print $node->nid; ?> a').click(function(event) {
+          var width  = 575,
+            height = 400,
+            left   = ($(window).width()  - width)  / 2,
+            top    = ($(window).height() - height) / 2,
+            opts   = 'status=1' +
+              ',width='  + width  +
+              ',height=' + height +
+              ',top='    + top    +
+              ',left='   + left;
+          window.open(this.href, 'twitter', opts);
+          return false;
+        });
+        $('#linked-in-<?php print $node->nid; ?> a').click(function() {
+          var width  = 575,
+            height = 400,
+            left   = ($(window).width()  - width)  / 2,
+            top    = ($(window).height() - height) / 2,
+            opts   = 'status=1' +
+              ',width='  + width  +
+              ',height=' + height +
+              ',top='    + top    +
+              ',left='   + left;
+          window.open(this.href, 'Linked In', opts);
+          return false;
+        });
     });
   })(jQuery);
+
 </script>
