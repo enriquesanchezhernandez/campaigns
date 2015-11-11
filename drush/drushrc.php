@@ -455,6 +455,9 @@ $options['init-modules'] = array(
   'context_layouts',
   'context_entity_field',
 
+  'page_title',
+  'panels_custom_title_tag',
+
   'image_url_formatter',
   'views_data_export',
   'views_data_export_phpexcel',
