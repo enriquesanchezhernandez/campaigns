@@ -8611,7 +8611,6 @@ div[class*='node-'] .more-link {
   margin: 20px 0;
   padding-top: 70px;
   font-style: normal;
-  background: url("../images/content/news.png") no-repeat center top;
 }
 #block-views-news-oshnews-latest a,
 .panels-flexible-column-new-1 a,
@@ -8692,6 +8691,9 @@ div[class*='node-'] .more-link {
   padding-left: 15px;
   padding-right: 15px;
   font-size: 14px;
+}
+.panels-flexible-column-new-1 h2 {
+  background: url("../images/content/news.png") no-repeat center top;
 }
 #block-osha-newsletter-osha-newsletter-subscribe,
 #block-osha-newsletter-osha-newsletter-image {
