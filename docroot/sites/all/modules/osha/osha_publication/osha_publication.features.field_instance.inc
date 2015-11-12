@@ -524,7 +524,7 @@ function osha_publication_field_default_field_instances() {
         'settings' => array(
           'field_formatter_class' => '',
           'image_link' => '',
-          'image_style' => 'thumbnail',
+          'image_style' => 'medium',
         ),
         'type' => 'image',
         'weight' => 0,
