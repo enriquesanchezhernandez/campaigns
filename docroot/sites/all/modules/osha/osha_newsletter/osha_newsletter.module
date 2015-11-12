@@ -579,7 +579,7 @@ function osha_newsletter_block_subscribe_form($form, &$form_state) {
     };
   }
 
-  $form['#prefix'] = '<div id="newsletter-subscription-form-wrapper">';
+  $form['#prefix'] = '<div id="newsletter-subscription-form-wrapper_2">';
   $form['#suffix'] = '</div>';
   $form['email'] = array(
     '#type' => 'textfield',
@@ -587,6 +587,12 @@ function osha_newsletter_block_subscribe_form($form, &$form_state) {
     '#title' => t('You cand sign up below:'),
     '#attributes' => array('placeholder' => t('E-mail address')),
   );
+  if (user_is_anonymous()) {
+    $form['captcha_extra'] = array(
+      '#type' => 'captcha',
+      '#captcha_type' => 'default',
+    );
+  }
   $link_label = t(variable_get('subscribe_block_details_link_label', 'Privacy notice'));
   $link_url = variable_get('subscribe_block_details_link_url', OSHA_PRIVACY_PAGE_URL);
   $form['details_link'] = array(
