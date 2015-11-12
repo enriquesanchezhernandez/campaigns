@@ -1287,7 +1287,21 @@ function hwc_partner_default_page_manager_handlers() {
     $pane->type = 'custom';
     $pane->subtype = 'custom';
     $pane->shown = TRUE;
-    $pane->access = array();
+    $pane->access = array(
+      'plugins' => array(
+        0 => array(
+          'name' => 'php',
+          'settings' => array(
+            'description' => 'has any profile added',
+            'php' => '$data = $contexts[\'argument_entity_id:node_1\']->data;
+return (!empty($data->field_facebook_profile) || !empty($data->field_linkedin_profile) ||
+        !empty($data->field_slideshare_profile) || !empty($data->field_twitter_profile) ||
+        !empty($data->field_youtube_profile));',
+          ),
+          'not' => FALSE,
+        ),
+      ),
+    );
     $pane->configuration = array(
       'admin_title' => 'Social media profiles title',
       'title' => '',
@@ -2339,7 +2353,21 @@ function hwc_partner_default_page_manager_handlers() {
     $pane->type = 'custom';
     $pane->subtype = 'custom';
     $pane->shown = TRUE;
-    $pane->access = array();
+    $pane->access = array(
+      'plugins' => array(
+        0 => array(
+          'name' => 'php',
+          'settings' => array(
+            'description' => 'has any profile added',
+            'php' => '$data = $contexts[\'argument_entity_id:node_1\']->data;
+return (!empty($data->field_facebook_profile) || !empty($data->field_linkedin_profile) ||
+        !empty($data->field_slideshare_profile) || !empty($data->field_twitter_profile) ||
+        !empty($data->field_youtube_profile));',
+          ),
+          'not' => FALSE,
+        ),
+      ),
+    );
     $pane->configuration = array(
       'admin_title' => 'Social media profiles title',
       'title' => '',
@@ -3653,7 +3681,21 @@ function hwc_partner_default_page_manager_handlers() {
     $pane->type = 'custom';
     $pane->subtype = 'custom';
     $pane->shown = TRUE;
-    $pane->access = array();
+    $pane->access = array(
+      'plugins' => array(
+        0 => array(
+          'name' => 'php',
+          'settings' => array(
+            'description' => 'has any profile added',
+            'php' => '$data = $contexts[\'argument_entity_id:node_1\']->data;
+return (!empty($data->field_facebook_profile) || !empty($data->field_linkedin_profile) ||
+        !empty($data->field_slideshare_profile) || !empty($data->field_twitter_profile) ||
+        !empty($data->field_youtube_profile));',
+          ),
+          'not' => FALSE,
+        ),
+      ),
+    );
     $pane->configuration = array(
       'admin_title' => 'Social media profiles title',
       'title' => '',
