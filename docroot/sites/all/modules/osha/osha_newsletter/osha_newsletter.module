@@ -630,10 +630,12 @@ function osha_newsletter_block_subscribe_captcha_form($form, &$form_state) {
     '#size' => 30,
     '#attributes' => array('placeholder' => t('E-mail address')),
   );
-  $form['captcha'] = array(
-    '#type' => 'captcha',
-    '#captcha_type' => 'default',
-  );
+  if (user_is_anonymous()) {
+    $form['captcha'] = array(
+      '#type' => 'captcha',
+      '#captcha_type' => 'default',
+    );
+  }
   $link_label = t(variable_get('subscribe_block_details_link_label', 'Privacy notice'));
   $link_url = variable_get('subscribe_block_details_link_url', OSHA_PRIVACY_PAGE_URL);
   $form['details_link'] = array(
@@ -653,19 +655,13 @@ function osha_newsletter_block_subscribe_captcha_form_validate($form, &$form_sta
     $fs['redirect'] = $referer;
     drupal_redirect_form($fs);
   }
-  if (isset($form_state['values']['email'])) {
-    if (empty($form_state['values']['email']) || !valid_email_address($form_state['values']['email'])) {
-      form_set_error('email', t('The e-mail address is not valid.'));
-      $fs['redirect'] = $referer;
-      drupal_redirect_form($fs);
-    }
-  }
-  if (isset($form_state['values']['email_osh'])) {
-    if (empty($form_state['values']['email_osh']) || !valid_email_address($form_state['values']['email_osh'])) {
+  $email = trim($form_state['values']['email_osh']);
+  if (strlen($email) != 0) {
+    if (!valid_email_address($form_state['values']['email_osh'])) {
       form_set_error('email_osh', t('The e-mail address is not valid.'));
-      $fs['redirect'] = $referer;
-      drupal_redirect_form($fs);
     }
+  } else {
+    form_set_error('email_osh', t('Please enter the e-mail address.'));
   }
 }
 
