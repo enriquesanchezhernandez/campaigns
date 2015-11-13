@@ -134,10 +134,12 @@ function hwc_practical_tool_menu_tools_search_native($form_state) {
     }
   }
   $relevant_for_ids = array();
-  $relevant_for = $form_state['values']['relevant_for'];
-  foreach ($relevant_for as $relf) {
-    if ($relf) {
-      $relevant_for_ids[] = $relf;
+  if ($form_state['submitted'] === TRUE) {
+    $relevant_for = $form_state['values']['relevant_for'];
+    foreach ($relevant_for as $relf) {
+      if ($relf) {
+        $relevant_for_ids[] = $relf;
+      }
     }
   }
 
