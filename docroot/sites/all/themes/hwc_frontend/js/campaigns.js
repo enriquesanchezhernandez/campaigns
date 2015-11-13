@@ -47,6 +47,23 @@ jQuery(document).ready(function() {
 				jQuery(this).next("div").toggle();
 			});
 			
+			//Press Room
+			
+			jQuery(".pane-osha-press-release-osha-press-rel-become-partner h2.pane-title").click(function() {
+				jQuery(this).toggleClass("closeLabel");
+				jQuery(this).next("div").toggle();
+			});
+			
+			jQuery(".pane-press-contacts h2.pane-title").click(function() {
+				jQuery(this).toggleClass("closeLabel");
+				jQuery(this).next("div").toggle();
+			});
+			
+			jQuery(".pane-osha-press-release-osha-press-kit h2.pane-title").click(function() {
+				jQuery(this).toggleClass("closeLabel");
+				jQuery(this).next("div").toggle();
+			});
+			
 		}
 	}	
 

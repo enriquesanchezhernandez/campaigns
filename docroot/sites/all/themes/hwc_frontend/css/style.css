@@ -8436,6 +8436,9 @@ ul.tabs--primary.nav.nav-tabs > li.active > a:focus {
   /* text-align: center; */
   margin-bottom: 1em;
 }
+.node-type-article article .icon.recommended-resources ~ h2 {
+  text-align: center;
+}
 .node-type-article article .field-name-field-aditional-resources {
   border: none;
 }
@@ -10849,6 +10852,7 @@ article .hwc-share-widget ul {
   padding-left: 30px;
   padding-right: 30px;
   text-align: center;
+  background: rgba(255, 255, 255, 0.9);
   /* display: block !important; */
 }
 #cboxWrapper button#cboxPrevious {
