@@ -416,6 +416,10 @@ header{
 				margin-right: @margin-tablet;
 			}
 		}
+		&.event-location-container{
+			margin-left: auto;
+			margin-right: auto;
+		}
 	}
 	h2.node-edit-form-heading{
 		margin-left: @margin-tablet;
@@ -619,6 +623,15 @@ header{
 }
 	.publication-item{
 		clear: both;
+		.field-name-field-cover-image img {
+			margin-right: 35px;
+		}
+		.field-name-title-field, .field-type-text-with-summary, ul{
+			margin-left: 195px;
+		}
+		.field-name-field-cover-image ~ .field-name-title-field, .field-name-field-cover-image ~ .field-type-text-with-summary, .field-name-field-cover-image ~ ul{
+			margin-left: 190px;
+		}
 	}
 .node-type-publication{
 	.pane-node-title-field, .pane-node-field-publication-date, .pane-node-field-publication-type{

@@ -7704,11 +7704,11 @@ ul.tabs--primary.nav.nav-tabs > li.active > a:focus {
 }
 .section-introduction p {
   text-align: center;
-  font-weight: bold;
+  /* font-weight: bold; */
   font-size: 16px;
 }
 .section-introduction p:last-child {
-  margin-bottom: 10px;
+  /* margin-bottom: 10px; */
 }
 .section-introduction p strong {
   color: #749b00;
@@ -9049,6 +9049,7 @@ div[class*='node-'] .more-link {
 #block-system-main #publications_slideshow #num_slides .publication-item .field-name-field-cover-image {
   position: absolute;
   top: 1.8em;
+  width: 5em;
 }
 #block-views-publications-slideshow-slidehow #publications_slideshow #num_slides .publication-item .field-name-field-cover-image img,
 #block-system-main #publications_slideshow #num_slides .publication-item .field-name-field-cover-image img {
@@ -10060,11 +10061,11 @@ article .hwc-share-widget ul {
 }
 .node-type-hwc-gallery .node-hwc-gallery .field-name-body {
   padding-top: 0.5em;
-  margin-bottom: 2em;
 }
 .node-type-hwc-gallery .node-hwc-gallery .field-name-field-images.field-type-image {
   display: inline-table;
   border-bottom: 1px dotted #749b00;
+  margin-top: 2em;
 }
 .node-type-hwc-gallery .node-hwc-gallery .field-name-field-images.field-type-image .field-item {
   margin-bottom: 2em;
@@ -10421,6 +10422,12 @@ article .hwc-share-widget ul {
   padding-top: 0.8em;
   padding-bottom: 1em;
   border-bottom: none;
+}
+#block-system-main .view-events-search .view-empty,
+.view-events-search .view-empty,
+#block-system-main .view-events-search .view-footer,
+.view-events-search .view-footer {
+  margin-top: 1em;
 }
 .node-type-events .above_title h1 {
   margin-bottom: 0;
@@ -11264,7 +11271,7 @@ article .hwc-share-widget ul {
   padding-bottom: 10px;
 }
 .employers-section .e-guide h3 {
-  margin-bottom: 2em;
+  /* margin-bottom: 2em; */
 }
 .employers-section .e-guide h3:before {
   content: url("../images/content/e-guide.png");
@@ -11427,7 +11434,7 @@ article .hwc-share-widget ul {
 .get-involved-section .introduction {
   margin: 2.5em 0;
   margin: 0em 0 1.5em 0;
-  font-weight: bold;
+  /* font-weight: bold; */
   font-size: 18px;
 }
 .get-involved-section .texts {
@@ -14863,6 +14870,10 @@ fieldset.captcha div {
     margin-left: 30px;
     margin-right: 30px;
   }
+  .node-events .group-header > div.event-location-container {
+    margin-left: auto;
+    margin-right: auto;
+  }
   .node-events h2.node-edit-form-heading {
     margin-left: 30px;
     margin-right: 30px;
@@ -15029,6 +15040,19 @@ fieldset.captcha div {
   }
   .publication-item {
     clear: both;
+  }
+  .publication-item .field-name-field-cover-image img {
+    margin-right: 35px;
+  }
+  .publication-item .field-name-title-field,
+  .publication-item .field-type-text-with-summary,
+  .publication-item ul {
+    margin-left: 195px;
+  }
+  .publication-item .field-name-field-cover-image ~ .field-name-title-field,
+  .publication-item .field-name-field-cover-image ~ .field-type-text-with-summary,
+  .publication-item .field-name-field-cover-image ~ ul {
+    margin-left: 190px;
   }
   .node-type-publication .pane-node-title-field,
   .node-type-publication .pane-node-field-publication-date,
@@ -15775,6 +15799,13 @@ fieldset.captcha div {
   header.navbar-default .navbar-collapse nav ul.menu.nav.navbar-nav li ul.dropdown-menu li:before {
     content: "";
     padding: 0;
+  }
+  header.navbar-default .navbar-collapse nav ul.menu.nav.navbar-nav .open .dropdown-menu > .active > a,
+  header.navbar-default .navbar-collapse nav ul.menu.nav.navbar-nav .open .dropdown-menu > .active > a:hover,
+  header.navbar-default .navbar-collapse nav ul.menu.nav.navbar-nav .open .dropdown-menu > .active > a:focus,
+  header.navbar-default .navbar-collapse nav ul.menu.nav.navbar-nav .open .dropdown-menu > li > a:hover,
+  header.navbar-default .navbar-collapse nav ul.menu.nav.navbar-nav .open .dropdown-menu > li > a:focus {
+    color: white;
   }
   .xs-menu {
     background-color: #003399;
@@ -16613,7 +16644,7 @@ fieldset.captcha div {
   }
   .field-label-inline .field-label,
   .field-label-inline .field-items {
-    float: none;
+    /* 	float: none; */
   }
   .field-name-field-country .field-label ~ .field-items:before,
   .field-name-field-tool-type .field-label ~ .field-items:before,
@@ -16621,11 +16652,21 @@ fieldset.captcha div {
     content: "" !important;
   }
   .pane-node-field-access-tool-link .field-label-inline .field-label,
-  .pane-node-field-external-urls .field-label-inline .field-label,
+  .pane-node-field-access-tool-link-fc .field-label-inline .field-label,
+  .pane-node-field-external-urls .field-label-inline .field-label {
+    float: left;
+    width: 30%;
+  }
   .pane-node-field-access-tool-link .field-label-inline .field-items,
+  .pane-node-field-access-tool-link-fc .field-label-inline .field-items,
   .pane-node-field-external-urls .field-label-inline .field-items {
     float: left;
-    width: 50%;
+    width: 70%;
+  }
+  .pane-node-field-access-tool-link h2,
+  .pane-node-field-access-tool-link-fc h2,
+  .pane-node-field-external-urls h2 {
+    margin: 0;
   }
   .node-type-practical-tool .panel-1col .panel-col .panel-pane {
     padding-left: 15px;
@@ -16635,16 +16676,13 @@ fieldset.captcha div {
   .node-type-practical-tool .pane-node-body .field-items,
   .node-type-practical-tool .pane-node-field-implementation-steps .field-items,
   .node-type-practical-tool .pane-node-field-dissemination-used .field-items,
-  .node-type-practical-tool .pane-node-field-access-tool-link .field-items,
   .node-type-practical-tool .pane-hwc-practical-tool-hwc-practical-tool-language-list .field-items,
-  .node-type-practical-tool .pane-node-field-external-urls .field-items,
   .node-type-practical-tool .pane-node-field-provider .field-label,
   .node-type-practical-tool .pane-node-body .field-label,
   .node-type-practical-tool .pane-node-field-implementation-steps .field-label,
   .node-type-practical-tool .pane-node-field-dissemination-used .field-label,
-  .node-type-practical-tool .pane-node-field-access-tool-link .field-label,
   .node-type-practical-tool .pane-hwc-practical-tool-hwc-practical-tool-language-list .field-label,
-  .node-type-practical-tool .pane-node-field-external-urls .field-label {
+  .node-type-practical-tool .pane-node-field-additional-information .field-label {
     width: 99%;
   }
   .node-type-practical-tool .pane-node-field-free,
@@ -16676,6 +16714,16 @@ fieldset.captcha div {
   }
   .publication-item .field-name-field-cover-image {
     display: none;
+  }
+  .publication-item .field-name-field-publication-date,
+  .publication-item .field-name-title-field,
+  .publication-item .field-type-text-with-summary,
+  .publication-item ul,
+  .publication-item .field-name-field-cover-image ~ .field-name-title-field,
+  .publication-item .field-name-field-cover-image ~ .field-type-text-with-summary,
+  .publication-item .field-name-field-cover-image ~ ul {
+    left: 15px;
+    margin-left: 0;
   }
   .node-type-publication .back-to-link {
     display: none;
@@ -16844,6 +16892,12 @@ fieldset.captcha div {
   .page-events .region-content #block-system-main .views-row .views-field-view-node {
     margin-left: 15px;
     position: relative;
+  }
+  .page-past-events .view-empty,
+  .page-events .view-empty,
+  .page-past-events .view-footer,
+  .page-events .view-footer {
+    margin-left: 15px;
   }
   .node-events .field-name-field-speaker > .field-items > .field-item,
   .node-events.page-past-event .field-name-field-speaker > .field-items > .field-item,

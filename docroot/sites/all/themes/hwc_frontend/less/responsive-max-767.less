@@ -174,6 +174,9 @@ header.navbar-default{
 						}
 					}
 				}
+				.open .dropdown-menu > .active > a, .open .dropdown-menu > .active > a:hover, .open .dropdown-menu > .active > a:focus, .open .dropdown-menu > li > a:hover, .open .dropdown-menu > li > a:focus{
+					color: white;
+				}
 			}
 		}
 	}
@@ -836,7 +839,7 @@ header.navbar-default{
 			}
 		}
 		.field-label-inline .field-label, .field-label-inline .field-items{
-			float: none;
+		/* 	float: none; */
 		}
 		.field-name-field-country, .field-name-field-tool-type, .field-name-field-provider{
 			.field-label ~ .field-items{
@@ -845,10 +848,17 @@ header.navbar-default{
 				}
 			}
 		}
-		.pane-node-field-access-tool-link, .pane-node-field-external-urls{
-			.field-label-inline .field-label, .field-label-inline .field-items{
+		.pane-node-field-access-tool-link, .pane-node-field-access-tool-link-fc, .pane-node-field-external-urls{
+			.field-label-inline .field-label{
 				float: left;
-				width: 50%;
+				width: 30%;
+			}
+			.field-label-inline .field-items{
+				float: left;
+				width: 70%;
+			}
+			h2{
+			    margin: 0;
 			}
 		}
 		.node-type-practical-tool{
@@ -856,7 +866,7 @@ header.navbar-default{
 				padding-left: @margin-movil;
 				padding-right: @margin-movil;
 			}
-			.pane-node-field-provider .field-items, .pane-node-body .field-items, .pane-node-field-implementation-steps .field-items, .pane-node-field-dissemination-used .field-items, .pane-node-field-access-tool-link .field-items, .pane-hwc-practical-tool-hwc-practical-tool-language-list .field-items, .pane-node-field-external-urls .field-items, .pane-node-field-provider .field-label, .pane-node-body .field-label, .pane-node-field-implementation-steps .field-label, .pane-node-field-dissemination-used .field-label, .pane-node-field-access-tool-link .field-label, .pane-hwc-practical-tool-hwc-practical-tool-language-list .field-label, .pane-node-field-external-urls .field-label{
+			.pane-node-field-provider .field-items, .pane-node-body .field-items, .pane-node-field-implementation-steps .field-items, .pane-node-field-dissemination-used .field-items, .pane-hwc-practical-tool-hwc-practical-tool-language-list .field-items, .pane-node-field-provider .field-label, .pane-node-body .field-label, .pane-node-field-implementation-steps .field-label, .pane-node-field-dissemination-used .field-label, .pane-hwc-practical-tool-hwc-practical-tool-language-list .field-label, .pane-node-field-additional-information .field-label{
 				width: 99%;
 			}
 			.pane-node-field-free, .pane-node-field-country, .pane-node-field-tool-type{
@@ -890,6 +900,11 @@ header.navbar-default{
 		padding-right: @margin-movil;
 		.field-name-field-cover-image{
 			display: none;
+		}
+		.field-name-field-publication-date, .field-name-title-field, .field-type-text-with-summary, ul,
+		.field-name-field-cover-image ~ .field-name-title-field, .field-name-field-cover-image ~ .field-type-text-with-summary, .field-name-field-cover-image ~ ul{
+			left: @margin-movil;
+			margin-left: 0;
 		}
 	}
 	.node-type-publication{
@@ -1019,6 +1034,9 @@ header.navbar-default{
 				margin-left: @margin-movil;
 				position: relative;
 			}
+		}
+		.view-empty, .view-footer{
+			margin-left: @margin-movil;
 		}
 	}
 	.node-events, .node-events.page-past-event, .node-events.page-upcoming-event{
