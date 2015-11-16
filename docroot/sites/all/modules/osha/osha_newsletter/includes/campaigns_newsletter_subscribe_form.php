@@ -30,19 +30,16 @@ function campaigns_newsletter_subscribe_form() {
     '#size' => 30,
     '#attributes' => array('placeholder' => t('E-mail address'), 'title' => t('E-mail address')),
   );
+  $form['#validate'] = array('campaigns_newsletter_subscribe_captcha_form_validate');
   $form['submit'] = array(
     '#type' => 'submit',
     '#value' => t('Sign up!'),
-    '#submit' => array('campaigns_newsletter_block_subscribe_captcha_form_submit'),
+    '#submit' => array('campaigns_newsletter_subscribe_captcha_form_submit'),
   );
   if (user_is_anonymous()) {
     drupal_add_library('system', 'drupal.ajax');
     drupal_add_library('system', 'jquery.form');
     drupal_add_js(drupal_get_path('module', 'osha_newsletter') . '/js/ajax.js');
-  }
-  else {
-    $form['#validate'] = array('campaigns_newsletter_subscribe_captcha_form_validate');
-    $form['#submit'] = array('campaigns_newsletter_subscribe_captcha_form_submit');
   }
   return $form;
 }
@@ -64,7 +61,7 @@ function campaigns_newsletter_subscribe_captcha_form() {
   $form['submit'] = array(
     '#type' => 'submit',
     '#value' => t('Sign up!'),
-    '#submit' => array('campaigns_newsletter_block_subscribe_captcha_form_submit'),
+    '#submit' => array('campaigns_newsletter_subscribe_captcha_form_submit'),
   );
   $form['captcha'] = array(
     '#type' => 'captcha',
@@ -78,14 +75,17 @@ function campaigns_newsletter_subscribe_captcha_form() {
  */
 function campaigns_newsletter_subscribe_captcha_form_validate($form, &$form_state) {
   // Need to redirect due to Ajax handling.
+  $has_error = FALSE;
   $referer = empty($_SERVER['HTTP_REFERER']) ? '/' : $_SERVER['HTTP_REFERER'];
   if (form_get_errors()) {
     // Invalid CAPTCHA.
-    $fs['redirect'] = $referer;
-    drupal_redirect_form($fs);
+    $has_error = TRUE;
   }
   if (empty($form_state['values']['email']) || !valid_email_address($form_state['values']['email'])) {
     form_set_error('email', t('The e-mail address is not valid.'));
+    $has_error = TRUE;
+  }
+  if ($has_error) {
     $fs['redirect'] = $referer;
     drupal_redirect_form($fs);
   }
