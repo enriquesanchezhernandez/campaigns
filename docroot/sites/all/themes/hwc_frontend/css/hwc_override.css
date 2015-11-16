@@ -270,3 +270,26 @@ div.workbench-info-block {
 .view-display-id-block_2 {
     display: none;
 }
+
+div#newsletter-subscription-form-wrapper_2 form > div {
+    border-bottom: 1px dotted #749b00;
+    padding-bottom: 2em;
+}
+#newsletter-subscription-form-wrapper_2 {
+    text-align: left;
+    font-weight: bold;
+}
+#newsletter-subscription-form-wrapper_2 form > div > div.captcha {
+    margin-left: auto;
+}
+#newsletter-subscription-form-wrapper_2 form input {
+    color: #003399;
+    border: 1px solid #003399;
+    margin: 0px;
+    font-weight: normal;
+}
+#captcha_1 {
+    display: block !important;
+    margin-top: 5px !important;
+    margin-left: auto !important;
+}
