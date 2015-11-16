@@ -12827,10 +12827,11 @@ article .hwc-share-widget ul {
   border-left: 1px dotted #749b00;
 }
 .view-id-partners_list .quicktabs-views-group .views-field-title-field,
-.view-id-partners_list .views-row .views-field-title-field {
+.view-id-partners_list .views-row .views-field-title-field,
+.view-id-partners_list .quicktabs-views-group .views-field-name-field,
+.view-id-partners_list .views-row .views-field-name-field {
   display: none;
-}
-/*End oficial campaign partners list*/
+}/*End oficial campaign partners list*/
 /*pag National focal points*/
 /* .page-national-focal-points, .page-official-campaign-partners, .page-campaign-media-partners 
 .page-national-focal-points, .page-official-campaign-partners, .page-campaign-media-partners{

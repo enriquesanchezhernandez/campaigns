@@ -456,6 +456,10 @@ function hwc_partner_views_default_views() {
   $handler->display->display_options['style_options']['tab_title_field'] = 'field_orgtype';
   $handler->display->display_options['style_options']['row_class'] = 'col-md-2 col-sm-3 col-xs-6';
   $handler->display->display_options['row_plugin'] = 'fields';
+  /* Relationship: Content: Country (field_country) */
+  $handler->display->display_options['relationships']['field_country_tid']['id'] = 'field_country_tid';
+  $handler->display->display_options['relationships']['field_country_tid']['table'] = 'field_data_field_country';
+  $handler->display->display_options['relationships']['field_country_tid']['field'] = 'field_country_tid';
   /* Field: Content: Organisation Type */
   $handler->display->display_options['fields']['field_orgtype']['id'] = 'field_orgtype';
   $handler->display->display_options['fields']['field_orgtype']['table'] = 'field_data_field_orgtype';
@@ -564,7 +568,9 @@ function hwc_partner_views_default_views() {
   $handler->display->display_options['fields']['title_field']['field'] = 'title_field';
   $handler->display->display_options['fields']['title_field']['label'] = '';
   $handler->display->display_options['fields']['title_field']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['title_field']['element_wrapper_class'] = 'hwc-alpha-pager-view-title-field';
+  $handler->display->display_options['fields']['title_field']['settings'] = array(
+    'field_formatter_class' => '',
+  );
   $handler->display->display_options['fields']['title_field']['link_to_entity'] = 0;
   /* Field: Content: Nid */
   $handler->display->display_options['fields']['nid']['id'] = 'nid';
@@ -588,11 +594,23 @@ function hwc_partner_views_default_views() {
     'image_style' => 'medium',
     'image_link' => '',
   );
+  /* Field: Taxonomy term: Name */
+  $handler->display->display_options['fields']['name_field']['id'] = 'name_field';
+  $handler->display->display_options['fields']['name_field']['table'] = 'field_data_name_field';
+  $handler->display->display_options['fields']['name_field']['field'] = 'name_field';
+  $handler->display->display_options['fields']['name_field']['relationship'] = 'field_country_tid';
+  $handler->display->display_options['fields']['name_field']['label'] = '';
+  $handler->display->display_options['fields']['name_field']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['name_field']['element_wrapper_class'] = 'hwc-alpha-pager-view-title-field';
+  $handler->display->display_options['fields']['name_field']['settings'] = array(
+    'field_formatter_class' => '',
+  );
+  $handler->display->display_options['fields']['name_field']['link_to_entity'] = 0;
   $handler->display->display_options['defaults']['sorts'] = FALSE;
-  /* Sort criterion: Content: Title */
-  $handler->display->display_options['sorts']['title']['id'] = 'title';
-  $handler->display->display_options['sorts']['title']['table'] = 'node';
-  $handler->display->display_options['sorts']['title']['field'] = 'title';
+  /* Sort criterion: Content: Country (field_country) */
+  $handler->display->display_options['sorts']['field_country_tid']['id'] = 'field_country_tid';
+  $handler->display->display_options['sorts']['field_country_tid']['table'] = 'field_data_field_country';
+  $handler->display->display_options['sorts']['field_country_tid']['field'] = 'field_country_tid';
   $handler->display->display_options['defaults']['filter_groups'] = FALSE;
   $handler->display->display_options['defaults']['filters'] = FALSE;
   /* Filter criterion: Content: Published */
@@ -698,6 +716,7 @@ function hwc_partner_views_default_views() {
     t('Sort by'),
     t('Asc'),
     t('Desc'),
+    t('term from field_country'),
     t('<img src="[field_logo-fid]" title="[title_field]" alt="[title_field]" />'),
     t('[title_field]'),
     t('Block'),
