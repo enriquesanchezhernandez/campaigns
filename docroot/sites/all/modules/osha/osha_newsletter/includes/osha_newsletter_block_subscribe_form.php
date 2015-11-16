@@ -62,7 +62,7 @@ function osha_newsletter_block_subscribe_form_submit($form, &$form_state) {
   $to = variable_get('osha_newsletter_listserv', 'listserv@list.osha.europa.eu');
 
   osha_newsletter_send_email(
-    'campaigns_subscribe_email',
+    'subscribe_email',
     $to,
     $email,
     $form_state,
