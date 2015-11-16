@@ -481,7 +481,7 @@ function _get_listserv_subscription_email(){
     $listserv_domain = $listserv[1];
   }
 
-  $list_name = variable_get('osha_newsletter_list_name', 'OSHMail-Test');
+  $list_name = variable_get('campaigns_newsletter_list_name', 'CAMPAIGN-NEWS-TEST');
 
   if ($listserv_domain != '') {
     return $list_name . '@' . $listserv_domain;
