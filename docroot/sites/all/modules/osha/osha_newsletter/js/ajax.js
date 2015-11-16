@@ -11,3 +11,8 @@
     }
   };
 })(jQuery);
+(function($){
+  $.fn.captcha_init = function() {
+    captcha.init();
+  };
+})(jQuery);
