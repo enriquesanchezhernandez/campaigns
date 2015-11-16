@@ -119,8 +119,8 @@ function hwc_partner_field_group_info() {
       5 => 'field_mission_statement',
       6 => 'field_website',
       7 => 'title_field',
-      8 => 'field_orgtype',
-      9 => 'field_bussines_sector',
+      8 => 'field_bussines_sector',
+      9 => 'field_orgtype',
     ),
     'format_type' => 'fieldset',
     'format_settings' => array(

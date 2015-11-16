@@ -1245,7 +1245,7 @@ function hwc_partner_field_default_field_instances() {
     ),
     'entity_type' => 'node',
     'field_name' => 'field_organisation_rep',
-    'label' => 'Organisation representative',
+    'label' => 'Healthy and safety representative',
     'required' => 0,
     'settings' => array(
       'entity_translation_sync' => FALSE,
@@ -1261,6 +1261,8 @@ function hwc_partner_field_default_field_instances() {
       'active' => 1,
       'module' => 'text',
       'settings' => array(
+        'maxlength_js' => 0,
+        'maxlength_js_label' => 'Content limited to @limit characters, remaining: <strong>@remaining</strong>',
         'size' => 60,
       ),
       'type' => 'text_textfield',
@@ -1615,6 +1617,57 @@ function hwc_partner_field_default_field_instances() {
       ),
       'type' => 'text_textfield',
       'weight' => 9,
+    ),
+    'workbench_access_field' => 0,
+  );
+
+  // Exported field_instance: 'node-partner-field_ph_town'
+  $field_instances['node-partner-field_ph_town'] = array(
+    'bundle' => 'partner',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'text',
+        'settings' => array(
+          'field_formatter_class' => '',
+        ),
+        'type' => 'text_default',
+        'weight' => 37,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_ph_town',
+    'label' => 'City',
+    'required' => 0,
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+      'linkit' => array(
+        'button_text' => 'Search',
+        'enable' => 0,
+        'profile' => '',
+      ),
+      'text_processing' => 0,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'text',
+      'settings' => array(
+        'maxlength_js' => 0,
+        'maxlength_js_label' => 'Content limited to @limit characters, remaining: <strong>@remaining</strong>',
+        'size' => 60,
+      ),
+      'type' => 'text_textfield',
+      'weight' => 37,
     ),
     'workbench_access_field' => 0,
   );
@@ -2326,12 +2379,14 @@ function hwc_partner_field_default_field_instances() {
   t('CEO');
   t('CEO photo');
   t('Campaign website');
+  t('City');
   t('Code');
   t('Country');
   t('Facebook profile');
   t('General email');
   t('General phone');
   t('Guid Main Contact');
+  t('Healthy and safety representative');
   t('His/Her quote on the HWC');
   t('Linkedin profile');
   t('Logo');
@@ -2341,7 +2396,6 @@ function hwc_partner_field_default_field_instances() {
   t('Organisation');
   t('Organisation GUID');
   t('Organisation Type');
-  t('Organisation representative');
   t('Our campaign pledge');
   t('Ph Address');
   t('Ph Address Extra');
