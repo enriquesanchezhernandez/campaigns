@@ -65,7 +65,10 @@ function osha_publication_menu_publications_form_submit($form, &$form_state) {
   $form_state['rebuild'] = TRUE;
   $form_state['redirect'] = FALSE;
   $form_state['#results-native'] = osha_publication_menu_publications_search_native($form_state);
-  $native_nids = $form_state['#results-native']['#nids'];
+  $native_nids = array();
+  if (!empty($form_state['#results-native']['#nids'])) {
+    $native_nids = $form_state['#results-native']['#nids'];
+  }
   $form_state['#results-related'] = osha_publication_menu_publications_search_related($form_state, $native_nids);
 }
 
@@ -98,7 +101,11 @@ function osha_publication_menu_publications_search_native($form_state) {
       );
     }
   }
-  $relevant_for = $form_state['values']['relevant_for'];
+  $relevant_for_ids = array();
+  $relevant_for = array();
+  if (!empty($form_state['values']['relevant_for'])) {
+    $relevant_for = $form_state['values']['relevant_for'];
+  }
   foreach ($relevant_for as $relf) {
     if ($relf) {
       $relevant_for_ids[] = $relf;
