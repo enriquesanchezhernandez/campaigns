@@ -61,6 +61,14 @@ function hwc_partner_default_page_manager_handlers() {
       'logic' => 'and',
     ),
     'name' => 'fop',
+    'panels_breadcrumbs_state' => 1,
+    'panels_breadcrumbs_titles' => 'Campaign partners
+National focal points
+%node:title-field',
+    'panels_breadcrumbs_paths' => '<none>
+national-focal-points
+<none>',
+    'panels_breadcrumbs_home' => 1,
   );
   $display = new panels_display();
   $display->layout = 'flexible';
@@ -369,7 +377,7 @@ function hwc_partner_default_page_manager_handlers() {
     ),
   );
   $display->cache = array();
-  $display->title = '';
+  $display->title = '%node:title-field';
   $display->uuid = '536f07b4-59cc-4e7d-84b4-3635ebb5aa94';
   $display->content = array();
   $display->panels = array();
@@ -1649,6 +1657,14 @@ return (!empty($data->field_facebook_profile) || !empty($data->field_linkedin_pr
       'logic' => 'and',
     ),
     'name' => 'mp-profile',
+    'panels_breadcrumbs_state' => 1,
+    'panels_breadcrumbs_titles' => 'Campaign partners
+Media partners
+%node:title-field',
+    'panels_breadcrumbs_paths' => '<none>
+campaign-media-partners
+<none>',
+    'panels_breadcrumbs_home' => 1,
   );
   $display = new panels_display();
   $display->layout = 'flexible';
@@ -1841,7 +1857,7 @@ return (!empty($data->field_facebook_profile) || !empty($data->field_linkedin_pr
     ),
   );
   $display->cache = array();
-  $display->title = '';
+  $display->title = '%node:title-field';
   $display->uuid = '536f07b4-59cc-4e7d-84b4-3635ebb5aa94';
   $display->content = array();
   $display->panels = array();
@@ -2701,6 +2717,16 @@ return (!empty($data->field_facebook_profile) || !empty($data->field_linkedin_pr
       ),
       'logic' => 'and',
     ),
+    'panels_breadcrumbs_state' => 1,
+    'panels_breadcrumbs_titles' => 'Campaign partners
+Official campaign partners
+%node:title-field
+',
+    'panels_breadcrumbs_paths' => '<none>
+official-campaign-partners
+<none>
+',
+    'panels_breadcrumbs_home' => 1,
   );
   $display = new panels_display();
   $display->layout = 'flexible';
@@ -2999,7 +3025,7 @@ return (!empty($data->field_facebook_profile) || !empty($data->field_linkedin_pr
     ),
   );
   $display->cache = array();
-  $display->title = '';
+  $display->title = '%node:title-field';
   $display->uuid = '536f07b4-59cc-4e7d-84b4-3635ebb5aa94';
   $display->content = array();
   $display->panels = array();
@@ -5918,6 +5944,10 @@ foreach( $contexts[\'argument_entity_id:node_1\']->data->field_users[\'und\'] as
       'plugins' => array(),
       'logic' => 'or',
     ),
+    'panels_breadcrumbs_state' => 1,
+    'panels_breadcrumbs_titles' => 'Private area for partners',
+    'panels_breadcrumbs_paths' => '<none>',
+    'panels_breadcrumbs_home' => 1,
   );
   $display = new panels_display();
   $display->layout = 'flexible';
