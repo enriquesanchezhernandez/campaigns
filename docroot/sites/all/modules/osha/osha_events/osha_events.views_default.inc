@@ -74,9 +74,8 @@ function osha_events_views_default_views() {
   $handler->display->display_options['fields']['field_talking_files']['exclude'] = TRUE;
   $handler->display->display_options['fields']['field_talking_files']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['field_talking_files']['click_sort_column'] = 'fid';
-  $handler->display->display_options['fields']['field_talking_files']['type'] = 'file_rendered';
+  $handler->display->display_options['fields']['field_talking_files']['type'] = 'field_file';
   $handler->display->display_options['fields']['field_talking_files']['settings'] = array(
-    'file_view_mode' => 'teaser',
     'field_formatter_class' => '',
   );
   $handler->display->display_options['fields']['field_talking_files']['delta_offset'] = '0';
