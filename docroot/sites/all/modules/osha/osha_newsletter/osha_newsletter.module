@@ -1258,3 +1258,15 @@ function osha_newsletter_osha_tmgmt_i18n_string_list() {
   module_load_include('inc', 'osha_newsletter', 'osha_newsletter.translations');
   return osha_newsletter_get_translatable_strings();
 }
+
+/**
+ * Implements hook_vbo_action_access_alter().
+ */
+function osha_newsletter_vbo_action_access_alter(&$has_access, $operation) {
+  global $user;
+  // Allow Review Manager to add items to newsletter.
+  if (in_array('Review Manager', $user->roles)
+    && $operation->operationId == 'action::osha_newsletter_add_to_newsletter_action') {
+    $has_access = TRUE;
+  }
+}
