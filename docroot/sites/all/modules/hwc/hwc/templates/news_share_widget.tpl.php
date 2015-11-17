@@ -30,8 +30,10 @@ $fb_like_count = isset($api->link_stat->like_count) ? (string) $api->link_stat->
 $count = json_decode($api);
 $fb_share_count = isset($api->link_stat->share_count) ? (string) $api->link_stat->share_count : 0;
 
+$twitter_url = str_replace('http://', '', $url);
+$twitter_url = str_replace('https://', '', $twitter_url);
 // Twitter share counter.
-$api = file_get_contents('https://cdn.api.twitter.com/1/urls/count.json?url=' . $url);
+$api = file_get_contents('https://cdn.api.twitter.com/1/urls/count.json?url=' . $twitter_url);
 $count = json_decode($api);
 $twitter_share_count = isset($count->count) ? $count->count : 0;
 
