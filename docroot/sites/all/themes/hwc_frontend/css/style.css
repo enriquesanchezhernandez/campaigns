@@ -7711,7 +7711,7 @@ ul.tabs--primary.nav.nav-tabs > li.active > a:focus {
   /* margin-bottom: 10px; */
 }
 .section-introduction p strong {
-  color: #749b00;
+  /* color: @text-color-3; */
 }
 .checkbox input[type="checkbox"] {
   display: none;
