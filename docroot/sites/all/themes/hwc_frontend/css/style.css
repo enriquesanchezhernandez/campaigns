@@ -9254,12 +9254,16 @@ div[class*='node-'] .more-link {
 }
 .page-search .region.region-content .view-search .view-content .views-row .views-field-field-publication-date {
   font-size: 12px;
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
 }
-.page-search .region.region-content .view-search .view-content .views-row .views-field-field-publication-date,
 .page-search .region.region-content .view-search .view-content .views-row .views-field-field-image,
 .page-search .region.region-content .view-search .view-content .views-row .views-field-field-cover-image {
   /*confirm that is correct*/
   display: none;
+}
+.page-search .region.region-content .view-search .view-content .views-row .views-field-search-api-excerpt {
+  margin-bottom: 0.5em;
 }
 .page-search .region.region-content .view-search .view-content .views-row .views-field-search-api-excerpt a {
   font-weight: bold;
@@ -11223,7 +11227,7 @@ article .hwc-share-widget ul {
   padding-top: 3em;
 }
 .employers-section .recomended-container-section .col-sm-6:first-child div {
-  border-right: 1px dotted #749b00;
+  /* border-right: 1px dotted @border-default-color; */
   border-left: none;
   padding-left: 15px;
   padding-right: 30px;
@@ -11234,6 +11238,18 @@ article .hwc-share-widget ul {
   padding-left: 30px;
   padding-right: 15px;
 }
+.employers-section .recomended-container-section .border-left {
+  border-left: 1px dotted #749b00;
+}
+.employers-section .recomended-container-section .border-right {
+  border-right: 1px dotted #749b00;
+}
+.employers-section .border-bottom {
+  border-bottom: 1px dotted #749b00;
+}
+.employers-section .padding-bottom-2 {
+  padding-bottom: 2em;
+}
 .employers-section .news-events-section {
   padding-bottom: 3em;
   padding-top: 3em;
@@ -11241,7 +11257,7 @@ article .hwc-share-widget ul {
 .employers-section .healthy-workplaces,
 .employers-section .other-practical-tools,
 .employers-section .news-section {
-  border-right: 1px dotted #749b00;
+  /* border-right: 1px dotted @color3; */
   padding-left: 15px;
   padding-right: 30px;
 }
@@ -12852,6 +12868,10 @@ article .hwc-share-widget ul {
 .view-id-partners_list .quicktabs-views-group .views-field-title-field,
 .view-id-partners_list .views-row .views-field-title-field {
   display: none;
+}
+.view-id-partners_list img {
+  max-width: 125px;
+  margin: auto;
 }
 /*End oficial campaign partners list*/
 /*pag National focal points*/
@@ -14988,7 +15008,7 @@ fieldset.captcha div {
   /*fin videos*/
   /*case studies*/
   .section-introduction .field-type-text-with-summary {
-    display: none;
+    /* display: none; */
   }
   /* .page-case-studies{
 	.form-type-checkbox{
@@ -15119,8 +15139,9 @@ fieldset.captcha div {
   }
   .page-search .region-sidebar-first .facetapi-facetapi-checkbox-links {
     padding-left: 30px;
-    display: inline-block;
     padding-top: 0.7em;
+    margin-bottom: 0;
+    display: inline-block;
   }
   .page-search .region-sidebar-first .facetapi-facetapi-checkbox-links li {
     float: left;
@@ -16187,6 +16208,30 @@ fieldset.captcha div {
     margin-left: 11px;
     text-align: left;
   }
+  #block-views-news-oshnews-latest,
+  .panels-flexible-column-new-1,
+  .panels-flexible-column-first,
+  #block-views-frontpage-events-block,
+  .panels-flexible-column-new-2,
+  .panels-flexible-column-last {
+    margin-bottom: 1em;
+  }
+  #block-views-news-oshnews-latest .view-news .view-content,
+  .panels-flexible-column-new-1 .view-news .view-content,
+  .panels-flexible-column-first .view-news .view-content,
+  #block-views-frontpage-events-block .view-news .view-content,
+  .panels-flexible-column-new-2 .view-news .view-content,
+  .panels-flexible-column-last .view-news .view-content {
+    height: auto;
+  }
+  #block-views-news-oshnews-latest .view-content,
+  .panels-flexible-column-new-1 .view-content,
+  .panels-flexible-column-first .view-content,
+  #block-views-frontpage-events-block .view-content,
+  .panels-flexible-column-new-2 .view-content,
+  .panels-flexible-column-last .view-content {
+    height: auto;
+  }
   #block-osha-newsletter-osha-newsletter-subscribe .captcha,
   #block-osha-newsletter-osha-newsletter-image .captcha {
     margin-left: -257px;
@@ -16360,6 +16405,8 @@ fieldset.captcha div {
   .node-type-article article .field-name-field-recommended-articles .node-article .content .field-name-title-field {
     margin-bottom: 0;
     z-index: 1000;
+    margin-right: 15px;
+    margin-left: 15px;
   }
   .node-type-article article .field-name-field-recommended-articles .node-article .content .field-name-title-field a {
     font-size: 18px;
@@ -16991,6 +17038,12 @@ fieldset.captcha div {
     margin-left: 15px;
     margin-right: 15px;
   }
+  .node-events .group-header > div.event-location-container,
+  .node-events.page-past-event .group-header > div.event-location-container,
+  .node-events.page-upcoming-event .group-header > div.event-location-container {
+    margin-left: auto;
+    margin-right: auto;
+  }
   .node-events h2.node-edit-form-heading,
   .node-events.page-past-event h2.node-edit-form-heading,
   .node-events.page-upcoming-event h2.node-edit-form-heading {
@@ -17111,7 +17164,7 @@ fieldset.captcha div {
     padding-left: 15px;
   }
   .node-type-press-release #block-system-main .node-press-release h2 {
-    text-align: center;
+    /* text-align: center; */
     margin-bottom: 2em;
   }
   .node-type-press-release #block-system-main .node-press-release iframe {
@@ -17186,7 +17239,7 @@ fieldset.captcha div {
     padding-right: 15px;
   }
   .node-type-news h2 {
-    text-align: center;
+    /* text-align: center; */
     margin-left: 0;
     margin-right: 0;
   }
@@ -17206,10 +17259,25 @@ fieldset.captcha div {
     margin-right: -15px;
     margin-left: -15px;
   }
-  .become-partner .partners .partner-name,
-  .become-partner .partners .partner-opinion {
+  .become-partner .partners .partner-name {
     margin-right: 0;
     margin-left: 0;
+  }
+  .become-partner .partners .partner {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+  .become-partner .partners .partner .partner-opinion {
+    margin-right: 0;
+    margin-left: 0;
+  }
+  .become-partner .partners .partner .partner-opinion .quottes-left,
+  .become-partner .partners .partner .partner-opinion .quottes-right {
+    background-size: contain;
+    height: auto;
+  }
+  .become-partner .coments h2.visibility {
+    display: block !important;
   }
   .become-partner .coments .col {
     padding-right: 0;
@@ -17237,6 +17305,10 @@ fieldset.captcha div {
   .become-partner a.btn-become-a-campaign-partner {
     width: 100%;
     display: block;
+  }
+  .become-partner .see-also-title {
+    margin-right: 0px;
+    margin-left: 0px;
   }
   .node-type-article .become-partner h2 {
     text-align: center;
@@ -17665,6 +17737,18 @@ fieldset.captcha div {
   .employers-section .recomended-container-section .col-sm-6:last-child div div.one-resource {
     padding-left: 15px;
     padding-right: 15px;
+  }
+  .employers-section .recomended-container-section .border-left {
+    border-left: none;
+  }
+  .employers-section .recomended-container-section .border-right {
+    border-right: none;
+  }
+  .employers-section .border-bottom {
+    border-bottom: none;
+  }
+  .employers-section .padding-bottom-2 {
+    padding-bottom: 0em;
   }
   .employers-section .news-events-section {
     padding-bottom: 0em;

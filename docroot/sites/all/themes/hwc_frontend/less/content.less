@@ -1579,12 +1579,15 @@ ul.tabs--primary.nav.nav-tabs{
 					}
 					.views-field-field-publication-date{
 						font-size: @size3;
+						margin-top: 0.5em;
+						margin-bottom: 0.5em;
 					}
-					.views-field-field-publication-date, .views-field-field-image, .views-field-field-cover-image{
+					.views-field-field-image, .views-field-field-cover-image{
 						/*confirm that is correct*/
 						display: none;
 					}
 					.views-field-search-api-excerpt{
+						margin-bottom: 0.5em;
 						a{
 							font-weight: bold;
 							&:before{
@@ -3549,7 +3552,7 @@ article{
 		padding-top: 3em;
 		.col-sm-6:first-child{
 			div{
-				border-right: 1px dotted @border-default-color;
+				/* border-right: 1px dotted @border-default-color; */
 				border-left: none;
 				padding-left: 15px;
 				padding-right: 30px;
@@ -3563,13 +3566,25 @@ article{
 				padding-right: 15px;
 			}
 		}
+		.border-left{
+			border-left: 1px dotted @border-default-color;
+		}
+		.border-right{
+			border-right: 1px dotted @border-default-color;
+		}
+	}
+	.border-bottom{
+		border-bottom: 1px dotted @border-default-color;
+	}
+	.padding-bottom-2{
+		padding-bottom: 2em;
 	}
 	.news-events-section{
 		padding-bottom: 3em;
 		padding-top: 3em;
 	}
 	.healthy-workplaces, .other-practical-tools, .news-section{
-		border-right: 1px dotted @color3;
+		/* border-right: 1px dotted @color3; */
 		padding-left: 15px;
 		padding-right: 30px;
 	}
@@ -5043,6 +5058,10 @@ article{
 				}
 			}
 		//}
+		img{
+			max-width: 125px;
+			margin: auto;
+		}
 	}
 
 /*End oficial campaign partners list*/
