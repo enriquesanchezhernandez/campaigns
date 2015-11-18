@@ -65,8 +65,9 @@ function hwc_admin_config_form() {
         if ('ncw' == $group->getName()) {
           $form['migration']["hwc_migration_${machine_name}_url"] = array(
             '#type' => 'textfield',
-            '#title' => ucfirst(str_replace('_', ' ', $machine_name)) . ' endpoint URL',
+            '#title' => ucfirst(str_replace('_', ' ', $machine_name)) . ' endpoint URI',
             '#default_value' => variable_get("hwc_migration_${machine_name}_url", ''),
+            '#description' => 'Uri that will be appended to the Root endpoint URL defined',
             '#size' => 90,
           );
         }
@@ -74,12 +75,14 @@ function hwc_admin_config_form() {
       uksort($form['migration'], 'strcmp');
     }
   }
+
   $form['migration']["hwc_migration_root_url"] = array(
     '#type' => 'textfield',
     '#title' => 'Root endpoint URL',
     '#default_value' => variable_get("hwc_migration_root_url", ''),
     '#size' => 90,
   );
+
   $form = system_settings_form($form);
   $form['actions']['#weight'] = 150;
   return $form;

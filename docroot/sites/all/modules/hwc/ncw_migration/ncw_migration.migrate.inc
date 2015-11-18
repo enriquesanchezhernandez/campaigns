@@ -338,14 +338,13 @@ abstract class AbstractNCWNodeMigration extends Migration {
   }
 
   public function getMigrationURL() {
-    $variable = 'hwc_migration_' . $this->getMachineName() . '_url';
-    return variable_get($variable);
+    $root = variable_get('hwc_migration_root_url', '');
+    $variable = variable_get('hwc_migration_' . $this->getMachineName() . '_url');
+    return $root . $variable;
   }
 
   public function validateEndpointURL() {
     if(empty($this->endpoint_url)) {
-      $variable = 'hwc_migration_' . $this->getMachineName() . '_url';
-      // drupal_set_message($this->getMachineName() . " migration has incorrect URL, set '$variable' or 'hwc_migration_root_url", 'error');
       return FALSE;
     }
     return TRUE;
