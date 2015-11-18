@@ -524,7 +524,7 @@ national-focal-points
     $pane->access = array();
     $pane->configuration = array(
       'label' => 'hidden',
-      'formatter' => 'title_linked',
+      'formatter' => 'i18n_taxonomy_term_reference_plain',
       'delta_limit' => 0,
       'delta_offset' => '0',
       'delta_reversed' => FALSE,
@@ -561,7 +561,7 @@ national-focal-points
     $pane->access = array();
     $pane->configuration = array(
       'label' => 'hidden',
-      'formatter' => 'title_linked',
+      'formatter' => 'i18n_taxonomy_term_reference_plain',
       'delta_limit' => 0,
       'delta_offset' => '0',
       'delta_reversed' => FALSE,
@@ -1907,7 +1907,7 @@ campaign-media-partners
     $pane->access = array();
     $pane->configuration = array(
       'label' => 'hidden',
-      'formatter' => 'taxonomy_term_reference_plain',
+      'formatter' => 'i18n_taxonomy_term_reference_plain',
       'delta_limit' => 0,
       'delta_offset' => '0',
       'delta_reversed' => FALSE,
@@ -1944,7 +1944,7 @@ campaign-media-partners
     $pane->access = array();
     $pane->configuration = array(
       'label' => 'hidden',
-      'formatter' => 'taxonomy_term_reference_plain',
+      'formatter' => 'i18n_taxonomy_term_reference_plain',
       'delta_limit' => 0,
       'delta_offset' => '0',
       'delta_reversed' => FALSE,
