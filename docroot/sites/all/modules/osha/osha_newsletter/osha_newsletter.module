@@ -1264,8 +1264,8 @@ function osha_newsletter_osha_tmgmt_i18n_string_list() {
  */
 function osha_newsletter_vbo_action_access_alter(&$has_access, $operation) {
   global $user;
-  // Allow Review Manager to add items to newsletter.
-  if (in_array('Review Manager', $user->roles)
+  // Allow Review Manager and administrators to add items to newsletter.
+  if ((in_array('Review Manager', $user->roles) || in_array('administrator', $user->roles))
     && $operation->operationId == 'action::osha_newsletter_add_to_newsletter_action') {
     $has_access = TRUE;
   }
