@@ -228,6 +228,23 @@ function hwc_partner_block_view($delta = '') {
 }
 
 /**
+ * Implements hook_views_pre_render().
+ */
+function hwc_partner_views_pre_render(&$view) {
+  // Alter the more link.
+  if ($view->name == 'partner_content') {
+    if ($view->current_display == 'latest_partner_news') {
+      $view->display_handler->set_option('link_display', 'custom_url');
+      $view->display_handler->set_option('link_url', 'news');
+    }
+    else if ($view->current_display == 'latest_partner_events') {
+      $view->display_handler->set_option('link_display', 'custom_url');
+      $view->display_handler->set_option('link_url', 'events');
+    }
+  }
+}
+
+/**
  * Implements hook_theme().
  */
 function hwc_partner_theme() {

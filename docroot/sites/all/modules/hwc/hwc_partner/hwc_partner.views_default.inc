@@ -143,6 +143,48 @@ function hwc_partner_views_default_views() {
     'multiple_from' => '',
     'multiple_to' => '',
   );
+  $handler->display->display_options['defaults']['sorts'] = FALSE;
+  /* Sort criterion: Field: Publication date (field_publication_date) */
+  $handler->display->display_options['sorts']['field_publication_date_value']['id'] = 'field_publication_date_value';
+  $handler->display->display_options['sorts']['field_publication_date_value']['table'] = 'field_data_field_publication_date';
+  $handler->display->display_options['sorts']['field_publication_date_value']['field'] = 'field_publication_date_value';
+  $handler->display->display_options['sorts']['field_publication_date_value']['order'] = 'DESC';
+  $handler->display->display_options['defaults']['arguments'] = FALSE;
+  /* Contextual filter: Workbench Access: Access filter */
+  $handler->display->display_options['arguments']['access_id']['id'] = 'access_id';
+  $handler->display->display_options['arguments']['access_id']['table'] = 'workbench_access';
+  $handler->display->display_options['arguments']['access_id']['field'] = 'access_id';
+  $handler->display->display_options['arguments']['access_id']['default_action'] = 'default';
+  $handler->display->display_options['arguments']['access_id']['default_argument_type'] = 'raw';
+  $handler->display->display_options['arguments']['access_id']['default_argument_options']['index'] = '1';
+  $handler->display->display_options['arguments']['access_id']['default_argument_skip_url'] = TRUE;
+  $handler->display->display_options['arguments']['access_id']['summary']['number_of_records'] = '0';
+  $handler->display->display_options['arguments']['access_id']['summary']['format'] = 'default_summary';
+  $handler->display->display_options['arguments']['access_id']['summary_options']['items_per_page'] = '25';
+  $handler->display->display_options['arguments']['access_id']['reduce_duplicates'] = TRUE;
+  $handler->display->display_options['defaults']['filter_groups'] = FALSE;
+  $handler->display->display_options['defaults']['filters'] = FALSE;
+  /* Filter criterion: Content: Published */
+  $handler->display->display_options['filters']['status']['id'] = 'status';
+  $handler->display->display_options['filters']['status']['table'] = 'node';
+  $handler->display->display_options['filters']['status']['field'] = 'status';
+  $handler->display->display_options['filters']['status']['value'] = '1';
+  $handler->display->display_options['filters']['status']['group'] = 1;
+  $handler->display->display_options['filters']['status']['expose']['operator'] = FALSE;
+  /* Filter criterion: Content: Type */
+  $handler->display->display_options['filters']['type']['id'] = 'type';
+  $handler->display->display_options['filters']['type']['table'] = 'node';
+  $handler->display->display_options['filters']['type']['field'] = 'type';
+  $handler->display->display_options['filters']['type']['value'] = array(
+    'news' => 'news',
+  );
+  /* Filter criterion: Field: Publication date (field_publication_date) */
+  $handler->display->display_options['filters']['field_publication_date_value']['id'] = 'field_publication_date_value';
+  $handler->display->display_options['filters']['field_publication_date_value']['table'] = 'field_data_field_publication_date';
+  $handler->display->display_options['filters']['field_publication_date_value']['field'] = 'field_publication_date_value';
+  $handler->display->display_options['filters']['field_publication_date_value']['operator'] = '<=';
+  $handler->display->display_options['filters']['field_publication_date_value']['granularity'] = 'minute';
+  $handler->display->display_options['filters']['field_publication_date_value']['default_date'] = 'now';
   $handler->display->display_options['block_description'] = 'News';
 
   /* Display: Latest partner events */
@@ -155,7 +197,7 @@ function hwc_partner_views_default_views() {
   $handler->display->display_options['defaults']['use_more_always'] = FALSE;
   $handler->display->display_options['use_more_always'] = FALSE;
   $handler->display->display_options['defaults']['use_more_text'] = FALSE;
-  $handler->display->display_options['use_more_text'] = 'See all news';
+  $handler->display->display_options['use_more_text'] = 'See all events';
   $handler->display->display_options['defaults']['pager'] = FALSE;
   $handler->display->display_options['pager']['type'] = 'some';
   $handler->display->display_options['pager']['options']['items_per_page'] = '4';
@@ -169,6 +211,21 @@ function hwc_partner_views_default_views() {
   $handler->display->display_options['defaults']['row_options'] = FALSE;
   $handler->display->display_options['defaults']['relationships'] = FALSE;
   $handler->display->display_options['defaults']['fields'] = FALSE;
+  /* Field: Content: Starting date and time */
+  $handler->display->display_options['fields']['field_start_date']['id'] = 'field_start_date';
+  $handler->display->display_options['fields']['field_start_date']['table'] = 'field_data_field_start_date';
+  $handler->display->display_options['fields']['field_start_date']['field'] = 'field_start_date';
+  $handler->display->display_options['fields']['field_start_date']['label'] = '';
+  $handler->display->display_options['fields']['field_start_date']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_start_date']['settings'] = array(
+    'format_type' => 'osha_day_only',
+    'fromto' => 'value',
+    'multiple_number' => '',
+    'multiple_from' => '',
+    'multiple_to' => '',
+    'osha_date_theme' => '',
+    'field_formatter_class' => '',
+  );
   /* Field: Content: Title */
   $handler->display->display_options['fields']['title_field']['id'] = 'title_field';
   $handler->display->display_options['fields']['title_field']['table'] = 'field_data_title_field';
@@ -182,24 +239,24 @@ function hwc_partner_views_default_views() {
     'title_class' => '',
   );
   $handler->display->display_options['fields']['title_field']['link_to_entity'] = 0;
-  /* Field: Field: Publication date */
-  $handler->display->display_options['fields']['field_publication_date']['id'] = 'field_publication_date';
-  $handler->display->display_options['fields']['field_publication_date']['table'] = 'field_data_field_publication_date';
-  $handler->display->display_options['fields']['field_publication_date']['field'] = 'field_publication_date';
-  $handler->display->display_options['fields']['field_publication_date']['label'] = '';
-  $handler->display->display_options['fields']['field_publication_date']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['field_publication_date']['settings'] = array(
-    'format_type' => 'osha_day_only',
-    'fromto' => 'both',
-    'multiple_number' => '',
-    'multiple_from' => '',
-    'multiple_to' => '',
-  );
   $handler->display->display_options['defaults']['sorts'] = FALSE;
   /* Sort criterion: Content: Starting date and time -  start date (field_start_date) */
   $handler->display->display_options['sorts']['field_start_date_value']['id'] = 'field_start_date_value';
   $handler->display->display_options['sorts']['field_start_date_value']['table'] = 'field_data_field_start_date';
   $handler->display->display_options['sorts']['field_start_date_value']['field'] = 'field_start_date_value';
+  $handler->display->display_options['defaults']['arguments'] = FALSE;
+  /* Contextual filter: Workbench Access: Access filter */
+  $handler->display->display_options['arguments']['access_id']['id'] = 'access_id';
+  $handler->display->display_options['arguments']['access_id']['table'] = 'workbench_access';
+  $handler->display->display_options['arguments']['access_id']['field'] = 'access_id';
+  $handler->display->display_options['arguments']['access_id']['default_action'] = 'default';
+  $handler->display->display_options['arguments']['access_id']['default_argument_type'] = 'raw';
+  $handler->display->display_options['arguments']['access_id']['default_argument_options']['index'] = '1';
+  $handler->display->display_options['arguments']['access_id']['default_argument_skip_url'] = TRUE;
+  $handler->display->display_options['arguments']['access_id']['summary']['number_of_records'] = '0';
+  $handler->display->display_options['arguments']['access_id']['summary']['format'] = 'default_summary';
+  $handler->display->display_options['arguments']['access_id']['summary_options']['items_per_page'] = '25';
+  $handler->display->display_options['arguments']['access_id']['reduce_duplicates'] = TRUE;
   $handler->display->display_options['defaults']['filter_groups'] = FALSE;
   $handler->display->display_options['defaults']['filters'] = FALSE;
   /* Filter criterion: Content: Published */
@@ -246,6 +303,7 @@ function hwc_partner_views_default_views() {
     t('See all news'),
     t('Latest partner events'),
     t('Events'),
+    t('See all events'),
   );
   $export['partner_content'] = $view;
 
