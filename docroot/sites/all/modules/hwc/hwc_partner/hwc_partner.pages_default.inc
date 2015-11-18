@@ -2242,36 +2242,6 @@ campaign-media-partners
     $display->content['new-55e46dc6-cbe6-47b9-9228-2dbb98c6c582'] = $pane;
     $display->panels['left___'][2] = 'new-55e46dc6-cbe6-47b9-9228-2dbb98c6c582';
     $pane = new stdClass();
-    $pane->pid = 'new-eb585847-4795-4b6d-9822-25da45177327';
-    $pane->panel = 'left___';
-    $pane->type = 'entity_field';
-    $pane->subtype = 'node:field_website';
-    $pane->shown = TRUE;
-    $pane->access = array();
-    $pane->configuration = array(
-      'label' => 'hidden',
-      'formatter' => 'link_default',
-      'delta_limit' => 0,
-      'delta_offset' => '0',
-      'delta_reversed' => FALSE,
-      'formatter_settings' => array(),
-      'context' => 'argument_entity_id:node_1',
-      'override_title' => 0,
-      'override_title_text' => '',
-      'override_title_heading' => 'h2',
-    );
-    $pane->cache = array();
-    $pane->style = array(
-      'settings' => NULL,
-    );
-    $pane->css = array();
-    $pane->extras = array();
-    $pane->position = 3;
-    $pane->locks = array();
-    $pane->uuid = 'eb585847-4795-4b6d-9822-25da45177327';
-    $display->content['new-eb585847-4795-4b6d-9822-25da45177327'] = $pane;
-    $display->panels['left___'][3] = 'new-eb585847-4795-4b6d-9822-25da45177327';
-    $pane = new stdClass();
     $pane->pid = 'new-073236e5-2fb2-4d90-b25f-72c03c3545bc';
     $pane->panel = 'my_title';
     $pane->type = 'block';
@@ -2482,22 +2452,25 @@ campaign-media-partners
     $pane->shown = TRUE;
     $pane->access = array();
     $pane->configuration = array(
-      'label' => 'above',
-      'formatter' => 'text_default',
+      'label' => 'title',
+      'formatter' => 'text_plain',
       'delta_limit' => 0,
       'delta_offset' => '0',
       'delta_reversed' => FALSE,
       'formatter_settings' => array(),
       'context' => 'argument_entity_id:node_1',
-      'override_title' => 0,
-      'override_title_text' => '',
-      'override_title_heading' => 'h2',
+      'override_title' => 1,
+      'override_title_text' => 'Our contribution',
+      'override_title_heading' => 'div',
     );
     $pane->cache = array();
     $pane->style = array(
       'settings' => NULL,
     );
-    $pane->css = array();
+    $pane->css = array(
+      'css_id' => '',
+      'css_class' => '',
+    );
     $pane->extras = array();
     $pane->position = 2;
     $pane->locks = array();
