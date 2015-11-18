@@ -1907,7 +1907,7 @@ campaign-media-partners
     $pane->access = array();
     $pane->configuration = array(
       'label' => 'hidden',
-      'formatter' => 'title_linked',
+      'formatter' => 'taxonomy_term_reference_plain',
       'delta_limit' => 0,
       'delta_offset' => '0',
       'delta_reversed' => FALSE,
@@ -1944,7 +1944,7 @@ campaign-media-partners
     $pane->access = array();
     $pane->configuration = array(
       'label' => 'hidden',
-      'formatter' => 'title_linked',
+      'formatter' => 'taxonomy_term_reference_plain',
       'delta_limit' => 0,
       'delta_offset' => '0',
       'delta_reversed' => FALSE,
@@ -2005,6 +2005,39 @@ campaign-media-partners
     $pane->uuid = '2c5384eb-8241-4cbf-a6b5-aeb3a1a40523';
     $display->content['new-2c5384eb-8241-4cbf-a6b5-aeb3a1a40523'] = $pane;
     $display->panels['center_'][3] = 'new-2c5384eb-8241-4cbf-a6b5-aeb3a1a40523';
+    $pane = new stdClass();
+    $pane->pid = 'new-f447a5b4-3387-4b4c-bd0b-aa6861bf904f';
+    $pane->panel = 'center_';
+    $pane->type = 'entity_field';
+    $pane->subtype = 'node:field_country';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'label' => 'hidden',
+      'formatter' => 'taxonomy_term_reference_plain',
+      'delta_limit' => 0,
+      'delta_offset' => '0',
+      'delta_reversed' => FALSE,
+      'formatter_settings' => array(),
+      'context' => 'argument_entity_id:node_1',
+      'override_title' => 0,
+      'override_title_text' => '',
+      'override_title_heading' => 'h2',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array(
+      'css_id' => '',
+      'css_class' => 'profile-inline-field',
+    );
+    $pane->extras = array();
+    $pane->position = 4;
+    $pane->locks = array();
+    $pane->uuid = 'f447a5b4-3387-4b4c-bd0b-aa6861bf904f';
+    $display->content['new-f447a5b4-3387-4b4c-bd0b-aa6861bf904f'] = $pane;
+    $display->panels['center_'][4] = 'new-f447a5b4-3387-4b4c-bd0b-aa6861bf904f';
     $pane = new stdClass();
     $pane->pid = 'new-01df3ff6-7648-4eb2-a42a-6d35973b8301';
     $pane->panel = 'center__';
