@@ -74,6 +74,12 @@ function hwc_admin_config_form() {
       uksort($form['migration'], 'strcmp');
     }
   }
+  $form['migration']["hwc_migration_root_url"] = array(
+    '#type' => 'textfield',
+    '#title' => 'Root endpoint URL',
+    '#default_value' => variable_get("hwc_migration_root_url", ''),
+    '#size' => 90,
+  );
   $form = system_settings_form($form);
   $form['actions']['#weight'] = 150;
   return $form;

@@ -115,7 +115,7 @@ function hwc_partner_default_fe_block_settings() {
         'region' => 'content',
         'status' => 1,
         'theme' => 'hwc_frontend',
-        'weight' => 0,
+        'weight' => -53,
       ),
       'seven' => array(
         'region' => '',

@@ -78,3 +78,12 @@ function hwc_homepage_block_view($delta = '') {
   }
   return $block;
 }
+
+/**
+ * Implements hook_block_view_alter().
+ */
+function hwc_homepage_block_view_alter(&$data, $block) {
+  if ($block->delta == 'partners-block_1') {
+    $data['content']['#markup'] .= '<div class="more-link">' . l(t('See all partners'), 'official-campaign-partners') . '</div>';
+  }
+}

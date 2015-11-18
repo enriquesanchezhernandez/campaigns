@@ -304,6 +304,7 @@ $options['init-modules'] = array(
 
   'mailsystem',
   'htmlmail',
+  'mimemail',
 
   'taxonomy_access_fix',
   'date',
@@ -403,6 +404,7 @@ $options['init-modules'] = array(
   'path_breadcrumbs',
   'path_breadcrumbs_ui',
   'path_breadcrumbs_i18n',
+  'panels_breadcrumbs',
 
   'jquery_update',
   'responsive_menus',
@@ -453,11 +455,17 @@ $options['init-modules'] = array(
   'context_layouts',
   'context_entity_field',
 
+  'page_title',
+  'panels_custom_title_tag',
+
   'image_url_formatter',
   'views_data_export',
+  'views_data_export_phpexcel',
+  'token_formatters',
   'phpexcel',
   'plupload',
   'maxlength',
+  'date_single_day',
 
   // Captcha
  'recaptcha',
@@ -537,7 +545,7 @@ $options['init-themes'] = array(
 );
 
 $options['disable-modules'] = array(
-  'varnish', 'memcache_storage', 'piwik', 'overlay',
+  'varnish', 'memcache_storage', 'overlay',
 );
 
 // Add specific settings for development or demo.

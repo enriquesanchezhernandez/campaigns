@@ -48,7 +48,9 @@ if [ ${ecode} != 0 ]; then
 fi
 
 # temporary
-drush fr -y --force osha_events
+# drush fr -y --force osha_events
+drush updatedb -y
+
 
 # Build the site
 drush osha_build -y

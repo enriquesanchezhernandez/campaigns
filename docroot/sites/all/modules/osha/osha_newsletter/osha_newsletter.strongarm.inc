@@ -218,7 +218,7 @@ function osha_newsletter_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'subscribe_block_intro_text';
-  $strongarm->value = 'Once a month, OSHmail keeps you updated on occupational safety and health.';
+  $strongarm->value = 'Once a month, OSHmail keeps you updated on occupational safety and health in general.';
   $export['subscribe_block_intro_text'] = $strongarm;
 
   $strongarm = new stdClass();
@@ -267,7 +267,7 @@ function osha_newsletter_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'subscribe_extra_block_intro_text';
-  $strongarm->value = 'Keep you updated on...';
+  $strongarm->value = 'To get the latest news from the Healthy Workplaces Campaign 2016–17 direct to your inbox, sign up for our bimonthly newsletter. We’ll cover all the big events and key issues to keep you up to date.';
   $export['subscribe_extra_block_intro_text'] = $strongarm;
 
   return $export;

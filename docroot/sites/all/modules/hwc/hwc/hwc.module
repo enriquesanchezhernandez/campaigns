@@ -24,6 +24,10 @@ function hwc_permission() {
       'title' => t('Access the private area'),
       'description' => t('Access content inside the private area'),
     ),
+    'configure hwc website' => array(
+      'title' => t('Configure campaigns website'),
+      'description' => t('Access the HCW configuration screen'),
+    ),
   );
 }
 
@@ -37,7 +41,7 @@ function hwc_menu() {
     'description' => 'Configure parameters for the HWC website',
     'page callback' => 'drupal_get_form',
     'page arguments' => array('hwc_admin_config_form'),
-    'access arguments' => array('administer site configuration'),
+    'access arguments' => array('configure hwc website'),
     'file' => 'hwc_admin.pages.inc',
     'type' => MENU_NORMAL_ITEM,
   );
@@ -64,6 +68,12 @@ function hwc_block_info() {
     'visibility' => BLOCK_VISIBILITY_NOTLISTED,
     'cache' => DRUPAL_CACHE_GLOBAL,
   );
+  $blocks['hwc_print_friendly'] = array(
+    'info' => t('HWC Print friendly'),
+    'status' => 1,
+    'visibility' => BLOCK_VISIBILITY_NOTLISTED,
+    'region' => 'above_header',
+  );
   return $blocks;
 }
 
@@ -75,6 +85,10 @@ function hwc_block_view($delta = '') {
   if ($delta == 'page_share_widget') {
     $block['title'] = '<none>';
     $block['content'] = hwc_page_share_widget();
+  }
+  if ($delta == 'hwc_print_friendly') {
+    $block['subject'] = "<none>";
+    $block['content'] = theme('hwc_print_friendly_block');
   }
   return $block;
 }
@@ -216,6 +230,11 @@ function hwc_field_formatter_info() {
       'field types' => array('taxonomy_term_reference'),
       'description' => 'Displays a country flag for terms with field_flag set.',
     ),
+    'hwc_file_download_link' => array(
+        'label' => 'Generic download link',
+        'field types' => array('file'),
+        'description' => 'Display file name or description if the last one is not empty',
+    ),
   );
   return $info;
 }
@@ -249,6 +268,7 @@ function hwc_theme() {
       ),
       'template' => 'templates/article_share_widget',
     ),
+    'hwc_print_friendly_block' => array(),
   );
 }
 
@@ -296,6 +316,17 @@ function hwc_field_formatter_view($entity_type, $entity, $field, $instance, $lan
             '#delta' => $delta,
           );
         }
+      }
+      break;
+    case 'hwc_file_download_link':
+      foreach($items as $delta => $item){
+        $uri = file_entity_download_uri(file_load($item['fid']));
+        $link_name = $item['filename'];
+        if(!empty($item['description'])){
+          $link_name = $item['description'];
+        }
+        $link = l($link_name, $uri['path'], array('query' => $uri['options']['query']));
+        $element[$delta]['#markup'] = $link;
       }
       break;
   }
@@ -585,8 +616,21 @@ function hwc_node_view($node, $view_mode, $langcode) {
       $_SESSION['mf'] = $_GET['mf'];
     }
   }
+
+  $share_widget_content_types = array(
+    'news',
+    'events',
+    'article',
+    'hwc_gallery',
+    'press_release',
+  );
+  // Array of nids where to hide the share widget.
+  $no_share_widget = array(
+    162, 241, 242, 243, 244, 245, 246,
+  );
   if ($view_mode == 'full'
-    && in_array($node->type, array('news', 'events', 'article', 'hwc_gallery', 'press_release'))) {
+    && in_array($node->type, $share_widget_content_types)
+    && !in_array($node->nid, $no_share_widget)) {
     $extra_fields = field_info_extra_fields('node', $node->type, 'display');
     if (!empty($extra_fields['share_widget']['display']['default']['visible'])) {
       $options = array();
@@ -606,7 +650,7 @@ function hwc_news_share_widget($node, $options = array()) {
   global $language;
   /** @var stdClass $wrapper */
   $type = 'other';
-  if ($options['page'] === TRUE) {
+  if (!empty($options['page']) && $options['page'] === TRUE) {
     $url = url(current_path(), array('absolute' => TRUE));
     $title = drupal_get_title();
   }
@@ -797,18 +841,6 @@ function hwc_user_activate($mail) {
   }
 }
 
-/**
- * Implements hook_pathologic_alter().
- *
- * Some links such as FOP, are starting with fop/ and do need to be "fixed"
- * due to HTTP server redirects.
- */
-function osha_pathologic_alter(&$url_params, $parts, $settings) {
-  if (preg_match('/^forms\/partner\//m', $url_params['path'])) {
-    $url_params['options']['use_original'] = TRUE;
-  }
-}
-
 
 /**
  * Retrieve configuration parameter for the form applications.
@@ -901,4 +933,26 @@ function hwc_taxonomy_term_presave($term) {
       drupal_set_message(strtr('Flag not found for @country', array('@country' => $term->name)), 'warning');
     }
   }
+}
+
+function theme_hwc_print_friendly_block() {
+  $content = array(
+    '#markup' => '<a href="javascript:if(window.print)window.print();" class="printfriendly"></a>'
+  );
+  return render($content);
+}
+
+
+/**
+ * Implements hook_form_alter().
+ */
+function hwc_form_search_block_form_alter(&$form) {
+  // Overwrite the search page default url.
+  // Unset the form elements - the search view needs just the search param.
+  $form['#action'] = url('search');
+  $form['#method'] = 'get';
+  unset($form['form_token']);
+  unset($form['#submit']);
+  unset($form['form_build_id']);
+  unset($form['form_id']);
 }

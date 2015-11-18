@@ -59,7 +59,7 @@ function ncw_migration_migrate_api() {
         'dependencies' => array(
           'tax_tags', 'publications_add_res', 'news_add_res',
           'press_releases_add_res', 'press_releases_add_res',
-          'highlights_add_res'
+          'highlights_add_res', 'notes_to_editor'
         ),
         'class_name' => 'NCWPressMigration',
       ),
@@ -310,9 +310,7 @@ abstract class AbstractNCWNodeMigration extends Migration {
    * Implements Migration::prepare()
    */
   public function prepare($entity, stdClass $row) {
-    if(!empty($row->workbench_moderation)) {
-      $entity->workbench_moderation_state_new = $row->workbench_moderation['current']['state'];
-    }
+    $entity->workbench_moderation_state_new = OSHA_WORKFLOW_STATE_PUBLISHED;
   }
 
   /**
@@ -333,6 +331,10 @@ abstract class AbstractNCWNodeMigration extends Migration {
       }
       $handler->saveTranslations();
     }
+  }
+
+  public function postImport() {
+    $this->removeNeedsUpdateItems();
   }
 
   public function getMigrationURL() {
@@ -364,6 +366,23 @@ abstract class AbstractNCWNodeMigration extends Migration {
     }
     else {
       return FALSE;
+    }
+  }
+
+  /**
+   * Remove nodes that are not in the source anymore.
+   */
+  protected function removeNeedsUpdateItems() {
+    $removed = $this->getMap()->getRowsNeedingUpdate(10000);
+    $to_be_removed = array();
+    if (!empty($removed)) {
+      foreach ($removed as $to_remove) {
+        $to_be_removed[] =$to_remove->destid1;
+        $this->getMap()->delete(array($to_remove->sourceid1));
+      }
+      node_delete_multiple($to_be_removed);
+      watchdog('ncw_migration', 'Deleting records that are not in the source anymore: !nids.',
+        array('!nids' => implode('', $to_be_removed)), WATCHDOG_INFO);
     }
   }
 }
@@ -713,6 +732,7 @@ function ncw_migration_file_get_contents($url) {
   curl_setopt($ch, CURLOPT_URL, $url);
   curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
   curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 5);
+  curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
   $result = curl_exec($ch);
   curl_close($ch);
   return $result;
@@ -730,7 +750,7 @@ function osha_migration_normalize_field_list_text($row, $field_name) {
   if (!empty($row->{$field_name}) && is_array($row->{$field_name})) {
     foreach ($row->{$field_name} as $language => $values) {
       foreach($values as $v) {
-        $field[] = $v['value'];
+        $field[] = !empty($v['safe_value']) ? $v['safe_value'] : $v['value'];
       }
     }
   }
@@ -756,7 +776,7 @@ function osha_migration_normalize_field_text_long($row, $field_name) {
   if (!empty($row->{$field_name}) && is_array($row->{$field_name})) {
     foreach ($row->{$field_name} as $language => $values) {
       foreach($values as $v) {
-        $field[] = $v['value'];
+        $field[] = !empty($v['safe_value']) ? $v['safe_value'] : $v['value'];
         $languages[] = $language;
         $format[] = $v['format'];
       }
@@ -797,7 +817,7 @@ function osha_migration_normalize_field_text($row, $field_name, $field_info) {
   if (!empty($row->{$field_name}) && is_array($row->{$field_name})) {
     foreach ($row->{$field_name} as $language => $values) {
       foreach($values as $v) {
-        $field[] = $v['value'];
+        $field[] = !empty($v['safe_value']) ? $v['safe_value'] : $v['value'];
         $languages[] = $language;
       }
     }
@@ -945,6 +965,20 @@ function ncw_migration_find_additional_resource($source_nid) {
       );
       return $destid1['destid1'];
     }
+  }
+  return NULL;
+}
+
+function ncw_migration_find_migrated_item_id($source_nid, $migration_name) {
+  $migration = Migration::getInstance($migration_name);
+  /** @var MigrateMap $map */
+  $map = $migration->getMap();
+  if ($destid1 = $map->lookupDestinationID(array($source_nid))) {
+    ncw_migration_debug(
+        'Linking additional resource from !machine (src=!src:dest=!dest',
+        array('!machine' => $migration_name, '!src' => $source_nid, '!dest' => $destid1['destid1'])
+    );
+    return $destid1['destid1'];
   }
   return NULL;
 }

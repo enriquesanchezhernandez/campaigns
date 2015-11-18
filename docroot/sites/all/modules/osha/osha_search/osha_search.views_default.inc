@@ -148,6 +148,20 @@ function osha_search_views_default_views() {
   $handler->display->display_options['exposed_block'] = TRUE;
   $handler->display->display_options['defaults']['header'] = FALSE;
   $handler->display->display_options['defaults']['fields'] = FALSE;
+  /* Field: Indexed Multilingual Node: Publication date */
+  $handler->display->display_options['fields']['field_publication_date']['id'] = 'field_publication_date';
+  $handler->display->display_options['fields']['field_publication_date']['table'] = 'search_api_index_default_multilingual_node_index';
+  $handler->display->display_options['fields']['field_publication_date']['field'] = 'field_publication_date';
+  $handler->display->display_options['fields']['field_publication_date']['label'] = '';
+  $handler->display->display_options['fields']['field_publication_date']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_publication_date']['settings'] = array(
+    'format_type' => 'osha_day_only',
+    'fromto' => 'both',
+    'multiple_number' => '',
+    'multiple_from' => '',
+    'multiple_to' => '',
+    'osha_date_theme' => '',
+  );
   /* Field: Indexed Multilingual Node: Title */
   $handler->display->display_options['fields']['title_field']['id'] = 'title_field';
   $handler->display->display_options['fields']['title_field']['table'] = 'search_api_index_default_multilingual_node_index';
@@ -168,20 +182,6 @@ function osha_search_views_default_views() {
   $handler->display->display_options['fields']['type']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['type']['link_to_entity'] = 0;
   $handler->display->display_options['fields']['type']['format_name'] = 1;
-  /* Field: Indexed Multilingual Node: Publication date */
-  $handler->display->display_options['fields']['field_publication_date']['id'] = 'field_publication_date';
-  $handler->display->display_options['fields']['field_publication_date']['table'] = 'search_api_index_default_multilingual_node_index';
-  $handler->display->display_options['fields']['field_publication_date']['field'] = 'field_publication_date';
-  $handler->display->display_options['fields']['field_publication_date']['label'] = '';
-  $handler->display->display_options['fields']['field_publication_date']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['field_publication_date']['settings'] = array(
-    'format_type' => 'osha_day_only',
-    'fromto' => 'both',
-    'multiple_number' => '',
-    'multiple_from' => '',
-    'multiple_to' => '',
-    'osha_date_theme' => '',
-  );
   /* Field: Indexed Multilingual Node: Archived */
   $handler->display->display_options['fields']['field_archived']['id'] = 'field_archived';
   $handler->display->display_options['fields']['field_archived']['table'] = 'search_api_index_default_multilingual_node_index';
@@ -263,15 +263,12 @@ function osha_search_views_default_views() {
   $handler->display->display_options['fields']['field_campaign_material_type']['link_to_entity'] = 0;
   $handler->display->display_options['fields']['field_campaign_material_type']['view_mode'] = 'full';
   $handler->display->display_options['fields']['field_campaign_material_type']['bypass_access'] = 0;
-  /* Field: Indexed Multilingual Node: Organisation type */
+  /* Field: Indexed Multilingual Node: Organisation Type */
   $handler->display->display_options['fields']['field_orgtype']['id'] = 'field_orgtype';
   $handler->display->display_options['fields']['field_orgtype']['table'] = 'search_api_index_default_multilingual_node_index';
   $handler->display->display_options['fields']['field_orgtype']['field'] = 'field_orgtype';
   $handler->display->display_options['fields']['field_orgtype']['label'] = 'Type';
   $handler->display->display_options['fields']['field_orgtype']['hide_empty'] = TRUE;
-  $handler->display->display_options['fields']['field_orgtype']['settings'] = array(
-    'field_formatter_class' => '',
-  );
   /* Field: Indexed Multilingual Node: Publication Type */
   $handler->display->display_options['fields']['field_publication_type']['id'] = 'field_publication_type';
   $handler->display->display_options['fields']['field_publication_type']['table'] = 'search_api_index_default_multilingual_node_index';

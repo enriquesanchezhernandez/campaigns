@@ -132,7 +132,7 @@ function osha_contact_mail_alter(&$message) {
     //$topic = entity_load_single('taxonomy_term', $message['params']['contact_topic']);
     $sender = taxonomy_term_load($message['params']['contact_type_of_sender']);
     //message subject
-    $message['subject'] = $message['params']['contact_topic'];
+    $message['subject'] = 'HWC Contact: ' . $message['params']['contact_topic'];
     //message from
     $from = $message['params']['category']['from_email'];
     $message['from'] = $from;

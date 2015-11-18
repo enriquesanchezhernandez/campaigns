@@ -14,6 +14,7 @@ function osha_alert_service_default_fe_block_settings() {
 
   $export['osha_alert_service-osha_alert_block_front_view'] = array(
     'cache' => 8,
+    'css_class' => '',
     'custom' => 0,
     'delta' => 'osha_alert_block_front_view',
     'i18n_block_language' => array(),
@@ -42,6 +43,7 @@ function osha_alert_service_default_fe_block_settings() {
 
   $export['osha_alert_service-osha_alert_service_subscribe'] = array(
     'cache' => 8,
+    'css_class' => '',
     'custom' => 0,
     'delta' => 'osha_alert_service_subscribe',
     'i18n_block_language' => array(),
@@ -56,7 +58,7 @@ node/50',
         'region' => 'content',
         'status' => 1,
         'theme' => 'hwc_frontend',
-        'weight' => -50,
+        'weight' => -60,
       ),
       'seven' => array(
         'region' => 'content',
@@ -71,6 +73,7 @@ node/50',
 
   $export['osha_alert_service-osha_calls_rss'] = array(
     'cache' => 8,
+    'css_class' => '',
     'custom' => 0,
     'delta' => 'osha_calls_rss',
     'i18n_block_language' => array(),
@@ -99,6 +102,7 @@ node/50',
 
   $export['osha_alert_service-osha_events_rss'] = array(
     'cache' => 8,
+    'css_class' => '',
     'custom' => 0,
     'delta' => 'osha_events_rss',
     'i18n_block_language' => array(),
@@ -128,6 +132,7 @@ node/5322',
 
   $export['osha_alert_service-osha_job_vacancies_rss'] = array(
     'cache' => 8,
+    'css_class' => '',
     'custom' => 0,
     'delta' => 'osha_job_vacancies_rss',
     'i18n_block_language' => array(),
@@ -156,6 +161,7 @@ node/5322',
 
   $export['osha_alert_service-osha_news_rss'] = array(
     'cache' => 8,
+    'css_class' => '',
     'custom' => 0,
     'delta' => 'osha_news_rss',
     'i18n_block_language' => array(),
@@ -184,6 +190,7 @@ node/5322',
 
   $export['osha_alert_service-osha_publication_rss'] = array(
     'cache' => 8,
+    'css_class' => '',
     'custom' => 0,
     'delta' => 'osha_publication_rss',
     'i18n_block_language' => array(),

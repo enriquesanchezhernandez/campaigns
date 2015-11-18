@@ -24,8 +24,17 @@ function osha_views_default_views() {
   $handler = $view->new_display('default', 'Master', 'default');
   $handler->display->display_options['title'] = 'Administration content';
   $handler->display->display_options['use_more_always'] = FALSE;
-  $handler->display->display_options['access']['type'] = 'perm';
-  $handler->display->display_options['access']['perm'] = 'view the administration theme';
+  $handler->display->display_options['access']['type'] = 'role';
+  $handler->display->display_options['access']['role'] = array(
+    3 => '3',
+    15 => '15',
+    9 => '9',
+    8 => '8',
+    14 => '14',
+    11 => '11',
+    13 => '13',
+    4 => '4',
+  );
   $handler->display->display_options['cache']['type'] = 'none';
   $handler->display->display_options['query']['type'] = 'views_query';
   $handler->display->display_options['query']['options']['distinct'] = TRUE;
@@ -249,29 +258,6 @@ function osha_views_default_views() {
   $handler->display->display_options['filters']['type']['id'] = 'type';
   $handler->display->display_options['filters']['type']['table'] = 'node';
   $handler->display->display_options['filters']['type']['field'] = 'type';
-  $handler->display->display_options['filters']['type']['value'] = array(
-    'article' => 'article',
-    'campaign_materials' => 'campaign_materials',
-    'press_contact' => 'press_contact',
-    'event_speaker' => 'event_speaker',
-    'events' => 'events',
-    'external_url' => 'external_url',
-    'file' => 'file',
-    'flickr' => 'flickr',
-    'frontpage_slider' => 'frontpage_slider',
-    'infographic' => 'infographic',
-    'internal_url' => 'internal_url',
-    'news' => 'news',
-    'newsletter_article' => 'newsletter_article',
-    'note_to_editor' => 'note_to_editor',
-    'partner' => 'partner',
-    'practical_tool' => 'practical_tool',
-    'press_release' => 'press_release',
-    'publication' => 'publication',
-    'slideshare' => 'slideshare',
-    'webform' => 'webform',
-    'youtube' => 'youtube',
-  );
   $handler->display->display_options['filters']['type']['group'] = 1;
   $handler->display->display_options['filters']['type']['exposed'] = TRUE;
   $handler->display->display_options['filters']['type']['expose']['operator_id'] = 'type_op';
@@ -293,8 +279,9 @@ function osha_views_default_views() {
     11 => 0,
     12 => 0,
     13 => 0,
+    14 => 0,
+    15 => 0,
   );
-  $handler->display->display_options['filters']['type']['expose']['reduce'] = TRUE;
   /* Filter criterion: User: Name */
   $handler->display->display_options['filters']['uid']['id'] = 'uid';
   $handler->display->display_options['filters']['uid']['table'] = 'users';

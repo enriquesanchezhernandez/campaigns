@@ -54,7 +54,7 @@ function osha_authentication_get_role_from_dn($group_dn) {
       array(
         'cn=OCP,ou=HWC,ou=Sites,dc=osha,dc=europa,dc=eu',
         'cn=FOP,ou=HWC,ou=Sites,dc=osha,dc=europa,dc=eu',
-        'cn=MP,ou=HWC,ou=Sites,dc=osha,dc=europa,dc=eu',
+        'cn=OMP,ou=HWC,ou=Sites,dc=osha,dc=europa,dc=eu',
       )
     )) {
     $role = ROLE_CAMPAIGN_PARTNER;

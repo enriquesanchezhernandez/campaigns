@@ -28,7 +28,7 @@ function osha_newsletter_default_fe_block_settings() {
         'region' => 'content',
         'status' => 1,
         'theme' => 'hwc_frontend',
-        'weight' => -9,
+        'weight' => -56,
       ),
       'seven' => array(
         'region' => '',
@@ -86,13 +86,13 @@ function osha_newsletter_default_fe_block_settings() {
         'region' => 'content',
         'status' => 1,
         'theme' => 'hwc_frontend',
-        'weight' => 8,
+        'weight' => -30,
       ),
       'seven' => array(
         'region' => '',
         'status' => 0,
         'theme' => 'seven',
-        'weight' => -30,
+        'weight' => 0,
       ),
     ),
     'title' => 'OSHMail newsletter',
@@ -115,7 +115,7 @@ function osha_newsletter_default_fe_block_settings() {
         'region' => 'content',
         'status' => 1,
         'theme' => 'hwc_frontend',
-        'weight' => -44,
+        'weight' => -57,
       ),
       'seven' => array(
         'region' => '',

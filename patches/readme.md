@@ -7,6 +7,9 @@ When patching a contrib module, the following steps should be followed:
 
 List of patches (most recent first)
 
+* token_formatters
+  * Added support for field_collection
+
 * flickr
   * Fix js error on flickr with colorbox
   * check_for_class_colorbox_plus_respect_colorbox_path_settings-2301681-10.patch
@@ -271,6 +274,18 @@ List of patches (most recent first)
 * addtoany
   * make text of link translatable
   * translatable_link_text.patch
+
+* smtp
+  * Sending attachments using modules smtp and mimemail
+  * https://www.drupal.org/node/1442514
+  * smtm/SMTP-1442514.patch
+
+* webform2pdf
+  * Undefined index: exclude_empty
+  * https://www.drupal.org/node/2499749
+  * webform2pdf/webform-exclude_empty-2499749-6.patch
+
+  * webform2pdf_correct-variable-and-theme_2446585-3.patch
 
 Patch documentation should be in the following format:
 

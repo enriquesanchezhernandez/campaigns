@@ -134,12 +134,15 @@ function hwc_practical_tool_menu_tools_search_native($form_state) {
     }
   }
   $relevant_for_ids = array();
-  $relevant_for = $form_state['values']['relevant_for'];
-  foreach ($relevant_for as $relf) {
-    if ($relf) {
-      $relevant_for_ids[] = $relf;
+  if ($form_state['submitted'] === TRUE) {
+    $relevant_for = $form_state['values']['relevant_for'];
+    foreach ($relevant_for as $relf) {
+      if ($relf) {
+        $relevant_for_ids[] = $relf;
+      }
     }
   }
+
   $q = db_select('node', 'a')
     ->fields('a', array('nid', 'vid'))
     ->condition('type', 'practical_tool')
@@ -181,9 +184,14 @@ function hwc_practical_tool_menu_tools_search_native($form_state) {
   if ($is_search) {
     $pager_params['text'] = $text;
   }
+  $language_names = array();
+  foreach($languages as $code) {
+    $l = i18n_language_load($code);
+    $language_names[] = $l->native;
+  }
   $ret = array(
     '#nids' => $nids,
-    '#prefix' => '<h4>' . t('Practical tools available in national languages') . '</h4>',
+    '#prefix' => '<h4>' . t('Tools in ') . implode(', ', $language_names) . '</h4>',
     'results-native' => node_view_multiple($nodes, 'pub_teaser', 0, $language->language),
     '#suffix' => theme('pager', array(
       'tags' => array('<', '<', '', '>', '>'),
@@ -280,7 +288,7 @@ function hwc_practical_tool_menu_tools_search_related($form_state, $native_nids)
     $pager_params['text'] = $text;
   }
   $ret = array(
-    '#prefix' => '<h4>' . t('Other relevant practical tools in English') . '</h4>',
+    '#prefix' => '<h4>' . t('Other relevant tools in English') . '</h4>',
     'results-related' => node_view_multiple($nodes, 'pub_teaser', 0, $language->language),
     '#suffix' => theme('pager', array(
       'tags' => array('<', '<', '', '>', '>'),
