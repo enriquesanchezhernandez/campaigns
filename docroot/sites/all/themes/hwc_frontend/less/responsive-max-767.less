@@ -839,7 +839,7 @@ header.navbar-default{
 	#search, #edit-content #search{
 		margin-top: 0em;
 		margin-bottom: 0em;
-		border-top: none;
+		/* border-top: none; */
 		div{
 			margin-left: @margin-movil;
 		}
@@ -1134,7 +1134,18 @@ header.navbar-default{
 	}
 	
 	//Gallery
+	.node-events .group-header > div.field-name-field-gallery{
+		margin-left: 0;
+		margin-right: 0;
+		> .field-label{
+			margin-left: @margin-movil;
+			margin-right: @margin-movil;
+		}
+	}
 	.node-events .node-hwc-gallery{
+		.field-item{
+			background-color: @bg-default-color;
+		}
 		.galleryformatter{
 			height: 300px;
 			.field-item{
