@@ -2409,6 +2409,72 @@ campaign-media-partners
     $display->content['new-72daed56-c812-495c-b79a-64a72e92e5dd'] = $pane;
     $display->panels['my_title'][4] = 'new-72daed56-c812-495c-b79a-64a72e92e5dd';
     $pane = new stdClass();
+    $pane->pid = 'new-aad17afc-1b8d-4762-90fb-0303da77bb41';
+    $pane->panel = 'right';
+    $pane->type = 'entity_field';
+    $pane->subtype = 'node:field_position_identifier';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'label' => 'hidden',
+      'formatter' => 'text_plain',
+      'delta_limit' => 0,
+      'delta_offset' => '0',
+      'delta_reversed' => FALSE,
+      'formatter_settings' => array(),
+      'context' => 'argument_entity_id:node_1',
+      'override_title' => 0,
+      'override_title_text' => '',
+      'override_title_heading' => 'h2',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array(
+      'css_id' => '',
+      'css_class' => 'profile-inline-field',
+    );
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = 'aad17afc-1b8d-4762-90fb-0303da77bb41';
+    $display->content['new-aad17afc-1b8d-4762-90fb-0303da77bb41'] = $pane;
+    $display->panels['right'][0] = 'new-aad17afc-1b8d-4762-90fb-0303da77bb41';
+    $pane = new stdClass();
+    $pane->pid = 'new-5e29b793-d024-46c0-abfd-72f6e021e824';
+    $pane->panel = 'right';
+    $pane->type = 'entity_field';
+    $pane->subtype = 'node:field_ceo';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'label' => 'hidden',
+      'formatter' => 'text_plain',
+      'delta_limit' => 0,
+      'delta_offset' => '0',
+      'delta_reversed' => FALSE,
+      'formatter_settings' => array(),
+      'context' => 'argument_entity_id:node_1',
+      'override_title' => 0,
+      'override_title_text' => '',
+      'override_title_heading' => 'h2',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array(
+      'css_id' => '',
+      'css_class' => 'profile-inline-field',
+    );
+    $pane->extras = array();
+    $pane->position = 1;
+    $pane->locks = array();
+    $pane->uuid = '5e29b793-d024-46c0-abfd-72f6e021e824';
+    $display->content['new-5e29b793-d024-46c0-abfd-72f6e021e824'] = $pane;
+    $display->panels['right'][1] = 'new-5e29b793-d024-46c0-abfd-72f6e021e824';
+    $pane = new stdClass();
     $pane->pid = 'new-8ff53bc4-a287-4f2f-9727-5510ead1e75a';
     $pane->panel = 'right';
     $pane->type = 'entity_field';
@@ -2433,41 +2499,11 @@ campaign-media-partners
     );
     $pane->css = array();
     $pane->extras = array();
-    $pane->position = 0;
+    $pane->position = 2;
     $pane->locks = array();
     $pane->uuid = '8ff53bc4-a287-4f2f-9727-5510ead1e75a';
     $display->content['new-8ff53bc4-a287-4f2f-9727-5510ead1e75a'] = $pane;
-    $display->panels['right'][0] = 'new-8ff53bc4-a287-4f2f-9727-5510ead1e75a';
-    $pane = new stdClass();
-    $pane->pid = 'new-77cc5bf8-5bbc-40ce-8d91-e31ff9f96577';
-    $pane->panel = 'right';
-    $pane->type = 'entity_field';
-    $pane->subtype = 'node:field_mission_statement';
-    $pane->shown = TRUE;
-    $pane->access = array();
-    $pane->configuration = array(
-      'label' => 'above',
-      'formatter' => 'text_default',
-      'delta_limit' => 0,
-      'delta_offset' => '0',
-      'delta_reversed' => FALSE,
-      'formatter_settings' => array(),
-      'context' => 'argument_entity_id:node_1',
-      'override_title' => 0,
-      'override_title_text' => '',
-      'override_title_heading' => 'h2',
-    );
-    $pane->cache = array();
-    $pane->style = array(
-      'settings' => NULL,
-    );
-    $pane->css = array();
-    $pane->extras = array();
-    $pane->position = 1;
-    $pane->locks = array();
-    $pane->uuid = '77cc5bf8-5bbc-40ce-8d91-e31ff9f96577';
-    $display->content['new-77cc5bf8-5bbc-40ce-8d91-e31ff9f96577'] = $pane;
-    $display->panels['right'][1] = 'new-77cc5bf8-5bbc-40ce-8d91-e31ff9f96577';
+    $display->panels['right'][2] = 'new-8ff53bc4-a287-4f2f-9727-5510ead1e75a';
     $pane = new stdClass();
     $pane->pid = 'new-22050c50-2a04-49d6-b147-ee7e3f0b7183';
     $pane->panel = 'right__';
