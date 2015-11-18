@@ -905,7 +905,7 @@ function osha_resources_field_default_field_instances() {
         'settings' => array(
           'field_formatter_class' => '',
           'image_class' => '',
-          'images_shown' => 5,
+          'images_shown' => 4,
         ),
         'type' => 'n',
         'weight' => 0,
