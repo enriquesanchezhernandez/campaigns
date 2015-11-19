@@ -1799,7 +1799,7 @@ function osha_field_default_field_instances() {
         'settings' => array(
           'field_formatter_class' => '',
         ),
-        'type' => 'external_url_link',
+        'type' => 'internal_link_title',
         'weight' => 1,
       ),
       'osha_slideshow' => array(
