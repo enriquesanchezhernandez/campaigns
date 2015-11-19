@@ -291,7 +291,7 @@ function hwc_partner_node_view($node, $view_mode, $langcode) {
 
   // node 253 - /private/profile/update
   if ($node->nid == 253 && !empty($_GET['session_id']) && !empty($node->content['body'][0]['#markup'])) {
-    $url = '/partner/forms/index.php?mf=true&session_id=' . $_GET['session_id'];
+    $url = '/partner/forms/index.php?mf=TRUE&session_id=' . $_GET['session_id'];
     $c = 0;
     $node->content['body'][0]['#markup'] = str_replace('/partner/forms/index.php?mf=true"', $url . '"', $node->content['body'][0]['#markup'], $c);
     if ($c != 1) {
@@ -300,7 +300,7 @@ function hwc_partner_node_view($node, $view_mode, $langcode) {
   }
   // node 225 - /partner/register
   if ($node->nid == 225 && !empty($_GET['session_id']) && !empty($node->content['body'][0]['#markup'])) {
-    $url = '/partner/forms/index.php?session_id=' . $_GET['session_id'];
+    $url = '/partner/forms/index.php?mf=FALSE&session_id=' . $_GET['session_id'];
     $c = 0;
     $node->content['body'][0]['#markup'] = str_replace('/partner/forms/index.php"', $url . '"', $node->content['body'][0]['#markup'], $c);
     if ($c != 1) {
