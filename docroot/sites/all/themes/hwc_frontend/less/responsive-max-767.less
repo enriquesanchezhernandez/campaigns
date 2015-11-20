@@ -1588,11 +1588,16 @@ header.navbar-default{
 	.pane-node-field-quote{
 		padding-left: 15px;
 		padding-right: 15px;
-		&:before{
-			display: none;
+		&:before, &:after{
+			/* display: none; */
+			background-size: contain;
+			width: 8.3%;
+			margin-right: @margin-movil;
 		}
-		&:after{
-			display: none;
+		.pane-content{
+			width: 83.4%;
+			display: flex;
+			padding-right: 20px;
 		}
 		.field-name-field-quote{
 			margin: 0px 0px;

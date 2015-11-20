@@ -3970,6 +3970,7 @@ article{
 }
 .profile-title-type-container{
 	margin-bottom: 90px !important;
+	margin-bottom: 2em !important; //http://osha-campaigns.edw.ro/en/campaign-partners/cbs-e-magazine
 	.pane-entity-field{
 		.field-name-title-field{
 			h1{
@@ -3996,7 +3997,7 @@ article{
 	background: url("../images/content/bg-campaign-partner.png");
 	background-size: cover;
 	margin-top: 3em !important;
-	margin-bottom: 3em !important;
+	/* margin-bottom: 3em !important; */
 	/* padding-bottom: 4em !important; */
 	padding-bottom: 2em !important;
 	padding-top: 2em !important;
@@ -4069,8 +4070,14 @@ article{
 	border-bottom: 1px dotted @color3;
 	padding-bottom: 70px !important;
 	margin-bottom: 50px !important;
+	border-top: 1px dotted @color3;
+	padding-top: 2em;
 	.pane-node-field-mission-statement{
 	    clear: both;
+		padding-top: 1em;
+		padding-right: 1em;
+	}
+	.pane-node-field-pledge{
 		padding-top: 1em;
 	}
 	.field-label{
@@ -4206,6 +4213,24 @@ article{
 
 		}
 	}
+	.view-display-id-latest_partner_news, .view-display-id-latest_partner_events{
+		.more-link{
+			color: @btn-default-color;
+			background-color: @bg-color-2;
+			font-style: normal;
+			font-weight: normal;
+		}
+	}
+}
+#block-system-main .profile-2-cols-container-3{
+	.view-display-id-latest_partner_news, .view-display-id-latest_partner_events{
+		.more-link{
+			color: @btn-default-color;
+			background-color: @bg-color-2;
+		    font-style: normal;
+			font-weight: normal;
+		}
+	}
 }
 .node-type-partner{
 	.profile-4-cols-container-2{
@@ -4236,6 +4261,36 @@ article{
 					margin-bottom: 1em;
 				}
 			}
+		}
+	}
+	.pane-node-field-free, .pane-node-field-country, .pane-node-field-tool-type{
+		background-color: @bg-default-color;
+		color: @text-default-color;
+		font-style: normal;
+		margin-top: 0em;
+		margin-right: 0em;
+		text-align: left;
+		float: none;
+		.field-item {
+			padding-left: 0;
+		}
+	}
+	.pane-node-field-website{
+		/* text-align: left; // para MP pero centrado para FP */
+	}
+	.pane-entity-field.pane-node-field-ceo{
+		.pane-title{
+			font-weight: bold;
+			float: left;
+			margin-right: 2em;
+		}
+	}
+	.profile-2-cols-container-1 .panels-flexible-region-last .pane-entity-field{
+		margin-bottom: 0.5em;
+		.pane-title{
+			color: @text-color-3;
+			font-size: @size2;
+			font-weight: bold;
 		}
 	}
 }

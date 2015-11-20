@@ -10368,6 +10368,16 @@ article .hwc-share-widget ul {
 .page-events form .views-exposed-form .views-exposed-widget button.form-submit:focus {
   outline: 0;
 }
+.page-past-events form .views-exposed-form .views-exposed-widget button#edit-reset,
+.page-events form .views-exposed-form .views-exposed-widget button#edit-reset {
+  background: none;
+  color: #003399;
+  font-weight: bold;
+}
+.page-past-events form .views-exposed-form .views-exposed-widget button#edit-reset:before,
+.page-events form .views-exposed-form .views-exposed-widget button#edit-reset:before {
+  content: "";
+}
 #block-system-main .view-events-search,
 .view-events-search {
   clear: both;
@@ -11600,6 +11610,7 @@ article .hwc-share-widget ul {
 }
 .profile-title-type-container {
   margin-bottom: 90px !important;
+  margin-bottom: 2em !important;
 }
 .profile-title-type-container .pane-entity-field .field-name-title-field h1 {
   border-bottom: none;
@@ -11621,7 +11632,7 @@ article .hwc-share-widget ul {
   background: url("../images/content/bg-campaign-partner.png");
   background-size: cover;
   margin-top: 3em !important;
-  margin-bottom: 3em !important;
+  /* margin-bottom: 3em !important; */
   /* padding-bottom: 4em !important; */
   padding-bottom: 2em !important;
   padding-top: 2em !important;
@@ -11690,9 +11701,15 @@ article .hwc-share-widget ul {
   border-bottom: 1px dotted #749b00;
   padding-bottom: 70px !important;
   margin-bottom: 50px !important;
+  border-top: 1px dotted #749b00;
+  padding-top: 2em;
 }
 .profile-2-cols-container-1 .pane-node-field-mission-statement {
   clear: both;
+  padding-top: 1em;
+  padding-right: 1em;
+}
+.profile-2-cols-container-1 .pane-node-field-pledge {
   padding-top: 1em;
 }
 .profile-2-cols-container-1 .field-label {
@@ -11825,6 +11842,20 @@ article .hwc-share-widget ul {
 .profile-2-cols-container-3 .views-row a:before {
   content: "> ";
 }
+.profile-2-cols-container-3 .view-display-id-latest_partner_news .more-link,
+.profile-2-cols-container-3 .view-display-id-latest_partner_events .more-link {
+  color: #ffffff;
+  background-color: #003399;
+  font-style: normal;
+  font-weight: normal;
+}
+#block-system-main .profile-2-cols-container-3 .view-display-id-latest_partner_news .more-link,
+#block-system-main .profile-2-cols-container-3 .view-display-id-latest_partner_events .more-link {
+  color: #ffffff;
+  background-color: #003399;
+  font-style: normal;
+  font-weight: normal;
+}
 .node-type-partner .profile-4-cols-container-2 .panels-flexible-column-new-8,
 .node-type-partner .profile-4-cols-container-2 .panels-flexible-column-first {
   width: 50%;
@@ -11860,6 +11891,38 @@ article .hwc-share-widget ul {
   text-align: left;
   font-weight: bold;
   margin-bottom: 1em;
+}
+.node-type-partner .pane-node-field-free,
+.node-type-partner .pane-node-field-country,
+.node-type-partner .pane-node-field-tool-type {
+  background-color: #ffffff;
+  color: #575757;
+  font-style: normal;
+  margin-top: 0em;
+  margin-right: 0em;
+  text-align: left;
+  float: none;
+}
+.node-type-partner .pane-node-field-free .field-item,
+.node-type-partner .pane-node-field-country .field-item,
+.node-type-partner .pane-node-field-tool-type .field-item {
+  padding-left: 0;
+}
+.node-type-partner .pane-node-field-website {
+  /* text-align: left; // para MP pero centrado para FP */
+}
+.node-type-partner .pane-entity-field.pane-node-field-ceo .pane-title {
+  font-weight: bold;
+  float: left;
+  margin-right: 2em;
+}
+.node-type-partner .profile-2-cols-container-1 .panels-flexible-region-last .pane-entity-field {
+  margin-bottom: 0.5em;
+}
+.node-type-partner .profile-2-cols-container-1 .panels-flexible-region-last .pane-entity-field .pane-title {
+  color: #749b00;
+  font-size: 20px;
+  font-weight: bold;
 }
 /*End partners public profile*/
 /*create event --> in public profile*/
@@ -13083,7 +13146,8 @@ article .hwc-share-widget ul {
 .view-id-partners_list img {
   max-width: 125px;
   margin: auto;
-}/*End oficial campaign partners list*/
+}
+/*End oficial campaign partners list*/
 /*pag National focal points*/
 /* .page-national-focal-points, .page-official-campaign-partners, .page-campaign-media-partners 
 .page-national-focal-points, .page-official-campaign-partners, .page-campaign-media-partners{
@@ -13092,29 +13156,6 @@ article .hwc-share-widget ul {
 		> .row{
 		    margin-left: 0px;
 			margin-right: 0px;
-			div.page_title{
-				background: @color3 url("../images/content/bg/page-national-focal-points.jpg") no-repeat center 0px;
-				background-size: cover;
-				z-index: -1;
-				width: 100%;
-				height: 360px;
-				margin-left: 0px;
-				margin-right: 0px;
-				margin-bottom: 4em;
-				h1{
-					width: 100%;
-					margin-top: 0px;
-					margin-left: 0px;
-					margin-right: 0px;
-					border-bottom: none;
-					color: @color1;
-					padding-top: 250px;
-					height: 360px;
-					background: url("../images/content/image-shadow.png") no-repeat center 0px;
-					background-size: cover;
-					z-index: 100;
-				}
-			}
 		}
 		.node.node-article{
 			padding-left: 15px;
@@ -13428,6 +13469,55 @@ article .hwc-share-widget ul {
   margin-left: 0;
 }
 .page-get-your-certificate .container > div > .pane-node-body:last-child .field-type-text-with-summary {
+  font-weight: bold;
+}
+.page-get-your-certificate .see-also {
+  margin-bottom: 2em;
+}
+.page-get-your-certificate .see-also .see-also-title p {
+  margin-top: 1em;
+  color: #749b00;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 30px;
+  margin-bottom: 1.5em;
+}
+.page-get-your-certificate .see-also .see-also-title p:before {
+  content: url("../images/content/see-also.png");
+  display: block;
+  margin-top: 1.5em;
+  padding-top: 1em;
+  border-top: 1px dotted #749b00;
+}
+.page-get-your-certificate .see-also .more-resources ul {
+  list-style: none;
+  margin-bottom: 40px;
+  padding: 0px;
+}
+.page-get-your-certificate .see-also .more-resources ul li {
+  margin-bottom: 20px;
+}
+.page-get-your-certificate .see-also .more-resources ul li a {
+  font-style: normal;
+  font-weight: bold;
+  font-size: 20px;
+}
+.page-get-your-certificate .see-also .more-resources ul li a:before {
+  content: "> ";
+}
+.page-get-your-certificate .see-also .more-links ul {
+  list-style: none;
+  margin-bottom: 40px;
+  padding: 0px;
+}
+.page-get-your-certificate .see-also .more-links ul a {
+  font-style: italic;
+  font-weight: bold;
+}
+.page-get-your-certificate .see-also .more-links ul a:before {
+  content: "> ";
+}
+.page-get-your-certificate .see-also .media-outlet p {
   font-weight: bold;
 }
 /*End pag get-your-certificate*/
@@ -17682,11 +17772,17 @@ fieldset.captcha div {
     padding-left: 15px;
     padding-right: 15px;
   }
-  .profile-ceo-container .pane-node-field-quote:before {
-    display: none;
-  }
+  .profile-ceo-container .pane-node-field-quote:before,
   .profile-ceo-container .pane-node-field-quote:after {
-    display: none;
+    /* display: none; */
+    background-size: contain;
+    width: 8.3%;
+    margin-right: 15px;
+  }
+  .profile-ceo-container .pane-node-field-quote .pane-content {
+    width: 83.4%;
+    display: flex;
+    padding-right: 20px;
   }
   .profile-ceo-container .pane-node-field-quote .field-name-field-quote {
     margin: 0px 0px;
