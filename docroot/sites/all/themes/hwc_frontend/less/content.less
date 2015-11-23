@@ -3908,12 +3908,7 @@ article{
 		display: none;
 	}
 }
-.node-type-partner{
-	.panels-flexible-row-new-5{
-		margin-left: @margin1;
-		margin-right: @margin1;
-	}
-}
+
 .profile-edit-links-container{
 	margin-left: @margin2;
 	margin-right: @margin2;
@@ -4104,75 +4099,6 @@ article{
 		}
 	}
 }
-.profile-4-cols-container-2{
-	border-bottom: 1px dotted @color3;
-	padding-bottom: 70px !important;
-	margin-bottom: 50px !important;
-	.profile-col-left-2, .profile-col-left-middle-2{
-		/* margin-right: 20px; */
-		img{
-			margin-left: 0px;
-		}
-		.panels-flexible-region-new-left_-inside{
-			.pane-node-title-field{
-				font-weight: bold;
-				margin-bottom: 20px;
-			}
-		}
-		
-	}
-	.profile-col-middle-right-2{
-			.field-item.even{
-				margin-bottom: 20px;
-				a{
-					font-weight: bold;
-					font-style: italic;
-				}
-			}
-	}
-	[class*="field-type-link"]{
-		font-weight: bold;
-		/* font-style: italic; */
-		text-align: left;
-		&[class*="facebook"]{
-			background: url("../images/content/facebook.png") no-repeat left center;
-			padding-left: 50px;
-			margin-bottom: 1em;
-		}
-		&[class*="twitter"]{
-			background: url("../images/content/twitter.png") no-repeat left center;
-			padding-left: 50px;
-			margin-bottom: 1em;
-		}
-		&[class*="slideshare"]{
-			background: url("../images/content/slideshare.png") no-repeat left center;
-			padding-left: 50px;
-			margin-bottom: 1em;
-		}
-		&[class*="youtube"]{
-			background: url("../images/content/youtube.png") no-repeat left center;
-			padding-left: 50px;
-			margin-bottom: 1em;
-		}
-		&[class*="linkedin"]{
-			background: url("../images/content/linkedin.png") no-repeat left center;
-			padding-left: 50px;
-			margin-bottom: 1em;
-		}
-		a{
-			word-break: break-all;
-			&:before{
-				content: "";
-				padding-right: 0;
-			}
-		}
-	}
-	.pane-custom{
-		font-weight: bold;
-		text-align: left;
-		margin-bottom: 1em;
-	}
-}
 .panels-flexible-row-new-2-inside{
 	.pane-node-field-free, .pane-node-field-country, .pane-node-field-tool-type{
 		background-color: @bg-default-color;
@@ -4222,18 +4148,90 @@ article{
 		}
 	}
 }
-#block-system-main .profile-2-cols-container-3{
-	.view-display-id-latest_partner_news, .view-display-id-latest_partner_events{
-		.more-link{
-			color: @btn-default-color;
-			background-color: @bg-color-2;
-		    font-style: normal;
-			font-weight: normal;
+	#block-system-main .profile-2-cols-container-3{
+		.view-display-id-latest_partner_news, .view-display-id-latest_partner_events{
+			.more-link{
+				color: @btn-default-color;
+				background-color: @bg-color-2;
+				font-style: normal;
+				font-weight: normal;
+			}
 		}
 	}
-}
 .node-type-partner{
+	.panels-flexible-row-new-5{
+		margin-left: @margin1;
+		margin-right: @margin1;
+	}
+
 	.profile-4-cols-container-2{
+		border-bottom: 1px dotted @color3;
+		padding-bottom: 70px !important;
+		margin-bottom: 50px !important;
+		.profile-col-left-2, .profile-col-left-middle-2{
+			/* margin-right: 20px; */
+			img{
+				margin-left: 0px;
+			}
+			.panels-flexible-region-new-left_-inside{
+				.pane-node-title-field{
+					font-weight: bold;
+					margin-bottom: 20px;
+				}
+			}
+			
+		}
+		.profile-col-middle-right-2{
+				.field-item.even{
+					margin-bottom: 20px;
+					a{
+						font-weight: bold;
+						font-style: italic;
+					}
+				}
+		}
+		[class*="field-type-link"]{
+			font-weight: bold;
+			/* font-style: italic; */
+			text-align: left;
+			&[class*="facebook"]{
+				background: url("../images/content/facebook.png") no-repeat left center;
+				padding-left: 50px;
+				margin-bottom: 1em;
+			}
+			&[class*="twitter"]{
+				background: url("../images/content/twitter.png") no-repeat left center;
+				padding-left: 50px;
+				margin-bottom: 1em;
+			}
+			&[class*="slideshare"]{
+				background: url("../images/content/slideshare.png") no-repeat left center;
+				padding-left: 50px;
+				margin-bottom: 1em;
+			}
+			&[class*="youtube"]{
+				background: url("../images/content/youtube.png") no-repeat left center;
+				padding-left: 50px;
+				margin-bottom: 1em;
+			}
+			&[class*="linkedin"]{
+				background: url("../images/content/linkedin.png") no-repeat left center;
+				padding-left: 50px;
+				margin-bottom: 1em;
+			}
+			a{
+				word-break: break-all;
+				&:before{
+					content: "";
+					padding-right: 0;
+				}
+			}
+		}
+		.pane-custom{
+			font-weight: bold;
+			text-align: left;
+			margin-bottom: 1em;
+		}
 		.panels-flexible-column-new-8, .panels-flexible-column-first {
 			width: 50%;
 			float: left;
