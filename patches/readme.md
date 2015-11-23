@@ -7,6 +7,10 @@ When patching a contrib module, the following steps should be followed:
 
 List of patches (most recent first)
 
+* linkchecker
+  * Allow to temporarily disable linkchecker during entity creation
+  * patches/linkchecker/disable-linkchecker.patch
+
 * token_formatters
   * Added support for field_collection
 
