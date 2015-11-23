@@ -284,7 +284,7 @@ national-focal-points
           0 => 12,
         ),
         'class' => '',
-        'hide_empty' => 0,
+        'hide_empty' => 1,
       ),
       10 => array(
         'type' => 'row',
@@ -315,7 +315,7 @@ national-focal-points
         ),
         'parent' => '9',
         'class' => '',
-        'hide_empty' => 0,
+        'hide_empty' => 1,
       ),
       'region_left' => array(
         'type' => 'region',
@@ -351,7 +351,7 @@ national-focal-points
         'width_type' => '%',
         'parent' => '12',
         'class' => 'col-sm-4 profile-col-left-middle-2',
-        'hide_empty' => 0,
+        'hide_empty' => 1,
       ),
     ),
   );
