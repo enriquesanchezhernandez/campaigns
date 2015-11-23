@@ -3017,11 +3017,19 @@ article{
 	.field-collection-container{
 		border-bottom: 1px dotted @border-default-color;
 	}
+	.field-name-field-gallery{
+		padding-top: 1em;
+		border-top: 1px dotted @color3;
+		border-bottom: 1px dotted @color3;
+		> .field-label{
+			color: @text-color-3;
+		}
+	}
 	//Gallery
 	.node-hwc-gallery{
 		margin-top: 1em;
-		padding-top: 1em;
-		border-top: 1px dotted @border-default-color;
+		/* padding-top: 1em;
+		border-top: 1px dotted @border-default-color; */
 		h2, h2 a{
 			color: @h2-default-color-2;
 			font-weight: bold;
@@ -3900,12 +3908,7 @@ article{
 		display: none;
 	}
 }
-.node-type-partner{
-	.panels-flexible-row-new-5{
-		margin-left: @margin1;
-		margin-right: @margin1;
-	}
-}
+
 .profile-edit-links-container{
 	margin-left: @margin2;
 	margin-right: @margin2;
@@ -3962,6 +3965,7 @@ article{
 }
 .profile-title-type-container{
 	margin-bottom: 90px !important;
+	margin-bottom: 2em !important; //http://osha-campaigns.edw.ro/en/campaign-partners/cbs-e-magazine
 	.pane-entity-field{
 		.field-name-title-field{
 			h1{
@@ -3982,13 +3986,20 @@ article{
     		font-style: italic;
     	}
 	}
+	.pane-node-field-country{
+		width: 25%;
+	}
+	.pane-node-field-country ~ .pane-node-field-website{
+		text-align: left; // para MP pero centrado para FP
+		width: 71%;
+	}
 }
 
 .profile-ceo-container{
 	background: url("../images/content/bg-campaign-partner.png");
 	background-size: cover;
 	margin-top: 3em !important;
-	margin-bottom: 3em !important;
+	/* margin-bottom: 3em !important; */
 	/* padding-bottom: 4em !important; */
 	padding-bottom: 2em !important;
 	padding-top: 2em !important;
@@ -4059,10 +4070,17 @@ article{
 
 .profile-2-cols-container-1{
 	border-bottom: 1px dotted @color3;
-	padding-bottom: 70px !important;
+	/* padding-bottom: 70px !important; */
+	padding-bottom: 2em !important;
 	margin-bottom: 50px !important;
+	border-top: 1px dotted @color3;
+	padding-top: 2em;
 	.pane-node-field-mission-statement{
 	    clear: both;
+		padding-top: 1em;
+		padding-right: 1em;
+	}
+	.pane-node-field-pledge{
 		padding-top: 1em;
 	}
 	.field-label{
@@ -4087,75 +4105,6 @@ article{
 		.field-item {
 			padding: 0;
 		}
-	}
-}
-.profile-4-cols-container-2{
-	border-bottom: 1px dotted @color3;
-	padding-bottom: 70px !important;
-	margin-bottom: 50px !important;
-	.profile-col-left-2, .profile-col-left-middle-2{
-		/* margin-right: 20px; */
-		img{
-			margin-left: 0px;
-		}
-		.panels-flexible-region-new-left_-inside{
-			.pane-node-title-field{
-				font-weight: bold;
-				margin-bottom: 20px;
-			}
-		}
-		
-	}
-	.profile-col-middle-right-2{
-			.field-item.even{
-				margin-bottom: 20px;
-				a{
-					font-weight: bold;
-					font-style: italic;
-				}
-			}
-	}
-	[class*="field-type-link"]{
-		font-weight: bold;
-		/* font-style: italic; */
-		text-align: left;
-		&[class*="facebook"]{
-			background: url("../images/content/facebook.png") no-repeat left center;
-			padding-left: 50px;
-			margin-bottom: 1em;
-		}
-		&[class*="twitter"]{
-			background: url("../images/content/twitter.png") no-repeat left center;
-			padding-left: 50px;
-			margin-bottom: 1em;
-		}
-		&[class*="slideshare"]{
-			background: url("../images/content/slideshare.png") no-repeat left center;
-			padding-left: 50px;
-			margin-bottom: 1em;
-		}
-		&[class*="youtube"]{
-			background: url("../images/content/youtube.png") no-repeat left center;
-			padding-left: 50px;
-			margin-bottom: 1em;
-		}
-		&[class*="linkedin"]{
-			background: url("../images/content/linkedin.png") no-repeat left center;
-			padding-left: 50px;
-			margin-bottom: 1em;
-		}
-		a{
-			word-break: break-all;
-			&:before{
-				content: "";
-				padding-right: 0;
-			}
-		}
-	}
-	.pane-custom{
-		font-weight: bold;
-		text-align: left;
-		margin-bottom: 1em;
 	}
 }
 .panels-flexible-row-new-2-inside{
@@ -4198,9 +4147,101 @@ article{
 
 		}
 	}
+	.view-display-id-latest_partner_news, .view-display-id-latest_partner_events{
+		.more-link{
+			color: @btn-default-color;
+			background-color: @bg-color-2;
+			font-style: normal;
+			font-weight: normal;
+		}
+	}
 }
+	#block-system-main .profile-2-cols-container-3{
+		.view-display-id-latest_partner_news, .view-display-id-latest_partner_events{
+			.more-link{
+				color: @btn-default-color;
+				background-color: @bg-color-2;
+				font-style: normal;
+				font-weight: normal;
+			}
+		}
+	}
 .node-type-partner{
+	.panels-flexible-row-new-5{
+		margin-left: @margin1;
+		margin-right: @margin1;
+	}
+
 	.profile-4-cols-container-2{
+		border-bottom: 1px dotted @color3;
+		padding-bottom: 70px !important;
+		margin-bottom: 50px !important;
+		.profile-col-left-2, .profile-col-left-middle-2{
+			/* margin-right: 20px; */
+			img{
+				margin-left: 0px;
+			}
+			.panels-flexible-region-new-left_-inside{
+				.pane-node-title-field{
+					font-weight: bold;
+					margin-bottom: 20px;
+				}
+			}
+			.pane-node-field-general-phone{
+				margin-top: 0.5em;
+			}
+		}
+		.profile-col-middle-right-2{
+				.field-item.even{
+					margin-bottom: 20px;
+					a{
+						font-weight: bold;
+						font-style: italic;
+					}
+				}
+		}
+		[class*="field-type-link"]{
+			font-weight: bold;
+			/* font-style: italic; */
+			text-align: left;
+			&[class*="facebook"]{
+				background: url("../images/content/facebook.png") no-repeat left center;
+				padding-left: 50px;
+				margin-bottom: 1em;
+			}
+			&[class*="twitter"]{
+				background: url("../images/content/twitter.png") no-repeat left center;
+				padding-left: 50px;
+				margin-bottom: 1em;
+			}
+			&[class*="slideshare"]{
+				background: url("../images/content/slideshare.png") no-repeat left center;
+				padding-left: 50px;
+				margin-bottom: 1em;
+			}
+			&[class*="youtube"]{
+				background: url("../images/content/youtube.png") no-repeat left center;
+				padding-left: 50px;
+				margin-bottom: 1em;
+			}
+			&[class*="linkedin"]{
+				background: url("../images/content/linkedin.png") no-repeat left center;
+				padding-left: 50px;
+				margin-bottom: 1em;
+			}
+			a{
+				word-break: break-all;
+				&:before{
+					content: "";
+					padding-right: 0;
+				}
+			}
+		}
+		.pane-custom{
+			font-weight: bold;
+			text-align: left;
+			margin-bottom: 1em;
+		}
 		.panels-flexible-column-new-8, .panels-flexible-column-first {
 			width: 50%;
 			float: left;
@@ -4228,6 +4269,34 @@ article{
 					margin-bottom: 1em;
 				}
 			}
+		}
+	}
+	.pane-node-field-free, .pane-node-field-country, .pane-node-field-tool-type{
+		background-color: @bg-default-color;
+		color: @text-default-color;
+		font-style: normal;
+		margin-top: 0em;
+		margin-right: 0em;
+		text-align: left;
+		float: none;
+		.field-item {
+			padding-left: 0;
+		}
+	}
+	.pane-entity-field.pane-node-field-ceo{
+		.pane-title{
+			font-weight: bold;
+			float: left;
+			margin-right: 2em;
+		}
+	}
+	.profile-2-cols-container-1 .panels-flexible-region-last .pane-entity-field{
+		margin-bottom: 0.5em;
+		margin-left: 1em;
+		.pane-title{
+			color: @text-color-3;
+			font-size: @size2;
+			font-weight: bold;
 		}
 	}
 }

@@ -839,7 +839,7 @@ header.navbar-default{
 	#search, #edit-content #search{
 		margin-top: 0em;
 		margin-bottom: 0em;
-		border-top: none;
+		/* border-top: none; */
 		div{
 			margin-left: @margin-movil;
 		}
@@ -1134,7 +1134,18 @@ header.navbar-default{
 	}
 	
 	//Gallery
+	.node-events .group-header > div.field-name-field-gallery{
+		margin-left: 0;
+		margin-right: 0;
+		> .field-label{
+			margin-left: @margin-movil;
+			margin-right: @margin-movil;
+		}
+	}
 	.node-events .node-hwc-gallery{
+		.field-item{
+			background-color: @bg-default-color;
+		}
 		.galleryformatter{
 			height: 300px;
 			.field-item{
@@ -1577,11 +1588,16 @@ header.navbar-default{
 	.pane-node-field-quote{
 		padding-left: 15px;
 		padding-right: 15px;
-		&:before{
-			display: none;
+		&:before, &:after{
+			/* display: none; */
+			background-size: contain;
+			width: 8.3%;
+			margin-right: @margin-movil;
 		}
-		&:after{
-			display: none;
+		.pane-content{
+			width: 83.4%;
+			display: flex;
+			padding-right: 20px;
 		}
 		.field-name-field-quote{
 			margin: 0px 0px;
