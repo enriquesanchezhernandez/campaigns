@@ -11624,6 +11624,13 @@ article .hwc-share-widget ul {
 .profile-title-type-container .profile-inline-field a {
   font-style: italic;
 }
+.profile-title-type-container .pane-node-field-country {
+  width: 25%;
+}
+.profile-title-type-container .pane-node-field-country ~ .pane-node-field-website {
+  text-align: left;
+  width: 71%;
+}
 .profile-ceo-container {
   background: url("../images/content/bg-campaign-partner.png");
   background-size: cover;
@@ -11695,7 +11702,8 @@ article .hwc-share-widget ul {
 }
 .profile-2-cols-container-1 {
   border-bottom: 1px dotted #749b00;
-  padding-bottom: 70px !important;
+  /* padding-bottom: 70px !important; */
+  padding-bottom: 2em !important;
   margin-bottom: 50px !important;
   border-top: 1px dotted #749b00;
   padding-top: 2em;
@@ -11807,6 +11815,10 @@ article .hwc-share-widget ul {
   font-weight: bold;
   margin-bottom: 20px;
 }
+.node-type-partner .profile-4-cols-container-2 .profile-col-left-2 .pane-node-field-general-phone,
+.node-type-partner .profile-4-cols-container-2 .profile-col-left-middle-2 .pane-node-field-general-phone {
+  margin-top: 0.5em;
+}
 .node-type-partner .profile-4-cols-container-2 .profile-col-middle-right-2 .field-item.even {
   margin-bottom: 20px;
 }
@@ -11908,9 +11920,6 @@ article .hwc-share-widget ul {
 .node-type-partner .pane-node-field-tool-type .field-item {
   padding-left: 0;
 }
-.node-type-partner .pane-node-field-website {
-  /* text-align: left; // para MP pero centrado para FP */
-}
 .node-type-partner .pane-entity-field.pane-node-field-ceo .pane-title {
   font-weight: bold;
   float: left;
@@ -11918,6 +11927,7 @@ article .hwc-share-widget ul {
 }
 .node-type-partner .profile-2-cols-container-1 .panels-flexible-region-last .pane-entity-field {
   margin-bottom: 0.5em;
+  margin-left: 1em;
 }
 .node-type-partner .profile-2-cols-container-1 .panels-flexible-region-last .pane-entity-field .pane-title {
   color: #749b00;

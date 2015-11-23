@@ -3986,6 +3986,13 @@ article{
     		font-style: italic;
     	}
 	}
+	.pane-node-field-country{
+		width: 25%;
+	}
+	.pane-node-field-country ~ .pane-node-field-website{
+		text-align: left; // para MP pero centrado para FP
+		width: 71%;
+	}
 }
 
 .profile-ceo-container{
@@ -4063,7 +4070,8 @@ article{
 
 .profile-2-cols-container-1{
 	border-bottom: 1px dotted @color3;
-	padding-bottom: 70px !important;
+	/* padding-bottom: 70px !important; */
+	padding-bottom: 2em !important;
 	margin-bottom: 50px !important;
 	border-top: 1px dotted @color3;
 	padding-top: 2em;
@@ -4179,7 +4187,9 @@ article{
 					margin-bottom: 20px;
 				}
 			}
-			
+			.pane-node-field-general-phone{
+				margin-top: 0.5em;
+			}
 		}
 		.profile-col-middle-right-2{
 				.field-item.even{
@@ -4273,9 +4283,6 @@ article{
 			padding-left: 0;
 		}
 	}
-	.pane-node-field-website{
-		/* text-align: left; // para MP pero centrado para FP */
-	}
 	.pane-entity-field.pane-node-field-ceo{
 		.pane-title{
 			font-weight: bold;
@@ -4285,6 +4292,7 @@ article{
 	}
 	.profile-2-cols-container-1 .panels-flexible-region-last .pane-entity-field{
 		margin-bottom: 0.5em;
+		margin-left: 1em;
 		.pane-title{
 			color: @text-color-3;
 			font-size: @size2;
