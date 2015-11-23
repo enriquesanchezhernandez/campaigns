@@ -7,6 +7,10 @@ When patching a contrib module, the following steps should be followed:
 
 List of patches (most recent first)
 
+* entityreference
+  * Show translated content whne showing entityreference items
+  * patches/entityreference/entityreference-rendered-entity-is-not-language-aware-1674792-58.patch
+
 * linkchecker
   * Allow to temporarily disable linkchecker during entity creation
   * patches/linkchecker/disable-linkchecker.patch
