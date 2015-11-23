@@ -26,7 +26,7 @@ function ncw_migration_migrate_api() {
         'dependencies' => array(
           'tax_tags', 'tax_publication_types', 'publications_add_res',
           'news_add_res', 'press_releases_add_res', 'press_releases_add_res',
-          'highlights_add_res'
+          'highlights_add_res', 'notes_to_editor'
         ),
         'class_name' => 'NCWPublicationsMigration',
       ),
@@ -144,6 +144,10 @@ abstract class AbstractNCWNodeMigration extends Migration {
 
   public function __construct($arguments, $source_klass, $bundle) {
     parent::__construct($arguments);
+
+    /** Disable linkchecker globally to avoid failures during migration */
+    global $linkchecker_disable_scan;
+    $linkchecker_disable_scan = TRUE;
 
     $this->bundle = $bundle;
     if (!empty($arguments['dependencies'])) {
@@ -281,29 +285,38 @@ abstract class AbstractNCWNodeMigration extends Migration {
    * Implements Migration::prepareRow() to adapt JSON fields data to what migrate expects in the field.
    */
   public function prepareRow($row) {
-    ncw_migration_debug('!klass:      * Preparing source node: !id', array('!klass' => get_class($this), '!id' => $row->nid));
-    $row->path = !empty($row->path['alias']) ? $row->path['alias']:  NULL;
-    // Normalize JSON structure, to match migrate expectations for field data
-    $fields = field_info_instances('node', $this->bundle);
-    foreach($fields as $field_name => $field_info) {
-      if (in_array($field_name, $this->getManuallyMigratedFields())) {
-        continue;
+    try {
+      ncw_migration_debug('!klass:      * Preparing source node: !id', array(
+        '!klass' => get_class($this),
+        '!id' => $row->nid
+      ));
+      $row->path = !empty($row->path['alias']) ? $row->path['alias'] : NULL;
+      // Normalize JSON structure, to match migrate expectations for field data
+      $fields = field_info_instances('node', $this->bundle);
+      foreach ($fields as $field_name => $field_info) {
+        if (in_array($field_name, $this->getManuallyMigratedFields())) {
+          continue;
+        }
+        $fi = field_info_field($field_name);
+        if ($fi['type'] == 'entityreference') {
+          // Entity references will be manually handled by each migration
+          continue;
+        }
+        $normalizer = 'osha_migration_normalize_field_' . $fi['type'];
+        if (function_exists($normalizer)) {
+          $normalizer($row, $field_name, $fi);
+        }
+        else {
+          $name = $this->currentMigration()->getMachineName();
+          ncw_migration_debug("[BUG][$name] Cannot find normalization '$normalizer', skipping field $field_name");
+          $row->{$field_name} = array();
+        }
       }
-      $fi = field_info_field($field_name);
-      if ($fi['type'] == 'entityreference') {
-        // Entity references will be manually handled by each migration
-        continue;
-      }
-      $normalizer = 'osha_migration_normalize_field_' . $fi['type'];
-      if(function_exists($normalizer)) {
-        $normalizer($row, $field_name, $fi);
-      }
-      else {
-        $name = $this->currentMigration()->getMachineName();
-        watchdog('ncw_migration', "[BUG][$name] Cannot find normalization '$normalizer', skipping field $field_name", array(), WATCHDOG_ERROR);
-        $row->{$field_name} = array();
-      }
+    } catch(Exception $e) {
+      ncw_migration_debug("Exception while preparing the row: {$row->nid}", 'error');
+      return FALSE;
     }
+    return TRUE;
   }
 
   /**
