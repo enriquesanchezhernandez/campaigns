@@ -4075,6 +4075,19 @@ article{
 	margin-bottom: 50px !important;
 	border-top: 1px dotted @color3;
 	padding-top: 2em;
+	.field-label{
+		color: @color3;
+		font-size: @size2;
+		font-weight: bold;
+	}
+	.profile-col-left-1{
+		padding-left: 1em;
+	}
+	.panels-flexible-region-new-logo{
+		img{
+			max-width: 90%;
+		}
+	}
 	.pane-node-field-mission-statement{
 	    clear: both;
 		padding-top: 1em;
@@ -4083,19 +4096,8 @@ article{
 	.pane-node-field-pledge{
 		padding-top: 1em;
 	}
-	.field-label{
-		color: @color3;
-		font-size: @size2;
-		font-weight: bold;
-	}
-	.field-item{
-		
-	}
 	.pane-node-title-field{
 		font-weight: bold;
-	}
-	.profile-col-left-1{
-		padding-left: 1em;
 	}
 	.pane-node-field-free, .pane-node-field-country, .pane-node-field-tool-type{
 		background-color: @bg-default-color;
@@ -4122,6 +4124,7 @@ article{
 		float: left;
 	}
 }
+ 
 .profile-2-cols-container-3{
 	.profile-col-left-3{
 		padding-right: 15px;
@@ -4174,7 +4177,8 @@ article{
 
 	.profile-4-cols-container-2{
 		border-bottom: 1px dotted @color3;
-		padding-bottom: 70px !important;
+		/* padding-bottom: 70px !important; */
+		padding-bottom: 2em !important;
 		margin-bottom: 50px !important;
 		.profile-col-left-2, .profile-col-left-middle-2{
 			/* margin-right: 20px; */
@@ -4187,7 +4191,7 @@ article{
 					margin-bottom: 20px;
 				}
 			}
-			.pane-node-field-general-phone{
+			.pane-node-field-general-phone, .pane-node-field-main-contact{
 				margin-top: 0.5em;
 			}
 		}
@@ -4248,13 +4252,22 @@ article{
 			margin-top: 0em;
 			> div{
 				.panels-flexible-region-first, .panels-flexible-region-last{
-					width: 50% !important;
 					text-align: left;
 					.pane-node-title-field{
 						font-weight: bold;
 						margin-bottom: 1em;
 					}
 				}
+			}
+		}
+		.panels-flexible-column-new-8{
+			.panels-flexible-region-last{
+				width: 100% !important;
+			}
+		}
+		.panels-flexible-column-first, .panels-flexible-row-new-7-inside .panels-flexible-column-new-8{
+			.panels-flexible-region-first, .panels-flexible-region-last{
+				width: 50% !important;
 			}
 		}
 		.panels-flexible-column-new-9, .panels-flexible-column-new-10{
