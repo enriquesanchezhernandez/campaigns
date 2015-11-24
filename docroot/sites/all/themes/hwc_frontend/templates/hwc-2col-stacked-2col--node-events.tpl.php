@@ -4,7 +4,7 @@
   <?php print render($title_suffix['contextual_links']); ?>
 <?php endif; ?>
 <h2 class="node-edit-form-heading"><?php print t('General information'); ?></h2>
-<div class="required-form-fields">Required fields *</div>
+<div class="required-form-fields"><?php print t('Required fields'); ?> *</div>
 <<?php print $header_wrapper ?> class="group-header<?php print $header_classes; ?>">
 <?php print $header; ?>
 </<?php print $header_wrapper ?>>
