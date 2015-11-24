@@ -8535,6 +8535,10 @@ div[class*='node-'] .more-link {
 .field-type-datetime span {
   font-size: 12px;
 }
+.field-type-datetime span.required-custom{
+    margin-right: 0.5em;
+    font-size: 18px;
+}
 .field-name-field-city {
   font-weight: bold;
 }
