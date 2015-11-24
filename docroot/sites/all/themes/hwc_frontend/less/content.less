@@ -592,6 +592,30 @@ ul.tabs--primary.nav.nav-tabs{
 		}
 	}
 	
+	/* error form */
+	div.error, table tr.error{
+		background-color: transparent;
+		label{
+			color: @text-default-color;
+			span{
+				color: @state-danger-text;
+			}
+		}
+		select, input, textarea{
+			border-color: @state-danger-text;
+			background-color: @state-danger-bg;
+		}
+		&.form-type-select:after{
+			background-color: @state-danger-text !important;
+			background-image: url("../images/content/arrow-down-error.png") !important;
+		}
+	}
+	.contact-form.container div.error.form-type-select:after{
+		background-color: @state-danger-text;
+		background-image: url("../images/content/arrow-down-error.png");
+	}
+	/* End error form */
+	
 	/* Article */
 	.node-article{
 		h1{
@@ -5943,18 +5967,22 @@ fieldset.captcha {
 				}
 				img {
 					width: 150px !important;
+					max-width: 100%;
+					min-height: 10px;
 				}
 			}
 		}
         .node-internal-url{
 			.content{
 				.field.field-name-field-image{
+					margin-bottom: 0;
 					@media (min-width: 768px){
 						width: 16.66666667% !important;
 					}
-					margin-bottom: 0;
 					img {
 						width: 150px !important;
+						max-width: 100%;
+						min-height: 10px;
 					}
 				}
 			}
@@ -6059,9 +6087,17 @@ fieldset.captcha {
 		display: inline-flex;
 	}
 }
-.alert.alert-block.alert-danger {
+.alert.alert-block.alert-danger, .alert.alert-block.alert-success{
 //to do wendsday, solo para sprint1 display: none;
 	clear: both;
+	margin-left: @margin1;
+	margin-right: @margin1;
+	margin-top: 1em;
+	word-wrap: break-word;
+	ul{
+		margin-left: 1em;
+		list-style-type: disc;
+		
+	}
 }
-
 /* ----------END ENDIKA--------- */
