@@ -3,7 +3,6 @@
 <?php if (isset($title_suffix['contextual_links'])): ?>
   <?php print render($title_suffix['contextual_links']); ?>
 <?php endif; ?>
-<h2 class="node-edit-form-heading"><?php print t('General information'); ?></h2>
 <div class="required-form-fields"><?php print t('Required fields'); ?> *</div>
 <<?php print $header_wrapper ?> class="group-header<?php print $header_classes; ?>">
 <?php print $header; ?>
@@ -22,19 +21,17 @@
 </<?php print $center_wrapper ?>>
 
 <?php if (!empty($left2) || !empty($right2) || !empty($footer)) { ?>
-<h2 class="node-edit-form-heading"><?php print t('Further information'); ?></h2>
+  <<?php print $left2_wrapper ?> class="group-left2<?php print $left2_classes; ?>">
+  <?php print $left2; ?>
+  </<?php print $left2_wrapper ?>>
 
-<<?php print $left2_wrapper ?> class="group-left2<?php print $left2_classes; ?>">
-<?php print $left2; ?>
-</<?php print $left2_wrapper ?>>
+  <<?php print $right2_wrapper ?> class="group-right2<?php print $right2_classes; ?>">
+  <?php print $right2; ?>
+  </<?php print $right2_wrapper ?>>
 
-<<?php print $right2_wrapper ?> class="group-right2<?php print $right2_classes; ?>">
-<?php print $right2; ?>
-</<?php print $right2_wrapper ?>>
-
-<<?php print $footer_wrapper ?> class="group-footer<?php print $footer_classes; ?>">
-<?php print $footer; ?>
-</<?php print $footer_wrapper ?>>
+  <<?php print $footer_wrapper ?> class="group-footer<?php print $footer_classes; ?>">
+  <?php print $footer; ?>
+  </<?php print $footer_wrapper ?>>
 <?php } ?>
 
 </<?php print $layout_wrapper ?>>
