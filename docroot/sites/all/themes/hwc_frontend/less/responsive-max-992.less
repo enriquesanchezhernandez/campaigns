@@ -862,7 +862,7 @@ header{
 	}
 }
 
-.profile-2-cols-container-1{
+.profile-2-cols-container-1, .node-type-partner .profile-2-cols-container-1{
 	padding-bottom: @margin-tablet !important;
 	margin-bottom: @margin-tablet !important;
 	padding-left: @margin-tablet !important;
@@ -891,9 +891,14 @@ header{
 			width: 100% !important;
 		}
 	}
+	.panels-flexible-region-last .pane-entity-field{
+		&.pane-node-field-mission-statement{
+		    width: 95%;
+		}
+	}
 }
 
-.profile-4-cols-container-2{
+.profile-4-cols-container-2, .node-type-partner .profile-4-cols-container-2 {
 	border-bottom: 1px dotted @color3;
 	padding-bottom: 50px !important;
 	margin-bottom: 50px !important;

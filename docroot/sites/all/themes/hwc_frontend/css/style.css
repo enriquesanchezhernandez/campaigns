@@ -11991,11 +11991,21 @@ article .hwc-share-widget ul {
 .node-type-partner .profile-2-cols-container-1 .panels-flexible-region-last .pane-entity-field {
   margin-bottom: 0.5em;
   margin-left: 1em;
+  text-align: left;
 }
 .node-type-partner .profile-2-cols-container-1 .panels-flexible-region-last .pane-entity-field .pane-title {
   color: #749b00;
   font-size: 20px;
   font-weight: bold;
+}
+.node-type-partner .profile-2-cols-container-1 .panels-flexible-region-last .pane-entity-field.pane-node-field-mission-statement {
+  width: 45%;
+  float: left;
+  text-align: left;
+  margin-right: 5%;
+}
+.node-type-partner .profile-2-cols-container-1 .panels-flexible-region-last .pane-entity-field.pane-node-field-pledge {
+  text-align: left;
 }
 /*End partners public profile*/
 /*create event --> in public profile*/
@@ -15702,71 +15712,92 @@ span.form-required {
   .profile-ceo-container .pane-node-field-quote:after {
     margin-right: 30px;
   }
-  .profile-2-cols-container-1 {
+  .profile-2-cols-container-1,
+  .node-type-partner .profile-2-cols-container-1 {
     padding-bottom: 30px !important;
     margin-bottom: 30px !important;
     padding-left: 30px !important;
     padding-right: 30px !important;
   }
-  .profile-2-cols-container-1 .col-sm-6 {
+  .profile-2-cols-container-1 .col-sm-6,
+  .node-type-partner .profile-2-cols-container-1 .col-sm-6 {
     width: 100%;
   }
-  .profile-2-cols-container-1 .field-item {
+  .profile-2-cols-container-1 .field-item,
+  .node-type-partner .profile-2-cols-container-1 .field-item {
     margin-bottom: 20px;
   }
-  .profile-2-cols-container-1 .panels-flexible-row-new-1-inside .profile-col-left-1.col-sm-4 {
+  .profile-2-cols-container-1 .panels-flexible-row-new-1-inside .profile-col-left-1.col-sm-4,
+  .node-type-partner .profile-2-cols-container-1 .panels-flexible-row-new-1-inside .profile-col-left-1.col-sm-4 {
     width: 40% !important;
     margin-right: 3%;
   }
-  .profile-2-cols-container-1 .panels-flexible-row-new-1-inside .profile-col-right-1.col-sm-6 {
+  .profile-2-cols-container-1 .panels-flexible-row-new-1-inside .profile-col-right-1.col-sm-6,
+  .node-type-partner .profile-2-cols-container-1 .panels-flexible-row-new-1-inside .profile-col-right-1.col-sm-6 {
     width: 40% !important;
   }
-  .profile-2-cols-container-1 .panels-flexible-row-new-1-inside .profile-col-left-1.col-sm-6 {
+  .profile-2-cols-container-1 .panels-flexible-row-new-1-inside .profile-col-left-1.col-sm-6,
+  .node-type-partner .profile-2-cols-container-1 .panels-flexible-row-new-1-inside .profile-col-left-1.col-sm-6 {
     padding-left: 0;
   }
-  .profile-2-cols-container-1 .panels-flexible-row-new-1-inside .profile-col-right-1.col-sm-9 {
+  .profile-2-cols-container-1 .panels-flexible-row-new-1-inside .profile-col-right-1.col-sm-9,
+  .node-type-partner .profile-2-cols-container-1 .panels-flexible-row-new-1-inside .profile-col-right-1.col-sm-9 {
     padding-left: 1em;
   }
-  .profile-2-cols-container-1 .panels-flexible-row-new-1-inside .profile-col-left-1.col-sm-6 ~ .profile-col-right-1.col-sm-6 {
+  .profile-2-cols-container-1 .panels-flexible-row-new-1-inside .profile-col-left-1.col-sm-6 ~ .profile-col-right-1.col-sm-6,
+  .node-type-partner .profile-2-cols-container-1 .panels-flexible-row-new-1-inside .profile-col-left-1.col-sm-6 ~ .profile-col-right-1.col-sm-6 {
     width: 100% !important;
   }
-  .profile-4-cols-container-2 {
+  .profile-2-cols-container-1 .panels-flexible-region-last .pane-entity-field.pane-node-field-mission-statement,
+  .node-type-partner .profile-2-cols-container-1 .panels-flexible-region-last .pane-entity-field.pane-node-field-mission-statement {
+    width: 95%;
+  }
+  .profile-4-cols-container-2,
+  .node-type-partner .profile-4-cols-container-2 {
     border-bottom: 1px dotted #749b00;
     padding-bottom: 50px !important;
     margin-bottom: 50px !important;
     padding-left: 30px !important;
     padding-right: 30px !important;
   }
-  .profile-4-cols-container-2 [class*="field-type-link"][class*="facebook"] {
+  .profile-4-cols-container-2 [class*="field-type-link"][class*="facebook"],
+  .node-type-partner .profile-4-cols-container-2 [class*="field-type-link"][class*="facebook"] {
     background-position: left top;
     padding-left: 0px;
     padding-top: 3em;
   }
-  .profile-4-cols-container-2 [class*="field-type-link"][class*="twitter"] {
+  .profile-4-cols-container-2 [class*="field-type-link"][class*="twitter"],
+  .node-type-partner .profile-4-cols-container-2 [class*="field-type-link"][class*="twitter"] {
     background-position: left top;
     padding-left: 0px;
     padding-top: 3em;
   }
-  .profile-4-cols-container-2 [class*="field-type-link"][class*="slideshare"] {
+  .profile-4-cols-container-2 [class*="field-type-link"][class*="slideshare"],
+  .node-type-partner .profile-4-cols-container-2 [class*="field-type-link"][class*="slideshare"] {
     background-position: left top;
     padding-left: 0px;
     padding-top: 3em;
   }
-  .profile-4-cols-container-2 [class*="field-type-link"][class*="youtube"] {
+  .profile-4-cols-container-2 [class*="field-type-link"][class*="youtube"],
+  .node-type-partner .profile-4-cols-container-2 [class*="field-type-link"][class*="youtube"] {
     background-position: left top;
     padding-left: 0px;
     padding-top: 3em;
   }
-  .profile-4-cols-container-2 [class*="field-type-link"][class*="linkedin"] {
+  .profile-4-cols-container-2 [class*="field-type-link"][class*="linkedin"],
+  .node-type-partner .profile-4-cols-container-2 [class*="field-type-link"][class*="linkedin"] {
     background-position: left top;
     padding-left: 0px;
     padding-top: 3em;
   }
   .profile-4-cols-container-2 .field-name-field-main-contact.field-label-inline .field-label,
-  .profile-4-cols-container-2 .field-name-field-main-contact.field-label-inline .field-items {
+  .node-type-partner .profile-4-cols-container-2 .field-name-field-main-contact.field-label-inline .field-label,
+  .profile-4-cols-container-2 .field-name-field-main-contact.field-label-inline .field-items,
+  .node-type-partner .profile-4-cols-container-2 .field-name-field-main-contact.field-label-inline .field-items {
     float: none;
   }
-  .profile-4-cols-container-2 .panels-flexible-column-first div {
+  .profile-4-cols-container-2 .panels-flexible-column-first div,
+  .node-type-partner .profile-4-cols-container-2 .panels-flexible-column-first div {
     padding-left: 0;
   }
   .profile-2-cols-container-3,
