@@ -14,6 +14,14 @@
 		margin-left: 0;
 		margin-right: 0;
 	}
+	.checkbox{
+		label:before {
+			padding: 9px 7px 10px 7px;
+		}
+		input[type=checkbox]:checked + label:before {
+			padding: 0px 2px 0px 2px;
+		}
+	}
 }
 /*Fin contenedor principal */
 
@@ -1142,6 +1150,7 @@ header{
 						margin-left: 15%;
 						width: 85%;
 						float: none;
+						clear: both;
 					}
 				}
 			}

@@ -176,21 +176,28 @@ ul.tabs--primary.nav.nav-tabs{
 		label{
 			color: @text-color-2;
 			padding-left: 0;
-			font-family: @font-family-semibold;
+			font-family: @font-family-base;
+			/* font-family: @font-family-semibold; */
 		}
 		label:before {
 			border: 2px solid @border-color-2;
-			content: "\2716";
-			padding: 0px 4px 0px 10px;
-			padding: 0px 1px 0px 3px;
+			/* content: "\2716";
+			content: "X";
+			padding: 0px 3px 0px 3px; */
+			content: " ";
+			padding: 0px 7px 0px 7px;
 			margin-right: 10px;
 			color: @color1;
+			font-weight: normal;
+			font-family: @font-family-monospace;
 		}
 		input[type=checkbox]:checked + label:before {
 			content: "\2713";
-			/* padding: 0px 1px 0px 3px; */
 			color: @text-color-2;
-			font-weight: bold;
+			padding: 0px 2px 0px 2px;
+			margin-right: 6px;
+			font-weight: normal;
+			font-family: @font-family-monospace;
 		}
 	}
 	.radio{
@@ -201,7 +208,8 @@ ul.tabs--primary.nav.nav-tabs{
 		label{
 			color: @text-color-2;
 			padding-left: 0;
-			font-family: @font-family-semibold;
+			font-family: @font-family-base;
+			/* font-family: @font-family-semibold; */
 		}
 		label:before {
 			border: 2px solid @border-color-2;
@@ -220,6 +228,9 @@ ul.tabs--primary.nav.nav-tabs{
 	
 	#views-exposed-form-search-site input[type="checkbox"], #views-exposed-form-search-site input[type="radio"]{
 		display: none;
+	}
+	.description{
+		clear: both;
 	}
 	.back-to-link {
 		font-weight: bold;
@@ -415,6 +426,7 @@ ul.tabs--primary.nav.nav-tabs{
 			height: 356px !important;
 			> div{ /* .views-field.views-field-field-image */
 				background-color: #456E00;
+				background-color: #6B9000;
 				width: 1139px;
 				width: 100% !important;
 				height: 356px !important;
@@ -473,7 +485,7 @@ ul.tabs--primary.nav.nav-tabs{
 							/* content: ""; */
 						}
 						img{
-							margin: 0 auto;
+							margin: 0;
 							display: block;
 							width: 100%;
 							width: auto;
@@ -604,6 +616,7 @@ ul.tabs--primary.nav.nav-tabs{
 		select, input, textarea{
 			border-color: @state-danger-text;
 			background-color: @state-danger-bg;
+			color: @state-danger-text;
 		}
 		&.form-type-select:after{
 			background-color: @state-danger-text !important;
@@ -1557,7 +1570,8 @@ ul.tabs--primary.nav.nav-tabs{
 					margin-right: 11px;
 				}
 				a{
-					font-family: @font-family-semibold;
+					font-family: @font-family-base;
+					/* font-family: @font-family-semibold; */
 				}
 			}
 		}
@@ -5450,7 +5464,7 @@ article{
 		margin-top: 3em;
 		margin-left: -@margin1;
 		label{
-			font-weight: bold;
+			/* font-weight: bold; */
 		}
 		.form-item, .webform-component {
 			margin-bottom: 2em;
@@ -5468,6 +5482,11 @@ article{
 			margin-top: 2em;
 			.form-item, .webform-component {
 				margin-bottom: 1em;
+			}
+			&#edit-submitted-confirm{
+				label{
+					font-weight: bold;
+				}
 			}
 		}
 		.webform-component--other-activities{
@@ -6099,5 +6118,9 @@ fieldset.captcha {
 		list-style-type: disc;
 		
 	}
+}
+span.form-required{
+	color: @state-danger-text;
+	font-size: @size7;
 }
 /* ----------END ENDIKA--------- */

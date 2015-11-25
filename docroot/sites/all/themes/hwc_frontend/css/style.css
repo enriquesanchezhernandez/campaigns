@@ -7722,21 +7722,28 @@ ul.tabs--primary.nav.nav-tabs > li.active > a:focus {
 .checkbox label {
   color: #003399;
   padding-left: 0;
-  font-family: 'Open Sans Semibold';
+  font-family: 'Open Sans';
+  /* font-family: @font-family-semibold; */
 }
 .checkbox label:before {
   border: 2px solid #003399;
-  content: "\2716";
-  padding: 0px 4px 0px 10px;
-  padding: 0px 1px 0px 3px;
+  /* content: "\2716";
+			content: "X";
+			padding: 0px 3px 0px 3px; */
+  content: " ";
+  padding: 0px 7px 0px 7px;
   margin-right: 10px;
   color: #ffffff;
+  font-weight: normal;
+  font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
 }
 .checkbox input[type=checkbox]:checked + label:before {
   content: "\2713";
-  /* padding: 0px 1px 0px 3px; */
   color: #003399;
-  font-weight: bold;
+  padding: 0px 2px 0px 2px;
+  margin-right: 6px;
+  font-weight: normal;
+  font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
 }
 .radio {
   margin-bottom: 0.5em;
@@ -7747,7 +7754,8 @@ ul.tabs--primary.nav.nav-tabs > li.active > a:focus {
 .radio label {
   color: #003399;
   padding-left: 0;
-  font-family: 'Open Sans Semibold';
+  font-family: 'Open Sans';
+  /* font-family: @font-family-semibold; */
 }
 .radio label:before {
   border: 2px solid #003399;
@@ -7765,6 +7773,9 @@ ul.tabs--primary.nav.nav-tabs > li.active > a:focus {
 #views-exposed-form-search-site input[type="checkbox"],
 #views-exposed-form-search-site input[type="radio"] {
   display: none;
+}
+.description {
+  clear: both;
 }
 .back-to-link {
   font-weight: bold;
@@ -8038,6 +8049,7 @@ ul.tabs--primary.nav.nav-tabs > li.active > a:focus {
 #homepage_slider #num_slides > div {
   /* .views-field.views-field-field-image */
   background-color: #456E00;
+  background-color: #6B9000;
   width: 1139px;
   width: 100% !important;
   height: 356px !important;
@@ -8096,7 +8108,7 @@ ul.tabs--primary.nav.nav-tabs > li.active > a:focus {
   /* content: ""; */
 }
 #homepage_slider #num_slides > div div a img {
-  margin: 0 auto;
+  margin: 0;
   display: block;
   width: 100%;
   width: auto;
@@ -8243,6 +8255,7 @@ div.error textarea,
 table tr.error textarea {
   border-color: #a94442;
   background-color: #f2dede;
+  color: #a94442;
 }
 div.error.form-type-select:after,
 table tr.error.form-type-select:after {
@@ -9245,7 +9258,8 @@ div[class*='node-'] .more-link {
   margin-right: 11px;
 }
 .page-search .region-sidebar-first .facetapi-facetapi-checkbox-links li a {
-  font-family: 'Open Sans Semibold';
+  font-family: 'Open Sans';
+  /* font-family: @font-family-semibold; */
 }
 .page-search .region.region-content {
   float: right;
@@ -13433,7 +13447,7 @@ article .hwc-share-widget ul {
   margin-left: -25px;
 }
 .page-get-your-certificate form.webform-client-form label {
-  font-weight: bold;
+  /* font-weight: bold; */
 }
 .page-get-your-certificate form.webform-client-form .form-item,
 .page-get-your-certificate form.webform-client-form .webform-component {
@@ -13456,6 +13470,9 @@ article .hwc-share-widget ul {
 .page-get-your-certificate form.webform-client-form .form-checkboxes .form-item,
 .page-get-your-certificate form.webform-client-form .form-checkboxes .webform-component {
   margin-bottom: 1em;
+}
+.page-get-your-certificate form.webform-client-form .form-checkboxes#edit-submitted-confirm label {
+  font-weight: bold;
 }
 .page-get-your-certificate form.webform-client-form .webform-component--other-activities label {
   margin-left: 35px;
@@ -14685,6 +14702,10 @@ fieldset.captcha div {
   margin-left: 1em;
   list-style-type: disc;
 }
+span.form-required {
+  color: #a94442;
+  font-size: 18px;
+}
 .footer {
   background: transparent url("../images/footer/bg-complete.png") no-repeat left;
   border: none;
@@ -14880,6 +14901,12 @@ fieldset.captcha div {
   .main-container .above_title {
     margin-left: 0;
     margin-right: 0;
+  }
+  .main-container .checkbox label:before {
+    padding: 9px 7px 10px 7px;
+  }
+  .main-container .checkbox input[type=checkbox]:checked + label:before {
+    padding: 0px 2px 0px 2px;
   }
   /*Fin contenedor principal */
   /*Header*/
@@ -16004,6 +16031,7 @@ fieldset.captcha div {
     margin-left: 15%;
     width: 85%;
     float: none;
+    clear: both;
   }
   .page-get-your-certificate .container > div > .pane-node-body:last-child {
     margin-left: 0px;
