@@ -292,7 +292,8 @@ function osha_publication_default_page_manager_handlers() {
       'delta_reversed' => FALSE,
       'formatter_settings' => array(
         'image_style' => 'large',
-        'image_link' => 'file',
+        'image_link' => '',
+        'field_formatter_class' => '',
       ),
       'context' => 'argument_entity_id:node_1',
       'override_title' => 0,
