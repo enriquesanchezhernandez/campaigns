@@ -43,6 +43,11 @@
 				margin-top: 1.8em;
 			}
 		}
+		.required-form-fields{
+			float: right;
+			margin-top: 1em;
+			font-style: italic;
+		}
 	}
 	/* End General */
 
@@ -4762,6 +4767,20 @@ article{
 		clear: both;
 	}
 }
+.node-events-form{
+	h2.node-edit-form-heading:first-child{
+		float: left;
+		width: 50%;
+	}
+	.required-form-fields{
+		width: 50%;
+		margin-top: 4em;
+		text-align: right;
+	}
+	.group-header{
+		clear: both;
+	}
+}
 .page-node-edit{
 	#edit-actions{
 		button{
@@ -5156,7 +5175,7 @@ article{
 .node-145{
 	.field-type-text-with-summary{
 		text-align: center;
-		font-weight: bold;
+		/* font-weight: bold; */
 		font-size: @size6;
 		margin-top: 40px;
 	}
@@ -6117,6 +6136,7 @@ fieldset.captcha {
 		display: inline-flex;
 	}
 }
+
 .alert.alert-block.alert-danger, .alert.alert-block.alert-success{
 //to do wendsday, solo para sprint1 display: none;
 	clear: both;
