@@ -2,8 +2,10 @@
 
 include_once 'hwc.features.inc';
 
+define('ROLE_ADMINISTRATOR', 'administrator');
 define('ROLE_CAMPAIGN_PARTNER', 'campaign partner');
 define('ROLE_SUPERVISOR', 'supervisor');
+define('ROLE_SUPERADMINISTRATOR', 'Superadministrators');
 define('SOLR_SEARCH_INDEX', 'default_multilingual_node_index');
 
 /**

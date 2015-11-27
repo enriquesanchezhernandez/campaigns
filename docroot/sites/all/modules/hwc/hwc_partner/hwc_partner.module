@@ -273,7 +273,10 @@ function hwc_partner_node_view($node, $view_mode, $langcode) {
   global $user, $base_url;
   if ($node->type == 'partner' && $view_mode == 'full') {
     $w = entity_metadata_wrapper('node', $node);
-    $user_is_partner = hwc_partner_match_user_partner($node) || in_array(ROLE_SUPERVISOR, $user->roles);
+    $user_is_partner = hwc_partner_match_user_partner($node)
+      || in_array(ROLE_SUPERVISOR, $user->roles)
+      || in_array(ROLE_ADMINISTRATOR, $user->roles)
+      || in_array(ROLE_SUPERADMINISTRATOR, $user->roles);
     if ($user_is_partner && $session_id = $w->field_guid_organisation->value()) {
       $update_title = l(t('Update profile'), 'private/profile/update', array('query' => array('session_id' => $session_id)));
       $update_content = t('Any modifications in your public profile? <a href="!link"> Click here to update it.</a>', array('!link' => url('private/profile/update')));
