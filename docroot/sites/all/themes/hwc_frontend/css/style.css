@@ -11686,6 +11686,10 @@ article .hwc-share-widget ul {
   text-align: left;
   width: 71%;
 }
+.profile-title-type-container .panels-flexible-region-last.col-md-12 {
+  padding-left: 0;
+  padding-right: 0;
+}
 .profile-ceo-container {
   background: url("../images/content/bg-campaign-partner.png");
   background-size: cover;
@@ -11996,7 +12000,7 @@ article .hwc-share-widget ul {
 }
 .node-type-partner .profile-2-cols-container-1 .panels-flexible-region-last .pane-entity-field {
   margin-bottom: 0.5em;
-  margin-left: 1em;
+  /* margin-left: 1em; */
   text-align: left;
 }
 .node-type-partner .profile-2-cols-container-1 .panels-flexible-region-last .pane-entity-field .pane-title {
@@ -15770,6 +15774,10 @@ span.form-required {
   .node-type-partner .profile-2-cols-container-1 .panels-flexible-region-last .pane-entity-field.pane-node-field-mission-statement {
     width: 95%;
   }
+  .profile-title-type-container .panels-flexible-region-last.col-md-12 {
+    padding-left: 30px;
+    padding-right: 30px;
+  }
   .profile-4-cols-container-2,
   .node-type-partner .profile-4-cols-container-2 {
     border-bottom: 1px dotted #749b00;
@@ -17922,6 +17930,10 @@ span.form-required {
     margin-left: 15px;
     margin-right: 15px;
   }
+  .profile-title-type-container .panels-flexible-region-last.col-md-12 {
+    padding-left: 0;
+    padding-right: 0;
+  }
   .profile-ceo-container {
     margin-left: 0px !important;
     margin-right: 0px !important;
@@ -17945,29 +17957,49 @@ span.form-required {
   .profile-ceo-container .pane-node-field-quote .field-name-field-quote {
     margin: 0px 0px;
   }
-  .profile-2-cols-container-1 {
+  .profile-2-cols-container-1,
+  .node-type-partner .profile-2-cols-container-1 {
     padding-bottom: 30px !important;
     margin-bottom: 30px !important;
     padding-left: 15px !important;
     padding-right: 15px !important;
   }
-  .profile-2-cols-container-1 .field-item {
+  .profile-2-cols-container-1 .field-item,
+  .node-type-partner .profile-2-cols-container-1 .field-item {
     margin-bottom: 20px;
   }
   .profile-2-cols-container-1 .panels-flexible-row-new-1-inside .profile-col-left-1,
-  .profile-2-cols-container-1 .panels-flexible-row-new-1-inside .panels-flexible-region-new-logo {
+  .node-type-partner .profile-2-cols-container-1 .panels-flexible-row-new-1-inside .profile-col-left-1,
+  .profile-2-cols-container-1 .panels-flexible-row-new-1-inside .panels-flexible-region-new-logo,
+  .node-type-partner .profile-2-cols-container-1 .panels-flexible-row-new-1-inside .panels-flexible-region-new-logo {
     padding-left: 0;
   }
   .profile-2-cols-container-1 .panels-flexible-row-new-1-inside .profile-col-left-1 img,
-  .profile-2-cols-container-1 .panels-flexible-row-new-1-inside .panels-flexible-region-new-logo img {
+  .node-type-partner .profile-2-cols-container-1 .panels-flexible-row-new-1-inside .profile-col-left-1 img,
+  .profile-2-cols-container-1 .panels-flexible-row-new-1-inside .panels-flexible-region-new-logo img,
+  .node-type-partner .profile-2-cols-container-1 .panels-flexible-row-new-1-inside .panels-flexible-region-new-logo img {
     margin: auto;
   }
-  .profile-2-cols-container-1 .panels-flexible-row-new-1-inside .profile-col-right-1.col-sm-9 {
+  .profile-2-cols-container-1 .panels-flexible-row-new-1-inside .profile-col-right-1.col-sm-9,
+  .node-type-partner .profile-2-cols-container-1 .panels-flexible-row-new-1-inside .profile-col-right-1.col-sm-9 {
     padding-left: 0;
   }
   .profile-2-cols-container-1 .panels-flexible-row-new-1-inside .profile-col-left-1.col-sm-4,
-  .profile-2-cols-container-1 .panels-flexible-row-new-1-inside .profile-col-right-1.col-sm-6 {
+  .node-type-partner .profile-2-cols-container-1 .panels-flexible-row-new-1-inside .profile-col-left-1.col-sm-4,
+  .profile-2-cols-container-1 .panels-flexible-row-new-1-inside .profile-col-right-1.col-sm-6,
+  .node-type-partner .profile-2-cols-container-1 .panels-flexible-row-new-1-inside .profile-col-right-1.col-sm-6 {
     width: 100% !important;
+  }
+  .profile-2-cols-container-1 .panels-flexible-region-last .pane-entity-field.pane-node-field-mission-statement,
+  .node-type-partner .profile-2-cols-container-1 .panels-flexible-region-last .pane-entity-field.pane-node-field-mission-statement {
+    width: 100%;
+    margin-right: 0;
+    padding-right: 0;
+  }
+  .profile-2-cols-container-1 .panels-flexible-column-last > div,
+  .node-type-partner .profile-2-cols-container-1 .panels-flexible-column-last > div {
+    padding-left: 0px;
+    padding-right: 0px;
   }
   .profile-4-cols-container-2,
   .node-type-partner .profile-4-cols-container-2 {
@@ -18059,6 +18091,7 @@ span.form-required {
     background-position: center top;
     padding-top: 2em;
     margin-bottom: 0.5em;
+    padding-left: 0;
   }
   .profile-4-cols-container-2 .pane-custom,
   .node-type-partner .profile-4-cols-container-2 .pane-custom {
