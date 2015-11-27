@@ -53,7 +53,8 @@
                 output += '<a class="hwc-char-link" href="#hwc-char-' + prefix + '-' + char + '">' + char + '</span>';
             }
             else {
-                output += '<a class="hwc-char-link disabled" href="javascript:void(0);">' + char + '</span>';
+                //HCW-950: Only the letters with content must be shown.
+                //output += '<a class="hwc-char-link disabled" href="javascript:void(0);">' + char + '</span>';
             }
         });
         output += '</div>';

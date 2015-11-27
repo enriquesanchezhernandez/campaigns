@@ -674,6 +674,19 @@ function hwc_partner_views_default_views() {
     'field_formatter_class' => '',
   );
   $handler->display->display_options['fields']['name_field']['link_to_entity'] = 0;
+  /* Field: Taxonomy term: Flag */
+  $handler->display->display_options['fields']['field_flag']['id'] = 'field_flag';
+  $handler->display->display_options['fields']['field_flag']['table'] = 'field_data_field_flag';
+  $handler->display->display_options['fields']['field_flag']['field'] = 'field_flag';
+  $handler->display->display_options['fields']['field_flag']['relationship'] = 'field_country_tid';
+  $handler->display->display_options['fields']['field_flag']['label'] = '';
+  $handler->display->display_options['fields']['field_flag']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_flag']['click_sort_column'] = 'fid';
+  $handler->display->display_options['fields']['field_flag']['settings'] = array(
+    'image_style' => 'medium',
+    'image_link' => 'content',
+    'field_formatter_class' => '',
+  );
   $handler->display->display_options['defaults']['sorts'] = FALSE;
   /* Sort criterion: Content: Country (field_country) */
   $handler->display->display_options['sorts']['field_country_tid']['id'] = 'field_country_tid';
