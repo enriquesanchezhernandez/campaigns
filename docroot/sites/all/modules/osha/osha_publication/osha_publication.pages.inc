@@ -153,6 +153,14 @@ function osha_publication_menu_publications_search_native($form_state) {
   if (empty($nids)) {
     return array();
   }
+
+  //Order publications by publication_date
+  $q = db_select('field_data_field_publication_date', 'a');
+  $q->fields('a', array('entity_id'));
+  $q->condition('entity_id', $nids, 'IN');
+  $q->orderBy('field_publication_date_value', 'DESC');
+  $nids = $q->execute()->fetchCol();
+
   $per_page = 4;
   $current_page = pager_default_initialize(count($nids), $per_page);
   $page = array_chunk($nids, $per_page, TRUE);
