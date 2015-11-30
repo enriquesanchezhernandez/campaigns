@@ -7596,6 +7596,19 @@ body .required-form-fields {
   margin-top: 1em;
   font-style: italic;
 }
+body p a.inline-href,
+body.private-area #private .pane-custom p a.inline-href,
+body.private-area #private p[id*="tmgmt"] a.inline-href,
+body.private-area #private ul a.inline-href {
+  display: inline;
+  font-size: inherit;
+}
+body p a.inline-href:before,
+body.private-area #private .pane-custom p a.inline-href:before,
+body.private-area #private p[id*="tmgmt"] a.inline-href:before,
+body.private-area #private ul a.inline-href:before {
+  content: "";
+}
 /* End General */
 /*no deberian aparecer en la aplicacion
 .not-logged-in  ul.tabs--primary.nav.nav-tabs{
