@@ -8234,7 +8234,7 @@ ul.tabs--primary.nav.nav-tabs > li.active > a:focus {
 #block-system-main div div.form-type-password {
   margin-bottom: 1em;
   display: table;
-  display: -moz-grid-group;
+  /* display: -moz-grid-group; */
 }
 #block-system-main div div.form-type-textfield label,
 #block-system-main div div.form-type-password label {
@@ -8672,6 +8672,15 @@ div[class*='node-'] .more-link {
 }
 .page-node .node-news .field-name-body {
   display: flex;
+}
+.page-node .node-news .pane-additional-resources .field.field-name-field-image {
+  margin-right: 0em;
+}
+.page-node .node-news .pane-additional-resources .field.field-name-field-image .field-items div {
+  background-color: #ffffff;
+}
+.page-node .node-news .pane-additional-resources .field.field-name-field-image .field-items div img {
+  min-width: 0;
 }
 /* home news */
 #block-views-news-oshnews-latest h2,
@@ -10022,9 +10031,12 @@ article .hwc-share-widget ul {
   padding-bottom: 0;
   border-bottom: none;
 }
+.node-type-news .image-widget-data > .form-type-textfield {
+  clear: both;
+}
 .node-type-news .field-type-image img {
-  margin-right: 3em;
-  margin-bottom: 2em;
+  /* margin-right: 3em;
+    			margin-bottom: 2em; */
 }
 /* End news*/
 /*gallery*/
@@ -12483,6 +12495,14 @@ article .hwc-share-widget ul {
 .page-node-add-news .node-news-form div.image-widget-data input,
 .page-node-edit .node-news-form div.image-widget-data input {
   height: 35px;
+}
+.page-node-add-events .node-events-form div.image-preview ~ div.image-widget-data,
+.page-node-add-news .node-events-form div.image-preview ~ div.image-widget-data,
+.page-node-edit .node-events-form div.image-preview ~ div.image-widget-data,
+.page-node-add-events .node-news-form div.image-preview ~ div.image-widget-data,
+.page-node-add-news .node-news-form div.image-preview ~ div.image-widget-data,
+.page-node-edit .node-news-form div.image-preview ~ div.image-widget-data {
+  display: block;
 }
 .page-node-add-events .node-events-form #edit-field-website-of-event .tabledrag-toggle-weight-wrapper,
 .page-node-add-news .node-events-form #edit-field-website-of-event .tabledrag-toggle-weight-wrapper,
