@@ -11897,6 +11897,7 @@ article .hwc-share-widget ul {
 .node-type-partner .profile-4-cols-container-2 .profile-col-left-2 img,
 .node-type-partner .profile-4-cols-container-2 .profile-col-left-middle-2 img {
   margin-left: 0px;
+  max-width: 95%;
 }
 .node-type-partner .profile-4-cols-container-2 .profile-col-left-2 .panels-flexible-region-new-left_-inside .pane-node-title-field,
 .node-type-partner .profile-4-cols-container-2 .profile-col-left-middle-2 .panels-flexible-region-new-left_-inside .pane-node-title-field {
@@ -11981,10 +11982,14 @@ article .hwc-share-widget ul {
   width: 100% !important;
 }
 .node-type-partner .profile-4-cols-container-2 .panels-flexible-column-first .panels-flexible-region-first,
-.node-type-partner .profile-4-cols-container-2 .panels-flexible-row-new-7-inside .panels-flexible-column-new-8 .panels-flexible-region-first,
+.node-type-partner .profile-4-cols-container-2 .panels-flexible-row-new-7-inside .panels-flexible-column-new-8 .panels-flexible-region-first {
+  /* width: 50% !important; */
+  width: 37% !important;
+}
 .node-type-partner .profile-4-cols-container-2 .panels-flexible-column-first .panels-flexible-region-last,
 .node-type-partner .profile-4-cols-container-2 .panels-flexible-row-new-7-inside .panels-flexible-column-new-8 .panels-flexible-region-last {
-  width: 50% !important;
+  /* width: 50% !important; */
+  width: 63% !important;
 }
 .node-type-partner .profile-4-cols-container-2 .panels-flexible-column-new-9,
 .node-type-partner .profile-4-cols-container-2 .panels-flexible-column-new-10 {
