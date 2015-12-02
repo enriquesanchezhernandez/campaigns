@@ -24,7 +24,7 @@ function hwc_homepage_views_pre_render(&$view){
 function hwc_homepage_block_info() {
   $blocks = array();
   $blocks['hwc_homepage_tools_and_resources'] = array(
-    'info' => t('Tools and resources'),
+    'info' => t('Tools and publications'),
     'status' => 1,
     'region' => 'content',
     'visibility' => BLOCK_VISIBILITY_NOTLISTED,
