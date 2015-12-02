@@ -27,7 +27,7 @@ function osha_newsletter_subscribe_extra_form() {
   );
   $form['subscribe-to-OSHMail-newsletter'] = array(
     '#type' => 'checkbox',
-    '#title' => t('Subscribe to OSHMail Newsletter') . ' ' . l(t('See more'), 'https://osha.europa.eu/oshmail-newsletter'),
+    '#title' => t('Subscribe to !link as well', array('!link' => l(t('OSHMail Newsletter'), 'https://osha.europa.eu/oshmail-newsletter'))),
   );
   $form['submit'] = array(
     '#type' => 'submit',
