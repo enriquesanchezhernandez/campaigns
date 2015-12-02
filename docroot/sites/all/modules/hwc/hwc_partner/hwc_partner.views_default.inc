@@ -647,18 +647,6 @@ function hwc_partner_views_default_views() {
   $handler->display->display_options['fields']['nid']['label'] = '';
   $handler->display->display_options['fields']['nid']['exclude'] = TRUE;
   $handler->display->display_options['fields']['nid']['element_label_colon'] = FALSE;
-  /* Field: Taxonomy term: Name */
-  $handler->display->display_options['fields']['name_field']['id'] = 'name_field';
-  $handler->display->display_options['fields']['name_field']['table'] = 'field_data_name_field';
-  $handler->display->display_options['fields']['name_field']['field'] = 'name_field';
-  $handler->display->display_options['fields']['name_field']['relationship'] = 'field_country_tid';
-  $handler->display->display_options['fields']['name_field']['label'] = '';
-  $handler->display->display_options['fields']['name_field']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['name_field']['element_wrapper_class'] = 'hwc-alpha-pager-view-title-field';
-  $handler->display->display_options['fields']['name_field']['settings'] = array(
-    'field_formatter_class' => '',
-  );
-  $handler->display->display_options['fields']['name_field']['link_to_entity'] = 0;
   /* Field: Taxonomy term: Flag */
   $handler->display->display_options['fields']['field_flag']['id'] = 'field_flag';
   $handler->display->display_options['fields']['field_flag']['table'] = 'field_data_field_flag';
@@ -672,6 +660,18 @@ function hwc_partner_views_default_views() {
     'image_link' => 'content',
     'field_formatter_class' => '',
   );
+  /* Field: Taxonomy term: Name */
+  $handler->display->display_options['fields']['name_field']['id'] = 'name_field';
+  $handler->display->display_options['fields']['name_field']['table'] = 'field_data_name_field';
+  $handler->display->display_options['fields']['name_field']['field'] = 'name_field';
+  $handler->display->display_options['fields']['name_field']['relationship'] = 'field_country_tid';
+  $handler->display->display_options['fields']['name_field']['label'] = '';
+  $handler->display->display_options['fields']['name_field']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['name_field']['element_wrapper_class'] = 'hwc-alpha-pager-view-title-field';
+  $handler->display->display_options['fields']['name_field']['settings'] = array(
+    'field_formatter_class' => '',
+  );
+  $handler->display->display_options['fields']['name_field']['link_to_entity'] = 0;
   $handler->display->display_options['defaults']['sorts'] = FALSE;
   /* Sort criterion: Content: Country (field_country) */
   $handler->display->display_options['sorts']['field_country_tid']['id'] = 'field_country_tid';
