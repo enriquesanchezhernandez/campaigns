@@ -16,10 +16,18 @@
  * @see template_process()
  */
 ?>
+<?php
+
+$node = menu_get_object();
+$label = t('Share this article:');
+if (!empty($node->nid) && $node->nid == 160) {
+  $label = t('Share this video:');
+}
+?>
 <div class="hwc-share-widget">
   <ul>
     <li class="share-this-article">
-      <?php print t('Share this article:'); ?>
+      <?php print $label; ?>
     </li>
     <li id="facebook-share-button-<?php print $node->nid; ?>"  class="hwc-share-widget-button hwc-share-widget-facebook" data-href="">
       <a href="<?php print $url ?>">Facebook</a>
