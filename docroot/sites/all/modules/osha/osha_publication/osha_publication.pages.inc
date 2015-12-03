@@ -42,6 +42,12 @@ function osha_publication_menu_publications_form($form, $form_state) {
     '#default_value' => array('0'),
     '#title' => t('Relevant for:'),
   );
+  $form['left-column']['publication_type'] = array(
+    '#type' => 'checkboxes',
+    '#options' => _publication_type_options_list(),
+    '#default_value' => array('0'),
+    '#title' => t('Publications type:'),
+  );
   $form['left-column']['languages'] = array(
     '#type' => 'checkboxes',
     '#options' => osha_language_list_options(),
@@ -111,14 +117,30 @@ function osha_publication_menu_publications_search_native($form_state) {
       $relevant_for_ids[] = $relf;
     }
   }
+
+  $publication_type_ids = array();
+  $publication_type = array();
+  if (!empty($form_state['values']['publication_type'])) {
+    $publication_type = $form_state['values']['publication_type'];
+  }
+  foreach ($publication_type as $pubt) {
+    if ($pubt) {
+      $publication_type_ids[] = $pubt;
+    }
+  }
+
   // Select all publications having field_file available in filtered languages.
-  $q = db_select('node', 'a')
-    ->fields('a', array('nid', 'vid'))
-    ->condition('type', 'publication')
-    ->condition('status', 1)
-    ->orderBy('changed', 'DESC');
+  $q = db_select('node', 'a');
+  $q->innerJoin('field_data_field_publication_type', 'b', 'a.nid = b.entity_id');
+  $q->fields('a', array('nid', 'vid'));
+  $q->condition('a.type', 'publication');
+  $q->condition('a.status', 1);
+  $q->orderBy('a.changed', 'DESC');
   if (!empty($restrict)) {
     $q->condition('a.nid', $restrict, 'IN');
+  }
+  if (!empty($publication_type_ids)) {
+    $q->condition('b.field_publication_type_tid', $publication_type_ids, 'IN');
   }
   $pnids = $q->execute()->fetchCol();
   $nids = array();
@@ -387,4 +409,19 @@ function osha_publication_menu_publications_get_query() {
   $query->fields(array()); // Avoid PHP notice
   $solr = new SearchApiSolrService($server);
   return array($solr, $query);
+}
+
+/**
+ * Get options for publication type filter.
+ */
+function _publication_type_options_list() {
+  $return = array('0' => t('All types'));
+  $vocabulary = taxonomy_vocabulary_machine_name_load('publication_types');
+  if (!empty($vocabulary)) {
+    $terms = taxonomy_get_tree($vocabulary->vid);
+    foreach ($terms as $key => $term) {
+      $return[$term->tid] = $term->name;
+    }
+  }
+  return $return;
 }
