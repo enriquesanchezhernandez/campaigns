@@ -29,7 +29,7 @@ function hwc_practical_tool_menu_tools_form($form, $form_state) {
     '#maxlength' => 200,
     '#default_value' => $text,
     '#title_display' => 'invisible',
-    '#attributes' => array('placeholder' => t('Free text filter')),
+    '#attributes' => array('placeholder' => t('Search Practical tools')),
     '#prefix' => '<div id="search">',
   );
   $form['content']['submit'] = array(
