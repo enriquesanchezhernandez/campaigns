@@ -4360,7 +4360,8 @@ article{
 			}
 		}
 	}
-	.pane-node-field-free, .pane-node-field-country, .pane-node-field-tool-type{
+
+	.pane-node-field-free, .pane-node-field-tool-type{
 		background-color: @bg-default-color;
 		color: @text-default-color;
 		font-style: normal;
@@ -4372,6 +4373,21 @@ article{
 			padding-left: 0;
 		}
 	}
+
+	.pane-node-field-country{
+		font-size:18px;
+		background-color: @bg-default-color;
+		color: @color3;
+		font-style: normal;
+		margin-top: 0em;
+		margin-right: 0em;
+		text-align: left;
+		float: none;
+		.field-item {
+			padding-left: 0;
+		}
+	} 
+
 	.pane-entity-field.pane-node-field-ceo{
 		.pane-title{
 			font-weight: bold;
@@ -5066,7 +5082,6 @@ article{
 		margin-bottom: 2em;
 	}
 	.field-name-field-image{
-		margin-top: 23px;
 		margin-right: 3.5em;
 	}
 	.field-type-file{
@@ -5075,11 +5090,8 @@ article{
 			float: left;
 		    margin-top: 0px;
 		    color: @colorNormalText;
-			font-style: normal;
 		}
 		span{
-			font-weight: bold;
-			color: @color2;
 			font-style: italic;
 			font-size: @size4;
 			float: left;
@@ -6230,6 +6242,19 @@ fieldset.captcha {
 /* End Block: recommended-articles and recommended-resources */
 
 /*general classes*/
+
+.btn-default-hwc{
+	background-color: #039;
+    outline: 0;
+    border: none;
+    color: #fff;
+    padding: 5px 40px;
+    font-weight: 700;
+    margin-bottom: 10px;
+    font-size: 14px;
+    margin-top: 1.5em;
+}
+
 #block-osha-newsletter-osha-newsletter-subscribe{
 	margin-right: -@margin2;
 	margin-left:  -@margin2;
