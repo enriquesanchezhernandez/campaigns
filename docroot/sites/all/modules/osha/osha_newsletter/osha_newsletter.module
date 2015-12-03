@@ -517,6 +517,8 @@ function osha_newsletter_form_alter(&$form, &$form_state, $form_id) {
         osha_newsletter_fix_entity_collection_edit_form($form, $form_state);
         // Alter submit button label.
         $form['actions']['submit']['#value'] = t('Update newsletter');
+        // Add a validation handler.
+        $form['#validate'][] = 'osha_newsletter_entity_collection_form_validate';
         // Add a submit handler.
         $form['#submit'][] = 'osha_newsletter_entity_collection_form_submit';
       }
@@ -527,6 +529,8 @@ function osha_newsletter_form_alter(&$form, &$form_state, $form_id) {
         osha_newsletter_fix_entity_collection_add_form($form, $form_state);
         // Alter submit button label.
         $form['actions']['submit']['#value'] = t('Create newsletter');
+        // Add a validation handler.
+        $form['#validate'][] = 'osha_newsletter_entity_collection_form_validate';
         // Add a submit handler.
         $form['#submit'][] = 'osha_newsletter_entity_collection_form_submit';
       }
@@ -622,6 +626,18 @@ function osha_newsletter_form_alter(&$form, &$form_state, $form_id) {
 
 function osha_newsletter_form_validate($form, &$form_state){
   // TODO : Check the submitted items
+}
+
+/**
+ * Validation handler when adding or updating a newsletter.
+ */
+function osha_newsletter_entity_collection_form_validate($form, &$form_state) {
+  if (($intro_length = strlen($form_state['values']['field_introduction_text'][LANGUAGE_NONE][0]['value'])) > 240) {
+    form_set_error(
+      'field_introduction_text',
+      t('Introduction text is too long. Limit is 240 characters, but you entered ') . $intro_length
+    );
+  }
 }
 
 /**
