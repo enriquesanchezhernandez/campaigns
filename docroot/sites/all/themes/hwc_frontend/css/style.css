@@ -7591,6 +7591,24 @@ body .modal-content {
 body .modal-content .views-submit-button {
   margin-top: 1.8em;
 }
+body .required-form-fields {
+  float: right;
+  margin-top: 1em;
+  font-style: italic;
+}
+body p a.inline-href,
+body.private-area #private .pane-custom p a.inline-href,
+body.private-area #private p[id*="tmgmt"] a.inline-href,
+body.private-area #private ul a.inline-href {
+  display: inline;
+  font-size: inherit;
+}
+body p a.inline-href:before,
+body.private-area #private .pane-custom p a.inline-href:before,
+body.private-area #private p[id*="tmgmt"] a.inline-href:before,
+body.private-area #private ul a.inline-href:before {
+  content: "";
+}
 /* End General */
 /*no deberian aparecer en la aplicacion
 .not-logged-in  ul.tabs--primary.nav.nav-tabs{
@@ -8216,7 +8234,7 @@ ul.tabs--primary.nav.nav-tabs > li.active > a:focus {
 #block-system-main div div.form-type-password {
   margin-bottom: 1em;
   display: table;
-  display: -moz-grid-group;
+  /* display: -moz-grid-group; */
 }
 #block-system-main div div.form-type-textfield label,
 #block-system-main div div.form-type-password label {
@@ -8370,6 +8388,10 @@ table tr.error.form-type-select:after {
 .node-article .field-name-field-recommended-resources .field-item a.more-link,
 .node-article .field-name-field-recommended-articles .field-item a.more-link {
   font-size: 14px;
+}
+.node-article .field-name-field-recommended-resources .field-item .field-name-field-start-date.field-type-datetime .field-item,
+.node-article .field-name-field-recommended-articles .field-item .field-name-field-start-date.field-type-datetime .field-item {
+  margin-top: 0;
 }
 .node-article .field-name-field-recommended-resources .node-article .field-name-field-image + .field-name-title-field,
 .node-article .field-name-field-recommended-articles .node-article .field-name-field-image + .field-name-title-field {
@@ -8659,6 +8681,15 @@ div[class*='node-'] .more-link {
 .page-node .node-news .field-name-body {
   display: flex;
 }
+.page-node .node-news .pane-additional-resources .field.field-name-field-image {
+  margin-right: 0em;
+}
+.page-node .node-news .pane-additional-resources .field.field-name-field-image .field-items div {
+  background-color: #ffffff;
+}
+.page-node .node-news .pane-additional-resources .field.field-name-field-image .field-items div img {
+  min-width: 0;
+}
 /* home news */
 #block-views-news-oshnews-latest h2,
 .panels-flexible-column-new-1 h2,
@@ -8762,7 +8793,7 @@ div[class*='node-'] .more-link {
   background-size: cover;
   padding-bottom: 3em;
   margin-top: 3em;
-  margin-bottom: 3em;
+  /* margin-bottom: 3em; */
   padding-top: 1px;
 }
 #block-osha-newsletter-osha-newsletter-subscribe #join_subscribers img,
@@ -10008,9 +10039,12 @@ article .hwc-share-widget ul {
   padding-bottom: 0;
   border-bottom: none;
 }
+.node-type-news .image-widget-data > .form-type-textfield {
+  clear: both;
+}
 .node-type-news .field-type-image img {
-  margin-right: 3em;
-  margin-bottom: 2em;
+  /* margin-right: 3em;
+    			margin-bottom: 2em; */
 }
 /* End news*/
 /*gallery*/
@@ -10426,6 +10460,7 @@ article .hwc-share-widget ul {
   background: none;
   color: #003399;
   font-weight: bold;
+  text-indent: -999999px;
 }
 .page-past-events form .views-exposed-form .views-exposed-widget button#edit-reset:before,
 .page-events form .views-exposed-form .views-exposed-widget button#edit-reset:before {
@@ -11684,6 +11719,10 @@ article .hwc-share-widget ul {
   text-align: left;
   width: 71%;
 }
+.profile-title-type-container .panels-flexible-region-last.col-md-12 {
+  padding-left: 0;
+  padding-right: 0;
+}
 .profile-ceo-container {
   background: url("../images/content/bg-campaign-partner.png");
   background-size: cover;
@@ -11866,6 +11905,7 @@ article .hwc-share-widget ul {
 .node-type-partner .profile-4-cols-container-2 .profile-col-left-2 img,
 .node-type-partner .profile-4-cols-container-2 .profile-col-left-middle-2 img {
   margin-left: 0px;
+  max-width: 95%;
 }
 .node-type-partner .profile-4-cols-container-2 .profile-col-left-2 .panels-flexible-region-new-left_-inside .pane-node-title-field,
 .node-type-partner .profile-4-cols-container-2 .profile-col-left-middle-2 .panels-flexible-region-new-left_-inside .pane-node-title-field {
@@ -11950,10 +11990,14 @@ article .hwc-share-widget ul {
   width: 100% !important;
 }
 .node-type-partner .profile-4-cols-container-2 .panels-flexible-column-first .panels-flexible-region-first,
-.node-type-partner .profile-4-cols-container-2 .panels-flexible-row-new-7-inside .panels-flexible-column-new-8 .panels-flexible-region-first,
+.node-type-partner .profile-4-cols-container-2 .panels-flexible-row-new-7-inside .panels-flexible-column-new-8 .panels-flexible-region-first {
+  /* width: 50% !important; */
+  width: 37% !important;
+}
 .node-type-partner .profile-4-cols-container-2 .panels-flexible-column-first .panels-flexible-region-last,
 .node-type-partner .profile-4-cols-container-2 .panels-flexible-row-new-7-inside .panels-flexible-column-new-8 .panels-flexible-region-last {
-  width: 50% !important;
+  /* width: 50% !important; */
+  width: 63% !important;
 }
 .node-type-partner .profile-4-cols-container-2 .panels-flexible-column-new-9,
 .node-type-partner .profile-4-cols-container-2 .panels-flexible-column-new-10 {
@@ -11994,12 +12038,22 @@ article .hwc-share-widget ul {
 }
 .node-type-partner .profile-2-cols-container-1 .panels-flexible-region-last .pane-entity-field {
   margin-bottom: 0.5em;
-  margin-left: 1em;
+  /* margin-left: 1em; */
+  text-align: left;
 }
 .node-type-partner .profile-2-cols-container-1 .panels-flexible-region-last .pane-entity-field .pane-title {
   color: #749b00;
   font-size: 20px;
   font-weight: bold;
+}
+.node-type-partner .profile-2-cols-container-1 .panels-flexible-region-last .pane-entity-field.pane-node-field-mission-statement {
+  width: 45%;
+  float: left;
+  text-align: left;
+  margin-right: 5%;
+}
+.node-type-partner .profile-2-cols-container-1 .panels-flexible-region-last .pane-entity-field.pane-node-field-pledge {
+  text-align: left;
 }
 /*End partners public profile*/
 /*create event --> in public profile*/
@@ -12455,6 +12509,14 @@ article .hwc-share-widget ul {
 .page-node-edit .node-news-form div.image-widget-data input {
   height: 35px;
 }
+.page-node-add-events .node-events-form div.image-preview ~ div.image-widget-data,
+.page-node-add-news .node-events-form div.image-preview ~ div.image-widget-data,
+.page-node-edit .node-events-form div.image-preview ~ div.image-widget-data,
+.page-node-add-events .node-news-form div.image-preview ~ div.image-widget-data,
+.page-node-add-news .node-news-form div.image-preview ~ div.image-widget-data,
+.page-node-edit .node-news-form div.image-preview ~ div.image-widget-data {
+  display: block;
+}
 .page-node-add-events .node-events-form #edit-field-website-of-event .tabledrag-toggle-weight-wrapper,
 .page-node-add-news .node-events-form #edit-field-website-of-event .tabledrag-toggle-weight-wrapper,
 .page-node-edit .node-events-form #edit-field-website-of-event .tabledrag-toggle-weight-wrapper,
@@ -12785,6 +12847,18 @@ article .hwc-share-widget ul {
 .page-node-add-events fieldset[id*="edit-field-related-documents"],
 .page-node-add-news fieldset[id*="edit-field-related-documents"],
 .page-node-edit fieldset[id*="edit-field-related-documents"] {
+  clear: both;
+}
+.node-events-form h2.node-edit-form-heading:first-child {
+  float: left;
+  width: 50%;
+}
+.node-events-form .required-form-fields {
+  width: 50%;
+  margin-top: 4em;
+  text-align: right;
+}
+.node-events-form .group-header {
   clear: both;
 }
 .page-node-edit #edit-actions button {
@@ -13149,7 +13223,7 @@ article .hwc-share-widget ul {
 /*official campaign partners list*/
 .node-145 .field-type-text-with-summary {
   text-align: center;
-  font-weight: bold;
+  /* font-weight: bold; */
   font-size: 16px;
   margin-top: 40px;
 }
@@ -13212,12 +13286,30 @@ article .hwc-share-widget ul {
   padding: 30px;
   border-bottom: 1px dotted #749b00;
   border-left: 1px dotted #749b00;
-  min-height: 170px;
+  /* min-height: 170px; */
+}
+.view-id-partners_list .quicktabs-views-group .views-field-field-logo,
+.view-id-partners_list .views-row .views-field-field-logo {
+  min-height: 108px;
+}
+.view-id-partners_list .quicktabs-views-group .views-field-field-logo img,
+.view-id-partners_list .views-row .views-field-field-logo img {
+  border: 1px solid #ccc;
 }
 .view-id-partners_list .quicktabs-views-group .views-field-title-field,
 .view-id-partners_list .views-row .views-field-title-field,
 .view-id-partners_list .quicktabs-views-group .views-field-name-field,
 .view-id-partners_list .views-row .views-field-name-field {
+  display: none;
+  text-align: center;
+  margin-top: 1em;
+}
+.view-id-partners_list .quicktabs-views-group .hwc-alpha-pager-view-title-field,
+.view-id-partners_list .views-row .hwc-alpha-pager-view-title-field {
+  display: block;
+}
+.view-id-partners_list .quicktabs-views-group .hwc-alpha-pager-view-title-field.views-field-title-field,
+.view-id-partners_list .views-row .hwc-alpha-pager-view-title-field.views-field-title-field {
   display: none;
 }
 .view-id-partners_list img {
@@ -13276,6 +13368,10 @@ article .hwc-share-widget ul {
   padding-top: 85px;
   padding-bottom: 0em;
 }
+.page-node-129 button {
+  text-align: left;
+  padding-left: 1em;
+}
 .page-node-129 #block-osha-newsletter-osha-newsletter-subscribe-extra h2 {
   background: url("../images/content/bg-campaign-partner.png") no-repeat left top;
   background-size: cover;
@@ -13302,11 +13398,12 @@ article .hwc-share-widget ul {
 .page-node-129 #block-osha-newsletter-osha-newsletter-subscribe-extra #subscribe-extra label,
 .page-node-129 #block-osha-newsletter-osha-newsletter-subscribe-extra #subscribe-extra span {
   font-weight: bold;
-  margin-right: 1em;
+  margin-right: 10px;
 }
 .page-node-129 #block-osha-newsletter-osha-newsletter-subscribe-extra #subscribe-extra span {
-  width: 265px;
+  width: 350px;
   float: left;
+  clear: both;
 }
 .page-node-129 #block-osha-newsletter-osha-newsletter-subscribe-extra #subscribe-extra span.captcha {
   width: auto;
@@ -13322,7 +13419,8 @@ article .hwc-share-widget ul {
 .page-node-129 #block-osha-newsletter-osha-newsletter-subscribe-extra #subscribe-extra .form-item-subscribe-to-OSHMail-newsletter {
   display: inline;
   margin-right: 10px;
-  min-width: 245px;
+  min-width: 350px;
+  float: left;
 }
 .page-node-129 #block-osha-newsletter-osha-newsletter-subscribe-extra #subscribe-extra .form-item-subscribe-to-OSHMail-newsletter label a {
   display: block;
@@ -13335,12 +13433,20 @@ article .hwc-share-widget ul {
 }
 .page-node-129 #block-osha-newsletter-osha-newsletter-subscribe-extra #subscribe-extra button#edit-submit--3 {
   margin-top: -2em;
+  margin-top: 0em;
+  min-width: 130px;
+}
+.page-node-129 #block-osha-newsletter-osha-newsletter-subscribe-extra #subscribe-extra button#edit-unsubscribe {
+  min-width: 130px;
 }
 .page-node-129 #block-osha-newsletter-osha-newsletter-subscribe-extra #subscribe-extra button#edit-submit--4 {
   margin-top: -3em;
+  min-width: 130px;
 }
 .page-node-129 #block-osha-newsletter-osha-newsletter-subscribe {
   background: none;
+  margin-top: 0;
+  padding-top: 0;
 }
 .page-node-129 #block-osha-newsletter-osha-newsletter-subscribe h2 {
   /* background: url("../images/content/newsletter.png") no-repeat center 20px; */
@@ -13355,6 +13461,49 @@ article .hwc-share-widget ul {
 .page-node-129 #block-osha-newsletter-osha-newsletter-subscribe div {
   color: #333333;
   font-weight: bold;
+}
+.page-node-129 #block-osha-newsletter-osha-newsletter-subscribe div.form-item-email-osh {
+  float: left;
+  min-width: 350px;
+  margin-right: 10px;
+}
+.page-node-129 #block-osha-newsletter-osha-newsletter-subscribe div.form-item-email-osh label {
+  font-weight: bold;
+}
+.page-node-129 #block-osha-newsletter-osha-newsletter-subscribe div hr {
+  background-color: white;
+  color: white;
+  border-color: white;
+}
+.page-node-129 #block-osha-newsletter-osha-newsletter-subscribe div.form-item-security-code {
+  clear: both;
+  float: left;
+}
+.page-node-129 #block-osha-newsletter-osha-newsletter-subscribe div.form-item-security-code label {
+  font-weight: bold;
+}
+.page-node-129 #block-osha-newsletter-osha-newsletter-subscribe div span {
+  float: left;
+  padding-top: 0.5em;
+  margin-right: 10px;
+  min-width: 350px;
+}
+.page-node-129 #block-osha-newsletter-osha-newsletter-subscribe div span.captcha {
+  clear: both;
+  float: left;
+  margin-top: 0 !important;
+  padding-top: 0;
+}
+.page-node-129 #block-osha-newsletter-osha-newsletter-subscribe div button,
+.page-node-129 #block-osha-newsletter-osha-newsletter-subscribe div button#edit-submit--4,
+.page-node-129 #block-osha-newsletter-osha-newsletter-subscribe div button#edit-unsubscribe--2 {
+  min-width: 130px;
+}
+.page-node-129 #block-osha-newsletter-osha-newsletter-subscribe div button#edit-submit--4 {
+  margin-top: 1.5em;
+}
+.page-node-129 #block-osha-newsletter-osha-newsletter-subscribe div div.captcha ~ button#edit-submit--4 {
+  margin-top: 13.5em;
 }
 .page-node-129 #block-osha-newsletter-osha-newsletter-subscribe div#newsletter-subscription-form-wrapper {
   text-align: left;
@@ -13387,7 +13536,7 @@ article .hwc-share-widget ul {
   float: left;
   padding-top: 0.5em;
   margin-right: 10px;
-  min-width: 245px;
+  min-width: 350px;
 }
 .page-node-129 #block-osha-newsletter-osha-newsletter-subscribe div#newsletter-subscription-form-wrapper form div button#edit-unsubscribe,
 .page-node-129 #block-osha-newsletter-osha-newsletter-subscribe div#newsletter-subscription-form-wrapper form div button#edit-unsubscribe--2 {
@@ -13400,7 +13549,7 @@ article .hwc-share-widget ul {
   font-style: italic;
   font-weight: normal;
   text-align: center;
-  margin: 50px 0;
+  margin: 0px 0 50px 0;
 }
 .page-node-129 #block-osha-newsletter-osha-newsletter-latest #latest-newsletters-block {
   width: 50%;
@@ -14560,6 +14709,7 @@ fieldset.captcha div {
 .field.field-name-field-aditional-resources .node-internal-url .content .field.field-name-field-image,
 .panels-flexible-region-container-additional_resources .node-internal-url .content .field.field-name-field-image {
   margin-bottom: 0;
+  height: auto;
 }
 @media (min-width: 768px) {
   .field-name-field-recommended-resources .node-internal-url .content .field.field-name-field-image,
@@ -15706,71 +15856,96 @@ span.form-required {
   .profile-ceo-container .pane-node-field-quote:after {
     margin-right: 30px;
   }
-  .profile-2-cols-container-1 {
+  .profile-2-cols-container-1,
+  .node-type-partner .profile-2-cols-container-1 {
     padding-bottom: 30px !important;
     margin-bottom: 30px !important;
     padding-left: 30px !important;
     padding-right: 30px !important;
   }
-  .profile-2-cols-container-1 .col-sm-6 {
+  .profile-2-cols-container-1 .col-sm-6,
+  .node-type-partner .profile-2-cols-container-1 .col-sm-6 {
     width: 100%;
   }
-  .profile-2-cols-container-1 .field-item {
+  .profile-2-cols-container-1 .field-item,
+  .node-type-partner .profile-2-cols-container-1 .field-item {
     margin-bottom: 20px;
   }
-  .profile-2-cols-container-1 .panels-flexible-row-new-1-inside .profile-col-left-1.col-sm-4 {
+  .profile-2-cols-container-1 .panels-flexible-row-new-1-inside .profile-col-left-1.col-sm-4,
+  .node-type-partner .profile-2-cols-container-1 .panels-flexible-row-new-1-inside .profile-col-left-1.col-sm-4 {
     width: 40% !important;
     margin-right: 3%;
   }
-  .profile-2-cols-container-1 .panels-flexible-row-new-1-inside .profile-col-right-1.col-sm-6 {
+  .profile-2-cols-container-1 .panels-flexible-row-new-1-inside .profile-col-right-1.col-sm-6,
+  .node-type-partner .profile-2-cols-container-1 .panels-flexible-row-new-1-inside .profile-col-right-1.col-sm-6 {
     width: 40% !important;
   }
-  .profile-2-cols-container-1 .panels-flexible-row-new-1-inside .profile-col-left-1.col-sm-6 {
+  .profile-2-cols-container-1 .panels-flexible-row-new-1-inside .profile-col-left-1.col-sm-6,
+  .node-type-partner .profile-2-cols-container-1 .panels-flexible-row-new-1-inside .profile-col-left-1.col-sm-6 {
     padding-left: 0;
   }
-  .profile-2-cols-container-1 .panels-flexible-row-new-1-inside .profile-col-right-1.col-sm-9 {
+  .profile-2-cols-container-1 .panels-flexible-row-new-1-inside .profile-col-right-1.col-sm-9,
+  .node-type-partner .profile-2-cols-container-1 .panels-flexible-row-new-1-inside .profile-col-right-1.col-sm-9 {
     padding-left: 1em;
   }
-  .profile-2-cols-container-1 .panels-flexible-row-new-1-inside .profile-col-left-1.col-sm-6 ~ .profile-col-right-1.col-sm-6 {
+  .profile-2-cols-container-1 .panels-flexible-row-new-1-inside .profile-col-left-1.col-sm-6 ~ .profile-col-right-1.col-sm-6,
+  .node-type-partner .profile-2-cols-container-1 .panels-flexible-row-new-1-inside .profile-col-left-1.col-sm-6 ~ .profile-col-right-1.col-sm-6 {
     width: 100% !important;
   }
-  .profile-4-cols-container-2 {
+  .profile-2-cols-container-1 .panels-flexible-region-last .pane-entity-field.pane-node-field-mission-statement,
+  .node-type-partner .profile-2-cols-container-1 .panels-flexible-region-last .pane-entity-field.pane-node-field-mission-statement {
+    width: 95%;
+  }
+  .profile-title-type-container .panels-flexible-region-last.col-md-12 {
+    padding-left: 30px;
+    padding-right: 30px;
+  }
+  .profile-4-cols-container-2,
+  .node-type-partner .profile-4-cols-container-2 {
     border-bottom: 1px dotted #749b00;
     padding-bottom: 50px !important;
     margin-bottom: 50px !important;
     padding-left: 30px !important;
     padding-right: 30px !important;
   }
-  .profile-4-cols-container-2 [class*="field-type-link"][class*="facebook"] {
+  .profile-4-cols-container-2 [class*="field-type-link"][class*="facebook"],
+  .node-type-partner .profile-4-cols-container-2 [class*="field-type-link"][class*="facebook"] {
     background-position: left top;
     padding-left: 0px;
     padding-top: 3em;
   }
-  .profile-4-cols-container-2 [class*="field-type-link"][class*="twitter"] {
+  .profile-4-cols-container-2 [class*="field-type-link"][class*="twitter"],
+  .node-type-partner .profile-4-cols-container-2 [class*="field-type-link"][class*="twitter"] {
     background-position: left top;
     padding-left: 0px;
     padding-top: 3em;
   }
-  .profile-4-cols-container-2 [class*="field-type-link"][class*="slideshare"] {
+  .profile-4-cols-container-2 [class*="field-type-link"][class*="slideshare"],
+  .node-type-partner .profile-4-cols-container-2 [class*="field-type-link"][class*="slideshare"] {
     background-position: left top;
     padding-left: 0px;
     padding-top: 3em;
   }
-  .profile-4-cols-container-2 [class*="field-type-link"][class*="youtube"] {
+  .profile-4-cols-container-2 [class*="field-type-link"][class*="youtube"],
+  .node-type-partner .profile-4-cols-container-2 [class*="field-type-link"][class*="youtube"] {
     background-position: left top;
     padding-left: 0px;
     padding-top: 3em;
   }
-  .profile-4-cols-container-2 [class*="field-type-link"][class*="linkedin"] {
+  .profile-4-cols-container-2 [class*="field-type-link"][class*="linkedin"],
+  .node-type-partner .profile-4-cols-container-2 [class*="field-type-link"][class*="linkedin"] {
     background-position: left top;
     padding-left: 0px;
     padding-top: 3em;
   }
   .profile-4-cols-container-2 .field-name-field-main-contact.field-label-inline .field-label,
-  .profile-4-cols-container-2 .field-name-field-main-contact.field-label-inline .field-items {
+  .node-type-partner .profile-4-cols-container-2 .field-name-field-main-contact.field-label-inline .field-label,
+  .profile-4-cols-container-2 .field-name-field-main-contact.field-label-inline .field-items,
+  .node-type-partner .profile-4-cols-container-2 .field-name-field-main-contact.field-label-inline .field-items {
     float: none;
   }
-  .profile-4-cols-container-2 .panels-flexible-column-first div {
+  .profile-4-cols-container-2 .panels-flexible-column-first div,
+  .node-type-partner .profile-4-cols-container-2 .panels-flexible-column-first div {
     padding-left: 0;
   }
   .profile-2-cols-container-3,
@@ -17877,6 +18052,10 @@ span.form-required {
     margin-left: 15px;
     margin-right: 15px;
   }
+  .profile-title-type-container .panels-flexible-region-last.col-md-12 {
+    padding-left: 0;
+    padding-right: 0;
+  }
   .profile-ceo-container {
     margin-left: 0px !important;
     margin-right: 0px !important;
@@ -17900,29 +18079,49 @@ span.form-required {
   .profile-ceo-container .pane-node-field-quote .field-name-field-quote {
     margin: 0px 0px;
   }
-  .profile-2-cols-container-1 {
+  .profile-2-cols-container-1,
+  .node-type-partner .profile-2-cols-container-1 {
     padding-bottom: 30px !important;
     margin-bottom: 30px !important;
     padding-left: 15px !important;
     padding-right: 15px !important;
   }
-  .profile-2-cols-container-1 .field-item {
+  .profile-2-cols-container-1 .field-item,
+  .node-type-partner .profile-2-cols-container-1 .field-item {
     margin-bottom: 20px;
   }
   .profile-2-cols-container-1 .panels-flexible-row-new-1-inside .profile-col-left-1,
-  .profile-2-cols-container-1 .panels-flexible-row-new-1-inside .panels-flexible-region-new-logo {
+  .node-type-partner .profile-2-cols-container-1 .panels-flexible-row-new-1-inside .profile-col-left-1,
+  .profile-2-cols-container-1 .panels-flexible-row-new-1-inside .panels-flexible-region-new-logo,
+  .node-type-partner .profile-2-cols-container-1 .panels-flexible-row-new-1-inside .panels-flexible-region-new-logo {
     padding-left: 0;
   }
   .profile-2-cols-container-1 .panels-flexible-row-new-1-inside .profile-col-left-1 img,
-  .profile-2-cols-container-1 .panels-flexible-row-new-1-inside .panels-flexible-region-new-logo img {
+  .node-type-partner .profile-2-cols-container-1 .panels-flexible-row-new-1-inside .profile-col-left-1 img,
+  .profile-2-cols-container-1 .panels-flexible-row-new-1-inside .panels-flexible-region-new-logo img,
+  .node-type-partner .profile-2-cols-container-1 .panels-flexible-row-new-1-inside .panels-flexible-region-new-logo img {
     margin: auto;
   }
-  .profile-2-cols-container-1 .panels-flexible-row-new-1-inside .profile-col-right-1.col-sm-9 {
+  .profile-2-cols-container-1 .panels-flexible-row-new-1-inside .profile-col-right-1.col-sm-9,
+  .node-type-partner .profile-2-cols-container-1 .panels-flexible-row-new-1-inside .profile-col-right-1.col-sm-9 {
     padding-left: 0;
   }
   .profile-2-cols-container-1 .panels-flexible-row-new-1-inside .profile-col-left-1.col-sm-4,
-  .profile-2-cols-container-1 .panels-flexible-row-new-1-inside .profile-col-right-1.col-sm-6 {
+  .node-type-partner .profile-2-cols-container-1 .panels-flexible-row-new-1-inside .profile-col-left-1.col-sm-4,
+  .profile-2-cols-container-1 .panels-flexible-row-new-1-inside .profile-col-right-1.col-sm-6,
+  .node-type-partner .profile-2-cols-container-1 .panels-flexible-row-new-1-inside .profile-col-right-1.col-sm-6 {
     width: 100% !important;
+  }
+  .profile-2-cols-container-1 .panels-flexible-region-last .pane-entity-field.pane-node-field-mission-statement,
+  .node-type-partner .profile-2-cols-container-1 .panels-flexible-region-last .pane-entity-field.pane-node-field-mission-statement {
+    width: 100%;
+    margin-right: 0;
+    padding-right: 0;
+  }
+  .profile-2-cols-container-1 .panels-flexible-column-last > div,
+  .node-type-partner .profile-2-cols-container-1 .panels-flexible-column-last > div {
+    padding-left: 0px;
+    padding-right: 0px;
   }
   .profile-4-cols-container-2,
   .node-type-partner .profile-4-cols-container-2 {
@@ -18014,6 +18213,7 @@ span.form-required {
     background-position: center top;
     padding-top: 2em;
     margin-bottom: 0.5em;
+    padding-left: 0;
   }
   .profile-4-cols-container-2 .pane-custom,
   .node-type-partner .profile-4-cols-container-2 .pane-custom {

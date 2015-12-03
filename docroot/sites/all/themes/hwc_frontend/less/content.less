@@ -43,6 +43,18 @@
 				margin-top: 1.8em;
 			}
 		}
+		.required-form-fields{
+			float: right;
+			margin-top: 1em;
+			font-style: italic;
+		}
+		p a.inline-href, &.private-area #private .pane-custom p a.inline-href, &.private-area #private p[id*="tmgmt"] a.inline-href, &.private-area #private ul a.inline-href{
+			display: inline;
+			font-size: inherit;
+			&:before{
+				content: "";
+			}
+		}
 	}
 	/* End General */
 
@@ -588,7 +600,7 @@ ul.tabs--primary.nav.nav-tabs{
 		div div.form-type-textfield, div div.form-type-password{
 			margin-bottom: 1em;
 			display: table;
-			display: -moz-grid-group;
+			/* display: -moz-grid-group; */
 			label{
 			    display: block;
 				.form-required{
@@ -728,6 +740,11 @@ ul.tabs--primary.nav.nav-tabs{
 					}
 					&.more-link{
 						font-size: @size4;
+					}
+				}
+				.field-name-field-start-date.field-type-datetime{
+					.field-item{
+						margin-top: 0;
 					}
 				}
 			}
@@ -1040,7 +1057,15 @@ ul.tabs--primary.nav.nav-tabs{
 		    display: flex;
 		}
 	}
-	
+	.page-node .node-news .pane-additional-resources .field.field-name-field-image{
+		margin-right: 0em;
+		.field-items div{
+			background-color: @bg-default-color;
+			img{
+				min-width: 0;
+			}
+		}
+	}
 	/* home news */
 	#block-views-news-oshnews-latest, .panels-flexible-column-new-1, .panels-flexible-column-first{
 		h2{
@@ -1121,7 +1146,7 @@ ul.tabs--primary.nav.nav-tabs{
 		background-size: cover;
 		padding-bottom: 3em;
 		margin-top: 3em;
-    	margin-bottom: 3em;
+    	/* margin-bottom: 3em; */
     	padding-top: 1px;
 		#join_subscribers img{
 			left: 0;
@@ -2325,11 +2350,13 @@ article{
 			padding-bottom: 0;
 			border-bottom: none;
 		}
-		
+		.image-widget-data > .form-type-textfield{
+			clear: both;
+		}
 		.field-type-image{
 			img{
-				margin-right: 3em;
-    			margin-bottom: 2em;
+				/* margin-right: 3em;
+    			margin-bottom: 2em; */
 			}
 		}
 	}
@@ -2752,6 +2779,7 @@ article{
 				background: none;
 				color: #003399;
 				font-weight: bold;
+				text-indent: -999999px;
 			}
 		}
 	}
@@ -4031,6 +4059,10 @@ article{
 		text-align: left; // para MP pero centrado para FP
 		width: 71%;
 	}
+	.panels-flexible-region-last.col-md-12{
+		padding-left: 0;
+		padding-right: 0;
+	}
 }
 
 .profile-ceo-container{
@@ -4222,6 +4254,7 @@ article{
 			/* margin-right: 20px; */
 			img{
 				margin-left: 0px;
+				max-width: 95%;
 			}
 			.panels-flexible-region-new-left_-inside{
 				.pane-node-title-field{
@@ -4234,13 +4267,13 @@ article{
 			}
 		}
 		.profile-col-middle-right-2{
-				.field-item.even{
-					margin-bottom: 20px;
-					a{
-						font-weight: bold;
-						font-style: italic;
-					}
+			.field-item.even{
+				margin-bottom: 20px;
+				a{
+					font-weight: bold;
+					font-style: italic;
 				}
+			}
 		}
 		[class*="field-type-link"]{
 			font-weight: bold;
@@ -4304,8 +4337,13 @@ article{
 			}
 		}
 		.panels-flexible-column-first, .panels-flexible-row-new-7-inside .panels-flexible-column-new-8{
-			.panels-flexible-region-first, .panels-flexible-region-last{
-				width: 50% !important;
+			.panels-flexible-region-first{
+				/* width: 50% !important; */
+				width: 37% !important;
+			}
+			.panels-flexible-region-last{
+				/* width: 50% !important; */
+				width: 63% !important;
 			}
 		}
 		.panels-flexible-column-new-9, .panels-flexible-column-new-10{
@@ -4343,11 +4381,21 @@ article{
 	}
 	.profile-2-cols-container-1 .panels-flexible-region-last .pane-entity-field{
 		margin-bottom: 0.5em;
-		margin-left: 1em;
+		/* margin-left: 1em; */
+		text-align: left;
 		.pane-title{
 			color: @text-color-3;
 			font-size: @size2;
 			font-weight: bold;
+		}
+		&.pane-node-field-mission-statement{
+		    width: 45%;
+			float: left;
+			text-align: left;
+			margin-right: 5%;
+		}
+		&.pane-node-field-pledge{
+			text-align: left;
 		}
 	}
 }
@@ -4585,6 +4633,9 @@ article{
 				height: 35px;
 			}
 		}
+		div.image-preview ~ div.image-widget-data{
+			display: block;
+		}
 		
 		#edit-field-website-of-event{
 			.tabledrag-toggle-weight-wrapper{
@@ -4748,6 +4799,20 @@ article{
 		}
 	}
 	fieldset#edit-field-related-documents-en, fieldset[id*="edit-field-related-documents"]{
+		clear: both;
+	}
+}
+.node-events-form{
+	h2.node-edit-form-heading:first-child{
+		float: left;
+		width: 50%;
+	}
+	.required-form-fields{
+		width: 50%;
+		margin-top: 4em;
+		text-align: right;
+	}
+	.group-header{
 		clear: both;
 	}
 }
@@ -5145,7 +5210,7 @@ article{
 .node-145{
 	.field-type-text-with-summary{
 		text-align: center;
-		font-weight: bold;
+		/* font-weight: bold; */
 		font-size: @size6;
 		margin-top: 40px;
 	}
@@ -5178,7 +5243,6 @@ article{
 					border-right: none;
 				}
 			}
-
 		}
 		.hwc-alphabet-container{
 			border-bottom: 1px dotted @color3;
@@ -5211,9 +5275,23 @@ article{
 				padding: 30px;
 	   	 		border-bottom: 1px dotted @color3;
 	    		border-left: 1px dotted @color3;
-				min-height: 170px;
+				/* min-height: 170px; */
+				.views-field-field-logo{
+					min-height: 108px;
+					img {
+						border: 1px solid #ccc;
+					}
+				}
 				.views-field-title-field, .views-field-name-field{
 					display: none;
+					text-align: center;
+					margin-top: 1em;
+				}
+				.hwc-alpha-pager-view-title-field{
+					display: block;
+					&.views-field-title-field {
+						display: none;
+					}
 				}
 			}
 		//}
@@ -5281,6 +5359,10 @@ article{
 		padding-top: 85px;
 		padding-bottom: 0em;
 	}
+	button {
+		text-align: left;
+		padding-left: 1em;
+	}
 	#block-osha-newsletter-osha-newsletter-subscribe-extra{
 		h2{
 			background: url("../images/content/bg-campaign-partner.png") no-repeat left top;
@@ -5306,11 +5388,12 @@ article{
 			}
 			label, span{
 				font-weight: bold;
-				margin-right: 1em;
+				margin-right: 10px;
 			}
 			span{
-				width: 265px;
+				width: 350px;
 				float: left;
+				clear: both;
 			}
 			span.captcha{
 				width: auto;
@@ -5326,7 +5409,9 @@ article{
 			.form-item-subscribe-to-OSHMail-newsletter{
 				display: inline;
 				margin-right: 10px;
-				min-width: 245px;
+				min-width: 350px;
+				float: left;
+				
 				label a{
 					display: block;
 					margin-top: 1em;
@@ -5339,14 +5424,22 @@ article{
 			}
 			button#edit-submit--3{
 				margin-top: -2em;
+				margin-top: 0em;
+				min-width: 130px;
+			}
+			button#edit-unsubscribe{
+				min-width: 130px;
 			}
 			button#edit-submit--4{
 				margin-top: -3em;
+				min-width: 130px;
 			}
 		}
 	}
 	#block-osha-newsletter-osha-newsletter-subscribe{
 		background: none;
+		margin-top: 0;
+		padding-top: 0;
 		h2{
 			/* background: url("../images/content/newsletter.png") no-repeat center 20px; */
 			background: url("../images/content/bg-campaign-partner.png") no-repeat left top;
@@ -5360,6 +5453,47 @@ article{
 		div{
 			color: @colorNormalText;
 			font-weight: bold;
+			&.form-item-email-osh{
+				float: left;
+				min-width: 350px;
+				margin-right: 10px;
+				label{
+					font-weight: bold;
+				}
+			}
+			hr{
+				background-color: white;
+				color: white;
+				border-color: white;
+			}
+			&.form-item-security-code{
+				clear: both;
+				float: left;
+				label{
+					font-weight: bold;
+				}
+			}
+			span{
+				float: left;
+				padding-top: 0.5em;
+				margin-right: 10px;
+				min-width: 350px;
+				&.captcha{
+					clear: both;
+					float: left;
+					margin-top: 0 !important;
+					padding-top: 0;
+				}
+			}
+			button, button#edit-submit--4, button#edit-unsubscribe--2{
+				min-width: 130px;
+			}
+			button#edit-submit--4{
+				margin-top: 1.5em;
+			}
+			div.captcha ~ button#edit-submit--4{
+				margin-top: 13.5em;
+			}
 		}
 		div#newsletter-subscription-form-wrapper{
 			text-align: left;
@@ -5393,7 +5527,7 @@ article{
 						float: left;
 						padding-top: 0.5em;
 						margin-right: 10px;
-						min-width: 245px;
+						min-width: 350px;
 					}
 					button#edit-unsubscribe, button#edit-unsubscribe--2{
 						margin-top: 0em;
@@ -5408,7 +5542,7 @@ article{
 			font-style: italic;
 			font-weight: normal;
 			text-align: center;
-			margin: 50px 0;
+			margin: 0px 0 50px 0;
 		}
 		#latest-newsletters-block{
 			width: 50%;
@@ -5995,6 +6129,7 @@ fieldset.captcha {
 			.content{
 				.field.field-name-field-image{
 					margin-bottom: 0;
+					height: auto;
 					@media (min-width: 768px){
 						width: 16.66666667% !important;
 					}
@@ -6106,6 +6241,7 @@ fieldset.captcha {
 		display: inline-flex;
 	}
 }
+
 .alert.alert-block.alert-danger, .alert.alert-block.alert-success{
 //to do wendsday, solo para sprint1 display: none;
 	clear: both;
