@@ -450,8 +450,8 @@ function osha_alert_service_token_info() {
     'description' => t('The html list of content.'),
   );
   $alert['privacy_policy_url'] = array(
-    'name' => t('URL to Privacy Policy Page'),
-    'description' => t('URL to Privacy Policy Page'),
+    'name' => t('URL to Privacy notice Page'),
+    'description' => t('URL to Privacy notice Page'),
   );
   $info['tokens']['osha_alert_service'] = $alert;
   return $info;
