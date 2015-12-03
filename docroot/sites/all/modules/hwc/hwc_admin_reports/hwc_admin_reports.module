@@ -25,8 +25,13 @@ function hwc_admin_reports_views_pre_view(&$view, &$display_id, &$args) {
  * Implements hook_form_views_exposed_form_alter().
  */
 function hwc_admin_reports_form_views_exposed_form_alter(&$form, &$form_state) {
-  if ($form['#id'] == 'views-exposed-form-content-reports-news'
-      || $form['#id'] == 'views-exposed-form-content-reports-events') {
+  $report_forms = array(
+    'views-exposed-form-content-reports-news',
+    'views-exposed-form-content-reports-events',
+    'views-exposed-form-content-reports-views-data-export-events',
+    'views-exposed-form-content-reports-views-data-export-news',
+  );
+  if (in_array($form['#id'], $report_forms)) {
     // Add date popup to 'Post date' filter
     $form['created']['#title'] = '';
     $form['created']['#type'] = 'date_popup';
