@@ -1417,36 +1417,6 @@ return (!empty($data->field_facebook_profile) || !empty($data->field_linkedin_pr
     $display->content['new-77cc5bf8-5bbc-40ce-8d91-e31ff9f96577'] = $pane;
     $display->panels['statement_'][0] = 'new-77cc5bf8-5bbc-40ce-8d91-e31ff9f96577';
     $pane = new stdClass();
-    $pane->pid = 'new-c57dfb8c-3a09-475a-8591-26cf56660a1b';
-    $pane->panel = 'statement_';
-    $pane->type = 'entity_field';
-    $pane->subtype = 'node:field_pledge';
-    $pane->shown = TRUE;
-    $pane->access = array();
-    $pane->configuration = array(
-      'label' => 'above',
-      'formatter' => 'text_default',
-      'delta_limit' => 0,
-      'delta_offset' => '0',
-      'delta_reversed' => FALSE,
-      'formatter_settings' => array(),
-      'context' => 'argument_entity_id:node_1',
-      'override_title' => 0,
-      'override_title_text' => '',
-      'override_title_heading' => 'h2',
-    );
-    $pane->cache = array();
-    $pane->style = array(
-      'settings' => NULL,
-    );
-    $pane->css = array();
-    $pane->extras = array();
-    $pane->position = 1;
-    $pane->locks = array();
-    $pane->uuid = 'c57dfb8c-3a09-475a-8591-26cf56660a1b';
-    $display->content['new-c57dfb8c-3a09-475a-8591-26cf56660a1b'] = $pane;
-    $display->panels['statement_'][1] = 'new-c57dfb8c-3a09-475a-8591-26cf56660a1b';
-    $pane = new stdClass();
     $pane->pid = 'new-b0d55297-4c9d-4800-9bfb-6098978f972e';
     $pane->panel = 'title_';
     $pane->type = 'entity_field';
