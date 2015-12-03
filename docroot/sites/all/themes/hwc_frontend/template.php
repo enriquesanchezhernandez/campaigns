@@ -160,7 +160,7 @@ function hwc_frontend_preprocess_page(&$vars) {
       case 'practical_tool':
         $link_title = t('Back to practical tools list');
         $link_href = 'practical-tools';
-        $tag_vars['element']['#value'] = t('Practical tools');
+        $tag_vars['element']['#value'] = t('Practical tools and guidance');
         $vars['page']['above_title']['practical-tool-page-title'] = array(
           '#type' => 'item',
           '#markup' => theme('html_tag', $tag_vars),
