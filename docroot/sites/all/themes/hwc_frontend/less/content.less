@@ -742,6 +742,11 @@ ul.tabs--primary.nav.nav-tabs{
 						font-size: @size4;
 					}
 				}
+				.field-name-field-start-date.field-type-datetime{
+					.field-item{
+						margin-top: 0;
+					}
+				}
 			}
 			.node-article .field-name-field-image + .field-name-title-field{
 				position: relative;
@@ -1141,7 +1146,7 @@ ul.tabs--primary.nav.nav-tabs{
 		background-size: cover;
 		padding-bottom: 3em;
 		margin-top: 3em;
-    	margin-bottom: 3em;
+    	/* margin-bottom: 3em; */
     	padding-top: 1px;
 		#join_subscribers img{
 			left: 0;
@@ -5238,7 +5243,6 @@ article{
 					border-right: none;
 				}
 			}
-
 		}
 		.hwc-alphabet-container{
 			border-bottom: 1px dotted @color3;
@@ -5271,9 +5275,23 @@ article{
 				padding: 30px;
 	   	 		border-bottom: 1px dotted @color3;
 	    		border-left: 1px dotted @color3;
-				min-height: 170px;
+				/* min-height: 170px; */
+				.views-field-field-logo{
+					min-height: 108px;
+					img {
+						border: 1px solid #ccc;
+					}
+				}
 				.views-field-title-field, .views-field-name-field{
 					display: none;
+					text-align: center;
+					margin-top: 1em;
+				}
+				.hwc-alpha-pager-view-title-field{
+					display: block;
+					&.views-field-title-field {
+						display: none;
+					}
 				}
 			}
 		//}
@@ -5341,6 +5359,10 @@ article{
 		padding-top: 85px;
 		padding-bottom: 0em;
 	}
+	button {
+		text-align: left;
+		padding-left: 1em;
+	}
 	#block-osha-newsletter-osha-newsletter-subscribe-extra{
 		h2{
 			background: url("../images/content/bg-campaign-partner.png") no-repeat left top;
@@ -5366,11 +5388,12 @@ article{
 			}
 			label, span{
 				font-weight: bold;
-				margin-right: 1em;
+				margin-right: 10px;
 			}
 			span{
-				width: 265px;
+				width: 350px;
 				float: left;
+				clear: both;
 			}
 			span.captcha{
 				width: auto;
@@ -5386,7 +5409,9 @@ article{
 			.form-item-subscribe-to-OSHMail-newsletter{
 				display: inline;
 				margin-right: 10px;
-				min-width: 245px;
+				min-width: 350px;
+				float: left;
+				
 				label a{
 					display: block;
 					margin-top: 1em;
@@ -5399,14 +5424,22 @@ article{
 			}
 			button#edit-submit--3{
 				margin-top: -2em;
+				margin-top: 0em;
+				min-width: 130px;
+			}
+			button#edit-unsubscribe{
+				min-width: 130px;
 			}
 			button#edit-submit--4{
 				margin-top: -3em;
+				min-width: 130px;
 			}
 		}
 	}
 	#block-osha-newsletter-osha-newsletter-subscribe{
 		background: none;
+		margin-top: 0;
+		padding-top: 0;
 		h2{
 			/* background: url("../images/content/newsletter.png") no-repeat center 20px; */
 			background: url("../images/content/bg-campaign-partner.png") no-repeat left top;
@@ -5420,6 +5453,47 @@ article{
 		div{
 			color: @colorNormalText;
 			font-weight: bold;
+			&.form-item-email-osh{
+				float: left;
+				min-width: 350px;
+				margin-right: 10px;
+				label{
+					font-weight: bold;
+				}
+			}
+			hr{
+				background-color: white;
+				color: white;
+				border-color: white;
+			}
+			&.form-item-security-code{
+				clear: both;
+				float: left;
+				label{
+					font-weight: bold;
+				}
+			}
+			span{
+				float: left;
+				padding-top: 0.5em;
+				margin-right: 10px;
+				min-width: 350px;
+				&.captcha{
+					clear: both;
+					float: left;
+					margin-top: 0 !important;
+					padding-top: 0;
+				}
+			}
+			button, button#edit-submit--4, button#edit-unsubscribe--2{
+				min-width: 130px;
+			}
+			button#edit-submit--4{
+				margin-top: 1.5em;
+			}
+			div.captcha ~ button#edit-submit--4{
+				margin-top: 13.5em;
+			}
 		}
 		div#newsletter-subscription-form-wrapper{
 			text-align: left;
@@ -5453,7 +5527,7 @@ article{
 						float: left;
 						padding-top: 0.5em;
 						margin-right: 10px;
-						min-width: 245px;
+						min-width: 350px;
 					}
 					button#edit-unsubscribe, button#edit-unsubscribe--2{
 						margin-top: 0em;
@@ -5468,7 +5542,7 @@ article{
 			font-style: italic;
 			font-weight: normal;
 			text-align: center;
-			margin: 50px 0;
+			margin: 0px 0 50px 0;
 		}
 		#latest-newsletters-block{
 			width: 50%;
@@ -6055,6 +6129,7 @@ fieldset.captcha {
 			.content{
 				.field.field-name-field-image{
 					margin-bottom: 0;
+					height: auto;
 					@media (min-width: 768px){
 						width: 16.66666667% !important;
 					}
