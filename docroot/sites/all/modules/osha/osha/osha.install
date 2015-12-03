@@ -212,3 +212,25 @@ function osha_update_7010() {
   locale('More info');
   locale('<h2>Thank you for accepting cookies</h2><p>You can now hide this message or find out more about cookies.</p>');
 }
+
+/**
+ * HCW-932
+ * Change "Tools and Resources" sentence by "Tools and Publications" in the whole website
+ */
+function osha_update_7011() {
+  db_update('block')
+      ->fields(array(
+          'title' => 'Tools and publications',
+      ))
+      ->condition('bid', array('190', '191', '326'), 'IN')
+      ->condition('title', 'Tools and resources', '=')
+      ->execute();
+
+  db_update('menu_links')
+      ->fields(array(
+          'link_title' => 'Tools and publications',
+      ))
+      ->condition('mlid', 1372, '=')
+      ->condition('link_title', 'Tools and resources', '=')
+      ->execute();
+}

@@ -150,7 +150,7 @@ function hwc_homepage_default_panels_mini() {
     $pane->access = array();
     $pane->configuration = array(
       'override_title' => 1,
-      'override_title_text' => 'Tools and resources',
+      'override_title_text' => 'Tools and publications',
       'override_title_heading' => 'h2',
     );
     $pane->cache = array();
