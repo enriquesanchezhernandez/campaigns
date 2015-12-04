@@ -131,12 +131,14 @@ function osha_events_form_views_exposed_form_alter(&$form, &$form_state) {
       // See ticket CW-1438 and Drupal bug: www.drupal.org/node/1415306
       $_GET['field_start_date_value']['date'] = $date->format('d/m/Y');
     }
-  }elseif($form['#id'] == 'views-exposed-form-events-search-page-1' || $form['#id'] == 'views-exposed-form-events-search-page') {
-    // Add Events Calendar filter just after search exposed filter
-    if($form['#id'] == 'views-exposed-form-events-search-page-1'){
-      $block = block_load('views','events-block_1');
-    }elseif($form['#id'] == 'views-exposed-form-events-search-page'){
-      $block = block_load('views','events-block_2');
+  }
+  elseif ($form['#id'] == 'views-exposed-form-events-search-page-1' || $form['#id'] == 'views-exposed-form-events-search-page') {
+    // Add Events Calendar filter just after search exposed filter.
+    if ($form['#id'] == 'views-exposed-form-events-search-page-1') {
+      $block = block_load('views', 'events-block_1');
+    }
+    elseif ($form['#id'] == 'views-exposed-form-events-search-page') {
+      $block = block_load('views', 'events-block_2');
     }
     $rendered_block = _block_get_renderable_array(_block_render_blocks(array($block)));
     $events_calendar = drupal_render($rendered_block);
@@ -145,8 +147,9 @@ function osha_events_form_views_exposed_form_alter(&$form, &$form_state) {
       '#markup' => $events_calendar,
     );
 
-    // Add placeholder for free text field
-    $form['search_api_views_fulltext']['#attributes'] = array('placeholder' => array(t('Free text filter')));
+    // Add placeholder for free text field.
+    $placeholder_text = ($form['#id'] == 'views-exposed-form-events-search-page') ? t('Search Upcoming events') : t('Search Past events');
+    $form['search_api_views_fulltext']['#attributes'] = array('placeholder' => array($placeholder_text));
   }
 }
 
