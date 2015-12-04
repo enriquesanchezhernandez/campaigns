@@ -55,10 +55,6 @@ function osha_events_field_formatter_view($entity_type, $entity, $field, $instan
  * Implements hook_form_FORM_ID_alter().
  */
 function osha_events_form_events_node_form_alter(&$form, &$form_state) {
-  $form['required_desc'] = array(
-    '#type' => 'markup',
-    '#markup' => '<div class="required-form-fields">' . t('Required fields') . ' *</div>',
-  );
   $form['#validate'][] = 'osha_events_form_validate';
   $form['actions']['#attributes']['class'] = array('container');
   // Activity field changes
