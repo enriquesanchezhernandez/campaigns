@@ -138,7 +138,8 @@ function osha_events_form_views_exposed_form_alter(&$form, &$form_state) {
     }elseif($form['#id'] == 'views-exposed-form-events-search-page'){
       $block = block_load('views','events-block_2');
     }
-    $events_calendar = drupal_render(_block_get_renderable_array(_block_render_blocks(array($block))));
+    $rendered_block = _block_get_renderable_array(_block_render_blocks(array($block)));
+    $events_calendar = drupal_render($rendered_block);
     $form['events_calendar'] = array(
       '#type' => 'markup',
       '#markup' => $events_calendar,
