@@ -79,6 +79,13 @@ function hwc_homepage_block_view($delta = '') {
   return $block;
 }
 
+function hwc_homepage_panels_pane_content_alter($content, $pane, $args, $contexts) {
+  if (!empty($pane->subtype) && $pane->subtype == 'menu-menu-information-tailored') {
+    $intro_text = t('We provide information specifically for the following groups, to enable everyone to get involved in the campaign in a way that makes sense for them');
+    $content->content['#prefix'] = '<p>' . $intro_text . '</p>';
+  }
+}
+
 /**
  * Implements hook_block_view_alter().
  */
