@@ -359,7 +359,7 @@ function osha_publication_menu_case_studies_search_native($form_state) {
     );
   }
   $nids = array_unique($restrict);
-  $relevant_for = $form_state['values']['relevant_for'];
+  $relevant_for = $form_state['submitted'] === TRUE ? $form_state['values']['relevant_for'] : array();
   foreach ($relevant_for as $relf) {
     if ($relf) {
       $relevant_for_ids[] = $relf;
