@@ -169,7 +169,14 @@ function hwc_frontend_preprocess_page(&$vars) {
       case 'events':
         $date = new DateTime($node->field_start_date['und'][0]['value']);
         $now = new DateTime();
+
+        $breadcrumb = array();
+        $breadcrumb[] = l(t('Home'), '<front>');
+        $breadcrumb[] = t('Media centre');
+
         if ($date < $now) {
+          $breadcrumb[] = t('Past events');
+
           $link_title = t('Back to past events list');
           $link_href = 'past-events';
           $tag_vars['element']['#value'] = t('Past events');
@@ -179,6 +186,8 @@ function hwc_frontend_preprocess_page(&$vars) {
           );
         }
         else {
+          $breadcrumb[] = t('Upcoming events');
+
           $link_title = t('Back to events list');
           $link_href = 'events';
           $tag_vars['element']['#value'] = t('Upcoming events');
@@ -187,6 +196,9 @@ function hwc_frontend_preprocess_page(&$vars) {
             '#markup' => theme('html_tag', $tag_vars),
           );
         }
+        $breadcrumb[] = $node->title;
+        drupal_set_breadcrumb($breadcrumb);
+
         break;
       case 'hwc_gallery':
         $link_title = t('Back to gallery');
