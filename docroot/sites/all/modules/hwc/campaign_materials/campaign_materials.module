@@ -140,7 +140,8 @@ function theme_icon_file_formatter($element) {
 //    'file' => $file,
 //    'icon_directory' => $icon_directory
 //  ));
-  $extension = strtoupper(end(explode('.', $file->filename)));
+  $file_name_exploded = explode('.', $file->filename);
+  $extension = strtoupper(end($file_name_exploded));
   $output .= '<span>' . $extension . '</span>&nbsp;';
 
   if ($description) {
