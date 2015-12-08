@@ -17,8 +17,6 @@
  */
 ?>
 <?php
-
-$node = menu_get_object();
 $label = t('Share this article:');
 if (!empty($node->nid) && $node->nid == 160) {
   $label = t('Share this video:');
