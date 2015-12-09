@@ -350,7 +350,9 @@ function osha_publication_menu_case_studies_search_native($form_state) {
   $results = $server->search($query);
   if (!empty($results['results'])) {
     foreach ($results['results'] as $result) {
-      $restrict[] = $result['fields']['nid'];
+      if (isset($result['fields']['nid'])) {
+        $restrict[] = $result['fields']['nid'];
+      }
     }
   }
   if (empty($restrict)) {
