@@ -13297,7 +13297,7 @@ article .hwc-share-widget ul {
 .view-id-partners_list .quicktabs-views-group,
 .view-id-partners_list .views-row {
   margin: 0;
-  padding: 30px;
+  padding: 30px 30px 15px;
   border-bottom: 1px dotted #749b00;
   border-left: 1px dotted #749b00;
   /* min-height: 170px; */
