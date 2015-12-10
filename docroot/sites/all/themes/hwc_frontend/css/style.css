@@ -8635,7 +8635,8 @@ div[class*='node-'] .more-link {
   padding-bottom: 2em;
 }
 .form-item-relevant-for > label,
-.form-item-languages > label {
+.form-item-languages > label,
+.form-item-publication-type > label {
   font-size: 20px;
   font-weight: bold;
   margin-bottom: 1.5em;
@@ -13305,6 +13306,7 @@ article .hwc-share-widget ul {
 .view-id-partners_list .quicktabs-views-group .views-field-field-logo,
 .view-id-partners_list .views-row .views-field-field-logo {
   min-height: 108px;
+  padding-bottom: 15px;
 }
 .view-id-partners_list .quicktabs-views-group .views-field-field-logo img,
 .view-id-partners_list .views-row .views-field-field-logo img {
