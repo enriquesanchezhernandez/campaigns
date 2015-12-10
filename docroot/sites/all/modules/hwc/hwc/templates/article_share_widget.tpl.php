@@ -18,7 +18,7 @@
 ?>
 <?php
 $label = t('Share this article:');
-if (!empty($node->nid) && $node->nid == 160) {
+if (!empty($node->nid) && ($node->nid == 160 || $node->nid == 108)) {
   $label = t('Share this video:');
 }
 ?>
