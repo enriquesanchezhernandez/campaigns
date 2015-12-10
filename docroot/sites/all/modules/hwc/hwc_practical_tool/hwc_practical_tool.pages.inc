@@ -185,9 +185,11 @@ function hwc_practical_tool_menu_tools_search_native($form_state) {
     $pager_params['text'] = $text;
   }
   $language_names = array();
+  $languages_objects = language_list();
   foreach($languages as $code) {
-    $l = i18n_language_load($code);
-    $language_names[] = $l->native;
+//    $l = i18n_language_load($code);
+//    $language_names[] = $l->native;
+    $language_names[] = $languages_objects[$code]->name;
   }
   $ret = array(
     '#nids' => $nids,
