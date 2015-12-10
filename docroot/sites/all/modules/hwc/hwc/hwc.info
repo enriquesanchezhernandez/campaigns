@@ -35,6 +35,7 @@ features[image][] = small_thumbnail_mc_150_150
 features[page_manager_pages][] = get_your_certificate_page
 features[panels_mini][] = additional_resources
 features[panels_mini][] = news_and_events
+features[path_breadcrumbs][] = login
 features[path_breadcrumbs][] = sitemap
 features[variable][] = ds_classes_fields
 features[variable][] = ds_classes_regions
