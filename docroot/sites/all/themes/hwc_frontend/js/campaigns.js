@@ -25,6 +25,10 @@ jQuery(document).ready(function() {
 				jQuery(this).toggleClass("closeLabel");
 				jQuery("#edit-languages").toggle();
 			});
+			jQuery(".form-item-publication-type > label").click(function() {
+				jQuery(this).toggleClass("closeLabel");
+				jQuery("#edit-publication-type").toggle();
+			});
 
 		}//<-----End: functions for tablet and/or mobile
 	}

@@ -15310,7 +15310,8 @@ span.form-required {
     margin-top: 0;
   }
   .form-item-relevant-for,
-  .form-item-languages {
+  .form-item-languages,
+  .form-item-publication-type {
     border-top: none;
     border-bottom: none;
     clear: both;
@@ -15318,7 +15319,8 @@ span.form-required {
     /* margin-bottom: 2em; */
   }
   .form-item-relevant-for > label,
-  .form-item-languages > label {
+  .form-item-languages > label,
+  .form-item-publication-type > label {
     width: 100%;
     padding: 0.2em 30px;
     background: #e2e2e3 url("../images/content/slideDown.png") no-repeat 95% center;
@@ -15331,14 +15333,20 @@ span.form-required {
 		} */
   }
   .form-item-relevant-for > label.closeLabel,
-  .form-item-languages > label.closeLabel {
+  .form-item-languages > label.closeLabel,
+  .form-item-publication-type > label.closeLabel {
     margin-bottom: 0;
     background-image: url("../images/content/slideUp.png");
   }
   .form-item-relevant-for #edit-relevant-for,
   .form-item-languages #edit-relevant-for,
+  .form-item-publication-type #edit-relevant-for,
   .form-item-relevant-for #edit-languages,
-  .form-item-languages #edit-languages {
+  .form-item-languages #edit-languages,
+  .form-item-publication-type #edit-languages,
+  .form-item-relevant-for #edit-publication-type,
+  .form-item-languages #edit-publication-type,
+  .form-item-publication-type #edit-publication-type {
     margin-left: 30px;
     margin-right: 30px;
   }
@@ -17237,14 +17245,20 @@ span.form-required {
     margin-right: 0;
   }
   .form-item-relevant-for > label,
-  .form-item-languages > label {
+  .form-item-languages > label,
+  .form-item-publication-type > label {
     padding-left: 15px;
     padding-right: 15px;
   }
   .form-item-relevant-for #edit-relevant-for,
   .form-item-languages #edit-relevant-for,
+  .form-item-publication-type #edit-relevant-for,
   .form-item-relevant-for #edit-languages,
-  .form-item-languages #edit-languages {
+  .form-item-languages #edit-languages,
+  .form-item-publication-type #edit-languages,
+  .form-item-relevant-for #edit-publication-type,
+  .form-item-languages #edit-publication-type,
+  .form-item-publication-type #edit-publication-type {
     margin-left: 15px;
     margin-right: 15px;
   }
@@ -17323,7 +17337,8 @@ span.form-required {
     padding-right: 15px;
   }
   #edit-relevant-for .form-item,
-  #edit-languages .form-item {
+  #edit-languages .form-item,
+  #edit-publication-type .form-item {
     float: left;
     width: 50%;
   }
