@@ -439,7 +439,7 @@ function campaign_materials_field_default_field_instances() {
         'module' => 'image',
         'settings' => array(
           'field_formatter_class' => '',
-          'image_link' => 'content',
+          'image_link' => '',
           'image_style' => 'medium_large',
         ),
         'type' => 'image',
