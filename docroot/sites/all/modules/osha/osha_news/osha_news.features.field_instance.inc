@@ -213,6 +213,7 @@ function osha_news_field_default_field_instances() {
         'settings' => array(
           'field_formatter_class' => '',
           'links' => 0,
+          'use_content_language' => TRUE,
           'view_mode' => 'osha_resources',
         ),
         'type' => 'entityreference_entity_view',
