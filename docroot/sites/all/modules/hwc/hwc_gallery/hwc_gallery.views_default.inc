@@ -96,7 +96,7 @@ function hwc_gallery_views_default_views() {
   $handler->display->display_options['fields']['nothing']['table'] = 'views';
   $handler->display->display_options['fields']['nothing']['field'] = 'nothing';
   $handler->display->display_options['fields']['nothing']['label'] = '';
-  $handler->display->display_options['fields']['nothing']['alter']['text'] = '<div class="gallery_list_detail_container">[title_field][field_publication_date]</div>';
+  $handler->display->display_options['fields']['nothing']['alter']['text'] = '<div class="gallery_list_detail_container">[field_publication_date][title_field]</div>';
   $handler->display->display_options['fields']['nothing']['element_label_colon'] = FALSE;
   /* Sort criterion: Field: Publication date (field_publication_date) */
   $handler->display->display_options['sorts']['field_publication_date_value']['id'] = 'field_publication_date_value';
@@ -254,7 +254,7 @@ function hwc_gallery_views_default_views() {
     t('next ›'),
     t('last »'),
     t('queue'),
-    t('<div class="gallery_list_detail_container">[title_field][field_publication_date]</div>'),
+    t('<div class="gallery_list_detail_container">[field_publication_date][title_field]</div>'),
     t('Page'),
     t('Attachment'),
     t('<div class="gallery_list_top_detail_container">[title_field][field_publication_date]</div>'),
