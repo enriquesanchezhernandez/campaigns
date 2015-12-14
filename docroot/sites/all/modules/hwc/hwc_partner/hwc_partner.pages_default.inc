@@ -801,6 +801,36 @@ national-focal-points
     $display->content['new-e36dcb73-9189-40e8-acaa-bdd2574c9377'] = $pane;
     $display->panels['middle_left'][3] = 'new-e36dcb73-9189-40e8-acaa-bdd2574c9377';
     $pane = new stdClass();
+    $pane->pid = 'new-ae9e35d5-93e7-411a-9339-ba89a541254a';
+    $pane->panel = 'middle_left';
+    $pane->type = 'entity_field';
+    $pane->subtype = 'node:field_ph_town';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'label' => 'hidden',
+      'formatter' => 'text_plain',
+      'delta_limit' => 0,
+      'delta_offset' => '0',
+      'delta_reversed' => FALSE,
+      'formatter_settings' => array(),
+      'context' => 'argument_entity_id:node_1',
+      'override_title' => 0,
+      'override_title_text' => '',
+      'override_title_heading' => 'h2',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 4;
+    $pane->locks = array();
+    $pane->uuid = 'ae9e35d5-93e7-411a-9339-ba89a541254a';
+    $display->content['new-ae9e35d5-93e7-411a-9339-ba89a541254a'] = $pane;
+    $display->panels['middle_left'][4] = 'new-ae9e35d5-93e7-411a-9339-ba89a541254a';
+    $pane = new stdClass();
     $pane->pid = 'new-14135f69-01f9-4197-8453-a08df3cde4e3';
     $pane->panel = 'middle_left';
     $pane->type = 'entity_field';
@@ -825,11 +855,11 @@ national-focal-points
     );
     $pane->css = array();
     $pane->extras = array();
-    $pane->position = 4;
+    $pane->position = 5;
     $pane->locks = array();
     $pane->uuid = '14135f69-01f9-4197-8453-a08df3cde4e3';
     $display->content['new-14135f69-01f9-4197-8453-a08df3cde4e3'] = $pane;
-    $display->panels['middle_left'][4] = 'new-14135f69-01f9-4197-8453-a08df3cde4e3';
+    $display->panels['middle_left'][5] = 'new-14135f69-01f9-4197-8453-a08df3cde4e3';
     $pane = new stdClass();
     $pane->pid = 'new-b4c58a13-6a77-4758-a4e7-522b788832e0';
     $pane->panel = 'middle_right';
@@ -1452,36 +1482,6 @@ return (!empty($data->field_facebook_profile) || !empty($data->field_linkedin_pr
     $display->content['new-b0d55297-4c9d-4800-9bfb-6098978f972e'] = $pane;
     $display->panels['title_'][0] = 'new-b0d55297-4c9d-4800-9bfb-6098978f972e';
     $pane = new stdClass();
-    $pane->pid = 'new-ae9e35d5-93e7-411a-9339-ba89a541254a';
-    $pane->panel = 'title_';
-    $pane->type = 'entity_field';
-    $pane->subtype = 'node:field_ph_town';
-    $pane->shown = TRUE;
-    $pane->access = array();
-    $pane->configuration = array(
-      'label' => 'hidden',
-      'formatter' => 'text_plain',
-      'delta_limit' => 0,
-      'delta_offset' => '0',
-      'delta_reversed' => FALSE,
-      'formatter_settings' => array(),
-      'context' => 'argument_entity_id:node_1',
-      'override_title' => 0,
-      'override_title_text' => '',
-      'override_title_heading' => 'h2',
-    );
-    $pane->cache = array();
-    $pane->style = array(
-      'settings' => NULL,
-    );
-    $pane->css = array();
-    $pane->extras = array();
-    $pane->position = 1;
-    $pane->locks = array();
-    $pane->uuid = 'ae9e35d5-93e7-411a-9339-ba89a541254a';
-    $display->content['new-ae9e35d5-93e7-411a-9339-ba89a541254a'] = $pane;
-    $display->panels['title_'][1] = 'new-ae9e35d5-93e7-411a-9339-ba89a541254a';
-    $pane = new stdClass();
     $pane->pid = 'new-dd26c4e2-cec8-4597-b409-fd35e4d46b08';
     $pane->panel = 'title_';
     $pane->type = 'entity_field';
@@ -1506,11 +1506,11 @@ return (!empty($data->field_facebook_profile) || !empty($data->field_linkedin_pr
     );
     $pane->css = array();
     $pane->extras = array();
-    $pane->position = 2;
+    $pane->position = 1;
     $pane->locks = array();
     $pane->uuid = 'dd26c4e2-cec8-4597-b409-fd35e4d46b08';
     $display->content['new-dd26c4e2-cec8-4597-b409-fd35e4d46b08'] = $pane;
-    $display->panels['title_'][2] = 'new-dd26c4e2-cec8-4597-b409-fd35e4d46b08';
+    $display->panels['title_'][1] = 'new-dd26c4e2-cec8-4597-b409-fd35e4d46b08';
   $display->hide_title = PANELS_TITLE_NONE;
   $display->title_pane = '0';
   $handler->conf['display'] = $display;
