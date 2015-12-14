@@ -25,10 +25,12 @@ function osha_newsletter_subscribe_extra_form() {
   $form['details_link'] = array(
     '#markup' => '<a class="privacy-policy-oshmail" href=' . url($link_url) . '>' . $link_label . '</a><br/>',
   );
+  /* Remove comment for subscription on OSHA Newsletter - HCW-1005
   $form['subscribe-to-OSHMail-newsletter'] = array(
     '#type' => 'checkbox',
     '#title' => t('Subscribe to !link as well', array('!link' => l(t('OSHMail Newsletter'), 'https://osha.europa.eu/oshmail-newsletter'))),
   );
+  */
   $form['submit'] = array(
     '#type' => 'submit',
     '#value' => t('Subscribe'),
@@ -77,7 +79,7 @@ function osha_newsletter_subscribe_extra_form_submit($form, &$form_state) {
     $form_state,
     t('Your subscription has been submitted succesfully.')
   );
-
+  /* Remove comment for subscription on OSHA Newsletter - HCW-1005
   if (isset($form_state['values']['subscribe-to-OSHMail-newsletter'])) {
     osha_newsletter_send_email(
       'subscribe_email',
@@ -87,4 +89,5 @@ function osha_newsletter_subscribe_extra_form_submit($form, &$form_state) {
       t('Your subscription has been submitted succesfully.')
     );
   }
+  */
 }

@@ -124,7 +124,7 @@ function osha_newsletter_default_fe_block_settings() {
         'weight' => 0,
       ),
     ),
-    'title' => 'Campaign Newsletter',
+    'title' => 'Campaign newsletter',
     'visibility' => 1,
   );
 

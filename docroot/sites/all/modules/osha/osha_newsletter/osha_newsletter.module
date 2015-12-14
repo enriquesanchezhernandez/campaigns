@@ -390,7 +390,7 @@ function osha_newsletter_block_view($delta = '') {
       break;
     case 'osha_newsletter_subscribe_extra':
       if(user_access('access content')) {
-        $block['subject'] = t('Campaign Newsletter');
+        $block['subject'] = t('Campaign newsletter');
         $subscribe_form = drupal_get_form('osha_newsletter_subscribe_extra_form');
         $block['content'] = theme('subscribe_extra_block', array(
           'subscribe_form' => drupal_render($subscribe_form)
