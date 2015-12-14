@@ -38,6 +38,7 @@ class PartnerMigration extends HwcCrmMigration {
       'field_campaign_website',
       'field_ph_address',
       'field_ph_cp',
+      'field_ph_town',
       'field_country',
       'field_ph_address_extra',
       'field_guid_main_contact',
