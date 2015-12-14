@@ -83,7 +83,7 @@ function hwc_gallery_views_default_views() {
   $handler->display->display_options['fields']['field_publication_date']['exclude'] = TRUE;
   $handler->display->display_options['fields']['field_publication_date']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['field_publication_date']['settings'] = array(
-    'format_type' => 'day_month_year',
+    'format_type' => 'osha_day_only',
     'fromto' => 'both',
     'multiple_number' => '',
     'multiple_from' => '',

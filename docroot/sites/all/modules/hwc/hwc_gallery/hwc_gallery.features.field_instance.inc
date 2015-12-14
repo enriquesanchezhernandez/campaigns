@@ -239,7 +239,7 @@ function hwc_gallery_field_default_field_instances() {
         'module' => 'date',
         'settings' => array(
           'field_formatter_class' => '',
-          'format_type' => 'month_day_year',
+          'format_type' => 'osha_day_only',
           'fromto' => 'both',
           'multiple_from' => '',
           'multiple_number' => '',
@@ -278,6 +278,7 @@ function hwc_gallery_field_default_field_instances() {
       'active' => 1,
       'module' => 'date',
       'settings' => array(
+        'date_single_day' => array(),
         'increment' => 15,
         'input_format' => 'd/m/Y - H:i:s',
         'input_format_custom' => '',
