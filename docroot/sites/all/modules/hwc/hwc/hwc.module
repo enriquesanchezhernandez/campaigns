@@ -657,7 +657,7 @@ function hwc_news_share_widget($node, $options = array()) {
     $title = drupal_get_title();
   }
   else {
-    $url = url('/node/' . $node->nid, array('absolute' => TRUE));
+    $url = url('node/' . $node->nid, array('absolute' => TRUE));
     $wrapper = entity_metadata_wrapper('node', $node);
     $title = $wrapper->title_field->value();
     $type = $node->type;
@@ -683,11 +683,26 @@ function hwc_news_share_widget($node, $options = array()) {
     'node' => $node,
     'language' => $language,
     'options' => $options,
+    'label' => t('Share this article'),
+    'type' => $type,
   );
-  if ($type == 'article') {
-    return theme('article_share_widget', $vars);
+  // Custom label for videos related articles.
+  if (!empty($node->nid) && ($node->nid == 160 || $node->nid == 108)) {
+    $vars['label'] = t('Share this video');
   }
-  return theme('news_share_widget', $vars);
+
+  // Merge default vars with ones from options.
+  $vars = $options + $vars;
+  switch ($vars['type']) {
+    case 'article':
+      $widget = theme('article_share_widget', $vars);
+      break;
+
+    default:
+      $widget = theme('news_share_widget', $vars);
+      break;
+  }
+  return $widget;
 }
 
 function hwc_page_share_widget() {

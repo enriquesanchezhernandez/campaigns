@@ -16,12 +16,6 @@
  * @see template_process()
  */
 ?>
-<?php
-$label = t('Share this article:');
-if (!empty($node->nid) && ($node->nid == 160 || $node->nid == 108)) {
-  $label = t('Share this video:');
-}
-?>
 <div class="hwc-share-widget">
   <ul>
     <li class="share-this-article">

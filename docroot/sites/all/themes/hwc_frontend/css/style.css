@@ -10966,9 +10966,6 @@ article .hwc-share-widget ul {
 #cboxWrapper {
   border-radius: 0;
 }
-#cboxWrapper div:first-child {
-  display: none;
-}
 #cboxWrapper div #cboxMiddleLeft,
 #cboxWrapper div #cboxMiddleRight {
   display: none;
