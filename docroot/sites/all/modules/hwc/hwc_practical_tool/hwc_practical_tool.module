@@ -145,3 +145,20 @@ function hwc_practical_tool_field_formatter_view($entity_type, $entity, $field, 
   }
   return $element;
 }
+
+/**
+ * Implements hook_node_view().
+ */
+function hwc_practical_tool_node_view($node, $view_mode, $langcode) {
+  if ($node->type == 'practical_tool' && $view_mode == 'teaser') {
+    if (isset($node->content['field_country']) && empty($node->content['field_country']['#items'])) {
+      hide($node->content['field_country']);
+    }
+    if (isset($node->content['field_provider']) && empty($node->content['field_provider']['#items'])) {
+      hide($node->content['field_provider']);
+    }
+    if (isset($node->content['field_tool_type']) && empty($node->content['field_tool_type']['#items'])) {
+      hide($node->content['field_tool_type']);
+    }
+  }
+}
