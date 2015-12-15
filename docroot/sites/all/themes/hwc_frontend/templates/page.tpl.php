@@ -109,7 +109,7 @@ $theme_dir = drupal_get_path('theme', 'hwc_frontend');
     </div>
     <div class="row">
 		<div class="navbar-collapse collapse">
-		  <nav role="navigation">
+		  <nav>
 			<?php if (!empty($primary_nav)): ?>
 			  <?php print render($primary_nav); ?>
 			<?php endif; ?>
