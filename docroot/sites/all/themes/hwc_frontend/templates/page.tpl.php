@@ -76,7 +76,7 @@ $theme_dir = drupal_get_path('theme', 'hwc_frontend');
 ?>
 <?php if (!empty($page['above_header'])): ?>
 <?php endif; ?>
-<header id="navbar" role="banner" class="navbar navbar-default container-fluid"><?php // print $navbar_classes; ?>
+<header id="navbar" class="navbar navbar-default container-fluid"><?php // print $navbar_classes; ?>
   <div class="container-fluid campaigns-header">
     <div class="row">
       <div class="navbar-header">
