@@ -15,6 +15,13 @@ function hwc_homepage_views_pre_render(&$view){
     $jssor_path = libraries_get_path('jquery-slider-master');
     drupal_add_js($jssor_path . '/jssor.slider.mini.js');
     drupal_add_css($jssor_path . '/jssor.css');
+
+    // Add "alt" attribute to images.
+    foreach ($view->result as &$item) {
+      if ($item->field_field_image[0]['rendered']['#item']['alt'] == NULL) {
+        $item->field_field_image[0]['rendered']['#item']['alt'] = $item->field_field_image[0]['rendered']['#item']['filename'];
+      }
+    }
   }
 }
 
