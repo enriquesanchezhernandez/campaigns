@@ -113,6 +113,16 @@ function hwc_frontend_preprocess_page(&$vars) {
     );
     switch ($node->type) {
       case 'publication':
+        if ($node->field_publication_type[LANGUAGE_NONE][0]['tid'] == 92 /* Case Studies */) {
+          $link_title = t('Back to case studies list');
+          $link_href = 'case-studies';
+          $tag_vars['element']['#value'] = t('Case studies');
+          $vars['page']['above_title']['title-alternative'] = array(
+            '#type' => 'item',
+            '#markup' => theme('html_tag', $tag_vars),
+          );
+          break;
+        }
         $link_title = t('Back to publications list');
         $link_href = 'publications';
         $tag_vars['element']['#value'] = t('Publications');
@@ -221,7 +231,12 @@ function hwc_frontend_preprocess_page(&$vars) {
     if ($node->type == 'publication') {
       ctools_include('plugins');
       ctools_include('context');
-      $pb = path_breadcrumbs_load_by_name('publications_detail_page');
+      if ($node->field_publication_type[LANGUAGE_NONE][0]['tid'] == 92 /* Case Studies */) {
+        $pb = path_breadcrumbs_load_by_name('case_studies_detail_page');
+      }
+      else {
+        $pb = path_breadcrumbs_load_by_name('publications_detail_page');
+      }
       $breadcrumbs = _path_breadcrumbs_build_breadcrumbs($pb);
       drupal_set_breadcrumb($breadcrumbs);
     }
