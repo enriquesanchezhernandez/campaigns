@@ -22,11 +22,8 @@
 $rss_url = !empty($options['rss_url']) ? $options['rss_url'] : url('rss-feeds/latest/news.xml', array('absolute' => TRUE));
 $rss_hide = !empty($options['rss_hide']);
 
-// FB like counter.
-$api = simplexml_load_file('http://api.facebook.com/restserver.php?method=links.getStats&urls==' . $url);
-$fb_like_count = isset($api->link_stat->like_count) ? (string) $api->link_stat->like_count : 0;
-
 // FB share counter.
+$api = simplexml_load_file('http://api.facebook.com/restserver.php?method=links.getStats&urls==' . $url);
 $count = json_decode($api);
 $fb_share_count = isset($api->link_stat->share_count) ? (string) $api->link_stat->share_count : 0;
 
@@ -50,12 +47,6 @@ $linkedin_share_count = isset($count->count) ? $count->count : 0;
     </li>
     <li class="label">
       <?php print t('Share'); ?> <span>(<?php print $fb_share_count ?>)</span>
-    </li>
-    <li id="facebook-like-button-<?php print $node->nid; ?>"  class="hwc-share-widget-button hwc-like-widget-facebook" data-href="">
-      <a href="<?php print $url ?>">Facebook</a>
-    </li>
-    <li class="label">
-      <?php print t('Like'); ?> <span>(<span id="fb_likes_counter"><?php print $fb_like_count ?></span>)</span>
     </li>
     <li id="twitter-share-button-<?php print $node->nid; ?>" class="hwc-share-widget-button hwc-share-widget-twitter">
       <a href="<?php print $tweet_url; ?>">Twitter</a>
@@ -99,45 +90,6 @@ $linkedin_share_count = isset($count->count) ? $count->count : 0;
         js.src = "//connect.facebook.net/en_US/sdk.js";
         fjs.parentNode.insertBefore(js, fjs);
       }(document, 'script', 'facebook-jssdk'));
-
-      $('#facebook-like-button-<?php print $node->nid; ?> a').click(function(e) {
-        e.preventDefault();
-        FB.login(function(response) {
-          if (response.authResponse) {
-            FB.api(
-              "/" + response.authResponse.userID + "/permissions",
-              function (response) {
-              }
-            );
-          } else {
-            console.log('User cancelled login or did not fully authorize.');
-          }
-        }, {scope: 'publish_actions'});
-
-        FB.api(
-          "/me/og.likes",
-          "POST",
-          {
-            "object": this.href
-          },
-          function (response) {
-            if (response && !response.error) {
-              var likes_counter = jQuery("#fb_likes_counter");
-              var txt = parseInt(likes_counter.text());
-              likes_counter.text(txt + 1);
-            }
-            else {
-              err = response.error;
-              if (err.code == 3501) {
-                alert(Drupal.t('You already liked this page.'));
-              }
-              else {
-                alert(Drupal.t('Oups, something bad happened when liking this page.'));
-              }
-            }
-          }
-        );
-      });
 
       $('#facebook-share-button-<?php print $node->nid; ?> a').click(function(e) {
         e.preventDefault();
