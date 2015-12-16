@@ -372,10 +372,14 @@ function osha_events_views_pre_render(&$view) {
     }
     // When searching in other lang than EN, we are getting en results,
     foreach ($view->result as &$result) {
-      $node = node_load($result->_entity_properties['nid']);
-      $wrapper = entity_metadata_wrapper('node', $node);
-      $result->_entity_properties['title_field'][0] = $wrapper->label();
-      $result->_entity_properties['body:value'][0] = $wrapper->body->value();
+      if (!empty($result->_entity_properties['nid'])) {
+        $node = node_load($result->_entity_properties['nid']);
+        if ($node) {
+          $wrapper = entity_metadata_wrapper('node', $node);
+          $result->_entity_properties['title_field'][0] = $wrapper->label();
+          $result->_entity_properties['body:value'][0] = $wrapper->body->value();
+        }
+      }
     }
 
     // Set view title.
