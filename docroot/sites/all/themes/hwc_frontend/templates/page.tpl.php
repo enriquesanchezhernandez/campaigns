@@ -160,7 +160,7 @@ $theme_dir = drupal_get_path('theme', 'hwc_frontend');
     </section>
 	
     <?php if (!empty($page['sidebar_second'])): ?>
-      <aside class="col-xs-12 col-sm-8 col-sm-offset-2" role="complementary">
+      <aside class="col-xs-12 col-sm-8 col-sm-offset-2">
         <?php print render($page['sidebar_second']); ?>
       </aside>  <!-- /#sidebar-second -->
     <?php endif; ?>
