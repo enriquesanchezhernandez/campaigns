@@ -15,7 +15,7 @@ $entities = entity_load('field_collection_item', $entities_to_load);
   <div class="field-items">
     <?php foreach ($entities as $key => $entity): ?>
         <?php
-        $language_code = $entity->field_available_languages['und'][0]['langcode'];
+        $language_code = $entity->field_available_languages['und'][0]['value'];
         if ($language_code == 'en') {
           $en_link = $entity->field_access_tool_link['und'][0]['url'];
         }
