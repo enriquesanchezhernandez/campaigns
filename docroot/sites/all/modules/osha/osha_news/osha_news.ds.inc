@@ -263,9 +263,11 @@ function osha_news_ds_layout_settings_info() {
       ),
       'left' => array(
         'col-md-2' => 'col-md-2',
+        'col-sm-2' => 'col-sm-2',
       ),
       'right' => array(
         'col-md-10' => 'col-md-10',
+        'col-sm-10' => 'col-sm-10',
       ),
     ),
     'wrappers' => array(
