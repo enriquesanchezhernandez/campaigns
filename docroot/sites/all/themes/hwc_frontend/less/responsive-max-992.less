@@ -1,5 +1,19 @@
 //rewrite styles for responsive design
 
+@media only screen and (max-width : 1022px) {
+
+/*Menu*/
+
+header.navbar-default .navbar-collapse nav ul.menu li{
+	min-height: 62px;
+}
+
+header.navbar-default .navbar-collapse nav ul.menu li .dropdown-menu li{
+	min-height: auto;
+}
+
+}
+
 @media only screen and (max-width : 992px) {
 
 /* contenedor principal */
@@ -102,10 +116,6 @@ header{
 		}
 		
 		.navbar-collapse nav ul.menu {
-			li span.dropdown-toggle{
-				padding-left: 5px;
-				padding-right: 2px;
-			}
 			li a .caret, li span .caret{
 				width: 2px;
 				margin-left: 2px;
@@ -611,23 +621,65 @@ header{
 /*pag Become a media partner*/
 .become-partner{
 	.partners{
-		margin-right: -@margin-tablet;
-		margin-left: -@margin-tablet;
-		.partner-name, .partner-opinion{
-			margin-right: @margin-tablet2;
-			margin-left: @margin-tablet2;
+		margin-right: -@margin-movil;
+		margin-left: -@margin-movil;
+		.partner-name{
+			margin-right: 0;
+			margin-left: 0;
+		}
+		.partner {
+			padding-left: @margin-movil;
+			padding-right: @margin-movil;
+			height:1%;
+			overflow:hidden;
+			.partner-opinion{
+				margin-right: 0;
+				margin-left: 0;
+				.quottes-left, .quottes-right{
+					background-size: contain;
+					height: auto;
+				}
+			}
 		}
 	}
-	.description .col-md-12, .see-also-title{
-		padding-left: 0px;
-		padding-right: 0px;
+	.coments h2.visibility{
+		display: block !important;
+	}
+	.coments .col{
+		padding-right: 0;
+		padding-left: 0;
+		padding-bottom: 1em;
+		margin-right: -@margin-movil;
+		margin-left: -@margin-movil;
+		margin-bottom: 1em;
+		border-bottom: 1px solid @border-default-color;
+		border-left: none;
+		border-right: none;
+		&:last-child{
+			border-bottom: none;
+		}
+		p{		
+			margin-right: @margin-movil;
+			margin-left: @margin-movil;
+		}
+	}
+	.boton-become{
+		div{
+			padding-right: 0;
+			padding-left: 0;
+		}
+	}
+	button, a.btn-become-a-campaign-partner{
+		width: 100%;
+		display: block;
 	}
 	.see-also-title{
-		padding-left: 0px;
-		padding-right: 0px;
-		margin-right: -@margin-tablet;
-		margin-left: -@margin-tablet;
+	    margin-right: 0px;
+		margin-left: 0px;
 	}
+}
+.node-type-article .become-partner h2{
+	text-align: center;
 }
 /*fin become a media partner*/
 

@@ -10,7 +10,7 @@
 
 
 #block-search-form .input-group { width: 250px; }
-#block-search-form input { width: 210px; }
+#block-search-form input { width: 210px; font-size: 1em; height: auto; }
 
 div.workbench-info-block {
   clear:both;
@@ -59,6 +59,7 @@ div.workbench-info-block {
     border: none;
     padding: 0;
     margin: 5px 0;
+    font-size:1em;
 }
 #search-block-form {
     float: right;

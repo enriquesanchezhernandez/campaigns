@@ -344,7 +344,7 @@ ul.tabs--primary.nav.nav-tabs{
 					padding: 2px 0px;
 					font-weight: bold;
 					font-style: italic;
-					font-size: @size5;
+					font-size: 1.05em;
 				}
 				a:before{
 					content: ">";
@@ -394,6 +394,7 @@ ul.tabs--primary.nav.nav-tabs{
 			div{
 				padding-left: 0px;
 				padding-right: 0px;
+				text-align: center;
 				&.more-link{
 					padding-left: 15px;
 					padding-right: 15px;
@@ -2091,7 +2092,7 @@ ul.tabs--primary.nav.nav-tabs{
 /* -----------ENDIKA------------ */
 /*HOME*/
 
-.pane-frontpage-events h2{
+.front .pane-frontpage-events h2{
 	background:none;
 	padding-top: 0px;
 }
@@ -2380,6 +2381,7 @@ article{
 		background-color: @bg-color-2;
 		color: @color1;
 		padding: 1em;
+		display:block;
 		a{
 			color: @color1;
 			font-weight: bold;
@@ -4388,6 +4390,11 @@ article{
 		}
 	}
 
+	.panel-pane.pane-entity-field.pane-node-field-ph-cp{
+		float:left;
+		padding-right: 10px;
+	}
+
 	.pane-node-field-country{
 		font-size:18px;
 		background-color: @bg-default-color;
@@ -5302,7 +5309,7 @@ article{
 				padding: 30px 30px 15px;
 	   	 		border-bottom: 1px dotted @color3;
 	    		border-left: 1px dotted @color3;
-				/* min-height: 170px; */
+				min-height: 191px;
 				.views-field-field-logo{
 					min-height: 108px;
 					padding-bottom: 15px;
@@ -5327,7 +5334,15 @@ article{
 			max-width: 125px;
 			margin: auto;
 		}
+
+
 	}
+
+	.view-display-id-fop img{
+			width:125px;
+			height:75px;
+			border:1px solid #CCC;
+		}
 
 /*End oficial campaign partners list*/
 
@@ -5420,8 +5435,8 @@ article{
 			}
 			span{
 				width: 350px;
-				float: left;
-				clear: both;
+				display:block;
+				padding-bottom: 1em;
 			}
 			span.captcha{
 				width: auto;
@@ -5859,10 +5874,6 @@ fieldset.captcha {
 /* Block: recommended-articles and recommended-resources and article aditional resources*/
 	
 	.field-name-field-recommended-resources, .field-name-field-recommended-articles, .field.field-name-field-aditional-resources, .panels-flexible-region-container-additional_resources{
-		//.panels-flexible-region-container-additional_resources esta puesto para Publications, 14/10/2015 quitar en cuanto se pueda
-		/* margin-top: 1em;
-		padding-top: 1em;
-		border-top: 1px dotted @border-default-color; */
 		clear: both;
 		.content{
 			margin-right: 0;
@@ -5919,7 +5930,7 @@ fieldset.captcha {
 			width: auto;
 			height: auto;
 		}
-		.node-article .field.field-name-field-image {
+		.node-article .field.field-name-field-image , .node-internal-url .field.field-name-field-image{
 			float: left;
 			margin-right: 1em;
 			margin-bottom: 4em;
@@ -6147,9 +6158,6 @@ fieldset.captcha {
 		.node-external-url{
 			.field.field-name-field-image{
 				margin-bottom: 0;
-				@media (min-width: 768px){
-					width: 16.66666667% !important;
-				}
 				img {
 					width: 150px !important;
 					max-width: 100%;
@@ -6162,9 +6170,6 @@ fieldset.captcha {
 				.field.field-name-field-image{
 					margin-bottom: 0;
 					height: auto;
-					@media (min-width: 768px){
-						width: 16.66666667% !important;
-					}
 					img {
 						width: 150px !important;
 						max-width: 100%;
@@ -6306,3 +6311,18 @@ span.form-required{
 	font-size: @size7;
 }
 /* ----------END ENDIKA--------- */
+
+.field-name-field-pr-notes-to-editor{
+	.field-label{	
+		padding-top: 1em;
+		padding-bottom: 1em;
+	}
+
+	.field-items .pr-counter{
+		float:left;
+	}
+
+	.field-items .field-items{
+		padding-bottom: 1em;
+	}
+}

@@ -11,6 +11,13 @@ jQuery(document).ready(function() {
 
 	funcionesMovil();
 	
+	
+	//Fixing responsive menu to iPhone
+	jQuery(document).ready(function() {
+		jQuery(".dropdown-toggle").dropdown();
+		//Hover for download episodes on iPad
+		document.addEventListener("touchstart", function() {},false);
+	});
 
 	/************************** FUNCTIONS *******************************/
 

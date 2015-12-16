@@ -630,15 +630,14 @@ header.navbar-default{
 				height:100%;
 			}
 			img{
-				height: 345px;
-				min-height: 345px;
-				min-width: 100%;
-				width: auto;
-				position: absolute;
-				left: -50%;
-				max-width: none;
+				display:none
 			}
 		}
+
+		.field-name-field-recommended-articles .field.field-name-field-image img{
+			display:none;
+		}
+
 		.field-name-field-image + .field-name-title-field + .container, .field-name-field-image + .field-name-title-field + .field-name-body{
 			margin-top: 370px;
 			&.active{
@@ -646,6 +645,15 @@ header.navbar-default{
 			}
 		}
 	}
+
+	.node-type-article article .field-name-field-recommended-articles .node-article .content .field-name-title-field{
+		text-align: center;
+	}
+
+	.node-type-article article .field-name-field-recommended-resources .field-name-field-external-url{
+		text-align: center;
+	}
+	
 	.node-type-article article{
 		.field-name-body{
 			padding-right: 15px;
@@ -1101,6 +1109,16 @@ header.navbar-default{
 				margin-left: auto;
 				margin-right: auto;
 			}
+
+			span.event-location-location{
+				padding: 3em 0 3em 25px;
+			}
+
+			span.event-location-city{
+				padding-left: 3px;
+				padding-right: 3px;
+			}
+
 		}
 		h2.node-edit-form-heading{
 			margin-left: @margin-movil;
@@ -1121,6 +1139,14 @@ header.navbar-default{
 		}
 	}
 	
+	.node-events .event-location-container{
+		width: 100%;
+	}
+
+	.node-events .field-name-field-start-date{
+		width: 265px;
+	}
+
 	//Gallery
 	.node-events .group-header > div.field-name-field-gallery{
 		margin-left: 0;
@@ -1235,9 +1261,7 @@ header.navbar-default{
     .pane-osha-press-release{
     	border-top: 1px dotted @color3;
     }
-    .pane-osha-press-release-osha-press-kit{
-    	display: none;
-    }
+    
 	h2.pane-title{
 		margin-left: 0;
 		margin-right: 0;
@@ -1355,68 +1379,6 @@ header.navbar-default{
 }
 /*end news*/
 
-/*pag Become a media partner*/
-.become-partner{
-	.partners{
-		margin-right: -@margin-movil;
-		margin-left: -@margin-movil;
-		.partner-name{
-			margin-right: 0;
-			margin-left: 0;
-		}
-		.partner {
-			padding-left: @margin-movil;
-			padding-right: @margin-movil;
-			.partner-opinion{
-				margin-right: 0;
-				margin-left: 0;
-				.quottes-left, .quottes-right{
-					background-size: contain;
-					height: auto;
-				}
-			}
-		}
-	}
-	.coments h2.visibility{
-		display: block !important;
-	}
-	.coments .col{
-		padding-right: 0;
-		padding-left: 0;
-		padding-bottom: 1em;
-		margin-right: -@margin-movil;
-		margin-left: -@margin-movil;
-		margin-bottom: 1em;
-		border-bottom: 1px solid @border-default-color;
-		border-left: none;
-		border-right: none;
-		&:last-child{
-			border-bottom: none;
-		}
-		p{		
-			margin-right: @margin-movil;
-			margin-left: @margin-movil;
-		}
-	}
-	.boton-become{
-		div{
-			padding-right: 0;
-			padding-left: 0;
-		}
-	}
-	button, a.btn-become-a-campaign-partner{
-		width: 100%;
-		display: block;
-	}
-	.see-also-title{
-	    margin-right: 0px;
-		margin-left: 0px;
-	}
-}
-.node-type-article .become-partner h2{
-	text-align: center;
-}
-/*fin become a media partner*/
 
 /*infographics*/
 .view-infographic{
@@ -2109,5 +2071,7 @@ header.navbar-default{
 .separator_recomended_resources_home{
 	display: none;
 }
+
+
 
 }
