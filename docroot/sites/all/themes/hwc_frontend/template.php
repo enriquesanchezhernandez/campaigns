@@ -91,9 +91,9 @@ function hwc_frontend_menu_link(array $variables) {
 function hwc_frontend_preprocess_page(&$vars) {
   // Change Events page title
   if(!empty($vars['theme_hook_suggestions']['0']) && in_array($vars['theme_hook_suggestions']['0'], array('page__events', 'page__past_events'))){
-    $title = '<div id="block-osha-events-events-links">';
+    $title = '<span id="block-osha-events-events-links">';
     $title .= l(t('Upcoming events'), 'events') . ' / ' . l(t('Past events'), 'past-events');
-    $title .= '</div>';
+    $title .= '</span>';
     drupal_set_title($title, PASS_THROUGH);
   }
   if (drupal_is_front_page()) {
@@ -113,6 +113,16 @@ function hwc_frontend_preprocess_page(&$vars) {
     );
     switch ($node->type) {
       case 'publication':
+        if ($node->field_publication_type[LANGUAGE_NONE][0]['tid'] == 92 /* Case Studies */) {
+          $link_title = t('Back to case studies list');
+          $link_href = 'case-studies';
+          $tag_vars['element']['#value'] = t('Case studies');
+          $vars['page']['above_title']['title-alternative'] = array(
+            '#type' => 'item',
+            '#markup' => theme('html_tag', $tag_vars),
+          );
+          break;
+        }
         $link_title = t('Back to publications list');
         $link_href = 'publications';
         $tag_vars['element']['#value'] = t('Publications');
@@ -221,7 +231,12 @@ function hwc_frontend_preprocess_page(&$vars) {
     if ($node->type == 'publication') {
       ctools_include('plugins');
       ctools_include('context');
-      $pb = path_breadcrumbs_load_by_name('publications_detail_page');
+      if ($node->field_publication_type[LANGUAGE_NONE][0]['tid'] == 92 /* Case Studies */) {
+        $pb = path_breadcrumbs_load_by_name('case_studies_detail_page');
+      }
+      else {
+        $pb = path_breadcrumbs_load_by_name('publications_detail_page');
+      }
       $breadcrumbs = _path_breadcrumbs_build_breadcrumbs($pb);
       drupal_set_breadcrumb($breadcrumbs);
     }
@@ -335,6 +350,9 @@ function hwc_frontend_preprocess_node(&$vars) {
 }
 function hwc_frontend_preprocess_image_style(&$variables) {
   $variables['attributes']['class'][] = 'img-responsive';
+  if (empty($variables['alt'])) {
+    $variables['alt'] = drupal_basename($variables['path']);
+  }
 }
 /**
  * Implements theme_on_the_web_image().

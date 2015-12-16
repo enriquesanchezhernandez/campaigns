@@ -129,6 +129,9 @@ function osha_events_form_views_exposed_form_alter(&$form, &$form_state) {
     }
   }
   elseif ($form['#id'] == 'views-exposed-form-events-search-page-1' || $form['#id'] == 'views-exposed-form-events-search-page') {
+    // HCW-976 Add 'name' attribute to submit button
+    $form['submit']['#name'] = 'submit';
+
     // Add Events Calendar filter just after search exposed filter.
     if ($form['#id'] == 'views-exposed-form-events-search-page-1') {
       $block = block_load('views', 'events-block_1');
