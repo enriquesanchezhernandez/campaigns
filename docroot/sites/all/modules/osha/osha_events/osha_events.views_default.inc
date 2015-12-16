@@ -1505,7 +1505,7 @@ function osha_events_views_default_views() {
   $handler->display->display_options['fields']['field_start_date']['label'] = '';
   $handler->display->display_options['fields']['field_start_date']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['field_start_date']['settings'] = array(
-    'format_type' => 'short_date_eu',
+    'format_type' => 'osha_day_only',
     'fromto' => 'value',
     'multiple_number' => '',
     'multiple_from' => '',
@@ -1520,7 +1520,7 @@ function osha_events_views_default_views() {
   $handler->display->display_options['fields']['field_start_date_1']['label'] = '';
   $handler->display->display_options['fields']['field_start_date_1']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['field_start_date_1']['settings'] = array(
-    'format_type' => 'short_date_eu',
+    'format_type' => 'osha_day_only',
     'fromto' => 'both',
     'multiple_number' => '',
     'multiple_from' => '',
@@ -1643,7 +1643,7 @@ function osha_events_views_default_views() {
   $handler->display->display_options['fields']['field_start_date']['label'] = '';
   $handler->display->display_options['fields']['field_start_date']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['field_start_date']['settings'] = array(
-    'format_type' => 'short_date_eu',
+    'format_type' => 'osha_day_only',
     'fromto' => 'value',
     'multiple_number' => '',
     'multiple_from' => '',
@@ -1658,7 +1658,7 @@ function osha_events_views_default_views() {
   $handler->display->display_options['fields']['field_start_date_1']['label'] = '';
   $handler->display->display_options['fields']['field_start_date_1']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['field_start_date_1']['settings'] = array(
-    'format_type' => 'short_date_eu',
+    'format_type' => 'osha_day_only',
     'fromto' => 'both',
     'multiple_number' => '',
     'multiple_from' => '',
