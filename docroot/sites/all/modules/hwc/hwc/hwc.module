@@ -446,6 +446,10 @@ function hwc_form_alter(&$form, &$form_state, $form_id) {
     $form['#after_build'] = array('_form_add_website_placeholder_after_build');
   }
 
+  if ($form_id == 'lang_dropdown_form') {
+    $form['lang_dropdown_select']['#attributes']['title'] = t('Language switcher dropdown');
+  }
+
 }
 
 /**
