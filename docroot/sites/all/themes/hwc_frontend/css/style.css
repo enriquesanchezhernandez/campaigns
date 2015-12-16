@@ -10062,6 +10062,7 @@ article .hwc-share-widget ul {
 .page-media-center-photo-gallery .attachment.attachment-before .views-field-nothing,
 .view-photo-gallery .attachment.attachment-before .views-field-nothing {
   background-color: #003399;
+  display: block;
   color: #ffffff;
   padding: 1em;
 }
