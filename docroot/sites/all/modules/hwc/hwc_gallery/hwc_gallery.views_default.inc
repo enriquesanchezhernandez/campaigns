@@ -97,6 +97,8 @@ function hwc_gallery_views_default_views() {
   $handler->display->display_options['fields']['nothing']['field'] = 'nothing';
   $handler->display->display_options['fields']['nothing']['label'] = '';
   $handler->display->display_options['fields']['nothing']['alter']['text'] = '<span class="gallery_list_detail_container">[field_publication_date][title_field]</span>';
+  $handler->display->display_options['fields']['nothing']['alter']['strip_tags'] = TRUE;
+  $handler->display->display_options['fields']['nothing']['alter']['preserve_tags'] = '<span> <a>';
   $handler->display->display_options['fields']['nothing']['element_label_colon'] = FALSE;
   /* Sort criterion: Field: Publication date (field_publication_date) */
   $handler->display->display_options['sorts']['field_publication_date_value']['id'] = 'field_publication_date_value';
