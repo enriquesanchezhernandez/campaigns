@@ -53,13 +53,13 @@ setcookie('numberOfItems', $intNumberOfItems, time() + 3600);
 <div class="separator_recomended_resources_home">&nbsp;</div>
 <div id="homepage_slider" class="homepage-slider">
   <!-- Slides Container -->
-  <div id="num_slides" u="slides">
+  <div id="num_slides" data-u="slides">
     <?php print $rows ?>
   </div>
   <!-- Bullet navigator container -->
-  <div u="navigator" class="jssorb12">
+  <div data-u="navigator" class="jssorb12">
     <!-- Bullet navigator item prototype -->
-    <div u="prototype"></div>
+    <div data-u="prototype"></div>
   </div>
   <!--#endregion Bullet Navigator Skin End -->
 </div>

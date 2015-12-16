@@ -91,9 +91,9 @@ function hwc_frontend_menu_link(array $variables) {
 function hwc_frontend_preprocess_page(&$vars) {
   // Change Events page title
   if(!empty($vars['theme_hook_suggestions']['0']) && in_array($vars['theme_hook_suggestions']['0'], array('page__events', 'page__past_events'))){
-    $title = '<div id="block-osha-events-events-links">';
+    $title = '<span id="block-osha-events-events-links">';
     $title .= l(t('Upcoming events'), 'events') . ' / ' . l(t('Past events'), 'past-events');
-    $title .= '</div>';
+    $title .= '</span>';
     drupal_set_title($title, PASS_THROUGH);
   }
   if (drupal_is_front_page()) {
@@ -350,6 +350,9 @@ function hwc_frontend_preprocess_node(&$vars) {
 }
 function hwc_frontend_preprocess_image_style(&$variables) {
   $variables['attributes']['class'][] = 'img-responsive';
+  if (empty($variables['alt'])) {
+    $variables['alt'] = drupal_basename($variables['path']);
+  }
 }
 /**
  * Implements theme_on_the_web_image().

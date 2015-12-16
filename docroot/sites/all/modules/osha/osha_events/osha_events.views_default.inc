@@ -1536,9 +1536,10 @@ function osha_events_views_default_views() {
   $handler->display->display_options['fields']['title_field']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['title_field']['type'] = 'title_linked';
   $handler->display->display_options['fields']['title_field']['settings'] = array(
-    'title_style' => 'div',
+    'title_style' => '_none',
     'title_link' => 'content',
     'title_class' => '',
+    'field_formatter_class' => '',
   );
   /* Field: Indexed Multilingual Node: Country */
   $handler->display->display_options['fields']['field_country_code']['id'] = 'field_country_code';
@@ -1558,6 +1559,10 @@ function osha_events_views_default_views() {
   $handler->display->display_options['fields']['body']['field'] = 'body';
   $handler->display->display_options['fields']['body']['label'] = '';
   $handler->display->display_options['fields']['body']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['body']['type'] = 'text_plain';
+  $handler->display->display_options['fields']['body']['settings'] = array(
+    'field_formatter_class' => '',
+  );
   /* Field: Content: Link */
   $handler->display->display_options['fields']['view_node']['id'] = 'view_node';
   $handler->display->display_options['fields']['view_node']['table'] = 'views_entity_node';
@@ -1669,9 +1674,10 @@ function osha_events_views_default_views() {
   $handler->display->display_options['fields']['title_field']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['title_field']['type'] = 'title_linked';
   $handler->display->display_options['fields']['title_field']['settings'] = array(
-    'title_style' => 'div',
+    'title_style' => '_none',
     'title_link' => 'content',
     'title_class' => '',
+    'field_formatter_class' => '',
   );
   /* Field: Indexed Multilingual Node: Country */
   $handler->display->display_options['fields']['field_country_code']['id'] = 'field_country_code';
@@ -1691,6 +1697,10 @@ function osha_events_views_default_views() {
   $handler->display->display_options['fields']['body']['field'] = 'body';
   $handler->display->display_options['fields']['body']['label'] = '';
   $handler->display->display_options['fields']['body']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['body']['type'] = 'text_plain';
+  $handler->display->display_options['fields']['body']['settings'] = array(
+    'field_formatter_class' => '',
+  );
   /* Field: Content: Link */
   $handler->display->display_options['fields']['view_node']['id'] = 'view_node';
   $handler->display->display_options['fields']['view_node']['table'] = 'views_entity_node';

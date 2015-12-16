@@ -10062,6 +10062,7 @@ article .hwc-share-widget ul {
 .page-media-center-photo-gallery .attachment.attachment-before .views-field-nothing,
 .view-photo-gallery .attachment.attachment-before .views-field-nothing {
   background-color: #003399;
+  display: block;
   color: #ffffff;
   padding: 1em;
 }
@@ -10073,6 +10074,7 @@ article .hwc-share-widget ul {
 .view-photo-gallery .attachment.attachment-before .views-field-nothing a {
   color: #ffffff;
   font-weight: bold;
+  display: block;
 }
 .page-media-center-photo-gallery .views-field-title-field a:before,
 .view-photo-gallery .views-field-title-field a:before,
