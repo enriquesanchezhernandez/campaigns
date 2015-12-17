@@ -1619,7 +1619,7 @@ function osha_publication_field_default_field_instances() {
           'field_formatter_class' => '',
           'title_class' => '',
           'title_link' => 'content',
-          'title_style' => 'h5',
+          'title_style' => 'h2',
         ),
         'type' => 'title_linked',
         'weight' => 1,

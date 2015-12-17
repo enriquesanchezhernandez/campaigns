@@ -9100,14 +9100,14 @@ div[class*='node-'] .more-link {
   margin-top: 0em;
   width: auto;
 }
-#block-views-publications-slideshow-slidehow #publications_slideshow #num_slides .publication-item .field-name-title-field h5,
-#block-system-main #publications_slideshow #num_slides .publication-item .field-name-title-field h5 {
+#block-views-publications-slideshow-slidehow #publications_slideshow #num_slides .publication-item .field-name-title-field h2,
+#block-system-main #publications_slideshow #num_slides .publication-item .field-name-title-field h2 {
   font-size: 20px;
   font-weight: bold;
   margin-top: 0;
 }
-#block-views-publications-slideshow-slidehow #publications_slideshow #num_slides .publication-item .field-name-title-field h5 :before,
-#block-system-main #publications_slideshow #num_slides .publication-item .field-name-title-field h5 :before {
+#block-views-publications-slideshow-slidehow #publications_slideshow #num_slides .publication-item .field-name-title-field h2 :before,
+#block-system-main #publications_slideshow #num_slides .publication-item .field-name-title-field h2 :before {
   content: ">";
   padding-right: 0.5em;
   color: #003399;
@@ -9464,12 +9464,13 @@ div[class*='node-'] .more-link {
   margin-top: 3em;
   margin-left: 210px;
 }
-.publication-item .field-name-title-field h5 {
+.publication-item .field-name-title-field h2 {
   color: #003399;
   font-size: 20px;
   font-weight: bold;
+  font-style: normal;
 }
-.publication-item .field-name-title-field h5 :before {
+.publication-item .field-name-title-field h2 :before {
   content: ">";
   padding-right: 5px;
 }
