@@ -206,6 +206,7 @@ function hwc_practical_tool_menu_tools_search_native($form_state) {
 
 function hwc_practical_tool_menu_tools_search_related($form_state, $native_nids) {
   global $language;
+  $languages = hwc_req_param($form_state, 'languages', array($language->language));
   $ret = array();
   if($form_state['input']) {
     if (($form_state['input']['languages']['en'] !== NULL)) {
@@ -213,7 +214,7 @@ function hwc_practical_tool_menu_tools_search_related($form_state, $native_nids)
     }
   }
   else {
-    if($language->language == 'en') {
+    if (in_array('en', $languages)) {
       return $ret;
     }
   }
