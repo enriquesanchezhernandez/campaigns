@@ -958,7 +958,7 @@ function hwc_taxonomy_term_presave($term) {
 
 function theme_hwc_print_friendly_block() {
   $content = array(
-    '#markup' => '<a href="javascript:if(window.print)window.print();" class="printfriendly"></a>'
+    '#markup' => '<a href="javascript:if(window.print)window.print();" class="printfriendly" title="Print page"></a>'
   );
   return render($content);
 }
