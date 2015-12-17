@@ -193,7 +193,7 @@ function hwc_practical_tool_menu_tools_search_native($form_state) {
   }
   $ret = array(
     '#nids' => $nids,
-    '#prefix' => '<h4>' . t('Tools and guidance in ') . implode(', ', $language_names) . '</h4>',
+    '#prefix' => '<h2 class="h4-title">' . t('Tools and guidance in ') . implode(', ', $language_names) . '</h2>',
     'results-native' => node_view_multiple($nodes, 'pub_teaser', 0, $language->language),
     '#suffix' => theme('pager', array(
       'tags' => array('<', '<', '', '>', '>'),
@@ -290,7 +290,7 @@ function hwc_practical_tool_menu_tools_search_related($form_state, $native_nids)
     $pager_params['text'] = $text;
   }
   $ret = array(
-    '#prefix' => '<h4>' . t('Other relevant tools in English') . '</h4>',
+    '#prefix' => '<h2 class="h4-title">' . t('Other relevant tools in English') . '</h2>',
     'results-related' => node_view_multiple($nodes, 'pub_teaser', 0, $language->language),
     '#suffix' => theme('pager', array(
       'tags' => array('<', '<', '', '>', '>'),

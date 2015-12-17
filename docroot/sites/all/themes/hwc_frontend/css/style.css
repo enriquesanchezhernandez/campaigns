@@ -7694,7 +7694,7 @@ ul.tabs--primary.nav.nav-tabs > li.active > a:focus {
   font-weight: bold;
   font-style: normal;
 }
-.main-container h4 {
+.main-container h4, .main-container .h4-title {
   color: #749b00;
   /* text-align: left; */
   clear: both;
@@ -9512,7 +9512,7 @@ div[class*='node-'] .more-link {
   left: 225px;
 }
 /* Practical tools */
-.pane-hwc-practical-tool-hwc-practical-tool-listing h4 {
+.pane-hwc-practical-tool-hwc-practical-tool-listing h4, .pane-hwc-practical-tool-hwc-practical-tool-listing .h4-title {
   padding-top: 20px !important;
   font-size: 30px;
   font-style: italic;
