@@ -4870,6 +4870,11 @@ article{
 	}
 }
 
+.page-node-edit .node-news-form .btn.btn-danger.form-submit{
+	margin-left: 0px!important;
+	margin-top:1em;
+}
+
 .private-area{
 	.back-to-link{
 		display: none;
@@ -5436,7 +5441,7 @@ article{
 			span{
 				width: 350px;
 				display:block;
-				padding-bottom: 1em;
+				padding-bottom: 10px;
 			}
 			span.captcha{
 				width: auto;
@@ -5501,7 +5506,6 @@ article{
 			color: @colorNormalText;
 			font-weight: bold;
 			&.form-item-email-osh{
-				float: left;
 				min-width: 350px;
 				margin-right: 10px;
 				label{
@@ -5521,9 +5525,10 @@ article{
 				}
 			}
 			span{
-				float: left;
+				display:block;
 				padding-top: 0.5em;
 				margin-right: 10px;
+				margin-bottom: 10px;
 				min-width: 350px;
 				&.captcha{
 					clear: both;
@@ -5535,9 +5540,7 @@ article{
 			button, button#edit-submit--4, button#edit-unsubscribe--2{
 				min-width: 130px;
 			}
-			button#edit-submit--4{
-				margin-top: 1.5em;
-			}
+			
 			div.captcha ~ button#edit-submit--4{
 				margin-top: 13.5em;
 			}
