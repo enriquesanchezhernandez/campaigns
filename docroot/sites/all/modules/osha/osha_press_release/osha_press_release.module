@@ -279,7 +279,7 @@ To receive EU-OSHA’s news releases by email, please send us full contact detai
         $label = variable_get('osha_press_kit_link_label', 'Download');
         $block['content'] = theme('osha_press_kit', array(
             'osha_press_kit_intro_text' => t(variable_get('osha_press_kit_intro_text', '')),
-            'osha_press_kit_link' => l(t($label), $link) . '<i class="glyphicon-circle-arrow-down"></i>',
+            'osha_press_kit_link' => l(t($label), $link) . '<span class="glyphicon-circle-arrow-down"></span>',
           )
         );
         return $block;

@@ -446,6 +446,10 @@ function hwc_form_alter(&$form, &$form_state, $form_id) {
     $form['#after_build'] = array('_form_add_website_placeholder_after_build');
   }
 
+  if ($form_id == 'lang_dropdown_form') {
+    $form['lang_dropdown_select']['#attributes']['title'] = t('Language switcher dropdown');
+  }
+
 }
 
 /**
@@ -954,7 +958,7 @@ function hwc_taxonomy_term_presave($term) {
 
 function theme_hwc_print_friendly_block() {
   $content = array(
-    '#markup' => '<a href="javascript:if(window.print)window.print();" class="printfriendly"></a>'
+    '#markup' => '<a href="javascript:if(window.print)window.print();" class="printfriendly" title="Print page"></a>'
   );
   return render($content);
 }

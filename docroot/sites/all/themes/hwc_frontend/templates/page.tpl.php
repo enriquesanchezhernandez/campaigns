@@ -168,9 +168,9 @@ $theme_dir = drupal_get_path('theme', 'hwc_frontend');
 </div>
 <footer class="footer">
   <?php print render($page['footer']); ?>
-  <h3>
+  <h2>
     <?php print t("Safety and health at work is everyone's concern. It's good for you. It's good for business."); ?>
-  </h3>
+  </h2>
   <p>
     <?php print t("European Agency for Safety and Health at Work | an agency of the European Union"); ?>
   </p>

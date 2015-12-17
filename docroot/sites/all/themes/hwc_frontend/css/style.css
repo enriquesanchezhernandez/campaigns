@@ -7694,7 +7694,7 @@ ul.tabs--primary.nav.nav-tabs > li.active > a:focus {
   font-weight: bold;
   font-style: normal;
 }
-.main-container h4 {
+.main-container h4, .main-container .h4-title {
   color: #749b00;
   /* text-align: left; */
   clear: both;
@@ -9100,14 +9100,14 @@ div[class*='node-'] .more-link {
   margin-top: 0em;
   width: auto;
 }
-#block-views-publications-slideshow-slidehow #publications_slideshow #num_slides .publication-item .field-name-title-field h5,
-#block-system-main #publications_slideshow #num_slides .publication-item .field-name-title-field h5 {
+#block-views-publications-slideshow-slidehow #publications_slideshow #num_slides .publication-item .field-name-title-field h2,
+#block-system-main #publications_slideshow #num_slides .publication-item .field-name-title-field h2 {
   font-size: 20px;
   font-weight: bold;
   margin-top: 0;
 }
-#block-views-publications-slideshow-slidehow #publications_slideshow #num_slides .publication-item .field-name-title-field h5 :before,
-#block-system-main #publications_slideshow #num_slides .publication-item .field-name-title-field h5 :before {
+#block-views-publications-slideshow-slidehow #publications_slideshow #num_slides .publication-item .field-name-title-field h2 :before,
+#block-system-main #publications_slideshow #num_slides .publication-item .field-name-title-field h2 :before {
   content: ">";
   padding-right: 0.5em;
   color: #003399;
@@ -9224,7 +9224,7 @@ div[class*='node-'] .more-link {
 .col #block-system-main #publications_slideshow #num_slides > div {
   width: 650px !important;
 }
-.pane-osha-publication-osha-publication-listing h4 {
+.pane-osha-publication-osha-publication-listing .h4-title {
   margin-bottom: 1em;
   padding-top: 20px !important;
   font-size: 30px;
@@ -9464,12 +9464,13 @@ div[class*='node-'] .more-link {
   margin-top: 3em;
   margin-left: 210px;
 }
-.publication-item .field-name-title-field h5 {
+.publication-item .field-name-title-field h2 {
   color: #003399;
   font-size: 20px;
   font-weight: bold;
+  font-style: normal;
 }
-.publication-item .field-name-title-field h5 :before {
+.publication-item .field-name-title-field h2 :before {
   content: ">";
   padding-right: 5px;
 }
@@ -9512,7 +9513,7 @@ div[class*='node-'] .more-link {
   left: 225px;
 }
 /* Practical tools */
-.pane-hwc-practical-tool-hwc-practical-tool-listing h4 {
+.pane-hwc-practical-tool-hwc-practical-tool-listing h4, .pane-hwc-practical-tool-hwc-practical-tool-listing .h4-title {
   padding-top: 20px !important;
   font-size: 30px;
   font-style: italic;
@@ -13048,11 +13049,11 @@ article .hwc-share-widget ul {
   display: inline-block;
   margin-bottom: 10px;
 }
-.page-campaign-materials .view-id-view_campaign_materials .views-row h3 a {
+.page-campaign-materials .view-id-view_campaign_materials .views-row h2 a {
   font-size: 20px;
   font-weight: bold;
 }
-.page-campaign-materials .view-id-view_campaign_materials .views-row h3 a:before {
+.page-campaign-materials .view-id-view_campaign_materials .views-row h2 a:before {
   content: "> ";
 }
 .page-campaign-materials .view-id-view_campaign_materials .views-row .field.field-name-field-publication-date {
