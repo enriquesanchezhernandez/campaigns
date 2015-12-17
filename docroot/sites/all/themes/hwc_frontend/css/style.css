@@ -9224,7 +9224,7 @@ div[class*='node-'] .more-link {
 .col #block-system-main #publications_slideshow #num_slides > div {
   width: 650px !important;
 }
-.pane-osha-publication-osha-publication-listing h4 {
+.pane-osha-publication-osha-publication-listing .h4-title {
   margin-bottom: 1em;
   padding-top: 20px !important;
   font-size: 30px;

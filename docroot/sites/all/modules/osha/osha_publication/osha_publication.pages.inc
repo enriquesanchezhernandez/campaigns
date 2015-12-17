@@ -196,7 +196,7 @@ function osha_publication_menu_publications_search_native($form_state) {
   }
   $ret = array(
     '#nids' => $nids,
-    '#prefix' => '<h4>' . t('Publications available') . '</h4>',
+    '#prefix' => '<h2 class="h4-title">' . t('Publications available') . '</h2>',
     'results-native' => node_view_multiple($nodes, 'pub_teaser', 0, $language->language),
     '#suffix' => theme('pager', array(
       'tags' => array('<', '<', '', '>', '>'),
