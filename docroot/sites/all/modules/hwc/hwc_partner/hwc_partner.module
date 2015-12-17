@@ -244,11 +244,11 @@ function hwc_partner_block_view($delta = '') {
   }
   else if ($delta == 'hwc_partner_mostra_masquerade') {
     $block['title'] = '<none>';
-    $form = drupal_get_form('masquerade_block_1');
     if (isset($_SESSION['masquerading'])) {
-      $block['content'] = l(t('Switch back yo your user'), 'masquerade/unswitch', array('query' => array('token' => drupal_get_token('masquerade/unswitch'))));
+      $block['content'] = l(t('Switch back to your user'), 'masquerade/unswitch', array('query' => array('token' => drupal_get_token('masquerade/unswitch'))));
     }
-    else if (in_array(ROLE_SUPERVISOR, $user->roles)) {
+    else if (user_access('masquerade as any user')) {
+      $form = drupal_get_form('masquerade_block_1');
       $block['content'] = theme('hwc_partner_act_as_partner_block', array('content' => drupal_render($form)));
     }
   }
@@ -304,6 +304,22 @@ function hwc_partner_form_masquerade_block_1_alter(&$form, &$form_state) {
   // Add our own autocomplete to show only partners users.
   if (!empty($form['masquerade_user_field']['#autocomplete_path'])) {
     $form['masquerade_user_field']['#autocomplete_path'] = 'hwc_partner/autocomplete';
+    $form['#validate'] = array_merge(array('hwc_partner_form_masquerade_validate'), $form['#validate']);
+  }
+}
+
+function hwc_partner_form_masquerade_validate($form, &$form_state) {
+  $no_masq_roles = array_filter(variable_get('masquerade_admin_roles', array()));
+  $name = $form_state['values']['masquerade_user_field'];
+  $masq_user = user_load_by_name($name);
+  if (empty($masq_user)) {
+    form_set_error('masquerade_user_field', t('User could not be found!'));
+    return;
+  }
+  $inter_roles = array_intersect(array_keys($masq_user->roles), $no_masq_roles);
+  if (!empty($inter_roles)) {
+    form_set_error('masquerade_user_field', t('You can only act as a partner!'));
+    return;
   }
 }
 
@@ -314,95 +330,28 @@ function hwc_partner_autocomplete_users_partners($string) {
   $matches = array();
   if (strlen($string) > 1) {
     $partner_rid = 12;
-
-    // Get users with only PARTNER role
+    // Get users with only PARTNER role and with a section attached.
     $subquery = db_query('SELECT uid from users_roles GROUP BY uid HAVING COUNT(rid) = 1')->fetchCol();
     if (!empty($subquery)) {
       $query = db_select('users', 'u')->fields('u', array('uid', 'name'));
+      $query->addField('t', 'name', 'partner_name');
       $query->innerJoin('users_roles', 'ur', 'u.uid = ur.uid');
+      $query->innerJoin('workbench_access_user', 'wu', 'wu.uid = u.uid');
+      $query->innerJoin('taxonomy_term_data', 't', 'wu.access_id = t.tid');
       $query->condition('ur.rid', $partner_rid);
-      $query->condition('u.name', '%' . db_like(strtolower($string)) . '%', 'LIKE');
+      $or = db_or()
+        ->condition('u.name', '%' . db_like(strtolower($string)) . '%', 'LIKE')
+        ->condition('t.name', '%' . db_like(strtolower($string)) . '%', 'LIKE');
+      $query->condition($or);
       $query->condition('u.uid', $subquery, 'IN');
       $result = $query->execute();
-
       while ($row = $result->fetchAssoc()) {
-        $matches[$row['name']] = check_plain($row['name']);
+        $matches[$row['name']] = strtr('@user (@partner)', array('@user' => $row['name'], '@partner' => $row['partner_name']));
       }
     }
   }
   drupal_json_output($matches);
 }
-
-//function hwc_partner_boot() {
-//  global $mostra_impersonating;
-//  global $theme, $user, $theme_key;
-//  if (!empty($_GET['workbench_access']) && arg(2) == 'add') {
-//    $mostra_impersonating = TRUE;
-//    $theme = 'hwc_frontend';
-////    drupal_bootstrap(DRUPAL_BOOTSTRAP_DATABASE);
-//    $themes = list_themes();
-//    $theme = 'hwc_frontend';
-//    // Store the identifier for retrieving theme settings with.
-//    $theme_key = $theme;
-//    // Find all our ancestor themes and put them in an array.
-//    $base_theme = array();
-//    $ancestor = $theme;
-//    while ($ancestor && isset($themes[$ancestor]->base_theme)) {
-//      $ancestor = $themes[$ancestor]->base_theme;
-//      $base_theme[] = $themes[$ancestor];
-//    }
-//    _drupal_theme_initialize($themes[$theme], array_reverse($base_theme));
-//    // Themes can have alter functions, so reset the drupal_alter() cache.
-//    drupal_static_reset('drupal_alter');
-//    // Provide the page with information about the theme that's used, so that a
-//    // later Ajax request can be rendered using the same theme.
-//    // @see ajax_base_page_theme()
-//    $setting['ajaxPageState'] = array(
-//      'theme' => $theme_key,
-//      'theme_token' => drupal_get_token($theme_key),
-//    );
-//    drupal_add_js($setting, 'setting');
-//  }
-//}
-//
-//function hwc_partner_init() {
-//  global $mostra_impersonating;
-//  global $theme, $user, $theme_key;
-//  if (!empty($_GET['workbench_access']) && arg(2) == 'add') {
-//    $mostra_impersonating = TRUE;
-//    $theme = 'hwc_frontend';
-////    drupal_bootstrap(DRUPAL_BOOTSTRAP_DATABASE);
-//    $themes = list_themes();
-//    $theme = 'hwc_frontend';
-//    // Store the identifier for retrieving theme settings with.
-//    $theme_key = $theme;
-//    // Find all our ancestor themes and put them in an array.
-//    $base_theme = array();
-//    $ancestor = $theme;
-//    while ($ancestor && isset($themes[$ancestor]->base_theme)) {
-//      $ancestor = $themes[$ancestor]->base_theme;
-//      $base_theme[] = $themes[$ancestor];
-//    }
-//    _drupal_theme_initialize($themes[$theme], array_reverse($base_theme));
-//    // Themes can have alter functions, so reset the drupal_alter() cache.
-//    drupal_static_reset('drupal_alter');
-//    // Provide the page with information about the theme that's used, so that a
-//    // later Ajax request can be rendered using the same theme.
-//    // @see ajax_base_page_theme()
-//    $setting['ajaxPageState'] = array(
-//      'theme' => $theme_key,
-//      'theme_token' => drupal_get_token($theme_key),
-//    );
-//    drupal_add_js($setting, 'setting');
-//  }
-//}
-
-//function hwc_partner_init() {
-//
-//  if (!empty($_GET['workbench_access']) && arg(1) == 'add') {
-//
-//  }
-//}
 
 /**
  * Implements hook_node_view().
