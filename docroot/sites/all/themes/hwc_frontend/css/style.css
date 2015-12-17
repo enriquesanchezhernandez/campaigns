@@ -13049,11 +13049,11 @@ article .hwc-share-widget ul {
   display: inline-block;
   margin-bottom: 10px;
 }
-.page-campaign-materials .view-id-view_campaign_materials .views-row h3 a {
+.page-campaign-materials .view-id-view_campaign_materials .views-row h2 a {
   font-size: 20px;
   font-weight: bold;
 }
-.page-campaign-materials .view-id-view_campaign_materials .views-row h3 a:before {
+.page-campaign-materials .view-id-view_campaign_materials .views-row h2 a:before {
   content: "> ";
 }
 .page-campaign-materials .view-id-view_campaign_materials .views-row .field.field-name-field-publication-date {
