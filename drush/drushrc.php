@@ -466,6 +466,7 @@ $options['init-modules'] = array(
   'plupload',
   'maxlength',
   'date_single_day',
+  'masquerade',
 
   // Captcha
  'recaptcha',
