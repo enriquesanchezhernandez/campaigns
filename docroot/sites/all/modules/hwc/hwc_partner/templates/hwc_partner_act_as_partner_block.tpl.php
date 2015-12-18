@@ -12,7 +12,7 @@
         <?php print $content; ?>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal"><?php t('Cancel'); ?></button>
+        <button type="button" class="btn btn-default" data-dismiss="modal"><?php print t('Cancel'); ?></button>
       </div>
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->

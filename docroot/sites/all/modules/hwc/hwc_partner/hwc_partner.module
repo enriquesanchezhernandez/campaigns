@@ -306,6 +306,15 @@ function hwc_partner_form_masquerade_block_1_alter(&$form, &$form_state) {
     $form['masquerade_user_field']['#autocomplete_path'] = 'hwc_partner/autocomplete';
     $form['#validate'] = array_merge(array('hwc_partner_form_masquerade_validate'), $form['#validate']);
   }
+  if (!empty($form['masquerade_desc'])) {
+    $form['masquerade_desc']['#markup'] = t('Find the partner by typing its name');
+    $form['masquerade_desc']['#weight'] = -10;
+  }
+  $form['submit']['#value'] = t('Switch account');
+  $form['hint'] = array(
+    '#type' => 'item',
+    '#markup' => t('Hint: After switching to new partner account, there will be a link in the website header to switch back to your account'),
+  );
 }
 
 function hwc_partner_form_masquerade_validate($form, &$form_state) {
