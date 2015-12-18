@@ -76,7 +76,7 @@ $theme_dir = drupal_get_path('theme', 'hwc_frontend');
 ?>
 <?php if (!empty($page['above_header'])): ?>
 <?php endif; ?>
-<header id="navbar" role="banner" class="navbar navbar-default container-fluid"><?php // print $navbar_classes; ?>
+<header id="navbar" class="navbar navbar-default container-fluid"><?php // print $navbar_classes; ?>
   <div class="container-fluid campaigns-header">
     <div class="row">
       <div class="navbar-header">
@@ -109,7 +109,7 @@ $theme_dir = drupal_get_path('theme', 'hwc_frontend');
     </div>
     <div class="row">
 		<div class="navbar-collapse collapse">
-		  <nav role="navigation">
+		  <nav>
 			<?php if (!empty($primary_nav)): ?>
 			  <?php print render($primary_nav); ?>
 			<?php endif; ?>
@@ -160,7 +160,7 @@ $theme_dir = drupal_get_path('theme', 'hwc_frontend');
     </section>
 	
     <?php if (!empty($page['sidebar_second'])): ?>
-      <aside class="col-xs-12 col-sm-8 col-sm-offset-2" role="complementary">
+      <aside class="col-xs-12 col-sm-8 col-sm-offset-2">
         <?php print render($page['sidebar_second']); ?>
       </aside>  <!-- /#sidebar-second -->
     <?php endif; ?>
@@ -168,9 +168,9 @@ $theme_dir = drupal_get_path('theme', 'hwc_frontend');
 </div>
 <footer class="footer">
   <?php print render($page['footer']); ?>
-  <h3>
+  <h2>
     <?php print t("Safety and health at work is everyone's concern. It's good for you. It's good for business."); ?>
-  </h3>
+  </h2>
   <p>
     <?php print t("European Agency for Safety and Health at Work | an agency of the European Union"); ?>
   </p>

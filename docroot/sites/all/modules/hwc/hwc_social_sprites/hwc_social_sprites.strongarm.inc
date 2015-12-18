@@ -168,7 +168,7 @@ function hwc_social_sprites_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'text_resize_scope';
-  $strongarm->value = 'main-container';
+  $strongarm->value = 'body';
   $export['text_resize_scope'] = $strongarm;
 
   return $export;

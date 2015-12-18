@@ -228,7 +228,7 @@ function hwc_gallery_strongarm() {
         ),
         'share_widget' => array(
           'default' => array(
-            'weight' => '2',
+            'weight' => '3',
             'visible' => TRUE,
           ),
         ),

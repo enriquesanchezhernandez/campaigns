@@ -185,13 +185,15 @@ function hwc_practical_tool_menu_tools_search_native($form_state) {
     $pager_params['text'] = $text;
   }
   $language_names = array();
+  $languages_objects = language_list();
   foreach($languages as $code) {
-    $l = i18n_language_load($code);
-    $language_names[] = $l->native;
+//    $l = i18n_language_load($code);
+//    $language_names[] = $l->native;
+    $language_names[] = $languages_objects[$code]->name;
   }
   $ret = array(
     '#nids' => $nids,
-    '#prefix' => '<h4>' . t('Tools and guidance in ') . implode(', ', $language_names) . '</h4>',
+    '#prefix' => '<h2 class="h4-title">' . t('Tools and guidance in ') . implode(', ', $language_names) . '</h2>',
     'results-native' => node_view_multiple($nodes, 'pub_teaser', 0, $language->language),
     '#suffix' => theme('pager', array(
       'tags' => array('<', '<', '', '>', '>'),
@@ -204,6 +206,7 @@ function hwc_practical_tool_menu_tools_search_native($form_state) {
 
 function hwc_practical_tool_menu_tools_search_related($form_state, $native_nids) {
   global $language;
+  $languages = hwc_req_param($form_state, 'languages', array($language->language));
   $ret = array();
   if($form_state['input']) {
     if (($form_state['input']['languages']['en'] !== NULL)) {
@@ -211,7 +214,7 @@ function hwc_practical_tool_menu_tools_search_related($form_state, $native_nids)
     }
   }
   else {
-    if($language->language == 'en') {
+    if (in_array('en', $languages)) {
       return $ret;
     }
   }
@@ -288,7 +291,7 @@ function hwc_practical_tool_menu_tools_search_related($form_state, $native_nids)
     $pager_params['text'] = $text;
   }
   $ret = array(
-    '#prefix' => '<h4>' . t('Other relevant tools in English') . '</h4>',
+    '#prefix' => '<h2 class="h4-title">' . t('Other relevant tools in English') . '</h2>',
     'results-related' => node_view_multiple($nodes, 'pub_teaser', 0, $language->language),
     '#suffix' => theme('pager', array(
       'tags' => array('<', '<', '', '>', '>'),

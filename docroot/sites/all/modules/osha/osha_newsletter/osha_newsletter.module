@@ -390,7 +390,7 @@ function osha_newsletter_block_view($delta = '') {
       break;
     case 'osha_newsletter_subscribe_extra':
       if(user_access('access content')) {
-        $block['subject'] = t('Campaign Newsletter');
+        $block['subject'] = t('Campaign newsletter');
         $subscribe_form = drupal_get_form('osha_newsletter_subscribe_extra_form');
         $block['content'] = theme('subscribe_extra_block', array(
           'subscribe_form' => drupal_render($subscribe_form)
@@ -517,6 +517,8 @@ function osha_newsletter_form_alter(&$form, &$form_state, $form_id) {
         osha_newsletter_fix_entity_collection_edit_form($form, $form_state);
         // Alter submit button label.
         $form['actions']['submit']['#value'] = t('Update newsletter');
+        // Add a validation handler.
+        $form['#validate'][] = 'osha_newsletter_entity_collection_form_validate';
         // Add a submit handler.
         $form['#submit'][] = 'osha_newsletter_entity_collection_form_submit';
       }
@@ -527,6 +529,8 @@ function osha_newsletter_form_alter(&$form, &$form_state, $form_id) {
         osha_newsletter_fix_entity_collection_add_form($form, $form_state);
         // Alter submit button label.
         $form['actions']['submit']['#value'] = t('Create newsletter');
+        // Add a validation handler.
+        $form['#validate'][] = 'osha_newsletter_entity_collection_form_validate';
         // Add a submit handler.
         $form['#submit'][] = 'osha_newsletter_entity_collection_form_submit';
       }
@@ -622,6 +626,18 @@ function osha_newsletter_form_alter(&$form, &$form_state, $form_id) {
 
 function osha_newsletter_form_validate($form, &$form_state){
   // TODO : Check the submitted items
+}
+
+/**
+ * Validation handler when adding or updating a newsletter.
+ */
+function osha_newsletter_entity_collection_form_validate($form, &$form_state) {
+  if (($intro_length = strlen($form_state['values']['field_introduction_text'][LANGUAGE_NONE][0]['value'])) > 240) {
+    form_set_error(
+      'field_introduction_text',
+      t('Introduction text is too long. Limit is 240 characters, but you entered !limit characters!', array('!limit' =>  $intro_length))
+    );
+  }
 }
 
 /**
@@ -1264,8 +1280,8 @@ function osha_newsletter_osha_tmgmt_i18n_string_list() {
  */
 function osha_newsletter_vbo_action_access_alter(&$has_access, $operation) {
   global $user;
-  // Allow Review Manager and administrators to add items to newsletter.
-  if ((in_array('Review Manager', $user->roles) || in_array('administrator', $user->roles))
+  // Allow Review Manager, supervisor(mostra) and administrators to add items to newsletter.
+  if ((in_array('Review Manager', $user->roles) || in_array('administrator', $user->roles) || in_array('supervisor', $user->roles))
     && $operation->operationId == 'action::osha_newsletter_add_to_newsletter_action') {
     $has_access = TRUE;
   }

@@ -1,5 +1,5 @@
 <?php foreach ($items as $item): ?>
-  <a href="<?php print $item['url']; ?>" class="external-link">
+  <a target="_blank" href="<?php print $item['url']; ?>" class="external-link">
     <?php
     if (strpos($item['url'],substr($item['title'], 0, -3)) === false) {
       print $item['title'];

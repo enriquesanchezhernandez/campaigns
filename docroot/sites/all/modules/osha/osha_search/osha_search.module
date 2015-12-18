@@ -404,3 +404,15 @@ function osha_search_osha_tmgmt_i18n_string_list() {
   module_load_include('inc', 'osha_search', 'osha_search.translations');
   return osha_search_get_translatable_strings();
 }
+
+/**
+ * Implements hook_path_breadcrumbs_view_alter().
+ */
+function osha_search_path_breadcrumbs_view_alter(&$breadcrumbs, $path_breadcrumbs, $contexts) {
+  if ($path_breadcrumbs->machine_name == 'search') {
+    if (isset($_GET['search_block_form']) && !empty($_GET['search_block_form'])) {
+      // Add searched text to breadcrumb.
+      $breadcrumbs[] = $_GET['search_block_form'];
+    }
+  }
+}

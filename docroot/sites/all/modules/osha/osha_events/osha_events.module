@@ -127,21 +127,28 @@ function osha_events_form_views_exposed_form_alter(&$form, &$form_state) {
       // See ticket CW-1438 and Drupal bug: www.drupal.org/node/1415306
       $_GET['field_start_date_value']['date'] = $date->format('d/m/Y');
     }
-  }elseif($form['#id'] == 'views-exposed-form-events-search-page-1' || $form['#id'] == 'views-exposed-form-events-search-page') {
-    // Add Events Calendar filter just after search exposed filter
-    if($form['#id'] == 'views-exposed-form-events-search-page-1'){
-      $block = block_load('views','events-block_1');
-    }elseif($form['#id'] == 'views-exposed-form-events-search-page'){
-      $block = block_load('views','events-block_2');
+  }
+  elseif ($form['#id'] == 'views-exposed-form-events-search-page-1' || $form['#id'] == 'views-exposed-form-events-search-page') {
+    // HCW-976 Add 'name' attribute to submit button
+    $form['submit']['#name'] = 'submit';
+
+    // Add Events Calendar filter just after search exposed filter.
+    if ($form['#id'] == 'views-exposed-form-events-search-page-1') {
+      $block = block_load('views', 'events-block_1');
     }
-    $events_calendar = drupal_render(_block_get_renderable_array(_block_render_blocks(array($block))));
+    elseif ($form['#id'] == 'views-exposed-form-events-search-page') {
+      $block = block_load('views', 'events-block_2');
+    }
+    $rendered_block = _block_get_renderable_array(_block_render_blocks(array($block)));
+    $events_calendar = drupal_render($rendered_block);
     $form['events_calendar'] = array(
       '#type' => 'markup',
       '#markup' => $events_calendar,
     );
 
-    // Add placeholder for free text field
-    $form['search_api_views_fulltext']['#attributes'] = array('placeholder' => array(t('Free text filter')));
+    // Add placeholder for free text field.
+    $placeholder_text = ($form['#id'] == 'views-exposed-form-events-search-page') ? t('Search Upcoming events') : t('Search Past events');
+    $form['search_api_views_fulltext']['#attributes'] = array('placeholder' => array($placeholder_text), 'title' => array($placeholder_text));
   }
 }
 
@@ -276,6 +283,27 @@ function osha_events_user_role_insert($role) {
 }
 
 /**
+ * Implements hook_views_pre_view().
+ */
+function osha_events_views_pre_view( view &$view, &$display_id, &$args) {
+  if (in_array($view->name, array('events_search'))) {
+    $params = drupal_get_query_parameters();
+    // Fix for HCW-1012
+    // If emtpy search word, we search only for english, even if in other languages
+    // We will render the translations from _pre_render
+    if (empty($params['search_api_views_fulltext'])) {
+      $view_filters = $view->display_handler->get_option('filters');
+      $view_filters['search_api_language']['value'] = drupal_map_assoc(array('en'));
+      $overrides = array();
+      $overrides['filters'] = $view_filters;
+      foreach ($overrides as $option => $definition) {
+        $view->display_handler->override_option($option, $definition);
+      }
+    }
+  }
+}
+
+/**
  * Implements hook_views_pre_render().
  *
  * {@inheritdoc}
@@ -344,6 +372,17 @@ function osha_events_views_pre_render(&$view) {
     if(isset($view->exposed_input['f'])) {
       $pos = strpos($view->exposed_input['f'][0],':');
       $title = osha_events_get_view_title(substr($view->exposed_input['f'][0], $pos+1));
+    }
+    // When searching in other lang than EN, we are getting en results,
+    foreach ($view->result as &$result) {
+      if (!empty($result->_entity_properties['nid'])) {
+        $node = node_load($result->_entity_properties['nid']);
+        if ($node) {
+          $wrapper = entity_metadata_wrapper('node', $node);
+          $result->_entity_properties['title_field'][0] = $wrapper->label();
+          $result->_entity_properties['body:value'][0] = $wrapper->body->value();
+        }
+      }
     }
 
     // Set view title.

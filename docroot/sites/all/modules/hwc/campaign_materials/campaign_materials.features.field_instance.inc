@@ -439,7 +439,7 @@ function campaign_materials_field_default_field_instances() {
         'module' => 'image',
         'settings' => array(
           'field_formatter_class' => '',
-          'image_link' => 'content',
+          'image_link' => '',
           'image_style' => 'medium_large',
         ),
         'type' => 'image',
@@ -893,7 +893,7 @@ function campaign_materials_field_default_field_instances() {
           'field_formatter_class' => '',
           'title_class' => '',
           'title_link' => 'content',
-          'title_style' => 'h3',
+          'title_style' => 'h2',
         ),
         'type' => 'title_linked',
         'weight' => 2,

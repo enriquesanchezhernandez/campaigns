@@ -446,6 +446,10 @@ function hwc_form_alter(&$form, &$form_state, $form_id) {
     $form['#after_build'] = array('_form_add_website_placeholder_after_build');
   }
 
+  if ($form_id == 'lang_dropdown_form') {
+    $form['lang_dropdown_select']['#attributes']['title'] = t('Language switcher dropdown');
+  }
+
 }
 
 /**
@@ -657,7 +661,7 @@ function hwc_news_share_widget($node, $options = array()) {
     $title = drupal_get_title();
   }
   else {
-    $url = url('/node/' . $node->nid, array('absolute' => TRUE));
+    $url = url('node/' . $node->nid, array('absolute' => TRUE));
     $wrapper = entity_metadata_wrapper('node', $node);
     $title = $wrapper->title_field->value();
     $type = $node->type;
@@ -683,11 +687,26 @@ function hwc_news_share_widget($node, $options = array()) {
     'node' => $node,
     'language' => $language,
     'options' => $options,
+    'label' => t('Share this article'),
+    'type' => $type,
   );
-  if ($type == 'article') {
-    return theme('article_share_widget', $vars);
+  // Custom label for videos related articles.
+  if (!empty($node->nid) && ($node->nid == 160 || $node->nid == 108)) {
+    $vars['label'] = t('Share this video');
   }
-  return theme('news_share_widget', $vars);
+
+  // Merge default vars with ones from options.
+  $vars = $options + $vars;
+  switch ($vars['type']) {
+    case 'article':
+      $widget = theme('article_share_widget', $vars);
+      break;
+
+    default:
+      $widget = theme('news_share_widget', $vars);
+      break;
+  }
+  return $widget;
 }
 
 function hwc_page_share_widget() {
@@ -939,7 +958,7 @@ function hwc_taxonomy_term_presave($term) {
 
 function theme_hwc_print_friendly_block() {
   $content = array(
-    '#markup' => '<a href="javascript:if(window.print)window.print();" class="printfriendly"></a>'
+    '#markup' => '<a href="javascript:if(window.print)window.print();" class="printfriendly" title="Print page"></a>'
   );
   return render($content);
 }
@@ -957,4 +976,30 @@ function hwc_form_search_block_form_alter(&$form) {
   unset($form['#submit']);
   unset($form['form_build_id']);
   unset($form['form_id']);
+}
+
+
+/**
+ * Implements hook_filter_info().
+ */
+function hwc_filter_info() {
+  $filters['hwc_tmgmt_filter_id'] = array(
+    'title' => t('Removes tmgmt id attribute to prevent duplicate id in same page'),
+    'process callback' => '_hwc_filter_html_id',
+    'weight' => 11,
+  );
+  return $filters;
+}
+
+/**
+ * Implements callback_filter_process().
+ */
+function _hwc_filter_html_id($text) {
+  $html_dom = filter_dom_load($text);
+  $xpath = new DOMXPath($html_dom);
+  $nodes = $xpath->query("//*[contains(@id, 'tmgmt')]");;
+  foreach ($nodes as $node) {
+    $node->removeAttribute('id');
+  }
+  return filter_dom_serialize($html_dom);
 }

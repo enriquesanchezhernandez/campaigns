@@ -291,3 +291,7 @@ div#newsletter-subscription-form-wrapper_2 form > div {
     margin-top: 5px !important;
     margin-left: auto !important;
 }
+.footer h2 {
+    font-size: 20px;
+    font-weight: bold;
+}

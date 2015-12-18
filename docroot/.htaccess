@@ -139,10 +139,11 @@ DirectoryIndex index.php index.html index.htm
       # Force proxies to cache gzipped & non-gzipped css/js files separately.
       Header append Vary Accept-Encoding
     </FilesMatch>
-    <FilesMatch "\.(?i:xml|pdf)$">
-      # Download XML and PDF files instead of open
-      ForceType application/octet-stream
-      Header set Content-Disposition attachment
-    </FilesMatch>
   </IfModule>
+</IfModule>
+
+# Add headers to all responses.
+<IfModule mod_headers.c>
+  # Disable content sniffing, since it's an attack vector.
+  Header always set X-Content-Type-Options nosniff
 </IfModule>

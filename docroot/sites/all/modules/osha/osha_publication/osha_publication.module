@@ -571,7 +571,7 @@ function osha_publication_twin_publications_formatter($items) {
     foreach($node->field_file as $lang => $value) {
       if(in_array($lang, $languages)) {
         foreach($value as $delta => $file) {
-          $label = strtoupper($lang) . '<i class="glyphicon glyphicon-circle-arrow-down"></i>';
+          $label = strtoupper($lang) . '<span class="glyphicon glyphicon-circle-arrow-down"></span>';
           $link = l($label, file_create_url($file['uri']), array(
             'absolute' => TRUE, 'html' => TRUE,
             'attributes' => array(
@@ -616,7 +616,7 @@ function osha_publication_file_all_group_mimetype_formatter($items) {
     $links = array();
     foreach($value as $langcode => $files) {
       foreach($files as $file) {
-        $title = strtoupper($langcode) . '<i class="glyphicon glyphicon-circle-arrow-down"></i>';
+        $title = strtoupper($langcode) . '<span class="glyphicon glyphicon-circle-arrow-down"></span>';
         $links[] = l($title, file_create_url($file['uri']), array(
           'absolute' => TRUE, 'html' => TRUE,
           'attributes' => array(
