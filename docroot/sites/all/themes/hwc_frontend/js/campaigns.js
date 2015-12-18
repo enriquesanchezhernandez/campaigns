@@ -6,6 +6,13 @@ jQuery(document).ready(function() {
 	    windowWidth= jQuery(window).width();//window size, when resizing
 	});
 
+	
+	/*View newsletter captcha*/
+
+	jQuery( "#edit-email-osh" ).click(function() {
+  		jQuery('#block-osha-newsletter-osha-newsletter-subscribe div.captcha').show();
+	});
+
 	/*specific functions for tablet and/or mobile */
 	funcionesTabletMovil();
 
