@@ -983,6 +983,7 @@ ul.tabs--primary.nav.nav-tabs{
 		margin-top: 1em;
 		span{
 			font-size: @size3;
+			font-weight: bold;
 		}
 	}
 	.field-name-field-city{
@@ -1208,11 +1209,17 @@ ul.tabs--primary.nav.nav-tabs{
 		}
 		.captcha {
 			margin-top: 25px !important;
-			margin-left: -300px;
+			height:1%;
+			overflow:hidden;
 		}
 	}
 	
 	/* home events */
+
+	.panels-flexible-column-new-2 .view-news .date-display-single{
+			display:block;
+		}
+
 	#block-views-frontpage-events-block, .panels-flexible-column-new-2, .panels-flexible-column-last{
 	    float: left;
 		text-align: center;
@@ -1250,9 +1257,7 @@ ul.tabs--primary.nav.nav-tabs{
 				}
 			}
 		}
-		.date-display-single{
-			/* font-size: @size3; */
-		}
+		
 		.view-content{
 			/*height: 270px;*/
 			overflow: hidden;
@@ -1445,6 +1450,7 @@ ul.tabs--primary.nav.nav-tabs{
 						margin-left: 6em;
 						span{
 							font-size: @size3;
+							font-weight: bold;
 						}
 					}
 					.field-name-body{
@@ -1993,7 +1999,7 @@ ul.tabs--primary.nav.nav-tabs{
 		float: left;
 		margin: 1em 0 0;
 		.field-label{
-			width: 15%;
+			width: 14%;
 			float: left;
 		}
 		.field-items{
@@ -2754,6 +2760,7 @@ article{
 				.views-field-field-start-date-1{
 					font-size: @size3;
 					margin-bottom: 0.5em;
+					font-weight: bold;
 				}
 				.views-field-field-country-code, .views-field-field-city{
 					font-weight: bold;
@@ -3270,9 +3277,6 @@ article{
 /*gallery dialog*/
 #cboxWrapper{
 	border-radius: 0;
-	div:first-child{
-		display: none;
-	}
 	div{
 		#cboxMiddleLeft, #cboxMiddleRight{
 			display: none;
@@ -3819,6 +3823,7 @@ article{
 			}
 			.date{
 				font-size: @size3;
+				font-weight: bold;
 			}
 			img{
 				min-width: 120px;
@@ -4119,9 +4124,16 @@ article{
 			font-size: 32px;
 			margin-top: 1em;
 			margin-bottom:1em;
-			
+			text-align:center;
 		}
 	}
+
+	.pane-node-field-position-identifier{
+		.field-item{
+			text-align:center;
+		}
+	}
+
 	.pane-node-field-quote{
 		font-style: italic;
 		font-weight: bold;
@@ -4256,6 +4268,11 @@ article{
 		}
 	}
 .node-type-partner{
+
+	.panels-flexible-region-inside div{
+		text-align: left;
+	}
+
 	.panels-flexible-row-new-5{
 		margin-left: @margin1;
 		margin-right: @margin1;
@@ -5400,6 +5417,12 @@ article{
 /* End view-partners */
 /*pag Newsletter*/
 .page-node-129{
+
+	hr{
+		margin-top: 10px;
+    	margin-bottom: 10px;
+	}
+
 	h1{
 		border-bottom: none;
 		background: url("../images/content/mail-newsletter-big.jpg") no-repeat center top;
@@ -5433,6 +5456,7 @@ article{
 			}
 			input{
 				font-weight: normal;
+				width: 255px;
 			}
 			label, span{
 				font-weight: bold;
@@ -5540,10 +5564,6 @@ article{
 			button, button#edit-submit--4, button#edit-unsubscribe--2{
 				min-width: 130px;
 			}
-			
-			div.captcha ~ button#edit-submit--4{
-				margin-top: 13.5em;
-			}
 		}
 		div#newsletter-subscription-form-wrapper{
 			text-align: left;
@@ -5634,6 +5654,14 @@ article{
 
 /*pag get-your-certificate*/
 .page-get-your-certificate{
+
+	.description{
+		background-color: transparent;
+    	color: #039;
+    	font-weight: 700;
+    	font-style: italic;
+	}
+
 	.chosen-container{
 		.chosen-drop, .chosen-search input[type="text"]{
 			border-color: @text-color-2;
@@ -5667,16 +5695,13 @@ article{
 			.form-item, .webform-component {
 				margin-bottom: 1em;
 			}
-			&#edit-submitted-confirm{
-				label{
-					font-weight: bold;
-				}
-			}
 		}
 		.webform-component--other-activities{
 			label{
-				margin-left: 35px;
+				margin-left: 0px;
 				float: left;
+				color: @text-color-2;
+    			font-family: 'Open Sans';
 			}
 			input{
 				width: auto;
@@ -5723,15 +5748,26 @@ article{
 			}
 		}
 	}
-	.pane-node-field-image, .pane-node-body{
+	.pane-node-field-image{
 		float: left;
 		clear: none;
 		margin-top: 0;
-		width: auto;
-		max-width: 70%;
+		width: 20%;
+		max-width: 20%;
 		.field-name-body .field-items{
 			width: 95%;
 			margin-left: 5%;
+		}
+	}
+
+	.pane-node-body{
+		float: left;
+		clear: none;
+		margin-top: 0;
+		width: 80%;
+		max-width: 80%;
+		.field-items{
+			width:100%;
 		}
 	}
 	.container>div>.pane-node-body:last-child{
@@ -6328,4 +6364,8 @@ span.form-required{
 	.field-items .field-items{
 		padding-bottom: 1em;
 	}
+}
+
+span.date-display-single{
+	font-weight: bold;
 }

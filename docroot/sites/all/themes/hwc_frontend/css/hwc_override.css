@@ -280,9 +280,6 @@ div#newsletter-subscription-form-wrapper_2 form > div {
     text-align: left;
     font-weight: bold;
 }
-#newsletter-subscription-form-wrapper_2 form > div > div.captcha {
-    margin-left: auto;
-}
 #newsletter-subscription-form-wrapper_2 form input {
     color: #003399;
     border: 1px solid #003399;
