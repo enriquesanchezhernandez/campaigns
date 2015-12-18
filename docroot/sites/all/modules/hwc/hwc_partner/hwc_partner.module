@@ -315,6 +315,9 @@ function hwc_partner_form_masquerade_block_1_alter(&$form, &$form_state) {
     '#type' => 'item',
     '#markup' => t('Hint: After switching to new partner account, there will be a link in the website header to switch back to your account'),
   );
+
+  // @TODO: on key click must select the option from autocomplete, then submit the form.
+  drupal_add_js("jQuery('#edit-masquerade-user-field').keydown(function(e) {if (e.keyCode == 13) { e.preventDefault(); }})",  array('type' => 'inline', 'scope' => 'footer'));
 }
 
 function hwc_partner_form_masquerade_validate($form, &$form_state) {
