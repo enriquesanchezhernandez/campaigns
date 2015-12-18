@@ -155,6 +155,29 @@ function hwc_partner_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'masquerade_admin_roles';
+  $strongarm->value = array(
+    3 => '3',
+    4 => '4',
+    5 => '5',
+    6 => '6',
+    7 => '7',
+    8 => '8',
+    9 => '9',
+    10 => '10',
+    11 => '11',
+    13 => '13',
+    14 => '14',
+    15 => '15',
+    1 => 0,
+    2 => 0,
+    12 => 0,
+  );
+  $export['masquerade_admin_roles'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'menu_options_partner';
   $strongarm->value = array(
     0 => 'main-menu',

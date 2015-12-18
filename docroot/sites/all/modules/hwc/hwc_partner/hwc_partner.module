@@ -44,6 +44,18 @@ function hwc_partner_context_page_condition() {
   }
 }
 
+function hwc_partner_menu() {
+  $items = array();
+  $items['hwc_partner/autocomplete'] = array(
+    'title' => '',
+    'page callback' => 'hwc_partner_autocomplete_users_partners',
+    'access callback' => 'masquerade_menu_access',
+    'access arguments' => array('autocomplete'),
+    'type' => MENU_CALLBACK,
+  );
+  return $items;
+}
+
 /**
  * Implements hook_block_info().
  */
@@ -81,6 +93,14 @@ function hwc_partner_block_info() {
     'visibility' => BLOCK_VISIBILITY_LISTED,
     'cache' => DRUPAL_CACHE_PER_USER,
     'weight' => 60,
+  );
+  $blocks['hwc_partner_mostra_masquerade'] = array(
+    'info' => t('Act as a partner'),
+    'status' => 1,
+    'region' => 'header',
+    'visibility' => BLOCK_VISIBILITY_NOTLISTED,
+    'cache' => DRUPAL_NO_CACHE,
+    'weight' => 50,
   );
   return $blocks;
 }
@@ -156,12 +176,12 @@ function hwc_partner_block_save($delta = '', $edit = array()) {
  */
 function hwc_partner_block_view($delta = '') {
   $block = array();
+  global $user;
   if (preg_match('/hwc_partner_private_link_[0-2]/', $delta)) {
     $it = substr($delta, -1);
     $url = variable_get('hwc_partner_private_link_' . $it . '_url', '');
     $block['subject'] = '<none>';
     if ($node = menu_get_object()) {
-      global $user;
       $visible =
         count(array_intersect(array(
           'administrator',
@@ -200,13 +220,11 @@ function hwc_partner_block_view($delta = '') {
     $block['content'] = '<h1>' . t('My public profile') . '</h1>';
   }
   else if ($delta == 'hwc_partner_user_account_edit') {
-    global $user;
     // Did this to use it in panels.
     $block['title'] = '<none>';
     $block['content'] = l(t('Change password'), 'user/' . $user->uid . '/edit');
   }
   else if ($delta == 'hwc_partner_back_to_profile') {
-    global $user;
     $link = NULL;
     // Sometimes the $user->workbench_access is empty, force a load of WBA data.
     if (empty($user->workbench_access)) {
@@ -222,6 +240,16 @@ function hwc_partner_block_view($delta = '') {
           break;
         }
       }
+    }
+  }
+  else if ($delta == 'hwc_partner_mostra_masquerade') {
+    $block['title'] = '<none>';
+    if (isset($_SESSION['masquerading'])) {
+      $block['content'] = l(t('Switch back to your user'), 'masquerade/unswitch', array('query' => array('token' => drupal_get_token('masquerade/unswitch'))));
+    }
+    else if (user_access('masquerade as any user')) {
+      $form = drupal_get_form('masquerade_block_1');
+      $block['content'] = theme('hwc_partner_act_as_partner_block', array('content' => drupal_render($form)));
     }
   }
   return $block;
@@ -263,7 +291,78 @@ function hwc_partner_theme() {
       'path' => $path . '/templates',
     );
   }
+  $theme['hwc_partner_act_as_partner_block'] = array(
+    'template' => 'templates/hwc_partner_act_as_partner_block',
+    'variables' => array(
+      'content' => '',
+    ),
+  );
   return $theme;
+}
+
+function hwc_partner_form_masquerade_block_1_alter(&$form, &$form_state) {
+  // Add our own autocomplete to show only partners users.
+  if (!empty($form['masquerade_user_field']['#autocomplete_path'])) {
+    $form['masquerade_user_field']['#autocomplete_path'] = 'hwc_partner/autocomplete';
+    $form['#validate'] = array_merge(array('hwc_partner_form_masquerade_validate'), $form['#validate']);
+  }
+  if (!empty($form['masquerade_desc'])) {
+    $form['masquerade_desc']['#markup'] = t('Find the partner by typing its name');
+    $form['masquerade_desc']['#weight'] = -10;
+  }
+  $form['submit']['#value'] = t('Switch account');
+  $form['hint'] = array(
+    '#type' => 'item',
+    '#markup' => t('Hint: After switching to new partner account, there will be a link in the website header to switch back to your account'),
+  );
+
+  // @TODO: on key click must select the option from autocomplete, then submit the form.
+  drupal_add_js("jQuery('#edit-masquerade-user-field').keydown(function(e) {if (e.keyCode == 13) { e.preventDefault(); }})",  array('type' => 'inline', 'scope' => 'footer'));
+}
+
+function hwc_partner_form_masquerade_validate($form, &$form_state) {
+  $no_masq_roles = array_filter(variable_get('masquerade_admin_roles', array()));
+  $name = $form_state['values']['masquerade_user_field'];
+  $masq_user = user_load_by_name($name);
+  if (empty($masq_user)) {
+    form_set_error('masquerade_user_field', t('Could not switch to the selected account!'));
+    return;
+  }
+  $inter_roles = array_intersect(array_keys($masq_user->roles), $no_masq_roles);
+  if (!empty($inter_roles)) {
+    form_set_error('masquerade_user_field', t('You can only switch to a partner'));
+    return;
+  }
+}
+
+/**
+ * Auto complete ajax user callback.
+ */
+function hwc_partner_autocomplete_users_partners($string) {
+  $matches = array();
+  if (strlen($string) > 1) {
+    $partner_rid = 12;
+    // Get users with only PARTNER role and with a section attached.
+    $subquery = db_query('SELECT uid from users_roles GROUP BY uid HAVING COUNT(rid) = 1')->fetchCol();
+    if (!empty($subquery)) {
+      $query = db_select('users', 'u')->fields('u', array('uid', 'name'));
+      $query->addField('t', 'name', 'partner_name');
+      $query->innerJoin('users_roles', 'ur', 'u.uid = ur.uid');
+      $query->innerJoin('workbench_access_user', 'wu', 'wu.uid = u.uid');
+      $query->innerJoin('taxonomy_term_data', 't', 'wu.access_id = t.tid');
+      $query->condition('ur.rid', $partner_rid);
+      $or = db_or()
+        ->condition('u.name', '%' . db_like(strtolower($string)) . '%', 'LIKE')
+        ->condition('t.name', '%' . db_like(strtolower($string)) . '%', 'LIKE');
+      $query->condition($or);
+      $query->condition('u.uid', $subquery, 'IN');
+      $result = $query->execute();
+      while ($row = $result->fetchAssoc()) {
+        $matches[$row['name']] = strtr('@user (@partner)', array('@user' => $row['name'], '@partner' => $row['partner_name']));
+      }
+    }
+  }
+  drupal_json_output($matches);
 }
 
 /**
