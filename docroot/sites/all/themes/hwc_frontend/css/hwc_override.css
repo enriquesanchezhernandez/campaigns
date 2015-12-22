@@ -166,6 +166,7 @@ div.workbench-info-block {
 }
 #block-osha-newsletter-osha-newsletter-image .captchaContainer {
     width: 257px;
+    height:82px;
 }
 #block-osha-newsletter-osha-newsletter-image #captcha_0_readaudio img,#block-osha-newsletter-osha-newsletter-image #captcha_0_refresh img {
     position: absolute;
