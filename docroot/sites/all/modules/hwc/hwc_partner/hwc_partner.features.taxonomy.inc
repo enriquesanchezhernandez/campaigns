@@ -10,9 +10,9 @@
 function hwc_partner_taxonomy_default_vocabularies() {
   return array(
     'bussines_sector' => array(
-      'name' => 'Bussines Sector',
+      'name' => 'Business Sector',
       'machine_name' => 'bussines_sector',
-      'description' => 'Partner - Bussines Sector',
+      'description' => 'Partner - Business Sector',
       'hierarchy' => 0,
       'module' => 'taxonomy',
       'weight' => 0,
