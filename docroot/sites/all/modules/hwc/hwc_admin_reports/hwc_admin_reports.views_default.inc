@@ -661,7 +661,7 @@ function hwc_admin_reports_views_default_views() {
   $handler->display->display_options['fields']['field_publication_date']['alter']['strip_tags'] = TRUE;
   $handler->display->display_options['fields']['field_publication_date']['element_default_classes'] = FALSE;
   $handler->display->display_options['fields']['field_publication_date']['settings'] = array(
-    'format_type' => 'long',
+    'format_type' => 'osha_day_only',
     'fromto' => 'both',
     'multiple_number' => '',
     'multiple_from' => '',
@@ -932,7 +932,7 @@ function hwc_admin_reports_views_default_views() {
   $handler->display->display_options['fields']['field_start_date']['alter']['strip_tags'] = TRUE;
   $handler->display->display_options['fields']['field_start_date']['element_default_classes'] = FALSE;
   $handler->display->display_options['fields']['field_start_date']['settings'] = array(
-    'format_type' => 'long',
+    'format_type' => 'osha_day_only',
     'fromto' => 'value',
     'multiple_number' => '',
     'multiple_from' => '',
@@ -947,7 +947,7 @@ function hwc_admin_reports_views_default_views() {
   $handler->display->display_options['fields']['field_start_date_1']['label'] = 'Event end date';
   $handler->display->display_options['fields']['field_start_date_1']['alter']['strip_tags'] = TRUE;
   $handler->display->display_options['fields']['field_start_date_1']['settings'] = array(
-    'format_type' => 'long',
+    'format_type' => 'osha_day_only',
     'fromto' => 'value2',
     'multiple_number' => '',
     'multiple_from' => '',
