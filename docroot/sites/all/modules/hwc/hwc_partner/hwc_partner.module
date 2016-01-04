@@ -369,22 +369,34 @@ function hwc_partner_autocomplete_users_partners($string) {
  * Implements hook_node_view().
  */
 function hwc_partner_node_view($node, $view_mode, $langcode) {
-  global $user, $base_url;
+  global $user;
   if ($node->type == 'partner' && $view_mode == 'full') {
-    $w = entity_metadata_wrapper('node', $node);
-    $user_is_partner = hwc_partner_match_user_partner($node)
-      || in_array(ROLE_SUPERVISOR, $user->roles)
+    $loginshell = NULL;
+    $link_parameters = array('query' => array());
+    if (in_array(ROLE_SUPERVISOR, $user->roles)
       || in_array(ROLE_ADMINISTRATOR, $user->roles)
-      || in_array(ROLE_SUPERADMINISTRATOR, $user->roles);
-    if ($user_is_partner && $session_id = $w->field_guid_organisation->value()) {
-      $update_title = l(t('Update profile'), 'private/profile/update', array('query' => array('session_id' => $session_id)));
-      $update_content = t('Any modifications in your public profile? <a href="!link"> Click here to update it.</a>', array('!link' => url('private/profile/update')));
-      $update_title = '<div class="hwc-partner-private-link-block-title">' . $update_title . '</div>';
-      $update_content = '<div class="hwc-partner-private-link-block-description">' . $update_content . '</div>';
+      || in_array(ROLE_SUPERADMINISTRATOR, $user->roles)
+    ) {
+      // In case of these roles, partner's main contact GUID instead of user's guid
+      $w = entity_metadata_wrapper('node', $node->nid);
+      $loginshell = $w->field_guid_main_contact->value();
+    }
+    $user_is_partner = hwc_partner_match_user_partner($node);
+    if ($user_is_partner) {
+      $wu = entity_metadata_wrapper('user', $user->uid);
+      $loginshell = $wu->field_crm_guid->value();
+    }
+    if ($loginshell) {
+      $link_parameters['query']['session_id'] = $loginshell;
+      $update_title = '<div class="hwc-partner-private-link-block-title">' . l(t('Update profile'), 'private/profile/update', $link_parameters) . '</div>';
+      $update_content = '<div class="hwc-partner-private-link-block-description">'
+        . t('Any modifications in your public profile? <a href="!link">Click here to update it.</a>', array('!link' => url('private/profile/update', $link_parameters)))
+        . '</div>';
       $node->content['profile_update_link'] = array(
-          '#type' => 'markup',
-          '#markup' => $update_title . $update_content,
+        '#type' => 'markup',
+        '#markup' => $update_title . $update_content,
       );
+
     }
   }
   if (in_array(ROLE_CAMPAIGN_PARTNER, $user->roles) && $node->type == 'events' && $view_mode == 'full') {
