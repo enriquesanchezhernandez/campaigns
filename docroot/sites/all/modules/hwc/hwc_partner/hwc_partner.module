@@ -386,7 +386,7 @@ function hwc_partner_node_view($node, $view_mode, $langcode) {
       $wu = entity_metadata_wrapper('user', $user->uid);
       $loginshell = $wu->field_crm_guid->value();
     }
-    if ($loginshell) {
+    if (!empty($loginshell)) {
       $link_parameters['query']['session_id'] = $loginshell;
       $update_title = '<div class="hwc-partner-private-link-block-title">' . l(t('Update profile'), 'private/profile/update', $link_parameters) . '</div>';
       $update_content = '<div class="hwc-partner-private-link-block-description">'
