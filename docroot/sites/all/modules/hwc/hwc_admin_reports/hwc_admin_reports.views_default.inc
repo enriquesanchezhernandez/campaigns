@@ -718,13 +718,15 @@ function hwc_admin_reports_views_default_views() {
   $handler->display->display_options['fields']['path']['field'] = 'path';
   $handler->display->display_options['fields']['path']['label'] = 'URL path';
   $handler->display->display_options['fields']['path']['absolute'] = TRUE;
-  /* Field: User: Name */
-  $handler->display->display_options['fields']['name']['id'] = 'name';
-  $handler->display->display_options['fields']['name']['table'] = 'users';
-  $handler->display->display_options['fields']['name']['field'] = 'name';
-  $handler->display->display_options['fields']['name']['relationship'] = 'uid';
-  $handler->display->display_options['fields']['name']['label'] = 'Author';
-  $handler->display->display_options['fields']['name']['link_to_user'] = FALSE;
+  /* Field: User: CRM GUID */
+  $handler->display->display_options['fields']['field_crm_guid']['id'] = 'field_crm_guid';
+  $handler->display->display_options['fields']['field_crm_guid']['table'] = 'field_data_field_crm_guid';
+  $handler->display->display_options['fields']['field_crm_guid']['field'] = 'field_crm_guid';
+  $handler->display->display_options['fields']['field_crm_guid']['relationship'] = 'uid';
+  $handler->display->display_options['fields']['field_crm_guid']['label'] = 'Author';
+  $handler->display->display_options['fields']['field_crm_guid']['settings'] = array(
+    'field_formatter_class' => '',
+  );
   /* Field: Content: Nid */
   $handler->display->display_options['fields']['nid']['id'] = 'nid';
   $handler->display->display_options['fields']['nid']['table'] = 'node';
@@ -1069,9 +1071,9 @@ function hwc_admin_reports_views_default_views() {
   $handler->display->display_options['fields']['field_schedule_1']['label'] = 'Schedule - Date';
   $handler->display->display_options['fields']['field_schedule_1']['type'] = 'token_formatters_field_collection';
   $handler->display->display_options['fields']['field_schedule_1']['settings'] = array(
-    'text' => '[field_collection_item:field_talking_date]',
+    'text' => '[field_collection_item:field-talking-date:value] to [field_collection_item:field-talking-date:value2]',
     'link' => '',
-    'check_access' => 1,
+    'check_access' => 0,
     'field_formatter_class' => '',
   );
   $handler->display->display_options['fields']['field_schedule_1']['delta_offset'] = '0';
@@ -1124,13 +1126,16 @@ function hwc_admin_reports_views_default_views() {
   $handler->display->display_options['fields']['path']['field'] = 'path';
   $handler->display->display_options['fields']['path']['label'] = 'URL path';
   $handler->display->display_options['fields']['path']['absolute'] = TRUE;
-  /* Field: User: Name */
-  $handler->display->display_options['fields']['name']['id'] = 'name';
-  $handler->display->display_options['fields']['name']['table'] = 'users';
-  $handler->display->display_options['fields']['name']['field'] = 'name';
-  $handler->display->display_options['fields']['name']['relationship'] = 'uid';
-  $handler->display->display_options['fields']['name']['label'] = 'Author';
-  $handler->display->display_options['fields']['name']['link_to_user'] = FALSE;
+  /* Field: User: CRM GUID */
+  $handler->display->display_options['fields']['field_crm_guid']['id'] = 'field_crm_guid';
+  $handler->display->display_options['fields']['field_crm_guid']['table'] = 'field_data_field_crm_guid';
+  $handler->display->display_options['fields']['field_crm_guid']['field'] = 'field_crm_guid';
+  $handler->display->display_options['fields']['field_crm_guid']['relationship'] = 'uid';
+  $handler->display->display_options['fields']['field_crm_guid']['label'] = 'Author';
+  $handler->display->display_options['fields']['field_crm_guid']['type'] = 'text_plain';
+  $handler->display->display_options['fields']['field_crm_guid']['settings'] = array(
+    'field_formatter_class' => '',
+  );
   /* Field: Content: Nid */
   $handler->display->display_options['fields']['nid']['id'] = 'nid';
   $handler->display->display_options['fields']['nid']['table'] = 'node';
