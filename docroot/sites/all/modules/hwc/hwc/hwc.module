@@ -789,13 +789,16 @@ function hwc_user_activate($mail) {
 
   // Check the user
   $query = new EntityFieldQuery();
-  $query->entityCondition('entity_type', 'user')
-    ->propertyCondition('mail', $mail)
-    ->count();
-  $count = $query->execute();
-  if ($count > 0) {
-    drupal_add_http_header('Status', '400 User already exists');
-    echo '400 User already exists';
+  $query->entityCondition('entity_type', 'user')->propertyCondition('mail', $mail);
+  $result = $query->execute();
+  if (count($result) > 0) {
+    $row = current(reset($result));
+    $account = user_load($row->uid);
+    watchdog('hwc', 'Generating one-time login link for account <em>!uid</em>', array(
+      '!uid' => $account->name
+    ), WATCHDOG_WARNING);
+    // Generate one time password reset link
+    print user_pass_reset_url($account);
     drupal_exit();
     die();
   }
