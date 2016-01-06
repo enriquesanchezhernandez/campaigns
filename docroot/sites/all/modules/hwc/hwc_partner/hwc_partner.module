@@ -337,7 +337,6 @@ function hwc_partner_form_masquerade_validate($form, &$form_state) {
 }
 
 function hwc_partner_form_masquerade_redirect($form, $form_state) {
-  dpm($form_state);
   if (!empty($form_state['values']['masquerade_user_field']) && $account = user_load_by_name($form_state['values']['masquerade_user_field'])) {
     // If the user is a partner, redirect to the corresponding partner profile
     if (in_array(ROLE_CAMPAIGN_PARTNER, $account->roles) && !empty($account->workbench_access)) {
