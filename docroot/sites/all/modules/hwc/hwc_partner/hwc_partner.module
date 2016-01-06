@@ -310,6 +310,7 @@ function hwc_partner_form_masquerade_block_1_alter(&$form, &$form_state) {
     $form['masquerade_desc']['#markup'] = t('Find the partner by typing its name');
     $form['masquerade_desc']['#weight'] = -10;
   }
+  array_unshift($form['#submit'], 'hwc_partner_form_masquerade_redirect');
   $form['submit']['#value'] = t('Switch account');
   $form['hint'] = array(
     '#type' => 'item',
@@ -333,6 +334,10 @@ function hwc_partner_form_masquerade_validate($form, &$form_state) {
     form_set_error('masquerade_user_field', t('You can only switch to a partner'));
     return;
   }
+}
+
+function hwc_partner_form_masquerade_redirect() {
+  $_SERVER['HTTP_REFERER'] = '/user';
 }
 
 /**
