@@ -318,6 +318,7 @@ $options['init-modules'] = array(
   'wysiwyg',
   'pathauto',
   'redirect',
+  'match_redirect',
   'file_entity',
   'media',
   'media_wysiwyg',
