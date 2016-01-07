@@ -382,6 +382,20 @@ function hwc_partner_autocomplete_users_partners($string) {
 }
 
 /**
+ * Implements hook_node_access().
+ */
+function hwc_partner_node_access($node, $op, $account) {
+  if ($op == 'view' && $node->nid == 253
+    && (!in_array(ROLE_CAMPAIGN_PARTNER, $account->roles)
+      && !in_array(ROLE_SUPERVISOR, $account->roles)
+      && !in_array(ROLE_ADMINISTRATOR, $account->roles)
+      && !in_array(ROLE_SUPERADMINISTRATOR, $account->roles))) {
+    return NODE_ACCESS_DENY;
+  }
+  return NODE_ACCESS_IGNORE;
+}
+
+/**
  * Implements hook_node_view().
  */
 function hwc_partner_node_view($node, $view_mode, $langcode) {
