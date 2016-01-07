@@ -465,3 +465,30 @@ function hwc_partner_node_delete($node) {
     }
   }
 }
+
+/**
+ * Implements hook_path_breadcrumbs_view_alter().
+ */
+function hwc_partner_path_breadcrumbs_view_alter(&$breadcrumbs, $path_breadcrumbs, $contexts) {
+  if (in_array($path_breadcrumbs->machine_name, array('partner_draft_news', 'partner_draft_events'))) {
+    $node = node_load($contexts['node']->argument);
+    switch ($node->field_partner_type[LANGUAGE_NONE][0]['tid']) {
+      case 185:
+        /* Official Campaign Partners */
+        $url = l(t('Official Campaign Partners'), 'official-campaign-partners');
+        break;
+
+      case 186:
+        /* Media Partners */
+        $url = l(t('Media Partners'), 'campaign-media-partners');
+        break;
+
+      default:
+        /* National Focal Points */
+        $url = l(t('National Focal Points'), 'national-focal-points');
+        break;
+    }
+    // Alter the URL to partners page considering the partner type.
+    $breadcrumbs[2] = $url;
+  }
+}
