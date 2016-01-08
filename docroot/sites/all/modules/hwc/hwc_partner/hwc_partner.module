@@ -479,3 +479,16 @@ function hwc_partner_node_delete($node) {
     }
   }
 }
+
+/**
+ * Implements hook_node_presave().
+ *
+ * HCW-1065 The author of the content should be the logged in user, not the
+ * masqueraded one.
+ */
+function hwc_partner_node_presave($node) {
+  global $user; /* Masqueraded user */
+  $user_original = user_load_by_name(get_current_user()); /* Original user */
+  $node->uid = $user_original->uid;
+  $node->name = $user_original->name;
+}
