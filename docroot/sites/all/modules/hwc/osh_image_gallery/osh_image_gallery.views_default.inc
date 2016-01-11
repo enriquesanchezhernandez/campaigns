@@ -102,22 +102,6 @@ function osh_image_gallery_views_default_views() {
   $handler->display->display_options['filters']['type']['expose']['label'] = 'Type';
   $handler->display->display_options['filters']['type']['expose']['operator'] = 'type_op';
   $handler->display->display_options['filters']['type']['expose']['identifier'] = 'type';
-  /* Filter criterion: Field: Nace (field_nace_codes) */
-  $handler->display->display_options['filters']['field_nace_codes_tid']['id'] = 'field_nace_codes_tid';
-  $handler->display->display_options['filters']['field_nace_codes_tid']['table'] = 'field_data_field_nace_codes';
-  $handler->display->display_options['filters']['field_nace_codes_tid']['field'] = 'field_nace_codes_tid';
-  $handler->display->display_options['filters']['field_nace_codes_tid']['value'] = '';
-  $handler->display->display_options['filters']['field_nace_codes_tid']['exposed'] = TRUE;
-  $handler->display->display_options['filters']['field_nace_codes_tid']['expose']['operator_id'] = 'field_nace_codes_tid_op';
-  $handler->display->display_options['filters']['field_nace_codes_tid']['expose']['label'] = 'Nace';
-  $handler->display->display_options['filters']['field_nace_codes_tid']['expose']['operator'] = 'field_nace_codes_tid_op';
-  $handler->display->display_options['filters']['field_nace_codes_tid']['expose']['identifier'] = 'field_nace_codes_tid';
-  $handler->display->display_options['filters']['field_nace_codes_tid']['expose']['remember_roles'] = array(
-    2 => '2',
-    1 => 0,
-    3 => 0,
-  );
-  $handler->display->display_options['filters']['field_nace_codes_tid']['vocabulary'] = 'nace_codes';
   /* Filter criterion: Field: Tags (field_tags) */
   $handler->display->display_options['filters']['field_tags_tid']['id'] = 'field_tags_tid';
   $handler->display->display_options['filters']['field_tags_tid']['table'] = 'field_data_field_tags';
@@ -185,22 +169,6 @@ function osh_image_gallery_views_default_views() {
   $handler->display->display_options['filters']['type']['expose']['label'] = 'Type';
   $handler->display->display_options['filters']['type']['expose']['operator'] = 'type_op';
   $handler->display->display_options['filters']['type']['expose']['identifier'] = 'type';
-  /* Filter criterion: Field: Nace (field_nace_codes) */
-  $handler->display->display_options['filters']['field_nace_codes_tid']['id'] = 'field_nace_codes_tid';
-  $handler->display->display_options['filters']['field_nace_codes_tid']['table'] = 'field_data_field_nace_codes';
-  $handler->display->display_options['filters']['field_nace_codes_tid']['field'] = 'field_nace_codes_tid';
-  $handler->display->display_options['filters']['field_nace_codes_tid']['value'] = '';
-  $handler->display->display_options['filters']['field_nace_codes_tid']['exposed'] = TRUE;
-  $handler->display->display_options['filters']['field_nace_codes_tid']['expose']['operator_id'] = 'field_nace_codes_tid_op';
-  $handler->display->display_options['filters']['field_nace_codes_tid']['expose']['label'] = 'Nace';
-  $handler->display->display_options['filters']['field_nace_codes_tid']['expose']['operator'] = 'field_nace_codes_tid_op';
-  $handler->display->display_options['filters']['field_nace_codes_tid']['expose']['identifier'] = 'field_nace_codes_tid';
-  $handler->display->display_options['filters']['field_nace_codes_tid']['expose']['remember_roles'] = array(
-    2 => '2',
-    1 => 0,
-    3 => 0,
-  );
-  $handler->display->display_options['filters']['field_nace_codes_tid']['vocabulary'] = 'nace_codes';
   /* Filter criterion: Field: Tags (field_tags) */
   $handler->display->display_options['filters']['field_tags_tid']['id'] = 'field_tags_tid';
   $handler->display->display_options['filters']['field_tags_tid']['table'] = 'field_data_field_tags';
@@ -244,7 +212,6 @@ function osh_image_gallery_views_default_views() {
     t('Use count'),
     t('File name'),
     t('Type'),
-    t('Nace'),
     t('Tags'),
     t('Media browser'),
     t('OSHA Library '),
