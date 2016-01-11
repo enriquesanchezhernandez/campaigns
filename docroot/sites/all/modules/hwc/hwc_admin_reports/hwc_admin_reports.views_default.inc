@@ -661,7 +661,7 @@ function hwc_admin_reports_views_default_views() {
   $handler->display->display_options['fields']['field_publication_date']['alter']['strip_tags'] = TRUE;
   $handler->display->display_options['fields']['field_publication_date']['element_default_classes'] = FALSE;
   $handler->display->display_options['fields']['field_publication_date']['settings'] = array(
-    'format_type' => 'osha_day_only',
+    'format_type' => 'us_date_only_format',
     'fromto' => 'both',
     'multiple_number' => '',
     'multiple_from' => '',
@@ -934,7 +934,7 @@ function hwc_admin_reports_views_default_views() {
   $handler->display->display_options['fields']['field_start_date']['alter']['strip_tags'] = TRUE;
   $handler->display->display_options['fields']['field_start_date']['element_default_classes'] = FALSE;
   $handler->display->display_options['fields']['field_start_date']['settings'] = array(
-    'format_type' => 'osha_day_only',
+    'format_type' => 'us_date_only_format',
     'fromto' => 'value',
     'multiple_number' => '',
     'multiple_from' => '',
@@ -949,7 +949,7 @@ function hwc_admin_reports_views_default_views() {
   $handler->display->display_options['fields']['field_start_date_1']['label'] = 'Event end date';
   $handler->display->display_options['fields']['field_start_date_1']['alter']['strip_tags'] = TRUE;
   $handler->display->display_options['fields']['field_start_date_1']['settings'] = array(
-    'format_type' => 'osha_day_only',
+    'format_type' => 'us_date_only_format',
     'fromto' => 'value2',
     'multiple_number' => '',
     'multiple_from' => '',
@@ -1071,7 +1071,7 @@ function hwc_admin_reports_views_default_views() {
   $handler->display->display_options['fields']['field_schedule_1']['label'] = 'Schedule - Date';
   $handler->display->display_options['fields']['field_schedule_1']['type'] = 'token_formatters_field_collection';
   $handler->display->display_options['fields']['field_schedule_1']['settings'] = array(
-    'text' => '[field_collection_item:field-talking-date:value] to [field_collection_item:field-talking-date:value2]',
+    'text' => '[field_collection_item:field-talking-date:value:us_dt] to [field_collection_item:field-talking-date:value2:us_dt]',
     'link' => '',
     'check_access' => 0,
     'field_formatter_class' => '',
