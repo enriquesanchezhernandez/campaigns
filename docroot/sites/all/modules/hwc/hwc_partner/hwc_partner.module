@@ -488,18 +488,18 @@ function hwc_partner_node_delete($node) {
  */
 function hwc_partner_node_presave($node) {
   if (isset($_SESSION['masquerading'])) {
+    // If Supervisor (masqueraded) switch account to record the correct author
     global $user; /* Masqueraded user */
     $_SESSION['masqueraded_user'] = $user->uid;
     masquerade_switch_back();
-
     $user_original = user_load_by_name(get_current_user());
     if (!$node->nid) {
       $node->uid  = $user_original->uid;
       $node->name = $user_original->name;
-      $node->log = 'Created by ' . $node->name . '.';
+      $node->log = 'Created by ' . $user_original->name . '.';
     }
     else {
-      $node->log = 'Edited by ' . $node->name . '.';
+      $node->log = 'Edited by ' . $user_original->name . '.';
     }
   }
 }
