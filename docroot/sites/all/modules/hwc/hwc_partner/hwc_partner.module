@@ -506,3 +506,48 @@ function hwc_partner_path_breadcrumbs_view_alter(&$breadcrumbs, $path_breadcrumb
     $breadcrumbs[2] = $url;
   }
 }
+
+/*
+ * Implements hook_node_presave().
+ *
+ * HCW-1065 The author of the content should be the logged in user, not the
+ * masqueraded one.
+ */
+function hwc_partner_node_presave($node) {
+  if (isset($_SESSION['masquerading'])) {
+    // If Supervisor (masqueraded) switch account to record the correct author
+    global $user; /* Masqueraded user */
+    $_SESSION['masqueraded_user'] = $user->uid;
+    masquerade_switch_back();
+    $user_original = user_load_by_name(get_current_user());
+    if (!$node->nid) {
+      $node->uid  = $user_original->uid;
+      $node->name = $user_original->name;
+      $node->log = 'Created by ' . $user_original->name . '.';
+    }
+    else {
+      $node->log = 'Edited by ' . $user_original->name . '.';
+    }
+  }
+}
+
+/**
+ * Implements hook_node_insert().
+ */
+function hwc_partner_node_insert($node) {
+  _hwc_partner_masquerade_reswitch();
+}
+
+/**
+ * Implements hook_node_update().
+ */
+function hwc_partner_node_update($node) {
+  _hwc_partner_masquerade_reswitch();
+}
+
+function _hwc_partner_masquerade_reswitch() {
+  if (isset($_SESSION['masqueraded_user'])) {
+    masquerade_switch_user($_SESSION['masqueraded_user']);
+    unset ($_SESSION['masqueraded_user']);
+  }
+}
