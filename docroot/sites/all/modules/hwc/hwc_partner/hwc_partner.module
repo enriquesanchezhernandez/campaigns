@@ -487,16 +487,19 @@ function hwc_partner_node_delete($node) {
  * masqueraded one.
  */
 function hwc_partner_node_presave($node) {
-  global $user; /* Masqueraded user */
   if (isset($_SESSION['masquerading'])) {
+    global $user; /* Masqueraded user */
     $_SESSION['masqueraded_user'] = $user->uid;
     masquerade_switch_back();
-    if (!$node->nid) {
-      $user_original = user_load_by_name(get_current_user()); /* Original user */
 
-      $node->uid = $node->revision_uid = $user_original->uid;
+    $user_original = user_load_by_name(get_current_user());
+    if (!$node->nid) {
+      $node->uid  = $user_original->uid;
       $node->name = $user_original->name;
       $node->log = 'Created by ' . $node->name . '.';
+    }
+    else {
+      $node->log = 'Edited by ' . $node->name . '.';
     }
   }
 }
@@ -505,20 +508,19 @@ function hwc_partner_node_presave($node) {
  * Implements hook_node_insert().
  */
 function hwc_partner_node_insert($node) {
-  if (isset($_SESSION['masqueraded_user'])) {
-    masquerade_switch_user($_SESSION['masqueraded_user']);
-    unset ($_SESSION['masqueraded_user']);
-  }
+  _hwc_partner_masquerade_reswitch();
 }
 
 /**
  * Implements hook_node_update().
  */
 function hwc_partner_node_update($node) {
+  _hwc_partner_masquerade_reswitch();
+}
+
+function _hwc_partner_masquerade_reswitch() {
   if (isset($_SESSION['masqueraded_user'])) {
     masquerade_switch_user($_SESSION['masqueraded_user']);
-    $user_original = user_load_by_name(get_current_user());
-    $node->log = 'Edited by ' . $user_original->name . '.';
     unset ($_SESSION['masqueraded_user']);
   }
 }
