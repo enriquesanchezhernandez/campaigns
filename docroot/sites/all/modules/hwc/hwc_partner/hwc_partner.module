@@ -225,6 +225,13 @@ function hwc_partner_block_view($delta = '') {
     $block['content'] = l(t('Change password'), 'user/' . $user->uid . '/edit');
   }
   elseif ($delta == 'hwc_partner_back_to_profile') {
+    // HCW-724 Remove 'Back to profile' link when partner is on its profile.
+    $panel = panels_get_current_page_display();
+    $node = menu_get_object();
+    if ($panel && $node && in_array($node->nid, $panel->args)) {
+      return array();
+    }
+
     $link = NULL;
     // Sometimes the $user->workbench_access is empty, force a load of WBA data.
     if (empty($user->workbench_access)) {
@@ -253,20 +260,6 @@ function hwc_partner_block_view($delta = '') {
     }
   }
   return $block;
-}
-
-/**
- * Implements hook_block_view_alter().
- */
-function hwc_partner_block_view_alter(&$data, $block) {
-  if ($block->delta == 'hwc_partner_back_to_profile') {
-    // HCW-724 Remove 'Back to profile' link when partner is on its profile.
-    $panel = panels_get_current_page_display();
-    $node = menu_get_object();
-    if ($panel && $node && in_array($node->nid, $panel->args)) {
-      $data = NULL;
-    }
-  }
 }
 
 /**
