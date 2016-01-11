@@ -83,7 +83,7 @@ function hwc_partner_block_info() {
     'status' => 1,
     'region' => 'header',
     'visibility' => BLOCK_VISIBILITY_NOTLISTED,
-    'cache' => DRUPAL_CACHE_PER_USER,
+    'cache' => DRUPAL_NO_CACHE,
     'weight' => 50,
   );
   $blocks['hwc_partner_user_account_edit'] = array(
@@ -228,7 +228,7 @@ function hwc_partner_block_view($delta = '') {
     // HCW-724 Remove 'Back to profile' link when partner is on its profile.
     $panel = panels_get_current_page_display();
     $node = menu_get_object();
-    if ($panel && $node && in_array($node->nid, $panel->args)) {
+    if ($panel && $node && !empty($panel->args) && in_array($node->nid, $panel->args)) {
       return array();
     }
 
