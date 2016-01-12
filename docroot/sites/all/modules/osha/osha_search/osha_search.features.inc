@@ -162,7 +162,7 @@ function osha_search_default_search_api_index() {
           "status" : 1,
           "weight" : "-10",
           "settings" : {
-            "default" : "1",
+            "default" : "0",
             "bundles" : {
               "article" : "article",
               "campaign_materials" : "campaign_materials",
