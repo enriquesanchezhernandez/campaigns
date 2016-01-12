@@ -10,7 +10,7 @@
 
 
 #block-search-form .input-group { width: 250px; }
-#block-search-form input { width: 210px; font-size: 1em; height: auto; }
+#block-search-form input { width: 200px; font-size: 1em; height: auto; float:right; }
 
 div.workbench-info-block {
   clear:both;
@@ -124,7 +124,7 @@ div.workbench-info-block {
     z-index: 100;
 }
 #block-osha-newsletter-osha-newsletter-image .form-item-security-code {
-    margin-top: 50px;
+    margin-top: 20px;
 }
 /* Homepage newsletter block END */
 
