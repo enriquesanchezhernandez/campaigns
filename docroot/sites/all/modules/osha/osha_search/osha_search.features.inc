@@ -106,7 +106,6 @@ function osha_search_default_search_api_index() {
         "field_partner_type" : { "type" : "integer", "entity_type" : "taxonomy_term" },
         "field_personal_title" : { "type" : "text" },
         "field_ph_address" : { "type" : "text" },
-        "field_ph_address_extra" : { "type" : "text" },
         "field_ph_cp" : { "type" : "text" },
         "field_ph_town" : { "type" : "text" },
         "field_pledge" : { "type" : "text" },
