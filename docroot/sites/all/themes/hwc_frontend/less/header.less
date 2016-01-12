@@ -42,7 +42,7 @@ header.navbar-default{
 			
 			.header-text{
 				color: @text-color-2;
-				font-size: @size8;
+				font-size: 1.65em;
 				font-weight: bold;
 				width: 185px;
 				padding-top: 1.8em;
@@ -68,8 +68,8 @@ header.navbar-default{
 
 			#block-hwc-partner-hwc-partner-mostra-masquerade{
 				float: right;
-			    margin-top: 15px;
-			    margin-right: 174px;
+			    margin-top: 7px;
+    			margin-bottom: 3px;
 			}
 
 			.lang-dropdown-select-element{
@@ -146,9 +146,9 @@ header.navbar-default{
 		/* login */
 		#block-menu-menu-header-login{
 			float: right;
-			margin-left: 0px;
-			padding-top: 9px;
-			padding-right: 175px;
+		    margin-left: 0;
+		    padding-top: 9px;
+		    padding-right: 175px;
 			a{
 				background: @bg-color-2 url('../images/header/login.png') no-repeat left center;
 				color: @color1;
@@ -161,12 +161,24 @@ header.navbar-default{
 			}
 		}
 		/*back to private zone*/
-		#block-block-1, #block-hwc-partner-hwc-partner-back-to-profile{
+		#block-block-1{
 			position: absolute;
 			right: 0;
-			top: 160px;
+			top: 116px;
 			font-weight: bold;
 			font-style: italic;
+			a:before{
+				content: ">";
+				padding-right: 5px;
+			}
+		}
+		 #block-hwc-partner-hwc-partner-back-to-profile{
+			    font-weight: 700;
+			    font-style: italic;
+			    float: RIGHT;
+			    font-size: .85em;
+			    padding-top: 8px;
+			    padding-right: 1em;
 			a:before{
 				content: ">";
 				padding-right: 5px;
@@ -368,4 +380,10 @@ header.navbar-default{
 	&:focus{
 		outline: 0;
 	}
+}
+
+
+#masquerade-block-1 .btn-default.form-submit{
+	margin-top:1em;
+	margin-bottom: 0.7em;
 }
