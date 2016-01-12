@@ -37,7 +37,11 @@ function hwc_practical_tool_menu_tools_form($form, $form_state) {
     '#value' => t('Search'),
     '#suffix' => '</div>',
   );
-  $form['content']['sort'] = array(
+  $form['content']['sort_fieldset'] = array(
+    /* Needed so that the page passes Web Accessibility test */
+    '#type' => 'fieldset',
+  );
+  $form['content']['sort_fieldset']['sort'] = array(
     '#type' => 'radios',
     '#title' => t('Sort by:'),
     '#default_value' => $sort,

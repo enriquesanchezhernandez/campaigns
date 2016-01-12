@@ -296,3 +296,9 @@ div#newsletter-subscription-form-wrapper_2 form > div {
     font-size: 20px;
     font-weight: bold;
 }
+.page-practical-tools fieldset.panel, .page-practical-tools fieldset.panel .panel-body {
+    border: none;
+    box-shadow: none;
+    margin: 0;
+    padding: 0;
+}
