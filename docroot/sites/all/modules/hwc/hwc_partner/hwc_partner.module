@@ -362,7 +362,7 @@ function hwc_partner_form_masquerade_redirect($form, $form_state) {
  * Implements hook_menu_alter().
  */
 function hwc_partner_menu_alter(&$items) {
-  $items['user/reset/%/%/%']['title'] = 'Configure your password';
+  $items['user/reset/%/%/%']['title'] = 'Set/Reset Password';
 }
 
 /**
