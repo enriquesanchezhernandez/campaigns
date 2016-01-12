@@ -40,7 +40,6 @@ class PartnerMigration extends HwcCrmMigration {
       'field_ph_cp',
       'field_ph_town',
       'field_country',
-      'field_ph_address_extra',
       'field_guid_main_contact',
       'field_main_contact',
       'field_main_contact_email',
@@ -170,7 +169,6 @@ class PartnerMigrateListXml extends AbstractCrmMigrateListXml {
         $data->field_ph_address = (string) $attributes['Textbox16'];
         $data->field_ph_cp = (string) $attributes['Textbox17'];
         $data->field_country = (string) $attributes['Textbox18'];
-        $data->field_ph_address_extra = (string) $attributes['Textbox13'];
         $data->field_ph_town = (string) $attributes['Textbox19'];
         $data->field_guid_main_contact = (string) $attributes['Textbox20'];
         $data->field_main_contact = trim((string) $attributes['Textbox21'] . ' ' . (string) $attributes['Textbox22']);

@@ -35,11 +35,11 @@ function hwc_partner_views_api($module = NULL, $api = NULL) {
 function hwc_partner_node_info() {
   $items = array(
     'partner' => array(
-      'name' => t('Partner'),
+      'name' => 'Partner',
       'base' => 'node_content',
-      'description' => t('Content type to store info about Official Campaign Partners and Media Partners'),
+      'description' => 'Content type to store info about Official Campaign Partners and Media Partners',
       'has_title' => '1',
-      'title_label' => t('Title'),
+      'title_label' => 'Title',
       'help' => '',
     ),
   );

@@ -10,7 +10,7 @@
 function hwc_partner_field_default_field_bases() {
   $field_bases = array();
 
-  // Exported field_base: 'field_appform_status'
+  // Exported field_base: 'field_appform_status'.
   $field_bases['field_appform_status'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -32,7 +32,7 @@ function hwc_partner_field_default_field_bases() {
     'type' => 'text',
   );
 
-  // Exported field_base: 'field_bussines_sector'
+  // Exported field_base: 'field_bussines_sector'.
   $field_bases['field_bussines_sector'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -60,7 +60,7 @@ function hwc_partner_field_default_field_bases() {
     'type' => 'taxonomy_term_reference',
   );
 
-  // Exported field_base: 'field_campaign_website'
+  // Exported field_base: 'field_campaign_website'.
   $field_bases['field_campaign_website'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -90,7 +90,7 @@ function hwc_partner_field_default_field_bases() {
     'type' => 'link_field',
   );
 
-  // Exported field_base: 'field_ceo'
+  // Exported field_base: 'field_ceo'.
   $field_bases['field_ceo'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -112,7 +112,7 @@ function hwc_partner_field_default_field_bases() {
     'type' => 'text',
   );
 
-  // Exported field_base: 'field_ceo_photo'
+  // Exported field_base: 'field_ceo_photo'.
   $field_bases['field_ceo_photo'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -137,7 +137,7 @@ function hwc_partner_field_default_field_bases() {
     'type' => 'image',
   );
 
-  // Exported field_base: 'field_crm_code'
+  // Exported field_base: 'field_crm_code'.
   $field_bases['field_crm_code'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -159,7 +159,7 @@ function hwc_partner_field_default_field_bases() {
     'type' => 'text',
   );
 
-  // Exported field_base: 'field_facebook_profile'
+  // Exported field_base: 'field_facebook_profile'.
   $field_bases['field_facebook_profile'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -189,7 +189,7 @@ function hwc_partner_field_default_field_bases() {
     'type' => 'link_field',
   );
 
-  // Exported field_base: 'field_general_email'
+  // Exported field_base: 'field_general_email'.
   $field_bases['field_general_email'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -206,7 +206,7 @@ function hwc_partner_field_default_field_bases() {
     'type' => 'email',
   );
 
-  // Exported field_base: 'field_general_phone'
+  // Exported field_base: 'field_general_phone'.
   $field_bases['field_general_phone'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -228,7 +228,7 @@ function hwc_partner_field_default_field_bases() {
     'type' => 'text',
   );
 
-  // Exported field_base: 'field_guid_main_contact'
+  // Exported field_base: 'field_guid_main_contact'.
   $field_bases['field_guid_main_contact'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -250,7 +250,7 @@ function hwc_partner_field_default_field_bases() {
     'type' => 'text',
   );
 
-  // Exported field_base: 'field_guid_organisation'
+  // Exported field_base: 'field_guid_organisation'.
   $field_bases['field_guid_organisation'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -272,7 +272,7 @@ function hwc_partner_field_default_field_bases() {
     'type' => 'text',
   );
 
-  // Exported field_base: 'field_linkedin_profile'
+  // Exported field_base: 'field_linkedin_profile'.
   $field_bases['field_linkedin_profile'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -302,7 +302,7 @@ function hwc_partner_field_default_field_bases() {
     'type' => 'link_field',
   );
 
-  // Exported field_base: 'field_logo'
+  // Exported field_base: 'field_logo'.
   $field_bases['field_logo'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -327,7 +327,7 @@ function hwc_partner_field_default_field_bases() {
     'type' => 'image',
   );
 
-  // Exported field_base: 'field_main_contact'
+  // Exported field_base: 'field_main_contact'.
   $field_bases['field_main_contact'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -349,7 +349,7 @@ function hwc_partner_field_default_field_bases() {
     'type' => 'text',
   );
 
-  // Exported field_base: 'field_main_contact_email'
+  // Exported field_base: 'field_main_contact_email'.
   $field_bases['field_main_contact_email'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -366,7 +366,7 @@ function hwc_partner_field_default_field_bases() {
     'type' => 'email',
   );
 
-  // Exported field_base: 'field_mission_statement'
+  // Exported field_base: 'field_mission_statement'.
   $field_bases['field_mission_statement'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -387,7 +387,7 @@ function hwc_partner_field_default_field_bases() {
     'type' => 'text_long',
   );
 
-  // Exported field_base: 'field_organisation_rep'
+  // Exported field_base: 'field_organisation_rep'.
   $field_bases['field_organisation_rep'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -409,7 +409,7 @@ function hwc_partner_field_default_field_bases() {
     'type' => 'text',
   );
 
-  // Exported field_base: 'field_orgtype'
+  // Exported field_base: 'field_orgtype'.
   $field_bases['field_orgtype'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -437,7 +437,7 @@ function hwc_partner_field_default_field_bases() {
     'type' => 'taxonomy_term_reference',
   );
 
-  // Exported field_base: 'field_partner_type'
+  // Exported field_base: 'field_partner_type'.
   $field_bases['field_partner_type'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -465,7 +465,7 @@ function hwc_partner_field_default_field_bases() {
     'type' => 'taxonomy_term_reference',
   );
 
-  // Exported field_base: 'field_ph_address'
+  // Exported field_base: 'field_ph_address'.
   $field_bases['field_ph_address'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -487,29 +487,7 @@ function hwc_partner_field_default_field_bases() {
     'type' => 'text',
   );
 
-  // Exported field_base: 'field_ph_address_extra'
-  $field_bases['field_ph_address_extra'] = array(
-    'active' => 1,
-    'cardinality' => 1,
-    'deleted' => 0,
-    'entity_types' => array(),
-    'field_name' => 'field_ph_address_extra',
-    'indexes' => array(
-      'format' => array(
-        0 => 'format',
-      ),
-    ),
-    'locked' => 0,
-    'module' => 'text',
-    'settings' => array(
-      'entity_translation_sync' => FALSE,
-      'max_length' => 255,
-    ),
-    'translatable' => 0,
-    'type' => 'text',
-  );
-
-  // Exported field_base: 'field_ph_cp'
+  // Exported field_base: 'field_ph_cp'.
   $field_bases['field_ph_cp'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -531,7 +509,7 @@ function hwc_partner_field_default_field_bases() {
     'type' => 'text',
   );
 
-  // Exported field_base: 'field_ph_town'
+  // Exported field_base: 'field_ph_town'.
   $field_bases['field_ph_town'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -553,7 +531,7 @@ function hwc_partner_field_default_field_bases() {
     'type' => 'text',
   );
 
-  // Exported field_base: 'field_pledge'
+  // Exported field_base: 'field_pledge'.
   $field_bases['field_pledge'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -574,7 +552,7 @@ function hwc_partner_field_default_field_bases() {
     'type' => 'text_long',
   );
 
-  // Exported field_base: 'field_position_identifier'
+  // Exported field_base: 'field_position_identifier'.
   $field_bases['field_position_identifier'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -596,7 +574,7 @@ function hwc_partner_field_default_field_bases() {
     'type' => 'text',
   );
 
-  // Exported field_base: 'field_slideshare_profile'
+  // Exported field_base: 'field_slideshare_profile'.
   $field_bases['field_slideshare_profile'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -626,7 +604,7 @@ function hwc_partner_field_default_field_bases() {
     'type' => 'link_field',
   );
 
-  // Exported field_base: 'field_social_dialog_partner'
+  // Exported field_base: 'field_social_dialog_partner'.
   $field_bases['field_social_dialog_partner'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -652,7 +630,7 @@ function hwc_partner_field_default_field_bases() {
     'type' => 'list_boolean',
   );
 
-  // Exported field_base: 'field_twitter_profile'
+  // Exported field_base: 'field_twitter_profile'.
   $field_bases['field_twitter_profile'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -682,7 +660,7 @@ function hwc_partner_field_default_field_bases() {
     'type' => 'link_field',
   );
 
-  // Exported field_base: 'field_youtube_profile'
+  // Exported field_base: 'field_youtube_profile'.
   $field_bases['field_youtube_profile'] = array(
     'active' => 1,
     'cardinality' => 1,

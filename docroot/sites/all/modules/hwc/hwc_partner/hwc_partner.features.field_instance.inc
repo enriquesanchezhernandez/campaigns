@@ -10,7 +10,7 @@
 function hwc_partner_field_default_field_instances() {
   $field_instances = array();
 
-  // Exported field_instance: 'node-partner-field_appform_status'
+  // Exported field_instance: 'node-partner-field_appform_status'.
   $field_instances['node-partner-field_appform_status'] = array(
     'bundle' => 'partner',
     'default_value' => NULL,
@@ -62,7 +62,7 @@ function hwc_partner_field_default_field_instances() {
     'workbench_access_field' => 0,
   );
 
-  // Exported field_instance: 'node-partner-field_bussines_sector'
+  // Exported field_instance: 'node-partner-field_bussines_sector'.
   $field_instances['node-partner-field_bussines_sector'] = array(
     'bundle' => 'partner',
     'default_value' => NULL,
@@ -105,7 +105,7 @@ function hwc_partner_field_default_field_instances() {
     'workbench_access_field' => 0,
   );
 
-  // Exported field_instance: 'node-partner-field_campaign_website'
+  // Exported field_instance: 'node-partner-field_campaign_website'.
   $field_instances['node-partner-field_campaign_website'] = array(
     'bundle' => 'partner',
     'default_value' => NULL,
@@ -201,7 +201,7 @@ function hwc_partner_field_default_field_instances() {
     'workbench_access_field' => 0,
   );
 
-  // Exported field_instance: 'node-partner-field_ceo'
+  // Exported field_instance: 'node-partner-field_ceo'.
   $field_instances['node-partner-field_ceo'] = array(
     'bundle' => 'partner',
     'default_value' => NULL,
@@ -280,7 +280,7 @@ function hwc_partner_field_default_field_instances() {
     'workbench_access_field' => 0,
   );
 
-  // Exported field_instance: 'node-partner-field_ceo_photo'
+  // Exported field_instance: 'node-partner-field_ceo_photo'.
   $field_instances['node-partner-field_ceo_photo'] = array(
     'bundle' => 'partner',
     'deleted' => 0,
@@ -390,7 +390,7 @@ function hwc_partner_field_default_field_instances() {
     'workbench_access_field' => 0,
   );
 
-  // Exported field_instance: 'node-partner-field_country'
+  // Exported field_instance: 'node-partner-field_country'.
   $field_instances['node-partner-field_country'] = array(
     'bundle' => 'partner',
     'default_value' => NULL,
@@ -436,7 +436,7 @@ function hwc_partner_field_default_field_instances() {
     'workbench_access_field' => 0,
   );
 
-  // Exported field_instance: 'node-partner-field_facebook_profile'
+  // Exported field_instance: 'node-partner-field_facebook_profile'.
   $field_instances['node-partner-field_facebook_profile'] = array(
     'bundle' => 'partner',
     'default_value' => NULL,
@@ -502,7 +502,7 @@ function hwc_partner_field_default_field_instances() {
     'workbench_access_field' => 0,
   );
 
-  // Exported field_instance: 'node-partner-field_general_email'
+  // Exported field_instance: 'node-partner-field_general_email'.
   $field_instances['node-partner-field_general_email'] = array(
     'bundle' => 'partner',
     'default_value' => NULL,
@@ -573,7 +573,7 @@ function hwc_partner_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-partner-field_general_phone'
+  // Exported field_instance: 'node-partner-field_general_phone'.
   $field_instances['node-partner-field_general_phone'] = array(
     'bundle' => 'partner',
     'default_value' => NULL,
@@ -652,7 +652,7 @@ function hwc_partner_field_default_field_instances() {
     'workbench_access_field' => 0,
   );
 
-  // Exported field_instance: 'node-partner-field_guid_main_contact'
+  // Exported field_instance: 'node-partner-field_guid_main_contact'.
   $field_instances['node-partner-field_guid_main_contact'] = array(
     'bundle' => 'partner',
     'default_value' => NULL,
@@ -731,7 +731,7 @@ function hwc_partner_field_default_field_instances() {
     'workbench_access_field' => 0,
   );
 
-  // Exported field_instance: 'node-partner-field_guid_organisation'
+  // Exported field_instance: 'node-partner-field_guid_organisation'.
   $field_instances['node-partner-field_guid_organisation'] = array(
     'bundle' => 'partner',
     'default_value' => NULL,
@@ -810,7 +810,7 @@ function hwc_partner_field_default_field_instances() {
     'workbench_access_field' => 0,
   );
 
-  // Exported field_instance: 'node-partner-field_linkedin_profile'
+  // Exported field_instance: 'node-partner-field_linkedin_profile'.
   $field_instances['node-partner-field_linkedin_profile'] = array(
     'bundle' => 'partner',
     'default_value' => NULL,
@@ -876,7 +876,7 @@ function hwc_partner_field_default_field_instances() {
     'workbench_access_field' => 0,
   );
 
-  // Exported field_instance: 'node-partner-field_logo'
+  // Exported field_instance: 'node-partner-field_logo'.
   $field_instances['node-partner-field_logo'] = array(
     'bundle' => 'partner',
     'deleted' => 0,
@@ -986,7 +986,7 @@ function hwc_partner_field_default_field_instances() {
     'workbench_access_field' => 0,
   );
 
-  // Exported field_instance: 'node-partner-field_main_contact'
+  // Exported field_instance: 'node-partner-field_main_contact'.
   $field_instances['node-partner-field_main_contact'] = array(
     'bundle' => 'partner',
     'default_value' => NULL,
@@ -1065,7 +1065,7 @@ function hwc_partner_field_default_field_instances() {
     'workbench_access_field' => 0,
   );
 
-  // Exported field_instance: 'node-partner-field_main_contact_email'
+  // Exported field_instance: 'node-partner-field_main_contact_email'.
   $field_instances['node-partner-field_main_contact_email'] = array(
     'bundle' => 'partner',
     'default_value' => NULL,
@@ -1138,7 +1138,7 @@ function hwc_partner_field_default_field_instances() {
     'workbench_access_field' => 0,
   );
 
-  // Exported field_instance: 'node-partner-field_mission_statement'
+  // Exported field_instance: 'node-partner-field_mission_statement'.
   $field_instances['node-partner-field_mission_statement'] = array(
     'bundle' => 'partner',
     'default_value' => NULL,
@@ -1217,7 +1217,7 @@ function hwc_partner_field_default_field_instances() {
     'workbench_access_field' => 0,
   );
 
-  // Exported field_instance: 'node-partner-field_organisation_rep'
+  // Exported field_instance: 'node-partner-field_organisation_rep'.
   $field_instances['node-partner-field_organisation_rep'] = array(
     'bundle' => 'partner',
     'default_value' => NULL,
@@ -1271,7 +1271,7 @@ function hwc_partner_field_default_field_instances() {
     'workbench_access_field' => 0,
   );
 
-  // Exported field_instance: 'node-partner-field_orgtype'
+  // Exported field_instance: 'node-partner-field_orgtype'.
   $field_instances['node-partner-field_orgtype'] = array(
     'bundle' => 'partner',
     'default_value' => NULL,
@@ -1314,7 +1314,7 @@ function hwc_partner_field_default_field_instances() {
     'workbench_access_field' => 0,
   );
 
-  // Exported field_instance: 'node-partner-field_partner_type'
+  // Exported field_instance: 'node-partner-field_partner_type'.
   $field_instances['node-partner-field_partner_type'] = array(
     'bundle' => 'partner',
     'default_value' => NULL,
@@ -1384,7 +1384,7 @@ function hwc_partner_field_default_field_instances() {
     'workbench_access_field' => 0,
   );
 
-  // Exported field_instance: 'node-partner-field_ph_address'
+  // Exported field_instance: 'node-partner-field_ph_address'.
   $field_instances['node-partner-field_ph_address'] = array(
     'bundle' => 'partner',
     'default_value' => NULL,
@@ -1463,86 +1463,7 @@ function hwc_partner_field_default_field_instances() {
     'workbench_access_field' => 0,
   );
 
-  // Exported field_instance: 'node-partner-field_ph_address_extra'
-  $field_instances['node-partner-field_ph_address_extra'] = array(
-    'bundle' => 'partner',
-    'default_value' => NULL,
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
-      'default' => array(
-        'label' => 'above',
-        'module' => 'text',
-        'settings' => array(
-          'field_formatter_class' => '',
-        ),
-        'type' => 'text_default',
-        'weight' => 12,
-      ),
-      'highlights_item' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-      'newsletter_item' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-      'osha_resources' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-      'osha_slideshow' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-      'pub_teaser' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-      'teaser' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-    ),
-    'entity_type' => 'node',
-    'field_name' => 'field_ph_address_extra',
-    'label' => 'Ph Address Extra',
-    'required' => 0,
-    'settings' => array(
-      'entity_translation_sync' => FALSE,
-      'linkit' => array(
-        'button_text' => 'Search',
-        'enable' => 0,
-        'profile' => '',
-      ),
-      'text_processing' => 0,
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'active' => 1,
-      'module' => 'text',
-      'settings' => array(
-        'size' => 60,
-      ),
-      'type' => 'text_textfield',
-      'weight' => 13,
-    ),
-    'workbench_access_field' => 0,
-  );
-
-  // Exported field_instance: 'node-partner-field_ph_cp'
+  // Exported field_instance: 'node-partner-field_ph_cp'.
   $field_instances['node-partner-field_ph_cp'] = array(
     'bundle' => 'partner',
     'default_value' => NULL,
@@ -1621,7 +1542,7 @@ function hwc_partner_field_default_field_instances() {
     'workbench_access_field' => 0,
   );
 
-  // Exported field_instance: 'node-partner-field_ph_town'
+  // Exported field_instance: 'node-partner-field_ph_town'.
   $field_instances['node-partner-field_ph_town'] = array(
     'bundle' => 'partner',
     'default_value' => NULL,
@@ -1672,7 +1593,7 @@ function hwc_partner_field_default_field_instances() {
     'workbench_access_field' => 0,
   );
 
-  // Exported field_instance: 'node-partner-field_pledge'
+  // Exported field_instance: 'node-partner-field_pledge'.
   $field_instances['node-partner-field_pledge'] = array(
     'bundle' => 'partner',
     'default_value' => NULL,
@@ -1721,7 +1642,7 @@ function hwc_partner_field_default_field_instances() {
     'workbench_access_field' => 0,
   );
 
-  // Exported field_instance: 'node-partner-field_position_identifier'
+  // Exported field_instance: 'node-partner-field_position_identifier'.
   $field_instances['node-partner-field_position_identifier'] = array(
     'bundle' => 'partner',
     'default_value' => NULL,
@@ -1773,7 +1694,7 @@ function hwc_partner_field_default_field_instances() {
     'workbench_access_field' => 0,
   );
 
-  // Exported field_instance: 'node-partner-field_quote'
+  // Exported field_instance: 'node-partner-field_quote'.
   $field_instances['node-partner-field_quote'] = array(
     'bundle' => 'partner',
     'default_value' => NULL,
@@ -1852,7 +1773,7 @@ function hwc_partner_field_default_field_instances() {
     'workbench_access_field' => 0,
   );
 
-  // Exported field_instance: 'node-partner-field_slideshare_profile'
+  // Exported field_instance: 'node-partner-field_slideshare_profile'.
   $field_instances['node-partner-field_slideshare_profile'] = array(
     'bundle' => 'partner',
     'default_value' => NULL,
@@ -1918,7 +1839,7 @@ function hwc_partner_field_default_field_instances() {
     'workbench_access_field' => 0,
   );
 
-  // Exported field_instance: 'node-partner-field_social_dialog_partner'
+  // Exported field_instance: 'node-partner-field_social_dialog_partner'.
   $field_instances['node-partner-field_social_dialog_partner'] = array(
     'bundle' => 'partner',
     'default_value' => array(
@@ -1968,7 +1889,7 @@ function hwc_partner_field_default_field_instances() {
     'workbench_access_field' => 0,
   );
 
-  // Exported field_instance: 'node-partner-field_twitter_profile'
+  // Exported field_instance: 'node-partner-field_twitter_profile'.
   $field_instances['node-partner-field_twitter_profile'] = array(
     'bundle' => 'partner',
     'default_value' => NULL,
@@ -2034,7 +1955,7 @@ function hwc_partner_field_default_field_instances() {
     'workbench_access_field' => 0,
   );
 
-  // Exported field_instance: 'node-partner-field_website'
+  // Exported field_instance: 'node-partner-field_website'.
   $field_instances['node-partner-field_website'] = array(
     'bundle' => 'partner',
     'default_value' => NULL,
@@ -2130,7 +2051,7 @@ function hwc_partner_field_default_field_instances() {
     'workbench_access_field' => 0,
   );
 
-  // Exported field_instance: 'node-partner-field_youtube_profile'
+  // Exported field_instance: 'node-partner-field_youtube_profile'.
   $field_instances['node-partner-field_youtube_profile'] = array(
     'bundle' => 'partner',
     'default_value' => NULL,
@@ -2196,7 +2117,7 @@ function hwc_partner_field_default_field_instances() {
     'workbench_access_field' => 0,
   );
 
-  // Exported field_instance: 'node-partner-title_field'
+  // Exported field_instance: 'node-partner-title_field'.
   $field_instances['node-partner-title_field'] = array(
     'bundle' => 'partner',
     'default_value' => NULL,
@@ -2282,7 +2203,7 @@ function hwc_partner_field_default_field_instances() {
     'workbench_access_field' => 0,
   );
 
-  // Exported field_instance: 'taxonomy_term-bussines_sector-field_crm_code'
+  // Exported field_instance: 'taxonomy_term-bussines_sector-field_crm_code'.
   $field_instances['taxonomy_term-bussines_sector-field_crm_code'] = array(
     'bundle' => 'bussines_sector',
     'default_value' => NULL,
@@ -2327,7 +2248,7 @@ function hwc_partner_field_default_field_instances() {
     'workbench_access_field' => 0,
   );
 
-  // Exported field_instance: 'taxonomy_term-organisation_type-field_crm_code'
+  // Exported field_instance: 'taxonomy_term-organisation_type-field_crm_code'.
   $field_instances['taxonomy_term-organisation_type-field_crm_code'] = array(
     'bundle' => 'organisation_type',
     'default_value' => NULL,
@@ -2398,7 +2319,6 @@ function hwc_partner_field_default_field_instances() {
   t('Organisation Type');
   t('Our campaign pledge');
   t('Ph Address');
-  t('Ph Address Extra');
   t('Ph CP');
   t('Position identifier');
   t('Quote');
