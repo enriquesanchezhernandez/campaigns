@@ -634,5 +634,5 @@ function hwc_frontend_top_anchor(&$vars) {
     'fragment' => 'top',
     'html' => TRUE,
   );
-  $vars['top_anchor'] = l('<img src="'.file_create_url(path_to_theme().'/images/anchor-top.png').'" />', '', $options);
+  $vars['top_anchor'] = l('<img alt="Anchor to top" src="'.file_create_url(path_to_theme().'/images/anchor-top.png').'" />', '', $options);
 }
