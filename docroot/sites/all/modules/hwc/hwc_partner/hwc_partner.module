@@ -514,7 +514,7 @@ function hwc_partner_path_breadcrumbs_view_alter(&$breadcrumbs, $path_breadcrumb
   }
 }
 
-/*
+/**
  * Implements hook_node_presave().
  *
  * HCW-1065 The author of the content should be the logged in user, not the
@@ -522,11 +522,12 @@ function hwc_partner_path_breadcrumbs_view_alter(&$breadcrumbs, $path_breadcrumb
  */
 function hwc_partner_node_presave($node) {
   if (isset($_SESSION['masquerading'])) {
-    // If Supervisor (masqueraded) switch account to record the correct author
+    // If Supervisor masquaraded a partner: switch account to record the correct
+    // author.
     global $user; /* Masqueraded user */
     $_SESSION['masqueraded_user'] = $user->uid;
     masquerade_switch_back();
-    $user_original = user_load_by_name(get_current_user());
+    $user_original = user_load($_SESSION['masquerading']); /* Original user */
     if (!$node->nid) {
       $node->uid  = $user_original->uid;
       $node->name = $user_original->name;
