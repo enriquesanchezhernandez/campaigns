@@ -46,6 +46,8 @@ function osha_search_default_search_api_index() {
         "attachments_field_publication_related_res" : { "type" : "text" },
         "attachments_field_related_documents" : { "type" : "text" },
         "author" : { "type" : "integer", "entity_type" : "user" },
+        "body:summary" : { "type" : "text" },
+        "body:value" : { "type" : "text" },
         "changed" : { "type" : "date" },
         "created" : { "type" : "date" },
         "edit_url" : { "type" : "uri" },
