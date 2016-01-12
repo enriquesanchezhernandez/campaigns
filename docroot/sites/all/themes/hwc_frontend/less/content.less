@@ -2,6 +2,11 @@
 
 	body{
 	/* General */
+
+		.form-type-password.form-item-pass{
+			padding-bottom: 1em;
+		}
+
 		font-family: @font-family-base;
 		.btn-default, .more-link, .btn-primary{
 			color: @btn-default-color;
@@ -401,7 +406,7 @@ ul.tabs--primary.nav.nav-tabs{
 	}
 	.tools-and-resources-block, .panels-flexible-column-new-main, .panels-flexible-column-first{
 		h2{
-			margin: 20px 0 !important;
+			margin: 0.5em 0 !important;
 			padding-top: 70px;
 			background: url("../images/content/tools-and-resources.png") no-repeat center top;
 			font-style: normal;
@@ -424,7 +429,7 @@ ul.tabs--primary.nav.nav-tabs{
 	#homepage_slider{
 		height: 356px !important;
 		/* background: @color3 url("../images/content/bg-campaign-partner.png") no-repeat left 20px; */
-		margin-bottom: 15px;
+		margin-bottom: 10px;
 		width: 100% !important;
 		> div{
 			width: 100% !important;
@@ -733,7 +738,7 @@ ul.tabs--primary.nav.nav-tabs{
 					color: @color2;
 					font-weight: bold;
 					margin-bottom: 2em;
-					font-size: @size2;
+					font-size: 1.35em;
 					&:before{
 						content: "> ";
 					}
@@ -1294,7 +1299,7 @@ ul.tabs--primary.nav.nav-tabs{
 			background: url("../images/content/partners.png") no-repeat center top;
 			padding-top: 70px;
 			padding-bottom: 0.5em;
-			margin-bottom: 1em;
+			margin-bottom: 0em;
 		}
 		.views-field-field-logo{
 			padding-top: 1em;
@@ -1405,7 +1410,7 @@ ul.tabs--primary.nav.nav-tabs{
 			width: 100% !important;
 			border-bottom: 1px solid @border-default-color;
 			border-top: 1px solid @border-default-color;
-			margin: 0em auto 3em;
+			margin: 0em auto 2em;
 			> div{
 				width: 100% !important;
 			}
@@ -1746,7 +1751,7 @@ ul.tabs--primary.nav.nav-tabs{
 	}
 	#search{
 		margin: 0;
-		padding: 1em 0 0;
+		padding: 0.5em 0 0.5em 0;
 		border-top: 1px dotted @border-default-color;
 		border-bottom: 1px dotted @border-default-color;
 		width: 100%;
@@ -1777,9 +1782,9 @@ ul.tabs--primary.nav.nav-tabs{
 		}
 	}
 	.publication-item{
-		padding: 1em 0;
+		padding: 0.5em 0;
 		border-bottom: 1px dotted @border-default-color;
-		min-height: 285px;
+		min-height: 260px;
 		display: inline-block;
 		.field-name-title-field{
 			margin-top: 3em;
@@ -2697,7 +2702,7 @@ article{
 		
 			.views-row{
 				padding-top: 20px;
-				padding-bottom: 40px;
+				padding-bottom: 30px;
 				min-height: 230px;
 				border-bottom: 1px dotted @color3;
 
@@ -3460,7 +3465,7 @@ article{
 		background: url("../images/content/bg-campaign-partner.png");
 		background-size: cover;
 		margin-top: 1em;
-		margin-bottom: 0em;
+		margin-bottom: 1em; /*no delete*/
 		padding-bottom: 2em;
 		/* margin-right: -15px;
 		margin-left: -15px; */
@@ -3637,9 +3642,7 @@ article{
 	.recomended-resources-for-you{
 		background: url("../images/content/bg-campaign-partner.png");
 		background-size: cover;
-		margin-bottom: 2em;
-		/* margin-left: -15px;
-		margin-right: -15px; */
+		margin-bottom: 0em;
 		p{
 			color: @color1;
 			font-size: @size1;
@@ -3680,7 +3683,8 @@ article{
 		border-bottom: 1px dotted @border-default-color;
 	}
 	.padding-bottom-2{
-		padding-bottom: 2em;
+		padding-top:1em;
+		padding-bottom: 1em;
 	}
 	.news-events-section{
 		padding-bottom: 3em;
@@ -4331,26 +4335,52 @@ article{
 				background: url("../images/content/facebook.png") no-repeat left center;
 				padding-left: 50px;
 				margin-bottom: 1em;
+				white-space: nowrap;
+				.field-item{ 
+				    width: 280px; 
+				    overflow: hidden;
+				    text-overflow: ellipsis; 
+				}
 			}
 			&[class*="twitter"]{
 				background: url("../images/content/twitter.png") no-repeat left center;
 				padding-left: 50px;
 				margin-bottom: 1em;
+				.field-item{ 
+				    width: 280px; 
+				    overflow: hidden;
+				    text-overflow: ellipsis; 
+				}
 			}
 			&[class*="slideshare"]{
 				background: url("../images/content/slideshare.png") no-repeat left center;
 				padding-left: 50px;
 				margin-bottom: 1em;
+				.field-item{ 
+				    width: 280px; 
+				    overflow: hidden;
+				    text-overflow: ellipsis; 
+				}
 			}
 			&[class*="youtube"]{
 				background: url("../images/content/youtube.png") no-repeat left center;
 				padding-left: 50px;
 				margin-bottom: 1em;
+				.field-item{ 
+				    width: 280px; 
+				    overflow: hidden;
+				    text-overflow: ellipsis; 
+				}
 			}
 			&[class*="linkedin"]{
 				background: url("../images/content/linkedin.png") no-repeat left center;
 				padding-left: 50px;
 				margin-bottom: 1em;
+				.field-item{ 
+				    width: 280px; 
+				    overflow: hidden;
+				    text-overflow: ellipsis; 
+				}
 			}
 			a{
 				word-break: break-all;
@@ -5057,8 +5087,8 @@ article{
 	.view-id-view_campaign_materials{
 		.views-row{
 			border-bottom: 1px dotted @color3;
-			padding-bottom: 15px;
-			margin-top: 15px;
+			margin-top: 10px;
+			padding-bottom: 5px;
 			.field-name-field-image{
 				margin-top: 8px;
     			margin-right: 3.5em;
@@ -5208,7 +5238,7 @@ article{
 		/* margin-bottom: 1.5em; */
 	}
 	.panels-flexible-row-container-main-row{
-		margin-top: 3em;
+		margin-top: 1em;
 	}
 	.pane-node-field-file{
 		padding-top: 1em;
@@ -5662,7 +5692,7 @@ article{
 }
 /*End pag error*/
 
-/*pag get-your-certificate*/
+/*page get-your-certificate*/
 .page-get-your-certificate{
 
 	.description{
@@ -5766,7 +5796,7 @@ article{
 	.pane-node-field-image{
 		float: left;
 		clear: none;
-		margin-top: 0;
+		margin-top: 1em;
 		width: 20%;
 		max-width: 20%;
 		.field-name-body .field-items{
@@ -5783,6 +5813,7 @@ article{
 		max-width: 80%;
 		.field-items{
 			width:100%;
+			padding-top:0.7em;
 		}
 	}
 	.container>div>.pane-node-body:last-child{
@@ -6395,12 +6426,6 @@ span.date-display-single{
 
 /*Modal partner*/
 
-#block-hwc-partner-hwc-partner-back-to-profile{
-	position:absolute!important;
-	top: 113px!important;
-	font-size: 0.85em;
-}
-
 #block-hwc-partner-hwc-partner-mostra-masquerade a{
 	font-weight: bold;
 	font-size: 0.85em;
@@ -6428,4 +6453,8 @@ span.date-display-single{
 
 #campaigns-newsletter-subscribe-captcha-form{
 	margin-top:30px;
+}
+
+.node-163 .field-name-body.field-type-text-with-summary{
+	margin-bottom: 1em;
 }
