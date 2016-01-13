@@ -147,7 +147,7 @@ function osha_search_default_search_api_index() {
         "search_api_et_id" : { "type" : "string" },
         "search_api_language" : { "type" : "string" },
         "search_api_url" : { "type" : "uri" },
-        "status" : { "type" : "boolean" },
+        "status" : { "type" : "integer" },
         "title" : { "type" : "text" },
         "title2" : { "type" : "string" },
         "title_field" : { "type" : "text" },
