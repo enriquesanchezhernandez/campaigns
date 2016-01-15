@@ -59,6 +59,9 @@ function hwc_practical_tool_menu_tools_form($form, $form_state) {
     '#default_value' => $languages ,
     '#title' => t('Tools are available in various languages:'),
   );
+  $form['#attached']['js'] = array(
+    drupal_get_path('module', 'hwc_practical_tool') . '/js/checkbox-submit.js',
+  );
   if (empty($form_state['input'])) {
     $form['content']['results-native'] = hwc_practical_tool_menu_tools_search_native($form_state);
     $native_nids = $form['content']['results-native']['#nids'];
