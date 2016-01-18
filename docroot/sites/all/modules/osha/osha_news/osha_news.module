@@ -48,11 +48,3 @@ function osha_news_form_alter(&$form, &$form_state, $form_id) {
     $form['field_aditional_resources']['#access'] = FALSE;
   }
 }
-
-/**
- * Implements hook_form_FORM_ID_alter().
- */
-function osha_news_form_news_node_form_alter(&$form, &$form_state, $form_id) {
-  $form['field_summary'][LANGUAGE_NONE][0]['#maxlength'] = 420;
-  $form['field_summary'][LANGUAGE_NONE][0]['#maxlength_js'] = 420;
-}
