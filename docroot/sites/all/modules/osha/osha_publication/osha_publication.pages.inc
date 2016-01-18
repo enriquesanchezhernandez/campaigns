@@ -54,6 +54,9 @@ function osha_publication_menu_publications_form($form, $form_state) {
     '#default_value' => $languages,
     '#title' => t('This tool is available in various languages'),
   );
+  $form['#attached']['js'] = array(
+    drupal_get_path('module', 'osha_publication') . '/js/checkbox-submit.js',
+  );
   if (empty($form_state['input'])) {
     $form['content']['results-native'] = osha_publication_menu_publications_search_native($form_state);
     $native_nids = $form['content']['results-native']['#nids'];
@@ -316,6 +319,9 @@ function osha_publication_menu_case_studies_form($form, $form_state) {
     '#options' => _hwc_segment_options_list(),
     '#default_value' => array('0'),
     '#title' => t('Relevant for:'),
+  );
+  $form['#attached']['js'] = array(
+    drupal_get_path('module', 'osha_publication') . '/js/checkbox-submit.js',
   );
   if (empty($form_state['input'])) {
     $form['content']['results-native'] = osha_publication_menu_case_studies_search_native($form_state);
