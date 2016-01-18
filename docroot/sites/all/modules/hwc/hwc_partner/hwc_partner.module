@@ -368,6 +368,7 @@ function hwc_partner_form_user_profile_form_alter(&$form, $form_state) {
   global $user;
   if (in_array(ROLE_CAMPAIGN_PARTNER, $user->roles)) {
     $form['field_cmw_mail_notifications']['#access'] = FALSE;
+    $form['#submit'][] = 'hwc_partner_user_profile_form_redirect';
   }
   $form['field_crm_guid']['#access'] = FALSE;
   $form['field_user_partner_guid']['#access'] = FALSE;
@@ -382,6 +383,18 @@ function hwc_partner_form_user_profile_form_alter(&$form, $form_state) {
     $form['locale']['#access'] = FALSE;
     $form['locale']['language']['#access'] = FALSE;
   }
+}
+
+/**
+ * HCW-1099.
+ *
+ * MP and OCP - When the user changes the password and saves changes, the system
+ * should redirect them to the Private Zone.
+ */
+function hwc_partner_user_profile_form_redirect($form, &$form_state) {
+  $partner = hwc_partner_get_account_partner();
+  $form_state['redirect'] = 'node/' . $partner->nid;
+  drupal_redirect_form($form_state);
 }
 
 /**
