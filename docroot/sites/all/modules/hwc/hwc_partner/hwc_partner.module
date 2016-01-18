@@ -585,3 +585,18 @@ function _hwc_partner_masquerade_reswitch() {
     unset ($_SESSION['masqueraded_user']);
   }
 }
+
+/**
+ * Implements hook_block_view_alter().
+ */
+function hwc_partner_block_view_alter(&$data, $block) {
+  if ($block->module == 'on_the_web' && $block->delta == '0') {
+    if (($node = menu_get_object()) && $node->type == 'partner') {
+      /*
+       * HCW-1087 Hide social Media icons in the footer and header and footer in
+       * the Private zone.
+       */
+      $data = NULL;
+    }
+  }
+}
