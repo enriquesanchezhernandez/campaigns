@@ -368,6 +368,7 @@ function hwc_partner_form_user_profile_form_alter(&$form, $form_state) {
   global $user;
   if (in_array(ROLE_CAMPAIGN_PARTNER, $user->roles)) {
     $form['field_cmw_mail_notifications']['#access'] = FALSE;
+    $form['#submit'][] = 'hwc_partner_user_profile_form_redirect';
   }
   $form['field_crm_guid']['#access'] = FALSE;
   $form['field_user_partner_guid']['#access'] = FALSE;
@@ -382,6 +383,18 @@ function hwc_partner_form_user_profile_form_alter(&$form, $form_state) {
     $form['locale']['#access'] = FALSE;
     $form['locale']['language']['#access'] = FALSE;
   }
+}
+
+/**
+ * HCW-1099.
+ *
+ * MP and OCP - When the user changes the password and saves changes, the system
+ * should redirect them to the Private Zone.
+ */
+function hwc_partner_user_profile_form_redirect($form, &$form_state) {
+  $partner = hwc_partner_get_account_partner();
+  $form_state['redirect'] = 'node/' . $partner->nid;
+  drupal_redirect_form($form_state);
 }
 
 /**
@@ -570,6 +583,7 @@ function hwc_partner_node_presave($node) {
  */
 function hwc_partner_node_insert($node) {
   _hwc_partner_masquerade_reswitch();
+  _hwc_partner_show_editing_time_to_partners($node);
 }
 
 /**
@@ -577,6 +591,7 @@ function hwc_partner_node_insert($node) {
  */
 function hwc_partner_node_update($node) {
   _hwc_partner_masquerade_reswitch();
+  _hwc_partner_show_editing_time_to_partners($node);
 }
 
 function _hwc_partner_masquerade_reswitch() {
@@ -597,6 +612,25 @@ function hwc_partner_block_view_alter(&$data, $block) {
        * the Private zone.
        */
       $data = NULL;
+    }
+  }
+}
+      /**
+ * HCW-1103.
+ *
+ * When the partner submits a new/event it should appear a message indicating
+ * the time resting to enter.
+ */
+function _hwc_partner_show_editing_time_to_partners($node) {
+  $account = hwc_partner_get_account_partner();
+  if ($account != NULL) {
+    if ($node->workbench_moderation_state_new == 'final_draft' && (in_array(($type = $node->type), array('news', 'events')))) {
+      $time = variable_get('hwc_workflow_partner_content_minutes_gap_autosubmit', 30);
+      $text = $type == 'news' ? 'news' : 'an event';
+      drupal_set_message(
+        t('You submitted !what. From now on, you can update it for <b>!interval</b> minutes',
+          array('!what' => $text, '!interval' => $time))
+      );
     }
   }
 }
