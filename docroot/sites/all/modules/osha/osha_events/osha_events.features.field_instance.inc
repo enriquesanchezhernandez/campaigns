@@ -36,7 +36,7 @@ function osha_events_field_default_field_instances() {
     'entity_type' => 'field_collection_item',
     'field_name' => 'field_talking_date',
     'label' => 'Talking date',
-    'required' => 1,
+    'required' => 0,
     'settings' => array(
       'default_value' => 'blank',
       'default_value2' => 'same',
