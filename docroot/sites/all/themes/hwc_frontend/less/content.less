@@ -4281,6 +4281,12 @@ article{
 		padding-bottom: 0em!important;
 	}
 
+	.panels-flexible-row-new-1 .field-name-field-mission-statement .field-item{
+		text-align: justify;
+		padding-bottom: 0.5em;
+    	padding-right: 2em;
+	}
+
 	.panels-flexible-region.panels-flexible-region-new-right.panels-flexible-region-last.col-sm-9.profile-col-right-1{
 		padding-left: 2em;
 	}
@@ -4517,6 +4523,10 @@ article{
 /*End partners public profile*/
 
 /*create event --> in public profile*/
+.page-node-add-events .node-events-form .field-type-datetime #edit-field-start-date-und-0-value2 .form-item-field-start-date-und-0-value2-date{
+	min-width: 283px;
+}
+
 .page-node-add-events, .page-node-add-news,
 .page-node-edit{
 	#views-form-aditional-resources-entityreference-view-widget-1 .form-type-checkbox label{
@@ -4933,7 +4943,7 @@ article{
 
 	.form-actions #edit-delete{
 		margin-left: 0%!important;
-		margin-top:1em;
+		margin-top:0em;
 	}
 
 }
@@ -4955,7 +4965,7 @@ article{
 
 .page-node-edit .node-news-form .btn.btn-danger.form-submit{
 	margin-left: 0px!important;
-	margin-top:1em;
+	margin-top:0em;
 }
 
 .private-area{
@@ -4997,7 +5007,7 @@ article{
 			font-size: @size1;
 			text-align: left;
 			border-bottom: none;
-			margin-top: 60px;
+			margin-top: 20px;
 			color: @color3;
 		}
 		.pane-content{
@@ -5007,8 +5017,8 @@ article{
 		}
 		.pane-custom, p[id*="tmgmt"], ul{
 			border-bottom: 1px dotted @color3;
-			padding-bottom: 30px;
-			margin-top: 30px;
+			padding-bottom: 10px;
+			margin-top: 10px;
 			br{
 				display:none;
 			}
@@ -5017,7 +5027,7 @@ article{
 				font-weight: bold;
 				font-size: @size7;
 				color: @color2;
-				margin-bottom: 20px;
+				margin-bottom: 10px;
 				display: block;
 				&:before{
 					content: "> ";
@@ -5062,8 +5072,8 @@ article{
 				text-align: center;
 				font-weight: bold;
 				font-style: normal;
+				margin-top: 1em;
 				&:before{
-					margin-bottom: 10px;
 					content: url("../images/content/contact.png");
 					display: block;
 				}
@@ -5072,6 +5082,24 @@ article{
 				text-align: center;
 			}
 		}
+
+		.pane-hwc-partner-hwc-partner-user-account-edit{
+			h2{
+				text-align: center;
+				font-weight: bold;
+				font-style: normal;
+				margin-top: 1em;
+				&:before{
+					content: url("../images/content/password.png");
+					display: block;
+				}
+			}
+			.pane-content{
+				text-align: center;
+				font-weight: bold;
+			}
+		}
+
 		.pane-node:last-child{
 			h2{
 				/* text-align: center; */
