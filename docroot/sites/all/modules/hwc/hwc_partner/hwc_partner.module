@@ -189,10 +189,6 @@ function hwc_partner_block_view($delta = '') {
         ), $user->roles))
         || (in_array(ROLE_CAMPAIGN_PARTNER, $user->roles) && hwc_partner_match_user_partner($node))
         || $user->uid == 1;
-      // Media partners cannot create events, hide the block
-      if ($delta == 'hwc_partner_private_link_0' && in_array(ROLE_CAMPAIGN_PARTNER, $user->roles) && hwc_partner_is_mp($node)) {
-        $visible = FALSE;
-      }
       if ($visible) {
         $url_options = array();
         if (count(array_intersect(array(
