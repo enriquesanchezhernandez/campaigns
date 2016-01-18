@@ -389,7 +389,6 @@ ul.tabs--primary.nav.nav-tabs{
 			width: auto;
 		}
 		div{
-			/* font-size: @size5; */
 			padding-left: 15px;
 			padding-right: 15px;
 			div{
@@ -406,7 +405,6 @@ ul.tabs--primary.nav.nav-tabs{
 	}
 	.tools-and-resources-block, .panels-flexible-column-new-main, .panels-flexible-column-first{
 		h2{
-			margin: 0.5em 0 !important;
 			padding-top: 70px;
 			background: url("../images/content/tools-and-resources.png") no-repeat center top;
 			font-style: normal;
@@ -1634,13 +1632,13 @@ ul.tabs--primary.nav.nav-tabs{
 				}
 				.view-content .views-row{
 					border-bottom: 1px dotted @border-default-color;
-					padding-bottom: 2em;
-					padding-top: 2em;
+					padding-bottom: 0em;
+					padding-top: 0.5em;
 					.views-field-title-field{
 						color: @text-color-2;
 						font-weight: bold;
-						font-size: @size2;
-						padding-bottom: 1em;
+						font-size: 1.35em;
+						padding-bottom: 0.5em;
 						span:before{
 							content: ">";
 							padding-right: 0.5em;
@@ -2145,7 +2143,7 @@ ul.tabs--primary.nav.nav-tabs{
 		//min-height: 180px;
 		overflow: hidden;
 		h2{
-			font-size: @size2;
+			font-size: 1.35em;
 			font-weight: bold;
 			font-style: normal;
 			margin-top: 10px;
@@ -2234,7 +2232,7 @@ article{
 		}
 		.label{
 			color: @color2;
-			font-size: @size4;
+			font-size: 1em;
 			font-style: italic;
 			padding-top: 5px;
 		}
@@ -2607,7 +2605,7 @@ article{
 	}
 	.pane-title{
 		color: @color3;
-		font-size: @size8;
+		font-size: 1.7em;
 		font-weight: bold;
 		font-style: normal;
 	}
@@ -2652,7 +2650,7 @@ article{
 			margin-top: 0px;
 		}
 		h3{
-			font-size: @size2;
+			font-size: 1.4em;
 			font-weight: bold;
 			font-style: normal;
 			margin-top:0px;
@@ -4181,7 +4179,7 @@ article{
 	padding-top: 0em;
 	.field-label{
 		color: @color3;
-		font-size: @size2;
+		font-size: 1.4em;
 		font-weight: bold;
 	}
 
@@ -4405,6 +4403,15 @@ article{
 			text-align: left;
 			margin-bottom: 1em;
 		}
+
+		.panels-flexible-row-new-2-inside .panels-flexible-column-new-7 {
+			padding-left: 0px;
+		}
+
+		.panels-flexible-region-last{
+			padding-left: 10px;
+		}
+
 		.panels-flexible-column-new-8, .panels-flexible-column-first {
 			width: 45%;
 			float: left;
@@ -4466,7 +4473,7 @@ article{
 	}
 
 	.pane-node-field-country{
-		font-size:18px;
+		font-size:1.3em;
 		background-color: @bg-default-color;
 		color: @color3;
 		font-style: normal;
@@ -4492,7 +4499,7 @@ article{
 		text-align: left;
 		.pane-title{
 			color: @text-color-3;
-			font-size: @size2;
+			font-size: 1.4em;
 			font-weight: bold;
 		}
 		&.pane-node-field-mission-statement{
@@ -4923,6 +4930,12 @@ article{
 	.group-header{
 		clear: both;
 	}
+
+	.form-actions #edit-delete{
+		margin-left: 0%!important;
+		margin-top:1em;
+	}
+
 }
 .page-node-edit{
 	#edit-actions{
@@ -5333,7 +5346,7 @@ article{
 	.view-id-partners_list{
 		margin: @margin1;
 		color: @color2;
-		font-size: @size6;
+		font-size: 1.15em;
 		font-weight: bold;
 		font-style: italic;
 		.quicktabs-tabs{
@@ -5379,7 +5392,7 @@ article{
 				margin-bottom: 0em;
 				display: inline-block;
 	    		border-bottom: 1px dotted @color3;
-	    		font-size: @size2;
+	    		font-size: 1.2em;
 	    		font-style: normal;
 	    		color: @color3;
 			}
@@ -5556,13 +5569,16 @@ article{
 				margin-top: -2em;
 				margin-top: 0em;
 				min-width: 130px;
+				font-size: 1em;
 			}
 			button#edit-unsubscribe{
 				min-width: 130px;
+				font-size: 1em;
 			}
 			button#edit-submit--4{
 				margin-top: -3em;
 				min-width: 130px;
+				font-size: 1em;
 			}
 		}
 	}
@@ -5617,6 +5633,7 @@ article{
 			}
 			button, button#edit-submit--4, button#edit-unsubscribe--2{
 				min-width: 130px;
+				font-size: 1em;
 			}
 		}
 		div#newsletter-subscription-form-wrapper{
@@ -5675,11 +5692,11 @@ article{
 				margin-right: 50px;
 				background-color: @bg-color-2;
 				line-height: 15px;
+				font-size:1.25em;
 				a{
 					color: @color1 !important;
 					padding-left: 10px;
 					padding-right: 10px;
-					font-size: @size7;
 					width: 100%;
 					line-height: normal;
 				}
@@ -6017,7 +6034,7 @@ fieldset.captcha {
 				font-weight: bold;
 				font-style: italic;
 				font-style: normal;
-				font-size: @size2;
+				font-size: 1.3em;
 				&:before {
 					content: "> ";
 				}
@@ -6375,7 +6392,7 @@ fieldset.captcha {
     padding: 5px 40px;
     font-weight: 700;
     margin-bottom: 10px;
-    font-size: 14px;
+    font-size: 1em;
     margin-top: 1.5em;
     font-style: normal!important;
 }
