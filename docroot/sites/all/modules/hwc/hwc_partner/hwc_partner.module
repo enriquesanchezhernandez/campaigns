@@ -570,6 +570,7 @@ function hwc_partner_node_presave($node) {
  */
 function hwc_partner_node_insert($node) {
   _hwc_partner_masquerade_reswitch();
+  _hwc_partner_show_editing_time_to_partners($node);
 }
 
 /**
@@ -577,11 +578,29 @@ function hwc_partner_node_insert($node) {
  */
 function hwc_partner_node_update($node) {
   _hwc_partner_masquerade_reswitch();
+  _hwc_partner_show_editing_time_to_partners($node);
 }
 
 function _hwc_partner_masquerade_reswitch() {
   if (isset($_SESSION['masqueraded_user'])) {
     masquerade_switch_user($_SESSION['masqueraded_user']);
     unset ($_SESSION['masqueraded_user']);
+  }
+}
+
+/**
+ * HCW-1103.
+ *
+ * When the partner submits a new/event it should appear a message indicating
+ * the time resting to enter.
+ */
+function _hwc_partner_show_editing_time_to_partners($node) {
+  $account = hwc_partner_get_account_partner();
+  if ($account != NULL) {
+    if ($node->workbench_moderation_state_new == 'final_draft' && (in_array(($type = $node->type), array('news', 'events')))) {
+      $time = variable_get('hwc_workflow_partner_content_minutes_gap_autosubmit', 30);
+      $text = $type == 'news' ? 'news' : 'an event';
+      drupal_set_message(t('You submitted ' . $text . '. From now on, you can update it for') . ' <b>' . $time . '</b> ' . t('minutes.'));
+    }
   }
 }
