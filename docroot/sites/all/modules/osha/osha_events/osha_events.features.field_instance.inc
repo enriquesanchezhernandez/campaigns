@@ -595,7 +595,7 @@ function osha_events_field_default_field_instances() {
         'maxlength_js' => '',
         'maxlength_js_enforce' => 0,
         'maxlength_js_label' => '@remaining left',
-        'maxlength_js_label_summary' => '@remaining left',
+        'maxlength_js_label_summary' => '<strong>@remaining</strong> left',
         'maxlength_js_summary' => 420,
         'maxlength_js_truncate_html' => 0,
         'rows' => 20,
