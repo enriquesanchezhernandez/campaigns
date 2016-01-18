@@ -600,7 +600,10 @@ function _hwc_partner_show_editing_time_to_partners($node) {
     if ($node->workbench_moderation_state_new == 'final_draft' && (in_array(($type = $node->type), array('news', 'events')))) {
       $time = variable_get('hwc_workflow_partner_content_minutes_gap_autosubmit', 30);
       $text = $type == 'news' ? 'news' : 'an event';
-      drupal_set_message(t('You submitted ' . $text . '. From now on, you can update it for') . ' <b>' . $time . '</b> ' . t('minutes.'));
+      drupal_set_message(
+        t('You submitted !what. From now on, you can update it for <b>!interval</b> minutes',
+          array('!what' => $text, '!interval' => $time))
+      );
     }
   }
 }
