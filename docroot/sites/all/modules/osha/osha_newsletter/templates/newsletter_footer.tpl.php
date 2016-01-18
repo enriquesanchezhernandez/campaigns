@@ -19,7 +19,8 @@ global $base_url;
 			<?php
 				$url = url($base_url.'/en/healthy-workplaces-newsletter', array('query' => $url_query));
 			?>
-			<a href="<?php echo $url; ?>" style="@style; font-weight: bold; color: #FFF"> | Unsubscribe</a>
+			<span style="color:#FFF"> | </span> 
+			<a href="<?php echo $url; ?>" style="@style; font-weight: bold; color: #FFF">Unsubscribe</a>
 			<h2 style="padding-left: 300px; color: #ffffff; display: inline; margin-right: 20px; vertical-align: top; font-weight: bold; font-size: 17px; font-style: normal;">Follow us on:</h2>
 			<?php
 			  $social = array(
