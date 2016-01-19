@@ -585,24 +585,3 @@ function _hwc_partner_masquerade_reswitch() {
     unset ($_SESSION['masqueraded_user']);
   }
 }
-
-/**
- * Allow to alter the pane content to render.
- *
- * This happens after the keyword substitution.
- *
- * @param stdClass $content
- *   The content block to render.
- * @param stdClass $pane
- *   The pane object.
- * @param array $args
- *   The display arguments.
- * @param array $contexts
- *   Array with the used contexts.
- */
-/**
- * Implements hook_panels_pre_render($panels_display, $renderer)
- */
-function hwc_partner_panels_pre_render($panels_display, $renderer) {
-  dpm($renderer);
-}
