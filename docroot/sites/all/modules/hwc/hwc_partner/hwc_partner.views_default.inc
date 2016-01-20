@@ -183,7 +183,7 @@ function hwc_partner_views_default_views() {
   $handler->display->display_options['filters']['field_publication_date_value']['table'] = 'field_data_field_publication_date';
   $handler->display->display_options['filters']['field_publication_date_value']['field'] = 'field_publication_date_value';
   $handler->display->display_options['filters']['field_publication_date_value']['operator'] = '<=';
-  $handler->display->display_options['filters']['field_publication_date_value']['granularity'] = 'minute';
+  $handler->display->display_options['filters']['field_publication_date_value']['granularity'] = 'second';
   $handler->display->display_options['filters']['field_publication_date_value']['default_date'] = 'now';
   $handler->display->display_options['block_description'] = 'News';
 
@@ -288,6 +288,7 @@ function hwc_partner_views_default_views() {
   $handler->display->display_options['filters']['field_start_date_value']['table'] = 'field_data_field_start_date';
   $handler->display->display_options['filters']['field_start_date_value']['field'] = 'field_start_date_value';
   $handler->display->display_options['filters']['field_start_date_value']['operator'] = '>=';
+  $handler->display->display_options['filters']['field_start_date_value']['granularity'] = 'second';
   $handler->display->display_options['filters']['field_start_date_value']['default_date'] = 'now';
   $handler->display->display_options['block_description'] = 'Events';
   $translatables['partner_content'] = array(

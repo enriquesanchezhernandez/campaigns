@@ -10,7 +10,7 @@
 function osha_news_field_default_field_bases() {
   $field_bases = array();
 
-  // Exported field_base: 'field_image_caption'
+  // Exported field_base: 'field_image_caption'.
   $field_bases['field_image_caption'] = array(
     'active' => 1,
     'cardinality' => 1,
