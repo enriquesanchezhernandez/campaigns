@@ -118,3 +118,27 @@ function hwc_partner_is_fop($partner) {
   }
   return $ret;
 }
+
+/**
+ * Retrieve partner type.
+ *
+ * @param stdClass $account
+ *   User account to check the partner type.
+ *
+ * @return mixed
+ *   Returns partner type (PARTNER_TYPE_FOP, PARTNER_TYPE_MP, PARTNER_TYPE_OCP) or null
+ */
+function hwc_partner_get_partner_type($account = NULL) {
+  $partner = hwc_partner_get_account_partner($account);
+
+  if (hwc_partner_is_ocp($partner)) {
+    return PARTNER_TYPE_OCP;
+  } elseif (hwc_partner_is_mp($partner)) {
+    return PARTNER_TYPE_MP;
+  } elseif (hwc_partner_is_fop($partner)) {
+    return PARTNER_TYPE_FOP;
+  } else {
+    return NULL;
+  }
+
+}
