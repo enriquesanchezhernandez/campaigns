@@ -5672,7 +5672,8 @@ foreach( $contexts[\'argument_entity_id:node_1\']->data->field_users[\'und\'] as
           'settings' => array(
             'rids' => array(
               0 => 3,
-              1 => 13,
+              1 => 11,
+              2 => 13,
             ),
           ),
           'context' => 'context_user_1',
@@ -6060,7 +6061,8 @@ foreach( $contexts[\'argument_entity_id:node_1\']->data->field_users[\'und\'] as
           'settings' => array(
             'rids' => array(
               0 => 3,
-              1 => 13,
+              1 => 11,
+              2 => 13,
             ),
           ),
           'context' => 'context_user_1',
@@ -6233,7 +6235,7 @@ foreach( $contexts[\'argument_entity_id:node_1\']->data->field_users[\'und\'] as
     $pane->shown = TRUE;
     $pane->access = array();
     $pane->configuration = array(
-      'nid' => '134',
+      'nid' => '948',
       'links' => 0,
       'leave_node_title' => 0,
       'identifier' => '',
@@ -6262,7 +6264,7 @@ foreach( $contexts[\'argument_entity_id:node_1\']->data->field_users[\'und\'] as
     $pane->shown = TRUE;
     $pane->access = array();
     $pane->configuration = array(
-      'nid' => '135',
+      'nid' => '950',
       'links' => 0,
       'leave_node_title' => 0,
       'identifier' => '',
@@ -6291,7 +6293,7 @@ foreach( $contexts[\'argument_entity_id:node_1\']->data->field_users[\'und\'] as
     $pane->shown = TRUE;
     $pane->access = array();
     $pane->configuration = array(
-      'nid' => '136',
+      'nid' => '952',
       'links' => 0,
       'leave_node_title' => 0,
       'identifier' => '',
@@ -6375,7 +6377,7 @@ foreach( $contexts[\'argument_entity_id:node_1\']->data->field_users[\'und\'] as
     $pane->shown = TRUE;
     $pane->access = array();
     $pane->configuration = array(
-      'nid' => '229',
+      'nid' => '946',
       'links' => 1,
       'leave_node_title' => 0,
       'identifier' => '',
@@ -6442,6 +6444,18 @@ foreach( $contexts[\'argument_entity_id:node_1\']->data->field_users[\'und\'] as
   return FALSE;
 }',
           ),
+          'not' => FALSE,
+        ),
+        1 => array(
+          'name' => 'role',
+          'settings' => array(
+            'rids' => array(
+              0 => 3,
+              1 => 11,
+              2 => 13,
+            ),
+          ),
+          'context' => 'context_user_1',
           'not' => FALSE,
         ),
       ),
@@ -6611,7 +6625,7 @@ foreach( $contexts[\'argument_entity_id:node_1\']->data->field_users[\'und\'] as
     $pane->shown = TRUE;
     $pane->access = array();
     $pane->configuration = array(
-      'nid' => '134',
+      'nid' => '949',
       'links' => 0,
       'leave_node_title' => 0,
       'identifier' => '',
@@ -6640,7 +6654,7 @@ foreach( $contexts[\'argument_entity_id:node_1\']->data->field_users[\'und\'] as
     $pane->shown = TRUE;
     $pane->access = array();
     $pane->configuration = array(
-      'nid' => '135',
+      'nid' => '951',
       'links' => 0,
       'leave_node_title' => 0,
       'identifier' => '',
@@ -6669,7 +6683,7 @@ foreach( $contexts[\'argument_entity_id:node_1\']->data->field_users[\'und\'] as
     $pane->shown = TRUE;
     $pane->access = array();
     $pane->configuration = array(
-      'nid' => '136',
+      'nid' => '953',
       'links' => 0,
       'leave_node_title' => 0,
       'identifier' => '',
@@ -6753,7 +6767,7 @@ foreach( $contexts[\'argument_entity_id:node_1\']->data->field_users[\'und\'] as
     $pane->shown = TRUE;
     $pane->access = array();
     $pane->configuration = array(
-      'nid' => '229',
+      'nid' => '947',
       'links' => 1,
       'leave_node_title' => 0,
       'identifier' => '',

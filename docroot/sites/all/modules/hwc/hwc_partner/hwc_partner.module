@@ -428,7 +428,7 @@ function hwc_partner_autocomplete_users_partners($string) {
 function hwc_partner_preview_private_area_menu_access(){
   global $user;
 
-  if (in_array(ROLE_SUPERVISOR, $user->roles) || in_array(ROLE_ADMINISTRATOR, $user->roles)) {
+  if (in_array(ROLE_SUPERVISOR, $user->roles) || in_array(ROLE_ADMINISTRATOR, $user->roles) || in_array(ROLE_SUPERADMINISTRATOR, $user->roles)) {
     return TRUE;
   } else {
     return FALSE;
