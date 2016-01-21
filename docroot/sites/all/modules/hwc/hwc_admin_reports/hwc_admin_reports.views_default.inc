@@ -632,6 +632,7 @@ function hwc_admin_reports_views_default_views() {
   $handler->display->display_options['fields']['field_summary_1']['id'] = 'field_summary_1';
   $handler->display->display_options['fields']['field_summary_1']['table'] = 'field_data_field_summary';
   $handler->display->display_options['fields']['field_summary_1']['field'] = 'field_summary';
+  $handler->display->display_options['fields']['field_summary_1']['type'] = 'text_plain';
   $handler->display->display_options['fields']['field_summary_1']['settings'] = array(
     'field_formatter_class' => '',
   );
@@ -673,6 +674,7 @@ function hwc_admin_reports_views_default_views() {
   $handler->display->display_options['fields']['body']['id'] = 'body';
   $handler->display->display_options['fields']['body']['table'] = 'field_data_body';
   $handler->display->display_options['fields']['body']['field'] = 'body';
+  $handler->display->display_options['fields']['body']['type'] = 'text_plain';
   $handler->display->display_options['fields']['body']['settings'] = array(
     'field_formatter_class' => '',
   );
@@ -962,6 +964,7 @@ function hwc_admin_reports_views_default_views() {
   $handler->display->display_options['fields']['body']['table'] = 'field_data_body';
   $handler->display->display_options['fields']['body']['field'] = 'body';
   $handler->display->display_options['fields']['body']['label'] = 'Description';
+  $handler->display->display_options['fields']['body']['type'] = 'text_plain';
   $handler->display->display_options['fields']['body']['settings'] = array(
     'field_formatter_class' => '',
   );
