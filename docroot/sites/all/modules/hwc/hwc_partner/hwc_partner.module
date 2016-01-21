@@ -466,6 +466,10 @@ function hwc_partner_preview_private_area($profile_type) {
     }
   }
 
+  if (empty($page_types)) {
+    return drupal_not_found();
+  }
+
   switch ($profile_type) {
     case "mp":
       return panels_render_display($page_types['page_private_area_for_partners__panel_context_b00e43ca-0583-41d3-8091-8c71bb42ee77']->conf['display']);
