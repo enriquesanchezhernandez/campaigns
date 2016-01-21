@@ -10,7 +10,7 @@
 function hwc_homepage_field_default_field_bases() {
   $field_bases = array();
 
-  // Exported field_base: 'eq_node'
+  // Exported field_base: 'eq_node'.
   $field_bases['eq_node'] = array(
     'active' => 1,
     'cardinality' => -1,
@@ -42,7 +42,7 @@ function hwc_homepage_field_default_field_bases() {
     'type' => 'entityreference',
   );
 
-  // Exported field_base: 'field_content_reference'
+  // Exported field_base: 'field_content_reference'.
   $field_bases['field_content_reference'] = array(
     'active' => 1,
     'cardinality' => 1,

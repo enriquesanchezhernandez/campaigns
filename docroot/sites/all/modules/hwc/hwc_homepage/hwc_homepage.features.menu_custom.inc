@@ -23,6 +23,5 @@ function hwc_homepage_menu_default_menu_custom() {
   t('Management');
   t('The <em>Management</em> menu contains links for administrative tasks.');
 
-
   return $menus;
 }
