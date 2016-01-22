@@ -102,6 +102,7 @@ features[field_instance][] = node-partner-field_social_dialog_partner
 features[field_instance][] = node-partner-field_twitter_profile
 features[field_instance][] = node-partner-field_website
 features[field_instance][] = node-partner-field_youtube_profile
+features[field_instance][] = node-partner-title_field
 features[field_instance][] = node-private_aria_article-body
 features[field_instance][] = node-private_aria_article-title_field
 features[field_instance][] = taxonomy_term-bussines_sector-field_crm_code
