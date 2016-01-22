@@ -43,7 +43,7 @@ function hwc_partner_node_info() {
       'help' => '',
     ),
     'private_aria_article' => array(
-      'name' => 'Private aria article',
+      'name' => 'Private area article',
       'base' => 'node_content',
       'description' => 'Article used for private area of partners.',
       'has_title' => '1',
