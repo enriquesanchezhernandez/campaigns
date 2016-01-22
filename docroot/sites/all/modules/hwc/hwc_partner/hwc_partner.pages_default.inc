@@ -5659,11 +5659,11 @@ foreach( $contexts[\'argument_entity_id:node_1\']->data->field_users[\'und\'] as
           'name' => 'php',
           'settings' => array(
             'description' => 'User is MP',
-            'php' => "if (hwc_partner_get_partner_type() == '8b662e6e-054a-4148-8495-490ac5858964') {
+            'php' => 'if (hwc_partner_get_partner_type() == \'8b662e6e-054a-4148-8495-490ac5858964\') {
   return TRUE;
 } else {
   return FALSE;
-}",
+}',
           ),
           'not' => FALSE,
         ),
@@ -6088,11 +6088,11 @@ foreach( $contexts[\'argument_entity_id:node_1\']->data->field_users[\'und\'] as
           'name' => 'php',
           'settings' => array(
             'description' => 'User is OCP',
-            'php' => "if (hwc_partner_get_partner_type() == '825c3b00-0dd2-4026-b292-bc76d6e49a70') {
+            'php' => 'if (hwc_partner_get_partner_type() == \'825c3b00-0dd2-4026-b292-bc76d6e49a70\') {
     return TRUE;
 } else {
   return FALSE;
-}",
+}',
           ),
           'not' => FALSE,
         ),
@@ -6518,11 +6518,11 @@ foreach( $contexts[\'argument_entity_id:node_1\']->data->field_users[\'und\'] as
           'name' => 'php',
           'settings' => array(
             'description' => 'User is FP',
-            'php' => "if (hwc_partner_get_partner_type() == '1dca3546-7c11-49b5-b74f-a77f87f60d96') {
+            'php' => 'if (hwc_partner_get_partner_type() == \'1dca3546-7c11-49b5-b74f-a77f87f60d96\') {
   return TRUE;
 } else {
   return FALSE;
-}",
+}',
           ),
           'not' => FALSE,
         ),

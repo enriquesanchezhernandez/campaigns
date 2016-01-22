@@ -42,6 +42,14 @@ function hwc_partner_node_info() {
       'title_label' => 'Title',
       'help' => '',
     ),
+    'private_aria_article' => array(
+      'name' => 'Private aria article',
+      'base' => 'node_content',
+      'description' => 'Article used for private area of partners.',
+      'has_title' => '1',
+      'title_label' => 'Title',
+      'help' => '',
+    ),
   );
   drupal_alter('node_info', $items);
   return $items;
