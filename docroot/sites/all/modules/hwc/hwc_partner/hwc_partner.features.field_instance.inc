@@ -10,6 +10,57 @@
 function hwc_partner_field_default_field_instances() {
   $field_instances = array();
 
+  // Exported field_instance: 'node-partner-field_abbreviation_name'.
+  $field_instances['node-partner-field_abbreviation_name'] = array(
+    'bundle' => 'partner',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'text',
+        'settings' => array(
+          'field_formatter_class' => '',
+        ),
+        'type' => 'text_default',
+        'weight' => 38,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_abbreviation_name',
+    'label' => 'Abbreviation name',
+    'required' => 0,
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+      'linkit' => array(
+        'button_text' => 'Search',
+        'enable' => 0,
+        'profile' => '',
+      ),
+      'text_processing' => 0,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'text',
+      'settings' => array(
+        'maxlength_js' => 0,
+        'maxlength_js_label' => 'Content limited to @limit characters, remaining: <strong>@remaining</strong>',
+        'size' => 60,
+      ),
+      'type' => 'text_textfield',
+      'weight' => 38,
+    ),
+    'workbench_access_field' => 0,
+  );
+
   // Exported field_instance: 'node-partner-field_appform_status'.
   $field_instances['node-partner-field_appform_status'] = array(
     'bundle' => 'partner',
@@ -2552,6 +2603,7 @@ function hwc_partner_field_default_field_instances() {
 
   // Translatables
   // Included for use with string extractors like potx.
+  t('Abbreviation name');
   t('Appform status');
   t('Body');
   t('Bussines sector');

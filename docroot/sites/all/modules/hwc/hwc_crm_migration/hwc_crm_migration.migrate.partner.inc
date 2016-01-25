@@ -58,6 +58,7 @@ class PartnerMigration extends HwcCrmMigration {
       'field_youtube_profile',
       'field_slideshare_profile',
       'field_linkedin_profile',
+      'field_abbreviation_name',
     );
   }
 
@@ -148,6 +149,7 @@ class PartnerMigrateListXml extends AbstractCrmMigrateListXml {
         $data->field_orgtype = (string) $attributes['Textbox5'];
         $data->field_bussines_sector = (string) $attributes['Textbox6'];
         $data->field_mission_statement = (string) $attributes['Textbox7'];
+        $data->field_abbreviation_name = (string) $attributes['Textbox38'];
 
         $logo_image = base64_decode((string) $attributes['Textbox8']);
         $logo_ext = (string) $attributes['Textbox9'];
@@ -157,7 +159,7 @@ class PartnerMigrateListXml extends AbstractCrmMigrateListXml {
         }
 
         $data->field_logo_mime = (string) $attributes['Textbox9'];
-        $data->field_logo_file = $data->title . '.jpg';
+        $data->field_logo_file = trim(substr($data->title, 0, 20)) . '.jpg';
         $data->field_campaign_website = (string) $attributes['Textbox10'];
 
         $data->field_facebook_profile = (string) $attributes['Textbox11'];
