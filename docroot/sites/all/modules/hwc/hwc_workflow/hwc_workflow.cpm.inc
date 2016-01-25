@@ -387,7 +387,10 @@ function _hwc_workflow_can_approve($node, $account = NULL) {
   $is_admin = OshaWorkflowPermissions::userHasRole(OSHA_WORKFLOW_ROLE_ADMINISTRATOR, $account);
   $is_rm = OshaWorkflowPermissions::userHasRole(OSHA_WORKFLOW_ROLE_REVIEW_MANAGER, $account);
   $is_supervisor = OshaWorkflowPermissions::userHasRole(ROLE_SUPERVISOR, $account);
-  if ($is_rm || $is_admin || $is_supervisor) {
+  // Remove rm and supervisor from approving on behalf - HCW-1126
+  // not sure is really accurate this request
+  //if ($is_rm || $is_admin || $is_supervisor) {
+  if ($is_admin) {
     return TRUE;
   }
   if (OshaWorkflowPermissions::userHasRole(HWC_ROLE_CAMPAIGN_PROJECT_MANAGER, $account)
