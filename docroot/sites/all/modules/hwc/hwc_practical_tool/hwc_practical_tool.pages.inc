@@ -43,7 +43,7 @@ function hwc_practical_tool_menu_tools_form($form, $form_state) {
   );
   $form['content']['sort_fieldset']['sort'] = array(
     '#type' => 'radios',
-    '#title' => t('Sort by:'),
+    '#title' => t('Sort by'),
     '#default_value' => $sort,
     '#options' => array('date' => t('Date'), 'alphabetically' => t('Alphabetically')),
   );
@@ -51,13 +51,13 @@ function hwc_practical_tool_menu_tools_form($form, $form_state) {
     '#type' => 'checkboxes',
     '#options' => _hwc_segment_options_list(),
     '#default_value' => array('0'),
-    '#title' => t('Relevant for:'),
+    '#title' => t('Relevant for'),
   );
   $form['left-column']['languages'] = array(
     '#type' => 'checkboxes',
     '#options' => osha_language_list_options(),
     '#default_value' => $languages ,
-    '#title' => t('Tools are available in various languages:'),
+    '#title' => t('Tools are available in several languages'),
   );
   $form['#attached']['js'] = array(
     drupal_get_path('module', 'hwc_practical_tool') . '/js/checkbox-submit.js',
