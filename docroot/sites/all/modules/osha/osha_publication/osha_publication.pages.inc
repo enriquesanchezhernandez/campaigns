@@ -40,19 +40,19 @@ function osha_publication_menu_publications_form($form, $form_state) {
     '#type' => 'checkboxes',
     '#options' => _hwc_segment_options_list(),
     '#default_value' => array('0'),
-    '#title' => t('Relevant for:'),
+    '#title' => t('Relevant for'),
   );
   $form['left-column']['publication_type'] = array(
     '#type' => 'checkboxes',
     '#options' => _publication_type_options_list(),
     '#default_value' => array('0'),
-    '#title' => t('Publications type:'),
+    '#title' => t('Publications type'),
   );
   $form['left-column']['languages'] = array(
     '#type' => 'checkboxes',
     '#options' => osha_language_list_options(),
     '#default_value' => $languages,
-    '#title' => t('This tool is available in various languages'),
+    '#title' => t('Publications are available in several languages'),
   );
   $form['#attached']['js'] = array(
     drupal_get_path('module', 'osha_publication') . '/js/checkbox-submit.js',
@@ -318,7 +318,7 @@ function osha_publication_menu_case_studies_form($form, $form_state) {
     '#type' => 'checkboxes',
     '#options' => _hwc_segment_options_list(),
     '#default_value' => array('0'),
-    '#title' => t('Relevant for:'),
+    '#title' => t('Relevant for'),
   );
   $form['#attached']['js'] = array(
     drupal_get_path('module', 'osha_publication') . '/js/checkbox-submit.js',
