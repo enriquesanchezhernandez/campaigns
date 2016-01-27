@@ -10,7 +10,7 @@
 function campaign_materials_field_default_field_bases() {
   $field_bases = array();
 
-  // Exported field_base: 'field_campaign_material_type'
+  // Exported field_base: 'field_campaign_material_type'.
   $field_bases['field_campaign_material_type'] = array(
     'active' => 1,
     'cardinality' => 1,

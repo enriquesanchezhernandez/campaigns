@@ -32,11 +32,11 @@ function campaign_materials_views_api($module = NULL, $api = NULL) {
 function campaign_materials_node_info() {
   $items = array(
     'campaign_materials' => array(
-      'name' => t('Campaign Materials'),
+      'name' => 'Campaign Materials',
       'base' => 'node_content',
       'description' => '',
       'has_title' => '1',
-      'title_label' => t('Title'),
+      'title_label' => 'Title',
       'help' => '',
     ),
   );
