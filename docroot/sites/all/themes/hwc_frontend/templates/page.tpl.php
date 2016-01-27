@@ -175,15 +175,6 @@ $theme_dir = drupal_get_path('theme', 'hwc_frontend');
     <?php print t("European Agency for Safety and Health at Work | an agency of the European Union"); ?>
   </p>
   <div class="on-the-web">
-    <?php
-    if (!($node = menu_get_object()) || $node->type != 'partner') {
-      /*
-       * HCW-1087 Hide social Media icons in the footer and header and footer in
-       * the Private zone.
-       */
-      $my_block = module_invoke('on_the_web', 'block_view', 'on_the_web');
-      print render($my_block['content']);
-    }
-    ?>
+    <?php $my_block = module_invoke('on_the_web', 'block_view', 'on_the_web'); print render($my_block['content']); ?>
   </div>
 </footer>

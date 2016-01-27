@@ -674,25 +674,8 @@ function _hwc_partner_masquerade_reswitch() {
   }
 }
 
+
 /**
- * Implements hook_block_view_alter().
- */
-function hwc_partner_block_view_alter(&$data, $block) {
-  if ($block->module == 'on_the_web' && $block->delta == '0') {
-    /* HCW-1087 Hide header/footer social icons on the private pages */
-    $node = menu_get_object();
-    if (
-      !empty($node) && $node->nid == '253'
-      || (
-        !empty($_GET['q'])
-        && in_array($_GET['q'], array('node/add/events', 'node/add/news', 'private'))
-      )
-    ) {
-      $data = NULL;
-    }
-  }
-}
-      /**
  * HCW-1103.
  *
  * When the partner submits a new/event it should appear a message indicating
