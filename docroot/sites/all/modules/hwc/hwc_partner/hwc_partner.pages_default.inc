@@ -6106,7 +6106,7 @@ foreach( $contexts[\'argument_entity_id:node_1\']->data->field_users[\'und\'] as
     $pane->configuration = array(
       'admin_title' => 'Preview Private Area',
       'title' => '',
-      'body' => '<div id="private-mp" class="row"><div class="col-md-12"><ul><li><a href="hwc_partner/preview_private_area/mp">Preview as MP</a></li><li><a href="hwc_partner/preview_private_area/ocp">Preview as OCP</a></li><li><a href="hwc_partner/preview_private_area/fp">Preview as FP</a></li><li><a href="private">Back</a></li></ul></div></div>',
+      'body' => '<div id="private-mp" class="row"><div class="col-md-12"><ul><li><a href="hwc_partner/preview_private_area/mp">Preview as MP</a></li><li><a href="hwc_partner/preview_private_area/ocp">Preview as OCP</a></li><li><a href="hwc_partner/preview_private_area/fp">Preview as FP</a></li></ul></div></div>',
       'format' => 'full_html',
       'substitute' => 1,
     );
@@ -6121,6 +6121,43 @@ foreach( $contexts[\'argument_entity_id:node_1\']->data->field_users[\'und\'] as
     $pane->uuid = '1c578ff7-cf11-4150-84da-56d52d94335f';
     $display->content['new-1c578ff7-cf11-4150-84da-56d52d94335f'] = $pane;
     $display->panels['center_'][0] = 'new-1c578ff7-cf11-4150-84da-56d52d94335f';
+    $pane = new stdClass();
+    $pane->pid = 'new-27c05d7e-341e-4d90-8669-c4c5d7f922ed';
+    $pane->panel = 'center_';
+    $pane->type = 'custom';
+    $pane->subtype = 'custom';
+    $pane->shown = TRUE;
+    $pane->access = array(
+      'plugins' => array(
+        0 => array(
+          'name' => 'path_visibility',
+          'settings' => array(
+            'visibility_setting' => '1',
+            'paths' => 'hwc_partner/preview_private_area/mp',
+          ),
+          'context' => 'empty',
+          'not' => FALSE,
+        ),
+      ),
+    );
+    $pane->configuration = array(
+      'admin_title' => 'Back to private area',
+      'title' => '',
+      'body' => '<div class="row"><div class="col-md-12"><ul><li><a href="private">Back</a></li></ul></div></div>',
+      'format' => 'full_html',
+      'substitute' => 1,
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 1;
+    $pane->locks = array();
+    $pane->uuid = '27c05d7e-341e-4d90-8669-c4c5d7f922ed';
+    $display->content['new-27c05d7e-341e-4d90-8669-c4c5d7f922ed'] = $pane;
+    $display->panels['center_'][1] = 'new-27c05d7e-341e-4d90-8669-c4c5d7f922ed';
     $pane = new stdClass();
     $pane->pid = 'new-9bf21a4c-e961-4544-acb9-e6cfcac8fec6';
     $pane->panel = 'center_';
@@ -6148,11 +6185,11 @@ foreach( $contexts[\'argument_entity_id:node_1\']->data->field_users[\'und\'] as
       'css_class' => 'section-introduction',
     );
     $pane->extras = array();
-    $pane->position = 1;
+    $pane->position = 2;
     $pane->locks = array();
     $pane->uuid = '9bf21a4c-e961-4544-acb9-e6cfcac8fec6';
     $display->content['new-9bf21a4c-e961-4544-acb9-e6cfcac8fec6'] = $pane;
-    $display->panels['center_'][1] = 'new-9bf21a4c-e961-4544-acb9-e6cfcac8fec6';
+    $display->panels['center_'][2] = 'new-9bf21a4c-e961-4544-acb9-e6cfcac8fec6';
   $display->hide_title = PANELS_TITLE_PANE;
   $display->title_pane = 'new-9bf21a4c-e961-4544-acb9-e6cfcac8fec6';
   $handler->conf['display'] = $display;
@@ -6548,7 +6585,7 @@ foreach( $contexts[\'argument_entity_id:node_1\']->data->field_users[\'und\'] as
     $pane->configuration = array(
       'admin_title' => 'Preview Private Area',
       'title' => '',
-      'body' => '<div id="private-mp" class="row"><div class="col-md-12"><ul><li><a href="hwc_partner/preview_private_area/mp">Preview as MP</a></li><li><a href="hwc_partner/preview_private_area/ocp">Preview as OCP</a></li><li><a href="hwc_partner/preview_private_area/fp">Preview as FP</a></li><li><a href="private">Back</a></li></ul></div></div>',
+      'body' => '<div id="private-ocp" class="row"><div class="col-md-12"><ul><li><a href="hwc_partner/preview_private_area/mp">Preview as MP</a></li><li><a href="hwc_partner/preview_private_area/ocp">Preview as OCP</a></li><li><a href="hwc_partner/preview_private_area/fp">Preview as FP</a></li></ul></div></div>',
       'format' => 'full_html',
       'substitute' => 1,
     );
@@ -6563,6 +6600,43 @@ foreach( $contexts[\'argument_entity_id:node_1\']->data->field_users[\'und\'] as
     $pane->uuid = '38baaa40-9aaf-470a-b4d6-64eaa8278f8f';
     $display->content['new-38baaa40-9aaf-470a-b4d6-64eaa8278f8f'] = $pane;
     $display->panels['center_'][0] = 'new-38baaa40-9aaf-470a-b4d6-64eaa8278f8f';
+    $pane = new stdClass();
+    $pane->pid = 'new-d1bf2561-8007-47dd-ae93-44305bac8bdb';
+    $pane->panel = 'center_';
+    $pane->type = 'custom';
+    $pane->subtype = 'custom';
+    $pane->shown = TRUE;
+    $pane->access = array(
+      'plugins' => array(
+        0 => array(
+          'name' => 'path_visibility',
+          'settings' => array(
+            'visibility_setting' => '1',
+            'paths' => 'hwc_partner/preview_private_area/ocp',
+          ),
+          'context' => 'empty',
+          'not' => FALSE,
+        ),
+      ),
+    );
+    $pane->configuration = array(
+      'admin_title' => 'Back to private area',
+      'title' => '',
+      'body' => '<div class="row"><div class="col-md-12"><ul><li><a href="private">Back</a></li></ul></div></div>',
+      'format' => 'full_html',
+      'substitute' => 1,
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 1;
+    $pane->locks = array();
+    $pane->uuid = 'd1bf2561-8007-47dd-ae93-44305bac8bdb';
+    $display->content['new-d1bf2561-8007-47dd-ae93-44305bac8bdb'] = $pane;
+    $display->panels['center_'][1] = 'new-d1bf2561-8007-47dd-ae93-44305bac8bdb';
     $pane = new stdClass();
     $pane->pid = 'new-9bf21a4c-e961-4544-acb9-e6cfcac8fec6';
     $pane->panel = 'center_';
@@ -6590,11 +6664,11 @@ foreach( $contexts[\'argument_entity_id:node_1\']->data->field_users[\'und\'] as
       'css_class' => 'section-introduction',
     );
     $pane->extras = array();
-    $pane->position = 1;
+    $pane->position = 2;
     $pane->locks = array();
     $pane->uuid = '9bf21a4c-e961-4544-acb9-e6cfcac8fec6';
     $display->content['new-9bf21a4c-e961-4544-acb9-e6cfcac8fec6'] = $pane;
-    $display->panels['center_'][1] = 'new-9bf21a4c-e961-4544-acb9-e6cfcac8fec6';
+    $display->panels['center_'][2] = 'new-9bf21a4c-e961-4544-acb9-e6cfcac8fec6';
   $display->hide_title = PANELS_TITLE_PANE;
   $display->title_pane = 'new-9bf21a4c-e961-4544-acb9-e6cfcac8fec6';
   $handler->conf['display'] = $display;
@@ -6990,7 +7064,7 @@ foreach( $contexts[\'argument_entity_id:node_1\']->data->field_users[\'und\'] as
     $pane->configuration = array(
       'admin_title' => 'Preview Private Area',
       'title' => '',
-      'body' => '<div id="private-mp" class="row"><div class="col-md-12"><ul><li><a href="hwc_partner/preview_private_area/mp">Preview as MP</a></li><li><a href="hwc_partner/preview_private_area/ocp">Preview as OCP</a></li><li><a href="hwc_partner/preview_private_area/fp">Preview as FP</a></li><li><a href="private">Back</a></li></ul></div></div>',
+      'body' => '<div id="private-fp" class="row"><div class="col-md-12"><ul><li><a href="hwc_partner/preview_private_area/mp">Preview as MP</a></li><li><a href="hwc_partner/preview_private_area/ocp">Preview as OCP</a></li><li><a href="hwc_partner/preview_private_area/fp">Preview as FP</a></li></ul></div></div>',
       'format' => 'full_html',
       'substitute' => 1,
     );
@@ -7005,6 +7079,43 @@ foreach( $contexts[\'argument_entity_id:node_1\']->data->field_users[\'und\'] as
     $pane->uuid = 'b4bb9534-85dc-4712-9e7e-7a38857c7c26';
     $display->content['new-b4bb9534-85dc-4712-9e7e-7a38857c7c26'] = $pane;
     $display->panels['center_'][0] = 'new-b4bb9534-85dc-4712-9e7e-7a38857c7c26';
+    $pane = new stdClass();
+    $pane->pid = 'new-f4c5e86b-03ab-4a5c-8447-171211597a95';
+    $pane->panel = 'center_';
+    $pane->type = 'custom';
+    $pane->subtype = 'custom';
+    $pane->shown = TRUE;
+    $pane->access = array(
+      'plugins' => array(
+        0 => array(
+          'name' => 'path_visibility',
+          'settings' => array(
+            'visibility_setting' => '1',
+            'paths' => 'hwc_partner/preview_private_area/fp',
+          ),
+          'context' => 'empty',
+          'not' => FALSE,
+        ),
+      ),
+    );
+    $pane->configuration = array(
+      'admin_title' => 'Back to private area',
+      'title' => '',
+      'body' => '<div class="row"><div class="col-md-12"><ul><li><a href="private">Back</a></li></ul></div></div>',
+      'format' => 'full_html',
+      'substitute' => 1,
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 1;
+    $pane->locks = array();
+    $pane->uuid = 'f4c5e86b-03ab-4a5c-8447-171211597a95';
+    $display->content['new-f4c5e86b-03ab-4a5c-8447-171211597a95'] = $pane;
+    $display->panels['center_'][1] = 'new-f4c5e86b-03ab-4a5c-8447-171211597a95';
     $pane = new stdClass();
     $pane->pid = 'new-9bf21a4c-e961-4544-acb9-e6cfcac8fec6';
     $pane->panel = 'center_';
@@ -7032,11 +7143,11 @@ foreach( $contexts[\'argument_entity_id:node_1\']->data->field_users[\'und\'] as
       'css_class' => 'section-introduction',
     );
     $pane->extras = array();
-    $pane->position = 1;
+    $pane->position = 2;
     $pane->locks = array();
     $pane->uuid = '9bf21a4c-e961-4544-acb9-e6cfcac8fec6';
     $display->content['new-9bf21a4c-e961-4544-acb9-e6cfcac8fec6'] = $pane;
-    $display->panels['center_'][1] = 'new-9bf21a4c-e961-4544-acb9-e6cfcac8fec6';
+    $display->panels['center_'][2] = 'new-9bf21a4c-e961-4544-acb9-e6cfcac8fec6';
   $display->hide_title = PANELS_TITLE_PANE;
   $display->title_pane = 'new-9bf21a4c-e961-4544-acb9-e6cfcac8fec6';
   $handler->conf['display'] = $display;
