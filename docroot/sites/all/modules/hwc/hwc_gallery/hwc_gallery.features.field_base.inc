@@ -10,7 +10,7 @@
 function hwc_gallery_field_default_field_bases() {
   $field_bases = array();
 
-  // Exported field_base: 'field_gallery'
+  // Exported field_base: 'field_gallery'.
   $field_bases['field_gallery'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -46,7 +46,7 @@ function hwc_gallery_field_default_field_bases() {
     'type' => 'entityreference',
   );
 
-  // Exported field_base: 'field_images'
+  // Exported field_base: 'field_images'.
   $field_bases['field_images'] = array(
     'active' => 1,
     'cardinality' => -1,

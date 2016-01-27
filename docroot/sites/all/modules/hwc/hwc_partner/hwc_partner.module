@@ -485,10 +485,13 @@ function hwc_partner_preview_private_area($profile_type) {
 
   switch ($profile_type) {
     case "mp":
+      drupal_set_title(t("Preview Private Area as MP"));
       return panels_render_display($page_types['page_private_area_for_partners__panel_context_b00e43ca-0583-41d3-8091-8c71bb42ee77']->conf['display']);
     case "ocp":
+      drupal_set_title(t("Preview Private Area as OCP"));
       return panels_render_display($page_types['page_private_area_for_partners__private-area-for-partners-ocp']->conf['display']);
     case "fp":
+      drupal_set_title(t("Preview Private Area as FP"));
       return panels_render_display($page_types['page_private_area_for_partners__private-area-for-partners-fp']->conf['display']);
     default:
       return drupal_not_found();

@@ -10,7 +10,7 @@
 function campaign_materials_field_default_field_instances() {
   $field_instances = array();
 
-  // Exported field_instance: 'node-campaign_materials-body'
+  // Exported field_instance: 'node-campaign_materials-body'.
   $field_instances['node-campaign_materials-body'] = array(
     'bundle' => 'campaign_materials',
     'default_value' => NULL,
@@ -98,7 +98,7 @@ function campaign_materials_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-campaign_materials-field_activity'
+  // Exported field_instance: 'node-campaign_materials-field_activity'.
   $field_instances['node-campaign_materials-field_activity'] = array(
     'bundle' => 'campaign_materials',
     'default_value' => array(
@@ -161,7 +161,7 @@ function campaign_materials_field_default_field_instances() {
   );
 
   // Exported field_instance:
-  // 'node-campaign_materials-field_aditional_resources'
+  // 'node-campaign_materials-field_aditional_resources'.
   $field_instances['node-campaign_materials-field_aditional_resources'] = array(
     'bundle' => 'campaign_materials',
     'deleted' => 0,
@@ -237,7 +237,7 @@ function campaign_materials_field_default_field_instances() {
   );
 
   // Exported field_instance:
-  // 'node-campaign_materials-field_campaign_material_type'
+  // 'node-campaign_materials-field_campaign_material_type'.
   $field_instances['node-campaign_materials-field_campaign_material_type'] = array(
     'bundle' => 'campaign_materials',
     'default_value' => NULL,
@@ -315,7 +315,7 @@ function campaign_materials_field_default_field_instances() {
     'workbench_access_field' => 0,
   );
 
-  // Exported field_instance: 'node-campaign_materials-field_character_count'
+  // Exported field_instance: 'node-campaign_materials-field_character_count'.
   $field_instances['node-campaign_materials-field_character_count'] = array(
     'bundle' => 'campaign_materials',
     'default_value' => NULL,
@@ -387,7 +387,7 @@ function campaign_materials_field_default_field_instances() {
     'workbench_access_field' => 0,
   );
 
-  // Exported field_instance: 'node-campaign_materials-field_image'
+  // Exported field_instance: 'node-campaign_materials-field_image'.
   $field_instances['node-campaign_materials-field_image'] = array(
     'bundle' => 'campaign_materials',
     'deleted' => 0,
@@ -502,7 +502,7 @@ function campaign_materials_field_default_field_instances() {
     'workbench_access_field' => 0,
   );
 
-  // Exported field_instance: 'node-campaign_materials-field_page_count'
+  // Exported field_instance: 'node-campaign_materials-field_page_count'.
   $field_instances['node-campaign_materials-field_page_count'] = array(
     'bundle' => 'campaign_materials',
     'default_value' => NULL,
@@ -574,7 +574,7 @@ function campaign_materials_field_default_field_instances() {
     'workbench_access_field' => 0,
   );
 
-  // Exported field_instance: 'node-campaign_materials-field_publication_date'
+  // Exported field_instance: 'node-campaign_materials-field_publication_date'.
   $field_instances['node-campaign_materials-field_publication_date'] = array(
     'bundle' => 'campaign_materials',
     'deleted' => 0,
@@ -670,7 +670,7 @@ function campaign_materials_field_default_field_instances() {
     'workbench_access_field' => 0,
   );
 
-  // Exported field_instance: 'node-campaign_materials-field_related_documents'
+  // Exported field_instance: 'node-campaign_materials-field_related_documents'.
   $field_instances['node-campaign_materials-field_related_documents'] = array(
     'bundle' => 'campaign_materials',
     'deleted' => 0,
@@ -761,7 +761,7 @@ function campaign_materials_field_default_field_instances() {
     'workbench_access_field' => 0,
   );
 
-  // Exported field_instance: 'node-campaign_materials-field_summary'
+  // Exported field_instance: 'node-campaign_materials-field_summary'.
   $field_instances['node-campaign_materials-field_summary'] = array(
     'bundle' => 'campaign_materials',
     'default_value' => NULL,
@@ -837,7 +837,7 @@ function campaign_materials_field_default_field_instances() {
     'workbench_access_field' => 0,
   );
 
-  // Exported field_instance: 'node-campaign_materials-title_field'
+  // Exported field_instance: 'node-campaign_materials-title_field'.
   $field_instances['node-campaign_materials-title_field'] = array(
     'bundle' => 'campaign_materials',
     'default_value' => NULL,
@@ -922,6 +922,84 @@ function campaign_materials_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance:
+  // 'taxonomy_term-campaign_material_types-description_field'.
+  $field_instances['taxonomy_term-campaign_material_types-description_field'] = array(
+    'bundle' => 'campaign_material_types',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 1,
+      ),
+    ),
+    'entity_type' => 'taxonomy_term',
+    'field_name' => 'description_field',
+    'label' => 'Description',
+    'required' => FALSE,
+    'settings' => array(
+      'display_summary' => 0,
+      'entity_translation_sync' => FALSE,
+      'hide_label' => array(
+        'entity' => FALSE,
+        'page' => FALSE,
+      ),
+      'text_processing' => 1,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'module' => 'text',
+      'settings' => array(
+        'rows' => 20,
+        'summary_rows' => 5,
+      ),
+      'type' => 'text_textarea_with_summary',
+      'weight' => -5,
+    ),
+  );
+
+  // Exported field_instance:
+  // 'taxonomy_term-campaign_material_types-name_field'.
+  $field_instances['taxonomy_term-campaign_material_types-name_field'] = array(
+    'bundle' => 'campaign_material_types',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'taxonomy_term',
+    'field_name' => 'name_field',
+    'label' => 'Name',
+    'required' => TRUE,
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+      'hide_label' => array(
+        'entity' => FALSE,
+        'page' => FALSE,
+      ),
+      'text_processing' => 0,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'module' => 'text',
+      'settings' => array(
+        'size' => 60,
+      ),
+      'type' => 'text_textfield',
+      'weight' => -5,
+    ),
+  );
+
   // Translatables
   // Included for use with string extractors like potx.
   t('Activity');
@@ -929,8 +1007,10 @@ function campaign_materials_field_default_field_instances() {
   t('Body');
   t('Campaign material type');
   t('Character count');
+  t('Description');
   t('Files');
   t('Image');
+  t('Name');
   t('Page Count');
   t('Publication date');
   t('Summary');
