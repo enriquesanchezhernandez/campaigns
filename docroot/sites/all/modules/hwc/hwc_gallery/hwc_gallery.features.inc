@@ -154,11 +154,11 @@ function hwc_gallery_image_default_styles() {
 function hwc_gallery_node_info() {
   $items = array(
     'hwc_gallery' => array(
-      'name' => t('Gallery'),
+      'name' => 'Gallery',
       'base' => 'node_content',
       'description' => '',
       'has_title' => '1',
-      'title_label' => t('Title'),
+      'title_label' => 'Title',
       'help' => '',
     ),
   );

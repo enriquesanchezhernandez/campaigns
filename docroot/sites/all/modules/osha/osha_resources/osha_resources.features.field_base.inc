@@ -10,7 +10,7 @@
 function osha_resources_field_default_field_bases() {
   $field_bases = array();
 
-  // Exported field_base: 'field_external_url'
+  // Exported field_base: 'field_external_url'.
   $field_bases['field_external_url'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -40,7 +40,7 @@ function osha_resources_field_default_field_bases() {
     'type' => 'link_field',
   );
 
-  // Exported field_base: 'field_flickr'
+  // Exported field_base: 'field_flickr'.
   $field_bases['field_flickr'] = array(
     'active' => 1,
     'cardinality' => -1,
@@ -57,7 +57,7 @@ function osha_resources_field_default_field_bases() {
     'type' => 'flickrfield',
   );
 
-  // Exported field_base: 'field_internal_contents'
+  // Exported field_base: 'field_internal_contents'.
   $field_bases['field_internal_contents'] = array(
     'active' => 1,
     'cardinality' => -1,
@@ -97,7 +97,7 @@ function osha_resources_field_default_field_bases() {
     'type' => 'entityreference',
   );
 
-  // Exported field_base: 'field_slideshare'
+  // Exported field_base: 'field_slideshare'.
   $field_bases['field_slideshare'] = array(
     'active' => 1,
     'cardinality' => -1,
@@ -116,7 +116,7 @@ function osha_resources_field_default_field_bases() {
     'type' => 'slideshare',
   );
 
-  // Exported field_base: 'field_youtube'
+  // Exported field_base: 'field_youtube'.
   $field_bases['field_youtube'] = array(
     'active' => 1,
     'cardinality' => -1,

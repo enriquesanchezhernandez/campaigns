@@ -4,6 +4,7 @@ core = 7.x
 package = HWC
 version = 7.x-1.2
 project = campaign_materials
+dependencies[] = osha_infographics
 dependencies[] = osha_news
 dependencies[] = pdf_to_image
 dependencies[] = shs

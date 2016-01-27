@@ -10,7 +10,7 @@
 function osha_infographics_field_default_field_bases() {
   $field_bases = array();
 
-  // Exported field_base: 'field_image'
+  // Exported field_base: 'field_image'.
   $field_bases['field_image'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -35,7 +35,7 @@ function osha_infographics_field_default_field_bases() {
     'type' => 'image',
   );
 
-  // Exported field_base: 'field_thumbnail'
+  // Exported field_base: 'field_thumbnail'.
   $field_bases['field_thumbnail'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -60,7 +60,7 @@ function osha_infographics_field_default_field_bases() {
     'type' => 'image',
   );
 
-  // Exported field_base: 'field_twin_infographics'
+  // Exported field_base: 'field_twin_infographics'.
   $field_bases['field_twin_infographics'] = array(
     'active' => 1,
     'cardinality' => -1,
