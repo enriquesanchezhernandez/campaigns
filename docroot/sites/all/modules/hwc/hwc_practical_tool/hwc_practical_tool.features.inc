@@ -22,11 +22,11 @@ function hwc_practical_tool_ctools_plugin_api($module = NULL, $api = NULL) {
 function hwc_practical_tool_node_info() {
   $items = array(
     'practical_tool' => array(
-      'name' => t('Practical Tool'),
+      'name' => 'Practical Tool',
       'base' => 'node_content',
       'description' => '',
       'has_title' => '1',
-      'title_label' => t('Title'),
+      'title_label' => 'Title',
       'help' => '',
     ),
   );

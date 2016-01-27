@@ -10,7 +10,7 @@
 function hwc_practical_tool_field_default_field_bases() {
   $field_bases = array();
 
-  // Exported field_base: 'field_access_tool_link'
+  // Exported field_base: 'field_access_tool_link'.
   $field_bases['field_access_tool_link'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -40,7 +40,7 @@ function hwc_practical_tool_field_default_field_bases() {
     'type' => 'link_field',
   );
 
-  // Exported field_base: 'field_access_tool_link_fc'
+  // Exported field_base: 'field_access_tool_link_fc'.
   $field_bases['field_access_tool_link_fc'] = array(
     'active' => 1,
     'cardinality' => -1,
@@ -63,7 +63,7 @@ function hwc_practical_tool_field_default_field_bases() {
     'type' => 'field_collection',
   );
 
-  // Exported field_base: 'field_additional_information'
+  // Exported field_base: 'field_additional_information'.
   $field_bases['field_additional_information'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -84,7 +84,7 @@ function hwc_practical_tool_field_default_field_bases() {
     'type' => 'text_long',
   );
 
-  // Exported field_base: 'field_available_languages'
+  // Exported field_base: 'field_available_languages'.
   $field_bases['field_available_languages'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -114,7 +114,7 @@ function hwc_practical_tool_field_default_field_bases() {
     'type' => 'language_field',
   );
 
-  // Exported field_base: 'field_external_urls'
+  // Exported field_base: 'field_external_urls'.
   $field_bases['field_external_urls'] = array(
     'active' => 1,
     'cardinality' => -1,
@@ -150,7 +150,7 @@ function hwc_practical_tool_field_default_field_bases() {
     'type' => 'entityreference',
   );
 
-  // Exported field_base: 'field_free'
+  // Exported field_base: 'field_free'.
   $field_bases['field_free'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -176,7 +176,7 @@ function hwc_practical_tool_field_default_field_bases() {
     'type' => 'list_boolean',
   );
 
-  // Exported field_base: 'field_objective'
+  // Exported field_base: 'field_objective'.
   $field_bases['field_objective'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -197,7 +197,7 @@ function hwc_practical_tool_field_default_field_bases() {
     'type' => 'text_long',
   );
 
-  // Exported field_base: 'field_provider'
+  // Exported field_base: 'field_provider'.
   $field_bases['field_provider'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -219,7 +219,7 @@ function hwc_practical_tool_field_default_field_bases() {
     'type' => 'text',
   );
 
-  // Exported field_base: 'field_segment'
+  // Exported field_base: 'field_segment'.
   $field_bases['field_segment'] = array(
     'active' => 1,
     'cardinality' => -1,
@@ -247,7 +247,7 @@ function hwc_practical_tool_field_default_field_bases() {
     'type' => 'taxonomy_term_reference',
   );
 
-  // Exported field_base: 'field_tool_type'
+  // Exported field_base: 'field_tool_type'.
   $field_bases['field_tool_type'] = array(
     'active' => 1,
     'cardinality' => 1,
