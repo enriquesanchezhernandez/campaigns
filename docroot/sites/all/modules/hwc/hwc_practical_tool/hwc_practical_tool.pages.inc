@@ -130,7 +130,8 @@ function hwc_practical_tool_menu_tools_search_native($form_state) {
     $results = $server->search($query);
     if (!empty($results['results'])) {
       foreach ($results['results'] as $result) {
-        $restrict[] = $result['fields']['nid'];
+        list($lng, $nid) = explode('_', $result['id'], 2);
+        $restrict[] = $nid;
       }
       $restrict = array_unique($restrict);
     }
@@ -246,7 +247,8 @@ function hwc_practical_tool_menu_tools_search_related($form_state, $native_nids)
   if (!empty($results['results'])) {
     $nids = array();
     foreach ($results['results'] as $result) {
-      $nids[] = $result['fields']['nid'];
+      list($lng, $nid) = explode('_', $result['id'], 2);
+      $nids[] = $nid;
     }
   }
   $nids = array_unique($nids);

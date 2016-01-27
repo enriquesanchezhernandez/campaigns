@@ -101,7 +101,8 @@ function osha_publication_menu_publications_search_native($form_state) {
     $results = $server->search($query);
     if (!empty($results['results'])) {
       foreach ($results['results'] as $result) {
-        $restrict[] = $result['fields']['nid'];
+        list($lng, $nid) = explode('_', $result['id'], 2);
+        $restrict[] = $nid;
       }
     }
     if (empty($restrict)) {
@@ -247,7 +248,8 @@ function osha_publication_menu_publications_search_related($form_state, $native_
   if (!empty($results['results'])) {
     $nids = array();
     foreach ($results['results'] as $result) {
-      $nids[] = $result['fields']['nid'];
+      list($lng, $nid) = explode('_', $result['id'], 2);
+      $nids[] = $nid;
     }
   }
   $nids = array_unique($nids);
@@ -356,9 +358,8 @@ function osha_publication_menu_case_studies_search_native($form_state) {
   $results = $server->search($query);
   if (!empty($results['results'])) {
     foreach ($results['results'] as $result) {
-      if (isset($result['fields']['nid'])) {
-        $restrict[] = $result['fields']['nid'];
-      }
+      list($lng, $nid) = explode('_', $result['id'], 2);
+      $restrict[] = $nid;
     }
   }
   if (empty($restrict)) {
