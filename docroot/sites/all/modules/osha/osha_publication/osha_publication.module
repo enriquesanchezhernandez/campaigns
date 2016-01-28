@@ -594,18 +594,10 @@ function osha_publication_twin_publications_formatter($items) {
 }
 
 function osha_publication_file_all_group_mimetype_formatter($items) {
-  global $language;
-  $languages = array('en');
-  if ($language->language != 'en') {
-    array_unshift($languages, $language->language);
-  }
   $ret = array();
   $groups = array();
   $sizes = array();
   foreach ($items as $langcode => $files) {
-    if (!in_array($langcode, $languages)) {
-      continue;
-    }
     foreach ($files as $file) {
       $mime = $file['filemime'];
       $groups[$mime][$langcode][] = $file;
