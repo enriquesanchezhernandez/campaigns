@@ -911,7 +911,9 @@ function hwc_partner_registration_allowed() {
 function hwc_taxonomy_term_presave($term) {
   // When saving a country term, attach the flag on field_flag.
   $voc = taxonomy_vocabulary_machine_name_load('country');
-  if ($term->vid == $voc->vid) {
+  if ($term->vid == $voc->vid
+    && !empty($term->field_iso2[LANGUAGE_NONE][0]['value'])
+    && empty($term->field_flag[LANGUAGE_NONE][0])) {
     $dir = 'public://flags';
     if (!file_prepare_directory($dir)) {
       drupal_set_message('Flags directory could not be created.', 'warning');
@@ -922,25 +924,27 @@ function hwc_taxonomy_term_presave($term) {
     if (!is_dir($images_dir)) {
       drupal_set_message('Could not find the flags images source directory.', 'warning');
     }
-    $iso2 = strtoupper($term->field_iso2[LANGUAGE_NONE][0]['value']);
-    $image_filename = $iso2 . '.gif';
-    $image_dest_dir = $dir . '/' . $image_filename;
-    $image_path = $images_dir . '/' . $image_filename;
-    $filepath = drupal_realpath($image_path);
-    if (is_file($filepath)) {
-      // Create managed File object and associate with Image field.
-      $file = (object) array(
-        'uid' => 1,
-        'uri' => $filepath,
-        'filemime' => file_get_mimetype($filepath),
-        'status' => 1,
-      );
-      if ($file = file_copy($file, $image_dest_dir)) {
-        $term->field_flag[LANGUAGE_NONE][0] = (array) $file;
-      }
-    }
     else {
-      drupal_set_message(strtr('Flag not found for @country', array('@country' => $term->name)), 'warning');
+      $iso2 = strtoupper($term->field_iso2[LANGUAGE_NONE][0]['value']);
+      $image_filename = $iso2 . '.gif';
+      $image_dest_dir = $dir . '/' . $image_filename;
+      $image_path = $images_dir . '/' . $image_filename;
+      $filepath = drupal_realpath($image_path);
+      if (is_file($filepath)) {
+        // Create managed File object and associate with Image field.
+        $file = (object) array(
+          'uid' => 1,
+          'uri' => $filepath,
+          'filemime' => file_get_mimetype($filepath),
+          'status' => 1,
+        );
+        if ($file = file_copy($file, $image_dest_dir)) {
+          $term->field_flag[LANGUAGE_NONE][0] = (array) $file;
+        }
+      }
+      else {
+        drupal_set_message(strtr('Flag not found for @country', array('@country' => $term->name)), 'warning');
+      }
     }
   }
 }
