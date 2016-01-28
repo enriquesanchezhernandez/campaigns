@@ -195,7 +195,7 @@ abstract class AbstractNCWNodeMigration extends Migration {
     $this->addFieldMapping('log', 'log');
     $this->addFieldMapping('language', 'language');
     $this->addFieldMapping('path', 'path');
-    $this->addFieldMapping('workbench_access')->defaultValue(1); // Assign default section
+    $this->addFieldMapping('workbench_access')->defaultValue('section'); // Assign default section
 
     // Handle field migration in a generic way
     $fields = field_info_instances('node', $this->bundle);
