@@ -118,7 +118,7 @@ function osha_news_field_default_field_instances() {
     'entity_type' => 'node',
     'field_name' => 'body',
     'label' => 'Body',
-    'required' => 0,
+    'required' => 1,
     'settings' => array(
       'display_summary' => 0,
       'entity_translation_sync' => FALSE,
@@ -1039,7 +1039,7 @@ function osha_news_field_default_field_instances() {
     'entity_type' => 'node',
     'field_name' => 'field_summary',
     'label' => 'Summary',
-    'required' => 0,
+    'required' => 1,
     'settings' => array(
       'entity_translation_sync' => FALSE,
       'text_processing' => 1,
