@@ -53,7 +53,7 @@ function osha_events_field_default_field_instances() {
           'date_single_day' => 1,
           'end_after_midnight' => 1,
         ),
-        'increment' => 15,
+        'increment' => 1,
         'input_format' => 'd/m/Y - H:i:s',
         'input_format_custom' => '',
         'label_position' => 'above',
@@ -1982,8 +1982,11 @@ function osha_events_field_default_field_instances() {
       'active' => 1,
       'module' => 'date',
       'settings' => array(
-        'date_single_day' => array(),
-        'increment' => 15,
+        'date_single_day' => array(
+          'date_single_day' => 0,
+          'end_after_midnight' => 0,
+        ),
+        'increment' => 1,
         'input_format' => 'd/m/Y - H:i:s',
         'input_format_custom' => '',
         'label_position' => 'above',
