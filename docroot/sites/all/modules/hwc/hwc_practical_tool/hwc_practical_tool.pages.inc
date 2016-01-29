@@ -71,6 +71,9 @@ function hwc_practical_tool_menu_tools_form($form, $form_state) {
     $form['content']['results-native'] = $form_state['#results-native'];
     $form['content']['results-related'] = $form_state['#results-related'];
   }
+  if (empty($form['content']['results-native'])) {
+    $form['content']['results-native']['#markup'] = '<p class="no-results">' . t('No results found to match your search.') . '</p>';
+  }
   return $form;
 }
 
@@ -117,6 +120,7 @@ function hwc_practical_tool_menu_tools_search_native($form_state) {
   if(!$languages)
     $languages = array($language->language);
   $text = hwc_req_param($form_state, 'text');
+  $relevant_for = hwc_req_param($form_state, 'relevant_for', array());
   $is_search = !empty($text);
   $restrict = array();
   if ($is_search) {
@@ -141,16 +145,6 @@ function hwc_practical_tool_menu_tools_search_native($form_state) {
       );
     }
   }
-  $relevant_for_ids = array();
-  if ($form_state['submitted'] === TRUE) {
-    $relevant_for = $form_state['values']['relevant_for'];
-    foreach ($relevant_for as $relf) {
-      if ($relf) {
-        $relevant_for_ids[] = $relf;
-      }
-    }
-  }
-
   $q = db_select('node', 'a')
     ->fields('a', array('nid', 'vid'))
     ->condition('type', 'practical_tool')
@@ -164,9 +158,9 @@ function hwc_practical_tool_menu_tools_search_native($form_state) {
     $q->innerJoin('field_data_field_available_languages', 'al', 'fc.field_access_tool_link_fc_value = al.entity_id AND fc.field_access_tool_link_fc_revision_id = al.revision_id');
     $q->condition('al.field_available_languages_value', $languages, 'IN');
   }
-  if (!empty($relevant_for_ids)) {
+  if (!empty($relevant_for)) {
     $q->innerJoin('field_data_field_segment', 'fs', 'fs.entity_id = a.nid AND fs.revision_id = a.vid');
-    $q->condition('fs.field_segment_tid', $relevant_for_ids, 'IN');
+    $q->condition('fs.field_segment_tid', $relevant_for, 'IN');
   }
   $nids = $q->execute()->fetchCol();
   $nids = array_unique($nids);
@@ -205,7 +199,7 @@ function hwc_practical_tool_menu_tools_search_native($form_state) {
     'results-native' => node_view_multiple($nodes, 'pub_teaser', 0, $language->language),
     '#suffix' => theme('pager', array(
       'tags' => array('<', '<', '', '>', '>'),
-      'quantity' => count($nodes),
+      'quantity' => 9,
       'parameters' => $pager_params,
     ))
   );
@@ -228,30 +222,37 @@ function hwc_practical_tool_menu_tools_search_related($form_state, $native_nids)
   }
   $text = hwc_req_param($form_state, 'text');
   $is_search = !empty($text);
-  $sort = $is_search ? 'search_api_relevance' : 'changed';
-  $direction = 'desc';
-  /** @var SearchApiQuery $query */
-  /** @var SearchApiSolrService $server */
-  list($server, $query) = hwc_practical_tool_menu_tools_get_query();
-  $query->condition('status', 1);
-  $query->condition('type', 'practical_tool');
-  if (!empty($sort)) {
-    $query->sort($sort, $direction);
+  $relevant_for = hwc_req_param($form_state, 'relevant_for', array());
+  // Select all publications having field_file available in filtered languages.
+  $q = db_select('node', 'a');
+  $q->fields('a', array('nid', 'vid'));
+  $q->condition('a.type', 'practical_tool');
+  $q->condition('a.status', 1);
+  $q->orderBy('a.changed', 'DESC');
+  if (!empty($restrict)) {
+    $q->condition('a.nid', $restrict, 'IN');
   }
-  if ($is_search) {
-    $query->keys($text);
-    $query->fields(array('title_field', 'body:value'));
-  }
+  $pnids = $q->execute()->fetchCol();
   $nids = array();
-  $results = $server->search($query);
-  if (!empty($results['results'])) {
-    $nids = array();
-    foreach ($results['results'] as $result) {
-      list($lng, $nid) = explode('_', $result['id'], 2);
-      $nids[] = $nid;
+  foreach ($pnids as $pnid) {
+    if (!empty($relevant_for)) {
+      // Check if the node is relevant for all selected 'relevant for' checkboxes.
+      $q2 = db_select('field_data_field_segment', 'b');
+      $q2->fields('b', array('entity_id'));
+      $q2->innerJoin('node', 'a', 'a.nid = b.entity_id');
+      $q2->condition('b.entity_id', $pnid);
+      $q2->condition('b.entity_type', 'node');
+      $q2->condition('b.field_segment_tid', $relevant_for, 'IN');
+      $c2 = $q2->countQuery()->execute()->fetchField();
+    }
+    else {
+      // No 'relevant for' checkbox is selected, so let the node pass this check.
+      $c2 = 1;
+    }
+    if ($c2 >= count($relevant_for)) {
+      $nids[] = $pnid;
     }
   }
-  $nids = array_unique($nids);
   if (!empty($native_nids)) { // Remove the nodes displayed above (native)
     $nids = array_filter($nids, function($nid) use ($native_nids) {
       return !in_array($nid, $native_nids);
@@ -260,29 +261,6 @@ function hwc_practical_tool_menu_tools_search_related($form_state, $native_nids)
   if (empty($nids)) {
     return array();
   }
-
-  $q = db_select('node', 'a')
-    ->fields('a', array('nid', 'vid'))
-    ->condition('type', 'practical_tool')
-    ->condition('status', 1)
-    ->orderBy('changed', 'DESC');
-  $q->innerJoin('field_data_field_access_tool_link_fc', 'fc', 'a.nid = fc.entity_id AND a.vid = fc.revision_id');
-  $q->innerJoin('field_data_field_available_languages', 'al', 'fc.field_access_tool_link_fc_value = al.entity_id AND fc.field_access_tool_link_fc_revision_id = al.revision_id');
-  $q->condition('al.field_available_languages_value', 'en');
-  if (!empty($relevant_for_ids)) {
-    $q->innerJoin('field_data_field_segment', 'fs', 'fs.entity_id = a.nid AND fs.revision_id = a.vid');
-    $q->condition('fs.field_segment_tid', $relevant_for_ids, 'IN');
-  }
-  $pnids = $q->execute()->fetchCol();
-  $pnids = array_unique($pnids);
-
-  $nids = array_intersect($nids, $pnids);
-
-  $sort = hwc_req_param($form_state, 'sort');
-  if ($sort == 'alphabetically') {
-    _hwc_practical_tool_sort_nodes($nids);
-  }
-  
   $per_page = 2;
   $current_page = pager_default_initialize(count($nids), $per_page, 1);
   $page = array_chunk($nids, $per_page, TRUE);
@@ -304,7 +282,7 @@ function hwc_practical_tool_menu_tools_search_related($form_state, $native_nids)
     'results-related' => node_view_multiple($nodes, 'pub_teaser', 0, $language->language),
     '#suffix' => theme('pager', array(
       'tags' => array('<', '<', '', '>', '>'),
-      'quantity' => count($nodes),
+      'quantity' => 9,
       'parameters' => $pager_params,
       'element' => 1,
     )),
