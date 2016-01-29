@@ -2552,6 +2552,7 @@ article{
 			}
 		}
 	}
+
 	.pane-press-contacts{
 		padding-right: 15px;
 		padding-left: 15px;
@@ -2584,6 +2585,11 @@ article{
 				font-weight: bold;
 				font-style: italic;
 				display: inline-block;
+			}
+			&:before{
+				content: "> ";
+				font-weight: bold;
+				color:#039;
 			}
 		}
 	}
@@ -3901,7 +3907,8 @@ article{
 	}
 	.introduction{
 		margin: 0;
-		font-size: @size7;
+		font-size: 1.3em;
+		padding-bottom: 0.5em;
 	}
 	.texts{
 		/* margin-bottom: 1em; */
@@ -4262,7 +4269,7 @@ article{
 
 	.profile-2-cols-container-1{
 		padding-top:0.5em;
-		padding-bottom: 0em!important;
+		/*padding-bottom: 0em!important;*/
 	}
 
 	.panels-flexible-row-new-1 .field-name-field-mission-statement .field-item{
@@ -4396,6 +4403,7 @@ article{
 
 		.panels-flexible-row-new-2-inside .panels-flexible-column-new-7 {
 			padding-left: 0px;
+			padding-bottom: 1em;
 		}
 
 		.panels-flexible-region-last{
@@ -6545,4 +6553,3 @@ span.date-display-single{
     height: 4100px;
     border: 0;
 }
-
