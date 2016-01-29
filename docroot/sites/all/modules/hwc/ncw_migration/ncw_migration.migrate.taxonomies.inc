@@ -40,6 +40,14 @@ class NCWTaxonomyPublicationTypeMigration extends AbstractNCWTaxonomyTermMigrati
   }
 }
 
+class NCWTaxonomySegmentationMigration extends AbstractNCWTaxonomyTermMigration {
+
+  public function __construct($arguments) {
+    parent::__construct($arguments, 'SegmentationNCWTaxonomyTermSource', 'segment');
+    $this->description = 'Import taxonomy "relevant_for" from NCW';
+  }
+}
+
 class NCWTaxonomyTagsMigration extends AbstractNCWTaxonomyTermMigration {
 
   public function __construct($arguments) {
@@ -62,6 +70,13 @@ class TagsNCWTaxonomyTermSource extends AbstractNCWTaxonomyTermSource {
     return array(
       'field_tags_code' => 'field_tags_code',
     );
+  }
+}
+
+class SegmentationNCWTaxonomyTermSource extends AbstractNCWTaxonomyTermSource {
+
+  public function contentFields() {
+    return array();
   }
 }
 

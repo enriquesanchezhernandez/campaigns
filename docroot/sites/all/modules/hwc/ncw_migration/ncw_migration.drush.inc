@@ -30,6 +30,7 @@ function drush_ncw_migration_hwc_migrate_all() {
     'tax_newsletter_sections',
     'tax_publication_types',
     'tax_tags',
+    'tax_segment',
 
     'infographics',
     'events',

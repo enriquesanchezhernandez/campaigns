@@ -26,7 +26,7 @@ function ncw_migration_migrate_api() {
         'dependencies' => array(
           'tax_tags', 'tax_publication_types', 'publications_add_res',
           'news_add_res', 'press_releases_add_res', 'press_releases_add_res',
-          'highlights_add_res', 'notes_to_editor'
+          'highlights_add_res', 'notes_to_editor', 'tax_segment',
         ),
         'class_name' => 'NCWPublicationsMigration',
       ),
@@ -116,6 +116,11 @@ function ncw_migration_migrate_api() {
         'group_name' => 'ncw',
         'dependencies' => array(),
         'class_name' => 'NCWTaxonomyPublicationTypeMigration',
+      ),
+      'tax_segment' => array(
+        'group_name' => 'ncw',
+        'dependencies' => array(),
+        'class_name' => 'NCWTaxonomySegmentationMigration',
       ),
       'tax_tags' => array(
         'group_name' => 'ncw',
