@@ -109,9 +109,6 @@ header.navbar-default{
 					  background-color: #3875d7;
 					  background-image: none;
 					}
-					li.active-result.result-selected{
-					
-					}
 				}
 				.chosen-search input[type="text"]{
 					border-color: @input-language-default-color;
@@ -199,7 +196,6 @@ header.navbar-default{
 				li{
 					color: @menu-color;
 					width: 20%;
-					/* cursor: pointer; */
 					a, > span{
 						color: @menu-color;
 						text-align: center;
@@ -225,22 +221,12 @@ header.navbar-default{
 							display: none;
 						}
 					}
-					&.first{
-						.dropdown-menu{
-							min-width: 280px;
-						}
-					}
-					&:nth-child(3), &:nth-child(4){
-						.dropdown-menu{
-							min-width: 270px;
-						}
-					}
 					.dropdown-toggle:hover{
 						background-color: @menu-bg-color;
 					}
 					.dropdown-menu{
 						padding: 0;
-						min-width: 270px;
+						min-width: 285px;
 						box-shadow: 0 0px 0px rgba(0, 0, 0, 0);
 						border: none;
 						background-color: @menu-bg-color;
@@ -251,11 +237,13 @@ header.navbar-default{
 						li{
 							width: 100%;
 							padding: 6px 0;
+							clear:both;
 							a{
 								text-align: left;
 								display: inline;
 								font-style: italic;
 								padding:0;
+								white-space: normal;
 								&:hover{
 									font-weight: bold;
 									background-color: @menu-bg-color;
@@ -263,8 +251,11 @@ header.navbar-default{
 							}
 							&:before{
 								content: ">";
-								padding-left: 35px;
+								padding-left: 26px;
 								padding-right: 5px;
+								display: block;
+							    float: left;
+							    height: 22px;
 							}
 						}
 					}

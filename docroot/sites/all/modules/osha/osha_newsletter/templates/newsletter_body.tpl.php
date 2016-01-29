@@ -23,7 +23,7 @@ table, tr, td{
 </style>
 
 <?php if(!empty($newsletter_intro)){ ?>
- <div style="margin-left: 422px; margin-right: 20px; margin-top: -130px; margin-bottom: 100px; color: #FFFFFF; font-style: italic;"> <?php print($newsletter_intro);?></div>
+ <div style="margin-left: 422px; margin-right: 20px; margin-top: -158px; margin-bottom: 115px; color: #FFFFFF; font-style: italic;"> <?php print($newsletter_intro);?></div>
 <?php } ?>
 
 <table border="0" cellpadding="20" cellspacing="0" width="800" style="margin-left: 25px;">

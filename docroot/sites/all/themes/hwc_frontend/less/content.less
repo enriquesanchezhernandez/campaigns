@@ -53,7 +53,10 @@
 			margin-top: 1em;
 			font-style: italic;
 		}
-		p a.inline-href, &.private-area #private .pane-custom p a.inline-href, &.private-area #private p[id*="tmgmt"] a.inline-href, &.private-area #private ul a.inline-href{
+		p a.inline-href, 
+		&.private-area #private .pane-custom p a.inline-href, 
+		&.private-area #private p[id*="tmgmt"] a.inline-href,
+		&.private-area #private ul a.inline-href{
 			display: inline;
 			font-size: inherit;
 			&:before{
@@ -63,12 +66,6 @@
 	}
 	/* End General */
 
-/*no deberian aparecer en la aplicacion
-.not-logged-in  ul.tabs--primary.nav.nav-tabs{
-	display: none;
-}
-En el apartado de user si, porque es el que tiene la opcion de "Forgot password"
-*/
 ul.tabs--primary.nav.nav-tabs{
 	margin-left: @margin1;
 	margin-right: @margin1;
@@ -1022,40 +1019,26 @@ ul.tabs--primary.nav.nav-tabs{
 	}
 	.page-node .node-news{
 		.field.field-name-field-image{
-			height: 220px;
-			width: 220px;
-			float: left;
-			overflow: hidden;
-			margin-right: 3em;
 			.field-items{
 				height: 100%;
 				div{
 					height: 100%;
-					background-color: @bg-color-3;
 					img{
-						margin-top: 0;
+						margin-top: 0.3em;
 						margin-bottom: 0em;
-						margin-right: 0em;
-						min-width: 100%;
-						height: auto;
-						min-height: 100%;
-						width: auto;
-						max-width: 9999px
+						margin-right: 1em;
 					}
 				}
 			}
 		}
 		.field-name-field-image-caption{
 			background-color: @bg-color-3;
-			padding: 1em;
-			text-align: center;
-			width: 220px;
-			float: left;
-			/* position: absolute; */
-			/* margin-top: 220px; */
-			margin-left: -262px;
-			z-index: -1;
-			margin-top: 220px;
+		    padding: 1em;
+		    text-align: center;
+		    width: 220px;
+		    float: left;
+		    z-index: -1;
+		    clear: both;
 		}
 		.field-name-body {
 		    display: flex;
@@ -2154,7 +2137,7 @@ ul.tabs--primary.nav.nav-tabs{
 			margin-bottom: 1em;
 		}
 		.field-name-field-publication-date{
-			margin-bottom: 1em;
+			margin-bottom: 0em;
 		}
 		.field-type-text-with-summary{
 			margin-bottom: 1em;
@@ -2324,6 +2307,7 @@ article{
 .field.field-name-field-summary{
 	font-weight: bold;
 	margin-bottom: 1em;
+	margin-top: 1em;
 }
 .field.field-name-field-publication-date{
 	padding-top: 0.3em;
@@ -2568,6 +2552,7 @@ article{
 			}
 		}
 	}
+
 	.pane-press-contacts{
 		padding-right: 15px;
 		padding-left: 15px;
@@ -2600,6 +2585,11 @@ article{
 				font-weight: bold;
 				font-style: italic;
 				display: inline-block;
+			}
+			&:before{
+				content: "> ";
+				font-weight: bold;
+				color:#039;
 			}
 		}
 	}
@@ -3917,7 +3907,8 @@ article{
 	}
 	.introduction{
 		margin: 0;
-		font-size: @size7;
+		font-size: 1.3em;
+		padding-bottom: 0.5em;
 	}
 	.texts{
 		/* margin-bottom: 1em; */
@@ -4190,7 +4181,7 @@ article{
 	}
 	.pane-node-field-mission-statement{
 	    clear: both;
-		padding-top: 1em;
+		padding-top: 0em;
 		padding-right: 1em;
 	}
 	.pane-node-field-pledge{
@@ -4278,7 +4269,7 @@ article{
 
 	.profile-2-cols-container-1{
 		padding-top:0.5em;
-		padding-bottom: 0em!important;
+		/*padding-bottom: 0em!important;*/
 	}
 
 	.panels-flexible-row-new-1 .field-name-field-mission-statement .field-item{
@@ -4412,6 +4403,7 @@ article{
 
 		.panels-flexible-row-new-2-inside .panels-flexible-column-new-7 {
 			padding-left: 0px;
+			padding-bottom: 1em;
 		}
 
 		.panels-flexible-region-last{
@@ -4487,7 +4479,10 @@ article{
 		margin-right: 0em;
 		text-align: left;
 		float: none;
+		font-weight: normal;
 		.field-item {
+			padding-top:0.5em;
+			padding-bottom: 0.5em;
 			padding-left: 0;
 		}
 	} 
@@ -4499,9 +4494,10 @@ article{
 			margin-right: 2em;
 		}
 	}
+
 	.profile-2-cols-container-1 .panels-flexible-region-last .pane-entity-field{
+		margin-top:0.5em;
 		margin-bottom: 0.5em;
-		/* margin-left: 1em; */
 		text-align: left;
 		.pane-title{
 			color: @text-color-3;
@@ -4509,8 +4505,6 @@ article{
 			font-weight: bold;
 		}
 		&.pane-node-field-mission-statement{
-		    /* width: 45%; */
-			/* margin-right: 5%; */
 			float: left;
 			text-align: left;
 			padding-right: 0em;
@@ -4518,6 +4512,16 @@ article{
 		&.pane-node-field-pledge{
 			text-align: left;
 		}
+	}
+
+	.profile-2-cols-container-1 .pane-node-field-mission-statement{
+		margin-top:0em!important;
+		margin-bottom: 0em!important;
+	}
+
+	.profile-2-cols-container-1 .panels-flexible-region-last .pane-node-field-country{
+		margin-top:0em;
+		margin-bottom: 0em;
 	}
 }
 /*End partners public profile*/
@@ -4982,12 +4986,6 @@ article{
 		margin-bottom: 0em;
 	}
 	#private{
-		/*
-		.hwc-share-widget{
-			display: none;
-		}
-		*/
-		
 		margin-left: @margin1;
 		margin-right: @margin1;
 		.section-introduction{
@@ -5016,7 +5014,29 @@ article{
 				display: none;
 			}
 		}
-		.pane-custom, p[id*="tmgmt"], ul{
+
+		.support-logos {
+			h2{
+				display:block;
+				color: @color7;
+				font-size: 1.5em;
+				font-style: normal;
+				font-weight: bold;
+			}
+
+			.logos .images{
+				color: @color2;
+				padding-left:0.5em;
+				font-weight: bold;
+				&:after{
+					content: " ";
+					background: url("../images/content/download.png") no-repeat center;
+					padding-right: 25px;
+				}
+			}
+		}
+
+		.pane-custom, .pane-node .pane-content p , p[id*="tmgmt"], ul{
 			border-bottom: 1px dotted @color3;
 			padding-bottom: 10px;
 			margin-top: 10px;
@@ -5026,7 +5046,7 @@ article{
 			a{
 				font-style: normal;
 				font-weight: bold;
-				font-size: @size7;
+				font-size: 1.3em;
 				color: @color2;
 				margin-bottom: 10px;
 				display: block;
@@ -6523,7 +6543,7 @@ span.date-display-single{
 
 .iframe-partnership {
 	width: 100%; 
-	height: 2825px;
+	height: 2875px;
 	border: 0px;
 }
 

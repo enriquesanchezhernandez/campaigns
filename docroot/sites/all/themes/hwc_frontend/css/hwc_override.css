@@ -9,8 +9,15 @@
 }
 
 
+.page-practical-tools fieldset.panel, .page-practical-tools fieldset.panel .panel-body {
+    border: none;
+    box-shadow: none;
+    margin: 0;
+    padding: 0;
+}
+
 #block-search-form .input-group { width: 250px; }
-#block-search-form input { width: 200px; font-size: 1em; height: auto; float:right; }
+#block-search-form input { width: 200px; font-size: 1em; float:right; }
 
 div.workbench-info-block {
   clear:both;
