@@ -174,16 +174,16 @@
  * a structure-tables-key is provided. You may add new tables to the existing
  * array or add a new element.
  */
-$options['structure-tables']['common'] = array(
-  'cache',
-  'cache_filter',
-  'cache_menu',
-  'cache_form',
-  'cache_page',
-  'history',
-  'sessions',
-  'watchdog',
-);
+//$options['structure-tables']['common'] = array(
+//  'cache',
+//  'cache_filter',
+//  'cache_menu',
+//  'cache_form',
+//  'cache_page',
+//  'history',
+//  'sessions',
+//  'watchdog',
+//);
 /**
  * Customize this associative array with your own tables. This is the list of
  * tables that are entirely omitted by the 'sql-dump' and 'sql-sync' commands
@@ -274,6 +274,10 @@ if(file_exists($json_path)) {
     drush_set_error('Error detected in config.json, please fix them and try again');
   }
 }
+
+$command_specific['sql-sync'] = array(
+  'structure-tables-list' => 'cache*,history,sessions,watchdog,ctools_css_cache,ctools_object_cache'
+);
 
 $options['init-modules'] = array(
   'ctools',
