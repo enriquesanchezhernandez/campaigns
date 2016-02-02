@@ -1,0 +1,31 @@
+{
+  "routes": {
+    "company": {
+      "index": "1",
+      "internal": "company",
+      "label": "About your Organisation",
+      "next": "Involvement",
+      "submitText": "Next - Tell us about your campaign involvement",
+      "route":"route=company",
+      "subsection":"ORGANISATION"
+    },
+    "involvement": {
+      "index": "2",
+      "internal": "involvement",
+      "label": "About your Involvement",
+      "next": "Contact",
+      "submitText": "Finalise your registration - Give us your primary contact information",
+      "route":"route=involvement",
+      "subsection":"BECOME"
+    },
+    "contact": {
+      "index": "3",
+      "internal": "contact",
+      "label": "Contact Information",
+      "next": "Congrats",
+      "submitText": "Submit your Application",
+      "route":"route=contact",
+      "subsection":"PRIMARY_CONTACT"
+    }
+  }
+}
