@@ -66,27 +66,27 @@ function osha_image_default_styles() {
 function osha_node_info() {
   $items = array(
     'article' => array(
-      'name' => t('Article'),
+      'name' => 'Article',
       'base' => 'node_content',
-      'description' => t('Introductions and Sections'),
+      'description' => 'Introductions and Sections',
       'has_title' => '1',
-      'title_label' => t('Title'),
+      'title_label' => 'Title',
       'help' => '',
     ),
     'internal_url' => array(
-      'name' => t('Internal URL'),
+      'name' => 'Internal URL',
       'base' => 'node_content',
       'description' => '',
       'has_title' => '1',
-      'title_label' => t('Title'),
+      'title_label' => 'Title',
       'help' => '',
     ),
     'webform' => array(
-      'name' => t('Webform'),
+      'name' => 'Webform',
       'base' => 'node_content',
-      'description' => t('Create a new form or questionnaire accessible to users. Submission results and statistics are recorded and accessible to privileged users.'),
+      'description' => 'Create a new form or questionnaire accessible to users. Submission results and statistics are recorded and accessible to privileged users.',
       'has_title' => '1',
-      'title_label' => t('Title'),
+      'title_label' => 'Title',
       'help' => '',
     ),
   );

@@ -281,12 +281,16 @@ function osha_workflow_permission() {
     $permissions['edit any content in ' . $state->name] = array(
       'title' => t('Edit any content in @state', array('@state' => $state->label)),
     );
+    $permissions['delete any content in ' . $state->name] = array(
+      'title' => t('Delete any content in @state', array('@state' => $state->label)),
+    );
   }
 
   $permissions['view osh approver needs review tab'] = array('title' => t("View Approver's 'Needs Aproval' tab in My Workbench"));
   $permissions['view osh review manager needs review tab'] = array('title' => t("View Review Manager's 'Needs RM Review' tab in My Workbench"));
   $permissions['view osh project manager needs review tab'] = array('title' => t("View Project Manager's 'Needs PM Review' tab in My Workbench"));
   $permissions['view osh content tab'] = array('title' => t("View 'Content' tab in My Workbench"));
+  $permissions['view osh my content tab'] = array('title' => t("View 'My Content' tab in My Workbench"));
   $permissions['mark access section as reviewed'] = array('title' => t("Can mark as Reviewed Access section PM"));
 
   return $permissions;
@@ -319,6 +323,16 @@ function osha_workflow_node_access($node, $operation, $user) {
     if ($is_moderated && variable_get('workbench_moderation_per_node_type', FALSE)) {
       $state = $node->workbench_moderation['current']->state;
       if (!user_access('edit any content in ' . $state, $user)) {
+        return NODE_ACCESS_DENY;
+      }
+    }
+  }
+  else if ($operation == 'delete') {
+    $is_moderated = workbench_moderation_node_moderated($node);
+    // Deny access if doesn't have the perm toq edit in current state.
+    if ($is_moderated && variable_get('workbench_moderation_per_node_type', FALSE)) {
+      $state = $node->workbench_moderation['current']->state;
+      if (!user_access('delete any content in ' . $state, $user)) {
         return NODE_ACCESS_DENY;
       }
     }

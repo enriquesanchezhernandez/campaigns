@@ -25,8 +25,13 @@ function hwc_admin_reports_views_pre_view(&$view, &$display_id, &$args) {
  * Implements hook_form_views_exposed_form_alter().
  */
 function hwc_admin_reports_form_views_exposed_form_alter(&$form, &$form_state) {
-  if ($form['#id'] == 'views-exposed-form-content-reports-news'
-      || $form['#id'] == 'views-exposed-form-content-reports-events') {
+  $report_forms = array(
+    'views-exposed-form-content-reports-news',
+    'views-exposed-form-content-reports-events',
+    'views-exposed-form-content-reports-views-data-export-events',
+    'views-exposed-form-content-reports-views-data-export-news',
+  );
+  if (in_array($form['#id'], $report_forms)) {
     // Add date popup to 'Post date' filter
     $form['created']['#title'] = '';
     $form['created']['#type'] = 'date_popup';
@@ -100,4 +105,25 @@ function hwc_admin_get_events_authors() {
   $q->orderBy('b.name');
   $q->groupBy('a.uid');
   return $q->execute()->fetchAllKeyed();
+}
+
+/**
+ * Implements hook_views_pre_render().
+ */
+function hwc_admin_reports_views_pre_render(&$view) {
+  if ($view->name == 'content_reports' &&
+      in_array($view->current_display, array('views_data_export_events', 'views_data_export_news'))) {
+    foreach ($view->result as &$row) {
+      $node = $row->_field_data['nid']['entity'];
+      $section = reset($node->workbench_access);
+      $row->workbench_access[0] = '';
+      if (!empty($section) && is_numeric($section)) {
+        $w = entity_metadata_wrapper('taxonomy_term', $section);
+        $guid = $w->field_ldap_section_code->value();
+        if (!empty($guid)) {
+          $row->workbench_access[0] = $guid;
+        }
+      }
+    }
+  }
 }

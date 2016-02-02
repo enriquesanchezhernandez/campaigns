@@ -1,7 +1,7 @@
 <?php
 /**
  * @file
- * feeds.views_default.inc
+ * hwc_feeds.views_default.inc
  */
 
 /**
@@ -130,7 +130,7 @@ function hwc_feeds_views_default_views() {
     'events' => 'events',
   );
   $handler->display->display_options['filters']['type']['group'] = 1;
-  /* Filter criterion: Content: Start date - end date (field_start_date:value2) */
+  /* Filter criterion: Content: Starting date and time - end date (field_start_date:value2) */
   $handler->display->display_options['filters']['field_start_date_value2']['id'] = 'field_start_date_value2';
   $handler->display->display_options['filters']['field_start_date_value2']['table'] = 'field_data_field_start_date';
   $handler->display->display_options['filters']['field_start_date_value2']['field'] = 'field_start_date_value2';

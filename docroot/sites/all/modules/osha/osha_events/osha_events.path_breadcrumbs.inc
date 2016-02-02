@@ -39,11 +39,11 @@ function osha_events_path_breadcrumbs_settings_info() {
   $path_breadcrumb->path = 'past-events';
   $path_breadcrumb->data = array(
     'titles' => array(
-      0 => '%site:current-page:menu-link:pb-join:name',
+      0 => 'Media centre',
       1 => '!page_title',
     ),
     'paths' => array(
-      0 => '%site:current-page:menu-link:pb-join:url',
+      0 => '<none>',
       1 => '<none>',
     ),
     'home' => 1,

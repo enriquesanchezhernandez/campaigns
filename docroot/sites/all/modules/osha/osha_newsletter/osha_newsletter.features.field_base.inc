@@ -10,7 +10,7 @@
 function osha_newsletter_field_default_field_bases() {
   $field_bases = array();
 
-  // Exported field_base: 'field_campaign_id'
+  // Exported field_base: 'field_campaign_id'.
   $field_bases['field_campaign_id'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -32,7 +32,7 @@ function osha_newsletter_field_default_field_bases() {
     'type' => 'text',
   );
 
-  // Exported field_base: 'field_created'
+  // Exported field_base: 'field_created'.
   $field_bases['field_created'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -62,7 +62,7 @@ function osha_newsletter_field_default_field_bases() {
     'type' => 'datetime',
   );
 
-  // Exported field_base: 'field_introduction_text'
+  // Exported field_base: 'field_introduction_text'.
   $field_bases['field_introduction_text'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -83,7 +83,7 @@ function osha_newsletter_field_default_field_bases() {
     'type' => 'text_long',
   );
 
-  // Exported field_base: 'field_newsletter_author'
+  // Exported field_base: 'field_newsletter_author'.
   $field_bases['field_newsletter_author'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -119,7 +119,7 @@ function osha_newsletter_field_default_field_bases() {
     'type' => 'entityreference',
   );
 
-  // Exported field_base: 'field_newsletter_content_after'
+  // Exported field_base: 'field_newsletter_content_after'.
   $field_bases['field_newsletter_content_after'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -149,7 +149,7 @@ function osha_newsletter_field_default_field_bases() {
     'type' => 'datetime',
   );
 
-  // Exported field_base: 'field_newsletter_sent'
+  // Exported field_base: 'field_newsletter_sent'.
   $field_bases['field_newsletter_sent'] = array(
     'active' => 1,
     'cardinality' => 1,

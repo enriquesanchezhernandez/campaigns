@@ -228,7 +228,7 @@ function hwc_gallery_strongarm() {
         ),
         'share_widget' => array(
           'default' => array(
-            'weight' => '2',
+            'weight' => '3',
             'visible' => TRUE,
           ),
         ),
@@ -296,7 +296,7 @@ function hwc_gallery_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'pathauto_node_hwc_gallery_pattern';
-  $strongarm->value = 'media-center/photo-gallery/[node:title]';
+  $strongarm->value = 'gallery/[node:title]';
   $export['pathauto_node_hwc_gallery_pattern'] = $strongarm;
 
   $strongarm = new stdClass();

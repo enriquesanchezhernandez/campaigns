@@ -59,14 +59,14 @@ jQuery(document).ready(function ($) {
 });
 </script>
 <div id="publications_slideshow">
-    <div id="num_slides" u="slides" style="">
+    <div id="num_slides" data-u="slides" style="">
       <?php print $rows ?>
     </div>
     <?php if ($intNumberOfItems > 1): ?>
-    <div u="navigator" class="jssorb03">
-        <div class="prototype" u="prototype"></div>
+    <div data-u="navigator" class="jssorb03">
+        <div class="prototype" data-u="prototype"></div>
     </div>	
-    <span u="arrowleft" class="jssora03l publications"></span>
-    <span u="arrowright" class="jssora03r publications"></span>
+    <span data-u="arrowleft" class="jssora03l publications"></span>
+    <span data-u="arrowright" class="jssora03r publications"></span>
     <?php endif; ?>
 </div>

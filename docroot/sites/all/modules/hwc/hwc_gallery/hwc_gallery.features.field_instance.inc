@@ -10,7 +10,7 @@
 function hwc_gallery_field_default_field_instances() {
   $field_instances = array();
 
-  // Exported field_instance: 'node-hwc_gallery-body'
+  // Exported field_instance: 'node-hwc_gallery-body'.
   $field_instances['node-hwc_gallery-body'] = array(
     'bundle' => 'hwc_gallery',
     'default_value' => NULL,
@@ -100,7 +100,7 @@ function hwc_gallery_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-hwc_gallery-field_images'
+  // Exported field_instance: 'node-hwc_gallery-field_images'.
   $field_instances['node-hwc_gallery-field_images'] = array(
     'bundle' => 'hwc_gallery',
     'deleted' => 0,
@@ -228,7 +228,7 @@ function hwc_gallery_field_default_field_instances() {
     'workbench_access_field' => 0,
   );
 
-  // Exported field_instance: 'node-hwc_gallery-field_publication_date'
+  // Exported field_instance: 'node-hwc_gallery-field_publication_date'.
   $field_instances['node-hwc_gallery-field_publication_date'] = array(
     'bundle' => 'hwc_gallery',
     'deleted' => 0,
@@ -239,7 +239,7 @@ function hwc_gallery_field_default_field_instances() {
         'module' => 'date',
         'settings' => array(
           'field_formatter_class' => '',
-          'format_type' => 'month_day_year',
+          'format_type' => 'osha_day_only',
           'fromto' => 'both',
           'multiple_from' => '',
           'multiple_number' => '',
@@ -247,7 +247,7 @@ function hwc_gallery_field_default_field_instances() {
           'osha_date_theme' => '',
         ),
         'type' => 'date_default',
-        'weight' => 1,
+        'weight' => 0,
       ),
       'osha_slideshow' => array(
         'label' => 'above',
@@ -278,6 +278,7 @@ function hwc_gallery_field_default_field_instances() {
       'active' => 1,
       'module' => 'date',
       'settings' => array(
+        'date_single_day' => array(),
         'increment' => 15,
         'input_format' => 'd/m/Y - H:i:s',
         'input_format_custom' => '',
@@ -291,7 +292,7 @@ function hwc_gallery_field_default_field_instances() {
     'workbench_access_field' => 0,
   );
 
-  // Exported field_instance: 'node-hwc_gallery-title_field'
+  // Exported field_instance: 'node-hwc_gallery-title_field'.
   $field_instances['node-hwc_gallery-title_field'] = array(
     'bundle' => 'hwc_gallery',
     'default_value' => NULL,
@@ -314,7 +315,7 @@ function hwc_gallery_field_default_field_instances() {
           'title_style' => 'h2',
         ),
         'type' => 'title_linked',
-        'weight' => 0,
+        'weight' => 1,
       ),
       'highlights_item' => array(
         'label' => 'above',

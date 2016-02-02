@@ -96,7 +96,7 @@ function osha_publication_default_page_manager_handlers() {
         'width' => 50,
         'width_type' => '%',
         'parent' => 'main-row',
-        'class' => 'col-md-8',
+        'class' => 'col-md-9',
         'hide_empty' => 0,
       ),
       'left' => array(
@@ -105,7 +105,7 @@ function osha_publication_default_page_manager_handlers() {
         'width' => 50,
         'width_type' => '%',
         'parent' => 'main-row',
-        'class' => 'col-md-4',
+        'class' => 'col-md-3',
         'hide_empty' => 0,
       ),
       1 => array(
@@ -292,7 +292,8 @@ function osha_publication_default_page_manager_handlers() {
       'delta_reversed' => FALSE,
       'formatter_settings' => array(
         'image_style' => 'large',
-        'image_link' => 'file',
+        'image_link' => '',
+        'field_formatter_class' => '',
       ),
       'context' => 'argument_entity_id:node_1',
       'override_title' => 0,

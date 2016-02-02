@@ -80,6 +80,14 @@ function hwc_admin_reports_views_default_views() {
       'empty_column' => 0,
     ),
   );
+  /* Header: Global: Text area */
+  $handler->display->display_options['header']['area']['id'] = 'area';
+  $handler->display->display_options['header']['area']['table'] = 'views';
+  $handler->display->display_options['header']['area']['field'] = 'area';
+  $handler->display->display_options['header']['area']['content'] = '<ul>
+<li>To filter the data imported from NCW, use "Author user" filter: Anonymous</li>
+</ul>';
+  $handler->display->display_options['header']['area']['format'] = 'full_html';
   /* Header: Global: Result summary */
   $handler->display->display_options['header']['result']['id'] = 'result';
   $handler->display->display_options['header']['result']['table'] = 'views';
@@ -403,6 +411,7 @@ function hwc_admin_reports_views_default_views() {
   $handler->display->display_options['filters']['uid']['exposed'] = TRUE;
   $handler->display->display_options['filters']['uid']['expose']['operator_id'] = 'uid_op';
   $handler->display->display_options['filters']['uid']['expose']['label'] = 'Author user';
+  $handler->display->display_options['filters']['uid']['expose']['use_operator'] = TRUE;
   $handler->display->display_options['filters']['uid']['expose']['operator'] = 'uid_op';
   $handler->display->display_options['filters']['uid']['expose']['identifier'] = 'uid';
   $handler->display->display_options['filters']['uid']['expose']['remember_roles'] = array(
@@ -573,6 +582,7 @@ function hwc_admin_reports_views_default_views() {
   $handler->display->display_options['filters']['uid']['exposed'] = TRUE;
   $handler->display->display_options['filters']['uid']['expose']['operator_id'] = 'uid_op';
   $handler->display->display_options['filters']['uid']['expose']['label'] = 'Author user';
+  $handler->display->display_options['filters']['uid']['expose']['use_operator'] = TRUE;
   $handler->display->display_options['filters']['uid']['expose']['operator'] = 'uid_op';
   $handler->display->display_options['filters']['uid']['expose']['identifier'] = 'uid';
   $handler->display->display_options['filters']['uid']['expose']['remember_roles'] = array(
@@ -622,6 +632,7 @@ function hwc_admin_reports_views_default_views() {
   $handler->display->display_options['fields']['field_summary_1']['id'] = 'field_summary_1';
   $handler->display->display_options['fields']['field_summary_1']['table'] = 'field_data_field_summary';
   $handler->display->display_options['fields']['field_summary_1']['field'] = 'field_summary';
+  $handler->display->display_options['fields']['field_summary_1']['type'] = 'text_plain';
   $handler->display->display_options['fields']['field_summary_1']['settings'] = array(
     'field_formatter_class' => '',
   );
@@ -651,7 +662,7 @@ function hwc_admin_reports_views_default_views() {
   $handler->display->display_options['fields']['field_publication_date']['alter']['strip_tags'] = TRUE;
   $handler->display->display_options['fields']['field_publication_date']['element_default_classes'] = FALSE;
   $handler->display->display_options['fields']['field_publication_date']['settings'] = array(
-    'format_type' => 'long',
+    'format_type' => 'us_date_only_format',
     'fromto' => 'both',
     'multiple_number' => '',
     'multiple_from' => '',
@@ -663,6 +674,7 @@ function hwc_admin_reports_views_default_views() {
   $handler->display->display_options['fields']['body']['id'] = 'body';
   $handler->display->display_options['fields']['body']['table'] = 'field_data_body';
   $handler->display->display_options['fields']['body']['field'] = 'body';
+  $handler->display->display_options['fields']['body']['type'] = 'text_plain';
   $handler->display->display_options['fields']['body']['settings'] = array(
     'field_formatter_class' => '',
   );
@@ -708,13 +720,15 @@ function hwc_admin_reports_views_default_views() {
   $handler->display->display_options['fields']['path']['field'] = 'path';
   $handler->display->display_options['fields']['path']['label'] = 'URL path';
   $handler->display->display_options['fields']['path']['absolute'] = TRUE;
-  /* Field: User: Name */
-  $handler->display->display_options['fields']['name']['id'] = 'name';
-  $handler->display->display_options['fields']['name']['table'] = 'users';
-  $handler->display->display_options['fields']['name']['field'] = 'name';
-  $handler->display->display_options['fields']['name']['relationship'] = 'uid';
-  $handler->display->display_options['fields']['name']['label'] = 'Author';
-  $handler->display->display_options['fields']['name']['link_to_user'] = FALSE;
+  /* Field: User: CRM GUID */
+  $handler->display->display_options['fields']['field_crm_guid']['id'] = 'field_crm_guid';
+  $handler->display->display_options['fields']['field_crm_guid']['table'] = 'field_data_field_crm_guid';
+  $handler->display->display_options['fields']['field_crm_guid']['field'] = 'field_crm_guid';
+  $handler->display->display_options['fields']['field_crm_guid']['relationship'] = 'uid';
+  $handler->display->display_options['fields']['field_crm_guid']['label'] = 'Author';
+  $handler->display->display_options['fields']['field_crm_guid']['settings'] = array(
+    'field_formatter_class' => '',
+  );
   /* Field: Content: Nid */
   $handler->display->display_options['fields']['nid']['id'] = 'nid';
   $handler->display->display_options['fields']['nid']['table'] = 'node';
@@ -730,7 +744,7 @@ function hwc_admin_reports_views_default_views() {
   $handler->display->display_options['fields']['status']['table'] = 'node';
   $handler->display->display_options['fields']['status']['field'] = 'status';
   $handler->display->display_options['fields']['status']['label'] = 'Status';
-  $handler->display->display_options['fields']['status']['type'] = 'boolean';
+  $handler->display->display_options['fields']['status']['type'] = 'published-notpublished';
   $handler->display->display_options['fields']['status']['not'] = 0;
   $handler->display->display_options['defaults']['filter_groups'] = FALSE;
   $handler->display->display_options['defaults']['filters'] = FALSE;
@@ -922,7 +936,7 @@ function hwc_admin_reports_views_default_views() {
   $handler->display->display_options['fields']['field_start_date']['alter']['strip_tags'] = TRUE;
   $handler->display->display_options['fields']['field_start_date']['element_default_classes'] = FALSE;
   $handler->display->display_options['fields']['field_start_date']['settings'] = array(
-    'format_type' => 'long',
+    'format_type' => 'us_date_only_format',
     'fromto' => 'value',
     'multiple_number' => '',
     'multiple_from' => '',
@@ -937,7 +951,7 @@ function hwc_admin_reports_views_default_views() {
   $handler->display->display_options['fields']['field_start_date_1']['label'] = 'Event end date';
   $handler->display->display_options['fields']['field_start_date_1']['alter']['strip_tags'] = TRUE;
   $handler->display->display_options['fields']['field_start_date_1']['settings'] = array(
-    'format_type' => 'long',
+    'format_type' => 'us_date_only_format',
     'fromto' => 'value2',
     'multiple_number' => '',
     'multiple_from' => '',
@@ -950,6 +964,7 @@ function hwc_admin_reports_views_default_views() {
   $handler->display->display_options['fields']['body']['table'] = 'field_data_body';
   $handler->display->display_options['fields']['body']['field'] = 'body';
   $handler->display->display_options['fields']['body']['label'] = 'Description';
+  $handler->display->display_options['fields']['body']['type'] = 'text_plain';
   $handler->display->display_options['fields']['body']['settings'] = array(
     'field_formatter_class' => '',
   );
@@ -1059,9 +1074,9 @@ function hwc_admin_reports_views_default_views() {
   $handler->display->display_options['fields']['field_schedule_1']['label'] = 'Schedule - Date';
   $handler->display->display_options['fields']['field_schedule_1']['type'] = 'token_formatters_field_collection';
   $handler->display->display_options['fields']['field_schedule_1']['settings'] = array(
-    'text' => '[field_collection_item:field_talking_date]',
+    'text' => '[field_collection_item:field-talking-date:value:us_dt] to [field_collection_item:field-talking-date:value2:us_dt]',
     'link' => '',
-    'check_access' => 1,
+    'check_access' => 0,
     'field_formatter_class' => '',
   );
   $handler->display->display_options['fields']['field_schedule_1']['delta_offset'] = '0';
@@ -1114,13 +1129,16 @@ function hwc_admin_reports_views_default_views() {
   $handler->display->display_options['fields']['path']['field'] = 'path';
   $handler->display->display_options['fields']['path']['label'] = 'URL path';
   $handler->display->display_options['fields']['path']['absolute'] = TRUE;
-  /* Field: User: Name */
-  $handler->display->display_options['fields']['name']['id'] = 'name';
-  $handler->display->display_options['fields']['name']['table'] = 'users';
-  $handler->display->display_options['fields']['name']['field'] = 'name';
-  $handler->display->display_options['fields']['name']['relationship'] = 'uid';
-  $handler->display->display_options['fields']['name']['label'] = 'Author';
-  $handler->display->display_options['fields']['name']['link_to_user'] = FALSE;
+  /* Field: User: CRM GUID */
+  $handler->display->display_options['fields']['field_crm_guid']['id'] = 'field_crm_guid';
+  $handler->display->display_options['fields']['field_crm_guid']['table'] = 'field_data_field_crm_guid';
+  $handler->display->display_options['fields']['field_crm_guid']['field'] = 'field_crm_guid';
+  $handler->display->display_options['fields']['field_crm_guid']['relationship'] = 'uid';
+  $handler->display->display_options['fields']['field_crm_guid']['label'] = 'Author';
+  $handler->display->display_options['fields']['field_crm_guid']['type'] = 'text_plain';
+  $handler->display->display_options['fields']['field_crm_guid']['settings'] = array(
+    'field_formatter_class' => '',
+  );
   /* Field: Content: Nid */
   $handler->display->display_options['fields']['nid']['id'] = 'nid';
   $handler->display->display_options['fields']['nid']['table'] = 'node';
@@ -1131,6 +1149,13 @@ function hwc_admin_reports_views_default_views() {
   $handler->display->display_options['fields']['section']['table'] = 'workbench_access';
   $handler->display->display_options['fields']['section']['field'] = 'section';
   $handler->display->display_options['fields']['section']['label'] = 'Partner';
+  /* Field: Content: Published */
+  $handler->display->display_options['fields']['status']['id'] = 'status';
+  $handler->display->display_options['fields']['status']['table'] = 'node';
+  $handler->display->display_options['fields']['status']['field'] = 'status';
+  $handler->display->display_options['fields']['status']['label'] = 'Status';
+  $handler->display->display_options['fields']['status']['type'] = 'published-notpublished';
+  $handler->display->display_options['fields']['status']['not'] = 0;
   $handler->display->display_options['defaults']['filter_groups'] = FALSE;
   $handler->display->display_options['defaults']['filters'] = FALSE;
   /* Filter criterion: Content: Published */
@@ -1295,6 +1320,9 @@ function hwc_admin_reports_views_default_views() {
     t('‹ previous'),
     t('next ›'),
     t('last »'),
+    t('<ul>
+<li>To filter the data imported from NCW, use "Author user" filter: Anonymous</li>
+</ul>'),
     t('Displaying @start - @end of @total'),
     t('author'),
     t('Title'),

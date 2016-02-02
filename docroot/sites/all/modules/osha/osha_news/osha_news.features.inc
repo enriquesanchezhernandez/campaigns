@@ -11,6 +11,9 @@ function osha_news_ctools_plugin_api($module = NULL, $api = NULL) {
   if ($module == "ds" && $api == "ds") {
     return array("version" => "1");
   }
+  if ($module == "path_breadcrumbs" && $api == "path_breadcrumbs") {
+    return array("version" => "1");
+  }
   if ($module == "strongarm" && $api == "strongarm") {
     return array("version" => "1");
   }
@@ -29,11 +32,11 @@ function osha_news_views_api($module = NULL, $api = NULL) {
 function osha_news_node_info() {
   $items = array(
     'news' => array(
-      'name' => t('News'),
+      'name' => 'News',
       'base' => 'node_content',
-      'description' => t('OSH news'),
+      'description' => 'OSH news',
       'has_title' => '1',
-      'title_label' => t('Title'),
+      'title_label' => 'Title',
       'help' => '',
     ),
   );

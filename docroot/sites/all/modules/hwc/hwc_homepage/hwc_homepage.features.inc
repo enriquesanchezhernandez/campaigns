@@ -85,11 +85,11 @@ function hwc_homepage_image_default_styles() {
 function hwc_homepage_node_info() {
   $items = array(
     'frontpage_slider' => array(
-      'name' => t('Frontpage Banner'),
+      'name' => 'Frontpage Banner',
       'base' => 'node_content',
-      'description' => t('Frontpage banner content'),
+      'description' => 'Frontpage banner content',
       'has_title' => '1',
-      'title_label' => t('Title'),
+      'title_label' => 'Title',
       'help' => '',
     ),
   );

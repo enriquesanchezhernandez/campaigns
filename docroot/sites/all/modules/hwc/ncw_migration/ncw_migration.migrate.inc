@@ -26,7 +26,7 @@ function ncw_migration_migrate_api() {
         'dependencies' => array(
           'tax_tags', 'tax_publication_types', 'publications_add_res',
           'news_add_res', 'press_releases_add_res', 'press_releases_add_res',
-          'highlights_add_res'
+          'highlights_add_res', 'notes_to_editor', 'tax_segment',
         ),
         'class_name' => 'NCWPublicationsMigration',
       ),
@@ -117,6 +117,11 @@ function ncw_migration_migrate_api() {
         'dependencies' => array(),
         'class_name' => 'NCWTaxonomyPublicationTypeMigration',
       ),
+      'tax_segment' => array(
+        'group_name' => 'ncw',
+        'dependencies' => array(),
+        'class_name' => 'NCWTaxonomySegmentationMigration',
+      ),
       'tax_tags' => array(
         'group_name' => 'ncw',
         'dependencies' => array(),
@@ -144,6 +149,10 @@ abstract class AbstractNCWNodeMigration extends Migration {
 
   public function __construct($arguments, $source_klass, $bundle) {
     parent::__construct($arguments);
+
+    /** Disable linkchecker globally to avoid failures during migration */
+    global $linkchecker_disable_scan;
+    $linkchecker_disable_scan = TRUE;
 
     $this->bundle = $bundle;
     if (!empty($arguments['dependencies'])) {
@@ -191,7 +200,7 @@ abstract class AbstractNCWNodeMigration extends Migration {
     $this->addFieldMapping('log', 'log');
     $this->addFieldMapping('language', 'language');
     $this->addFieldMapping('path', 'path');
-    $this->addFieldMapping('workbench_access')->defaultValue(1); // Assign default section
+    $this->addFieldMapping('workbench_access')->defaultValue('section'); // Assign default section
 
     // Handle field migration in a generic way
     $fields = field_info_instances('node', $this->bundle);
@@ -281,38 +290,45 @@ abstract class AbstractNCWNodeMigration extends Migration {
    * Implements Migration::prepareRow() to adapt JSON fields data to what migrate expects in the field.
    */
   public function prepareRow($row) {
-    ncw_migration_debug('!klass:      * Preparing source node: !id', array('!klass' => get_class($this), '!id' => $row->nid));
-    $row->path = !empty($row->path['alias']) ? $row->path['alias']:  NULL;
-    // Normalize JSON structure, to match migrate expectations for field data
-    $fields = field_info_instances('node', $this->bundle);
-    foreach($fields as $field_name => $field_info) {
-      if (in_array($field_name, $this->getManuallyMigratedFields())) {
-        continue;
+    try {
+      ncw_migration_debug('!klass:      * Preparing source node: !id', array(
+        '!klass' => get_class($this),
+        '!id' => $row->nid
+      ));
+      $row->path = !empty($row->path['alias']) ? $row->path['alias'] : NULL;
+      // Normalize JSON structure, to match migrate expectations for field data
+      $fields = field_info_instances('node', $this->bundle);
+      foreach ($fields as $field_name => $field_info) {
+        if (in_array($field_name, $this->getManuallyMigratedFields())) {
+          continue;
+        }
+        $fi = field_info_field($field_name);
+        if ($fi['type'] == 'entityreference') {
+          // Entity references will be manually handled by each migration
+          continue;
+        }
+        $normalizer = 'osha_migration_normalize_field_' . $fi['type'];
+        if (function_exists($normalizer)) {
+          $normalizer($row, $field_name, $fi);
+        }
+        else {
+          $name = $this->currentMigration()->getMachineName();
+          ncw_migration_debug("[BUG][$name] Cannot find normalization '$normalizer', skipping field $field_name");
+          $row->{$field_name} = array();
+        }
       }
-      $fi = field_info_field($field_name);
-      if ($fi['type'] == 'entityreference') {
-        // Entity references will be manually handled by each migration
-        continue;
-      }
-      $normalizer = 'osha_migration_normalize_field_' . $fi['type'];
-      if(function_exists($normalizer)) {
-        $normalizer($row, $field_name, $fi);
-      }
-      else {
-        $name = $this->currentMigration()->getMachineName();
-        watchdog('ncw_migration', "[BUG][$name] Cannot find normalization '$normalizer', skipping field $field_name", array(), WATCHDOG_ERROR);
-        $row->{$field_name} = array();
-      }
+    } catch(Exception $e) {
+      ncw_migration_debug("Exception while preparing the row: {$row->nid}", 'error');
+      return FALSE;
     }
+    return TRUE;
   }
 
   /**
    * Implements Migration::prepare()
    */
   public function prepare($entity, stdClass $row) {
-    if(!empty($row->workbench_moderation)) {
-      $entity->workbench_moderation_state_new = $row->workbench_moderation['current']['state'];
-    }
+    $entity->workbench_moderation_state_new = OSHA_WORKFLOW_STATE_PUBLISHED;
   }
 
   /**
@@ -335,15 +351,18 @@ abstract class AbstractNCWNodeMigration extends Migration {
     }
   }
 
+  public function postImport() {
+    $this->removeNeedsUpdateItems();
+  }
+
   public function getMigrationURL() {
-    $variable = 'hwc_migration_' . $this->getMachineName() . '_url';
-    return variable_get($variable);
+    $root = variable_get('hwc_migration_root_url', '');
+    $variable = variable_get('hwc_migration_' . $this->getMachineName() . '_url');
+    return $root . $variable;
   }
 
   public function validateEndpointURL() {
     if(empty($this->endpoint_url)) {
-      $variable = 'hwc_migration_' . $this->getMachineName() . '_url';
-      // drupal_set_message($this->getMachineName() . " migration has incorrect URL, set '$variable' or 'hwc_migration_root_url", 'error');
       return FALSE;
     }
     return TRUE;
@@ -364,6 +383,23 @@ abstract class AbstractNCWNodeMigration extends Migration {
     }
     else {
       return FALSE;
+    }
+  }
+
+  /**
+   * Remove nodes that are not in the source anymore.
+   */
+  protected function removeNeedsUpdateItems() {
+    $removed = $this->getMap()->getRowsNeedingUpdate(10000);
+    $to_be_removed = array();
+    if (!empty($removed)) {
+      foreach ($removed as $to_remove) {
+        $to_be_removed[] =$to_remove->destid1;
+        $this->getMap()->delete(array($to_remove->sourceid1));
+      }
+      node_delete_multiple($to_be_removed);
+      watchdog('ncw_migration', 'Deleting records that are not in the source anymore: !nids.',
+        array('!nids' => implode('', $to_be_removed)), WATCHDOG_INFO);
     }
   }
 }
@@ -713,6 +749,7 @@ function ncw_migration_file_get_contents($url) {
   curl_setopt($ch, CURLOPT_URL, $url);
   curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
   curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 5);
+  curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
   $result = curl_exec($ch);
   curl_close($ch);
   return $result;

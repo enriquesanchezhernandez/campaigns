@@ -56,6 +56,11 @@ function osha_resources_field_formatter_info() {
       'field types' => array('link_field'),
       'description' => t('Link with new window icon'),
     ),
+    'internal_link_title' => array(
+      'label' => 'Internal link with node url',
+      'field types' => array('link_field'),
+      'description' => 'Display link with node url.',
+    ),
   );
   return $info;
 }
@@ -83,6 +88,13 @@ function osha_resources_field_formatter_view($entity_type, $entity, $field, $ins
         '#items' => $items,
         '#entity' => $entity,
       );
+      break;
+
+    case 'internal_link_title':
+      foreach($items as $delta => $item) {
+        $link = l($entity->title, $item['url']);
+        $element[$delta]['#markup'] = $link;
+      }
       break;
   }
   return $element;

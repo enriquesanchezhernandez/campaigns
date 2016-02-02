@@ -50,7 +50,7 @@ function hwc_default_fe_block_settings() {
     'i18n_mode' => 0,
     'module' => 'panels_mini',
     'node_types' => array(),
-    'pages' => '',
+    'pages' => 'how-get-involved',
     'roles' => array(),
     'themes' => array(
       'hwc_frontend' => array(

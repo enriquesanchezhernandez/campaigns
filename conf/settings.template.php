@@ -215,11 +215,11 @@ $databases = array (
   array (
     'default' => 
     array (
-      'database' => 'db-name',
-      'username' => 'db-user',
-      'password' => 'db-password',
-      'host' => '10.0.0.0',
-      'port' => '3306',
+      'database' => 'TODO',
+      'username' => 'TODO',
+      'password' => 'TODO',
+      'host' => 'TODO',
+      'port' => 'TODO',
       'driver' => 'mysql',
       'prefix' => '',
     ),
@@ -569,11 +569,11 @@ $conf['cache_backends'][] = 'sites/all/modules/contrib/memcache_storage/memcache
 $conf['cache_default_class'] = 'MemcacheStorage';
 $conf['cache_class_cache_form'] = 'DrupalDatabaseCache';
 $conf['cache_class_cache_views'] = 'DrupalDatabaseCache';
-$conf['memcache_storage_key_prefix'] = 'osha-staging';
+$conf['memcache_storage_key_prefix'] = 'hwc-staging';
 $conf['memcache_storage_compress_data'] = TRUE;
 $conf['memcache_storage_debug'] = FALSE;
 $conf['memcache_servers'] = array(
-  '10.0.0.1:11211' => 'default',
+  'TODO' => 'default',
 );
 # Configure Memcache Storage module.
 $conf['memcache_storage_wildcard_invalidate'] = 60 * 60 * 25 * 5; // 5 days

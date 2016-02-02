@@ -25,6 +25,7 @@ function osha_press_release_ds_layout_settings_info() {
         2 => 'share_widget',
         3 => 'field_summary',
         4 => 'body',
+        5 => 'field_pr_notes_to_editor',
       ),
     ),
     'fields' => array(
@@ -33,6 +34,7 @@ function osha_press_release_ds_layout_settings_info() {
       'share_widget' => 'ds_content',
       'field_summary' => 'ds_content',
       'body' => 'ds_content',
+      'field_pr_notes_to_editor' => 'ds_content',
     ),
     'classes' => array(
       'layout_class' => array(

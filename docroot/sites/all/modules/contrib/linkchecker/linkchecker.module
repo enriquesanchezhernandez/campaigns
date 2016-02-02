@@ -850,6 +850,11 @@ function linkchecker_node_delete($node) {
  * Implements hook_node_insert().
  */
 function linkchecker_node_insert($node) {
+  /* Force disable the linkchecker scanning */
+  global $linkchecker_disable_scan;
+  if ($linkchecker_disable_scan) {
+    return;
+  }
   // Every moderation module saving a forward revision needs to exit here.
   // Please see _linkchecker_isdefaultrevision() for more details.
   // @todo: Refactor this workaround under D8.
@@ -867,6 +872,11 @@ function linkchecker_node_insert($node) {
  * Implements hook_node_update().
  */
 function linkchecker_node_update($node) {
+  /* Force disable the linkchecker scanning */
+  global $linkchecker_disable_scan;
+  if ($linkchecker_disable_scan) {
+    return;
+  }
   // Every moderation module saving a forward revision needs to exit here.
   // Please see _linkchecker_isdefaultrevision() for more details.
   // @todo: Refactor this workaround under D8.
@@ -895,6 +905,11 @@ function linkchecker_comment_delete($comment) {
  * Implements hook_comment_insert().
  */
 function linkchecker_comment_insert($comment) {
+  /* Force disable the linkchecker scanning */
+  global $linkchecker_disable_scan;
+  if ($linkchecker_disable_scan) {
+    return;
+  }
   // The comment is going to be published.
   $node_type = db_query('SELECT type FROM {node} WHERE nid = :nid', array(':nid' => $comment->nid))->fetchField();
   if (_linkchecker_scan_nodetype($node_type) && variable_get('linkchecker_scan_comments', 0) && $comment->status == COMMENT_PUBLISHED) {
@@ -906,6 +921,11 @@ function linkchecker_comment_insert($comment) {
  * Implements hook_comment_update().
  */
 function linkchecker_comment_update($comment) {
+  /* Force disable the linkchecker scanning */
+  global $linkchecker_disable_scan;
+  if ($linkchecker_disable_scan) {
+    return;
+  }
   // The node is going to be published.
   $node_type = db_query('SELECT type FROM {node} WHERE nid = :nid', array(':nid' => $comment->nid))->fetchField();
   if (_linkchecker_scan_nodetype($node_type) && variable_get('linkchecker_scan_comments', 0) && $comment->status == COMMENT_PUBLISHED) {

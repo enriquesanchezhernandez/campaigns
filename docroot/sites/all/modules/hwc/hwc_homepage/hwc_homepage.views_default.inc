@@ -235,6 +235,7 @@ function hwc_homepage_views_default_views() {
   $handler->display->display_options['filters']['field_start_date_value']['table'] = 'field_data_field_start_date';
   $handler->display->display_options['filters']['field_start_date_value']['field'] = 'field_start_date_value';
   $handler->display->display_options['filters']['field_start_date_value']['operator'] = '>=';
+  $handler->display->display_options['filters']['field_start_date_value']['granularity'] = 'second';
   $handler->display->display_options['filters']['field_start_date_value']['default_date'] = 'now';
   $handler->display->display_options['filters']['field_start_date_value']['year_range'] = '-10:+10';
 
@@ -461,7 +462,6 @@ function hwc_homepage_views_default_views() {
   /* Display: Partner Logo List */
   $handler = $view->new_display('block', 'Partner Logo List', 'block_1');
   $handler->display->display_options['defaults']['use_more'] = FALSE;
-  $handler->display->display_options['use_more'] = TRUE;
   $handler->display->display_options['defaults']['use_more_always'] = FALSE;
   $handler->display->display_options['defaults']['use_more_always'] = FALSE;
   $handler->display->display_options['use_more_always'] = TRUE;
@@ -471,6 +471,7 @@ function hwc_homepage_views_default_views() {
   $handler->display->display_options['pager']['type'] = 'some';
   $handler->display->display_options['pager']['options']['items_per_page'] = '12';
   $handler->display->display_options['pager']['options']['offset'] = '0';
+  $handler->display->display_options['defaults']['header'] = FALSE;
   $handler->display->display_options['defaults']['empty'] = FALSE;
   $handler->display->display_options['defaults']['relationships'] = FALSE;
   /* Relationship: Nodequeue: Queue */
@@ -548,6 +549,14 @@ function hwc_homepage_views_default_views() {
   $handler->display->display_options['filters']['in_queue']['field'] = 'in_queue';
   $handler->display->display_options['filters']['in_queue']['relationship'] = 'nodequeue_rel';
   $handler->display->display_options['filters']['in_queue']['value'] = '0';
+  /* Filter criterion: Content: Type (field_partner_type) */
+  $handler->display->display_options['filters']['field_partner_type_tid']['id'] = 'field_partner_type_tid';
+  $handler->display->display_options['filters']['field_partner_type_tid']['table'] = 'field_data_field_partner_type';
+  $handler->display->display_options['filters']['field_partner_type_tid']['field'] = 'field_partner_type_tid';
+  $handler->display->display_options['filters']['field_partner_type_tid']['value'] = array(
+    0 => '185',
+  );
+  $handler->display->display_options['filters']['field_partner_type_tid']['vocabulary'] = 'partner_types';
 
   /* Display: Partners */
   $handler = $view->new_display('page', 'Partners', 'page_1');
@@ -557,9 +566,10 @@ function hwc_homepage_views_default_views() {
   $handler->display->display_options['access']['type'] = 'perm';
   $handler->display->display_options['access']['perm'] = 'view the administration theme';
   $handler->display->display_options['defaults']['pager'] = FALSE;
-  $handler->display->display_options['pager']['type'] = 'some';
-  $handler->display->display_options['pager']['options']['items_per_page'] = '10';
+  $handler->display->display_options['pager']['type'] = 'mini';
+  $handler->display->display_options['pager']['options']['items_per_page'] = '25';
   $handler->display->display_options['pager']['options']['offset'] = '0';
+  $handler->display->display_options['pager']['options']['id'] = '0';
   $handler->display->display_options['defaults']['style_plugin'] = FALSE;
   $handler->display->display_options['style_plugin'] = 'table';
   $handler->display->display_options['style_options']['columns'] = array(
@@ -695,6 +705,8 @@ Displaying @start - @end of @total
   $handler->display->display_options['defaults']['row_plugin'] = FALSE;
   $handler->display->display_options['row_plugin'] = 'fields';
   $handler->display->display_options['defaults']['row_options'] = FALSE;
+  $handler->display->display_options['defaults']['header'] = FALSE;
+  $handler->display->display_options['defaults']['empty'] = FALSE;
   $handler->display->display_options['defaults']['relationships'] = FALSE;
   /* Relationship: Nodequeue: Queue */
   $handler->display->display_options['relationships']['nodequeue_rel']['id'] = 'nodequeue_rel';
@@ -771,6 +783,13 @@ Displaying @start - @end of @total
     t('[title_field]'),
     t('Partners'),
     t('more'),
+    t('Items per page'),
+    t('- All -'),
+    t('Offset'),
+    t('« first'),
+    t('‹ previous'),
+    t('next ›'),
+    t('last »'),
     t('<a href="/admin/config/workbench/access">View the users assigned to each partner</a>
 <p>
 Displaying @start - @end of @total

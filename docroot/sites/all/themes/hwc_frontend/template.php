@@ -91,9 +91,9 @@ function hwc_frontend_menu_link(array $variables) {
 function hwc_frontend_preprocess_page(&$vars) {
   // Change Events page title
   if(!empty($vars['theme_hook_suggestions']['0']) && in_array($vars['theme_hook_suggestions']['0'], array('page__events', 'page__past_events'))){
-    $title = '<div id="block-osha-events-events-links">';
+    $title = '<span id="block-osha-events-events-links">';
     $title .= l(t('Upcoming events'), 'events') . ' / ' . l(t('Past events'), 'past-events');
-    $title .= '</div>';
+    $title .= '</span>';
     drupal_set_title($title, PASS_THROUGH);
   }
   if (drupal_is_front_page()) {
@@ -113,6 +113,16 @@ function hwc_frontend_preprocess_page(&$vars) {
     );
     switch ($node->type) {
       case 'publication':
+        if ($node->field_publication_type[LANGUAGE_NONE][0]['tid'] == 92 /* Case Studies */) {
+          $link_title = t('Back to case studies list');
+          $link_href = 'case-studies';
+          $tag_vars['element']['#value'] = t('Case studies');
+          $vars['page']['above_title']['title-alternative'] = array(
+            '#type' => 'item',
+            '#markup' => theme('html_tag', $tag_vars),
+          );
+          break;
+        }
         $link_title = t('Back to publications list');
         $link_href = 'publications';
         $tag_vars['element']['#value'] = t('Publications');
@@ -160,7 +170,7 @@ function hwc_frontend_preprocess_page(&$vars) {
       case 'practical_tool':
         $link_title = t('Back to practical tools list');
         $link_href = 'practical-tools';
-        $tag_vars['element']['#value'] = t('Practical tools');
+        $tag_vars['element']['#value'] = t('Practical tools and guidance');
         $vars['page']['above_title']['practical-tool-page-title'] = array(
           '#type' => 'item',
           '#markup' => theme('html_tag', $tag_vars),
@@ -169,7 +179,14 @@ function hwc_frontend_preprocess_page(&$vars) {
       case 'events':
         $date = new DateTime($node->field_start_date['und'][0]['value']);
         $now = new DateTime();
+
+        $breadcrumb = array();
+        $breadcrumb[] = l(t('Home'), '<front>');
+        $breadcrumb[] = t('Media centre');
+
         if ($date < $now) {
+          $breadcrumb[] = t('Past events');
+
           $link_title = t('Back to past events list');
           $link_href = 'past-events';
           $tag_vars['element']['#value'] = t('Past events');
@@ -179,6 +196,8 @@ function hwc_frontend_preprocess_page(&$vars) {
           );
         }
         else {
+          $breadcrumb[] = t('Upcoming events');
+
           $link_title = t('Back to events list');
           $link_href = 'events';
           $tag_vars['element']['#value'] = t('Upcoming events');
@@ -187,6 +206,9 @@ function hwc_frontend_preprocess_page(&$vars) {
             '#markup' => theme('html_tag', $tag_vars),
           );
         }
+        $breadcrumb[] = $node->title;
+        drupal_set_breadcrumb($breadcrumb);
+
         break;
       case 'hwc_gallery':
         $link_title = t('Back to gallery');
@@ -209,7 +231,12 @@ function hwc_frontend_preprocess_page(&$vars) {
     if ($node->type == 'publication') {
       ctools_include('plugins');
       ctools_include('context');
-      $pb = path_breadcrumbs_load_by_name('publications_detail_page');
+      if ($node->field_publication_type[LANGUAGE_NONE][0]['tid'] == 92 /* Case Studies */) {
+        $pb = path_breadcrumbs_load_by_name('case_studies_detail_page');
+      }
+      else {
+        $pb = path_breadcrumbs_load_by_name('publications_detail_page');
+      }
       $breadcrumbs = _path_breadcrumbs_build_breadcrumbs($pb);
       drupal_set_breadcrumb($breadcrumbs);
     }
@@ -323,6 +350,9 @@ function hwc_frontend_preprocess_node(&$vars) {
 }
 function hwc_frontend_preprocess_image_style(&$variables) {
   $variables['attributes']['class'][] = 'img-responsive';
+  if (empty($variables['alt'])) {
+    $variables['alt'] = drupal_basename($variables['path']);
+  }
 }
 /**
  * Implements theme_on_the_web_image().
@@ -477,14 +507,19 @@ function hwc_frontend_colorbox_image_formatter($variables) {
     'image' => $image,
     'path' => $path,
     'title' => $caption,
-    'gid' => $gallery_id
+    'gid' => $gallery_id,
+    'entity' => $entity,
   ));
 }
 /**
  * @see theme_colorbox_imagefield().
+ * @see colorbox_handler_field_colorbox.
  */
 function hwc_frontend_colorbox_imagefield($variables) {
-  $class = array('colorbox');
+  // Load the necessary js file for Colorbox activation.
+  if (_colorbox_active() && !variable_get('colorbox_inline', 0)) {
+    drupal_add_js(drupal_get_path('module', 'colorbox') . '/js/colorbox_inline.js');
+  }
   if ($variables['image']['style_name'] == 'hide') {
     $image = '';
     $class[] = 'js-hide';
@@ -495,22 +530,38 @@ function hwc_frontend_colorbox_imagefield($variables) {
   else {
     $image = theme('image', $variables['image']);
   }
-  $options = drupal_parse_url($variables['path']);
-  $options += array(
-    'html' => TRUE,
-    'attributes' => array(
-      'title' => $variables['title'],
-      'class' => $class,
-      'rel' => $variables['gid'],
-    ),
-    'language' => array('language' => NULL),
+  $image_vars = array(
+    'style_name' => 'large',
+    'path' => $variables['image']['path'],
+    'alt' => $variables['entity']->title,
   );
-  $output = l($image, $options['path'], $options);
-  if (!empty($variables['title'])) {
-    $output .= '<div class="gallery-thumb-caption">' . $variables['title'] . '</div>';
-  }
-  return $output;
+  $popup = theme('image_style', $image_vars);
+  $caption = $variables['title'] . hwc_news_share_widget($variables['entity'], array('type' => 'article', 'label' => t('Share this gallery')));
+
+  $width = 'auto';
+  $height = 'auto';
+  $gallery_id = $variables['gid'];
+  $link_options = drupal_parse_url($variables['image']['path']);
+  $link_options = array_merge($link_options, array(
+    'html' => TRUE,
+    'fragment' => 'colorbox-inline-' . md5($variables['image']['path']),
+    'query' => array(
+      'width' => $width,
+      'height' => $height,
+      'title' => $caption,
+      'inline' => 'true'
+    ),
+    'attributes' => array(
+      'class' => array('colorbox-inline'),
+      'rel' => $gallery_id
+    )
+  ));
+  // Remove any parameters that aren't set.
+  $link_options['query'] = array_filter($link_options['query']);
+  $link_tag = l($image, $variables['path'], $link_options);
+  return $link_tag . '<div style="display: none;"><div id="colorbox-inline-' . md5($variables['image']['path']) . '">' . $popup . '</div></div>';
 }
+
 /**
  * @see theme_flickr_photoset.
  */
@@ -583,5 +634,5 @@ function hwc_frontend_top_anchor(&$vars) {
     'fragment' => 'top',
     'html' => TRUE,
   );
-  $vars['top_anchor'] = l('<img src="'.file_create_url(path_to_theme().'/images/anchor-top.png').'" />', '', $options);
+  $vars['top_anchor'] = l('<img alt="Anchor to top" src="'.file_create_url(path_to_theme().'/images/anchor-top.png').'" />', '', $options);
 }
