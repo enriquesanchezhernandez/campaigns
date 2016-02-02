@@ -29,9 +29,12 @@
 <?php print $right2; ?>
 </<?php print $right2_wrapper ?>>
 
-<<?php print $footer_wrapper ?> class="group-footer<?php print $footer_classes; ?>">
-<?php print $footer; ?>
-</<?php print $footer_wrapper ?>>
+  <?php if (!empty($footer)): ?>
+    <div class="field-label further-info-label"><?php print t('Further information'); ?></div>
+    <<?php print $footer_wrapper ?> class="group-footer<?php print $footer_classes; ?>">
+    <?php print $footer; ?>
+    </<?php print $footer_wrapper ?>>
+  <?php endif; ?>
 <?php } ?>
 
 </<?php print $layout_wrapper ?>>
