@@ -1,74 +1,18 @@
 <?php
 
-function osha_infographics_install() {
-  osha_infographics_add_menu_position_rules();
-}
-
 /**
- * Add Infographics menu position rules
+ * Add infographics menu position rules
  */
 function osha_infographics_update_7001() {
   osha_infographics_add_menu_position_rules();
 }
 
 /**
- * Change menu position rules
- */
-function osha_infographics_update_7003() {
-  osha_infographics_change_menu_position_rules();
-}
-
-/**
- * CW-614 Add publication_date for infographics
- */
-function osha_infographics_update_7002() {
-  // revert to create the new field
-  features_revert_module('osha_infographics');
-  // update existing data
-  $query = new EntityFieldQuery;
-  $result = $query
-    ->entityCondition('entity_type', 'node')
-    ->propertyCondition('type', 'infographic')
-    ->execute();
-
-  if (!empty($result['node'])) {
-    $nodes = entity_load('node', array_keys($result['node']));
-    foreach ($nodes as $node) {
-      $node->field_publication_date[LANGUAGE_NONE][0] = array(
-        'value' => date('Y-m-d H:i:s', strtotime('now')),
-        'timezone' => 'UTC',
-        'timezone_db' => 'UTC',
-      );
-      field_attach_presave('node', $node);
-      field_attach_update('node', $node);
-    }
-  }
-}
-
-/**
- * Add menu position rules for Infographics content type.
+ * Add menu position rules for infographics content type.
  */
 function osha_infographics_add_menu_position_rules() {
   if (module_exists('osha') && module_load_include('inc', 'osha', 'osha.utils')) {
-    $parent_menu = array('------ Infographics');
-    $condition = array('pages' => 'infographic-topic/*'.PHP_EOL.'infographic/*');
-    osha_add_menu_position_rule('Infographics Menu Rule', $parent_menu, $condition);
-  }
-}
-
-/**
- * Change menu position rules for Infographics content type.
- */
-function osha_infographics_change_menu_position_rules() {
-  // Remove old rule
-  db_delete('menu_position_rules')
-    ->condition('admin_title', 'Infographics Menu Rule')
-    ->execute();
-
-  // Add new rule
-  if (module_exists('osha') && module_load_include('inc', 'osha', 'osha.utils')) {
-    $parent_menu = array('------ Infographics');
-    $condition = array('pages' => 'tools-and-publications/infographics/*');
-    osha_add_menu_position_rule('Infographics Menu Rule', $parent_menu, $condition);
+    $condition = array('content_type' => array('infographic' => 'infographic'));
+    osha_add_menu_position_rule('infographics (menu position rule)', '---- Infographics', $condition);
   }
 }

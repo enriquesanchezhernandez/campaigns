@@ -14,6 +14,7 @@ function osha_news_default_fe_block_settings() {
 
   $export['views-news-oshnews_latest'] = array(
     'cache' => -1,
+    'css_class' => '',
     'custom' => 0,
     'delta' => 'news-oshnews_latest',
     'i18n_block_language' => array(),
@@ -23,23 +24,11 @@ function osha_news_default_fe_block_settings() {
     'pages' => '',
     'roles' => array(),
     'themes' => array(
-      'bartik' => array(
-        'region' => '',
-        'status' => 0,
-        'theme' => 'bartik',
-        'weight' => 0,
-      ),
-      'osha_admin' => array(
-        'region' => '',
-        'status' => 0,
-        'theme' => 'osha_admin',
-        'weight' => 0,
-      ),
-      'osha_frontend' => array(
-        'region' => 'sidebar_second',
+      'hwc_frontend' => array(
+        'region' => 'content',
         'status' => 1,
-        'theme' => 'osha_frontend',
-        'weight' => 5,
+        'theme' => 'hwc_frontend',
+        'weight' => -59,
       ),
       'seven' => array(
         'region' => '',
@@ -49,7 +38,7 @@ function osha_news_default_fe_block_settings() {
       ),
     ),
     'title' => '',
-    'visibility' => 0,
+    'visibility' => 1,
   );
 
   return $export;

@@ -1,0 +1,51 @@
+<?php
+
+/**
+ * List of bundles periodically updated from the corporate website
+ * @return array
+ *   Array of bundles
+ */
+function ncw_migration_get_migrated_bundles() {
+  return array(
+    'publication', 'events', 'news', 'note_to_editor', 'press_contact',
+    'press_release', 'infographics',
+  );
+}
+
+/**
+ * @param string $machine_name
+ *   Migration machine name
+ *
+ * @return boolean
+ *   Returns TRUE if migration was successful
+ *
+ * @throws \Exception
+ */
+function ncw_migration_run_single($machine_name) {
+  migrate_static_registration(array($machine_name));
+  /** @var Migration $migration */
+  $migration = Migration::getInstance($machine_name);
+  $migration->prepareUpdate();
+  $result = $migration->processImport();
+  if ($result == MigrationBase::RESULT_COMPLETED) {
+    return TRUE;
+  }
+  else {
+    watchdog(
+      'ncw_migration',
+      '[CRON]Last CW import did not finished successfully (machine:!machine_name)',
+      array('!machine_name' => $machine_name)
+    );
+    return FALSE;
+  }
+}
+
+function ncw_migration_debug($message, $message_args) {
+  if(function_exists('drush_get_option')) {
+    // Message appear when running 'drush -d migrate-import events'
+    if ($debug = drush_get_option('debug')) {
+      $str = format_string($message, $message_args);
+      drush_log($str);
+    }
+  }
+}

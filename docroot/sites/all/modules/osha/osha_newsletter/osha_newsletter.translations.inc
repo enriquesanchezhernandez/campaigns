@@ -17,7 +17,6 @@ function osha_newsletter_get_translatable_strings() {
     'The e-mail address is not valid.',
     'No newsletters available.',
     'More news',
-    'View the blog',
     'More events',
     'Occupational Safety and Health News &ndash; Europe',
     'No longer wish to receive OSHmail? <a href="@url" style="@style">Unsubscribe here.</a>',
@@ -26,6 +25,7 @@ function osha_newsletter_get_translatable_strings() {
     'Your subscription has not been submitted because of a technical error.',
     'Your subscription has been submitted succesfully.',
     'Join',
-    'subscribers'
+    'subscribers',
+    'You have succesfully unsubscribed'
   );
 }

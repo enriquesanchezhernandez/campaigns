@@ -11,13 +11,13 @@ function osha_events_ctools_plugin_api($module = NULL, $api = NULL) {
   if ($module == "context" && $api == "context") {
     return array("version" => "3");
   }
-  if ($module == "feeds" && $api == "feeds_importer_default") {
+  if ($module == "ds" && $api == "ds") {
     return array("version" => "1");
   }
-  if ($module == "feeds_tamper" && $api == "feeds_tamper_default") {
-    return array("version" => "2");
-  }
   if ($module == "field_group" && $api == "field_group") {
+    return array("version" => "1");
+  }
+  if ($module == "path_breadcrumbs" && $api == "path_breadcrumbs") {
     return array("version" => "1");
   }
   if ($module == "strongarm" && $api == "strongarm") {
@@ -37,6 +37,14 @@ function osha_events_views_api($module = NULL, $api = NULL) {
  */
 function osha_events_node_info() {
   $items = array(
+    'event_speaker' => array(
+      'name' => t('Event speaker'),
+      'base' => 'node_content',
+      'description' => t('Event speaker'),
+      'has_title' => '1',
+      'title_label' => t('Name of the speaker'),
+      'help' => '',
+    ),
     'events' => array(
       'name' => t('Events'),
       'base' => 'node_content',

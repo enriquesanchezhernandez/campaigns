@@ -22,8 +22,8 @@ function osha_alert_service_subscribe_form() {
   $sections = array();
   if ($voc = taxonomy_vocabulary_machine_name_load('tags')) {
     $terms = taxonomy_get_tree($voc->vid);
-    foreach ($terms as $tid => $term) {
-      $w = entity_metadata_wrapper('taxonomy_term', $tid);
+    foreach ($terms as $term) {
+      $w = entity_metadata_wrapper('taxonomy_term', $term->tid);
       $sections[$term->tid] = $w->label();
     }
   }
@@ -55,20 +55,19 @@ function osha_alert_service_subscribe_form() {
   );
 
   $types = array();
+
   $allowed = array(
-    'article', 'blog', 'directive', 'guideline', 'highlight', 'job_vacancies', 'news',
-    'press_release', 'publication', 'seminar',
+    'publication', 'news', 'events',
   );
+
   $alltypes = node_type_get_types();
-  foreach ($alltypes as $machine_name => $type) {
-    if (in_array($machine_name, $allowed)) {
-      $types[$machine_name] = $type->name;
-    }
+  foreach ($allowed as $machine_name) {
+    $types[$machine_name] = t($alltypes[$machine_name]->name);
   }
-  ksort($types);
+
   $form['type'] = array(
     '#type' => 'select',
-    '#multiple' => TRUE, '#size' => 10,
+    '#multiple' => TRUE, '#size' => 3,
     '#title' => t('Item type'),
     '#required' => TRUE,
     '#options' => $types,
@@ -77,7 +76,7 @@ function osha_alert_service_subscribe_form() {
   $form['schedule'] = array(
     '#type' => 'select',
     '#multiple' => FALSE,
-    '#title' => t('Item type'),
+    '#title' => t('Schedule'),
     '#options' => array(
       'daily' => t('Daily'),
       'weekly' => t('Weekly'),
@@ -87,7 +86,7 @@ function osha_alert_service_subscribe_form() {
   );
 
   $languages = array();
-  $alllanguages = language_list();
+  $alllanguages = osha_language_list(TRUE);
   unset($alllanguages['en']);
   foreach ($alllanguages as $code => $language) {
     $languages[$code] = $language->native;
@@ -98,6 +97,12 @@ function osha_alert_service_subscribe_form() {
     '#title' => t('Additional languages'),
     '#options' => $languages,
     '#description' => t('Alerts are sent in English. If the content is translated, you can choose to receive it in additional languages.'),
+  );
+
+  $form['newsletter'] = array(
+    '#type' => 'checkbox',
+    '#title' => t('I also want to receive OSHMail'),
+    '#default_value' => 1,
   );
 
   $form['help'] = array(
@@ -173,6 +178,10 @@ function osha_alert_service_subscribe_form_submit($form, $form_state) {
     'language' => $language->language,
   );
   drupal_mail('osha_alert_service', 'subscribe', $email, $language->language, $params);
+  // Subscribe to OSHMail
+  if ($values['newsletter']) {
+    osha_newsletter_block_subscribe_captcha_form_submit($form, $form_state);
+  }
   drupal_goto('<front>');
 }
 
@@ -201,7 +210,7 @@ function osha_alert_service_remove_alert_form($form, &$form_state) {
     );
   }
   else {
-    drupal_set_message(t("Invalid request, and I hope it's a test!"), 'error');
+    drupal_set_message(t('Invalid alert subscription token'), 'error');
   }
   return $form;
 }

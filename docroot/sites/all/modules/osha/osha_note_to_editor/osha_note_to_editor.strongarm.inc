@@ -73,8 +73,8 @@ function osha_note_to_editor_strongarm() {
     'osha_slideshow' => 0,
     'highlights_item' => 0,
     'newsletter_item' => 0,
+    'pub_teaser' => 0,
     'osha_resources' => 0,
-    'osha_wiki' => 0,
     'print' => 0,
     'token' => 0,
     'nodeform' => 0,
@@ -98,9 +98,6 @@ function osha_note_to_editor_strongarm() {
         'custom_settings' => TRUE,
       ),
       'osha_slideshow' => array(
-        'custom_settings' => FALSE,
-      ),
-      'highlights_item' => array(
         'custom_settings' => FALSE,
       ),
       'newsletter_item' => array(

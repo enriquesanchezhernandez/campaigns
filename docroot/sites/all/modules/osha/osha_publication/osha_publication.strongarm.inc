@@ -75,13 +75,13 @@ function osha_publication_strongarm() {
     'teaser' => 'teaser',
     'osha_slideshow' => 'osha_slideshow',
     'osha_resources' => 'osha_resources',
-    'osha_wiki' => 'osha_wiki',
     'rss' => 0,
     'search_index' => 0,
     'search_result' => 0,
     'diff_standard' => 0,
     'highlights_item' => 0,
     'newsletter_item' => 0,
+    'pub_teaser' => 0,
     'print' => 0,
     'token' => 0,
     'nodeform' => 0,
@@ -137,9 +137,6 @@ function osha_publication_strongarm() {
       'osha_slideshow' => array(
         'custom_settings' => TRUE,
       ),
-      'highlights_item' => array(
-        'custom_settings' => TRUE,
-      ),
       'newsletter_item' => array(
         'custom_settings' => TRUE,
       ),
@@ -151,6 +148,18 @@ function osha_publication_strongarm() {
       ),
       'osha_resources' => array(
         'custom_settings' => TRUE,
+      ),
+      'highlights_item' => array(
+        'custom_settings' => TRUE,
+      ),
+      'pub_teaser' => array(
+        'custom_settings' => TRUE,
+      ),
+      'title_body' => array(
+        'custom_settings' => FALSE,
+      ),
+      'body' => array(
+        'custom_settings' => FALSE,
       ),
     ),
     'extra_fields' => array(

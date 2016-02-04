@@ -24,9 +24,17 @@ function osha_build_drush_command() {
  * Executes the build commands.
  */
 function _drush_osha_build() {
-  $modules = drush_get_option('init-modules', array());
+  $enable_modules = drush_get_option('init-modules', array());
+  $disabled = drush_get_option('disable-modules', array());
+  $modules = array();
+  foreach($enable_modules as $module) {
+    if (!in_array($module, $disabled)) {
+      $modules[] = $module;
+    }
+  }
   _drush_osha_enable_modules($modules);
 
+  drush_invoke('cc', array('type' => 'all'));
   drush_invoke('updatedb');
   drush_invoke_process('@self', 'features-revert-all', array(), array(
     'force' => TRUE,

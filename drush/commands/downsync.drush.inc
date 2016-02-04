@@ -41,6 +41,8 @@ function drush_downsync($source = NULL, $destination = NULL) {
     drush_set_option('target-dump', '/tmp/target-dump.sql.gz');
   }
 
+  drush_set_option('no-cache', 'true');
+
   // Execute a drush sql-sync
   print dt('SQL Sync running... NOTE: if you do not have ssh passwordless logins setup, you may be asked for your password multiple times.');
 

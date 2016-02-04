@@ -178,6 +178,7 @@ $options['structure-tables']['common'] = array(
   'cache',
   'cache_filter',
   'cache_menu',
+  'cache_form',
   'cache_page',
   'history',
   'sessions',
@@ -258,13 +259,20 @@ $json_path = dirname(__FILE__) . '/../conf/config.json';
 
 $cfg = (object) array('variables' => (object) array('environment' => 'production'));
 if(file_exists($json_path)) {
-  $cfg = json_decode(file_get_contents($json_path));
-  $db_url = sprintf('mysql://%s:%s@%s:%s/%s', $cfg->db->username, $cfg->db->password, $cfg->db->host, $cfg->db->port, $cfg->db->database);
-  $command_specific['site-install'] = array(
-    'db-url' => $db_url,
-    'account-mail' => $cfg->admin->email, 'account-name' => $cfg->admin->username, 'account-pass' => $cfg->admin->password,
-    'db-su' => $cfg->db->root_username, 'db-su-pw' => $cfg->db->root_password
-  );
+  if ($cfg = json_decode(file_get_contents($json_path))) {
+    $db_url = sprintf('mysql://%s:%s@%s:%s/%s', $cfg->db->username, $cfg->db->password, $cfg->db->host, $cfg->db->port, $cfg->db->database);
+    $command_specific['site-install'] = array(
+      'db-url' => $db_url,
+      'account-mail' => $cfg->admin->email,
+      'account-name' => $cfg->admin->username,
+      'account-pass' => $cfg->admin->password,
+      'db-su' => $cfg->db->root_username,
+      'db-su-pw' => $cfg->db->root_password
+    );
+  }
+  else {
+    drush_set_error('Error detected in config.json, please fix them and try again');
+  }
 }
 
 $options['init-modules'] = array(
@@ -272,6 +280,11 @@ $options['init-modules'] = array(
   'entity',
   'aggregator',
   'memcache_storage',
+  'varnish',
+  'elysia_cron',
+
+  'diff',
+  'update',
 
   'locale',
   'entity_translation',
@@ -291,11 +304,10 @@ $options['init-modules'] = array(
 
   'mailsystem',
   'htmlmail',
+  'mimemail',
 
   'taxonomy_access_fix',
   'date',
-  'migrate',
-  'migrate_ui',
   'features',
 
   'field_group',
@@ -311,6 +323,8 @@ $options['init-modules'] = array(
   'media_wysiwyg',
   'languagefield',
   'image_field_caption',
+  'manualcrop',
+
 
   'tmgmt',
   'tmgmt_local',
@@ -329,6 +343,7 @@ $options['init-modules'] = array(
   'strongarm',
   'exclude_node_title',
   'metatag',
+  'metatag_dc',
 
   'pdf_to_image',
   'doc_to_imagefield',
@@ -340,11 +355,22 @@ $options['init-modules'] = array(
   'multiple_selects',
 
   'imce_wysiwyg',
-  'wysiwyg_accordion',
 
   'nodequeue',
   'fe_block',
   'fe_nodequeue',
+
+  'panels',
+  'page_manager',
+  'views_content',
+  'i18n_panels',
+  'panels_mini',
+  'ds',
+  'ds_ui',
+  'ds_extras',
+  'ds_forms',
+  'field_formatter_settings',
+  'field_formatter_class',
 
   'views_slideshow',
   'views_slideshow_cycle',
@@ -354,9 +380,7 @@ $options['init-modules'] = array(
   'term_reference_tree',
   'node_export',
   'mpac',
-  'linkit',
   'pathologic',
-  'scanner',
   'search_and_replace',
   'nodeblock',
   'quicktabs',
@@ -370,9 +394,12 @@ $options['init-modules'] = array(
   'shs',
   'smtp',
 
+  'linkchecker',
+
+  'rules_admin',
+
   // Enable last (conflict with rules)
   'uuid',
-  'uuid_features',
 
   'path_breadcrumbs',
   'path_breadcrumbs_ui',
@@ -385,6 +412,10 @@ $options['init-modules'] = array(
   'workbench_access',
   'workbench_moderation',
 
+  // Link content types with main menu items
+  'menu_position',
+  'r4032login',
+
   // print and generate pdf - per node action
   'print',
   'print_ui',
@@ -396,21 +427,17 @@ $options['init-modules'] = array(
   'flickr',
   'flickr_block',
   'flickrfield',
+  'flickr_sets',
   'chosen',
+  'colorbox',
+  'galleryformatter',
 
   // cookie privacy
   'eu_cookie_compliance',
+  'piwik',
 
   'calendar',
   'date_popup',
-  'feeds',
-  'feeds_import',
-  'feeds_ui',
-  'feeds_tamper',
-  'feeds_tamper_ui',
-  'views_php',
-
-  'views_json',
 
   //Allow anonymous comments per node type
   'comment_allow_anonymous',
@@ -420,41 +447,48 @@ $options['init-modules'] = array(
 
   'contact',
   'field_collection',
+  'webform',
+  'webform_localization',
+  'fapi_validation',
 
-  'osha_taxonomies',
+  'context_layouts',
+  'context_entity_field',
+
+  'image_url_formatter',
+  'views_data_export',
+  'views_data_export_phpexcel',
+  'token_formatters',
+  'phpexcel',
+  'plupload',
+  'maxlength',
+  'date_single_day',
+
+  // Captcha
+ 'recaptcha',
+
+  'osha_resources',
   'osha',
-  'osha_migration',
   'osha_news',
   'osha_note_to_editor',
-  'osha_nodequeue',
   'osha_publication',
-  'osha_calls',
-  'osha_blog',
   'osha_infographics',
   'osha_tmgmt',
-  'osha_highlight',
-  'osha_press_contact',
   'osha_press_release',
-  'osha_homepage',
-  'osha_menu',
-  'osha_job_vacancies',
-  'osha_wiki',
   'osha_workflow',
-  'osha_blocks',
-  'osha_breadcrumbs',
-  'osha_legislation',
-  'osha_short_messages',
-  'osha_resources',
   'osha_slideshare',
   'osha_events',
   'osha_alert_service',
   'osha_contact',
-  'osha_fop_page',
   'osha_authentication',
+  'osha_search',
 
-  'linkchecker',
+  'osh_image_gallery',
+
   'osha_linkchecker',
   'osha_reminders',
+
+  'migrate',
+  'migrate_ui',
 
   'facetapi',
   'search_api_facetapi',
@@ -463,9 +497,8 @@ $options['init-modules'] = array(
   'search_api_et_solr',
   'search_api_views',
   'search_api_attachments',
+  'search_and_replace',
 
-  'osha_search',
-  'osha_content',
   'osha_lingua_tools',
 
   // Newsletter modules.
@@ -473,30 +506,42 @@ $options['init-modules'] = array(
   'entity_collection_db',
   'osha_newsletter',
 
-  // Captcha
-  'captcha',
-  'recaptcha',
-  'image_captcha',
-  'spamspan',
-
   // Social share
-  'addtoany',
   'on_the_web',
 
-  // Link content types with main menu items
-  'menu_position',
-  'r4032login',
+  'text_resize',
+  'block_class',
+  'shorten',
 
-  'devel',
-  'devel_node_access',
-  'diff',
-  'update'
+  'hwc',
+  'hwc_workflow',
+  'hwc_admin_reports',
+  'hwc_homepage',
+  'ncw_migration',
+  'hwc_crm_migration',
+  'campaign_materials',
+  'hwc_menu',
+  'hwc_practical_tool',
+  'hwc_partner',
+  'hwc_feeds',
+  'eu_captcha',
+  'hwc_social_sprites',
+  'osha_gallery',
+  'hwc_gallery',
+
+  'search_api_title2',
+
+  'webform2pdf',
+
 );
 
 
 $options['init-themes'] = array(
-  'osha_admin',
-  'osha_frontend'
+  'hwc_frontend'
+);
+
+$options['disable-modules'] = array(
+  'varnish', 'memcache_storage', 'overlay',
 );
 
 // Add specific settings for development or demo.
@@ -504,17 +549,14 @@ $command_specific['devify'] = array(
   'enable-modules' => array(
     'reroute_email',
     'simpletest',
-    'devel',
-    'devel_node_access',
     'stage_file_proxy',
   ),
-//  'disable-modules' => array('varnish', 'memcache_admin'),
   'delete-variables' => array('googleanalytics_account'),
   'reset-variables' => array_merge(
     array(
       'reroute_email_enable_message' => TRUE,
       'reroute_email_enable' => TRUE,
-      'stage_file_proxy_origin' => 'http://osha-corp-staging03.mainstrat.com',
+      'stage_file_proxy_origin' => 'http://osha-campaigns.edw.ro',
       'stage_file_proxy_use_imagecache_root' => TRUE,
       'stage_file_proxy_hotlink' => FALSE,
       'reroute_email_address' => $cfg->variables->site_mail,
@@ -527,6 +569,19 @@ $command_specific['devify'] = array(
 $command_specific['devify_solr'] = array(
   'solr_server' => (array) $cfg->solr_server,
 );
+
+$command_specific['devify_ldap'] = array(
+  'ldap-read' => (array) $cfg->ldap_read,
+  'ldap-write' => (array) $cfg->ldap_write,
+);
+
+if (!empty($cfg->devify_enable_modules)) {
+  $command_specific['devify']['enable-modules'] = array_merge(
+    $command_specific['devify']['enable-modules'],
+    $cfg->devify_enable_modules
+  );
+}
+
 
 if (file_exists(dirname(__FILE__) . '/drushrc.local.php')) {
   include dirname(__FILE__) . '/drushrc.local.php';

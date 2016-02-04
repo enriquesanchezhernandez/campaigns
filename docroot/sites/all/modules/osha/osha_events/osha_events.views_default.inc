@@ -11,6 +11,152 @@ function osha_events_views_default_views() {
   $export = array();
 
   $view = new view();
+  $view->name = 'event_schedule';
+  $view->description = '';
+  $view->tag = 'default';
+  $view->base_table = 'field_collection_item';
+  $view->human_name = 'Event schedule';
+  $view->core = 7;
+  $view->api_version = '3.0';
+  $view->disabled = FALSE; /* Edit this to true to make a default view disabled initially */
+
+  /* Display: Master */
+  $handler = $view->new_display('default', 'Master', 'default');
+  $handler->display->display_options['use_more_always'] = FALSE;
+  $handler->display->display_options['access']['type'] = 'none';
+  $handler->display->display_options['cache']['type'] = 'none';
+  $handler->display->display_options['query']['type'] = 'views_query';
+  $handler->display->display_options['exposed_form']['type'] = 'basic';
+  $handler->display->display_options['pager']['type'] = 'none';
+  $handler->display->display_options['pager']['options']['offset'] = '0';
+  $handler->display->display_options['style_plugin'] = 'default';
+  $handler->display->display_options['style_options']['row_class'] = 'row';
+  $handler->display->display_options['row_plugin'] = 'fields';
+  /* Relationship: Field collection item: Entity with the Schedule (field_schedule) */
+  $handler->display->display_options['relationships']['field_schedule_node']['id'] = 'field_schedule_node';
+  $handler->display->display_options['relationships']['field_schedule_node']['table'] = 'field_collection_item';
+  $handler->display->display_options['relationships']['field_schedule_node']['field'] = 'field_schedule_node';
+  $handler->display->display_options['relationships']['field_schedule_node']['required'] = TRUE;
+  /* Field: Field collection item: Talking date */
+  $handler->display->display_options['fields']['field_talking_date']['id'] = 'field_talking_date';
+  $handler->display->display_options['fields']['field_talking_date']['table'] = 'field_data_field_talking_date';
+  $handler->display->display_options['fields']['field_talking_date']['field'] = 'field_talking_date';
+  $handler->display->display_options['fields']['field_talking_date']['label'] = '';
+  $handler->display->display_options['fields']['field_talking_date']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['field_talking_date']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_talking_date']['settings'] = array(
+    'format_type' => 'day_month_year',
+    'fromto' => 'both',
+    'multiple_number' => '',
+    'multiple_from' => '',
+    'multiple_to' => '',
+    'osha_date_theme' => '',
+    'field_formatter_class' => '',
+  );
+  $handler->display->display_options['fields']['field_talking_date']['field_api_classes'] = TRUE;
+  /* Field: Field collection item: Talking title */
+  $handler->display->display_options['fields']['field_talking_title']['id'] = 'field_talking_title';
+  $handler->display->display_options['fields']['field_talking_title']['table'] = 'field_data_field_talking_title';
+  $handler->display->display_options['fields']['field_talking_title']['field'] = 'field_talking_title';
+  $handler->display->display_options['fields']['field_talking_title']['label'] = '';
+  $handler->display->display_options['fields']['field_talking_title']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['field_talking_title']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_talking_title']['element_wrapper_type'] = 'div';
+  $handler->display->display_options['fields']['field_talking_title']['settings'] = array(
+    'field_formatter_class' => '',
+  );
+  $handler->display->display_options['fields']['field_talking_title']['field_api_classes'] = TRUE;
+  /* Field: Field collection item: Talking files */
+  $handler->display->display_options['fields']['field_talking_files']['id'] = 'field_talking_files';
+  $handler->display->display_options['fields']['field_talking_files']['table'] = 'field_data_field_talking_files';
+  $handler->display->display_options['fields']['field_talking_files']['field'] = 'field_talking_files';
+  $handler->display->display_options['fields']['field_talking_files']['label'] = '';
+  $handler->display->display_options['fields']['field_talking_files']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['field_talking_files']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_talking_files']['click_sort_column'] = 'fid';
+  $handler->display->display_options['fields']['field_talking_files']['type'] = 'file_rendered';
+  $handler->display->display_options['fields']['field_talking_files']['settings'] = array(
+    'file_view_mode' => 'teaser',
+    'field_formatter_class' => '',
+  );
+  $handler->display->display_options['fields']['field_talking_files']['delta_offset'] = '0';
+  $handler->display->display_options['fields']['field_talking_files']['field_api_classes'] = TRUE;
+  /* Field: Field collection item: Talking speaker */
+  $handler->display->display_options['fields']['field_talking_speaker']['id'] = 'field_talking_speaker';
+  $handler->display->display_options['fields']['field_talking_speaker']['table'] = 'field_data_field_talking_speaker';
+  $handler->display->display_options['fields']['field_talking_speaker']['field'] = 'field_talking_speaker';
+  $handler->display->display_options['fields']['field_talking_speaker']['label'] = '';
+  $handler->display->display_options['fields']['field_talking_speaker']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['field_talking_speaker']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_talking_speaker']['settings'] = array(
+    'link' => 0,
+    'field_formatter_class' => '',
+  );
+  $handler->display->display_options['fields']['field_talking_speaker']['field_api_classes'] = TRUE;
+  /* Field: Field collection item: Venue */
+  $handler->display->display_options['fields']['field_venue']['id'] = 'field_venue';
+  $handler->display->display_options['fields']['field_venue']['table'] = 'field_data_field_venue';
+  $handler->display->display_options['fields']['field_venue']['field'] = 'field_venue';
+  $handler->display->display_options['fields']['field_venue']['label'] = '';
+  $handler->display->display_options['fields']['field_venue']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['field_venue']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_venue']['type'] = 'text_plain';
+  $handler->display->display_options['fields']['field_venue']['settings'] = array(
+    'field_formatter_class' => '',
+  );
+  $handler->display->display_options['fields']['field_venue']['field_api_classes'] = TRUE;
+  /* Field: Global: Custom text */
+  $handler->display->display_options['fields']['nothing']['id'] = 'nothing';
+  $handler->display->display_options['fields']['nothing']['table'] = 'views';
+  $handler->display->display_options['fields']['nothing']['field'] = 'nothing';
+  $handler->display->display_options['fields']['nothing']['label'] = '';
+  $handler->display->display_options['fields']['nothing']['alter']['text'] = '<div class="col-md-3 col-sm-4 talking-date">
+[field_talking_date]
+</div>
+<div class="col-md-9 col-sm-8 talking-details">
+[field_talking_title]
+[field_talking_speaker]
+[field_venue]
+[field_talking_files]
+</div>';
+  $handler->display->display_options['fields']['nothing']['element_label_colon'] = FALSE;
+  /* Sort criterion: Field collection item: Talking date -  start date (field_talking_date) */
+  $handler->display->display_options['sorts']['field_talking_date_value']['id'] = 'field_talking_date_value';
+  $handler->display->display_options['sorts']['field_talking_date_value']['table'] = 'field_data_field_talking_date';
+  $handler->display->display_options['sorts']['field_talking_date_value']['field'] = 'field_talking_date_value';
+  /* Contextual filter: Content: Nid */
+  $handler->display->display_options['arguments']['nid']['id'] = 'nid';
+  $handler->display->display_options['arguments']['nid']['table'] = 'node';
+  $handler->display->display_options['arguments']['nid']['field'] = 'nid';
+  $handler->display->display_options['arguments']['nid']['relationship'] = 'field_schedule_node';
+  $handler->display->display_options['arguments']['nid']['default_action'] = 'default';
+  $handler->display->display_options['arguments']['nid']['default_argument_type'] = 'node';
+  $handler->display->display_options['arguments']['nid']['summary']['number_of_records'] = '0';
+  $handler->display->display_options['arguments']['nid']['summary']['format'] = 'default_summary';
+  $handler->display->display_options['arguments']['nid']['summary_options']['items_per_page'] = '25';
+  $translatables['event_schedule'] = array(
+    t('Master'),
+    t('more'),
+    t('Apply'),
+    t('Reset'),
+    t('Sort by'),
+    t('Asc'),
+    t('Desc'),
+    t('field_schedule'),
+    t('<div class="col-md-3 col-sm-4 talking-date">
+[field_talking_date]
+</div>
+<div class="col-md-9 col-sm-8 talking-details">
+[field_talking_title]
+[field_talking_speaker]
+[field_venue]
+[field_talking_files]
+</div>'),
+    t('All'),
+  );
+  $export['event_schedule'] = $view;
+
+  $view = new view();
   $view->name = 'events';
   $view->description = '';
   $view->tag = 'default';
@@ -25,6 +171,7 @@ function osha_events_views_default_views() {
   $handler->display->display_options['title'] = 'Events';
   $handler->display->display_options['use_more_always'] = FALSE;
   $handler->display->display_options['access']['type'] = 'perm';
+  $handler->display->display_options['access']['perm'] = 'create events content';
   $handler->display->display_options['cache']['type'] = 'none';
   $handler->display->display_options['query']['type'] = 'views_query';
   $handler->display->display_options['exposed_form']['type'] = 'basic';
@@ -43,16 +190,6 @@ function osha_events_views_default_views() {
   $handler->display->display_options['fields']['title']['label'] = '';
   $handler->display->display_options['fields']['title']['alter']['word_boundary'] = FALSE;
   $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
-  /* Field: Content: For the web */
-  $handler->display->display_options['fields']['field_for_the_web']['id'] = 'field_for_the_web';
-  $handler->display->display_options['fields']['field_for_the_web']['table'] = 'field_data_field_for_the_web';
-  $handler->display->display_options['fields']['field_for_the_web']['field'] = 'field_for_the_web';
-  $handler->display->display_options['fields']['field_for_the_web']['element_label_colon'] = FALSE;
-  /* Field: Content: Organization */
-  $handler->display->display_options['fields']['field_organization']['id'] = 'field_organization';
-  $handler->display->display_options['fields']['field_organization']['table'] = 'field_data_field_organization';
-  $handler->display->display_options['fields']['field_organization']['field'] = 'field_organization';
-  $handler->display->display_options['fields']['field_organization']['element_label_colon'] = FALSE;
   /* Field: Content: Country */
   $handler->display->display_options['fields']['field_country_code']['id'] = 'field_country_code';
   $handler->display->display_options['fields']['field_country_code']['table'] = 'field_data_field_country_code';
@@ -64,7 +201,7 @@ function osha_events_views_default_views() {
   $handler->display->display_options['fields']['field_city']['table'] = 'field_data_field_city';
   $handler->display->display_options['fields']['field_city']['field'] = 'field_city';
   $handler->display->display_options['fields']['field_city']['element_label_colon'] = FALSE;
-  /* Field: Content: Start date */
+  /* Field: Content: Starting date and time */
   $handler->display->display_options['fields']['field_start_date']['id'] = 'field_start_date';
   $handler->display->display_options['fields']['field_start_date']['table'] = 'field_data_field_start_date';
   $handler->display->display_options['fields']['field_start_date']['field'] = 'field_start_date';
@@ -83,70 +220,6 @@ function osha_events_views_default_views() {
   $handler->display->display_options['fields']['field_website_of_event']['field'] = 'field_website_of_event';
   $handler->display->display_options['fields']['field_website_of_event']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['field_website_of_event']['click_sort_column'] = 'url';
-  /* Field: Content: Adonis */
-  $handler->display->display_options['fields']['field_adonis']['id'] = 'field_adonis';
-  $handler->display->display_options['fields']['field_adonis']['table'] = 'field_data_field_adonis';
-  $handler->display->display_options['fields']['field_adonis']['field'] = 'field_adonis';
-  $handler->display->display_options['fields']['field_adonis']['element_label_colon'] = FALSE;
-  /* Field: Content: Unit Ref */
-  $handler->display->display_options['fields']['field_unit_ref']['id'] = 'field_unit_ref';
-  $handler->display->display_options['fields']['field_unit_ref']['table'] = 'field_data_field_unit_ref';
-  $handler->display->display_options['fields']['field_unit_ref']['field'] = 'field_unit_ref';
-  $handler->display->display_options['fields']['field_unit_ref']['element_label_colon'] = FALSE;
-  /* Field: Content: Agency role */
-  $handler->display->display_options['fields']['field_agency_role']['id'] = 'field_agency_role';
-  $handler->display->display_options['fields']['field_agency_role']['table'] = 'field_data_field_agency_role';
-  $handler->display->display_options['fields']['field_agency_role']['field'] = 'field_agency_role';
-  $handler->display->display_options['fields']['field_agency_role']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['field_agency_role']['delta_offset'] = '0';
-  /* Field: Content: Agency initial contact */
-  $handler->display->display_options['fields']['field_agency_initial_contact']['id'] = 'field_agency_initial_contact';
-  $handler->display->display_options['fields']['field_agency_initial_contact']['table'] = 'field_data_field_agency_initial_contact';
-  $handler->display->display_options['fields']['field_agency_initial_contact']['field'] = 'field_agency_initial_contact';
-  $handler->display->display_options['fields']['field_agency_initial_contact']['element_label_colon'] = FALSE;
-  /* Field: Content: Agency rep confirmed */
-  $handler->display->display_options['fields']['field_agency_rep_confirmed']['id'] = 'field_agency_rep_confirmed';
-  $handler->display->display_options['fields']['field_agency_rep_confirmed']['table'] = 'field_data_field_agency_rep_confirmed';
-  $handler->display->display_options['fields']['field_agency_rep_confirmed']['field'] = 'field_agency_rep_confirmed';
-  $handler->display->display_options['fields']['field_agency_rep_confirmed']['element_label_colon'] = FALSE;
-  /* Field: Content: Organised by */
-  $handler->display->display_options['fields']['field_organised_by']['id'] = 'field_organised_by';
-  $handler->display->display_options['fields']['field_organised_by']['table'] = 'field_data_field_organised_by';
-  $handler->display->display_options['fields']['field_organised_by']['field'] = 'field_organised_by';
-  $handler->display->display_options['fields']['field_organised_by']['element_label_colon'] = FALSE;
-  /* Field: Content: Event in AMP */
-  $handler->display->display_options['fields']['field_event_in_amp']['id'] = 'field_event_in_amp';
-  $handler->display->display_options['fields']['field_event_in_amp']['table'] = 'field_data_field_event_in_amp';
-  $handler->display->display_options['fields']['field_event_in_amp']['field'] = 'field_event_in_amp';
-  $handler->display->display_options['fields']['field_event_in_amp']['element_label_colon'] = FALSE;
-  /* Field: Content: Agency contact / reply */
-  $handler->display->display_options['fields']['field_agency_contact_reply']['id'] = 'field_agency_contact_reply';
-  $handler->display->display_options['fields']['field_agency_contact_reply']['table'] = 'field_data_field_agency_contact_reply';
-  $handler->display->display_options['fields']['field_agency_contact_reply']['field'] = 'field_agency_contact_reply';
-  $handler->display->display_options['fields']['field_agency_contact_reply']['element_label_colon'] = FALSE;
-  /* Field: Content: Comments / Summary after event */
-  $handler->display->display_options['fields']['field_comments_summary_after_eve']['id'] = 'field_comments_summary_after_eve';
-  $handler->display->display_options['fields']['field_comments_summary_after_eve']['table'] = 'field_data_field_comments_summary_after_eve';
-  $handler->display->display_options['fields']['field_comments_summary_after_eve']['field'] = 'field_comments_summary_after_eve';
-  $handler->display->display_options['fields']['field_comments_summary_after_eve']['element_label_colon'] = FALSE;
-  /* Field: Content: Number of attendees */
-  $handler->display->display_options['fields']['field_number_of_attendees']['id'] = 'field_number_of_attendees';
-  $handler->display->display_options['fields']['field_number_of_attendees']['table'] = 'field_data_field_number_of_attendees';
-  $handler->display->display_options['fields']['field_number_of_attendees']['field'] = 'field_number_of_attendees';
-  $handler->display->display_options['fields']['field_number_of_attendees']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['field_number_of_attendees']['settings'] = array(
-    'thousand_separator' => ' ',
-    'prefix_suffix' => 1,
-  );
-  /* Field: Content: Satisfaction rate */
-  $handler->display->display_options['fields']['field_satisfaction_rate']['id'] = 'field_satisfaction_rate';
-  $handler->display->display_options['fields']['field_satisfaction_rate']['table'] = 'field_data_field_satisfaction_rate';
-  $handler->display->display_options['fields']['field_satisfaction_rate']['field'] = 'field_satisfaction_rate';
-  $handler->display->display_options['fields']['field_satisfaction_rate']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['field_satisfaction_rate']['settings'] = array(
-    'thousand_separator' => ' ',
-    'prefix_suffix' => 1,
-  );
   /* Sort criterion: Content: Post date */
   $handler->display->display_options['sorts']['created']['id'] = 'created';
   $handler->display->display_options['sorts']['created']['table'] = 'node';
@@ -167,8 +240,14 @@ function osha_events_views_default_views() {
     'events' => 'events',
   );
 
-  /* Display: Events */
-  $handler = $view->new_display('page', 'Events', 'page');
+  /* Display: Events - admin view */
+  $handler = $view->new_display('page', 'Events - admin view', 'page');
+  $handler->display->display_options['defaults']['pager'] = FALSE;
+  $handler->display->display_options['pager']['type'] = 'full';
+  $handler->display->display_options['pager']['options']['items_per_page'] = '5';
+  $handler->display->display_options['pager']['options']['offset'] = '0';
+  $handler->display->display_options['pager']['options']['id'] = '0';
+  $handler->display->display_options['pager']['options']['quantity'] = '9';
   $handler->display->display_options['defaults']['style_plugin'] = FALSE;
   $handler->display->display_options['style_plugin'] = 'table';
   $handler->display->display_options['style_options']['columns'] = array(
@@ -179,9 +258,8 @@ function osha_events_views_default_views() {
     'field_country_code' => 'field_country_code',
     'field_city' => 'field_city',
     'field_start_date' => 'field_start_date',
-    'field_end_date' => 'field_end_date',
+    'field_start_date_1' => 'field_start_date_1',
     'field_website_of_event' => 'field_website_of_event',
-    'field_theme' => 'field_theme',
     'field_adonis' => 'field_adonis',
     'field_unit_ref' => 'field_unit_ref',
     'field_activity' => 'field_activity',
@@ -197,6 +275,8 @@ function osha_events_views_default_views() {
     'edit_node' => 'edit_node',
     'delete_node' => 'delete_node',
     'nothing' => 'nothing',
+    'name' => 'name',
+    'field_agency_rep_confirmed_1' => 'field_agency_rep_confirmed_1',
   );
   $handler->display->display_options['style_options']['default'] = '-1';
   $handler->display->display_options['style_options']['info'] = array(
@@ -249,7 +329,7 @@ function osha_events_views_default_views() {
       'separator' => '',
       'empty_column' => 0,
     ),
-    'field_end_date' => array(
+    'field_start_date_1' => array(
       'sortable' => 1,
       'default_sort_order' => 'asc',
       'align' => '',
@@ -257,13 +337,6 @@ function osha_events_views_default_views() {
       'empty_column' => 0,
     ),
     'field_website_of_event' => array(
-      'sortable' => 1,
-      'default_sort_order' => 'asc',
-      'align' => '',
-      'separator' => '',
-      'empty_column' => 0,
-    ),
-    'field_theme' => array(
       'align' => '',
       'separator' => '',
       'empty_column' => 0,
@@ -283,8 +356,6 @@ function osha_events_views_default_views() {
       'empty_column' => 0,
     ),
     'field_activity' => array(
-      'sortable' => 0,
-      'default_sort_order' => 'asc',
       'align' => '',
       'separator' => '',
       'empty_column' => 0,
@@ -309,8 +380,6 @@ function osha_events_views_default_views() {
       'empty_column' => 0,
     ),
     'field_organised_by' => array(
-      'sortable' => 1,
-      'default_sort_order' => 'asc',
       'align' => '',
       'separator' => '',
       'empty_column' => 0,
@@ -365,6 +434,20 @@ function osha_events_views_default_views() {
       'separator' => '',
       'empty_column' => 0,
     ),
+    'name' => array(
+      'sortable' => 0,
+      'default_sort_order' => 'asc',
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+    'field_agency_rep_confirmed_1' => array(
+      'sortable' => 0,
+      'default_sort_order' => 'asc',
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
   );
   $handler->display->display_options['defaults']['style_options'] = FALSE;
   $handler->display->display_options['defaults']['row_plugin'] = FALSE;
@@ -384,21 +467,6 @@ function osha_events_views_default_views() {
   $handler->display->display_options['header']['result']['table'] = 'views';
   $handler->display->display_options['header']['result']['field'] = 'result';
   $handler->display->display_options['header']['result']['content'] = 'Total: @total';
-  /* Header: Global: Text area */
-  $handler->display->display_options['header']['area_1']['id'] = 'area_1';
-  $handler->display->display_options['header']['area_1']['table'] = 'views';
-  $handler->display->display_options['header']['area_1']['field'] = 'area';
-  $handler->display->display_options['header']['area_1']['label'] = 'Colours';
-  $handler->display->display_options['header']['area_1']['empty'] = TRUE;
-  $handler->display->display_options['header']['area_1']['content'] = '<div class="colours">
-<div class="red"></div><p">(...)<p>
-<div class="grey"></div><p>Attendance as speaker is refused<p>
-<div class="black"></div><p>Attendance as speaker has been agreed<p>
-<div class="blue"></div><p>Cancellations<p>
-<div class="yellow"></div><p>(...)<p>
-<div class="green"></div><p>(...)<p>
-</div>';
-  $handler->display->display_options['header']['area_1']['format'] = 'full_html';
   $handler->display->display_options['defaults']['footer'] = FALSE;
   $handler->display->display_options['defaults']['relationships'] = FALSE;
   /* Relationship: Content: Author */
@@ -406,13 +474,6 @@ function osha_events_views_default_views() {
   $handler->display->display_options['relationships']['uid']['table'] = 'node';
   $handler->display->display_options['relationships']['uid']['field'] = 'uid';
   $handler->display->display_options['defaults']['fields'] = FALSE;
-  /* Field: Content: Color */
-  $handler->display->display_options['fields']['field_color']['id'] = 'field_color';
-  $handler->display->display_options['fields']['field_color']['table'] = 'field_data_field_color';
-  $handler->display->display_options['fields']['field_color']['field'] = 'field_color';
-  $handler->display->display_options['fields']['field_color']['alter']['alter_text'] = TRUE;
-  $handler->display->display_options['fields']['field_color']['alter']['text'] = '[field_color]';
-  $handler->display->display_options['fields']['field_color']['element_label_colon'] = FALSE;
   /* Field: Content: Title */
   $handler->display->display_options['fields']['title_field']['id'] = 'title_field';
   $handler->display->display_options['fields']['title_field']['table'] = 'field_data_title_field';
@@ -425,16 +486,6 @@ function osha_events_views_default_views() {
     'title_class' => '',
   );
   $handler->display->display_options['fields']['title_field']['link_to_entity'] = 0;
-  /* Field: Content: For the web */
-  $handler->display->display_options['fields']['field_for_the_web']['id'] = 'field_for_the_web';
-  $handler->display->display_options['fields']['field_for_the_web']['table'] = 'field_data_field_for_the_web';
-  $handler->display->display_options['fields']['field_for_the_web']['field'] = 'field_for_the_web';
-  $handler->display->display_options['fields']['field_for_the_web']['element_label_colon'] = FALSE;
-  /* Field: Content: Organization */
-  $handler->display->display_options['fields']['field_organization']['id'] = 'field_organization';
-  $handler->display->display_options['fields']['field_organization']['table'] = 'field_data_field_organization';
-  $handler->display->display_options['fields']['field_organization']['field'] = 'field_organization';
-  $handler->display->display_options['fields']['field_organization']['element_label_colon'] = FALSE;
   /* Field: Content: Country */
   $handler->display->display_options['fields']['field_country_code']['id'] = 'field_country_code';
   $handler->display->display_options['fields']['field_country_code']['table'] = 'field_data_field_country_code';
@@ -446,13 +497,26 @@ function osha_events_views_default_views() {
   $handler->display->display_options['fields']['field_city']['table'] = 'field_data_field_city';
   $handler->display->display_options['fields']['field_city']['field'] = 'field_city';
   $handler->display->display_options['fields']['field_city']['element_label_colon'] = FALSE;
-  /* Field: Content: Start date */
+  /* Field: Content: Starting date and time */
   $handler->display->display_options['fields']['field_start_date']['id'] = 'field_start_date';
   $handler->display->display_options['fields']['field_start_date']['table'] = 'field_data_field_start_date';
   $handler->display->display_options['fields']['field_start_date']['field'] = 'field_start_date';
   $handler->display->display_options['fields']['field_start_date']['settings'] = array(
     'format_type' => 'long',
-    'fromto' => 'both',
+    'fromto' => 'value',
+    'multiple_number' => '',
+    'multiple_from' => '',
+    'multiple_to' => '',
+    'osha_date_theme' => '',
+  );
+  /* Field: Content: Starting date and time */
+  $handler->display->display_options['fields']['field_start_date_1']['id'] = 'field_start_date_1';
+  $handler->display->display_options['fields']['field_start_date_1']['table'] = 'field_data_field_start_date';
+  $handler->display->display_options['fields']['field_start_date_1']['field'] = 'field_start_date';
+  $handler->display->display_options['fields']['field_start_date_1']['label'] = 'End date';
+  $handler->display->display_options['fields']['field_start_date_1']['settings'] = array(
+    'format_type' => 'long',
+    'fromto' => 'value2',
     'multiple_number' => '',
     'multiple_from' => '',
     'multiple_to' => '',
@@ -464,76 +528,6 @@ function osha_events_views_default_views() {
   $handler->display->display_options['fields']['field_website_of_event']['field'] = 'field_website_of_event';
   $handler->display->display_options['fields']['field_website_of_event']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['field_website_of_event']['click_sort_column'] = 'url';
-  /* Field: Content: Adonis */
-  $handler->display->display_options['fields']['field_adonis']['id'] = 'field_adonis';
-  $handler->display->display_options['fields']['field_adonis']['table'] = 'field_data_field_adonis';
-  $handler->display->display_options['fields']['field_adonis']['field'] = 'field_adonis';
-  $handler->display->display_options['fields']['field_adonis']['element_label_colon'] = FALSE;
-  /* Field: Content: Unit Ref */
-  $handler->display->display_options['fields']['field_unit_ref']['id'] = 'field_unit_ref';
-  $handler->display->display_options['fields']['field_unit_ref']['table'] = 'field_data_field_unit_ref';
-  $handler->display->display_options['fields']['field_unit_ref']['field'] = 'field_unit_ref';
-  $handler->display->display_options['fields']['field_unit_ref']['element_label_colon'] = FALSE;
-  /* Field: Content: Activity */
-  $handler->display->display_options['fields']['field_activity']['id'] = 'field_activity';
-  $handler->display->display_options['fields']['field_activity']['table'] = 'field_data_field_activity';
-  $handler->display->display_options['fields']['field_activity']['field'] = 'field_activity';
-  $handler->display->display_options['fields']['field_activity']['element_label_colon'] = FALSE;
-  /* Field: Content: Agency role */
-  $handler->display->display_options['fields']['field_agency_role']['id'] = 'field_agency_role';
-  $handler->display->display_options['fields']['field_agency_role']['table'] = 'field_data_field_agency_role';
-  $handler->display->display_options['fields']['field_agency_role']['field'] = 'field_agency_role';
-  $handler->display->display_options['fields']['field_agency_role']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['field_agency_role']['delta_offset'] = '0';
-  /* Field: Content: Agency initial contact */
-  $handler->display->display_options['fields']['field_agency_initial_contact']['id'] = 'field_agency_initial_contact';
-  $handler->display->display_options['fields']['field_agency_initial_contact']['table'] = 'field_data_field_agency_initial_contact';
-  $handler->display->display_options['fields']['field_agency_initial_contact']['field'] = 'field_agency_initial_contact';
-  $handler->display->display_options['fields']['field_agency_initial_contact']['element_label_colon'] = FALSE;
-  /* Field: Content: Agency rep confirmed */
-  $handler->display->display_options['fields']['field_agency_rep_confirmed']['id'] = 'field_agency_rep_confirmed';
-  $handler->display->display_options['fields']['field_agency_rep_confirmed']['table'] = 'field_data_field_agency_rep_confirmed';
-  $handler->display->display_options['fields']['field_agency_rep_confirmed']['field'] = 'field_agency_rep_confirmed';
-  $handler->display->display_options['fields']['field_agency_rep_confirmed']['element_label_colon'] = FALSE;
-  /* Field: Content: Organised by */
-  $handler->display->display_options['fields']['field_organised_by']['id'] = 'field_organised_by';
-  $handler->display->display_options['fields']['field_organised_by']['table'] = 'field_data_field_organised_by';
-  $handler->display->display_options['fields']['field_organised_by']['field'] = 'field_organised_by';
-  $handler->display->display_options['fields']['field_organised_by']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['field_organised_by']['delta_offset'] = '0';
-  /* Field: Content: Event in AMP */
-  $handler->display->display_options['fields']['field_event_in_amp']['id'] = 'field_event_in_amp';
-  $handler->display->display_options['fields']['field_event_in_amp']['table'] = 'field_data_field_event_in_amp';
-  $handler->display->display_options['fields']['field_event_in_amp']['field'] = 'field_event_in_amp';
-  $handler->display->display_options['fields']['field_event_in_amp']['element_label_colon'] = FALSE;
-  /* Field: Content: Agency contact / reply */
-  $handler->display->display_options['fields']['field_agency_contact_reply']['id'] = 'field_agency_contact_reply';
-  $handler->display->display_options['fields']['field_agency_contact_reply']['table'] = 'field_data_field_agency_contact_reply';
-  $handler->display->display_options['fields']['field_agency_contact_reply']['field'] = 'field_agency_contact_reply';
-  $handler->display->display_options['fields']['field_agency_contact_reply']['element_label_colon'] = FALSE;
-  /* Field: Content: Comments / Summary after event */
-  $handler->display->display_options['fields']['field_comments_summary_after_eve']['id'] = 'field_comments_summary_after_eve';
-  $handler->display->display_options['fields']['field_comments_summary_after_eve']['table'] = 'field_data_field_comments_summary_after_eve';
-  $handler->display->display_options['fields']['field_comments_summary_after_eve']['field'] = 'field_comments_summary_after_eve';
-  $handler->display->display_options['fields']['field_comments_summary_after_eve']['element_label_colon'] = FALSE;
-  /* Field: Content: Number of attendees */
-  $handler->display->display_options['fields']['field_number_of_attendees']['id'] = 'field_number_of_attendees';
-  $handler->display->display_options['fields']['field_number_of_attendees']['table'] = 'field_data_field_number_of_attendees';
-  $handler->display->display_options['fields']['field_number_of_attendees']['field'] = 'field_number_of_attendees';
-  $handler->display->display_options['fields']['field_number_of_attendees']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['field_number_of_attendees']['settings'] = array(
-    'thousand_separator' => ' ',
-    'prefix_suffix' => 1,
-  );
-  /* Field: Content: Satisfaction rate */
-  $handler->display->display_options['fields']['field_satisfaction_rate']['id'] = 'field_satisfaction_rate';
-  $handler->display->display_options['fields']['field_satisfaction_rate']['table'] = 'field_data_field_satisfaction_rate';
-  $handler->display->display_options['fields']['field_satisfaction_rate']['field'] = 'field_satisfaction_rate';
-  $handler->display->display_options['fields']['field_satisfaction_rate']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['field_satisfaction_rate']['settings'] = array(
-    'thousand_separator' => ' ',
-    'prefix_suffix' => 1,
-  );
   /* Field: Content: Edit link */
   $handler->display->display_options['fields']['edit_node']['id'] = 'edit_node';
   $handler->display->display_options['fields']['edit_node']['table'] = 'views_entity_node';
@@ -624,7 +618,7 @@ function osha_events_views_default_views() {
     10 => 0,
     11 => 0,
   );
-  /* Filter criterion: Content: Start date -  start date (field_start_date) */
+  /* Filter criterion: Content: Starting date and time -  start date (field_start_date) */
   $handler->display->display_options['filters']['field_start_date_value']['id'] = 'field_start_date_value';
   $handler->display->display_options['filters']['field_start_date_value']['table'] = 'field_data_field_start_date';
   $handler->display->display_options['filters']['field_start_date_value']['field'] = 'field_start_date_value';
@@ -650,7 +644,7 @@ function osha_events_views_default_views() {
     12 => 0,
   );
   $handler->display->display_options['filters']['field_start_date_value']['form_type'] = 'date_popup';
-  /* Filter criterion: Content: Start date - end date (field_start_date:value2) */
+  /* Filter criterion: Content: Starting date and time - end date (field_start_date:value2) */
   $handler->display->display_options['filters']['field_start_date_value2']['id'] = 'field_start_date_value2';
   $handler->display->display_options['filters']['field_start_date_value2']['table'] = 'field_data_field_start_date';
   $handler->display->display_options['filters']['field_start_date_value2']['field'] = 'field_start_date_value2';
@@ -676,188 +670,46 @@ function osha_events_views_default_views() {
     12 => 0,
   );
   $handler->display->display_options['filters']['field_start_date_value2']['form_type'] = 'date_popup';
-  /* Filter criterion: Content: Agency role (field_agency_role) */
-  $handler->display->display_options['filters']['field_agency_role_value']['id'] = 'field_agency_role_value';
-  $handler->display->display_options['filters']['field_agency_role_value']['table'] = 'field_data_field_agency_role';
-  $handler->display->display_options['filters']['field_agency_role_value']['field'] = 'field_agency_role_value';
-  $handler->display->display_options['filters']['field_agency_role_value']['group'] = 1;
-  $handler->display->display_options['filters']['field_agency_role_value']['exposed'] = TRUE;
-  $handler->display->display_options['filters']['field_agency_role_value']['expose']['operator_id'] = 'field_agency_role_value_op';
-  $handler->display->display_options['filters']['field_agency_role_value']['expose']['label'] = 'Agency role';
-  $handler->display->display_options['filters']['field_agency_role_value']['expose']['operator'] = 'field_agency_role_value_op';
-  $handler->display->display_options['filters']['field_agency_role_value']['expose']['identifier'] = 'field_agency_role_value';
-  $handler->display->display_options['filters']['field_agency_role_value']['expose']['multiple'] = TRUE;
-  $handler->display->display_options['filters']['field_agency_role_value']['expose']['remember_roles'] = array(
-    2 => '2',
-    1 => 0,
-    3 => 0,
-    4 => 0,
-    5 => 0,
-    6 => 0,
-    7 => 0,
-    8 => 0,
-    9 => 0,
-    10 => 0,
-    11 => 0,
-  );
-  /* Filter criterion: Content: Unit Ref (field_unit_ref) */
-  $handler->display->display_options['filters']['field_unit_ref_value']['id'] = 'field_unit_ref_value';
-  $handler->display->display_options['filters']['field_unit_ref_value']['table'] = 'field_data_field_unit_ref';
-  $handler->display->display_options['filters']['field_unit_ref_value']['field'] = 'field_unit_ref_value';
-  $handler->display->display_options['filters']['field_unit_ref_value']['group'] = 1;
-  $handler->display->display_options['filters']['field_unit_ref_value']['exposed'] = TRUE;
-  $handler->display->display_options['filters']['field_unit_ref_value']['expose']['operator_id'] = 'field_unit_ref_value_op';
-  $handler->display->display_options['filters']['field_unit_ref_value']['expose']['label'] = 'Unit Ref';
-  $handler->display->display_options['filters']['field_unit_ref_value']['expose']['operator'] = 'field_unit_ref_value_op';
-  $handler->display->display_options['filters']['field_unit_ref_value']['expose']['identifier'] = 'field_unit_ref_value';
-  $handler->display->display_options['filters']['field_unit_ref_value']['expose']['multiple'] = TRUE;
-  $handler->display->display_options['filters']['field_unit_ref_value']['expose']['remember_roles'] = array(
-    2 => '2',
-    1 => 0,
-    3 => 0,
-    4 => 0,
-    5 => 0,
-    6 => 0,
-    7 => 0,
-    8 => 0,
-    9 => 0,
-    10 => 0,
-    11 => 0,
-  );
-  /* Filter criterion: Content: Event in AMP (field_event_in_amp) */
-  $handler->display->display_options['filters']['field_event_in_amp_value']['id'] = 'field_event_in_amp_value';
-  $handler->display->display_options['filters']['field_event_in_amp_value']['table'] = 'field_data_field_event_in_amp';
-  $handler->display->display_options['filters']['field_event_in_amp_value']['field'] = 'field_event_in_amp_value';
-  $handler->display->display_options['filters']['field_event_in_amp_value']['group'] = 1;
-  $handler->display->display_options['filters']['field_event_in_amp_value']['exposed'] = TRUE;
-  $handler->display->display_options['filters']['field_event_in_amp_value']['expose']['operator_id'] = 'field_event_in_amp_value_op';
-  $handler->display->display_options['filters']['field_event_in_amp_value']['expose']['label'] = 'Event in AMP';
-  $handler->display->display_options['filters']['field_event_in_amp_value']['expose']['operator'] = 'field_event_in_amp_value_op';
-  $handler->display->display_options['filters']['field_event_in_amp_value']['expose']['identifier'] = 'field_event_in_amp_value';
-  $handler->display->display_options['filters']['field_event_in_amp_value']['expose']['remember_roles'] = array(
-    2 => '2',
-    1 => 0,
-    3 => 0,
-    4 => 0,
-    5 => 0,
-    6 => 0,
-    7 => 0,
-    8 => 0,
-    9 => 0,
-    10 => 0,
-    11 => 0,
-  );
-  /* Filter criterion: Content: Activity (field_activity) */
-  $handler->display->display_options['filters']['field_activity_tid']['id'] = 'field_activity_tid';
-  $handler->display->display_options['filters']['field_activity_tid']['table'] = 'field_data_field_activity';
-  $handler->display->display_options['filters']['field_activity_tid']['field'] = 'field_activity_tid';
-  $handler->display->display_options['filters']['field_activity_tid']['group'] = 1;
-  $handler->display->display_options['filters']['field_activity_tid']['exposed'] = TRUE;
-  $handler->display->display_options['filters']['field_activity_tid']['expose']['operator_id'] = 'field_activity_tid_op';
-  $handler->display->display_options['filters']['field_activity_tid']['expose']['label'] = 'Activity';
-  $handler->display->display_options['filters']['field_activity_tid']['expose']['operator'] = 'field_activity_tid_op';
-  $handler->display->display_options['filters']['field_activity_tid']['expose']['identifier'] = 'field_activity_tid';
-  $handler->display->display_options['filters']['field_activity_tid']['expose']['remember_roles'] = array(
-    2 => '2',
-    1 => 0,
-    3 => 0,
-    4 => 0,
-    5 => 0,
-    6 => 0,
-    7 => 0,
-    8 => 0,
-    9 => 0,
-    10 => 0,
-    11 => 0,
-    12 => 0,
-  );
-  $handler->display->display_options['filters']['field_activity_tid']['type'] = 'select';
-  $handler->display->display_options['filters']['field_activity_tid']['vocabulary'] = 'activity';
-  $handler->display->display_options['filters']['field_activity_tid']['hierarchy'] = 1;
-  /* Filter criterion: Content: Organised by (field_organised_by) */
-  $handler->display->display_options['filters']['field_organised_by_tid']['id'] = 'field_organised_by_tid';
-  $handler->display->display_options['filters']['field_organised_by_tid']['table'] = 'field_data_field_organised_by';
-  $handler->display->display_options['filters']['field_organised_by_tid']['field'] = 'field_organised_by_tid';
-  $handler->display->display_options['filters']['field_organised_by_tid']['value'] = 'All';
-  $handler->display->display_options['filters']['field_organised_by_tid']['group'] = 1;
-  $handler->display->display_options['filters']['field_organised_by_tid']['exposed'] = TRUE;
-  $handler->display->display_options['filters']['field_organised_by_tid']['expose']['operator_id'] = 'field_organised_by_tid_op';
-  $handler->display->display_options['filters']['field_organised_by_tid']['expose']['label'] = 'Organised by';
-  $handler->display->display_options['filters']['field_organised_by_tid']['expose']['operator'] = 'field_organised_by_tid_op';
-  $handler->display->display_options['filters']['field_organised_by_tid']['expose']['identifier'] = 'field_organised_by_tid';
-  $handler->display->display_options['filters']['field_organised_by_tid']['expose']['multiple'] = TRUE;
-  $handler->display->display_options['filters']['field_organised_by_tid']['expose']['remember_roles'] = array(
-    2 => '2',
-    1 => 0,
-    3 => 0,
-    4 => 0,
-    5 => 0,
-    6 => 0,
-    7 => 0,
-    8 => 0,
-    9 => 0,
-    10 => 0,
-    11 => 0,
-    12 => 0,
-  );
-  $handler->display->display_options['filters']['field_organised_by_tid']['vocabulary'] = 'organised_by';
   $handler->display->display_options['path'] = 'admin/content/events';
-  $handler->display->display_options['menu']['type'] = 'tab';
   $handler->display->display_options['menu']['title'] = 'Events';
   $handler->display->display_options['menu']['weight'] = '0';
   $handler->display->display_options['menu']['context'] = 0;
   $handler->display->display_options['menu']['context_only_inline'] = 0;
 
-  /* Display: Block */
-  $handler = $view->new_display('block', 'Block', 'block_1');
+  /* Display: Filter by date upcoming */
+  $handler = $view->new_display('block', 'Filter by date upcoming', 'block_2');
+  $handler->display->display_options['defaults']['title'] = FALSE;
+  $handler->display->display_options['title'] = 'Calendar filter';
+  $handler->display->display_options['defaults']['access'] = FALSE;
+  $handler->display->display_options['access']['type'] = 'none';
+  $handler->display->display_options['defaults']['pager'] = FALSE;
+  $handler->display->display_options['pager']['type'] = 'none';
+  $handler->display->display_options['pager']['options']['offset'] = '0';
   $handler->display->display_options['defaults']['style_plugin'] = FALSE;
   $handler->display->display_options['style_plugin'] = 'list';
   $handler->display->display_options['style_options']['grouping'] = array(
     0 => array(
       'field' => 'field_start_date_1',
       'rendered' => 1,
-      'rendered_strip' => 1,
+      'rendered_strip' => 0,
     ),
   );
-  $handler->display->display_options['style_options']['wrapper_class'] = 'item-list wysiwyg_accordion';
+  $handler->display->display_options['style_options']['wrapper_class'] = 'events-filter-by-date';
   $handler->display->display_options['defaults']['style_options'] = FALSE;
   $handler->display->display_options['defaults']['row_plugin'] = FALSE;
   $handler->display->display_options['row_plugin'] = 'fields';
   $handler->display->display_options['defaults']['row_options'] = FALSE;
+  $handler->display->display_options['defaults']['relationships'] = FALSE;
   $handler->display->display_options['defaults']['fields'] = FALSE;
-  /* Field: Content: Title */
-  $handler->display->display_options['fields']['title']['id'] = 'title';
-  $handler->display->display_options['fields']['title']['table'] = 'node';
-  $handler->display->display_options['fields']['title']['field'] = 'title';
-  $handler->display->display_options['fields']['title']['label'] = '';
-  $handler->display->display_options['fields']['title']['alter']['word_boundary'] = FALSE;
-  $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
-  $handler->display->display_options['fields']['title']['element_label_colon'] = FALSE;
-  /* Field: Content: Country */
-  $handler->display->display_options['fields']['field_country_code']['id'] = 'field_country_code';
-  $handler->display->display_options['fields']['field_country_code']['table'] = 'field_data_field_country_code';
-  $handler->display->display_options['fields']['field_country_code']['field'] = 'field_country_code';
-  $handler->display->display_options['fields']['field_country_code']['label'] = 'Location';
-  /* Field: Content: City */
-  $handler->display->display_options['fields']['field_city']['id'] = 'field_city';
-  $handler->display->display_options['fields']['field_city']['table'] = 'field_data_field_city';
-  $handler->display->display_options['fields']['field_city']['field'] = 'field_city';
-  $handler->display->display_options['fields']['field_city']['label'] = '';
-  $handler->display->display_options['fields']['field_city']['element_label_colon'] = FALSE;
-  /* Field: Content: Organization */
-  $handler->display->display_options['fields']['field_organization']['id'] = 'field_organization';
-  $handler->display->display_options['fields']['field_organization']['table'] = 'field_data_field_organization';
-  $handler->display->display_options['fields']['field_organization']['field'] = 'field_organization';
-  $handler->display->display_options['fields']['field_organization']['label'] = 'Organization';
-  /* Field: Content: Start date */
+  /* Field: Content: Starting date and time */
   $handler->display->display_options['fields']['field_start_date']['id'] = 'field_start_date';
   $handler->display->display_options['fields']['field_start_date']['table'] = 'field_data_field_start_date';
   $handler->display->display_options['fields']['field_start_date']['field'] = 'field_start_date';
   $handler->display->display_options['fields']['field_start_date']['label'] = '';
   $handler->display->display_options['fields']['field_start_date']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['field_start_date']['settings'] = array(
-    'format_type' => 'long',
-    'fromto' => 'both',
+    'format_type' => 'month',
+    'fromto' => 'value',
     'multiple_number' => '',
     'multiple_from' => '',
     'multiple_to' => '',
@@ -871,7 +723,7 @@ function osha_events_views_default_views() {
   $handler->display->display_options['fields']['field_start_date_1']['label'] = '';
   $handler->display->display_options['fields']['field_start_date_1']['exclude'] = TRUE;
   $handler->display->display_options['fields']['field_start_date_1']['alter']['alter_text'] = TRUE;
-  $handler->display->display_options['fields']['field_start_date_1']['alter']['text'] = '[field_start_date_1] - Events';
+  $handler->display->display_options['fields']['field_start_date_1']['alter']['text'] = '[field_start_date_1]';
   $handler->display->display_options['fields']['field_start_date_1']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['field_start_date_1']['settings'] = array(
     'format_type' => 'year',
@@ -882,7 +734,94 @@ function osha_events_views_default_views() {
     'osha_date_theme' => '',
   );
   $handler->display->display_options['defaults']['sorts'] = FALSE;
-  /* Sort criterion: Content: Start date -  start date (field_start_date) */
+  /* Sort criterion: Content: Starting date and time -  start date (field_start_date) */
+  $handler->display->display_options['sorts']['field_start_date_value']['id'] = 'field_start_date_value';
+  $handler->display->display_options['sorts']['field_start_date_value']['table'] = 'field_data_field_start_date';
+  $handler->display->display_options['sorts']['field_start_date_value']['field'] = 'field_start_date_value';
+  $handler->display->display_options['defaults']['filter_groups'] = FALSE;
+  $handler->display->display_options['defaults']['filters'] = FALSE;
+  /* Filter criterion: Content: Published */
+  $handler->display->display_options['filters']['status']['id'] = 'status';
+  $handler->display->display_options['filters']['status']['table'] = 'node';
+  $handler->display->display_options['filters']['status']['field'] = 'status';
+  $handler->display->display_options['filters']['status']['value'] = 1;
+  $handler->display->display_options['filters']['status']['group'] = 1;
+  $handler->display->display_options['filters']['status']['expose']['operator'] = FALSE;
+  /* Filter criterion: Content: Type */
+  $handler->display->display_options['filters']['type']['id'] = 'type';
+  $handler->display->display_options['filters']['type']['table'] = 'node';
+  $handler->display->display_options['filters']['type']['field'] = 'type';
+  $handler->display->display_options['filters']['type']['value'] = array(
+    'events' => 'events',
+  );
+  /* Filter criterion: Content: Starting date and time -  start date (field_start_date) */
+  $handler->display->display_options['filters']['field_start_date_value']['id'] = 'field_start_date_value';
+  $handler->display->display_options['filters']['field_start_date_value']['table'] = 'field_data_field_start_date';
+  $handler->display->display_options['filters']['field_start_date_value']['field'] = 'field_start_date_value';
+  $handler->display->display_options['filters']['field_start_date_value']['operator'] = '>=';
+  $handler->display->display_options['filters']['field_start_date_value']['default_date'] = 'now';
+  $handler->display->display_options['filters']['field_start_date_value']['year_range'] = '-10:+10';
+
+  /* Display: Filter by date past events */
+  $handler = $view->new_display('block', 'Filter by date past events', 'block_1');
+  $handler->display->display_options['defaults']['title'] = FALSE;
+  $handler->display->display_options['title'] = 'Calendar filter';
+  $handler->display->display_options['defaults']['access'] = FALSE;
+  $handler->display->display_options['access']['type'] = 'none';
+  $handler->display->display_options['defaults']['pager'] = FALSE;
+  $handler->display->display_options['pager']['type'] = 'none';
+  $handler->display->display_options['pager']['options']['offset'] = '0';
+  $handler->display->display_options['defaults']['style_plugin'] = FALSE;
+  $handler->display->display_options['style_plugin'] = 'list';
+  $handler->display->display_options['style_options']['grouping'] = array(
+    0 => array(
+      'field' => 'field_start_date_1',
+      'rendered' => 1,
+      'rendered_strip' => 0,
+    ),
+  );
+  $handler->display->display_options['style_options']['wrapper_class'] = 'events-filter-by-date';
+  $handler->display->display_options['defaults']['style_options'] = FALSE;
+  $handler->display->display_options['defaults']['row_plugin'] = FALSE;
+  $handler->display->display_options['row_plugin'] = 'fields';
+  $handler->display->display_options['defaults']['row_options'] = FALSE;
+  $handler->display->display_options['defaults']['relationships'] = FALSE;
+  $handler->display->display_options['defaults']['fields'] = FALSE;
+  /* Field: Content: Starting date and time */
+  $handler->display->display_options['fields']['field_start_date']['id'] = 'field_start_date';
+  $handler->display->display_options['fields']['field_start_date']['table'] = 'field_data_field_start_date';
+  $handler->display->display_options['fields']['field_start_date']['field'] = 'field_start_date';
+  $handler->display->display_options['fields']['field_start_date']['label'] = '';
+  $handler->display->display_options['fields']['field_start_date']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_start_date']['settings'] = array(
+    'format_type' => 'month',
+    'fromto' => 'value',
+    'multiple_number' => '',
+    'multiple_from' => '',
+    'multiple_to' => '',
+    'osha_date_theme' => '',
+  );
+  /* Field: Start date for grouping */
+  $handler->display->display_options['fields']['field_start_date_1']['id'] = 'field_start_date_1';
+  $handler->display->display_options['fields']['field_start_date_1']['table'] = 'field_data_field_start_date';
+  $handler->display->display_options['fields']['field_start_date_1']['field'] = 'field_start_date';
+  $handler->display->display_options['fields']['field_start_date_1']['ui_name'] = 'Start date for grouping';
+  $handler->display->display_options['fields']['field_start_date_1']['label'] = '';
+  $handler->display->display_options['fields']['field_start_date_1']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['field_start_date_1']['alter']['alter_text'] = TRUE;
+  $handler->display->display_options['fields']['field_start_date_1']['alter']['text'] = '[field_start_date_1]';
+  $handler->display->display_options['fields']['field_start_date_1']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_start_date_1']['settings'] = array(
+    'format_type' => 'year',
+    'fromto' => 'both',
+    'multiple_number' => '',
+    'multiple_from' => '',
+    'multiple_to' => '',
+    'osha_date_theme' => '',
+    'field_formatter_class' => '',
+  );
+  $handler->display->display_options['defaults']['sorts'] = FALSE;
+  /* Sort criterion: Content: Starting date and time -  start date (field_start_date) */
   $handler->display->display_options['sorts']['field_start_date_value']['id'] = 'field_start_date_value';
   $handler->display->display_options['sorts']['field_start_date_value']['table'] = 'field_data_field_start_date';
   $handler->display->display_options['sorts']['field_start_date_value']['field'] = 'field_start_date_value';
@@ -903,6 +842,13 @@ function osha_events_views_default_views() {
   $handler->display->display_options['filters']['type']['value'] = array(
     'events' => 'events',
   );
+  /* Filter criterion: Content: Starting date and time -  start date (field_start_date) */
+  $handler->display->display_options['filters']['field_start_date_value']['id'] = 'field_start_date_value';
+  $handler->display->display_options['filters']['field_start_date_value']['table'] = 'field_data_field_start_date';
+  $handler->display->display_options['filters']['field_start_date_value']['field'] = 'field_start_date_value';
+  $handler->display->display_options['filters']['field_start_date_value']['operator'] = '<';
+  $handler->display->display_options['filters']['field_start_date_value']['default_date'] = 'now';
+  $handler->display->display_options['filters']['field_start_date_value']['year_range'] = '-10:+10';
   $translatables['events'] = array(
     t('Master'),
     t('Events'),
@@ -920,40 +866,17 @@ function osha_events_views_default_views() {
     t('next ›'),
     t('last »'),
     t('author'),
-    t('For the web'),
-    t('Organization'),
     t('Country code'),
     t('City'),
-    t('Start date'),
+    t('Starting date and time'),
     t('Website of event'),
-    t('Adonis'),
-    t('Unit Ref'),
-    t('Agency role'),
-    t('Agency initial contact'),
-    t('Agency rep confirmed'),
-    t('Organised by'),
-    t('Event in AMP'),
-    t('Agency contact / reply'),
-    t('Comments / Summary after event'),
-    t('Number of attendees'),
-    t('Satisfaction rate'),
+    t('Events - admin view'),
     t('<p>
 <a href="/en/node/add/events">Add event</a>
 </p>'),
     t('Total: @total'),
-    t('Colours'),
-    t('<div class="colours">
-<div class="red"></div><p">(...)<p>
-<div class="grey"></div><p>Attendance as speaker is refused<p>
-<div class="black"></div><p>Attendance as speaker has been agreed<p>
-<div class="blue"></div><p>Cancellations<p>
-<div class="yellow"></div><p>(...)<p>
-<div class="green"></div><p>(...)<p>
-</div>'),
-    t('Color'),
-    t('[field_color]'),
     t('Title'),
-    t('Activity'),
+    t('End date'),
     t('Operations'),
     t('<ul class="links inline">
 <li>[edit_node]</li>
@@ -961,11 +884,11 @@ function osha_events_views_default_views() {
 </ul>'),
     t('Name'),
     t('Published'),
-    t('End date'),
-    t('Block'),
-    t('LOCATION'),
-    t('ORGANIZATION'),
-    t('[field_start_date_1] - Events'),
+    t('Start date'),
+    t('Filter by date upcoming'),
+    t('Calendar filter'),
+    t('[field_start_date_1]'),
+    t('Filter by date past events'),
   );
   $export['events'] = $view;
 
@@ -1007,6 +930,7 @@ function osha_events_views_default_views() {
   /* Display: Page */
   $handler = $view->new_display('page', 'Page', 'page');
   $handler->display->display_options['defaults']['title'] = FALSE;
+  $handler->display->display_options['title'] = 'OSH events';
   $handler->display->display_options['defaults']['exposed_form'] = FALSE;
   $handler->display->display_options['exposed_form']['type'] = 'basic';
   $handler->display->display_options['exposed_form']['options']['submit_button'] = 'Search';
@@ -1019,6 +943,10 @@ function osha_events_views_default_views() {
   $handler->display->display_options['pager']['options']['offset'] = '0';
   $handler->display->display_options['pager']['options']['id'] = '0';
   $handler->display->display_options['pager']['options']['quantity'] = '9';
+  $handler->display->display_options['pager']['options']['tags']['first'] = '«';
+  $handler->display->display_options['pager']['options']['tags']['previous'] = '‹';
+  $handler->display->display_options['pager']['options']['tags']['next'] = '›';
+  $handler->display->display_options['pager']['options']['tags']['last'] = '»';
   $handler->display->display_options['defaults']['style_plugin'] = FALSE;
   $handler->display->display_options['style_plugin'] = 'list';
   $handler->display->display_options['style_options']['grouping'] = array(
@@ -1033,6 +961,7 @@ function osha_events_views_default_views() {
   $handler->display->display_options['defaults']['row_plugin'] = FALSE;
   $handler->display->display_options['row_plugin'] = 'fields';
   $handler->display->display_options['defaults']['row_options'] = FALSE;
+  $handler->display->display_options['exposed_block'] = TRUE;
   $handler->display->display_options['defaults']['empty'] = FALSE;
   /* No results behavior: Global: Unfiltered text */
   $handler->display->display_options['empty']['area_text_custom']['id'] = 'area_text_custom';
@@ -1041,7 +970,7 @@ function osha_events_views_default_views() {
   $handler->display->display_options['empty']['area_text_custom']['empty'] = TRUE;
   $handler->display->display_options['empty']['area_text_custom']['content'] = 'No results';
   $handler->display->display_options['defaults']['fields'] = FALSE;
-  /* Field: Start date: Start date (indexed) */
+  /* Field: Starting date and time: Start date (indexed) */
   $handler->display->display_options['fields']['field_start_date_value']['id'] = 'field_start_date_value';
   $handler->display->display_options['fields']['field_start_date_value']['table'] = 'search_api_index_default_multilingual_node_index';
   $handler->display->display_options['fields']['field_start_date_value']['field'] = 'field_start_date_value';
@@ -1052,7 +981,7 @@ function osha_events_views_default_views() {
   $handler->display->display_options['fields']['field_start_date_value']['date_format'] = 'osha_day_only';
   $handler->display->display_options['fields']['field_start_date_value']['second_date_format'] = 'year';
   $handler->display->display_options['fields']['field_start_date_value']['link_to_entity'] = 0;
-  /* Field: Start date: End date (indexed) */
+  /* Field: Starting date and time: End date (indexed) */
   $handler->display->display_options['fields']['field_start_date_value2']['id'] = 'field_start_date_value2';
   $handler->display->display_options['fields']['field_start_date_value2']['table'] = 'search_api_index_default_multilingual_node_index';
   $handler->display->display_options['fields']['field_start_date_value2']['field'] = 'field_start_date_value2';
@@ -1084,11 +1013,6 @@ function osha_events_views_default_views() {
   $handler->display->display_options['fields']['field_city']['field'] = 'field_city';
   $handler->display->display_options['fields']['field_city']['label'] = '';
   $handler->display->display_options['fields']['field_city']['element_label_colon'] = FALSE;
-  /* Field: Indexed Multilingual Node: Organization */
-  $handler->display->display_options['fields']['field_organization']['id'] = 'field_organization';
-  $handler->display->display_options['fields']['field_organization']['table'] = 'search_api_index_default_multilingual_node_index';
-  $handler->display->display_options['fields']['field_organization']['field'] = 'field_organization';
-  $handler->display->display_options['fields']['field_organization']['label'] = 'ORGANIZER';
   /* Field: Start date for grouping */
   $handler->display->display_options['fields']['field_start_date_1']['id'] = 'field_start_date_1';
   $handler->display->display_options['fields']['field_start_date_1']['table'] = 'search_api_index_default_multilingual_node_index';
@@ -1115,11 +1039,10 @@ function osha_events_views_default_views() {
   $handler->display->display_options['fields']['view_node']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['view_node']['text'] = 'See details';
   $handler->display->display_options['defaults']['sorts'] = FALSE;
-  /* Sort criterion: Start date: Start date (indexed) */
+  /* Sort criterion: Starting date and time: Start date (indexed) */
   $handler->display->display_options['sorts']['field_start_date_value']['id'] = 'field_start_date_value';
   $handler->display->display_options['sorts']['field_start_date_value']['table'] = 'search_api_index_default_multilingual_node_index';
   $handler->display->display_options['sorts']['field_start_date_value']['field'] = 'field_start_date_value';
-  $handler->display->display_options['sorts']['field_start_date_value']['order'] = 'DESC';
   $handler->display->display_options['defaults']['filter_groups'] = FALSE;
   $handler->display->display_options['filter_groups']['groups'] = array(
     1 => 'AND',
@@ -1195,7 +1118,7 @@ function osha_events_views_default_views() {
     10 => 0,
     11 => 0,
   );
-  /* Filter criterion: Start date: Start date (indexed) */
+  /* Filter criterion: Starting date and time: Start date (indexed) */
   $handler->display->display_options['filters']['field_start_date_value']['id'] = 'field_start_date_value';
   $handler->display->display_options['filters']['field_start_date_value']['table'] = 'search_api_index_default_multilingual_node_index';
   $handler->display->display_options['filters']['field_start_date_value']['field'] = 'field_start_date_value';
@@ -1203,7 +1126,7 @@ function osha_events_views_default_views() {
   $handler->display->display_options['filters']['field_start_date_value']['group'] = 3;
   $handler->display->display_options['filters']['field_start_date_value']['exposed'] = TRUE;
   $handler->display->display_options['filters']['field_start_date_value']['expose']['operator_id'] = 'field_start_date_value_op';
-  $handler->display->display_options['filters']['field_start_date_value']['expose']['label'] = 'From';
+  $handler->display->display_options['filters']['field_start_date_value']['expose']['label'] = 'From date';
   $handler->display->display_options['filters']['field_start_date_value']['expose']['operator'] = 'field_start_date_value_op';
   $handler->display->display_options['filters']['field_start_date_value']['expose']['identifier'] = 'field_start_date_value';
   $handler->display->display_options['filters']['field_start_date_value']['expose']['remember_roles'] = array(
@@ -1220,8 +1143,7 @@ function osha_events_views_default_views() {
     11 => 0,
     12 => 0,
   );
-  $handler->display->display_options['filters']['field_start_date_value']['widget_type'] = 'date_popup';
-  /* Filter criterion: Start date: End date (indexed) */
+  /* Filter criterion: Starting date and time: End date (indexed) */
   $handler->display->display_options['filters']['field_start_date_value2']['id'] = 'field_start_date_value2';
   $handler->display->display_options['filters']['field_start_date_value2']['table'] = 'search_api_index_default_multilingual_node_index';
   $handler->display->display_options['filters']['field_start_date_value2']['field'] = 'field_start_date_value2';
@@ -1229,7 +1151,7 @@ function osha_events_views_default_views() {
   $handler->display->display_options['filters']['field_start_date_value2']['group'] = 3;
   $handler->display->display_options['filters']['field_start_date_value2']['exposed'] = TRUE;
   $handler->display->display_options['filters']['field_start_date_value2']['expose']['operator_id'] = 'field_start_date_value2_op';
-  $handler->display->display_options['filters']['field_start_date_value2']['expose']['label'] = 'To';
+  $handler->display->display_options['filters']['field_start_date_value2']['expose']['label'] = 'To date';
   $handler->display->display_options['filters']['field_start_date_value2']['expose']['operator'] = 'field_start_date_value2_op';
   $handler->display->display_options['filters']['field_start_date_value2']['expose']['identifier'] = 'field_start_date_value2';
   $handler->display->display_options['filters']['field_start_date_value2']['expose']['remember_roles'] = array(
@@ -1246,7 +1168,6 @@ function osha_events_views_default_views() {
     11 => 0,
     12 => 0,
   );
-  $handler->display->display_options['filters']['field_start_date_value2']['widget_type'] = 'date_popup';
   /* Filter criterion: Indexed Multilingual Node: Publication date */
   $handler->display->display_options['filters']['field_publication_date']['id'] = 'field_publication_date';
   $handler->display->display_options['filters']['field_publication_date']['table'] = 'search_api_index_default_multilingual_node_index';
@@ -1299,7 +1220,7 @@ function osha_events_views_default_views() {
   $handler->display->display_options['empty']['area_text_custom']['empty'] = TRUE;
   $handler->display->display_options['empty']['area_text_custom']['content'] = 'No results';
   $handler->display->display_options['defaults']['fields'] = FALSE;
-  /* Field: Indexed Multilingual Node: Start date */
+  /* Field: Indexed Multilingual Node: Starting date and time */
   $handler->display->display_options['fields']['field_start_date']['id'] = 'field_start_date';
   $handler->display->display_options['fields']['field_start_date']['table'] = 'search_api_index_default_multilingual_node_index';
   $handler->display->display_options['fields']['field_start_date']['field'] = 'field_start_date';
@@ -1364,7 +1285,7 @@ function osha_events_views_default_views() {
     'trim_length' => '150',
   );
   $handler->display->display_options['defaults']['sorts'] = FALSE;
-  /* Sort criterion: Start date: Start date (indexed) */
+  /* Sort criterion: Starting date and time: Start date (indexed) */
   $handler->display->display_options['sorts']['field_start_date_value']['id'] = 'field_start_date_value';
   $handler->display->display_options['sorts']['field_start_date_value']['table'] = 'search_api_index_default_multilingual_node_index';
   $handler->display->display_options['sorts']['field_start_date_value']['field'] = 'field_start_date_value';
@@ -1384,7 +1305,7 @@ function osha_events_views_default_views() {
   $handler->display->display_options['filters']['status']['value'] = array(
     1 => '1',
   );
-  /* Filter criterion: Start date: End date (indexed) */
+  /* Filter criterion: Starting date and time: End date (indexed) */
   $handler->display->display_options['filters']['field_start_date_value2']['id'] = 'field_start_date_value2';
   $handler->display->display_options['filters']['field_start_date_value2']['table'] = 'search_api_index_default_multilingual_node_index';
   $handler->display->display_options['filters']['field_start_date_value2']['field'] = 'field_start_date_value2';
@@ -1409,22 +1330,450 @@ function osha_events_views_default_views() {
     t('last »'),
     t('Multilingual ID'),
     t('Page'),
+    t('OSH events'),
     t('Search'),
     t('Clear filter'),
+    t('«'),
+    t('‹'),
+    t('›'),
+    t('»'),
     t('No results'),
     t('[field_start_date_value] - '),
     t('LOCATION'),
-    t('ORGANIZER'),
     t('[field_start_date_1] - Events'),
     t('See details'),
     t('Search by country'),
-    t('From'),
-    t('To'),
+    t('From date'),
+    t('To date'),
     t('Block'),
     t('Upcoming events'),
     t('View all'),
   );
   $export['events_index'] = $view;
+
+  $view = new view();
+  $view->name = 'events_search';
+  $view->description = '';
+  $view->tag = 'default';
+  $view->base_table = 'search_api_index_default_multilingual_node_index';
+  $view->human_name = 'Events Search';
+  $view->core = 7;
+  $view->api_version = '3.0';
+  $view->disabled = FALSE; /* Edit this to true to make a default view disabled initially */
+
+  /* Display: Master */
+  $handler = $view->new_display('default', 'Master', 'default');
+  $handler->display->display_options['title'] = 'Past events';
+  $handler->display->display_options['use_more_always'] = FALSE;
+  $handler->display->display_options['access']['type'] = 'none';
+  $handler->display->display_options['cache']['type'] = 'none';
+  $handler->display->display_options['query']['type'] = 'views_query';
+  $handler->display->display_options['query']['options']['search_api_bypass_access'] = 0;
+  $handler->display->display_options['exposed_form']['type'] = 'basic';
+  $handler->display->display_options['exposed_form']['options']['reset_button'] = TRUE;
+  $handler->display->display_options['exposed_form']['options']['reset_button_label'] = 'X';
+  $handler->display->display_options['pager']['type'] = 'full';
+  $handler->display->display_options['pager']['options']['items_per_page'] = '10';
+  $handler->display->display_options['style_plugin'] = 'default';
+  $handler->display->display_options['style_options']['row_class'] = 'container';
+  $handler->display->display_options['row_plugin'] = 'fields';
+  /* Footer: Global: Result summary */
+  $handler->display->display_options['footer']['result']['id'] = 'result';
+  $handler->display->display_options['footer']['result']['table'] = 'views';
+  $handler->display->display_options['footer']['result']['field'] = 'result';
+  $handler->display->display_options['footer']['result']['content'] = '<span class="result_summary">Displaying @start - @end of @total</span>';
+  /* No results behavior: Global: Unfiltered text */
+  $handler->display->display_options['empty']['area_text_custom']['id'] = 'area_text_custom';
+  $handler->display->display_options['empty']['area_text_custom']['table'] = 'views';
+  $handler->display->display_options['empty']['area_text_custom']['field'] = 'area_text_custom';
+  $handler->display->display_options['empty']['area_text_custom']['empty'] = TRUE;
+  $handler->display->display_options['empty']['area_text_custom']['content'] = 'No results';
+  /* Field: Indexed Multilingual Node: Starting date and time */
+  $handler->display->display_options['fields']['field_start_date']['id'] = 'field_start_date';
+  $handler->display->display_options['fields']['field_start_date']['table'] = 'search_api_index_default_multilingual_node_index';
+  $handler->display->display_options['fields']['field_start_date']['field'] = 'field_start_date';
+  $handler->display->display_options['fields']['field_start_date']['label'] = '';
+  $handler->display->display_options['fields']['field_start_date']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_start_date']['settings'] = array(
+    'format_type' => 'day_month_year',
+    'fromto' => 'value',
+    'multiple_number' => '',
+    'multiple_from' => '',
+    'multiple_to' => '',
+    'osha_date_theme' => '',
+  );
+  /* Field: Indexed Multilingual Node: Title */
+  $handler->display->display_options['fields']['title_field']['id'] = 'title_field';
+  $handler->display->display_options['fields']['title_field']['table'] = 'search_api_index_default_multilingual_node_index';
+  $handler->display->display_options['fields']['title_field']['field'] = 'title_field';
+  $handler->display->display_options['fields']['title_field']['label'] = '';
+  $handler->display->display_options['fields']['title_field']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['title_field']['type'] = 'title_linked';
+  $handler->display->display_options['fields']['title_field']['settings'] = array(
+    'title_style' => 'div',
+    'title_link' => 'content',
+    'title_class' => '',
+  );
+  /* Field: Indexed Multilingual Node: Starting date and time */
+  $handler->display->display_options['fields']['field_start_date_1']['id'] = 'field_start_date_1';
+  $handler->display->display_options['fields']['field_start_date_1']['table'] = 'search_api_index_default_multilingual_node_index';
+  $handler->display->display_options['fields']['field_start_date_1']['field'] = 'field_start_date';
+  $handler->display->display_options['fields']['field_start_date_1']['label'] = 'Event date';
+  $handler->display->display_options['fields']['field_start_date_1']['settings'] = array(
+    'format_type' => 'month_day_year',
+    'fromto' => 'both',
+    'multiple_number' => '',
+    'multiple_from' => '',
+    'multiple_to' => '',
+    'osha_date_theme' => '',
+  );
+  /* Field: Indexed Multilingual Node: Country */
+  $handler->display->display_options['fields']['field_country_code']['id'] = 'field_country_code';
+  $handler->display->display_options['fields']['field_country_code']['table'] = 'search_api_index_default_multilingual_node_index';
+  $handler->display->display_options['fields']['field_country_code']['field'] = 'field_country_code';
+  $handler->display->display_options['fields']['field_country_code']['label'] = '';
+  $handler->display->display_options['fields']['field_country_code']['element_label_colon'] = FALSE;
+  /* Field: Indexed Multilingual Node: City */
+  $handler->display->display_options['fields']['field_city']['id'] = 'field_city';
+  $handler->display->display_options['fields']['field_city']['table'] = 'search_api_index_default_multilingual_node_index';
+  $handler->display->display_options['fields']['field_city']['field'] = 'field_city';
+  $handler->display->display_options['fields']['field_city']['label'] = '';
+  $handler->display->display_options['fields']['field_city']['element_label_colon'] = FALSE;
+  /* Field: Indexed Multilingual Node: The main body text */
+  $handler->display->display_options['fields']['body']['id'] = 'body';
+  $handler->display->display_options['fields']['body']['table'] = 'search_api_index_default_multilingual_node_index';
+  $handler->display->display_options['fields']['body']['field'] = 'body';
+  $handler->display->display_options['fields']['body']['label'] = '';
+  $handler->display->display_options['fields']['body']['element_label_colon'] = FALSE;
+  /* Field: Indexed Multilingual Node: Website of event */
+  $handler->display->display_options['fields']['field_website_of_event']['id'] = 'field_website_of_event';
+  $handler->display->display_options['fields']['field_website_of_event']['table'] = 'search_api_index_default_multilingual_node_index';
+  $handler->display->display_options['fields']['field_website_of_event']['field'] = 'field_website_of_event';
+  $handler->display->display_options['fields']['field_website_of_event']['label'] = '';
+  $handler->display->display_options['fields']['field_website_of_event']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_website_of_event']['click_sort_column'] = 'url';
+  $handler->display->display_options['fields']['field_website_of_event']['delta_offset'] = '0';
+  /* Field: Content: Link */
+  $handler->display->display_options['fields']['view_node']['id'] = 'view_node';
+  $handler->display->display_options['fields']['view_node']['table'] = 'views_entity_node';
+  $handler->display->display_options['fields']['view_node']['field'] = 'view_node';
+  $handler->display->display_options['fields']['view_node']['label'] = '';
+  $handler->display->display_options['fields']['view_node']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['view_node']['text'] = 'See more';
+  /* Sort criterion: Starting date and time: Start date (indexed) */
+  $handler->display->display_options['sorts']['field_start_date_value']['id'] = 'field_start_date_value';
+  $handler->display->display_options['sorts']['field_start_date_value']['table'] = 'search_api_index_default_multilingual_node_index';
+  $handler->display->display_options['sorts']['field_start_date_value']['field'] = 'field_start_date_value';
+  $handler->display->display_options['sorts']['field_start_date_value']['order'] = 'DESC';
+  /* Filter criterion: Indexed Multilingual Node: Content type */
+  $handler->display->display_options['filters']['type']['id'] = 'type';
+  $handler->display->display_options['filters']['type']['table'] = 'search_api_index_default_multilingual_node_index';
+  $handler->display->display_options['filters']['type']['field'] = 'type';
+  $handler->display->display_options['filters']['type']['value'] = array(
+    'events' => 'events',
+  );
+  /* Filter criterion: Indexed Multilingual Node: Status */
+  $handler->display->display_options['filters']['status']['id'] = 'status';
+  $handler->display->display_options['filters']['status']['table'] = 'search_api_index_default_multilingual_node_index';
+  $handler->display->display_options['filters']['status']['field'] = 'status';
+  $handler->display->display_options['filters']['status']['value'] = array(
+    1 => '1',
+  );
+  /* Filter criterion: Indexed Multilingual Node: Item language */
+  $handler->display->display_options['filters']['search_api_language']['id'] = 'search_api_language';
+  $handler->display->display_options['filters']['search_api_language']['table'] = 'search_api_index_default_multilingual_node_index';
+  $handler->display->display_options['filters']['search_api_language']['field'] = 'search_api_language';
+  $handler->display->display_options['filters']['search_api_language']['value'] = array(
+    'current' => 'current',
+  );
+  /* Filter criterion: Starting date and time: Start date (indexed) */
+  $handler->display->display_options['filters']['field_start_date_value']['id'] = 'field_start_date_value';
+  $handler->display->display_options['filters']['field_start_date_value']['table'] = 'search_api_index_default_multilingual_node_index';
+  $handler->display->display_options['filters']['field_start_date_value']['field'] = 'field_start_date_value';
+  $handler->display->display_options['filters']['field_start_date_value']['operator'] = '<';
+  $handler->display->display_options['filters']['field_start_date_value']['value'] = 'now';
+
+  /* Display: Upcoming events */
+  $handler = $view->new_display('page', 'Upcoming events', 'page');
+  $handler->display->display_options['defaults']['title'] = FALSE;
+  $handler->display->display_options['title'] = 'Upcoming events';
+  $handler->display->display_options['defaults']['header'] = FALSE;
+  $handler->display->display_options['defaults']['fields'] = FALSE;
+  /* Field: Indexed Multilingual Node: Starting date and time */
+  $handler->display->display_options['fields']['field_start_date']['id'] = 'field_start_date';
+  $handler->display->display_options['fields']['field_start_date']['table'] = 'search_api_index_default_multilingual_node_index';
+  $handler->display->display_options['fields']['field_start_date']['field'] = 'field_start_date';
+  $handler->display->display_options['fields']['field_start_date']['label'] = '';
+  $handler->display->display_options['fields']['field_start_date']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_start_date']['settings'] = array(
+    'format_type' => 'day_month_year',
+    'fromto' => 'value',
+    'multiple_number' => '',
+    'multiple_from' => '',
+    'multiple_to' => '',
+    'osha_date_theme' => '',
+  );
+  /* Field: Indexed Multilingual Node: Starting date and time */
+  $handler->display->display_options['fields']['field_start_date_1']['id'] = 'field_start_date_1';
+  $handler->display->display_options['fields']['field_start_date_1']['table'] = 'search_api_index_default_multilingual_node_index';
+  $handler->display->display_options['fields']['field_start_date_1']['field'] = 'field_start_date';
+  $handler->display->display_options['fields']['field_start_date_1']['label'] = '';
+  $handler->display->display_options['fields']['field_start_date_1']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_start_date_1']['settings'] = array(
+    'format_type' => 'month_day_year',
+    'fromto' => 'both',
+    'multiple_number' => '',
+    'multiple_from' => '',
+    'multiple_to' => '',
+    'osha_date_theme' => '',
+    'field_formatter_class' => '',
+  );
+  /* Field: Indexed Multilingual Node: Title */
+  $handler->display->display_options['fields']['title_field']['id'] = 'title_field';
+  $handler->display->display_options['fields']['title_field']['table'] = 'search_api_index_default_multilingual_node_index';
+  $handler->display->display_options['fields']['title_field']['field'] = 'title_field';
+  $handler->display->display_options['fields']['title_field']['label'] = '';
+  $handler->display->display_options['fields']['title_field']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['title_field']['type'] = 'title_linked';
+  $handler->display->display_options['fields']['title_field']['settings'] = array(
+    'title_style' => 'div',
+    'title_link' => 'content',
+    'title_class' => '',
+  );
+  /* Field: Indexed Multilingual Node: Country */
+  $handler->display->display_options['fields']['field_country_code']['id'] = 'field_country_code';
+  $handler->display->display_options['fields']['field_country_code']['table'] = 'search_api_index_default_multilingual_node_index';
+  $handler->display->display_options['fields']['field_country_code']['field'] = 'field_country_code';
+  $handler->display->display_options['fields']['field_country_code']['label'] = '';
+  $handler->display->display_options['fields']['field_country_code']['element_label_colon'] = FALSE;
+  /* Field: Indexed Multilingual Node: City */
+  $handler->display->display_options['fields']['field_city']['id'] = 'field_city';
+  $handler->display->display_options['fields']['field_city']['table'] = 'search_api_index_default_multilingual_node_index';
+  $handler->display->display_options['fields']['field_city']['field'] = 'field_city';
+  $handler->display->display_options['fields']['field_city']['label'] = '';
+  $handler->display->display_options['fields']['field_city']['element_label_colon'] = FALSE;
+  /* Field: Indexed Multilingual Node: The main body text */
+  $handler->display->display_options['fields']['body']['id'] = 'body';
+  $handler->display->display_options['fields']['body']['table'] = 'search_api_index_default_multilingual_node_index';
+  $handler->display->display_options['fields']['body']['field'] = 'body';
+  $handler->display->display_options['fields']['body']['label'] = '';
+  $handler->display->display_options['fields']['body']['element_label_colon'] = FALSE;
+  /* Field: Content: Link */
+  $handler->display->display_options['fields']['view_node']['id'] = 'view_node';
+  $handler->display->display_options['fields']['view_node']['table'] = 'views_entity_node';
+  $handler->display->display_options['fields']['view_node']['field'] = 'view_node';
+  $handler->display->display_options['fields']['view_node']['label'] = '';
+  $handler->display->display_options['fields']['view_node']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['view_node']['text'] = 'See more';
+  $handler->display->display_options['defaults']['sorts'] = FALSE;
+  /* Sort criterion: Starting date and time: Start date (indexed) */
+  $handler->display->display_options['sorts']['field_start_date_value']['id'] = 'field_start_date_value';
+  $handler->display->display_options['sorts']['field_start_date_value']['table'] = 'search_api_index_default_multilingual_node_index';
+  $handler->display->display_options['sorts']['field_start_date_value']['field'] = 'field_start_date_value';
+  $handler->display->display_options['defaults']['arguments'] = FALSE;
+  $handler->display->display_options['defaults']['filter_groups'] = FALSE;
+  $handler->display->display_options['defaults']['filters'] = FALSE;
+  /* Filter criterion: Indexed Multilingual Node: Content type */
+  $handler->display->display_options['filters']['type']['id'] = 'type';
+  $handler->display->display_options['filters']['type']['table'] = 'search_api_index_default_multilingual_node_index';
+  $handler->display->display_options['filters']['type']['field'] = 'type';
+  $handler->display->display_options['filters']['type']['value'] = array(
+    'events' => 'events',
+  );
+  /* Filter criterion: Search: Fulltext search */
+  $handler->display->display_options['filters']['search_api_views_fulltext']['id'] = 'search_api_views_fulltext';
+  $handler->display->display_options['filters']['search_api_views_fulltext']['table'] = 'search_api_index_default_multilingual_node_index';
+  $handler->display->display_options['filters']['search_api_views_fulltext']['field'] = 'search_api_views_fulltext';
+  $handler->display->display_options['filters']['search_api_views_fulltext']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['search_api_views_fulltext']['expose']['operator_id'] = 'search_api_views_fulltext_op';
+  $handler->display->display_options['filters']['search_api_views_fulltext']['expose']['operator'] = 'search_api_views_fulltext_op';
+  $handler->display->display_options['filters']['search_api_views_fulltext']['expose']['identifier'] = 'search_api_views_fulltext';
+  $handler->display->display_options['filters']['search_api_views_fulltext']['expose']['remember_roles'] = array(
+    2 => '2',
+    1 => 0,
+    3 => 0,
+    4 => 0,
+    5 => 0,
+    6 => 0,
+    7 => 0,
+    8 => 0,
+    9 => 0,
+    10 => 0,
+  );
+  $handler->display->display_options['filters']['search_api_views_fulltext']['fields'] = array(
+    'body:value' => 'body:value',
+    'title_field' => 'title_field',
+  );
+  /* Filter criterion: Indexed Multilingual Node: Status */
+  $handler->display->display_options['filters']['status']['id'] = 'status';
+  $handler->display->display_options['filters']['status']['table'] = 'search_api_index_default_multilingual_node_index';
+  $handler->display->display_options['filters']['status']['field'] = 'status';
+  $handler->display->display_options['filters']['status']['value'] = array(
+    1 => '1',
+  );
+  /* Filter criterion: Indexed Multilingual Node: Item language */
+  $handler->display->display_options['filters']['search_api_language']['id'] = 'search_api_language';
+  $handler->display->display_options['filters']['search_api_language']['table'] = 'search_api_index_default_multilingual_node_index';
+  $handler->display->display_options['filters']['search_api_language']['field'] = 'search_api_language';
+  $handler->display->display_options['filters']['search_api_language']['value'] = array(
+    'current' => 'current',
+  );
+  /* Filter criterion: Starting date and time: Start date (indexed) */
+  $handler->display->display_options['filters']['field_start_date_value']['id'] = 'field_start_date_value';
+  $handler->display->display_options['filters']['field_start_date_value']['table'] = 'search_api_index_default_multilingual_node_index';
+  $handler->display->display_options['filters']['field_start_date_value']['field'] = 'field_start_date_value';
+  $handler->display->display_options['filters']['field_start_date_value']['operator'] = '>=';
+  $handler->display->display_options['filters']['field_start_date_value']['value'] = 'now';
+  $handler->display->display_options['path'] = 'events';
+
+  /* Display: Past events */
+  $handler = $view->new_display('page', 'Past events', 'page_1');
+  $handler->display->display_options['defaults']['title'] = FALSE;
+  $handler->display->display_options['title'] = 'Past events';
+  $handler->display->display_options['defaults']['fields'] = FALSE;
+  /* Field: Indexed Multilingual Node: Starting date and time */
+  $handler->display->display_options['fields']['field_start_date']['id'] = 'field_start_date';
+  $handler->display->display_options['fields']['field_start_date']['table'] = 'search_api_index_default_multilingual_node_index';
+  $handler->display->display_options['fields']['field_start_date']['field'] = 'field_start_date';
+  $handler->display->display_options['fields']['field_start_date']['label'] = '';
+  $handler->display->display_options['fields']['field_start_date']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_start_date']['settings'] = array(
+    'format_type' => 'day_month_year',
+    'fromto' => 'value',
+    'multiple_number' => '',
+    'multiple_from' => '',
+    'multiple_to' => '',
+    'osha_date_theme' => '',
+  );
+  /* Field: Indexed Multilingual Node: Starting date and time */
+  $handler->display->display_options['fields']['field_start_date_1']['id'] = 'field_start_date_1';
+  $handler->display->display_options['fields']['field_start_date_1']['table'] = 'search_api_index_default_multilingual_node_index';
+  $handler->display->display_options['fields']['field_start_date_1']['field'] = 'field_start_date';
+  $handler->display->display_options['fields']['field_start_date_1']['label'] = '';
+  $handler->display->display_options['fields']['field_start_date_1']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_start_date_1']['settings'] = array(
+    'format_type' => 'month_day_year',
+    'fromto' => 'both',
+    'multiple_number' => '',
+    'multiple_from' => '',
+    'multiple_to' => '',
+    'osha_date_theme' => '',
+    'field_formatter_class' => '',
+  );
+  /* Field: Indexed Multilingual Node: Title */
+  $handler->display->display_options['fields']['title_field']['id'] = 'title_field';
+  $handler->display->display_options['fields']['title_field']['table'] = 'search_api_index_default_multilingual_node_index';
+  $handler->display->display_options['fields']['title_field']['field'] = 'title_field';
+  $handler->display->display_options['fields']['title_field']['label'] = '';
+  $handler->display->display_options['fields']['title_field']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['title_field']['type'] = 'title_linked';
+  $handler->display->display_options['fields']['title_field']['settings'] = array(
+    'title_style' => 'div',
+    'title_link' => 'content',
+    'title_class' => '',
+  );
+  /* Field: Indexed Multilingual Node: Country */
+  $handler->display->display_options['fields']['field_country_code']['id'] = 'field_country_code';
+  $handler->display->display_options['fields']['field_country_code']['table'] = 'search_api_index_default_multilingual_node_index';
+  $handler->display->display_options['fields']['field_country_code']['field'] = 'field_country_code';
+  $handler->display->display_options['fields']['field_country_code']['label'] = '';
+  $handler->display->display_options['fields']['field_country_code']['element_label_colon'] = FALSE;
+  /* Field: Indexed Multilingual Node: City */
+  $handler->display->display_options['fields']['field_city']['id'] = 'field_city';
+  $handler->display->display_options['fields']['field_city']['table'] = 'search_api_index_default_multilingual_node_index';
+  $handler->display->display_options['fields']['field_city']['field'] = 'field_city';
+  $handler->display->display_options['fields']['field_city']['label'] = '';
+  $handler->display->display_options['fields']['field_city']['element_label_colon'] = FALSE;
+  /* Field: Indexed Multilingual Node: The main body text */
+  $handler->display->display_options['fields']['body']['id'] = 'body';
+  $handler->display->display_options['fields']['body']['table'] = 'search_api_index_default_multilingual_node_index';
+  $handler->display->display_options['fields']['body']['field'] = 'body';
+  $handler->display->display_options['fields']['body']['label'] = '';
+  $handler->display->display_options['fields']['body']['element_label_colon'] = FALSE;
+  /* Field: Content: Link */
+  $handler->display->display_options['fields']['view_node']['id'] = 'view_node';
+  $handler->display->display_options['fields']['view_node']['table'] = 'views_entity_node';
+  $handler->display->display_options['fields']['view_node']['field'] = 'view_node';
+  $handler->display->display_options['fields']['view_node']['label'] = '';
+  $handler->display->display_options['fields']['view_node']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['view_node']['text'] = 'See more';
+  $handler->display->display_options['defaults']['filter_groups'] = FALSE;
+  $handler->display->display_options['defaults']['filters'] = FALSE;
+  /* Filter criterion: Indexed Multilingual Node: Content type */
+  $handler->display->display_options['filters']['type']['id'] = 'type';
+  $handler->display->display_options['filters']['type']['table'] = 'search_api_index_default_multilingual_node_index';
+  $handler->display->display_options['filters']['type']['field'] = 'type';
+  $handler->display->display_options['filters']['type']['value'] = array(
+    'events' => 'events',
+  );
+  /* Filter criterion: Indexed Multilingual Node: Status */
+  $handler->display->display_options['filters']['status']['id'] = 'status';
+  $handler->display->display_options['filters']['status']['table'] = 'search_api_index_default_multilingual_node_index';
+  $handler->display->display_options['filters']['status']['field'] = 'status';
+  $handler->display->display_options['filters']['status']['value'] = array(
+    1 => '1',
+  );
+  /* Filter criterion: Indexed Multilingual Node: Item language */
+  $handler->display->display_options['filters']['search_api_language']['id'] = 'search_api_language';
+  $handler->display->display_options['filters']['search_api_language']['table'] = 'search_api_index_default_multilingual_node_index';
+  $handler->display->display_options['filters']['search_api_language']['field'] = 'search_api_language';
+  $handler->display->display_options['filters']['search_api_language']['value'] = array(
+    'current' => 'current',
+  );
+  /* Filter criterion: Starting date and time: Start date (indexed) */
+  $handler->display->display_options['filters']['field_start_date_value']['id'] = 'field_start_date_value';
+  $handler->display->display_options['filters']['field_start_date_value']['table'] = 'search_api_index_default_multilingual_node_index';
+  $handler->display->display_options['filters']['field_start_date_value']['field'] = 'field_start_date_value';
+  $handler->display->display_options['filters']['field_start_date_value']['operator'] = '<';
+  $handler->display->display_options['filters']['field_start_date_value']['value'] = 'now';
+  /* Filter criterion: Search: Fulltext search */
+  $handler->display->display_options['filters']['search_api_views_fulltext']['id'] = 'search_api_views_fulltext';
+  $handler->display->display_options['filters']['search_api_views_fulltext']['table'] = 'search_api_index_default_multilingual_node_index';
+  $handler->display->display_options['filters']['search_api_views_fulltext']['field'] = 'search_api_views_fulltext';
+  $handler->display->display_options['filters']['search_api_views_fulltext']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['search_api_views_fulltext']['expose']['operator_id'] = 'search_api_views_fulltext_op';
+  $handler->display->display_options['filters']['search_api_views_fulltext']['expose']['operator'] = 'search_api_views_fulltext_op';
+  $handler->display->display_options['filters']['search_api_views_fulltext']['expose']['identifier'] = 'search_api_views_fulltext';
+  $handler->display->display_options['filters']['search_api_views_fulltext']['expose']['remember_roles'] = array(
+    2 => '2',
+    1 => 0,
+    3 => 0,
+    4 => 0,
+    5 => 0,
+    6 => 0,
+    7 => 0,
+    8 => 0,
+    9 => 0,
+    10 => 0,
+  );
+  $handler->display->display_options['filters']['search_api_views_fulltext']['fields'] = array(
+    'body:value' => 'body:value',
+    'title_field' => 'title_field',
+  );
+  $handler->display->display_options['path'] = 'past-events';
+  $translatables['events_search'] = array(
+    t('Master'),
+    t('Past events'),
+    t('more'),
+    t('Apply'),
+    t('X'),
+    t('Sort by'),
+    t('Asc'),
+    t('Desc'),
+    t('Items per page'),
+    t('- All -'),
+    t('Offset'),
+    t('« first'),
+    t('‹ previous'),
+    t('next ›'),
+    t('last »'),
+    t('<span class="result_summary">Displaying @start - @end of @total</span>'),
+    t('No results'),
+    t('Event date'),
+    t('See more'),
+    t('Upcoming events'),
+  );
+  $export['events_search'] = $view;
 
   $view = new view();
   $view->name = 'reporting_view';
@@ -1441,6 +1790,7 @@ function osha_events_views_default_views() {
   $handler->display->display_options['title'] = 'Reporting View';
   $handler->display->display_options['use_more_always'] = FALSE;
   $handler->display->display_options['access']['type'] = 'perm';
+  $handler->display->display_options['access']['perm'] = 'create events content';
   $handler->display->display_options['cache']['type'] = 'none';
   $handler->display->display_options['query']['type'] = 'views_query';
   $handler->display->display_options['exposed_form']['type'] = 'basic';
@@ -1454,49 +1804,6 @@ function osha_events_views_default_views() {
     ),
   );
   $handler->display->display_options['row_plugin'] = 'fields';
-  /* Header: Global: PHP */
-  $handler->display->display_options['header']['php']['id'] = 'php';
-  $handler->display->display_options['header']['php']['table'] = 'views';
-  $handler->display->display_options['header']['php']['field'] = 'php';
-  $handler->display->display_options['header']['php']['php_output'] = '<?php
-
-$tot_attend = 0;
-$tot_satisf = 0;
-$rate_satisfaction = 0;
-$average_attend = 0;
-$tot_results = count($results);
-
-for ($i=0; $i < $tot_results; $i++) {
-	if(isset($results[$i]->field_field_number_of_attendees[0][\'raw\'][\'value\'])){
-		$tot_attend +=  $results[$i]->field_field_number_of_attendees[0][\'raw\'][\'value\'];
-	}
-}
-
-
-for ($j=0; $j < $tot_results; $j++){
-
-	if(isset($results[$j]->field_field_satisfaction_rate[0][\'raw\'][\'value\'])){
-		$tot_satisf += $results[$j]->field_field_satisfaction_rate[0][\'raw\'][\'value\'];
-	}
-
-}
-
-$rate_satisfaction = $tot_satisf / $tot_results;
-$rate_satisfaction = round($rate_satisfaction, 2);
-
-$average_attend = $tot_attend / $tot_results;
-$average_attend = round($average_attend, 2);
-
-?>
-
-<h2>Results: <?php print $tot_results;  ?> events</h2>
-<ul class="list-reports">
-  <li><h4>Total number of attendees: <span><?php print $tot_attend; ?></span></h4></li>
-  <li><h4>Satisfaction rate: <span><?php print $rate_satisfaction; ?>%</span></h4></li>
-  <li><h4>Average attendance: <span><?php print $average_attend; ?></span></h4></li>
-</ul>
-
-';
   /* Footer: Global: Result summary */
   $handler->display->display_options['footer']['result']['id'] = 'result';
   $handler->display->display_options['footer']['result']['table'] = 'views';
@@ -1516,13 +1823,6 @@ $average_attend = round($average_attend, 2);
     'title_class' => '',
   );
   $handler->display->display_options['fields']['title_field']['link_to_entity'] = 0;
-  /* Field: Content: Activity */
-  $handler->display->display_options['fields']['field_activity']['id'] = 'field_activity';
-  $handler->display->display_options['fields']['field_activity']['table'] = 'field_data_field_activity';
-  $handler->display->display_options['fields']['field_activity']['field'] = 'field_activity';
-  $handler->display->display_options['fields']['field_activity']['label'] = '';
-  $handler->display->display_options['fields']['field_activity']['exclude'] = TRUE;
-  $handler->display->display_options['fields']['field_activity']['element_label_colon'] = FALSE;
   /* Field: Global: View result counter */
   $handler->display->display_options['fields']['counter']['id'] = 'counter';
   $handler->display->display_options['fields']['counter']['table'] = 'views';
@@ -1531,7 +1831,7 @@ $average_attend = round($average_attend, 2);
   $handler->display->display_options['fields']['counter']['exclude'] = TRUE;
   $handler->display->display_options['fields']['counter']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['counter']['counter_start'] = '1';
-  /* Field: Content: Start date */
+  /* Field: Content: Starting date and time */
   $handler->display->display_options['fields']['field_start_date']['id'] = 'field_start_date';
   $handler->display->display_options['fields']['field_start_date']['table'] = 'field_data_field_start_date';
   $handler->display->display_options['fields']['field_start_date']['field'] = 'field_start_date';
@@ -1545,37 +1845,6 @@ $average_attend = round($average_attend, 2);
     'multiple_to' => '',
     'osha_date_theme' => '',
   );
-  /* Field: Content: Event in AMP */
-  $handler->display->display_options['fields']['field_event_in_amp']['id'] = 'field_event_in_amp';
-  $handler->display->display_options['fields']['field_event_in_amp']['table'] = 'field_data_field_event_in_amp';
-  $handler->display->display_options['fields']['field_event_in_amp']['field'] = 'field_event_in_amp';
-  $handler->display->display_options['fields']['field_event_in_amp']['label'] = 'In the AMP: ';
-  $handler->display->display_options['fields']['field_event_in_amp']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['field_event_in_amp']['type'] = 'i18n_list_default';
-  /* Field: Content: Number of attendees */
-  $handler->display->display_options['fields']['field_number_of_attendees']['id'] = 'field_number_of_attendees';
-  $handler->display->display_options['fields']['field_number_of_attendees']['table'] = 'field_data_field_number_of_attendees';
-  $handler->display->display_options['fields']['field_number_of_attendees']['field'] = 'field_number_of_attendees';
-  $handler->display->display_options['fields']['field_number_of_attendees']['group_type'] = 'count';
-  $handler->display->display_options['fields']['field_number_of_attendees']['settings'] = array(
-    'thousand_separator' => ' ',
-    'prefix_suffix' => 1,
-  );
-  /* Field: Content: Satisfaction rate */
-  $handler->display->display_options['fields']['field_satisfaction_rate']['id'] = 'field_satisfaction_rate';
-  $handler->display->display_options['fields']['field_satisfaction_rate']['table'] = 'field_data_field_satisfaction_rate';
-  $handler->display->display_options['fields']['field_satisfaction_rate']['field'] = 'field_satisfaction_rate';
-  $handler->display->display_options['fields']['field_satisfaction_rate']['alter']['alter_text'] = TRUE;
-  $handler->display->display_options['fields']['field_satisfaction_rate']['alter']['text'] = '[field_satisfaction_rate]%';
-  $handler->display->display_options['fields']['field_satisfaction_rate']['settings'] = array(
-    'thousand_separator' => ' ',
-    'prefix_suffix' => 1,
-  );
-  /* Sort criterion: Content: Activity (field_activity) */
-  $handler->display->display_options['sorts']['field_activity_tid']['id'] = 'field_activity_tid';
-  $handler->display->display_options['sorts']['field_activity_tid']['table'] = 'field_data_field_activity';
-  $handler->display->display_options['sorts']['field_activity_tid']['field'] = 'field_activity_tid';
-  $handler->display->display_options['sorts']['field_activity_tid']['order'] = 'DESC';
   /* Filter criterion: Content: Published */
   $handler->display->display_options['filters']['status']['id'] = 'status';
   $handler->display->display_options['filters']['status']['table'] = 'node';
@@ -1591,61 +1860,7 @@ $average_attend = round($average_attend, 2);
     'events' => 'events',
   );
   $handler->display->display_options['filters']['type']['group'] = 1;
-  /* Filter criterion: Content: Activity (field_activity) */
-  $handler->display->display_options['filters']['field_activity_tid']['id'] = 'field_activity_tid';
-  $handler->display->display_options['filters']['field_activity_tid']['table'] = 'field_data_field_activity';
-  $handler->display->display_options['filters']['field_activity_tid']['field'] = 'field_activity_tid';
-  $handler->display->display_options['filters']['field_activity_tid']['group'] = 1;
-  $handler->display->display_options['filters']['field_activity_tid']['exposed'] = TRUE;
-  $handler->display->display_options['filters']['field_activity_tid']['expose']['operator_id'] = 'field_activity_tid_op';
-  $handler->display->display_options['filters']['field_activity_tid']['expose']['label'] = 'Activity';
-  $handler->display->display_options['filters']['field_activity_tid']['expose']['operator'] = 'field_activity_tid_op';
-  $handler->display->display_options['filters']['field_activity_tid']['expose']['identifier'] = 'field_activity_tid';
-  $handler->display->display_options['filters']['field_activity_tid']['expose']['remember_roles'] = array(
-    2 => '2',
-    1 => 0,
-    3 => 0,
-    4 => 0,
-    5 => 0,
-    6 => 0,
-    7 => 0,
-    8 => 0,
-    9 => 0,
-    10 => 0,
-    11 => 0,
-    12 => 0,
-  );
-  $handler->display->display_options['filters']['field_activity_tid']['type'] = 'select';
-  $handler->display->display_options['filters']['field_activity_tid']['vocabulary'] = 'activity';
-  $handler->display->display_options['filters']['field_activity_tid']['hierarchy'] = 1;
-  /* Filter criterion: Content: Event in AMP (field_event_in_amp) */
-  $handler->display->display_options['filters']['field_event_in_amp_value']['id'] = 'field_event_in_amp_value';
-  $handler->display->display_options['filters']['field_event_in_amp_value']['table'] = 'field_data_field_event_in_amp';
-  $handler->display->display_options['filters']['field_event_in_amp_value']['field'] = 'field_event_in_amp_value';
-  $handler->display->display_options['filters']['field_event_in_amp_value']['value'] = array(
-    'Yes' => 'Yes',
-  );
-  $handler->display->display_options['filters']['field_event_in_amp_value']['group'] = 1;
-  $handler->display->display_options['filters']['field_event_in_amp_value']['exposed'] = TRUE;
-  $handler->display->display_options['filters']['field_event_in_amp_value']['expose']['operator_id'] = 'field_event_in_amp_value_op';
-  $handler->display->display_options['filters']['field_event_in_amp_value']['expose']['label'] = 'Event in AMP';
-  $handler->display->display_options['filters']['field_event_in_amp_value']['expose']['operator'] = 'field_event_in_amp_value_op';
-  $handler->display->display_options['filters']['field_event_in_amp_value']['expose']['identifier'] = 'field_event_in_amp_value';
-  $handler->display->display_options['filters']['field_event_in_amp_value']['expose']['remember_roles'] = array(
-    2 => '2',
-    1 => 0,
-    3 => 0,
-    4 => 0,
-    5 => 0,
-    6 => 0,
-    7 => 0,
-    8 => 0,
-    9 => 0,
-    10 => 0,
-    11 => 0,
-    12 => 0,
-  );
-  /* Filter criterion: Content: Start date -  start date (field_start_date) */
+  /* Filter criterion: Content: Starting date and time -  start date (field_start_date) */
   $handler->display->display_options['filters']['field_start_date_value']['id'] = 'field_start_date_value';
   $handler->display->display_options['filters']['field_start_date_value']['table'] = 'field_data_field_start_date';
   $handler->display->display_options['filters']['field_start_date_value']['field'] = 'field_start_date_value';
@@ -1702,12 +1917,6 @@ $average_attend = round($average_attend, 2);
     t('Total: @end
 '),
     t('Start date:'),
-    t('In the AMP: '),
-    t('Number of attendees'),
-    t('Satisfaction rate'),
-    t('[field_satisfaction_rate]%'),
-    t('Activity'),
-    t('Event in AMP'),
     t('Start date (field_start_date)'),
     t('Page'),
     t('Block'),

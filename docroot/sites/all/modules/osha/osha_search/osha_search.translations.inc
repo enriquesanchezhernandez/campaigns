@@ -21,5 +21,6 @@ function osha_search_get_translatable_strings() {
     'Desc',
     'Order',
     '<span class="result_summary">Displaying @start - @end of @total</span>',
+    'More results are available in OSHWiki',
   );
 }

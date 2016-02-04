@@ -12,34 +12,52 @@ function osha_publication_default_fe_block_settings() {
 
   $export['version'] = '2.0';
 
-  $export['views-publications-slidehow'] = array(
-    'cache' => -1,
+  $export['osha_publication-osha_publication_listing'] = array(
+    'cache' => 8,
+    'css_class' => '',
     'custom' => 0,
-    'delta' => 'publications-slidehow',
+    'delta' => 'osha_publication_listing',
+    'i18n_block_language' => array(),
+    'i18n_mode' => 0,
+    'module' => 'osha_publication',
+    'node_types' => array(),
+    'pages' => '',
+    'roles' => array(),
+    'themes' => array(
+      'hwc_frontend' => array(
+        'region' => '',
+        'status' => 0,
+        'theme' => 'hwc_frontend',
+        'weight' => 0,
+      ),
+      'seven' => array(
+        'region' => '',
+        'status' => 0,
+        'theme' => 'seven',
+        'weight' => 0,
+      ),
+    ),
+    'title' => '',
+    'visibility' => 0,
+  );
+
+  $export['views-publications_slideshow-slidehow'] = array(
+    'cache' => -1,
+    'css_class' => '',
+    'custom' => 0,
+    'delta' => 'publications_slideshow-slidehow',
     'i18n_block_language' => array(),
     'i18n_mode' => 0,
     'module' => 'views',
     'node_types' => array(),
-    'pages' => 'tools-and-publications/publications',
+    'pages' => '',
     'roles' => array(),
     'themes' => array(
-      'bartik' => array(
+      'hwc_frontend' => array(
         'region' => '',
         'status' => 0,
-        'theme' => 'bartik',
-        'weight' => 0,
-      ),
-      'osha_admin' => array(
-        'region' => '',
-        'status' => 0,
-        'theme' => 'osha_admin',
-        'weight' => 0,
-      ),
-      'osha_frontend' => array(
-        'region' => 'content',
-        'status' => 1,
-        'theme' => 'osha_frontend',
-        'weight' => -1,
+        'theme' => 'hwc_frontend',
+        'weight' => -54,
       ),
       'seven' => array(
         'region' => '',
@@ -49,7 +67,7 @@ function osha_publication_default_fe_block_settings() {
       ),
     ),
     'title' => '<none>',
-    'visibility' => 1,
+    'visibility' => 0,
   );
 
   return $export;

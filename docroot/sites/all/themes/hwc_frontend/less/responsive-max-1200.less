@@ -1,0 +1,134 @@
+//rewrite styles for responsive design
+
+@media only screen and (max-width : 1200px) {
+	/*header*/
+	header{
+		&.navbar-default {
+			.campaigns-header {
+				.navbar-header{
+					a.pull-left{
+						padding-right: 1em;
+    					margin-right: 1em;
+    					img{
+							width: 140px;
+						}
+					}
+					a img.pull-left{
+						width: 150px;
+					}
+					img:nth-child(3){
+						width: 70px;
+    					padding-right: 1em !important;
+					}
+					.header-text{
+					    font-size: @size2;
+					    width: 150px;
+					    padding-top: 2.5em;
+					    padding-left: 0.8em;
+					}
+					.header_top_bar{
+						.region-above-header{
+							min-width: 250px;
+						}
+					}
+				}
+			}
+		}
+	}
+	/*fin header*/
+
+	/*homepage slider*/
+	.front{
+		#block-views-frontpage-slider-block{
+			#homepage_slider{
+				img{
+					position: absolute;
+				    width: initial;
+				    right: -127px;
+				}
+			}
+		}
+	}
+	/*fin homepage slider*/
+	
+	/*publications
+	#block-views-publications-slideshow-slidehow, #block-system-main{
+		#publications_slideshow{
+			#num_slides{
+				left: 5em;
+				max-width: 685px !important;
+				width: 80% !important;
+				> div {
+					width: 100% !important;
+					.publication-item{
+						padding: 5px 0;
+						.field-name-field-cover-image{
+							top: 10px;
+						}
+						.field-name-field-publication-date{
+							margin-bottom: 2px;
+						}
+						h5{
+							margin-bottom: 5px;
+							max-height: 47px;
+							overflow: hidden;
+						}
+						.field-type-text-with-summary {
+							max-height: 100px;
+							overflow: hidden;
+						}
+						ul{
+							margin-top: 5px;
+							margin-bottom: 5px;
+						}
+					}
+				}
+			}
+		}
+	}*/
+	/*publications*/
+	
+	/*Articles*/
+	.node-article{
+		.field.field-name-field-image img {
+			width: 100%;
+			height: auto;
+			min-height: 360px;
+			max-width: none;
+			width: auto;
+			min-width: 100%;
+		}
+		.node-article{
+			.field.field-name-field-image img {
+				height: auto;
+				min-height: 0;
+				max-width: none;
+				width: auto;
+				min-width: 0;
+			}
+		}
+	}
+	/*Fin Articles*/
+	/* pag Search */
+	.page-search{
+		.views-exposed-form{
+			.views-widget-sort-order {
+				padding: 0;
+			}
+			.views-widget-sort-by {
+				padding-right: 0.5em;
+				> .form-item-sort-by > label {
+					margin-right: 1em;
+				}
+			}
+		}
+		.views-submit-button {
+			padding-left: 0;
+			padding-right: 0;
+			button {
+				margin-left: 0;
+			}
+		}
+	}
+	/*Fin pag Search */
+}

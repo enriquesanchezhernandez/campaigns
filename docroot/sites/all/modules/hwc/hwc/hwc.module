@@ -1,0 +1,954 @@
+<?php
+
+include_once 'hwc.features.inc';
+
+define('ROLE_CAMPAIGN_PARTNER', 'campaign partner');
+define('ROLE_SUPERVISOR', 'supervisor');
+define('SOLR_SEARCH_INDEX', 'default_multilingual_node_index');
+
+/**
+ * Implementation of hook_views_api().
+ */
+function hwc_views_api() {
+  return array(
+    'api' => 3,
+  );
+}
+
+/**
+ * Implements hook_permission().
+ */
+function hwc_permission() {
+  return array(
+    'access private area' => array(
+      'title' => t('Access the private area'),
+      'description' => t('Access content inside the private area'),
+    ),
+  );
+}
+
+
+/**
+ * Implements hook_menu().
+ */
+function hwc_menu() {
+  $items['admin/config/system/hwc'] = array(
+    'title' => 'HWC Configuration',
+    'description' => 'Configure parameters for the HWC website',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('hwc_admin_config_form'),
+    'access arguments' => array('administer site configuration'),
+    'file' => 'hwc_admin.pages.inc',
+    'type' => MENU_NORMAL_ITEM,
+  );
+  $items['user/activate/%'] = array(
+    'title' => 'Activate user',
+    'description' => 'Check if user was synchronized, if not trigger synchronization',
+    'page callback' => 'hwc_user_activate',
+    'page arguments' => array(2),
+    'access arguments' => array('access content'),
+    'type' => MENU_CALLBACK,
+  );
+  return $items;
+}
+
+/**
+ * Implements hook_block_info().
+ */
+function hwc_block_info() {
+  $blocks = array();
+  $blocks['page_share_widget'] = array(
+    'info' => t('Page share widget'),
+    'status' => 1,
+    'region' => '-1',
+    'visibility' => BLOCK_VISIBILITY_NOTLISTED,
+    'cache' => DRUPAL_CACHE_GLOBAL,
+  );
+  $blocks['hwc_print_friendly'] = array(
+    'info' => t('HWC Print friendly'),
+    'status' => 1,
+    'visibility' => BLOCK_VISIBILITY_NOTLISTED,
+    'region' => 'above_header',
+  );
+  return $blocks;
+}
+
+/**
+ * Implements hook_block_view().
+ */
+function hwc_block_view($delta = '') {
+  $block = array();
+  if ($delta == 'page_share_widget') {
+    $block['title'] = '<none>';
+    $block['content'] = hwc_page_share_widget();
+  }
+  if ($delta == 'hwc_print_friendly') {
+    $block['subject'] = "<none>";
+    $block['content'] = theme('hwc_print_friendly_block');
+  }
+  return $block;
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function hwc_form_user_login_alter(&$form, &$form_state) {
+  drupal_add_js('jQuery(document).ready(function () {jQuery("#edit-name").focus();});', 'inline');
+  $form['name']['#description'] = t('Enter your username.');
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function hwc_form_user_pass_alter(&$form, &$form_state) {
+  $form['#attributes']['class'][] = 'container';
+}
+
+/**
+ * Implements hook_user_login().
+ */
+function hwc_user_login(&$edit, $account) {
+  if (!isset($_POST['form_id']) || $_POST['form_id'] != 'user_pass_reset') {
+    // If the user is a partner, redirect to the corresponding partner profile
+    if (in_array(ROLE_CAMPAIGN_PARTNER, $account->roles) && !empty($account->workbench_access)) {
+      $sections = array_keys($account->workbench_access);
+      foreach($sections as $id_section) {
+        if ($partner = hwc_partner_by_section_id_load($id_section)) {
+          $edit['redirect'] = 'node/' . $partner->nid;
+          break;
+        }
+      }
+    }
+  }
+}
+
+function hwc_req_param($form_state, $name, $default = NULL) {
+  if (!empty($form_state['values'][$name])) {
+    $ret = $form_state['values'][$name];
+    if (is_array($ret)) {
+      $ret = array_filter($ret);
+    }
+    return $ret;
+  }
+  if (!empty($_GET[$name])) {
+    if (is_array($_GET[$name])) {
+      $ret = array();
+      foreach($_GET[$name] as $v) {
+        $ret[] = check_plain($v);
+      }
+      return $ret;
+    }
+    else {
+      return check_plain($_GET[$name]);
+    }
+  }
+  return $default;
+}
+
+/**
+ * Implements hook_field_extra_fields().
+ */
+function hwc_field_extra_fields() {
+
+  $share_widget = array(
+    'display' => array(
+      'share_widget' => array(
+        'label' => t('Share widget'),
+        'description' => t('The bar with links to social websites'),
+        'weight' => 0,
+      )
+    )
+  );
+  $extra['node']['news'] = $share_widget;
+  $extra['node']['events'] = $share_widget;
+  $extra['node']['article'] = $share_widget;
+  $extra['node']['hwc_gallery'] = $share_widget;
+  $extra['node']['press_release'] = $share_widget;
+  return $extra;
+}
+
+function hwc_mime_friendly_acronym($mime) {
+  $mappings = array(
+    'application/msword' => t('DOC'),
+    'application/vnd.ms-excel' => t('XLS'),
+    'application/vnd.ms-powerpoint' => t('PPT'),
+    'application/pdf' => t('PDF'),
+    'video/quicktime' => t('Movie'),
+    'audio/mpeg' => t('Audio'),
+    'audio/wav' => t('Audio'),
+    'image/jpeg' => t('Image'),
+    'image/png' => t('Image'),
+    'image/gif' => t('Image'),
+    'application/zip' => t('ZIP'),
+    'text/html' => t('HTML'),
+    'text/plain' => t('TXT'),
+    'application/octet-stream' => t('BIN'),
+  );
+  if (array_key_exists($mime, $mappings)) {
+    return $mappings[$mime];
+  }
+  return $mime;
+}
+
+function hwc_mime_friendly_name($mime) {
+  $mappings = array(
+    'application/msword' => t('Word Document'),
+    'application/vnd.openxmlformats-officedocument.wordprocessingml.document' => t('Word Document'),
+    'application/vnd.ms-excel' => t('Spreadsheet'),
+    'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' => t('Spreadsheet'),
+    'application/vnd.ms-powerpoint' => t('Powerpoint'),
+    'application/vnd.openxmlformats-officedocument.presentationml.presentation'  => t('Powerpoint'),
+    'application/pdf' => t('Adobe Portable Document Format'),
+    'image/jpeg' => t('JPEG Image'),
+    'image/png' => t('Portable Network Graphics'),
+    'image/gif' => t('Graphics Interchange Format'),
+    'text/plain' => t('Text File'),
+  );
+  if (array_key_exists($mime, $mappings)) {
+    return $mappings[$mime];
+  }
+  return $mime;
+}
+
+
+/**
+* Implements hook_field_formatter_info().
+*/
+function hwc_field_formatter_info() {
+  $info = array(
+    'field_file' => array(
+      'label' => 'Resource file formatter',
+      'field types' => array('file'),
+      'description' => 'Displays default icon per file type and file description.',
+    ),
+    'term_country_flag' => array(
+      'label' => 'Country flag',
+      'field types' => array('taxonomy_term_reference'),
+      'description' => 'Displays a country flag for terms with field_flag set.',
+    ),
+    'hwc_file_download_link' => array(
+        'label' => 'Generic download link',
+        'field types' => array('file'),
+        'description' => 'Display file name or description if the last one is not empty',
+    ),
+  );
+  return $info;
+}
+
+
+/**
+* Implements hook_theme().
+*/
+function hwc_theme() {
+  return array(
+    'hwc_file_format' => array(
+      'variables' => array('file' => NULL, 'delta' => NULL),
+    ),
+    'news_share_widget' => array(
+      'variables' => array(
+        'url' => '', // Page URL
+        'node' => array(), // Current node
+        'tweet_url' => '',
+        'language' => '', // Current language
+        'options' => array(), // Additional configuration options
+      ),
+      'template' => 'templates/news_share_widget',
+    ),
+    'article_share_widget' => array(
+      'variables' => array(
+        'url' => '', // Page URL
+        'node' => array(), // Current node
+        'tweet_url' => '',
+        'language' => '', // Current language
+        'options' => array(), // Additional configuration options
+      ),
+      'template' => 'templates/article_share_widget',
+    ),
+    'hwc_print_friendly_block' => array(),
+  );
+}
+
+/**
+ * Implements hook_entity_info_alter().
+ */
+function hwc_entity_info_alter(&$entity_info) {
+  $entity_info['node']['view modes']['title_body'] = array(
+    'label' => t('Title body'),
+    'custom settings' => TRUE,
+  );
+  $entity_info['node']['view modes']['body'] = array(
+    'label' => t('Body'),
+    'custom settings' => TRUE,
+  );
+}
+
+/**
+* Implements hook_field_formatter_view().
+*/
+function hwc_field_formatter_view($entity_type, $entity, $field, $instance, $langcode, $items, $display) {
+  $element = array();
+  switch ($display['type']) {
+    case 'field_file':
+      foreach ($items as $delta => $item) {
+        $element[$delta] = array(
+          '#theme' => 'hwc_file_format',
+          '#file' => $item,
+          '#delta' => $delta,
+        );
+      }
+      break;
+    case 'term_country_flag':
+      foreach ($items as $delta => $item) {
+        $term = taxonomy_term_load($item['tid']);
+        $term_wrapper = entity_metadata_wrapper('taxonomy_term', $term);
+        if (!empty($term->field_flag)) {
+          $vars = array(
+            'style_name' => 'medium_large',
+            'path' => $term_wrapper->field_flag->value()['uri'],
+          );
+          $element[$delta] = array(
+            '#markup' => theme('image_style', $vars),
+            '#term' => $item,
+            '#delta' => $delta,
+          );
+        }
+      }
+      break;
+    case 'hwc_file_download_link':
+      foreach($items as $delta => $item){
+        $uri = file_entity_download_uri(file_load($item['fid']));
+        $link_name = $item['filename'];
+        if(!empty($item['description'])){
+          $link_name = $item['description'];
+        }
+        $link = l($link_name, $uri['path'], array('query' => $uri['options']['query']));
+        $element[$delta]['#markup'] = $link;
+      }
+      break;
+  }
+  return $element;
+}
+
+/**
+ * Implements hook_field_formatter_info_alter().
+ */
+function hwc_field_formatter_info_alter(&$info) {
+  // Define extra fields for settings form to save them.
+  foreach ($info as &$formatter) {
+    if ($formatter['module'] == 'flickrfield') {
+      $formatter['settings']['image_class'] = '';
+      $formatter['settings']['images_shown'] = 5;
+    }
+  }
+
+}
+
+/**
+ * Implements hook_field_formatter_settings_form_alter().
+ */
+function hwc_field_formatter_settings_form_alter(array &$settings_form, array $context) {
+  if ($context['module'] == 'flickrfield') {
+    // Add extra field on colorbox formatter so that colorbox uses field caption.
+    $settings = $context['formatter']['settings'];
+    $settings_form['image_class'] = array(
+      '#type' => 'textfield',
+      '#title' => t('Image css class'),
+      '#default_value' => $settings['image_class'],
+    );
+    $settings_form['images_shown'] = array(
+      '#type' => 'textfield',
+      '#title' => t('Number of images'),
+      '#default_value' => $settings['images_shown'],
+    );
+  }
+}
+
+/*
+* Formats the related resources (attached files) as icon and description/filename
+*/
+function theme_hwc_file_format($element) {
+  $file = (object) $element['file'];
+  $icon_directory = drupal_get_path('theme', 'hwc_frontend') . '/images/file_icons';
+  $name = ($file->description != NULL) ? $file->description : $file->filename;
+  $output = '<a href="' . file_create_url($file->uri) . '">';
+  $output .= theme('file_icon', array(
+    'file' => $file,
+    'icon_directory' => $icon_directory
+  ));
+  $output .= '<span>' . $name . '</span>';
+  $size = @filesize($file->uri);
+  if ($size) {
+    $output .= '<span class="file_size">(' . format_size($size) . ')</span>';
+  }
+  $output .= '</a>';
+  return $output;
+}
+
+/**
+ * Implments hook_form_FORM_ID_alter().
+ */
+function hwc_form_chosen_admin_settings_alter(&$form, $form_state) {
+  // Add options to chosen 30.
+  $form['chosen_minimum_single']['#options']['30'] = '30';
+  $form['chosen_minimum_multiple']['#options']['30'] = '30';
+}
+
+/**
+ * Implments hook_form_FORM_ID_alter().
+ */
+function hwc_form_user_profile_form_alter(&$form, $form_state) {
+  global $user;
+  if (in_array(ROLE_CAMPAIGN_PARTNER, $user->roles)) {
+    // Hide Flickr tags in user profile
+    $form['field_flickr_tags']['#access'] = FALSE;
+    $form['field_cmw_mail_notifications']['#access'] = FALSE;
+  }
+  $form['field_crm_guid']['#access'] = FALSE;
+  $form['field_user_partner_guid']['#access'] = FALSE;
+}
+
+/**
+ * Implements hook_form_alter().
+ */
+function hwc_form_alter(&$form, &$form_state, $form_id) {
+  global $user;
+  if (isset($form['field_activity'])
+    && !empty($form['#node'])
+    && empty($form['#node']->nid)
+    && empty($form['field_activity'][LANGUAGE_NONE]['#default_value'])) {
+
+    if ($tid = osha_taxonomies_load_activity_by_code('raising_awareness_3')) {
+      $form['field_activity'][LANGUAGE_NONE]['#default_value'][] = $tid;
+    }
+  }
+  if (isset($form['field_activity'])) {
+    $form['field_activity'][LANGUAGE_NONE]['#multiple'] = FALSE;
+  }
+  if (in_array($form_id, array('events_node_form', 'news_node_form'))) {
+    if ($user->uid != 1) {
+      $form['field_tags']['#access'] = FALSE;
+    }
+  }
+
+  $is_edit_form = isset($form['#node_edit_form']) &&
+    $form['#node_edit_form'] == TRUE;
+
+  $is_events_form = $is_edit_form &&
+    $form['type']['#value'] == 'events';
+
+  if ($is_events_form) {
+    $form['#after_build'] = array('_form_add_website_placeholder_after_build');
+  }
+
+}
+
+/**
+ * Implements hook_node_submit().
+ */
+function hwc_field_attach_submit($entity_type, $entity, $form, &$form_state) {
+  if ($entity_type == 'node') {
+    // Attach the current campaign tags to the created news and events (HCW-350)
+    $new = empty($entity->nid);
+    $news_event = in_array($entity->type, array('news', 'events'));
+    if ($new && $news_event && $curr_tags = variable_get('hwc_current_campaign_tags')) {
+      $tags = field_get_items('node', $entity, 'field_tags');
+      if (empty($tags)) {
+        $existing_tags = taxonomy_term_load_multiple($curr_tags);
+        if (!empty($existing_tags)) {
+          foreach (array_keys($existing_tags) as $tid) {
+            $entity->field_tags[LANGUAGE_NONE][] = array('tid' => $tid);
+          }
+        }
+      }
+    }
+  }
+}
+
+function _form_add_website_placeholder_after_build($form) {
+  $placeholder = t('Website of event');
+  $form['field_website_of_event'][LANGUAGE_NONE][0]['url']['#attributes']['placeholder'] = $placeholder;
+  return $form;
+}
+
+
+/**
+ * Implements hook_theme_registry_alter().
+ */
+function hwc_theme_registry_alter(&$theme_registry) {
+  if (!empty($theme_registry['date_part_label_time'])) {
+    unset($theme_registry['date_part_label_time']['file']);
+    $theme_registry['date_part_label_time']['function'] = 'theme_hwc_date_part_label_time';
+  }
+  if (!empty($theme_registry['date_part_label_date'])) {
+    unset($theme_registry['date_part_label_date']['file']);
+    $theme_registry['date_part_label_date']['function'] = 'theme_hwc_date_part_label_date';
+  }
+}
+
+function theme_hwc_date_part_label_time($variables) {
+  if (!empty($variables['element']['#instance']) && $variables['element']['#instance']['field_name'] == 'field_start_date'
+      && $variables['element']['#instance']['bundle'] == 'events') {
+    return '';
+  }
+  else {
+    return theme_date_part_label_time($variables);
+  }
+}
+
+function theme_hwc_date_part_label_date($variables) {
+  if (!empty($variables['element']['#instance']) && $variables['element']['#instance']['field_name'] == 'field_start_date'
+      && $variables['element']['#instance']['bundle'] == 'events') {
+    return t('Starting date and time') . '<span class="form-required" title="' . t('This field is required.') . '">*</span>';
+  }
+  else {
+    return theme_date_part_label_date($variables);
+  }
+}
+
+/**
+ * Implements hook_field_widget_form_alter().
+ */
+function hwc_field_widget_form_alter(&$element, &$form_state, $context) {
+  $is_edit_form = isset($context['form']['#node_edit_form']) &&
+    $context['form']['#node_edit_form'] == TRUE;
+
+  $is_events_form = $is_edit_form &&
+    $context['form']['type']['#value'] == 'events';
+
+  $is_news_form = $is_edit_form &&
+    $context['form']['type']['#value'] == 'news';
+
+  if ($is_events_form) {
+    switch ($element['#field_name']) {
+      case 'title_field':
+        $placeholder = t('Event title. Max 60 characters.');
+        $element['value']['#attributes']['placeholder'] = $placeholder;
+        break;
+
+      case 'field_city':
+        $placeholder = t('Event city');
+        $element['value']['#attributes']['placeholder'] = $placeholder;
+        break;
+
+      case 'field_contact_name':
+        $placeholder = t('Contact person name');
+        $element['value']['#attributes']['placeholder'] = $placeholder;
+        break;
+
+      case 'field_contact_phone':
+        $placeholder = t('Contact person phone number');
+        $element['value']['#attributes']['placeholder'] = $placeholder;
+        break;
+
+      case 'field_organizer':
+        $placeholder = t('First name of contact person');
+        $element['value']['#attributes']['placeholder'] = $placeholder;
+        break;
+
+      case 'field_location':
+        $placeholder = t('Location of the event');
+        $element['value']['#attributes']['placeholder'] = $placeholder;
+        break;
+
+      case 'field_website_of_event':
+        $placeholder = t('Website of event');
+        $element['#attributes']['placeholder'] = $placeholder;
+        break;
+
+      case 'field_contact_email':
+        $placeholder = t('Contact person e-mail');
+        $element['email']['#attributes']['placeholder'] = $placeholder;
+        break;
+
+    }
+  }
+  elseif ($is_news_form && !empty($element['#field_name'])) {
+    switch ($element['#field_name']) {
+      case 'title_field':
+        $placeholder = t('News title');
+        $element['value']['#attributes']['placeholder'] = $placeholder;
+        break;
+
+      case 'field_image_caption':
+        $placeholder = t('Image caption');
+        $element['value']['#attributes']['placeholder'] = $placeholder;
+        break;
+
+    }
+  }
+}
+
+/**
+ * Implements hook_node_view().
+ */
+function hwc_node_view($node, $view_mode, $langcode) {
+  // /become-campaign-partner page. See HCW-600
+  if ($node->nid == 165 & !empty($node->content['body'][0]['#markup'])) {
+    $show_registration = hwc_partner_registration_allowed();
+    $body =& $node->content['body'][0]['#markup'];
+    if ($show_registration) {
+      $body = str_replace(
+        '<!-- PLACEHOLDER-REGISTER-DO-NOT-REMOVE -->',
+        '<a class="btn-become-a-campaign-partner" href="/partner/register">Become a campaign partner</a>',
+        $body
+      );
+    }
+    else {
+      $body = str_replace(
+        '<!-- PLACEHOLDER-REGISTER-DO-NOT-REMOVE -->',
+        '<div class="alert registration-over">' . t(variable_get('hwc_partner_registration_deadline_message')) . '</div>',
+        $body
+      );
+    }
+  }
+
+  // /partner/register
+  if ($node->nid == 225) {
+    // Partner registration page.
+    if (!empty($_GET['id'])) {
+      $_SESSION['appform_id'] = $_GET['id'];
+    }
+    if (!empty($_GET['mf'])) {
+      $_SESSION['mf'] = $_GET['mf'];
+    }
+  }
+
+  // Array of nids where to hide the share widget.
+  $no_share_widget = array(
+    162,
+  );
+  if ($view_mode == 'full'
+    && in_array($node->type, array('news', 'events', 'article', 'hwc_gallery', 'press_release'))
+    && !in_array($node->nid, $no_share_widget)) {
+    $extra_fields = field_info_extra_fields('node', $node->type, 'display');
+    if (!empty($extra_fields['share_widget']['display']['default']['visible'])) {
+      $options = array();
+      if (in_array($node->type, array('article', 'hwc_gallery', 'press_release'))) {
+        $options['rss_hide'] = 1;
+      }
+      if ($node->type == 'events') {
+        $options['rss_url'] = url('rss-feeds/latest/events.xml', array('absolute' => TRUE));
+      }
+
+      $node->content['share_widget'] = array('#markup' => hwc_news_share_widget($node, $options));
+    }
+  }
+}
+
+function hwc_news_share_widget($node, $options = array()) {
+  global $language;
+  /** @var stdClass $wrapper */
+  $type = 'other';
+  if ($options['page'] === TRUE) {
+    $url = url(current_path(), array('absolute' => TRUE));
+    $title = drupal_get_title();
+  }
+  else {
+    $url = url('/node/' . $node->nid, array('absolute' => TRUE));
+    $wrapper = entity_metadata_wrapper('node', $node);
+    $title = $wrapper->title_field->value();
+    $type = $node->type;
+  }
+  // Add services javascript.
+  drupal_add_js(drupal_get_path('module', 'hwc') . '/js/share_widget.js');
+  // Add facebook app key.
+  $fb_app_key = variable_get('fb_app_key', '');
+  drupal_add_js(array('hwc' => array('fb_app_key' => $fb_app_key)), 'setting');
+  $site_name = variable_get('site_name', '');
+  // Construct the tweet.
+  $twitter_text = $title . ' | ' . $site_name;
+  $tweet_url = url('https://twitter.com/intent/tweet', array(
+    'query' => array(
+      'original_referer' => $url,
+      'text' => $twitter_text,
+      'url' => shorten_url($url),
+    ),
+  ));
+  $vars = array(
+    'url' => $url,
+    'tweet_url' => $tweet_url,
+    'node' => $node,
+    'language' => $language,
+    'options' => $options,
+  );
+  if ($type == 'article') {
+    return theme('article_share_widget', $vars);
+  }
+  return theme('news_share_widget', $vars);
+}
+
+function hwc_page_share_widget() {
+  $false_node = array('nid' => 0);
+  return hwc_news_share_widget((object) $false_node, array('page' => TRUE));
+}
+
+/**
+ * Allows modules to edit the Workbench Access node form element.
+ *
+ * This convenience function runs a hook_form_alter() targeted only at
+ * the form element defined by Workbench Access.
+ *
+ * @param &$element
+ *   The form element defined by workbench_access_form_alter(), passed
+ *   by reference.
+ * @param &$form_state
+ *   The current form state, passed by reference.
+ * @param $active
+ *   The active data information for the access scheme.
+ *
+ * @see workbench_access_get_active_tree()
+ *
+ */
+function hwc_workbench_access_node_element_alter(&$element, $form_state, $active) {
+  $allow_section_field = _hwc_get_allowed_section_node_types();
+  $form_id = $form_state['build_info']['form_id'];
+  $form = drupal_retrieve_form($form_id, $form_state);
+
+  if (!empty($form['#node_edit_form']) && !in_array($form['#node']->type, $allow_section_field)) {
+    $element['#access'] = FALSE;
+  }
+}
+
+/**
+ * Implements hook_node_presave().
+ */
+function hwc_node_presave($node) {
+  // Set section to default one for the nodes that have section field hidden.
+  $allow_section_field = _hwc_get_allowed_section_node_types();
+  if (!in_array($node->type, $allow_section_field) && variable_get('workbench_access_node_type_' . $node->type, FALSE)) {
+    if (empty($node->workbench_access)) {
+      $node->workbench_access['section'] = 'section';
+    }
+  }
+}
+
+/**
+ * Get array of node types that are allowed to be per section.
+ *
+ * @return array
+ */
+function _hwc_get_allowed_section_node_types() {
+  return array('news','events');
+}
+
+function _hwc_segment_options_list() {
+  $return = array('0' => t('All audience'));
+  $vocabulary = taxonomy_vocabulary_machine_name_load('segment');
+  if (!empty($vocabulary)) {
+    $terms = taxonomy_get_tree($vocabulary->vid);
+    foreach($terms as $key => $term) {
+      $return[$term->tid] = $term->name;
+    }
+  }
+  return $return;
+}
+
+/**
+ * Hook menu to trigger user synchronization
+ * @param $email
+ */
+function hwc_user_activate($mail) {
+  if (empty($_GET['token']) || variable_get('hwc_user_activate_token') != $_GET['token']) {
+    drupal_add_http_header('Status', '400 Missing token');
+    echo '400 Missing token';
+    drupal_exit();
+    die();
+  }
+
+  // Check the user
+  $query = new EntityFieldQuery();
+  $query->entityCondition('entity_type', 'user')
+    ->propertyCondition('mail', $mail)
+    ->count();
+  $count = $query->execute();
+  if ($count > 0) {
+    drupal_add_http_header('Status', '400 User already exists');
+    echo '400 User already exists';
+    drupal_exit();
+    die();
+  }
+
+  // Lookup the record
+  $ldap_account = NULL;
+  if ($auth_conf = ldap_authentication_get_valid_conf()) {
+    /**
+     * @var string $sid
+     * @var LdapServer $ldap_server
+     */
+    foreach ($auth_conf->enabledAuthenticationServers as $sid => $ldap_server) {
+      if ($result = $ldap_server->search('ou=people,dc=osha,dc=europa,dc=eu', 'mail=' . $mail, array('uid'))) {
+        if (!empty($result[0]['uid'][0])) {
+          $uid = $result[0]['uid'][0];
+          $dn = $result[0]['dn'];
+          require_once DRUPAL_ROOT . '/' . variable_get('password_inc', 'includes/password.inc');
+          $ldap_account = (object) array(
+            'dn' => $dn,
+            'name' => $uid,
+            'mail' => $mail,
+            'status' => 1,
+            'created' => REQUEST_TIME,
+            'access' => REQUEST_TIME,
+            'login' => REQUEST_TIME,
+            'is_new' => TRUE,
+          );
+          break;
+        }
+      }
+    }
+  }
+  if ($ldap_account) {
+    if ($account = user_save($ldap_account)) {
+
+      $edit['pass'] = user_password(32);
+      user_save($account, $edit);
+
+      watchdog('hwc', 'Activating Drupal account <em>!uid</em> from LDAP dn: !dn', array(
+        '!dn' => $ldap_account->dn,
+        '!uid' => $ldap_account->name
+      ), WATCHDOG_WARNING);
+      // Generate one time password reset link
+      print user_pass_reset_url($account);
+      drupal_exit();
+      die();
+    }
+    else {
+      watchdog('hwc', 'Failed to activate new Drupal account <em>!uid</em> from LDAP dn: !dn', array(
+        '!dn' => $ldap_account->dn,
+        '!uid' => $ldap_account->name
+      ), WATCHDOG_ERROR);
+      drupal_add_http_header('Status', '500 Failed to save the user');
+      print '500 Failed to save the user';
+      drupal_exit();
+      die();
+    }
+  }
+  else {
+    drupal_add_http_header('Status', '404 User not found');
+    echo '404 User not found';
+    drupal_exit();
+    die();
+  }
+}
+
+/**
+ * Implements hook_pathologic_alter().
+ *
+ * Some links such as FOP, are starting with fop/ and do need to be "fixed"
+ * due to HTTP server redirects.
+ */
+function osha_pathologic_alter(&$url_params, $parts, $settings) {
+  if (preg_match('/^forms\/partner\//m', $url_params['path'])) {
+    $url_params['options']['use_original'] = TRUE;
+  }
+}
+
+
+/**
+ * Retrieve configuration parameter for the form applications.
+ *
+ * @return array
+ *   Returns an array having the following keys:
+ *   <ul>
+ *     <li>appform_id - GUID received from the 'id' parameter when partner register</li>
+ *    <li>mf - TRUE if we are editing the partner profile, FALSE when registering</li>
+ *    <li>user_guid - User's GUID stored in LDAP, useful when editing partner profile</li>
+ */
+function hwc_get_forms_parameters() {
+  global $user;
+
+  $ret = array(
+    'appform_id' => NULL,
+    'mf' => FALSE,
+    'partner_guid' => NULL,
+  );
+
+  try {
+    $wrapper = entity_metadata_wrapper('user', $user);
+    $ret['user_guid'] = $wrapper->field_crm_guid->value();
+  }
+  catch(Exception $e) {}
+
+  if (!empty($_SESSION['appform_id'])) {
+    $ret['appform_id'] = $_SESSION['appform_id'];
+  }
+
+  if (!empty($_SESSION['mf'])) {
+    $ret['mf'] = $_SESSION['mf'];
+  }
+
+  return $ret;
+}
+
+/**
+ * Check whether the partner registration should be still opened.
+ *
+ * @return bool
+ *   Returns TRUE if partner registration still open
+ */
+function hwc_partner_registration_allowed() {
+  $ret = TRUE;
+  $deadline = variable_get('hwc_partner_registration_deadline', NULL);
+  if (!empty($deadline)) {
+    $day = $deadline['day']; $month = $deadline['month']; $year = $deadline['year'];
+    $time = mktime(0, 0, 0, $month, $day, $year);
+    $ret = time() <= $time;
+  }
+  return $ret;
+}
+
+/**
+ * Implements hook_term_presave().
+ */
+function hwc_taxonomy_term_presave($term) {
+  // When saving a country term, attach the flag on field_flag.
+  $voc = taxonomy_vocabulary_machine_name_load('country');
+  if ($term->vid == $voc->vid) {
+    $dir = 'public://flags';
+    if (!file_prepare_directory($dir)) {
+      drupal_set_message('Flags directory could not be created.', 'warning');
+      return;
+    }
+    $path = drupal_get_path('theme', 'hwc_frontend');
+    $images_dir = $path . '/images/iso2_flags';
+    if (!is_dir($images_dir)) {
+      drupal_set_message('Could not find the flags images source directory.', 'warning');
+    }
+    $iso2 = strtoupper($term->field_iso2[LANGUAGE_NONE][0]['value']);
+    $image_filename = $iso2 . '.gif';
+    $image_dest_dir = $dir . '/' . $image_filename;
+    $image_path = $images_dir . '/' . $image_filename;
+    $filepath = drupal_realpath($image_path);
+    if (is_file($filepath)) {
+      // Create managed File object and associate with Image field.
+      $file = (object) array(
+        'uid' => 1,
+        'uri' => $filepath,
+        'filemime' => file_get_mimetype($filepath),
+        'status' => 1,
+      );
+      if ($file = file_copy($file, $image_dest_dir)) {
+        $term->field_flag[LANGUAGE_NONE][0] = (array) $file;
+      }
+    }
+    else {
+      drupal_set_message(strtr('Flag not found for @country', array('@country' => $term->name)), 'warning');
+    }
+  }
+}
+
+function theme_hwc_print_friendly_block() {
+  // Add js and css
+  $content = array(
+    '#attached' => array(
+      'js' => array(
+        array(
+          'data' => drupal_get_path('module', 'hwc') . '/js/print_friendly.js',
+          'type' => 'file',
+          'weight' => 10,
+        )
+      ),
+    ),
+  );
+  $content['#markup'] .= '<a href="javascript:if(window.print)window.print();" class="printfriendly"></a>';
+  return render($content);
+}

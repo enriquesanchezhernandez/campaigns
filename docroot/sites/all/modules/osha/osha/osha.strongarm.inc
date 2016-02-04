@@ -13,9 +13,139 @@ function osha_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
-  $strongarm->name = 'comment_anonymous_article';
+  $strongarm->name = 'addtoany_additional_html';
+  $strongarm->value = '</a><a class="a2a_button_facebook"></a><a class="a2a_button_facebook_like"></a><a class="a2a_button_twitter"><a class="a2a_button_linkedin"></a><a class="a2a_dd" href="http://www.addtoany.com/share_save"></a><a class="a2a_button_print"></a>';
+  $export['addtoany_additional_html'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'addtoany_additional_html_placement';
+  $strongarm->value = 'after';
+  $export['addtoany_additional_html_placement'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'addtoany_additional_js';
+  $strongarm->value = 'jQuery(document).ready(function() {
+var el = jQuery(\'a.addtoany_share_save\');
+jQuery(\'<span />\').attr({\'class\':\'a2a_img_text\'}).html(el.text()).prependTo(jQuery(\'span.a2a_target\'));
+el.remove();
+});';
+  $export['addtoany_additional_js'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'addtoany_buttons_size';
+  $strongarm->value = '16';
+  $export['addtoany_buttons_size'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'addtoany_custom_image';
+  $strongarm->value = '';
+  $export['addtoany_custom_image'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'addtoany_display_in_nodecont';
   $strongarm->value = 0;
+  $export['addtoany_display_in_nodecont'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'addtoany_display_in_nodelink';
+  $strongarm->value = 1;
+  $export['addtoany_display_in_nodelink'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'addtoany_display_in_teasers';
+  $strongarm->value = 0;
+  $export['addtoany_display_in_teasers'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'addtoany_display_weight';
+  $strongarm->value = '40';
+  $export['addtoany_display_weight'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'addtoany_image';
+  $strongarm->value = 'text';
+  $export['addtoany_image'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'addtoany_image_attributes';
+  $strongarm->value = 'Share';
+  $export['addtoany_image_attributes'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'addtoany_link_text';
+  $strongarm->value = '';
+  $export['addtoany_link_text'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'addtoany_nodetypes';
+  $strongarm->value = array(
+    'article' => 0,
+    'campaign_materials' => 0,
+    'press_contact' => 0,
+    'event_speaker' => 0,
+    'events' => 0,
+    'external_url' => 0,
+    'file' => 0,
+    'flickr' => 0,
+    'frontpage_slider' => 0,
+    'infographic' => 0,
+    'internal_url' => 0,
+    'news' => 0,
+    'note_to_editor' => 0,
+    'partner' => 0,
+    'practical_tool' => 0,
+    'press_release' => 0,
+    'publication' => 0,
+    'slideshare' => 0,
+    'webform' => 0,
+    'youtube' => 0,
+  );
+  $export['addtoany_nodetypes'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'addtoany_no_3p';
+  $strongarm->value = 0;
+  $export['addtoany_no_3p'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'comment_anonymous_article';
+  $strongarm->value = '0';
   $export['comment_anonymous_article'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'comment_anonymous_internal_url';
+  $strongarm->value = '-1';
+  $export['comment_anonymous_internal_url'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
@@ -23,6 +153,13 @@ function osha_strongarm() {
   $strongarm->name = 'comment_anonymous_page';
   $strongarm->value = 0;
   $export['comment_anonymous_page'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'comment_anonymous_webform';
+  $strongarm->value = '0';
+  $export['comment_anonymous_webform'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
@@ -41,9 +178,23 @@ function osha_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'comment_default_mode_internal_url';
+  $strongarm->value = 1;
+  $export['comment_default_mode_internal_url'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'comment_default_mode_page';
   $strongarm->value = 1;
   $export['comment_default_mode_page'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'comment_default_mode_webform';
+  $strongarm->value = 1;
+  $export['comment_default_mode_webform'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
@@ -55,9 +206,23 @@ function osha_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'comment_default_per_page_internal_url';
+  $strongarm->value = '50';
+  $export['comment_default_per_page_internal_url'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'comment_default_per_page_page';
   $strongarm->value = 50;
   $export['comment_default_per_page_page'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'comment_default_per_page_webform';
+  $strongarm->value = '50';
+  $export['comment_default_per_page_webform'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
@@ -69,9 +234,30 @@ function osha_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'comment_form_location_internal_url';
+  $strongarm->value = 0;
+  $export['comment_form_location_internal_url'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'comment_form_location_page';
   $strongarm->value = 1;
   $export['comment_form_location_page'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'comment_form_location_webform';
+  $strongarm->value = 1;
+  $export['comment_form_location_webform'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'comment_internal_url';
+  $strongarm->value = '1';
+  $export['comment_internal_url'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
@@ -90,9 +276,23 @@ function osha_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'comment_preview_internal_url';
+  $strongarm->value = '0';
+  $export['comment_preview_internal_url'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'comment_preview_page';
   $strongarm->value = 1;
   $export['comment_preview_page'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'comment_preview_webform';
+  $strongarm->value = '1';
+  $export['comment_preview_webform'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
@@ -104,9 +304,37 @@ function osha_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'comment_subject_field_internal_url';
+  $strongarm->value = 1;
+  $export['comment_subject_field_internal_url'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'comment_subject_field_page';
   $strongarm->value = 1;
   $export['comment_subject_field_page'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'comment_subject_field_webform';
+  $strongarm->value = 1;
+  $export['comment_subject_field_webform'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'comment_webform';
+  $strongarm->value = '1';
+  $export['comment_webform'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'cron_safe_threshold';
+  $strongarm->value = '0';
+  $export['cron_safe_threshold'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
@@ -118,6 +346,13 @@ function osha_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'date_format_day_month_year';
+  $strongarm->value = 'j M Y - H:i';
+  $export['date_format_day_month_year'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'date_format_month';
   $strongarm->value = 'F';
   $export['date_format_month'] = $strongarm;
@@ -125,9 +360,46 @@ function osha_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'date_format_month_day_year';
+  $strongarm->value = 'F j, Y - H:i';
+  $export['date_format_month_day_year'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'elysia_cron_default_rules';
+  $strongarm->value = array(
+    '*/15 * * * *' => 'Every 15 minutes',
+    '*/30 * * * *' => 'Every 30 minutes',
+    '0 * * * *' => 'Every hour',
+    '0 */6 * * *' => 'Every 6 hours',
+    '4 0 * * *' => 'Once a day',
+    '4 0 * * 0' => 'Once a week',
+    '4 0 1 * *' => 'Once a month',
+    '4 0 1 */6 *' => 'Every 6 months',
+  );
+  $export['elysia_cron_default_rules'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'entity_translation_comment_filter_internal_url';
+  $strongarm->value = 0;
+  $export['entity_translation_comment_filter_internal_url'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'entity_translation_comment_filter_page';
   $strongarm->value = FALSE;
   $export['entity_translation_comment_filter_page'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'entity_translation_comment_filter_webform';
+  $strongarm->value = 0;
+  $export['entity_translation_comment_filter_webform'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
@@ -152,6 +424,13 @@ function osha_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'entity_translation_hide_translation_links_internal_url';
+  $strongarm->value = 1;
+  $export['entity_translation_hide_translation_links_internal_url'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'entity_translation_hide_translation_links_page';
   $strongarm->value = 1;
   $export['entity_translation_hide_translation_links_page'] = $strongarm;
@@ -159,9 +438,30 @@ function osha_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'entity_translation_hide_translation_links_webform';
+  $strongarm->value = 1;
+  $export['entity_translation_hide_translation_links_webform'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'entity_translation_node_metadata_internal_url';
+  $strongarm->value = '0';
+  $export['entity_translation_node_metadata_internal_url'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'entity_translation_node_metadata_page';
   $strongarm->value = 0;
   $export['entity_translation_node_metadata_page'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'entity_translation_node_metadata_webform';
+  $strongarm->value = '0';
+  $export['entity_translation_node_metadata_webform'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
@@ -192,19 +492,6 @@ function osha_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
-  $strongarm->name = 'entity_translation_settings_node__blog';
-  $strongarm->value = array(
-    'default_language' => 'en',
-    'hide_language_selector' => 1,
-    'exclude_language_none' => 1,
-    'lock_language' => 1,
-    'shared_fields_original_only' => 1,
-  );
-  $export['entity_translation_settings_node__blog'] = $strongarm;
-
-  $strongarm = new stdClass();
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
   $strongarm->name = 'entity_translation_settings_node__calls';
   $strongarm->value = array(
     'default_language' => 'en',
@@ -214,19 +501,6 @@ function osha_strongarm() {
     'shared_fields_original_only' => 1,
   );
   $export['entity_translation_settings_node__calls'] = $strongarm;
-
-  $strongarm = new stdClass();
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
-  $strongarm->name = 'entity_translation_settings_node__directive';
-  $strongarm->value = array(
-    'default_language' => 'en',
-    'hide_language_selector' => 1,
-    'exclude_language_none' => 1,
-    'lock_language' => 1,
-    'shared_fields_original_only' => 1,
-  );
-  $export['entity_translation_settings_node__directive'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
@@ -266,32 +540,6 @@ function osha_strongarm() {
     'shared_fields_original_only' => 1,
   );
   $export['entity_translation_settings_node__flickr'] = $strongarm;
-
-  $strongarm = new stdClass();
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
-  $strongarm->name = 'entity_translation_settings_node__guideline';
-  $strongarm->value = array(
-    'default_language' => 'en',
-    'hide_language_selector' => 1,
-    'exclude_language_none' => 1,
-    'lock_language' => 1,
-    'shared_fields_original_only' => 1,
-  );
-  $export['entity_translation_settings_node__guideline'] = $strongarm;
-
-  $strongarm = new stdClass();
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
-  $strongarm->name = 'entity_translation_settings_node__highlight';
-  $strongarm->value = array(
-    'default_language' => 'en',
-    'hide_language_selector' => 1,
-    'exclude_language_none' => 1,
-    'lock_language' => 1,
-    'shared_fields_original_only' => 1,
-  );
-  $export['entity_translation_settings_node__highlight'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
@@ -400,19 +648,6 @@ function osha_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
-  $strongarm->name = 'entity_translation_settings_node__seminar';
-  $strongarm->value = array(
-    'default_language' => 'en',
-    'hide_language_selector' => 1,
-    'exclude_language_none' => 1,
-    'lock_language' => 1,
-    'shared_fields_original_only' => 1,
-  );
-  $export['entity_translation_settings_node__seminar'] = $strongarm;
-
-  $strongarm = new stdClass();
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
   $strongarm->name = 'entity_translation_settings_node__slideshare';
   $strongarm->value = array(
     'default_language' => 'en',
@@ -466,195 +701,6 @@ function osha_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
-  $strongarm->name = 'eu_cookie_compliance_cookie_lifetime';
-  $strongarm->value = '100';
-  $export['eu_cookie_compliance_cookie_lifetime'] = $strongarm;
-
-  $strongarm = new stdClass();
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
-  $strongarm->name = 'eu_cookie_compliance_domain';
-  $strongarm->value = '';
-  $export['eu_cookie_compliance_domain'] = $strongarm;
-
-  $strongarm = new stdClass();
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
-  $strongarm->name = 'eu_cookie_compliance_bg';
-  $strongarm->value = array(
-    'popup_enabled' => 1,
-    'popup_clicking_confirmation' => 0,
-    'popup_position' => 1,
-    'popup_agree_button_message' => 'OK, I agree',
-    'popup_disagree_button_message' => 'No, give me more info',
-    'popup_info' => array(
-      'value' => '<p><span style="font-size: small;"><strong>The EU-OSHA website uses cookies to gather information necessary for browsing the website, in accordance with the EU-OSHA privacy notice.</strong></span></p><p>By clicking on any link in the EU-OSHA web pages you are giving your consent for the use of cookies.</p>',
-      'format' => 'full_html',
-    ),
-    'popup_agreed_enabled' => 1,
-    'popup_hide_agreed' => 1,
-    'popup_find_more_button_message' => 'More info',
-    'popup_hide_button_message' => 'Hide',
-    'popup_agreed' => array(
-      'value' => '<h2>Thank you for accepting cookies</h2><p>You can now hide this message or find out more about cookies.</p>',
-      'format' => 'full_html',
-    ),
-    'popup_link' => 'node/5436',
-    'popup_link_new_window' => 1,
-    'popup_height' => '120',
-    'popup_width' => '100%',
-    'popup_delay' => '1',
-    'popup_bg_hex' => '575958',
-    'popup_text_hex' => 'ffffff',
-    'domains_option' => '1',
-    'domains_list' => '',
-    'exclude_paths' => '',
-  );
-  $export['eu_cookie_compliance_bg'] = $strongarm;
-
-  $strongarm = new stdClass();
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
-  $strongarm->name = 'eu_cookie_compliance_cs';
-  $strongarm->value = array(
-    'popup_enabled' => 1,
-    'popup_clicking_confirmation' => 0,
-    'popup_position' => 1,
-    'popup_agree_button_message' => 'OK, I agree',
-    'popup_disagree_button_message' => 'No, give me more info',
-    'popup_info' => array(
-      'value' => '<p><span style="font-size: small;"><strong>The EU-OSHA website uses cookies to gather information necessary for browsing the website, in accordance with the EU-OSHA privacy notice.</strong></span></p><p>By clicking on any link in the EU-OSHA web pages you are giving your consent for the use of cookies.</p>',
-      'format' => 'full_html',
-    ),
-    'popup_agreed_enabled' => 1,
-    'popup_hide_agreed' => 1,
-    'popup_find_more_button_message' => 'More info',
-    'popup_hide_button_message' => 'Hide',
-    'popup_agreed' => array(
-      'value' => '<h2>Thank you for accepting cookies</h2><p>You can now hide this message or find out more about cookies.</p>',
-      'format' => 'full_html',
-    ),
-    'popup_link' => 'node/5436',
-    'popup_link_new_window' => 1,
-    'popup_height' => '120',
-    'popup_width' => '100%',
-    'popup_delay' => '1',
-    'popup_bg_hex' => '575958',
-    'popup_text_hex' => 'ffffff',
-    'domains_option' => '1',
-    'domains_list' => '',
-    'exclude_paths' => '',
-  );
-  $export['eu_cookie_compliance_cs'] = $strongarm;
-
-  $strongarm = new stdClass();
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
-  $strongarm->name = 'eu_cookie_compliance_da';
-  $strongarm->value = array(
-    'popup_enabled' => 1,
-    'popup_clicking_confirmation' => 0,
-    'popup_position' => 1,
-    'popup_agree_button_message' => 'OK, I agree',
-    'popup_disagree_button_message' => 'No, give me more info',
-    'popup_info' => array(
-      'value' => '<p><span style="font-size: small;"><strong>The EU-OSHA website uses cookies to gather information necessary for browsing the website, in accordance with the EU-OSHA privacy notice.</strong></span></p><p>By clicking on any link in the EU-OSHA web pages you are giving your consent for the use of cookies.</p>',
-      'format' => 'full_html',
-    ),
-    'popup_agreed_enabled' => 1,
-    'popup_hide_agreed' => 1,
-    'popup_find_more_button_message' => 'More info',
-    'popup_hide_button_message' => 'Hide',
-    'popup_agreed' => array(
-      'value' => '<h2>Thank you for accepting cookies</h2><p>You can now hide this message or find out more about cookies.</p>',
-      'format' => 'full_html',
-    ),
-    'popup_link' => 'node/5436',
-    'popup_link_new_window' => 1,
-    'popup_height' => '120',
-    'popup_width' => '100%',
-    'popup_delay' => '1',
-    'popup_bg_hex' => '575958',
-    'popup_text_hex' => 'ffffff',
-    'domains_option' => '1',
-    'domains_list' => '',
-    'exclude_paths' => '',
-  );
-  $export['eu_cookie_compliance_da'] = $strongarm;
-
-  $strongarm = new stdClass();
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
-  $strongarm->name = 'eu_cookie_compliance_de';
-  $strongarm->value = array(
-    'popup_enabled' => 1,
-    'popup_clicking_confirmation' => 0,
-    'popup_position' => 1,
-    'popup_agree_button_message' => 'OK, I agree',
-    'popup_disagree_button_message' => 'No, give me more info',
-    'popup_info' => array(
-      'value' => '<p><span style="font-size: small;"><strong>The EU-OSHA website uses cookies to gather information necessary for browsing the website, in accordance with the EU-OSHA privacy notice.</strong></span></p><p>By clicking on any link in the EU-OSHA web pages you are giving your consent for the use of cookies.</p>',
-      'format' => 'full_html',
-    ),
-    'popup_agreed_enabled' => 1,
-    'popup_hide_agreed' => 1,
-    'popup_find_more_button_message' => 'More info',
-    'popup_hide_button_message' => 'Hide',
-    'popup_agreed' => array(
-      'value' => '<h2>Thank you for accepting cookies</h2><p>You can now hide this message or find out more about cookies.</p>',
-      'format' => 'full_html',
-    ),
-    'popup_link' => 'node/5436',
-    'popup_link_new_window' => 1,
-    'popup_height' => '120',
-    'popup_width' => '100%',
-    'popup_delay' => '1',
-    'popup_bg_hex' => '575958',
-    'popup_text_hex' => 'ffffff',
-    'domains_option' => '1',
-    'domains_list' => '',
-    'exclude_paths' => '',
-  );
-  $export['eu_cookie_compliance_de'] = $strongarm;
-
-  $strongarm = new stdClass();
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
-  $strongarm->name = 'eu_cookie_compliance_el';
-  $strongarm->value = array(
-    'popup_enabled' => 1,
-    'popup_clicking_confirmation' => 0,
-    'popup_position' => 1,
-    'popup_agree_button_message' => 'OK, I agree',
-    'popup_disagree_button_message' => 'No, give me more info',
-    'popup_info' => array(
-      'value' => '<p><span style="font-size: small;"><strong>The EU-OSHA website uses cookies to gather information necessary for browsing the website, in accordance with the EU-OSHA privacy notice.</strong></span></p><p>By clicking on any link in the EU-OSHA web pages you are giving your consent for the use of cookies.</p>',
-      'format' => 'full_html',
-    ),
-    'popup_agreed_enabled' => 1,
-    'popup_hide_agreed' => 1,
-    'popup_find_more_button_message' => 'More info',
-    'popup_hide_button_message' => 'Hide',
-    'popup_agreed' => array(
-      'value' => '<h2>Thank you for accepting cookies</h2><p>You can now hide this message or find out more about cookies.</p>',
-      'format' => 'full_html',
-    ),
-    'popup_link' => 'node/5436',
-    'popup_link_new_window' => 1,
-    'popup_height' => '120',
-    'popup_width' => '100%',
-    'popup_delay' => '1',
-    'popup_bg_hex' => '575958',
-    'popup_text_hex' => 'ffffff',
-    'domains_option' => '1',
-    'domains_list' => '',
-    'exclude_paths' => '',
-  );
-  $export['eu_cookie_compliance_el'] = $strongarm;
-
-  $strongarm = new stdClass();
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
   $strongarm->name = 'eu_cookie_compliance_en';
   $strongarm->value = array(
     'popup_enabled' => 1,
@@ -666,7 +712,7 @@ function osha_strongarm() {
       'value' => '<p><span style="font-size: small;"><strong>The EU-OSHA website uses cookies to gather information necessary for browsing the website, in accordance with the EU-OSHA privacy notice.</strong></span></p><p>By clicking on any link in the EU-OSHA web pages you are giving your consent for the use of cookies.</p>',
       'format' => 'full_html',
     ),
-    'popup_agreed_enabled' => 1,
+    'popup_agreed_enabled' => 0,
     'popup_hide_agreed' => 1,
     'popup_find_more_button_message' => 'More info',
     'popup_hide_button_message' => 'Hide',
@@ -690,671 +736,6 @@ function osha_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
-  $strongarm->name = 'eu_cookie_compliance_es';
-  $strongarm->value = array(
-    'popup_enabled' => 1,
-    'popup_clicking_confirmation' => 0,
-    'popup_position' => 1,
-    'popup_agree_button_message' => 'OK, I agree',
-    'popup_disagree_button_message' => 'No, give me more info',
-    'popup_info' => array(
-      'value' => '<p><span style="font-size: small;"><strong>The EU-OSHA website uses cookies to gather information necessary for browsing the website, in accordance with the EU-OSHA privacy notice.</strong></span></p><p>By clicking on any link in the EU-OSHA web pages you are giving your consent for the use of cookies.</p>',
-      'format' => 'full_html',
-    ),
-    'popup_agreed_enabled' => 1,
-    'popup_hide_agreed' => 1,
-    'popup_find_more_button_message' => 'More info',
-    'popup_hide_button_message' => 'Hide',
-    'popup_agreed' => array(
-      'value' => '<h2>Thank you for accepting cookies</h2><p>You can now hide this message or find out more about cookies.</p>',
-      'format' => 'full_html',
-    ),
-    'popup_link' => 'node/5436',
-    'popup_link_new_window' => 1,
-    'popup_height' => '120',
-    'popup_width' => '100%',
-    'popup_delay' => '1',
-    'popup_bg_hex' => '575958',
-    'popup_text_hex' => 'ffffff',
-    'domains_option' => '1',
-    'domains_list' => '',
-    'exclude_paths' => '',
-  );
-  $export['eu_cookie_compliance_es'] = $strongarm;
-
-  $strongarm = new stdClass();
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
-  $strongarm->name = 'eu_cookie_compliance_et';
-  $strongarm->value = array(
-    'popup_enabled' => 1,
-    'popup_clicking_confirmation' => 0,
-    'popup_position' => 1,
-    'popup_agree_button_message' => 'OK, I agree',
-    'popup_disagree_button_message' => 'No, give me more info',
-    'popup_info' => array(
-      'value' => '<p><span style="font-size: small;"><strong>The EU-OSHA website uses cookies to gather information necessary for browsing the website, in accordance with the EU-OSHA privacy notice.</strong></span></p><p>By clicking on any link in the EU-OSHA web pages you are giving your consent for the use of cookies.</p>',
-      'format' => 'full_html',
-    ),
-    'popup_agreed_enabled' => 1,
-    'popup_hide_agreed' => 1,
-    'popup_find_more_button_message' => 'More info',
-    'popup_hide_button_message' => 'Hide',
-    'popup_agreed' => array(
-      'value' => '<h2>Thank you for accepting cookies</h2><p>You can now hide this message or find out more about cookies.</p>',
-      'format' => 'full_html',
-    ),
-    'popup_link' => 'node/5436',
-    'popup_link_new_window' => 1,
-    'popup_height' => '120',
-    'popup_width' => '100%',
-    'popup_delay' => '1',
-    'popup_bg_hex' => '575958',
-    'popup_text_hex' => 'ffffff',
-    'domains_option' => '1',
-    'domains_list' => '',
-    'exclude_paths' => '',
-  );
-  $export['eu_cookie_compliance_et'] = $strongarm;
-
-  $strongarm = new stdClass();
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
-  $strongarm->name = 'eu_cookie_compliance_fi';
-  $strongarm->value = array(
-    'popup_enabled' => 1,
-    'popup_clicking_confirmation' => 0,
-    'popup_position' => 1,
-    'popup_agree_button_message' => 'OK, I agree',
-    'popup_disagree_button_message' => 'No, give me more info',
-    'popup_info' => array(
-      'value' => '<p><span style="font-size: small;"><strong>The EU-OSHA website uses cookies to gather information necessary for browsing the website, in accordance with the EU-OSHA privacy notice.</strong></span></p><p>By clicking on any link in the EU-OSHA web pages you are giving your consent for the use of cookies.</p>',
-      'format' => 'full_html',
-    ),
-    'popup_agreed_enabled' => 1,
-    'popup_hide_agreed' => 1,
-    'popup_find_more_button_message' => 'More info',
-    'popup_hide_button_message' => 'Hide',
-    'popup_agreed' => array(
-      'value' => '<h2>Thank you for accepting cookies</h2><p>You can now hide this message or find out more about cookies.</p>',
-      'format' => 'full_html',
-    ),
-    'popup_link' => 'node/5436',
-    'popup_link_new_window' => 1,
-    'popup_height' => '120',
-    'popup_width' => '100%',
-    'popup_delay' => '1',
-    'popup_bg_hex' => '575958',
-    'popup_text_hex' => 'ffffff',
-    'domains_option' => '1',
-    'domains_list' => '',
-    'exclude_paths' => '',
-  );
-  $export['eu_cookie_compliance_fi'] = $strongarm;
-
-  $strongarm = new stdClass();
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
-  $strongarm->name = 'eu_cookie_compliance_fr';
-  $strongarm->value = array(
-    'popup_enabled' => 1,
-    'popup_clicking_confirmation' => 0,
-    'popup_position' => 1,
-    'popup_agree_button_message' => 'OK, I agree',
-    'popup_disagree_button_message' => 'No, give me more info',
-    'popup_info' => array(
-      'value' => '<p><span style="font-size: small;"><strong>The EU-OSHA website uses cookies to gather information necessary for browsing the website, in accordance with the EU-OSHA privacy notice.</strong></span></p><p>By clicking on any link in the EU-OSHA web pages you are giving your consent for the use of cookies.</p>',
-      'format' => 'full_html',
-    ),
-    'popup_agreed_enabled' => 1,
-    'popup_hide_agreed' => 1,
-    'popup_find_more_button_message' => 'More info',
-    'popup_hide_button_message' => 'Hide',
-    'popup_agreed' => array(
-      'value' => '<h2>Thank you for accepting cookies</h2><p>You can now hide this message or find out more about cookies.</p>',
-      'format' => 'full_html',
-    ),
-    'popup_link' => 'node/5436',
-    'popup_link_new_window' => 1,
-    'popup_height' => '120',
-    'popup_width' => '100%',
-    'popup_delay' => '1',
-    'popup_bg_hex' => '575958',
-    'popup_text_hex' => 'ffffff',
-    'domains_option' => '1',
-    'domains_list' => '',
-    'exclude_paths' => '',
-  );
-  $export['eu_cookie_compliance_fr'] = $strongarm;
-
-  $strongarm = new stdClass();
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
-  $strongarm->name = 'eu_cookie_compliance_hr';
-  $strongarm->value = array(
-    'popup_enabled' => 1,
-    'popup_clicking_confirmation' => 0,
-    'popup_position' => 1,
-    'popup_agree_button_message' => 'OK, I agree',
-    'popup_disagree_button_message' => 'No, give me more info',
-    'popup_info' => array(
-      'value' => '<p><span style="font-size: small;"><strong>The EU-OSHA website uses cookies to gather information necessary for browsing the website, in accordance with the EU-OSHA privacy notice.</strong></span></p><p>By clicking on any link in the EU-OSHA web pages you are giving your consent for the use of cookies.</p>',
-      'format' => 'full_html',
-    ),
-    'popup_agreed_enabled' => 1,
-    'popup_hide_agreed' => 1,
-    'popup_find_more_button_message' => 'More info',
-    'popup_hide_button_message' => 'Hide',
-    'popup_agreed' => array(
-      'value' => '<h2>Thank you for accepting cookies</h2><p>You can now hide this message or find out more about cookies.</p>',
-      'format' => 'full_html',
-    ),
-    'popup_link' => 'node/5436',
-    'popup_link_new_window' => 1,
-    'popup_height' => '120',
-    'popup_width' => '100%',
-    'popup_delay' => '1',
-    'popup_bg_hex' => '575958',
-    'popup_text_hex' => 'ffffff',
-    'domains_option' => '1',
-    'domains_list' => '',
-    'exclude_paths' => '',
-  );
-  $export['eu_cookie_compliance_hr'] = $strongarm;
-
-  $strongarm = new stdClass();
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
-  $strongarm->name = 'eu_cookie_compliance_hu';
-  $strongarm->value = array(
-    'popup_enabled' => 1,
-    'popup_clicking_confirmation' => 0,
-    'popup_position' => 1,
-    'popup_agree_button_message' => 'OK, I agree',
-    'popup_disagree_button_message' => 'No, give me more info',
-    'popup_info' => array(
-      'value' => '<p><span style="font-size: small;"><strong>The EU-OSHA website uses cookies to gather information necessary for browsing the website, in accordance with the EU-OSHA privacy notice.</strong></span></p><p>By clicking on any link in the EU-OSHA web pages you are giving your consent for the use of cookies.</p>',
-      'format' => 'full_html',
-    ),
-    'popup_agreed_enabled' => 1,
-    'popup_hide_agreed' => 1,
-    'popup_find_more_button_message' => 'More info',
-    'popup_hide_button_message' => 'Hide',
-    'popup_agreed' => array(
-      'value' => '<h2>Thank you for accepting cookies</h2><p>You can now hide this message or find out more about cookies.</p>',
-      'format' => 'full_html',
-    ),
-    'popup_link' => 'node/5436',
-    'popup_link_new_window' => 1,
-    'popup_height' => '120',
-    'popup_width' => '100%',
-    'popup_delay' => '1',
-    'popup_bg_hex' => '575958',
-    'popup_text_hex' => 'ffffff',
-    'domains_option' => '1',
-    'domains_list' => '',
-    'exclude_paths' => '',
-  );
-  $export['eu_cookie_compliance_hu'] = $strongarm;
-
-  $strongarm = new stdClass();
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
-  $strongarm->name = 'eu_cookie_compliance_is';
-  $strongarm->value = array(
-    'popup_enabled' => 1,
-    'popup_clicking_confirmation' => 0,
-    'popup_position' => 1,
-    'popup_agree_button_message' => 'OK, I agree',
-    'popup_disagree_button_message' => 'No, give me more info',
-    'popup_info' => array(
-      'value' => '<p><span style="font-size: small;"><strong>The EU-OSHA website uses cookies to gather information necessary for browsing the website, in accordance with the EU-OSHA privacy notice.</strong></span></p><p>By clicking on any link in the EU-OSHA web pages you are giving your consent for the use of cookies.</p>',
-      'format' => 'full_html',
-    ),
-    'popup_agreed_enabled' => 1,
-    'popup_hide_agreed' => 1,
-    'popup_find_more_button_message' => 'More info',
-    'popup_hide_button_message' => 'Hide',
-    'popup_agreed' => array(
-      'value' => '<h2>Thank you for accepting cookies</h2><p>You can now hide this message or find out more about cookies.</p>',
-      'format' => 'full_html',
-    ),
-    'popup_link' => 'node/5436',
-    'popup_link_new_window' => 1,
-    'popup_height' => '120',
-    'popup_width' => '100%',
-    'popup_delay' => '1',
-    'popup_bg_hex' => '575958',
-    'popup_text_hex' => 'ffffff',
-    'domains_option' => '1',
-    'domains_list' => '',
-    'exclude_paths' => '',
-  );
-  $export['eu_cookie_compliance_is'] = $strongarm;
-
-  $strongarm = new stdClass();
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
-  $strongarm->name = 'eu_cookie_compliance_it';
-  $strongarm->value = array(
-    'popup_enabled' => 1,
-    'popup_clicking_confirmation' => 0,
-    'popup_position' => 1,
-    'popup_agree_button_message' => 'OK, I agree',
-    'popup_disagree_button_message' => 'No, give me more info',
-    'popup_info' => array(
-      'value' => '<p><span style="font-size: small;"><strong>The EU-OSHA website uses cookies to gather information necessary for browsing the website, in accordance with the EU-OSHA privacy notice.</strong></span></p><p>By clicking on any link in the EU-OSHA web pages you are giving your consent for the use of cookies.</p>',
-      'format' => 'full_html',
-    ),
-    'popup_agreed_enabled' => 1,
-    'popup_hide_agreed' => 1,
-    'popup_find_more_button_message' => 'More info',
-    'popup_hide_button_message' => 'Hide',
-    'popup_agreed' => array(
-      'value' => '<h2>Thank you for accepting cookies</h2><p>You can now hide this message or find out more about cookies.</p>',
-      'format' => 'full_html',
-    ),
-    'popup_link' => 'node/5436',
-    'popup_link_new_window' => 1,
-    'popup_height' => '120',
-    'popup_width' => '100%',
-    'popup_delay' => '1',
-    'popup_bg_hex' => '575958',
-    'popup_text_hex' => 'ffffff',
-    'domains_option' => '1',
-    'domains_list' => '',
-    'exclude_paths' => '',
-  );
-  $export['eu_cookie_compliance_it'] = $strongarm;
-
-  $strongarm = new stdClass();
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
-  $strongarm->name = 'eu_cookie_compliance_lt';
-  $strongarm->value = array(
-    'popup_enabled' => 1,
-    'popup_clicking_confirmation' => 0,
-    'popup_position' => 1,
-    'popup_agree_button_message' => 'OK, I agree',
-    'popup_disagree_button_message' => 'No, give me more info',
-    'popup_info' => array(
-      'value' => '<p><span style="font-size: small;"><strong>The EU-OSHA website uses cookies to gather information necessary for browsing the website, in accordance with the EU-OSHA privacy notice.</strong></span></p><p>By clicking on any link in the EU-OSHA web pages you are giving your consent for the use of cookies.</p>',
-      'format' => 'full_html',
-    ),
-    'popup_agreed_enabled' => 1,
-    'popup_hide_agreed' => 1,
-    'popup_find_more_button_message' => 'More info',
-    'popup_hide_button_message' => 'Hide',
-    'popup_agreed' => array(
-      'value' => '<h2>Thank you for accepting cookies</h2><p>You can now hide this message or find out more about cookies.</p>',
-      'format' => 'full_html',
-    ),
-    'popup_link' => 'node/5436',
-    'popup_link_new_window' => 1,
-    'popup_height' => '120',
-    'popup_width' => '100%',
-    'popup_delay' => '1',
-    'popup_bg_hex' => '575958',
-    'popup_text_hex' => 'ffffff',
-    'domains_option' => '1',
-    'domains_list' => '',
-    'exclude_paths' => '',
-  );
-  $export['eu_cookie_compliance_lt'] = $strongarm;
-
-  $strongarm = new stdClass();
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
-  $strongarm->name = 'eu_cookie_compliance_lv';
-  $strongarm->value = array(
-    'popup_enabled' => 1,
-    'popup_clicking_confirmation' => 0,
-    'popup_position' => 1,
-    'popup_agree_button_message' => 'OK, I agree',
-    'popup_disagree_button_message' => 'No, give me more info',
-    'popup_info' => array(
-      'value' => '<p><span style="font-size: small;"><strong>The EU-OSHA website uses cookies to gather information necessary for browsing the website, in accordance with the EU-OSHA privacy notice.</strong></span></p><p>By clicking on any link in the EU-OSHA web pages you are giving your consent for the use of cookies.</p>',
-      'format' => 'full_html',
-    ),
-    'popup_agreed_enabled' => 1,
-    'popup_hide_agreed' => 1,
-    'popup_find_more_button_message' => 'More info',
-    'popup_hide_button_message' => 'Hide',
-    'popup_agreed' => array(
-      'value' => '<h2>Thank you for accepting cookies</h2><p>You can now hide this message or find out more about cookies.</p>',
-      'format' => 'full_html',
-    ),
-    'popup_link' => 'node/5436',
-    'popup_link_new_window' => 1,
-    'popup_height' => '120',
-    'popup_width' => '100%',
-    'popup_delay' => '1',
-    'popup_bg_hex' => '575958',
-    'popup_text_hex' => 'ffffff',
-    'domains_option' => '1',
-    'domains_list' => '',
-    'exclude_paths' => '',
-  );
-  $export['eu_cookie_compliance_lv'] = $strongarm;
-
-  $strongarm = new stdClass();
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
-  $strongarm->name = 'eu_cookie_compliance_mt';
-  $strongarm->value = array(
-    'popup_enabled' => 1,
-    'popup_clicking_confirmation' => 0,
-    'popup_position' => 1,
-    'popup_agree_button_message' => 'OK, I agree',
-    'popup_disagree_button_message' => 'No, give me more info',
-    'popup_info' => array(
-      'value' => '<p><span style="font-size: small;"><strong>The EU-OSHA website uses cookies to gather information necessary for browsing the website, in accordance with the EU-OSHA privacy notice.</strong></span></p><p>By clicking on any link in the EU-OSHA web pages you are giving your consent for the use of cookies.</p>',
-      'format' => 'full_html',
-    ),
-    'popup_agreed_enabled' => 1,
-    'popup_hide_agreed' => 1,
-    'popup_find_more_button_message' => 'More info',
-    'popup_hide_button_message' => 'Hide',
-    'popup_agreed' => array(
-      'value' => '<h2>Thank you for accepting cookies</h2><p>You can now hide this message or find out more about cookies.</p>',
-      'format' => 'full_html',
-    ),
-    'popup_link' => 'node/5436',
-    'popup_link_new_window' => 1,
-    'popup_height' => '120',
-    'popup_width' => '100%',
-    'popup_delay' => '1',
-    'popup_bg_hex' => '575958',
-    'popup_text_hex' => 'ffffff',
-    'domains_option' => '1',
-    'domains_list' => '',
-    'exclude_paths' => '',
-  );
-  $export['eu_cookie_compliance_mt'] = $strongarm;
-
-  $strongarm = new stdClass();
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
-  $strongarm->name = 'eu_cookie_compliance_nl';
-  $strongarm->value = array(
-    'popup_enabled' => 1,
-    'popup_clicking_confirmation' => 0,
-    'popup_position' => 1,
-    'popup_agree_button_message' => 'OK, I agree',
-    'popup_disagree_button_message' => 'No, give me more info',
-    'popup_info' => array(
-      'value' => '<p><span style="font-size: small;"><strong>The EU-OSHA website uses cookies to gather information necessary for browsing the website, in accordance with the EU-OSHA privacy notice.</strong></span></p><p>By clicking on any link in the EU-OSHA web pages you are giving your consent for the use of cookies.</p>',
-      'format' => 'full_html',
-    ),
-    'popup_agreed_enabled' => 1,
-    'popup_hide_agreed' => 1,
-    'popup_find_more_button_message' => 'More info',
-    'popup_hide_button_message' => 'Hide',
-    'popup_agreed' => array(
-      'value' => '<h2>Thank you for accepting cookies</h2><p>You can now hide this message or find out more about cookies.</p>',
-      'format' => 'full_html',
-    ),
-    'popup_link' => 'node/5436',
-    'popup_link_new_window' => 1,
-    'popup_height' => '120',
-    'popup_width' => '100%',
-    'popup_delay' => '1',
-    'popup_bg_hex' => '575958',
-    'popup_text_hex' => 'ffffff',
-    'domains_option' => '1',
-    'domains_list' => '',
-    'exclude_paths' => '',
-  );
-  $export['eu_cookie_compliance_nl'] = $strongarm;
-
-  $strongarm = new stdClass();
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
-  $strongarm->name = 'eu_cookie_compliance_no';
-  $strongarm->value = array(
-    'popup_enabled' => 1,
-    'popup_clicking_confirmation' => 0,
-    'popup_position' => 1,
-    'popup_agree_button_message' => 'OK, I agree',
-    'popup_disagree_button_message' => 'No, give me more info',
-    'popup_info' => array(
-      'value' => '<p><span style="font-size: small;"><strong>The EU-OSHA website uses cookies to gather information necessary for browsing the website, in accordance with the EU-OSHA privacy notice.</strong></span></p><p>By clicking on any link in the EU-OSHA web pages you are giving your consent for the use of cookies.</p>',
-      'format' => 'full_html',
-    ),
-    'popup_agreed_enabled' => 1,
-    'popup_hide_agreed' => 1,
-    'popup_find_more_button_message' => 'More info',
-    'popup_hide_button_message' => 'Hide',
-    'popup_agreed' => array(
-      'value' => '<h2>Thank you for accepting cookies</h2><p>You can now hide this message or find out more about cookies.</p>',
-      'format' => 'full_html',
-    ),
-    'popup_link' => 'node/5436',
-    'popup_link_new_window' => 1,
-    'popup_height' => '120',
-    'popup_width' => '100%',
-    'popup_delay' => '1',
-    'popup_bg_hex' => '575958',
-    'popup_text_hex' => 'ffffff',
-    'domains_option' => '1',
-    'domains_list' => '',
-    'exclude_paths' => '',
-  );
-  $export['eu_cookie_compliance_no'] = $strongarm;
-
-  $strongarm = new stdClass();
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
-  $strongarm->name = 'eu_cookie_compliance_pl';
-  $strongarm->value = array(
-    'popup_enabled' => 1,
-    'popup_clicking_confirmation' => 0,
-    'popup_position' => 1,
-    'popup_agree_button_message' => 'OK, I agree',
-    'popup_disagree_button_message' => 'No, give me more info',
-    'popup_info' => array(
-      'value' => '<p><span style="font-size: small;"><strong>The EU-OSHA website uses cookies to gather information necessary for browsing the website, in accordance with the EU-OSHA privacy notice.</strong></span></p><p>By clicking on any link in the EU-OSHA web pages you are giving your consent for the use of cookies.</p>',
-      'format' => 'full_html',
-    ),
-    'popup_agreed_enabled' => 1,
-    'popup_hide_agreed' => 1,
-    'popup_find_more_button_message' => 'More info',
-    'popup_hide_button_message' => 'Hide',
-    'popup_agreed' => array(
-      'value' => '<h2>Thank you for accepting cookies</h2><p>You can now hide this message or find out more about cookies.</p>',
-      'format' => 'full_html',
-    ),
-    'popup_link' => 'node/5436',
-    'popup_link_new_window' => 1,
-    'popup_height' => '120',
-    'popup_width' => '100%',
-    'popup_delay' => '1',
-    'popup_bg_hex' => '575958',
-    'popup_text_hex' => 'ffffff',
-    'domains_option' => '1',
-    'domains_list' => '',
-    'exclude_paths' => '',
-  );
-  $export['eu_cookie_compliance_pl'] = $strongarm;
-
-  $strongarm = new stdClass();
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
-  $strongarm->name = 'eu_cookie_compliance_pt';
-  $strongarm->value = array(
-    'popup_enabled' => 1,
-    'popup_clicking_confirmation' => 0,
-    'popup_position' => 1,
-    'popup_agree_button_message' => 'OK, I agree',
-    'popup_disagree_button_message' => 'No, give me more info',
-    'popup_info' => array(
-      'value' => '<p><span style="font-size: small;"><strong>The EU-OSHA website uses cookies to gather information necessary for browsing the website, in accordance with the EU-OSHA privacy notice.</strong></span></p><p>By clicking on any link in the EU-OSHA web pages you are giving your consent for the use of cookies.</p>',
-      'format' => 'full_html',
-    ),
-    'popup_agreed_enabled' => 1,
-    'popup_hide_agreed' => 1,
-    'popup_find_more_button_message' => 'More info',
-    'popup_hide_button_message' => 'Hide',
-    'popup_agreed' => array(
-      'value' => '<h2>Thank you for accepting cookies</h2><p>You can now hide this message or find out more about cookies.</p>',
-      'format' => 'full_html',
-    ),
-    'popup_link' => 'node/5436',
-    'popup_link_new_window' => 1,
-    'popup_height' => '120',
-    'popup_width' => '100%',
-    'popup_delay' => '1',
-    'popup_bg_hex' => '575958',
-    'popup_text_hex' => 'ffffff',
-    'domains_option' => '1',
-    'domains_list' => '',
-    'exclude_paths' => '',
-  );
-  $export['eu_cookie_compliance_pt'] = $strongarm;
-
-  $strongarm = new stdClass();
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
-  $strongarm->name = 'eu_cookie_compliance_ro';
-  $strongarm->value = array(
-    'popup_enabled' => 1,
-    'popup_clicking_confirmation' => 0,
-    'popup_position' => 1,
-    'popup_agree_button_message' => 'OK, I agree',
-    'popup_disagree_button_message' => 'No, give me more info',
-    'popup_info' => array(
-      'value' => '<p><span style="font-size: small;"><strong>The EU-OSHA website uses cookies to gather information necessary for browsing the website, in accordance with the EU-OSHA privacy notice.</strong></span></p><p>By clicking on any link in the EU-OSHA web pages you are giving your consent for the use of cookies.</p>',
-      'format' => 'full_html',
-    ),
-    'popup_agreed_enabled' => 1,
-    'popup_hide_agreed' => 1,
-    'popup_find_more_button_message' => 'More info',
-    'popup_hide_button_message' => 'Hide',
-    'popup_agreed' => array(
-      'value' => '<h2>Thank you for accepting cookies</h2><p>You can now hide this message or find out more about cookies.</p>',
-      'format' => 'full_html',
-    ),
-    'popup_link' => 'node/5436',
-    'popup_link_new_window' => 1,
-    'popup_height' => '120',
-    'popup_width' => '100%',
-    'popup_delay' => '1',
-    'popup_bg_hex' => '575958',
-    'popup_text_hex' => 'ffffff',
-    'domains_option' => '1',
-    'domains_list' => '',
-    'exclude_paths' => '',
-  );
-  $export['eu_cookie_compliance_ro'] = $strongarm;
-
-  $strongarm = new stdClass();
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
-  $strongarm->name = 'eu_cookie_compliance_sk';
-  $strongarm->value = array(
-    'popup_enabled' => 1,
-    'popup_clicking_confirmation' => 0,
-    'popup_position' => 1,
-    'popup_agree_button_message' => 'OK, I agree',
-    'popup_disagree_button_message' => 'No, give me more info',
-    'popup_info' => array(
-      'value' => '<p><span style="font-size: small;"><strong>The EU-OSHA website uses cookies to gather information necessary for browsing the website, in accordance with the EU-OSHA privacy notice.</strong></span></p><p>By clicking on any link in the EU-OSHA web pages you are giving your consent for the use of cookies.</p>',
-      'format' => 'full_html',
-    ),
-    'popup_agreed_enabled' => 1,
-    'popup_hide_agreed' => 1,
-    'popup_find_more_button_message' => 'More info',
-    'popup_hide_button_message' => 'Hide',
-    'popup_agreed' => array(
-      'value' => '<h2>Thank you for accepting cookies</h2><p>You can now hide this message or find out more about cookies.</p>',
-      'format' => 'full_html',
-    ),
-    'popup_link' => 'node/5436',
-    'popup_link_new_window' => 1,
-    'popup_height' => '120',
-    'popup_width' => '100%',
-    'popup_delay' => '1',
-    'popup_bg_hex' => '575958',
-    'popup_text_hex' => 'ffffff',
-    'domains_option' => '1',
-    'domains_list' => '',
-    'exclude_paths' => '',
-  );
-  $export['eu_cookie_compliance_sk'] = $strongarm;
-
-  $strongarm = new stdClass();
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
-  $strongarm->name = 'eu_cookie_compliance_sl';
-  $strongarm->value = array(
-    'popup_enabled' => 1,
-    'popup_clicking_confirmation' => 0,
-    'popup_position' => 1,
-    'popup_agree_button_message' => 'OK, I agree',
-    'popup_disagree_button_message' => 'No, give me more info',
-    'popup_info' => array(
-      'value' => '<p><span style="font-size: small;"><strong>The EU-OSHA website uses cookies to gather information necessary for browsing the website, in accordance with the EU-OSHA privacy notice.</strong></span></p><p>By clicking on any link in the EU-OSHA web pages you are giving your consent for the use of cookies.</p>',
-      'format' => 'full_html',
-    ),
-    'popup_agreed_enabled' => 1,
-    'popup_hide_agreed' => 1,
-    'popup_find_more_button_message' => 'More info',
-    'popup_hide_button_message' => 'Hide',
-    'popup_agreed' => array(
-      'value' => '<h2>Thank you for accepting cookies</h2><p>You can now hide this message or find out more about cookies.</p>',
-      'format' => 'full_html',
-    ),
-    'popup_link' => 'node/5436',
-    'popup_link_new_window' => 1,
-    'popup_height' => '120',
-    'popup_width' => '100%',
-    'popup_delay' => '1',
-    'popup_bg_hex' => '575958',
-    'popup_text_hex' => 'ffffff',
-    'domains_option' => '1',
-    'domains_list' => '',
-    'exclude_paths' => '',
-  );
-  $export['eu_cookie_compliance_sl'] = $strongarm;
-
-  $strongarm = new stdClass();
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
-  $strongarm->name = 'eu_cookie_compliance_sv';
-  $strongarm->value = array(
-    'popup_enabled' => 1,
-    'popup_clicking_confirmation' => 0,
-    'popup_position' => 1,
-    'popup_agree_button_message' => 'OK, I agree',
-    'popup_disagree_button_message' => 'No, give me more info',
-    'popup_info' => array(
-      'value' => '<p><span style="font-size: small;"><strong>The EU-OSHA website uses cookies to gather information necessary for browsing the website, in accordance with the EU-OSHA privacy notice.</strong></span></p><p>By clicking on any link in the EU-OSHA web pages you are giving your consent for the use of cookies.</p>',
-      'format' => 'full_html',
-    ),
-    'popup_agreed_enabled' => 1,
-    'popup_hide_agreed' => 1,
-    'popup_find_more_button_message' => 'More info',
-    'popup_hide_button_message' => 'Hide',
-    'popup_agreed' => array(
-      'value' => '<h2>Thank you for accepting cookies</h2><p>You can now hide this message or find out more about cookies.</p>',
-      'format' => 'full_html',
-    ),
-    'popup_link' => 'node/5436',
-    'popup_link_new_window' => 1,
-    'popup_height' => '120',
-    'popup_width' => '100%',
-    'popup_delay' => '1',
-    'popup_bg_hex' => '575958',
-    'popup_text_hex' => 'ffffff',
-    'domains_option' => '1',
-    'domains_list' => '',
-    'exclude_paths' => '',
-  );
-  $export['eu_cookie_compliance_sv'] = $strongarm;
-
-  $strongarm = new stdClass();
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
   $strongarm->name = 'exclude_node_title_content_type_modes_article';
   $strongarm->value = array(
     'full' => 'full',
@@ -1364,12 +745,15 @@ function osha_strongarm() {
     'search_index' => 0,
     'search_result' => 0,
     'diff_standard' => 0,
+    'title_body' => 0,
+    'body' => 0,
     'osha_slideshow' => 0,
     'highlights_item' => 0,
     'newsletter_item' => 0,
-    'osha_wiki' => 0,
+    'pub_teaser' => 0,
     'print' => 0,
     'token' => 0,
+    'revision' => 0,
     'nodeform' => 0,
   );
   $export['exclude_node_title_content_type_modes_article'] = $strongarm;
@@ -1377,9 +761,41 @@ function osha_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'exclude_node_title_content_type_modes_internal_url';
+  $strongarm->value = array(
+    'full' => 'full',
+    'teaser' => 'teaser',
+    'osha_resources' => 'osha_resources',
+    'rss' => 0,
+    'search_index' => 0,
+    'search_result' => 0,
+    'diff_standard' => 0,
+    'title_body' => 0,
+    'body' => 0,
+    'osha_slideshow' => 0,
+    'highlights_item' => 0,
+    'newsletter_item' => 0,
+    'pub_teaser' => 0,
+    'print' => 0,
+    'token' => 0,
+    'revision' => 0,
+    'nodeform' => 0,
+  );
+  $export['exclude_node_title_content_type_modes_internal_url'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'exclude_node_title_content_type_value_article';
   $strongarm->value = 'all';
   $export['exclude_node_title_content_type_value_article'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'exclude_node_title_content_type_value_internal_url';
+  $strongarm->value = 'all';
+  $export['exclude_node_title_content_type_value_internal_url'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
@@ -1421,10 +837,7 @@ function osha_strongarm() {
         'custom_settings' => FALSE,
       ),
       'osha_slideshow' => array(
-        'custom_settings' => TRUE,
-      ),
-      'highlights_item' => array(
-        'custom_settings' => TRUE,
+        'custom_settings' => FALSE,
       ),
       'newsletter_item' => array(
         'custom_settings' => TRUE,
@@ -1438,29 +851,135 @@ function osha_strongarm() {
       'osha_resources' => array(
         'custom_settings' => TRUE,
       ),
+      'highlights_item' => array(
+        'custom_settings' => TRUE,
+      ),
+      'pub_teaser' => array(
+        'custom_settings' => FALSE,
+      ),
+      'title_body' => array(
+        'custom_settings' => TRUE,
+      ),
+      'body' => array(
+        'custom_settings' => TRUE,
+      ),
+      'revision' => array(
+        'custom_settings' => FALSE,
+      ),
     ),
     'extra_fields' => array(
       'form' => array(
         'path' => array(
-          'weight' => '17',
+          'weight' => '9',
         ),
         'language' => array(
           'weight' => '2',
         ),
         'redirect' => array(
-          'weight' => '18',
+          'weight' => '10',
         ),
         'metatags' => array(
-          'weight' => '19',
+          'weight' => '11',
         ),
         'workbench_access' => array(
           'weight' => '1',
         ),
       ),
-      'display' => array(),
+      'display' => array(
+        'share_widget' => array(
+          'default' => array(
+            'weight' => '3',
+            'visible' => TRUE,
+          ),
+          'body' => array(
+            'weight' => '1',
+            'visible' => FALSE,
+          ),
+          'title_body' => array(
+            'weight' => '2',
+            'visible' => FALSE,
+          ),
+          'osha_resources' => array(
+            'weight' => '0',
+            'visible' => TRUE,
+          ),
+        ),
+      ),
     ),
   );
   $export['field_bundle_settings_node__article'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'field_bundle_settings_node__internal_url';
+  $strongarm->value = array(
+    'view_modes' => array(
+      'teaser' => array(
+        'custom_settings' => TRUE,
+      ),
+      'osha_slideshow' => array(
+        'custom_settings' => TRUE,
+      ),
+      'highlights_item' => array(
+        'custom_settings' => TRUE,
+      ),
+      'newsletter_item' => array(
+        'custom_settings' => TRUE,
+      ),
+      'pub_teaser' => array(
+        'custom_settings' => TRUE,
+      ),
+      'osha_resources' => array(
+        'custom_settings' => TRUE,
+      ),
+      'full' => array(
+        'custom_settings' => FALSE,
+      ),
+      'rss' => array(
+        'custom_settings' => FALSE,
+      ),
+      'search_index' => array(
+        'custom_settings' => FALSE,
+      ),
+      'search_result' => array(
+        'custom_settings' => FALSE,
+      ),
+      'diff_standard' => array(
+        'custom_settings' => FALSE,
+      ),
+      'print' => array(
+        'custom_settings' => FALSE,
+      ),
+      'token' => array(
+        'custom_settings' => FALSE,
+      ),
+    ),
+    'extra_fields' => array(
+      'form' => array(
+        'metatags' => array(
+          'weight' => '2',
+        ),
+        'title' => array(
+          'weight' => '-5',
+        ),
+        'path' => array(
+          'weight' => '0',
+        ),
+        'redirect' => array(
+          'weight' => '1',
+        ),
+        'workbench_access' => array(
+          'weight' => '4',
+        ),
+        'language' => array(
+          'weight' => '0',
+        ),
+      ),
+      'display' => array(),
+    ),
+  );
+  $export['field_bundle_settings_node__internal_url'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
@@ -1504,9 +1023,6 @@ function osha_strongarm() {
       'osha_slideshow' => array(
         'custom_settings' => TRUE,
       ),
-      'highlights_item' => array(
-        'custom_settings' => TRUE,
-      ),
       'newsletter_item' => array(
         'custom_settings' => TRUE,
       ),
@@ -1537,6 +1053,32 @@ function osha_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'field_bundle_settings_node__webform';
+  $strongarm->value = array(
+    'view_modes' => array(),
+    'extra_fields' => array(
+      'form' => array(
+        'metatags' => array(
+          'weight' => '5',
+        ),
+        'path' => array(
+          'weight' => '4',
+        ),
+        'redirect' => array(
+          'weight' => '3',
+        ),
+        'workbench_access' => array(
+          'weight' => '2',
+        ),
+      ),
+      'display' => array(),
+    ),
+  );
+  $export['field_bundle_settings_node__webform'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'htmlmail_postfilter';
   $strongarm->value = '0';
   $export['htmlmail_postfilter'] = $strongarm;
@@ -1562,9 +1104,23 @@ function osha_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'language_content_type_internal_url';
+  $strongarm->value = '4';
+  $export['language_content_type_internal_url'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'language_content_type_page';
   $strongarm->value = 4;
   $export['language_content_type_page'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'language_content_type_webform';
+  $strongarm->value = '4';
+  $export['language_content_type_webform'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
@@ -1668,11 +1224,28 @@ function osha_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'locale_field_language_fallback';
+  $strongarm->value = 1;
+  $export['locale_field_language_fallback'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'menu_options_article';
+  $strongarm->value = array(
+    0 => 'menu-footer-menu',
+    1 => 'main-menu',
+  );
+  $export['menu_options_article'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'menu_options_internal_url';
   $strongarm->value = array(
     0 => 'main-menu',
   );
-  $export['menu_options_article'] = $strongarm;
+  $export['menu_options_internal_url'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
@@ -1686,6 +1259,15 @@ function osha_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'menu_options_webform';
+  $strongarm->value = array(
+    0 => 'main-menu',
+  );
+  $export['menu_options_webform'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'menu_parent_article';
   $strongarm->value = 'main-menu:0';
   $export['menu_parent_article'] = $strongarm;
@@ -1693,9 +1275,23 @@ function osha_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'menu_parent_internal_url';
+  $strongarm->value = 'main-menu:0';
+  $export['menu_parent_internal_url'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'menu_parent_page';
   $strongarm->value = 'main-menu:0';
   $export['menu_parent_page'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'menu_parent_webform';
+  $strongarm->value = 'main-menu:0';
+  $export['menu_parent_webform'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
@@ -1773,11 +1369,29 @@ function osha_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'node_options_internal_url';
+  $strongarm->value = array(
+    0 => 'status',
+  );
+  $export['node_options_internal_url'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'node_options_page';
   $strongarm->value = array(
     0 => 'status',
   );
   $export['node_options_page'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'node_options_webform';
+  $strongarm->value = array(
+    0 => 'status',
+  );
+  $export['node_options_webform'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
@@ -1789,9 +1403,23 @@ function osha_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'node_preview_internal_url';
+  $strongarm->value = '1';
+  $export['node_preview_internal_url'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'node_preview_page';
   $strongarm->value = 1;
   $export['node_preview_page'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'node_preview_webform';
+  $strongarm->value = '1';
+  $export['node_preview_webform'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
@@ -1803,6 +1431,13 @@ function osha_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'node_submitted_internal_url';
+  $strongarm->value = 0;
+  $export['node_submitted_internal_url'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'node_submitted_page';
   $strongarm->value = FALSE;
   $export['node_submitted_page'] = $strongarm;
@@ -1810,9 +1445,9 @@ function osha_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
-  $strongarm->name = 'pathauto_blog_pattern';
-  $strongarm->value = 'blogs/[user:name]';
-  $export['pathauto_blog_pattern'] = $strongarm;
+  $strongarm->name = 'node_submitted_webform';
+  $strongarm->value = 0;
+  $export['node_submitted_webform'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
@@ -1894,23 +1529,9 @@ function osha_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
-  $strongarm->name = 'pathauto_node_blog_pattern';
-  $strongarm->value = 'blog/[node:title]';
-  $export['pathauto_node_blog_pattern'] = $strongarm;
-
-  $strongarm = new stdClass();
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
   $strongarm->name = 'pathauto_node_calls_pattern';
   $strongarm->value = 'inside-eu-osha/procurement/[node:title]';
   $export['pathauto_node_calls_pattern'] = $strongarm;
-
-  $strongarm = new stdClass();
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
-  $strongarm->name = 'pathauto_node_directive_pattern';
-  $strongarm->value = 'legislation/directive/[node:title]';
-  $export['pathauto_node_directive_pattern'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
@@ -1936,20 +1557,6 @@ function osha_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
-  $strongarm->name = 'pathauto_node_guideline_pattern';
-  $strongarm->value = 'legislation/guidelines/[node:title]';
-  $export['pathauto_node_guideline_pattern'] = $strongarm;
-
-  $strongarm = new stdClass();
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
-  $strongarm->name = 'pathauto_node_highlight_pattern';
-  $strongarm->value = 'highlights/[node:title]';
-  $export['pathauto_node_highlight_pattern'] = $strongarm;
-
-  $strongarm = new stdClass();
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
   $strongarm->name = 'pathauto_node_infographic_pattern';
   $strongarm->value = 'tools-and-publications/infographics/[node:title]';
   $export['pathauto_node_infographic_pattern'] = $strongarm;
@@ -1964,15 +1571,8 @@ function osha_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
-  $strongarm->name = 'pathauto_node_newsletter_article_pattern';
-  $strongarm->value = '';
-  $export['pathauto_node_newsletter_article_pattern'] = $strongarm;
-
-  $strongarm = new stdClass();
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
   $strongarm->name = 'pathauto_node_news_pattern';
-  $strongarm->value = 'oshnews/[node:title]';
+  $strongarm->value = 'news/[node:title]';
   $export['pathauto_node_news_pattern'] = $strongarm;
 
   $strongarm = new stdClass();
@@ -2016,13 +1616,6 @@ function osha_strongarm() {
   $strongarm->name = 'pathauto_node_publication_pattern';
   $strongarm->value = 'tools-and-publications/publications/[node:title]';
   $export['pathauto_node_publication_pattern'] = $strongarm;
-
-  $strongarm = new stdClass();
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
-  $strongarm->name = 'pathauto_node_seminar_pattern';
-  $strongarm->value = 'tools-and-publications/seminars/[node:title]';
-  $export['pathauto_node_seminar_pattern'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
@@ -2128,7 +1721,6 @@ function osha_strongarm() {
   $strongarm->name = 'site_map_show_menus';
   $strongarm->value = array(
     'main-menu' => 'main-menu',
-    'devel' => 0,
     'features' => 0,
     'menu-footer-menu' => 0,
     'management' => 0,
@@ -2158,6 +1750,20 @@ function osha_strongarm() {
   $strongarm->name = 'spamspan_dot_enable';
   $strongarm->value = '1';
   $export['spamspan_dot_enable'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'workbench_access_node_type_internal_url';
+  $strongarm->value = 0;
+  $export['workbench_access_node_type_internal_url'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'workbench_moderation_default_state_internal_url';
+  $strongarm->value = 'draft';
+  $export['workbench_moderation_default_state_internal_url'] = $strongarm;
 
   return $export;
 }

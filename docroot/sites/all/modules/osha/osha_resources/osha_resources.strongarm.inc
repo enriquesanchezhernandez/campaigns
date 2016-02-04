@@ -403,7 +403,7 @@ function osha_resources_strongarm() {
     'osha_slideshow' => 0,
     'highlights_item' => 0,
     'newsletter_item' => 0,
-    'osha_wiki' => 0,
+    'pub_teaser' => 0,
     'print' => 0,
     'token' => 0,
     'nodeform' => 0,
@@ -425,7 +425,7 @@ function osha_resources_strongarm() {
     'osha_slideshow' => 0,
     'highlights_item' => 0,
     'newsletter_item' => 0,
-    'osha_wiki' => 0,
+    'pub_teaser' => 0,
     'print' => 0,
     'token' => 0,
     'nodeform' => 0,
@@ -447,7 +447,7 @@ function osha_resources_strongarm() {
     'osha_slideshow' => 0,
     'highlights_item' => 0,
     'newsletter_item' => 0,
-    'osha_wiki' => 0,
+    'pub_teaser' => 0,
     'print' => 0,
     'token' => 0,
     'nodeform' => 0,
@@ -469,7 +469,7 @@ function osha_resources_strongarm() {
     'osha_slideshow' => 0,
     'highlights_item' => 0,
     'newsletter_item' => 0,
-    'osha_wiki' => 0,
+    'pub_teaser' => 0,
     'print' => 0,
     'token' => 0,
     'nodeform' => 0,
@@ -491,7 +491,7 @@ function osha_resources_strongarm() {
     'osha_slideshow' => 0,
     'highlights_item' => 0,
     'newsletter_item' => 0,
-    'osha_wiki' => 0,
+    'pub_teaser' => 0,
     'print' => 0,
     'token' => 0,
     'nodeform' => 0,
@@ -545,9 +545,6 @@ function osha_resources_strongarm() {
       'osha_slideshow' => array(
         'custom_settings' => FALSE,
       ),
-      'highlights_item' => array(
-        'custom_settings' => FALSE,
-      ),
       'newsletter_item' => array(
         'custom_settings' => FALSE,
       ),
@@ -577,6 +574,21 @@ function osha_resources_strongarm() {
       ),
       'osha_resources' => array(
         'custom_settings' => TRUE,
+      ),
+      'title_body' => array(
+        'custom_settings' => TRUE,
+      ),
+      'body' => array(
+        'custom_settings' => TRUE,
+      ),
+      'highlights_item' => array(
+        'custom_settings' => TRUE,
+      ),
+      'pub_teaser' => array(
+        'custom_settings' => TRUE,
+      ),
+      'revision' => array(
+        'custom_settings' => FALSE,
       ),
     ),
     'extra_fields' => array(
@@ -609,9 +621,6 @@ function osha_resources_strongarm() {
         'custom_settings' => TRUE,
       ),
       'osha_slideshow' => array(
-        'custom_settings' => FALSE,
-      ),
-      'highlights_item' => array(
         'custom_settings' => FALSE,
       ),
       'newsletter_item' => array(
@@ -677,9 +686,6 @@ function osha_resources_strongarm() {
       'osha_slideshow' => array(
         'custom_settings' => FALSE,
       ),
-      'highlights_item' => array(
-        'custom_settings' => FALSE,
-      ),
       'newsletter_item' => array(
         'custom_settings' => FALSE,
       ),
@@ -709,6 +715,21 @@ function osha_resources_strongarm() {
       ),
       'osha_resources' => array(
         'custom_settings' => TRUE,
+      ),
+      'title_body' => array(
+        'custom_settings' => TRUE,
+      ),
+      'body' => array(
+        'custom_settings' => TRUE,
+      ),
+      'highlights_item' => array(
+        'custom_settings' => TRUE,
+      ),
+      'pub_teaser' => array(
+        'custom_settings' => TRUE,
+      ),
+      'revision' => array(
+        'custom_settings' => FALSE,
       ),
     ),
     'extra_fields' => array(
@@ -741,9 +762,6 @@ function osha_resources_strongarm() {
         'custom_settings' => TRUE,
       ),
       'osha_slideshow' => array(
-        'custom_settings' => TRUE,
-      ),
-      'highlights_item' => array(
         'custom_settings' => TRUE,
       ),
       'newsletter_item' => array(
@@ -809,9 +827,6 @@ function osha_resources_strongarm() {
       'osha_slideshow' => array(
         'custom_settings' => FALSE,
       ),
-      'highlights_item' => array(
-        'custom_settings' => FALSE,
-      ),
       'newsletter_item' => array(
         'custom_settings' => FALSE,
       ),
@@ -873,9 +888,6 @@ function osha_resources_strongarm() {
         'custom_settings' => TRUE,
       ),
       'osha_slideshow' => array(
-        'custom_settings' => FALSE,
-      ),
-      'highlights_item' => array(
         'custom_settings' => FALSE,
       ),
       'newsletter_item' => array(
@@ -1368,13 +1380,6 @@ function osha_resources_strongarm() {
   $strongarm->name = 'node_submitted_youtube';
   $strongarm->value = 0;
   $export['node_submitted_youtube'] = $strongarm;
-
-  $strongarm = new stdClass();
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
-  $strongarm->name = 'on_the_web_flickr_page';
-  $strongarm->value = 'http://www.flickr.com/photos/euosha/';
-  $export['on_the_web_flickr_page'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */

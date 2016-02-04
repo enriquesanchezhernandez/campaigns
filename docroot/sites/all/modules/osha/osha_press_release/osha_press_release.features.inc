@@ -11,6 +11,18 @@ function osha_press_release_ctools_plugin_api($module = NULL, $api = NULL) {
   if ($module == "context" && $api == "context") {
     return array("version" => "3");
   }
+  if ($module == "ds" && $api == "ds") {
+    return array("version" => "1");
+  }
+  if ($module == "page_manager" && $api == "pages_default") {
+    return array("version" => "1");
+  }
+  if ($module == "panels_mini" && $api == "panels_default") {
+    return array("version" => "1");
+  }
+  if ($module == "path_breadcrumbs" && $api == "path_breadcrumbs") {
+    return array("version" => "1");
+  }
   if ($module == "strongarm" && $api == "strongarm") {
     return array("version" => "1");
   }
@@ -52,6 +64,29 @@ function osha_press_release_fe_nodequeue_export_fields() {
     'count' => 0,
   );
 
+  // Exported nodequeues: press_contacts_queue
+  $nodequeues['press_contacts_queue'] = array(
+    'name' => 'press_contacts_queue',
+    'title' => 'Press contacts',
+    'subqueue_title' => '',
+    'size' => 0,
+    'link' => '',
+    'link_remove' => '',
+    'owner' => 'nodequeue',
+    'show_in_ui' => 1,
+    'show_in_tab' => 1,
+    'show_in_links' => 0,
+    'reference' => 0,
+    'reverse' => 0,
+    'i18n' => 1,
+    'subqueues' => 1,
+    'types' => array(
+      0 => 'press_contact',
+    ),
+    'roles' => array(),
+    'count' => 0,
+  );
+
   return $nodequeues;
 }
 
@@ -60,6 +95,14 @@ function osha_press_release_fe_nodequeue_export_fields() {
  */
 function osha_press_release_node_info() {
   $items = array(
+    'press_contact' => array(
+      'name' => t('Press contact'),
+      'base' => 'node_content',
+      'description' => t('Contacts (extended old Press contacts)  - used for Press contacts, Focal Points, Board Members etc.'),
+      'has_title' => '1',
+      'title_label' => t('Title'),
+      'help' => '',
+    ),
     'press_release' => array(
       'name' => t('Press release'),
       'base' => 'node_content',

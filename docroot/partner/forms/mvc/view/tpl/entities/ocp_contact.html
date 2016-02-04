@@ -1,0 +1,105 @@
+<!--{if $HelpMessage != "print"}
+<div id="container-message" class="container-message">   
+
+        <div id="MESSAGE">
+            Please make sure you thoroughly check, whether all your information is still valid
+                       and indicate <br>     this by checking the button next to the appropiate fields
+                       <a class="close">[X]</a>
+        </div>            
+    </div>
+{else}
+{/if}-->
+<fieldset>
+    <legend id="PRIMARY_CONTACT">
+        Primary Contact
+        <div data-section="PRIMARY_CONTACT" class="validation{$locked}"></div>
+    </legend>
+    
+    <div class="separatorFieldSet">&nbsp;</div>
+    
+    {if !mf && $partner_type == "current"}<div>{$attributes.contact_osh_maincontactchange}</div>{/if}
+    <div class="main-contact-change">
+        <div class="float-left">
+            {$attributes.contact_osh_maincontactpersonfirstname}
+            {$attributes.contact_osh_maincontactpersonlastname}
+            {$attributes.contact_osh_positionmaincontactperson}
+            {if !$mf && $partner_type != "current" && !$locked}
+            {$attributes.contact_osh_captcha}
+            {/if}
+        </div>
+        <div class="float-right">
+            {$attributes.contact_osh_mainphone}
+            {if $mf}
+                <div class="disabledEmailForMF">
+            {/if}
+            {$attributes.contact_osh_mainemail}
+            {if $mf}
+                </div>
+            {/if}
+            {if !$mf}
+                {$attributes.contact_osh_confirm_mainemail}
+            {/if}
+        </div>
+    </div>
+    <div class="hidden">
+        {$attributes.helpMessage}
+        {$attributes.contact_osh_mainemailAux}
+        {$attributes.company_osh_orgnameAux}
+        {$attributes.osh_primarycontactsection}
+    </div>
+</fieldset>
+{if $mf}
+<fieldset id="osh_otheruser">
+    <legend id="OTHER_USERS">
+        Other users
+        <div data-section="OTHER_USERS" class="validation{$locked}"></div>
+    </legend>
+    
+    <div class="separatorFieldSet">&nbsp;</div>
+    <p id="general-text">In this section you can add additional contacts for your own organisation. These new users will be able to make changes to your organisational profile. You will always be notified of such changes</p>
+   
+   <div id="otherUserField1" style="margin-top: -7%;">
+        {$attributes.contact_osh_otherusername1}
+        {$attributes.contact_osh_otherusermail1}
+        {$attributes.contact_osh_otheruserphone1}
+        <div class="removeOtherUserDiv">
+            <button id="removeOtherUser1" type="button">
+                Remove user
+            </button>
+        </div>
+    </div>
+   <div id="otherUserField2">
+        {$attributes.contact_osh_otherusername2}
+        {$attributes.contact_osh_otherusermail2}
+        {$attributes.contact_osh_otheruserphone2}
+        <div class="removeOtherUserDiv">
+            <button id="removeOtherUser2" type="button">
+                Remove user
+            </button>
+        </div>
+    </div>
+   <div id="otherUserField3">
+        {$attributes.contact_osh_otherusername3}
+        {$attributes.contact_osh_otherusermail3}
+        {$attributes.contact_osh_otheruserphone3}
+        <div class="removeOtherUserDiv">
+            <button id="removeOtherUser3" type="button">
+                Remove user
+            </button>
+        </div>
+    </div>
+   
+   
+   <button class="addOtherUser" style="margin-top: 1%;" type="button">
+        Add user
+    </button>
+</fieldset>
+{/if}
+{if $partner_type == "new"}
+<div class="div_disclaimer">
+    <div id="div_disclaimer_text" class="hidden">
+        TEXT TO BE CHANGED
+    </div>
+    <a id="a_disclaimer">Show/Hide Disclaimer</a>
+</div>
+{/if}

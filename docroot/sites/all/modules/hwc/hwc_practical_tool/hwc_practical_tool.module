@@ -1,0 +1,147 @@
+<?php
+/**
+ * @file
+ * Code for the HWC Practical tool feature.
+ */
+
+include_once 'hwc_practical_tool.features.inc';
+
+/**
+ * Implements hook_block_info().
+ */
+function hwc_practical_tool_block_info() {
+  $blocks = array();
+  $blocks['hwc_practical_tool_listing'] = array(
+    'info' => t('Practical tools listing'),
+    'status' => 1,
+    'region' => '-1',
+    'visibility' => BLOCK_VISIBILITY_NOTLISTED,
+    'cache' => DRUPAL_CACHE_GLOBAL,
+  );
+  $blocks['hwc_practical_tool_language_list'] = array(
+    'info' => t('Practical tool language list'),
+    'status' => 1,
+    'region' => '-1',
+    'visibility' => BLOCK_VISIBILITY_NOTLISTED,
+    'cache' => DRUPAL_CACHE_GLOBAL,
+  );
+  return $blocks;
+}
+
+/**
+ * Implements hook_block_view().
+ */
+function hwc_practical_tool_block_view($delta = '') {
+  $block = array();
+  if ($delta == 'hwc_practical_tool_language_list') {
+    if ($node = menu_get_object()) {
+      $q = db_select('languages', 'l');
+      $q->fields('l', array('language', 'name', 'native'));
+      $q->innerJoin('entity_translation', 'a', 'l.language = a.language');
+      $q->condition('a.entity_id', $node->nid);
+      $q->condition('a.entity_type', 'node');
+      $languages = $q->execute()->fetchAll();
+
+      $block['content'] = theme('hwc_practical_tool_language_list', array(
+          'languages' => $languages,
+        )
+      );
+    }
+  }
+  if ($delta == 'hwc_practical_tool_listing') {
+    module_load_include('inc', 'hwc_practical_tool', 'hwc_practical_tool.pages');
+    $block['content'] = drupal_get_form('hwc_practical_tool_menu_tools_form');
+  }
+  return $block;
+}
+
+/**
+ * Implements hook_field_formatter_info().
+ */
+function hwc_practical_tool_field_formatter_info() {
+  $info = array(
+    'access_tool_link_and_language' => array(
+      'label' => t('Access tool link and language'),
+      'field types' => array('field_collection'),
+      'settings' => array(
+        'label' => t('Visit tool in:'),
+      ),
+    ),
+    'access_tool_link_details' => array(
+      'label' => t('Access tool link for practical tool details'),
+      'field types' => array('field_collection'),
+      'settings' => array(
+        'label_1' => t('Access tool:'),
+        'label_2' => t('Available in:'),
+      ),
+    ),
+  );
+  return $info;
+}
+
+/**
+ * Implements hook_theme().
+ */
+function hwc_practical_tool_theme() {
+  $theme = array();
+  $path = drupal_get_path('module', 'hwc_practical_tool');
+  $theme['hwc_practical_tool_language_list'] = array(
+    'template' => 'hwc_practical_tool_language_list',
+    'variables' => array(
+      'languages' => NULL,
+    ),
+    'path' => $path . '/templates',
+  );
+  $theme['access_tool_link_and_language'] = array(
+    'template' => 'hwc_practical_tool_access_tool_link_and_language',
+    'variables' => array(
+      'items' => NULL,
+      'label' => NULL,
+    ),
+    'path' => $path . '/templates',
+  );
+  $theme['access_tool_link_details'] = array(
+    'template' => 'hwc_practical_tool_access_tool_link_details',
+    'variables' => array(
+      'items' => NULL,
+      'label_1' => NULL,
+      'label_2' => NULL,
+      'node' => NULL,
+    ),
+    'path' => $path . '/templates',
+  );
+  return $theme;
+}
+
+/**
+ * Implements hook_field_formatter_view().
+ */
+function hwc_practical_tool_field_formatter_view($entity_type, $entity, $field, $instance, $langcode, $items, $display) {
+  $element = array();
+  switch ($display['type']) {
+    case 'access_tool_link_and_language':
+      $settings = $display['settings'];
+      $label = trim($settings['label']);
+      $element = array(
+        '#theme' => 'access_tool_link_and_language',
+        '#items' => $items,
+        '#label' => $label,
+      );
+      break;
+
+    case 'access_tool_link_details':
+      $settings = $display['settings'];
+      $label_1 = trim($settings['label_1']);
+      $label_2 = trim($settings['label_2']);
+      $element = array(
+        '#theme' => 'access_tool_link_details',
+        '#items' => $items,
+        '#label_1' => $label_1,
+        '#label_2' => $label_2,
+        '#node' => entity_metadata_wrapper('node', $entity),
+      );
+      break;
+
+  }
+  return $element;
+}

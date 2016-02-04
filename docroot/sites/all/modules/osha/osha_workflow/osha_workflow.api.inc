@@ -22,73 +22,60 @@ function osha_workflow_get_default_approvers() {
   return $users;
 }
 
-/**
- * Function to retrieve default Project Manager for a section.
- *
- *   It searches UP in the section tree for an assigned PM.
- *
- * @param int|string $section
- *   Section ID
- *
- * @return object|FALSE
- *   User Object
- */
-function osha_workflow_get_default_project_manager($section) {
-  $section_tree = workbench_access_get_active_tree();
-  if (osha_workflow_access_pm_check_root()) {
-    if (!empty($section_tree['tree'])) {
-      $users = osha_workflow_access_find_pm($section_tree, $section);
-      if (!empty($users)) {
-        return current($users);
-      }
-    }
+function osha_workflow_rebuild_pm_sections($uid, $sections) {
+  $workbench_access_scheme = variable_get('workbench_access');
+  db_delete('osha_workflow_access_pm')
+    ->condition('access_scheme', $workbench_access_scheme)
+    ->condition('uid', $uid)
+    ->execute();
+  foreach($sections as $sid) {
+    $record = array(
+      'uid' => $uid,
+      'access_id' => $sid,
+      'access_scheme' => $workbench_access_scheme,
+    );
+    drupal_write_record('osha_workflow_access_pm', $record);
   }
-  return FALSE;
+}
+
+function osha_workflow_rebuild_rm_sections($uid, $sections) {
+  $workbench_access_scheme = variable_get('workbench_access');
+  db_delete('osha_workflow_access_rm')
+    ->condition('access_scheme', $workbench_access_scheme)
+    ->condition('uid', $uid)
+    ->execute();
+  foreach($sections as $sid) {
+    $record = array(
+      'uid' => $uid,
+      'access_id' => $sid,
+      'access_scheme' => $workbench_access_scheme,
+    );
+    drupal_write_record('osha_workflow_access_rm', $record);
+  }
 }
 
 /**
- * Recursion Function to get the project manager from sections tree.
- *
- * @param array $section_tree
- *   active tree array
- * @param int|string $section_id
- *   Id of the section to search PM for
- *
+ * Get PMs for a section (currently one per section, but we return array).
  * @return array
- *   Array of Users Objects
+ *   User objects
  */
-function osha_workflow_access_find_pm(&$section_tree, $section_id) {
+function osha_workflow_access_get_section_pm($section_id) {
+  $ret = array();
+  $section_tree = workbench_access_get_active_tree();
   $access = $section_tree['tree'][$section_id];
-  $users = osha_workflow_access_pm_get_pm($access['access_id'],
-    $section_tree['access_scheme']['access_scheme']);
-  if (empty($users)&& !empty($access['parent'])) {
-    $users = osha_workflow_access_find_pm($section_tree, $access['parent']);
-  }
-  else {
-    return $users;
-  }
-  return $users;
-}
+  $access_id = $access['access_id'];
+  $access_scheme = $section_tree['access_scheme']['access_scheme'];
 
-/**
- * Get PM of a section.
- */
-function osha_workflow_access_pm_get_pm($access_id, $access_scheme) {
-  return user_load_multiple(
-    osha_workflow_access_pm_get_pm_uid($access_id, $access_scheme));
-}
-
-/**
- * Get PM of a section.
- */
-function osha_workflow_access_pm_get_pm_uid($access_id, $access_scheme) {
   $users = db_select('osha_workflow_access_pm', 'owa')
     ->fields('owa', array('uid'))
-    ->condition('access_id', $access_id)
+    ->condition('access_id', $access_id, '=')
     ->condition('access_scheme', $access_scheme)
     ->execute()
     ->fetchAllAssoc('uid');
-  return array_keys($users);
+  if (!empty($users)) {
+    $ret = user_load_multiple(array_keys($users));
+  }
+  return $ret;
 }
 
 /**
@@ -101,29 +88,6 @@ function osha_workflow_access_get_pm_sections($uid) {
     ->execute()
     ->fetchAllAssoc('access_id');
   return array_keys($sections);
-}
-
-/**
- * Checks for PM to be assigned to root Section.
- *
- * @return bool
- *   If a PM is assigned for root Section or not.
- */
-function osha_workflow_access_pm_check_root() {
-  $section_tree = workbench_access_get_active_tree();
-  $access = current($section_tree['tree']);
-  if (!empty($access)) {
-    $users = osha_workflow_access_pm_get_pm($access['access_id'],
-      $section_tree['access_scheme']['access_scheme']);
-    if (!empty($users)) {
-      return TRUE;
-    }
-    else {
-      drupal_set_message(t("Workflow: You haven't assigned a PM for root Section"), 'error');
-      return FALSE;
-    }
-  }
-  return FALSE;
 }
 
 /**
@@ -193,10 +157,10 @@ function osha_workflow_is_assigned_project_manager($nid) {
 function osha_workflow_create_roles() {
   module_load_include('inc', 'osha_workflow', 'osha_workflow.permissions');
   $roles = array(
-    'Editor' => osha_workflow_permissions_role_editor(),
-    'Review Manager' => osha_workflow_permissions_role_review_manager(),
-    'Project Manager' => osha_workflow_permissions_role_project_manager(),
-    'Approver' => osha_workflow_permissions_role_approver(),
+    OSHA_WORKFLOW_ROLE_EDITOR => osha_workflow_permissions_role_editor(),
+    OSHA_WORKFLOW_ROLE_REVIEW_MANAGER => osha_workflow_permissions_role_review_manager(),
+    OSHA_WORKFLOW_ROLE_PROJECT_MANAGER => osha_workflow_permissions_role_project_manager(),
+    OSHA_WORKFLOW_ROLE_APPROVER => osha_workflow_permissions_role_approver(),
   );
 
   foreach ($roles as $role_name => $permissions) {
@@ -210,7 +174,7 @@ function osha_workflow_create_roles() {
     }
     user_role_grant_permissions($role->rid, $permissions);
     // Grant workbench access for this role.
-    workbench_access_role_section_save($role->rid, 'main-menu', 'menu');
+    workbench_access_role_section_save($role->rid, 'section', 'taxonomy');
   }
 }
 
@@ -561,11 +525,12 @@ class OshaWorkflowPermissions {
       global $user;
     }
     if (isset($node->workbench_moderation)) {
-      // $current = $node->workbench_moderation['current'];
-      // $state = $current->state;
-      return
-        self::userHasRole(OSHA_WORKFLOW_ROLE_REVIEW_MANAGER, $user)
-        || self::userHasRole(OSHA_WORKFLOW_ROLE_ADMINISTRATOR, $user);
+      $node_in_rm_section = FALSE;
+      if (self::userHasRole(OSHA_WORKFLOW_ROLE_REVIEW_MANAGER, $user)) {
+        $node_in_rm_section = osha_workflow_node_in_rm_section($node, $user);
+      }
+      $is_admin = self::userHasRole(OSHA_WORKFLOW_ROLE_ADMINISTRATOR, $user);
+      return $is_admin || $node_in_rm_section;
     }
     return FALSE;
   }
@@ -587,13 +552,9 @@ class OshaWorkflowPermissions {
       global $user;
     }
     if (isset($node->workbench_moderation)) {
-      // $current = $node->workbench_moderation['current'];
-      // $state = $current->state;
-
-      if (self::userHasRole(OSHA_WORKFLOW_ROLE_ADMINISTRATOR, $user)
-          || self::userHasRole(OSHA_WORKFLOW_ROLE_REVIEW_MANAGER, $user)) {
-        return TRUE;
-      }
+      $node_in_rm_section = osha_workflow_node_in_rm_section($node, $user);
+      $is_admin = self::userHasRole(OSHA_WORKFLOW_ROLE_ADMINISTRATOR, $user);
+      return $is_admin || $node_in_rm_section;
     }
     return FALSE;
   }
@@ -711,7 +672,8 @@ class OshaWorkflowNotifications {
    *   Affected node
    */
   public static function notifyOnChangeFromDraftToFinalDraft($node) {
-    $users = OshaWorkflowPermissions::getUsersByRole(OSHA_WORKFLOW_ROLE_REVIEW_MANAGER);
+    // Get RM of node's section.
+    $users = osha_workflow_get_node_rm($node);
     OshaWorkflowNotifications::sendEmail($users, array('node' => $node), 'osha_workflow');
   }
 
@@ -737,8 +699,10 @@ class OshaWorkflowNotifications {
    *   Affected node
    */
   public static function notifyOnChangeFromDraftOrFinalDraftToBeReviewed($node) {
-    $user = osha_workflow_get_project_manager($node->nid);
-    OshaWorkflowNotifications::sendEmail($user, array('node' => $node), 'osha_workflow');
+    $users = osha_workflow_get_node_rm($node);
+    $users[] = osha_workflow_get_project_manager($node->nid);
+
+    OshaWorkflowNotifications::sendEmail($users, array('node' => $node), 'osha_workflow');
   }
 
   /**
@@ -762,7 +726,7 @@ class OshaWorkflowNotifications {
    *   Affected node
    */
   public static function notifyOnNodeApproved($node) {
-    $users = OshaWorkflowPermissions::getUsersByRole(OSHA_WORKFLOW_ROLE_REVIEW_MANAGER);
+    $users = osha_workflow_get_node_rm($node);
     $users[] = osha_workflow_get_project_manager($node->nid);
     OshaWorkflowNotifications::sendEmail($users, array('node' => $node), 'osha_workflow');
   }
@@ -776,7 +740,7 @@ class OshaWorkflowNotifications {
    *   Affected node
    */
   public static function notifyOnNodeRejected($node) {
-    $users = OshaWorkflowPermissions::getUsersByRole(OSHA_WORKFLOW_ROLE_REVIEW_MANAGER);
+    $users = osha_workflow_get_node_rm($node);
     $users[] = osha_workflow_get_project_manager($node->nid);
     OshaWorkflowNotifications::sendEmail($users, array('node' => $node), 'osha_workflow');
   }
@@ -790,7 +754,7 @@ class OshaWorkflowNotifications {
    *   Affected node
    */
   public static function notifyNodeRejectedFromApprovedToFinalDraft($node) {
-    $users = OshaWorkflowPermissions::getUsersByRole(OSHA_WORKFLOW_ROLE_REVIEW_MANAGER);
+    $users = osha_workflow_get_node_rm($node);
     OshaWorkflowNotifications::sendEmail($users, array('node' => $node), 'osha_workflow');
   }
 
@@ -805,11 +769,11 @@ class OshaWorkflowNotifications {
    *   Affected node
    */
   public static function notifyNodeIsReadyToPublish($node) {
-    $users = OshaWorkflowPermissions::getUsersByRole(OSHA_WORKFLOW_ROLE_ADMINISTRATOR);
-    OshaWorkflowNotifications::sendEmail($users, array('node' => $node), 'osha_workflow');
+    $review_managers = osha_workflow_get_node_rm($node);
+    OshaWorkflowNotifications::sendEmail($review_managers, array('node' => $node), 'osha_workflow');
 
-    $users = OshaWorkflowPermissions::getUsersByRole(OSHA_WORKFLOW_ROLE_TRANSLATION_MANAGER);
-    OshaWorkflowNotifications::sendEmail($users, array('node' => $node), 'osha_tmgmt', 'notifyNodeIsReadyToPublish');
+    $translation_managers = OshaWorkflowPermissions::getUsersByRole(OSHA_WORKFLOW_ROLE_TRANSLATION_MANAGER);
+    OshaWorkflowNotifications::sendEmail($translation_managers, array('node' => $node), 'osha_tmgmt', 'notifyNodeIsReadyToPublish');
   }
 
   /**
@@ -821,7 +785,7 @@ class OshaWorkflowNotifications {
       'from' => $from_state,
       'to' => $to_state,
     );
-    $users = OshaWorkflowPermissions::getUsersByRole(OSHA_WORKFLOW_ROLE_ADMINISTRATOR);
+    $users = osha_workflow_get_node_rm($node);
     OshaWorkflowNotifications::sendEmail($users, $params, 'osha_workflow', 'osha_workflow_notification_admin');
   }
 

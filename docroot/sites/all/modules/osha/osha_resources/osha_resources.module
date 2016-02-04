@@ -51,6 +51,11 @@ function osha_resources_field_formatter_info() {
       'field types' => array('file'),
       'description' => t('Link to file using node title as link title.'),
     ),
+    'external_url_link' => array(
+      'label' => t('External url link with icon'),
+      'field types' => array('link_field'),
+      'description' => t('Link with new window icon'),
+    ),
   );
   return $info;
 }
@@ -71,18 +76,34 @@ function osha_resources_field_formatter_view($entity_type, $entity, $field, $ins
         );
       }
       break;
+
+    case 'external_url_link':
+      $element = array(
+        '#theme' => 'external_url_link',
+        '#items' => $items,
+        '#entity' => $entity,
+      );
+      break;
   }
   return $element;
 }
-
 
 /**
  * Implements hook_theme().
  */
 function osha_resources_theme() {
+  $path = drupal_get_path('module', 'osha_resources');
   return array(
     'osha_resources_file_as_title_format' => array(
       'variables' => array('entity' => NULL, 'file' => NULL, 'delta' => NULL),
+    ),
+    'external_url_link' => array(
+      'template' => 'osha_resources_external_url_link',
+      'variables' => array(
+        'items' => NULL,
+        'entity' => NULL,
+      ),
+      'path' => $path . '/templates',
     ),
   );
 }

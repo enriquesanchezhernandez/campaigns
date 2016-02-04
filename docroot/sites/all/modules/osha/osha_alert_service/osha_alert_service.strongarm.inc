@@ -61,7 +61,7 @@ function osha_alert_service_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'osha_alert_service_subscribe_subject';
-  $strongarm->value = 'Your subscription to OSHA Alert Service';
+  $strongarm->value = 'Your subscription to EU-OSHA Alert Service';
   $export['osha_alert_service_subscribe_subject'] = $strongarm;
 
   return $export;

@@ -21,6 +21,6 @@ function osha_views_query_alter(&$view, &$query) {
     if (in_array('views', arg())) {
       drupal_set_message('Be careful! Overwriting query in osha.views.inc. Changing filters order may affect the view.', 'warning');
     }
-    $query->where[3]['conditions'][1]['field'] = 'node.type';
+    $query->where[2]['conditions'][1]['field'] = 'node.type';
   }
 }

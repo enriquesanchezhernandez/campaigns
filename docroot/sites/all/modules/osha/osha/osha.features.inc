@@ -17,7 +17,7 @@ function osha_ctools_plugin_api($module = NULL, $api = NULL) {
   if ($module == "file_entity" && $api == "file_default_displays") {
     return array("version" => "1");
   }
-  if ($module == "linkit" && $api == "linkit_profiles") {
+  if ($module == "path_breadcrumbs" && $api == "path_breadcrumbs") {
     return array("version" => "1");
   }
   if ($module == "strongarm" && $api == "strongarm") {
@@ -33,6 +33,34 @@ function osha_views_api($module = NULL, $api = NULL) {
 }
 
 /**
+ * Implements hook_image_default_styles().
+ */
+function osha_image_default_styles() {
+  $styles = array();
+
+  // Exported image style: article_image.
+  $styles['article_image'] = array(
+    'label' => 'Article image',
+    'effects' => array(
+      4 => array(
+        'name' => 'manualcrop_crop_and_scale',
+        'data' => array(
+          'width' => 1920,
+          'height' => 595,
+          'upscale' => 0,
+          'respectminimum' => 1,
+          'onlyscaleifcrop' => 0,
+          'style_name' => 'article_image',
+        ),
+        'weight' => 0,
+      ),
+    ),
+  );
+
+  return $styles;
+}
+
+/**
  * Implements hook_node_info().
  */
 function osha_node_info() {
@@ -45,10 +73,18 @@ function osha_node_info() {
       'title_label' => t('Title'),
       'help' => '',
     ),
-    'page' => array(
-      'name' => t('Basic page'),
+    'internal_url' => array(
+      'name' => t('Internal URL'),
       'base' => 'node_content',
-      'description' => t('Static content, such as an \'About us\' page'),
+      'description' => '',
+      'has_title' => '1',
+      'title_label' => t('Title'),
+      'help' => '',
+    ),
+    'webform' => array(
+      'name' => t('Webform'),
+      'base' => 'node_content',
+      'description' => t('Create a new form or questionnaire accessible to users. Submission results and statistics are recorded and accessible to privileged users.'),
       'has_title' => '1',
       'title_label' => t('Title'),
       'help' => '',

@@ -1,0 +1,80 @@
+<?php
+/**
+ * @file
+ * Code for the hwc_homepage feature.
+ */
+
+include_once 'hwc_homepage.features.inc';
+
+/**
+ * Implements hook_views_pre_render
+ * {@inheritdoc}
+ */
+function hwc_homepage_views_pre_render(&$view){
+  if ($view->name == 'frontpage_slider' && drupal_is_front_page()) {
+    $jssor_path = libraries_get_path('jquery-slider-master');
+    drupal_add_js($jssor_path . '/jssor.slider.mini.js');
+    drupal_add_css($jssor_path . '/jssor.css');
+  }
+}
+
+/**
+ * Implements hook_block_info().
+ */
+function hwc_homepage_block_info() {
+  $blocks = array();
+  $blocks['hwc_homepage_tools_and_resources'] = array(
+    'info' => t('Tools and resources'),
+    'status' => 1,
+    'region' => 'content',
+    'visibility' => BLOCK_VISIBILITY_NOTLISTED,
+    'cache' => DRUPAL_CACHE_GLOBAL,
+  );
+  return $blocks;
+}
+
+
+/**
+ * Implements hook_block_configure().
+ */
+function hwc_homepage_block_configure($delta = '') {
+  $form = array();
+  if ($delta == 'hwc_homepage_tools_and_resources') {
+    $form['hwc_homepage_tools_and_resources_message'] = array(
+      '#type' => 'textarea',
+      '#title' => t('Message'),
+      '#description' => 'The message shown underneath',
+      '#default_value' => variable_get('hwc_homepage_tools_and_resources_message'),
+    );
+  }
+  return $form;
+}
+
+
+/**
+ * Implements hook_block_save().
+ */
+function hwc_homepage_block_save($delta = '', $edit = array()) {
+  if ($delta == 'hwc_homepage_tools_and_resources') {
+    variable_set('hwc_homepage_tools_and_resources_message', $edit['hwc_homepage_tools_and_resources_message']);
+  }
+}
+
+
+/**
+ * Implements hook_block_view().
+ */
+function hwc_homepage_block_view($delta = '') {
+  $block = array();
+  if ($delta == 'hwc_homepage_tools_and_resources') {
+    $block['content']['message'] = array(
+      'type' => 'item',
+      '#prefix' => '<div class="text-muted">',
+      '#markup' => t(variable_get('hwc_homepage_tools_and_resources_message')),
+      '#suffix' => '</div>',
+    );
+    $links = menu_tree('main-menu');
+    $block['content']['menu'] = $links[1372]['#below'];
+  }
+  return $block;
+}

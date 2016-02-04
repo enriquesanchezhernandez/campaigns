@@ -19,7 +19,6 @@ function osha_press_release_context_default_contexts() {
   $context->conditions = array(
     'node' => array(
       'values' => array(
-        'highlight' => 'highlight',
         'press_release' => 'press_release',
       ),
       'options' => array(
@@ -30,7 +29,6 @@ function osha_press_release_context_default_contexts() {
       'values' => array(
         'inside-eu-osha/press-room' => 'inside-eu-osha/press-room',
         'inside-eu-osha/press-releases' => 'inside-eu-osha/press-releases',
-        'highlights' => 'highlights',
       ),
     ),
   );

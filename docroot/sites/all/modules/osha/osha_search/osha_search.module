@@ -38,7 +38,7 @@ function osha_search_block_info() {
     'region' => 'sidebar_first',
     'visibility' => BLOCK_VISIBILITY_LISTED,
     'pages' => 'search/*',
-    'cache' => DRUPAL_NO_CACHE,
+    'cache' => DRUPAL_CACHE_GLOBAL,
     'weight' => 0,
   );
   return $blocks;
@@ -79,6 +79,16 @@ function osha_search_search_api_solr_query_alter(array &$call_args, SearchApiQue
   if (!empty($call_args['query'])) {
     $call_args['query'] = str_replace('%', '*', $call_args['query']);
   }
+  // Handle special chars query.
+  $special_chars = variable_get('search_solr_custom_special_chars',
+    '#, @, &, ?, !, €, $, £, ¥');
+  $special_chars = explode(',', $special_chars);
+  foreach ($special_chars as $char) {
+    if (strpos($call_args['query'], trim($char)) !== FALSE) {
+      $call_args['query'] = '*' . $call_args['query'] . '*';
+      break;
+    }
+  }
 }
 
 /**
@@ -88,7 +98,7 @@ function osha_search_form_alter(&$form, &$form_state, $form_id) {
   if ($form_id == 'search_block_form') {
     // Overwrite the search page default url.
     // Unset the form elements - the search view needs just the search param.
-    $form['#action'] = url('search/site');
+    $form['#action'] = url('search');
     $form['#method'] = 'get';
     unset($form['#submit']);
     unset($form['form_build_id']);
@@ -121,16 +131,11 @@ function osha_search_form_alter(&$form, &$form_state, $form_id) {
       }
     }
   }
-  if ($form['#id'] == 'views-exposed-form-publications-index-page') {
-    if (empty($form_state['input']['search_api_views_fulltext'])) {
-      // For publication search, when no search term, the form should filter by
-      // publication_date, but showing in the dropdown "Relevance".
-      // see CW-1350
-      $form_state['input']['sort_by'] = 'field_publication_date';
-      if (!isset($form['sort_by']['#pre_render'])) {
-        $form['sort_by']['#pre_render'] = array();
-      }
-      array_unshift($form['sort_by']['#pre_render'], 'osha_search_change_sort_field_empty_query');
+  if ($form['#id'] == 'views-exposed-form-search-site') {
+    if (!empty($form['sort_by'])) {
+      $form['sort_by']['#type'] = 'radios';
+      $form['sort_by']['#default_value'] = 'search_api_relevance';
+      $form['sort_order']['#access'] = FALSE;
     }
   }
 }
@@ -200,38 +205,24 @@ function osha_search_autocomplete_callback($search = '*') {
   $showed_items = 0;
   $showed_categ = 0;
   $total_on_showed_categ = 0;
-  $wiki_result = array();
-  $total_wiki_results = 0;
 
   foreach ($data->grouped->ss_type->groups as &$group) {
-    // Wiki page will be last added in the return array.
-    if ($group->groupValue == 'wiki_page') {
-      $wiki_result = osha_search_autocomplete_add_group($group, $lang, $showing_items, $search, 'search/wiki');
-//      $showed_items += $wiki_result['count'];
-      $showed_categ += ($wiki_result['count']) ? 1 : 0;
-      $total_wiki_results = $group->doclist->numFound;
-      continue;
+    if ($count_categ++ < $showing_categ) {
+      $ret = osha_search_autocomplete_add_group($group, $lang, $showing_items, $search);
+      $showed_items += $ret['count'];
+      $showed_categ += ($ret['count']) ? 1 : 0;
+      $total_on_showed_categ += $group->doclist->numFound;
+      $return = array_merge($return, $ret['results']);
     }
-    if ($count_categ++ >= $showing_categ) {
-      // If not found wiki by now, continue loop trough groups.
-      if (!empty($wiki_result)) {
-        break;
-      }
-      else {
-        continue;
-      }
+    else {
+      break;
     }
-    $ret = osha_search_autocomplete_add_group($group, $lang, $showing_items, $search);
-    $showed_items += $ret['count'];
-    $showed_categ += ($ret['count']) ? 1 : 0;
-    $total_on_showed_categ += $group->doclist->numFound;
-    $return = array_merge($return, $ret['results']);
   }
 
   // Add extra link with search summery (see CW-220).
-  if (!empty($total_items) && $total_items - $total_wiki_results > $showed_items) {
+  if (!empty($total_items) && $total_items - $total_on_showed_categ > 0) {
     $text = t('@search_result more in @categories categories', array(
-      '@search_result' => $total_items - $total_wiki_results - $total_on_showed_categ,
+      '@search_result' => $total_items - $total_on_showed_categ,
       '@categories' => $total_groups - $showed_categ,
     ));
     $ac_item = array(
@@ -251,10 +242,6 @@ function osha_search_autocomplete_callback($search = '*') {
     );
     $return[] = $ac_item;
   }
-  // Now append the wiki results.
-  if (!empty($wiki_result['results'])) {
-    $return = array_merge($return, $wiki_result['results']);
-  }
   print_r(json_encode($return));
   exit;
 }
@@ -270,7 +257,7 @@ function osha_search_autocomplete_add_group($group, $lang, $showing_items, $sear
   foreach ($group->doclist->docs as &$item) {
     $count_items++;
     $ac_item = array(
-      "link" => url($item->ss_search_api_url),
+      "link" => url('node/' . $item->is_nid),
       "value" => current($item->{'tm_' . $lang . '_title_field'}),
       "fields" => array(
         "title_field" => current($item->{'tm_' . $lang . '_title_field'}),
@@ -278,10 +265,6 @@ function osha_search_autocomplete_add_group($group, $lang, $showing_items, $sear
     );
     if (!empty($item->{'ss_field_wiki_page_url:url'})) {
       $ac_item["link"] = $item->{'ss_field_wiki_page_url:url'};
-    }
-    // For publications the default link opens the file | /view opens node.
-    if ($item->ss_type == 'publication') {
-      $ac_item["link"] .= '/view';
     }
     if ($count_items == 1) {
       $ac_item["group"] = array(

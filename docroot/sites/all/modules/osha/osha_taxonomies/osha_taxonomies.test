@@ -55,12 +55,6 @@ class OshaTaxonomiesTest extends DrupalWebTestCase {
       OSHA_TAXONOMIES_PUBLICATION_TYPES . ' taxonomy exists'
     );
 
-    $vocabulary = taxonomy_vocabulary_machine_name_load(OSHA_TAXONOMIES_THESAURUS);
-    $this->assertTrue(
-      !empty($vocabulary),
-      OSHA_TAXONOMIES_THESAURUS . ' taxonomy exists'
-    );
-
     $vocabulary = taxonomy_vocabulary_machine_name_load(OSHA_TAXONOMIES_ACTIVITY);
     $this->assertTrue(
       !empty($vocabulary),

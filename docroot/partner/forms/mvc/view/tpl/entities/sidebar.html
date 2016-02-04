@@ -1,0 +1,69 @@
+<div class="nav-side-menu">
+    <div id="sidebar-top" class="menu-list">
+        <ul id="menu-content" class="menu-content collapse out">
+            
+            <li class="tituloSidebar">Navigation Panel and Status</li>
+            
+            {foreach from=$sections key=sectionKey item=section}
+                <li class="section-title"><a data-ajax="?route={$currentRoute}&amp;action=savesessionajax" href="{$appurlsidebar}?route={$section.route}">{$section.title}</a></li>
+                {foreach from=$section.sections key=subsectionKey item=subsection}
+            {if $subsectionKey != "OTHER_USERS"}
+            <li class="section {$subsectionKey} {if $sections_validated.$subsectionKey == "0"}sidebar-error{/if}" data-section="{$subsectionKey}">
+                <a data-ajax="?route={$currentRoute}&amp;action=savesessionajax" href="{$appurlsidebar}?route={$section.route}#{$subsectionKey}">{$subsection}</a>
+            </li>
+            {elseif $subsectionKey == "OTHER_USERS" && $mf == "mf"}
+            <li class="section OTHER_USERS" data-section="OTHER_USERS">
+                <a href="{$appurlsidebar}?route=contact#OTHER_USERS">Other users</a>
+            </li>
+            {/if}
+                {/foreach}
+            {/foreach}
+            
+            
+            {if $locked != "locked" && $mf != "mf"}
+            <li id="sidebar-bottom" class="menu-list saveAndPrintButtons">
+                <button id="save" name="save" {if $graceperiod}class="hidden"{/if}>Save as a draft</button>
+                <a class="print action-print" data-ajax="?route={$currentRoute}&amp;action=savesessionajax" data-href="{$appurl}&action=printable" href=""> </a>
+            </li>
+            <!-- <li class="fields-campaign" {if $graceperiod}class="hidden"{/if}>When saving as a draft, you will receive an automatic email with a link from which you will be able to come back to continue your application. In order to do so, the completion the organisation's name and your primary contact's email is mandatory</li> -->
+            {/if}
+            {if $returnCode === "error"}
+                <div class = "saveDialog">
+                    <a class="closeDialog">[X]</a>
+                    <img src="mvc/view/img/alertIcon.png"/><br>
+                    <p>An error has occurred saving the data</p>
+                </div>
+            {/if}
+            {if $returnCode === "ok"}
+                <div class = "saveDialog">
+                    <a class="closeDialog">[X]</a>
+                    <img src="mvc/view/img/green-tick.png"/><br>
+                    <p>The information has been saved correctly</p>
+                </div>
+            {/if}
+            
+            
+            <li class="separator">&nbsp;</li>
+            
+            <li class="tituloSidebar">Relevant for you</li>
+            
+            {if $mf != "mf"}
+                <li class="export-pdf"><a href="mvc/view/pdf/campaign-partnership-offer.pdf" target="_blank">> See Campaign partnership offer</a></li>
+            {/if}
+            <li class="export-pdf"><a href="mvc/view/pdf/HWC_Public_Profile.pdf" target="_blank">> See how your data will appear on the Campaign website</a></li>
+            
+            
+            <li class="separator">&nbsp;</li>
+            
+            <li class="tituloSidebar">Legend</li>
+            <li class="fields-campaign">Required Fields<div class="requiredAsterisk"> *</div></li>
+            <li class="fields-campaign">Fields displayed on campaign site<div title="Fields displayed on campaign site" class="screen"></div></li>
+
+        </ul>
+    </div>
+    <div class="upArrow">
+        <a href="#top">
+             <img src="mvc/view/img/upArrow.png" title="Go to top" height="30" width="31">
+        </a>
+    </div>
+</div>

@@ -32,24 +32,19 @@ function osha_news_post_features_enable_feature($component) {
   }
 }
 
-
-function osha_news_workbench_access_node_element_alter(&$element, $form_state, $active) {
-  if (isset($form_state['build_info']['form_id']) && $form_state['build_info']['form_id'] == 'news_node_form' ) {
-    // CW-800 default value for Section
-    $element['#required'] = FALSE;
-    foreach ($element['#options'] as $key=>$option) {
-      if (preg_match('/^[-\\s]*Home/', $option)) {
-        $element['#default_value'] = $key;
-        break;
-      }
-    }
-  }
-}
-
 /**
  * Implements hook_osha_tmgmt_i18n_string_list().
  */
 function osha_news_osha_tmgmt_i18n_string_list() {
   module_load_include('inc', 'osha_news', 'osha_news.translations');
   return osha_news_get_translatable_strings();
+}
+
+function osha_news_form_alter(&$form, &$form_state, $form_id) {
+  global $theme;
+
+  if($theme != 'osha_admin' && $form_id == 'news_node_form'){
+    $form['actions']['#attributes']['class'] = array('container');
+    $form['field_aditional_resources']['#access'] = FALSE;
+  }
 }

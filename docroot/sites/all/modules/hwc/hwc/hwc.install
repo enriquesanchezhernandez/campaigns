@@ -1,0 +1,142 @@
+<?php
+
+/**
+ * Sets section to default section for existing nodes.
+ */
+function hwc_update_7001() {
+  // Get node types that do not use workbench_access for access control.
+  $node_types = array();
+  foreach (node_type_get_names() as $type => $name) {
+    if (variable_get('workbench_access_node_type_' . $type, FALSE)) {
+      $node_types[$type] = $type;
+    }
+  }
+  $subquery = db_select('workbench_access_node', 'wa')
+    ->fields('wa', array('nid'));
+  $query = db_select('node', 'n')
+    ->fields('n')
+    ->condition('type', $node_types, 'IN')
+    ->condition('nid', $subquery, 'NOT IN')
+    ->execute();
+  while ($row = $query->fetchAssoc()) {
+    $wa_row = array(
+      'nid' => $row['nid'],
+      'access_id' => 'section',
+      'access_scheme' => 'taxonomy',
+    );
+    drupal_write_record('workbench_access_node', $wa_row);
+  }
+}
+
+/**
+ * Add publication menu position rules
+ */
+function hwc_update_7002() {
+  hwc_add_menu_position_rules();
+}
+
+/**
+ * Add press release menu position rules
+ */
+function hwc_update_7003() {
+  if (module_exists('osha') && module_load_include('inc', 'osha', 'osha.utils')) {
+    $condition = array('content_type' => array('press_release' => 'press_release'));
+    osha_add_menu_position_rule('Press Release', '---- Press room', $condition);
+  }
+}
+
+/**
+ * Add menu position rules for Get Involved Segments
+ */
+function hwc_add_menu_position_rules() {
+  if (module_exists('osha') && module_load_include('inc', 'osha', 'osha.utils')) {
+    $condition = array('pages' => 'workers'.PHP_EOL.'employers'.PHP_EOL.'osh-professionals'
+    .PHP_EOL.'hr-managers'.PHP_EOL.'researchers'.PHP_EOL.'policy-makers');
+    osha_add_menu_position_rule('Get Involved Sections', '---- How to get involved', $condition);
+  }
+}
+
+/**
+ * Set flags for country terms.
+ */
+function hwc_update_7004() {
+  // When saving a country term, attach the flag on field_flag.
+  $voc = taxonomy_vocabulary_machine_name_load('country');
+  $terms = taxonomy_term_load_multiple(array(), array('vid' => $voc->vid));
+  $dir = 'public://flags';
+  if (!file_prepare_directory($dir)) {
+    throw new DrupalUpdateException('Flags directory could not be created.');
+  }
+  foreach ($terms as $term) {
+    $path = drupal_get_path('theme', 'hwc_frontend');
+    $images_dir = $path . '/images/iso2_flags';
+    if (!is_dir($images_dir)) {
+      throw new DrupalUpdateException('Could not find the flags images source directory.');
+    }
+    $iso2 = strtoupper($term->field_iso2[LANGUAGE_NONE][0]['value']);
+    $image_filename = $iso2 . '.gif';
+    $image_dest_dir = $dir . '/' . $image_filename;
+    $image_path = $images_dir . '/' . $image_filename;
+    $filepath = drupal_realpath($image_path);
+    if (is_file($filepath)) {
+      // Create managed File object and associate with Image field.
+      $file = (object) array(
+        'uid' => 1,
+        'uri' => $filepath,
+        'filemime' => file_get_mimetype($filepath),
+        'status' => 1,
+        'type' => 'image',
+      );
+      if ($file = file_copy($file, $image_dest_dir)) {
+        $term->field_flag[LANGUAGE_NONE][0] = (array) $file;
+      }
+      taxonomy_term_save($term);
+    }
+    else {
+      drupal_set_message(strtr('Flag not found for @country', array('@country' => $term->name)), 'warning');
+    }
+  }
+}
+
+/**
+ * Set flags for country terms.
+ * - previous update function failed with file type bundle missing error.
+ */
+function hwc_update_7005() {
+  // When saving a country term, attach the flag on field_flag.
+  $voc = taxonomy_vocabulary_machine_name_load('country');
+  $terms = taxonomy_term_load_multiple(array(), array('vid' => $voc->vid));
+  $dir = 'public://flags';
+  if (!file_prepare_directory($dir)) {
+    throw new DrupalUpdateException('Flags directory could not be created.');
+  }
+  foreach ($terms as $term) {
+    $path = drupal_get_path('theme', 'hwc_frontend');
+    $images_dir = $path . '/images/iso2_flags';
+    if (!is_dir($images_dir)) {
+      throw new DrupalUpdateException('Could not find the flags images source directory.');
+    }
+    $iso2 = strtoupper($term->field_iso2[LANGUAGE_NONE][0]['value']);
+    $image_filename = $iso2 . '.gif';
+    $image_dest_dir = $dir . '/' . $image_filename;
+    $image_path = $images_dir . '/' . $image_filename;
+    $filepath = drupal_realpath($image_path);
+    if (is_file($filepath)) {
+      // Create managed File object and associate with Image field.
+      $file = (object) array(
+        'uid' => 1,
+        'uri' => $filepath,
+        'filemime' => file_get_mimetype($filepath),
+        'status' => 1,
+        'type' => 'image',
+      );
+      if ($file = file_copy($file, $image_dest_dir)) {
+        $term->field_flag[LANGUAGE_NONE][0] = (array) $file;
+      }
+      taxonomy_term_save($term);
+    }
+    else {
+      drupal_set_message(strtr('Flag not found for @country', array('@country' => $term->name)), 'warning');
+    }
+  }
+}

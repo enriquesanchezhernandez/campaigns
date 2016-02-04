@@ -1,4 +1,10 @@
 <?php
+/**
+ * @file
+ * Code for the Slideshare Field feature.
+ */
+
+include_once 'osha_slideshare.features.inc';
 
 /**
  * Implements hook_field_info().
@@ -139,6 +145,45 @@ function osha_slideshare_field_is_empty($item, $field) {
 }
 
 /**
+ * Implements hook_field_formatter_settings_summary().
+ */
+function osha_slideshare_field_formatter_settings_summary($field, $instance, $view_mode) {
+  $display = $instance['display'][$view_mode];
+  $settings = $display['settings'];
+  $summary = '';
+  if ($display['type'] == 'slideshare_default') {
+    $summary = t('Image style: @style', array('@style' => $settings['image_style']));
+  }
+  return $summary;
+}
+
+/**
+ * Implements hook_field_formatter_settings_form().
+ */
+function osha_slideshare_field_formatter_settings_form($field, $instance, $view_mode, $form, &$form_state) {
+  $display = $instance['display'][$view_mode];
+  $settings = $display['settings'];
+
+  $element = array();
+
+  if ($display['type'] == 'slideshare_default') {
+    $styles = image_styles();
+    $options = array();
+    foreach ($styles as $key => $style) {
+      $options[$key] = $style['label'];
+    }
+    $element['image_style'] = array(
+      '#title' => t('Image style'),
+      '#type' => 'select',
+      '#default_value' => $settings['image_style'],
+      '#required' => TRUE,
+      '#options' => $options,
+    );
+  }
+  return $element;
+}
+
+/**
  * Implements hook_field_formatter_info().
  */
 function osha_slideshare_field_formatter_info() {
@@ -146,6 +191,9 @@ function osha_slideshare_field_formatter_info() {
     'slideshare_default' => array(
       'label' => t('Default'),
       'field types' => array('slideshare'),
+      'settings' => array(
+        'image_style' => 'medium',
+      ),
     ),
   );
 }
@@ -155,12 +203,21 @@ function osha_slideshare_field_formatter_info() {
  */
 function osha_slideshare_field_formatter_view($entity_type, $entity, $field, $instance, $langcode, $items, $display) {
   $element = array();
+  $settings = $display['settings'];
   switch ($display['type']) {
     case 'slideshare_default' :
       foreach ($items as $delta => $item) {
         if (isset($item['slide_url'])) {
-          $element[$delta]['#markup'] =
-            getSlideshareInfos($item['slide_url'], $item['slide_id']);
+          $file_name = $item['slide_id'] . '.jpg';
+          $path = 'public://slideshare/' . $file_name;
+          $image = '';
+          if (file_exists($path)) {
+            $image = theme_image_style(array('style_name' => $settings['image_style'], 'path' => $path));
+          }
+          $element[$delta]['#markup'] = theme('slideshare_display',array(
+            'path' => $item['slide_url'],
+            'image' => $image,
+          ));
         }
       }
       break;
@@ -224,21 +281,4 @@ function saveThumbnail($api_key, $secret_key, $slideshow_id){
   }
 }
 
-/**
- * Connect to Slideshare and get information
- * about the URL provided
- */
-function getSlideshareInfos($slideshow_url, $slideshow_id){
-  $files = variable_get('file_public_path', conf_path() . '/files');
-  $file_name = $slideshow_id . '.jpg';
-  $dest = $files . '/slideshare/' . $file_name;
-  $image = '';
 
-  if(file_exists($dest))
-    $image = theme('image', array('path' => $dest));
-
-  return theme('slideshare_display',array(
-    'path' => $slideshow_url,
-    'image' => $image,
-  ));
-}

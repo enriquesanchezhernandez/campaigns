@@ -7,6 +7,56 @@ When patching a contrib module, the following steps should be followed:
 
 List of patches (most recent first)
 
+* token_formatters
+  * Added support for field_collection
+
+* flickr
+  * Fix js error on flickr with colorbox
+  * check_for_class_colorbox_plus_respect_colorbox_path_settings-2301681-10.patch
+  * https://www.drupal.org/node/2301681
+
+* manualcrop
+  * Fix js selector bug for multiple images fields
+
+* ldap_user
+  * Disable the watchdog successful messages
+  * /patches/ldap/ldap_user/disable-watchdg.patch
+
+* workbench_access
+  * read-only screen for editorrial management
+  * /patches/workbench_access/read_only_root_section.patch
+
+* ldap_server
+  * DN is not correctly parsed
+  * /patches/ldap/ldap_servers/dn_parsing_bug.patch
+
+* workbench_moderation
+  * path to add access check in workbench moderation form to prevent change of status
+  * /patches/workbench_moderation/workbench_moderation_access_check_in_moderation_form.patch
+
+* path_breadcrumbs
+  * dirty patch for the translation of Home (path_breadcrumbs._home_translate.patch)
+  * see also https://www.drupal.org/node/2081375 and https://www.drupal.org/node/2028845 for alternative solutions
+
+* ldap_authentication
+  * Entrypt password when updating account
+  * https://www.drupal.org/node/2037887
+  * ldap_authentication-check_password_against_LDAP-2037887-10.patch
+
+* search_api_views
+  * Calling t($name) yields double translation
+  * patches/search_api_views/double-translation.patch
+
+* features
+  * Fixed double-string translation
+  * patches/features/features-double-translations-2462991-1-D7.patch
+  * https://www.drupal.org/node/2462991
+  * https://www.drupal.org/files/issues/features-double-translations-2462991-1-D7.patch
+
+* entity_collection
+  * Fix position and depth when adding new item
+  * patches/entity_collection/entity_collection-depth-position.patch
+
 * pdf_to_imagefield
   * Integrate with workbench_moderation
   * patches/pdf_toimagefield/pdf_to_image_moderation_integration.patch
@@ -57,9 +107,9 @@ List of patches (most recent first)
   * patches/tmgmt/i18n_string-search-case-insensitive.patch
 
 * drupal (core)
-  * Node preview removes file values from node edit form for non-displayed items
-  * drupal/1289336-112.patch
-  * https://www.drupal.org/node/1289336
+  * Menu links with query string params (from views exposed filters, solr facetAPI search, etc) get munged by url encoding
+  * https://www.drupal.org/node/1220410
+  * core/core-menu_links_with_query_param-1220410-coment-16.patch
 
 * workbench_access
   * Preview error (Warning: array_keys() expects parameter 1 to be array, string given in workbench_access_node_form_element() (line 1467 of ...
@@ -224,6 +274,18 @@ List of patches (most recent first)
 * addtoany
   * make text of link translatable
   * translatable_link_text.patch
+
+* smtp
+  * Sending attachments using modules smtp and mimemail
+  * https://www.drupal.org/node/1442514
+  * smtm/SMTP-1442514.patch
+
+* webform2pdf
+  * Undefined index: exclude_empty
+  * https://www.drupal.org/node/2499749
+  * webform2pdf/webform-exclude_empty-2499749-6.patch
+
+  * webform2pdf_correct-variable-and-theme_2446585-3.patch
 
 Patch documentation should be in the following format:
 

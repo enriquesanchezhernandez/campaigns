@@ -13,6 +13,32 @@ function osha_events_field_group_info() {
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
   $field_group->api_version = 1;
+  $field_group->identifier = 'group_contact|node|events|form';
+  $field_group->group_name = 'group_contact';
+  $field_group->entity_type = 'node';
+  $field_group->bundle = 'events';
+  $field_group->mode = 'form';
+  $field_group->parent_name = '';
+  $field_group->data = array(
+    'label' => 'Contact',
+    'weight' => '21',
+    'children' => array(),
+    'format_type' => 'fieldset',
+    'format_settings' => array(
+      'label' => 'Contact',
+      'instance_settings' => array(
+        'required_fields' => 0,
+        'classes' => '',
+        'description' => '',
+      ),
+      'formatter' => 'open',
+    ),
+  );
+  $export['group_contact|node|events|form'] = $field_group;
+
+  $field_group = new stdClass();
+  $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
+  $field_group->api_version = 1;
   $field_group->identifier = 'group_events_description|node|events|default';
   $field_group->group_name = 'group_events_description';
   $field_group->entity_type = 'node';
@@ -21,23 +47,19 @@ function osha_events_field_group_info() {
   $field_group->parent_name = '';
   $field_group->data = array(
     'label' => 'Description',
-    'weight' => '1',
-    'children' => array(
-      0 => 'body',
-    ),
-    'format_type' => 'div',
+    'weight' => '31',
+    'children' => array(),
+    'format_type' => 'html-element',
     'format_settings' => array(
-      'label' => 'Description',
+      'formatter' => '',
       'instance_settings' => array(
-        'id' => '',
-        'classes' => 'group-events-description field-group-div',
-        'description' => '',
-        'show_label' => '1',
-        'label_element' => 'h3',
-        'effect' => 'none',
-        'speed' => 'fast',
+        'element' => 'div',
+        'show_label' => 0,
+        'label_element' => 'div',
+        'classes' => '',
+        'attributes' => '',
+        'required_fields' => 1,
       ),
-      'formatter' => 'open',
     ),
   );
   $export['group_events_description|node|events|default'] = $field_group;
@@ -53,27 +75,19 @@ function osha_events_field_group_info() {
   $field_group->parent_name = '';
   $field_group->data = array(
     'label' => 'Event details',
-    'weight' => '0',
-    'children' => array(
-      0 => 'field_city',
-      1 => 'field_country_code',
-      2 => 'field_organization',
-      3 => 'field_start_date',
-      4 => 'field_tags',
-    ),
-    'format_type' => 'div',
+    'weight' => '30',
+    'children' => array(),
+    'format_type' => 'html-element',
     'format_settings' => array(
-      'label' => 'Event details',
+      'formatter' => '',
       'instance_settings' => array(
-        'id' => '',
-        'classes' => 'group-events-event-details field-group-div',
-        'description' => '',
-        'show_label' => '1',
-        'label_element' => 'h3',
-        'effect' => 'none',
-        'speed' => 'fast',
+        'element' => 'div',
+        'show_label' => 0,
+        'label_element' => 'div',
+        'classes' => '',
+        'attributes' => '',
+        'required_fields' => 1,
       ),
-      'formatter' => 'open',
     ),
   );
   $export['group_events_event_details|node|events|default'] = $field_group;
@@ -89,11 +103,9 @@ function osha_events_field_group_info() {
   $field_group->parent_name = '';
   $field_group->data = array(
     'label' => 'Links',
-    'weight' => '2',
-    'children' => array(
-      0 => 'field_website_of_event',
-    ),
-    'format_type' => 'div',
+    'weight' => '32',
+    'children' => array(),
+    'format_type' => 'html-element',
     'format_settings' => array(
       'label' => 'Links',
       'instance_settings' => array(
@@ -104,6 +116,9 @@ function osha_events_field_group_info() {
         'label_element' => 'h3',
         'effect' => 'none',
         'speed' => 'fast',
+        'element' => 'div',
+        'attributes' => '',
+        'required_fields' => 1,
       ),
       'formatter' => 'open',
     ),
@@ -121,11 +136,9 @@ function osha_events_field_group_info() {
   $field_group->parent_name = '';
   $field_group->data = array(
     'label' => 'Related documents',
-    'weight' => '3',
-    'children' => array(
-      0 => 'field_related_documents',
-    ),
-    'format_type' => 'div',
+    'weight' => '29',
+    'children' => array(),
+    'format_type' => 'html-element',
     'format_settings' => array(
       'label' => 'Related documents',
       'instance_settings' => array(
@@ -136,6 +149,9 @@ function osha_events_field_group_info() {
         'label_element' => 'h3',
         'effect' => 'none',
         'speed' => 'fast',
+        'element' => 'div',
+        'attributes' => '',
+        'required_fields' => 1,
       ),
       'formatter' => 'open',
     ),

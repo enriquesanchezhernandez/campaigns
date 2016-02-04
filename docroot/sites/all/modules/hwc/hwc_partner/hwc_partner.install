@@ -1,0 +1,21 @@
+<?php
+
+
+/**
+ * Increase module weight to execute after all other hooks (form editing)
+ */
+function hwc_partner_update_7001() {
+  db_update('system')
+    ->fields(array('weight' => 10))
+    ->condition('name', 'hwc_partner', '=')
+    ->execute();
+}
+
+/**
+ * Update permissions for Review Manager role
+ */
+function hwc_partner_update_7002() {
+  if ($role = user_role_load_by_name('Review Manager')) {
+    user_role_grant_permissions($role->rid, array('use text format filtered_html'));
+  }
+}

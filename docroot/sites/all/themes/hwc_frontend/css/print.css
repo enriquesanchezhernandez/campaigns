@@ -1,0 +1,337 @@
+/**
+ * @file
+ * Print styling
+ */
+
+/**
+ * By importing this CSS file as media "all", we allow this print file to be
+ * aggregated with other stylesheets, for improved front-end performance.
+ */
+
+@media print {
+
+/*Header*/
+#navbar{
+	display:block!important;
+}
+
+.navbar-header{
+	display:block!important;
+}
+
+.navbar-header img{
+	width: 75px!important;
+    height: 75px!important;
+    margin-left: 0px!important;
+}
+
+header.navbar-default .navbar-header img:nth-child(3){
+	padding-top: 25px;
+    padding-bottom: 15px;
+    padding-right: 17px;
+}
+
+.header-text{
+	padding-top: 0px!important;
+    padding-left: 20px!important;
+    font-size: 19px!important;
+}
+
+.col-xs-12.col-sm-3.xs-menu{
+	display:none;
+}
+
+.breadcrumb{
+	margin-left: 0px!important;
+    padding-left: 0px!important;
+    padding-top: 10px;
+}
+
+.main-container h1, .main-container .title-alt , .view-news .views-row{
+	border-bottom: 1px dotted #000;
+}
+
+.node-type-article article .dot-separator.green{
+	border-top: 1px dotted #000;
+}
+
+/*End header*/
+
+h1{
+	padding-top: 0px!important;
+	text-align: left!important;
+	margin-left: 15px!important;
+    margin-right: 0px!important;
+    margin-bottom: 0px!important;
+}
+
+h1.page-header{
+	margin-left: 0px!important;
+}
+
+h2{
+	padding-top: 0px!important;
+	text-align: left!important;
+	margin: 0px!important;
+}
+
+a:before{
+ 	display:none;
+}
+
+a:after{
+ 	display:none;
+}
+
+.pager , .back-to-link , iframe , video , button , #become-partner-link , .more-link , .kssattr-atfieldname-text{
+	display:none!important;
+}
+
+.footer{
+	display:none;
+}
+
+.node-article .field-name-field-image + .field-name-title-field{
+	position:relative!important;
+	height:auto!important;
+	margin-bottom: 0px!important;
+}
+
+.hwc-share-widget , .img-responsive{
+	display:none;
+}
+
+.icon.recommended-resources{
+	display:none;
+}
+
+.field-name-field-image{
+	display:none;
+}
+
+.col-xs-12.col-sm-9 .pull-left img{
+	display:block!important;
+}
+
+/*Practical tools*/
+#edit-left-column , #search{
+	display:none!important;
+}
+
+.pane-hwc-practical-tool-hwc-practical-tool-listing .node-practical-tool{
+	border-bottom: 1px dotted #000;
+}
+
+/*Publications*/
+
+.publication-item{
+	border-bottom: 1px dotted #000;
+}
+
+.container-fluid .section-introduction .field-type-text-with-summary{
+	padding:0px!important;
+	margin:0px!important;
+}
+
+.section-introduction p{
+	text-align: left!important;
+}
+
+.col.col-md-9.form-wrapper.form-group{
+	margin-left:0px!important;
+	padding-left:0px!important;
+}
+
+#publications_slideshow{
+	display:none;
+}
+
+.publication-item{
+	min-height: 0!important;
+	display: block!important;
+}
+
+/*Publications Detail*/
+
+.panels-flexible-region.panels-flexible-region-container-left.panels-flexible-region-first.col-md-4{
+	display:none;
+}
+
+.node-type-publication .panels-flexible-row-container-main-row{
+	margin-top: 0px!important;
+}
+
+.node-type-publication .pane-node-field-publication-type, .node-type-publication .pane-node-field-country, .node-type-publication .pane-node-field-free, .node-type-publication .pane-node-field-tool-type{
+	margin-bottom: 0px!important;
+	padding:0px!important;
+}
+
+.pane-node-field-file{
+	display: none;
+}
+
+/*Campaign materials*/
+
+.field-name-field-related-documents{
+	display:none;
+}
+
+.page-campaign-materials .view-id-view_campaign_materials .views-row{
+	border-bottom: 1px dotted #000;
+}
+
+/*Infographics*/
+
+.field-name-field-file{
+	display:none;
+}
+
+.view-infographic .views-row{
+	    border-bottom: 1px dotted #000;
+}
+
+/*Press room*/
+
+.node-type-press-release h2{
+	padding-bottom: 15px!important;
+}
+
+.view-press-releases .views-row:first-child{
+	border-top: 1px dotted #000!important;
+}
+
+.view-press-releases .views-row{
+	border-bottom: 1px dotted #000!important;
+}
+
+.page-press-room .section-introduction .field-type-text-with-summary, .page-campaign-materials .section-introduction .field-type-text-with-summary{
+	border-bottom: 1px dotted #000!important;
+}
+
+#mini-panel-press_room_blocks .pane-osha-press-release-osha-press-rel-become-partner ,
+#mini-panel-press_room_blocks .pane-press-contacts ,
+#mini-panel-press_room_blocks .pane-osha-press-release-osha-press-kit
+{
+	text-align: left!important;
+	padding-top: 10px!important;
+	padding-bottom: 10px!important;
+}
+
+#mini-panel-press_room_blocks .pane-press-contacts .views-field-field-press-contact-email{
+	margin-bottom: 10px!important;
+}
+
+#mini-panel-press_room_blocks .pane-press-contacts{
+	border:0px!important;
+	padding-top: 10px!important;
+}
+
+.osha-press-contact-block-link{
+	display:none;
+}
+
+/*News Detail*/
+
+.node-type-news h2{
+	padding-bottom: 15px!important;
+}
+
+/* How to get involved */
+
+.get-involved-section {
+    margin-top: 0px!important;
+}
+
+.get-involved-section .texts .text-block p:before{
+	display:none!important;
+}
+
+.get-involved-section .information-tailored h3:before{
+	display:none!important;
+}
+
+.image-block img{
+	display:none!important;
+}
+
+.get-involved-section .information-tailored .images-section .image-block .link{
+	padding: 0px!important;
+	margin-top: -40px;
+}
+
+/* Become a campaign partner */
+
+.btn-become-a-campaign-partner{
+	display:none!important;
+}
+
+.become-partner .coments{
+	margin-top:0px!important;
+    margin-bottom: 0px!important;
+}
+
+.become-partner .coments .col h2{
+	padding-top: 10px!important;
+	padding-bottom: 10px!important;
+}
+
+.become-partner .coments .col h2:before{
+	display:none!important;
+}
+
+.become-partner .coments .col-2{
+	border:0px!important;
+}
+
+.text-center{
+	text-align: left!important;
+}
+
+.become-partner .partners .partner .partner-image{
+	display:none!important;
+}
+
+.become-partner .see-also .see-also-title p:before{
+	display:none!important;
+}
+
+.become-partner .partners .partner .partner-opinion .quottes-left ,
+.become-partner .partners .partner .partner-opinion .quottes-right
+{
+	background: none!important;
+
+}
+
+.become-partner .partners .partner .partner-name h3{
+	margin-top: 0px!important;
+	margin-bottom: 0px!important;
+}
+
+.become-partner .partners{
+	padding: 0px!important;
+	margin:0px!important;
+}
+
+.more-resources , .more-links , .media-outlet{
+	padding-left: 15px!important;
+}
+
+.page-national-focal-points .main-container > .row div.page_title, .page-official-campaign-partners .main-container > .row div.page_title, .page-campaign-media-partners .main-container > .row div.page_title{
+	height:auto!important;
+	padding:0px!important;
+	margin: 0px!important;
+}
+
+.page-national-focal-points .main-container > .row div.page_title h1, .page-official-campaign-partners .main-container > .row div.page_title h1, .page-campaign-media-partners .main-container > .row div.page_title h1{
+	height:auto!important;
+	padding-top: 26px!important;
+}
+
+/* Newsletter */
+
+.page-node-129 #block-osha-newsletter-osha-newsletter-latest{
+	border-top: 1px dotted #000;
+}
+
+
+}

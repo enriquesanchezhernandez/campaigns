@@ -14,7 +14,7 @@ function osha_workflow_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'workbench_access';
-  $strongarm->value = 'menu';
+  $strongarm->value = 'taxonomy';
   $export['workbench_access'] = $strongarm;
 
   $strongarm = new stdClass();
@@ -48,27 +48,6 @@ function osha_workflow_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
-  $strongarm->name = 'workbench_access_menu';
-  $strongarm->value = array(
-    'main-menu' => 'main-menu',
-    'devel' => 0,
-    'features' => 0,
-    'management' => 0,
-    'navigation' => 0,
-    'user-menu' => 0,
-  );
-  $export['workbench_access_menu'] = $strongarm;
-
-  $strongarm = new stdClass();
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
-  $strongarm->name = 'workbench_access_menu_limit';
-  $strongarm->value = 1;
-  $export['workbench_access_menu_limit'] = $strongarm;
-
-  $strongarm = new stdClass();
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
   $strongarm->name = 'workbench_access_node_type_article';
   $strongarm->value = 1;
   $export['workbench_access_node_type_article'] = $strongarm;
@@ -83,23 +62,9 @@ function osha_workflow_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
-  $strongarm->name = 'workbench_access_node_type_blog';
-  $strongarm->value = 1;
-  $export['workbench_access_node_type_blog'] = $strongarm;
-
-  $strongarm = new stdClass();
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
   $strongarm->name = 'workbench_access_node_type_calls';
   $strongarm->value = 1;
   $export['workbench_access_node_type_calls'] = $strongarm;
-
-  $strongarm = new stdClass();
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
-  $strongarm->name = 'workbench_access_node_type_highlight';
-  $strongarm->value = 1;
-  $export['workbench_access_node_type_highlight'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
@@ -114,13 +79,6 @@ function osha_workflow_strongarm() {
   $strongarm->name = 'workbench_access_node_type_news';
   $strongarm->value = 1;
   $export['workbench_access_node_type_news'] = $strongarm;
-
-  $strongarm = new stdClass();
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
-  $strongarm->name = 'workbench_access_node_type_newsletter_article';
-  $strongarm->value = 0;
-  $export['workbench_access_node_type_newsletter_article'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
@@ -146,13 +104,6 @@ function osha_workflow_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
-  $strongarm->name = 'workbench_access_node_type_seminar';
-  $strongarm->value = 1;
-  $export['workbench_access_node_type_seminar'] = $strongarm;
-
-  $strongarm = new stdClass();
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
   $strongarm->name = 'workbench_access_node_type_simplenews';
   $strongarm->value = 1;
   $export['workbench_access_node_type_simplenews'] = $strongarm;
@@ -173,13 +124,22 @@ function osha_workflow_strongarm() {
     'article_types' => 0,
     'esener' => 0,
     'nace_codes' => 0,
+    'section' => 'section',
+    'attachment_file_type' => 0,
+    'contact_topic' => 0,
+    'contact_type' => 0,
+    'contact_type_of_sender' => 0,
+    'country' => 0,
+    'country_status' => 0,
+    'flickr_tags' => 0,
+    'fop_link_sections' => 0,
     'newsletter_sections' => 0,
+    'organised_by' => 0,
     'publication_types' => 0,
-    'section' => 0,
     'tags' => 0,
-    'thesaurus' => 0,
-    'wiki_categories' => 0,
-    'workflow_status' => 0,
+    'wg_category' => 0,
+    'wg_role_1' => 0,
+    'wg_role_2' => 0,
   );
   $export['workbench_access_taxonomy'] = $strongarm;
 

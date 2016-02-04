@@ -51,12 +51,9 @@ class NewsletterTest extends OshaWebTestCase {
     $this->assertField('osha_newsletter_after_max_nodes', '30');
     $this->assertField('osha_newsletter_node_view_mode', 'full');
     $this->assertFieldChecked('edit-osha-newsletter-allowed-bundles-article');
-    $this->assertFieldChecked('edit-osha-newsletter-allowed-bundles-blog');
-    $this->assertFieldChecked('edit-osha-newsletter-allowed-bundles-highlight');
     $this->assertFieldChecked('edit-osha-newsletter-allowed-bundles-news');
     $this->assertFieldChecked('edit-osha-newsletter-allowed-bundles-newsletter-article');
     $this->assertFieldChecked('edit-osha-newsletter-allowed-bundles-press-release');
     $this->assertFieldChecked('edit-osha-newsletter-allowed-bundles-publication');
-    $this->assertField('osha_newsletter_term_ct_map[view_mode_highlight]', 'highlights_item');
   }
 }

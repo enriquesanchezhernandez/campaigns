@@ -109,31 +109,6 @@ function osha_taxonomies_taxonomy_default_vocabularies() {
         ),
       ),
     ),
-    'directive_type' => array(
-      'name' => 'Directive type',
-      'machine_name' => 'directive_type',
-      'description' => 'Directive type',
-      'hierarchy' => 0,
-      'module' => 'taxonomy',
-      'weight' => -8,
-      'language' => 'und',
-      'i18n_mode' => 1,
-      'rdf_mapping' => array(
-        'rdftype' => array(
-          0 => 'skos:ConceptScheme',
-        ),
-        'name' => array(
-          'predicates' => array(
-            0 => 'dc:title',
-          ),
-        ),
-        'description' => array(
-          'predicates' => array(
-            0 => 'rdfs:comment',
-          ),
-        ),
-      ),
-    ),
     'esener' => array(
       'name' => 'Esener',
       'machine_name' => 'esener',
@@ -159,138 +134,13 @@ function osha_taxonomies_taxonomy_default_vocabularies() {
         ),
       ),
     ),
-    'legislation_category' => array(
-      'name' => 'Legislation category',
-      'machine_name' => 'legislation_category',
-      'description' => 'Legislation category',
-      'hierarchy' => 0,
-      'module' => 'taxonomy',
-      'weight' => -7,
-      'language' => 'und',
-      'i18n_mode' => 1,
-      'rdf_mapping' => array(
-        'rdftype' => array(
-          0 => 'skos:ConceptScheme',
-        ),
-        'name' => array(
-          'predicates' => array(
-            0 => 'dc:title',
-          ),
-        ),
-        'description' => array(
-          'predicates' => array(
-            0 => 'rdfs:comment',
-          ),
-        ),
-      ),
-    ),
-    'nace_codes' => array(
-      'name' => 'Nace Codes',
-      'machine_name' => 'nace_codes',
-      'description' => 'The list of Nace Codes',
-      'hierarchy' => 0,
-      'module' => 'taxonomy',
-      'weight' => -5,
-      'language' => 'und',
-      'i18n_mode' => 1,
-      'rdf_mapping' => array(
-        'rdftype' => array(
-          0 => 'skos:ConceptScheme',
-        ),
-        'name' => array(
-          'predicates' => array(
-            0 => 'dc:title',
-          ),
-        ),
-        'description' => array(
-          'predicates' => array(
-            0 => 'rdfs:comment',
-          ),
-        ),
-      ),
-    ),
     'section' => array(
-      'name' => 'Section',
+      'name' => 'Partner',
       'machine_name' => 'section',
       'description' => 'Content section category',
       'hierarchy' => 0,
       'module' => 'taxonomy',
       'weight' => -2,
-      'language' => 'und',
-      'i18n_mode' => 0,
-      'rdf_mapping' => array(
-        'rdftype' => array(
-          0 => 'skos:ConceptScheme',
-        ),
-        'name' => array(
-          'predicates' => array(
-            0 => 'dc:title',
-          ),
-        ),
-        'description' => array(
-          'predicates' => array(
-            0 => 'rdfs:comment',
-          ),
-        ),
-      ),
-    ),
-    'thesaurus' => array(
-      'name' => 'Thesaurus',
-      'machine_name' => 'thesaurus',
-      'description' => 'This taxonomy will be used to classify content by EU-OSHA’s controlled vocabulary',
-      'hierarchy' => 0,
-      'module' => 'taxonomy',
-      'weight' => 0,
-      'language' => 'und',
-      'i18n_mode' => 1,
-      'rdf_mapping' => array(
-        'rdftype' => array(
-          0 => 'skos:ConceptScheme',
-        ),
-        'name' => array(
-          'predicates' => array(
-            0 => 'dc:title',
-          ),
-        ),
-        'description' => array(
-          'predicates' => array(
-            0 => 'rdfs:comment',
-          ),
-        ),
-      ),
-    ),
-    'wiki_categories' => array(
-      'name' => 'Wiki Categories',
-      'machine_name' => 'wiki_categories',
-      'description' => '',
-      'hierarchy' => 1,
-      'module' => 'taxonomy',
-      'weight' => 1,
-      'language' => 'und',
-      'i18n_mode' => 1,
-      'rdf_mapping' => array(
-        'rdftype' => array(
-          0 => 'skos:ConceptScheme',
-        ),
-        'name' => array(
-          'predicates' => array(
-            0 => 'dc:title',
-          ),
-        ),
-        'description' => array(
-          'predicates' => array(
-            0 => 'rdfs:comment',
-          ),
-        ),
-      ),
-    ),
-    'workflow_status' => array(
-      'name' => 'Workflow status',
-      'machine_name' => 'workflow_status',
-      'description' => 'Content status for translation and publishing workflow',
-      'hierarchy' => 0,
-      'module' => 'taxonomy',
-      'weight' => 2,
       'language' => 'und',
       'i18n_mode' => 0,
       'rdf_mapping' => array(

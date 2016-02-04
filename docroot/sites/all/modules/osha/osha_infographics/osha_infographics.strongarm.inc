@@ -66,15 +66,15 @@ function osha_infographics_strongarm() {
   $strongarm->value = array(
     'full' => 'full',
     'teaser' => 'teaser',
-    'highlights_item' => 'highlights_item',
     'newsletter_item' => 'newsletter_item',
     'osha_resources' => 'osha_resources',
-    'osha_wiki' => 'osha_wiki',
     'rss' => 0,
     'search_index' => 0,
     'search_result' => 0,
     'diff_standard' => 0,
     'osha_slideshow' => 0,
+    'highlights_item' => 0,
+    'pub_teaser' => 0,
     'print' => 0,
     'token' => 0,
     'nodeform' => 0,
@@ -98,9 +98,6 @@ function osha_infographics_strongarm() {
         'custom_settings' => TRUE,
       ),
       'osha_slideshow' => array(
-        'custom_settings' => TRUE,
-      ),
-      'highlights_item' => array(
         'custom_settings' => TRUE,
       ),
       'newsletter_item' => array(
@@ -133,6 +130,12 @@ function osha_infographics_strongarm() {
       'token' => array(
         'custom_settings' => FALSE,
       ),
+      'highlights_item' => array(
+        'custom_settings' => TRUE,
+      ),
+      'pub_teaser' => array(
+        'custom_settings' => TRUE,
+      ),
     ),
     'extra_fields' => array(
       'form' => array(
@@ -163,22 +166,6 @@ function osha_infographics_strongarm() {
   $strongarm->name = 'language_content_type_infographic';
   $strongarm->value = '4';
   $export['language_content_type_infographic'] = $strongarm;
-
-  $strongarm = new stdClass();
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
-  $strongarm->name = 'menu_options_infographic';
-  $strongarm->value = array(
-    0 => 'main-menu',
-  );
-  $export['menu_options_infographic'] = $strongarm;
-
-  $strongarm = new stdClass();
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
-  $strongarm->name = 'menu_parent_infographic';
-  $strongarm->value = 'main-menu:0';
-  $export['menu_parent_infographic'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */

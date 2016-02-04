@@ -105,3 +105,58 @@ tr.osha_newsletter_section_admin_content {
 ul.primary {
   height: auto;
 }
+
+#block-system-main .view-events .red{
+  height:15px;
+  width:15px;
+  float:left;
+  margin-right: 1em;
+  background:red;
+  margin-top: 3px;
+}
+
+#block-system-main .view-events .grey{
+  height:15px;
+  width:15px;
+  float:left;
+  margin-right: 1em;
+  background:grey;
+  margin-top: 3px;
+}
+
+#block-system-main .view-events .black{
+  height:15px;
+  width:15px;
+  float:left;
+  margin-right: 1em;
+  background:black;
+  margin-top: 3px;
+}
+
+#block-system-main .view-events .blue{
+  height:15px;
+  width:15px;
+  float:left;
+  margin-right: 1em;
+  background:blue;
+  margin-top: 3px;
+}
+
+#block-system-main .view-events .yellow{
+  height:15px;
+  width:15px;
+  float:left;
+  margin-right: 1em;
+  background:yellow;
+  margin-top: 3px;
+}
+
+#block-system-main .view-events .green{
+  height:15px;
+  width:15px;
+  float:left;
+  margin-right: 1em;
+  background:green;
+  margin-top: 3px;
+}
+

@@ -10,56 +10,26 @@
 function osha_news_field_default_field_bases() {
   $field_bases = array();
 
-  // Exported field_base: 'field_aditional_resources'
-  $field_bases['field_aditional_resources'] = array(
+  // Exported field_base: 'field_image_caption'
+  $field_bases['field_image_caption'] = array(
     'active' => 1,
-    'cardinality' => -1,
+    'cardinality' => 1,
     'deleted' => 0,
     'entity_types' => array(),
-    'field_name' => 'field_aditional_resources',
-    'foreign keys' => array(
-      'node' => array(
-        'columns' => array(
-          'target_id' => 'nid',
-        ),
-        'table' => 'node',
-      ),
-    ),
+    'field_name' => 'field_image_caption',
     'indexes' => array(
-      'target_id' => array(
-        0 => 'target_id',
+      'format' => array(
+        0 => 'format',
       ),
     ),
     'locked' => 0,
-    'module' => 'entityreference',
+    'module' => 'text',
     'settings' => array(
       'entity_translation_sync' => FALSE,
-      'handler' => 'base',
-      'handler_settings' => array(
-        'behaviors' => array(
-          'views-select-list' => array(
-            'status' => 0,
-          ),
-        ),
-        'sort' => array(
-          'type' => 'none',
-        ),
-        'target_bundles' => array(
-          'external_url' => 'external_url',
-          'file' => 'file',
-          'flickr' => 'flickr',
-          'infographic' => 'infographic',
-          'news' => 'news',
-          'press_release' => 'press_release',
-          'publication' => 'publication',
-          'slideshare' => 'slideshare',
-          'youtube' => 'youtube',
-        ),
-      ),
-      'target_type' => 'node',
+      'max_length' => 255,
     ),
-    'translatable' => 0,
-    'type' => 'entityreference',
+    'translatable' => 1,
+    'type' => 'text',
   );
 
   return $field_bases;
