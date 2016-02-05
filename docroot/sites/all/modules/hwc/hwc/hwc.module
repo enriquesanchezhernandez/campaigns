@@ -436,7 +436,29 @@ function hwc_form_alter(&$form, &$form_state, $form_id) {
     $form['lang_dropdown_select']['#attributes']['title'] = t('Language switcher dropdown');
   }
 
+
+  if ($form_id == 'system_site_information_settings') {
+    $form['site_information']['site_hwc_mostra_mailbox'] = array(
+      '#type' => 'textfield',
+      '#title' => t('Mostra mailbox'),
+      '#default_value' => variable_get('site_hwc_mostra_mailbox'),
+    );
+  }
 }
+
+/**
+ * Implements hook_entity_property_info_alter().
+ */
+function hwc_entity_property_info_alter(&$info) {
+  $properties =& $info['site']['properties'];
+  // Add mostra mailbox property to use it in rules.
+  $properties['hwc_mostra_mailbox'] = array(
+    'label' => 'Mostra mailbox',
+    'description' => 'Mostra mailbox',
+    'getter callback' => 'entity_metadata_system_get_properties',
+  );
+}
+
 
 /**
  * Implements hook_node_submit().
