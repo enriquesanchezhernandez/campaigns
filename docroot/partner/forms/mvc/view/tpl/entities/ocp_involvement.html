@@ -1,0 +1,73 @@
+<!--{if $HelpMessage != "print"}
+<div id="container-message" class="container-message">   
+
+        <div id="MESSAGE">
+            Please make sure you thoroughly check, whether all your information is still valid
+                       and indicate <br>     this by checking the button next to the appropiate fields
+                       <a class="close">[X]</a>
+        </div>            
+    </div>
+{else}
+{/if}-->
+{if !$mf}
+<fieldset>
+    <legend id="BECOME">
+        Why do you want to become a partner?
+        <div data-section="BECOME" class="validation{$locked}"></div>
+    </legend>
+    
+    <div class="separatorFieldSet">&nbsp;</div>
+    
+     <!--<p class='promoteText'>Why do you want to be an Official Campaign Partner of the Healthy Workplaces Campaign 2016-17 on ‘Healthy Workplaces for All Ages’?</p> -->
+     <div id="promoteText" class="promoteText marginRightForm">
+        {$attributes.involvement_osh_tobeanocponhwc}
+     </div>
+</fieldset>
+<fieldset>
+    <legend id="INVOLVEMENT">
+        Your support for the campaign
+        <div data-section="INVOLVEMENT" class="validation{$locked}"></div>
+    </legend>
+    
+    <div class="separatorFieldSet">&nbsp;</div>
+    
+    <!--<p class='promoteText'>How do you plan to promote and support the campaign via your website and other electronic means  (Intranet, Newsletter, social media etc.)?</p>-->
+    <div id="promoteText" class="promoteText marginRightForm" style="width: 100%">
+        {$attributes.involvement_osh_promoteandsupportcampaign}
+    </div>
+    
+    <div style= "display: inline-block;">
+         <p class='promoteText2'>What other activities do you plan to get substantially involved in the campaign?</p>
+    </div>
+    <p class='promoteText3 promoteText2' style="min-width: 75%;">Please select among the following and describe them briefly.</p>
+     
+    {$attributes.involvement_osh_conferenceactivity}
+    {$attributes.involvement_osh_trainingsessions}
+    {$attributes.involvement_osh_partnershipswithotherorganisations}
+    {$attributes.involvement_osh_promotioninthemedia}
+    {$attributes.involvement_osh_bestpractice}
+    {$attributes.involvement_osh_otheractivities}
+    
+        <div class="hidden">
+            {$attributes.helpMessage}
+            {$attributes.contact_osh_mainemailAux}
+            {$attributes.company_osh_orgnameAux}
+            {$attributes.osh_tobecomeapartnersection}
+            {$attributes.osh_supportforcampaignsection}
+            {$attributes.osh_yourcampaignpledgesection}
+        </div>
+</fieldset>
+{else}
+
+{/if}
+<fieldset>
+    <legend id="PLEDGE">
+        Your campaign pledge
+        <div data-section="PLEDGE" class="validation{$locked}"></div>
+    </legend>
+    
+    <div class="separatorFieldSet">&nbsp;</div>
+    <div class="marginRightForm">
+        {$attributes.involvement_osh_campaignpledge}
+    </div>
+</fieldset>

@@ -1,0 +1,55 @@
+button,
+input[type=submit],
+input[type=file],
+#progressbar,
+#sidebar,
+.help-block,
+.repeatable-button,
+.captcha,
+.validation,
+.screen-right,
+#general-text,
+.promoteText3,
+#a_disclaimer{
+    display: none !important;
+}
+input[type=text], select, textarea {
+    border: none !important;
+    padding: 0 !important;
+    background-color: transparent !important;
+}
+select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    text-indent: 0.1vw;
+    text-overflow: '';
+}
+textarea {
+    height: auto !important;
+}
+.sidebar-border {
+    border: none !important;
+}
+
+.image-printable {
+    margin-top    : 0.5vw;
+    margin-bottom : 0.5vw;
+}
+#company_osh_selectsocialnetworks,#socialNetworkTextBox{
+    display: none !important;
+}
+.socialNetworks #SocialNetHidden{
+    display: inherit!important;
+}
+#promoteText{
+    margin-top: 0 !important;
+    }
+    @media print{
+        body{
+            width: 100%;
+        }
+        
+    }
+#otherUserField1{
+    margin-top: 0px !important;
+}   

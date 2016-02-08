@@ -1,0 +1,67 @@
+{if $show_print_version || $show_pdf_version}
+<script nonce="{$nonce}">
+    $(document).ready(function() {
+        window.open("{$appurl}&action={if $show_print_version}printable{else}pdf{/if}", 'popup');
+    });
+</script>
+{/if}
+{if !$printable}
+{if $progressbar}
+    <div id="blankDiv" style="width: 20%; float: left; height: 3vw;"></div>
+    {$progressbar}
+{/if}
+{if $partner_type == "current"}
+<!--<div class="review-fields">Please make sure that you thoroughly check, whether all your information is still valid and indicate this by checking the button next to each section</div>-->
+{/if}
+<div id="content">
+    {if $sidebar}{$sidebar}{/if}
+    {if !isset($fullwidth)}<div id="form" class="main-form sidebar-border">{/if}
+        {if !$locked}
+        <form class="form-horizontal {if !empty($partner_type)}{$partner_type}{/if} {if $mf}mf{/if}" method="post" autocomplete="off" action="{$appurl}&action=send{if $actionType}&action_type={$actionType}{/if}" onload="checkAllfields()">
+        {if $HelpMessage != "print"}
+            <div id="container-message" class="container-message">   
+                <div id="MESSAGE">
+                    Please check whether all your information is still valid, make neccesary changes when applicable
+                    <br> and tick the button next to the appropiate fields to confirm validation
+                               <a class="close">[X]</a>
+                </div>            
+            </div>
+        {else}
+            <!-- <a id="printpage" style="float: right; margin: 1%; ">
+                         <img src="mvc/view/img/print.png" title="Print" height="40" width="40">
+                </a> -->
+        {/if}
+        <div id="dataErrorDialog" class="dialog errorDialog hidden">
+        <a class="closeDialog">[X]</a>
+        <img src="mvc/view/img/alertIcon.png"/><br>
+        <p>Error: Some fields contain errors</p>
+    </div>
+    <div id="fillRequiredDialog" class="dialog errorDialog hidden">
+        <a class="closeDialog">[X]</a>
+        <img src="mvc/view/img/alertIcon.png"/><br>
+        <p>Error: You must fill all the required fields</p>
+    </div>
+    <div id="checkFieldsDialog" class="dialog errorDialog hidden">
+        <a class="closeDialog">[X]</a>
+        <img src="mvc/view/img/alertIcon.png"/><br>
+        <p>Section check cannot be checked until the mandatory fields are filled</p>
+    </div>
+    <div id="nameandemailrequiredDialog" class="dialog errorDialog hidden">
+        <a class="closeDialog">[X]</a>
+        <img src="mvc/view/img/alertIcon.png"/><br>
+        <p>The fields Company/Organisation name and E-mail of the Primary Contact are required for save the information</p>
+    </div>
+    <div id="maxSocialNetDialog" class="dialog errorDialog hidden">
+        <a class="closeDialog">[X]</a>
+        <img src="mvc/view/img/alertIcon.png"/><br>
+        <p>You cannot add more than one profile per social network</p>
+    </div>
+        {if $fieldsValidatingDialog}
+        <div id="fieldsValidatingDialog" class="dialog errorDialog">
+            <a class="closeDialog" style="color: black; font-size: inherit;">[X]</a>
+            <p style="color: black; font-weight: inherit;">Your changes are being reviewed by the campaign team. <br> You will receive feedback shortly. Thanks for participating in the Healthy Workplaces Campaign.</p>
+        </div>
+        {/if}
+        
+        {/if}
+{/if}
