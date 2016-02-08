@@ -30,10 +30,10 @@ header.navbar-default .navbar-collapse nav ul.menu li .dropdown-menu li{
 	}
 	.checkbox{
 		label:before {
-			padding: 9px 7px 10px 7px;
+			padding: 0 7px;
 		}
 		input[type=checkbox]:checked + label:before {
-			padding: 0px 2px 0px 2px;
+			padding: 0 2px;
 		}
 	}
 }
@@ -72,7 +72,7 @@ header{
 				}
 				.header_top_bar{
 					.region-above-header{
-						display: none;
+						display: block;
 					}
 				}
 				.region-header{
@@ -311,6 +311,16 @@ header{
 		margin-top: 0;
 	}
 }
+
+.pane-hwc-practical-tool-hwc-practical-tool-listing .h4-title, .pane-hwc-practical-tool-hwc-practical-tool-listing h4{
+	margin-left:1em;
+}
+
+
+.pane-hwc-practical-tool-hwc-practical-tool-listing #edit-content{
+	margin-top:1em;
+}
+
 .form-item-relevant-for, .form-item-languages, .form-item-publication-type{
 	border-top: none;
 	border-bottom: none;
@@ -613,20 +623,6 @@ header{
 		/* display: none; */
 	}
 }
-/* .page-case-studies{
-	.form-type-checkbox{
-		width: 25%;
-		float: left;
-		label{
-		    white-space: nowrap;
-			font-size: 12px;
-		}
-	}
-	#edit-left-column{
-		padding-right: 0px;
-		padding-left: 0px;
-	}
-} */
 /*fin case studies*/
 
 /*pag Become a media partner*/
@@ -660,10 +656,9 @@ header{
 		padding-right: 0;
 		padding-left: 0;
 		padding-bottom: 1em;
-		margin-right: -@margin-movil;
-		margin-left: -@margin-movil;
 		margin-bottom: 1em;
-		border-bottom: 1px solid @border-default-color;
+		border-left: 1px dotted @border-default-color;
+    	border-right: 1px dotted @border-default-color;
 		border-left: none;
 		border-right: none;
 		&:last-child{
@@ -695,6 +690,11 @@ header{
 /*fin become a media partner*/
 
 /*pag publications*/
+
+#edit-languages .form-item, #edit-publication-type .form-item, #edit-relevant-for .form-item{
+		width:100%!important;
+}
+
 #publications_slideshow{
 	display: none;
 }
