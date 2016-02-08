@@ -86,13 +86,13 @@ function osha_newsletter_default_fe_block_settings() {
         'region' => 'content',
         'status' => 1,
         'theme' => 'hwc_frontend',
-        'weight' => -64,
+        'weight' => -30,
       ),
       'seven' => array(
         'region' => '',
         'status' => 0,
         'theme' => 'seven',
-        'weight' => -30,
+        'weight' => 0,
       ),
     ),
     'title' => 'OSHMail newsletter',
@@ -124,7 +124,7 @@ function osha_newsletter_default_fe_block_settings() {
         'weight' => 0,
       ),
     ),
-    'title' => 'Campaign Newsletter',
+    'title' => 'Campaign newsletter',
     'visibility' => 1,
   );
 

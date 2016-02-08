@@ -1,5 +1,19 @@
 //rewrite styles for responsive design
 
+@media only screen and (max-width : 1022px) {
+
+/*Menu*/
+
+header.navbar-default .navbar-collapse nav ul.menu li{
+	min-height: 62px;
+}
+
+header.navbar-default .navbar-collapse nav ul.menu li .dropdown-menu li{
+	min-height: auto;
+}
+
+}
+
 @media only screen and (max-width : 992px) {
 
 /* contenedor principal */
@@ -13,6 +27,14 @@
 	.above_title{
 		margin-left: 0;
 		margin-right: 0;
+	}
+	.checkbox{
+		label:before {
+			padding: 9px 7px 10px 7px;
+		}
+		input[type=checkbox]:checked + label:before {
+			padding: 0px 2px 0px 2px;
+		}
 	}
 }
 /*Fin contenedor principal */
@@ -89,15 +111,22 @@ header{
 					#block-block-1, #block-hwc-partner-hwc-partner-back-to-profile{
 						top: 140px;
 					}
+
+					#block-hwc-partner-hwc-partner-back-to-profile{
+						right: 45px;
+						top: 135px!important;
+					}
+
+					#block-hwc-partner-hwc-partner-mostra-masquerade {
+					    float: right;
+					    margin-top: 24px;
+					    margin-right: 46px;
+					}
 				}
 			}
 		}
 		
 		.navbar-collapse nav ul.menu {
-			li span.dropdown-toggle{
-				padding-left: 5px;
-				padding-right: 2px;
-			}
 			li a .caret, li span .caret{
 				width: 2px;
 				margin-left: 2px;
@@ -204,23 +233,50 @@ header{
 /*fin home*/
 
 /*articles*/
-.node-type-article article{
-	margin-left: 0px;
-	margin-right: 0px;
-	.field-name-body{
-		padding-right: 30px;
-		padding-left: 30px;
+.node-type-article{
+	article{
+		margin-left: 0px;
+		margin-right: 0px;
+		.field-name-body{
+			padding-right: 30px;
+			padding-left: 30px;
+		}
+		.dot-separator.green{
+			/* margin-left: @margin-tablet;
+			margin-right: @margin-tablet; */
+		}
 	}
-	.dot-separator.green{
-		/* margin-left: @margin-tablet;
-		margin-right: @margin-tablet; */
-	}
-}
-.field-name-field-recommended-articles, .field-name-field-recommended-resources{
-	padding-right: @margin-tablet;
-	padding-left: @margin-tablet;
 }
 /*fin articles*/
+
+/* Block: recommended-articles and recommended-resources and article aditional resources*/
+.field-name-field-recommended-articles, .field-name-field-recommended-resources, .field.field-name-field-aditional-resources, .field-name-field-aditional-resources, .panels-flexible-region-container-additional_resources{
+	padding-right: @margin-tablet;
+	padding-left: @margin-tablet;
+	h1{
+		padding-left: 0px;
+		padding-right: 0px;
+	}	
+	#additional-resources-events-pane .pane-content .views-field-nothing .col-sm-2{
+		span.date-display-single{
+			width: 130px;
+			min-width: 130px;
+			max-width: 130px;
+			min-width: 0px;
+			max-width: 95%;
+			padding: 0 20px;
+		}
+	}
+}
+.node-type-article article{
+	.field-name-field-recommended-articles, .field-name-field-recommended-resources, .field-name-field-aditional-resources{
+		.field-name-body {
+			padding-right: 0px;
+			padding-left: 0px;
+		}
+	}
+}
+/* End Block: recommended-articles and recommended-resources and article aditional resources*/
 
 /*Practical tools*/
 .page-practical-tools{
@@ -255,7 +311,7 @@ header{
 		margin-top: 0;
 	}
 }
-.form-item-relevant-for, .form-item-languages{
+.form-item-relevant-for, .form-item-languages, .form-item-publication-type{
 	border-top: none;
 	border-bottom: none;
 	clear: both;
@@ -277,7 +333,7 @@ header{
 			background-image: url("../images/content/slideUp.png");
 		}
 	}
-	 #edit-relevant-for, #edit-languages{
+	 #edit-relevant-for, #edit-languages, #edit-publication-type{
 		margin-left: @margin-tablet;
 		margin-right: @margin-tablet;
 	}
@@ -348,7 +404,7 @@ header{
 			width: 25%;
 		}
 	}
-	&.page-past-event{
+	&.page-past-event, &.page-upcoming-event{
 		.field-name-field-speaker > .field-items > .field-item{
 			&:nth-child(5n+1){
 				clear: none;
@@ -361,6 +417,18 @@ header{
 	.group-header > div {
 		margin-left: @margin-tablet;
 		margin-right: @margin-tablet;
+		&.field-name-field-gallery{
+			margin-left: 0;
+			margin-right: 0;
+			> .field-label{
+				margin-left: @margin-tablet;
+				margin-right: @margin-tablet;
+			}
+			.node-hwc-gallery .field-item{
+				padding-left: 0px;
+				padding-right: 0px;
+			}
+		}
 		&.hwc-share-widget {
 			margin-left: 0;
 			margin-right: 0;
@@ -389,10 +457,18 @@ header{
 				margin-right: @margin-tablet;
 			}
 		}
+		&.event-location-container{
+			margin-left: auto;
+			margin-right: auto;
+		}
 	}
 	h2.node-edit-form-heading{
 		margin-left: @margin-tablet;
 		margin-right: @margin-tablet;
+	}
+	.group-footer{
+		padding-left: @margin-tablet;
+		padding-right: @margin-tablet;
 	}
 }
 /*fin events*/
@@ -534,7 +610,7 @@ header{
 /*case studies*/
 .section-introduction{
 	.field-type-text-with-summary{
-		display: none;
+		/* display: none; */
 	}
 }
 /* .page-case-studies{
@@ -556,23 +632,65 @@ header{
 /*pag Become a media partner*/
 .become-partner{
 	.partners{
-		margin-right: -@margin-tablet;
-		margin-left: -@margin-tablet;
-		.partner-name, .partner-opinion{
-			margin-right: @margin-tablet2;
-			margin-left: @margin-tablet2;
+		margin-right: -@margin-movil;
+		margin-left: -@margin-movil;
+		.partner-name{
+			margin-right: 0;
+			margin-left: 0;
+		}
+		.partner {
+			padding-left: @margin-movil;
+			padding-right: @margin-movil;
+			height:1%;
+			overflow:hidden;
+			.partner-opinion{
+				margin-right: 0;
+				margin-left: 0;
+				.quottes-left, .quottes-right{
+					background-size: contain;
+					height: auto;
+				}
+			}
 		}
 	}
-	.description .col-md-12, .see-also-title{
-		padding-left: 0px;
-		padding-right: 0px;
+	.coments h2.visibility{
+		display: block !important;
+	}
+	.coments .col{
+		padding-right: 0;
+		padding-left: 0;
+		padding-bottom: 1em;
+		margin-right: -@margin-movil;
+		margin-left: -@margin-movil;
+		margin-bottom: 1em;
+		border-bottom: 1px solid @border-default-color;
+		border-left: none;
+		border-right: none;
+		&:last-child{
+			border-bottom: none;
+		}
+		p{		
+			margin-right: @margin-movil;
+			margin-left: @margin-movil;
+		}
+	}
+	.boton-become{
+		div{
+			padding-right: 0;
+			padding-left: 0;
+		}
+	}
+	button, a.btn-become-a-campaign-partner{
+		width: 100%;
+		display: block;
 	}
 	.see-also-title{
-		padding-left: 0px;
-		padding-right: 0px;
-		margin-right: -@margin-tablet;
-		margin-left: -@margin-tablet;
+	    margin-right: 0px;
+		margin-left: 0px;
 	}
+}
+.node-type-article .become-partner h2{
+	text-align: center;
 }
 /*fin become a media partner*/
 
@@ -588,6 +706,15 @@ header{
 }
 	.publication-item{
 		clear: both;
+		.field-name-field-cover-image img {
+			margin-right: 35px;
+		}
+		.field-name-title-field, .field-type-text-with-summary, ul{
+			margin-left: 195px;
+		}
+		.field-name-field-cover-image ~ .field-name-title-field, .field-name-field-cover-image ~ .field-type-text-with-summary, .field-name-field-cover-image ~ ul{
+			margin-left: 190px;
+		}
 	}
 .node-type-publication{
 	.pane-node-title-field, .pane-node-field-publication-date, .pane-node-field-publication-type{
@@ -650,8 +777,9 @@ header{
 		}
 		.facetapi-facetapi-checkbox-links{
 			padding-left: @margin-tablet;
-			display: inline-block;
 			padding-top: 0.7em;
+			margin-bottom: 0;
+			display: inline-block;
 			li{
 				float: left;
 				width: 20%;
@@ -735,12 +863,19 @@ header{
 			margin: 0px;
 		}
 	}
+	article{
+	    margin-left: 0;
+		margin-right: 0;
+	}
+	.view-id-partners_list .hwc-char-link {
+		padding: 0px 18px 0px 0px;
+	}
 }
 #block-views-partners-list-block{
 	margin-right: @margin-tablet;
 	margin-left: @margin-tablet;
 }
-/*Fin pag National focal points*/
+/*End pag National focal points*/
 
 /*partner profile*/
 .profile-edit-links-container{
@@ -790,7 +925,7 @@ header{
 	}
 }
 
-.profile-2-cols-container-1{
+.profile-2-cols-container-1, .node-type-partner .profile-2-cols-container-1{
 	padding-bottom: @margin-tablet !important;
 	margin-bottom: @margin-tablet !important;
 	padding-left: @margin-tablet !important;
@@ -801,9 +936,36 @@ header{
 	.field-item{
 		margin-bottom: 20px;
 	}
+	.panels-flexible-row-new-1-inside{
+		.profile-col-left-1.col-sm-4{
+			width: 40% !important;
+			margin-right: 3%;
+		}
+		.profile-col-right-1.col-sm-6{
+			width: 40% !important;
+		}
+		.profile-col-left-1.col-sm-6{
+			padding-left: 0;
+		}
+		.profile-col-right-1.col-sm-9{
+			padding-left: 1em;
+		}
+		.profile-col-left-1.col-sm-6 ~ .profile-col-right-1.col-sm-6{
+			width: 100% !important;
+		}
+	}
+	.panels-flexible-region-last .pane-entity-field{
+		&.pane-node-field-mission-statement{
+		    width: 95%;
+		}
+	}
+}
+.profile-title-type-container .panels-flexible-region-last.col-md-12{
+	padding-left: @margin-tablet;
+	padding-right: @margin-tablet;
 }
 
-.profile-4-cols-container-2{
+.profile-4-cols-container-2, .node-type-partner .profile-4-cols-container-2 {
 	border-bottom: 1px dotted @color3;
 	padding-bottom: 50px !important;
 	margin-bottom: 50px !important;
@@ -841,12 +1003,52 @@ header{
 			float: none;
 		}
 	}
+	.panels-flexible-column-first div{
+		padding-left: 0;
+	}
 }
 .profile-2-cols-container-3, .container.profile-2-cols-container-3{
 	padding-left: @margin-tablet;
 	padding-right: @margin-tablet;
 	.profile-col-left-3{
 		padding-right: 15px;
+	}
+}
+
+.node-type-partner{
+	.profile-4-cols-container-2{
+		.panels-flexible-column-new-8, .panels-flexible-column-first {
+			width: 33%;
+			float: left;
+			margin-top: 0em;
+			margin-bottom: 0em;
+			padding-left: 0em;
+			> div{
+				.panels-flexible-region-first, .panels-flexible-region-last{
+					width: 100% !important;
+					text-align: left;
+					.pane-node-title-field{
+						font-weight: bold;
+						margin-bottom: 1em;
+					}
+					img{
+						margin-bottom: 1em;
+					}
+				}
+			}
+		}
+		.panels-flexible-column-new-9, .panels-flexible-column-new-10{
+			width: 33%;
+			float: left;
+			margin-top: 0;
+			.panels-flexible-region-first{
+				width: 100% !important;
+				p{
+					text-align: left;
+					font-weight: bold;
+				}
+			}
+		}
 	}
 }
 /*fin partner profile*/
@@ -918,6 +1120,54 @@ header{
 }
 /*fin plantilla employers*/
 
+/*pag Newsletter*/
+.page-node-129{
+	#block-osha-newsletter-osha-newsletter-subscribe{
+		margin-left: 0;
+		margin-right: 0;
+		h2{
+			margin-left: 0;
+			margin-right: 0;
+		}
+		div form > div{
+			padding-left: @margin-tablet;
+			padding-right: @margin-tablet;
+		}
+	}
+	#block-osha-newsletter-osha-newsletter-subscribe-extra{
+		margin-left: 0;
+		margin-right: 0;
+		h2{
+			margin-left: 0;
+			margin-right: 0;
+		}
+		div form > div{
+			padding-left: @margin-tablet;
+			padding-right: @margin-tablet;
+		}
+		.form-type-checkbox label{
+			font-size: @size4;
+		}
+		hr{
+			clear: both;
+		}
+		#subscribe-extra button#edit-submit--4{
+			margin-top: 1em;
+		}
+	}
+	 #block-osha-newsletter-osha-newsletter-latest #latest-newsletters-block{
+		width: 100%;
+		h2{
+			width: 75%;
+		}
+		.newsletter_items{
+			width: 85%;
+			margin-left: 10px;
+		}
+	 }
+}
+/*End pag Newsletter*/
+
 /*pag get-your-certificate*/
 .page-get-your-certificate{
 	.container{
@@ -972,6 +1222,7 @@ header{
 						margin-left: 15%;
 						width: 85%;
 						float: none;
+						clear: both;
 					}
 				}
 			}
@@ -993,7 +1244,7 @@ header{
 		}
 	}
 }
-/*fin pag contact-form*/
+/*End pag contact-form*/
 
 /*clases para toda la web*/
 .container{

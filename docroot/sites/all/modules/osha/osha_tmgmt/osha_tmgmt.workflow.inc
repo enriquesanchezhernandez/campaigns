@@ -701,7 +701,6 @@ function osha_tmgmt_translation_validators_accept($form, &$form_state) {
         }
         $job_item->addMessage($log_entry);
         $job_item->toTranslationValidated();
-        OshaWorkflowNotifications::notifyTranslationValidated($job_item);
       }
       break;
     }

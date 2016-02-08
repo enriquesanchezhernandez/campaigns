@@ -12,38 +12,38 @@ function osha_workflow_views_query_alter(&$view, &$query) {
   }
 
 
-  if ($view->name == 'osh_workflow_admin') {
-    // Alter the query for views from Workflow Dashboard.
-    // Get the latest state of nodes, not just the published ones.
-    if (!empty($query->table_queue['node_revision'])
-        && $view->current_display != 'my_content_non_moderated') {
-      $query->table_queue['node_revision']['join']->field = 'nid';
-      $query->table_queue['node_revision']['join']->left_field = 'nid';
-    }
-    if ($view->current_display == 'my_content') {
-      // Fix My Content View - Add conditions to show distinct content that has
-      // some transitions made by current user
-      // Fix to show current revisions Title (revision published or not).
-      $new_join = new views_join();
-      $new_join->table = 'workbench_moderation_node_history';
-      $new_join->left_table = 'workbench_moderation_node_history';
-      $new_join->left_field = 'nid';
-      $new_join->field = 'nid';
-      $new_join->type = 'INNER';
-      $query->table_queue['workbench_moderation_node_history_workbench_moderation_node_history'] = array(
-        'table' => 'workbench_moderation_node_history',
-        'alias' => 'workbench_moderation_node_history_workbench_moderation_node_history',
-        'num' => 1,
-        'join' => $new_join,
-      );
-      global $user;
-      $query->where[1]['conditions'][] = array(
-        'field' => 'workbench_moderation_node_history_workbench_moderation_node_history.uid',
-        'value' => $user->uid,
-        'operator' => '=',
-      );
-    }
-  }
+//  if ($view->name == 'osh_workflow_admin') {
+//    // Alter the query for views from Workflow Dashboard.
+//    // Get the latest state of nodes, not just the published ones.
+//    if (!empty($query->table_queue['node_revision'])
+//        && $view->current_display != 'my_content_non_moderated') {
+//      $query->table_queue['node_revision']['join']->field = 'nid';
+//      $query->table_queue['node_revision']['join']->left_field = 'nid';
+//    }
+//    if ($view->current_display == 'my_content') {
+//      // Fix My Content View - Add conditions to show distinct content that has
+//      // some transitions made by current user
+//      // Fix to show current revisions Title (revision published or not).
+//      $new_join = new views_join();
+//      $new_join->table = 'workbench_moderation_node_history';
+//      $new_join->left_table = 'workbench_moderation_node_history';
+//      $new_join->left_field = 'nid';
+//      $new_join->field = 'nid';
+//      $new_join->type = 'INNER';
+//      $query->table_queue['workbench_moderation_node_history_workbench_moderation_node_history'] = array(
+//        'table' => 'workbench_moderation_node_history',
+//        'alias' => 'workbench_moderation_node_history_workbench_moderation_node_history',
+//        'num' => 1,
+//        'join' => $new_join,
+//      );
+//      global $user;
+//      $query->where[1]['conditions'][] = array(
+//        'field' => 'workbench_moderation_node_history_workbench_moderation_node_history.uid',
+//        'value' => $user->uid,
+//        'operator' => '=',
+//      );
+//    }
+//  }
 }
 
 /**

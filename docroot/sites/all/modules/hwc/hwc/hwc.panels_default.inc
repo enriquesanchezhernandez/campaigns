@@ -300,6 +300,44 @@ function hwc_default_panels_mini() {
     $pane->uuid = 'd4387249-e424-4512-814b-fd26621d9acf';
     $display->content['new-d4387249-e424-4512-814b-fd26621d9acf'] = $pane;
     $display->panels['center'][6] = 'new-d4387249-e424-4512-814b-fd26621d9acf';
+    $pane = new stdClass();
+    $pane->pid = 'new-7f84e0b0-0e99-4073-95cb-4c425534cf32';
+    $pane->panel = 'center';
+    $pane->type = 'views';
+    $pane->subtype = 'additional_resources';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'override_pager_settings' => 0,
+      'use_pager' => 0,
+      'nodes_per_page' => '0',
+      'pager_id' => '0',
+      'offset' => '0',
+      'more_link' => 0,
+      'feed_icons' => 0,
+      'panel_args' => 0,
+      'link_to_view' => 0,
+      'args' => '%1/internal_url',
+      'url' => '',
+      'display' => 'block',
+      'override_title' => 1,
+      'override_title_text' => 'Internal resources',
+      'override_title_heading' => 'h4',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array(
+      'css_id' => 'additional-resources-internal_url-pane',
+      'css_class' => 'additional-resources-internal_url-pane',
+    );
+    $pane->extras = array();
+    $pane->position = 7;
+    $pane->locks = array();
+    $pane->uuid = '7f84e0b0-0e99-4073-95cb-4c425534cf32';
+    $display->content['new-7f84e0b0-0e99-4073-95cb-4c425534cf32'] = $pane;
+    $display->panels['center'][7] = 'new-7f84e0b0-0e99-4073-95cb-4c425534cf32';
   $display->hide_title = PANELS_TITLE_FIXED;
   $display->title_pane = '0';
   $mini->display = $display;

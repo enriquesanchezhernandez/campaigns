@@ -10,7 +10,7 @@
 function osha_publication_field_default_field_bases() {
   $field_bases = array();
 
-  // Exported field_base: 'field_publication_bookshop_id'
+  // Exported field_base: 'field_publication_bookshop_id'.
   $field_bases['field_publication_bookshop_id'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -32,7 +32,7 @@ function osha_publication_field_default_field_bases() {
     'type' => 'text',
   );
 
-  // Exported field_base: 'field_publication_related_res'
+  // Exported field_base: 'field_publication_related_res'.
   $field_bases['field_publication_related_res'] = array(
     'active' => 1,
     'cardinality' => -1,
@@ -58,7 +58,7 @@ function osha_publication_field_default_field_bases() {
     'type' => 'file',
   );
 
-  // Exported field_base: 'field_publication_type'
+  // Exported field_base: 'field_publication_type'.
   $field_bases['field_publication_type'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -86,7 +86,7 @@ function osha_publication_field_default_field_bases() {
     'type' => 'taxonomy_term_reference',
   );
 
-  // Exported field_base: 'field_related_publications'
+  // Exported field_base: 'field_related_publications'.
   $field_bases['field_related_publications'] = array(
     'active' => 1,
     'cardinality' => -1,

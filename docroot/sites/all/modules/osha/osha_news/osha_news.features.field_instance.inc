@@ -10,7 +10,7 @@
 function osha_news_field_default_field_instances() {
   $field_instances = array();
 
-  // Exported field_instance: 'node-news-body'
+  // Exported field_instance: 'node-news-body'.
   $field_instances['node-news-body'] = array(
     'bundle' => 'news',
     'default_value' => NULL,
@@ -118,7 +118,7 @@ function osha_news_field_default_field_instances() {
     'entity_type' => 'node',
     'field_name' => 'body',
     'label' => 'Body',
-    'required' => 0,
+    'required' => 1,
     'settings' => array(
       'display_summary' => 0,
       'entity_translation_sync' => FALSE,
@@ -137,7 +137,7 @@ function osha_news_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-news-field_activity'
+  // Exported field_instance: 'node-news-field_activity'.
   $field_instances['node-news-field_activity'] = array(
     'bundle' => 'news',
     'default_value' => NULL,
@@ -201,7 +201,7 @@ function osha_news_field_default_field_instances() {
     'workbench_access_field' => 0,
   );
 
-  // Exported field_instance: 'node-news-field_aditional_resources'
+  // Exported field_instance: 'node-news-field_aditional_resources'.
   $field_instances['node-news-field_aditional_resources'] = array(
     'bundle' => 'news',
     'deleted' => 0,
@@ -213,6 +213,7 @@ function osha_news_field_default_field_instances() {
         'settings' => array(
           'field_formatter_class' => '',
           'links' => 0,
+          'use_content_language' => TRUE,
           'view_mode' => 'osha_resources',
         ),
         'type' => 'entityreference_entity_view',
@@ -286,7 +287,7 @@ function osha_news_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-news-field_archived'
+  // Exported field_instance: 'node-news-field_archived'.
   $field_instances['node-news-field_archived'] = array(
     'bundle' => 'news',
     'default_value' => array(
@@ -365,7 +366,7 @@ function osha_news_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-news-field_character_count'
+  // Exported field_instance: 'node-news-field_character_count'.
   $field_instances['node-news-field_character_count'] = array(
     'bundle' => 'news',
     'default_value' => NULL,
@@ -442,7 +443,7 @@ function osha_news_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-news-field_expiration_date'
+  // Exported field_instance: 'node-news-field_expiration_date'.
   $field_instances['node-news-field_expiration_date'] = array(
     'bundle' => 'news',
     'deleted' => 0,
@@ -526,7 +527,7 @@ function osha_news_field_default_field_instances() {
     'workbench_access_field' => 0,
   );
 
-  // Exported field_instance: 'node-news-field_image'
+  // Exported field_instance: 'node-news-field_image'.
   $field_instances['node-news-field_image'] = array(
     'bundle' => 'news',
     'deleted' => 0,
@@ -654,7 +655,7 @@ function osha_news_field_default_field_instances() {
     'workbench_access_field' => 0,
   );
 
-  // Exported field_instance: 'node-news-field_image_caption'
+  // Exported field_instance: 'node-news-field_image_caption'.
   $field_instances['node-news-field_image_caption'] = array(
     'bundle' => 'news',
     'default_value' => NULL,
@@ -727,7 +728,7 @@ function osha_news_field_default_field_instances() {
     'workbench_access_field' => 0,
   );
 
-  // Exported field_instance: 'node-news-field_page_count'
+  // Exported field_instance: 'node-news-field_page_count'.
   $field_instances['node-news-field_page_count'] = array(
     'bundle' => 'news',
     'default_value' => NULL,
@@ -804,7 +805,7 @@ function osha_news_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-news-field_publication_date'
+  // Exported field_instance: 'node-news-field_publication_date'.
   $field_instances['node-news-field_publication_date'] = array(
     'bundle' => 'news',
     'deleted' => 0,
@@ -939,7 +940,7 @@ function osha_news_field_default_field_instances() {
     'workbench_access_field' => 0,
   );
 
-  // Exported field_instance: 'node-news-field_summary'
+  // Exported field_instance: 'node-news-field_summary'.
   $field_instances['node-news-field_summary'] = array(
     'bundle' => 'news',
     'default_value' => NULL,
@@ -1038,7 +1039,7 @@ function osha_news_field_default_field_instances() {
     'entity_type' => 'node',
     'field_name' => 'field_summary',
     'label' => 'Summary',
-    'required' => 0,
+    'required' => 1,
     'settings' => array(
       'entity_translation_sync' => FALSE,
       'text_processing' => 1,
@@ -1048,6 +1049,10 @@ function osha_news_field_default_field_instances() {
       'active' => 1,
       'module' => 'text',
       'settings' => array(
+        'maxlength_js' => 420,
+        'maxlength_js_enforce' => 0,
+        'maxlength_js_label' => '<strong>@remaining</strong> left',
+        'maxlength_js_truncate_html' => 0,
         'rows' => 10,
       ),
       'type' => 'text_textarea',
@@ -1055,7 +1060,7 @@ function osha_news_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-news-field_tags'
+  // Exported field_instance: 'node-news-field_tags'.
   $field_instances['node-news-field_tags'] = array(
     'bundle' => 'news',
     'default_value' => NULL,
@@ -1137,7 +1142,7 @@ function osha_news_field_default_field_instances() {
     'workbench_access_field' => 0,
   );
 
-  // Exported field_instance: 'node-news-title_field'
+  // Exported field_instance: 'node-news-title_field'.
   $field_instances['node-news-title_field'] = array(
     'bundle' => 'news',
     'default_value' => NULL,

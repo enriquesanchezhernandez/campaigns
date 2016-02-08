@@ -10,7 +10,7 @@
 function osha_field_default_field_bases() {
   $field_bases = array();
 
-  // Exported field_base: 'body'
+  // Exported field_base: 'body'.
   $field_bases['body'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -33,7 +33,7 @@ function osha_field_default_field_bases() {
     'type' => 'text_with_summary',
   );
 
-  // Exported field_base: 'field_aditional_resources'
+  // Exported field_base: 'field_aditional_resources'.
   $field_bases['field_aditional_resources'] = array(
     'active' => 1,
     'cardinality' => -1,
@@ -79,7 +79,7 @@ function osha_field_default_field_bases() {
     'type' => 'entityreference',
   );
 
-  // Exported field_base: 'field_archived'
+  // Exported field_base: 'field_archived'.
   $field_bases['field_archived'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -105,7 +105,7 @@ function osha_field_default_field_bases() {
     'type' => 'list_boolean',
   );
 
-  // Exported field_base: 'field_article_type'
+  // Exported field_base: 'field_article_type'.
   $field_bases['field_article_type'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -133,7 +133,7 @@ function osha_field_default_field_bases() {
     'type' => 'taxonomy_term_reference',
   );
 
-  // Exported field_base: 'field_author'
+  // Exported field_base: 'field_author'.
   $field_bases['field_author'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -155,7 +155,7 @@ function osha_field_default_field_bases() {
     'type' => 'text',
   );
 
-  // Exported field_base: 'field_character_count'
+  // Exported field_base: 'field_character_count'.
   $field_bases['field_character_count'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -172,7 +172,7 @@ function osha_field_default_field_bases() {
     'type' => 'number_integer',
   );
 
-  // Exported field_base: 'field_cover_image'
+  // Exported field_base: 'field_cover_image'.
   $field_bases['field_cover_image'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -197,7 +197,7 @@ function osha_field_default_field_bases() {
     'type' => 'image',
   );
 
-  // Exported field_base: 'field_expiration_date'
+  // Exported field_base: 'field_expiration_date'.
   $field_bases['field_expiration_date'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -227,7 +227,7 @@ function osha_field_default_field_bases() {
     'type' => 'datetime',
   );
 
-  // Exported field_base: 'field_file'
+  // Exported field_base: 'field_file'.
   $field_bases['field_file'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -253,28 +253,7 @@ function osha_field_default_field_bases() {
     'type' => 'file',
   );
 
-  // Exported field_base: 'field_file_description'
-  $field_bases['field_file_description'] = array(
-    'active' => 1,
-    'cardinality' => 1,
-    'deleted' => 0,
-    'entity_types' => array(),
-    'field_name' => 'field_file_description',
-    'indexes' => array(
-      'format' => array(
-        0 => 'format',
-      ),
-    ),
-    'locked' => 0,
-    'module' => 'text',
-    'settings' => array(
-      'entity_translation_sync' => FALSE,
-    ),
-    'translatable' => 0,
-    'type' => 'text_long',
-  );
-
-  // Exported field_base: 'field_file_image_alt_text'
+  // Exported field_base: 'field_file_image_alt_text'.
   $field_bases['field_file_image_alt_text'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -296,7 +275,7 @@ function osha_field_default_field_bases() {
     'type' => 'text',
   );
 
-  // Exported field_base: 'field_file_image_title_text'
+  // Exported field_base: 'field_file_image_title_text'.
   $field_bases['field_file_image_title_text'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -318,7 +297,7 @@ function osha_field_default_field_bases() {
     'type' => 'text',
   );
 
-  // Exported field_base: 'field_language'
+  // Exported field_base: 'field_language'.
   $field_bases['field_language'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -348,7 +327,7 @@ function osha_field_default_field_bases() {
     'type' => 'language_field',
   );
 
-  // Exported field_base: 'field_page_count'
+  // Exported field_base: 'field_page_count'.
   $field_bases['field_page_count'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -368,7 +347,7 @@ function osha_field_default_field_bases() {
     'type' => 'number_decimal',
   );
 
-  // Exported field_base: 'field_page_introduction'
+  // Exported field_base: 'field_page_introduction'.
   $field_bases['field_page_introduction'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -389,7 +368,7 @@ function osha_field_default_field_bases() {
     'type' => 'text_long',
   );
 
-  // Exported field_base: 'field_publication_date'
+  // Exported field_base: 'field_publication_date'.
   $field_bases['field_publication_date'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -405,8 +384,8 @@ function osha_field_default_field_bases() {
       'entity_translation_sync' => FALSE,
       'granularity' => array(
         'day' => 'day',
-        'hour' => 0,
-        'minute' => 0,
+        'hour' => 'hour',
+        'minute' => 'minute',
         'month' => 'month',
         'second' => 0,
         'year' => 'year',
@@ -419,7 +398,7 @@ function osha_field_default_field_bases() {
     'type' => 'datetime',
   );
 
-  // Exported field_base: 'field_recommended_articles'
+  // Exported field_base: 'field_recommended_articles'.
   $field_bases['field_recommended_articles'] = array(
     'active' => 1,
     'cardinality' => -1,
@@ -455,7 +434,7 @@ function osha_field_default_field_bases() {
     'type' => 'entityreference',
   );
 
-  // Exported field_base: 'field_recommended_resources'
+  // Exported field_base: 'field_recommended_resources'.
   $field_bases['field_recommended_resources'] = array(
     'active' => 1,
     'cardinality' => -1,
@@ -501,7 +480,7 @@ function osha_field_default_field_bases() {
     'type' => 'entityreference',
   );
 
-  // Exported field_base: 'field_related_resources'
+  // Exported field_base: 'field_related_resources'.
   $field_bases['field_related_resources'] = array(
     'active' => 1,
     'cardinality' => -1,
@@ -527,7 +506,7 @@ function osha_field_default_field_bases() {
     'type' => 'file',
   );
 
-  // Exported field_base: 'field_summary'
+  // Exported field_base: 'field_summary'.
   $field_bases['field_summary'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -548,7 +527,7 @@ function osha_field_default_field_bases() {
     'type' => 'text_long',
   );
 
-  // Exported field_base: 'field_tags'
+  // Exported field_base: 'field_tags'.
   $field_bases['field_tags'] = array(
     'active' => 1,
     'cardinality' => -1,
@@ -576,7 +555,7 @@ function osha_field_default_field_bases() {
     'type' => 'taxonomy_term_reference',
   );
 
-  // Exported field_base: 'title_field'
+  // Exported field_base: 'title_field'.
   $field_bases['title_field'] = array(
     'active' => 1,
     'cardinality' => 1,

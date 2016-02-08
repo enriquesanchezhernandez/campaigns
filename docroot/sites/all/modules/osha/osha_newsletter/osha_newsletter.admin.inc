@@ -41,10 +41,10 @@ function osha_newsletter_admin_form() {
     '#required' => TRUE,
   );
 
-  $form['osha_newsletter_campaigns_list_name'] = array(
+  $form['campaigns_newsletter_list_name'] = array(
     '#type' => 'textfield',
     '#title' => t('Campaigns Newsletter Listname'),
-    '#default_value' => variable_get('campaigns_newsletter_list_name', 'OSHMail-Test'),
+    '#default_value' => variable_get('campaigns_newsletter_list_name', 'CAMPAIGN-NEWS-TEST'),
     '#attributes' => array('tabindex' => 2),
     '#size' => 40,
     '#maxlength' => 40,

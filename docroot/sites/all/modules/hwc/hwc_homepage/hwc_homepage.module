@@ -15,6 +15,13 @@ function hwc_homepage_views_pre_render(&$view){
     $jssor_path = libraries_get_path('jquery-slider-master');
     drupal_add_js($jssor_path . '/jssor.slider.mini.js');
     drupal_add_css($jssor_path . '/jssor.css');
+
+    // Add "alt" attribute to images.
+    foreach ($view->result as &$item) {
+      if ($item->field_field_image[0]['rendered']['#item']['alt'] == NULL) {
+        $item->field_field_image[0]['rendered']['#item']['alt'] = $item->field_field_image[0]['rendered']['#item']['filename'];
+      }
+    }
   }
 }
 
@@ -24,7 +31,7 @@ function hwc_homepage_views_pre_render(&$view){
 function hwc_homepage_block_info() {
   $blocks = array();
   $blocks['hwc_homepage_tools_and_resources'] = array(
-    'info' => t('Tools and resources'),
+    'info' => t('Tools and publications'),
     'status' => 1,
     'region' => 'content',
     'visibility' => BLOCK_VISIBILITY_NOTLISTED,
@@ -77,4 +84,20 @@ function hwc_homepage_block_view($delta = '') {
     $block['content']['menu'] = $links[1372]['#below'];
   }
   return $block;
+}
+
+function hwc_homepage_panels_pane_content_alter($content, $pane, $args, $contexts) {
+  if (!empty($pane->subtype) && $pane->subtype == 'menu-menu-information-tailored') {
+    $intro_text = t('We provide information specifically for the following groups, to enable everyone to get involved in the campaign in a way that makes sense for them');
+    $content->content['#prefix'] = '<p>' . $intro_text . '</p>';
+  }
+}
+
+/**
+ * Implements hook_block_view_alter().
+ */
+function hwc_homepage_block_view_alter(&$data, $block) {
+  if ($block->delta == 'partners-block_1') {
+    $data['content']['#markup'] .= '<div class="more-link">' . l(t('See all partners'), 'official-campaign-partners') . '</div>';
+  }
 }

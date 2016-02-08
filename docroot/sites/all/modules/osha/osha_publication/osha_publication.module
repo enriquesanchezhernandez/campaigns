@@ -571,7 +571,7 @@ function osha_publication_twin_publications_formatter($items) {
     foreach($node->field_file as $lang => $value) {
       if(in_array($lang, $languages)) {
         foreach($value as $delta => $file) {
-          $label = strtoupper($lang) . '<i class="glyphicon glyphicon-circle-arrow-down"></i>';
+          $label = strtoupper($lang) . '<span class="glyphicon glyphicon-circle-arrow-down"></span>';
           $link = l($label, file_create_url($file['uri']), array(
             'absolute' => TRUE, 'html' => TRUE,
             'attributes' => array(
@@ -594,18 +594,10 @@ function osha_publication_twin_publications_formatter($items) {
 }
 
 function osha_publication_file_all_group_mimetype_formatter($items) {
-  global $language;
-  $languages = array('en');
-  if ($language->language != 'en') {
-    array_unshift($languages, $language->language);
-  }
   $ret = array();
   $groups = array();
   $sizes = array();
   foreach ($items as $langcode => $files) {
-    if (!in_array($langcode, $languages)) {
-      continue;
-    }
     foreach ($files as $file) {
       $mime = $file['filemime'];
       $groups[$mime][$langcode][] = $file;
@@ -616,7 +608,7 @@ function osha_publication_file_all_group_mimetype_formatter($items) {
     $links = array();
     foreach($value as $langcode => $files) {
       foreach($files as $file) {
-        $title = strtoupper($langcode) . '<i class="glyphicon glyphicon-circle-arrow-down"></i>';
+        $title = strtoupper($langcode) . '<span class="glyphicon glyphicon-circle-arrow-down"></span>';
         $links[] = l($title, file_create_url($file['uri']), array(
           'absolute' => TRUE, 'html' => TRUE,
           'attributes' => array(
@@ -626,7 +618,7 @@ function osha_publication_file_all_group_mimetype_formatter($items) {
     }
     $title = t('Download !mime (!size) in:', array('!mime' => hwc_mime_friendly_acronym($mime), '!size' => $sizes[$mime]));
     $render = array(
-      'title' => array('#type' => 'item', '#markup' => l($title, '<front>')),
+      'title' => array('#type' => 'item', '#markup' => '<span>' . $title . '</span>'),
       'files' => array('#type' => 'item', '#markup' => theme('item_list', array('items' => $links))),
     );
     $ret[] = drupal_render($render);

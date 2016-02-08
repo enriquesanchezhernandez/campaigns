@@ -1,21 +1,35 @@
 jQuery(document).ready(function() {
 
-	var windowWidth= jQuery(window).width();//capturamos el tamaño de la ventana
+	var windowWidth= jQuery(window).width();//window size
 
 	jQuery(window).resize(function() {
-	    windowWidth= jQuery(window).width();//capturamos el tamaño de la ventana al redimensionarla
+	    windowWidth= jQuery(window).width();//window size, when resizing
 	});
 
-	/*funcion contenedora de funciones exclusivas para tablet y/o movil*/
+	
+	/*View newsletter captcha*/
+
+	jQuery( "#edit-email-osh" ).click(function() {
+  		jQuery('#block-osha-newsletter-osha-newsletter-subscribe div.captcha').show();
+	});
+
+	/*specific functions for tablet and/or mobile */
 	funcionesTabletMovil();
 
 	funcionesMovil();
 	
+	
+	//Fixing responsive menu to iPhone
+	jQuery(document).ready(function() {
+		jQuery(".dropdown-toggle").dropdown();
+		//Hover for download episodes on iPad
+		document.addEventListener("touchstart", function() {},false);
+	});
 
-	/************************** Comienzo funciones especificas *******************************/
+	/************************** FUNCTIONS *******************************/
 
 	function funcionesTabletMovil () {
-		if(windowWidth <= 992){//<-----funciones exclusivas para tablet y/o movil
+		if(windowWidth <= 992){//<-----functions for tablet and/or mobile
 			
 			jQuery(".form-item-relevant-for > label").click(function() {
 				jQuery(this).toggleClass("closeLabel");
@@ -25,21 +39,49 @@ jQuery(document).ready(function() {
 				jQuery(this).toggleClass("closeLabel");
 				jQuery("#edit-languages").toggle();
 			});
+			jQuery(".form-item-publication-type > label").click(function() {
+				jQuery(this).toggleClass("closeLabel");
+				jQuery("#edit-publication-type").toggle();
+			});
 
-		}//<-----Fin funciones tablet y/o movil
+		}//<-----End: functions for tablet and/or mobile
 	}
 
 	function funcionesMovil () {
 		jQuery("#block-menu-menu-header-login, #block-lang-dropdown-language").addClass("visibility");
-		if(windowWidth <= 767){//<-----funciones exclusivas para movil
+		if(windowWidth <= 767){//<-----functions for mobile
 
-			//funcion para el menu, convertir las rayas en x
+			//Menu function, transform the menu icon in a x
 
 			jQuery(".navbar-toggle").on("click", function () {
 		    	jQuery(this).toggleClass("active");
 				jQuery("#block-menu-menu-header-login, #block-lang-dropdown-language").toggleClass("visibility");
 			});
-	
+			
+			//Additional Resources Block
+			
+			jQuery(".field-name-field-aditional-resources h4.pane-title").click(function() {
+				jQuery(this).toggleClass("closeLabel");
+				jQuery(this).next("div").toggle();
+			});
+			
+			//Press Room
+			
+			jQuery(".pane-osha-press-release-osha-press-rel-become-partner h2.pane-title").click(function() {
+				jQuery(this).toggleClass("closeLabel");
+				jQuery(this).next("div").toggle();
+			});
+			
+			jQuery(".pane-press-contacts h2.pane-title").click(function() {
+				jQuery(this).toggleClass("closeLabel");
+				jQuery(this).next("div").toggle();
+			});
+			
+			jQuery(".pane-osha-press-release-osha-press-kit h2.pane-title").click(function() {
+				jQuery(this).toggleClass("closeLabel");
+				jQuery(this).next("div").toggle();
+			});
+			
 		}
 	}	
 

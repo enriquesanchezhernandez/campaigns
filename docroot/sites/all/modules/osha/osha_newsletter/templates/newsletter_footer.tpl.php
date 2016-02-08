@@ -11,8 +11,17 @@ global $base_url;
 <table border="0" cellpadding="0" cellspacing="0" width="800" style="margin-left: 25px;">
   <tbody>
     <tr>
-      <td style="background: url('/sites/all/modules/osha/osha_newsletter/images/footer-newsletter.png') no-repeat; width:800px; height: 88px; padding-left: 10px;" class="social">
-			<h2 style="color: #ffffff; display: inline; margin-right: 20px; vertical-align: top; font-weight: bold; font-size: 17px; font-style: normal;">Follow us on:</h2>
+      <td style="background: url('<?php print file_create_url('/sites/all/modules/osha/osha_newsletter/images/footer-newsletter.png'); ?>') no-repeat; width:800px; height: 88px; padding-left: 10px;" class="social">
+			<?php
+				$urllegal = url($base_url.'/en/privacy-notice', array('query' => $url_query));
+			?>
+			<a href="<?php echo $urllegal; ?>" style="@style; font-weight: bold; color: #FFF">Privacy notice</a>
+			<?php
+				$url = url($base_url.'/en/healthy-workplaces-newsletter', array('query' => $url_query));
+			?>
+			<span style="color:#FFF"> | </span> 
+			<a href="<?php echo $url; ?>" style="@style; font-weight: bold; color: #FFF">Unsubscribe</a>
+			<h2 style="padding-left: 300px; color: #ffffff; display: inline; margin-right: 20px; vertical-align: top; font-weight: bold; font-size: 17px; font-style: normal;">Follow us on:</h2>
 			<?php
 			  $social = array(
 				'face' => array(
@@ -49,17 +58,6 @@ global $base_url;
 				print ('&nbsp;&nbsp;&nbsp;&nbsp;');
 			  }
 			?>  
-      </td>
-    </tr>
-    <tr>
-      <td style="text-align: left; width: 800px; font-family: Arial, sans-serif; font-size: 13px; padding-left: 10px; padding-top: 10px;">
-			<?php
-			  print t('This is a disclaimer lorem ipsum.');
-			  $url = url($base_url.'/en/healthy-workplaces-newsletter', array('query' => $url_query));
-			?>
-			<br />
-			<br />
-			<a href="<?php echo $url; ?>" style="@style; font-weight: bold; color: #003399">&gt; Unsubscribe.</a>
       </td>
     </tr>
   </tbody>

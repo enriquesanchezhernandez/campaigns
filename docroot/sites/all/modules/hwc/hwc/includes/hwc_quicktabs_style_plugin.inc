@@ -34,12 +34,16 @@ class hwc_quicktabs_style_plugin extends quicktabs_style_plugin {
     $tabs = array();
 
     $all_rows = array();
+    $all_rows_rendered = array();
     foreach ($sets as $title => $records) {
       if ($this->uses_row_plugin()) {
         $rows = array();
         foreach ($records as $row_index => $row) {
           $this->view->row_index = $row_index;
-          $rows[] = $this->row_plugin->render($row);
+          $row_rendered = $this->row_plugin->render($row);
+          $all_rows[$row_index] = $row->node_title;
+          $all_rows_rendered[$row_index] = $row_rendered;
+          $rows[] = $row_rendered;
         }
       }
       else {
@@ -48,7 +52,6 @@ class hwc_quicktabs_style_plugin extends quicktabs_style_plugin {
 
       // If grouped, we'll be using the group title for each tab.
       if ($this->options['grouping']) {
-
         // Remove labels from titles.
         foreach (element_children($this->options['grouping']) as $key => $value) {
           if (!empty($this->view->field[$this->options['grouping'][$key]['field']]->options['label'])) {
@@ -59,6 +62,9 @@ class hwc_quicktabs_style_plugin extends quicktabs_style_plugin {
         $contents = '';
         foreach ($rows as $row) {
           $contents .= '<div class="quicktabs-views-group ' . $this->options['row_class'] . '">' . $row . '</div>';
+        }
+        if (empty($title)) {
+          $title = t('Other');
         }
         $tabs[] = array(
           'title' => $title,
@@ -76,19 +82,21 @@ class hwc_quicktabs_style_plugin extends quicktabs_style_plugin {
           );
         }
       }
-      $all_rows = array_merge($all_rows, $rows);
     }
 
+    // Sort all results for all tab.
+    asort($all_rows);
+
     $contents = '';
-    foreach ($all_rows as $row) {
-      $contents .= '<div class="quicktabs-views-group ' . $this->options['row_class'] . '">' . $row . '</div>';
+    foreach (array_keys($all_rows) as $row_index) {
+      $contents .= '<div class="quicktabs-views-group ' . $this->options['row_class'] . '">' . $all_rows_rendered[$row_index] . '</div>';
     }
     $tabs[] = array(
       'title' => t('All'),
       'contents' => array('#markup' => $contents),
     );
 
-    $overrides = array('style' => $view->style_options['tab_style'], 'sorted' => TRUE);
+    $overrides = array('style' => $view->style_plugin->options['tab_style'], 'sorted' => TRUE);
     $quicktabs = quicktabs_build_quicktabs($qt_name, $overrides, $tabs);
 
     $output = drupal_render($quicktabs);

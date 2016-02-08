@@ -197,10 +197,16 @@ function hwc_workflow_assign_default_cpm($node) {
  * Implements hook_node_access().
  */
 function hwc_workflow_node_access($node, $op, $account) {
+  $type = is_string($node) ? $node : $node->type;
   if (($op == 'update' || $op == 'delete')
     && in_array($node->type, ncw_migration_get_migrated_bundles())
     && $node->uid == 0) {
     return NODE_ACCESS_DENY;
+  }
+
+  // Workflow validations are only for Events and News.
+  if (!in_array($type, array('events', 'news'))) {
+    return NODE_ACCESS_IGNORE;
   }
 
   // Administrators skip further validations
@@ -230,6 +236,7 @@ function hwc_workflow_node_access($node, $op, $account) {
       return NODE_ACCESS_DENY;
     }
   }
+
   return NODE_ACCESS_IGNORE;
 }
 
@@ -250,7 +257,7 @@ function hwc_workflow_form_alter(&$form, &$form_state, $form_id) {
   }
   if (in_array($form_id, array('events_node_form', 'news_node_form'))) {
     $node = $form_state['node'];
-    $can_delete = user_access("delete any {$node->type} content") || user_access("delete own {$user->type} content");
+    $can_delete = user_access("delete any {$node->type} content") || user_access("delete own {$node->type} content");
     if (!empty($node->nid) && $can_delete && in_array(ROLE_CAMPAIGN_PARTNER, $user->roles)) {
       $form['actions']['delete'] = array(
         '#type' => 'submit',
@@ -358,6 +365,7 @@ function hwc_workflow_form_events_node_form_alter(&$form, &$form_state) {
     $form['field_schedule']['#access'] = FALSE;
     $form['field_speaker']['#access'] = FALSE;
     $form['field_activity']['#access'] = FALSE;
+    $form['field_gallery']['#access'] = FALSE;
     $form['#after_build'][] = 'hwc_workflow_node_form_after_build_hide_hints';
 
     _hwc_workflow_partner_node_form_alter($form, $form_state);
@@ -390,12 +398,14 @@ function hwc_workflow_js_alter(&$javascript) {
 }
 
 function hwc_workflow_node_form_after_build_hide_hints($form, &$form_state) {
-  $key = array_pop(element_children($form['body']));
+  $b = element_children($form['body']);
+  $key = array_pop($b);
   if ($key && !empty($form['body'][$key][0]['format'])) {
     $form['body'][$key][0]['format']['#attributes']['class'][] = 'hidden';
   }
   if (!empty($form['field_summary'])) {
-    $key = array_pop(element_children($form['field_summary']));
+    $sum = element_children($form['field_summary']);
+    $key = array_pop($sum);
     if ($key && !empty($form['field_summary'][$key][0]['format'])) {
       $form['field_summary'][$key][0]['format']['#attributes']['class'][] = 'hidden';
     }
@@ -422,7 +432,7 @@ function _hwc_workflow_partner_node_form_alter(&$form, &$form_state) {
     $form['actions']['submit']['#access'] = FALSE;
     $form['actions']['save_preview'] = array(
       '#type' => 'submit',
-      '#value' => t('Save this !type item as draft', array('!type' => $form['type']['#value'])),
+      '#value' => t('Save and preview this !type item', array('!type' => $form['type']['#value'])),
       '#submit' => array('hwc_workflow_node_form_submit_preview'),
     );
     $form['actions']['send_for_approval'] = array(

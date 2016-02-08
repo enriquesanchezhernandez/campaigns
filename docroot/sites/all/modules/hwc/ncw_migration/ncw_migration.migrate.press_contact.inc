@@ -6,6 +6,7 @@
  * Set hwc_migration_press_contacts_url variable for explicit source URL.
  */
 class NCWPressContactMigration extends AbstractNCWNodeMigration {
+  public static $nodequeue = array();
 
   public function __construct($arguments) {
     parent::__construct($arguments, 'NCWPressContactSource', 'press_contact');
@@ -37,6 +38,32 @@ class NCWPressContactMigration extends AbstractNCWNodeMigration {
       'field_zip_code:language',
     ));
     $this->ignoreMetatagMigration();
+  }
+
+  /**
+   * Implements Migration::complete() to configure translations
+   */
+  public function complete($entity, stdClass $row) {
+    parent::complete($entity, $row);
+    if (!empty($row->nodequeue_order)) {
+      self::$nodequeue[$entity->nid] = $row->nodequeue_order;
+    }
+  }
+
+  /**
+   * Executes after import.
+   */
+  public function postImport() {
+    parent::postImport();
+    // Add contacts to nodequeue.
+    $nodequeue = nodequeue_load(3);
+    asort(self::$nodequeue);
+    $subq = nodequeue_load_subqueue(3);
+    foreach (self::$nodequeue as $nid => $order) {
+      // Remove the node and add it again in the correct order.
+      nodequeue_subqueue_remove_node(3, $nid);
+      nodequeue_subqueue_add($nodequeue, $subq, $nid);
+    }
   }
 
   function getManuallyMigratedFieldS() {

@@ -11,7 +11,7 @@ function hwc_practical_tool_field_default_field_instances() {
   $field_instances = array();
 
   // Exported field_instance:
-  // 'field_collection_item-field_access_tool_link_fc-field_access_tool_link'
+  // 'field_collection_item-field_access_tool_link_fc-field_access_tool_link'.
   $field_instances['field_collection_item-field_access_tool_link_fc-field_access_tool_link'] = array(
     'bundle' => 'field_access_tool_link_fc',
     'default_value' => NULL,
@@ -72,7 +72,7 @@ function hwc_practical_tool_field_default_field_instances() {
   );
 
   // Exported field_instance:
-  // 'field_collection_item-field_access_tool_link_fc-field_available_languages'
+  // 'field_collection_item-field_access_tool_link_fc-field_available_languages'.
   $field_instances['field_collection_item-field_access_tool_link_fc-field_available_languages'] = array(
     'bundle' => 'field_access_tool_link_fc',
     'default_value' => NULL,
@@ -114,7 +114,7 @@ function hwc_practical_tool_field_default_field_instances() {
     'workbench_access_field' => 0,
   );
 
-  // Exported field_instance: 'node-practical_tool-body'
+  // Exported field_instance: 'node-practical_tool-body'.
   $field_instances['node-practical_tool-body'] = array(
     'bundle' => 'practical_tool',
     'default_value' => NULL,
@@ -221,7 +221,7 @@ function hwc_practical_tool_field_default_field_instances() {
     'workbench_access_field' => 0,
   );
 
-  // Exported field_instance: 'node-practical_tool-field_access_tool_link_fc'
+  // Exported field_instance: 'node-practical_tool-field_access_tool_link_fc'.
   $field_instances['node-practical_tool-field_access_tool_link_fc'] = array(
     'bundle' => 'practical_tool',
     'default_value' => NULL,
@@ -285,7 +285,7 @@ function hwc_practical_tool_field_default_field_instances() {
     'workbench_access_field' => 0,
   );
 
-  // Exported field_instance: 'node-practical_tool-field_activity'
+  // Exported field_instance: 'node-practical_tool-field_activity'.
   $field_instances['node-practical_tool-field_activity'] = array(
     'bundle' => 'practical_tool',
     'default_value' => NULL,
@@ -367,7 +367,8 @@ function hwc_practical_tool_field_default_field_instances() {
     'workbench_access_field' => 0,
   );
 
-  // Exported field_instance: 'node-practical_tool-field_additional_information'
+  // Exported field_instance:
+  // 'node-practical_tool-field_additional_information'.
   $field_instances['node-practical_tool-field_additional_information'] = array(
     'bundle' => 'practical_tool',
     'default_value' => NULL,
@@ -434,7 +435,7 @@ function hwc_practical_tool_field_default_field_instances() {
     'workbench_access_field' => 0,
   );
 
-  // Exported field_instance: 'node-practical_tool-field_country'
+  // Exported field_instance: 'node-practical_tool-field_country'.
   $field_instances['node-practical_tool-field_country'] = array(
     'bundle' => 'practical_tool',
     'default_value' => NULL,
@@ -523,7 +524,7 @@ function hwc_practical_tool_field_default_field_instances() {
     'workbench_access_field' => 0,
   );
 
-  // Exported field_instance: 'node-practical_tool-field_external_urls'
+  // Exported field_instance: 'node-practical_tool-field_external_urls'.
   $field_instances['node-practical_tool-field_external_urls'] = array(
     'bundle' => 'practical_tool',
     'default_value' => NULL,
@@ -607,7 +608,7 @@ function hwc_practical_tool_field_default_field_instances() {
     'workbench_access_field' => 0,
   );
 
-  // Exported field_instance: 'node-practical_tool-field_free'
+  // Exported field_instance: 'node-practical_tool-field_free'.
   $field_instances['node-practical_tool-field_free'] = array(
     'bundle' => 'practical_tool',
     'default_value' => array(
@@ -696,7 +697,7 @@ function hwc_practical_tool_field_default_field_instances() {
     'workbench_access_field' => 0,
   );
 
-  // Exported field_instance: 'node-practical_tool-field_objective'
+  // Exported field_instance: 'node-practical_tool-field_objective'.
   $field_instances['node-practical_tool-field_objective'] = array(
     'bundle' => 'practical_tool',
     'default_value' => NULL,
@@ -784,7 +785,7 @@ function hwc_practical_tool_field_default_field_instances() {
     'workbench_access_field' => 0,
   );
 
-  // Exported field_instance: 'node-practical_tool-field_provider'
+  // Exported field_instance: 'node-practical_tool-field_provider'.
   $field_instances['node-practical_tool-field_provider'] = array(
     'bundle' => 'practical_tool',
     'default_value' => NULL,
@@ -878,7 +879,7 @@ function hwc_practical_tool_field_default_field_instances() {
     'workbench_access_field' => 0,
   );
 
-  // Exported field_instance: 'node-practical_tool-field_segment'
+  // Exported field_instance: 'node-practical_tool-field_segment'.
   $field_instances['node-practical_tool-field_segment'] = array(
     'bundle' => 'practical_tool',
     'default_value' => NULL,
@@ -939,7 +940,7 @@ function hwc_practical_tool_field_default_field_instances() {
     'workbench_access_field' => 0,
   );
 
-  // Exported field_instance: 'node-practical_tool-field_tool_type'
+  // Exported field_instance: 'node-practical_tool-field_tool_type'.
   $field_instances['node-practical_tool-field_tool_type'] = array(
     'bundle' => 'practical_tool',
     'default_value' => NULL,
@@ -1028,7 +1029,7 @@ function hwc_practical_tool_field_default_field_instances() {
     'workbench_access_field' => 0,
   );
 
-  // Exported field_instance: 'node-practical_tool-title_field'
+  // Exported field_instance: 'node-practical_tool-title_field'.
   $field_instances['node-practical_tool-title_field'] = array(
     'bundle' => 'practical_tool',
     'default_value' => NULL,
@@ -1126,6 +1127,159 @@ function hwc_practical_tool_field_default_field_instances() {
     'workbench_access_field' => 0,
   );
 
+  // Exported field_instance:
+  // 'taxonomy_term-practical_tool_types-description_field'.
+  $field_instances['taxonomy_term-practical_tool_types-description_field'] = array(
+    'bundle' => 'practical_tool_types',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 1,
+      ),
+    ),
+    'entity_type' => 'taxonomy_term',
+    'field_name' => 'description_field',
+    'label' => 'Description',
+    'required' => FALSE,
+    'settings' => array(
+      'display_summary' => 0,
+      'entity_translation_sync' => FALSE,
+      'hide_label' => array(
+        'entity' => FALSE,
+        'page' => FALSE,
+      ),
+      'text_processing' => 1,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'module' => 'text',
+      'settings' => array(
+        'rows' => 20,
+        'summary_rows' => 5,
+      ),
+      'type' => 'text_textarea_with_summary',
+      'weight' => -5,
+    ),
+  );
+
+  // Exported field_instance: 'taxonomy_term-practical_tool_types-name_field'.
+  $field_instances['taxonomy_term-practical_tool_types-name_field'] = array(
+    'bundle' => 'practical_tool_types',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'taxonomy_term',
+    'field_name' => 'name_field',
+    'label' => 'Name',
+    'required' => TRUE,
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+      'hide_label' => array(
+        'entity' => FALSE,
+        'page' => FALSE,
+      ),
+      'text_processing' => 0,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'module' => 'text',
+      'settings' => array(
+        'size' => 60,
+      ),
+      'type' => 'text_textfield',
+      'weight' => -5,
+    ),
+  );
+
+  // Exported field_instance: 'taxonomy_term-segment-description_field'.
+  $field_instances['taxonomy_term-segment-description_field'] = array(
+    'bundle' => 'segment',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 1,
+      ),
+    ),
+    'entity_type' => 'taxonomy_term',
+    'field_name' => 'description_field',
+    'label' => 'Description',
+    'required' => FALSE,
+    'settings' => array(
+      'display_summary' => 0,
+      'entity_translation_sync' => FALSE,
+      'hide_label' => array(
+        'entity' => FALSE,
+        'page' => FALSE,
+      ),
+      'text_processing' => 1,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'module' => 'text',
+      'settings' => array(
+        'rows' => 20,
+        'summary_rows' => 5,
+      ),
+      'type' => 'text_textarea_with_summary',
+      'weight' => -5,
+    ),
+  );
+
+  // Exported field_instance: 'taxonomy_term-segment-name_field'.
+  $field_instances['taxonomy_term-segment-name_field'] = array(
+    'bundle' => 'segment',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'taxonomy_term',
+    'field_name' => 'name_field',
+    'label' => 'Name',
+    'required' => TRUE,
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+      'hide_label' => array(
+        'entity' => FALSE,
+        'page' => FALSE,
+      ),
+      'text_processing' => 0,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'module' => 'text',
+      'settings' => array(
+        'size' => 60,
+      ),
+      'type' => 'text_textfield',
+      'weight' => -5,
+    ),
+  );
+
   // Translatables
   // Included for use with string extractors like potx.
   t('Access tool link');
@@ -1136,6 +1290,7 @@ function hwc_practical_tool_field_default_field_instances() {
   t('Description');
   t('Free');
   t('Language');
+  t('Name');
   t('Objective');
   t('Provider');
   t('Segment');

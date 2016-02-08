@@ -174,16 +174,16 @@
  * a structure-tables-key is provided. You may add new tables to the existing
  * array or add a new element.
  */
-$options['structure-tables']['common'] = array(
-  'cache',
-  'cache_filter',
-  'cache_menu',
-  'cache_form',
-  'cache_page',
-  'history',
-  'sessions',
-  'watchdog',
-);
+//$options['structure-tables']['common'] = array(
+//  'cache',
+//  'cache_filter',
+//  'cache_menu',
+//  'cache_form',
+//  'cache_page',
+//  'history',
+//  'sessions',
+//  'watchdog',
+//);
 /**
  * Customize this associative array with your own tables. This is the list of
  * tables that are entirely omitted by the 'sql-dump' and 'sql-sync' commands
@@ -275,6 +275,10 @@ if(file_exists($json_path)) {
   }
 }
 
+$command_specific['sql-sync'] = array(
+  'structure-tables-list' => 'cache*,history,sessions,watchdog,ctools_css_cache,ctools_object_cache'
+);
+
 $options['init-modules'] = array(
   'ctools',
   'entity',
@@ -318,6 +322,7 @@ $options['init-modules'] = array(
   'wysiwyg',
   'pathauto',
   'redirect',
+  'match_redirect',
   'file_entity',
   'media',
   'media_wysiwyg',
@@ -404,6 +409,7 @@ $options['init-modules'] = array(
   'path_breadcrumbs',
   'path_breadcrumbs_ui',
   'path_breadcrumbs_i18n',
+  'panels_breadcrumbs',
 
   'jquery_update',
   'responsive_menus',
@@ -454,6 +460,9 @@ $options['init-modules'] = array(
   'context_layouts',
   'context_entity_field',
 
+  'page_title',
+  'panels_custom_title_tag',
+
   'image_url_formatter',
   'views_data_export',
   'views_data_export_phpexcel',
@@ -462,6 +471,7 @@ $options['init-modules'] = array(
   'plupload',
   'maxlength',
   'date_single_day',
+  'masquerade',
 
   // Captcha
  'recaptcha',

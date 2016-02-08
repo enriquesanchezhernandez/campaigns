@@ -1,7 +1,7 @@
 <?php
 /**
  * @file
- * feeds.features.inc
+ * hwc_feeds.features.inc
  */
 
 /**

@@ -10,7 +10,7 @@
 function osha_publication_field_default_field_instances() {
   $field_instances = array();
 
-  // Exported field_instance: 'node-publication-body'
+  // Exported field_instance: 'node-publication-body'.
   $field_instances['node-publication-body'] = array(
     'bundle' => 'publication',
     'default_value' => NULL,
@@ -138,7 +138,7 @@ function osha_publication_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-publication-field_aditional_resources'
+  // Exported field_instance: 'node-publication-field_aditional_resources'.
   $field_instances['node-publication-field_aditional_resources'] = array(
     'bundle' => 'publication',
     'deleted' => 0,
@@ -150,6 +150,7 @@ function osha_publication_field_default_field_instances() {
         'settings' => array(
           'field_formatter_class' => '',
           'links' => 0,
+          'use_content_language' => TRUE,
           'view_mode' => 'osha_resources',
         ),
         'type' => 'entityreference_entity_view',
@@ -223,7 +224,7 @@ function osha_publication_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-publication-field_archived'
+  // Exported field_instance: 'node-publication-field_archived'.
   $field_instances['node-publication-field_archived'] = array(
     'bundle' => 'publication',
     'default_value' => array(
@@ -302,7 +303,7 @@ function osha_publication_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-publication-field_author'
+  // Exported field_instance: 'node-publication-field_author'.
   $field_instances['node-publication-field_author'] = array(
     'bundle' => 'publication',
     'default_value' => NULL,
@@ -384,7 +385,7 @@ function osha_publication_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-publication-field_character_count'
+  // Exported field_instance: 'node-publication-field_character_count'.
   $field_instances['node-publication-field_character_count'] = array(
     'bundle' => 'publication',
     'default_value' => NULL,
@@ -461,7 +462,7 @@ function osha_publication_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-publication-field_cover_image'
+  // Exported field_instance: 'node-publication-field_cover_image'.
   $field_instances['node-publication-field_cover_image'] = array(
     'bundle' => 'publication',
     'deleted' => 0,
@@ -524,7 +525,7 @@ function osha_publication_field_default_field_instances() {
         'settings' => array(
           'field_formatter_class' => '',
           'image_link' => '',
-          'image_style' => 'thumbnail',
+          'image_style' => 'medium',
         ),
         'type' => 'image',
         'weight' => 0,
@@ -598,7 +599,7 @@ function osha_publication_field_default_field_instances() {
     'workbench_access_field' => 0,
   );
 
-  // Exported field_instance: 'node-publication-field_expiration_date'
+  // Exported field_instance: 'node-publication-field_expiration_date'.
   $field_instances['node-publication-field_expiration_date'] = array(
     'bundle' => 'publication',
     'deleted' => 0,
@@ -682,7 +683,7 @@ function osha_publication_field_default_field_instances() {
     'workbench_access_field' => 0,
   );
 
-  // Exported field_instance: 'node-publication-field_file'
+  // Exported field_instance: 'node-publication-field_file'.
   $field_instances['node-publication-field_file'] = array(
     'bundle' => 'publication',
     'deleted' => 0,
@@ -787,7 +788,7 @@ function osha_publication_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-publication-field_page_count'
+  // Exported field_instance: 'node-publication-field_page_count'.
   $field_instances['node-publication-field_page_count'] = array(
     'bundle' => 'publication',
     'default_value' => NULL,
@@ -864,7 +865,7 @@ function osha_publication_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-publication-field_publication_bookshop_id'
+  // Exported field_instance: 'node-publication-field_publication_bookshop_id'.
   $field_instances['node-publication-field_publication_bookshop_id'] = array(
     'bundle' => 'publication',
     'default_value' => NULL,
@@ -953,7 +954,7 @@ function osha_publication_field_default_field_instances() {
     'workbench_access_field' => 0,
   );
 
-  // Exported field_instance: 'node-publication-field_publication_date'
+  // Exported field_instance: 'node-publication-field_publication_date'.
   $field_instances['node-publication-field_publication_date'] = array(
     'bundle' => 'publication',
     'deleted' => 0,
@@ -1097,7 +1098,7 @@ function osha_publication_field_default_field_instances() {
     'workbench_access_field' => 0,
   );
 
-  // Exported field_instance: 'node-publication-field_publication_related_res'
+  // Exported field_instance: 'node-publication-field_publication_related_res'.
   $field_instances['node-publication-field_publication_related_res'] = array(
     'bundle' => 'publication',
     'deleted' => 0,
@@ -1212,7 +1213,7 @@ function osha_publication_field_default_field_instances() {
     'workbench_access_field' => 0,
   );
 
-  // Exported field_instance: 'node-publication-field_publication_type'
+  // Exported field_instance: 'node-publication-field_publication_type'.
   $field_instances['node-publication-field_publication_type'] = array(
     'bundle' => 'publication',
     'default_value' => NULL,
@@ -1294,7 +1295,7 @@ function osha_publication_field_default_field_instances() {
     'workbench_access_field' => 0,
   );
 
-  // Exported field_instance: 'node-publication-field_related_publications'
+  // Exported field_instance: 'node-publication-field_related_publications'.
   $field_instances['node-publication-field_related_publications'] = array(
     'bundle' => 'publication',
     'default_value' => NULL,
@@ -1307,6 +1308,7 @@ function osha_publication_field_default_field_instances() {
         'settings' => array(
           'field_formatter_class' => '',
           'links' => 0,
+          'use_content_language' => TRUE,
           'view_mode' => 'teaser',
         ),
         'type' => 'entityreference_entity_view',
@@ -1382,7 +1384,7 @@ function osha_publication_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-publication-field_segment'
+  // Exported field_instance: 'node-publication-field_segment'.
   $field_instances['node-publication-field_segment'] = array(
     'bundle' => 'publication',
     'default_value' => NULL,
@@ -1455,7 +1457,7 @@ function osha_publication_field_default_field_instances() {
     'workbench_access_field' => 0,
   );
 
-  // Exported field_instance: 'node-publication-field_tags'
+  // Exported field_instance: 'node-publication-field_tags'.
   $field_instances['node-publication-field_tags'] = array(
     'bundle' => 'publication',
     'default_value' => NULL,
@@ -1537,7 +1539,7 @@ function osha_publication_field_default_field_instances() {
     'workbench_access_field' => 0,
   );
 
-  // Exported field_instance: 'node-publication-title_field'
+  // Exported field_instance: 'node-publication-title_field'.
   $field_instances['node-publication-title_field'] = array(
     'bundle' => 'publication',
     'default_value' => NULL,
@@ -1617,7 +1619,7 @@ function osha_publication_field_default_field_instances() {
           'field_formatter_class' => '',
           'title_class' => '',
           'title_link' => 'content',
-          'title_style' => 'h5',
+          'title_style' => 'h2',
         ),
         'type' => 'title_linked',
         'weight' => 1,

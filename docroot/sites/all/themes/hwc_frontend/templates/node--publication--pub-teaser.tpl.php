@@ -30,7 +30,7 @@ if (!empty($node->field_file)) {
   foreach($node->field_file as $lang => $files) {
     foreach($files as $f) {
       if (in_array($lang, $languages)) {
-        $items[] = sprintf(round($f['filesize']/1000000,1) . 'MB ' . strtoupper(pathinfo($f['uri'], PATHINFO_EXTENSION)) . ' ' . taxonomy_term_load($node->field_publication_type[LANGUAGE_NONE][0][tid])->name . ' <a href="%s">' . t('Download in') . ' %s</a><i class="glyphicon glyphicon-circle-arrow-down"></i>', file_create_url($f['uri']), i18n_language_name($lang));
+        $items[] = sprintf(number_format(round($f['filesize']/1000000,1), 1) . 'MB ' . strtoupper(pathinfo($f['uri'], PATHINFO_EXTENSION)) . ' ' . taxonomy_term_load($node->field_publication_type[LANGUAGE_NONE][0]['tid'])->name . ' <a href="%s">' . t('Download in') . ' %s</a><span class="glyphicon glyphicon-circle-arrow-down"></span>', file_create_url($f['uri']), i18n_language_name($lang));
       }
     }
   }

@@ -8,7 +8,7 @@
  * Implements hook_field_group_info().
  */
 function hwc_partner_field_group_info() {
-  $export = array();
+  $field_groups = array();
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
@@ -38,7 +38,7 @@ function hwc_partner_field_group_info() {
       ),
     ),
   );
-  $export['group_category|node|partner|form'] = $field_group;
+  $field_groups['group_category|node|partner|form'] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
@@ -66,7 +66,7 @@ function hwc_partner_field_group_info() {
       ),
     ),
   );
-  $export['group_ceo|node|partner|form'] = $field_group;
+  $field_groups['group_ceo|node|partner|form'] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
@@ -96,7 +96,7 @@ function hwc_partner_field_group_info() {
       'formatter' => 'collapsible',
     ),
   );
-  $export['group_guid_main_contact|node|partner|form'] = $field_group;
+  $field_groups['group_guid_main_contact|node|partner|form'] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
@@ -111,15 +111,15 @@ function hwc_partner_field_group_info() {
     'label' => 'Guid organisation',
     'weight' => '2',
     'children' => array(
-      0 => 'field_bussines_sector',
-      1 => 'field_campaign_website',
-      2 => 'field_general_email',
-      3 => 'field_general_phone',
-      4 => 'field_guid_organisation',
-      5 => 'field_logo',
-      6 => 'field_mission_statement',
-      7 => 'field_website',
-      8 => 'title_field',
+      0 => 'field_campaign_website',
+      1 => 'field_general_email',
+      2 => 'field_general_phone',
+      3 => 'field_guid_organisation',
+      4 => 'field_logo',
+      5 => 'field_mission_statement',
+      6 => 'field_website',
+      7 => 'title_field',
+      8 => 'field_bussines_sector',
       9 => 'field_orgtype',
     ),
     'format_type' => 'fieldset',
@@ -132,7 +132,7 @@ function hwc_partner_field_group_info() {
       ),
     ),
   );
-  $export['group_guid_organisation|node|partner|form'] = $field_group;
+  $field_groups['group_guid_organisation|node|partner|form'] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
@@ -148,8 +148,7 @@ function hwc_partner_field_group_info() {
     'weight' => '3',
     'children' => array(
       0 => 'field_ph_address',
-      1 => 'field_ph_address_extra',
-      2 => 'field_ph_cp',
+      1 => 'field_ph_cp',
     ),
     'format_type' => 'fieldset',
     'format_settings' => array(
@@ -161,7 +160,15 @@ function hwc_partner_field_group_info() {
       ),
     ),
   );
-  $export['group_ph_address|node|partner|form'] = $field_group;
+  $field_groups['group_ph_address|node|partner|form'] = $field_group;
 
-  return $export;
+  // Translatables
+  // Included for use with string extractors like potx.
+  t('CEO');
+  t('Category');
+  t('Guid organisation');
+  t('Main Contact');
+  t('Ph Address');
+
+  return $field_groups;
 }

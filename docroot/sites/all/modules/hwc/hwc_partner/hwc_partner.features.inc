@@ -14,6 +14,9 @@ function hwc_partner_ctools_plugin_api($module = NULL, $api = NULL) {
   if ($module == "page_manager" && $api == "pages_default") {
     return array("version" => "1");
   }
+  if ($module == "path_breadcrumbs" && $api == "path_breadcrumbs") {
+    return array("version" => "1");
+  }
   if ($module == "strongarm" && $api == "strongarm") {
     return array("version" => "1");
   }
@@ -32,11 +35,19 @@ function hwc_partner_views_api($module = NULL, $api = NULL) {
 function hwc_partner_node_info() {
   $items = array(
     'partner' => array(
-      'name' => t('Partner'),
+      'name' => 'Partner',
       'base' => 'node_content',
-      'description' => t('Content type to store info about Official Campaign Partners and Media Partners'),
+      'description' => 'Content type to store info about Official Campaign Partners and Media Partners',
       'has_title' => '1',
-      'title_label' => t('Title'),
+      'title_label' => 'Title',
+      'help' => '',
+    ),
+    'private_aria_article' => array(
+      'name' => 'Private area article',
+      'base' => 'node_content',
+      'description' => 'Article used for private area of partners.',
+      'has_title' => '1',
+      'title_label' => 'Title',
       'help' => '',
     ),
   );
