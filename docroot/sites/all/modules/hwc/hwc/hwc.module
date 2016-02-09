@@ -55,6 +55,12 @@ function hwc_menu() {
     'access arguments' => array('access content'),
     'type' => MENU_CALLBACK,
   );
+  $items['page-not-found'] = array(
+    'title' => 'Page not found',
+    'page callback' => 'hwc_page_not_found',
+    'access callback' => TRUE,
+    'type' => MENU_CALLBACK,
+  );
   return $items;
 }
 
@@ -273,6 +279,13 @@ function hwc_theme() {
     'hwc_print_friendly_block' => array(),
   );
 }
+
+function hwc_page_not_found() {
+  drupal_set_title('Page not found');
+  $message = t('The requested page "@path" could not be found.', array('@path' => request_uri()));
+  return $message;
+}
+
 
 /**
  * Implements hook_entity_info_alter().

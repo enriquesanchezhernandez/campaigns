@@ -168,3 +168,10 @@ function hwc_update_7006() {
     drupal_write_record('workbench_access_node', $wa_row);
   }
 }
+
+/**
+ * Set site's 404 page
+ */
+function hwc_update_7007() {
+  variable_set('site_404', 'page-not-found');
+}
