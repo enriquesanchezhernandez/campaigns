@@ -152,6 +152,7 @@
       "name": "company_osh_generalphone",
       "label": "General telephone number",
       "publicProfile": "publicProfile",
+      "placeholder": "(000) 0000 0000",
       "section": "GENERAL_INFORMATION",
       "type": "text",
       "validator": "not_null"
@@ -160,6 +161,7 @@
       "name": "company_osh_homepage",
       "label": "Homepage",
       "helpText": "Organisation's website.",
+      "placeholder": "http(s)://www.example.com",
       "publicProfile": "publicProfile",
       "section": "GENERAL_INFORMATION",
       "type": "text",
@@ -169,6 +171,7 @@
       "name": "company_osh_dedicatedsite",
       "label": "Dedicated Campaign URL",
       "helpText": "Special web section dealing with issues related to occupational health and safety",
+      "placeholder": "http(s)://www.example.com",
       "publicProfile": "publicProfile",
       "section": "GENERAL_INFORMATION",
       "type": "text"
@@ -177,6 +180,7 @@
       "name": "company_osh_dedicatedcampaignsite",
       "label": "Dedicated Campaign URL",
       "helpText": "Special web section dealing with issues related to occupational health and safety",
+      "placeholder": "http(s)://www.example.com",
       "publicProfile": "publicProfile",
       "section": "GENERAL_INFORMATION",
       "type": "text"
@@ -248,6 +252,7 @@
     "company_osh_phonerepresentative": {
       "name": "company_osh_phonerepresentative",
       "label": "Telephone number",
+      "placeholder": "(000) 0000 0000",
       "section": "OSH",
       "type": "text"
     },
