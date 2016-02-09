@@ -3411,11 +3411,16 @@ article{
 				cursor: pointer;
 				background: url("../images/content/calendar-filter.png") no-repeat top right;
 			}
+
+			a.current_year{
+				color: @text-color-3;
+			}
+
 			ul{
 				/* background: url("../images/content/calendar-filter.png") no-repeat top left; */
 			}
 			ul, ul li{
-				padding: 0em 0.5em;
+				padding: 3px 0.5em;
 				margin: 0;
 				float: left;
 				font-style: italic;
@@ -4441,6 +4446,26 @@ article{
 			}
 			&[class*="linkedin"]{
 				background: url("../images/content/linkedin.png") no-repeat left center;
+				padding-left: 50px;
+				margin-bottom: 1em;
+				.field-item{ 
+				    width: 280px; 
+				    overflow: hidden;
+				    text-overflow: ellipsis; 
+				}
+			}
+			&[class*="google-plus"]{
+				background: url("../images/content/googleplus.png") no-repeat left center;
+				padding-left: 50px;
+				margin-bottom: 1em;
+				.field-item{ 
+				    width: 280px; 
+				    overflow: hidden;
+				    text-overflow: ellipsis; 
+				}
+			}
+			&[class*="pinterest"]{
+				background: url("../images/content/pinterest.png") no-repeat left center;
 				padding-left: 50px;
 				margin-bottom: 1em;
 				.field-item{ 
@@ -6594,6 +6619,7 @@ span.date-display-single{
 .node-163 .field-name-body.field-type-text-with-summary{
 	margin-bottom: 1em;
 }
+
 
 /*Partnership Application*/
 
