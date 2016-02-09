@@ -6,6 +6,6 @@
     {/if}
     <div class="controls">
         <input {$disabled} type="checkbox" style="display: block;" class="combined-checkbox" data-target="{$fieldName}" data-section="{$fieldSection}" {if $fieldValue} checked="true" {/if}/>
-        <textarea {$disabled} class="field combined-textbox" {if empty($fieldValue)}style="display:none;"{/if} id="{$fieldName}" name="{$fieldName}" placeholder="{$fieldPlaceholder}" type="text" data-section="{$fieldSection}" value="{if !empty($fieldValue)}{$fieldValue}{/if}"></textarea>
+        <textarea {$disabled} class="field combined-textbox" {if empty($fieldValue)}style="display:none;"{/if} id="{$fieldName}" name="{$fieldName}" placeholder="{$fieldPlaceholder}" type="text" data-section="{$fieldSection}">{if !empty($fieldValue)}{$fieldValue}{/if}</textarea>
     </div>
 </div>

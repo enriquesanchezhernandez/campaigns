@@ -385,4 +385,17 @@ a:after{
 }
 
 
+.iframe-partnership{
+	display:block!important;
+}
+
+.iframe-update{
+	display:block!important;
+}
+
+.toolbar.overlay-displace-top , .workbench-info-block , .tabs--primary.nav.nav-tabs{
+	display:none;
+}
+
+
 }

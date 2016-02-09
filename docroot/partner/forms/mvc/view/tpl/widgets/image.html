@@ -12,7 +12,7 @@
     <div class="{$fieldName}_image_container" id="{$fieldName}_image_container"></div>
     {/if}
     {if !$locked}
-    <button class="{$fieldName}_popup-modal" href="#{$fieldName}_test-modal">Upload your logo</button>
+    <button class="{$fieldName}_popup-modal" href="#{$fieldName}_test-modal">{if $fieldName == 'company_osh_logoimage'}Upload your logo{else}Upload your image{/if}</button>
     {/if}
     <div id="{$fieldName}_test-modal" class="white-popup-block mfp-hide">
         <div class="imageBox" id="{$fieldName}_imageBox">

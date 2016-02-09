@@ -56,7 +56,12 @@
         <img src="mvc/view/img/alertIcon.png"/><br>
         <p>You cannot add more than one profile per social network</p>
     </div>
-        
+        {if $fieldsValidatingDialog}
+        <div id="fieldsValidatingDialog" class="dialog errorDialog">
+            <a class="closeDialog" style="color: black; font-size: inherit;">[X]</a>
+            <p style="color: black; font-weight: inherit;">Your changes are being reviewed by the campaign team. <br> You will receive feedback shortly. Thanks for participating in the Healthy Workplaces Campaign.</p>
+        </div>
+        {/if}
         
         {/if}
 {/if}

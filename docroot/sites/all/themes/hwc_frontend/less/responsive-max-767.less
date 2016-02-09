@@ -186,6 +186,28 @@ header.navbar-default{
 		}
 	}
 }
+
+.btn-default-hwc{
+	display:block;
+}
+
+#edit-text{
+	max-width: 233px !important;
+}
+
+.page-practical-tools fieldset.panel{
+	clear:both;
+}
+
+.container-fluid{
+	.section-introduction{
+		.field-type-text-with-summary{
+			padding-right: 0;
+			padding-left: 0;
+		}
+	}
+}
+
 .xs-menu{
 	background-color: @bg-color-2;
 	background: @bg-default-color url(../images/header/bg-menu.png) repeat-x center top;
@@ -244,7 +266,7 @@ header.navbar-default{
     height: auto;
 	padding-top: 1em;
 	padding-bottom: 1em;
-	padding-left: 0;
+	padding-left: 30px;
 	margin-top: 30px;
 	.region.region-footer, h3, p{
 		display: none;
@@ -262,6 +284,7 @@ header.navbar-default{
 	/*fin footer*/
 
 /*container*/
+
 	.breadcrumb{
 		display: none;
 	}
@@ -538,27 +561,25 @@ header.navbar-default{
 		}
 	}
 	//principal partner
+
+	#block-views-partners-block-1 .view-display-id-block_1 .view-display-id-attachment_1 .view-content .views-field-title{
+		display:block;
+	}
+
 	#block-views-partners-block-1, .front #block-views-partners-block-1{
 		padding-top: 0;
 		padding-right: @margin-movil;
 		padding-left: @margin-movil;
 		h2{
-			margin: 20px 0  20px 0;
+			margin-top: 20px;
 		    padding-top: 70px;
-			padding-bottom: 22px;
+			padding-bottom: 0px;
 			padding-left: 0px;
 			padding-right: 0px;
 		    background: url("../images/content/partners.png") no-repeat center top;
 		}
-		.views-field-title{
-		    float: left;
-		    clear: both;
-		    top: 0;
-		    position: absolute;
-		}
 		.views-field-field-logo{
 			margin: 0 auto 20px auto;
-			margin-top: 80px !important;
 		}
 		.view-display-id-block_1 .view-display-id-attachment_1{
 			border: none;
@@ -839,6 +860,7 @@ header.navbar-default{
 		#edit-relevant-for, #edit-languages, #edit-publication-type{
 			margin-left: @margin-movil;
 			margin-right: @margin-movil;
+			height:1%;
 		}
 	}
 	#search, #edit-content #search{
@@ -1181,6 +1203,25 @@ header.navbar-default{
 			}
 		}
 	}
+
+.page-events .views-exposed-widget.views-reset-button{
+	float: right;
+    margin-right: 1em;
+}
+
+.page-events #edit-search-api-views-fulltext{
+	max-width: 224px;
+}
+
+.page-events .views-exposed-widgets #block-views-events-block-2{
+	margin-top: 3em;
+	width: auto;
+}
+
+.page-events .views-exposed-widgets, .page-past-events .views-exposed-widgets{
+	padding-bottom: 2em;
+}
+
 	/*Fin events*/
 	
 /*FIn container*/
@@ -1896,14 +1937,14 @@ header.navbar-default{
 		width: 95%;
 		&:after {
 			width: 30px;
-			height: 23px;
+			height: 30px;
 			display: block;
 			content: '';
 			position: absolute;
 			top: 0px;
 			right: 0;
 			pointer-events: none;
-			background: @bg-color-2 url("../images/content/arrow-down.png") no-repeat right top;
+			background: @bg-color-2 url("../images/content/arrow-down.png") no-repeat  top;
 			-moz-box-sizing: border-box;
 			-webkit-box-sizing: border-box;
 			box-sizing: border-box;
@@ -1919,7 +1960,7 @@ header.navbar-default{
 			-webkit-box-sizing: border-box;
 			box-sizing: border-box;
 			width: 100%;
-			height: 23px;
+			height: 30px;
 		}
 	}
 	.container{
@@ -1927,6 +1968,9 @@ header.navbar-default{
 		padding-right: @margin-movil;
 	}
 }
+
+
+
 /*End pag National focal points*/
 
 /*pag Newsletter*/
@@ -2079,6 +2123,21 @@ header.navbar-default{
 
 .separator_recomended_resources_home{
 	display: none;
+}
+
+.page-node .node-news .field-name-body{
+	padding-top:1em;
+	clear:both;
+}
+
+.node-type-news .top_anchor{
+	display: block;
+	position: fixed;
+	position: relative;
+	right: 0;
+	bottom: 0px;
+	float: right;
+	margin-top: 1em;
 }
 
 
