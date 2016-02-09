@@ -157,6 +157,7 @@
     "company_osh_generalphone": {
       "name": "company_osh_generalphone",
       "label": "General telephone number",
+      "placeholder": "(000) 0000 0000",
       "publicProfile": "publicProfile",
       "section": "GENERAL_INFORMATION",
       "type": "text",
@@ -166,6 +167,7 @@
       "name": "company_osh_homepage",
       "label": "Homepage",
       "publicProfile": "publicProfile",
+      "placeholder": "http(s)://www.example.com",
       "section": "GENERAL_INFORMATION",
       "type": "text",
       "validator": "not_null"
@@ -173,6 +175,7 @@
     "company_osh_dedicatedsite": {
       "name": "company_osh_dedicatedsite",
       "label": "Dedicated Campaign URL",
+      "placeholder": "http(s)://www.example.com",
       "publicProfile": "publicProfile",
       "section": "GENERAL_INFORMATION",
       "type": "text"
@@ -180,6 +183,7 @@
     "company_osh_dedicatedcampaignsite": {
       "name": "company_osh_dedicatedcampaignsite",
       "label": "Dedicated Campaign URL",
+      "placeholder": "http(s)://www.example.com",
       "publicProfile": "publicProfile",
       "section": "GENERAL_INFORMATION",
       "type": "text"

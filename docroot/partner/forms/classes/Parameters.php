@@ -96,7 +96,7 @@ final class Parameters {
      */
     public function setUrlParamValue($name, $value) {
         $key = $this->getUrlParam($name);
-        $this->set($key, $value, true);
+        $this->set($key, str_replace("\"", "''", $value), true);
     }
 
     /**
@@ -106,9 +106,9 @@ final class Parameters {
      * @param $persistent
      */
     public function set($name, $value, $persistent = false) {
-        $this->params[$name] = $value;
+        $this->params[$name] = str_replace("\"", "''", $value);
         if ($persistent) {
-            $_SESSION[$name] = $value;
+            $_SESSION[$name] = str_replace("\"", "''", $value);
         }
     }
 }
