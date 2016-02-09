@@ -106,3 +106,24 @@ function hwc_admin_get_events_authors() {
   $q->groupBy('a.uid');
   return $q->execute()->fetchAllKeyed();
 }
+
+/**
+ * Implements hook_views_pre_render().
+ */
+function hwc_admin_reports_views_pre_render(&$view) {
+  if ($view->name == 'content_reports' &&
+      in_array($view->current_display, array('views_data_export_events', 'views_data_export_news'))) {
+    foreach ($view->result as &$row) {
+      $node = $row->_field_data['nid']['entity'];
+      $section = reset($node->workbench_access);
+      $row->workbench_access[0] = '';
+      if (!empty($section) && is_numeric($section)) {
+        $w = entity_metadata_wrapper('taxonomy_term', $section);
+        $guid = $w->field_ldap_section_code->value();
+        if (!empty($guid)) {
+          $row->workbench_access[0] = $guid;
+        }
+      }
+    }
+  }
+}

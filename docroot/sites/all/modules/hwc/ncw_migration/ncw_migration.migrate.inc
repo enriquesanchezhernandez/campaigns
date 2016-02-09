@@ -26,7 +26,7 @@ function ncw_migration_migrate_api() {
         'dependencies' => array(
           'tax_tags', 'tax_publication_types', 'publications_add_res',
           'news_add_res', 'press_releases_add_res', 'press_releases_add_res',
-          'highlights_add_res', 'notes_to_editor'
+          'highlights_add_res', 'notes_to_editor', 'tax_segment',
         ),
         'class_name' => 'NCWPublicationsMigration',
       ),
@@ -117,6 +117,11 @@ function ncw_migration_migrate_api() {
         'dependencies' => array(),
         'class_name' => 'NCWTaxonomyPublicationTypeMigration',
       ),
+      'tax_segment' => array(
+        'group_name' => 'ncw',
+        'dependencies' => array(),
+        'class_name' => 'NCWTaxonomySegmentationMigration',
+      ),
       'tax_tags' => array(
         'group_name' => 'ncw',
         'dependencies' => array(),
@@ -195,7 +200,7 @@ abstract class AbstractNCWNodeMigration extends Migration {
     $this->addFieldMapping('log', 'log');
     $this->addFieldMapping('language', 'language');
     $this->addFieldMapping('path', 'path');
-    $this->addFieldMapping('workbench_access')->defaultValue(1); // Assign default section
+    $this->addFieldMapping('workbench_access')->defaultValue('section'); // Assign default section
 
     // Handle field migration in a generic way
     $fields = field_info_instances('node', $this->bundle);

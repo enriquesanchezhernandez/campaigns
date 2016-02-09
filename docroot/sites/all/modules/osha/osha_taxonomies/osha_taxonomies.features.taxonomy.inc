@@ -42,7 +42,7 @@ function osha_taxonomies_taxonomy_default_vocabularies() {
       'module' => 'taxonomy',
       'weight' => -9,
       'language' => 'und',
-      'i18n_mode' => 1,
+      'i18n_mode' => 0,
       'rdf_mapping' => array(
         'rdftype' => array(
           0 => 'skos:ConceptScheme',

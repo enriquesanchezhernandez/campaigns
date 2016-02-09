@@ -1,0 +1,226 @@
+{
+  "sections": {
+    "title": "3. Contact information",
+    "sections": {
+        "PRIMARY_CONTACT": "Your Primary Contact"
+    },
+     "sections_mf": {
+        "PRIMARY_CONTACT": "Your Primary Contact",
+        "OTHER_USERS": "Other users"
+    }
+  },
+  "attributes": {
+    "contact_osh_maincontactpersonfirstname": {
+      "name": "contact_osh_maincontactpersonfirstname",
+      "label": "Name of main contact person for the campaign",
+      "publicProfile": "publicProfile",
+      "section": "PRIMARY_CONTACT",
+      "type": "text",
+      "validator": "not_null"
+    },
+    "contact_osh_maincontactpersonlastname": {
+      "name": "contact_osh_maincontactpersonlastname",
+      "label": "Surname",
+      "publicProfile": "publicProfile",
+      "section": "PRIMARY_CONTACT",
+      "type": "text",
+      "validator": "not_null"
+    },
+    "contact_osh_positionmaincontactperson": {
+      "name": "contact_osh_positionmaincontactperson",
+      "label": "Position",
+      "section": "PRIMARY_CONTACT",
+      "type": "text",
+      "validator": "not_null"
+    },
+    "company_osh_facebookprofile": {
+      "name": "company_osh_facebookprofile",
+      "label": "Facebook Profile",
+      "placeholder": "Please indicate your facebook profile",
+      "section": "GENERAL_INFORMATION",
+      "type": "text"
+    },
+    "company_osh_twitterprofile": {
+      "name": "company_osh_twitterprofile",
+      "label": "Twitter Profile",
+      "placeholder": "Please indicate your twitter profile",
+      "section": "GENERAL_INFORMATION",
+      "type": "text"
+    },
+    "company_osh_youtubeprofile": {
+      "name": "company_osh_youtubeprofile",
+      "label": "Youtube Profile",
+      "placeholder": "Please indicate your Youtube profile",
+      "section": "GENERAL_INFORMATION",
+      "type": "text"
+    },
+    "company_osh_linkedinprofile": {
+      "name": "company_osh_linkedinprofile",
+      "label": "LinkedIn Profile",
+      "placeholder": "Please indicate your LinkedIn profile",
+      "section": "GENERAL_INFORMATION",
+      "type": "text"
+    },
+    "company_osh_slideshareprofile": {
+      "name": "company_osh_slideshareprofile",
+      "label": "Slide Share Profile",
+      "placeholder": "Please indicate your Slide Share profile",
+      "section": "GENERAL_INFORMATION",
+      "type": "text"
+    },
+    "contact_osh_mainemail": {
+      "name": "contact_osh_mainemail",
+      "label": "Email address",
+      "helpText": "IMPORTANT: All communications related to the campaign will be sent to this address.",
+      "section": "PRIMARY_CONTACT",
+      "type": "text",
+      "validator": [
+        "email",
+        "not_null"
+      ]
+    },
+    "contact_osh_otherusername1": {
+      "name": "contact_osh_otherusername1",
+      "label": "Name of the additional user",
+      "section": "OTHER_USERS",
+      "type": "text"
+    },
+    "contact_osh_otherusermail1": {
+      "name": "contact_osh_otherusermail1",
+      "label": "Email address of additional user",
+      "section": "OTHER_USERS",
+      "type": "text",
+      "validator": "email"
+    },
+    "contact_osh_otheruserphone1": {
+      "name": "contact_osh_otheruserphone1",
+      "label": "Telephone of additional user",
+      "section": "OTHER_USERS",
+      "type": "text"
+    },
+    "contact_osh_otherusername2": {
+      "name": "contact_osh_otherusername2",
+      "label": "Name of the additional user",
+      "section": "OTHER_USERS",
+      "type": "text"
+    },
+    "contact_osh_otherusermail2": {
+      "name": "contact_osh_otherusermail2",
+      "label": "Email address of additional user",
+      "section": "OTHER_USERS",
+      "type": "text",
+      "validator": "email"
+    },
+    "contact_osh_otheruserphone2": {
+      "name": "contact_osh_otheruserphone2",
+      "label": "Telephone of additional user",
+      "section": "OTHER_USERS",
+      "type": "text"
+    },
+    "contact_osh_otherusername3": {
+      "name": "contact_osh_otherusername3",
+      "label": "Name of the additional user",
+      "section": "OTHER_USERS",
+      "type": "text"
+    },
+    "contact_osh_otherusermail3": {
+      "name": "contact_osh_otherusermail3",
+      "label": "Email address of additional user",
+      "section": "OTHER_USERS",
+      "type": "text",
+      "validator": "email"
+    },
+    "contact_osh_otheruserphone3": {
+      "name": "contact_osh_otheruserphone3",
+      "label": "Telephone of additional user",
+      "section": "OTHER_USERS",
+      "type": "text"
+    },
+    "company_osh_orgnameAux": {
+      "name": "company_osh_orgnameAux",
+      "label": "Organisation name",
+      "section": "ORGANISATION",
+      "type": "text"
+    },
+    "contact_osh_mainemailAux": {
+      "name": "contact_osh_mainemailAux",
+      "label": "E-mail",
+      "section": "PRIMARY_CONTACT",
+      "type": "text"
+    },
+    "contact_osh_confirm_mainemail": {
+      "name": "contact_osh_confirm_mainemail",
+      "label": "Confirm the email of the main contact person",
+      "section": "PRIMARY_CONTACT",
+      "type": "text",
+      "validator": [
+         "email_confirm",
+         "not_null"
+      ]
+     },
+    "contact_osh_mainphone": {
+      "name": "contact_osh_mainphone",
+      "label": "Telephone number",
+      "section": "PRIMARY_CONTACT",
+      "type": "text"
+    },
+    "contact_osh_category": {
+      "name": "contact_osh_category",
+      "type": "text"
+    },
+    "contact_osh_leads": {
+      "name": "contact_osh_leads",
+      "type": "text"
+    },
+    "contact_osh_maincontactchange": {
+      "name": "contact_osh_maincontactchange",
+      "label": "Main contact change",
+      "type": "contact_change"
+    }
+  },
+  "map": {
+    "contact_osh_maincontactpersonfirstname": "osh_firstname",
+    "contact_osh_maincontactpersonlastname": "osh_lastname",
+    "contact_osh_mainphone": "osh_mainphone",
+    "contact_osh_mainemail": "osh_mainemail",
+    "contact_osh_category": "osh_category",
+    "company_osh_facebookprofile": "osh_facebookprofile",
+    "company_osh_twitterprofile": "osh_twitterprofile",
+    "company_osh_youtubeprofile": "osh_youtubeprofile",
+    "company_osh_linkedinprofile": "osh_linkedinprofile",
+    "company_osh_slideshareprofile": "osh_slideshareprofile",
+    "contact_osh_leads": "osh_leads",
+    "contact_osh_maincontactchange": "osh_maincontactchange",
+    "contact_osh_otherusername1": "fullname1",
+    "contact_osh_otherusermail1": "osh_otheruseremail1",
+    "contact_osh_otheruserphone1": "osh_otheruserphone1",
+    "contact_osh_otherusername2": "fullname2",
+    "contact_osh_otherusermail2": "osh_otheruseremail2",
+    "contact_osh_otheruserphone2": "osh_otheruserphone2",
+    "contact_osh_otherusername3": "fullname3",
+    "contact_osh_otherusermail3": "osh_otheruseremail3",
+    "contact_osh_otheruserphone3": "osh_otheruserphone3"
+  },
+  "map_mf": {
+    "contact_osh_maincontactpersonfirstname": "firstname",
+    "contact_osh_maincontactpersonlastname": "lastname",
+    "contact_osh_mainphone": "telephone1",
+    "contact_osh_mainemail": "emailaddress1",
+    "company_osh_facebookprofile": "osh_facebookprofile",
+    "company_osh_twitterprofile": "osh_twitterprofile",
+    "company_osh_youtubeprofile": "osh_youtubeprofile",
+    "company_osh_linkedinprofile": "osh_linkedinprofile",
+    "company_osh_slideshareprofile": "osh_slideshareprofile",
+    "contact_osh_category": "osh_category",
+    "contact_osh_otherusername1": "fullname1",
+    "contact_osh_otherusermail1": "osh_otheruseremail1",
+    "contact_osh_otheruserphone1": "osh_otheruserphone1",
+    "contact_osh_otherusername2": "fullname2",
+    "contact_osh_otherusermail2": "osh_otheruseremail2",
+    "contact_osh_otheruserphone2": "osh_otheruserphone2",
+    "contact_osh_otherusername3": "fullname3",
+    "contact_osh_otherusermail3": "osh_otheruseremail3",
+    "contact_osh_otheruserphone3": "osh_otheruserphone3",
+    "contact_osh_leads": "osh_leads"
+  }
+}

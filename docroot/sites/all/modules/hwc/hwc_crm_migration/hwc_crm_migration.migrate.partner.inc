@@ -40,7 +40,6 @@ class PartnerMigration extends HwcCrmMigration {
       'field_ph_cp',
       'field_ph_town',
       'field_country',
-      'field_ph_address_extra',
       'field_guid_main_contact',
       'field_main_contact',
       'field_main_contact_email',
@@ -59,6 +58,9 @@ class PartnerMigration extends HwcCrmMigration {
       'field_youtube_profile',
       'field_slideshare_profile',
       'field_linkedin_profile',
+      'field_google_plus_profile',
+      'field_pinterest_profile',
+      'field_abbreviation_name',
     );
   }
 
@@ -149,6 +151,7 @@ class PartnerMigrateListXml extends AbstractCrmMigrateListXml {
         $data->field_orgtype = (string) $attributes['Textbox5'];
         $data->field_bussines_sector = (string) $attributes['Textbox6'];
         $data->field_mission_statement = (string) $attributes['Textbox7'];
+        $data->field_abbreviation_name = (string) $attributes['Textbox38'];
 
         $logo_image = base64_decode((string) $attributes['Textbox8']);
         $logo_ext = (string) $attributes['Textbox9'];
@@ -158,7 +161,7 @@ class PartnerMigrateListXml extends AbstractCrmMigrateListXml {
         }
 
         $data->field_logo_mime = (string) $attributes['Textbox9'];
-        $data->field_logo_file = $data->title . '.jpg';
+        $data->field_logo_file = trim(substr($data->title, 0, 20)) . '.jpg';
         $data->field_campaign_website = (string) $attributes['Textbox10'];
 
         $data->field_facebook_profile = (string) $attributes['Textbox11'];
@@ -166,11 +169,14 @@ class PartnerMigrateListXml extends AbstractCrmMigrateListXml {
         $data->field_youtube_profile = (string) $attributes['Textbox13'];
         $data->field_slideshare_profile = (string) $attributes['Textbox14'];
         $data->field_linkedin_profile = (string) $attributes['Textbox15'];
+        var_dump((string) $attributes['Textbox37']);
+        var_dump((string) $attributes['Textbox36']);
+        $data->field_google_plus_profile = (string) $attributes['Textbox37'];
+        $data->field_pinterest_profile = (string) $attributes['Textbox36'];
 
         $data->field_ph_address = (string) $attributes['Textbox16'];
         $data->field_ph_cp = (string) $attributes['Textbox17'];
         $data->field_country = (string) $attributes['Textbox18'];
-        $data->field_ph_address_extra = (string) $attributes['Textbox13'];
         $data->field_ph_town = (string) $attributes['Textbox19'];
         $data->field_guid_main_contact = (string) $attributes['Textbox20'];
         $data->field_main_contact = trim((string) $attributes['Textbox21'] . ' ' . (string) $attributes['Textbox22']);

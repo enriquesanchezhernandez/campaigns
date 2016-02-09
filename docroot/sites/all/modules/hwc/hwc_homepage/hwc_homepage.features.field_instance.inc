@@ -10,7 +10,7 @@
 function hwc_homepage_field_default_field_instances() {
   $field_instances = array();
 
-  // Exported field_instance: 'node-frontpage_slider-body'
+  // Exported field_instance: 'node-frontpage_slider-body'.
   $field_instances['node-frontpage_slider-body'] = array(
     'bundle' => 'frontpage_slider',
     'default_value' => NULL,
@@ -100,7 +100,7 @@ function hwc_homepage_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-frontpage_slider-field_content_reference'
+  // Exported field_instance: 'node-frontpage_slider-field_content_reference'.
   $field_instances['node-frontpage_slider-field_content_reference'] = array(
     'bundle' => 'frontpage_slider',
     'default_value' => NULL,
@@ -192,7 +192,7 @@ function hwc_homepage_field_default_field_instances() {
     'workbench_access_field' => 0,
   );
 
-  // Exported field_instance: 'node-frontpage_slider-field_image'
+  // Exported field_instance: 'node-frontpage_slider-field_image'.
   $field_instances['node-frontpage_slider-field_image'] = array(
     'bundle' => 'frontpage_slider',
     'deleted' => 0,
@@ -314,7 +314,7 @@ function hwc_homepage_field_default_field_instances() {
     'workbench_access_field' => 0,
   );
 
-  // Exported field_instance: 'node-frontpage_slider-title_field'
+  // Exported field_instance: 'node-frontpage_slider-title_field'.
   $field_instances['node-frontpage_slider-title_field'] = array(
     'bundle' => 'frontpage_slider',
     'default_value' => NULL,

@@ -24,9 +24,9 @@
         "path": "/solr/campaigns",
         "http_user": "",
         "http_password": "",
-        "excerpt": 1,
-        "retrieve_data": 1,
-        "highlight_data": 1,
+        "excerpt": 0,
+        "retrieve_data": 0,
+        "highlight_data": 0,
         "skip_schema_check": null,
         "solr_version": "",
         "http_method": "AUTO",
@@ -61,8 +61,6 @@
         "smtp_on": 1,
         "fb_app_key": "",
         "hwc_crm_data_dir": "/var/local/hwc/crm_data",
-        "recaptcha_site_key": "",
-        "recaptcha_private_key": "",
         "smtp_queue": 0,
         "smtp_host": "some.smtp.server",
         "smtp_hostbackup": "some.backup.smtp.server",
@@ -86,6 +84,9 @@
         "user_password_reset_timeout": 259200,
         "hwc_user_activate_token": "secret",
         "hwc_partner_registration_deadline": "",
+        "piwik_site_id": "11",
+        "piwik_url_http": "http://piwik.osha.europa.eu/piwik/",
+        "piwik_url_https": "https://piwik.osha.europa.eu/piwik/",
         "hwc_partner_registration_deadline_message": "The deadline to apply for the HWC 2014-15 partnership is over"
     }
 }

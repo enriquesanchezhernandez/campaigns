@@ -400,20 +400,6 @@ function hwc_form_chosen_admin_settings_alter(&$form, $form_state) {
 }
 
 /**
- * Implments hook_form_FORM_ID_alter().
- */
-function hwc_form_user_profile_form_alter(&$form, $form_state) {
-  global $user;
-  if (in_array(ROLE_CAMPAIGN_PARTNER, $user->roles)) {
-    // Hide Flickr tags in user profile
-    $form['field_flickr_tags']['#access'] = FALSE;
-    $form['field_cmw_mail_notifications']['#access'] = FALSE;
-  }
-  $form['field_crm_guid']['#access'] = FALSE;
-  $form['field_user_partner_guid']['#access'] = FALSE;
-}
-
-/**
  * Implements hook_form_alter().
  */
 function hwc_form_alter(&$form, &$form_state, $form_id) {
@@ -450,7 +436,29 @@ function hwc_form_alter(&$form, &$form_state, $form_id) {
     $form['lang_dropdown_select']['#attributes']['title'] = t('Language switcher dropdown');
   }
 
+
+  if ($form_id == 'system_site_information_settings') {
+    $form['site_information']['site_hwc_mostra_mailbox'] = array(
+      '#type' => 'textfield',
+      '#title' => t('Mostra mailbox'),
+      '#default_value' => variable_get('site_hwc_mostra_mailbox'),
+    );
+  }
 }
+
+/**
+ * Implements hook_entity_property_info_alter().
+ */
+function hwc_entity_property_info_alter(&$info) {
+  $properties =& $info['site']['properties'];
+  // Add mostra mailbox property to use it in rules.
+  $properties['hwc_mostra_mailbox'] = array(
+    'label' => 'Mostra mailbox',
+    'description' => 'Mostra mailbox',
+    'getter callback' => 'entity_metadata_system_get_properties',
+  );
+}
+
 
 /**
  * Implements hook_node_submit().
@@ -789,13 +797,16 @@ function hwc_user_activate($mail) {
 
   // Check the user
   $query = new EntityFieldQuery();
-  $query->entityCondition('entity_type', 'user')
-    ->propertyCondition('mail', $mail)
-    ->count();
-  $count = $query->execute();
-  if ($count > 0) {
-    drupal_add_http_header('Status', '400 User already exists');
-    echo '400 User already exists';
+  $query->entityCondition('entity_type', 'user')->propertyCondition('mail', $mail);
+  $result = $query->execute();
+  if (count($result) > 0) {
+    $row = current(reset($result));
+    $account = user_load($row->uid);
+    watchdog('hwc', 'Generating one-time login link for account <em>!uid</em>', array(
+      '!uid' => $account->name
+    ), WATCHDOG_WARNING);
+    // Generate one time password reset link
+    print user_pass_reset_url($account);
     drupal_exit();
     die();
   }
@@ -922,7 +933,9 @@ function hwc_partner_registration_allowed() {
 function hwc_taxonomy_term_presave($term) {
   // When saving a country term, attach the flag on field_flag.
   $voc = taxonomy_vocabulary_machine_name_load('country');
-  if ($term->vid == $voc->vid) {
+  if ($term->vid == $voc->vid
+    && !empty($term->field_iso2[LANGUAGE_NONE][0]['value'])
+    && empty($term->field_flag[LANGUAGE_NONE][0])) {
     $dir = 'public://flags';
     if (!file_prepare_directory($dir)) {
       drupal_set_message('Flags directory could not be created.', 'warning');
@@ -933,25 +946,27 @@ function hwc_taxonomy_term_presave($term) {
     if (!is_dir($images_dir)) {
       drupal_set_message('Could not find the flags images source directory.', 'warning');
     }
-    $iso2 = strtoupper($term->field_iso2[LANGUAGE_NONE][0]['value']);
-    $image_filename = $iso2 . '.gif';
-    $image_dest_dir = $dir . '/' . $image_filename;
-    $image_path = $images_dir . '/' . $image_filename;
-    $filepath = drupal_realpath($image_path);
-    if (is_file($filepath)) {
-      // Create managed File object and associate with Image field.
-      $file = (object) array(
-        'uid' => 1,
-        'uri' => $filepath,
-        'filemime' => file_get_mimetype($filepath),
-        'status' => 1,
-      );
-      if ($file = file_copy($file, $image_dest_dir)) {
-        $term->field_flag[LANGUAGE_NONE][0] = (array) $file;
-      }
-    }
     else {
-      drupal_set_message(strtr('Flag not found for @country', array('@country' => $term->name)), 'warning');
+      $iso2 = strtoupper($term->field_iso2[LANGUAGE_NONE][0]['value']);
+      $image_filename = $iso2 . '.gif';
+      $image_dest_dir = $dir . '/' . $image_filename;
+      $image_path = $images_dir . '/' . $image_filename;
+      $filepath = drupal_realpath($image_path);
+      if (is_file($filepath)) {
+        // Create managed File object and associate with Image field.
+        $file = (object) array(
+          'uid' => 1,
+          'uri' => $filepath,
+          'filemime' => file_get_mimetype($filepath),
+          'status' => 1,
+        );
+        if ($file = file_copy($file, $image_dest_dir)) {
+          $term->field_flag[LANGUAGE_NONE][0] = (array) $file;
+        }
+      }
+      else {
+        drupal_set_message(strtr('Flag not found for @country', array('@country' => $term->name)), 'warning');
+      }
     }
   }
 }

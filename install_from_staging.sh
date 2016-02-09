@@ -47,11 +47,6 @@ if [ ${ecode} != 0 ]; then
   exit ${ecode};
 fi
 
-# temporary
-# drush fr -y --force osha_events
-drush updatedb -y
-
-
 # Build the site
 drush osha_build -y
 if [ ${ecode} != 0 ]; then

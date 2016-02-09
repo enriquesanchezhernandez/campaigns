@@ -1,0 +1,28 @@
+{if $HelpMessage != "print"}
+<div id="container-message" class="container-message">   
+
+        <div id="MESSAGE">
+            Please make sure you thoroughly check, whether all your information is still valid
+                       and indicate <br>     this by checking the button next to the appropiate fields
+                       <a class="close">[X]</a>
+        </div>            
+    </div>
+{else}
+<!-- <a id="printpage" style="float: right; margin: 1%; ">
+             <img src="mvc/view/img/print.png" title="Print" height="40" width="40">
+    </a> -->
+{/if}
+<fieldset>
+    <legend id="PLEDGE">
+        Your involvement in the campaign
+        <div data-section="PLEDGE" class="validation{$locked}"></div>
+    </legend>
+    
+    <div class="separatorFieldSet">&nbsp;</div>
+    
+    {$attributes.involvement_osh_campaignpledge}
+        <div class="hidden">
+            {$attributes.contact_osh_mainemailAux}
+            {$attributes.company_osh_orgnameAux}
+        </div>
+</fieldset>

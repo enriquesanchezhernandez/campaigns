@@ -12,7 +12,7 @@ function osha_newsletter_subscribe_extra_form() {
     '#attributes' => array(
       'placeholder' => t('E-mail address'),
       'title' => t('E-mail address'),
-      'onclick' => "jQuery('div.captcha').show()",
+      'onclick' => "jQuery(this).closest('form').find('div.captcha').show();",
     ),
   );
   if (user_is_anonymous()) {

@@ -23,21 +23,21 @@ $rss_url = !empty($options['rss_url']) ? $options['rss_url'] : url('rss-feeds/la
 $rss_hide = !empty($options['rss_hide']);
 
 // FB share counter.
-$api = simplexml_load_file('http://api.facebook.com/restserver.php?method=links.getStats&urls==' . $url);
-$count = json_decode($api);
-$fb_share_count = isset($api->link_stat->share_count) ? (string) $api->link_stat->share_count : 0;
+//$api = simplexml_load_file('http://api.facebook.com/restserver.php?method=links.getStats&urls==' . $url);
+//$count = json_decode($api);
+//$fb_share_count = isset($api->link_stat->share_count) ? (string) $api->link_stat->share_count : 0;
 
 $twitter_url = str_replace('http://', '', $url);
 $twitter_url = str_replace('https://', '', $twitter_url);
 // Twitter share counter.
-$api = file_get_contents('https://cdn.api.twitter.com/1/urls/count.json?url=' . $twitter_url);
-$count = json_decode($api);
-$twitter_share_count = isset($count->count) ? $count->count : 0;
+//$api = file_get_contents('https://cdn.api.twitter.com/1/urls/count.json?url=' . $twitter_url);
+//$count = json_decode($api);
+//$twitter_share_count = isset($count->count) ? $count->count : 0;
 
 // LinkedIn share counter.
-$api = file_get_contents('https://www.linkedin.com/countserv/count/share?url=' . $url . '&format=json');
-$count = json_decode($api);
-$linkedin_share_count = isset($count->count) ? $count->count : 0;
+//$api = file_get_contents('https://www.linkedin.com/countserv/count/share?url=' . $url . '&format=json');
+//$count = json_decode($api);
+//$linkedin_share_count = isset($count->count) ? $count->count : 0;
 
 ?>
 <div class="hwc-share-widget">
@@ -46,19 +46,19 @@ $linkedin_share_count = isset($count->count) ? $count->count : 0;
       <a href="<?php print $url ?>">Facebook</a>
     </li>
     <li class="label">
-      <?php print t('Share'); ?> <span>(<?php print $fb_share_count ?>)</span>
+      <?php print t('Share'); ?>
     </li>
     <li id="twitter-share-button-<?php print $node->nid; ?>" class="hwc-share-widget-button hwc-share-widget-twitter">
       <a href="<?php print $tweet_url; ?>">Twitter</a>
     </li>
     <li class="label">
-      <?php print t('Tweet'); ?> <span>(<?php print $twitter_share_count ?>)</span>
+      <?php print t('Tweet'); ?>
     </li>
     <li id="linked-in-<?php print $node->nid; ?>" class="napo-share-widget-button napo-share-widget-linkedin">
       <a href="https://www.linkedin.com/shareArticle?mini=true&url=<?php print $url; ?>">Linked in</a>
     </li>
     <li class="label">
-      <?php print t('Share'); ?> <span>(<?php print $linkedin_share_count ?>)</span>
+      <?php print t('Share'); ?>
     </li>
     <?php if (!$rss_hide): ?>
       <li class="label label-rss pull-right">
@@ -87,7 +87,7 @@ $linkedin_share_count = isset($count->count) ? $count->count : 0;
         var js, fjs = d.getElementsByTagName(s)[0];
         if (d.getElementById(id)) {return;}
         js = d.createElement(s); js.id = id;
-        js.src = "//connect.facebook.net/en_US/sdk.js";
+        js.src = "https://connect.facebook.net/en_US/sdk.js";
         fjs.parentNode.insertBefore(js, fjs);
       }(document, 'script', 'facebook-jssdk'));
 

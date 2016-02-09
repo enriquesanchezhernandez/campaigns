@@ -96,7 +96,7 @@ function hwc_partner_views_default_views() {
   /* Display: Latest partner news */
   $handler = $view->new_display('block', 'Latest partner news', 'latest_partner_news');
   $handler->display->display_options['defaults']['title'] = FALSE;
-  $handler->display->display_options['title'] = 'News';
+  $handler->display->display_options['title'] = 'Partner\'s News';
   $handler->display->display_options['defaults']['use_more'] = FALSE;
   $handler->display->display_options['use_more'] = TRUE;
   $handler->display->display_options['defaults']['use_more_always'] = FALSE;
@@ -183,14 +183,14 @@ function hwc_partner_views_default_views() {
   $handler->display->display_options['filters']['field_publication_date_value']['table'] = 'field_data_field_publication_date';
   $handler->display->display_options['filters']['field_publication_date_value']['field'] = 'field_publication_date_value';
   $handler->display->display_options['filters']['field_publication_date_value']['operator'] = '<=';
-  $handler->display->display_options['filters']['field_publication_date_value']['granularity'] = 'minute';
+  $handler->display->display_options['filters']['field_publication_date_value']['granularity'] = 'second';
   $handler->display->display_options['filters']['field_publication_date_value']['default_date'] = 'now';
   $handler->display->display_options['block_description'] = 'News';
 
   /* Display: Latest partner events */
   $handler = $view->new_display('block', 'Latest partner events', 'latest_partner_events');
   $handler->display->display_options['defaults']['title'] = FALSE;
-  $handler->display->display_options['title'] = 'Events';
+  $handler->display->display_options['title'] = 'Partner\'s Events';
   $handler->display->display_options['defaults']['use_more'] = FALSE;
   $handler->display->display_options['use_more'] = TRUE;
   $handler->display->display_options['defaults']['use_more_always'] = FALSE;
@@ -288,6 +288,7 @@ function hwc_partner_views_default_views() {
   $handler->display->display_options['filters']['field_start_date_value']['table'] = 'field_data_field_start_date';
   $handler->display->display_options['filters']['field_start_date_value']['field'] = 'field_start_date_value';
   $handler->display->display_options['filters']['field_start_date_value']['operator'] = '>=';
+  $handler->display->display_options['filters']['field_start_date_value']['granularity'] = 'second';
   $handler->display->display_options['filters']['field_start_date_value']['default_date'] = 'now';
   $handler->display->display_options['block_description'] = 'Events';
   $translatables['partner_content'] = array(
@@ -309,11 +310,13 @@ function hwc_partner_views_default_views() {
     t('Get the actual content from a content revision.'),
     t('All'),
     t('Latest partner news'),
-    t('News'),
+    t('Partner\'s News'),
     t('See all news'),
+    t('News'),
     t('Latest partner events'),
-    t('Events'),
+    t('Partner\'s Events'),
     t('See all events'),
+    t('Events'),
   );
   $export['partner_content'] = $view;
 

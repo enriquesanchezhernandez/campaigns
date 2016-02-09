@@ -40,19 +40,22 @@ function osha_publication_menu_publications_form($form, $form_state) {
     '#type' => 'checkboxes',
     '#options' => _hwc_segment_options_list(),
     '#default_value' => array('0'),
-    '#title' => t('Relevant for:'),
+    '#title' => t('Relevant for'),
   );
   $form['left-column']['publication_type'] = array(
     '#type' => 'checkboxes',
     '#options' => _publication_type_options_list(),
     '#default_value' => array('0'),
-    '#title' => t('Publications type:'),
+    '#title' => t('Publications type'),
   );
   $form['left-column']['languages'] = array(
     '#type' => 'checkboxes',
     '#options' => osha_language_list_options(),
     '#default_value' => $languages,
-    '#title' => t('This tool is available in various languages'),
+    '#title' => t('Publications are available in several languages'),
+  );
+  $form['#attached']['js'] = array(
+    drupal_get_path('module', 'osha_publication') . '/js/checkbox-submit.js',
   );
   if (empty($form_state['input'])) {
     $form['content']['results-native'] = osha_publication_menu_publications_search_native($form_state);
@@ -62,6 +65,9 @@ function osha_publication_menu_publications_form($form, $form_state) {
   if (!empty($form_state['#results-native'])) {
     $form['content']['results-native'] = $form_state['#results-native'];
     $form['content']['results-related'] = $form_state['#results-related'];
+  }
+  if (empty($form['content']['results-native']['#nids'])) {
+    $form['content']['results-native']['#markup'] = '<p class="no-results">' . t('No results found to match your search.') . '</p>';
   }
   return $form;
 }
@@ -84,6 +90,8 @@ function osha_publication_menu_publications_search_native($form_state) {
   if(!$languages)
     $languages = array($language->language);
   $text = hwc_req_param($form_state, 'text');
+  $relevant_for = hwc_req_param($form_state, 'relevant_for', array());
+  $publication_type = hwc_req_param($form_state, 'publication_type', array());
   $is_search = !empty($text);
   $restrict = array();
   if ($is_search) {
@@ -98,34 +106,14 @@ function osha_publication_menu_publications_search_native($form_state) {
     $results = $server->search($query);
     if (!empty($results['results'])) {
       foreach ($results['results'] as $result) {
-        $restrict[] = $result['fields']['nid'];
+        list($lng, $nid) = explode('_', $result['id'], 2);
+        $restrict[] = $nid;
       }
     }
     if (empty($restrict)) {
       return array(
         '#nids' => '',
       );
-    }
-  }
-  $relevant_for_ids = array();
-  $relevant_for = array();
-  if (!empty($form_state['values']['relevant_for'])) {
-    $relevant_for = $form_state['values']['relevant_for'];
-  }
-  foreach ($relevant_for as $relf) {
-    if ($relf) {
-      $relevant_for_ids[] = $relf;
-    }
-  }
-
-  $publication_type_ids = array();
-  $publication_type = array();
-  if (!empty($form_state['values']['publication_type'])) {
-    $publication_type = $form_state['values']['publication_type'];
-  }
-  foreach ($publication_type as $pubt) {
-    if ($pubt) {
-      $publication_type_ids[] = $pubt;
     }
   }
 
@@ -139,8 +127,12 @@ function osha_publication_menu_publications_search_native($form_state) {
   if (!empty($restrict)) {
     $q->condition('a.nid', $restrict, 'IN');
   }
-  if (!empty($publication_type_ids)) {
-    $q->condition('b.field_publication_type_tid', $publication_type_ids, 'IN');
+  if (!empty($publication_type)) {
+    $q->condition('b.field_publication_type_tid', $publication_type, 'IN');
+  }
+  if (!empty($relevant_for)) {
+    $q->innerJoin('field_data_field_segment', 'fs', 'fs.entity_id = a.nid AND fs.revision_id = a.vid');
+    $q->condition('fs.field_segment_tid', $relevant_for, 'IN');
   }
   $pnids = $q->execute()->fetchCol();
   $nids = array();
@@ -152,22 +144,7 @@ function osha_publication_menu_publications_search_native($form_state) {
     $q->condition('b.entity_id', $pnid);
     $q->condition('b.language', $languages, 'IN');
     $c = $q->countQuery()->execute()->fetchField();
-
-    if (!empty($relevant_for_ids)) {
-      // Check if the node is relevant for all selected 'relevant for' checkboxes.
-      $q2 = db_select('field_data_field_segment', 'b');
-      $q2->fields('b', array('entity_id'));
-      $q2->innerJoin('node', 'a', 'a.nid = b.entity_id');
-      $q2->condition('b.entity_id', $pnid);
-      $q2->condition('b.entity_type', 'node');
-      $q2->condition('b.field_segment_tid', $relevant_for_ids, 'IN');
-      $c2 = $q2->countQuery()->execute()->fetchField();
-    }
-    else {
-      // No 'relevant for' checkbox is selected, so let the node pass this check.
-      $c2 = 1;
-    }
-    if ($c >= count($languages) && $c2 >= count($relevant_for_ids)) {
+    if ($c >= count($languages)) {
       $nids[] = $pnid;
     }
   }
@@ -200,7 +177,7 @@ function osha_publication_menu_publications_search_native($form_state) {
     'results-native' => node_view_multiple($nodes, 'pub_teaser', 0, $language->language),
     '#suffix' => theme('pager', array(
       'tags' => array('<', '<', '', '>', '>'),
-      'quantity' => count($nodes),
+      'quantity' => 9,
       'parameters' => $pager_params,
     ))
   );
@@ -222,32 +199,28 @@ function osha_publication_menu_publications_search_related($form_state, $native_
     }
   }
   $text = hwc_req_param($form_state, 'text');
+  $relevant_for = hwc_req_param($form_state, 'relevant_for', array());
+  $publication_type = hwc_req_param($form_state, 'publication_type', array());
   $is_search = !empty($text);
-  $sort = $is_search ? 'search_api_relevance' : 'changed';
-  $direction = 'desc';
-  /** @var SearchApiQuery $query */
-  /** @var SearchApiSolrService $server */
-  list($server, $query) = osha_publication_menu_publications_get_query();
-  $query->condition('status', 1);
-  $query->condition('type', 'publication');
-  $query->condition('language', 'en');
-  $query->condition('field_file:file', 0, '>');
-  if (!empty($sort)) {
-    $query->sort($sort, $direction);
+
+  // Select all publications having field_file available in filtered languages.
+  $q = db_select('node', 'a');
+  $q->innerJoin('field_data_field_publication_type', 'b', 'a.nid = b.entity_id');
+  $q->fields('a', array('nid', 'vid'));
+  $q->condition('a.type', 'publication');
+  $q->condition('a.status', 1);
+  $q->orderBy('a.changed', 'DESC');
+  if (!empty($restrict)) {
+    $q->condition('a.nid', $restrict, 'IN');
   }
-  if ($is_search) {
-    $query->keys($text);
-    $query->fields(array('title_field', 'body:value'));
+  if (!empty($publication_type)) {
+    $q->condition('b.field_publication_type_tid', $publication_type, 'IN');
   }
-  $nids = array();
-  $results = $server->search($query);
-  if (!empty($results['results'])) {
-    $nids = array();
-    foreach ($results['results'] as $result) {
-      $nids[] = $result['fields']['nid'];
-    }
+  if (!empty($relevant_for)) {
+    $q->innerJoin('field_data_field_segment', 'fs', 'fs.entity_id = a.nid AND fs.revision_id = a.vid');
+    $q->condition('fs.field_segment_tid', $relevant_for, 'IN');
   }
-  $nids = array_unique($nids);
+  $nids = $q->execute()->fetchCol();
   if (!empty($native_nids)) { // Remove the nodes displayed above (native)
     $nids = array_filter($nids, function($nid) use ($native_nids) {
       return !in_array($nid, $native_nids);
@@ -273,7 +246,7 @@ function osha_publication_menu_publications_search_related($form_state, $native_
     'results-related' => node_view_multiple($nodes, 'pub_teaser', 0, $language->language),
     '#suffix' => theme('pager', array(
       'tags' => array('<', '<', '', '>', '>'),
-      'quantity' => count($nodes),
+      'quantity' => 9,
       'parameters' => $pager_params,
       'element' => 1,
     ))
@@ -315,13 +288,19 @@ function osha_publication_menu_case_studies_form($form, $form_state) {
     '#type' => 'checkboxes',
     '#options' => _hwc_segment_options_list(),
     '#default_value' => array('0'),
-    '#title' => t('Relevant for:'),
+    '#title' => t('Relevant for'),
+  );
+  $form['#attached']['js'] = array(
+    drupal_get_path('module', 'osha_publication') . '/js/checkbox-submit.js',
   );
   if (empty($form_state['input'])) {
     $form['content']['results-native'] = osha_publication_menu_case_studies_search_native($form_state);
   }
   if (!empty($form_state['#results-native'])) {
     $form['content']['results-native'] = $form_state['#results-native'];
+  }
+  if (empty($form['content']['results-native']['#nids'])) {
+    $form['content']['results-native']['#markup'] = '<p class="no-results">' . t('No results found to match your search.') . '</p>';
   }
   return $form;
 }
@@ -337,6 +316,7 @@ function osha_publication_menu_case_studies_search_native($form_state) {
   global $language;
   $languages = hwc_req_param($form_state, 'languages', array($language->language));
   $text = hwc_req_param($form_state, 'text');
+  $relevant_for = hwc_req_param($form_state, 'relevant_for', array());
   $is_search = !empty($text);
   $restrict = array();
   list($server, $query) = osha_publication_menu_publications_get_query();
@@ -350,9 +330,8 @@ function osha_publication_menu_case_studies_search_native($form_state) {
   $results = $server->search($query);
   if (!empty($results['results'])) {
     foreach ($results['results'] as $result) {
-      if (isset($result['fields']['nid'])) {
-        $restrict[] = $result['fields']['nid'];
-      }
+      list($lng, $nid) = explode('_', $result['id'], 2);
+      $restrict[] = $nid;
     }
   }
   if (empty($restrict)) {
@@ -361,23 +340,17 @@ function osha_publication_menu_case_studies_search_native($form_state) {
     );
   }
   $nids = array_unique($restrict);
-  $relevant_for = $form_state['submitted'] === TRUE ? $form_state['values']['relevant_for'] : array();
-  foreach ($relevant_for as $relf) {
-    if ($relf) {
-      $relevant_for_ids[] = $relf;
-    }
-  }
-  if (!empty($relevant_for_ids)) {
+  if (!empty($relevant_for)) {
     // Check if the node is relevant for all selected 'relevant for' checkboxes.
     $q2 = db_select('field_data_field_segment', 'b');
     $q2->fields('b', array('entity_id'));
     $q2->innerJoin('node', 'a', 'a.nid = b.entity_id');
-    $q2->condition('b.entity_id', $restrict, 'IN');
+    $q2->condition('b.entity_id', $nids, 'IN');
     $q2->condition('b.entity_type', 'node');
-    $q2->condition('b.field_segment_tid', $relevant_for_ids, 'IN');
+    $q2->condition('b.field_segment_tid', $relevant_for, 'IN');
     $nids = $q2->execute()->fetchCol();
+    $nids = array_unique($nids);
   }
-  $nids = array_unique($nids);
   if (empty($nids)) {
     return array();
   }
@@ -397,7 +370,7 @@ function osha_publication_menu_case_studies_search_native($form_state) {
     'results-native' => node_view_multiple($nodes, 'pub_teaser', 0, $language->language),
     '#suffix' => theme('pager', array(
       'tags' => array('<', '<', '', '>', '>'),
-      'quantity' => count($nodes),
+      'quantity' => 9,
       'parameters' => $pager_params,
     ))
   );

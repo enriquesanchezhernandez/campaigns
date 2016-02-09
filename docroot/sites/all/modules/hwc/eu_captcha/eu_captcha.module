@@ -92,6 +92,8 @@ function eu_captcha_captcha($op, $captcha_type = '') {
           '#attributes' => array(
             'id' => 'security_code',
           ),
+          /* Needed so that the page passes Web Accessibility test */
+          '#prefix' => '<label for="security_code" style="display: none;">Security code</label>',
         );
         $result['captcha_validate'] = 'eu_captcha_validation';
         $result['solution'] = '';

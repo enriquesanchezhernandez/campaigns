@@ -10,7 +10,7 @@
 function osha_events_field_default_field_bases() {
   $field_bases = array();
 
-  // Exported field_base: 'field_city'
+  // Exported field_base: 'field_city'.
   $field_bases['field_city'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -32,7 +32,7 @@ function osha_events_field_default_field_bases() {
     'type' => 'text',
   );
 
-  // Exported field_base: 'field_contact_email'
+  // Exported field_base: 'field_contact_email'.
   $field_bases['field_contact_email'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -49,7 +49,7 @@ function osha_events_field_default_field_bases() {
     'type' => 'email',
   );
 
-  // Exported field_base: 'field_contact_name'
+  // Exported field_base: 'field_contact_name'.
   $field_bases['field_contact_name'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -71,7 +71,7 @@ function osha_events_field_default_field_bases() {
     'type' => 'text',
   );
 
-  // Exported field_base: 'field_contact_phone'
+  // Exported field_base: 'field_contact_phone'.
   $field_bases['field_contact_phone'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -93,7 +93,7 @@ function osha_events_field_default_field_bases() {
     'type' => 'text',
   );
 
-  // Exported field_base: 'field_country_code'
+  // Exported field_base: 'field_country_code'.
   $field_bases['field_country_code'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -363,7 +363,7 @@ function osha_events_field_default_field_bases() {
     'type' => 'list_text',
   );
 
-  // Exported field_base: 'field_location'
+  // Exported field_base: 'field_location'.
   $field_bases['field_location'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -385,7 +385,7 @@ function osha_events_field_default_field_bases() {
     'type' => 'text',
   );
 
-  // Exported field_base: 'field_organizer'
+  // Exported field_base: 'field_organizer'.
   $field_bases['field_organizer'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -407,7 +407,7 @@ function osha_events_field_default_field_bases() {
     'type' => 'text',
   );
 
-  // Exported field_base: 'field_partner_id'
+  // Exported field_base: 'field_partner_id'.
   $field_bases['field_partner_id'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -429,7 +429,7 @@ function osha_events_field_default_field_bases() {
     'type' => 'text',
   );
 
-  // Exported field_base: 'field_related_documents'
+  // Exported field_base: 'field_related_documents'.
   $field_bases['field_related_documents'] = array(
     'active' => 1,
     'cardinality' => -1,
@@ -455,7 +455,7 @@ function osha_events_field_default_field_bases() {
     'type' => 'file',
   );
 
-  // Exported field_base: 'field_schedule'
+  // Exported field_base: 'field_schedule'.
   $field_bases['field_schedule'] = array(
     'active' => 1,
     'cardinality' => -1,
@@ -478,7 +478,7 @@ function osha_events_field_default_field_bases() {
     'type' => 'field_collection',
   );
 
-  // Exported field_base: 'field_speaker'
+  // Exported field_base: 'field_speaker'.
   $field_bases['field_speaker'] = array(
     'active' => 1,
     'cardinality' => -1,
@@ -514,7 +514,7 @@ function osha_events_field_default_field_bases() {
     'type' => 'entityreference',
   );
 
-  // Exported field_base: 'field_start_date'
+  // Exported field_base: 'field_start_date'.
   $field_bases['field_start_date'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -536,15 +536,15 @@ function osha_events_field_default_field_bases() {
         'second' => 0,
         'year' => 'year',
       ),
-      'timezone_db' => '',
+      'timezone_db' => 'UTC',
       'todate' => 'optional',
-      'tz_handling' => 'none',
+      'tz_handling' => 'site',
     ),
     'translatable' => 0,
     'type' => 'datetime',
   );
 
-  // Exported field_base: 'field_talking_date'
+  // Exported field_base: 'field_talking_date'.
   $field_bases['field_talking_date'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -574,7 +574,7 @@ function osha_events_field_default_field_bases() {
     'type' => 'datetime',
   );
 
-  // Exported field_base: 'field_talking_files'
+  // Exported field_base: 'field_talking_files'.
   $field_bases['field_talking_files'] = array(
     'active' => 1,
     'cardinality' => -1,
@@ -600,7 +600,7 @@ function osha_events_field_default_field_bases() {
     'type' => 'file',
   );
 
-  // Exported field_base: 'field_talking_speaker'
+  // Exported field_base: 'field_talking_speaker'.
   $field_bases['field_talking_speaker'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -636,7 +636,7 @@ function osha_events_field_default_field_bases() {
     'type' => 'entityreference',
   );
 
-  // Exported field_base: 'field_talking_title'
+  // Exported field_base: 'field_talking_title'.
   $field_bases['field_talking_title'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -658,7 +658,7 @@ function osha_events_field_default_field_bases() {
     'type' => 'text',
   );
 
-  // Exported field_base: 'field_venue'
+  // Exported field_base: 'field_venue'.
   $field_bases['field_venue'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -680,7 +680,7 @@ function osha_events_field_default_field_bases() {
     'type' => 'text',
   );
 
-  // Exported field_base: 'field_website_of_event'
+  // Exported field_base: 'field_website_of_event'.
   $field_bases['field_website_of_event'] = array(
     'active' => 1,
     'cardinality' => -1,
