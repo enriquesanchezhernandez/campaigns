@@ -511,6 +511,8 @@ function osha_newsletter_add_to_newsletter_action($node, $context) {
  * Implements hook_form_alter().
  */
 function osha_newsletter_form_alter(&$form, &$form_state, $form_id) {
+  global $user;
+
   switch ($form_id) {
     case 'entity_collection_edit_form':
       if (isset($form['#bundle']) && $form['#bundle'] == 'newsletter_content_collection') {
@@ -591,16 +593,32 @@ function osha_newsletter_form_alter(&$form, &$form_state, $form_id) {
             }
           }
 
-          $form['actions']['send_test_newsletter'] = array(
-            '#type' => 'submit',
-            '#value' => t('Send test newsletter'),
-            '#submit' => array('osha_newsletter_send_test_email')
-          );
           $form['actions']['send_newsletter'] = array(
             '#type' => 'submit',
             '#value' => t('Send newsletter to subscribers'),
             '#submit' => array('osha_newsletter_send_email_to_subscribers')
           );
+
+          $form['test_newsletter_content'] = array(
+            '#type' => 'fieldset',
+            '#title' => t('Send one test newsletter to the test address'),
+          );
+
+          $form['test_newsletter_content']['test_address'] = array(
+            '#type' => 'textfield',
+            '#title' => t('Test email addresses'),
+            '#description' => t('A single email address or a comma-separated list of email addresses cam be used as test addresses.'),
+            '#default_value' => $user->mail,
+            '#size' => 60,
+            '#maxlength' => 128,
+          );
+
+          $form['test_newsletter_content']['send_test_newsletter'] = array(
+            '#type' => 'submit',
+            '#value' => t('Send test newsletter'),
+            '#submit' => array('osha_newsletter_send_test_email')
+          );
+
         }
 
         // Attach js to add css class for taxonomy rows.
@@ -949,6 +967,13 @@ function osha_newsletter_send_test_email(&$form_state) {
   global $user;
 
   $to = $user->mail;
+  if (isset($form_state['test_newsletter_content']['test_address']['#value'])) {
+    $emails = $form_state['test_newsletter_content']['test_address']['#value'];
+    if (!empty($emails)) {
+      $to = $emails;
+    }
+  }
+
   $from = variable_get('osha_newsletter_listserv_from', $user->mail);
 
   osha_newsletter_send_email('test_newsletter', $to, $from ,$form_state,
