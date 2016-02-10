@@ -1,5 +1,11 @@
 <<?php print $layout_wrapper; print $layout_attributes; ?> class="hwc-2col-stacked-2col <?php print $classes;?> clearfix">
 
+<?php if (!empty($content['submit_content_form'])): ?>
+  <div class="node-submit-validation-form">
+    <?php print drupal_render($content['submit_content_form']); ?>
+  </div>
+<?php endif; ?>
+
 <?php if (isset($title_suffix['contextual_links'])): ?>
   <?php print render($title_suffix['contextual_links']); ?>
 <?php endif; ?>
