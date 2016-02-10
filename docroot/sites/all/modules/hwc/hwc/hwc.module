@@ -688,10 +688,6 @@ function hwc_news_share_widget($node, $options = array()) {
     $type = $node->type;
   }
   // Add services javascript.
-  drupal_add_js(drupal_get_path('module', 'hwc') . '/js/share_widget.js');
-  // Add facebook app key.
-  $fb_app_key = variable_get('fb_app_key', '');
-  drupal_add_js(array('hwc' => array('fb_app_key' => $fb_app_key)), 'setting');
   $site_name = variable_get('site_name', '');
   // Construct the tweet.
   $twitter_text = $title . ' | ' . $site_name;
