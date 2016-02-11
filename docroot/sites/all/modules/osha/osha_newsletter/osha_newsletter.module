@@ -499,10 +499,52 @@ function osha_newsletter_add_to_newsletter_action($node, $context) {
     /* @var EntityCollectionRow */
     $collection = entity_collection_load($collection_name);
     if ($collection) {
-      $item = new EntityCollectionTreeNode('node', $node->nid, $node);
-      $contexts = _entity_collection_get_contexts($collection);
-      // TODO: smart selection of $item->position based on $node->type
-      entity_collection_append_item($collection, $item, $contexts);
+      $tree = $collection->getTree();
+      if ($tree->getChild('node:' . $node->nid)) {
+        drupal_set_message(t('This item is already in the newsletter.'), 'warning');
+        return FALSE;
+      } else {
+        $children = $tree->getChildren();
+
+        // Mapping of term newsletter sections and content types.
+        $term_mapping = variable_get('osha_newsletter_term_ct_map');
+        $category_uuid = NULL;
+        $category_view_mode = NULL;
+        $node_section = FALSE;
+        $last_position = NULL;
+
+        if (!empty($term_mapping[$node->type])) {
+          $category_uuid = $term_mapping[$node->type];
+          $category_view_mode = $term_mapping["view_mode_" . $node->type];
+        }
+
+        foreach ($children as $child) {
+          if ($child->type == 'taxonomy_term'){
+            if ($child->content->uuid == $category_uuid) {
+              $node_section = TRUE;
+              $last_position = $child->position;
+            } else {
+              $node_section = FALSE;
+            }
+          }
+          if ($child->type == 'node' && $node_section){
+            $last_position = $child->position;
+          }
+        }
+        $item = new EntityCollectionTreeNode('node', $node->nid, $node);
+        $contexts = _entity_collection_get_contexts($collection);
+
+        if (!empty($category_view_mode)) {
+          $item->style = $category_view_mode;
+        }
+        if (!empty($last_position)) {
+          $item->position = $last_position + 2;
+        } else {
+          $item->position = 1;
+        }
+
+        entity_collection_append_item($collection, $item, $contexts);
+      }
     }
   }
 }
