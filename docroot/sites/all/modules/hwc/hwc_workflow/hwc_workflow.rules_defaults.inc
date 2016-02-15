@@ -143,7 +143,7 @@ function hwc_workflow_default_rules_configuration() {
       "IF" : [ { "data_is" : { "data" : [ "new-state" ], "value" : "needs_review" } } ],
       "DO" : [
         { "mail_to_users_of_role" : {
-            "roles" : { "value" : { "13" : "13", "14" : "14" } },
+            "roles" : { "value" : { "14" : "14" } },
             "subject" : "HWC Workflow: New content needs your review",
             "message" : "The content \\u003Ca href=\\u0022[node:url]\\u0022\\u003E[node:title]\\u003C\\/a\\u003E needs your review"
           }
