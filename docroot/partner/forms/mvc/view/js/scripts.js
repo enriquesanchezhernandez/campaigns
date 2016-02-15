@@ -164,6 +164,8 @@ window.onload = function () {
             checkSectionsByCDB("PRIMARY_CONTACT");
         }
     }
+    window.parent.document.$(".loader").addClass("hidden");
+    window.parent.document.$(".iframe-partnership").removeClass("hidden");
 }
 function checkSectionsByCDB(dataSection){
 //    setCheckSectionAttributte(dataSection,true);
