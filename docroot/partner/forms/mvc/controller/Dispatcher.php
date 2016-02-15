@@ -105,6 +105,11 @@ class Dispatcher {
         $key             = $params->getUrlParam('session_id');
         $cachedSessionID = isset($_SESSION[$key]) ? $_SESSION[$key] : false;
         $sessionID = $params->get($key);
+        $newAccess = $params->get('newAccess');
+        if(strtolower($newAccess) == "true"){
+            $_SESSION['resetSession'] = true;
+            $params->set("newAccess", "false");
+        }
         if(isset($_SESSION['resetSession']) && $_SESSION['resetSession']){
             if($params->get('action')=="printable"){
                 $_SESSION['printable']=true;

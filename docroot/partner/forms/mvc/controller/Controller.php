@@ -216,6 +216,7 @@ abstract class Controller {
                     'fieldPlaceholder' => $attribute->getPlaceholder(),
                     'fieldPublicProfile' => $attribute->getPublicProfile(),
                     'fieldHelpText' => $attribute->getHelpText(),
+                    'fieldHelpTextImage' => $attribute->getHelpTextImageLoaded(),
                     'fieldSection' => $attribute->getSection(),
                     'fieldValue' => $attribute->getValue(),
                     'selectedValue' => $attribute->getSelectedValues(),
