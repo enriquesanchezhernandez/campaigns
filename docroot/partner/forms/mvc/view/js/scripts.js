@@ -35,7 +35,7 @@ function fillSN(args)
 	"<div id='"+containerTitle+"' >" +
 	"<div class='typeSN'>"+typeSN+" Profile:</div>"+
 	"	<button id='delSN' class='delSN' data-hidden='" + nameHiddenToChange + "' type='button' data-selector='company_osh_selectsocialnetworks' data-target='" + containerTitle + "' >" +
-	"		<img src='mvc/view/img/minus-4-xxl.png' />" +
+	"		<img src='mvc/view/img/paper-bin.png' />" +
 	"	</button>" +
 	"	<div class='titleSN' id='" + idTitle + "'>" + url + "</div>" +
 //	"	<button id='delSN' class='delSN' data-hidden='" + nameHiddenToChange + "' type='button' data-selector='company_osh_selectsocialnetworks' data-target='" + containerTitle + "' >" +
@@ -279,14 +279,14 @@ function validaImagenes(section) {
                 //hace validaciones
                 
                 //Workaround MainContactChange
-                if(elemId == "PRIMARY_CONTACT" && $('#contact_osh_maincontactchange').prop('checked')){
-                    $(".main-contact-change input").each(function (id, item) {
-                        $(item).removeClass("error");
-                        $(item).attr("data-error", "");
-                        $("#" + $(item).attr("id") + "_errormsg").remove();
-                        $("#confirmemail_errormsg").remove();
-                    });
-                }
+//                if(elemId == "PRIMARY_CONTACT" && $('#contact_osh_maincontactchange').prop('checked')){
+//                    $(".main-contact-change input").each(function (id, item) {
+//                        $(item).removeClass("error");
+//                        $(item).attr("data-error", "");
+//                        $("#" + $(item).attr("id") + "_errormsg").remove();
+//                        $("#confirmemail_errormsg").remove();
+//                    });
+//                }
                 if(validaImagenes(elemId) && checkSingleSection(elemId))
                 {
                  ////Va bien
@@ -1091,6 +1091,9 @@ $(document).ready(function () {
         if ($(target).is(":hidden")) {
             $(target).val("");
         }else{
+            if($(target).val() == ""){
+                $(target).val("Yes.");
+            }
             $(target).css({
             'margin-top': '1%'
             });
@@ -1381,7 +1384,7 @@ $(document).ready(function () {
      
      //Redirect to the private zone from congrats.
      $(".privateZoneredirect").click(function (e) {
-        window.top.location.href = "http://eu-osha.github.io/hwc-splashpage/"; 
+        window.top.location.href = "https://www.healthy-workplaces.eu/all-ages-splash-page/"; 
      });
      $(".privateZoneredirectMF").click(function (e) {
         var partner_nid = $('#partner_nid').val();
@@ -1391,7 +1394,7 @@ $(document).ready(function () {
             var url = homeurl + language + "/node/" + partner_nid;
             window.top.location.href = url;
         }else{
-            window.top.location.href = "http://eu-osha.github.io/hwc-splashpage/"; 
+            window.top.location.href = "https://www.healthy-workplaces.eu/all-ages-splash-page/"; 
         }
      });
 
@@ -1541,4 +1544,7 @@ $(document).ready(function () {
 //     $(".upArrow").click(function (e) {
 //        window.top.location.href = "#top";
 //    });
+if($("#contact_osh_mainemail").prop("disabled")){
+    $('#contact_osh_mainemail').parent().append('<p class="help-block">This field cannot be directly changed in the form. If you want to modify it, please, contact EU-OSHA in partners@healthy-workplaces.eu</p>');
+}
 });

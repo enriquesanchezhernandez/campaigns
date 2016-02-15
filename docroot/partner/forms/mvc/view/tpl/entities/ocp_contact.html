@@ -37,7 +37,7 @@
             {if $mf}
                 </div>
             {/if}
-            {if !$mf}
+            {if !$mf && $partner_type != "current" && !$locked}
                 {$attributes.contact_osh_confirm_mainemail}
             {/if}
         </div>
@@ -52,7 +52,7 @@
         {$attributes.contact_osh_positionmaincontactperson_clone}
         {$attributes.contact_osh_mainphone_clone}
         {$attributes.contact_osh_mainemail_clone}
-        {if !$mf}
+        {if !$mf && $partner_type != "current" && !$locked}
             {$attributes.contact_osh_confirm_mainemail_clone}
         {/if}
     </div>

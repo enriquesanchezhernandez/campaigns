@@ -48,8 +48,15 @@ final class Parameters {
      */
     public function get($name) {
         if($name == "mf"){
-            if(strpos($_SERVER['REQUEST_URI'],"session_id")){
-                if(strpos(strtolower($_SERVER['REQUEST_URI']),"mf=true")){
+//            if(strpos($_SERVER['REQUEST_URI'],"session_id")){
+//                if(strpos(strtolower($_SERVER['REQUEST_URI']),"mf=true")){
+//                    $this->params['mf'] = true;
+//                }else{
+//                     $this->params['mf'] = false;
+//                }
+//            }
+             if(isset($_REQUEST['session_id'])){
+                if(isset($_REQUEST['mf'])){
                     $this->params['mf'] = true;
                 }else{
                      $this->params['mf'] = false;
@@ -109,6 +116,12 @@ final class Parameters {
         $this->params[$name] = str_replace("\"", "''", $value);
         if ($persistent) {
             $_SESSION[$name] = str_replace("\"", "''", $value);
+        }
+    }
+    public function unsetParam($name, $persistent = false) {
+        unset($this->params[$name]);
+        if ($persistent) {
+            unset($_SESSION[$name]);
         }
     }
 }
