@@ -684,7 +684,7 @@ div.required > div label::after{
     width: 66%;
 }
 div.container-message{
-    height: 75px;
+    height: 105px;
 }
 /*No mostrar el mensaje de ayuda para New Forms ni mf´s*/
 form.new div.container-message, form.mf div.container-message {
@@ -694,7 +694,7 @@ form.new div.container-message, form.mf div.container-message {
     float: right;
     margin-right: 1%;
     color: darkblue;
-    margin-top: -3%;
+    margin-top: -1%;
 }
 
 .postRequired input:not(.select2-search__field),.postRequired textarea, .postRequired select, .postRequired .select2-selection--multiple{
