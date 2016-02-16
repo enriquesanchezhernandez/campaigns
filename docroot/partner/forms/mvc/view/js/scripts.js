@@ -166,6 +166,7 @@ window.onload = function () {
     }
     window.parent.document.getElementsByClassName("loader")[0].className += " hidden";
     window.parent.document.getElementsByClassName("iframe-partnership")[0].className = "iframe-partnership";
+    window.parent.document.getElementsByClassName("iframe-update")[0].className = "iframe-update";
 }
 function checkSectionsByCDB(dataSection){
 //    setCheckSectionAttributte(dataSection,true);
@@ -976,6 +977,10 @@ $(document).ready(function () {
         $.magnificPopup.close();
         delete $.magnificPopup.instance.popupsCache[$(this).attr("data-cropperkey")];
         $.magnificPopup.instance.popupsCache = {};
+        if(targetElement.indexOf("logoimage")!= -1){
+          $('.company_osh_logoimage_helpText').text("Please, if you want to change this logo, please upload a new one in png. or jpg. file format. The file must not exceed 1MB");
+        }
+        
     });
 
     /**
