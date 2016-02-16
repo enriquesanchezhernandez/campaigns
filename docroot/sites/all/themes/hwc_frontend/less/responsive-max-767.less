@@ -633,38 +633,28 @@ header.navbar-default{
 	/*fin home*/
 
 	/* Article */
+
+	.node-article .field-name-field-image+.field-name-title-field{
+		background:#FFF;
+	}
+
 	.node-article{
 		.field-name-field-image + .field-name-title-field{
 			z-index: -1;
-			height: 345px;
-			position: absolute;
+			height: auto;
+			position: relative;
 			.field-items{
-				height: 345px;
 				.field-item{
-					height: 345px;
 					h1{
-						position: absolute;
-						bottom: 20px;
 						width: 100%;
+						padding-top:0px;
+						color:@color3;
 					}
 				}
 			}
 		}
 		.field.field-name-field-image{
-			width: 100%;
-			padding: 0px;
-			position: absolute;
-			/* top: 220px; */
-			left: 0px;
-			z-index: -2;
-			height: 345px;
-			overflow: hidden;
-			div{
-				height:100%;
-			}
-			img{
-				display:none
-			}
+			display:none
 		}
 
 		.field-name-field-recommended-articles .field.field-name-field-image img{
@@ -672,7 +662,7 @@ header.navbar-default{
 		}
 
 		.field-name-field-image + .field-name-title-field + .container, .field-name-field-image + .field-name-title-field + .field-name-body{
-			margin-top: 370px;
+			margin-top:0em;
 			&.active{
 				margin-top: 150px;
 			}
@@ -1862,7 +1852,6 @@ header.navbar-default{
 
 /*Plantilla employers*/
 .employers-section{
-	margin-top: 370px;
 	h3{
 		margin-top: 30px;
 	}
