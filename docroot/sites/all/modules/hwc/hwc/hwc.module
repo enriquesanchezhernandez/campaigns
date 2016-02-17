@@ -159,6 +159,26 @@ function hwc_req_param($form_state, $name, $default = NULL) {
 }
 
 /**
+ * Implements hook_on_the_web_get_services_alter().
+ */
+function hwc_on_the_web_get_services_alter(&$services) {
+  $services = array(
+    'twitter' => array('name' => 'Twitter'),
+    'facebook' => array('name' => 'Facebook'),
+    'linkedin' => array('name' => 'LinkedIn'),
+    'youtube' => array('name' => 'YouTube'),
+    'flickr' => array('name' => 'Flickr'),
+    'pinterest' => array('name' => 'Pinterest'),
+    'google' => array('name' => 'Google+'),
+    'myspace' => array('name' => 'MySpace'),
+    'itunes' => array('name' => 'iTunes'),
+    'delicious' => array('name' => 'Delicious'),
+    'friendfeed' => array('name' => 'FriendFeed'),
+    'rss' => array('name' => 'RSS'),
+  );
+}
+
+/**
  * Implements hook_field_extra_fields().
  */
 function hwc_field_extra_fields() {
