@@ -164,9 +164,15 @@ window.onload = function () {
             checkSectionsByCDB("PRIMARY_CONTACT");
         }
     }
-    window.parent.document.getElementsByClassName("loader")[0].className += " hidden";
-    window.parent.document.getElementsByClassName("iframe-partnership")[0].className = "iframe-partnership";
-    window.parent.document.getElementsByClassName("iframe-update")[0].className = "iframe-update";
+    if(window.parent.document.getElementsByClassName("loader").length > 0){
+        window.parent.document.getElementsByClassName("loader")[0].className += " hidden";
+    }
+    if(window.parent.document.getElementsByClassName("iframe-partnership").length > 0){
+        window.parent.document.getElementsByClassName("iframe-partnership")[0].className = "iframe-partnership";
+    }
+    if(window.parent.document.getElementsByClassName("iframe-update").length > 0){
+        window.parent.document.getElementsByClassName("iframe-update")[0].className = "iframe-update";
+    }
 }
 function checkSectionsByCDB(dataSection){
 //    setCheckSectionAttributte(dataSection,true);
@@ -1290,7 +1296,8 @@ $(document).ready(function () {
         if( logoImage.attr("src") && (logoImage.attr("src") != null ||logoImage.attr("src") != "") )
         {
             var valueLogoImage = logoImage.attr("src");
-            valueLogoImage = valueLogoImage.replace("\s", "+");
+//            valueLogoImage = valueLogoImage.replace("\s", "+");
+            valueLogoImage = valueLogoImage.replace("data:image/png;base64,", "");
             serializedForm += "&company_osh_logoimage="+valueLogoImage;
 
         }

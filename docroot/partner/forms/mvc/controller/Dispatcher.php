@@ -11,9 +11,7 @@ class Dispatcher {
     public function dispatch() {
         // Set the route
         $sessionID = null;
-        error_log("REQUEST: " .print_r($_REQUEST,1));
         if(count($_REQUEST) == 0){
-            error_log("REUQEST EMPTY...");
             $params = Parameters::getInstance();
             $sessionID = null;
             $params->set('session_id', null, true);
