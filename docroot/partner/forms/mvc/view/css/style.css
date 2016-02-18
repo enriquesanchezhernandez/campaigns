@@ -757,7 +757,8 @@ p.congrats {
     display: -moz-box;
 }
 .promoteText3 {
-margin-top: -10px;
+    margin-top: -10px;
+    font-weight: normal !important;
 }
 .dialog{
     height: auto;
