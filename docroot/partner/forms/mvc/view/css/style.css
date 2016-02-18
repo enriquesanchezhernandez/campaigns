@@ -589,6 +589,7 @@ textarea.error {
 }
 
 .combined-textbox {
+    margin-top: 1%;
     width: 80% !important;
     margin-left: 2vw;
     /*height: 33px;*/
@@ -685,7 +686,7 @@ div.required > div label::after{
     width: 66%;
 }
 div.container-message{
-    height: 110px;
+    /*height: 110px;*/
 }
 /*No mostrar el mensaje de ayuda para New Forms ni mf´s*/
 form.new div.container-message, form.mf div.container-message {

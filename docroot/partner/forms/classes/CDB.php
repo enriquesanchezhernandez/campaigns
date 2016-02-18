@@ -238,7 +238,9 @@ final class CDB
         
             //Insertamos una variable para mostrar el check del main contact change.
             $_SESSION['mainContactChangeCheck'] = true;
-            
+            if(isset($response['osh_mainemail']) && $response['osh_mainemail'] != ""){
+                $response['contact_osh_mainemailAux'] = $response['osh_mainemail'];
+            }
             foreach ($this->cdbMap as $htmlName => $cdbName) {
                 if (isset ($response[$cdbName])) {
                     if (is_array($response[$cdbName]) && isset($response[$cdbName]['Name'])) {
