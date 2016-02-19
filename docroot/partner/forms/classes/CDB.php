@@ -241,6 +241,9 @@ final class CDB
             if(isset($response['osh_mainemail']) && $response['osh_mainemail'] != ""){
                 $response['contact_osh_mainemailAux'] = $response['osh_mainemail'];
             }
+            if(isset($response['osh_orgname']) && $response['osh_orgname'] != ""){
+                $response['company_osh_orgnameAux'] = $response['osh_orgname'];
+            }
             foreach ($this->cdbMap as $htmlName => $cdbName) {
                 if (isset ($response[$cdbName])) {
                     if (is_array($response[$cdbName]) && isset($response[$cdbName]['Name'])) {

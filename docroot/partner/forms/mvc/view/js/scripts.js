@@ -155,7 +155,7 @@ window.onload = function () {
          $("#plusSN").prop("disabled", "disabled");
     }
     $("body").css("cursor", "default");
-    if($('.validation:visible').length > 0){
+    if($('.validation').length > 0 && $('.validation').css('display') != 'none'){
         if($('#osh_aboutyourorgsection').val() == true || $('#osh_aboutyourorgsection').val() == "true"){
             checkSectionsByCDB("ORGANISATION");
         }
