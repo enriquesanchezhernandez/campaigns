@@ -136,8 +136,17 @@ window.onload = function () {
         document.body.scrollTop = document.documentElement.scrollTop = 0;
     }
     if($("#container-message").length > 0){
-        var height = $("#MESSAGE").height()+20;
-        $("#container-message").css("height", height);
+        var height = $("#MESSAGE").height()+30;
+        if($("#ORGANISATION").length > 0){
+            $("#ORGANISATION").css("padding-top", height);
+        }else if($("#BECOME").length > 0){
+            $("#BECOME").css("padding-top", height);
+        }else if($("#PRIMARY_CONTACT").length > 0){
+            $("#PRIMARY_CONTACT").css("padding-top", height);
+        }else if($("#INVOLVEMENT").length > 0){
+            $("#INVOLVEMENT").css("padding-top", height);
+        }
+        
     }
     if($("#company_osh_homepage").prop("disabled")){
          $("#company_osh_selectsocialnetworks").prop("disabled", "disabled");
@@ -1149,10 +1158,14 @@ $(document).ready(function () {
     
     
      $(".close").click(function (e) {
-         $("#container-message").addClass('hidden');
-         //Insert a class in a static object.
+        $("#container-message").addClass('hidden');
+        //Insert a class in a static object.
+        $("#helpMessage").val("false");
+        $("#ORGANISATION").css("padding-top", 0);
+        $("#BECOME").css("padding-top", 0);
+        $("#PRIMARY_CONTACT").css("padding-top", 0);
+        $("#INVOLVEMENT").css("padding-top", 0);
          
-         $("#helpMessage").val("false");
      });
      if($("#helpMessage").val()== "false"){
          $("#container-message").addClass('hidden');
