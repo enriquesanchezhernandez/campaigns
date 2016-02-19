@@ -507,7 +507,7 @@ abstract class Controller {
                 }
 
                 
-            if (strpos($key, 'category') !== false || strpos($key, 'leads') !== false || $key == "contact_osh_mainemailAux") {
+            if (strpos($key, 'category') !== false || strpos($key, 'leads') !== false || $key == "contact_osh_mainemailAux" || $key == "company_osh_orgnameAux") {
                 // Don't send neither category and osh_leads field.
                 continue;
                 
