@@ -641,7 +641,7 @@ function hwc_node_view($node, $view_mode, $langcode) {
     if ($show_registration) {
       $body = str_replace(
         '<!-- PLACEHOLDER-REGISTER-DO-NOT-REMOVE -->',
-        '<a class="btn-become-a-campaign-partner" href="/partner/register">Become a campaign partner</a>',
+        '<a class="btn-become-a-campaign-partner" href="/partner/register">' . t('Become a campaign partner') . '</a>',
         $body
       );
     }
