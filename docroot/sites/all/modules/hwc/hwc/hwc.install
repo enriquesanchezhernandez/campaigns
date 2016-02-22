@@ -175,3 +175,19 @@ function hwc_update_7006() {
 function hwc_update_7007() {
   variable_set('site_404', 'page-not-found');
 }
+
+/**
+ * Finish job #3
+ */
+function hwc_update_7008() {
+  db_update('tmgmt_job_item')
+    ->fields(array('state' => TMGMT_JOB_ITEM_STATE_ACCEPTED))
+    ->condition('tjid', 3)
+    ->condition('state', TMGMT_JOB_ITEM_STATE_ACTIVE)
+    ->execute();
+
+  db_update('tmgmt_job')
+    ->fields(array('state' => TMGMT_JOB_STATE_FINISHED))
+    ->condition('tjid', 3)
+    ->execute();
+}
