@@ -805,7 +805,7 @@ function _hwc_segment_options_list() {
   $return = array('0' => t('All audience'));
   $vocabulary = taxonomy_vocabulary_machine_name_load('segment');
   if (!empty($vocabulary)) {
-    $terms = taxonomy_get_tree($vocabulary->vid);
+    $terms = taxonomy_term_load_multiple(array(), array('vid' => $vocabulary->vid));
     foreach($terms as $key => $term) {
       $return[$term->tid] = $term->name;
     }

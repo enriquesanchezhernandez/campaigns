@@ -419,7 +419,7 @@ function _publication_type_options_list() {
   $return = array('0' => t('All types'));
   $vocabulary = taxonomy_vocabulary_machine_name_load('publication_types');
   if (!empty($vocabulary)) {
-    $terms = taxonomy_get_tree($vocabulary->vid);
+    $terms = taxonomy_term_load_multiple(array(), array('vid' => $vocabulary->vid));
     foreach ($terms as $key => $term) {
       $return[$term->tid] = $term->name;
     }
