@@ -191,3 +191,11 @@ function hwc_update_7008() {
     ->condition('tjid', 3)
     ->execute();
 }
+
+/**
+ * Add translations from strings to voc: segment.
+ */
+function hwc_update_7009() {
+  _osha_tmgmt_add_translations_from_strings_to_terms('segment');
+}
+
