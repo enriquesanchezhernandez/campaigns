@@ -199,3 +199,18 @@ function hwc_update_7009() {
   _osha_tmgmt_add_translations_from_strings_to_terms('segment');
 }
 
+/**
+ * Fix "Other" literal strign and translations (empty spaces).
+ */
+function hwc_update_7010() {
+  db_update('locales_source')
+    ->fields(array('source' => 'Other'))
+    ->condition('lid', 16570)
+    ->execute();
+
+  db_query("
+    UPDATE locales_target
+    SET translation = REPLACE(TRIM(translation), CHAR(9), '')
+    WHERE lid=16570")->execute();
+}
+
