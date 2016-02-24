@@ -3,6 +3,8 @@ core = 7.x
 package = HWC
 version = 7.x-0.12
 project = hwc_partner
+files[] = includes/workbench_moderation_handler_field_state.inc
+
 dependencies[] = context
 dependencies[] = ctools
 dependencies[] = email
