@@ -200,7 +200,7 @@ function hwc_update_7009() {
 }
 
 /**
- * Fix "Other" literal strign and translations (empty spaces).
+ * Fix "Other" literal string and translations (empty spaces).
  */
 function hwc_update_7010() {
   db_update('locales_source')
@@ -214,3 +214,96 @@ function hwc_update_7010() {
     WHERE lid=16570")->execute();
 }
 
+
+/**
+ * Add translations to some new lid strings.
+ */
+function hwc_update_7011() {
+  $strings = array(
+    'Become a campaign partner',
+    'Privacy notice',
+    'Other',
+  );
+
+  foreach ($strings as $string) {
+    locale($string, '', 'bg');
+    _osha_tmgmt_add_translations_to_identical_strings($string);
+  }
+
+  $data = array(
+    'textgroup' => 'menu',
+    'location' => 'menu:item:2495:title',
+    'context' => 'item:2495:title',
+    'type' => 'item',
+    'string' => 'Campaign materials',
+    'objectid' => 2495,
+    'objectkey' => 2495,
+    'property' => 'title',
+  );
+  $i18nstring = new i18n_string_object($data);
+  $i18nstring->update();
+
+  $data = array(
+    'textgroup' => 'menu',
+    'location' => 'menu:item:2495:title',
+    'context' => 'item:2495:title',
+    'type' => 'item',
+    'string' => 'Campaign materials',
+    'objectid' => 2495,
+    'objectkey' => 2495,
+    'property' => 'title',
+  );
+  $i18nstring = new i18n_string_object($data);
+  $i18nstring->update();
+
+  $data = array(
+    'textgroup' => 'menu',
+    'location' => 'menu:item:2742:title',
+    'context' => 'item:2742:title',
+    'type' => 'item',
+    'string' => 'Site map',
+    'objectid' => 2742,
+    'objectkey' => 2742,
+    'property' => 'title',
+  );
+  $i18nstring = new i18n_string_object($data);
+  $i18nstring->update();
+
+  $data = array(
+    'textgroup' => 'menu',
+    'location' => 'menu:item:2743:title',
+    'context' => 'item:2743:title',
+    'type' => 'item',
+    'string' => 'Contact',
+    'objectid' => 2743,
+    'objectkey' => 2743,
+    'property' => 'title',
+  );
+  $i18nstring = new i18n_string_object($data);
+  $i18nstring->update();
+
+  $data = array(
+    'textgroup' => 'menu',
+    'location' => 'menu:item:11667:title',
+    'context' => 'item:11667:title',
+    'type' => 'item',
+    'string' => 'Campaign materials',
+    'objectid' => 11667,
+    'objectkey' => 11667,
+    'property' => 'title',
+  );
+  $i18nstring = new i18n_string_object($data);
+  $i18nstring->update();
+
+  $strings = array(
+    'Campaign materials',
+    'Site map',
+    'Contact',
+  );
+  foreach ($strings as $string) {
+    _osha_tmgmt_add_translations_to_identical_strings($string);
+  }
+
+  // Clear locale caches.
+  _locale_invalidate_js();
+}
