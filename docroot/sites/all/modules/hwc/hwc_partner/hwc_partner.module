@@ -274,6 +274,22 @@ function hwc_partner_views_pre_render(&$view) {
       $view->display_handler->set_option('link_url', 'events');
     }
   }
+  if ($view->name == 'partners_list' && $view->current_display == 'fop') {
+    global $language;
+    $results = &$view->result;
+    // Sort the results by country name (using UTF-8).
+    uasort($results, function($a, $b) use ($language) {
+      if(class_exists('Collator')) { // requires php-intl extension
+        $collator = new \Collator($language->language);
+        return $collator->compare($a->field_name_field[0]['rendered']['#markup'], $b->field_name_field[0]['rendered']['#markup']);
+      }
+      else { // sorting in some languages (greek) are wrong
+        $str1 = htmlspecialchars($a->field_name_field[0]['rendered']['#markup']);
+        $str2 = htmlspecialchars($b->field_name_field[0]['rendered']['#markup']);
+        return strcmp($str1, $str2);
+      }
+    });
+  }
 }
 
 /**
