@@ -307,3 +307,18 @@ function hwc_update_7011() {
   // Clear locale caches.
   _locale_invalidate_js();
 }
+
+/**
+ * Certificate page breadcrumb literals.
+ */
+function hwc_update_7012() {
+  $strings = array(
+    'Get involved',
+    'Get your certificate of participation in the Healthy Workplace Campaign',
+  );
+
+  foreach ($strings as $string) {
+    locale($string, '', 'bg');
+    _osha_tmgmt_add_translations_to_identical_strings($string);
+  }
+}
