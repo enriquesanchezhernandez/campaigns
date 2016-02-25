@@ -21,6 +21,7 @@ function campaign_materials_default_page_manager_pages() {
     'type' => 'none',
     'settings' => NULL,
   );
+  $page->menu = '';
   $page->arguments = array();
   $page->conf = array(
     'admin_paths' => FALSE,
