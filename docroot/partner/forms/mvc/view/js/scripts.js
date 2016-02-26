@@ -132,6 +132,15 @@ function delSN(args)
 /*Método para deshabilitar las redes sociales. Nos apoyamos en un 
  * campo similar, ya que los deshabilitados van por attributes de PHP y ente caso no es válido. */
 window.onload = function () {
+    if(window.parent.document.getElementsByClassName("loader").length > 0){
+        window.parent.document.getElementsByClassName("loader")[0].className += " hidden";
+    }
+    if(window.parent.document.getElementsByClassName("iframe-partnership").length > 0){
+        window.parent.document.getElementsByClassName("iframe-partnership")[0].className = "iframe-partnership";
+    }
+    if(window.parent.document.getElementsByClassName("iframe-update").length > 0){
+        window.parent.document.getElementsByClassName("iframe-update")[0].className = "iframe-update";
+    }
     if(document.activeElement.id == "company_osh_orgname" || document.activeElement.id == "involvement_osh_tobeanocponhwc" || document.activeElement.id == "contact_osh_maincontactpersonfirstname"){
         document.body.scrollTop = document.documentElement.scrollTop = 0;
     }
@@ -180,15 +189,6 @@ window.onload = function () {
         if($('#osh_primarycontactsection').val() == true || $('#osh_primarycontactsection').val() == "true"){
             checkSectionsByCDB("PRIMARY_CONTACT");
         }
-    }
-    if(window.parent.document.getElementsByClassName("loader").length > 0){
-        window.parent.document.getElementsByClassName("loader")[0].className += " hidden";
-    }
-    if(window.parent.document.getElementsByClassName("iframe-partnership").length > 0){
-        window.parent.document.getElementsByClassName("iframe-partnership")[0].className = "iframe-partnership";
-    }
-    if(window.parent.document.getElementsByClassName("iframe-update").length > 0){
-        window.parent.document.getElementsByClassName("iframe-update")[0].className = "iframe-update";
     }
     if($(".combined-textbox").length > 0){
         $(".combined-textbox").each(function (id, item) {
