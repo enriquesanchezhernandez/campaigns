@@ -201,9 +201,9 @@ function hwc_partner_block_view($delta = '') {
           $url_options = array('query' => array('workbench_access' => $id_section));
         }
         $block['content'] = theme('hwc_partner_private_link_' . $it, array(
-            'hwc_partner_private_link_title' => l(t(variable_get('hwc_partner_private_link_' . $it . '_title')), $url, $url_options),
-            'hwc_partner_private_link_description' => t(variable_get('hwc_partner_private_link_' . $it . '_description')),
-            'hwc_partner_private_link_link_text' => l(t(variable_get('hwc_partner_private_link_' . $it . '_link_text')), $url),
+            'hwc_partner_private_link_title' => l(variable_get('hwc_partner_private_link_' . $it . '_title'), $url, $url_options),
+            'hwc_partner_private_link_description' => variable_get('hwc_partner_private_link_' . $it . '_description'),
+            'hwc_partner_private_link_link_text' => l(variable_get('hwc_partner_private_link_' . $it . '_link_text'), $url),
             'node' => $node,
             'delta' => $delta,
           )
@@ -541,9 +541,9 @@ function hwc_partner_node_view($node, $view_mode, $langcode) {
     }
     if (!empty($loginshell)) {
       $link_parameters['query']['session_id'] = $loginshell;
-      $update_title = '<div class="hwc-partner-private-link-block-title">' . l(t('Update profile'), 'private/profile/update', $link_parameters) . '</div>';
+      $update_title = '<div class="hwc-partner-private-link-block-title">' . l('Update profile', 'private/profile/update', $link_parameters) . '</div>';
       $update_content = '<div class="hwc-partner-private-link-block-description">'
-        . t('Any modifications in your public profile? <a href="!link">Click here to update it.</a>', array('!link' => url('private/profile/update', $link_parameters)))
+        . strtr('Any modifications in your public profile? <a href="!link">Click here to update it.</a>', array('!link' => url('private/profile/update', $link_parameters)))
         . '</div>';
       $node->content['profile_update_link'] = array(
         '#type' => 'markup',
