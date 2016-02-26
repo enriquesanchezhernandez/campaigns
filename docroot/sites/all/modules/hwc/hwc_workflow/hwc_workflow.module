@@ -420,10 +420,6 @@ function hwc_workflow_form_events_node_form_alter(&$form, &$form_state) {
       $form['workbench_access']['workbench_access']['#default_value'] = intval($_GET['workbench_access']);
     }
   }
-  if (!empty($form['workbench_access']['workbench_access']['#options']['section'])) {
-    $form['workbench_access']['workbench_access']['#title'] = 'Partner';
-    $form['workbench_access']['workbench_access']['#options']['section'] = 'All partners';
-  }
 }
 
 /**
