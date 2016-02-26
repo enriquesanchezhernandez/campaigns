@@ -420,7 +420,7 @@ form.new .validation, form.mf .validation {
 }
 
 :-ms-input-placeholder {
-    color : #749b00;
+    color : #749b00!important;
     font-size: smaller;
 }
 
