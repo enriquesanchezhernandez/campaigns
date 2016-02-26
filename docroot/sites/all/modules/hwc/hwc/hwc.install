@@ -322,3 +322,16 @@ function hwc_update_7012() {
     _osha_tmgmt_add_translations_to_identical_strings($string);
   }
 }
+
+/**
+ * Add translation to Log in literal.
+ */
+function hwc_update_7013() {
+  $strings = array(
+    'Log in',
+  );
+
+  foreach ($strings as $string) {
+    _osha_tmgmt_add_translations_to_identical_strings($string);
+  }
+}
