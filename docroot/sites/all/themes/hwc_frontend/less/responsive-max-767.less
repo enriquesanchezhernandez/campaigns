@@ -431,7 +431,7 @@ header.navbar-default{
 					border: none;
 					li{
 						margin-right: @margin-movil;
-						width: 90%
+						width: 100%
 					}
 				}
 			//}
@@ -1185,6 +1185,17 @@ header.navbar-default{
 	}
 
 	//Gallery
+
+	#cboxTitle{
+	    p span {
+			display: none!important;
+		}
+	}
+
+	#cboxWrapper #cboxCurrent{
+		left: 62%;
+	}
+
 	.node-events .group-header > div.field-name-field-gallery{
 		margin-left: 0;
 		margin-right: 0;
@@ -1702,7 +1713,7 @@ header.navbar-default{
 	}
 	[class*="field-type-link"]{
 		text-align: center;
-		&[class*="facebook"], &[class*="twitter"], &[class*="slideshare"], &[class*="youtube"], &[class*="linkedin"]{
+		&[class*="facebook"], &[class*="twitter"], &[class*="slideshare"], &[class*="youtube"], &[class*="linkedin"], &[class*="google-plus"] , &[class*="pinterest"] {
 			background-position: center top;
 			padding-top: 2em;
 			margin-bottom: 0.5em;
@@ -1761,6 +1772,7 @@ header.navbar-default{
 		}
 		div{
 			text-align: center;
+			float:none;
 			img{
 				margin-left: auto !important;
 				margin-right: auto;
@@ -2080,6 +2092,7 @@ header.navbar-default{
 				&:before {
 					margin-right: 5px;
 					float: left;
+					padding: 7px;
 				}
 			}
 			> div {
@@ -2166,6 +2179,26 @@ header.navbar-default{
 
 header.navbar-default .campaigns-header .navbar-header .region-header #block-lang-dropdown-language, header.navbar-default .campaigns-header .navbar-header .region-header #block-menu-menu-header-login ~ #block-lang-dropdown-language{
 	bottom: -9px;
+}
+
+
+/*news*/
+.view-news{
+	.views-row{
+		padding-left: @margin-movil;
+    	padding-right: @margin-movil;
+
+	}
+}
+
+.view-frontpage-events .views-row {
+	padding-left: @margin-movil;
+   	padding-right: @margin-movil;
+
+}
+
+.form-type-checkbox label{
+	white-space: initial;
 }
 
 }
