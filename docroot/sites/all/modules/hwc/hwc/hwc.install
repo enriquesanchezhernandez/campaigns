@@ -335,3 +335,20 @@ function hwc_update_7013() {
     _osha_tmgmt_add_translations_to_identical_strings($string);
   }
 }
+
+/**
+ * Fix "See more" literal string and translations.
+ */
+function hwc_update_7014() {
+  db_update('locales_source')
+    ->fields(array('source' => 'See more'))
+    ->condition('lid', array(9426), 'IN')
+    ->execute();
+
+  db_query("
+    UPDATE locales_target
+    SET translation = REPLACE(TRIM(translation), '> ', '')
+    WHERE lid in (9426)")->execute();
+
+  _osha_tmgmt_add_translations_to_identical_strings('See more');
+}
