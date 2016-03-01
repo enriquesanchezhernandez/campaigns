@@ -173,6 +173,7 @@ window.onload = function () {
         }
         if($('#osh_aboutyourceosection').val() == true || $('#osh_aboutyourceosection').val() == "true"){
             checkSectionsByCDB("CEO");
+            checkSectionsByCDB("CHIEF");
         }
         if($('#osh_aboutyourrepsection').val() == true || $('#osh_aboutyourrepsection').val() == "true"){
             checkSectionsByCDB("OSH");
@@ -669,7 +670,9 @@ $(document).ready(function () {
      */
     function validateConfirmEmail() {
         //Set the value to the Aux
-        $("#contact_osh_mainemailAux").val($("#contact_osh_mainemail").val());
+        if($("#contact_osh_mainemail").val() != undefined){
+            $("#contact_osh_mainemailAux").val($("#contact_osh_mainemail").val());
+        }
         if ($("#contact_osh_mainemail").val() != $("#contact_osh_confirm_mainemail").val() &&
                 (!$("#contact_osh_mainemail").val() == "" && $("#contact_osh_confirm_mainemail").val() != undefined)) {
             $("#contact_osh_mainemail").addClass("error");
@@ -701,7 +704,7 @@ $(document).ready(function () {
                     $(".main-form textarea[data-error='true']").length ||
                     $(".main-form select[data-error='true']").length) {
 //                    alert("Error: Some fields contain errors");
-                    $("#dataErrorDialog").removeClass('hidden');
+                    $("#fillRequiredDialog").removeClass('hidden');
 //                    document.location.href = "#top";
                     document.body.scrollTop = document.documentElement.scrollTop = 0;
                     styleChange(true);
