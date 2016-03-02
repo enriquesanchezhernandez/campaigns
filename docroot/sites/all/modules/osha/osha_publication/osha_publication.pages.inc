@@ -427,7 +427,7 @@ function _publication_type_options_list() {
   if (!empty($vocabulary)) {
     $terms = taxonomy_term_load_multiple(array(), array('vid' => $vocabulary->vid));
     foreach ($terms as $key => $term) {
-      $return[$term->tid] = $term->name;
+      $return[$term->tid] = $term->name_original;
     }
   }
   return $return;
