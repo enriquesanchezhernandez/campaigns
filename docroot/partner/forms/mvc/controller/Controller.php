@@ -680,6 +680,8 @@ abstract class Controller {
                 $session->setAttribute($name, $params->get($name));
                 $params->set($name, $params->get($name), true);
                 $_POST[$name] = $params->get($name);
+            }else if($name == 'company_osh_osh_appform_osh_country' && !isset($_POST[$name])){
+                $_POST[$name] = "";
             }
             $valueSession = $session->getAttribute($name);
             if (isset($_POST[$name])){
