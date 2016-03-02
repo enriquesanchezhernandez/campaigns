@@ -200,6 +200,14 @@ window.onload = function () {
             }
         });
     }
+    $(".checkbox input").each(function (id, item) {
+            //WorkAround main contact change
+            if($(item).prop('checked')){
+                $(item).val('on');
+            }else{
+                $(item).val('');
+            }
+        });
 }
 function checkSectionsByCDB(dataSection){
 //    setCheckSectionAttributte(dataSection,true);
@@ -208,14 +216,7 @@ function checkSectionsByCDB(dataSection){
                     'pointer-events': 'none',
                     'background-color': '#E3E3E4'
                 });
-                //Disabled the imageButtons
-                $('.company_osh_logoimage_popup-modal').css({
-                    'pointer-events': 'none'
-                });
-                //Disabled countries of activity
-                $('.select2').css({
-                    'pointer-events': 'none'
-                });
+                
     $('[data-section="' + dataSection + '"]*.validation').addClass("validation-pressed");
 //    $(this).addClass("validation-pressed");
 
@@ -232,9 +233,27 @@ function checkSectionsByCDB(dataSection){
         });
         $("#company_osh_orgname").prop("disabled", "disabled");
     }
-     if(dataSection=="ORGANISATION"){
-        $("#contact_osh_mainemail").prop("disabled", "disabled");
-     }
+    if(dataSection=="ORGANISATION"){
+       $("#contact_osh_mainemail").prop("disabled", "disabled");
+       //Disabled countries of activity
+       $('.select2').css({
+           'pointer-events': 'none'
+       });
+       //Disabled the imageButtons
+       $('.company_osh_logoimage_popup-modal').css({
+           'pointer-events': 'none'
+       });
+       //Disabled checkbox
+       $('.checkbox').css({
+           'pointer-events': 'none'
+       });
+    }
+    if(dataSection=="CEO"){
+        //Disabled the imageButtons
+        $('.company_osh_ceoimage_popup-modal').css({
+            'pointer-events': 'none'
+        });
+    }
 }
 function stopRKey(evt) { 
   var evt = (evt) ? evt : ((event) ? event : null); 
@@ -664,6 +683,15 @@ $(document).ready(function () {
             validateWebFormat(this);
         }
     });
+    $('.checkbox input').on({
+        change: function () {
+            if($(this).prop("checked")){
+                $(this).val('on');
+            }else{
+                $(this).val('');
+            }
+        }
+    });
 
     /**
      * Validate confirmation email
@@ -728,14 +756,45 @@ $(document).ready(function () {
                     } else {
 //                        $("#form form :input").prop("disabled", false);
                          styleChange(false);
+//                         saveDatanextAndSave();
 //                         $(".validation").removeClass("validation-pressed");
                     }
+                }else{
+//                    saveDatanextAndSave();
                 }
 
                 
             }
         }
     });
+    
+    function saveDatanextAndSave(){
+        var serializedForm = $("form").serialize();
+        var logoImage =$(".company_osh_logoimage_image_container img");
+
+        if( logoImage.attr("src") && (logoImage.attr("src") != null ||logoImage.attr("src") != "") )
+        {
+            var valueLogoImage = logoImage.attr("src");
+            valueLogoImage = valueLogoImage.replace("\s", "+");
+            serializedForm += "&company_osh_logoimage="+valueLogoImage;
+            
+        }
+        var ceoImage = $(".company_osh_ceoimage_image_container img");
+        if( ceoImage.attr("src") && (ceoImage.attr("src") != null ||ceoImage.attr("src") != "") )
+        {
+            var valueLogoImage = ceoImage.attr("src");
+            valueLogoImage = valueLogoImage.replace("\s", "+");
+            serializedForm += "&company_osh_ceoimage="+valueLogoImage;
+        }
+        var dataAjax = "?action=savesessionajax";
+        $.ajax({
+            url: dataAjax,
+            data: serializedForm,
+            type: "post",
+            success: function( data, textStatus,jqXHR){
+            }
+        });
+    }
 
     /**
      * Check that all the required fields are filled
@@ -858,14 +917,27 @@ $(document).ready(function () {
                     'pointer-events': 'inherit',
                     'background-color': 'white'
                 });
-                //Enabled the imageButtons
-                $('.company_osh_logoimage_popup-modal').css({
-                    'pointer-events': 'inherit'
-                });
-                //Enabled countries of activity
-                $('.select2').css({
-                    'pointer-events': 'inherit'
-                });
+                if(dataSection=="ORGANISATION"){
+                    //Enabled the imageButtons
+                   $('.company_osh_logoimage_popup-modal').css({
+                       'pointer-events': 'inherit'
+                   });
+                   //Enabled countries of activity
+                   $('.select2').css({
+                       'pointer-events': 'inherit'
+                   });
+                    //Enabled checkbox
+                    $('.checkbox').css({
+                        'pointer-events': 'inherit'
+                    });
+                }
+                if(dataSection=="CEO"){
+                    //Disabled the imageButtons
+                    $('.company_osh_ceoimage_popup-modal').css({
+                        'pointer-events': 'inherit'
+                    });
+                }
+                
             $(this).removeClass("validation-pressed");
              if(dataSection=="GENERAL_INFORMATION"){
                 $("#company_osh_selectsocialnetworks").prop("disabled", false);
@@ -895,14 +967,7 @@ $(document).ready(function () {
                     'pointer-events': 'none',
                     'background-color': '#E3E3E4'
                 });
-                //Disabled the imageButtons
-                $('.company_osh_logoimage_popup-modal').css({
-                    'pointer-events': 'none'
-                });
-                //Disabled countries of activity
-                $('.select2').css({
-                    'pointer-events': 'none'
-                });
+                
                 
                 $(this).addClass("validation-pressed");
 
@@ -919,12 +984,30 @@ $(document).ready(function () {
                     $("#company_osh_orgname").prop("disabled", "disabled");
                  }
                  if(dataSection=="ORGANISATION"){
-                     $("#contact_osh_mainemail").prop("disabled", "disabled");
+                    $("#contact_osh_mainemail").prop("disabled", "disabled");
+                     //Disabled the imageButtons
+                    $('.company_osh_logoimage_popup-modal').css({
+                        'pointer-events': 'none'
+                    });
+                    //Disabled countries of activity
+                    $('.select2').css({
+                        'pointer-events': 'none'
+                    });
+                    //Disabled checkbox
+                    $('.checkbox').css({
+                        'pointer-events': 'none'
+                    });
                  }
-                 //Hidden the dialog
-                 if(!$("#checkFieldsDialog").hasClass('hidden')){
-                     $("#checkFieldsDialog").addClass('hidden');
-                 }
+                if(dataSection=="CEO"){
+                    //Disabled the imageButtons
+                    $('.company_osh_ceoimage_popup-modal').css({
+                        'pointer-events': 'none'
+                    });
+                }
+                //Hidden the dialog
+                if(!$("#checkFieldsDialog").hasClass('hidden')){
+                    $("#checkFieldsDialog").addClass('hidden');
+                }
              }else{
 //                alert("Section check cannot be checked until the mandatory fields are filled");
                 $("#checkFieldsDialog").removeClass('hidden');
@@ -975,16 +1058,18 @@ $(document).ready(function () {
         }
     }
 
-
-
-
-
     /**
      * Save action
      */
     $("#save").click(function (e) {
         checkSections();
         buttonPressed = "save";
+        //Workaround no perder los datos que se eliminan y no generar errores
+        if($("#next").length > 0){
+        if($("#next").val().indexOf("involvement") != -1){
+           saveDatanextAndSave(); 
+        }
+        }
         var url = $("#form form").attr("action");
         console.log = url;
         var tmpRegex = new RegExp("(action=)[a-z]+", 'ig');
@@ -1028,6 +1113,19 @@ $(document).ready(function () {
     $("#next").click(function (e) {
         buttonPressed = "next";
         checkSections();
+        if($("#next").val().indexOf("involvement") != -1){
+//            $("#progressbar-2").click();
+            var dataAjax = $('#progressbar-2 a').data("ajax");
+            var href =  $('#progressbar-2 a').attr("href");
+            saveSessionAjaxNext(dataAjax,href);
+
+        }else if($("#next").val().indexOf("primary") != -1){
+//            $("#progressbar-3").click();
+            var dataAjax = $('#progressbar-3 a').data("ajax");
+            var href =  $('#progressbar-3 a').attr("href");
+            saveSessionAjaxNext(dataAjax,href);
+
+        }
     });
 
     /**
@@ -1436,6 +1534,35 @@ $(document).ready(function () {
             type: "post",
             success: function( data, textStatus,jqXHR){
                 
+            }
+        });
+    }
+     function saveSessionAjaxNext(dataAjax, href){
+        var serializedForm = $("form").serialize();
+        var logoImage =$(".company_osh_logoimage_image_container img");
+
+        if( logoImage.attr("src") && (logoImage.attr("src") != null ||logoImage.attr("src") != "") )
+        {
+            var valueLogoImage = logoImage.attr("src");
+            valueLogoImage = valueLogoImage.replace("\s", "+");
+            serializedForm += "&company_osh_logoimage="+valueLogoImage;
+
+        }
+        var ceoImage = $(".company_osh_ceoimage_image_container img");
+        if( ceoImage.attr("src") && (ceoImage.attr("src") != null ||ceoImage.attr("src") != "") )
+        {
+            var valueLogoImage = ceoImage.attr("src");
+            valueLogoImage = valueLogoImage.replace("\s", "+");
+            serializedForm += "&company_osh_ceoimage="+valueLogoImage;
+        }
+        
+        $("body").css("cursor", "progress");
+        $.ajax({
+            url: dataAjax,
+            data: serializedForm,
+            type: "post",
+            success: function( data, textStatus,jqXHR){
+                document.location.href = href;//Lleva al enlace
             }
         });
     }
