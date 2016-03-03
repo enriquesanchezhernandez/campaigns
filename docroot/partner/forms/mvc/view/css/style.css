@@ -719,6 +719,11 @@ form.new div.container-message, form.mf div.container-message {
     /*background-color:#FEF5F1;*/
 }
 
+.imagePostRequired{
+    border: 1px red solid;
+    padding: 0 10px 10px 10px;
+}
+
 
 /*(CRG - #173 - 02.11.2015)*/
 form div.controls:last-of-type{

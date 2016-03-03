@@ -178,6 +178,8 @@ window.onload = function () {
             $("#PRIMARY_CONTACT").css("padding-top", height);
         }else if($("#INVOLVEMENT").length > 0){
             $("#INVOLVEMENT").css("padding-top", height);
+        }else if($("#PLEDGE").length > 0){
+            $("#PLEDGE").css("padding-top", height);
         }
         
     }
@@ -236,10 +238,20 @@ window.onload = function () {
 function checkSectionsByCDB(dataSection){
 //    setCheckSectionAttributte(dataSection,true);
      $('#form form :input[data-section="' + dataSection + '"]').prop("onlyread", "onlyread");
-                $('#form form :input[data-section="' + dataSection + '"]').css({
-                    'pointer-events': 'none',
-                    'background-color': '#E3E3E4'
-                });
+//                $('#form form :input[data-section="' + dataSection + '"]').css({
+//                    'pointer-events': 'none',
+//                    'background-color': '#E3E3E4'
+//                });
+    $('#form form :input[data-section="' + dataSection + '"]').each(function (id, item) {
+        $(item).css({
+            'pointer-events': 'none'
+        });
+        if($(item).attr('type') != 'button'){
+            $(item).css({
+                'background': '#E3E3E4'
+            });
+        }
+    }); 
                 
     $('[data-section="' + dataSection + '"]*.validation').addClass("validation-pressed");
 //    $(this).addClass("validation-pressed");
@@ -836,7 +848,6 @@ $(document).ready(function () {
                 window.parent.document.getElementsByClassName("top_anchor")[0].click();
             }
             styleChange(true);
-            e.preventDefault();
             return false;
         } else if (!checkRequiredFields()) {
 //                    alert("Error: You must fill all the required fields");
@@ -850,7 +861,6 @@ $(document).ready(function () {
                 window.parent.document.getElementsByClassName("top_anchor")[0].click();
             }
             styleChange(true);
-            e.preventDefault();
             return false;
         } else if (!checkRequiredFieldsSubmit()) {
 //                    alert("Error: You must fill all the required fields");
@@ -864,7 +874,6 @@ $(document).ready(function () {
                 window.parent.document.getElementsByClassName("top_anchor")[0].click();
             }
             styleChange(true);
-            e.preventDefault();
             return false;
         } else if ($('#form form').hasClass("current")
             && ($('.validation').length > $('.validation.validation-pressed').length))
@@ -886,55 +895,54 @@ $(document).ready(function () {
     }
     
     function saveDatanextAndSave(){
-        var serializedForm = $("form").serialize();
-        var logoImage =$(".company_osh_logoimage_image_container img");
-
-        if( logoImage.attr("src") && (logoImage.attr("src") != null ||logoImage.attr("src") != "") )
-        {
-            var valueLogoImage = logoImage.attr("src");
-            valueLogoImage = valueLogoImage.replace("\s", "+");
-            serializedForm += "&company_osh_logoimage="+valueLogoImage;
-            
-        }
-        var ceoImage = $(".company_osh_ceoimage_image_container img");
-        if( ceoImage.attr("src") && (ceoImage.attr("src") != null ||ceoImage.attr("src") != "") )
-        {
-            var valueLogoImage = ceoImage.attr("src");
-            valueLogoImage = valueLogoImage.replace("\s", "+");
-            serializedForm += "&company_osh_ceoimage="+valueLogoImage;
-        }
-        var dataAjax = "?action=savesessionajax";
-        $.ajax({
-            url: dataAjax,
-            data: serializedForm,
-            type: "post",
-            success: function( data, textStatus,jqXHR){
-                var url = $("#form form").attr("action");
-                console.log = url;
-                var tmpRegex = new RegExp("(action=)[a-z]+", 'ig');
-                console.log = tmpRegex;
-                var newVal = "save";
-                var newAction = url.replace(tmpRegex, '$1' + newVal);
-                console.log = newAction;
-                //validamos que los campos orgname y mainemail estén relleno antes de hacer el save.
-                if($("#company_osh_orgnameAux").val() == '' ||
-                        $("#contact_osh_mainemailAux").val() == ''){
-        //            alert("The fields Company/Organisation name and E-mail of the Primary Contact are required for save the information");
-                    if($("#container-message").length > 0){
-                        closeGreyBox();
-                    }
-                    $("#nameandemailrequiredDialog").removeClass('hidden');
-        //            document.location.href = "#top";
-                    document.body.scrollTop = document.documentElement.scrollTop = 0;
-                    if(window.parent.document.getElementsByClassName("top_anchor").length == 1){
-                        window.parent.document.getElementsByClassName("top_anchor")[0].click();
-                    }
-                }else{   
-                $("#form form").attr("action", newAction);
-                $("#form form").submit();
-                }
+        if($("#company_osh_orgnameAux").val() == '' ||
+                $("#contact_osh_mainemailAux").val() == ''){
+//            alert("The fields Company/Organisation name and E-mail of the Primary Contact are required for save the information");
+            if($("#container-message").length > 0){
+                closeGreyBox();
             }
-        });
+            $("#nameandemailrequiredDialog").removeClass('hidden');
+//            document.location.href = "#top";
+            document.body.scrollTop = document.documentElement.scrollTop = 0;
+            if(window.parent.document.getElementsByClassName("top_anchor").length == 1){
+                window.parent.document.getElementsByClassName("top_anchor")[0].click();
+            }
+        }else{
+            var serializedForm = $("form").serialize();
+            var logoImage =$(".company_osh_logoimage_image_container img");
+
+            if( logoImage.attr("src") && (logoImage.attr("src") != null ||logoImage.attr("src") != "") )
+            {
+                var valueLogoImage = logoImage.attr("src");
+                valueLogoImage = valueLogoImage.replace("\s", "+");
+                serializedForm += "&company_osh_logoimage="+valueLogoImage;
+
+            }
+            var ceoImage = $(".company_osh_ceoimage_image_container img");
+            if( ceoImage.attr("src") && (ceoImage.attr("src") != null ||ceoImage.attr("src") != "") )
+            {
+                var valueLogoImage = ceoImage.attr("src");
+                valueLogoImage = valueLogoImage.replace("\s", "+");
+                serializedForm += "&company_osh_ceoimage="+valueLogoImage;
+            }
+            var dataAjax = "?action=savesessionajax";
+            $.ajax({
+                url: dataAjax,
+                data: serializedForm,
+                type: "post",
+                success: function( data, textStatus,jqXHR){
+                    var url = $("#form form").attr("action");
+                    console.log = url;
+                    var tmpRegex = new RegExp("(action=)[a-z]+", 'ig');
+                    console.log = tmpRegex;
+                    var newVal = "save";
+                    var newAction = url.replace(tmpRegex, '$1' + newVal);
+                    console.log = newAction;
+                    $("#form form").attr("action", newAction);
+                    $("#form form").submit();
+                }
+            });
+        }
     }
 
     /**
@@ -985,8 +993,16 @@ $(document).ready(function () {
     function styleChange(required){
         if(required){
            $("#form form .required .controls .error").parent().addClass("postRequired");
+           if($(".main-form input[data-error='true']").length > 0){
+                $(".main-form input[data-error='true']").each(function (id, item) {
+                    if($(item).attr("id") == 'company_osh_ceoimage' || $(item).attr("id") == 'company_osh_logoimage'){
+                        $(item).parent().parent().parent().addClass('imagePostRequired');
+                    }
+                });
+           }
         }else{
            $("#form form .required .controls .error").parent().removeClass("postRequired");
+           $('.imagePostRequired').removeClass('imagePostRequired');
         }
     }
 
@@ -1061,10 +1077,20 @@ $(document).ready(function () {
             setCheckSectionAttributte(dataSection,false);
 //            $('#form form :input[data-section="' + dataSection + '"]').prop("disabled", false);
                 $('#form form :input[data-section="' + dataSection + '"]').prop("onlyread", false);
-                $('#form form :input[data-section="' + dataSection + '"]').css({
-                    'pointer-events': 'inherit',
-                    'background-color': 'white'
+                $('#form form :input[data-section="' + dataSection + '"]').each(function (id, item) {
+                    $(item).css({
+                        'pointer-events': 'inherit'
+                    });
+                    if($(item).attr('type') != 'button'){
+                        $(item).css({
+                            'background': 'white'
+                        });
+                    }
                 });
+//                $('#form form :input[data-section="' + dataSection + '"]').css({
+//                    'pointer-events': 'inherit',
+//                    'background-color': 'white'
+//                });
                 if(dataSection=="ORGANISATION"){
                     //Enabled the imageButtons
                    $('.company_osh_logoimage_popup-modal').css({
@@ -1111,9 +1137,19 @@ $(document).ready(function () {
                 setCheckSectionAttributte(dataSection,true);
 //                $('#form form :input[data-section="' + dataSection + '"]').prop("disabled", "disabled");
                 $('#form form :input[data-section="' + dataSection + '"]').prop("onlyread", "onlyread");
-                $('#form form :input[data-section="' + dataSection + '"]').css({
-                    'pointer-events': 'none',
-                    'background-color': '#E3E3E4'
+//                $('#form form :input[data-section="' + dataSection + '"]').css({
+//                    'pointer-events': 'none',
+//                    'background-color': '#E3E3E4'
+//                });
+                $('#form form :input[data-section="' + dataSection + '"]').each(function (id, item) {
+                    $(item).css({
+                        'pointer-events': 'none'
+                    });
+                    if($(item).attr('type') != 'button'){
+                        $(item).css({
+                            'background': '#E3E3E4'
+                        });
+                    }
                 });
                 
                 
@@ -1281,6 +1317,9 @@ $(document).ready(function () {
      */
     $(".guardarImg").click(function (e) {
         var targetElement = "." + $(this).attr("data-target");
+        if($(targetElement).parent().hasClass('imagePostRequired')){
+            $(targetElement).parent().removeClass('imagePostRequired');
+        }
         var imageData = $(this).parent().find(".thumbBox").html();
         $(targetElement).html(imageData);
         e.preventDefault();
