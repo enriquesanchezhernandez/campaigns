@@ -74,11 +74,11 @@ function osha_events_form_events_node_form_alter(&$form, &$form_state) {
 
     $form['field_activity'][LANGUAGE_NONE] = $field;
   }
-  if (isset($form['body']['#language'])) {
-    $lang = $form['body']['#language'];
-    $form['body'][$lang][0]['summary']['#prefix'] = '<div class="text-summary-wrapper">';
-    $form['body'][$lang][0]['summary']['#suffix'] = '<span>' . t('Write a short summary. This will appear on the homepage of the campaign site. <strong>Max 420 characters</strong>.') . '</span></div>';
-  }
+//  if (isset($form['body']['#language'])) {
+//    $lang = $form['body']['#language'];
+//    $form['body'][$lang][0]['summary']['#prefix'] = '<div class="text-summary-wrapper">';
+//    $form['body'][$lang][0]['summary']['#suffix'] = '<span>' . t('Write a short summary. This will appear on the homepage of the campaign site. <strong>Max 420 characters</strong>.') . '</span></div>';
+//  }
 
   if (isset($form['field_related_documents']['#language'])) {
     $lang = $form['field_related_documents']['#language'];
