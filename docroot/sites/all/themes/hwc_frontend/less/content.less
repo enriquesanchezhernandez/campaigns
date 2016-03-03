@@ -534,13 +534,20 @@ ul.tabs--primary.nav.nav-tabs{
 			font-weight: bold;
 			text-align: right;
 			span{
-			    width: 240px !important;
+			    width: 396px !important;
 			    float: right;
 			    margin-right: @margin1;
 			    margin-top: 10px;
 			}
 		}
 	}
+
+	/*Fix to EN language 3 lines*/
+
+	html:lang(en) #homepage_slider .views-field-title span{
+		width: 240px !important;
+	}
+
 	@media screen and (-webkit-min-device-pixel-ratio:0) {
 		#homepage_slider .more-link{top: 2em;}
 	}
