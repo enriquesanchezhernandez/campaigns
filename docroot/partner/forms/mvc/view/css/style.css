@@ -692,7 +692,7 @@ div.required > div label::after{
     font-weight: bold;
     margin-bottom: 38px;
     margin-right: 14px;
-    position: fixed;
+    position: absolute;
     width: 66%;
 }
 div.container-message{
