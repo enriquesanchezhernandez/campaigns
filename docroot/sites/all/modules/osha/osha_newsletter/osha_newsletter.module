@@ -247,7 +247,7 @@ function osha_newsletter_block_configure($delta = '') {
       break;
     case 'osha_newsletter_subscribe_extra':
       $form['subscribe_extra_block_intro_text'] = array(
-        '#type' => 'textfield',
+        '#type' => 'textarea',
         '#title' => 'Block intro text',
         '#size' => 60,
         '#description' => 'This text will appear in the Subscription block before the e-mail field.',

@@ -219,14 +219,14 @@ function osha_newsletter_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'subscribe_block_details_link_label';
-  $strongarm->value = '';
+  $strongarm->value = 'Privacy notice';
   $export['subscribe_block_details_link_label'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'subscribe_block_details_link_url';
-  $strongarm->value = '';
+  $strongarm->value = 'https://osha.europa.eu/en/oshmail-newsletter/privacy-statement-oshmail';
   $export['subscribe_block_details_link_url'] = $strongarm;
 
   $strongarm = new stdClass();
@@ -268,14 +268,14 @@ function osha_newsletter_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'subscribe_extra_block_details_link_label';
-  $strongarm->value = '';
+  $strongarm->value = 'Privacy policy';
   $export['subscribe_extra_block_details_link_label'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'subscribe_extra_block_details_link_url';
-  $strongarm->value = '';
+  $strongarm->value = 'node/1015';
   $export['subscribe_extra_block_details_link_url'] = $strongarm;
 
   $strongarm = new stdClass();
