@@ -131,6 +131,27 @@ function osha_newsletter_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'osha_newsletter_image_block_details_link_label';
+  $strongarm->value = 'Privacy policy';
+  $export['osha_newsletter_image_block_details_link_label'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'osha_newsletter_image_block_details_link_url';
+  $strongarm->value = 'node/1015';
+  $export['osha_newsletter_image_block_details_link_url'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'osha_newsletter_image_block_intro_text';
+  $strongarm->value = 'Would you like to stay informed about the latest developments regarding ageing workers?';
+  $export['osha_newsletter_image_block_intro_text'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'osha_newsletter_image_block_text_end';
   $strongarm->value = 'subscribers';
   $export['osha_newsletter_image_block_text_end'] = $strongarm;
