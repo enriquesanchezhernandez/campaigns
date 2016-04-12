@@ -134,7 +134,7 @@ a:after{
  	display:none;
 }
 
-.pager , .back-to-link , iframe , video , button , #become-partner-link , .more-link , .kssattr-atfieldname-text{
+.pager , .back-to-link , video , button , #become-partner-link , .more-link , .kssattr-atfieldname-text{
 	display:none!important;
 }
 
@@ -384,5 +384,29 @@ a:after{
 	border-top: 1px dotted #000;
 }
 
+
+.iframe-partnership{
+	display:block!important;
+	position:absolute;
+	top:220px;
+}
+
+.logged-in .iframe-partnership{
+	top:280px;
+}
+
+.iframe-update{
+	display:block!important;
+	position:absolute;
+	top:280px;
+}
+
+.toolbar.overlay-displace-top , .workbench-info-block , .tabs--primary.nav.nav-tabs{
+	display:none;
+}
+
+.top_anchor{
+	display:none!important;
+}
 
 }

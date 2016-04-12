@@ -55,6 +55,12 @@ function hwc_menu() {
     'access arguments' => array('access content'),
     'type' => MENU_CALLBACK,
   );
+  $items['page-not-found'] = array(
+    'title' => 'Page not found',
+    'page callback' => 'hwc_page_not_found',
+    'access callback' => TRUE,
+    'type' => MENU_CALLBACK,
+  );
   return $items;
 }
 
@@ -131,10 +137,6 @@ function hwc_user_login(&$edit, $account) {
 function hwc_req_param($form_state, $name, $default = NULL) {
   if (!empty($form_state['values'][$name])) {
     $ret = $form_state['values'][$name];
-    if (is_array($ret)) {
-      $ret = array_filter($ret);
-    }
-    return $ret;
   }
   if (!empty($_GET[$name])) {
     if (is_array($_GET[$name])) {
@@ -142,13 +144,38 @@ function hwc_req_param($form_state, $name, $default = NULL) {
       foreach($_GET[$name] as $v) {
         $ret[] = check_plain($v);
       }
-      return $ret;
     }
     else {
-      return check_plain($_GET[$name]);
+      $ret = check_plain($_GET[$name]);
     }
   }
+  if (is_array($ret)) {
+    $ret = array_filter($ret);
+  }
+  if (!empty($ret)) {
+    return $ret;
+  }
   return $default;
+}
+
+/**
+ * Implements hook_on_the_web_get_services_alter().
+ */
+function hwc_on_the_web_get_services_alter(&$services) {
+  $services = array(
+    'twitter' => array('name' => 'Twitter'),
+    'facebook' => array('name' => 'Facebook'),
+    'linkedin' => array('name' => 'LinkedIn'),
+    'youtube' => array('name' => 'YouTube'),
+    'flickr' => array('name' => 'Flickr'),
+    'pinterest' => array('name' => 'Pinterest'),
+    'google' => array('name' => 'Google+'),
+    'myspace' => array('name' => 'MySpace'),
+    'itunes' => array('name' => 'iTunes'),
+    'delicious' => array('name' => 'Delicious'),
+    'friendfeed' => array('name' => 'FriendFeed'),
+    'rss' => array('name' => 'RSS'),
+  );
 }
 
 /**
@@ -273,6 +300,13 @@ function hwc_theme() {
     'hwc_print_friendly_block' => array(),
   );
 }
+
+function hwc_page_not_found() {
+  drupal_set_title('Page not found');
+  $message = t('The requested page "@path" could not be found.', array('@path' => request_uri()));
+  return $message;
+}
+
 
 /**
  * Implements hook_entity_info_alter().
@@ -436,7 +470,29 @@ function hwc_form_alter(&$form, &$form_state, $form_id) {
     $form['lang_dropdown_select']['#attributes']['title'] = t('Language switcher dropdown');
   }
 
+
+  if ($form_id == 'system_site_information_settings') {
+    $form['site_information']['site_hwc_mostra_mailbox'] = array(
+      '#type' => 'textfield',
+      '#title' => t('Mostra mailbox'),
+      '#default_value' => variable_get('site_hwc_mostra_mailbox'),
+    );
+  }
 }
+
+/**
+ * Implements hook_entity_property_info_alter().
+ */
+function hwc_entity_property_info_alter(&$info) {
+  $properties =& $info['site']['properties'];
+  // Add mostra mailbox property to use it in rules.
+  $properties['hwc_mostra_mailbox'] = array(
+    'label' => 'Mostra mailbox',
+    'description' => 'Mostra mailbox',
+    'getter callback' => 'entity_metadata_system_get_properties',
+  );
+}
+
 
 /**
  * Implements hook_node_submit().
@@ -517,42 +573,42 @@ function hwc_field_widget_form_alter(&$element, &$form_state, $context) {
   if ($is_events_form) {
     switch ($element['#field_name']) {
       case 'title_field':
-        $placeholder = t('Event title. Max 60 characters.');
+        $placeholder = 'Event title. Max 60 characters.';
         $element['value']['#attributes']['placeholder'] = $placeholder;
         break;
 
       case 'field_city':
-        $placeholder = t('Event city');
+        $placeholder = 'Event city';
         $element['value']['#attributes']['placeholder'] = $placeholder;
         break;
 
       case 'field_contact_name':
-        $placeholder = t('Contact person name');
+        $placeholder = 'Contact person name';
         $element['value']['#attributes']['placeholder'] = $placeholder;
         break;
 
       case 'field_contact_phone':
-        $placeholder = t('Contact person phone number');
+        $placeholder = 'Contact person phone number';
         $element['value']['#attributes']['placeholder'] = $placeholder;
         break;
 
       case 'field_organizer':
-        $placeholder = t('First name of contact person');
+        $placeholder = 'The name of the organisation';
         $element['value']['#attributes']['placeholder'] = $placeholder;
         break;
 
       case 'field_location':
-        $placeholder = t('Location of the event');
+        $placeholder = 'Location of the event';
         $element['value']['#attributes']['placeholder'] = $placeholder;
         break;
 
       case 'field_website_of_event':
-        $placeholder = t('Website of event');
+        $placeholder = 'Website of event';
         $element['#attributes']['placeholder'] = $placeholder;
         break;
 
       case 'field_contact_email':
-        $placeholder = t('Contact person e-mail');
+        $placeholder = 'Contact person e-mail';
         $element['email']['#attributes']['placeholder'] = $placeholder;
         break;
 
@@ -561,12 +617,12 @@ function hwc_field_widget_form_alter(&$element, &$form_state, $context) {
   elseif ($is_news_form && !empty($element['#field_name'])) {
     switch ($element['#field_name']) {
       case 'title_field':
-        $placeholder = t('News title');
+        $placeholder = 'News title';
         $element['value']['#attributes']['placeholder'] = $placeholder;
         break;
 
       case 'field_image_caption':
-        $placeholder = t('Image caption');
+        $placeholder = 'Image caption';
         $element['value']['#attributes']['placeholder'] = $placeholder;
         break;
 
@@ -585,7 +641,7 @@ function hwc_node_view($node, $view_mode, $langcode) {
     if ($show_registration) {
       $body = str_replace(
         '<!-- PLACEHOLDER-REGISTER-DO-NOT-REMOVE -->',
-        '<a class="btn-become-a-campaign-partner" href="/partner/register">Become a campaign partner</a>',
+        '<a class="btn-become-a-campaign-partner" href="/partner/register">' . t('Become a campaign partner') . '</a>',
         $body
       );
     }
@@ -653,10 +709,6 @@ function hwc_news_share_widget($node, $options = array()) {
     $type = $node->type;
   }
   // Add services javascript.
-  drupal_add_js(drupal_get_path('module', 'hwc') . '/js/share_widget.js');
-  // Add facebook app key.
-  $fb_app_key = variable_get('fb_app_key', '');
-  drupal_add_js(array('hwc' => array('fb_app_key' => $fb_app_key)), 'setting');
   $site_name = variable_get('site_name', '');
   // Construct the tweet.
   $twitter_text = $title . ' | ' . $site_name;
@@ -753,7 +805,7 @@ function _hwc_segment_options_list() {
   $return = array('0' => t('All audience'));
   $vocabulary = taxonomy_vocabulary_machine_name_load('segment');
   if (!empty($vocabulary)) {
-    $terms = taxonomy_get_tree($vocabulary->vid);
+    $terms = taxonomy_term_load_multiple(array(), array('vid' => $vocabulary->vid));
     foreach($terms as $key => $term) {
       $return[$term->tid] = $term->name;
     }
@@ -906,11 +958,40 @@ function hwc_partner_registration_allowed() {
 }
 
 /**
+ * Implements hook_webform_component_render_alter().
+ */
+function hwc_webform_component_render_alter(&$element, &$component) {
+  if ($component['cid'] == 9) {
+    // Add description link.
+    $link = l(t('Privacy notice'), 'privacy-policy-certificate-participation', array('attributes'=> array('target' => '_blank')));
+    $element['#description'] = str_replace('[PRIVACY_NOTICE]', $link, $element['#description']);
+  }
+}
+
+/**
+ * Get iso2 code of a Country name (from standard Drupal list)
+ */
+function _hwc_iso2_by_name($name) {
+  $countries = country_get_list();
+  foreach($countries as $iso2 => $country) {
+    if (strtoupper($country) == strtoupper($name)) {
+      return $iso2;
+    }
+  }
+}
+
+/**
  * Implements hook_term_presave().
  */
 function hwc_taxonomy_term_presave($term) {
   // When saving a country term, attach the flag on field_flag.
   $voc = taxonomy_vocabulary_machine_name_load('country');
+  if (empty($term->field_iso2[LANGUAGE_NONE][0]['value'])) {
+    $iso2_by_name = _hwc_iso2_by_name($term->name);
+    if (!empty($iso2_by_name)) {
+      $term->field_iso2[LANGUAGE_NONE][0]['value'] = $iso2_by_name;
+    }
+  }
   if ($term->vid == $voc->vid
     && !empty($term->field_iso2[LANGUAGE_NONE][0]['value'])
     && empty($term->field_flag[LANGUAGE_NONE][0])) {

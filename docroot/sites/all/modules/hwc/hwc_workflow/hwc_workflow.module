@@ -137,6 +137,51 @@ function hwc_workflow_mail_alter(&$message) {
 }
 
 /**
+ * Implements hook_node_view().
+ */
+function hwc_workflow_node_view($node, $view_mode, $langcode) {
+  global $user;
+  if ($view_mode == 'full' && in_array($node->type, array('events', 'news'))) {
+    $is_draft = !empty($node->workbench_moderation['current']) && $node->workbench_moderation['current']->state == 'draft';
+    $is_content_partner = hwc_worklow_node_belongs_to_partner_user($node);
+    if ($is_draft && $is_content_partner ) {
+      $form = drupal_get_form('hwc_workflow_node_submit_form', $node);
+      $node->content['submit_content_form'] = $form;
+    }
+  }
+}
+
+function hwc_workflow_node_submit_form($form, &$form_state, $node) {
+  $form['#node'] = $node;
+  $form['actions']['send_for_approval'] = array(
+    '#type' => 'submit',
+    '#value' => t('Submit !type item for validation', array('!type' => $form['type']['#value'])),
+    '#submit' => array('hwc_workflow_node_simple_submit'),
+  );
+  return $form;
+}
+
+function hwc_workflow_node_simple_submit($form, &$form_state) {
+  workbench_moderation_moderate($form['#node'], 'final_draft');
+}
+
+function hwc_worklow_node_belongs_to_partner_user($node) {
+  global $user;
+  $sections = array_keys($user->workbench_access);
+  if (!empty($sections)) {
+    $query = db_select('workbench_access_node', 'wan')
+      ->fields('wan', array('nid'))
+      ->condition('wan.access_id', $sections, 'IN')
+      ->condition('wan.nid', $node->nid);
+    $count = $query->execute()->rowCount();
+    if ($count) {
+      return TRUE;
+    }
+  }
+  return FALSE;
+}
+
+/**
  * Implements hook_workbench_moderation_transition().
  */
 function hwc_workflow_workbench_moderation_transition($node, $old, $new) {
@@ -307,7 +352,7 @@ function hwc_workflow_form_alter(&$form, &$form_state, $form_id) {
   }
   if (!empty($form['workbench_access']['workbench_access']['#options']['section'])) {
     $form['workbench_access']['workbench_access']['#title'] = 'Partner';
-    $form['workbench_access']['workbench_access']['#options']['section'] = 'All partners';
+    $form['workbench_access']['workbench_access']['#options']['section'] = 'General Public';
   }
 }
 
@@ -375,10 +420,6 @@ function hwc_workflow_form_events_node_form_alter(&$form, &$form_state) {
       $form['workbench_access']['workbench_access']['#default_value'] = intval($_GET['workbench_access']);
     }
   }
-  if (!empty($form['workbench_access']['workbench_access']['#options']['section'])) {
-    $form['workbench_access']['workbench_access']['#title'] = 'Partner';
-    $form['workbench_access']['workbench_access']['#options']['section'] = 'All partners';
-  }
 }
 
 /**
@@ -402,6 +443,7 @@ function hwc_workflow_node_form_after_build_hide_hints($form, &$form_state) {
   $key = array_pop($b);
   if ($key && !empty($form['body'][$key][0]['format'])) {
     $form['body'][$key][0]['format']['#attributes']['class'][] = 'hidden';
+    $form['body'][$key][0]['summary']['#access'] = FALSE;
   }
   if (!empty($form['field_summary'])) {
     $sum = element_children($form['field_summary']);

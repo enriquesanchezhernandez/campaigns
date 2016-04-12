@@ -66,6 +66,11 @@ function hwc_default_page_manager_pages() {
       ),
     ),
     'relationships' => array(),
+    'panels_breadcrumbs_state' => 1,
+    'panels_breadcrumbs_titles' => 'Get involved
+Get your certificate of participation in the Healthy Workplaces Campaign',
+    'panels_breadcrumbs_paths' => '',
+    'panels_breadcrumbs_home' => 1,
   );
   $display = new panels_display();
   $display->layout = 'practical_tool_details';
@@ -77,7 +82,7 @@ function hwc_default_page_manager_pages() {
     ),
   );
   $display->cache = array();
-  $display->title = 'Get your certificate of participation in the Healthy Workplaces campaign';
+  $display->title = 'Get your certificate of participation in the Healthy Workplaces Campaign';
   $display->uuid = '7094f568-dc86-496f-9cdf-6998ee08d501';
   $display->content = array();
   $display->panels = array();

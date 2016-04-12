@@ -15,7 +15,7 @@
           global $base_url;
         ?>
         <div style="float: left; width: 30%; line-height: 20px;">
-          <h4 style="padding-top: 10px; text-align: left; font-size: 18px; font-weight: bold; color: #003399; font-family: Oswald, Arial,sans-serif;">
+          <h4 style="padding-top: 10px; text-align: left; font-size: 14px; font-weight: bold; color: #003399; font-family: Oswald, Arial,sans-serif;line-height: 14px;">
             <?php print t('Healthy Workplaces for All Ages'); ?>
           </h4>
         </div>
@@ -90,8 +90,8 @@
       </td> -->
     </tr>
 	<tr><td style="vertical-align: top; padding-top: 10px; padding-left: 50%;">
-		<h1 style="font-size: 3em; color: #FFF; border: none; padding: 0; margin: 0; text-align: left; line-height: 46px;"><?php print $newsletter_title ?></h1>
-		<h2 style="font-style: italic; font-weight: normal; font-size: 2.2em; color: #FFF; padding: 0; margin: 0; text-align: left;"><?php print $newsletter_ready_date ?></h2>
+		<h1 style="font-size: 2em; color: #FFF; border: none; padding: 0; margin: 0; text-align: left; line-height: 28px;"><?php print $newsletter_title ?></h1>
+		<h2 style="font-style: italic; font-weight: normal; font-size: 1.3em; color: #FFF; padding: 0; margin: 0; text-align: left;"><?php print $newsletter_ready_date ?></h2>
 		<br />
             <?php if(!empty($newsletter_intro)){ ?>
 				<p style="font-style: italic; color: #FFF;"><?php print($newsletter_intro);?></p>

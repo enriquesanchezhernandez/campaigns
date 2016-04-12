@@ -58,6 +58,8 @@ class PartnerMigration extends HwcCrmMigration {
       'field_youtube_profile',
       'field_slideshare_profile',
       'field_linkedin_profile',
+      'field_google_plus_profile',
+      'field_pinterest_profile',
       'field_abbreviation_name',
     );
   }
@@ -117,6 +119,18 @@ class PartnerMigration extends HwcCrmMigration {
         );
       }
     }
+    if (!empty($row->field_country)) {
+      $term = taxonomy_get_term_by_name($row->field_country);
+      if (empty($term)) {
+        $voc = taxonomy_vocabulary_machine_name_load('country');
+        $term = new stdClass();
+        $term->vid = $voc->vid;
+        $term->name = ucwords(strtolower($row->field_country));
+        $term->language = 'en';
+        taxonomy_term_save($term);
+        $row->field_country = $term->name;
+      }
+    }
     return TRUE;
   }
 }
@@ -167,6 +181,8 @@ class PartnerMigrateListXml extends AbstractCrmMigrateListXml {
         $data->field_youtube_profile = (string) $attributes['Textbox13'];
         $data->field_slideshare_profile = (string) $attributes['Textbox14'];
         $data->field_linkedin_profile = (string) $attributes['Textbox15'];
+        $data->field_google_plus_profile = (string) $attributes['Textbox37'];
+        $data->field_pinterest_profile = (string) $attributes['Textbox36'];
 
         $data->field_ph_address = (string) $attributes['Textbox16'];
         $data->field_ph_cp = (string) $attributes['Textbox17'];

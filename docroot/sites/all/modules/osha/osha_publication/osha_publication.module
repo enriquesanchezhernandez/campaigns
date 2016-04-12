@@ -18,7 +18,7 @@ function osha_publication_block_info() {
     'status' => 1,
     'region' => '-1',
     'visibility' => BLOCK_VISIBILITY_NOTLISTED,
-    'cache' => DRUPAL_CACHE_GLOBAL,
+    'cache' => DRUPAL_NO_CACHE,
   );
 
   $blocks['osha_case_studies_listing'] = array(
@@ -26,7 +26,7 @@ function osha_publication_block_info() {
     'status' => 1,
     'region' => '-1',
     'visibility' => BLOCK_VISIBILITY_NOTLISTED,
-    'cache' => DRUPAL_CACHE_GLOBAL,
+    'cache' => DRUPAL_NO_CACHE,
   );
   return $blocks;
 }
@@ -404,6 +404,21 @@ function osha_publication_theme() {
       'variables' => array('bookshop_id' => NULL, 'delta' => NULL),
     ),
   );
+}
+
+
+/**
+ * Implements hook_ctools_plugin_directory().
+ */
+function osha_publication_ctools_plugin_directory($owner, $plugin_type) {
+  if ($owner == 'ctools' && $plugin_type == 'content_types') {
+    return 'plugins/' . $plugin_type;
+  }
+}
+
+function osha_publication_panels_pre_render($panels_display, $renderer) {
+  if (strpos($panels_display->cache_key, 'panel_context:node_view::node_view__publication_detail') == 0) {
+  }
 }
 
 /**

@@ -96,7 +96,7 @@ function hwc_partner_views_default_views() {
   /* Display: Latest partner news */
   $handler = $view->new_display('block', 'Latest partner news', 'latest_partner_news');
   $handler->display->display_options['defaults']['title'] = FALSE;
-  $handler->display->display_options['title'] = 'Partner\'s News';
+  $handler->display->display_options['title'] = 'Partner News';
   $handler->display->display_options['defaults']['use_more'] = FALSE;
   $handler->display->display_options['use_more'] = TRUE;
   $handler->display->display_options['defaults']['use_more_always'] = FALSE;
@@ -190,7 +190,7 @@ function hwc_partner_views_default_views() {
   /* Display: Latest partner events */
   $handler = $view->new_display('block', 'Latest partner events', 'latest_partner_events');
   $handler->display->display_options['defaults']['title'] = FALSE;
-  $handler->display->display_options['title'] = 'Partner\'s Events';
+  $handler->display->display_options['title'] = 'Partner Events';
   $handler->display->display_options['defaults']['use_more'] = FALSE;
   $handler->display->display_options['use_more'] = TRUE;
   $handler->display->display_options['defaults']['use_more_always'] = FALSE;
@@ -310,11 +310,11 @@ function hwc_partner_views_default_views() {
     t('Get the actual content from a content revision.'),
     t('All'),
     t('Latest partner news'),
-    t('Partner\'s News'),
+    t('Partner News'),
     t('See all news'),
     t('News'),
     t('Latest partner events'),
-    t('Partner\'s Events'),
+    t('Partner Events'),
     t('See all events'),
     t('Events'),
   );
@@ -657,7 +657,8 @@ function hwc_partner_views_default_views() {
   $handler->display->display_options['fields']['field_flag']['field'] = 'field_flag';
   $handler->display->display_options['fields']['field_flag']['relationship'] = 'field_country_tid';
   $handler->display->display_options['fields']['field_flag']['label'] = '';
-  $handler->display->display_options['fields']['field_flag']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['field_flag']['alter']['make_link'] = TRUE;
+  $handler->display->display_options['fields']['field_flag']['alter']['path'] = 'node/[nid]';
   $handler->display->display_options['fields']['field_flag']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['field_flag']['click_sort_column'] = 'fid';
   $handler->display->display_options['fields']['field_flag']['settings'] = array(
@@ -665,13 +666,6 @@ function hwc_partner_views_default_views() {
     'image_link' => '',
     'field_formatter_class' => '',
   );
-  /* Field: Global: Custom text */
-  $handler->display->display_options['fields']['nothing']['id'] = 'nothing';
-  $handler->display->display_options['fields']['nothing']['table'] = 'views';
-  $handler->display->display_options['fields']['nothing']['field'] = 'nothing';
-  $handler->display->display_options['fields']['nothing']['label'] = '';
-  $handler->display->display_options['fields']['nothing']['alter']['text'] = '<a href ="node/[nid]">[field_flag]</a>';
-  $handler->display->display_options['fields']['nothing']['element_label_colon'] = FALSE;
   /* Field: Taxonomy term: Name */
   $handler->display->display_options['fields']['name_field']['id'] = 'name_field';
   $handler->display->display_options['fields']['name_field']['table'] = 'field_data_name_field';
@@ -800,7 +794,6 @@ function hwc_partner_views_default_views() {
     t('Block'),
     t('term from field_orgtype'),
     t('FOP list'),
-    t('<a href ="node/[nid]">[field_flag]</a>'),
     t('MOP list'),
   );
   $export['partners_list'] = $view;
